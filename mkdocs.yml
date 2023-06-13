@@ -1,0 +1,24 @@
+site_name: Asterisk Documentation
+theme:
+  name: material
+  icon:
+    repo: fontawesome/brands/github
+  palette:
+
+    # Palette toggle for light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+
+    # Palette toggle for dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+plugins:
+   - search
+repo_url: https://github.com/asterisk/asterisk
+repo_name: asterisk
