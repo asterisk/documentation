@@ -1,10 +1,21 @@
 site_name: Asterisk Documentation
+repo_url: https://github.com/asterisk/documentation
+repo_name: Asterisk
+copyright: >
+  Content is licensed under a Creative Commons Attribution-ShareAlike 3.0 United States License.
+  <a href="#__consent">Change cookie settings</a>
+
+edit_uri: edit/main/docs/
+
 theme:
   name: material
+  favicon: favicon.ico
+  logo: favicon.ico
+  custom_dir: overrides
   icon:
     repo: fontawesome/brands/github
-  palette:
 
+  palette:
     # Palette toggle for light mode
     - media: "(prefers-color-scheme: light)"
       scheme: default
@@ -18,7 +29,60 @@ theme:
       toggle:
         icon: material/brightness-4
         name: Switch to light mode
+
+  features:
+    - navigation.instant
+    - navigation.instant.prefetch
+    - navigation.indexes
+    - search.suggest
+    - search.highlight
+    - search.share
+    - content.action.edit
+
 plugins:
-   - search
-repo_url: https://github.com/asterisk/asterisk
-repo_name: asterisk
+  - search
+  - tags:
+      tags_file: index.md
+  - git-revision-date-localized:
+      enable_creation_date: true
+      fallback_to_build_date: true
+
+extra:
+  social:
+    - icon: asterisk/favicon
+      link: https://www.asterisk.org/
+    - icon: fontawesome/brands/wordpress
+      link: https://www.asterisk.org/blog/
+    - icon: fontawesome/brands/twitter
+      link: https://twitter.com/asteriskdev
+    - icon: fontawesome/brands/github
+      link: https://github.com/asterisk
+    - icon: fontawesome/brands/discourse
+      link: https://community.asterisk.org
+
+
+markdown_extensions:
+  - toc:
+      permalink: true
+  - pymdownx.betterem
+  - pymdownx.caret
+  - pymdownx.mark
+  - pymdownx.tilde
+  - pymdownx.details  
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.superfences 
+  - pymdownx.inlinehilite
+  - pymdownx.smartsymbols
+  - pymdownx.snippets
+
+
+extra:
+  consent:
+    title: Cookie consent
+    description: >-
+      We use cookies to store and re-load your preferences.
+    actions:
+      - accept
+      - manage
+      - reject

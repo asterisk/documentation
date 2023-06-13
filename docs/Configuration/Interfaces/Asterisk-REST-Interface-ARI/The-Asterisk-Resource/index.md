@@ -1,0 +1,55 @@
+---
+title: Overview
+pageid: 32375920
+---
+
+The Asterisk Resource
+=====================
+
+While the [primary purpose of ARI](https://wiki.asterisk.org/wiki/pages/viewpage.action?pageId=29395573#AsteriskRESTInterface%28ARI%29-ARI:AnInterfaceforCommunicationsApplications) is to allow developers to build their own communications applications using Asterisk as a media engine, there are other resources in the API that are useful outside of this use case. One of these is the `asterisk` resource. This resource not only provides information about the running Asterisk instance, but also exposes resources and operations that allow an external system to manipulate the overall Asterisk system.
+
+On This PageMore DetailRetrieving System Information
+=============================
+
+The `asterisk` resource provides the ability to retrieve basic information about the running Asterisk process. This includes:
+
+* Information about how Asterisk was compiled
+* Information about Asterisk's configuration
+* Current status of the Asterisk process
+* Information about the system the Asterisk process is running on
+
+An example of this is shown below:
+
+$ curl -X GET -u asterisk:SECRET https://localhost:8088/ari/asterisk/info
+
+{
+ "status":
+ {
+ "startup\_time": "2015-07-16T21:01:37.273-0500",
+ "last\_reload\_time": "2015-07-16T21:01:37.273-0500"
+ },
+ "build":
+ {
+ "user": "mjordan",
+ "options": "AST\_DEVMODE, LOADABLE\_MODULES, OPTIONAL\_API, TEST\_FRAMEWORK",
+ "machine": "x86\_64",
+ "os": "Linux",
+ "kernel": "3.13.0-24-generic",
+ "date": "2015-07-11 15:51:57 UTC"
+ },
+ "system":
+ {
+ "version": "GIT-master-0b2cbeaM",
+ "entity\_id": "ec:f4:bb:67:a6:d0"
+ },
+ "config":
+ {
+ "default\_language": "en",
+ "name":"mjordan-laptop",
+ "setid":
+ {
+ "user": "asterisk",
+ "group": "asterisk"
+ }
+ }
+}

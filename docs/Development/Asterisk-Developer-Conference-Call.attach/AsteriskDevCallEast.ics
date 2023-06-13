@@ -1,0 +1,110 @@
+BEGIN:VCALENDAR
+PRODID:Zimbra-Calendar-Provider
+VERSION:2.0
+METHOD:PUBLISH
+BEGIN:VTIMEZONE
+TZID:America/New_York
+BEGIN:STANDARD
+DTSTART:19710101T020000
+TZOFFSETTO:-0500
+TZOFFSETFROM:-0400
+RRULE:FREQ=YEARLY;WKST=MO;INTERVAL=1;BYMONTH=11;BYDAY=1SU
+TZNAME:EST
+END:STANDARD
+BEGIN:DAYLIGHT
+DTSTART:19710101T020000
+TZOFFSETTO:-0400
+TZOFFSETFROM:-0500
+RRULE:FREQ=YEARLY;WKST=MO;INTERVAL=1;BYMONTH=3;BYDAY=2SU
+TZNAME:EDT
+END:DAYLIGHT
+END:VTIMEZONE
+BEGIN:VEVENT
+UID:0737e62d-55d1-403b-a31b-d87ef92c6ac6
+RRULE:FREQ=WEEKLY;UNTIL=20120101T045959Z;INTERVAL=2;BYDAY=TH
+SUMMARY:Asterisk Developer Conference Call (East)
+DESCRIPTION:\n\n\n\nThis is the weekly Asterisk Developer Conference Call (E
+ ast) . Please note that this call staggers every other week to accommodate p
+ articipation from other time zones. \n\n\nThe Asterisk Developer Conference 
+ Call can be accessed via the following methods: \n\n\nsip:100@devcon.digium.
+ com \nSKYPE: devcall.digium \npstn: 1.877.274.7510 \nDigium internal: 500003
+  \n\n\nBridge: 15071 \nPin Code: 35806 \nPlease join us on IRC at #asterisk-
+ dev during the call for real time communication and file sharing. \n\n\nThe 
+ format for the call is: \n\n00:00 - 05:00: Welcome & Announcements \n05:00 -
+  20:00: Old Business \n20:00 - 40:00: New Business \n40:00 - 60:00: Open Flo
+ or \n\n\nAll participants are muted by default and should press 0 to unmute 
+ in order to speak. \n\n\nPlease make best efforts to join from handsets or u
+ se a headset in conjunction with a software phone or SKYPE to maximize audio
+  quality. \n\n\nWe look forward to your participation! 
+X-ALT-DESC;FMTTYPE=text/html:<html><body><div style='font-family:Times New R
+ oman\; font-size: 12pt\; color: #000000\;'><div style="font-family:Times New
+  Roman\; font-size: 12pt\; color: #000000\;"><div style="font-family:Times N
+ ew Roman\; font-size: 12pt\; color: #000000\;"><div style="font-family: 'Tim
+ es New Roman'\; font-size: 12pt\; "><div style="font-family: 'Times New Roma
+ n'\; font-size: 12pt\; "><font class="Apple-style-span" face="arial\, helvet
+ ica\, sans-serif" size="2" style="color: rgb(0\, 0\, 0)\; "><b>This is the w
+ eekly Asterisk Developer Conference Call (East)</b>. &nbsp\;<i>Please note t
+ hat this call staggers every other week to accommodate participation from ot
+ her time zones.</i></font><div style="color: rgb(0\, 0\, 0)\; "><font class=
+ "Apple-style-span" face="arial\, helvetica\, sans-serif" size="2"><br></font
+ ></div><div style="color: rgb(0\, 0\, 0)\; "><font class="Apple-style-span" 
+ face="arial\, helvetica\, sans-serif" size="2">The Asterisk Developer Confer
+ ence Call can be accessed via the following methods:</font></div><div style=
+ "color: rgb(0\, 0\, 0)\; "><font class="Apple-style-span" face="arial\, helv
+ etica\, sans-serif" size="2"><br></font></div><div style="color: rgb(0\, 0\,
+  0)\; "><font class="Apple-style-span" face="arial\, helvetica\, sans-serif"
+  size="2">sip:100@devcon.digium.com</font></div><div style="color: rgb(0\, 0
+ \, 0)\; "><font class="Apple-style-span" face="arial\, helvetica\, sans-seri
+ f" size="2">SKYPE: devcall.digium</font></div><div><font class="Apple-style-
+ span" face="arial\, helvetica\, sans-serif" size="2">pstn: <font class="Appl
+ e-style-span" color="#0033BB"><u>1.877.274.7510</u></font></font></div><div 
+ style="color: rgb(0\, 0\, 0)\; "><font class="Apple-style-span" face="arial\
+ , helvetica\, sans-serif" size="2">Digium internal: &nbsp\;500003</font></di
+ v><div style="color: rgb(0\, 0\, 0)\; "><font class="Apple-style-span" face=
+ "arial\, helvetica\, sans-serif" size="2"><br></font></div><div style="color
+ : rgb(0\, 0\, 0)\; "><font class="Apple-style-span" face="arial\, helvetica\
+ , sans-serif" size="2">Bridge: &nbsp\;15071</font></div><div style="color: r
+ gb(0\, 0\, 0)\; "><font class="Apple-style-span" face="arial\, helvetica\, s
+ ans-serif" size="2">Pin Code: &nbsp\;35806</font></div><div style="color: rg
+ b(0\, 0\, 0)\; "><font class="Apple-style-span" face="arial\, helvetica\, sa
+ ns-serif" size="2">Please join us on IRC at #asterisk-dev during the call fo
+ r real time communication and file sharing.</font></div><div style="color: r
+ gb(0\, 0\, 0)\; "><font class="Apple-style-span" face="arial\, helvetica\, s
+ ans-serif" size="2"><br></font></div><div style="color: rgb(0\, 0\, 0)\; "><
+ font class="Apple-style-span" face="arial\, helvetica\, sans-serif" size="2"
+ >The format for the call is:</font></div><div style="color: rgb(0\, 0\, 0)\;
+  "><font class="Apple-style-span" face="arial\, helvetica\, sans-serif" size
+ ="2"><br>00:00 - 05:00: &nbsp\;Welcome &amp\; Announcements<br>05:00 - 20:00
+ : &nbsp\;Old Business<br>20:00 - 40:00: &nbsp\;New Business<br>40:00 - 60:00
+ : &nbsp\;Open Floor</font></div><div style="color: rgb(0\, 0\, 0)\; "><font 
+ class="Apple-style-span" face="arial\, helvetica\, sans-serif" size="2"><br>
+ </font></div><div style="color: rgb(0\, 0\, 0)\; "><font class="Apple-style-
+ span" face="arial\, helvetica\, sans-serif" size="2">All participants are mu
+ ted by default and should press 0 to unmute in order to speak.</font></div><
+ div style="color: rgb(0\, 0\, 0)\; "><font class="Apple-style-span" face="ar
+ ial\, helvetica\, sans-serif" size="2"><br></font></div><div style="color: r
+ gb(0\, 0\, 0)\; "><font class="Apple-style-span" face="arial\, helvetica\, s
+ ans-serif" size="2">Please make best efforts to join from handsets or use a 
+ headset in conjunction with a software phone or SKYPE to maximize audio qual
+ ity.</font></div><div style="color: rgb(0\, 0\, 0)\; "><font class="Apple-st
+ yle-span" face="arial\, helvetica\, sans-serif" size="2"><br></font></div><d
+ iv style="color: rgb(0\, 0\, 0)\; "><font class="Apple-style-span" face="ari
+ al\, helvetica\, sans-serif" size="2">We look forward to your participation!
+ </font></div></div></div></div></div></div></body></html>
+LOCATION:sip:100@devcon.digium.com
+ORGANIZER;CN=Bryan M. Johns:mailto:bjohns@digium.com
+DTSTART;TZID="America/New_York":20110127T170000
+DTEND;TZID="America/New_York":20110127T180000
+STATUS:CONFIRMED
+CLASS:PUBLIC
+X-MICROSOFT-CDO-INTENDEDSTATUS:BUSY
+TRANSP:OPAQUE
+DTSTAMP:20110126T202032Z
+SEQUENCE:4
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER;RELATED=START:-PT30M
+DESCRIPTION:Reminder
+END:VALARM
+END:VEVENT
+END:VCALENDAR

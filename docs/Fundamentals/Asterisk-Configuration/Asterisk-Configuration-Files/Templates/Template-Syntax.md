@@ -1,0 +1,10 @@
+---
+title: Template Syntax
+pageid: 4817465
+---
+
+To define a section as a template **only** (not to be loaded for use as configuration by itself), place an exclamation mark in parentheses after the section heading, as shown in the example below.
+
+javascript[template-name](!)
+setting=valueAlternatively the  page will also discuss how to have a section inherit another section's settings without defining a template. In effect, using an "active" or "live" configuration section as your template.
+
