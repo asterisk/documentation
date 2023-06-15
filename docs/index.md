@@ -3,9 +3,9 @@ title: Home
 pageid: 4259930
 ---
 
-For an FAQ about the joining together of Sangoma and Digium, please see 
+# This site is still under construction!
 
- 
+For an FAQ about the joining together of Sangoma and Digium, please see 
 
 This is the home of the official wiki for The Asterisk Project.
 
