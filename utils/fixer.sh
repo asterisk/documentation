@@ -27,6 +27,7 @@ initial_configure() {
 	if [ -n "$mvdirs" ] ; then
 		rm -rf ${mvdirs}
 	fi
+	[ -f docs/Historical-Pages.md ] && rm docs/Historical-Pages.md
 
 #	dirs=$(find docs -type d)
 #	for d in $dirs ; do
@@ -38,7 +39,6 @@ initial_configure() {
 	if [ -d docs/Historical-Pages ] ; then
 		[ -d Historical-Pages ] && rm -rf Historical-Pages
 		mv docs/Historical-Pages ./
-		rm docs/Historical-Pages.md
 	fi
 
 	[ -d docs/Asterisk-Test-Suite-Documentation ] && \
@@ -56,25 +56,21 @@ initial_configure() {
 		mv docs/Asterisk-Project-Infrastructure-Migration.md \
 			docs/Development/
 		
-	mds=$(find docs -name index.md -type f)
-	for f in $mds ; do
-		lines=$(sed -r -e "1,/---/d" -e "/^$/d" $f | wc -l)
-		[ $lines -eq 0 ] && { echo "Deleted empty $f" ; rm $f ; }
-	done
+#	mds=$(find docs -name index.md -type f)
+#	for f in $mds ; do
+#		lines=$(sed -r -e "1,/---/d" -e "/^$/d" $f | wc -l)
+#		[ $lines -eq 0 ] && { echo "Deleted empty $f" ; rm $f ; }
+#	done
 
 	[ ! -f docs/favicon.ico ] && cp overrides/.icons/favicon.ico ./docs/
 	cp overrides/index.md ./docs/
 
-	noformats=$(grep -lr "{noformat}" docs)
-	if [ -n "$noformats" ] ; then
-		sed -i -r -e 's/\{noformat\}/```/gp' $noformats
-	fi
+	echo "docs.asterisk.org" > docs/CNAME
 }
-
 
 convert_links() {
 	files=$(grep -rl "wiki.asterisk.org/wiki" docs/*)
-	prefix="https://wiki.asterisk.org/wiki/display/AST/"
+	prefix="/"
 	IFS=$' \n'
 	for f in $files ; do
 		sed -n -r -e "s@.*\]\(${prefix}([^)]+)\).*@\1@gip" $f | while read URL ; do
@@ -113,9 +109,9 @@ convert_links() {
 	done
 }
 
-#rm -rf docs
-#rsync -vaH ../internal/confluence2markdown/output/markdown/. ./docs/
-#initial_configure
-#mkdocs build
+rm -rf docs
+rsync -vaH ../internal/confluence2markdown/output/markdown/. ./docs/
+initial_configure
+mkdocs build
 convert_links
 

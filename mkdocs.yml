@@ -43,11 +43,19 @@ plugins:
   - search
   - tags:
       tags_file: index.md
-  - git-revision-date-localized:
-      enable_creation_date: true
-      fallback_to_build_date: true
+#  - git-revision-date-localized:
+#      enable_creation_date: true
+#      fallback_to_build_date: true
 
 extra:
+  consent:
+    title: Cookie consent
+    description: >-
+      We use cookies to store and re-load your preferences.
+    actions:
+      - accept
+      - manage
+      - reject
   social:
     - icon: asterisk/favicon
       link: https://www.asterisk.org/
@@ -77,12 +85,3 @@ markdown_extensions:
   - pymdownx.snippets
 
 
-extra:
-  consent:
-    title: Cookie consent
-    description: >-
-      We use cookies to store and re-load your preferences.
-    actions:
-      - accept
-      - manage
-      - reject
