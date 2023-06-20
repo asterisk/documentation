@@ -1,9 +1,6 @@
 #!/bin/bash
 PROGNAME=$(realpath $0)
 PROGDIR=$(dirname $PROGNAME)
-# issues
-# 'docs/Home/Configuration/Interfaces/Distributed-Device-State/Distributed-Device-State-with-XMPP-PubSub.md'
-# 'docs/Home/Fundamentals/Asterisk-Configuration/Asterisk-Configuration-Files/Adding-to-an-existing-section.md'
 
 initial_configure() {
 
@@ -68,50 +65,10 @@ initial_configure() {
 	echo "docs.asterisk.org" > docs/CNAME
 }
 
-convert_links() {
-	files=$(grep -rl "wiki.asterisk.org/wiki" docs/*)
-	prefix="/"
-	IFS=$' \n'
-	for f in $files ; do
-		sed -n -r -e "s@.*\]\(${prefix}([^)]+)\).*@\1@gip" $f | while read URL ; do
-			if [ -z "${URL%%#*}" ] ; then
-				newurl=$($PROGDIR/slugify.py "${URL}")
-			else
-				newurl=$($PROGDIR/slugify.py "${URL%%#*}")
-			fi
-			[[ "$newurl" =~ Asterisk-[0-9][0-9] ]] && continue
 
-			if [ "$URL" == "Home" ] ; then
-				newpage="/"
-			else
-				newpage=$(cd site ; find -iname "${newurl}" | tr -d '\n')
-				newpage=${newpage/.\//}
-				if [ -z "$newpage" ] ; then
-					newpage=$(cd site ; find -iname "${newurl}.html" | tr -d '\n')
-					newpage=${newpage/.\//}
-				fi
-			fi
-			if [ -n "$newpage" ] ; then
-				fixed=$(sed -i -r -e "s@${prefix}${URL//+/\\+}@/${newpage}@gi" $f)
-#				if [ -z "$fixed" ] ; then
-#					echo -e "\n$f"
-#					echo -e "\t  Original: ${prefix}${URL}"
-#					echo -e "\t Slugified: ${newurl}"
-#					echo -e "\t   Newpage: $newpage"
-#					echo -e "\t NOT FIXED"
-#				fi
-			else
-				if [[ ! "${newurl}" =~ .*REST.* ]] ; then
-					echo "$f: ${prefix}${URL}  ${newurl}"
-				fi
-			fi
-		done
-	done
-}
-
-rm -rf docs
-rsync -vaH ../internal/confluence2markdown/output/markdown/. ./docs/
-initial_configure
-mkdocs build
-convert_links
+#rm -rf docs
+#rsync -vaH ../internal/confluence2markdown/output/markdown/. ./docs/
+#initial_configure
+#mkdocs build
+${PROGDIR}/convert_links.sh
 
