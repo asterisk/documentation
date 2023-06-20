@@ -1,7 +1,12 @@
 # Description
 
 This repository contains the Asterisk Documentation project. Documentation is written in markdown and generated
-using the mkdocs utility. You can find the documentation in the "docs" directory.
+using the [mkdocs](https://www.mkdocs.org) utility and the [Material for MkDocs](https://squidfunk.github.io/mkdocs-material/) theme. You can find the documentation source in the "docs" directory.
+
+Contributions are welcomed via the usual fork and pull request process.  All contributions are subject to the
+[Creative Commons Attribution-ShareAlike 3.0 United States](LICENSE.md) license.
+
+Prior to submitting a pull request, you should run `mkdocs build` and address any issues reported.
 
 # Dependencies
 
