@@ -12,7 +12,7 @@ The following table shows the release time lines for all releases of Asterisk, i
 
 
 | Release Series | Release Type | Release Date | Security Fix Only | EOL | Current Status |
-| --- | --- | --- | --- | --- |
+| --- | --- | --- | --- | --- | --- |
 | 1.2.x |   | [2005-11-21](http://lists.digium.com/pipermail/asterisk-announce/2005-November/000007.html) | 2007-08-07 | 2010-11-21 | EOL |
 | 1.4.x | LTS | [2006-12-23](http://lists.digium.com/pipermail/asterisk-announce/2006-December/000046.html) | 2011-04-21 | 2012-04-21 | EOL |
 | 1.6.0.x | Standard | [2008-10-01](http://lists.digium.com/pipermail/asterisk-announce/2008-October/000167.html) | 2010-05-01 | 2010-10-01 | EOL |
