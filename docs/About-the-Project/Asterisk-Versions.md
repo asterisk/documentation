@@ -11,26 +11,26 @@ The following table shows the release time lines for all releases of Asterisk, i
 
 
 
-| Release Series | Release Type | Release Date | Security Fix Only | EOL |
+| Release Series | Release Type | Release Date | Security Fix Only | EOL | Current Status |
 | --- | --- | --- | --- | --- |
-| 1.2.x |   | [2005-11-21](http://lists.digium.com/pipermail/asterisk-announce/2005-November/000007.html) | 2007-08-07 | 2010-11-21 |
-| 1.4.x | LTS | [2006-12-23](http://lists.digium.com/pipermail/asterisk-announce/2006-December/000046.html) | 2011-04-21 | 2012-04-21 |
-| 1.6.0.x | Standard | [2008-10-01](http://lists.digium.com/pipermail/asterisk-announce/2008-October/000167.html) | 2010-05-01 | 2010-10-01 |
-| 1.6.1.x | Standard | [2009-04-27](http://lists.digium.com/pipermail/asterisk-announce/2009-April/000184.html) | 2010-05-01 | 2011-04-27 |
-| 1.6.2.x | Standard | [2009-12-18](http://lists.digium.com/pipermail/asterisk-announce/2009-December/000219.html) | 2011-04-21 | 2012-04-21 |
-| 1.8.x | LTS | [2010-10-21](http://lists.digium.com/pipermail/asterisk-announce/2010-October/000277.html) | 2014-10-21 | 2015-10-21 |
-| 10.x | Standard | [2011-12-15](http://lists.digium.com/pipermail/asterisk-announce/2011-December/000356.html) | 2012-12-15 | 2013-12-15 |
-| 11.x | LTS | [2012-10-25](http://lists.digium.com/pipermail/asterisk-announce/2012-October/000427.html) | 2016-10-25 | 2017-10-25 |
-| 12.x | Standard | [2013-12-20](http://lists.digium.com/pipermail/asterisk-announce/2013-December/000507.html) | 2014-12-20 | 2015-12-20 |
-| 13.x | LTS | [2014-10-24](http://lists.digium.com/pipermail/asterisk-announce/2014-October/000565.html) | 2020-10-24 | 2021-10-24 |
-| 14.x | Standard | [2016-09-26](http://lists.digium.com/pipermail/asterisk-dev/2016-September/075783.html) | 2017-09-26 | 2018-09-26 |
-| 15.x | Standard | [2017-10-03](http://lists.digium.com/pipermail/asterisk-announce/2017-October/000684.html) | 2018-10-03 | 2019-10-03 |
-| 16.x | LTS | [2018-10-09](http://lists.digium.com/pipermail/asterisk-announce/2018-October/000727.html) | 2022-10-09 | 2023-10-09 |
-| 17.x | Standard | [2019-10-28](http://lists.digium.com/pipermail/asterisk-announce/2019-October/000757.html) | 2020-10-28 | 2021-10-28 |
-| 18.x | LTS | [2020-10-20](http://lists.digium.com/pipermail/asterisk-announce/2020-October/000791.html) | 2024-10-20 | 2025-10-20 |
-| 19.x | Standard | 2021-11-02 | 2022-11-02 | 2023-11-02 |
-| 20.x | LTS | 2022-10-19 | 2026-10-19 | 2027-10-19 |
-| 21.x | Standard | 2023-10-18 | 2025-10-18 | 2026-10-18 |
+| 1.2.x |   | [2005-11-21](http://lists.digium.com/pipermail/asterisk-announce/2005-November/000007.html) | 2007-08-07 | 2010-11-21 | EOL |
+| 1.4.x | LTS | [2006-12-23](http://lists.digium.com/pipermail/asterisk-announce/2006-December/000046.html) | 2011-04-21 | 2012-04-21 | EOL |
+| 1.6.0.x | Standard | [2008-10-01](http://lists.digium.com/pipermail/asterisk-announce/2008-October/000167.html) | 2010-05-01 | 2010-10-01 | EOL |
+| 1.6.1.x | Standard | [2009-04-27](http://lists.digium.com/pipermail/asterisk-announce/2009-April/000184.html) | 2010-05-01 | 2011-04-27 | EOL |
+| 1.6.2.x | Standard | [2009-12-18](http://lists.digium.com/pipermail/asterisk-announce/2009-December/000219.html) | 2011-04-21 | 2012-04-21 | EOL |
+| 1.8.x | LTS | [2010-10-21](http://lists.digium.com/pipermail/asterisk-announce/2010-October/000277.html) | 2014-10-21 | 2015-10-21 | EOL |
+| 10.x | Standard | [2011-12-15](http://lists.digium.com/pipermail/asterisk-announce/2011-December/000356.html) | 2012-12-15 | 2013-12-15 | EOL |
+| 11.x | LTS | [2012-10-25](http://lists.digium.com/pipermail/asterisk-announce/2012-October/000427.html) | 2016-10-25 | 2017-10-25 | EOL |
+| 12.x | Standard | [2013-12-20](http://lists.digium.com/pipermail/asterisk-announce/2013-December/000507.html) | 2014-12-20 | 2015-12-20 | EOL |
+| 13.x | LTS | [2014-10-24](http://lists.digium.com/pipermail/asterisk-announce/2014-October/000565.html) | 2020-10-24 | 2021-10-24 | EOL |
+| 14.x | Standard | [2016-09-26](http://lists.digium.com/pipermail/asterisk-dev/2016-September/075783.html) | 2017-09-26 | 2018-09-26 | EOL |
+| 15.x | Standard | [2017-10-03](http://lists.digium.com/pipermail/asterisk-announce/2017-October/000684.html) | 2018-10-03 | 2019-10-03 | EOL |
+| 16.x | LTS | [2018-10-09](http://lists.digium.com/pipermail/asterisk-announce/2018-October/000727.html) | 2022-10-09 | 2023-10-09 | Security Fix Only |
+| 17.x | Standard | [2019-10-28](http://lists.digium.com/pipermail/asterisk-announce/2019-October/000757.html) | 2020-10-28 | 2021-10-28 | EOL |
+| 18.x | LTS | [2020-10-20](http://lists.digium.com/pipermail/asterisk-announce/2020-October/000791.html) | 2024-10-20 | 2025-10-20 | Fully Supported |
+| 19.x | Standard | 2021-11-02 | 2022-11-02 | 2023-11-02 | Security Fix Only |
+| 20.x | LTS | 2022-10-19 | 2026-10-19 | 2027-10-19 | Fully Supported |
+| 21.x | Standard | 2023-10-18 | 2025-10-18 | 2026-10-18 | Not Yet Released |
 
 New releases of Asterisk will be made roughly once a year, alternating between standard and LTS releases. Within a given release series that is fully supported, bug fix updates are provided roughly every 4 to 6 weeks. For a release series that is receiving only maintenance for security fixes, updates are made on an as needed basis.
 
