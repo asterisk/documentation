@@ -62,7 +62,7 @@ Presentation Slides
 
 [AstriDevCon 2019 - Asterisk and Video](Asterisk-and-Video.pdf) - Joshua Colp, Kevin Harwell
 
-[AstriDevCon 2019 - AMQP](Astridevcon-2017-AMQP--2-.pdf) - Sylvain Boily
+[AstriDevCon 2019 - AMQP](Astridevcon-2017-AMQP-2.pdf) - Sylvain Boily
 
 [AstriDevCon 2019 - Asterisk Calendars](Asterisk-calendars.pdf) - Ludovic Gasc
 

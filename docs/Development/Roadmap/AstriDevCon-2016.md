@@ -8,7 +8,7 @@ Overview
 
 AstriDevCon was held on  at the Renaissance Phoenix Glendale Hotel and Spa in Glendale, AZ. There were approximately ~50 attendees on average throughout the day. Lunch was provided by e4strategies.com.
 
-![](Devcon3--1-.jpg)
+![](Devcon3-1.jpg)
 
 Link to [panoramic view of the room](http://sphereshare.net/#!/s/d07e8e3ef0332ab8737854fd0ec4cd74) at the time.
 
