@@ -9,11 +9,11 @@ pageid: 19726406
 Purpose of the Asterisk issue tracker
 -------------------------------------
 
-The [Asterisk Issue Tracker on GitHub](https://github.com/asterisk/asterisk/issues) is used to track bugs and miscellaneous (documentation) elements within the Asterisk project. The issue tracker is designed to manage reports on both [core and extended components](/Asterisk+Module+Support+States) of the Asterisk project.
+The [Asterisk Issue Tracker on GitHub](https://github.com/asterisk/asterisk/issues) is used to track bugs and miscellaneous (documentation) elements within the Asterisk project. The issue tracker is designed to manage reports on both [core and extended components](/Asterisk-Community/Asterisk-Module-Support-States) of the Asterisk project.
 
 The primary use of the issue tracker is to track bugs, where "bug" means anything that causes unexpected or detrimental results in the Asterisk system. The secondary purpose is to track some of the miscellaneous issues surrounding Asterisk, such as documentation, commentary and feature requests or improvements with associated patches.
 
-Feature requests without patches are generally not accepted through the issue tracker. Instead, they are discussed openly on the mailing lists and Asterisk IRC channels. Please read the ["How to request a feature"](/Asterisk+Issue+Guidelines#AsteriskIssueGuidelines-Howtorequestafeature) section of this article.
+Feature requests without patches are generally not accepted through the issue tracker. Instead, they are discussed openly on the mailing lists and Asterisk IRC channels. Please read the ["How to request a feature"](/Asterisk-Community/Asterisk-Issue-Guidelines) section of this article.
 
 #### What the issue tracker is not used for:
 
@@ -24,7 +24,7 @@ Search and ask on the forums, mailing lists, and IRC. Again, see <http://www.ast
 * **Random wishes and feature requests with no patch:** (I want Asterisk to support <insert obscure protocol or gadget>, but I don't know how to code!)  
 See the [How to request a feature section](#feature_request) for more information on requesting a feature.
 * **Business development requests** (I will pay you to make Asterisk support fancy unicorn protocol!)  
-Please head to the asterisk-biz mailing list at <http://lists.digium.com>. If what you want is a specific feature or bug fixed, you may want to consider [requesting a bug bounty](/Asterisk-Bug-Bounties).
+Please head to the asterisk-biz mailing list at <http://lists.digium.com>. If what you want is a specific feature or bug fixed, you may want to consider [requesting a bug bounty](/Development/Asterisk-Bug-Bounties).
 * and...
 
 
@@ -76,11 +76,11 @@ Your issue may not be a bug or could have been fixed already. Run through the ch
 * **Have you asked for help in the community? (mailing lists, IRC, forums)**  
 You can locate all these services here: <http://www.asterisk.org/community>
 * **Have you searched the Asterisk documentation in case this behavior is expected?**  
-Search the [Asterisk wiki](/Home) for the problem or messages you are experiencing.
+Search the [Asterisk wiki](//) for the problem or messages you are experiencing.
 * **Have you searched the Asterisk bug tracker to see if an issue is already filed for this potential bug?**  
 Search the [Asterisk Issue Tracker on GitHub](https://github.com/asterisk/asterisk/issues) for the issue you are seeing. You can search for issues by selecting **Issues -> Search for Issues** in the top menu bar.
 * **Can you reproduce the problem?**  
-Problems that can't be reproduced can often be difficult to solve, and your issue may be closed if you or the bug marshals cannot reproduce the problem. If you can't find a way to simulate or reproduce the issue, then it is advisable to configure your system such that it is [capturing relevant debug](/Collecting-Debug-Information) during the times failure occurs. Yes, that could mean running debug for days or weeks if necessary.
+Problems that can't be reproduced can often be difficult to solve, and your issue may be closed if you or the bug marshals cannot reproduce the problem. If you can't find a way to simulate or reproduce the issue, then it is advisable to configure your system such that it is [capturing relevant debug](/Operation/Logging/Collecting-Debug-Information) during the times failure occurs. Yes, that could mean running debug for days or weeks if necessary.
 
 Submitting the bug report
 -------------------------
@@ -117,10 +117,10 @@ For a bug you must include the following information:
 	* **Debugging output** - You'll almost always want to include extensions.conf, and config files for any involved component of Asterisk. Depending on the issue you may also need the following:
 	
 	
-		+ For crashes, provide a backtrace generated from an Asterisk core dump. See [Getting a Backtrace](/Getting-a-Backtrace) for more information.
-		+ For apparent deadlocks, you may need to enable the compile time option `DEBUG_THREADS`. A backtrace may also be necessary. See [Getting a Backtrace](/Getting-a-Backtrace) for more information.
+		+ For crashes, provide a backtrace generated from an Asterisk core dump. See [Getting a Backtrace](/Development/Debugging/Getting-a-Backtrace) for more information.
+		+ For apparent deadlocks, you may need to enable the compile time option `DEBUG_THREADS`. A backtrace may also be necessary. See [Getting a Backtrace](/Development/Debugging/Getting-a-Backtrace) for more information.
 		+ For memory leaks or memory corruptions, [Valgrind](/Valgrind) may be necessary. Valgrind can detect memory leaks and memory corruptions, although it does result in a substantial performance impact.
-		+ For debugging most problems, a properly generated debug log file will be needed. See [CLI commands useful for debugging](/CLI-commands-useful-for-debugging) and [Collecting Debug Information](/Collecting-Debug-Information) for more information. Note that for issues involving SIP, IAX2, or other channel drivers, you should enable that driver's enhanced debug mode through the CLI before collecting information. A pcap demonstrating the problem may also be needed.
+		+ For debugging most problems, a properly generated debug log file will be needed. See [CLI commands useful for debugging](/CLI-commands-useful-for-debugging) and [Collecting Debug Information](/Operation/Logging/Collecting-Debug-Information) for more information. Note that for issues involving SIP, IAX2, or other channel drivers, you should enable that driver's enhanced debug mode through the CLI before collecting information. A pcap demonstrating the problem may also be needed.
 		
 		
 		
@@ -163,18 +163,18 @@ If your bug was closed, but you get additional debug or data later on, you can a
 How to request a feature
 ------------------------
 
-Feature requests without patches are not typically monitored or kept on the tracker. Even a feature request with a patch will still have to be approved by the core maintainers and community developers. Many people want Asterisk to do many different things; however, unless the feature has some extremely obvious (to many people) benefit, then it's best to have a community discussion and consensus on a feature before it goes into Asterisk. Feature requests are openly discussed on the [mailing lists](/Mailing-Lists) and [IRC channels](/IRC). Most bug marshals and Asterisk developers actively participate and will note the request if it makes sense.
+Feature requests without patches are not typically monitored or kept on the tracker. Even a feature request with a patch will still have to be approved by the core maintainers and community developers. Many people want Asterisk to do many different things; however, unless the feature has some extremely obvious (to many people) benefit, then it's best to have a community discussion and consensus on a feature before it goes into Asterisk. Feature requests are openly discussed on the [mailing lists](/Mailing-Lists) and [IRC channels](/Asterisk-Community/IRC). Most bug marshals and Asterisk developers actively participate and will note the request if it makes sense.
 
-New features and major architecture changes are often discussed at the [AstriDevCon](/AstriDevCon) event held before Astricon.
+New features and major architecture changes are often discussed at the [AstriDevCon](/Development/Roadmap/AstriDevCon) event held before Astricon.
 
-If you really need the feature, but are not a programmer, you'll need to find someone else to write the code for you. Luckily, there are many talented Asterisk developers out there that can be contacted on the [asterisk-biz](http://lists.digium.com) mailing list. You can also offer a bounty for a bug or new feature - see [Asterisk Bug Bounties](/Asterisk-Bug-Bounties) for more information.
+If you really need the feature, but are not a programmer, you'll need to find someone else to write the code for you. Luckily, there are many talented Asterisk developers out there that can be contacted on the [asterisk-biz](http://lists.digium.com) mailing list. You can also offer a bounty for a bug or new feature - see [Asterisk Bug Bounties](/Development/Asterisk-Bug-Bounties) for more information.
 
 Patch and Code Submission
 -------------------------
 
-Patches for all issues are always welcome. Issues with patches are typically resolved much faster than those without. Please see the [Patch Contribution Process](/Patch-Contribution-Process) for information on submitting a patch to the Asterisk project.
+Patches for all issues are always welcome. Issues with patches are typically resolved much faster than those without. Please see the [Patch Contribution Process](/Development/Policies-and-Procedures/Historical-Policies-and-Procedures/Patch-Contribution-Process) for information on submitting a patch to the Asterisk project.
 
-For information on writing a new feature for Asterisk, please see the [New Feature Guidelines](/New-Feature-Guidelines).
+For information on writing a new feature for Asterisk, please see the [New Feature Guidelines](/Development/Policies-and-Procedures/Historical-Policies-and-Procedures/Patch-Contribution-Process/New-Feature-Guidelines).
 
 Issue Lifetime
 --------------
@@ -183,7 +183,7 @@ The status of all issues in the tracker are reflected in the tracker. As issues 
 
 For any particular issue you'll want to look at the "Status" field and the comments tab under "Activity".
 
-You can read more about the issue workflow at [Issue Tracker Workflow](/Issue-Tracker-Workflow).
+You can read more about the issue workflow at [Issue Tracker Workflow](/Development/Policies-and-Procedures/Historical-Policies-and-Procedures/Issue-Tracker-Workflow).
 
 
 
@@ -220,7 +220,7 @@ You can safely ignore the issues starting with SWP. Digium has a whole group of 
 #### How can I speed up my issue resolution?
 
 1. Follow the guidelines on this patch! Having good, accurate information that helps bug marshals reproduce the issue typically leads to much faster issue resolution.
-2. Provide a patch! Issues with patches are also generally resolved much faster. If you can't write a patch, there are many smart, talented developers in the Asterisk community who may be worth helping you. You can contract with them on the [asterisk-biz](http://lists.digium.com) mailing list, or offer a [bug bounty](/Asterisk-Bug-Bounties).
+2. Provide a patch! Issues with patches are also generally resolved much faster. If you can't write a patch, there are many smart, talented developers in the Asterisk community who may be worth helping you. You can contract with them on the [asterisk-biz](http://lists.digium.com) mailing list, or offer a [bug bounty](/Development/Asterisk-Bug-Bounties).
 
  
 

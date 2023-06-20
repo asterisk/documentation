@@ -6,7 +6,7 @@ pageid: 50921837
 Moving to Python3
 =================
 
-Along with the move to Python 3 comes with a few major changes and many small ones.  The two largest changes are the move away from using the pjsua/pjsua2 library by migrating those tests to sipp and the move to the use of a python virtual environment.  There are test that still use the pjsua application (primarily in chan-sip) so if you want to run those tests you will still need [pjsua](/Using+Python3#Notes) installed.[\*](/Using+Python3#pjsua)
+Along with the move to Python 3 comes with a few major changes and many small ones.  The two largest changes are the move away from using the pjsua/pjsua2 library by migrating those tests to sipp and the move to the use of a python virtual environment.  There are test that still use the pjsua application (primarily in chan-sip) so if you want to run those tests you will still need [pjsua](/Using+Python3#Notes) installed.[\*](/Test-Suite-Documentation/Using-Python3)
 
 The move to the virtual environment for python comes with two big advantages.  First, installation becomes standardized and simplified so that all we have to do is activate the environment, install the defined modules and the test environment should be set.  You still have to have asterisk and the other prerequisites installed but no more hunting down the required modules.  Second, we can activate/deactivate the virtual environment separately from the host environment so that the test suite's requirements don't interfere with your local os.  
 
@@ -19,9 +19,9 @@ Most developers create an Asterisk work directory like `~/source/asterisk` or `
 
 `/usr/src/asterisk/
  asterisk/ The asterisk repository cloned from https://gerrit/asterisk.org/asterisk
- testsuite/ The testsuite repository clones from https://gerrit/asterisk.org/testsuite` If you don't already have the Asterisk source tree checked out and all of its prerequisites installed, please visit [Installing Asterisk From Source](/Installing+Asterisk+From+Source).
+ testsuite/ The testsuite repository clones from https://gerrit/asterisk.org/testsuite` If you don't already have the Asterisk source tree checked out and all of its prerequisites installed, please visit [Installing Asterisk From Source](/Getting-Started/Installing-Asterisk/Installing-Asterisk-From-Source).
 
-Make sure you're using a supported version of libsrtp.  See ["Installing libsrtp"](/Installing+libsrtp) for more information.
+Make sure you're using a supported version of libsrtp.  See ["Installing libsrtp"](/Getting-Started/Installing-Asterisk/Installing-Asterisk-From-Source/Installing-libsrtp) for more information.
 
 Install Support Packages
 ========================

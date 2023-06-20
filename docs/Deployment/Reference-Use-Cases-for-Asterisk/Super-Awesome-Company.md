@@ -10,7 +10,7 @@ This page describes the usage of Asterisk within Super Awesome Company (SAC), a 
 
 Original creator and humourist - the notorious Malcolm Davenport.
 
-This document will be one of a few [Reference Use Cases for Asterisk](/Reference-Use-Cases-for-Asterisk) and will be used as a basis for examples and tutorials on this wiki and included with Asterisk.
+This document will be one of a few [Reference Use Cases for Asterisk](/Deployment/Reference-Use-Cases-for-Asterisk) and will be used as a basis for examples and tutorials on this wiki and included with Asterisk.
 
 Background
 ==========

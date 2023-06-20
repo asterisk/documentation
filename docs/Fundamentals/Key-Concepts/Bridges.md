@@ -6,7 +6,7 @@ pageid: 4817441
 Overview
 ========
 
-In Asterisk, a bridge is the construct that shares media among [Channels](/Channels). While a channel represents the path of communication between Asterisk and some device, a bridge is how that path of communication is shared. While channels are in a bridge, their media is exchanged in a manner dictated by the bridge's type. While we generally think of media being directed among channels, media can also be directed from Asterisk to the channels in a bridge. This can be the case in some conferences, where Music on Hold (MoH) or announcements are played for waiting channels.
+In Asterisk, a bridge is the construct that shares media among [Channels](/Fundamentals/Key-Concepts/Channels). While a channel represents the path of communication between Asterisk and some device, a bridge is how that path of communication is shared. While channels are in a bridge, their media is exchanged in a manner dictated by the bridge's type. While we generally think of media being directed among channels, media can also be directed from Asterisk to the channels in a bridge. This can be the case in some conferences, where Music on Hold (MoH) or announcements are played for waiting channels.
 
 On this Page
 
@@ -31,7 +31,7 @@ Generally, a bridge is created when Asterisk knows that two or more channels wan
 
 ---
 
-**Tip: Asterisk 12+: Bridging Changed** In Asterisk 12, the bridging framework that [ConfBridge](/ConfBridge) was built on top of was extended to all bridges that Asterisk creates (with the exception of MeetMe). There are some new capabilities that this afforded Asterisk users; where applicable, this page will call out features that only apply to Asterisk 12 and later versions.
+**Tip: Asterisk 12+: Bridging Changed** In Asterisk 12, the bridging framework that [ConfBridge](/Configuration/Applications/Conferencing-Applications/ConfBridge) was built on top of was extended to all bridges that Asterisk creates (with the exception of MeetMe). There are some new capabilities that this afforded Asterisk users; where applicable, this page will call out features that only apply to Asterisk 12 and later versions.
 
   
 
@@ -83,9 +83,9 @@ A native bridge occurs when both participants in a two-party bridge have similar
 
 The following channel technologies support native bridging:
 
-* [RTP capable channel drivers](/SIP) (such as SIP channels)
-* [DAHDI channels](/DAHDI)
-* [IAX2 channels](/Inter-Asterisk-eXchange-protocol--version-2--IAX2-) (Asterisk 11-)
+* [RTP capable channel drivers](/Configuration/Channel-Drivers/SIP) (such as SIP channels)
+* [DAHDI channels](/Configuration/Channel-Drivers/DAHDI)
+* [IAX2 channels](/Configuration/Channel-Drivers/Inter-Asterisk-eXchange-protocol-version-2-IAX2) (Asterisk 11-)
 
 
 
@@ -108,12 +108,12 @@ two-party native local300
 
 #### Remote
 
-A remote native bridge occurs when the media between two channels is redirected by Asterisk to flow directly between the two devices the channels talk to. When this occurs, the media is completely outside of Asterisk. With [SIP](/SIP) channels, this is often called "direct media". Not surprisingly, since the media is flowing outside of Asterisk, this bridge has the best performance in Asterisk. However, it can only be used in certain circumstances:
+A remote native bridge occurs when the media between two channels is redirected by Asterisk to flow directly between the two devices the channels talk to. When this occurs, the media is completely outside of Asterisk. With [SIP](/Configuration/Channel-Drivers/SIP) channels, this is often called "direct media". Not surprisingly, since the media is flowing outside of Asterisk, this bridge has the best performance in Asterisk. However, it can only be used in certain circumstances:
 
 * Both channels in the native bridge must support direct media.
 * The devices communicating with Asterisk cannot be behind a NAT (or otherwise obscured with a private IP address that the other device cannot resolve).
 
-Only [SIP](/SIP) channels support this type of native bridge.
+Only [SIP](/Configuration/Channel-Drivers/SIP) channels support this type of native bridge.
 
 two-party remote native300
 

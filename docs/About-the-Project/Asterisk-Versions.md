@@ -38,7 +38,7 @@ If you're not sure which one to use, choose either the latest release for the mo
 
 For developers, it is useful to be aware of when the next release branch will be created. Upon creation of the branch it becomes bound by the same policies as any release branch: no introduction of incompatible changes, no breaking of binary compatibility, and no substantial core changes. The creation of the release branch occurs the 2nd Wednesday of August. A reminder is sent a week before to the asterisk-dev mailing list on the 1st Wednesday of August. Once the release branch is created it will receive all bug fixes and feature changes which also go into the existing release branches. On the 2nd Wednesday of September an initial release candidate for the new version is created alongside release candidates for all other current supported release series. Additional release candidates will be created as needed based on fixes for issues reported. On the 3rd Wednesday of October full releases for all supported release series are created.
 
-For additional information on policies please see the [Software Configuration Management Policies](/Software-Configuration-Management-Policies) wiki page.
+For additional information on policies please see the [Software Configuration Management Policies](/Development/Policies-and-Procedures/Software-Configuration-Management-Policies) wiki page.
 
 
 

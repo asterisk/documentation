@@ -118,7 +118,7 @@ Apps, Functions, and Variables
 ------------------------------
 
 
-*Details on accessing dialplan applications and functions and channel variables can be found in the [Interacting with Asterisk from Lua (apps, variables, and functions)](/Interacting-with-Asterisk-from-Lua--apps--variables--and-functions-) page.*
+*Details on accessing dialplan applications and functions and channel variables can be found in the [Interacting with Asterisk from Lua (apps, variables, and functions)](/Configuration/Dialplan/Lua-Dialplan-Configuration/Interacting-with-Asterisk-from-Lua-apps-variables-and-functions) page.*
 
 
  When accessing a dialplan application or function or a channel variable, a placeholder object is generated that provides the `:get()` and `:set()` methods.

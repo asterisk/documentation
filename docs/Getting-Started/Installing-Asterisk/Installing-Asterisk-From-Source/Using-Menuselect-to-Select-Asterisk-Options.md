@@ -6,7 +6,7 @@ pageid: 4817523
 Using Menuselect
 ================
 
-The next step in the build process is to tell Asterisk which [modules](/Types-of-Asterisk-Modules) to compile and install, as well as set various compiler options. These settings are all controlled via a menu-driven system called **Menuselect**. To access the Menuselect system, type:
+The next step in the build process is to tell Asterisk which [modules](/Fundamentals/Asterisk-Architecture/Types-of-Asterisk-Modules) to compile and install, as well as set various compiler options. These settings are all controlled via a menu-driven system called **Menuselect**. To access the Menuselect system, type:
 
 
 
@@ -75,7 +75,7 @@ When you are finished selecting the modules and options you'd like in **Menusele
 Module Support Levels
 ---------------------
 
-**Menuselect** will also show the support level for a selected module or build option. The support level will always be one of `core`, `extended`, or `deprecated`. For more information on these support levels, see [Asterisk Module Support States](/Asterisk-Module-Support-States).
+**Menuselect** will also show the support level for a selected module or build option. The support level will always be one of `core`, `extended`, or `deprecated`. For more information on these support levels, see [Asterisk Module Support States](/Asterisk-Community/Asterisk-Module-Support-States).
 
 Menuselect Categories
 =====================
@@ -103,7 +103,7 @@ Menuselect Categories
 
 ---
 
-**Tip: Easier Debugging of Asterisk Crashes** As much as we may hate to admit it, Asterisk *may* sometimes have problems.If you're finding that Asterisk is crashing on you, there's are settings under **Compiler Flags - Development** that are critical for developers attempting to assist you. For detailed instructions on enabling these settings, see [Getting a Backtrace (Asterisk versions < 13.14.0 and 14.3.0)](/Getting-a-Backtrace--Asterisk-versions-<-13.14.0-and-14.3.0-).
+**Tip: Easier Debugging of Asterisk Crashes** As much as we may hate to admit it, Asterisk *may* sometimes have problems.If you're finding that Asterisk is crashing on you, there's are settings under **Compiler Flags - Development** that are critical for developers attempting to assist you. For detailed instructions on enabling these settings, see [Getting a Backtrace (Asterisk versions < 13.14.0 and 14.3.0)](/Development/Debugging/Getting-a-Backtrace-Asterisk-versions-13.14.0-and-14.3.0).
 
 
 ---

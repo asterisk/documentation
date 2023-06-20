@@ -6,7 +6,7 @@ pageid: 28315599
 Asterisk Log File Configuration
 ===============================
 
-General purpose [logging facilities](/Logging) in Asterisk can be configured in the *[logger.conf](http://svnview.digium.com/svn/asterisk/trunk/configs/logger.conf.sample?view=markup)* file. Within this file one is able to configure Asterisk to log messages to files and/or a syslog and even to the Asterisk console.  Note, the sections and descriptions listed below are meant to be informational and act as a guide (a "how to") when configuring logging in Asterisk.  Options with stated defaults don't have to be explicitly set as they will simply default to a designated value.
+General purpose [logging facilities](/Operation/Logging) in Asterisk can be configured in the *[logger.conf](http://svnview.digium.com/svn/asterisk/trunk/configs/logger.conf.sample?view=markup)* file. Within this file one is able to configure Asterisk to log messages to files and/or a syslog and even to the Asterisk console.  Note, the sections and descriptions listed below are meant to be informational and act as a guide (a "how to") when configuring logging in Asterisk.  Options with stated defaults don't have to be explicitly set as they will simply default to a designated value.
 
 General Section:
 ----------------

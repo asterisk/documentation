@@ -10,7 +10,7 @@ At the lowest level is the [Stasis Message Bus](http://doxygen.asterisk.org/trun
 Background Information
 ======================
 
-There is already a fair amount of documentation about the Stasis Message Bus already available. The API's themselves are documented using Doxygen. There's also a [design document](/Stasis-Message-Bus) on wiki.asterisk.org describing the overall design of the Stasis Message Bus. These provide some good in-depth information on the different pieces of the Stasis Message Bus.
+There is already a fair amount of documentation about the Stasis Message Bus already available. The API's themselves are documented using Doxygen. There's also a [design document](/Development/Roadmap/Asterisk-12-Projects/Asterisk-12-API-Improvements/Stasis-Message-Bus) on wiki.asterisk.org describing the overall design of the Stasis Message Bus. These provide some good in-depth information on the different pieces of the Stasis Message Bus.
 
 Walking Through an Example
 ==========================
@@ -79,7 +79,7 @@ You have some really strong guarantees about how the messages get dispatched t
 
 ### What a subscription handler looks like
 
-The bulk of the subscription callback will be whatever logic you need to process the incoming messages. But there is one caveat: [handling the final message](/Stasis-Subscriber-Shutdown-Problem).
+The bulk of the subscription callback will be whatever logic you need to process the incoming messages. But there is one caveat: [handling the final message](/Development/Roadmap/Asterisk-12-Projects/Asterisk-12-API-Improvements/Stasis-Message-Bus/Using-the-Stasis-Message-Bus/Stasis-Subscriber-Shutdown-Problem).
 
 
 

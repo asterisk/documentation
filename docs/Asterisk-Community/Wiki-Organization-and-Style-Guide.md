@@ -24,16 +24,16 @@ All Asterisk documentation pages are contained within the Asterisk space. Most o
 
 Within the Asterisk space there are many top-level parent pages available. We've included some info about each below to help you decide where a page goes.
 
-* [About the Project](/About+the+Project) - Any general information about the project. Licensing, History, What is Asterisk?
-* [Getting Started](/Getting+Started) - Information relevant to completely new users, information on installation and how to get rolling into configuration and the rest of the documentation.
+* [About the Project](/About-the-Project) - Any general information about the project. Licensing, History, What is Asterisk?
+* [Getting Started](/Getting-Started) - Information relevant to completely new users, information on installation and how to get rolling into configuration and the rest of the documentation.
 * [Operation](/Operation) - Details concerning Asterisk's operation. That is, starting and stopping the Asterisk daemon, command line operation and other non-configuration tasks.
 * [Fundamentals](/Fundamentals) - Basic, key and core concepts of Asterisk. Some of the most important foundational things to know about Asterisk.
 * [Configuration](/Configuration) - How everything is configured. Where are the files? How do I use them? How do I program dialplan? How do I use the APIs?
 * [Deployment](/Deployment) - Examples, tutorials, how-tos and recommendations for specific use-cases or scenarios of deployment. How do I deal with Asterisk in a NATed environment? How do I build a simple PBX?
 * [Development](/Development) - All information regarding the development of Asterisk itself.
-* [Asterisk Test Suite Documentation](/Asterisk+Test+Suite+Documentation) - Documentation for the test suite! Primarily for developers.
-* [Asterisk Security Vulnerabilities](/Asterisk+Security+Vulnerabilities) - How the project handles security vulnerabilities.
-* [Asterisk Community](/Asterisk+Community) - Anything falling under community. The places we meet, our code of conduct, community services.
+* [Asterisk Test Suite Documentation](/Test-Suite-Documentation/Test-Development/Home/Asterisk-Test-Suite-Documentation) - Documentation for the test suite! Primarily for developers.
+* [Asterisk Security Vulnerabilities](/About-the-Project/Asterisk-Security-Vulnerabilities) - How the project handles security vulnerabilities.
+* [Asterisk Community](/Asterisk-Community) - Anything falling under community. The places we meet, our code of conduct, community services.
 
 Plus there are a few sections titled "Asterisk X Documentation" where X is the version. These sections are reserved for command reference content, mostly pushed to the wiki via scripts that pull from the source documentation.
 

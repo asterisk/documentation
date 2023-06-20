@@ -124,7 +124,7 @@ Executing last minute cleanups
 
 ---
 
-**Tip:**  You can stop/restart Asterisk in many ways. See [Stopping and Restarting Asterisk From The CLI](/Stopping-and-Restarting-Asterisk-From-The-CLI) for more information.
+**Tip:**  You can stop/restart Asterisk in many ways. See [Stopping and Restarting Asterisk From The CLI](/Operation/Running-Asterisk/Stopping-and-Restarting-Asterisk-From-The-CLI) for more information.
 
   
 

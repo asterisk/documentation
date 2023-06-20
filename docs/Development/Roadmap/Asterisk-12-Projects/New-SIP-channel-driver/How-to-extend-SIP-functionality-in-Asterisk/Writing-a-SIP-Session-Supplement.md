@@ -3,7 +3,7 @@ title: Writing a SIP Session Supplement
 pageid: 22773976
 ---
 
-If you are unfamiliar with what a SIP session supplement is, please see [this](/How-to-extend-SIP-functionality-in-Asterisk) for an explanation.
+If you are unfamiliar with what a SIP session supplement is, please see [this](/Development/Roadmap/Asterisk-12-Projects/New-SIP-channel-driver/How-to-extend-SIP-functionality-in-Asterisk) for an explanation.
 
 Problem overview
 ================
@@ -192,7 +192,7 @@ AST\_MODULE\_INFO(ASTERISK\_GPL\_KEY, AST\_MODFLAG\_LOAD\_ORDER, "SIP Auto Answe
 ---
 
 
-We will not go into a lot of detail about the module-specific code here since it is covered in a tutorial [here](/Modules). However, notice that when the module loads, it registers the `auto_answer_supplement` with `res_pjsip_session` and when the module unloads, it unregisters the `auto_answer_supplement`.
+We will not go into a lot of detail about the module-specific code here since it is covered in a tutorial [here](/Development/Reference-Information/Asterisk-Framework-and-API-Examples/Modules). However, notice that when the module loads, it registers the `auto_answer_supplement` with `res_pjsip_session` and when the module unloads, it unregisters the `auto_answer_supplement`.
 
 ### The session supplement
 

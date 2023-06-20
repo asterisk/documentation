@@ -39,17 +39,17 @@ The workflow in the issue tracker is handled in the following way:
 
 ---
 
-**Note:**  Issues should also have enough information for a developer to either reproduce the issue or determine where an issue exists (or both). If this is not the case then the issue should be moved to 'Waiting for Feedback' with the appropriate information requested. See [Asterisk Issue Guidelines](/Asterisk-Issue-Guidelines) for more information on what an issue should have before it is accepted.
+**Note:**  Issues should also have enough information for a developer to either reproduce the issue or determine where an issue exists (or both). If this is not the case then the issue should be moved to 'Waiting for Feedback' with the appropriate information requested. See [Asterisk Issue Guidelines](/Asterisk-Community/Asterisk-Issue-Guidelines) for more information on what an issue should have before it is accepted.
 
   
 
 
 
 ---
-3. If a patch has been created for the issue, it is acceptable to modify the summary with the text "[patch]" to indicate that a patch is available for the issue. If a patch has been included with the issue, it should be submitted for [Code Review](/Code-Review) on [Gerrit](https://gerrit.asterisk.org).
+3. If a patch has been created for the issue, it is acceptable to modify the summary with the text "[patch]" to indicate that a patch is available for the issue. If a patch has been included with the issue, it should be submitted for [Code Review](/Development/Policies-and-Procedures/Historical-Policies-and-Procedures/Code-Review) on [Gerrit](https://gerrit.asterisk.org).
 4. The next step is to determine whether the report is about a bug or a submission of a new feature:
 	* BUG: A bug should be moved into the **Open** status by clicking *Acknowledge* if enough information has been provided by the reporter to either reproduce the issue or clearly see where an issue may lie. The bug may also be assigned to a developer for the creation of the initial patch, or review of the issue.
-	* FEATURE: New features must be filed with a patch. As such, the issues can be immediately moved into the **Open** status by clicking *Acknowledge*. For more information on submitting new features to the Asterisk project, see the [New Feature Guidelines](/New-Feature-Guidelines) guidelines. Note that new features that are not put up for code review by the author are likely to be closed as "Suspended."
+	* FEATURE: New features must be filed with a patch. As such, the issues can be immediately moved into the **Open** status by clicking *Acknowledge*. For more information on submitting new features to the Asterisk project, see the [New Feature Guidelines](/Development/Policies-and-Procedures/Historical-Policies-and-Procedures/Patch-Contribution-Process/New-Feature-Guidelines) guidelines. Note that new features that are not put up for code review by the author are likely to be closed as "Suspended."
 5. If at any point in the workflow, an issue requires feedback from the original poster of the issue, the status should be changed to **Waiting for Feedback**. Once the required information has been provided, it should be placed back in the appropriate point of the workflow by using the *Send Back* button.
 6. If at any point in the workflow, a developer or bug marshal would like to take responsibility for doing the work that is necessary to progress an issue, the issue can be assigned to that developer and the issue moved into the **In Progress** state. At that point the developer assigned to the issue will be responsible for moving the issue to completion.
 
@@ -61,11 +61,11 @@ The following is a list of valid statuses and what they mean to the work flow.
 Triage
 ------
 
-This issue is awaiting review or in review by bug marshals. Categorization of the issue, summary, description, version, and other related information should be fixed as appropriate. See the [Asterisk Issue Guidelines](/Asterisk-Issue-Guidelines) for more information.
+This issue is awaiting review or in review by bug marshals. Categorization of the issue, summary, description, version, and other related information should be fixed as appropriate. See the [Asterisk Issue Guidelines](/Asterisk-Community/Asterisk-Issue-Guidelines) for more information.
 
 ### Waiting for Feedback
 
-This issue requires feedback from the poster of the issue before any additional progress in the workflow can be made. This may include providing additional [debugging](/Collecting-Debug-Information) information, or a [backtrace](/Getting-a-Backtrace--Asterisk-versions-<-13.14.0-and-14.3.0-) with `DONT_OPTIMIZE` enabled, for example.
+This issue requires feedback from the poster of the issue before any additional progress in the workflow can be made. This may include providing additional [debugging](/Collecting-Debug-Information) information, or a [backtrace](/Development/Debugging/Getting-a-Backtrace-Asterisk-versions-13.14.0-and-14.3.0) with `DONT_OPTIMIZE` enabled, for example.
 
 ### Open
 
@@ -118,4 +118,4 @@ Notes
 =====
 
 1. Using the filters in Jira - such as the [Triage (Supported)](https://github.com/asterisk/asterisk/issues/jira/secure/IssueNavigator.jspa?mode=hide&requestId=11493) filter is - useful for finding issues that need attention quickly.
-2. The issue tracker now has the ability to monitor the commits list, and if the [commit message](/Commit-Messages) contains the appropriate tag, e.g., "Fixes: #99999", the bug will automatically be linked then closed when the  pull request is merged.
+2. The issue tracker now has the ability to monitor the commits list, and if the [commit message](/Development/Policies-and-Procedures/Commit-Messages) contains the appropriate tag, e.g., "Fixes: #99999", the bug will automatically be linked then closed when the  pull request is merged.

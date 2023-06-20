@@ -8,7 +8,7 @@ Overview
 ========
 
 
-Over the years, vendor specific features have been added to Asterisk. Many of these have caused additional maintenance effort for the project, which results in fewer resources available for features and improvements that benefit all users. In order to address this, the following guidelines, which stand in addition to the guidelines regarding the [New Feature Guidelines](/New-Feature-Guidelines), have been established.
+Over the years, vendor specific features have been added to Asterisk. Many of these have caused additional maintenance effort for the project, which results in fewer resources available for features and improvements that benefit all users. In order to address this, the following guidelines, which stand in addition to the guidelines regarding the [New Feature Guidelines](/Development/Policies-and-Procedures/Historical-Policies-and-Procedures/Patch-Contribution-Process/New-Feature-Guidelines), have been established.
 
 
 Will the feature be added?

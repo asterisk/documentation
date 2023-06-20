@@ -29,7 +29,7 @@ Stream support has been merged into Asterisk as of 15. This has been done in a b
 ---
 
 
-**Information:**  If you are reading this and have any questions consulting the [asterisk-dev mailing list](http://lists.digium.com/mailman/listinfo/asterisk-dev) or the [#asterisk-dev](/IRC) IRC channel are the best venues for discussion.
+**Information:**  If you are reading this and have any questions consulting the [asterisk-dev mailing list](http://lists.digium.com/mailman/listinfo/asterisk-dev) or the [#asterisk-dev](/Asterisk-Community/IRC) IRC channel are the best venues for discussion.
 
   
 

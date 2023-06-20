@@ -85,7 +85,7 @@ The option blocks all redirecting updates since they should only happen before a
 
 ### Party ID Interception Macros and Routines
 
-You can find detailed information in the [Party ID Interception Macros and Routines](/Party-ID-Interception-Macros-and-Routines) section.
+You can find detailed information in the [Party ID Interception Macros and Routines](/Configuration/Dialplan/Subroutines/Party-ID-Interception-Macros-and-Routines) section.
 
 Manipulation examples
 =====================

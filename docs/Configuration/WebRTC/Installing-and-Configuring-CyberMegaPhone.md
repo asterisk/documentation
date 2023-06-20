@@ -6,7 +6,7 @@ pageid: 40818102
 Introduction
 ============
 
-At [AstriDevCon 2017](/AstriDevCon-2017), Digium introduced a sample WebRTC Video Conference Web Application called CyberMegaPhone (CMP2K).  This document will walk you through installing the application and configuring it and Asterisk as a simple video conference server.
+At [AstriDevCon 2017](/Development/Roadmap/AstriDevCon-2017), Digium introduced a sample WebRTC Video Conference Web Application called CyberMegaPhone (CMP2K).  This document will walk you through installing the application and configuring it and Asterisk as a simple video conference server.
 
  
 
@@ -20,7 +20,7 @@ At [AstriDevCon 2017](/AstriDevCon-2017), Digium introduced a sample WebRTC Vide
 Prerequisites
 =============
 
-Before proceeding, follow the instructions for [Configuring Asterisk for WebRTC Clients](/Configuring-Asterisk-for-WebRTC-Clients) and then use SIPML5 to test your connectivity by following the instructions at [WebRTC tutorial using SIPML5](/WebRTC-tutorial-using-SIPML5).  The instructions below assume you've completed those steps.  Don't forget, Asterisk 15.5 or better is required.
+Before proceeding, follow the instructions for [Configuring Asterisk for WebRTC Clients](/Configuration/WebRTC/Configuring-Asterisk-for-WebRTC-Clients) and then use SIPML5 to test your connectivity by following the instructions at [WebRTC tutorial using SIPML5](/Configuration/WebRTC/WebRTC-tutorial-using-SIPML5).  The instructions below assume you've completed those steps.  Don't forget, Asterisk 15.5 or better is required.
 
 You'll also need a working webcam and microphone on your client computer.  CMP2K will not connect unless both are available.
 
@@ -169,7 +169,7 @@ Great.  
 (Re)Configure PJSIP
 -------------------
 
-In the [Configuring Asterisk for WebRTC Clients](/Configuring-Asterisk-for-WebRTC-Clients) tutorial, you created a PJSIP Endpoint named "webrtc\_client".  We need to modify that definition for our purposes.
+In the [Configuring Asterisk for WebRTC Clients](/Configuration/WebRTC/Configuring-Asterisk-for-WebRTC-Clients) tutorial, you created a PJSIP Endpoint named "webrtc\_client".  We need to modify that definition for our purposes.
 
 
 

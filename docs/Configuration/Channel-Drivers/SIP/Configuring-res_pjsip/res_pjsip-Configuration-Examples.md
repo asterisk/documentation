@@ -3,9 +3,9 @@ title: res_pjsip Configuration Examples
 pageid: 30278066
 ---
 
-Below are some sample configurations to demonstrate various scenarios with complete pjsip.conf files. To see examples side by side with old chan\_sip config head to [Migrating from chan\_sip to res\_pjsip](/Migrating-from-chan_sip-to-res_pjsip). Explanations of the config sections found in each example can be found in [PJSIP Configuration Sections and Relationships](/PJSIP-Configuration-Sections-and-Relationships).
+Below are some sample configurations to demonstrate various scenarios with complete pjsip.conf files. To see examples side by side with old chan\_sip config head to [Migrating from chan\_sip to res\_pjsip](/Migrating-from-chan_sip-to-res_pjsip). Explanations of the config sections found in each example can be found in [PJSIP Configuration Sections and Relationships](/Configuration/Channel-Drivers/SIP/Configuring-res_pjsip/PJSIP-Configuration-Sections-and-Relationships).
 
-A tutorial on secure and encrypted calling is located in the [Secure Calling](/Secure-Calling) section of the wiki.
+A tutorial on secure and encrypted calling is located in the [Secure Calling](/Deployment/Secure-Calling) section of the wiki.
 
 An endpoint with a single SIP phone with inbound registration to Asterisk
 -------------------------------------------------------------------------

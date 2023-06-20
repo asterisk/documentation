@@ -6,7 +6,7 @@ pageid: 32375253
 Overview of the Bridge Application
 ==================================
 
-The Bridge application takes two channels and attempts to put them into a [Bridge](/Bridges). Both channels and bridges are very common elements of Asterisk operation, so this is a really useful application to learn.
+The Bridge application takes two channels and attempts to put them into a [Bridge](/Fundamentals/Key-Concepts/Bridges). Both channels and bridges are very common elements of Asterisk operation, so this is a really useful application to learn.
 
 For Bridge to work, two channels are required to exist. That is the channel executing the Bridge application and a target channel that you want to bridge with. If the operation is successful the two channels will be bridged and media exchanged among the channels.
 
@@ -20,16 +20,16 @@ Note that bridge provides several options to tweak behavior and upon completion 
 Using the Bridge application
 ----------------------------
 
-Read the Bridge documentation for your version of Asterisk (e.g. Asterisk 13 - [Asterisk 13 Application\_Bridge](/Asterisk-13-Application_Bridge)) and the [Key Concepts](/Key-Concepts) section on [Bridges](/Bridges) to get a good start.
+Read the Bridge documentation for your version of Asterisk (e.g. Asterisk 13 - [Asterisk 13 Application\_Bridge](/Asterisk-13-Application_Bridge)) and the [Key Concepts](/Key-Concepts) section on [Bridges](/Fundamentals/Key-Concepts/Bridges) to get a good start.
 
 See Also
 ========
 
-* [Bridging Modules](/Bridging-Modules)
-* [Pre-Bridge Handlers](/Pre-Bridge-Handlers)
-* [Introduction to ARI and Bridges](/Introduction-to-ARI-and-Bridges)
+* [Bridging Modules](/Fundamentals/Asterisk-Architecture/Types-of-Asterisk-Modules/Bridging-Modules)
+* [Pre-Bridge Handlers](/Configuration/Dialplan/Subroutines/Pre-Bridge-Handlers)
+* [Introduction to ARI and Bridges](/Configuration/Interfaces/Asterisk-REST-Interface-ARI/Introduction-to-ARI-and-Bridges)
 * [Asterisk 13 Application\_BridgeWait](/Asterisk-13-Application_BridgeWait)
-* [Conferencing Applications](/Conferencing-Applications)
+* [Conferencing Applications](/Configuration/Applications/Conferencing-Applications)
 
  
 

@@ -113,12 +113,12 @@ B.J. Weschke
 
 See the below sections for notes and content from previous AstriDevCon events.
 
-* [AstriDevCon 2018](/AstriDevCon-2018)
-* [AstriDevCon 2017](/AstriDevCon-2017)
-* [AstriDevCon 2016](/AstriDevCon-2016)
-* [AstriDevCon 2015](/AstriDevCon-2015)
-* [AstriDevCon 2014](/AstriDevCon-2014)
-* [AstriDevCon 2013](/AstriDevCon-2013)
-* [AstriDevCon 2012](/AstriDevCon-2012)
-* [AstriDevCon 2011](/AstriDevCon-2011)
-* [AstriDevCon 2010](/AstriDevCon-2010)
+* [AstriDevCon 2018](/Development/Roadmap/AstriDevCon-2018)
+* [AstriDevCon 2017](/Development/Roadmap/AstriDevCon-2017)
+* [AstriDevCon 2016](/Development/Roadmap/AstriDevCon-2016)
+* [AstriDevCon 2015](/Development/Roadmap/AstriDevCon-2015)
+* [AstriDevCon 2014](/Development/Roadmap/AstriDevCon-2014)
+* [AstriDevCon 2013](/Development/Roadmap/AstriDevCon-2013)
+* [AstriDevCon 2012](/Development/Roadmap/AstriDevCon-2012)
+* [AstriDevCon 2011](/Development/Roadmap/AstriDevCon-2011)
+* [AstriDevCon 2010](/Development/Roadmap/AstriDevCon-2010)

@@ -8,7 +8,7 @@ Asterisk
 
 Downloads of Asterisk are available at <https://downloads.asterisk.org/pub/telephony/asterisk/>. The currently supported versions of Asterisk will each have a symbolic link to their related release on this server, named **asterisk-{version}-current****.tar.gz**. All releases ever made for the Asterisk project are available at <https://downloads.asterisk.org/pub/telephony/asterisk/releases/>.
 
-The currently supported versions of Asterisk are documented on the [Asterisk Versions](/Asterisk-Versions) page. It is highly recommended that you install one of the currently supported versions, as these versions continue to receive bug and security fixes.
+The currently supported versions of Asterisk are documented on the [Asterisk Versions](/About-the-Project/Asterisk-Versions) page. It is highly recommended that you install one of the currently supported versions, as these versions continue to receive bug and security fixes.
 
 
 
@@ -27,9 +27,9 @@ Unless otherwise noted, for the purposes of this section we will assume that Ast
 ---
 
 
-Review Asterisk's [System Requirements](/System-Requirements) in order to determine what needs to be installed for the version of Asterisk you are installing. While Asterisk will look for any missing system requirements during compilation, it's often best to install these prior to configuring and compiling Asterisk.
+Review Asterisk's [System Requirements](/Operation/System-Requirements) in order to determine what needs to be installed for the version of Asterisk you are installing. While Asterisk will look for any missing system requirements during compilation, it's often best to install these prior to configuring and compiling Asterisk.
 
-Asterisk does come with a script, **install\_prereq**, to aid in this process. If you'd like to use this script, download Asterisk first, then see [Checking Asterisk Requirements](/Checking-Asterisk-Requirements) for instructions on using this script to install prerequisites for your version of Asterisk.
+Asterisk does come with a script, **install\_prereq**, to aid in this process. If you'd like to use this script, download Asterisk first, then see [Checking Asterisk Requirements](/Getting-Started/Installing-Asterisk/Installing-Asterisk-From-Source/Checking-Asterisk-Requirements) for instructions on using this script to install prerequisites for your version of Asterisk.
 
 On this PageDownloading Asterisk
 --------------------

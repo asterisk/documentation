@@ -19,5 +19,5 @@ There is also a command if you change your mind.
 
 * **core abort shutdown** - This command aborts a shutdown or restart which was previously initiated with the gracefully or when convenient options.
 
-See the [Asterisk Command Line Interface](/Asterisk-Command-Line-Interface) section for more on that topic.
+See the [Asterisk Command Line Interface](/Operation/Asterisk-Command-Line-Interface) section for more on that topic.
 

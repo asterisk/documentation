@@ -108,7 +108,7 @@ Simple! We use a Masquerade. The Masquerade creates a new channel (with a `pbx_t
 You can see what happened next: everything started to use Masquerades to get around the fact that there were channels without threads. Transfers, Asynchronous Gotos, Parking, Local channel optimization... lots of things ended up needing to use Masquerades to work around the threading model.
 
 
-Then, along came [ConfBridge](/ConfBridge).
+Then, along came [ConfBridge](/Configuration/Applications/Conferencing-Applications/ConfBridge).
 
 
 

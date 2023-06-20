@@ -27,7 +27,7 @@ The Asterisk core provides capability for 16 bit Signed Linear PCM, which is wha
 
 Various other CODEC modules will be built and installed if their dependencies are detected during Asterisk compilation.
 
-* If the [DAHDI](/Building-and-Installing-DAHDI) drivers are detected then **codec\_dahdi** will installed.
+* If the [DAHDI](/Getting-Started/Installing-Asterisk/Installing-Asterisk-From-Source/Building-and-Installing-DAHDI) drivers are detected then **codec\_dahdi** will installed.
 * If the Speex ([www.speex.org](http://www.speex.org)) development libraries are detected, **codec\_speex** will also be installed.
 * If the iLBC ([www.ilbcfreeware.org](http://www.ilbcfreeware.org/)) development libraries are detected, **codec\_ilbc** will also be installed.
 

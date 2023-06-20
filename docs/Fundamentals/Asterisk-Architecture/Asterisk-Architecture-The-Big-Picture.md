@@ -27,18 +27,18 @@ The Core
 
 The heart of any Asterisk system is the **core**. The PBX core is the essential component that provides a lot of infrastructure. Among many functions it reads the configuration files, including dialplan and loads all the other **modules**, distinct components that provide more functionality.
 
-The core loads and builds the dialplan, which is the logic of any Asterisk system. The [dialplan](/Dialplan) contains a list of instructions that Asterisk should follow to know how to handle incoming and outgoing **calls** on the system.
+The core loads and builds the dialplan, which is the logic of any Asterisk system. The [dialplan](/Configuration/Dialplan) contains a list of instructions that Asterisk should follow to know how to handle incoming and outgoing **calls** on the system.
 
 Modules
 -------
 
-Other than functionality provided by the core of Asterisk, modules provide all other functionality. The source for many modules is distributed with Asterisk, though other modules may be available from community members or even businesses that make commercial modules. The modules distributed with Asterisk can be o[ptionally be built](/Using-Menuselect-to-Select-Asterisk-Options) when Asterisk is built.
+Other than functionality provided by the core of Asterisk, modules provide all other functionality. The source for many modules is distributed with Asterisk, though other modules may be available from community members or even businesses that make commercial modules. The modules distributed with Asterisk can be o[ptionally be built](/Getting-Started/Installing-Asterisk/Installing-Asterisk-From-Source/Using-Menuselect-to-Select-Asterisk-Options) when Asterisk is built.
 
 Modules are not only optionally built, but you can affect at load-time whether they will be loaded at all, the loading order or even unload/load them during run-time. Most modules are independently configurable and have their own [configuration](/Configuration) files. Some modules have support for configuration to be read statically or dynamically(realtime) from database backends.
 
-From a logistical standpoint, these modules are typically files with a **.so** file extension, which live in the Asterisk [modules directory](/Directory-and-File-Structure) (which is typically **/usr/lib/asterisk/modules**). When [Asterisk starts up](/Running-Asterisk), it loads these files and adds their functionality to the system.
+From a logistical standpoint, these modules are typically files with a **.so** file extension, which live in the Asterisk [modules directory](/Directory-and-File-Structure) (which is typically **/usr/lib/asterisk/modules**). When [Asterisk starts up](/Operation/Running-Asterisk), it loads these files and adds their functionality to the system.
 
-Asterisk modules which are part of the core have a file name that look like **pbx\_xxxxx.so**. All of the modules types are discussed in the section [Types of Asterisk Modules](/Types-of-Asterisk-Modules).
+Asterisk modules which are part of the core have a file name that look like **pbx\_xxxxx.so**. All of the modules types are discussed in the section [Types of Asterisk Modules](/Fundamentals/Asterisk-Architecture/Types-of-Asterisk-Modules).
 
 
 
@@ -64,7 +64,7 @@ Calls and Channels
 
 As was mentioned in the [Asterisk as a Swiss Army Knife of Telephony](/Asterisk-as-a-Swiss-Army-Knife-of-Telephony) section, the primary purpose of Asterisk is being an engine for building Real Time Communication systems and applications.
 
-In most but not all cases this means you'll deal with the concept of "calls". Calls in telephony terminology typically refer to one phone communicating with (calling) another phone over a medium, such as a [PSTN](http://en.wikipedia.org/wiki/Public_switched_telephone_network) line. However in the case of Asterisk a call typically references one or more [**channels**](/Channels) existing in Asterisk.
+In most but not all cases this means you'll deal with the concept of "calls". Calls in telephony terminology typically refer to one phone communicating with (calling) another phone over a medium, such as a [PSTN](http://en.wikipedia.org/wiki/Public_switched_telephone_network) line. However in the case of Asterisk a call typically references one or more [**channels**](/Fundamentals/Key-Concepts/Channels) existing in Asterisk.
 
 Here are some example "calls".
 
@@ -77,14 +77,14 @@ Note that I primarily use phones as an example, however you could refer to any c
 
 ### Channels
 
-[Channels](/Channels) are created by Asterisk using [Channel Drivers](/Channel-Drivers). They can utilize other resources in the Asterisk system to facilitate various types of communication between one or more devices. Channels can be **bridged** to other channels and be affected by [**applications**](/Applications) and [**functions**](/Functions). Channels can make use of many other resources provided by other modules or external libraries. For example SIP channels when passing audio will make use of the **codec** and **format** modules. Channels may interact with many different modules at once.
+[Channels](/Fundamentals/Key-Concepts/Channels) are created by Asterisk using [Channel Drivers](/Channel-Drivers). They can utilize other resources in the Asterisk system to facilitate various types of communication between one or more devices. Channels can be **bridged** to other channels and be affected by [**applications**](/Applications) and [**functions**](/Configuration/Functions). Channels can make use of many other resources provided by other modules or external libraries. For example SIP channels when passing audio will make use of the **codec** and **format** modules. Channels may interact with many different modules at once.
 
 Dialplan
 --------
 
-Dialplan is the one main method of directing Asterisk behavior. Dialplan exists as text files (for example extensions.conf) either in the built-in dialplan scripting language, AEL or LUA formats. Alternatively dialplan could be read from a [database](/Database-Support-Configuration), along with other module configuration. When writing dialplan, you will make heavy use of **applications** and **functions**to affect channels, configuration and features.
+Dialplan is the one main method of directing Asterisk behavior. Dialplan exists as text files (for example extensions.conf) either in the built-in dialplan scripting language, AEL or LUA formats. Alternatively dialplan could be read from a [database](/Fundamentals/Asterisk-Configuration/Database-Support-Configuration), along with other module configuration. When writing dialplan, you will make heavy use of **applications** and **functions**to affect channels, configuration and features.
 
-Dialplan can also call out through other interfaces such as [AGI](/Asterisk-11-Application_AGI) to receive call control instruction from external scripts and programs. The [Dialplan](/Dialplan) section of the wiki goes into detail on the usage of dialplan.  
+Dialplan can also call out through other interfaces such as [AGI](/Asterisk-11-Application_AGI) to receive call control instruction from external scripts and programs. The [Dialplan](/Configuration/Dialplan) section of the wiki goes into detail on the usage of dialplan.  
 
 
  

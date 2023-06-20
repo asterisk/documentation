@@ -559,7 +559,7 @@ The NOTICE message can be helpful in this case, since it tells what endpoint the
 ARGH! NAT!
 ----------
 
-NAT is objectively terrible. Before having a look at this section, have a look at [this page](/Configuring-res_pjsip-to-work-through-NAT) to be sure that you understand the options available to help combat the problems NAT can cause.
+NAT is objectively terrible. Before having a look at this section, have a look at [this page](/Configuration/Channel-Drivers/SIP/Configuring-res_pjsip/Configuring-res_pjsip-to-work-through-NAT) to be sure that you understand the options available to help combat the problems NAT can cause.
 
 NAT can adversely affect all areas of SIP calls, but we'll focus for now on how they can negatively affect the ability to allow for incoming calls to be set up. The most common issues are the following:
 
@@ -796,7 +796,7 @@ ARGH! NAT! (Part 2)
 
 NAT makes babies cry.
 
-For outbound calls, the main NAT issue you are likely to come across is Asterisk publishing an unroutable private address in its Contact header. If this is an issue you are facing, this can be corrected by setting the `local_net`, `external_signaling_address`, and `external_signaling_port` options for the transport you are using when communicating with the endpoint. For more information on how this can be set up, please see [this page](/Configuring-res_pjsip-to-work-through-NAT).
+For outbound calls, the main NAT issue you are likely to come across is Asterisk publishing an unroutable private address in its Contact header. If this is an issue you are facing, this can be corrected by setting the `local_net`, `external_signaling_address`, and `external_signaling_port` options for the transport you are using when communicating with the endpoint. For more information on how this can be set up, please see [this page](/Configuration/Channel-Drivers/SIP/Configuring-res_pjsip/Configuring-res_pjsip-to-work-through-NAT).
 
 Bridged Calls
 =============
@@ -977,7 +977,7 @@ Asterisk will respond to the registration attempt with a 403 Forbidden.
 Outbound Registrations
 ======================
 
-If you are having troubles with outbound registrations and unfamiliar with the mechanics involved, please see [this page](/Configuring-Outbound-Registrations). It will explain quite a few of the concepts that Asterisk uses and may give you some clues for solving your issue.
+If you are having troubles with outbound registrations and unfamiliar with the mechanics involved, please see [this page](/Configuration/Channel-Drivers/SIP/Configuring-res_pjsip/Configuring-Outbound-Registrations). It will explain quite a few of the concepts that Asterisk uses and may give you some clues for solving your issue.
 
 If you are still having trouble, here are some troubleshooting steps:
 
@@ -1020,7 +1020,7 @@ It is also important to ensure that `res_pjsip_pubsub.so` is loaded and running.
 Presence/Dialog Info
 --------------------
 
-A tutorial about subscribing to presence and dialog-info can be found on [this page](/Configuring-res_pjsip-for-Presence-Subscriptions). Reading that page may point you towards how to resolve the issue you are facing.
+A tutorial about subscribing to presence and dialog-info can be found on [this page](/Configuration/Channel-Drivers/SIP/Configuring-res_pjsip/Configuring-res_pjsip-for-Presence-Subscriptions). Reading that page may point you towards how to resolve the issue you are facing.
 
 If you are attempting to subscribe to the presence or dialog event packages, then here are some troubleshooting steps for determining what is going wrong.
 
@@ -1114,5 +1114,5 @@ If you look into your logs you might messages similar to the following:
 ---
 
 
-The most likely issue is that you have not compiled **pjproject** with support for IPv6. You can find instructions at [PJSIP-pjproject](/PJSIP-pjproject).
+The most likely issue is that you have not compiled **pjproject** with support for IPv6. You can find instructions at [PJSIP-pjproject](/Getting-Started/Installing-Asterisk/Installing-Asterisk-From-Source/PJSIP-pjproject).
 

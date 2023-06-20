@@ -11,7 +11,7 @@ For static locations, using Civic Address location descriptions would be the eas
 The following tables list the IANA registered element names that are currently accepted. The complete list of codes is defined in:  
  <https://www.iana.org/assignments/civic-address-types-registry/civic-address-types-registry.xhtml>
 
-These codes were originally defined in [RFC4119](/Geolocation-Reference-Information) and [RFC4776](/Geolocation-Reference-Information)
+These codes were originally defined in [RFC4119](/Deployment/Geolocation/Geolocation-Reference-Information) and [RFC4776](/Deployment/Geolocation/Geolocation-Reference-Information)
 
 
 
@@ -35,7 +35,7 @@ These codes were originally defined in [RFC4119](/Geolocation-Reference-Informat
 | NAM | Name (residence, business or office occupant) | Joe's Barbershop |
 | PC | Postal code | 10027-0401 |
 
-These codes were added in [RFC5139](/Geolocation-Reference-Information)
+These codes were added in [RFC5139](/Deployment/Geolocation/Geolocation-Reference-Information)
 
 
 
@@ -56,7 +56,7 @@ These codes were added in [RFC5139](/Geolocation-Reference-Information)
 | PRM | Road pre-modifier | Old |
 | POM | Road post-modifier | Service |
 
-These codes were added in [RFC6848](/Geolocation-Reference-Information)
+These codes were added in [RFC6848](/Deployment/Geolocation/Geolocation-Reference-Information)
 
 
 

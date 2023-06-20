@@ -13,7 +13,7 @@ In Asterisk, bridges can be thought of as a container for channels that form pat
 
 ---
 
-**Tip: More Information** For more information on bridges in Asterisk, see [Bridges](/Bridges).
+**Tip: More Information** For more information on bridges in Asterisk, see [Bridges](/Fundamentals/Key-Concepts/Bridges).
 
   
 

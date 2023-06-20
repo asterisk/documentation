@@ -6,7 +6,7 @@ pageid: 50921507
 Overview
 ========
 
-This page describes the general future of the Asterisk project infrastructure. To start off with: We're moving to Github. All further content reflects this. The decision to use a hosted solution was to minimize the amount of system maintenance and administration that needs to be done by the Asterisk team at Sangoma, which currently handles all aspects of it. We compared Gitlab and Github to see which would work best for us, and opted for Github. To see comparison details head over [here](/Trade-Study:-Github-vs.-Gitlab).
+This page describes the general future of the Asterisk project infrastructure. To start off with: We're moving to Github. All further content reflects this. The decision to use a hosted solution was to minimize the amount of system maintenance and administration that needs to be done by the Asterisk team at Sangoma, which currently handles all aspects of it. We compared Gitlab and Github to see which would work best for us, and opted for Github. To see comparison details head over [here](/Development/Asterisk-Project-Infrastructure-Future/Trade-Study-Github-vs.-Gitlab).
 
 
 

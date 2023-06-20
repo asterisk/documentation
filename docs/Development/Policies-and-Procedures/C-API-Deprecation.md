@@ -19,7 +19,7 @@ On This Page 
 Policy
 ======
 
-Asterisk follows a 2 year C API deprecation process. A C API is initially marked as deprecated in a [standard release](/Software-Configuration-Management-Policies) which is carried over to the next [long term supported release](/Software-Configuration-Management-Policies). This provides a period of 2 releases and thus 2 years where the C API is marked as deprecated. In the next standard release the C API is then removed from the source code tree entirely which is carried over to the next long term supported release. This closely mirrors that of the [Module Deprecation](/Module-Deprecation) policy. An example of a C API to deprecate would be the "image" API contained in main/image.c
+Asterisk follows a 2 year C API deprecation process. A C API is initially marked as deprecated in a [standard release](/Software-Configuration-Management-Policies) which is carried over to the next [long term supported release](/Software-Configuration-Management-Policies). This provides a period of 2 releases and thus 2 years where the C API is marked as deprecated. In the next standard release the C API is then removed from the source code tree entirely which is carried over to the next long term supported release. This closely mirrors that of the [Module Deprecation](/Development/Policies-and-Procedures/Module-Deprecation) policy. An example of a C API to deprecate would be the "image" API contained in main/image.c
 
 Marking A C API As Deprecated For Standard Release
 ==================================================
@@ -44,7 +44,7 @@ Marking A C API As Deprecated For Standard Release
 
 1. Before a C API can be marked as deprecated a discussion needs to occur on the [asterisk-dev mailing list](http://lists.digium.com/pipermail/asterisk-dev/) and its use has to be confirmed as non-critical.
 2. Create a new issue in the [Asterisk project issue tracker](https://github.com/asterisk/asterisk/issues/) using the "Deprecation" issue type. Ensure the issue summary is descriptive as it will go into release notes.
-3. Obtain the Asterisk source code from [Gerrit](https://gerrit.asterisk.org). Since you'll need to put your patch up for review, make an account in Gerrit as well, following the instructions on [Gerrit Usage](/Gerrit+Usage).
+3. Obtain the Asterisk source code from [Gerrit](https://gerrit.asterisk.org). Since you'll need to put your patch up for review, make an account in Gerrit as well, following the instructions on [Gerrit Usage](/Development/Policies-and-Procedures/Historical-Policies-and-Procedures/Code-Review/Gerrit-Usage).
 4. Create a new Git branch for your deprecation change.
 5. Mark the C API as deprecated through commenting on its various API calls.
 6. Add an UPGRADE.txt document stating that the API has been deprecated and state the version it is scheduled to be removed in.
@@ -72,7 +72,7 @@ Removing A C API
 
 1. Only remove a C API if it has not been reverted from being deprecated.
 2. Create a new issue in the [Asterisk project issue tracker](https://github.com/asterisk/asterisk/issues/) using the "Deprecation" issue type. Ensure the issue summary is descriptive as it will go into release notes.
-3. Obtain the Asterisk source code from [Gerrit](https://gerrit.asterisk.org/). Since you'll need to put your patch up for review, make an account in Gerrit as well, following the instructions on [Gerrit Usage](/Gerrit+Usage).
+3. Obtain the Asterisk source code from [Gerrit](https://gerrit.asterisk.org/). Since you'll need to put your patch up for review, make an account in Gerrit as well, following the instructions on [Gerrit Usage](/Development/Policies-and-Procedures/Historical-Policies-and-Procedures/Code-Review/Gerrit-Usage).
 4. Create a new Git branch for your removal change.
 5. Remove any C API implementations and header files for the API. This may include entire files using "git rm".
 6. Remove any logic in the respective Makefile for the API implementation if it exists.

@@ -38,7 +38,7 @@ astobj2.c: bad magic number for object 0xfb5230. Object is likely destroyed
 
 In such cases, its often very useful to determine what in Asterisk manipulated the reference count on the object. The `astobj2` API supports creating a reference count log for all objects managed by the API.
 
-In all cases, when providing the **refs** file to Asterisk developers for debugging purposes you should also be providing them with instructional steps, including configuration, that allows them to reproduce the issue consistently. See the [Asterisk Issue Guidelines](/Asterisk-Issue-Guidelines) for more details on submitting an issue.
+In all cases, when providing the **refs** file to Asterisk developers for debugging purposes you should also be providing them with instructional steps, including configuration, that allows them to reproduce the issue consistently. See the [Asterisk Issue Guidelines](/Asterisk-Community/Asterisk-Issue-Guidelines) for more details on submitting an issue.
 
 
 
@@ -68,9 +68,9 @@ Enabling Reference Count Logs in Asterisk 14+
 Enabling Reference Count Logs
 =============================
 
-1. Enable **REF\_DEBUG** under Compiler Flags in [menuselect](/Using-Menuselect-to-Select-Asterisk-Options).
-2. [Recompile](/Installing-Asterisk-From-Source).
-3. [Re-install Asterisk](/Installing-Asterisk-From-Source).
+1. Enable **REF\_DEBUG** under Compiler Flags in [menuselect](/Getting-Started/Installing-Asterisk/Installing-Asterisk-From-Source/Using-Menuselect-to-Select-Asterisk-Options).
+2. [Recompile](/Getting-Started/Installing-Asterisk/Installing-Asterisk-From-Source).
+3. [Re-install Asterisk](/Getting-Started/Installing-Asterisk/Installing-Asterisk-From-Source).
 4. Reproduce the issue for which you need reference count debug.
 5. Shutdown Asterisk using **asterisk -rx 'core stop gracefully'**.  Other methods of shutdown produce hundreds or thousands of false positives.
 6. **Run **/var/lib/asterisk/scripts/refcounter.py -f /var/log/asterisk/refs -n > /tmp/refs.txt****

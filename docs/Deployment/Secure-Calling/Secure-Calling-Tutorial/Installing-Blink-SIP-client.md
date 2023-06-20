@@ -6,7 +6,7 @@ pageid: 27200094
 Overview
 ========
 
-I wanted to provide some brief instructions on installing the Blink SIP client on Linux since it is useful for running the [Secure Calling Tutorial](/Secure-Calling-Tutorial).
+I wanted to provide some brief instructions on installing the Blink SIP client on Linux since it is useful for running the [Secure Calling Tutorial](/Deployment/Secure-Calling/Secure-Calling-Tutorial).
 
 How to install Blink on Ubuntu 12.04 Precise Pangolin
 =====================================================

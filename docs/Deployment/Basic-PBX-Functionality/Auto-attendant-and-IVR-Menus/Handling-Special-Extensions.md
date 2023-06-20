@@ -3,7 +3,7 @@ title: Handling Special Extensions
 pageid: 4817377
 ---
 
-We have the basics of an auto-attendant created, but now let's make it a bit more robust. We need to be able to handle special situations, such as when the caller enters an invalid extension, or doesn't enter an extension at all. Asterisk has a set of special extensions for dealing with situations like there. They all are named with a single letter, so we recommend you don't create any other extensions named with a single letter. You can read about all the [Special Dialplan Extensions on the wiki](/Special-Dialplan-Extensions).
+We have the basics of an auto-attendant created, but now let's make it a bit more robust. We need to be able to handle special situations, such as when the caller enters an invalid extension, or doesn't enter an extension at all. Asterisk has a set of special extensions for dealing with situations like there. They all are named with a single letter, so we recommend you don't create any other extensions named with a single letter. You can read about all the [Special Dialplan Extensions on the wiki](/Configuration/Dialplan/Special-Dialplan-Extensions).
 
  
 

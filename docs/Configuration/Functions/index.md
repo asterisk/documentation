@@ -31,7 +31,7 @@ Functions are:
 Compared to Dialplan Applications:
 
 * Dialplan Functions tend to be geared towards manipulating channel data and attributes as well as providing general tools for manipulating data in variables and expressions, whether they are channel related or not.
-* [Dialplan Applications](/Applications) tend to take over the channel and provide more complex features to the channel.
+* [Dialplan Applications](/Configuration/Applications) tend to take over the channel and provide more complex features to the channel.
 
 Both will be typically be used with a channel but in different ways. For example you may send a channel to an application such as Playback and then let it fly, but with functions you might use one or many functions in a single expression to manipulate or move around data related to the channels operation.
 
@@ -42,7 +42,7 @@ In This Section 
 Available functions
 -------------------
 
-Many functions come with Asterisk by default. For a complete list of the dialplan functions available to your installation of Asterisk, type **core show functions** at the Asterisk CLI. Not all functions are compiled with Asterisk by default, so if you have the source available then you may want to browse the functions listed in [menuselect](/Using-Menuselect-to-Select-Asterisk-Options) under "Dialplan Functions". Dedicated function modules start with "func\_", but the core or other large modules may provide functions as well.
+Many functions come with Asterisk by default. For a complete list of the dialplan functions available to your installation of Asterisk, type **core show functions** at the Asterisk CLI. Not all functions are compiled with Asterisk by default, so if you have the source available then you may want to browse the functions listed in [menuselect](/Getting-Started/Installing-Asterisk/Installing-Asterisk-From-Source/Using-Menuselect-to-Select-Asterisk-Options) under "Dialplan Functions". Dedicated function modules start with "func\_", but the core or other large modules may provide functions as well.
 
 Since anyone can write an Asterisk module they can also be obtained from sources outside the Asterisk distribution. Pre-packaged community or commercial Asterisk distributions that have a special purpose may include a custom function or two.
 

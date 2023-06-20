@@ -24,7 +24,7 @@ Module compilation and loading
 
 For audio or video capabilities that require a module - you should make sure that the module is built and installed on the system.
 
-See the section on [Using Menuselect to Select Asterisk Options](/Using-Menuselect-to-Select-Asterisk-Options) if you need help figuring out how to get a module built and then section on [Configuring the Asterisk Module Loader](/Configuring-the-Asterisk-Module-Loader) to verify that a module gets loaded when Asterisk starts up.
+See the section on [Using Menuselect to Select Asterisk Options](/Using-Menuselect-to-Select-Asterisk-Options) if you need help figuring out how to get a module built and then section on [Configuring the Asterisk Module Loader](/Configuration/Core-Configuration/Configuring-the-Asterisk-Module-Loader) to verify that a module gets loaded when Asterisk starts up.
 
 Channel driver configuration
 ----------------------------
@@ -65,7 +65,7 @@ We set the option "allow" to a string of values "!all,ulaw".
 * The value "**!all**" means "Disallow all" and is identical to "disallow=all". This tells Asterisk to disallow all codecs except what we further define in the allow option.
 * The value "**ulaw**" instructs Asterisk to allow ulaw audio during media negotiation for this endpoint.
 
-See the section [Configuring res\_pjsip](/Configuring-res_pjsip) for more information on the PJSIP channel driver.
+See the section [Configuring res\_pjsip](/Configuration/Channel-Drivers/SIP/Configuring-res_pjsip) for more information on the PJSIP channel driver.
 
 ### Configuring app\_voicemail file formats for recordings
 
@@ -90,7 +90,7 @@ format=wav49,wav,gsm
 ---
 
 
-In the general section of voicemail.conf you can set the formats used when writing [voicemail](/Voicemail)to the file-system. We set the option "format" to a string of file format names.
+In the general section of voicemail.conf you can set the formats used when writing [voicemail](/Configuration/Applications/Voicemail)to the file-system. We set the option "format" to a string of file format names.
 
 * The value "wav49" represents GSM in a WAV|wav49 container.
 * The value "wav" represents SLIN in a wav container.

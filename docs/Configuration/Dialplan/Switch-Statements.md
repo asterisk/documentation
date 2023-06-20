@@ -6,7 +6,7 @@ pageid: 31097228
 Dialplan Switch Statements
 ==========================
 
-The **switch** statement permits a server to share the dialplan with another server. To understand when a switch would be searched for dialplan extensions you should read the [Contexts, Extensions, and Priorities](/Contexts--Extensions--and-Priorities) section as it covers Dialplan search order.
+The **switch** statement permits a server to share the dialplan with another server. To understand when a switch would be searched for dialplan extensions you should read the [Contexts, Extensions, and Priorities](/Configuration/Dialplan/Contexts-Extensions-and-Priorities) section as it covers Dialplan search order.
 
 
 

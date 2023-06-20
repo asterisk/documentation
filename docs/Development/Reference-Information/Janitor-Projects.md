@@ -54,7 +54,7 @@ This page contains janitor (small, cleanup) projects for Asterisk that are waiti
 * Find applications and functions in Asterisk that would benefit from being able to encode control characters and extended ASCII and embed calls to ast\_get\_encoded\_char, ast\_get\_encoded\_str, and ast\_str\_get\_encoded\_str.
 
 
-* There are a number of function, applications, etc. in Asterisk that are not properly source-documented. Someone needs to document them as defined in the [Coding Guidelines](/Coding-Guidelines). The items needing documentation include:
+* There are a number of function, applications, etc. in Asterisk that are not properly source-documented. Someone needs to document them as defined in the [Coding Guidelines](/Development/Policies-and-Procedures/Historical-Policies-and-Procedures/Code-Review/Coding-Guidelines). The items needing documentation include:
 	+ func\_curl
 	+ func\_logic
 	+ func\_module

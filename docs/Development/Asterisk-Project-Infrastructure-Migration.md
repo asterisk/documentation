@@ -14,17 +14,17 @@ pageid: 52069711
 
 The following pages have been updated with new information:
 
-[Code Contribution](/Code-Contribution)
+[Code Contribution](/Development/Policies-and-Procedures/Code-Contribution)
 
-[Commit Messages](/Commit-Messages)
+[Commit Messages](/Development/Policies-and-Procedures/Commit-Messages)
 
-[Asterisk Issue Guidelines](/Asterisk-Issue-Guidelines)
+[Asterisk Issue Guidelines](/Asterisk-Community/Asterisk-Issue-Guidelines)
 
-[Issue Tracker Workflow](/Issue-Tracker-Workflow)
+[Issue Tracker Workflow](/Development/Policies-and-Procedures/Historical-Policies-and-Procedures/Issue-Tracker-Workflow)
 
-[Release Management](/Release-Management)
+[Release Management](/Development/Policies-and-Procedures/Release-Management)
 
-[Asterisk Community Services](/Asterisk-Community-Services)
+[Asterisk Community Services](/Asterisk-Community/Asterisk-Community-Services)
 
  
 
@@ -40,7 +40,7 @@ Migration of this Wiki is still pending.
 Overview
 ========
 
-In order to reduce the amount of system maintenance and administration that needs to be done by the Asterisk team at Sangoma, we've decided to move capabilities such as issue tracking, code management/review and documentation/wiki to hosted solutions. Last year, we compared GitHub and GitLab and while the evaluation of documentation/wiki alternatives is still ongoing, we've decided that GitHub offers the best alternative for issues and code management/review. The details of the comparison can be found in this wiki article: [Trade Study: Github vs. Gitlab](/Trade-Study:-Github-vs.-Gitlab).
+In order to reduce the amount of system maintenance and administration that needs to be done by the Asterisk team at Sangoma, we've decided to move capabilities such as issue tracking, code management/review and documentation/wiki to hosted solutions. Last year, we compared GitHub and GitLab and while the evaluation of documentation/wiki alternatives is still ongoing, we've decided that GitHub offers the best alternative for issues and code management/review. The details of the comparison can be found in this wiki article: [Trade Study: Github vs. Gitlab](/Development/Asterisk-Project-Infrastructure-Future/Trade-Study-Github-vs.-Gitlab).
 
 The [Asterisk Community Forums](https://community.asterisk.org) are already hosted by Discourse and are not moving but see below for additional authentication options.
 

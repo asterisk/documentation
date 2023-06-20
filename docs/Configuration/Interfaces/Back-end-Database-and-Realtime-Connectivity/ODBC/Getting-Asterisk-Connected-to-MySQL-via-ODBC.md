@@ -450,11 +450,11 @@ If you already had Asterisk installed from source and the modules you need are a
 
 Otherwise you should follow the typical Asterisk installation process to make sure modules such as res\_odbc, res\_config\_odbc, cdr\_odbc, cdr\_adaptive\_odbc and func\_odbc have their dependencies fulfilled and that they will be built.
 
-See [Building and Installing Asterisk](/Building-and-Installing-Asterisk) and [Using Menuselect to Select Asterisk Options](/Using-Menuselect-to-Select-Asterisk-Options).
+See [Building and Installing Asterisk](/Building-and-Installing-Asterisk) and [Using Menuselect to Select Asterisk Options](/Getting-Started/Installing-Asterisk/Installing-Asterisk-From-Source/Using-Menuselect-to-Select-Asterisk-Options).
 
 ### Configuring Asterisk's ODBC connection
 
-The basic configuration for an Asterisk ODBC connection is handled in res\_odbc.conf. You should check out the [Configuring res\_odbc](/Configuring-res_odbc) page and follow it using the DSN and database username and password you setup earlier.
+The basic configuration for an Asterisk ODBC connection is handled in res\_odbc.conf. You should check out the [Configuring res\_odbc](/Configuration/Interfaces/Back-end-Database-and-Realtime-Connectivity/ODBC/Configuring-res_odbc) page and follow it using the DSN and database username and password you setup earlier.
 
 After you have the connection set up in Asterisk you are ready to then configure your database tables with the proper schema depending on what exactly you want to do with them. Asterisk comes with some helpful tools to do this, such as Alembic. See the [Managing Realtime Databases with Alembic](/Managing-Realtime-Databases-with-Alembic) section to get started with Alembic if you are working towards an Asterisk Realtime setup.
 

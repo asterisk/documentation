@@ -15,7 +15,7 @@ asterisk.conf has two primary contexts, shown below with some descriptions about
 A Note on Includes
 ------------------
 
-[Includes](/Using-The-include--tryinclude-and-exec-Constructs) in this file will only work with absolute paths, as the configuration in this file is setting the relative paths that would be used in includes set in other files.
+[Includes](/Fundamentals/Asterisk-Configuration/Asterisk-Configuration-Files/Using-The-include-tryinclude-and-exec-Constructs) in this file will only work with absolute paths, as the configuration in this file is setting the relative paths that would be used in includes set in other files.
 
 Directories Context
 -------------------
@@ -52,7 +52,7 @@ astsbindir => /usr/sbin
 ---
 
 
-The directories listed above are explained in detail in the [Directory and File Structure](/Directory-and-File-Structure) page.
+The directories listed above are explained in detail in the [Directory and File Structure](/Fundamentals/Directory-and-File-Structure) page.
 
 Options Context
 ---------------

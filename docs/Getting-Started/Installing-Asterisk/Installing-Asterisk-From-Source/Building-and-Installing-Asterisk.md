@@ -247,7 +247,7 @@ Other Make Targets
 | --- | --- |
 |  | Executing `make` with no target is equivalent to the `all` target. |
 | **all** | Compiles everything everything selected through the `configure` and `menuselect` scripts. |
-| **full** | This is equivalent to `make` or `make all`, save that it will perform a more thorough investigation of the source code for documentation. This is needed to generate [AMI event documentation](/AMI-Event-Documentation). Note that your system must have Python in order for this make target to succeed.
+| **full** | This is equivalent to `make` or `make all`, save that it will perform a more thorough investigation of the source code for documentation. This is needed to generate [AMI event documentation](/Development/Roadmap/Asterisk-11-Projects/AMI-Event-Documentation). Note that your system must have Python in order for this make target to succeed.
 
 
 ---

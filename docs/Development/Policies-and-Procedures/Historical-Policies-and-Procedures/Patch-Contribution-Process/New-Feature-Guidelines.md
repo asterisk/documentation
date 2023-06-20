@@ -8,7 +8,7 @@ Overview
 
 At some point in time, you may find yourself asking, "I wish Asterisk did [new cool feature]". The great news about Open Source software is that if you really want, you can make Asterisk do [new cool features]! But after you make your local copy of Asterisk do [new cool feature], you may find yourself wishing that you didn't have to patch Asterisk every time you need to upgrade a system. At which point, you'll want to have your feature included in the Asterisk source.
 
-This page describes how new features move through the Asterisk development process. For more information on general issue workflows, see [Issue Tracker Workflow](/Issue-Tracker-Workflow).
+This page describes how new features move through the Asterisk development process. For more information on general issue workflows, see [Issue Tracker Workflow](/Development/Policies-and-Procedures/Historical-Policies-and-Procedures/Issue-Tracker-Workflow).
 
 On This Page
 
@@ -72,7 +72,7 @@ whiteVideo Capable Jitter Buffersolid50%**Feature Description**50%**Analysis**50
 Is the Feature Appropriate for the next Major Version?
 ------------------------------------------------------
 
-Each year, the Asterisk [trunk](http://svn.asterisk.org/svn/asterisk/trunk) is made into a major version branch. Periodically, releases are made from the major version branches. There are two types of major version branches, **Standard** and **Long Term Support (LTS)**. The two types differ both in their [supported lifetimes](/Asterisk-Versions) as well as their [development focus](/Software-Configuration-Management-Policies).
+Each year, the Asterisk [trunk](http://svn.asterisk.org/svn/asterisk/trunk) is made into a major version branch. Periodically, releases are made from the major version branches. There are two types of major version branches, **Standard** and **Long Term Support (LTS)**. The two types differ both in their [supported lifetimes](/Asterisk-Versions) as well as their [development focus](/Development/Policies-and-Procedures/Software-Configuration-Management-Policies).
 
 If a new feature changes the architecture of Asterisk or has a particularly large impact on core functionality, the preference is to have that new feature released in a Standard release. LTS releases should include new features that enhance the Asterisk experience, but should avoid major internal changes that fundamentally alter behavior.
 
@@ -82,12 +82,12 @@ Some examples are listed below. Note that Standard releases can include any new 
 
 | Change | Preferred Release | Analysis |
 | --- | --- | --- |
-| [Change the structure and representation of media formats within Asterisk](/Media-Architecture-Proposal) | Standard | Not only did this change add new functionality, but it had a ripple effect throughout the code base requiring all consumers/producers of media to change. Due to its large scope, it was more appropriate for a Standard release. |
-| [Hangup Handlers](/Hangup-Handlers-Specification) | Any | While hangup handlers did require some changes in the Asterisk core, they were limited in scope and were easy to define - that is, we had to concern ourselves with locations where the 'h' extension would be executed, but the behavior of the 'h' extension was not altered. |
+| [Change the structure and representation of media formats within Asterisk](/Development/Roadmap/Asterisk-10-Projects/Media-Architecture-Proposal) | Standard | Not only did this change add new functionality, but it had a ripple effect throughout the code base requiring all consumers/producers of media to change. Due to its large scope, it was more appropriate for a Standard release. |
+| [Hangup Handlers](/Development/Roadmap/Asterisk-11-Projects/Hangup-Handlers-Specification) | Any | While hangup handlers did require some changes in the Asterisk core, they were limited in scope and were easy to define - that is, we had to concern ourselves with locations where the 'h' extension would be executed, but the behavior of the 'h' extension was not altered. |
 | [T.38 Gateway](/T.38-Gateway) | Standard (debatable) | On its face, T.38 gateway appears to be a feature that is relatively non-intrusive, as much of its handling exists in a separate resource module (res\_fax). However, in order to enable/disable gateway mode, chan\_sip had to be able to maintain some rather complicated state information. This was relatively tricky, as chan\_sip does not have a modular design and does not lend itself well to code changes. It was best handled in a Standard release; if chan\_sip was more flexible, then this could potentially have been done in an LTS release. |
-| [Unique Call-ID Logging](/Unique-Call-ID-Logging) | Any | While Unique Call ID Logging affected a large number of modules (channel drivers + the logging core, as well as other core modules), the changes were relatively small and unintrusive. In addition, if a module chose not to make use of the Unique Call IDs for log messages, it still behaved exactly the same. The fact that the behavior is optional is what makes this easy to justify in an LTS release. |
+| [Unique Call-ID Logging](/Development/Roadmap/Asterisk-11-Projects/Unique-Call-ID-Logging) | Any | While Unique Call ID Logging affected a large number of modules (channel drivers + the logging core, as well as other core modules), the changes were relatively small and unintrusive. In addition, if a module chose not to make use of the Unique Call IDs for log messages, it still behaved exactly the same. The fact that the behavior is optional is what makes this easy to justify in an LTS release. |
 
-If your feature is deemed to be intrusive or risky for an LTS release and you are asked to hold off on including it, a branch can be set up to maintain the feature in parallel with the current Asterisk trunk using automerge. See [Subversion Usage](/Subversion-Usage) for more information.
+If your feature is deemed to be intrusive or risky for an LTS release and you are asked to hold off on including it, a branch can be set up to maintain the feature in parallel with the current Asterisk trunk using automerge. See [Subversion Usage](/Development/Policies-and-Procedures/Historical-Policies-and-Procedures/Subversion-Usage) for more information.
 
 
 
@@ -125,13 +125,13 @@ Maintainability is a tricky proposition. When a developer writes a new feature, 
 
 Making your new feature maintainable goes a long way to getting it included in Asterisk. Features that fit well within the Asterisk architecture; are easy to inspect and test; and impact as little existing code as possible are much easier to incorporate than features that are not well compartmentalized. The following are a list of questions to ask yourself when you're writing your new feature that will help in making the feature maintainable:
 
-* Are you following the [established Asterisk coding guidelines](/Coding-Guidelines)?
+* Are you following the [established Asterisk coding guidelines](/Development/Policies-and-Procedures/Historical-Policies-and-Procedures/Code-Review/Coding-Guidelines)?
 * Are you using all of the appropriate Asterisk libraries, and are you using them for their intended purpose?
 * Have you thought about how your code will be [tested](#testing)?
-* Can the new feature exist in a separate [module](/Modules)?
+* Can the new feature exist in a separate [module](/Development/Reference-Information/Asterisk-Framework-and-API-Examples/Modules)?
 * Are the places where the new feature interacts with existing code well understood? By that, think about:
-	+ [Locking](/Locking-in-Asterisk) and threading concerns
-	+ [Reference counting issues](/Reference-Count-Debugging)
+	+ [Locking](/Development/Reference-Information/Other-Reference-Information/Locking-in-Asterisk) and threading concerns
+	+ [Reference counting issues](/Development/Debugging/Reference-Count-Debugging)
 	+ Memory leaks/corruption
 	+ Potential performance impacts
 * Do you need to refactor any existing code to make the new feature easier to understand and verify?
@@ -139,7 +139,7 @@ Making your new feature maintainable goes a long way to getting it included in A
 New Feature Development
 =======================
 
-New features are developed against Asterisk [trunk](http://svn.asterisk.org/svn/asterisk/trunk/). You may propose that a feature be included in a release branch as well, if the feature is appropriate for the type of release branch. New features included in a release branch **must** have accompanying automated tests. See [Software Configuration Management Policies](/Software-Configuration-Management-Policies) for more information about the various branches in Asterisk.
+New features are developed against Asterisk [trunk](http://svn.asterisk.org/svn/asterisk/trunk/). You may propose that a feature be included in a release branch as well, if the feature is appropriate for the type of release branch. New features included in a release branch **must** have accompanying automated tests. See [Software Configuration Management Policies](/Development/Policies-and-Procedures/Software-Configuration-Management-Policies) for more information about the various branches in Asterisk.
 
 
 
@@ -162,11 +162,11 @@ Planning
 
 New features and improvements can have an issue in JIRA, if there is a developer who is assigned and working the issue. Once the new feature or improvement has been made, a patch should be made and placed on the issue.
 
-Note that you must sign a [Digium License Agreement](/Digium-License-Agreement) to contribute any code back to the Asterisk project.
+Note that you must sign a [Digium License Agreement](/Development/Policies-and-Procedures/Historical-Policies-and-Procedures/Patch-Contribution-Process/Digium-License-Agreement) to contribute any code back to the Asterisk project.
 
 ### Wiki Pages
 
-It is generally recommended that developers for major new features create a page on the wiki using the [Project Planning Template](/Project-Planning-Template) under the [Roadmap](/Roadmap) section's page for the next major Asterisk version. Even before implementation of a new feature begins, basic requirements and design can be documented and discussed.
+It is generally recommended that developers for major new features create a page on the wiki using the [Project Planning Template](/Development/Policies-and-Procedures/Project-Planning-Template) under the [Roadmap](/Development/Roadmap./Development/Roadmap/Asterisk-12-Projects/New-SIP-channel-driver/New-SIP-Channel-Driver-Architecture/res_sip-design/Roadmap) section's page for the next major Asterisk version. Even before implementation of a new feature begins, basic requirements and design can be documented and discussed.
 
 
 
@@ -222,7 +222,7 @@ New features with a project plan on the wiki can document their test plans, whic
 The Asterisk project provides a number of ways to help you test your feature:
 
 * Unit tests, using the [Asterisk Unit Test Framework](http://svn.asterisk.org/svn/asterisk/trunk/include/asterisk/test.h).
-* Functional/Integration tests, using the [Asterisk Test Suite](/Asterisk-Test-Suite-Documentation).
+* Functional/Integration tests, using the [Asterisk Test Suite](/Test-Suite-Documentation/Test-Development/Home/Asterisk-Test-Suite-Documentation).
 * Beta testing with the Asterisk community, conducted as part of a major version release cycle. Note that all major versions go through a beta test cycle.
 
 Making use of the Unit Test Framework and the Asterisk Test Suite is **highly encouraged** for all new features. Tests written for either framework are automatically included in the Asterisk project's [continuous integration](http://bamboo.asterisk.org/myBamboo.action) activities. This helps not only to verify the correctness of the new feature, but also make it maintainable (see the [next section](#maintainability)).
@@ -236,10 +236,10 @@ Implementation is left up to the developers working on the new feature. The proj
 
 * The [asterisk-dev](http://lists.digium.com/mailman/listinfo/asterisk-dev) mailing list can and should be used for any and all discussions about code
 * The #asterisk-dev IRC channel on [Libera Chat](https://libera.chat/)
-* The Asterisk wiki contains substantial information in the [Development](/Development) section. In particular, be mindful of the [Coding Guidelines](/Coding-Guidelines).
-* For developers with commit access, team branches can be used to help keep a new feature in sync with particular branches. See [Subversion Usage](/Subversion-Usage) for more information about team branches.
+* The Asterisk wiki contains substantial information in the [Development](/Development) section. In particular, be mindful of the [Coding Guidelines](/Development/Policies-and-Procedures/Historical-Policies-and-Procedures/Code-Review/Coding-Guidelines).
+* For developers with commit access, team branches can be used to help keep a new feature in sync with particular branches. See [Subversion Usage](/Development/Policies-and-Procedures/Historical-Policies-and-Procedures/Subversion-Usage) for more information about team branches.
 
-When implementation is complete, patches should be attached to the JIRA issues and the new feature put up for [Code Review](/Code-Review). Be sure to read the [Coding Guidelines](/Coding-Guidelines), as well as the [Code Review Checklist](/Code-Review-Checklist) prior to putting the patch up for review.
+When implementation is complete, patches should be attached to the JIRA issues and the new feature put up for [Code Review](/Code-Review). Be sure to read the [Coding Guidelines](/Development/Policies-and-Procedures/Historical-Policies-and-Procedures/Code-Review/Coding-Guidelines), as well as the [Code Review Checklist](/Development/Policies-and-Procedures/Historical-Policies-and-Procedures/Code-Review/Code-Review-Checklist) prior to putting the patch up for review.
 
  
 
@@ -254,28 +254,28 @@ The following resources exist to help you when writing a new feature for Asteris
 Planning
 --------
 
-* [Project Planning Template](/Project-Planning-Template) - used for describing a new feature and coordinating plans.
-* [Roadmap](/Roadmap) - major goals for Asterisk versions, and descriptions of new features and improvements being proposed and worked on for the next major version.
-* [Open Features and Improvements](/Open-Features-and-Improvements) - current new features and improvements open in the issue tracker, but not yet committed to SVN.
+* [Project Planning Template](/Development/Policies-and-Procedures/Project-Planning-Template) - used for describing a new feature and coordinating plans.
+* [Roadmap](/Development/Roadmap./Development/Roadmap/Asterisk-12-Projects/New-SIP-channel-driver/New-SIP-Channel-Driver-Architecture/res_sip-design/Roadmap) - major goals for Asterisk versions, and descriptions of new features and improvements being proposed and worked on for the next major version.
+* [Open Features and Improvements](/Development/Open-Features-and-Improvements) - current new features and improvements open in the issue tracker, but not yet committed to SVN.
 
 Development
 -----------
 
-* [Issue Tracker Workflow](/Issue+Tracker+Workflow) - how issues are moved through the public Asterisk project.
-* [Code Review](/Code+Review) - how code reviews are performed. This contains links to lots of other useful information, including:
-	+ [Gerrit Usage](/Gerrit-Usage) [- How to use Gerrit for code reviews.](/Review+Board+Usage)
-	+ [Coding Guidelines](/Coding+Guidelines) - **Follow these for all C code**. For Python code, use PEP8. For other code, try to match the project you are working in.
-	+ [Code Review Checklist](/Code+Review+Checklist) - useful things to keep in mind when reviewing code (and before putting your code up for review)
-* [Commit Messages](/Commit+Messages) - how to write proper commit messages.
-* [Git Usage](/Git-Usage) [- information on the available Git repositories.](/Subversion+Usage)
-* [Repotools](/Repotools) - useful tools that are needed for the Asterisk SVN repositories.
+* [Issue Tracker Workflow](/Development/Policies-and-Procedures/Historical-Policies-and-Procedures/Issue-Tracker-Workflow) - how issues are moved through the public Asterisk project.
+* [Code Review](/Development/Policies-and-Procedures/Historical-Policies-and-Procedures/Code-Review) - how code reviews are performed. This contains links to lots of other useful information, including:
+	+ [Gerrit Usage](/Gerrit-Usage) [- How to use Gerrit for code reviews.](/Development/Policies-and-Procedures/Historical-Policies-and-Procedures/Review-Board-Usage)
+	+ [Coding Guidelines](/Development/Policies-and-Procedures/Historical-Policies-and-Procedures/Code-Review/Coding-Guidelines) - **Follow these for all C code**. For Python code, use PEP8. For other code, try to match the project you are working in.
+	+ [Code Review Checklist](/Development/Policies-and-Procedures/Historical-Policies-and-Procedures/Code-Review/Code-Review-Checklist) - useful things to keep in mind when reviewing code (and before putting your code up for review)
+* [Commit Messages](/Development/Policies-and-Procedures/Commit-Messages) - how to write proper commit messages.
+* [Git Usage](/Git-Usage) [- information on the available Git repositories.](/Development/Policies-and-Procedures/Historical-Policies-and-Procedures/Subversion-Usage)
+* [Repotools](/Development/Reference-Information/Repotools) - useful tools that are needed for the Asterisk SVN repositories.
 * Debugging:
-	+ [How to collect debug information](/Collecting+Debug+Information).
-	+ Getting [crash information](/Getting+a+Backtrace).
-	+ [Debugging deadlocks](/Getting+a+Backtrace#GettingaBacktrace-GettingInformationForADeadlock).
+	+ [How to collect debug information](/Operation/Logging/Collecting-Debug-Information).
+	+ Getting [crash information](/Development/Debugging/Getting-a-Backtrace).
+	+ [Debugging deadlocks](/Development/Debugging/Getting-a-Backtrace).
 
 Testing
 -------
 
 * [Bamboo](https://bamboo.asterisk.org) - continuous integration server
-* [Asterisk Test Suite](/Asterisk+Test+Suite+Documentation) - useful information on setting up and writing tests
+* [Asterisk Test Suite](/Test-Suite-Documentation/Test-Development/Home/Asterisk-Test-Suite-Documentation) - useful information on setting up and writing tests

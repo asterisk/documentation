@@ -8,7 +8,7 @@ Collecting Debug Information for the Asterisk Issue Tracker
 
 This document will provide instructions on how to collect debugging logs from an Asterisk machine, for the purpose of helping bug marshals troubleshoot an issue on <https://github.com/asterisk/asterisk/issues>
 
-If Asterisk has crashed or deadlocked, see [Getting a Backtrace](/Getting+A+Backtrace).
+If Asterisk has crashed or deadlocked, see [Getting a Backtrace](/Development/Debugging/Getting-a-Backtrace).
 
 STEPS
 =====

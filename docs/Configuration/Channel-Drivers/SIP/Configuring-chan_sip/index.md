@@ -25,11 +25,11 @@ It is not recommended for new installations to use chan\_sip.
 
  
 
-See: [PJSIP-pjproject](/PJSIP-pjproject)
+See: [PJSIP-pjproject](/Getting-Started/Installing-Asterisk/Installing-Asterisk-From-Source/PJSIP-pjproject)
 
-See:  [Configuring res\_pjsip](/Configuring-res_pjsip)
+See:  [Configuring res\_pjsip](/Configuration/Channel-Drivers/SIP/Configuring-res_pjsip)
 
-See: [Migrating from chan\_sip to res\_pjsip](/Migrating-from-chan_sip-to-res_pjsip)
+See: [Migrating from chan\_sip to res\_pjsip](/Configuration/Channel-Drivers/SIP/Configuring-res_pjsip/Migrating-from-chan_sip-to-res_pjsip)
 
   
 

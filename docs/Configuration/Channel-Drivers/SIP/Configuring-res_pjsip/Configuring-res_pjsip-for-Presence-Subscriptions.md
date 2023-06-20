@@ -46,7 +46,7 @@ exten => 1000,hint,PJSIP/alice
 ---
 
 
-The line shown here is similar to any normal line in a dialplan, except that instead of a priority number or label, the word "hint" is specified. The hint is used to associate the state of individual devices with the state of a dialplan extension. An English translation of the dialplan line would be "Use the state of device PJSIP/alice as the basis for the state of extension 1000". When PJSIP endpoints subscribe to presence, they are subscribing to the state of an extension in the dialplan. By providing the dialplan hint, you are creating the necessary association in order to know which device (or devices) are relevant. For the example given above, this means that if someone subscribes to the state of extension 1000, then they will be told the state of PJSIP/alice. For more information about device state, see [this page](/Device-State).
+The line shown here is similar to any normal line in a dialplan, except that instead of a priority number or label, the word "hint" is specified. The hint is used to associate the state of individual devices with the state of a dialplan extension. An English translation of the dialplan line would be "Use the state of device PJSIP/alice as the basis for the state of extension 1000". When PJSIP endpoints subscribe to presence, they are subscribing to the state of an extension in the dialplan. By providing the dialplan hint, you are creating the necessary association in order to know which device (or devices) are relevant. For the example given above, this means that if someone subscribes to the state of extension 1000, then they will be told the state of PJSIP/alice. For more information about device state, see [this page](/Fundamentals/Key-Concepts/States-and-Presence/Device-State).
 
 There are two endpoint options that affect presence subscriptions in `pjsip.conf`. The `allow_subscribe` option determines whether SUBSCRIBE requests from the endpoint are permitted to be received by Asterisk. By default, `allow_subscribe` is enabled. The other setting that affects presence subscriptions is the `context` option. This is used to determine the dialplan context in which the extension being subscribed to should be searched for. Given the dialplan snippet above, if the intent of an endpoint that subscribes to extension 1000 is to subscribe to the hint at 1000@default, then the context of the subscribing endpoint would need to be set to "default". Note that if the `context` option is set to something other than "default", then Asterisk will search that context for the hint instead.
 
@@ -90,7 +90,7 @@ exten => 1000,hint,PJSIP/alice,CustomPresence:alice
 ---
 
 
-This means that updates to the presence state of CustomPresence:alice will also be conveyed to subscribers to extension 1000. For more information on presence state in Asterisk, see [this page](/Presence-State).
+This means that updates to the presence state of CustomPresence:alice will also be conveyed to subscribers to extension 1000. For more information on presence state in Asterisk, see [this page](/Fundamentals/Key-Concepts/States-and-Presence/Presence-State).
 
 The `res_pjsip_pidf_digium_body_supplement.so` module must be loaded in order for additional presence details to be reported.
 

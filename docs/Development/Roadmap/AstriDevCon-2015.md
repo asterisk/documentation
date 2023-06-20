@@ -97,7 +97,7 @@ Recap of 2015
 -------------
 
 * unknown user gave a brief recap of the development work that occurred in 2015 (see [AstriDevCon Recap.pdf](AstriDevCon-Recap.pdf)).
-* Three major goals were outlined from last year's [DevCon](/AstriDevCon-2014):
+* Three major goals were outlined from last year's [DevCon](/Development/Roadmap/AstriDevCon-2014):
 	+ Move the project to Git
 	+ Improve the documentation
 	+ Improvements to Asterisk as a media application server
@@ -108,8 +108,8 @@ Recap of 2015
 		- There's clearly a bit of a learning curve with Gerrit. Some education on its usage would be useful.
 			* unknown user did a demo of submitting a patch at the end of DevCon, but others remarked that was still a bit daunting.
 * Improve Documentation
-	+ Lots of new pages have been added to the wiki, covering both existing functionality, e.g., [One-Touch Features](/One-Touch-Features), [Feature Code Call Transfers](/Feature-Code-Call-Transfers), as well as new features in point releases of Asterisk 13, e.g., [Sorcery Caching](/Sorcery-Caching), [ARI Push Configuration](/ARI-Push-Configuration)
-	+ Phase 1 of [Super Awesome Company](/Super-Awesome-Company) was completed, including reference configuration for a basic PBX included in the source tree (under the folder 'configs/basic-pbx').
+	+ Lots of new pages have been added to the wiki, covering both existing functionality, e.g., [One-Touch Features](/One-Touch-Features), [Feature Code Call Transfers](/Feature-Code-Call-Transfers), as well as new features in point releases of Asterisk 13, e.g., [Sorcery Caching](/Sorcery-Caching), [ARI Push Configuration](/Configuration/Interfaces/Asterisk-REST-Interface-ARI/The-Asterisk-Resource/ARI-Push-Configuration)
+	+ Phase 1 of [Super Awesome Company](/Deployment/Reference-Use-Cases-for-Asterisk/Super-Awesome-Company) was completed, including reference configuration for a basic PBX included in the source tree (under the folder 'configs/basic-pbx').
 	+ **Note:** this is an ongoing process
 * Asterisk as a media application server
 	+ New events:
@@ -133,7 +133,7 @@ Recap of 2015
 			* [`addLog`](/Asterisk+13+Asterisk+REST+API#Asterisk13AsteriskRESTAPI-addLog) - add a new log channel
 			* [`deleteLog`](/Asterisk+13+Asterisk+REST+API#Asterisk13AsteriskRESTAPI-deleteLog) - remove a log channel
 			* [`rotateLog`](/Asterisk+13+Asterisk+REST+API#Asterisk13AsteriskRESTAPI-rotateLog) - rotate the log channels
-		- [Push configuration](/ARI-Push-Configuration) for [Sorcery](/Sorcery) backed modules. This was designed specifically for use with the PJSIP stack. Using ARI, PJSIP objects can be pushed into Asterisk and backed by one of the pluggable sorcery backends. See [ARI Push Configuration](/ARI-Push-Configuration) for an example of using this.
+		- [Push configuration](/Configuration/Interfaces/Asterisk-REST-Interface-ARI/The-Asterisk-Resource/ARI-Push-Configuration) for [Sorcery](/Sorcery) backed modules. This was designed specifically for use with the PJSIP stack. Using ARI, PJSIP objects can be pushed into Asterisk and backed by one of the pluggable sorcery backends. See [ARI Push Configuration](/Configuration/Interfaces/Asterisk-REST-Interface-ARI/The-Asterisk-Resource/ARI-Push-Configuration) for an example of using this.
 	+ `events` resource additions:
 		- When establishing a WebSocket connection, you can now subscribe to all events happening in Asterisk using the [`subscribeAll`](/Asterisk+13+Events+REST+API#Asterisk13EventsRESTAPI-eventWebsocket) query option.
 	+ `applications` resource additions:

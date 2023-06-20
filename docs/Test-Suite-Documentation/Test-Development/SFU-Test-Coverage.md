@@ -13,7 +13,7 @@ Asterisk 15 introduced a new feature that allows you to utilize multiple streams
 
 ---
 
-**Tip:**  To get started with SFU testing and WebRTC, look at [WebRTC tutorial using SIPML5](/WebRTC-tutorial-using-SIPML5).
+**Tip:**  To get started with SFU testing and WebRTC, look at [WebRTC tutorial using SIPML5](/Configuration/WebRTC/WebRTC-tutorial-using-SIPML5).
 
   
 

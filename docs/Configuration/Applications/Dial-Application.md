@@ -14,14 +14,14 @@ Using the Dial application
 Here is a few ways to learn the usage of the Dial application.
 
 * Read the detailed documentation for your Asterisk version: e.g. for Asterisk 13 - [Asterisk 13 Application\_Dial](/Asterisk-13-Application_Dial)
-* See how to use Dial for a specific channel driver: [Dialing PJSIP Channels](/Dialing-PJSIP-Channels)
-* Note how Dial is used in a simple Asterisk dialplan: [Creating Dialplan Extensions](/Creating-Dialplan-Extensions)
+* See how to use Dial for a specific channel driver: [Dialing PJSIP Channels](/Configuration/Channel-Drivers/SIP/Configuring-res_pjsip/Dialing-PJSIP-Channels)
+* Note how Dial is used in a simple Asterisk dialplan: [Creating Dialplan Extensions](/Deployment/Basic-PBX-Functionality/Creating-Dialplan-Extensions)
 
 See Also
 ========
 
-* [Pre-Dial Handlers](/Pre-Dial-Handlers)
-* [Hangup Handlers](/Hangup-Handlers)
+* [Pre-Dial Handlers](/Configuration/Dialplan/Subroutines/Pre-Dial-Handlers)
+* [Hangup Handlers](/Configuration/Dialplan/Subroutines/Hangup-Handlers)
 
  
 

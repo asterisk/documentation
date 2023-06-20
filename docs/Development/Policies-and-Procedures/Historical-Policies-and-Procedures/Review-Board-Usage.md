@@ -11,7 +11,7 @@ pageid: 4816917
 
 **Information: Historical Page** The Asterisk project used Review Board for code review when Subversion was used for source control. After to moving to Git, Gerrit is now used for Code Reviews.
 
-Please see the [Gerrit Usage](/Gerrit-Usage) page for more information on using Gerrit for code review.
+Please see the [Gerrit Usage](/Development/Policies-and-Procedures/Historical-Policies-and-Procedures/Code-Review/Gerrit-Usage) page for more information on using Gerrit for code review.
 
   
 
@@ -32,7 +32,7 @@ This page provides guidelines for using Review Board.
 Review Board Access
 ===================
 
-Users who have an accepted [Digium License Agreement](/Digium-License-Agreement) are automatically granted access to Review Board. Your same username/password will work for logging into Review Board as it does for the other Asterisk community sites.
+Users who have an accepted [Digium License Agreement](/Development/Policies-and-Procedures/Historical-Policies-and-Procedures/Patch-Contribution-Process/Digium-License-Agreement) are automatically granted access to Review Board. Your same username/password will work for logging into Review Board as it does for the other Asterisk community sites.
 
 Posting Code to Review Board
 ============================
@@ -44,7 +44,7 @@ Posting Code to Review Board
 
 **Note:**  It is acceptable for a contributor to post patches to Review Board before they are complete to get some feedback on the approach being taken. However, if the code is not yet ready to be merged, it must be documented as such.
 
-A review request with a patch proposed for merging should have documented testing and should not have blatant [Coding Guidelines](/Coding-Guidelines) violations. If a patch has substantial issues, the review will be closed and you will be asked to re-submit it once it conforms to the project guidelines.
+A review request with a patch proposed for merging should have documented testing and should not have blatant [Coding Guidelines](/Development/Policies-and-Procedures/Historical-Policies-and-Procedures/Code-Review/Coding-Guidelines) violations. If a patch has substantial issues, the review will be closed and you will be asked to re-submit it once it conforms to the project guidelines.
 
   
 

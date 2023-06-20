@@ -39,7 +39,7 @@ Core Libraries
 --------------
 
 * DAHDI
-* [pjproject](/PJSIP-pjproject)
+* [pjproject](/Getting-Started/Installing-Asterisk/Installing-Asterisk-From-Source/PJSIP-pjproject)
 * unixodbc
 * libspeex
 * libspeexdsp
@@ -47,7 +47,7 @@ Core Libraries
 * libcurl3
 * libvorbis
 * libogg
-* [Installing libsrtp](/Installing-libsrtp)
+* [Installing libsrtp](/Getting-Started/Installing-Asterisk/Installing-Asterisk-From-Source/Installing-libsrtp)
 * libical
 * libiksemel
 * libneon

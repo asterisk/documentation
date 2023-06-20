@@ -28,7 +28,7 @@ For example:
 ---
 
 
-Asterisk does support command aliases. You can find information in the [Asterisk CLI Configuration](/Asterisk-CLI-Configuration) section.
+Asterisk does support command aliases. You can find information in the [Asterisk CLI Configuration](/Configuration/Core-Configuration/Asterisk-CLI-Configuration) section.
 
 Finding Help at the CLI
 =======================

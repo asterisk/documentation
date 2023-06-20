@@ -40,11 +40,11 @@ Gathering output
 
  
 
-1. Run [menuselect](/Using-Menuselect-to-Select-Asterisk-Options) and in the Compiler Options, enable MALLOC\_DEBUG. A bug marshal may also ask you to enable additional compiler flags depending upon the nature of the issue.
+1. Run [menuselect](/Getting-Started/Installing-Asterisk/Installing-Asterisk-From-Source/Using-Menuselect-to-Select-Asterisk-Options) and in the Compiler Options, enable MALLOC\_DEBUG. A bug marshal may also ask you to enable additional compiler flags depending upon the nature of the issue.
 2. Rebuild and install Asterisk
 3. Run Asterisk and reproduce the issue.
 4. Collect the /var/log/asterisk/mmlog (which will be generated only if you successfully compiled with the MALLOC\_DEBUG flag)
-5. Attach the mmlog file as mmlog.txt to the issue in our [issue tracker](/Asterisk-Issue-Guidelines).
+5. Attach the mmlog file as mmlog.txt to the issue in our [issue tracker](/Asterisk-Community/Asterisk-Issue-Guidelines).
 
 Commands provided
 -----------------

@@ -22,7 +22,7 @@ Prerequisites
 Asterisk Installation
 ---------------------
 
-You should have a working `chan_pjsip` based Asterisk installation to start with and for purposes of this tutorial, it must be version 15.5 or higher. Either install Asterisk from your distribution's packages or, preferably, [install Asterisk from source](/Installing-Asterisk-From-Source). Either way, there are a few modules over and above the standard ones that must be present for WebSockets and WebRTC to work:
+You should have a working `chan_pjsip` based Asterisk installation to start with and for purposes of this tutorial, it must be version 15.5 or higher. Either install Asterisk from your distribution's packages or, preferably, [install Asterisk from source](/Getting-Started/Installing-Asterisk/Installing-Asterisk-From-Source). Either way, there are a few modules over and above the standard ones that must be present for WebSockets and WebRTC to work:
 
 * `res_crypto`
 * `res_http_websocket`
@@ -219,7 +219,7 @@ Note that the HTTPS Server is enabled and bound to `[::]:8089` and that the `/ws
 Configure PJSIP
 ---------------
 
- If you're not already familiar with configuring Asterisk's `chan_pjsip` driver, visit the [`res_pjsip` configuration page](/Configuring-res_pjsip).
+ If you're not already familiar with configuring Asterisk's `chan_pjsip` driver, visit the [`res_pjsip` configuration page](/Configuration/Channel-Drivers/SIP/Configuring-res_pjsip).
 
 ### PJSIP WSS Transport
 
@@ -314,7 +314,7 @@ An explanation of each of these settings parameters can be found on the [Asteri
 * Enable ICE support
 * Tell Asterisk to send media across the same transport that we receive it from.
 * Enable mux-ing of RTP and RTCP events onto the same socket.
-* Place received calls from this endpoint into an Asterisk [Dialplan](/Dialplan) context called "default"
+* Place received calls from this endpoint into an Asterisk [Dialplan](/Configuration/Dialplan) context called "default"
 * And setup codecs by first disabling all and then selectively enabling Opus (presuming that you installed the Opus codec for Asterisk as mentioned at the beginning of this tutorial), then G.711 μ-law.
 
 Restart Asterisk

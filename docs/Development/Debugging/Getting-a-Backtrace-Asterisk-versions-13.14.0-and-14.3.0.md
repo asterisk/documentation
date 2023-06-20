@@ -375,7 +375,7 @@ Whenever collecting information about a deadlock it is useful to have additional
 ---
 
 
-**Use GDB to collect a backtrace:** You can easily attach to a running Asterisk process, gather the output required and then detach from the process all in a single step. Since this gathers information from the running Asterisk process,  you want to make sure you run this command immediately before or after gathering the output of '[core show locks](/CLI-commands-useful-for-debugging)'. Execute the following command and upload the resulting backtrace-threads.txt file to the Asterisk issue tracker:
+**Use GDB to collect a backtrace:** You can easily attach to a running Asterisk process, gather the output required and then detach from the process all in a single step. Since this gathers information from the running Asterisk process,  you want to make sure you run this command immediately before or after gathering the output of '[core show locks](/Development/Debugging/CLI-commands-useful-for-debugging)'. Execute the following command and upload the resulting backtrace-threads.txt file to the Asterisk issue tracker:
 
 
 
@@ -420,7 +420,7 @@ Whenever collecting information about a deadlock it is useful to have additional
 ---
 
 
-For more info on: [Locking in Asterisk](/Locking-in-Asterisk)
+For more info on: [Locking in Asterisk](/Development/Reference-Information/Other-Reference-Information/Locking-in-Asterisk)
 
 Verify Your Backtraces
 ----------------------
@@ -475,7 +475,7 @@ If you are getting a backtrace for a deadlock then be sure you compiled with **D
 ---
 
 
-If unsure, simply add the [compiler flag in menuselect](/Using-Menuselect-to-Select-Asterisk-Options) and [recompile then reinstall Asterisk](/Building-and-Installing-Asterisk).
+If unsure, simply add the [compiler flag in menuselect](/Using-Menuselect-to-Select-Asterisk-Options) and [recompile then reinstall Asterisk](/Getting-Started/Installing-Asterisk/Installing-Asterisk-From-Source/Building-and-Installing-Asterisk).
 
 Identifying Potential Memory Corruption
 ---------------------------------------

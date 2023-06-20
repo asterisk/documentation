@@ -13,7 +13,7 @@ State information
 
 Asterisk devices make state information available to the Asterisk user, such that a user might make use of the information to affect call flow or behavior of the Asterisk system. The device state identifier for a particular device is typically very similar to the device name. For example the device state identifier for SIP/6001 would be SIP/6001, for confbridge 7777 it would be confbridge:7777. Device states have a one-to-one mapping to the device they represent. That is opposed to other state providers in Asterisk which may have one-to-many relationships, such as Extension State.
 
-The [Querying and Manipulating State](/Querying-and-Manipulating-State) section covers how to access or manipulate device state as well as other states.
+The [Querying and Manipulating State](/Fundamentals/Key-Concepts/States-and-Presence/Querying-and-Manipulating-State) section covers how to access or manipulate device state as well as other states.
 
 Common Device State Providers
 =============================
@@ -42,7 +42,7 @@ Note that we are not differentiating any device state providers based on what is
 Custom Device States
 --------------------
 
-The Asterisk core provides a *Custom* device state provider (custom:<resource>) that allows you to define arbitrary device state resources. See the [Querying and Manipulating State](/Querying-and-Manipulating-State) section for more on using custom device state.
+The Asterisk core provides a *Custom* device state provider (custom:<resource>) that allows you to define arbitrary device state resources. See the [Querying and Manipulating State](/Fundamentals/Key-Concepts/States-and-Presence/Querying-and-Manipulating-State) section for more on using custom device state.
 
 Possible Device States
 ======================
@@ -66,7 +66,7 @@ Module Specific Device State
 
 There is module specific configuration that you must be aware of to get optimal behavior with certain state providers.
 
-For **chan\_sip** see the [chan\_sip State and Presence Options](/chan_sip-State-and-Presence-Options) section.
+For **chan\_sip** see the [chan\_sip State and Presence Options](/Configuration/Channel-Drivers/SIP/Configuring-chan_sip/chan_sip-State-and-Presence-Options) section.
 
-For **res\_pjsip** see the [Configuring res\_pjsip for Presence Subscriptions](/Configuring-res_pjsip-for-Presence-Subscriptions) section.
+For **res\_pjsip** see the [Configuring res\_pjsip for Presence Subscriptions](/Configuration/Channel-Drivers/SIP/Configuring-res_pjsip/Configuring-res_pjsip-for-Presence-Subscriptions) section.
 

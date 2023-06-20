@@ -6,7 +6,7 @@ pageid: 27200101
 Overview
 ========
 
-The **res\_odbc** module for Asterisk can provide Asterisk with connectivity to various database backends through ODBC (a database abstraction layer). Asterisk features such as [Asterisk Realtime Architecture](/Realtime-Database-Configuration), [Call Detail Records](/Call-Detail-Records--CDR-), [Channel Event Logging](/Channel-Event-Logging--CEL-), can connect to a database through res\_odbc.
+The **res\_odbc** module for Asterisk can provide Asterisk with connectivity to various database backends through ODBC (a database abstraction layer). Asterisk features such as [Asterisk Realtime Architecture](/Realtime-Database-Configuration), [Call Detail Records](/Call-Detail-Records--CDR-), [Channel Event Logging](/Configuration/Reporting/Channel-Event-Logging-CEL), can connect to a database through res\_odbc.
 
 More details on specific options within configuration are provided in the [sample configuration file](http://svnview.digium.com/svn/asterisk/branches/11/configs/res_odbc.conf.sample?view=markup) included with Asterisk source.
 
@@ -18,9 +18,9 @@ You'll need to rebuild Asterisk with the needed modules.
 
 Other pages on the wiki describe that process:
 
-[Building and Installing Asterisk](/Building-and-Installing-Asterisk)
+[Building and Installing Asterisk](/Getting-Started/Installing-Asterisk/Installing-Asterisk-From-Source/Building-and-Installing-Asterisk)
 
-[Using Menuselect to Select Asterisk Options](/Using-Menuselect-to-Select-Asterisk-Options)
+[Using Menuselect to Select Asterisk Options](/Getting-Started/Installing-Asterisk/Installing-Asterisk-From-Source/Using-Menuselect-to-Select-Asterisk-Options)
 
 When using menuselect, verify that the **func\_odbc** (you'll probably be using that one) and **res\_odbc** (required) modules will be built. Then, build Asterisk and make sure those modules were built and exist in **/usr/lib/asterisk/modules** (or whatever directory you use).
 

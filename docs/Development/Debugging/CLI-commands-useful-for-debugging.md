@@ -22,11 +22,11 @@ Compiling with DEBUG\_THREADS can reduce the performance of Asterisk. Primarily 
 ---
 
 
-This command is not available until you compile with [DEBUG\_THREADS](/Using-Menuselect-to-Select-Asterisk-Options) and it is generally preferred that you also compile with [BETTER\_BACKTRACES](/Using-Menuselect-to-Select-Asterisk-Options) to get the most useful output.
+This command is not available until you compile with [DEBUG\_THREADS](/Getting-Started/Installing-Asterisk/Installing-Asterisk-From-Source/Using-Menuselect-to-Select-Asterisk-Options) and it is generally preferred that you also compile with [BETTER\_BACKTRACES](/Getting-Started/Installing-Asterisk/Installing-Asterisk-From-Source/Using-Menuselect-to-Select-Asterisk-Options) to get the most useful output.
 
 If compiled with at least DEBUG\_THREADS enabled and if you have glibc, then issuing the "core show locks" CLI command will give lock information output as well as a backtrace of the stack which led to the lock calls.
 
-See the [Getting a Backtrace (Asterisk versions < 13.14.0 and 14.3.0)](/Getting-a-Backtrace--Asterisk-versions-<-13.14.0-and-14.3.0-) page for an example on why you might use this command.
+See the [Getting a Backtrace (Asterisk versions < 13.14.0 and 14.3.0)](/Development/Debugging/Getting-a-Backtrace-Asterisk-versions-13.14.0-and-14.3.0) page for an example on why you might use this command.
 
 Examples: (both a lock during a feature code attended transfer)
 
@@ -246,7 +246,7 @@ ubuntu\*CLI> core show threads
 
 ### core show fd
 
-This command is not available until you compile Asterisk with [DEBUG\_FD\_LEAKS](/Using-Menuselect-to-Select-Asterisk-Options) (found under compiler flags in menuselect).
+This command is not available until you compile Asterisk with [DEBUG\_FD\_LEAKS](/Getting-Started/Installing-Asterisk/Installing-Asterisk-From-Source/Using-Menuselect-to-Select-Asterisk-Options) (found under compiler flags in menuselect).
 
 Shows file descriptors open by Asterisk.
 

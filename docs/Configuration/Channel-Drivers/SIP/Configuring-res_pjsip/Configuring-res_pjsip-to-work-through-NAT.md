@@ -5,7 +5,7 @@ pageid: 27198672
 
 Here we can show some examples of working configuration for Asterisk's SIP channel driver when Asterisk is behind NAT (Network Address Translation).
 
-If you are migrating from chan\_sip to chan\_pjsip, then also read the NAT section in [Migrating from chan\_sip to res\_pjsip](/Migrating-from-chan_sip-to-res_pjsip) for helpful tips.
+If you are migrating from chan\_sip to chan\_pjsip, then also read the NAT section in [Migrating from chan\_sip to res\_pjsip](/Configuration/Channel-Drivers/SIP/Configuring-res_pjsip/Migrating-from-chan_sip-to-res_pjsip) for helpful tips.
 
 Asterisk and Phones Connecting Through NAT to an ITSP
 =====================================================

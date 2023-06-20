@@ -3,7 +3,7 @@ title: Setting up the Asterisk HTTP server
 pageid: 4817258
 ---
 
-Next you'll need to enable [Asterisk's Builtin mini-HTTP server](/Asterisk-Builtin-mini-HTTP-Server).
+Next you'll need to enable [Asterisk's Builtin mini-HTTP server](/Configuration/Core-Configuration/Asterisk-Builtin-mini-HTTP-Server).
 
 1. Uncomment the line "enabled=yes" in /etc/asterisk/http.conf to enable Asterisk's builtin micro HTTP server.
 2. If you want Asterisk to actually deliver simple HTML pages, CSS, javascript, etc. you should uncomment "enablestatic=yes"

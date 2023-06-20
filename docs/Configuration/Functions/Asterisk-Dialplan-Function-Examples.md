@@ -34,7 +34,7 @@ See the [CHANNEL function](/Asterisk-14-Function_CHANNEL) reference documentatio
 
 **Examples:**
 
-Push a [hangup handler](/Hangup-Handlers) subroutine onto the channel. The hangup handler must exist at the location specified (default,s,1).
+Push a [hangup handler](/Configuration/Dialplan/Subroutines/Hangup-Handlers) subroutine onto the channel. The hangup handler must exist at the location specified (default,s,1).
 
 
 
@@ -105,7 +105,7 @@ same = n,Set(myvar=${CHANNELS})
 DB and other DB functions
 -------------------------
 
-The DB function will read from or write a value to the [Asterisk Internal Database](/Asterisk-Internal-Database). On a read, this function returns the corresponding value from the database, or blank if it does not exist. Reading a database value will also set the variable DB\_RESULT. There are a few related functions. DB\_EXISTS, DB\_DELETE and DB\_KEYS.
+The DB function will read from or write a value to the [Asterisk Internal Database](/Fundamentals/Asterisk-Internal-Database). On a read, this function returns the corresponding value from the database, or blank if it does not exist. Reading a database value will also set the variable DB\_RESULT. There are a few related functions. DB\_EXISTS, DB\_DELETE and DB\_KEYS.
 
 If you wish to find out if an entry exists, use the DB\_EXISTS function. The DB\_DELETE function will retrieve a value from the Asterisk database and then remove that key from the database. DB\_RESULT will be set to the key's value if it exists. Finally, the DB\_KEYS will return a comma-separated list of keys existing at the prefix specified within the Asterisk database. If no argument is provided, then a list of key families will be returned.
 
@@ -155,7 +155,7 @@ same = n,Dial(PJSIP/${DB(testfamily/testkey)})
 ---
 
 
-Go to a specific dialplan location (via [label](/Contexts--Extensions--and-Priorities)) depending on if the key exists or does not.
+Go to a specific dialplan location (via [label](/Configuration/Dialplan/Contexts-Extensions-and-Priorities)) depending on if the key exists or does not.
 
 
 

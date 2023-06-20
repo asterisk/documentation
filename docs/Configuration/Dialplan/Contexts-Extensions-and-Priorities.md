@@ -87,7 +87,7 @@ javascriptexten => 6001,1,Dial(PJSIP/demo-alice,20)
 ---
 
 
-In this case, the extension number is **6001**, the priority number is **1**, the [application](/Applications) is **Dial()**, and the two parameters to the application are **PJSIP/demo-alice** and **20**.
+In this case, the extension number is **6001**, the priority number is **1**, the [application](/Configuration/Applications) is **Dial()**, and the two parameters to the application are **PJSIP/demo-alice** and **20**.
 
 Dialplan priorities
 -------------------
@@ -203,7 +203,7 @@ It may not be immediately intuitive, but the "\_.!" extension with the "n" prior
 Application calls
 -----------------
 
-You'll notice that each priority is calling a dialplan application (such as NoOp, or Verbose in the example above). That is how we tell Asterisk to "do something" with the [channel](/Channels) that is executing dialplan. See the [Applications](/Applications) section for more detail.
+You'll notice that each priority is calling a dialplan application (such as NoOp, or Verbose in the example above). That is how we tell Asterisk to "do something" with the [channel](/Channels) that is executing dialplan. See the [Applications](/Configuration/Applications) section for more detail.
 
 ### Priority labels
 
@@ -260,7 +260,7 @@ javascriptexten => 6123,1,NoOp()
 Dialplan search order
 =====================
 
-The order of matching within a context is always exact extensions, [pattern match](/Pattern-Matching) extensions,  [include statements](/Include-Statements), and [switch statements](/Switch-Statements).  Includes are always processed depth-first.  So for example, if you would like a switch "A" to match before context "B", simply put switch "A" in an included context "C", where "C" is included in your original context before "B".
+The order of matching within a context is always exact extensions, [pattern match](/Configuration/Dialplan/Pattern-Matching) extensions,  [include statements](/Include-Statements), and [switch statements](/Configuration/Dialplan/Switch-Statements).  Includes are always processed depth-first.  So for example, if you would like a switch "A" to match before context "B", simply put switch "A" in an included context "C", where "C" is included in your original context before "B".
 
 Search order:
 
@@ -269,7 +269,7 @@ Search order:
 * Includes
 * Switches
 
-Make sure to see the [Pattern Matching](/Pattern-Matching) page for a description of pattern matching order.
+Make sure to see the [Pattern Matching](/Configuration/Dialplan/Pattern-Matching) page for a description of pattern matching order.
 
  
 

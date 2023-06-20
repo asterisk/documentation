@@ -28,7 +28,7 @@ Added in Asterisk 12, Asterisk has a data abstraction and object persistence CRU
 * Asterisk Realtime Architecture
 * In-Memory
 
-Sorcery also provides a caching service as well as the capability for push configuration through the Asterisk REST Interface. See the section [ARI Push Configuration](/ARI-Push-Configuration) for more information on that topic.
+Sorcery also provides a caching service as well as the capability for push configuration through the Asterisk REST Interface. See the section [ARI Push Configuration](/Configuration/Interfaces/Asterisk-REST-Interface-ARI/The-Asterisk-Resource/ARI-Push-Configuration) for more information on that topic.
 
 On This Page
 
@@ -105,13 +105,13 @@ Object/Wizard mappings are defined within sections denoted by the module name in
 
 Note that an object type can have multiple mappings defined. Each mapping will be consulted in the order in which it appears within the configuration file. This means that if you are configuring a wizard as a cache it should appear as the first mapping so the cache is consulted before all other mappings.
 
-Object types available depend on the modules loaded and what objects they provide. There are PJSIP types for all the configuration objects in PJSIP, such as endpoint, auth,aor, etc. You can find a more exhaustive list of PJSIP objects in the [Sorcery Caching](/Sorcery-Caching) page.
+Object types available depend on the modules loaded and what objects they provide. There are PJSIP types for all the configuration objects in PJSIP, such as endpoint, auth,aor, etc. You can find a more exhaustive list of PJSIP objects in the [Sorcery Caching](/Fundamentals/Asterisk-Configuration/Sorcery/Sorcery-Caching) page.
 
 ### Wizards
 
 Wizards are the persistence mechanism for objects. They are loaded as Asterisk modules and register themselves with the sorcery core. All implementation specific details of how objects are persisted is isolated within wizards.
 
-A wizard can optionally be marked as an [object cache](/Sorcery-Caching) by adding "/cache" to the object type within the mapping. If an object is returned from a non-object cache it is immediately given to the cache to be created. Multiple object caches can be configured for a single object type.
+A wizard can optionally be marked as an [object cache](/Fundamentals/Asterisk-Configuration/Sorcery/Sorcery-Caching) by adding "/cache" to the object type within the mapping. If an object is returned from a non-object cache it is immediately given to the cache to be created. Multiple object caches can be configured for a single object type.
 
 Wizards available at the time of writing:
 
@@ -119,7 +119,7 @@ Wizards available at the time of writing:
 * config
 * memory
 * realtime
-* memory\_cache (For further details on this wizard type see the documentation [here](/Sorcery+Caching))
+* memory\_cache (For further details on this wizard type see the documentation [here](/Fundamentals/Asterisk-Configuration/Sorcery/Sorcery-Caching))
 
 Example Mapping Configurations
 ------------------------------

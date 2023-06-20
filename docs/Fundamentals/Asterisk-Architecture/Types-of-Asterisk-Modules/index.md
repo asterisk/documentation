@@ -3,14 +3,14 @@ title: Overview
 pageid: 4817485
 ---
 
-There are many different types of modules, each providing their own functionality and capabilities to Asterisk. Configuration of loading is described in [Configuring the Asterisk Module Loader](/Configuring-the-Asterisk-Module-Loader).
+There are many different types of modules, each providing their own functionality and capabilities to Asterisk. Configuration of loading is described in [Configuring the Asterisk Module Loader](/Configuration/Core-Configuration/Configuring-the-Asterisk-Module-Loader).
 
 
 
 
 ---
 
-**Tip:**  Use the [CLI](/Asterisk-Command-Line-Interface) command **module show** to see all the loaded modules in your Asterisk system. See the command usage for details on how to filter the results shown with a pattern.
+**Tip:**  Use the [CLI](/Operation/Asterisk-Command-Line-Interface) command **module show** to see all the loaded modules in your Asterisk system. See the command usage for details on how to filter the results shown with a pattern.
 
 Click here for example "module show" output...
 

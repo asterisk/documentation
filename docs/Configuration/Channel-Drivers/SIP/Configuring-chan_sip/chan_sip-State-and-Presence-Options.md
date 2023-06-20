@@ -6,12 +6,12 @@ pageid: 28934285
 Device State
 ============
 
-There are a few configuration options for chan\_sip that affect [Device State](/Device-State) behavior.
+There are a few configuration options for chan\_sip that affect [Device State](/Fundamentals/Key-Concepts/States-and-Presence/Device-State) behavior.
 
 callcounter
 -----------
 
-The **callcounter** option in sip.conf **must be enabled** for SIP devices (e.g. SIP/Alice) to provide advanced [device state](/Device-State). Without it you may see some state, such as unavailable or idle, but not much more.
+The **callcounter** option in sip.conf **must be enabled** for SIP devices (e.g. SIP/Alice) to provide advanced [device state](/Fundamentals/Key-Concepts/States-and-Presence/Device-State). Without it you may see some state, such as unavailable or idle, but not much more.
 
 The option can be set in the general context, or on a per-peer basis.
 

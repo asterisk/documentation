@@ -6,7 +6,7 @@ pageid: 49152044
 Overview
 ========
 
-This page lists public Asterisk C APIs which are in [the process of being deprecated](/C-API-Deprecation) or have been removed. This includes the version at which they were deprecated and removed.
+This page lists public Asterisk C APIs which are in [the process of being deprecated](/Development/Policies-and-Procedures/C-API-Deprecation) or have been removed. This includes the version at which they were deprecated and removed.
 
 Proposed APIs To Deprecate In Future
 ====================================

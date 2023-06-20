@@ -25,7 +25,7 @@ Enabling the Features
 Configuration of features.conf
 ------------------------------
 
-The options are configured in features.conf in the featuremap section. They use typical Asterisk [configuration file syntax](/Config-File-Format).
+The options are configured in features.conf in the featuremap section. They use typical Asterisk [configuration file syntax](/Fundamentals/Asterisk-Configuration/Asterisk-Configuration-Files/Config-File-Format).
 
 
 
@@ -94,7 +94,7 @@ For each feature there are a pair of options that can be set in the [Dial](/Aste
 
 ### Example usage
 
-Set the option as you would any [application](/Applications) option.
+Set the option as you would any [application](/Configuration/Applications) option.
 
 
 

@@ -13,7 +13,7 @@ While this concept is relatively straight forward, handling DTMF is quite common
 40%On This PageExample: A simple automated attendant
 =====================================
 
-This example mimics the [automated attendant/IVR dialplan example](/Handling+Special+Extensions). It does the following:
+This example mimics the [automated attendant/IVR dialplan example](/Deployment/Basic-PBX-Functionality/Auto-attendant-and-IVR-Menus/Handling-Special-Extensions). It does the following:
 
 * Plays a menu to the user which is cancelled when the user takes some action.
 * If the user presses 1 or 2, the digit is repeated to the user and the menu restarted.

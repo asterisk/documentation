@@ -207,7 +207,7 @@ If a user connects to the bridge via a DAHDI channel or some other non-SIP based
 In the browser
 --------------
 
-You use the same mechanism as shown in [Conference Participant Messaging](/Conference+Participant+Messaging).  The only difference will be that the message Content-Type will be "application/x-asterisk-confbridge-event+json".  The message bodies will be JSON events as shown above.
+You use the same mechanism as shown in [Conference Participant Messaging](/Deployment/Enhanced-Messaging/Conference-Participant-Messaging).  The only difference will be that the message Content-Type will be "application/x-asterisk-confbridge-event+json".  The message bodies will be JSON events as shown above.
 
 Putting it all together
 =======================

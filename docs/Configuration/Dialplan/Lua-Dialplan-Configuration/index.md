@@ -3,7 +3,7 @@ title: Overview
 pageid: 16548006
 ---
 
-Asterisk supports the ability to write dialplan instructions in the [Lua](http://lua.org) programming language. This method can be used as an alternative to or in combination with [extensions.conf](/Dialplan) and/or [AEL](/Asterisk-Extension-Language--AEL-). PBX lua allows users to use the full power of lua to develop telephony applications using Asterisk. Lua dialplan configuration is done in the `extensions.lua` file.
+Asterisk supports the ability to write dialplan instructions in the [Lua](http://lua.org) programming language. This method can be used as an alternative to or in combination with [extensions.conf](/Dialplan) and/or [AEL](/Configuration/Dialplan/Asterisk-Extension-Language-AEL). PBX lua allows users to use the full power of lua to develop telephony applications using Asterisk. Lua dialplan configuration is done in the `extensions.lua` file.
 
 
 

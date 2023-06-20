@@ -268,7 +268,7 @@ We discussed prior proposed projects, what was done for Asterisk 11, and what mi
 ---
 
 
-### [AstriDevCon 2011 Projects](/AstriDevCon-2011)
+### [AstriDevCon 2011 Projects](/Development/Roadmap/AstriDevCon-2011)
 
 ##### (P0)
 
@@ -318,7 +318,7 @@ We discussed prior proposed projects, what was done for Asterisk 11, and what mi
 		- On a failed call, there is no access to the causecodes – would be powerful if we had access to it
 			* Would need to develop some code that created a generic layer to convert between channel drivers (each does it different)
 			* Need to investigate if there are any CEL events already created that will give some of that information
-* [Codecs (SILK, OPUS), Media Negotiation](/Media-Overhaul) (Digium)
+* [Codecs (SILK, OPUS), Media Negotiation](/Development/Roadmap/Asterisk-10-Projects/Media-Overhaul) (Digium)
 	+ **Review 2011**: Every version of Asterisk had a fixed bitfield, and we needed to be conscious about adding new codecs (limited). Project was to remove that limitation. Reworked how media formats are represented in Asterisk. Integration of codecs like SILK and CELT. Helps with better support for video as well.
 		- Framework in place
 		- Need to now start using the framework to help add functionality to Asterisk

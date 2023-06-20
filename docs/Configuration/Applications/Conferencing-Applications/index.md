@@ -17,5 +17,5 @@ Building your own conferencing application
 
 Conferencing needs can be very specific to your business application. The conferencing applications included with Asterisk provide basic features that will work for many users.
 
-If the included applications don't work for you then you might consider building your own application using the [Asterisk REST Interface](/Getting-Started-with-ARI). This will give you access to all the communication primitives needed and then you can write the logic you need in a language you are comfortable with.
+If the included applications don't work for you then you might consider building your own application using the [Asterisk REST Interface](/Configuration/Interfaces/Asterisk-REST-Interface-ARI/Getting-Started-with-ARI). This will give you access to all the communication primitives needed and then you can write the logic you need in a language you are comfortable with.
 

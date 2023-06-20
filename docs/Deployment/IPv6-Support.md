@@ -15,10 +15,10 @@ Fortunately, the configuration is easy and most things will simply work. For cha
 
 Links to specific instructions:
 
-* [Configuring res\_pjsip for IPv6](/Configuring+res_pjsip+for+IPv6)
-* [Configuring chan\_sip for IPv6](/Configuring+chan_sip+for+IPv6)
-* [Configuring IAX for IPv6](/Configuring+chan_iax2+for+IPv6)
-* [Configuring ACLs for IPv6](/Named+ACLs#NamedACLs-ConfiguringforIPv6)
+* [Configuring res\_pjsip for IPv6](/Configuration/Channel-Drivers/SIP/Configuring-res_pjsip/Configuring-res_pjsip-for-IPv6)
+* [Configuring chan\_sip for IPv6](/Configuration/Channel-Drivers/SIP/Configuring-chan_sip/Configuring-chan_sip-for-IPv6)
+* [Configuring IAX for IPv6](/Configuration/Channel-Drivers/Inter-Asterisk-eXchange-protocol-version-2-IAX2/IAX2-Configuration/Configuring-chan_iax2-for-IPv6)
+* [Configuring ACLs for IPv6](/Configuration/Core-Configuration/Named-ACLs)
 
 At the time of writing, DUNDi does not support IPv6.
 

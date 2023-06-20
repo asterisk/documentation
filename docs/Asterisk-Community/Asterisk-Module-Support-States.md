@@ -22,12 +22,12 @@ Most modules in Asterisk are in the Core state, which means issues found with th
 Extended
 --------
 
-This module is supported by the Asterisk community, and may or may not have an active developer. Some extended modules have active community developers; others do not. Issues reported against these modules may have a low level of support. For more information about which extended support modules have an active developer supporting them, see [Asterisk Open Source Maintainers.](/Asterisk-Open-Source-Maintainers) Extended modules receive no bug fix support from Sangoma. Sangoma will try to ensure they continue to build and investigate security issues, but that is the extent of support.
+This module is supported by the Asterisk community, and may or may not have an active developer. Some extended modules have active community developers; others do not. Issues reported against these modules may have a low level of support. For more information about which extended support modules have an active developer supporting them, see [Asterisk Open Source Maintainers.](/Development/Asterisk-Open-Source-Maintainers) Extended modules receive no bug fix support from Sangoma. Sangoma will try to ensure they continue to build and investigate security issues, but that is the extent of support.
 
 Deprecated
 ----------
 
-The module will remain in the tree, but there is a better way to do it. For module deprecation policy and process please see [Module Deprecation](/Module-Deprecation). Deprecated modules receive no bug fix support from Sangoma. Sangoma will try to ensure they continue to build and investigate security issues, but that is the extent of support.
+The module will remain in the tree, but there is a better way to do it. For module deprecation policy and process please see [Module Deprecation](/Development/Policies-and-Procedures/Module-Deprecation). Deprecated modules receive no bug fix support from Sangoma. Sangoma will try to ensure they continue to build and investigate security issues, but that is the extent of support.
 
 MODULEINFO Configurations
 =========================

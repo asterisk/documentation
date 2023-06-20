@@ -6,7 +6,7 @@ pageid: 4260111
 Voice Prompts
 =============
 
-All voice prompt contributions distributed with Asterisk or available on the Asterisk downloads site are licensed as [Creative Commons Attribution-Share Alike 3.0](http://creativecommons.org/licenses/by-sa/3.0/us/). The process for contributing sound files can be found in the [Asterisk Sounds Submission Process](/Asterisk-Sounds-Submission-Process) section.
+All voice prompt contributions distributed with Asterisk or available on the Asterisk downloads site are licensed as [Creative Commons Attribution-Share Alike 3.0](http://creativecommons.org/licenses/by-sa/3.0/us/). The process for contributing sound files can be found in the [Asterisk Sounds Submission Process](/Development/Policies-and-Procedures/Asterisk-Sounds-Submission-Process) section.
 
 Music On Hold
 =============

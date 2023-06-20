@@ -54,7 +54,7 @@ Troubleshooting
 Check Module Loaded and Running States
 --------------------------------------
 
-From the [Asterisk CLI](/Asterisk-Command-Line-Interface) you can use the 'module show' commands to identify the state of a module.
+From the [Asterisk CLI](/Operation/Asterisk-Command-Line-Interface) you can use the 'module show' commands to identify the state of a module.
 
 Previous to Asterisk 12, you could only see if the module is loaded. However it may not actually be running (usable).
 
@@ -109,7 +109,7 @@ chan\_sip.so Session Initiation Protocol (SIP) 0 Not Running
 Make sure Asterisk is configured to load the module
 ---------------------------------------------------
 
-Modules.conf is a [core configuration](/Core-Configuration) file that includes parameters affecting module loading and loading order. There are a few items to check.
+Modules.conf is a [core configuration](/Configuration/Core-Configuration) file that includes parameters affecting module loading and loading order. There are a few items to check.
 
 Verify that **autoload=yes** is enabled if you are intending to load modules from the Asterisk modules directory automatically.
 
@@ -212,7 +212,7 @@ service asterisk stop
 
 ### Enable logging channels
 
-You can read in detail about [Logging facilities](/Logging) on the wiki. In short, for this example, make sure you have the following lines uncommented in your [logger.conf](/Logging-Configuration) file.
+You can read in detail about [Logging facilities](/Logging) on the wiki. In short, for this example, make sure you have the following lines uncommented in your [logger.conf](/Configuration/Core-Configuration/Logging-Configuration) file.
 
 
 
@@ -263,7 +263,7 @@ Remove the most recent log file, or else move it somewhere you want to keep it.
 
 ### Start Asterisk with appropriate log levels
 
-It is important to start Asterisk with [log levels](/Basic-Logging-Commands) that will provide us enough information.
+It is important to start Asterisk with [log levels](/Operation/Logging/Basic-Logging-Commands) that will provide us enough information.
 
 
 
@@ -313,7 +313,7 @@ After the output calms down and Asterisk has finished loading, go ahead and stop
 
 ### Search logs for lines related to suspect module
 
-Search the [log file](/Directory-and-File-Structure) using keywords based on the specific module that appeared to be failing to load or run.
+Search the [log file](/Fundamentals/Directory-and-File-Structure) using keywords based on the specific module that appeared to be failing to load or run.
 
 
 

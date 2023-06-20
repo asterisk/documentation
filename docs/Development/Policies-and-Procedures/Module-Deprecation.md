@@ -52,7 +52,7 @@ Marking A Module As Deprecated For Standard Release
 
 1. Before a module can be marked as deprecated a discussion needs to occur on the [asterisk-dev mailing list](http://lists.digium.com/pipermail/asterisk-dev/). Depending on the result of this it would also be wise to reach out the [asterisk-users mailing list](http://lists.digium.com/pipermail/asterisk-users/) and [community forums](https://community.asterisk.org/) to ensure that the module is not seeing widespread usage. If you feel uncomfortable doing so reach out to unknown user and he can assist in doing so.
 2. Create a new issue in the [Asterisk project issue tracker](https://github.com/asterisk/asterisk/issues/) using the "Deprecation" issue type. Ensure the issue summary is descriptive as it will go into release notes.
-3. Obtain the Asterisk source code from [Gerrit](https://gerrit.asterisk.org). Since you'll need to put your patch up for review, make an account in Gerrit as well, following the instructions on [Gerrit Usage](/Gerrit+Usage).
+3. Obtain the Asterisk source code from [Gerrit](https://gerrit.asterisk.org). Since you'll need to put your patch up for review, make an account in Gerrit as well, following the instructions on [Gerrit Usage](/Development/Policies-and-Procedures/Historical-Policies-and-Procedures/Code-Review/Gerrit-Usage).
 4. Create a new Git branch for your deprecation change.
 5. Edit the module MODULEINFO and set the "support\_level" field in the XML to "deprecated".
 6. Edit the module AST\_MODULE\_INFO at the bottom and set the "support\_level" field to "AST\_MODULE\_SUPPORT\_DEPRECATED".
@@ -62,7 +62,7 @@ Marking A Module As Deprecated For Standard Release
 10. Add an UPGRADE.txt document stating that the module has been deprecated, will no longer be built by default, and state the version it is scheduled to be removed in.
 11. Write a commit message describing the change and referencing the Asterisk issue you created as part of step 1.
 12. Submit the patch to Gerrit.
-13. Update the [Asterisk Module Deprecations](/Asterisk-Module-Deprecations) wiki page and add the module to the "Deprecated Modules" list with appropriate versions.
+13. Update the [Asterisk Module Deprecations](/Development/Asterisk-Module-Deprecations) wiki page and add the module to the "Deprecated Modules" list with appropriate versions.
 
 #### The following instructions are for the previous still supported branches to notify users that a module will be deprecated in an upcoming version.
 
@@ -83,7 +83,7 @@ Marking A Module As Deprecated For Standard Release
 
  
 
-1. Obtain the Asterisk source code from [Gerrit](https://gerrit.asterisk.org/). Since you'll need to put your patch up for review, make an account in Gerrit as well, following the instructions on [Gerrit Usage](/Gerrit+Usage).
+1. Obtain the Asterisk source code from [Gerrit](https://gerrit.asterisk.org/). Since you'll need to put your patch up for review, make an account in Gerrit as well, following the instructions on [Gerrit Usage](/Development/Policies-and-Procedures/Historical-Policies-and-Procedures/Code-Review/Gerrit-Usage).
 2. Create a new Git branch for your deprecation notice change.
 3. Edit the module MODULEINFO and set the "deprecated\_in" field in the XML to the version it has been deprecated in.
 4. Edit the module MODULEINFO and set the "removed\_in" field in the XML to the version it will be removed in.
@@ -113,7 +113,7 @@ Recording A Module For Future Deprecation
 
 During development of a long term supported release modules are not eligible to be marked as deprecated in the source code, however you can still record that a module is to be deprecated in the future.
 
-1. Update the [Asterisk Module Deprecations](/Asterisk-Module-Deprecations) wiki page and add the module to the "Proposed Modules To Deprecate In Future" list with appropriate versions. Set the "Deprecated Version" to the next standard release.
+1. Update the [Asterisk Module Deprecations](/Development/Asterisk-Module-Deprecations) wiki page and add the module to the "Proposed Modules To Deprecate In Future" list with appropriate versions. Set the "Deprecated Version" to the next standard release.
 2. After creation of the long term supported release the wiki page will be reviewed for any modules that should be marked as deprecated.
 
 Removing A Module
@@ -137,7 +137,7 @@ Removing A Module
 
 1. Only remove a module if it has not been reverted from being deprecated.
 2. Create a new issue in the [Asterisk project issue tracker](https://github.com/asterisk/asterisk/issues/) using the "Deprecation" issue type. Ensure the issue summary is descriptive as it will go into release notes.
-3. Obtain the Asterisk source code from [Gerrit](https://gerrit.asterisk.org/). Since you'll need to put your patch up for review, make an account in Gerrit as well, following the instructions on [Gerrit Usage](/Gerrit+Usage).
+3. Obtain the Asterisk source code from [Gerrit](https://gerrit.asterisk.org/). Since you'll need to put your patch up for review, make an account in Gerrit as well, following the instructions on [Gerrit Usage](/Development/Policies-and-Procedures/Historical-Policies-and-Procedures/Code-Review/Gerrit-Usage).
 4. Create a new Git branch for your removal change.
 5. Remove the module and any other source files for it from the tree using "git rm".
 6. Remove any logic in the respective Makefile for the module if it exists.
@@ -149,7 +149,7 @@ Removing A Module
 12. Add an UPGRADE.txt document stating that the module has been removed.
 13. Write a commit message describing the change and referencing the Asterisk issue you created as part of step 1.
 14. Submit the patch to Gerrit.
-15. Update the [Asterisk Module Deprecations](/Asterisk-Module-Deprecations) wiki page and move the module to the "Removed Modules" list.
+15. Update the [Asterisk Module Deprecations](/Development/Asterisk-Module-Deprecations) wiki page and move the module to the "Removed Modules" list.
 
 Module Maintainership
 =====================

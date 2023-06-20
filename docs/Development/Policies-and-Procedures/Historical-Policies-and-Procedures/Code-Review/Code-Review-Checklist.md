@@ -16,7 +16,7 @@ Note that this checklist is in no way comprehensive. It merely contains *some* o
 Checklist
 =========
 
-[Coding Guidelines](/Coding-Guidelines)
+[Coding Guidelines](/Development/Policies-and-Procedures/Historical-Policies-and-Procedures/Code-Review/Coding-Guidelines)
 ---------------------------------------
 
 The first, and most obvious thing to look for. Many of the items in the coding guidelines concern themselves with the syntax of a code submission, but some also concern themselves with semantics. Read through the guidelines and verify that your code follows them.
@@ -38,7 +38,7 @@ Design
 
 ### Naming
 
-* Do function names follow the [Coding Guidelines](/Coding-Guidelines)?
+* Do function names follow the [Coding Guidelines](/Development/Policies-and-Procedures/Historical-Policies-and-Procedures/Code-Review/Coding-Guidelines)?
 
 
 	+ Public functions prefixed with a namespace, i.e., `ast_`, `stasis_`, `pbx_`, etc.
@@ -129,7 +129,7 @@ Asterisk contains many frameworks. When possible, you should always strive to us
 | AstObj2 | [astobj2.h](http://doxygen.asterisk.org/trunk/d5/da5/astobj2_8h.html) | Provides reference counted objects, including reference counted containers (hash table, red/black tree, list, single object). Probably the most heavily used API in Asterisk. Any object whose lifetime is affected by module reloads, who is shared between threads, or is generally complex should use this API. |
 | Audiohooks | [audiohook.h](http://doxygen.asterisk.org/trunk/d0/d79/audiohook_8h.html) | A special type of frame hook used to intercept and manipulate audio frames. |
 | Bridging | [bridge.h](http://doxygen.asterisk.org/trunk/d4/d56/bridge_8h.html) | A framework for bridging channels together. |
-| Configuration Framework | [config\_options.h](http://doxygen.asterisk.org/trunk/db/dfe/config__options_8h.html) | A framework that manages and wraps a variety of static configuration APIs, including handling `.conf` files and static realtime. The framework provides thread safety, type safety, CLI/wiki documentation integration, and enforces schema consistency across Asterisk. For an example of using the framework, see [Using the Configuration Framework](/Using-the-Configuration-Framework). If you need support for dynamic realtime, see the Sorcery framework. |
+| Configuration Framework | [config\_options.h](http://doxygen.asterisk.org/trunk/db/dfe/config__options_8h.html) | A framework that manages and wraps a variety of static configuration APIs, including handling `.conf` files and static realtime. The framework provides thread safety, type safety, CLI/wiki documentation integration, and enforces schema consistency across Asterisk. For an example of using the framework, see [Using the Configuration Framework](/Development/Reference-Information/Asterisk-Framework-and-API-Examples/Using-the-Configuration-Framework). If you need support for dynamic realtime, see the Sorcery framework. |
 | Datastores | [datastore.h](http://doxygen.asterisk.org/trunk/d9/db6/datastore_8h.html) | API for storing generic information on a channel. |
 | Dialling | [dial.h](http://doxygen.asterisk.org/trunk/df/dcf/dial_8h.html) | A framework for performing outbound dialling operations. |
 | Framehooks | [framehook.h](http://doxygen.asterisk.org/trunk/db/d3c/framehook_8h.html) | An API for intercepting and manipulating frames on a channel. |
@@ -145,7 +145,7 @@ Asterisk contains many frameworks. When possible, you should always strive to us
 Locking
 -------
 
-* Is the [locking order](/Locking-in-Asterisk) well understood and respected?
+* Is the [locking order](/Development/Reference-Information/Other-Reference-Information/Locking-in-Asterisk) well understood and respected?
 
 
 
@@ -216,7 +216,7 @@ Reference Counted Objects
 * Are all `ao2_find` references de-referenced?
 * Are all objects returned by an `ao2_iterator` de-referenced?
 * If `OBJ_NODATA` is not specified, is the return of an `ao2_callback` de-referenced?
-* Are the hash and comparison callbacks for an `ao2_container` [implemented correctly?](/Templates-for-ao2-hash--sort--and-callback-functions.)
+* Are the hash and comparison callbacks for an `ao2_container` [implemented correctly?](/Development/Reference-Information/Asterisk-Framework-and-API-Examples/Templates-for-ao2-hash-sort-and-callback-functions.)
 * Are all `ao2_callback` uses well understood and necessary?
 
 

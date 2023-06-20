@@ -6,7 +6,7 @@ pageid: 34013468
 Tell Asterisk and PJSIP to Speak IPv6
 =====================================
 
-The configuration described here happens in the pjsip.conf file within transport and endpoint sections. For more information about the transport side of things see [PJSIP Transport Selection](/PJSIP-Transport-Selection)
+The configuration described here happens in the pjsip.conf file within transport and endpoint sections. For more information about the transport side of things see [PJSIP Transport Selection](/Configuration/Channel-Drivers/SIP/Configuring-res_pjsip/PJSIP-Transport-Selection)
 
 Bind PJSIP to a specific interface
 ----------------------------------

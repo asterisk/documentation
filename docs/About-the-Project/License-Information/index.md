@@ -35,7 +35,7 @@ Digium, Inc.
 Asterisk Sounds
 ---------------
 
-License information for Asterisk sounds can be found in the [Voice Prompts and Music on Hold License](/Voice-Prompts-and-Music-on-Hold-License) section.
+License information for Asterisk sounds can be found in the [Voice Prompts and Music on Hold License](/About-the-Project/License-Information/Voice-Prompts-and-Music-on-Hold-License) section.
 
 Frequently Asked Questions about Licensing
 ==========================================
@@ -50,11 +50,11 @@ The GPL is a specific open-source license. Reading the preamble [at this link](h
 
 ### What if I want to distribute or license Asterisk under a different license?
 
-Digium distributes Asterisk under a multi-licensing model often referred to as [Dual-licensing](http://en.wikipedia.org/wiki/Multi-licensing) and is additionally made possible by a [Contributors License Agreement](/Asterisk+Issue+Guidelines#AsteriskIssueGuidelines-DigiumSubmissionLicenseAgreement). This allows Digium to provide Asterisk under licenses other than the GPL. Digium provides information on their alternative commercial licensing [at their website](https://www.asterisk.org/products/software/licensing).
+Digium distributes Asterisk under a multi-licensing model often referred to as [Dual-licensing](http://en.wikipedia.org/wiki/Multi-licensing) and is additionally made possible by a [Contributors License Agreement](/Asterisk-Community/Asterisk-Issue-Guidelines). This allows Digium to provide Asterisk under licenses other than the GPL. Digium provides information on their alternative commercial licensing [at their website](https://www.asterisk.org/products/software/licensing).
 
 ### How can I contribute to Asterisk?
 
-Documentation, new features, bug fixes, testing, protocol and programming expertise,, and general feedback are all welcome to the project. There is an [overview](http://www.asterisk.org/community/developers) that points to many resources for developers, also you can see the [guidelines](/Asterisk+Issue+Guidelines#AsteriskIssueGuidelines-PatchandCodesubmission) for contribution to see how it works.
+Documentation, new features, bug fixes, testing, protocol and programming expertise,, and general feedback are all welcome to the project. There is an [overview](http://www.asterisk.org/community/developers) that points to many resources for developers, also you can see the [guidelines](/Asterisk-Community/Asterisk-Issue-Guidelines) for contribution to see how it works.
 
  
 

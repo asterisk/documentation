@@ -41,12 +41,12 @@ This project's aim is to change the underlying RTP implementation as much as is 
 RTP standards
 =============
 
-I took some notes on a selection of RTP standards, noting what sort of considerations an RTP architecture would need in order to support those standards. These are not necessarily a list of standards that we wish to support, but such a sampling helps to give a good idea of the type of architecture required. The notes can be found [here](/Notes-on-RTP-standards).
+I took some notes on a selection of RTP standards, noting what sort of considerations an RTP architecture would need in order to support those standards. These are not necessarily a list of standards that we wish to support, but such a sampling helps to give a good idea of the type of architecture required. The notes can be found [here](/Development/Roadmap/Asterisk-14-Projects/RTP-engine-replacement/Notes-on-RTP-standards).
 
 The current state of RTP in Asterisk
 ====================================
 
-In addition to notes on current RTP standards, I also have some rambling notes on the current state of RTP in Asterisk. These can be found [here](/Current-RTP-state-of-Asterisk).
+In addition to notes on current RTP standards, I also have some rambling notes on the current state of RTP in Asterisk. These can be found [here](/Development/Roadmap/Asterisk-14-Projects/RTP-engine-replacement/Current-RTP-state-of-Asterisk).
 
 An Ideal RTP stack for Asterisk
 ===============================
@@ -228,7 +228,7 @@ A DTLS engine is another type of engine that can be implemented by RTP engines. 
 The Actual Work
 ===============
 
-I have created a task list for what would be required in order to write an RTP engine from scratch. The page can be found [here](/RTP-task-list).
+I have created a task list for what would be required in order to write an RTP engine from scratch. The page can be found [here](/Development/Roadmap/Asterisk-14-Projects/RTP-engine-replacement/RTP-task-list).
 
 My personal opinion on the matter is that the positive impact of having a new RTP engine does not outweigh the risks and time investment. Since the goal is not to ruffle the feathers of higher-level users of the RTP engine API, the amount of work that can actually be done within an RTP engine is not that much. However, I do think that the current RTP engine could use an overhaul, architecturally, so refactoring `res_rtp_asterisk` to be more able to accept new features is a good idea.
 

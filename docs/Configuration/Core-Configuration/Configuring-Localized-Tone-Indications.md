@@ -13,7 +13,7 @@ Note that the tones configured here are only used when Asterisk is directly gene
 Configuration
 =============
 
-The configuration file for location specific tone indications is **indications.conf**. It is read from the typical [Asterisk configuration directory](/Directory+and+File+Structure). You can also view the sample of indications.conf file in your source directory at configs/modules.conf.sample or on [SVN at this link](http://svnview.digium.com/svn/asterisk/trunk/configs/samples/indications.conf.sample?view=markup).
+The configuration file for location specific tone indications is **indications.conf**. It is read from the typical [Asterisk configuration directory](/Fundamentals/Directory-and-File-Structure). You can also view the sample of indications.conf file in your source directory at configs/modules.conf.sample or on [SVN at this link](http://svnview.digium.com/svn/asterisk/trunk/configs/samples/indications.conf.sample?view=markup).
 
 The configuration itself consists of a 'general' section and then one or more country specific sections. (e.g. '[au]' for Australia)
 

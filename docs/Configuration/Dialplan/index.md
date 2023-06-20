@@ -11,13 +11,13 @@ The dialplan is essentially a scripting language specific to Asterisk and one of
 Dialplan configuration file
 ===========================
 
-The Asterisk dialplan is found in the extensions.conf file in the **[configuration directory](/Directory-and-File-Structure)**, typically /etc/asterisk.
+The Asterisk dialplan is found in the extensions.conf file in the **[configuration directory](/Fundamentals/Directory-and-File-Structure)**, typically /etc/asterisk.
 
 If you modify the dialplan, you can use the Asterisk CLI command "dialplan reload" to load the new dialplan without disrupting service in your PBX.
 
 Example dialplan
 ================
 
-The example dial plan, in the configs/samples/extensions.conf.sample file is installed as extensions.conf if you run "make samples" after [installation of Asterisk](/Installing-Asterisk-From-Source). The sample file includes many examples of dialplan programming for specific scenarios and environments often common to Asterisk implementations.
+The example dial plan, in the configs/samples/extensions.conf.sample file is installed as extensions.conf if you run "make samples" after [installation of Asterisk](/Getting-Started/Installing-Asterisk/Installing-Asterisk-From-Source). The sample file includes many examples of dialplan programming for specific scenarios and environments often common to Asterisk implementations.
 
 On This PageTopics

@@ -8,12 +8,12 @@ Overview
 
 The core of Asterisk provides a basic HTTP/HTTPS server.
 
-Certain Asterisk modules may make use of the HTTP service, such as the [Asterisk Manager Interface](/Asterisk-Manager-Interface--AMI-) over HTTP, the [Asterisk Restful Interface](/Getting-Started-with-ARI) or WebSocket transports for modules that support that, like chan\_sip or chan\_pjsip.
+Certain Asterisk modules may make use of the HTTP service, such as the [Asterisk Manager Interface](/Asterisk-Manager-Interface--AMI-) over HTTP, the [Asterisk Restful Interface](/Configuration/Interfaces/Asterisk-REST-Interface-ARI/Getting-Started-with-ARI) or WebSocket transports for modules that support that, like chan\_sip or chan\_pjsip.
 
 Configuration
 =============
 
-The configuration sample file is [by default](/Directory-and-File-Structure) located at /etc/asterisk/http.conf
+The configuration sample file is [by default](/Fundamentals/Directory-and-File-Structure) located at /etc/asterisk/http.conf
 
 A very basic configuration of http.conf could be as follows:
 

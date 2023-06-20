@@ -6,7 +6,7 @@ pageid: 28934227
 Overview
 ========
 
-This section will enumerate and briefly describe the ways in which you can query or manipulate the various Asterisk state resources. [Device State](/Device-State), [Extension State](/Extension-State-and-Hints) and [Presence State](/Presence-State). Where mentioned, the various functions and commands will be linked to further available documentation.
+This section will enumerate and briefly describe the ways in which you can query or manipulate the various Asterisk state resources. [Device State](/Device-State), [Extension State](/Fundamentals/Key-Concepts/States-and-Presence/Extension-State-and-Hints) and [Presence State](/Fundamentals/Key-Concepts/States-and-Presence/Presence-State). Where mentioned, the various functions and commands will be linked to further available documentation.
 
 Device State
 ============
@@ -42,7 +42,7 @@ On this Page
 Extension State
 ===============
 
-The **[EXTENSION\_STATE](/Asterisk-11-Function_EXTENSION_STATE)** **function** will return the [Extension State](/Extension-State-and-Hints) for any specified extension that has a defined hint.
+The **[EXTENSION\_STATE](/Asterisk-11-Function_EXTENSION_STATE)** **function** will return the [Extension State](/Fundamentals/Key-Concepts/States-and-Presence/Extension-State-and-Hints) for any specified extension that has a defined hint.
 
 The CLI command **core show hints** will show extension state for all defined hints, as well as display a truncated list of the mapped Device State or Presence State identifiers.
 
@@ -74,7 +74,7 @@ myserver\*CLI> core show hints
 Presence State
 ==============
 
-Added in Asterisk 11, the **[PRESENCE\_STATE](/Asterisk-11-Function_PRESENCE_STATE) function** will return [Presence State](/Presence-State) for any specified Presence State identifier, or set the Presence State for specifically for a [CustomPresence identifier](/Presence-State).
+Added in Asterisk 11, the **[PRESENCE\_STATE](/Asterisk-11-Function_PRESENCE_STATE) function** will return [Presence State](/Fundamentals/Key-Concepts/States-and-Presence/Presence-State) for any specified Presence State identifier, or set the Presence State for specifically for a [CustomPresence identifier](/Fundamentals/Key-Concepts/States-and-Presence/Presence-State).
 
 The **presencestate** CLI command will list or modify any currently defined Presence State resources provided by the CustomPresence provider.
 

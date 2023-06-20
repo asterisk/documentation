@@ -34,7 +34,7 @@ First, let's break down the message.
 
 * "Unable to connect to remote asterisk"
 
-This means you are attempting to connect to Asterisk with a [remote console](/Verbosity-in-Core-and-Remote-Consoles). That is, you are using "asterisk -r" as opposed to "asterisk -c".
+This means you are attempting to connect to Asterisk with a [remote console](/Operation/Logging/Verbosity-in-Core-and-Remote-Consoles). That is, you are using "asterisk -r" as opposed to "asterisk -c".
 
 * "does /var/run/asterisk/asterisk.ctl exist?"
 
@@ -50,7 +50,7 @@ asterisk.ctl is a UNIX Domain Socket file. It is used to pass commands to an Ast
 The /var/run/asterisk/ directory
 ================================
 
-This directory is the default Asterisk run directory. Asterisk will create it the first time it is run. This location is defined in the [Asterisk Main Configuration File](/Asterisk-Main-Configuration-File). As is explained in the [Directory and File Structure](/Directory-and-File-Structure) section; when Asterisk is [running](/Running-Asterisk), you'll see two files here, **asterisk.ctl** and **asterisk.pid**. These are the control socket and the PID(Process ID) files for Asterisk.
+This directory is the default Asterisk run directory. Asterisk will create it the first time it is run. This location is defined in the [Asterisk Main Configuration File](/Asterisk-Main-Configuration-File). As is explained in the [Directory and File Structure](/Directory-and-File-Structure) section; when Asterisk is [running](/Operation/Running-Asterisk), you'll see two files here, **asterisk.ctl** and **asterisk.pid**. These are the control socket and the PID(Process ID) files for Asterisk.
 
 Potential Causes and Solutions
 ==============================
@@ -94,7 +94,7 @@ You need to find out what error is causing Asterisk to halt and resolve it.
 	
 	
 	This will start Asterisk in console mode with level 5 verbosity. That should give you plenty to look at.
-* Another way is to setup Asterisk [Logging](/Logging) to log what you want to see to a file. You'll need to read up on Asterisk's [Logging Configuration](/Logging-Configuration)
+* Another way is to setup Asterisk [Logging](/Logging) to log what you want to see to a file. You'll need to read up on Asterisk's [Logging Configuration](/Configuration/Core-Configuration/Logging-Configuration)
 * Asterisk could halt for a variety of reasons. The last messages you see before Asterisk halts will give you a clue. Then you can Google from there or ask the user community.
 
 ### Cause 4: SELinux enabled and not properly configured for Asterisk. SELinux not allowing asterisk.ctl to be created.

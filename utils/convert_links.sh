@@ -14,6 +14,11 @@ prefix="/"
 IFS=$' \n'
 for f in $files ; do
 	sed -n -r -e "s@.*\]\(${prefix}([^)]+)\).*@\1@gip" $f | while read URL ; do
+		if [ -f site/$URL ] || [ -d site/$URL ] ; then
+			echo "found: $URL"
+			continue
+		fi
+
 		if [ -z "${URL%%#*}" ] ; then
 			newurl=$($PROGDIR/slugify.py "${URL}")
 		else
@@ -32,11 +37,12 @@ for f in $files ; do
 			fi
 		fi
 		if [ -n "$newpage" ] ; then
-			fixed=$(sed -n -r -e "s@${prefix}${URL//+/\\+}@/${newpage}@gip" $f)
+			fixed=$(sed -n -r -e "s@\(${prefix}${URL//+/\\+}\)@\(/${newpage}\)@gip" $f)
 			if [ -z "$fixed" ] ; then
 				echo -e "$f Unable to fix: ${prefix}${URL} -> ${newurl}"
 			else
-				sed -i -r -e "s@${prefix}${URL//+/\\+}@/${newpage}@gi" $f
+#				echo "(${prefix}${URL//+/\\+}) -> (/${newpage})"
+				sed -i -r -e "s@\(${prefix}${URL//+/\\+}\)@\(/${newpage}\)@gi" $f
 			fi
 		else
 			if [[ ! "${newurl}" =~ .*REST.* ]] ; then

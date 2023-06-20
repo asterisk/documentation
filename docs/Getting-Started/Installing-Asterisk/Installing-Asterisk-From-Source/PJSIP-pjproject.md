@@ -584,7 +584,7 @@ These are some of the more common options used to disable third party libraries 
 
 ---
 
-**Note:**  If you need pjsua (for the testsuite, for example), then you may also need to take a look at [Installing the Asterisk Test Suite](/Installing-the-Asterisk-Test-Suite) to set that up externally as well.
+**Note:**  If you need pjsua (for the testsuite, for example), then you may also need to take a look at [Installing the Asterisk Test Suite](/Test-Suite-Documentation/Installing-the-Asterisk-Test-Suite) to set that up externally as well.
 
   
 

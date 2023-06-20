@@ -169,7 +169,7 @@ void ast\_sip\_subscription\_terminate(struct ast\_sip\_subscripiton \*sub);
 
 You'll notice that there is no function to get the current subscription state. This is because state can be determined by the core pubsub API in most cases or can be determined based on the operation being performed. For instance, if `ast_sip_subscription_terminate` is called by a notifier, then the pubsub core will rightly set the subscription state as "terminated".
 
-Subscriber-side API additions will be required in addition, but those changes are being saved for the larger-scale [Outbound Subscriptions](/Resource+List+Subscriptions#ResourceListSubscriptions-OutboundSubscriptions) task to be accomplished later.
+Subscriber-side API additions will be required in addition, but those changes are being saved for the larger-scale [Outbound Subscriptions](/Development/Roadmap/Asterisk-13-Projects/Resource-List-Subscriptions) task to be accomplished later.
 
 Changes to notifier usage
 =========================

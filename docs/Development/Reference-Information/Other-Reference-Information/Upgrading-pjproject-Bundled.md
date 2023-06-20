@@ -3,7 +3,7 @@ title: Upgrading pjproject Bundled
 pageid: 38765236
 ---
 
-This page explains how to upgrade the bundled version of a software with examples given for pjproject. For information on how to compile with bundled pjproject, see [PJSIP-pjproject.](/PJSIP-pjproject)
+This page explains how to upgrade the bundled version of a software with examples given for pjproject. For information on how to compile with bundled pjproject, see [PJSIP-pjproject.](/Getting-Started/Installing-Asterisk/Installing-Asterisk-From-Source/PJSIP-pjproject)
 
 Update Third Party Mirror
 
@@ -161,7 +161,7 @@ Next, read the change log for the new version being upgraded to, and make sure t
 Testing
 -------
 
-At this point you should be able to configure, and build Asterisk. Ensure the correct bundled version of the software is now being downloaded and compiled against. Run a few tests locally to make sure Asterisk is generally "fine". If you are able then also execute the testsuite against the new changes. Once everything seems to be okay, then create a patch with all the Asterisk changes, and push it up for review on [gerrit](/Gerrit-Usage). Once uploaded you can also add a "regate" comment to the review to initiate a testsuite run via continuous integration. Don't worry if everything does pass it will not auto-merge the changes.
+At this point you should be able to configure, and build Asterisk. Ensure the correct bundled version of the software is now being downloaded and compiled against. Run a few tests locally to make sure Asterisk is generally "fine". If you are able then also execute the testsuite against the new changes. Once everything seems to be okay, then create a patch with all the Asterisk changes, and push it up for review on [gerrit](/Development/Policies-and-Procedures/Historical-Policies-and-Procedures/Code-Review/Gerrit-Usage). Once uploaded you can also add a "regate" comment to the review to initiate a testsuite run via continuous integration. Don't worry if everything does pass it will not auto-merge the changes.
 
  
 

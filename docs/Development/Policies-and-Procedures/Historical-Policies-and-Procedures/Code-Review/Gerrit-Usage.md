@@ -406,12 +406,12 @@ Test Your Work!
 
 When you submit your review, it will automatically be built and the Asterisk unit tests run so to save re-work time, you should run the Asterisk unit tests against your changes before you submit.  To do so, configure asterisk with the `--enable-dev-mode` flag and enable `TEST_FRAMEWORK` in menuselect.  After installing Asterisk in your test environment (and you should have a test environment), you can run the tests from the Asterisk CLI with the `test execute all` command.  
 
-If you have the Asterisk Testsuite installed, running the test suite is also recommended since it will be run against your change before the change is merged.  See [Installing the Asterisk Test Suite](/Installing-the-Asterisk-Test-Suite) for more information.
+If you have the Asterisk Testsuite installed, running the test suite is also recommended since it will be run against your change before the change is merged.  See [Installing the Asterisk Test Suite](/Test-Suite-Documentation/Installing-the-Asterisk-Test-Suite) for more information.
 
 Commit
 ------
 
-You have to commit before you submit and the commit message is crucial.  For more information about commit messages, see [Commit Messages](/Commit-Messages).  You'll notice that when you edit the commit message, you'll see that the Gerrit Change-Id was automatically added to the end.  DON'T ALTER OR REMOVE IT!!  You'll see why this is important later.
+You have to commit before you submit and the commit message is crucial.  For more information about commit messages, see [Commit Messages](/Development/Policies-and-Procedures/Commit-Messages).  You'll notice that when you edit the commit message, you'll see that the Gerrit Change-Id was automatically added to the end.  DON'T ALTER OR REMOVE IT!!  You'll see why this is important later.
 
 Here's a quick sample commit message:  
 

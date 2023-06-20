@@ -3,7 +3,7 @@ title: Asterisk CLI Configuration
 pageid: 28315613
 ---
 
-With the exception of the functionality provided by the res\_clialiases.so module, [Asterisk's Command Line Interface](/Asterisk-Command-Line-Interface) is provided by the core. There are a few configuration files relevant to the CLI that you'll see in a default Asterisk installation. All of these should be found in the typical /etc/asterisk/ directory in a default install. The configuration of these files is trivial and examples exist in the sample files included in the source and tarballs.
+With the exception of the functionality provided by the res\_clialiases.so module, [Asterisk's Command Line Interface](/Operation/Asterisk-Command-Line-Interface) is provided by the core. There are a few configuration files relevant to the CLI that you'll see in a default Asterisk installation. All of these should be found in the typical /etc/asterisk/ directory in a default install. The configuration of these files is trivial and examples exist in the sample files included in the source and tarballs.
 
 cli.conf
 ========

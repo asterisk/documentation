@@ -52,7 +52,7 @@ Next, we'll run a command called **./configure**, which will perform a number of
 ---
 
 
-This will run for a couple of minutes, and warn you of any missing system libraries or other dependencies. Unless you've installed all of the [System Requirements](/System-Requirements) for your version of Asterisk, the **configure** script is likely to fail. If that happens, resolve the missing dependency manually, or use the [install\_prereq](#install_prereq) script to resolve all of the dependencies on your system.
+This will run for a couple of minutes, and warn you of any missing system libraries or other dependencies. Unless you've installed all of the [System Requirements](/Operation/System-Requirements) for your version of Asterisk, the **configure** script is likely to fail. If that happens, resolve the missing dependency manually, or use the [install\_prereq](#install_prereq) script to resolve all of the dependencies on your system.
 
 Once a dependency is resolved, run **configure** again to make sure the missing dependency is fixed.
 
@@ -61,7 +61,7 @@ Once a dependency is resolved, run **configure** again to make sure the missing 
 
 ---
 
-**Tip:**  If you have many missing dependencies, you may find yourself running **configure** a lot. If that is the case, you'll do yourself a favour by checking the [System Requirements](/System-Requirements) or installing all dependencies via the `install_prereq` script.
+**Tip:**  If you have many missing dependencies, you may find yourself running **configure** a lot. If that is the case, you'll do yourself a favour by checking the [System Requirements](/Operation/System-Requirements) or installing all dependencies via the `install_prereq` script.
 
   
 

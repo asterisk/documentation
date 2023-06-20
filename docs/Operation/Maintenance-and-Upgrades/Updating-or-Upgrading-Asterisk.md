@@ -17,12 +17,12 @@ Definition of Updates and Upgrades
 
 * Reason to Update  
 
-	+ Your install is affected by a bug or [security vulnerability](/Asterisk-Security-Vulnerabilities) and you believe the new minor version will fix your issue.
+	+ Your install is affected by a bug or [security vulnerability](/About-the-Project/Asterisk-Security-Vulnerabilities) and you believe the new minor version will fix your issue.
 * Reason to Upgrade  
 
 	+ You require new features or enhancements only available in a new major version and are ready for the work involved in upgrading.
 
-When considering an update or upgrade you should be familiar with the [Asterisk support life-cycle](/Asterisk-Versions). It is useful to know the support status of the version you may be moving to.
+When considering an update or upgrade you should be familiar with the [Asterisk support life-cycle](/About-the-Project/Asterisk-Versions). It is useful to know the support status of the version you may be moving to.
 
 Researching a New Asterisk Version
 ----------------------------------
@@ -37,16 +37,16 @@ Performing Updates
 ------------------
 
 Process1. Research the new minor version you intend to update to.
-2. Be sure you [have a backup](/Asterisk-Backups) of any essential data on the system.
+2. Be sure you [have a backup](/Operation/Maintenance-and-Upgrades/Asterisk-Backups) of any essential data on the system.
 3. If you determine one of those changes will be beneficial for you, only then proceed with an update.
-4. Download the new version and [install Asterisk](/Installing-Asterisk).
+4. Download the new version and [install Asterisk](/Getting-Started/Installing-Asterisk).
 Performing Upgrades
 -------------------
 
 Process1. Research the new major version you are considering for an upgrade.
-2. Be sure you [have a backup](/Asterisk-Backups) of any essential data on the system.
+2. Be sure you [have a backup](/Operation/Maintenance-and-Upgrades/Asterisk-Backups) of any essential data on the system.
 3. If you determine the new functionality or changes will be beneficial then proceed with the upgrade.
-4. On a test system, a non-production system, download and [install the new version](/Installing-Asterisk).
+4. On a test system, a non-production system, download and [install the new version](/Getting-Started/Installing-Asterisk).
 5. Migrate backups of configuration, databases and other data to the new Asterisk install.
 6. Test this new system, or simulate your production environment before moving this new system into production.
 	1. Especially test any areas of Asterisk where behavior changes have been noted in the UPGRADE.txt or CHANGES files. APIs, like AGI, AMI or ARI connecting to custom applications or scripts should be thoroughly tested. You should always try to extensively test your dialplan.

@@ -111,7 +111,7 @@ Now make your change and test locally.
 Commit
 ------
 
-Commit messages should follow the guidelines established in [Commit Messages](/Commit-Messages).  That page will be updated as follows after the cut-over.
+Commit messages should follow the guidelines established in [Commit Messages](/Development/Policies-and-Procedures/Commit-Messages).  That page will be updated as follows after the cut-over.
 
 * You can use [GitHub Flavored Markdown](https://github.github.com/gfm/) in your commit messages to make them look nicer.
 * If there isn't an open GitHub issue for your work, open one now.  If there was an existing JIRA issue, you must still open a new GitHub issue.

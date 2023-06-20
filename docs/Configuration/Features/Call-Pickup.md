@@ -25,7 +25,7 @@ Call pickup allows you to answer a call while it is ringing another phone or gro
 
 Requesting to pickup a call is done by two basic methods.
 
-1. by [dialplan](/Dialplan) using the Pickup or PickupChan applications.
+1. by [dialplan](/Configuration/Dialplan) using the Pickup or PickupChan applications.
 2. by dialing the extension defined for pickupexten configured in features.conf.
 
 Which calls can be picked up is determined by configuration and dialplan.

@@ -6,18 +6,18 @@ pageid: 4259934
 Roadmap Overview
 ================
 
-The roadmap for the Asterisk project is discussed at [AstriDevCon 2019](/AstriDevCon-2019) each year at the annual Asterisk User Conference, [AstriCon](http://www.asterisk.org/community/astricon-user-conference). During AstriDevCon, the Asterisk Developer Community:
+The roadmap for the Asterisk project is discussed at [AstriDevCon 2019](/Development/Roadmap/AstriDevCon-2019) each year at the annual Asterisk User Conference, [AstriCon](http://www.asterisk.org/community/astricon-user-conference). During AstriDevCon, the Asterisk Developer Community:
 
 * Discusses the development efforts of the previous year and reviews the status of the project
 * Works as a community to set priorities for the project for the next year
 * Coordinates development efforts between groups
 
-The goals for the project are subject to the constraints of the next major version to be developed. Asterisk has a [rotating release schedule](/Asterisk-Versions) between [Standard Releases and Long Term Support (LTS) Releases](/Software-Configuration-Management-Policies); as such, the development focus for a Standard Release will often be very different than for a LTS Release. Sub-pages off this page include past AstriDevCon notes as well as project plans for projects chosen at AstriDevCon.
+The goals for the project are subject to the constraints of the next major version to be developed. Asterisk has a [rotating release schedule](/Asterisk-Versions) between [Standard Releases and Long Term Support (LTS) Releases](/Development/Policies-and-Procedures/Software-Configuration-Management-Policies); as such, the development focus for a Standard Release will often be very different than for a LTS Release. Sub-pages off this page include past AstriDevCon notes as well as project plans for projects chosen at AstriDevCon.
 
 Asterisk 14 Roadmap
 ===================
 
-While the planning for Asterisk 14 will take place on the development mailing lists ([asterisk-dev](http://lists.digium.com/mailman/listinfo/asterisk-dev) and [asterisk-app-dev](http://lists.digium.com/cgi-bin/mailman/listinfo/asterisk-app-dev)), at [AstriDevCon 2014](/AstriDevCon-2013), the community decided to focus on the following items:
+While the planning for Asterisk 14 will take place on the development mailing lists ([asterisk-dev](http://lists.digium.com/mailman/listinfo/asterisk-dev) and [asterisk-app-dev](http://lists.digium.com/cgi-bin/mailman/listinfo/asterisk-app-dev)), at [AstriDevCon 2014](/Development/Roadmap/AstriDevCon-2013), the community decided to focus on the following items:
 
 1. Move the project to Git, improve the project infrastructure, and provide clearer instructions and/or processes to make it easier for developers to submit patches and participate.
 2. Document features better and make it easier to install, configure, and deploy Asterisk.

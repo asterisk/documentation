@@ -27,7 +27,7 @@ Requirements and Specification
 SIP stack
 ---------
 
-The new chan\_sip will use a third-party SIP stack. Research was done into various offerings. SIP stack research can be found [here](/SIP-Stack-Research). The result of the research was to choose PJSIP as the SIP stack. This was communicated on the [asterisk-dev mailing list on December 10th, 2012](http://lists.digium.com/pipermail/asterisk-dev/2012-December/057997.html).
+The new chan\_sip will use a third-party SIP stack. Research was done into various offerings. SIP stack research can be found [here](/Development/Roadmap/Asterisk-12-Projects/New-SIP-channel-driver/SIP-Stack-Research). The result of the research was to choose PJSIP as the SIP stack. This was communicated on the [asterisk-dev mailing list on December 10th, 2012](http://lists.digium.com/pipermail/asterisk-dev/2012-December/057997.html).
 
 As part of this work, pjproject has been pulled out of the Asterisk source tree and placed into its own Git repository. The repository is available at <git://github.com/asterisk/pjproject.git>.
 
@@ -200,7 +200,7 @@ A brief high-level overview of features for the new chan\_sip includes:
 Use cases
 ---------
 
-Since A SIP channel driver has so many use cases, these reside on their own sub-page. SIP use cases can be found [here](/SIP-use-cases).
+Since A SIP channel driver has so many use cases, these reside on their own sub-page. SIP use cases can be found [here](/Development/Roadmap/Asterisk-12-Projects/New-SIP-channel-driver/SIP-use-cases).
 
 Documentation
 -------------
@@ -320,7 +320,7 @@ Since a SIP stack has not been chosen yet, it is difficult to go about trying to
 Test Plan
 =========
 
-The new chan\_sip test plan can be found [here](/SIP-Test-Plan)
+The new chan\_sip test plan can be found [here](/Development/Roadmap/Asterisk-12-Projects/New-SIP-channel-driver/SIP-Test-Plan)
 
 Project Planning
 ================
@@ -332,7 +332,7 @@ true
 Reference information
 =====================
 
-The decision to move forward with a new chan\_sip was made at [AstriDevCon 2012](/AstriDevCon-2012).
+The decision to move forward with a new chan\_sip was made at [AstriDevCon 2012](/Development/Roadmap/AstriDevCon-2012).
 
 Testing
 -------

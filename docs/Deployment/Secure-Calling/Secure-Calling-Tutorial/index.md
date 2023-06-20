@@ -22,7 +22,7 @@ Overview
 
 So you'd like to make some secure calls.
 
-Here's how to do it, using [Blink](http://www.icanblink.com/), a SIP soft client for Mac OS X, Windows, and Linux. You can find some [brief instructions for installing Blink on Ubuntu](/Installing-Blink-SIP-client) on the wiki.
+Here's how to do it, using [Blink](http://www.icanblink.com/), a SIP soft client for Mac OS X, Windows, and Linux. You can find some [brief instructions for installing Blink on Ubuntu](/Deployment/Secure-Calling/Secure-Calling-Tutorial/Installing-Blink-SIP-client) on the wiki.
 
 These instructions assume that you're running as the root user (sudo su -).
 

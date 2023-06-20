@@ -6,16 +6,16 @@ pageid: 28934189
 Overview
 ========
 
-Extension state is the state of an Asterisk extension, as opposed to the direct state of a device or a user. It is the aggregate of [Device state](/Device-State) from devices mapped to the extension through a **hint** directive. See the [States and Presence](/States-and-Presence) section for a diagram showing the relationship of all the various states.
+Extension state is the state of an Asterisk extension, as opposed to the direct state of a device or a user. It is the aggregate of [Device state](/Device-State) from devices mapped to the extension through a **hint** directive. See the [States and Presence](/Fundamentals/Key-Concepts/States-and-Presence) section for a diagram showing the relationship of all the various states.
 
 Asterisk's SIP channel drivers provide facilities to allow SIP presence subscriptions ([RFC3856](http://www.ietf.org/rfc/rfc3856.txt)) to extensions with a defined hint. With an active subscription, devices can receive notification of state changes for the subscribed to extension. That notification will take the form of a SIP NOTIFY with PIDF content ([RFC3863](http://www.ietf.org/rfc/rfc3863.txt)) containing the presence/state information.
 
 Defining Hints
 ==============
 
-For Asterisk to store and provide state for an extension, you must first define a **hint** for that extension. Hints are defined in the [Asterisk dialplan](/Dialplan), i.e. extensions.conf.
+For Asterisk to store and provide state for an extension, you must first define a **hint** for that extension. Hints are defined in the [Asterisk dialplan](/Configuration/Dialplan), i.e. extensions.conf.
 
-When Asterisk loads the configuration file it will create hints in memory for each hint defined in the dialplan. Those hints can then be [queried or manipulated](/Querying-and-Manipulating-State) by functions and CLI commands. The state of each hint will regularly be updated based on state changes for any devices mapped to a hint.
+When Asterisk loads the configuration file it will create hints in memory for each hint defined in the dialplan. Those hints can then be [queried or manipulated](/Fundamentals/Key-Concepts/States-and-Presence/Querying-and-Manipulating-State) by functions and CLI commands. The state of each hint will regularly be updated based on state changes for any devices mapped to a hint.
 
 The full syntax for a hint is
 
@@ -77,7 +77,7 @@ Things of note:
 Querying Extension State
 ========================
 
-The [Querying and Manipulating State](/Querying-and-Manipulating-State) section covers accessing and affecting the various types of state.
+The [Querying and Manipulating State](/Fundamentals/Key-Concepts/States-and-Presence/Querying-and-Manipulating-State) section covers accessing and affecting the various types of state.
 
 For a quick CLI example, once you have defined some hints, you can easily check from the CLI to verify they get loaded correctly.
 
@@ -116,9 +116,9 @@ SIP Subscription to Asterisk hints
 
 Once a hint is configured, Asterisk's SIP drivers can be configured to allow SIP User Agents to subscribe to the hints. A subscription will result in state change notifications being sent to the subscriber.
 
-Configuration for **chan\_sip** is discussed in [Configuring chan\_sip for Presence Subscriptions](/Configuring-chan_sip-for-Presence-Subscriptions)
+Configuration for **chan\_sip** is discussed in [Configuring chan\_sip for Presence Subscriptions](/Configuration/Channel-Drivers/SIP/Configuring-chan_sip/Configuring-chan_sip-for-Presence-Subscriptions)
 
-Configuration for **res\_pjsip** is discussed in [Configuring res\_pjsip for Presence Subscriptions](/Configuring-res_pjsip-for-Presence-Subscriptions)
+Configuration for **res\_pjsip** is discussed in [Configuring res\_pjsip for Presence Subscriptions](/Configuration/Channel-Drivers/SIP/Configuring-res_pjsip/Configuring-res_pjsip-for-Presence-Subscriptions)
 
  
 

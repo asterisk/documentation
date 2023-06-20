@@ -11,7 +11,7 @@ This tutorial demonstrates basic WebRTC support and functionality within Asteris
 Setup Asterisk
 ==============
 
-Follow the instructions at [Configuring Asterisk for WebRTC Clients](/Configuring-Asterisk-for-WebRTC-Clients) before proceeding,  The rest of this tutorial assumes that your PBX is reachable at `pbx.example.com` and that the client is known as `webrtc_client`.
+Follow the instructions at [Configuring Asterisk for WebRTC Clients](/Configuration/WebRTC/Configuring-Asterisk-for-WebRTC-Clients) before proceeding,  The rest of this tutorial assumes that your PBX is reachable at `pbx.example.com` and that the client is known as `webrtc_client`.
 
 Configure Asterisk Dialplan
 

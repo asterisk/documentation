@@ -6,9 +6,9 @@ pageid: 31097214
 Overview
 ========
 
-Pre-bridge handlers allow you to execute dialplan subroutines on a channel after the call has been initiated and the channels have been created, but before connecting the caller to the callee. Handlers for the [Dial](/Asterisk-13-Application_Dial) and [queue](/Asterisk-13-Application_Queue) applications allow both the older [**macro**](/Macros) and the newer [**gosub**](/Gosub) routines to be executed. These handlers are executed on the **called party** channel, after it is **answered**, but **pre-bridge** before the calling and called party are connected.
+Pre-bridge handlers allow you to execute dialplan subroutines on a channel after the call has been initiated and the channels have been created, but before connecting the caller to the callee. Handlers for the [Dial](/Asterisk-13-Application_Dial) and [queue](/Asterisk-13-Application_Queue) applications allow both the older [**macro**](/Configuration/Dialplan/Subroutines/Macros) and the newer [**gosub**](/Configuration/Dialplan/Subroutines/Gosub) routines to be executed. These handlers are executed on the **called party** channel, after it is **answered**, but **pre-bridge** before the calling and called party are connected.
 
-If you want to execute routinesearlier in the call lifetime then check out the [Pre-Dial Handlers](/Pre-Dial-Handlers) section.
+If you want to execute routinesearlier in the call lifetime then check out the [Pre-Dial Handlers](/Configuration/Dialplan/Subroutines/Pre-Dial-Handlers) section.
 
 Pre-bridge handlers are invoked using flags or arguments for a particular dialplan application. The dialplan application help documentation within Asterisk goes into detail on the various arguments, options and flags, however we will provide some examples below. You should always check the CLI or wiki application docs for any updates.
 
@@ -19,7 +19,7 @@ There are two flags for the Dial application, **M** and **U**.
 
 ### M flag
 
-The M flag allows a [macro](/Macros) and arguments to be specified. You must specify the macro name, leaving off the 'macro-' prefix.
+The M flag allows a [macro](/Configuration/Dialplan/Subroutines/Macros) and arguments to be specified. You must specify the macro name, leaving off the 'macro-' prefix.
 
 
 
@@ -48,7 +48,7 @@ The variable MACRO\_RESULT can be set with certain options inside the specified 
 
 ### U flag
 
-The U flag allows a [gosub](/Gosub) and arguments to be specified. You must remember to call Return inside the gosub.
+The U flag allows a [gosub](/Configuration/Dialplan/Subroutines/Gosub) and arguments to be specified. You must remember to call Return inside the gosub.
 
 
 

@@ -13,7 +13,7 @@ Configuration Conversion Script
 
 Contained within a download of Asterisk, there is a Python script, sip\_to\_pjsip.py, found within the contrib/scripts/sip\_to\_pjsip subdirectory, that provides a basic conversion of a sip.conf config to a pjsip.conf config. It is not intended to work for every scenario or configuration; for basic configurations it should provide a good example of how to convert it over to pjsip.conf style config.
 
-To insure that the script can read any [#include'd](/Using-The-include--tryinclude-and-exec-Constructs) files, run it from the /etc/asterisk directory or in another location with a copy of the sip.conf and any included files. The default input file is sip.conf, and the default output file is pjsip.conf. Any included files will also be converted, and written out with a pjsip\_ prefix, unless changed with the --prefix=*xxx* option.
+To insure that the script can read any [#include'd](/Fundamentals/Asterisk-Configuration/Asterisk-Configuration-Files/Using-The-include-tryinclude-and-exec-Constructs) files, run it from the /etc/asterisk directory or in another location with a copy of the sip.conf and any included files. The default input file is sip.conf, and the default output file is pjsip.conf. Any included files will also be converted, and written out with a pjsip\_ prefix, unless changed with the --prefix=*xxx* option.
 
 ### Command line usage
 
@@ -77,7 +77,7 @@ On this Page
 Side by Side Examples of sip.conf and pjsip.conf Configuration
 ==============================================================
 
-These examples contain only the configuration required for sip.conf/pjsip.conf as the configuration for other files should be the same, excepting the Dial statements in your extensions.conf. Dialing with PJSIP is discussed in [Dialing PJSIP Channels](/Dialing-PJSIP-Channels).
+These examples contain only the configuration required for sip.conf/pjsip.conf as the configuration for other files should be the same, excepting the Dial statements in your extensions.conf. Dialing with PJSIP is discussed in [Dialing PJSIP Channels](/Configuration/Channel-Drivers/SIP/Configuring-res_pjsip/Dialing-PJSIP-Channels).
 
 
 

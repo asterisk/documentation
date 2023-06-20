@@ -32,7 +32,7 @@ What are some examples of Analog and PRI configurations?
 
 Links to use:
 
-[DAHDI](/DAHDI)
+[DAHDI](/Configuration/Channel-Drivers/DAHDI)
 
   
 

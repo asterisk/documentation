@@ -11,9 +11,9 @@ This page details the various branches of Asterisk, the focus of development in 
 Asterisk Configuration Management and Release Policies
 ======================================================
 
-Development in the Asterisk project follows the **Mainline** branching model of Software Configuration Management. During a development year - typically kicked off at [AstriDevCon 2019](/AstriDevCon-2019) - new features and bug fixes are integrated into the Asterisk project's [source control](https://gerrit.asterisk.org) `master` branch (hereafter referred to only as `'master`'). At the end of the developer year, the Asterisk development team makes a new major version branch from `master`. From all currently supported major version branches, tags are made on a periodic basis and released as minor version releases of that major version.
+Development in the Asterisk project follows the **Mainline** branching model of Software Configuration Management. During a development year - typically kicked off at [AstriDevCon 2019](/Development/Roadmap/AstriDevCon-2019) - new features and bug fixes are integrated into the Asterisk project's [source control](https://gerrit.asterisk.org) `master` branch (hereafter referred to only as `'master`'). At the end of the developer year, the Asterisk development team makes a new major version branch from `master`. From all currently supported major version branches, tags are made on a periodic basis and released as minor version releases of that major version.
 
-See [Asterisk Versions](/Asterisk-Versions) for the approximate dates when a given version's development is started; when beta releases are created and announced; and when a major version branch is made and the first feature release made from that branch.
+See [Asterisk Versions](/About-the-Project/Asterisk-Versions) for the approximate dates when a given version's development is started; when beta releases are created and announced; and when a major version branch is made and the first feature release made from that branch.
 
 
 
@@ -52,7 +52,7 @@ A LTS release receives bug fixes for four years after release, and security fixe
 Currently Supported Branches
 ----------------------------
 
-Please refer to the [Asterisk Versions](/Asterisk-Versions) page for more information on specific branch lifetimes.
+Please refer to the [Asterisk Versions](/About-the-Project/Asterisk-Versions) page for more information on specific branch lifetimes.
 
 Release Policies
 ----------------
@@ -91,7 +91,7 @@ ExampleA bug is reported against Asterisk 13. The current supported branches are
 
 ---
 
-**Tip:**  See [Git Usage](/Git-Usage) and [Gerrit Usage](/Gerrit-Usage) for more information on cherry-picking between Asterisk branches.
+**Tip:**  See [Git Usage](/Git-Usage) and [Gerrit Usage](/Development/Policies-and-Procedures/Historical-Policies-and-Procedures/Code-Review/Gerrit-Usage) for more information on cherry-picking between Asterisk branches.
 
   
 

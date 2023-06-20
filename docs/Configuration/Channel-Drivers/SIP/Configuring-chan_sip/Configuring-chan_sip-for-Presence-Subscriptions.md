@@ -6,14 +6,14 @@ pageid: 29392926
 Overview
 ========
 
-This page is a rough guide to get you configuring chan\_sip and Asterisk to accept subscriptions for presence (in this case, [Extension State](/Extension-State-and-Hints)) and notify the subscribers of state changes.
+This page is a rough guide to get you configuring chan\_sip and Asterisk to accept subscriptions for presence (in this case, [Extension State](/Fundamentals/Key-Concepts/States-and-Presence/Extension-State-and-Hints)) and notify the subscribers of state changes.
 
 Requirements
 ============
 
 You should understand the basics of
 
-* [Device State](/Device-State) and [Extension State and Hints](/Extension-State-and-Hints)
+* [Device State](/Device-State) and [Extension State and Hints](/Fundamentals/Key-Concepts/States-and-Presence/Extension-State-and-Hints)
 * Configuring SIP peers in sip.conf
 
 General Process
@@ -33,7 +33,7 @@ Then following down the page you can find detail on configuring the three major 
 Configure SIP options
 ---------------------
 
-Since this is not a guide on configuring SIP peers, we'll show a very simple **sip.conf**  with only enough configuration to point out where you might set specific [chan\_sip State and Presence Options](/chan_sip-State-and-Presence-Options) .
+Since this is not a guide on configuring SIP peers, we'll show a very simple **sip.conf**  with only enough configuration to point out where you might set specific [chan\_sip State and Presence Options](/Configuration/Channel-Drivers/SIP/Configuring-chan_sip/chan_sip-State-and-Presence-Options) .
 
 
 
@@ -81,7 +81,7 @@ This diagram is purposefully simplified to only show the relationships between t
 Configure Hints
 ---------------
 
-Hints are configured in Asterisk [dialplan](/Dialplan) (extensions.conf). This is where you map [Device State](/Device-State) identifiers or [Presence State](/Presence-State) identifiers to a hint, which will then be subscribed to by one or more SIP User Agents.
+Hints are configured in Asterisk [dialplan](/Dialplan) (extensions.conf). This is where you map [Device State](/Device-State) identifiers or [Presence State](/Fundamentals/Key-Concepts/States-and-Presence/Presence-State) identifiers to a hint, which will then be subscribed to by one or more SIP User Agents.
 
 For our example we need to define a hint mapping 6001 to Bob's two devices.
 
@@ -106,7 +106,7 @@ exten = 6001,hint,SIP/Bob-mobile&SIP/Bob-desk
 ---
 
 
-Defining the hint is pretty straightforward and follows the syntax discussed in the [Extension State and Hints](/Extension-State-and-Hints) section.
+Defining the hint is pretty straightforward and follows the syntax discussed in the [Extension State and Hints](/Fundamentals/Key-Concepts/States-and-Presence/Extension-State-and-Hints) section.
 
 Notice that we put it in the context we set in **subscribecontext** in sip.conf earlier. Otherwise we would need to make sure it is in the same context that the SIP peer uses (defined with "context").
 
@@ -143,7 +143,7 @@ You should configure your SIP User Agent (soft-phone, hard-phone, another phone 
 
 The process will be different for every phone, and keep in mind that some phones may not support Asterisk's state notification. With most phones it'll be a matter of adding a "contact" to a contact list, buddy list, or address book and then making sure that SIP presence is enabled in the options.
 
-If you want to submit a guide for a specific phone, feel free to comment on this page or submit it to the [Asterisk issue tracker](/Asterisk-Issue-Guidelines).
+If you want to submit a guide for a specific phone, feel free to comment on this page or submit it to the [Asterisk issue tracker](/Asterisk-Community/Asterisk-Issue-Guidelines).
 
 Operation
 ---------

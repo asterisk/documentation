@@ -12,7 +12,7 @@ For this exercise, we're going to assume that you have the following:
 
 **A machine, virtual or real, with Asterisk already installed.**
 
-Got here without installing Asterisk? Head back to the [Installation Asterisk section](/Installing-Asterisk). Be sure to install the SIP Channel Driver module that you want to use for SIP connectivity. This tutorial will cover using chan\_sip and res\_pjsip/chan\_pjsip.
+Got here without installing Asterisk? Head back to the [Installation Asterisk section](/Getting-Started/Installing-Asterisk). Be sure to install the SIP Channel Driver module that you want to use for SIP connectivity. This tutorial will cover using chan\_sip and res\_pjsip/chan\_pjsip.
 
 **Two or more phones which speak the SIP voice-over-IP protocol.**
 

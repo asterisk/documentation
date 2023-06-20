@@ -12,7 +12,7 @@ Overview
 ---
 
 **WARNING!:**   
-Macros are very similar in function to the [Gosub](/Gosub) application **which deprecates Macro**. This information is here for historical purposes and you should really use Gosub wherever you would have previously used Macro.
+Macros are very similar in function to the [Gosub](/Configuration/Dialplan/Subroutines/Gosub) application **which deprecates Macro**. This information is here for historical purposes and you should really use Gosub wherever you would have previously used Macro.
 
   
 
@@ -23,7 +23,7 @@ Macros are very similar in function to the [Gosub](/Gosub) application **which d
 
 Macro is a dialplan application that facilitates code-reuse within the dialplan. That is, a macro, once defined can be called from almost anywhere else within the dialplan using the Macro application or else via flags and arguments for other applications that allow calling macros. 
 
-Other dialplan applications, such as [Dial](/Asterisk-13-Application_Dial) and [Queue](/Asterisk-13-Application_Dial) make use of Macro functionality from within their applications. That means, they allow you to perform actions like calling Macro (or Gosub) on the called party's channel from a Dial, or on a Queue member's channel after they answer. See the [Pre-Dial Handlers](/Pre-Dial+Handlers) and [Pre-Bridge Handlers](/Pre-Bridge+Handlers) sections for more information.
+Other dialplan applications, such as [Dial](/Asterisk-13-Application_Dial) and [Queue](/Asterisk-13-Application_Dial) make use of Macro functionality from within their applications. That means, they allow you to perform actions like calling Macro (or Gosub) on the called party's channel from a Dial, or on a Queue member's channel after they answer. See the [Pre-Dial Handlers](/Pre-Dial+Handlers) and [Pre-Bridge Handlers](/Configuration/Dialplan/Subroutines/Pre-Bridge-Handlers) sections for more information.
 
 Variables and arguments available within a Macro
 ================================================
@@ -36,7 +36,7 @@ Defining a dialplan context for use with Macro
 Macros look like a typical dialplan context, except for two factors:
 
 * Macros must be named with the 'macro-' prefix.
-* Macros must use the ['s' extension](/Special-Dialplan-Extensions).
+* Macros must use the ['s' extension](/Configuration/Dialplan/Special-Dialplan-Extensions).
 
 
 

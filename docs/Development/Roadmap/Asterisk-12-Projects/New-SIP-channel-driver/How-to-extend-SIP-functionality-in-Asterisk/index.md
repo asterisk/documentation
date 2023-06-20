@@ -41,7 +41,7 @@ Some good examples of simple session supplements are in the following files
 * `res/res_sip_callerid.c`
 
 
-For an in-depth tutorial on writing a session supplement see the page [here](/Writing-a-SIP-Session-Supplement).
+For an in-depth tutorial on writing a session supplement see the page [here](/Development/Roadmap/Asterisk-12-Projects/New-SIP-channel-driver/How-to-extend-SIP-functionality-in-Asterisk/Writing-a-SIP-Session-Supplement).
 
 
 SIP SDP handler

@@ -37,7 +37,7 @@ Task 1: Abstraction of SIP Subscriptions
 
 This first part is a behind-the-scenes improvement. Currently, the layer between Asterisk's SIP subscription handlers and the underlying dialog maintained by PJSIP is thin. Asterisk subscription handlers directly call into PJSIP in order to create NOTIFY requests to send or to accept incoming subscriptions. When using RLS, a single RLS subscription can result in multiple virtual subscriptions for the subscription handlers. Each of these virtual subscriptions should behave the same as a real subscription, but under the hood, the pubsub core in Asterisk should be capable of doing the right thing if the subscription is actually virtual. This requires improvements to the pubsub API in order to abstract operations.
 
-Since the changes are large and deal with behind-the-scenes content, the have been relegated to their own [sub-page](/PJSIP-Subscription-Abstraction-Plan).
+Since the changes are large and deal with behind-the-scenes content, the have been relegated to their own [sub-page](/Development/Roadmap/Asterisk-13-Projects/Resource-List-Subscriptions/PJSIP-Subscription-Abstraction-Plan).
 
 Task 2: Implementation of inbound RLS
 =====================================
@@ -54,12 +54,12 @@ RFC 4662 is purposefully vague about how a SIP server sets up its resource lists
 * Whether notifications are batched
 * Whether we send partial or full updates when resource states change.
 
-Configuration of RLS is defined on [this page](/Resource-List-Configuration).
+Configuration of RLS is defined on [this page](/Development/Roadmap/Asterisk-13-Projects/Resource-List-Subscriptions/Resource-List-Configuration).
 
 Write test cases (nominal and off-nominal)
 ------------------------------------------
 
-If a configuration scheme has been decided, testsuite tests can be written for RLS. A test plan for RLS can be found [here](/Resource-List-Subscription-Test-Plan).
+If a configuration scheme has been decided, testsuite tests can be written for RLS. A test plan for RLS can be found [here](/Development/Roadmap/Asterisk-13-Projects/Resource-List-Subscriptions/Resource-List-Subscription-Test-Plan).
 
 Write an application/rlmi+xml body generator
 --------------------------------------------

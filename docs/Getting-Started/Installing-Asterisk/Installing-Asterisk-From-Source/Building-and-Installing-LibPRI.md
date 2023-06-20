@@ -8,7 +8,7 @@ pageid: 4817517
 
 ---
 
-**Note: Have you installed DAHDI?**  Before you can build **libpri**, you'll need to [Build and Install DAHDI](/Building-and-Installing-DAHDI).
+**Note: Have you installed DAHDI?**  Before you can build **libpri**, you'll need to [Build and Install DAHDI](/Getting-Started/Installing-Asterisk/Installing-Asterisk-From-Source/Building-and-Installing-DAHDI).
 
   
 

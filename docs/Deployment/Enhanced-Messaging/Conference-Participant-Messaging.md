@@ -21,7 +21,7 @@ It sounds simple enough but this required some restructuring of the bridging cor
 Using Enhanced Messaging
 ========================
 
-While Enhanced Messaging is interesting for Asterisk 13, it is very interesting for Asterisk 15 and later.  Imagine a video conference using Asterisk 15's Selective Forwarding Unit (SFU) capability in ConfBridge.  Enhanced Messaging allows the conference participants to chat while participating in the conference.  [CyberMegaPhone](/Installing-and-Configuring-CyberMegaPhone) is an example for such a video conference application.
+While Enhanced Messaging is interesting for Asterisk 13, it is very interesting for Asterisk 15 and later.  Imagine a video conference using Asterisk 15's Selective Forwarding Unit (SFU) capability in ConfBridge.  Enhanced Messaging allows the conference participants to chat while participating in the conference.  [CyberMegaPhone](/Configuration/WebRTC/Installing-and-Configuring-CyberMegaPhone) is an example for such a video conference application.
 
 Configuring Asterisk
 --------------------
@@ -31,7 +31,7 @@ There is no additional configuration needed.  Enhanced Messaging is built-in an
 In the browser...
 -----------------
 
-How you design the user interface portion is totally up to you but here is a sample of how [CyberMegaPhone](/Installing-and-Configuring-CyberMegaPhone) could be extended to send a message using [JsSIP](http://jssip.net).  In this example, this.\_ua is a JsSIP.UA instance and this.rtc is a JsSIP.RTCSession instance.  Refer to the [CyberMegaPhone](/Installing-and-Configuring-CyberMegaPhone) code to see where this might fit.
+How you design the user interface portion is totally up to you but here is a sample of how [CyberMegaPhone](/Configuration/WebRTC/Installing-and-Configuring-CyberMegaPhone) could be extended to send a message using [JsSIP](http://jssip.net).  In this example, this.\_ua is a JsSIP.UA instance and this.rtc is a JsSIP.RTCSession instance.  Refer to the [CyberMegaPhone](/Configuration/WebRTC/Installing-and-Configuring-CyberMegaPhone) code to see where this might fit.
 
 
 

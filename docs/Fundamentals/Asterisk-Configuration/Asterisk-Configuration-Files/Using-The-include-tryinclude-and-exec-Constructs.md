@@ -12,7 +12,7 @@ include, tryinclude and exec
 ---
 
 
-**Information:**  You might have arrived here looking for [Include Statements](/Include-Statements) specific to Asterisk dialplan.
+**Information:**  You might have arrived here looking for [Include Statements](/Configuration/Dialplan/Include-Statements) specific to Asterisk dialplan.
 
   
 

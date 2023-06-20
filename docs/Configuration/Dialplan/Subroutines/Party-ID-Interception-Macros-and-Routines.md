@@ -23,7 +23,7 @@ Interception routines
 ---
 
 
-The interception routines give the administrator an opportunity to alter [connected line and redirecting information](/Manipulating-Party-ID-Information) before the channel driver is given the information. If the routine does not change a value then that is what is going to be passed to the channel driver.
+The interception routines give the administrator an opportunity to alter [connected line and redirecting information](/Configuration/Functions/Manipulating-Party-ID-Information) before the channel driver is given the information. If the routine does not change a value then that is what is going to be passed to the channel driver.
 
 The tag string available in CALLERID, CONNECTEDLINE, and REDIRECTING is useful for the interception routines to provide some information about where the information originally came from.
 
@@ -69,7 +69,7 @@ Interception macros have been deprecated in Asterisk 11 due to deprecation of [M
 ---
 
 
-The interception macros give the administrator an opportunity to alter [connected line and redirecting information](/Manipulating-Party-ID-Information) before the channel driver is given the information. If the macro does not change a value then that is what is going to be passed to the channel driver.
+The interception macros give the administrator an opportunity to alter [connected line and redirecting information](/Configuration/Functions/Manipulating-Party-ID-Information) before the channel driver is given the information. If the macro does not change a value then that is what is going to be passed to the channel driver.
 
 The tag string available in CALLERID, CONNECTEDLINE, and REDIRECTING is useful for the interception macros to provide some information about where the information originally came from.
 

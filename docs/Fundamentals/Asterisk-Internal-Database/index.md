@@ -5,7 +5,7 @@ pageid: 27200271
 
 Asterisk comes with a database that is used internally and made available for Asterisk programmers and administrators to use as they see fit.
 
-Asterisk versions up to 1.8 used the Berkeley DB, and **in version 10** the project moved to the **SQLite3 database**. You can read about database migration between those major versions in the section [SQLite3 astdb back-end](/SQLite3-astdb-back-end).
+Asterisk versions up to 1.8 used the Berkeley DB, and **in version 10** the project moved to the **SQLite3 database**. You can read about database migration between those major versions in the section [SQLite3 astdb back-end](/Fundamentals/Asterisk-Internal-Database/SQLite3-astdb-back-end).
 
 Purpose of the internal database
 --------------------------------
