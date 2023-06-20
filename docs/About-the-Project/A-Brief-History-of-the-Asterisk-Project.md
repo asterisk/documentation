@@ -22,18 +22,19 @@ Within a few months the idea of an "open source PBX" caught on.  There had been
 Digium
 ======
 
-What became of Linux Support Services? In 2001, Linux Support Services changed its name to Digium. Digium continued to develop Asterisk in collaboration with the community, provide services to support the development community, as well as build commercial products and services around Asterisk which have fueled growth in both Digium and the Asterisk project. You can find out more about Digium at [the Sangoma website](https://www.sangoma.com/open-source/) and on [wikipedia](http://en.wikipedia.org/wiki/Digium).
+What became of Linux Support Services? In 2001, Linux Support Services changed its name to Digium. Digium continued to develop Asterisk in collaboration with the community, provide services to support the development community, as well as build commercial products and services around Asterisk which have fueled growth in both Digium and the Asterisk project. You can find out more about Digium at [the Sangoma website](https://www.sangoma.com/open-source/) and on [Wikipedia](http://en.wikipedia.org/wiki/Digium).
 
 Asterisk in the Present
 =======================
 
 Asterisk is constantly evolving to meet the needs of the project's user-base. It's difficult to summarize the vast scope of everything that Asterisk can do as a communications toolkit. We'll list some resources that give you an idea of what is going on in the Asterisk project at present.
 
-* [Asterisk Versions](/About-the-Project/Asterisk-Versions) :Shows release time lines, support and EOL schedules
-* [Roadmap section](/Development/Roadmap./Development/Roadmap/Asterisk-12-Projects/New-SIP-channel-driver/New-SIP-Channel-Driver-Architecture/res_sip-design/Roadmap) :Information from developer conferences and planning sessions
-* [CHANGES](https://github.com/asterisk/asterisk/blob/master/CHANGES) :A document in Asterisk trunk, shows functionality changes between major versions
-* [UPGRADE](https://github.com/asterisk/asterisk/blob/master/UPGRADE.txt) :A document in Asterisk trunk, shows breaking changes, deprecation of specific features and important info on upgrading.
-* [Mailing lists](http://www.asterisk.org/community/discuss) :The dev list is a great list to see what hot topics the developers are discussing in real-time.
+* [Asterisk Versions](/About-the-Project/Asterisk-Versions): Shows release time lines, support and EOL schedules.
+* [Roadmap](/Development/Roadmap): Information from developer conferences and planning sessions.
+* [CHANGES](https://github.com/asterisk/asterisk/blob/master/CHANGES): A document in Asterisk trunk, shows functionality changes between major versions.
+* [UPGRADE](https://github.com/asterisk/asterisk/blob/master/UPGRADE.txt): A document in Asterisk trunk, shows breaking changes, deprecation of specific features and important info on upgrading.
+* [Mailing Lists](https://www.asterisk.org/community/discuss): The dev list is a great list to see what hot topics the developers are discussing in real-time.
+* [Forums](https://community.asterisk.org): The community forums are a great place to receive help with issues.
 
 
  
