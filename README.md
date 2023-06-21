@@ -27,4 +27,10 @@ This can be done using mkdocs:
 $ mkdocs serve
 ```
 
+To bind to any address/interface (0.0.0.0) or an IP address use:
+
+```
+$ mkdocs serve --dev-addr <IP Address>:8000
+```
+
 This will generate the documentation and serve it using a webserver on localhost for viewing.
