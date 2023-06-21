@@ -3,7 +3,6 @@ repo_url: https://github.com/asterisk/documentation
 repo_name: Asterisk
 copyright: >
   Content is licensed under a Creative Commons Attribution-ShareAlike 3.0 United States License.
-  <a href="#__consent">Change cookie settings</a>
 
 edit_uri: edit/main/docs/
 
@@ -48,14 +47,6 @@ plugins:
 #      fallback_to_build_date: true
 
 extra:
-  consent:
-    title: Cookie consent
-    description: >-
-      We use cookies to store and re-load your preferences.
-    actions:
-      - accept
-      - manage
-      - reject
   social:
     - icon: asterisk/favicon
       link: https://www.asterisk.org/
