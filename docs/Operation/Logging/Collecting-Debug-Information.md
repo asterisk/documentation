@@ -16,9 +16,9 @@ STEPS
 Configure Asterisk logging
 --------------------------
 
-**1.** Edit the logger.conf file to enable specific logger channels to output to your filesystem. The word "debug\_log\_123456" can be changed to anything you want, as that is the filename the logging will be written to.
+**1.** Edit the logger.conf file to enable specific logger channels to output to your filesystem. The word "debug_log_123456" can be changed to anything you want, as that is the filename the logging will be written to.
 
-Modify the file name "debug\_log\_123456" to reflect your [issues.asterisk.org](https://github.com/asterisk/asterisk/issues) issue number.
+Modify the file name "debug_log_123456" to reflect your [github.com/asterisk/asterisk/issues](https://github.com/asterisk/asterisk/issues) issue number.
 
 
 
@@ -32,7 +32,7 @@ logger.conf
 ```
 
 [logfiles]
-debug\_log\_123456 => notice,warning,error,debug,verbose,dtmf
+debug_log_123456 => notice,warning,error,debug,verbose,dtmf
 
 
 ```
@@ -59,18 +59,14 @@ debug\_log\_123456 => notice,warning,error,debug,verbose,dtmf
 
 ```
 
-logger add channel debug\_log\_123456 notice,warning,error,debug,verbose,dtmf  
+logger add channel debug_log_123456 notice,warning,error,debug,verbose,dtmf
 
-
+```
 
 ---
 
 
 The new log channel persists until Asterisk is restarted, the logger module is reloaded, or the log files are rotated. If using this CLI command, do **not** reload/restart/rotate the log files in Step 2.
-
-
-```
-
 
 
 
@@ -93,9 +89,9 @@ Configure verbosity levels and rotate logs
 
 ```
 
-\*CLI> core set verbose 5
-\*CLI> core set debug 5
-\*CLI> module reload logger
+*CLI> core set verbose 5
+*CLI> core set debug 5
+*CLI> module reload logger
 
 
 ```
@@ -118,7 +114,7 @@ Optionally, if you've used this file to record data previously, then rotate the 
 
 ```
 
-\*CLI> logger rotate
+*CLI> logger rotate
 
 
 ```
@@ -162,8 +158,8 @@ Issue reproduction and clean up
 
 ```
 
-\*CLI> core set verbose 0
-\*CLI> core set debug 0
+*CLI> core set verbose 0
+*CLI> core set debug 0
 
 
 ```
@@ -188,7 +184,7 @@ SIP (1.4 or higher)
 
 ```
 
-\*CLI> sip set debug off
+*CLI> sip set debug off
 
 
 ```
@@ -211,7 +207,7 @@ IAX2 (1.4 or higher)
 
 ```
 
-\*CLI> iax2 set debug off
+*CLI> iax2 set debug off
 
 
 ```
@@ -235,7 +231,7 @@ logger.conf
 ```
 
 [logfiles]
-;debug\_log\_123456 => notice,warning,error,debug,verbose,dtmf
+;debug_log_123456 => notice,warning,error,debug,verbose,dtmf
 
 
 ```
@@ -258,7 +254,7 @@ Then reload the logger module (or restart Asterisk) as you did in step 2:
 
 ```
 
-\*CLI> module reload logger
+*CLI> module reload logger
 
 
 ```
@@ -271,18 +267,18 @@ Then reload the logger module (or restart Asterisk) as you did in step 2:
 Provide debug to the developers
 -------------------------------
 
-**6.** Upload the file located in /var/log/asterisk/debug\_log\_123456 to the issue tracker.
+**6.** Upload the file located in /var/log/asterisk/debug_log_123456 to the issue tracker.
 
 
 
 
 ---
 
-**WARNING!:**   
-1. Do **NOT** post the output of your file as a comment. This clutters the issue and will only result in your comment being deleted.
-2. Attach the file with a .txt extension to make it easy for the developers to quickly open the file without downloading.
-  
+**WARNING!**
+------------
 
+- Do **NOT** post the output of your file as a comment. This clutters the issue and will only result in your comment being deleted.
+- Attach the file with a .txt extension to make it easy for the developers to quickly open the file without downloading.
 
 
 ---
