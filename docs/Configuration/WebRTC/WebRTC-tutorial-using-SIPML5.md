@@ -36,10 +36,6 @@ same => n,Hangup()
 ```
 
 
-
----
-
-
  
 
 This instructs Asterisk to Answer a call to "200," to play a file named "demo-congrats" (included in Asterisk's core sound file packages), and to hang up.  To make the extension active, either restart Asterisk or issue a "dialplan reload" command from the Asterisk CLI.
@@ -62,16 +58,12 @@ Configure SIPML5
 
 
 
----
+!!! info ""
+    SIPML5 is a useful client for testing Asterisk. Many real-world users explore other options that may include rolling your own client.
 
+      
+[//]: # (end-info)
 
-**Information:**  SIPML5 is a useful client for testing Asterisk. Many real-world users explore other options that may include rolling your own client.
-
-  
-
-
-
----
 
 
 Next, visit <https://sipml5.org> - you'll be redirected to <https://www.doubango.org/sipml5/>
@@ -116,21 +108,10 @@ You should see a corresponding connection happen on the Asterisk CLI.  You can 
 
 
 
----
-
-  
-  
-
-
-```
-
+```bash title=" " linenums="1"
 # asterisk -vvvr
 
 ```
-
-
-
----
 
 
  
@@ -155,10 +136,6 @@ Then, you can LogOut and Login and see something like:
 
 
 ```
-
-
-
----
 
 
 Make a test call

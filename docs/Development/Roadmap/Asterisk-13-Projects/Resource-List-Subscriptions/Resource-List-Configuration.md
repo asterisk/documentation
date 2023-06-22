@@ -31,10 +31,6 @@ notification\_batch\_interval = 2000
 ```
 
 
-
----
-
-
 Here is a breakdown of the options:
 
 * `type`: Like with all items in `pjsip.conf`, a type must be specified to indicate what type of configuration object is being used. A "resource\_list" can be thought of as a narrowly-defined address of record. Like an AoR, it is addressable; SIP SUBSCRIBE messages are addressed to this resource.
@@ -82,10 +78,6 @@ list\_item = marketing\_team
 ```
 
 
-
----
-
-
 In this example, someone could subscribe to the "business" resource and as a result be subscribed to "sales\_team" and "marketing\_team".
 
 Supported Event Packages
@@ -113,10 +105,6 @@ list\_item = exten@context
 ```
 
 
-
----
-
-
 A hint must exist at the given extension and context in order for presence to be reported for the resource in the list.
 
 ### Message-summary
@@ -141,10 +129,6 @@ list\_item = mailbox@context
 list\_item = my/crazy,homegrown|mailbox+hierarchy
 
 ```
-
-
-
----
 
 
 ### Other event packages
@@ -184,10 +168,6 @@ list\_item = bob@default
 ```
 
 
-
----
-
-
 This is a bad configuration. The result is up to the lower layers of configuration handling in Asterisk, but it will likely end up overwriting the first instance of foo with the second.
 
 ### Duplicated list names with different event packages
@@ -216,10 +196,6 @@ event = message-summary
 list\_item = bob@default
 
 ```
-
-
-
----
 
 
 This may seem valid since the two lists apply to different event packages. However, the object storage system that Asterisk uses (sorcery) does not allow for identically-named categories of the same type. As a result, this configuration is invalid. The most likely result of this setup would the second foo list overwriting the first foo list.
@@ -256,10 +232,6 @@ event = presence
 list\_item = alice@default
 
 ```
-
-
-
----
 
 
 In this configuration, foo references the bar list, and bar references the foo list. This is called a "loop" since attempting to follow the links between lists will result in an everlasting loop. In the above configuration, attempted subscriptions to the "foo" and "bar" lists are invalid since they create loops. However, the "baz" list is addressable on its own since subscribing to it does not create a loop.
@@ -300,10 +272,6 @@ exten => bob,hint,PJSIP/bob,CustomPresence:bob
 ```
 
 
-
----
-
-
 In this configuration, if a subscriber subscribes to the "foo" list, then how is the list item interpreted? Does it refer to the list in pjsip.conf called "alice@default", or does it refer to the extensions.conf entry for extension alice in the default context?
 
 Asterisk will always first attempt to resolve a list item to another list. If it is not a list, then the specific event package handler is responsible for locating the requested resource. Applying that logic to the above configuration means that an inbound subscription to list foo will be composed of the alice@default list in pjsip.conf, not the alice extension in extensions.conf.
@@ -334,10 +302,6 @@ list\_item = alice@default
 exten => bob,hint,PJSIP/bob,CustomPresence:bob
 
 ```
-
-
-
----
 
 
 Notice that the foo resource list refers to alice@default, but this does not exist either as another resource list or as a dialplan extension. What happens in this case?

@@ -105,10 +105,6 @@ CyberMegaPhone.prototype.sendMessage = function (string\_msg, options = {} ) {
 ```
 
 
-
----
-
-
 Congratulations, you have just sent a text message!  Assuming the user called a conference bridge in the first place, all the other participants should receive it.  The code to retrieve the message is even simpler than the code to send it.  Once again, in this CyberMegaPhone example, this.\_ua is the JsSIP.UA instance.
 
 
@@ -139,9 +135,5 @@ Congratulations, you have just sent a text message!  Assuming the user called a
  });
 
 ```
-
-
-
----
 
 

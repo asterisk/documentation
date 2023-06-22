@@ -34,15 +34,12 @@ A data buffer acts as a ring buffer of data. It is given a fixed number of data 
 
 
 
----
+!!! note 
+    The API does not internally use a lock. It is up to the user of the API to properly protect the data buffer.
 
-**Note:**  The API does not internally use a lock. It is up to the user of the API to properly protect the data buffer.
+      
+[//]: # (end-note)
 
-  
-
-
-
----
 
 
 
@@ -130,10 +127,6 @@ void ast\_data\_buffer\_free(struct ast\_data\_buffer \*buffer);
 ```
 
 
-
----
-
-
 ### chan\_pjsip
 
 To simplify configuration no new configuration options will be added to support RTP packet retransmission. The existing "webrtc" option will enable it using the underlying RTP engine API. Currently RTP packet retransmission is only supported in WebRTC clients for video stream types. We will mirror this and only enable it on the video stream types as well. We will enable support on both receiving and sending.
@@ -187,10 +180,6 @@ void ast\_rtp\_instance\_set\_remote\_rtx\_ssrc(struct ast\_rtp\_instance \*rtp,
 
 
 ```
-
-
-
----
 
 
 Finally the "rtx" codec will need to be added as a valid option and enabled if RTP packet retransmission is enabled on the RTP instance.

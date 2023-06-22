@@ -11,15 +11,12 @@ In Asterisk, bridges can be thought of as a container for channels that form pat
 
 
 
----
+!!! tip More Information
+    For more information on bridges in Asterisk, see [Bridges](/Fundamentals/Key-Concepts/Bridges).
 
-**Tip: More Information** For more information on bridges in Asterisk, see [Bridges](/Fundamentals/Key-Concepts/Bridges).
+      
+[//]: # (end-tip)
 
-  
-
-
-
----
 
 
 Bridges in a Stasis Application
@@ -76,10 +73,6 @@ exten => 1000,1,NoOp()
 ```
 
 
-
----
-
-
 Python
 ------
 
@@ -92,17 +85,14 @@ For our Python examples, we will rely primarily on the [ari-py](https://github.c
 
 
 
----
+!!! tip 
+    Modify the connection credentials as appropriate for your server, although many examples will use these credentials.
 
-**Tip:**  Modify the connection credentials as appropriate for your server, although many examples will use these credentials.
+    **Please don't use these credentials in production systems!**
 
-**Please don't use these credentials in production systems!**
+      
+[//]: # (end-tip)
 
-  
-
-
-
----
 
 
 
@@ -125,10 +115,6 @@ logging.basicConfig(level=logging.ERROR)
 client = ari.connect('http://localhost:8088', 'asterisk', 'asterisk')
 
 ```
-
-
-
----
 
 
 Once we've made our connection, our first task is to look for an existing holding bridge - if there is no existing holding bridge - we need to create it. The bridges resource has an operation for listing existing bridges - `GET /bridges`. Using ari-py we need to use the operation nickname - `list`. We can then use another bridges resource operation to create a holding bridge if none was found - `POST /bridges`. Using ari-py, we need to use the operation nickname - `create`.
@@ -157,10 +143,6 @@ else:
 ```
 
 
-
----
-
-
 The `GET /channels` operation returns back a list of `Bridge` resources. Those resources, however, are returned as JSON from the operation, and while the `ari-py` library converts the `uniqueid` of those into an attribute on the object, it leaves the rest of them in the JSON dictionary.
 
 Our next step involves adding channels that enter our Stasis application to the bridge we either found or created and signaling when a channel leaves our Stasis application. To do that, we need to subscribe for the `StasisStart` and `StasisEnd` events:
@@ -180,10 +162,6 @@ truepy36client.on\_channel\_event('StasisStart', stasis\_start\_cb)
 client.on\_channel\_event('StasisEnd', stasis\_end\_cb)
 
 ```
-
-
-
----
 
 
 We need two handler functions - `stasis_start_cb` for the `StasisStart` event and `stasis_end_cb` for the `StasisEnd` event:
@@ -217,10 +195,6 @@ def stasis\_end\_cb(channel, ev):
 ```
 
 
-
----
-
-
 Finally, we need to tell the `client` to run our application. Once we call `client.run`, the websocket connection will be made and our application will wait on events infinitely. We can use `Ctrl+C` to kill it and break the connection.
 
 
@@ -237,10 +211,6 @@ Finally, we need to tell the `client` to run our application. Once we call `clie
 truepy39client.run(apps='bridge-hold')
 
 ```
-
-
-
----
 
 
 ### bridge-hold.py
@@ -301,10 +271,6 @@ client.run(apps='bridge-hold')
 ```
 
 
-
----
-
-
  
 
 ### bridge-hold.py in action
@@ -330,10 +296,6 @@ Channel PJSIP/alice-00000001 just left our application
 ```
 
 
-
----
-
-
  
 
 JavaScript (Node.js)
@@ -349,17 +311,14 @@ For our JavaScript examples, we will rely primarily on the Node.js [ari-client](
 
 
 
----
+!!! tip 
+    Modify the connection credentials as appropriate for your server, although many examples will use these credentials.
 
-**Tip:**  Modify the connection credentials as appropriate for your server, although many examples will use these credentials.
+    **Please don't use these credentials in production systems!**
 
-**Please don't use these credentials in production systems!**
+      
+[//]: # (end-tip)
 
-  
-
-
-
----
 
 
 
@@ -388,10 +347,6 @@ function clientLoaded (err, client) {
 }
 
 ```
-
-
-
----
 
 
 Once we've made our connection, our first task is to look for an existing holding bridge - if there is no existing holding bridge - we need to create it. The bridges resource has an operation for listing existing bridges - `GET /bridges`. Using ari-client we need to use the operation nickname - `list`. We can then use another bridges resource operation to create a holding bridge if none was found - `POST /bridges`. Using ari-client, we need to use the operation nickname - `create`.
@@ -432,10 +387,6 @@ client.bridges.list(function(err, bridges) {
 ```
 
 
-
----
-
-
 The `GET /channels` operation returns back a an error if it occurred and a list of `Bridge` resources. `ari-client` will return a JavaScript object for each `Bridge` resource. Properties such as `bridge_type` can be accessed on the object directly.
 
 Our next step involves adding channels that enter our Stasis application to the bridge we either found or created and signaling when a channel leaves our Stasis application. To do that, we need to subscribe for the `StasisStart` and `StasisEnd` events:
@@ -455,10 +406,6 @@ truejs72client.on('StasisStart', stasisStart);
 client.on('StasisEnd', stasisEnd);
 
 ```
-
-
-
----
 
 
 We need two callback functions - `stasisStart` for the `StasisStart` event and `stasisEnd` for the `StasisEnd` event:
@@ -509,10 +456,6 @@ function stasisEnd(event, channel) {
 ```
 
 
-
----
-
-
 Finally, we need to tell the `client` to start our application. Once we call `client.start`, a websocket connection will be established and the client will emit Node.js events as events come in through the websocket. We can use `Ctrl+C` to kill it and break the connection.
 
 
@@ -529,10 +472,6 @@ Finally, we need to tell the `client` to start our application. Once we call `cl
 truejs75client.start('bridge-hold');
 
 ```
-
-
-
----
 
 
 ### bridge-hold.js
@@ -630,10 +569,6 @@ function clientLoaded (err, client) {
 ```
 
 
-
----
-
-
 ### bridge-hold.js in action
 
 Here, we see the output from the `bridge-hold.js` script when a PJSIP channel for endpoint 'alice' enters into the application:
@@ -655,9 +590,5 @@ Channel PJSIP/alice-00000001 just entered our application, adding it to bridge 4
 Channel PJSIP/alice-00000001 just left our application
 
 ```
-
-
-
----
 
 

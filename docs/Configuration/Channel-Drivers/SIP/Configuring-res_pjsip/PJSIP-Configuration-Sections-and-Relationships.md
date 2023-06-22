@@ -36,15 +36,12 @@ The same documentation is available at the Asterisk CLI as well. You can use "co
 
 
 
----
+!!! tip **   ****Defaults**:
+    For many config options, it's very helpful to understand their default behavior. For example, for the endpoint section "transport=" option, if no value is assigned then Asterisk will \*DEFAULT\* to the first configured transport in pjsip.conf which is valid for the URI we are trying to contact.
 
-**Tip:**   ****Defaults**:** For many config options, it's very helpful to understand their default behavior. For example, for the endpoint section "transport=" option, if no value is assigned then Asterisk will \*DEFAULT\* to the first configured transport in pjsip.conf which is valid for the URI we are trying to contact.
+      
+[//]: # (end-tip)
 
-  
-
-
-
----
 
 
 Section Names
@@ -92,10 +89,6 @@ aors=6001
 ```
 
 
-
----
-
-
 If you want to define the Caller Id this endpoint should use, then add something like the following:
 
 
@@ -115,10 +108,6 @@ callerid=Spaceman Spiff <6001>
 ```
 
 
-
----
-
-
 ### **TRANSPORT**
 
 (provided by module: res\_pjsip)
@@ -133,16 +122,12 @@ You can setup multiple transport sections and other sections (such as endpoints)
 
 
 
----
+!!! info "**  **Reloading Config:"
+    Configuration for transport type sections can't be reloaded during run-time without a full module unload and load. You'll effectively need to restart Asterisk completely for your transport changes to take effect.
 
+      
+[//]: # (end-info)
 
-**Information:**  **Reloading Config:** Configuration for transport type sections can't be reloaded during run-time without a full module unload and load. You'll effectively need to restart Asterisk completely for your transport changes to take effect.
-
-  
-
-
-
----
 
 
 EXAMPLE BASIC CONFIGURATIONA basic UDP transport bound to all interfaces
@@ -166,10 +151,6 @@ bind=0.0.0.0
 
 
 ```
-
-
-
----
 
 
 Or a TLS transport, with many possible options and parameters:
@@ -197,10 +178,6 @@ cipher=
 method=
 
 ```
-
-
-
----
 
 
 ### **AUTH**
@@ -233,10 +210,6 @@ username=6001
 ```
 
 
-
----
-
-
 And then an example with MD5 authentication
 
 
@@ -257,10 +230,6 @@ md5\_cred=51e63a3da6425a39aecc045ec45f1ae8
 username=6001 
 
 ```
-
-
-
----
 
 
 ### **AOR**
@@ -293,10 +262,6 @@ max\_contacts=1
 ```
 
 
-
----
-
-
 Second, we have a configuration where you are **not** expecting the SIP User Agent to register against the AOR. In this case, you can assign contacts manually as follows. We don't have to worry about max\_contacts since that option only affects the maximum allowed contacts to be created through external interaction, like registration.
 
 
@@ -317,10 +282,6 @@ contact=sip:6001@192.0.2.1:5060
 ```
 
 
-
----
-
-
 Third, it's useful to note that you could define only the domain and omit the user portion of the SIP URI if you wanted. Then you could define the **user** portion dynamically in your dialplan when calling the Dial application. You'll likely do this when building an AOR/Endpoint combo to use for dialing out to an ITSP.  For example: "Dial(PJSIP/${EXTEN}@mytrunk)"
 
 
@@ -339,10 +300,6 @@ type=aor
 contact=sip:203.0.113.1:5060
 
 ```
-
-
-
----
 
 
 ### **REGISTRATION**
@@ -378,10 +335,6 @@ retry\_interval=60
 ```
 
 
-
----
-
-
 And an example that may work with a SIP trunking provider
 
 
@@ -404,10 +357,6 @@ client\_uri=sip:1234567890@sip.example.com
 retry\_interval=60
 
 ```
-
-
-
----
 
 
 What if you don't need to authenticate? You can simply omit the **outbound\_auth** option.
@@ -436,10 +385,6 @@ domain=example.com
 ```
 
 
-
----
-
-
 ### **ACL**
 
 (provided by module: res\_pjsip\_acl)
@@ -466,10 +411,6 @@ acl=example\_named\_acl1
 ```
 
 
-
----
-
-
 A configuration defined in the object itself:
 
 
@@ -492,10 +433,6 @@ permit=209.16.236.1
 ```
 
 
-
----
-
-
 A configuration where we are restricting based on contact headers instead of IP addresses.
 
 
@@ -516,10 +453,6 @@ contactpermit=209.16.236.0
 contactpermit=209.16.236.1
 
 ```
-
-
-
----
 
 
 All of these configurations can be combined.
@@ -549,10 +482,6 @@ endpoint=6001
 match=203.0.113.1
 
 ```
-
-
-
----
 
 
 ### **CONTACT**

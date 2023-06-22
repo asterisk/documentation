@@ -111,15 +111,12 @@ Asterisk contains many frameworks. When possible, you should always strive to us
 
 
 
----
+!!! tip 
+    This is not an exhaustive list, nor is it meant to be. These are merely some of the more commonly used APIs and frameworks in Asterisk. Reproducing their functionality is highly likely to be noticed and discouraged.
 
-**Tip:**  This is not an exhaustive list, nor is it meant to be. These are merely some of the more commonly used APIs and frameworks in Asterisk. Reproducing their functionality is highly likely to be noticed and discouraged.
+      
+[//]: # (end-tip)
 
-  
-
-
-
----
 
 
 
@@ -150,18 +147,15 @@ Locking
 
 
 
----
+!!! tip 
+    Common locking orders:
 
-**Tip:**  Common locking orders:
+    * Channels are locked before the channel private structure
+    * Bridges are locked before bridge\_channels, and bridge\_channels before channels
+    * Channel locks must not be held before going into autoservice
+      
+[//]: # (end-tip)
 
-* Channels are locked before the channel private structure
-* Bridges are locked before bridge\_channels, and bridge\_channels before channels
-* Channel locks must not be held before going into autoservice
-  
-
-
-
----
 
 
 * Are locks held when accessing data that may change, and are they held when mutating an object?
@@ -199,15 +193,12 @@ Immutable Objects
 
 
 
----
+!!! note 
+    All objects passed as the payload in a Stasis message are immutable by convention. Some objects in the `res_pjsip` stack are immutable by convention as well. When this is the case, the doxygen documentation will note it as such.
 
-**Note:**  All objects passed as the payload in a Stasis message are immutable by convention. Some objects in the `res_pjsip` stack are immutable by convention as well. When this is the case, the doxygen documentation will note it as such.
+      
+[//]: # (end-note)
 
-  
-
-
-
----
 
 Reference Counted Objects
 -------------------------
@@ -222,15 +213,12 @@ Reference Counted Objects
 
 
 
----
+!!! note 
+    `ao2_callback` can be an expensive operation, as it is `O(n)` - and iterating in the `astobj2` library is not as inexpensive as a more simple linked list implementation.
 
-**Note:**  `ao2_callback` can be an expensive operation, as it is `O(n)` - and iterating in the `astobj2` library is not as inexpensive as a more simple linked list implementation.
+      
+[//]: # (end-note)
 
-  
-
-
-
----
 * Are all object locks used correctly, and are there instances when lookups can be performed with the `OBJ_NOLOCK` flag?
 * Is the reference of an object bumped when it is unlocked, and some other thread could cause it to be destroyed?
 * Would appropriate use of the `RAII_VAR` macro simplify the code, or handle off nominal returns in a more graceful fashion?

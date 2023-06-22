@@ -33,10 +33,6 @@ POST /bridges/{bridge\_id}/addChannel?channel=12345&role=participant
 ```
 
 
-
----
-
-
 On This PageAdding a channel as an announcer
 --------------------------------
 
@@ -59,22 +55,15 @@ POST /bridges/{bridge\_id}/addChannel?channel=56789&role=announcer
 
 
 
----
 
+!!! tip When is an Announcer channel useful?
+    If you want to simply play back a media file to all participants in a holding bridge, e.g., "your call is important to us, please keep waiting", you can simply initiate a `/play` operation on the holding bridge itself. That will perform a playback to all participants in the same fashion as an announcer channel.
 
+    An announcer channel is particularly useful when there is someone actually on the other end of the channel, as opposed to a pre-recorded message. For example, you may have a call queue supervisor who wants to let everyone who is waiting for an agent that response times are especially long, but to hold on for a bit longer. Jumping into the holding bridge as an announcer adds a small bit of humanity to the dreaded call queue experience!
 
+      
+[//]: # (end-tip)
 
----
-
-**Tip: When is an Announcer channel useful?** If you want to simply play back a media file to all participants in a holding bridge, e.g., "your call is important to us, please keep waiting", you can simply initiate a `/play` operation on the holding bridge itself. That will perform a playback to all participants in the same fashion as an announcer channel.
-
-An announcer channel is particularly useful when there is someone actually on the other end of the channel, as opposed to a pre-recorded message. For example, you may have a call queue supervisor who wants to let everyone who is waiting for an agent that response times are especially long, but to hold on for a bit longer. Jumping into the holding bridge as an announcer adds a small bit of humanity to the dreaded call queue experience!
-
-  
-
-
-
----
 
 
 ### Music on hold, media playback, recording, and other such things
@@ -121,10 +110,6 @@ exten => 1000,1,NoOp()
  same => n,Hangup()
 
 ```
-
-
-
----
 
 
 Python
@@ -201,10 +186,6 @@ def find\_or\_create\_bridge():
 ```
 
 
-
----
-
-
 The function that does this work, `find_or_create_bridge`, is called from our `StasisStart` event handler. The bridge that it returns will have the new channel added to it.
 
 
@@ -232,10 +213,6 @@ truepy87def stasis\_start\_cb(channel\_obj, ev):
  
 
 ```
-
-
-
----
 
 
 In the `find_or_create_bridge` function, we also subscribed for the `ChannelLeftBridge` event. We'll add a callback handler for this in that function as well. When the channel leaves the bridge, we'll check to see if there are no more channels in the bridge and - if so - destroy the bridge.
@@ -272,10 +249,6 @@ truepy59 def on\_channel\_left\_bridge(bridge, ev):
 
 
 ```
-
-
-
----
 
 
 ### bridge-infinite-wait.py
@@ -405,10 +378,6 @@ client.run(apps='bridge-infinite-wait')
 ```
 
 
-
----
-
-
  
 
 ### bridge-infinite-wait.py in action
@@ -432,10 +401,6 @@ Destroying bridge 950c4805-c33c-4895-ad9a-2798055e4939
 Channel PJSIP/alice-00000000 just left our application
 
 ```
-
-
-
----
 
 
 JavaScript (Node.js)
@@ -517,10 +482,6 @@ truejs18 console.log('Channel %s just entered our application', channel.name);
 ```
 
 
-
----
-
-
 The joinBridge function involves registered a callback for the ChannelLeftBridge event and adds the channel to the bridge.
 
 
@@ -552,10 +513,6 @@ truejs77 function joinBridge(bridge) {
  } 
 
 ```
-
-
-
----
 
 
 Notice that we use an anonymous function to pass the bridge as an extra parameter to the ChannelLeftBridge callback so we can keep the handler at the same level as joinBridge and avoid another indentation level of callbacks. Finally, we can handle destroying the bridge when the last channel contained in it has left:
@@ -596,10 +553,6 @@ truejs95 // Handler for ChannelLeftBridge event
 ```
 
 
-
----
-
-
 ### bridge-infinite-wait.js
 
 The full source code for `bridge-infinite-wait.js` is shown below:
@@ -607,14 +560,7 @@ The full source code for `bridge-infinite-wait.js` is shown below:
 
 
 
----
-
-  
-bridge-infinite-wait.js  
-
-
-```
-
+```javascript title="bridge-infinite-wait.js" linenums="1"
 truejs/\*jshint node:true\*/
 'use strict';
 
@@ -746,10 +692,6 @@ function clientLoaded (err, client) {
 ```
 
 
-
----
-
-
 ### bridge-infinite-wait.js in action
 
 The following shows the output of the `bridge-infinite-wait.js` script when a `PJSIP` channel for `alice` enters the application:
@@ -772,9 +714,5 @@ Channel PJSIP/alice-00000001 left bridge 31a4a193-36a7-412b-854b-cf2cf5f90bbd
 Channel PJSIP/alice-00000001 just left our application
 
 ```
-
-
-
----
 
 

@@ -10,15 +10,11 @@ The Asterisk software can be installed on a wide range of platforms including va
 
 
 
----
+!!! warning 
+    Note that due to changes and improvements in compilers it is possible for Linux distribution upgrades to result in old versions of Asterisk no longer building. If this occurs it is recommended to upgrade to the latest supported version of Asterisk.
 
-**WARNING!:**   
-Note that due to changes and improvements in compilers it is possible for Linux distribution upgrades to result in old versions of Asterisk no longer building. If this occurs it is recommended to upgrade to the latest supported version of Asterisk.
+      
+[//]: # (end-warning)
 
-  
-
-
-
----
 
 

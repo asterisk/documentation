@@ -38,7 +38,3 @@ exten=>s,52,Playback(beep)
 ```
 
 
-
----
-
-

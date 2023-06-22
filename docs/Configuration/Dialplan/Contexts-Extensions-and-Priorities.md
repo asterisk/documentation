@@ -16,21 +16,10 @@ The syntax for a context is exactly the same as any other section heading in the
 
 
 
----
-
-  
-  
-
+```javascript title=" " linenums="1"
+[users]
 
 ```
-
-javascript[users]
-
-```
-
-
-
----
 
 
 
@@ -46,22 +35,11 @@ Within each context, we can define one or more **extensions**. An extension is s
 
 
 
----
-
-  
-  
+```javascript title=" " linenums="1"
+exten => number,priority,application([parameter[,parameter2...]])
 
 
 ```
-
-javascriptexten => number,priority,application([parameter[,parameter2...]])
-
-
-```
-
-
-
----
 
 
 Let's look at an example extension.
@@ -69,22 +47,11 @@ Let's look at an example extension.
 
 
 
----
-
-  
-  
+```javascript title=" " linenums="1"
+exten => 6001,1,Dial(PJSIP/demo-alice,20)
 
 
 ```
-
-javascriptexten => 6001,1,Dial(PJSIP/demo-alice,20)
-
-
-```
-
-
-
----
 
 
 In this case, the extension number is **6001**, the priority number is **1**, the [application](/Configuration/Applications) is **Dial()**, and the two parameters to the application are **PJSIP/demo-alice** and **20**.
@@ -97,15 +64,10 @@ Within each extension, there must be one or more *priorities*. A priority is sim
 
 
 
----
+!!! tip 
+    Priority numbers  
+[//]: # (end-tip)
 
-**Tip:**  Priority numbers  
-
-
-
-
-
----
 
   
   
@@ -129,11 +91,6 @@ In this case, Asterisk would execute priorities one and two, but would then term
 ```
 
 
-
-
----
-
-
 ### Priority letter n
 
 Priority numbers can also be simplified by using the letter **n** in place of the priority numbers greater than one. The letter **n** stands for **next**, and when Asterisk sees priority **n** it replaces it in memory with the previous priority number plus one. Note that you must still explicitly declare priority number one.
@@ -141,15 +98,8 @@ Priority numbers can also be simplified by using the letter **n** in place of th
 
 
 
----
-
-  
-  
-
-
-```
-
-javascriptexten => 6123,1,NoOp()
+```javascript title=" " linenums="1"
+exten => 6123,1,NoOp()
 exten => 6123,n,Verbose("Do something!")
 exten => 6123,n,Verbose("Do something different!")
 
@@ -157,20 +107,13 @@ exten => 6123,n,Verbose("Do something different!")
 
 
 
----
 
+!!! note 
+    Every time an extension and priority is executed Asterisk searches for the next best match in priority sequence.
 
+      
+[//]: # (end-note)
 
-
----
-
-**Note:**  Every time an extension and priority is executed Asterisk searches for the next best match in priority sequence.
-
-  
-
-
-
----
 
 
 Consider the dialplan below.
@@ -194,10 +137,6 @@ exten => \_.!,n,Verbose("Surprise - executed for all numbers!")
 ```
 
 
-
----
-
-
 It may not be immediately intuitive, but the "\_.!" extension with the "n" priority will be executed after any of the preceding lines are executed.
 
 Application calls
@@ -212,23 +151,12 @@ You can also assign a label (or alias) to a particular priority number by placin
 
 
 
----
-
-  
-  
-
-
-```
-
-javascriptexten => 6123,1,NoOp()
+```javascript title=" " linenums="1"
+exten => 6123,1,NoOp()
 exten => 6123,n(repeat),Verbose("Do something!")
 exten => 6123,n,Verbose("Do something different!")
 
 ```
-
-
-
----
 
 
 Here, we've assigned a label named **repeat** to the second priority.
@@ -238,23 +166,12 @@ Included in the Asterisk 1.6.2 branch (and later) there is a way to avoid having
 
 
 
----
-
-  
-  
-
-
-```
-
-javascriptexten => 6123,1,NoOp()
+```javascript title=" " linenums="1"
+exten => 6123,1,NoOp()
  same => n(repeat),Verbose("Do something!")
  same => n,Verbose("Do something different!")
 
 ```
-
-
-
----
 
 
 Dialplan search order

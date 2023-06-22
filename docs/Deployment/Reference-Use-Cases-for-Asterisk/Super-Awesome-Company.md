@@ -73,15 +73,12 @@ WaldoCom, as a traditional communications provider will allow SAC to purchase te
 
 
 
----
+!!! note 
+    WaldoCom has ceased trading in Bitcoin after having been accused by the FBI of running the Silk Road as the Dread Pirate Roberts.
 
-**Note:**  WaldoCom has ceased trading in Bitcoin after having been accused by the FBI of running the Silk Road as the Dread Pirate Roberts.
+      
+[//]: # (end-note)
 
-  
-
-
-
----
 
 
 SAC has purchased a well-loved Linksys WRT54G, aka "Old Unreliable," from the now defunct Waldo Happy Hands Club.  They intend to use it to terminate the Ethernet connectivity from WaldoCom.  WaldoCom provides a single IPv4 address across the link - 203.0.113.1.  The Linksys will provide NAT translation from the Internet to the internal SAC campus network.  Within the SAC network, the 10.0.0.0/8 address space will be used.

@@ -37,10 +37,6 @@ bind=[fe80::5e26:aff:fe4b:4399]
 ```
 
 
-
----
-
-
 Bind PJSIP to the first available IPv6 interface
 ------------------------------------------------
 
@@ -63,10 +59,6 @@ protocol=udp
 bind=::
 
 ```
-
-
-
----
 
 
 Configure a PJSIP endpoint to use RTP over IPv6
@@ -93,10 +85,6 @@ disallow=all
 allow=ulaw
 
 ```
-
-
-
----
 
 
  

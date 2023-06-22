@@ -42,10 +42,6 @@ end
 ```
 
 
-
----
-
-
 The `extensions` Table
 ----------------------
 
@@ -77,10 +73,6 @@ extensions = {
 ```
 
 
-
----
-
-
 Where did the priorities go?
 ----------------------------
 
@@ -101,10 +93,6 @@ There are no priorities. Asterisk uses priorities to define the order in which d
 extensions.default["1234"]("default", "1234")
 
 ```
-
-
-
----
 
 
 Lua Script Lifetime
@@ -144,10 +132,6 @@ value = var:get("my value")
 
 
 
----
-
-
-
 
 ---
 
@@ -170,10 +154,6 @@ value = fax\_modems:get()
 
 
 
----
-
-
-
 
 ---
 
@@ -191,10 +171,6 @@ dial("SIP/100")
 
 
 ```
-
-
-
----
 
 
 There is a small cost in creating the placeholder objects so storing frequently used placeholder objects can be used as a micro optimization. This should never be necessary though and only provides benefits if you are running micro benchmarks.

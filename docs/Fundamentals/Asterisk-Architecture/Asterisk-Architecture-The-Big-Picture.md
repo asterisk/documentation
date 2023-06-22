@@ -43,13 +43,10 @@ Asterisk modules which are part of the core have a file name that look like **pb
 
 
 
----
+!!! tip A Plethora of Modules
+    Take just a minute and go look at the Asterisk modules directory on your system. You should find a wide variety of modules. A default installation of Asterisk has over one hundred fifty different modules!  
+[//]: # (end-tip)
 
-**Tip: A Plethora of Modules** Take just a minute and go look at the Asterisk modules directory on your system. You should find a wide variety of modules. A default installation of Asterisk has over one hundred fifty different modules!  
-
-
-
----
 
 
 ### A Few Module Examples

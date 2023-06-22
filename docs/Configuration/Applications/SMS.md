@@ -95,10 +95,6 @@ exten => \_X.,n,Hangup
 ```
 
 
-
----
-
-
 The script sends
 
 
@@ -121,10 +117,6 @@ The script sends
 
 
 ```
-
-
-
----
 
 
 You put the message as the name of the caller ID (messy, I know), the originating number and hence queue name as the number of the caller ID and the exten as the number to which the sms is to be sent. The context uses SMS to create the message in the queue and then SMS to communicate with 17094009 to actually send the message.
@@ -153,10 +145,6 @@ exten => \_XXXXXX/\_80058752[0-8]0,n,Hangup
 
 
 ```
-
-
-
----
 
 
 In this case the called number we get from BT is 6 digits (XXXXXX) and we are using the last 3 digits as the queue name.

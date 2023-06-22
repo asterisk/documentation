@@ -158,10 +158,6 @@ Detail:
 ```
 
 
-
----
-
-
 To keep the Release Announcements posted to the mailing lists and community forums brief, they won't contain the detail commit section.
 
 Branching Changes

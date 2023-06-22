@@ -60,10 +60,6 @@ exten => 1000,1,Set(DEST=${DB(egg/salad)})
 ```
 
 
-
----
-
-
 Since the `DEST` variable is set and evaluated in the dialplan, its evaluation is case-insensitive. Thus the following would be equivalent:
 
 
@@ -85,10 +81,6 @@ exten => 1000,1,Set(DEST=${DB(egg/salad)})
 ```
 
 
-
----
-
-
 As would this:
 
 
@@ -108,10 +100,6 @@ exten => 1000,1,Set(DeSt=${DB(egg/salad)})
 
 
 ```
-
-
-
----
 
 
 ### Example 2: Using a built-in variable
@@ -137,10 +125,6 @@ exten => \_X.,1,Dial(SIP/${EXTEN})
 ```
 
 
-
----
-
-
 Since the variable `EXTEN` is a built-in variable, the following would **not** be equivalent:
 
 
@@ -159,10 +143,6 @@ exten => \_X.,1,Dial(SIP/${exten})
 
 
 ```
-
-
-
----
 
 
 The lowercase `exten` variable would evaluate to an empty string since no previous value was set for `exten`.
@@ -192,10 +172,6 @@ same => n,Dial(SIP/1000,15)
 ```
 
 
-
----
-
-
 `SIP_CODEC` is set in the dialplan, but it gets evaluated inside of Asterisk, so the evaluation is case-sensitive. Thus the following dialplan would not be equivalent:
 
 
@@ -215,10 +191,6 @@ exten => 1000,Set(sip\_codec=g729)
 
 
 ```
-
-
-
----
 
 
 This can lead to some rather confusing situations. Consider that a user wrote the following dialplan. He intended to set the variable `SIP_CODEC` but instead made a typo:
@@ -242,10 +214,6 @@ exten => 1000,Set(SIP\_CODEc=g729)
 ```
 
 
-
----
-
-
 As has already been discussed, this is not equivalent to using `SIP_CODEC`. The user looks over his dialplan and does not notice the typo. As a way of debugging, he decides to place a `NoOp` in the dialplan:
 
 
@@ -266,10 +234,6 @@ exten => 1000,Set(SIP\_CODEc=g729)
 
 
 ```
-
-
-
----
 
 
 When the user checks the verbose logs, he sees that the second priority has evaluated `SIP_CODEC` to be "g729". This is because the evaluation in the dialplan was done case-insensitively.

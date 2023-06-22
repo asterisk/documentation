@@ -34,10 +34,6 @@ sudo apt-get install python-sipsimple python-gnutls python-eventlib python-appli
 
 ```
 
-
-
----
-
 If you have issues see: <http://sipsimpleclient.org/projects/sipsimpleclient/wiki/SipInstallation>
 
 Download and install Blink
@@ -75,10 +71,6 @@ Writing /usr/local/lib/python2.7/dist-packages/blink-0.6.0.egg-info
 
 ```
 
-
-
----
-
 Run Blink!
 ----------
 
@@ -101,10 +93,6 @@ using set\_wakeup\_fd
 "sni-qt/6493" WARN 08:11:15.444 void StatusNotifierItemFactory::connectToSnw() Invalid interface to SNW\_SERVICE 
 
 ```
-
-
-
----
 2. Blink should launch and show up within your graphical desktop.
 
  
@@ -112,14 +100,11 @@ using set\_wakeup\_fd
 
 
 
----
+!!! note 
+    Blink doesn't appear to support call forwarding or call transfers, so don't expect to do anything too fancy!
 
-**Note:**  Blink doesn't appear to support call forwarding or call transfers, so don't expect to do anything too fancy!
+      
+[//]: # (end-note)
 
-  
-
-
-
----
 
 

@@ -103,10 +103,6 @@ location\_info = shape=Prism, crs=3d, pos="39.12345 -105.98766 1890", pos="40.78
 ```
 
 
-
----
-
-
 30%Table of Contents:
 
 Geolocation:

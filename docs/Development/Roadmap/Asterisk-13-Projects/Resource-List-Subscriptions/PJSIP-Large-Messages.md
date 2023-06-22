@@ -451,10 +451,6 @@ Content-Length: 415
 ```
 
 
-
----
-
-
 On subsequent NOTIFYs that are caused by a single resource's state change, a partial state notification can be sent that is much smaller. 
 
 ### In PJSIP

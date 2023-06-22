@@ -31,10 +31,6 @@ setting3=value3
 ```
 
 
-
----
-
-
 This works even when the section name referenced in parentheses is **not defined as a template** as in the case of the "not-a-template" section.
 
 The newly-created section will inherit all the values and objects defined in the template(s), as well as any new settings or objects defined in the newly-created section. The settings and objects defined in the newly-created section override settings or objects of the same name from the templates. Consider this example:
@@ -67,24 +63,13 @@ host=charlie.example.com
 ```
 
 
-
----
-
-
 The [test-three] section will be processed as though it had been written in the following way:
 
 
 
 
----
-
-  
-  
-
-
-```
-
-javascript[test-three]
+```javascript title=" " linenums="1"
+[test-three]
 permit=192.168.0.2
 host=alpha.example.com
 deny=192.168.0.1
@@ -95,10 +80,6 @@ permit=192.168.3.1
 host=charlie.example.com
 
 ```
-
-
-
----
 
 
 chan\_sip Template Example
@@ -153,9 +134,5 @@ Here is a more extensive and realistic example from the chan\_sip channel driver
 ; secret = not\_very\_secret\_either
 
 ```
-
-
-
----
 
 

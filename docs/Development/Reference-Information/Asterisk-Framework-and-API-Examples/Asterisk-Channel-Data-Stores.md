@@ -39,10 +39,6 @@ static const struct example\_datastore {
 ```
 
 
-
----
-
-
 This is a needed structure that contains information about a datastore, it's used by many API calls.
 
 
@@ -94,21 +90,14 @@ ast\_channel\_datastore\_add(chan, datastore);
 
 
 
----
 
+!!! note 
+    NOTE
+    Because you're passing a pointer to a function in your module, you'll want to include this in your use count. When allocated increment, when destroyed decrement.
 
+      
+[//]: # (end-note)
 
-
----
-
-**Note:**  NOTE
-Because you're passing a pointer to a function in your module, you'll want to include this in your use count. When allocated increment, when destroyed decrement.
-
-  
-
-
-
----
 
 
 ##### How do you remove a data store?

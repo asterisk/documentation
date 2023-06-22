@@ -6,16 +6,12 @@ pageid: 22088024
 
 
 
----
+!!! note 
+    This page is a living document; expect missing and incomplete information. Still, feel free to discuss on [asterisk-dev](http://lists.digium.com/mailman/listinfo/asterisk-dev).
 
-**Note:**  
-This page is a living document; expect missing and incomplete information. Still, feel free to discuss on [asterisk-dev](http://lists.digium.com/mailman/listinfo/asterisk-dev).
+      
+[//]: # (end-note)
 
-  
-
-
-
----
 
 
 Project Overview
@@ -59,10 +55,6 @@ A comment from ast\_do\_masquerade
 ```
 
 
-
----
-
-
 The way the operation works is to take two channels and 'swap' portions of them. In the diagram below, assume that Thread A has a channel that Thread B wants to take over. Thread B creates a new channel ("Original") and starts a Masquerade operation on the channel owned by Thread A ("Clone"). Both channels are locked, and the state of the Clone channel is moved into the Original channel, while the Clone channel obtains the Original channel's state. In order to denote that the channel is about to die, a special ZOMBIE flag is put on the channel and the name renamed to Clone<ZOMBIE>. The lock is released, and the Original channel - which now has the state associated with Clone channel - executes in Thread B, while the Clone channel (which is now quite dead) see's that its dead and goes off to silently contemplate its demise in an `h` extension.
 
 
@@ -84,16 +76,12 @@ Why Bridging Uses Masquerades and what We can do about it
 
 
 
----
+!!! tip Channel Farm
+    "All channels are created equal, but some channels are created more equal than others."
 
-**Tip: Channel Farm** 
-"All channels are created equal, but some channels are created more equal than others."
+      
+[//]: # (end-tip)
 
-  
-
-
-
----
 
 
 Not all channels get an execution thread (`pbx_thread`) in Asterisk. In general, an inbound channel get's a thread; outbound channels do not. As a result, a two-party bridge that is created between the two channels uses the inbound channel's `pbx_thread` to service frames between the two channels. Regardless of the two-party bridge type in play, this is how it works in Asterisk.
@@ -113,16 +101,12 @@ Then, along came [ConfBridge](/Configuration/Applications/Conferencing-Applicati
 
 
 
----
+!!! note We All Do
+    Ignore MeetMe.
 
-**Note: We All Do** 
-Ignore MeetMe.
+      
+[//]: # (end-note)
 
-  
-
-
-
----
 
 
 ConfBridge used a brand spiffy "new" (as in Asterisk 1.6 timeframe) Bridging API developed by Joshua Colp. A bridge becomes a first class object, and no longer a state that two channels happen to find themselves in. Channels owned by a bridge object are each given a thread. Even more interesting, the Bridging API provided an abstraction above how the media of the channels in the bridge was mixed. ConfBridge, for example, used the softmix bridging technology, suitable for multiple channels in a bridge. However, there are other bridging technologies - some optimized for managing two channels (or sets of two channels). Others - such as bridging technologies developed for special purpose applications - are possible. The Bridging API itself provides safe mechanisms to move channels between bridges, merge bridges, and generally do things without the need for masquerades.
@@ -149,19 +133,15 @@ But, a wholesale migration to the Bridging API let's us:
 
 
 
----
-
-**Tip: A word of advice** 
-If you're familiar with the bridging code in `features.c`, you probably have a good idea of how big a task this work is. When you do away with the bridging loop, lots of things break, and they aren't all obvious. CDRs break. CEL breaks. Queue Logs probably break. AMI is wonky. DTMF handling has to be tweaked significantly. Lots change.
+!!! tip A word of advice
+    If you're familiar with the bridging code in `features.c`, you probably have a good idea of how big a task this work is. When you do away with the bridging loop, lots of things break, and they aren't all obvious. CDRs break. CEL breaks. Queue Logs probably break. AMI is wonky. DTMF handling has to be tweaked significantly. Lots change.
 
 
-This is scary, but it's time.
+    This is scary, but it's time.
 
-  
+      
+[//]: # (end-tip)
 
-
-
----
 
 
 Requirements and Specification
@@ -439,16 +419,12 @@ To eliminate the masquerade here it is likely that every application needs to be
 
 
 
----
+!!! note 
+    We'd really like to do that, but won't have time. 
 
-**Note:**  
-We'd really like to do that, but won't have time. 
+      
+[//]: # (end-note)
 
-  
-
-
-
----
 
 
 #### int ast\_bridge\_park(struct ast\_bridge \*parking\_bridge, struct ast\_bridge\_channel \*chan, struct ast\_bridge\_channel \*swap);
@@ -564,10 +540,6 @@ A way to implement the toggle between A and C parties is to have an atxfer bridg
 
 
 ```
-
-
-
----
 
 
 The atxfer bridges grant B the transfer menu because it has the TransferrerRoll defined on the channel. When the transfer is completed, the TransferrerRoll is removed.
@@ -783,10 +755,6 @@ class ast\_bridge\_channel {
 ```
 
 
-
----
-
-
 #### Locking precedence order:
 
 
@@ -815,10 +783,6 @@ channel private
 ```
 
 
-
----
-
-
 #### New Bridge Techs
 
 
@@ -836,16 +800,12 @@ channel private
 
 
 
----
+!!! note 
+    We are, unfortunately, punting on the Early Media Bridge Technology. Not because it isn't awesome or the right way to do it, but because app\_dial and app\_queue are a bitch to refactor.
 
-**Note:**  
-We are, unfortunately, punting on the Early Media Bridge Technology. Not because it isn't awesome or the right way to do it, but because app\_dial and app\_queue are a bitch to refactor.
+      
+[//]: # (end-note)
 
-  
-
-
-
----
 
 
 ##### Parking bridge tech:
@@ -962,16 +922,12 @@ We are, unfortunately, punting on the Early Media Bridge Technology. Not because
 
 
 
----
+!!! note 
+    This won't be how this works. It's still going to be a masquerade.
 
-**Note:**  
-This won't be how this works. It's still going to be a masquerade.
+      
+[//]: # (end-note)
 
-  
-
-
-
----
 
 
 ##### Local channel optimization:
@@ -1049,10 +1005,6 @@ bridge unsuspend <tech>
 ```
 
 
-
----
-
-
 Corresponding AMI actions should also be created.
 
 
@@ -1090,33 +1042,25 @@ Call pickup occurs entirely before a bridge is formed, therefore it does not bel
 
 
 
----
-
-**Note: Note** 
-This may actually change, if channels are placed into a new bridge technology that performs early media playback ("Early Bridge"). This would be advantageous as the channel picking up the call would simply join the bridge with the channel in early media, and the bridge technology would swap from the Early Bridge technology to a compatible Two-Party bridge technology.
+!!! note Note
+    This may actually change, if channels are placed into a new bridge technology that performs early media playback ("Early Bridge"). This would be advantageous as the channel picking up the call would simply join the bridge with the channel in early media, and the bridge technology would swap from the Early Bridge technology to a compatible Two-Party bridge technology.
 
 
-If that occurs, this test plan will be updated.
+    If that occurs, this test plan will be updated.
 
-  
-
-
-
----
+      
+[//]: # (end-note)
 
 
 
 
----
 
-**Note: Note #2** 
-Most likely, call pickup will not have an early bridge 
+!!! note Note #2
+    Most likely, call pickup will not have an early bridge 
 
-  
+      
+[//]: # (end-note)
 
-
-
----
 
 
 ### Invoking bridges from multiple applications
@@ -1193,16 +1137,12 @@ High Level Bridging construction tasks:
 
 
 
----
+!!! note 
+    Punt.
 
-**Note:**  
-Punt.
+      
+[//]: # (end-note)
 
-  
-
-
-
----
 
 
 * Dial/Queue/FollowMe/Pickup updated to use early bridging.
@@ -1210,16 +1150,12 @@ Punt.
 
 
 
----
+!!! note 
+    Punt.
 
-**Note:**  
-Punt.
+      
+[//]: # (end-note)
 
-  
-
-
-
----
 
 
 * Get DTMF transfer features on par with current functionality. DTMF attended transfer will need a manager thread to handle operations after Party B hangs up and before Party C answers. Bonus is that the new bridging API allows threeway conferences. Since features.conf is being gutted should we eliminate it in favor of new config files?

@@ -68,10 +68,6 @@ maxcallnumbers = 16382
 ```
 
 
-
----
-
-
 #### Controlled Networks
 
 
@@ -139,10 +135,6 @@ maxcallnumbers = 1024
 ```
 
 
-
----
-
-
 ##### Partial Upgrade
 
 
@@ -167,10 +159,6 @@ requirecalltoken = auto
 
 
 ```
-
-
-
----
 
 
 Note that there are some cases where auto should not be used. For example, if multiple peers use the same authentication details, and they have not all upgraded to support call token validation, then the ones that do not support it will get locked out. Once an upgraded client successfully completes an authenticated call setup using call token validation,  
@@ -209,10 +197,6 @@ requirecalltoken = no
 ```
 
 
-
----
-
-
 Since disabling call token validation for the guest account allows a huge hole for malicious call number consumption, an option has been provided to segregate the call numbers consumed by connections not using call token validation from those that do. That way, there are resources dedicated to the more secure connections to ensure that service is not interrupted for them.
 
 
@@ -233,10 +217,6 @@ maxcallnumbers\_nonvalidated = 2048
 
 
 ```
-
-
-
----
 
 
 ### CLI Commands

@@ -22,14 +22,7 @@ If you're not sure if Asterisk is running with the -g option, type the following
 
 
 
----
-
-  
-  
-
-
-```
-
+```bash title=" " linenums="1"
 # ps -C asterisk u
 USER PID %CPU %MEM VSZ RSS TTY STAT START TIME COMMAND
 root 3018 1.1 2.7 636212 27768 pts/1 Sl+ 08:06 0:00 asterisk -vvvvvg -c
@@ -37,10 +30,6 @@ root 3018 1.1 2.7 636212 27768 pts/1 Sl+ 08:06 0:00 asterisk -vvvvvg -c
 
 
 ```
-
-
-
----
 
 
 The interesting information is located in the last column.
@@ -61,15 +50,12 @@ Before you go further, you must have the GNU Debugger (gdb) installed on the mac
 
 
 
----
+!!! note 
+    Don't attach core files on the bug tracker as they are only useful on the machine they were generated on. We only need the output of ast\_coredumper.
 
-**Note:**  Don't attach core files on the bug tracker as they are only useful on the machine they were generated on. We only need the output of ast\_coredumper.
+      
+[//]: # (end-note)
 
-  
-
-
-
----
 
 
 ### ast\_coredumper
@@ -230,10 +216,6 @@ FILES
 ```
 
 
-
----
-
-
 ### Running ast\_coredumper for crashes
 
 As you can see, there are lots of options but if the core file is simply named `core` in your current directory, running `/var/lib/asterisk/scripts/ast_coredumper core` will usually be sufficient.
@@ -241,14 +223,7 @@ As you can see, there are lots of options but if the core file is simply named `
 
 
 
----
-
-  
-  
-
-
-```
-
+```bash title=" " linenums="1"
 $ sudo /var/lib/asterisk/scripts/ast\_coredumper core
 Processing core
 Creating core-thread1.txt
@@ -261,10 +236,6 @@ $
 ```
 
 
-
----
-
-
 Unless you've compiled Asterisk with the `DEBUG_THREADS` compiler flag (see below), the locks.txt file will be empty.
 
 Many system administrators use the sysctl `kernel.core_pattern` parameter to control where core files are dumped and what they are named.
@@ -272,14 +243,7 @@ Many system administrators use the sysctl `kernel.core_pattern` parameter to con
 
 
 
----
-
-  
-  
-
-
-```
-
+```bash title=" " linenums="1"
 $ sysctl -n kernel.core\_pattern
 /tmp/core-%e-%t
 $ ls -al /tmp/core-asterisk\*
@@ -296,10 +260,6 @@ Creating /tmp/core-asterisk-1497620664.32259-locks.txt
 ```
 
 
-
----
-
-
 You'll notice that the output file names include the full core file name.
 
 If the `/etc/asterisk/ast_debug_tools.conf` file contained a `COREDUMPS` entry that would have matched the core file name in /tmp, then you don't even have to supply a path.
@@ -307,14 +267,7 @@ If the `/etc/asterisk/ast_debug_tools.conf` file contained a `COREDUMPS` entry t
 
 
 
----
-
-  
-  
-
-
-```
-
+```bash title=" " linenums="1"
 $ sudo /var/lib/asterisk/scripts/ast\_coredumper
 Processing /tmp/core-asterisk-1497620664.32259
 Creating /tmp/core-asterisk-1497620664.32259-thread1.txt
@@ -326,10 +279,6 @@ Creating /tmp/core-asterisk-1497620664.32259-locks.txt
 ```
 
 
-
----
-
-
  
 
 By default, ast\_coredumper also processes existing core files it detects.  You can suppress that using the `--no-default-search` option and supplying a path directly to a coredump. 
@@ -337,14 +286,7 @@ By default, ast\_coredumper also processes existing core files it detects.  You
 
 
 
----
-
-  
-  
-
-
-```
-
+```bash title=" " linenums="1"
 $ sudo /var/lib/asterisk/scripts/ast\_coredumper --no-default-search /tmp/core-asterisk-1497620664.32259
 Processing /tmp/core-asterisk-1497620664.32259
 Creating /tmp/core-asterisk-1497620664.32259-thread1.txt
@@ -358,10 +300,6 @@ Creating /tmp/core-asterisk-1497620664.32259-locks.txt
 ```
 
 
-
----
-
-
 ### Running ast\_coredumper for deadlocks, taskprocessor backups, etc.
 
 When collecting information about a deadlock or taskprocessor backups, it is useful to have additional information about the threads involved. We can generate this information by attaching to a running Asterisk process and gathering that information. Follow the steps below to collect debug that will be useful to Asterisk developers.
@@ -371,14 +309,7 @@ If you can easily reproduce the deadlock, in the Compiler Flags menu of menusele
 When you suspect asterisk is deadlocked or you start seeing "task processor queue reached..." messages, you can use ast\_coredumper to dump the currently running asterisk instance.
 
 
----
-
-  
-  
-
-
-```
-
+```bash title=" " linenums="1"
 $ sudo /var/lib/asterisk/scripts/ast\_coredumper --running --no-default-search
 WARNING: Taking a core dump of the running asterisk instance will suspend call processing while the dump is saved. Do you wish to continue? (y/N) y
 Dumping running asterisk process to /tmp/core-asterisk-running-2017-06-16T09-56-53-0600
@@ -394,10 +325,6 @@ Creating /tmp/core-asterisk-running-2017-06-16T09-56-53-0600-locks.txt
 ```
 
 
-
----
-
-
 You can suppress the "continue" prompt by specifying `--RUNNING` instead of `--running`.
 
 If Asterisk is truly deadlocked and you compiled with `DEBUG_THREADS`, the locks.txt file should now contain a table of locks including who's waiting and who's holding.
@@ -410,16 +337,12 @@ Reporting crashes and deadlocks
 
 
 
----
+!!! warning 
+    Coredump files may contain sensitive information you might not wish to expose. You should scrub them before attaching them to an issue.
 
-**WARNING!:**   
-Coredump files may contain sensitive information you might not wish to expose. You should scrub them before attaching them to an issue.
+      
+[//]: # (end-warning)
 
-  
-
-
-
----
 
 
  

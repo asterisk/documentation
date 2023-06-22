@@ -47,10 +47,6 @@ parkcall = #72
 ```
 
 
-
----
-
-
 Assign each option the DTMF character string that you want users to enter for invoking the feature.
 
 Dialplan application options
@@ -61,15 +57,12 @@ For each feature there are a pair of options that can be set in the [Dial](/Aste
 
 
 
----
+!!! note 
+    If neither option of a pair are set then you will not be able to use the related feature on the channel.
 
-**Note:**  If neither option of a pair are set then you will not be able to use the related feature on the channel.
+      
+[//]: # (end-note)
 
-  
-
-
-
----
 
 
 **automon**
@@ -110,10 +103,6 @@ extensions.conf
 exten = 101,1,Dial(PJSIP/ALICE,30,X)
 
 ```
-
-
-
----
 
 
 This would allow the calling party, the party dialing PJSIP/ALICE, to invoke recording on the channel.

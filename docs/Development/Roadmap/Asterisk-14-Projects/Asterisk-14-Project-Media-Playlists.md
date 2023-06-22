@@ -26,10 +26,6 @@ POST /channels/12345/play?media=number:555
 ```
 
 
-
----
-
-
 This works well enough when you know that a user needs to listen to all of the prompts, and you don't need to cancel them. If, however, you need to let the prompts be interruptible or allow a user to manipulate the playback, you have to keep a reference to the current `Playback` object for the resource, as well as any 'future' `Playback` objects (so you can `delete` them). Alternatively, of course, you don't have to initiate all of the media operations at once - you can ostensibly play each when the previous has finished. However, that negates the benefit of the media queueing, and entails writing a state machine.
 
 Either way, however, the client is required to maintain state. That state is cumbersome - having to 'remember' which media operation the resource is currently in and/or future media operations to be performed/are enqueued is extra work that a developer using ARI shouldn't have to perform.
@@ -60,10 +56,6 @@ ARI will allow a user to specify multiple media resources to play on a supported
 POST /channels/12345/play?media=sound:tt-monkeys&media=sound:tt-weasels&media=number:555
 
 ```
-
-
-
----
 
 
 ### Other Media Parameters
@@ -117,10 +109,6 @@ POST /playbacks/1283791327846/control?operation=next
 ```
 
 
-
----
-
-
 ### Existing Operations
 
 The existing operations will work as follows:
@@ -170,10 +158,6 @@ js  {
 ```
 
 
-
----
-
-
 The `playbacks` resource will have its `control` operation updated with new options for the `operation` query parameter.
 
 
@@ -211,10 +195,6 @@ js  {
 ```
 
 
-
----
-
-
 Core updates
 ------------
 
@@ -240,10 +220,6 @@ truecpp312  AST\_CONTROL\_STREAM\_STOP = 1000, /\*!< Indicate to a channel in p
  AST\_CONTROL\_STREAM\_NEXT = 1006, /\*!< Indicate to a channel in playback to play the next stream \*/
 
 ```
-
-
-
----
 
 
 * Update `channel.c` to consume and ignore the two new frame types

@@ -61,10 +61,6 @@ POST /channels/externalMedia?app=MyApp&external\_host=127.0.0.1%3A60000&format=u
 ```
 
 
-
----
-
-
 The returned object will be an ExternalMedia object that contains a standard Channel object that can be operated on like any other channel.  The most common scenario will be to add it to a bridge.  Once you're done with the channel, simply DELETE it to hang it up.
 
 You will automatically be subscribed to events for this channel so you'll see events like StasisStart, Dial(ANSWER), ChannelEnteredBridge, ChannelVarset etc.

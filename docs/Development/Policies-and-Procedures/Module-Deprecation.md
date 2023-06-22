@@ -35,15 +35,12 @@ Marking A Module As Deprecated For Standard Release
 
 
 
----
+!!! note 
+    Reminder: Module deprecation practices within the tree are only eligible to be done in master when the next release is a standard release. No module deprecation can be done during the development of a long term supported release.
 
-**Note:**  Reminder: Module deprecation practices within the tree are only eligible to be done in master when the next release is a standard release. No module deprecation can be done during the development of a long term supported release.
+      
+[//]: # (end-note)
 
-  
-
-
-
----
 
 
  
@@ -69,16 +66,12 @@ Marking A Module As Deprecated For Standard Release
 
 
 
----
+!!! info ""
+    Setting these values in the MODULEINFO XML will cause Asterisk to output a warning at startup with the information to inform the user that in a future new version of Asterisk deprecation and then removal will occur.
 
+      
+[//]: # (end-info)
 
-**Information:**  Setting these values in the MODULEINFO XML will cause Asterisk to output a warning at startup with the information to inform the user that in a future new version of Asterisk deprecation and then removal will occur.
-
-  
-
-
-
----
 
 
  
@@ -95,15 +88,12 @@ Marking A Module As Deprecated For Standard Release
 
 
 
----
+!!! note 
+    A single commit can be used to update multiple modules, but each module will need its own JIRA issue.
 
-**Note:**  A single commit can be used to update multiple modules, but each module will need its own JIRA issue.
+      
+[//]: # (end-note)
 
-  
-
-
-
----
 
 
  
@@ -122,15 +112,12 @@ Removing A Module
 
 
 
----
+!!! note 
+    Reminder: Module removal is only eligible to be done in master when the next release is a standard release. No module removal can be done during the development of a long term supported release.
 
-**Note:**  Reminder: Module removal is only eligible to be done in master when the next release is a standard release. No module removal can be done during the development of a long term supported release.
+      
+[//]: # (end-note)
 
-  
-
-
-
----
 
 
  

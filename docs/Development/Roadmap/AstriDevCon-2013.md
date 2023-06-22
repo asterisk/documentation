@@ -77,15 +77,12 @@ Participants
 
 
 
----
+!!! note 
+    If your name is not on this list, please let someone know in #asterisk-dev so we can add you to this list!
 
-**Note:**  If your name is not on this list, please let someone know in #asterisk-dev so we can add you to this list!
+      
+[//]: # (end-note)
 
-  
-
-
-
----
 
 
 Day One: Asterisk 12 Development Discussion
@@ -98,15 +95,12 @@ Day one consisted of an in depth discussion of the features in Asterisk 12, as w
 
 
 
----
+!!! note 
+    It's probably worth noting that the slides were used only to help discussion and don't contain a lot of explanation. For more information on the features discussed on those slides, please see the relevant sections under [Asterisk 12 Projects](/Asterisk-12-Projects).
 
-**Note:**  It's probably worth noting that the slides were used only to help discussion and don't contain a lot of explanation. For more information on the features discussed on those slides, please see the relevant sections under [Asterisk 12 Projects](/Asterisk-12-Projects).
+      
+[//]: # (end-note)
 
-  
-
-
-
----
 
 
 Some questions and comments that came up during the discussion:
@@ -172,16 +166,12 @@ Some questions and comments that came up during the discussion:
 
 
 
----
+!!! info ""
+    chan\_agent is dead in Asterisk 12, replaced by [Asterisk 12 Application\_AgentRequest](/Asterisk-12-Application_AgentRequest) and [Asterisk 12 Application\_AgentLogin](/Asterisk-12-Application_AgentLogin). No one seemed to mind.
 
+      
+[//]: # (end-info)
 
-**Information:**  chan\_agent is dead in Asterisk 12, replaced by [Asterisk 12 Application\_AgentRequest](/Asterisk-12-Application_AgentRequest) and [Asterisk 12 Application\_AgentLogin](/Asterisk-12-Application_AgentLogin). No one seemed to mind.
-
-  
-
-
-
----
 * Anyone still using MeetMe?
 	+ 3 or 4 in attendance admitted to using MeetMe.
 * Is there still a need to add functionality to Queue for features like Skills-based routing?
@@ -228,231 +218,231 @@ Agenda
 * Clustering / distributed environments
 	+ Distributed conferencing
 * Opus
-* Kill app\_queue!!!!
-* Asteri18n - mailing list exists!
-* Video!!!
-* RTP / improvements
-* Security / named ACLs mark II
-* Dynamic configuration framework / push
-* Review last year's list
-* The future of Asterisk
+    * Kill app\_queue!!!!
+    * Asteri18n - mailing list exists!
+    * Video!!!
+    * RTP / improvements
+    * Security / named ACLs mark II
+    * Dynamic configuration framework / push
+    * Review last year's list
+    * The future of Asterisk
 
-Release policy
---------------
+    Release policy
+    --------------
 
-* Asterisk 12 release policy will be different than other releases
-	+ New features will be included after release, subject to the constraints in [Software Configuration Management Policies](/Development/Policies-and-Procedures/Development/Policies-and-Procedures/Software-Configuration-Management-Policies)
-* Release policy: do we allow new feature changes in Asterisk 13?
-	+ First, as it is with Asterisk 11, standalone modules are always okay. If they are included in a release branch, they can be disabled by default, which means existing installations are insulated from the changes. There should not be changes in core.
-	+ Do we need an approval policy for new features? For example, there are often very minor features (new device states, new AMI events, new ARI events, etc.) that would benefit the larger asterisk community, but are currently automatically rejected. These features have a very low risk of causing an issue.
-		- Jared: other projects have done this and had it be very successful
-		- **Action to Matt Jordan to look into a policy and start a discussion on asterisk-dev**
-* Should we release the next major version as 13? Should it be 14 or something else? Asterisk MineSweeper 2.0? Asterisk 8+5. Marco: Asterisk XP
-	+ The overall consensus in the room was in favor of 13. As we still have time for further discussion on this matter, we should bring it up again in a month or two on asterisk-dev.
-	+ **Action: revisit this decision in a month or two on asterisk-dev to solicit a wider opinion**
+    * Asterisk 12 release policy will be different than other releases
+    	+ New features will be included after release, subject to the constraints in [Software Configuration Management Policies](/Development/Policies-and-Procedures/Development/Policies-and-Procedures/Software-Configuration-Management-Policies)
+    * Release policy: do we allow new feature changes in Asterisk 13?
+    	+ First, as it is with Asterisk 11, standalone modules are always okay. If they are included in a release branch, they can be disabled by default, which means existing installations are insulated from the changes. There should not be changes in core.
+    	+ Do we need an approval policy for new features? For example, there are often very minor features (new device states, new AMI events, new ARI events, etc.) that would benefit the larger asterisk community, but are currently automatically rejected. These features have a very low risk of causing an issue.
+    		- Jared: other projects have done this and had it be very successful
+    		- **Action to Matt Jordan to look into a policy and start a discussion on asterisk-dev**
+    * Should we release the next major version as 13? Should it be 14 or something else? Asterisk MineSweeper 2.0? Asterisk 8+5. Marco: Asterisk XP
+    	+ The overall consensus in the room was in favor of 13. As we still have time for further discussion on this matter, we should bring it up again in a month or two on asterisk-dev.
+    	+ **Action: revisit this decision in a month or two on asterisk-dev to solicit a wider opinion**
 
-Expanding ARI/Restful API
--------------------------
+    Expanding ARI/Restful API
+    -------------------------
 
-* Version numbering of API needs to be handled
-	+ Current is 0.0.1. David Lee is currently working on a versioning scheme.
-	+ **Action: propose a versioning scheme.** David Lee [did reply in an e-mail to the -dev list](http://lists.digium.com/pipermail/asterisk-dev/2013-October/063003.html) with a draft proposal linked here: <https://wiki.asterisk.org/wiki/x/WwCUAQ>
-* Suggestion: Client can indicate "expected version" and server will adapt WITHIN REASON
-	+ There was a long discussion about this proposal. The idea is that if an event is added and the version number incremented, then a client connecting supporting an earlier version number won't receive those events. Due to how messages on the Stasis bus are constructed for consumers, this is not out of the realm of possibility in both AMI and ARI, but careful thought would have to be applied - and expectations set on how far the scope of this can be extended.
-* Implementation notes to client developers may need to be published:
-	+ Expect new events
-	+ Use the version number of the API in combination with Asterisk version (Maybe not, but remember AMI)
-	+ Explain the need for and use of ARI as compared with AGI, AMI, ExtIVR etc
-* Feature requests for ARI
-	+ Propably thousands of features missing
-	+ Issue: How do we hand control of a channel back to the dialplan / or to specific app
-		- Currently, the channel is sent back to the dialplan, but there is not a way to send it directly to an application. This would require some careful thought, as the releasing back to the dialplan guarantees that something can still execute the channel - sending it directly to an application would almost have to guarantee that the channel is immediately destroyed when the application terminates.
-	+ Issue: Queue-related stuff missing - members, queue status,
-		- Much of this is higher level application logic that would be provided by someone implementing a replacement for app\_queue
-		- Question: do we need to have a RESTful interface that replaces AMI?
-			* Answer: that would be highly desired (Jared, Dan, etc.)
-				+ Need to discuss what functionality should be carried over from AMI and put behind a REST interface; some might not make sense. **Action - have a discussion on the asterisk-dev list about replacing AMI with a REST interface**
-	+ Issue: Call states
-		- Need device state resource. **Action - have a discussion on the asterisk-dev list about this**
-	+ Issue: User events
-		- Carried over from the previous day; action already taken
-	+ Issue: Generating DTMF
-		- Carried over from the previous day; action already taken
-	+ Suggestion: Expand ARI to handle existing apps in Asterisk
-		- Can the community create open source replacements of Queue, VoiceMail, and others? If so, where should it live?
-			* Consensus seemed to rest on GitHub
-	+ How do we manage feature requests for ARI?
-		- Wiki page with feature requests / brainstorms / hot items for ARI. **Action - create said wiki page for both ARI features as well as other features requested by the community**
-	+ How do we migrate more apps to ARI?
-		- Carefully!
-	+ Issue: Issue log items for all log channels from ARI apps
-		- Carried over from previous day; action already taken
-	+ Issue: Resources on the server / files - sandbox issues
-		- In general, ARI should protect the server from malicious requests. Exposing System() application like functionality should be discouraged, due to known permission elevation issues with AMI and the dialplan.
-	+ Issue: Dial() options that are missing from ARI
-		- Play digits
-		- Ignore forwards
-		- Fake ringing
-		- Play music instead of ringing
-		
-		
-		
-		
-		---
-		
-		**Note:**  Should we have a "Dial" operation that does all of this in ARI? Discussion now ongoing on the asterisk-app-dev list: <http://lists.digium.com/pipermail/asterisk-app-dev/2013-October/000002.html>
-		
-		  
-		
-		
-		
-		---
-	+ ARI options for Digium commercial modules
-		- Matt Jordan: probably not, or at least not right away. Digium commercial modules typically only expose inspection level commands (how many licenses do I have, etc.) - ARI is more about application control. If we end up exposing a REST interface that provides system inspection, then we may want more of this in our commercial modules
-	+ Issue: A bridge between ARI and AMI
-		- That is, is there a way to integrate AMI and ARI applications easily? This may rest heavily on the client libraries developed.
-	+ SDK will be released on github - python and javascript
-		- Digium working on the initial client library implementations that are auto-generated from the resources. **Update:**Paul Belanger working on a Python implementation as well.
+    * Version numbering of API needs to be handled
+    	+ Current is 0.0.1. David Lee is currently working on a versioning scheme.
+    	+ **Action: propose a versioning scheme.** David Lee [did reply in an e-mail to the -dev list](http://lists.digium.com/pipermail/asterisk-dev/2013-October/063003.html) with a draft proposal linked here: <https://wiki.asterisk.org/wiki/x/WwCUAQ>
+    * Suggestion: Client can indicate "expected version" and server will adapt WITHIN REASON
+    	+ There was a long discussion about this proposal. The idea is that if an event is added and the version number incremented, then a client connecting supporting an earlier version number won't receive those events. Due to how messages on the Stasis bus are constructed for consumers, this is not out of the realm of possibility in both AMI and ARI, but careful thought would have to be applied - and expectations set on how far the scope of this can be extended.
+    * Implementation notes to client developers may need to be published:
+    	+ Expect new events
+    	+ Use the version number of the API in combination with Asterisk version (Maybe not, but remember AMI)
+    	+ Explain the need for and use of ARI as compared with AGI, AMI, ExtIVR etc
+    * Feature requests for ARI
+    	+ Propably thousands of features missing
+    	+ Issue: How do we hand control of a channel back to the dialplan / or to specific app
+    		- Currently, the channel is sent back to the dialplan, but there is not a way to send it directly to an application. This would require some careful thought, as the releasing back to the dialplan guarantees that something can still execute the channel - sending it directly to an application would almost have to guarantee that the channel is immediately destroyed when the application terminates.
+    	+ Issue: Queue-related stuff missing - members, queue status,
+    		- Much of this is higher level application logic that would be provided by someone implementing a replacement for app\_queue
+    		- Question: do we need to have a RESTful interface that replaces AMI?
+    			* Answer: that would be highly desired (Jared, Dan, etc.)
+    				+ Need to discuss what functionality should be carried over from AMI and put behind a REST interface; some might not make sense. **Action - have a discussion on the asterisk-dev list about replacing AMI with a REST interface**
+    	+ Issue: Call states
+    		- Need device state resource. **Action - have a discussion on the asterisk-dev list about this**
+    	+ Issue: User events
+    		- Carried over from the previous day; action already taken
+    	+ Issue: Generating DTMF
+    		- Carried over from the previous day; action already taken
+    	+ Suggestion: Expand ARI to handle existing apps in Asterisk
+    		- Can the community create open source replacements of Queue, VoiceMail, and others? If so, where should it live?
+    			* Consensus seemed to rest on GitHub
+    	+ How do we manage feature requests for ARI?
+    		- Wiki page with feature requests / brainstorms / hot items for ARI. **Action - create said wiki page for both ARI features as well as other features requested by the community**
+    	+ How do we migrate more apps to ARI?
+    		- Carefully!
+    	+ Issue: Issue log items for all log channels from ARI apps
+    		- Carried over from previous day; action already taken
+    	+ Issue: Resources on the server / files - sandbox issues
+    		- In general, ARI should protect the server from malicious requests. Exposing System() application like functionality should be discouraged, due to known permission elevation issues with AMI and the dialplan.
+    	+ Issue: Dial() options that are missing from ARI
+    		- Play digits
+    		- Ignore forwards
+    		- Fake ringing
+    		- Play music instead of ringing
+    		
+    		
+    		
+    		
+    		---
+    		
+    		**Note:**  Should we have a "Dial" operation that does all of this in ARI? Discussion now ongoing on the asterisk-app-dev list: <http://lists.digium.com/pipermail/asterisk-app-dev/2013-October/000002.html>
+    		
+    		  
+    		
+    		
+    		
+    		---
+    	+ ARI options for Digium commercial modules
+    		- Matt Jordan: probably not, or at least not right away. Digium commercial modules typically only expose inspection level commands (how many licenses do I have, etc.) - ARI is more about application control. If we end up exposing a REST interface that provides system inspection, then we may want more of this in our commercial modules
+    	+ Issue: A bridge between ARI and AMI
+    		- That is, is there a way to integrate AMI and ARI applications easily? This may rest heavily on the client libraries developed.
+    	+ SDK will be released on github - python and javascript
+    		- Digium working on the initial client library implementations that are auto-generated from the resources. **Update:**Paul Belanger working on a Python implementation as well.
 
-CHAN\_PJSIP
------------
+    CHAN\_PJSIP
+    -----------
 
-* Number one issue: Get PJSIP installed
-	+ Debian packages being built
-	+ Work with/discuss options with other package maintainers
-	+ Other than ripping out the third party library folder, what else can we do to make the installation easier?
-		- Auto-detection of third party libraries to aid configure script
-* PJSIP support of the "SIP/" prefix
-	+ Configurable switch - should we allow people to map SIP to PJSIP?
-		- Pros: easier to switch between dialplan
-		- Cons: confusion as to what you're running; chan\_sip to chan\_pjsip nomenclature doesn't have a one to one correlation
-	+ Not really just dialing (which has its own issues) - things like device state, out of call messaging are also affected
-* Ability to dial any SIP URI is important - YES!!!
-	+ **Action: create an issue to round out this functionality and/or provide sufficient documentation on how it should be configured**
-* SIP Outbound proxy / Predefined route set
-* AMI and CLI commands needed
-	+ CLI commands being worked by George Joseph - see <https://github.com/asterisk/asterisk/issues/jira/browse/ASTERISK-22610>
-	+ AMI commands being worked by Kevin Harwell - see <https://github.com/asterisk/asterisk/issues/jira/browse/ASTERISK-22609>
-* Integration with CHANNEL() function
-	+ **Action: create an issue for this functionality**
-* Ability to dial without entity in configuration
-	+ Set codecs and preferred codecs, DTMF mode, security properties
-	+ All of the settings for an endpoint
-	+ Question: should this really be allowed? In general, one can create an endpoint that acts as the outbound entity to dial, and send it SIP URIs and other options. Do we really need a default, or should we just tell people how to configure this?
-* Change properties of objects from API's and dialplan
-	+ This would be a function that would allow a channel to override the settings inherited from its endpoint.
-	+ **Action: discuss this on the asterisk-dev list, and identify an initial feature set for the function**
-* How much of backwards compatibility is required?
-* Focus/prism on Security
-* No Call Completion, AOC, SNOM extensions - needed in 12
-* SUBSCRIBE/notify/PUBLISH STUFF
-* How do we handle versioining of the PJPROJECT fork?
-	+ Patches are being pushed up to Teluu, but right now there is no version for PJPROJECT. Do we need a tag on the github repo so people know what to base it against in the meantime?
+    * Number one issue: Get PJSIP installed
+    	+ Debian packages being built
+    	+ Work with/discuss options with other package maintainers
+    	+ Other than ripping out the third party library folder, what else can we do to make the installation easier?
+    		- Auto-detection of third party libraries to aid configure script
+    * PJSIP support of the "SIP/" prefix
+    	+ Configurable switch - should we allow people to map SIP to PJSIP?
+    		- Pros: easier to switch between dialplan
+    		- Cons: confusion as to what you're running; chan\_sip to chan\_pjsip nomenclature doesn't have a one to one correlation
+    	+ Not really just dialing (which has its own issues) - things like device state, out of call messaging are also affected
+    * Ability to dial any SIP URI is important - YES!!!
+    	+ **Action: create an issue to round out this functionality and/or provide sufficient documentation on how it should be configured**
+    * SIP Outbound proxy / Predefined route set
+    * AMI and CLI commands needed
+    	+ CLI commands being worked by George Joseph - see <https://github.com/asterisk/asterisk/issues/jira/browse/ASTERISK-22610>
+    	+ AMI commands being worked by Kevin Harwell - see <https://github.com/asterisk/asterisk/issues/jira/browse/ASTERISK-22609>
+    * Integration with CHANNEL() function
+    	+ **Action: create an issue for this functionality**
+    * Ability to dial without entity in configuration
+    	+ Set codecs and preferred codecs, DTMF mode, security properties
+    	+ All of the settings for an endpoint
+    	+ Question: should this really be allowed? In general, one can create an endpoint that acts as the outbound entity to dial, and send it SIP URIs and other options. Do we really need a default, or should we just tell people how to configure this?
+    * Change properties of objects from API's and dialplan
+    	+ This would be a function that would allow a channel to override the settings inherited from its endpoint.
+    	+ **Action: discuss this on the asterisk-dev list, and identify an initial feature set for the function**
+    * How much of backwards compatibility is required?
+    * Focus/prism on Security
+    * No Call Completion, AOC, SNOM extensions - needed in 12
+    * SUBSCRIBE/notify/PUBLISH STUFF
+    * How do we handle versioining of the PJPROJECT fork?
+    	+ Patches are being pushed up to Teluu, but right now there is no version for PJPROJECT. Do we need a tag on the github repo so people know what to base it against in the meantime?
 
-Media negotiation
------------------
+    Media negotiation
+    -----------------
 
-* Steve invites to bar-bof. Media negotiation is rather complex, and how it should be handled is usually a matter of opinion based on specific scenarios and requirements. For this to go forward, there should be requirements, use cases, and other proposals first discussed on the asterisk-dev list.
-	+ Draft call scenarios
-	+ Draft requirements
-	+ Draft solutions
-* Continue discussion on mailing list
+    * Steve invites to bar-bof. Media negotiation is rather complex, and how it should be handled is usually a matter of opinion based on specific scenarios and requirements. For this to go forward, there should be requirements, use cases, and other proposals first discussed on the asterisk-dev list.
+    	+ Draft call scenarios
+    	+ Draft requirements
+    	+ Draft solutions
+    * Continue discussion on mailing list
 
-Asteri18n - localization
-------------------------
+    Asteri18n - localization
+    ------------------------
 
-Steve Murphy presenting. "gettext for saying stuff". Executive summary:
+    Steve Murphy presenting. "gettext for saying stuff". Executive summary:
 
-* Change all the "SAY" routines to pluggable modules
-* The translator can not code, a solution needs to be translator-compatible
-* The logic is now in c-code which is not very translator-friendly
-* The logic needs to be included in the sound-file set
-* Proposal for a new Asterisk-independent config language called "SayScript"
-* "The fundamental unit of translation is the sentence" - context is needed
-* A language pack will have script file, language prompts, sayscript logic
-* As a conclusion: the proposal has strong merit but needs to be discussed further on the asterisk-dev list, as Tzafrir had some questions and concerns about its general approach. **Action: Steve Murphy to distribute proposal on the asterisk-dev mailing list**
+    * Change all the "SAY" routines to pluggable modules
+    * The translator can not code, a solution needs to be translator-compatible
+    * The logic is now in c-code which is not very translator-friendly
+    * The logic needs to be included in the sound-file set
+    * Proposal for a new Asterisk-independent config language called "SayScript"
+    * "The fundamental unit of translation is the sentence" - context is needed
+    * A language pack will have script file, language prompts, sayscript logic
+    * As a conclusion: the proposal has strong merit but needs to be discussed further on the asterisk-dev list, as Tzafrir had some questions and concerns about its general approach. **Action: Steve Murphy to distribute proposal on the asterisk-dev mailing list**
 
-### Opus
+    ### Opus
 
-* Asterisk 12 includes formats for pass-through of Opus and VP8
-* There are patches on github.com/meetecho for Codec\_opus
-* mp3/ilbc
-	+ mp3: use newer implementations
-	+ ilbc: remove embedded source, use newer implementation from Google. **Action: create an issue for versions of Asterisk to look for a library and use it if available; otherwise use embedded source. Remove embedded source in trunk.**
-* licensing - Digium investigating licensing concerns with IPRs against Opus.
-	+ Current status: still working with/waiting on Xiph.
-	+ transcoding
+    * Asterisk 12 includes formats for pass-through of Opus and VP8
+    * There are patches on github.com/meetecho for Codec\_opus
+    * mp3/ilbc
+    	+ mp3: use newer implementations
+    	+ ilbc: remove embedded source, use newer implementation from Google. **Action: create an issue for versions of Asterisk to look for a library and use it if available; otherwise use embedded source. Remove embedded source in trunk.**
+    * licensing - Digium investigating licensing concerns with IPRs against Opus.
+    	+ Current status: still working with/waiting on Xiph.
+    	+ transcoding
 
- 
+     
 
-Clustering/distributed asterisk
--------------------------------
+    Clustering/distributed asterisk
+    -------------------------------
 
-* No "clean way" to distribute states between asterisk servers.
-	+ Stasis is an internal message bus. Replacing it with something that supports distributed pub/sub is theoretically possible, as Stasis is an opaque implementation and does not inspect the contents of the messages distributed on it; however, this would be quite a large project
-	+ Bigger question: what are the use cases for distributing state?
-		- Full call fail over is a much larger task than just channel / channel\_pvt distribution. You actually have to do something with the state once you have it.
-		- What use case is there for bridge/channel state outside of Asterisk that requires something like redis and that can't be built with AMI/ARI? Need more requirements/use cases.
-* Bar-bof Paul Belanger
+    * No "clean way" to distribute states between asterisk servers.
+    	+ Stasis is an internal message bus. Replacing it with something that supports distributed pub/sub is theoretically possible, as Stasis is an opaque implementation and does not inspect the contents of the messages distributed on it; however, this would be quite a large project
+    	+ Bigger question: what are the use cases for distributing state?
+    		- Full call fail over is a much larger task than just channel / channel\_pvt distribution. You actually have to do something with the state once you have it.
+    		- What use case is there for bridge/channel state outside of Asterisk that requires something like redis and that can't be built with AMI/ARI? Need more requirements/use cases.
+    * Bar-bof Paul Belanger
 
-Kill app\_queue - ARI apps in Asterisk
---------------------------------------
+    Kill app\_queue - ARI apps in Asterisk
+    --------------------------------------
 
-* There should be a replacement delivered with Asterisk, but probably initially on github
-	+ In Asterisk might just be something that pulls from github
-	+ Many folks interested in creating a Queue replacement - Paul, Dan, Leif, Jared
-* Licensing of ARI applications. **Action to Matt Jordan - clarify ARI licensing in the same fashion as AGI/AMI.**
-* How to find ARI's / Repository
-	+ Ideally, we would have something like pip or some other package manager that would allow someone to search, install ARI applications easily
-	+ Has to be language agnostic
-	+ Could just be a wrapper around language specific functions
-	+ **Action: discuss more on asterisk-dev list**
+    * There should be a replacement delivered with Asterisk, but probably initially on github
+    	+ In Asterisk might just be something that pulls from github
+    	+ Many folks interested in creating a Queue replacement - Paul, Dan, Leif, Jared
+    * Licensing of ARI applications. **Action to Matt Jordan - clarify ARI licensing in the same fashion as AGI/AMI.**
+    * How to find ARI's / Repository
+    	+ Ideally, we would have something like pip or some other package manager that would allow someone to search, install ARI applications easily
+    	+ Has to be language agnostic
+    	+ Could just be a wrapper around language specific functions
+    	+ **Action: discuss more on asterisk-dev list**
 
-Security
---------
+    Security
+    --------
 
-* Fail2ban inside Asterisk
-	+ Security event framework already exists, just need to propagate security events through interfaces (currently only a log file)
-	+ Named ACLs - if these can be created and applied externally, then security events can be used to auto-ban anything coming into Asterisk
-* Security in a PRISM era
-	+ Secure audio, secure signalling
-	+ 256 key length for AES encryption
-	+ Upgrade to new LibSRTP on github (OpenSSL)
-		- Since Asterisk dynamically links with libSRTP, unclear right now what needs to be done. Possibly another point of discussion on asterisk-dev
-	+ Key lifetime, key rotation, key re-negotiation
-* Generating certificates at install time
-* Review TLS implementation; improve
+    * Fail2ban inside Asterisk
+    	+ Security event framework already exists, just need to propagate security events through interfaces (currently only a log file)
+    	+ Named ACLs - if these can be created and applied externally, then security events can be used to auto-ban anything coming into Asterisk
+    * Security in a PRISM era
+    	+ Secure audio, secure signalling
+    	+ 256 key length for AES encryption
+    	+ Upgrade to new LibSRTP on github (OpenSSL)
+    		- Since Asterisk dynamically links with libSRTP, unclear right now what needs to be done. Possibly another point of discussion on asterisk-dev
+    	+ Key lifetime, key rotation, key re-negotiation
+    * Generating certificates at install time
+    * Review TLS implementation; improve
 
-Future of Asterisk
-------------------
+    Future of Asterisk
+    ------------------
 
-Two themes emerged from people's comments on what the future of Asterisk is:
+    Two themes emerged from people's comments on what the future of Asterisk is:
 
-1. Asterisk should be a communications engine, and not provide the business logic. ARI is a step in the right direction and needs to be expanded to fully realize that.
-2. PJSIP is great, but needs to be refined before it can be a full replacement for chan\_sip
+    1. Asterisk should be a communications engine, and not provide the business logic. ARI is a step in the right direction and needs to be expanded to fully realize that.
+    2. PJSIP is great, but needs to be refined before it can be a full replacement for chan\_sip
 
-Random quotes
-=============
+    Random quotes
+    =============
 
-"Asterisk is Asterisk"
+    "Asterisk is Asterisk"
 
-Obligatory Pictures
-===================
+    Obligatory Pictures
+    ===================
 
 ![](astridevcon.jpg)
 
- 
+     
 
-James Body's awesome 360 panorama picture (taken from a self-rotating smart phone! We live in the future!):
+    James Body's awesome 360 panorama picture (taken from a self-rotating smart phone! We live in the future!):
 
 ![](10310580255_d4c3778f0a_o.jpg)
 
-Slides
-======
+    Slides
+    ======
 
 [Asterisk 12 - In Depth](Asterisk-12-In-Depth.odp)
 
- 
+     
 
- 
+     
 

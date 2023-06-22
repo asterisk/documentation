@@ -35,10 +35,6 @@ exten => 1,n,Voicemail(501)
 ```
 
 
-
----
-
-
 When a phone calls this extension, it will be greeted by a higher pitched version of the voicemail prompt and then the speaker will leave a message for 501. The sound going from the phone to voicemail will also be higher pitched than what was actually said by the person who left the message.
 
 
@@ -68,10 +64,6 @@ exten => 1,n,MixMonitor(training\_recording.wav)
 exten => 1,n,Queue(techsupport)
 
 ```
-
-
-
----
 
 
 Imagine the following scenario. An outside line calls into an Asterisk system to enter a tech support queue. When the call starts this user hears something along the lines of "Thank you for calling, all calls will be recorded for training purposes", so naturally MixMonitor will be used to record the call. The first available agent answers the call and can't quite seem to provide a working solution to the customer's problem, so he attempts to perform an attended transfer to someone with more expertise on the issue. The user gets transfered, and the rest of the call goes smoothly, but... ah nuts. The recording stopped for some reason when the agent transferred the customer to the other user. And why didn't this happen when he blind transferred a customer the other day?
@@ -105,10 +97,6 @@ exten => 1,n,Set(AUDIOHOOK\_INHERIT(MixMonitor)=yes)
 exten => 1,n,Queue(techsupport)
 
 ```
-
-
-
----
 
 
 Below is an illustrated example of how the masquerade process impacts an audiohook (in the case of the example, PITCH\_SHIFT)

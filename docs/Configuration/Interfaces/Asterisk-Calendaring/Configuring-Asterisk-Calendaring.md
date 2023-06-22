@@ -39,10 +39,6 @@ waittime = 30
 
 
 
----
-
-
-
 
 
 Module-independent settings
@@ -124,10 +120,6 @@ timeframe = 60
 ```
 
 
-
----
-
-
 Once you have a configuration you can startup Asterisk or else reload the modules. After this you can check to see if the calendar is being read. Use the commands **"calendar show calendars"** and **"calendar show calendar <calendar name>"**
 
 
@@ -147,10 +139,6 @@ Calendar Type Status
 gcal1 ical busy
 
 ```
-
-
-
----
 
 
 
@@ -187,10 +175,6 @@ End : 2015-11-25 06:10:00 PM -0600
 Alarm :
 
 ```
-
-
-
----
 
 
 The output should reflect your calendar settings and if it is reading from the calendar server you should see events that are present (on your calendar) within the configured Timeframe. If you don't see any events then go to your Google calendar and create an event within the timeframe. Save that event, then wait at least the Refresh time before checking the commands again to see if the event shows up.

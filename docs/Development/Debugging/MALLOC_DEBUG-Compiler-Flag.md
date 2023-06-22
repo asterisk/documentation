@@ -8,16 +8,12 @@ MALLOC\_DEBUG enhancements can be used as a poor-man's [Valgrind](/Valgrind) if 
 
 
 
----
+!!! warning 
+    Don't attempt to use Asterisk compiled with MALLOC\_DEBUG and run Valgrind at the same time, as they will compete and render the findings invalid for either tool.
 
-**WARNING!:**   
-Don't attempt to use Asterisk compiled with MALLOC\_DEBUG and run Valgrind at the same time, as they will compete and render the findings invalid for either tool.
+      
+[//]: # (end-warning)
 
-  
-
-
-
----
 
 
 Gathering output
@@ -26,16 +22,12 @@ Gathering output
 
 
 
----
+!!! info ""
+    For this output to be useful make sure to upgrade Asterisk versions 1.8.20, 11.2.0 or above as they include important enhancements to MALLOC\_DEBUG
 
+      
+[//]: # (end-info)
 
-**Information:**  For this output to be useful make sure to upgrade Asterisk versions 1.8.20, 11.2.0 or above as they include important enhancements to MALLOC\_DEBUG
-
-  
-
-
-
----
 
 
  
@@ -69,10 +61,6 @@ Usage: memory show summary [<file>]
  by line, if a file is specified.
 
 ```
-
-
-
----
 * memory show allocations
 
 Click to show usage...
@@ -93,10 +81,6 @@ Usage: memory show allocations [<file>|anomalies]
  anomalies - Only check for fence violations.
 
 ```
-
-
-
----
 * memory atexit list
 
 Click to show usage...
@@ -114,10 +98,6 @@ Usage: memory atexit list {on|off}
  Enable dumping a list of still allocated memory segments at exit.
 
 ```
-
-
-
----
 * memory atexit summary
 
 Click to show usage...
@@ -140,10 +120,6 @@ Usage: memory atexit summary {off|byline|byfunc|byfile}
  Note: byline, byfunc, and byfile are cumulative enables.
 
 ```
-
-
-
----
 * memory backtrace
 
 Click to show usage...
@@ -163,7 +139,3 @@ Usage: memory backtrace {on|off}
  can be CPU intensive.
 
 ```
-
-
-
----

@@ -256,10 +256,6 @@ int ast\_dns\_resolve(const char \*name, int rr\_type, int rr\_class, struct ast
 ```
 
 
-
----
-
-
 On this Page
 
 
@@ -376,10 +372,6 @@ void ast\_dns\_query\_set\_free(struct ast\_dns\_query\_set \*query\_set);
 ```
 
 
-
----
-
-
  
 
 dns\_naptr.h
@@ -455,10 +447,6 @@ unsigned short ast\_dns\_naptr\_get\_preference(const struct ast\_dns\_record \*
 ```
 
 
-
----
-
-
  
 
 dns\_srv.h
@@ -516,10 +504,6 @@ unsigned short ast\_dns\_srv\_get\_port(const struct ast\_dns\_record \*record);
 ```
 
 
-
----
-
-
  
 
 dns\_tlsa.h
@@ -574,10 +558,6 @@ const char \*ast\_dns\_tlsa\_get\_association\_data(const struct ast\_dns\_recor
 
 
 ```
-
-
-
----
 
 
  
@@ -682,10 +662,6 @@ int ast\_dns\_resolver\_register(const struct ast\_core\_dns\_resolver \*resolve
 int ast\_dns\_resolver\_unregister(const struct ast\_core\_dns\_resolver \*resolver);
 
 ```
-
-
-
----
 
 
  
@@ -797,10 +773,6 @@ struct ast\_dns\_query\_set {
 ```
 
 
-
----
-
-
  
 
 Examples
@@ -814,14 +786,7 @@ This example blocks the calling thread until resolution has completed. Once comp
 
 
 
----
-
-  
-  
-
-
-```
-
+```bash title=" " linenums="1"
 #include <asterisk/dns.h>
 int test(void)
 {
@@ -852,10 +817,6 @@ int test(void)
 ```
 
 
-
----
-
-
  
 
 Asynchronous Resolution
@@ -866,14 +827,7 @@ This example does not block the calling thread when resolving. A callback is inv
 
 
 
----
-
-  
-  
-
-
-```
-
+```bash title=" " linenums="1"
 #include <asterisk/dns.h>
 static void test\_callback(const struct ast\_dns\_query \*query)
 {
@@ -908,10 +862,6 @@ int test(void)
 ```
 
 
-
----
-
-
  
 
 Parallel Queries
@@ -922,14 +872,7 @@ This example uses a query set to do two queries in an asynchronous manner. Each 
 
 
 
----
-
-  
-  
-
-
-```
-
+```bash title=" " linenums="1"
 #include <asterisk/dns.h>
 #include <asterisk/dns\_query\_set.h>
 static void test\_callback(const struct ast\_dns\_query\_query \*query\_set)
@@ -973,10 +916,6 @@ int test(void)
 ```
 
 
-
----
-
-
  
 
 Fallback
@@ -987,14 +926,7 @@ This example does a fall back from an AAAA record lookup to an A record lookup i
 
 
 
----
-
-  
-  
-
-
-```
-
+```bash title=" " linenums="1"
 #include <asterisk/dns.h>
 static void test\_callback(const struct ast\_dns\_query \*query)
 {
@@ -1034,10 +966,6 @@ int test(void)
 ```
 
 
-
----
-
-
  
 
 NAPTR
@@ -1048,14 +976,7 @@ This example does a NAPTR lookup followed by SRV followed by AAAA and then A. Th
 
 
 
----
-
-  
-  
-
-
-```
-
+```bash title=" " linenums="1"
 #include <asterisk/dns.h>
 /\* An alternative to this cascade approach would be using a query set to do NAPTR, SRV, AAAA, and A in parallel
  \* with NAPTR and SRV adding additional queries afterwards
@@ -1124,10 +1045,6 @@ int test(void)
 ```
 
 
-
----
-
-
  
 
 Recurring
@@ -1138,14 +1055,7 @@ The recurring example has the DNS core re-run the specified query according to t
 
 
 
----
-
-  
-  
-
-
-```
-
+```bash title=" " linenums="1"
 #include <asterisk/dns.h>
 static void test\_callback(const struct ast\_dns\_query \*query)
 {
@@ -1174,9 +1084,5 @@ int test(void)
 }
 
 ```
-
-
-
----
 
 

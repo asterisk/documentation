@@ -8,22 +8,11 @@ The next application we'll cover is named **Directory()**, because it presents t
 
 
 
----
-
-  
-  
+```javascript title=" " linenums="1"
+Directory([voicemail\_context,[dialplan\_context,[options]]])
 
 
 ```
-
-javascriptDirectory([voicemail\_context,[dialplan\_context,[options]]])
-
-
-```
-
-
-
----
 
 
 The **Directory()** application takes three parameters:
@@ -49,15 +38,12 @@ A set of options for controlling the dial-by-name directory. Common options incl
 
 
 
----
+!!! tip Directory() Options** To see the complete list of options for the Directory() application, type **core show application Directory
+    at the Asterisk CLI.
 
-**Tip: Directory() Options** To see the complete list of options for the Directory() application, type **core show application Directory** at the Asterisk CLI.
+      
+[//]: # (end-tip)
 
-  
-
-
-
----
 
 
 Let's add a dial-by-name directory to our dialplan. Simply add this line to your **[docs:users]** context in **extensions.conf**:
@@ -65,22 +51,11 @@ Let's add a dial-by-name directory to our dialplan. Simply add this line to your
 
 
 
----
-
-  
-  
+```javascript title=" " linenums="1"
+exten => 6501,1,Directory(vm-demo,users,ef)
 
 
 ```
-
-javascriptexten => 6501,1,Directory(vm-demo,users,ef)
-
-
-```
-
-
-
----
 
 
 Now you should be able to dial extension **6501** to test your dial-by-name directory.

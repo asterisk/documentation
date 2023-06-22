@@ -21,22 +21,11 @@ On This Page### Install MySQL server package and start the DB service
 
 
 
----
-
-  
-  
-
-
-```
-
+```bash title=" " linenums="1"
 # sudo yum install mysql-server
 # sudo service mysqld start
 
 ```
-
-
-
----
 
 
 ### Secure the installation if appropriate
@@ -46,21 +35,10 @@ If you intend to push this install into production or practice as if you were th
 
 
 
----
-
-  
-  
-
-
-```
-
+```bash title=" " linenums="1"
 # sudo /usr/bin/mysql\_secure\_installation
 
 ```
-
-
-
----
 
 
 ### Configure a user and database for Asterisk in MySQL
@@ -72,21 +50,10 @@ We'll have you login into the mysql command console, create a user, create a dat
 
 
 
----
-
-  
-  
-
-
-```
-
+```bash title=" " linenums="1"
 # mysql -u root -p
 
 ```
-
-
-
----
 
 
 Now verify you are at the MySQL command prompt. It should look like "mysql>". Then enter the following commands:
@@ -94,14 +61,7 @@ Now verify you are at the MySQL command prompt. It should look like "mysql>". Th
 
 
 
----
-
-  
-  
-
-
-```
-
+```bash title=" " linenums="1"
 # CREATE USER 'asterisk'@'%' IDENTIFIED BY 'replace\_with\_strong\_password';
 # CREATE DATABASE asterisk;
 # GRANT ALL PRIVILEGES ON asterisk.\* TO 'asterisk'@'%';
@@ -110,31 +70,16 @@ Now verify you are at the MySQL command prompt. It should look like "mysql>". Th
 ```
 
 
-
----
-
-
 After each of the CREATE and GRANT commands you should see output indicating that the Query was OK including many rows were affected.If you want, you can test out the new permissions by logging in as your user to the asterisk database and then logout again. 
 
 
 
 
----
-
-  
-  
-
-
-```
-
+```bash title=" " linenums="1"
 # mysql -u asterisk -p asterisk
 # exit
 
 ```
-
-
-
----
 
 
  
@@ -145,16 +90,12 @@ Install ODBC and the MariaDB ODBC connector
 
 
 
----
+!!! warning 
+    It is not recommended to use the MySQL ODBC connector due to crash issues experienced by users. These have not been experienced when using the MariaDB ODBC connector.
 
-**WARNING!:**   
-It is not recommended to use the MySQL ODBC connector due to crash issues experienced by users. These have not been experienced when using the MariaDB ODBC connector.
+      
+[//]: # (end-warning)
 
-  
-
-
-
----
 
 
  
@@ -168,21 +109,10 @@ The development packages are necessary as well, since later Asterisk will need 
 
 
 
----
-
-  
-  
-
-
-```
-
+```bash title=" " linenums="1"
 # sudo yum install unixODBC unixODBC-devel libtool-ltdl libtool-ltdl-devel
 
 ```
-
-
-
----
 
 
 ### Install the latest MariaDB ODBC connector
@@ -190,21 +120,10 @@ The development packages are necessary as well, since later Asterisk will need 
 
 
 
----
-
-  
-  
-
-
-```
-
+```bash title=" " linenums="1"
 # sudo yum install mariadb-connector-odbc
 
 ```
-
-
-
----
 
 
  
@@ -221,14 +140,7 @@ Verify that you have the following configuration:
 
 
 
----
-
-  
-  
-
-
-```
-
+```bash title=" " linenums="1"
 # Driver from the mariadb-connector-odbc package
 # Setup from the unixODBC package
 [MariaDB]
@@ -240,10 +152,6 @@ UsageCount=1
 ```
 
 
-
----
-
-
   
 
 
@@ -252,21 +160,10 @@ You can also call **`odbcinst`** to query the driver, verifying that the confi
 
 
 
----
-
-  
-  
-
-
-```
-
+```bash title=" " linenums="1"
 # odbcinst -q -d
 
 ```
-
-
-
----
 
 
 The output should read simply "[MySQL]"
@@ -300,20 +197,13 @@ Socket = /var/lib/mysql/mysql.sock
 
 
 
----
 
+!!! note 
+    You may want to verify that mysql.sock is actually in the location specific here. It will differ on some systems depending on your configuration.
 
+      
+[//]: # (end-note)
 
-
----
-
-**Note:**  You may want to verify that mysql.sock is actually in the location specific here. It will differ on some systems depending on your configuration.
-
-  
-
-
-
----
 
 
  
@@ -330,34 +220,20 @@ So, for our purposes you would enter:
 
 
 
----
-
-  
-  
-
-
-```
-
+```bash title=" " linenums="1"
 # isql -v asterisk-connector asterisk replace\_with\_strong\_password
 
 ```
 
 
 
----
 
+!!! tip 
+    It is important to use the -v flag so that if isql runs into a problem you will be alerted of any diagnostics or errors available.
 
+      
+[//]: # (end-tip)
 
-
----
-
-**Tip:**  It is important to use the -v flag so that if isql runs into a problem you will be alerted of any diagnostics or errors available.
-
-  
-
-
-
----
 
 
  
@@ -378,10 +254,6 @@ At this point you should get an SQL prompt. Run the following command:
 SQL> select 1
 
 ```
-
-
-
----
 
 
 You should see some simple results if the query is successful. Then you can exit.
@@ -411,10 +283,6 @@ SQL> quit
 ```
 
 
-
----
-
-
  
 
 Configuring Asterisk to Use the New ODBC and MySQL Install
@@ -429,23 +297,12 @@ If you already had Asterisk installed from source and the modules you need are a
 
 
 
----
-
-  
-  
-
-
-```
-
+```bash title=" " linenums="1"
 # cd ~/asterisk-source/
 # ./configure
 # make && make install
 
 ```
-
-
-
----
 
 
 Otherwise you should follow the typical Asterisk installation process to make sure modules such as res\_odbc, res\_config\_odbc, cdr\_odbc, cdr\_adaptive\_odbc and func\_odbc have their dependencies fulfilled and that they will be built.

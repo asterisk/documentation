@@ -346,10 +346,6 @@ void ast\_stream\_topology\_destroy(struct ast\_stream\_topology \*topology);
 ```
 
 
-
----
-
-
 These functions can be used by anything to examine a stream after retrieving a stream (from a channel for example) and to manipulate a stream by a stream user.
 
 As you can see a stream has various attributes: the media type being carried on, a unique (to a channel) identifier, the formats negotiated on it, its current state, a name, and an opaque data. In the case of the name this may be constructed externally (as a result of receiving an SDP offer) or generated locally if we are sending an offer.
@@ -407,10 +403,6 @@ struct ast\_stream\_topology {
 };
 
 ```
-
-
-
----
 
 
 The contents of a stream very much mirror that of the public and internal APIs. There is not anything truly hidden away yet.
@@ -520,10 +512,6 @@ int ast\_channel\_stream\_topology\_changed(struct ast\_channel \*chan, struct a
 ```
 
 
-
----
-
-
 To indicate support for multiple streams a property has been added for channel technologies to enable. An inspection function exists for the purpose of getting the topology of streams on the channel. Once retrieved the normal topology functions can be used to inspect each stream individually. In the case of channel drivers they can also manipulate the stream topology provided the channel lock is held.
 
 #### Stream Creation
@@ -576,10 +564,6 @@ enum ast\_control\_frame\_type {
 ```
 
 
-
----
-
-
 The control frame type is used to communicate a request to change the stream topology or an indication that the stream topology has changed. When written it is a request, when read it is informational.
 
 Examples
@@ -610,10 +594,6 @@ Creating streams on a channel
  ast\_channel\_unlock(chan);
 
 ```
-
-
-
----
 
 
 This  creates an audio and video stream and places them on the channel.
@@ -649,10 +629,6 @@ Iterating
 ```
 
 
-
----
-
-
 This just loops through all the streams on a channel.
 
 Requesting a change to the stream topology
@@ -684,10 +660,6 @@ Requesting a change to the stream topology
 ```
 
 
-
----
-
-
 This code requests that the first stream on the channel be set to inactive.
 
 Handling a request to change the stream topology
@@ -714,10 +686,6 @@ Handling a request to change the stream topology
  ast\_frfree(frame);
 
 ```
-
-
-
----
 
 
 This code reads in a request to change the topology and accepts the topology as requested. Note that we only receive request changes if we are capable of supporting multiple streams. If this were to use ast\_read() the topology request change would be internally handled.

@@ -6,17 +6,12 @@ pageid: 22085841
 
 
 
----
+!!! warning 
+    This page is currently under construction. Please refrain from adding comments until this warning is removed
 
-**WARNING!:**   
+      
+[//]: # (end-warning)
 
-This page is currently under construction. Please refrain from adding comments until this warning is removed
-
-  
-
-
-
----
 
 
 Overview
@@ -142,10 +137,6 @@ struct ast\_sip\_session\_sdp\_handler {
 ```
 
 
-
----
-
-
 Extensibility
 -------------
 
@@ -241,10 +232,6 @@ int ast\_sip\_session\_remove\_cookie(struct ast\_sip\_session \*session, const 
 ```
 
 
-
----
-
-
 Common SIP methods
 ------------------
 
@@ -302,9 +289,5 @@ int ast\_sip\_session\_send\_response(struct ast\_sip\_session \*session, int re
 
 
 ```
-
-
-
----
 
 

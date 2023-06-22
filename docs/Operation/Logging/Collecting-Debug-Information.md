@@ -39,19 +39,11 @@ debug_log_123456 => notice,warning,error,debug,verbose,dtmf
 
 
 
----
 
+!!! tip Asterisk 13+
+    In Asterisk 13 and later, you can dynamically create log channels from the CLI using the `logger add channel` command. For example, to create the log file above, you would enter:
+[//]: # (end-tip)
 
-
-
----
-
-**Tip: Asterisk 13+**  In Asterisk 13 and later, you can dynamically create log channels from the CLI using the `logger add channel` command. For example, to create the log file above, you would enter:
-
-
-
-
----
 
   
   
@@ -62,8 +54,6 @@ debug_log_123456 => notice,warning,error,debug,verbose,dtmf
 logger add channel debug_log_123456 notice,warning,error,debug,verbose,dtmf
 
 ```
-
----
 
 
 The new log channel persists until Asterisk is restarted, the logger module is reloaded, or the log files are rotated. If using this CLI command, do **not** reload/restart/rotate the log files in Step 2.
@@ -97,10 +87,6 @@ Configure verbosity levels and rotate logs
 ```
 
 
-
----
-
-
 Optionally, if you've used this file to record data previously, then rotate the logs:
 
 
@@ -118,10 +104,6 @@ Optionally, if you've used this file to record data previously, then rotate the 
 
 
 ```
-
-
-
----
 
 
 Enable channel tech or feature specific debug
@@ -165,10 +147,6 @@ Issue reproduction and clean up
 ```
 
 
-
----
-
-
 **4.1.** Again, remember to disable any extra logging for channel drivers or features.
 
 SIP (1.4 or higher)
@@ -190,10 +168,6 @@ SIP (1.4 or higher)
 ```
 
 
-
----
-
-
 IAX2 (1.4 or higher)
 
 
@@ -211,10 +185,6 @@ IAX2 (1.4 or higher)
 
 
 ```
-
-
-
----
 
 
 **5.** Disable logging to the filesystem. Edit the logger.conf file and comment out or delete the line you added in step 1. Using a semi-colon as the first character on the line will comment out the line.
@@ -237,10 +207,6 @@ logger.conf
 ```
 
 
-
----
-
-
 Then reload the logger module (or restart Asterisk) as you did in step 2:
 
 
@@ -258,10 +224,6 @@ Then reload the logger module (or restart Asterisk) as you did in step 2:
 
 
 ```
-
-
-
----
 
 
 Provide debug to the developers

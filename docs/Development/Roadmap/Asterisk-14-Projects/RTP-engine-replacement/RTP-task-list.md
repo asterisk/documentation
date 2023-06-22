@@ -6,16 +6,12 @@ pageid: 31752472
 
 
 
----
+!!! warning 
+    This page has not received peer review and may still be undergoing edits.
 
-**WARNING!:**   
-This page has not received peer review and may still be undergoing edits.
+      
+[//]: # (end-warning)
 
-  
-
-
-
----
 
 
  
@@ -234,16 +230,12 @@ The channel driver maintains information about whether RFC 4733 DTMF should be u
 
 
 
----
+!!! warning 
+    This section currently is saying to pass the RFC 4733 payload to the encoder. Previous language on this page said to pass `ast_frame` payloads to the encoder, which are different. This probably means that the `encode()` method should have its input parameters broken up a bit more. For instance, instead of `encode(voice_frame)`, it should be `encode(timestamp, marker_bit, raw_voice_data)`. This way, when it comes time to encode RFC 4733 DTMF, this works just as well.
 
-**WARNING!:**   
-This section currently is saying to pass the RFC 4733 payload to the encoder. Previous language on this page said to pass `ast_frame` payloads to the encoder, which are different. This probably means that the `encode()` method should have its input parameters broken up a bit more. For instance, instead of `encode(voice_frame)`, it should be `encode(timestamp, marker_bit, raw_voice_data)`. This way, when it comes time to encode RFC 4733 DTMF, this works just as well.
+      
+[//]: # (end-warning)
 
-  
-
-
-
----
 
 
 Add support for multiple remote media sources
@@ -254,16 +246,12 @@ When communicating with a remote endpoint, even though we may be receiving media
 
 
 
----
+!!! warning 
+    Honestly, I'm not really sure what should be done here. Should this mostly be a statistical thing? Should we actually even expect to be communicating with an endpoint that sends us audio from multiple sources on a single stream?
 
-**WARNING!:**   
-Honestly, I'm not really sure what should be done here. Should this mostly be a statistical thing? Should we actually even expect to be communicating with an endpoint that sends us audio from multiple sources on a single stream?
+      
+[//]: # (end-warning)
 
-  
-
-
-
----
 
 
 Basic RTCP support

@@ -9,16 +9,12 @@ Project Overview
 
 
 
----
+!!! info ""
+    This is a draft. Please keep that in mind when commenting. Thanks!
 
+      
+[//]: # (end-info)
 
-**Information:**  This is a draft. Please keep that in mind when commenting. Thanks!
-
-  
-
-
-
----
 
 
  
@@ -39,10 +35,6 @@ Text to Speech is nice. If nothing else, it let's you get a demo off the ground 
 POST http://localhost:8088/ari/channels/12345/play/p1?media=tts:dude%20where%20is%20my%20car
 
 ```
-
-
-
----
 
 
 Is much more preferable than having to record the sound, put it on the file system, and playback the new sound file. Sure, there's no beating Allison for professional sound, but if the goal is just to make a funny noise in a demo, TTS is great.

@@ -82,10 +82,6 @@ endpoint=realtime,ps\_endpoints
 ```
 
 
-
----
-
-
 Let's break this down line-by-line. The first line starts with "endpoint/cache". "endpoint" is the name of the object type. "/cache" is a cue to sorcery that the wizard being specified on this line is a cache. And "memory\_cache" is the name of the caching wizard that has been added in Asterisk 14.0.0. The second line is the familiar line that specifies that endpoints can be retrieved from realtime by following the "ps\_endpoints" configuration line in `extconfig.conf`.
 
 The order of the lines is important. You will want to specify the memory\_cache wizard before the realtime wizard so that the memory\_cache is looked in before realtime when retrieving an item.
@@ -111,10 +107,6 @@ endpoint/cache = memory\_cache,maximum\_objects=150,expire\_on\_reload=yes,objec
 endpoint = realtime,ps\_endpoints
 
 ```
-
-
-
----
 
 
 The following configuration options are recognized by the memory cache:
@@ -173,16 +165,12 @@ AMI
 
 
 
----
+!!! info ""
+    Since AMI commands are XML-documented in the source, there should be a dedicated wiki page with this information.
 
+      
+[//]: # (end-info)
 
-**Information:**  Since AMI commands are XML-documented in the source, there should be a dedicated wiki page with this information.
-
-  
-
-
-
----
 
 
 ### SorceryMemoryCacheExpireObject
@@ -207,10 +195,6 @@ Object: <object name>
 ```
 
 
-
----
-
-
 Issuing this command will cause the specified object in the specified cache to be removed. Like all AMI commands, an optional ActionID may be specified.
 
 ### SorceryMemoryCacheExpire
@@ -232,10 +216,6 @@ Action: SorceryMemoryCacheExpire
 Cache: <cache name>
 
 ```
-
-
-
----
 
 
 Issuing this command will cause all objects in the specified cache to be removed. Like all AMI commands, an optional ActionID may be specified.
@@ -262,10 +242,6 @@ Object: <object name>
 ```
 
 
-
----
-
-
 Issuing this command will cause the specified object in the specified cache to be marked as stale. For more information on what it means for an object to be stale, see [here](#stale).  Like all AMI commands, an optional ActionID may be specified.
 
 ### SorceryMemoryCacheStale
@@ -287,10 +263,6 @@ Action: SorceryMemoryCacheStale
 Cache: <cache name>
 
 ```
-
-
-
----
 
 
 Issuing this command will cause all objects in the specified cache to be marked as stale. For more information on what it means for an object to be stale, see [here](#stale).  Like all AMI commands, an optional ActionID may be specified.
@@ -347,10 +319,6 @@ aor = realtime,ps\_aors
 ```
 
 
-
----
-
-
 In this particular setup, the administrator has set different options for different object caches.
 
 * For endpoints, the administrator decided that cached endpoint configuration may occasionally need updating. Endpoints therefore will be marked stale after 10 minutes. If an endpoint happens to make it 30 minutes without being retrieved, then the endpoint will be ejected from the cache entirely.
@@ -387,10 +355,6 @@ identify = realtime,ps\_endpoint\_id\_ips
 ```
 
 
-
----
-
-
 Just like with the previous section's configuration, we have configured an object to be retrieved from realtime and cached in memory. Notice, though, that we have added `full_backend_cache=yes` to the end of the line. This is what causes Asterisk to pre-cache the objects. Normally, PJSIP "identify" objects would be a bad fit for caching since we tend to retrieve them all at once rather than one-at-a-time. By pre-caching all objects though, Asterisk can now retrieve all of them directly from the cache. Also notice that the other caching options are still relevant here. Rather than having the options apply to individual objects, they now apply to all of the retrieved objects. So if Asterisk retrieved 10 identifys during pre-cache, when the stale lifetime rolls around, all 10 will be marked stale and Asterisk will once again retrieve all of the objects from the backend.
 
 CLI
@@ -422,10 +386,6 @@ Action: SorceryMemoryCachePopulate
 Cache: <cache name>
 
 ```
-
-
-
----
 
 
 Issuing this command has the same effect as the CLI "sorcery memory cache populate" command. It will invalidate all cached entries from the particular cache and then repopulate it with all objects from the backend.

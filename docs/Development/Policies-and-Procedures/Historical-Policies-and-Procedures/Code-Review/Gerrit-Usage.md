@@ -34,10 +34,6 @@ As of 2021-08-26, the ssh host key fingerprint for gerrit.asterisk.org port 2941
 ```
 
 
-
----
-
-
 More instructions for using ssh are below.
 
  
@@ -53,16 +49,12 @@ Gerrit uses [OpenID](https://openid.asterisk.org) in conjunction with the Asteri
 
 
 
----
+!!! warning 
+    Until your Contributor License Agreement is approved, you will not be able to sign into the project OpenID provider or Gerrit.
 
-**WARNING!:**   
-Until your Contributor License Agreement is approved, you will not be able to sign into the project OpenID provider or Gerrit.
+      
+[//]: # (end-warning)
 
-  
-
-
-
----
 3. Browse to [Gerrit](https://gerrit.asterisk.org), and click **Sign In**.
 4. This will redirect to [openid.asterisk.org](https://openid.asterisk.org). Sign in with your Atlassian username/password.
 5. Upon signing in successfully, you will need to authorize Gerrit to access your OpenID. When you have done so, you should be redirected back to Gerrit, and will be signed in.
@@ -112,14 +104,7 @@ Since access to [gerrit.asterisk.org](https://gerrit.asterisk.org) is likely to 
 
 
 
----
-
-  
-  
-
-
-```
-
+```bash title=" " linenums="1"
 $ cat ~/.ssh/config
 ...
 Host asterisk
@@ -130,30 +115,15 @@ Host asterisk
 ```
 
 
-
----
-
-
 This will allow you to access the repository as shown below:
 
 
 
 
----
-
-  
-  
-
-
-```
-
+```bash title=" " linenums="1"
 $ git clone asterisk:{repo}
 
 ```
-
-
-
----
 
 
 Install git-review
@@ -166,32 +136,18 @@ Most Gerrit users will be submitting patches for review and will need the `git r
 
 
 
----
-
-  
-Install git-review from git  
-
-
-```
-
-bash$ pip install git-review
+```bash title="Install git-review from git  " linenums="1"
+$ pip install git-review
 
 ```
 
 
 
----
 
+!!! note 
+    It is recommended that you have git-review version 1.27.0 installed. You can check the installed version using "git review --version". If it is an old version you can install it using pip to receive the latest one.  
+[//]: # (end-note)
 
-
-
----
-
-**Note:**  It is recommended that you have git-review version 1.27.0 installed. You can check the installed version using "git review --version". If it is an old version you can install it using pip to receive the latest one.  
-
-
-
----
 
 
  
@@ -222,10 +178,6 @@ $ git config --local --add user.name <your full name>
 
 
 
----
-
-
-
 
 ---
 
@@ -239,10 +191,6 @@ text$ git config --global --add user.email <your email>
 $ git config --global --add user.name <your full name>
 
 ```
-
-
-
----
 
 
 Cloning from Gerrit
@@ -268,10 +216,6 @@ text$ git clone ssh://{user}@gerrit.asterisk.org:29418/{repo}
 ```
 
 
-
----
-
-
 or
 
 
@@ -288,10 +232,6 @@ Clone using SSH alias
 text$ git clone ssh://asterisk/{repo}
 
 ```
-
-
-
----
 
 
 You can also clone and check out a branch in one step
@@ -312,10 +252,6 @@ text$ git clone -b 13 ssh://asterisk/asterisk asterisk-13
 ```
 
 
-
----
-
-
 If you're only retrieving patches and don't need to submit, you can clone from https:
 
 
@@ -334,10 +270,6 @@ text$ git clone https://gerrit.asterisk.org/asterisk
 ```
 
 
-
----
-
-
 To push reviews to Gerrit, you'll need the commit hook that generates the Gerrit Change-Id and appends it to every commit message.  You can install the hook easily with git review.
 
 
@@ -354,10 +286,6 @@ Install the Gerrit commit hook
 text$ git review -s
 
 ```
-
-
-
----
 
 
 It's imperative that once a Change-Id is added to a review it's not changed.  Gerrit uses it to associate multiple commits with a single review and associate cherry-picks among branches.
@@ -380,22 +308,11 @@ You'll want to keep the local branches that track remote branches, like 13, 14 a
 
 
 
----
-
-  
-  
-
-
-```
-
+```bash title=" " linenums="1"
 $ git checkout 13
 $ git checkout -b ASTERISK-12345
 
 ```
-
-
-
----
 
 
 Do Some Work!
@@ -442,10 +359,6 @@ Change-Id: I6dca12979f482ffb0450aaf58db0fe0f6d2e389
 ```
 
 
-
----
-
-
 Submit
 ------
 
@@ -466,10 +379,6 @@ Submit a patch for review
 text$ git review 13 
 
 ```
-
-
-
----
 
 
 `13` represents the branch you're submitting this patch against.  The default is `master` so don't forget to specify it.  
@@ -500,10 +409,6 @@ To ssh://gerrit.asterisk.org:29418/asterisk
 ```
 
 
-
----
-
-
 `9999` is the review number.  
 
 
@@ -520,21 +425,10 @@ You can cherry-pick a review from the command line if you so wish:
 
 
 
----
-
-  
-Cherry pick a review from the command line  
-
-
-```
-
+```bash title="Cherry pick a review from the command line  " linenums="1"
 $ git review --cherrypick 9999 14 
 
 ```
-
-
-
----
 
 
 This will cherry pick review 9999 to the 14 branch.
@@ -562,26 +456,10 @@ Updating a Review
 Making updates to a review is a bit tricky because you don't want to create new commits or new reviews with each update.  Here are the steps:
 
 Pull down the current review
-----------------------------
-
-
-
-
----
-
-  
-  
-
-
-```
-
+-------------------------```bash title="---" linenums="1"
 $ git review -d 9999
 
 ```
-
-
-
----
 
 
 This will create (or reuse) a branch named "review/<your\_name>/<topic>" and switch you to it.  In this example and assuming your name is "Joe Developer", the branch would be "review/joe\_developer/ASTERISK-12345".
@@ -610,33 +488,13 @@ Amend a commit
 ```
 
 
-
----
-
-
 It is **CRITICAL** that you amend your original commit and not create a new commit.  Failing to amend will generate a new Change-Id and will cause Gerrit to create a NEW review instead of creating a new patchset on the existing review.
 
 Re-submit
----------
-
-
-
-
----
-
-  
-  
-
-
-```
-
+------```bash title="---" linenums="1"
 $ git review 13
 
 ```
-
-
-
----
 
 
 Don't forget the base branch.
@@ -651,23 +509,12 @@ If you have to make multiple changes over the lifetime of the review, you should
 
 
 
----
-
-  
-  
-
-
-```
-
+```bash title=" " linenums="1"
 $ git checkout 13
 $ git branch -D reviews/joe\_developer/ASTERISK-12345
 $ git review -d 10000
 
 ```
-
-
-
----
 
 
 Advanced Topics
@@ -701,10 +548,6 @@ Solution: You may need to add an explicit git remote named "gerrit".
 git remote add gerrit <ssh-url-to-the-gerrit-repo>
 
 ```
-
-
-
----
 
 
 ### Problem:  Unable to login to [gerrit.asterisk.org](http://gerrit.asterisk.org)
@@ -742,30 +585,15 @@ pkg\_resources.DistributionNotFound: git-review
 ```
 
 
-
----
-
-
 Solution: Run
 
 
 
 
----
-
-  
-  
-
-
-```
-
+```bash title=" " linenums="1"
 $ sudo pip install --upgrade setuptools
 
 ```
-
-
-
----
 
 
 on your command line
@@ -778,21 +606,10 @@ Description:  There is an incompatibility between certain version of git and ge
 
 
 
----
-
-  
-  
-
-
-```
-
+```bash title=" " linenums="1"
 $ git push --no-thin asterisk:{repo} HEAD:refs/for/master
 
 ```
-
-
-
----
 
 
 ### Problem:  Unable to unsubscribe from Gerrit notifications

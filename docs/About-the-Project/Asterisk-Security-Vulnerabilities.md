@@ -8,31 +8,24 @@ The Asterisk project takes the issue of its users security seriously. If you bel
 
 
 
----
+!!! note 
+    The Asterisk project does not produce or work on the underlying tools the project uses, such as Github. For security vulnerabilities found in these the report should be directed to the company or project that creates it. We *will* however accept reports related to the configuration of those tools.
 
-**Note:**  The Asterisk project does not produce or work on the underlying tools the project uses, such as Github. For security vulnerabilities found in these the report should be directed to the company or project that creates it. We *will* however accept reports related to the configuration of those tools.
-
-  
-
-
-
----
+      
+[//]: # (end-note)
 
 
 
 
----
 
-**WARNING!: The Issue Tracker is Public!**  
-The [Asterisk Issue Tracker](https://github.com/asterisk/asterisk/issues) is a public site, and all bug reports against Asterisk can be viewed openly by the public. While this results in a transparent, open process - which is good - reporting a security vulnerability on the issue tracker without properly selecting "[Report a vulnerability](https://github.com/asterisk/asterisk/security/advisories/new)" on the [New Issue page](https://github.com/asterisk/asterisk/issues/new/choose) makes the entire Asterisk user community vulnerable.
+!!! warning The Issue Tracker is Public!
+    The [Asterisk Issue Tracker](https://github.com/asterisk/asterisk/issues) is a public site, and all bug reports against Asterisk can be viewed openly by the public. While this results in a transparent, open process - which is good - reporting a security vulnerability on the issue tracker without properly selecting "[Report a vulnerability](https://github.com/asterisk/asterisk/security/advisories/new)" on the [New Issue page](https://github.com/asterisk/asterisk/issues/new/choose) makes the entire Asterisk user community vulnerable.
 
-Reporting a vulnerability will automatically restrict who can view the information. If you have any difficulties with that we'll help; please follow the instructions here and e-mail the team at [security@asterisk.org.](mailto:security@asterisk.org)
+    Reporting a vulnerability will automatically restrict who can view the information. If you have any difficulties with that we'll help; please follow the instructions here and e-mail the team at [security@asterisk.org.](mailto:security@asterisk.org)
 
-  
+      
+[//]: # (end-warning)
 
-
-
----
 
 
  

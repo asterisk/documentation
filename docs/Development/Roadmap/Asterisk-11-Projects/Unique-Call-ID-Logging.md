@@ -46,10 +46,6 @@ css[Mar 7 00:00:00] VERBOSE[6165] netsock2.c: == Using SIP RTP CoS mark 5
 ```
 
 
-
----
-
-
 This case represents a simple scenario where a a SIP packet is received which starts a new call. Before a channel can be created, The SIP channel driver anticipates a new call will be started and creates a <call-id> related to that call. The call id is referenced by the pbx thread created for that channel. [000001].
 
 
@@ -71,10 +67,6 @@ nonecore set verbose\_callids on = yes
 ```
 
 
-
----
-
-
 This would effectively change the display of a verbose message on CLI from:
 
 
@@ -93,10 +85,6 @@ css-- Executing [023@sipphones:2] NoOp("SIP/123-00000000", "Oh wait, that isn't 
 ```
 
 
-
----
-
-
 to:
 
 
@@ -113,10 +101,6 @@ to:
 css-- [C00000001] Executing [023@sipphones:2] NoOp("SIP/123-00000000", "Oh wait, that isn't a thing.") in new stack
 
 ```
-
-
-
----
 
 
 Having call identifiers in log messages like this could greatly help users to visually parse what is happening with their calls and could also be helpful in identifying problems from the perspective of support or development.
@@ -155,10 +139,6 @@ struct ast\_callid {
 };
 
 ```
-
-
-
----
 
 
 Call-ID API
@@ -215,10 +195,6 @@ int ast\_callid\_threadassoc\_add(struct ast\_callid \*callid);
 
 
 ```
-
-
-
----
 
 
 Logging - Thread storage and ast\_log\_callid
@@ -279,10 +255,6 @@ exten => s,2,MixMonitor(mixfile.wav)
 exten => s,3,Dial(SIP/examplepeer)
 
 ```
-
-
-
----
 6. The NoOp gets verbose logged to CLI. In the CLI, nothing special is visible, but since ast\_log is called with a thread containing an ast\_callid in thread storage, so ast\_log checks the thread
 7. MixMonitor is reached. Verbose logging occurs as with NoOp It creates a monitor\_thread which will be part of the call. When the new thread is created, the pbx thread sends the call-id to it for
 8. Dial is reached. Verbose logging occurs as with NoOp, The thread enters the channel .call function (sip\_call)
@@ -315,10 +287,6 @@ Running through a simple example call with transfers
 exten => s,1,Dial(SIP/examplepeer)
 
 ```
-
-
-
----
 3. Dial is reached and is verbose logged. The thread enters the channel .call function (sip\_call)
 4. Nothing too special occurs until SIP/examplecaller transfers SIP/examplepeer to SIP/examplepeer2. This means the channel that started the call thread is going to become a zombie. The call will go on though, the thread will just receive a new channel. The <call-id> can probably just stay in as is. However, the zombie will no longer be a part of the thread, so it will need to reference
 5. Zombie cleanup events take place using ast\_log\_callid to attach the <call-id> stamp to the logs.

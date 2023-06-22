@@ -11,28 +11,22 @@ Asterisk 15 introduced a new feature that allows you to utilize multiple streams
 
 
 
----
+!!! tip 
+    To get started with SFU testing and WebRTC, look at [WebRTC tutorial using SIPML5](/Configuration/WebRTC/WebRTC-tutorial-using-SIPML5).
 
-**Tip:**  To get started with SFU testing and WebRTC, look at [WebRTC tutorial using SIPML5](/Configuration/WebRTC/WebRTC-tutorial-using-SIPML5).
-
-  
-
-
-
----
+      
+[//]: # (end-tip)
 
 
 
 
----
 
-**Note:**  This page covers areas that are catered towards SFU coverage with streams. Other things, such as fax, will need to be investigated as well but have been left out for the purpose of this page.
+!!! note 
+    This page covers areas that are catered towards SFU coverage with streams. Other things, such as fax, will need to be investigated as well but have been left out for the purpose of this page.
 
-  
+      
+[//]: # (end-note)
 
-
-
----
 
 
 Testsuite: Pre Asterisk 15

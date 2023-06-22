@@ -160,10 +160,6 @@ max\_contacts=2
 ```
 
 
-
----
-
-
 ### For Remote Phones Behind NAT
 
 In the above example we assumed the phone was on the same local network as Asterisk. Now, perhaps Asterisk is exposed on a public address, and instead your phones are remote and behind NAT, or maybe you have a double NAT scenario?

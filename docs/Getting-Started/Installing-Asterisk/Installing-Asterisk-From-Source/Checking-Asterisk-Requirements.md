@@ -25,10 +25,6 @@ Now it's time to compile and install Asterisk. Let's change to the directory whi
 ```
 
 
-
----
-
-
 Next, we'll run a command called **./configure**, which will perform a number of checks on the operating system, and get the Asterisk code ready to compile on this particular server.
 
 
@@ -48,10 +44,6 @@ Next, we'll run a command called **./configure**, which will perform a number of
 ```
 
 
-
----
-
-
 This will run for a couple of minutes, and warn you of any missing system libraries or other dependencies. Unless you've installed all of the [System Requirements](/Operation/System-Requirements) for your version of Asterisk, the **configure** script is likely to fail. If that happens, resolve the missing dependency manually, or use the [install\_prereq](#install_prereq) script to resolve all of the dependencies on your system.
 
 Once a dependency is resolved, run **configure** again to make sure the missing dependency is fixed.
@@ -59,15 +51,12 @@ Once a dependency is resolved, run **configure** again to make sure the missing 
 
 
 
----
+!!! tip **  If you have many missing dependencies, you may find yourself running **configure
+    a lot. If that is the case, you'll do yourself a favour by checking the [System Requirements](/Operation/System-Requirements) or installing all dependencies via the `install_prereq` script.
 
-**Tip:**  If you have many missing dependencies, you may find yourself running **configure** a lot. If that is the case, you'll do yourself a favour by checking the [System Requirements](/Operation/System-Requirements) or installing all dependencies via the `install_prereq` script.
+      
+[//]: # (end-tip)
 
-  
-
-
-
----
 
 
 On this PageUpon successful completion of **./configure**, you should see a message that looks similar to the one shown below. (Obviously, your host CPU type may be different than the below.)
@@ -117,19 +106,11 @@ configure: host-cpu:vendor:os: x86\_64 : unknown : linux-gnu :
 
 
 
----
 
+!!! tip Cached Data** The **./configure
+    command caches certain data to speed things up if it's invoked multiple times. To clear all the cached data, you can use the following command to completely clear out any cached data from the Asterisk build system.
+[//]: # (end-tip)
 
-
-
----
-
-**Tip: Cached Data** The **./configure** command caches certain data to speed things up if it's invoked multiple times. To clear all the cached data, you can use the following command to completely clear out any cached data from the Asterisk build system.
-
-
-
-
----
 
   
   
@@ -153,11 +134,6 @@ You can then re-run **./configure**.
 
 
 
----
-
-
-
-
 
 Using install\_prereq
 =====================
@@ -171,16 +147,12 @@ The **install\_prereq** script is included with every release of Asterisk in the
 
 
 
----
+!!! warning 
+    You should always use your operating system's package management tools to ensure that your system is running the latest software **before** running `install_prereq`. Ubuntu 14's libsnmp-dev package, for instance, has an issue where it will attempt to remove critical system packages if the system isn't updated before an attempt is made to install that package.
 
-**WARNING!:**   
-You should always use your operating system's package management tools to ensure that your system is running the latest software **before** running `install_prereq`. Ubuntu 14's libsnmp-dev package, for instance, has an issue where it will attempt to remove critical system packages if the system isn't updated before an attempt is made to install that package.
+      
+[//]: # (end-warning)
 
-  
-
-
-
----
 
 
 
@@ -200,9 +172,5 @@ You should always use your operating system's package management tools to ensure
 [root@server asterisk-14.X.Y/contrib/scripts]# ./install\_prereq install-unpackaged
 
 ```
-
-
-
----
 
 

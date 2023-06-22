@@ -8,15 +8,8 @@ For creating your own auto-attendant or IVR menus, you're probably going to want
 
 
 
----
-
-  
-  
-
-
-```
-
-javascriptexten => 6597,1,Answer(500)
+```javascript title=" " linenums="1"
+exten => 6597,1,Answer(500)
  same => n,Record(en/custom-menu.gsm)
  same => n,Wait(1)
  same => n,Playback(custom-menu)
@@ -26,20 +19,13 @@ javascriptexten => 6597,1,Answer(500)
 
 
 
----
 
+!!! tip Recording Formats** When specifiying a file extension when using the **Record()** application, you must choose a file extension which represents one of the supported file formats in Asterisk. For the complete list of file formats supported in your Asterisk installation, type **core show file formats
+    at the Asterisk command-line interface.
 
+      
+[//]: # (end-tip)
 
-
----
-
-**Tip: Recording Formats** When specifiying a file extension when using the **Record()** application, you must choose a file extension which represents one of the supported file formats in Asterisk. For the complete list of file formats supported in your Asterisk installation, type **core show file formats** at the Asterisk command-line interface.
-
-  
-
-
-
----
 
 
 You've now learned the basics of how to create a simple auto-attendant menu. Now let's build a more practical menu for callers to be able to reach Alice or Bob or the dial-by-name directory.

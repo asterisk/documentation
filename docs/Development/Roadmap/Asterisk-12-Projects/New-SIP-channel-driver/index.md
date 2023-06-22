@@ -34,16 +34,12 @@ As part of this work, pjproject has been pulled out of the Asterisk source tree 
 
 
 
----
+!!! note **  You **must
+    use the version of pjproject in the github repository. Asterisk requires the shared objects built by this version of pjproject and will not build against another version of pjproject.
 
-**Note:**  You **must** use the version of pjproject in the github repository. Asterisk requires the shared objects built by this version of pjproject and will not build against another version of pjproject.
+    If you already have an old installation of pjproject, you can remove it with:
+[//]: # (end-note)
 
-If you already have an old installation of pjproject, you can remove it with:
-
-
-
-
----
 
   
   
@@ -64,20 +60,12 @@ rm -f /usr/lib/libpj\*.a /usr/lib/libmilenage\*.a /usr/lib/pkgconfig/libpjprojec
 
 
 
----
+!!! note 
+    Alternatively, packages for CentOS 6 are available at <http://packages.asterisk.org/centos/6/current/>.
 
+      
+[//]: # (end-note)
 
-
-
----
-
-**Note:**  Alternatively, packages for CentOS 6 are available at <http://packages.asterisk.org/centos/6/current/>.
-
-  
-
-
-
----
 
 
 ### Installing pjproject
@@ -87,34 +75,16 @@ rm -f /usr/lib/libpj\*.a /usr/lib/libmilenage\*.a /usr/lib/pkgconfig/libpjprojec
 
 
 
----
-
-  
-  
-
-
-```
-
+```bash title=" " linenums="1"
 # git clone http://github.com/asterisk/pjproject pjproject
 
 ```
-
-
-
----
 2. Configure pjproject to produce shared objects in the /usr directory (or in an appropriate folder in which your system expects shared objects to reside)
 
 
 
 
----
-
-  
-  
-
-
-```
-
+```bash title=" " linenums="1"
 # cd pjproject
 # ./configure --prefix=/usr --enable-shared
 
@@ -122,43 +92,25 @@ rm -f /usr/lib/libpj\*.a /usr/lib/libmilenage\*.a /usr/lib/pkgconfig/libpjprojec
 
 
 
----
 
+!!! note 
+    You may need additional configure options depending on your local system and what is already installed.
 
+    Commonly used options are: --with-external-speex --with-external-gsm --with-external-srtp --disable-sound --disable-resample
 
+      
+[//]: # (end-note)
 
----
-
-**Note:**  You may need additional configure options depending on your local system and what is already installed.
-
-Commonly used options are: --with-external-speex --with-external-gsm --with-external-srtp --disable-sound --disable-resample
-
-  
-
-
-
----
 3. Compile pjproject and install
 
 
 
 
----
-
-  
-  
-
-
-```
-
+```bash title=" " linenums="1"
 # make
 # make install
 
 ```
-
-
-
----
 
  
 

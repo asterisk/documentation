@@ -42,14 +42,7 @@ First, run `./contrib/scripts/install_prereq`.  Building the bundled pjproject 
 
 
 
----
-
-  
-  
-
-
-```
-
+```bash title=" " linenums="1"
 $ cd /path/asterisk-source-dir
 # For Asterisk 13 and 14...
 $ ./configure --with-pjproject-bundled
@@ -58,10 +51,6 @@ $ ./configure
 $ make && make install
 
 ```
-
-
-
----
 
 
 The configure and make processes will download the correct version of pjproject, patch it, configure it, build it, and finally link Asterisk to it statically.  No changes in runtime configuration are required.  You can leave your system-installed version of pjproject in place if needed.  Once compiled with the `--with-pjproject-bundled` option, Asterisk will ignore any other installed versions of pjproject. 
@@ -73,23 +62,12 @@ Using the bundled version of pjproject doesn't necessarily mean you need interne
 
 
 
----
-
-  
-  
-
-
-```
-
+```bash title=" " linenums="1"
 $ mkdir /tmp/downloads
 $ wget -O /tmp/downloads/pjproject-2.6.tar.bz2 http://www.pjsip.org/release/2.6/pjproject-2.6.tar.bz2
 $ wget -O /tmp/downloads/pjproject-2.6.md5 http://www.pjsip.org/release/2.6/MD5SUM.txt
 
 ```
-
-
-
----
 
 
 It's important that both files be named `pjproject-<version>.tar.bz2` and `pjproject-<version>.md5` respectively.
@@ -107,16 +85,12 @@ Building and Installing pjproject from Source
 
 
 
----
+!!! warning 
+    **Installing pjproject from source or from packages is no longer a supported configuration for Asterisk versions that contain the [bundled version of pjproject](#bundled).** Reports of pjproject-related Asterisk issues may only be made against the bundled version. The bundled version inherits flags like DONT\_OPTIMIZE and MALLOC\_DEBUG from Asterisk which allows us to accurately diagnose issues across both Asterisk and pjproject.
 
-**WARNING!:**   
-**Installing pjproject from source or from packages is no longer a supported configuration for Asterisk versions that contain the [bundled version of pjproject](#bundled).** Reports of pjproject-related Asterisk issues may only be made against the bundled version. The bundled version inherits flags like DONT\_OPTIMIZE and MALLOC\_DEBUG from Asterisk which allows us to accurately diagnose issues across both Asterisk and pjproject.
+      
+[//]: # (end-warning)
 
-  
-
-
-
----
 
 
 Despite efforts to maintain backwards compatibility, some changes to Asterisk require a particular version of pjproject (or above) to be installed. For instance, earlier releases of pjproject cannot build shared object libraries, so some changes were required in order to use it with Asterisk 12. As such, Asterisk requires a pjproject version that is the same version of pjproject that is bundled with Asterisk, or **no more than 4 versions behind**. Alternatively, you may be able to find an Asterisk compatible version of pjproject available on [github](https://github.com/asterisk/pjproject) , or - depending on your Linux distribution - available as a package.
@@ -126,16 +100,12 @@ Earlier versions of pjproject downloaded from [www.pjsip.org](http://www.pjsip.o
 
 
 
----
+!!! warning 
+    If you have previously installed a version of pjproject, you **must** remove that version of pjproject prior to building and installing the Asterisk 12+ compatible version of pjproject. See [Uninstalling pjproject](#uninstalling_pjproject) for more information.
 
-**WARNING!:**   
-If you have previously installed a version of pjproject, you **must** remove that version of pjproject prior to building and installing the Asterisk 12+ compatible version of pjproject. See [Uninstalling pjproject](#uninstalling_pjproject) for more information.
+      
+[//]: # (end-warning)
 
-  
-
-
-
----
 
 
 Downloading pjproject
@@ -148,23 +118,12 @@ Use `wget` to pull the latest version (currently 2.6) from `www.pjsip.org`. Note
 
 
 
----
-
-  
-  
-
-
-```
-
+```bash title=" " linenums="1"
 # wget http://www.pjsip.org/release/2.6/pjproject-2.6.tar.bz2
 
 # tar -xjvf pjproject-2.6.tar.bz2
 
 ```
-
-
-
----
 
 
 ### Obtaining the latest pjproject from the svn repo:
@@ -176,21 +135,10 @@ Use  `svn` to install the latest version from  [www.pjsip.org](http://www.pjs
 
 
 
----
-
-  
-  
-
-
-```
-
+```bash title=" " linenums="1"
 # svn co http://svn.pjsip.org/repos/pjproject/trunk/ pjproject-trunk
 
 ```
-
-
-
----
 
 
  
@@ -202,14 +150,10 @@ If you do not have [git](http://git-scm.com/), install git on your local machin
 
 
 
----
+!!! note 
+    Downloading and installing `git` is beyond the scope of these instructions, but for Debian/Ubuntu systems, it should be as simple as:
+[//]: # (end-note)
 
-**Note:**  Downloading and installing `git` is beyond the scope of these instructions, but for Debian/Ubuntu systems, it should be as simple as:
-
-
-
-
----
 
   
   
@@ -231,10 +175,6 @@ yum install git
 ```
 
 
-
----
-
-
  
 
 Checkout the Asterisk 12-compatible pjproject from the Asterisk [github repo](https://github.com/asterisk/pjproject):
@@ -244,21 +184,10 @@ Checkout the Asterisk 12-compatible pjproject from the Asterisk [github repo](
 
 
 
----
-
-  
-  
-
-
-```
-
+```bash title=" " linenums="1"
 # git clone https://github.com/asterisk/pjproject pjproject
 
 ```
-
-
-
----
 
 
 And that's it!
@@ -278,16 +207,12 @@ Additionally, Asterisk **REQUIRES** two or three options to be passed to **confi
 
 
 
----
+!!! warning 
+    Failure to build Asterisk with shared pjproject object libraries **WILL** result in seemingly random crashes. For Asterisk to work properly with pjproject, pjproject **MUST** be built with shared object libraries.
 
-**WARNING!:**   
-Failure to build Asterisk with shared pjproject object libraries **WILL** result in seemingly random crashes. For Asterisk to work properly with pjproject, pjproject **MUST** be built with shared object libraries.
+      
+[//]: # (end-warning)
 
-  
-
-
-
----
 
 
 #### Compiler DEFINEs
@@ -400,10 +325,6 @@ truecpp/\*
 #define PJSIP\_TLS\_KEEP\_ALIVE\_INTERVAL 0
 
 ```
-
-
-
----
 
 
  
@@ -582,15 +503,12 @@ These are some of the more common options used to disable third party libraries 
 
 
 
----
+!!! note 
+    If you need pjsua (for the testsuite, for example), then you may also need to take a look at [Installing the Asterisk Test Suite](/Test-Suite-Documentation/Installing-the-Asterisk-Test-Suite) to set that up externally as well.
 
-**Note:**  If you need pjsua (for the testsuite, for example), then you may also need to take a look at [Installing the Asterisk Test Suite](/Test-Suite-Documentation/Installing-the-Asterisk-Test-Suite) to set that up externally as well.
+      
+[//]: # (end-note)
 
-  
-
-
-
----
 
 
 First, if you're using Asterisk 13.8.0 or greater, consider switching to the [Bundled Version of pjproject](#bundled)
@@ -624,10 +542,6 @@ No package 'libpjproject' found
 ```
 
 
-
----
-
-
 1. 1. Make sure you have `pkg-config` installed on your system.
 	2. pjproject will install the package config file in  `/usr/lib/pkgconfig` . Some distributions, notably Fedora, will instead look for the library in  `/usr/lib64` . Update your  `PKG_CONFIG_PATH`  environment variable with  `/usr/lib/pkgconfig`  and re-run Asterisk's  `configure`  script.
 
@@ -659,10 +573,6 @@ output/pjmedia-codec-x86\_64-unknown-linux-gnu/opencore\_amr.o:(.rodata+0x40): f
 ```
 
 
-
----
-
-
 #### Solution
 
  You already have the AMR codec installed. Run  `configure`  with the  `--disable-opencore-amr`  option specified. 
@@ -688,10 +598,6 @@ output/pjmedia-codec-x86\_64-unknown-linux-gnu/opencore\_amr.o:(.rodata+0x40): f
 /home/mjordan/projects/pjproject/pjmedia/lib/libpjmedia-videodev.so: undefined reference to `pjmedia\_get\_video\_format\_info'
 
 ```
-
-
-
----
 
 
 #### Solution
@@ -735,10 +641,6 @@ In file included from /usr/include/pj/types.h:33:0,
 ```
 
 
-
----
-
-
 ####  Solution
 
 1. 1. Edit `/usr/include/pj/config.h` (using the editor of your choice)
@@ -769,10 +671,6 @@ In file included from /usr/include/pj/types.h:33:0,
 ```
 
 
-
----
-
-
 With this:
 
 
@@ -799,10 +697,6 @@ With this:
 ```
 
 
-
----
-
-
 Then recompile. This workaround was taken from issue [ASTERISK-23315](https://github.com/asterisk/asterisk/issues/jira/browse/ASTERISK-23315).
 
  
@@ -820,21 +714,10 @@ pjproject provides an `uninstall` make target that will remove previous installa
 
 
 
----
-
-  
-  
-
-
-```
-
+```bash title=" " linenums="1"
 # make uninstall
 
 ```
-
-
-
----
 
 
 If you don't have an "uninstall" make target, you may need to fetch and merge the latest pjproject from <https://github.com/asterisk/pjproject>
@@ -844,21 +727,10 @@ Alternatively, the following should also remove all previously installed static 
 
 
 
----
-
-  
-  
-
-
-```
-
+```bash title=" " linenums="1"
 # rm -f /usr/lib/libpj\*.a /usr/lib/libmilenage\*.a /usr/lib/pkgconfig/libpjproject.pc
 
 ```
-
-
-
----
 
 
 Finally, you will need to update shared library links:
@@ -866,21 +738,10 @@ Finally, you will need to update shared library links:
 
 
 
----
-
-  
-  
-
-
-```
-
+```bash title=" " linenums="1"
 # ldconfig
 
 ```
-
-
-
----
 
 
 If you want to run a sanity check, you can verify that pjproject has been uninstalled by ensuring no pjproject modules remain on the system:
@@ -888,21 +749,10 @@ If you want to run a sanity check, you can verify that pjproject has been uninst
 
 
 
----
-
-  
-  
-
-
-```
-
+```bash title=" " linenums="1"
 # ldconfig -p | grep pj
 
 ```
-
-
-
----
 
 
 If running the above command yields no results, that's it! You have successfully uninstalled pjproject from your system. If there are results, you may need to remove other pjproject-related items from /usr/lib as well.

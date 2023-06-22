@@ -57,10 +57,6 @@ context agents {
 ```
 
 
-
----
-
-
 In the above, the variables ${RAQUEL}, etc stand for actual devices to ring that person's phone (like DAHDI/37). 
 
 
@@ -104,10 +100,6 @@ macro callagent(device,exten) {
 
 
 ```
-
-
-
----
 
 
 In the callagent macro above, the ${exten} will be 6121, or 6165, etc, which is the extension of the agent. 

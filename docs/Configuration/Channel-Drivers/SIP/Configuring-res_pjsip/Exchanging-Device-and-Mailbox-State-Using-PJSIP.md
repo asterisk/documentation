@@ -64,10 +64,6 @@ mailbox\_state=yes
 ```
 
 
-
----
-
-
 This configures the first instance to publish device and mailbox state to 'instance 2' located at 172.16.10.2 using a resource name of 'instance1' without authentication. As no filters exist all state will be published. It also configures the first instance to accept all device and mailbox state messages published to a resource named 'instance2' from 'instance2'.
 
 #### Instance #2 (IP Address: 172.16.10.2):
@@ -109,10 +105,6 @@ device\_state=yes
 mailbox\_state=yes
 
 ```
-
-
-
----
 
 
 This configures the second instance to publish device and mailbox state to 'instance 1' located at 172.16.10.1 using a resource name of 'instance2' without authentication. As no filters exist all state will be published. It also configures the second instance to accept all device and mailbox state messages published to a resource named 'instance1' from 'instance1'.
@@ -166,24 +158,17 @@ mailbox\_state\_filter=^1000
 ```
 
 
-
----
-
-
 This builds upon the initial configuration for instance #2 but adds filtering of received events. Only device state events relating to PJSIP endpoints will be accepted. As well only mailbox state events for mailboxes starting with 1000 will be accepted.
 
 
 
 
----
+!!! note 
+    This configuration is not ideal as the publishing instance (instance #1) will still send state changes for devices and mailboxes that instance #2 does not care about, thus wasting bandwidth.
 
-**Note:**  This configuration is not ideal as the publishing instance (instance #1) will still send state changes for devices and mailboxes that instance #2 does not care about, thus wasting bandwidth.
+      
+[//]: # (end-note)
 
-  
-
-
-
----
 
 
 Fresh Startup

@@ -51,10 +51,6 @@ max\_contacts=1
 ```
 
 
-
----
-
-
 * auth= is used for the endpoint as opposed to outbound\_auth= since we want to allow inbound registration for this endpoint
 * max\_contacts= is set to something non-zero as we want to allow contacts to be created through registration
 
@@ -124,10 +120,6 @@ match=sip.example.com
 ```
 
 
-
----
-
-
 * "contact=sip:203.0.113.1:5060", we don't define the user portion statically since we'll set that dynamically in dialplan when we call the Dial application.
 * "outbound\_auth=mytrunk", we use "outbound\_auth" instead of "auth" since the provider isn't typically going to authenticate with us when calling, but we will probably
 * We use an identify object to map all traffic from the provider's IP as traffic to that endpoint since the user portion of their From: header may vary with each call.
@@ -136,14 +128,10 @@ match=sip.example.com
 
 
 
----
+!!! tip 
+    You can specify the transport type by appending it to the server\_uri and client\_uri parameters. e.g.:
+[//]: # (end-tip)
 
-**Tip:**  You can specify the transport type by appending it to the server\_uri and client\_uri parameters. e.g.:
-
-
-
-
----
 
   
   
@@ -165,11 +153,6 @@ retry\_interval=60
 
 
 ```
-
-
-
-
----
 
 
 Multiple endpoints with phones registering to Asterisk, using templates
@@ -248,10 +231,6 @@ username=6003
 [6003](aor-single-reg) 
 
 ```
-
-
-
----
 
 
 Obviously the larger your configuration is, the more templates will benefit you. Here we just break apart the endpoints with templates, but you could do that with any config section that needs instances with variation, but where each may share common settings with their peers.

@@ -78,10 +78,6 @@ exten => 1000,1,NoOp()
 ```
 
 
-
----
-
-
 Python
 ------
 
@@ -97,17 +93,14 @@ For our Python examples, we will rely primarily on the [ari-py](https://github.c
 
 
 
----
+!!! tip 
+    Modify the connection credentials as appropriate for your server, although many examples will use these credentials.
 
-**Tip:**  Modify the connection credentials as appropriate for your server, although many examples will use these credentials.
+    **Please don't use these credentials in production systems!**
 
-**Please don't use these credentials in production systems!**
+      
+[//]: # (end-tip)
 
-  
-
-
-
----
 
 
 
@@ -130,10 +123,6 @@ logging.basicConfig(level=logging.ERROR)
 client = ari.connect('http://localhost:8088', 'asterisk', 'asterisk')
 
 ```
-
-
-
----
 
 
 Once we've made our connection, our first task is to print out all existing channels or - if there are no channels - print out that there are no channels. The `channels` resource has an operation for this - `GET /channels`. Since the `ari-py` library will dynamically construct operations on objects that map to resource calls using the nickname of an operation, we can use the `list` method on the `channels` resource to get all current channels in Asterisk:
@@ -160,10 +149,6 @@ else:
 ```
 
 
-
----
-
-
 The `GET /channels` operation returns back a list of `Channel` resources. Those resources, however, are returned as JSON from the operation, and while the `ari-py` library converts the `uniqueid` of those into an attribute on the object, it leaves the rest of them in the JSON dictionary. Since what we want is the name, we can just extract it ourselves out of the JSON and print it out.
 
 Our next step involves a bit more - we want to print out all the information about a channel when it enters into our Stasis dialplan application "channel-dump" and print the channel name when it leaves. To do that, we need to subscribe for the `StasisStart` and `StasisEnd` events:
@@ -183,10 +168,6 @@ truepy32client.on\_channel\_event('StasisStart', stasis\_start\_cb)
 client.on\_channel\_event('StasisEnd', stasis\_end\_cb) 
 
 ```
-
-
-
----
 
 
 We need two handler functions - `stasis_start_cb` for the `StasisStart` event and `stasis_end_cb` for the `StasisEnd` event:
@@ -219,10 +200,6 @@ def stasis\_end\_cb(channel, ev):
 ```
 
 
-
----
-
-
 Finally, we need to tell the `client` to run our application. Once we call `client.run`, the websocket connection will be made and our application will wait on events infinitely. We can use `Ctrl+C` to kill it and break the connection.
 
 
@@ -239,10 +216,6 @@ Finally, we need to tell the `client` to run our application. Once we call `clie
 truepy35client.run(apps='channel-dump') 
 
 ```
-
-
-
----
 
 
 ### channel-dump.py
@@ -301,10 +274,6 @@ client.run(apps='channel-dump')
 ```
 
 
-
----
-
-
 ### channel-dump.py in action
 
 Here's sample output from `channel-dump.py`. When it first connects there are no channels in Asterisk -  - but afterwards a PJSIP channel from Alice enters into extension 1000. This prints out all the information about her channels. After hearing silence for awhile, she hangs up - and our script notifies us that her channel has left the application.
@@ -312,15 +281,8 @@ Here's sample output from `channel-dump.py`. When it first connects there are no
 
 
 
----
-
-  
-  
-
-
-```
-
-bashasterisk:~$ python channel-dump.py
+```bash title=" " linenums="1"
+asterisk:~$ python channel-dump.py
 No channels currently :-(
 Channel PJSIP/alice-00000001 has entered the application
 accountcode: 
@@ -336,10 +298,6 @@ PJSIP/alice-00000001 has left the application
 ```
 
 
-
----
-
-
 JavaScript (Node.js)
 --------------------
 
@@ -353,17 +311,14 @@ For our JavaScript examples, we will rely primarily on the Node.js [ari-client](
 
 
 
----
+!!! tip 
+    Modify the connection credentials as appropriate for your server, although many examples will use these credentials.
 
-**Tip:**  Modify the connection credentials as appropriate for your server, although many examples will use these credentials.
+    **Please don't use these credentials in production systems!**
 
-**Please don't use these credentials in production systems!**
+      
+[//]: # (end-tip)
 
-  
-
-
-
----
 
 
 
@@ -394,10 +349,6 @@ function clientLoaded (err, client) {
 ```
 
 
-
----
-
-
 Once we've made our connection, our first task is to print out all existing channels or - if there are no channels - print out that there are no channels. The `channels` resource has an operation for this - `GET /channels`. Since the `ari-client` library will dynamically construct a client with operations on objects that map to resource calls using the nickname of an operation, we can use the `list` method on the `channels` resource to get all current channels in Asterisk:
 
 
@@ -425,10 +376,6 @@ truejs15client.channels.list(function(err, channels) {
 ```
 
 
-
----
-
-
 The `GET /channels` operation expects a callback that will be called with an error if one occurred and a list of `Channel` resources. `ari-client` will return a JavaScript object for each `Channel` resource. Properties such as `name` can be accessed on the object directly.
 
 Our next step involves a bit more - we want to print out all the information about a channel when it enters into our Stasis dialplan application "channel-dump" and print the channel name when it leaves. To do that, we need to subscribe for the `StasisStart` and `StasisEnd` events:
@@ -448,10 +395,6 @@ truejs43client.on('StasisStart', stasisStart);
 client.on('StasisEnd', stasisEnd);
 
 ```
-
-
-
----
 
 
 We need two callback functions - `stasisStart` for the `StasisStart` event and `stasisEnd` for the `StasisEnd` event:
@@ -485,10 +428,6 @@ function stasisEnd(event, channel) {
 ```
 
 
-
----
-
-
 Finally, we need to tell the `client` to start our application. Once we call `client.start`, a websocket connection will be established and the client will emit Node.js events as events come in through the websocket. We can use `Ctrl+C` to kill it and break the connection.
 
 
@@ -505,10 +444,6 @@ Finally, we need to tell the `client` to start our application. Once we call `cl
 truejs46client.start('channel-dump');
 
 ```
-
-
-
----
 
 
 ### channel-dump.js
@@ -577,10 +512,6 @@ function clientLoaded (err, client) {
 ```
 
 
-
----
-
-
 ### channel-dump.js in action
 
 Here's sample output from `channel-dump.js`. When it first connects there are no channels in Asterisk -  - but afterwards a PJSIP channel from Alice enters into extension 1000. This prints out all the information about her channels. After hearing silence for a while, she hangs up - and our script notifies us that her channel has left the application.
@@ -610,9 +541,5 @@ id: asterisk-01-1402353503.1
 PJSIP/alice-00000001 has left the application
 
 ```
-
-
-
----
 
 

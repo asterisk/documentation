@@ -62,10 +62,6 @@ fec=no ; Do not include in-band forward error correction data
 ```
 
 
-
----
-
-
 Limit endpoints that allow "myopus" to wide band and use a constant bit rate:
 
 
@@ -85,9 +81,5 @@ bitrate=16000 ; Maximum encoded bit rate used
 cbr=yes ; The encoder will use a constant bit rate
 
 ```
-
-
-
----
 
 

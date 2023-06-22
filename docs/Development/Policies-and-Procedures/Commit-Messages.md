@@ -8,17 +8,13 @@ A commit message serves to notify others of the changes made to the Asterisk sou
 
 
 
----
-
-**WARNING!: Follow These Guidelines**  
-Commit messages are part of your code change. Committing code with a poorly written commit message creates a maintenance problem for everyone in the Asterisk project.  
+!!! warning Follow These Guidelines
+    Commit messages are part of your code change. Committing code with a poorly written commit message creates a maintenance problem for everyone in the Asterisk project.  
 
 
-  
+      
+[//]: # (end-warning)
 
-
-
----
 
 
 This page describes the expected format for commit messages used when submitting code to the Asterisk project. See [Gerrit Usage](/Development/Policies-and-Procedures/Historical-Policies-and-Procedures/Code-Review/Gerrit-Usage) for more information about pushing your commit for review.
@@ -53,10 +49,6 @@ The following illustrates the basic outline for commit messages:
 ```
 
 
-
----
-
-
 Your summary should, if possible, be preceded by the subsystem(s) affected by the change:
 
 
@@ -73,10 +65,6 @@ Your summary should, if possible, be preceded by the subsystem(s) affected by th
 app\_foo: Fix crash caused by invalid widget frobbing.
 
 ```
-
-
-
----
 
 
 Some commit history viewers treat the first line of commit messages as the summary for the commit. In addition, the Asterisk project uses many scripts that parse commit messages for a variety of purposes. So, an effort should be made to format our commit messages in this fashion. The verbose description may contain multiple paragraphs, itemized lists, etc. *Always end the first sentence (and any subsequent sentences) with punctuation.*
@@ -114,10 +102,6 @@ or
 Fixes: #45
 
 ```
-
-
-
----
 
 
 The trailer must start at the beginning of a new line and contain nothing on the line after it.   The colon separator is important for the automation and the only spaces allowed are between the colon and the hash sign.  The regex for this is `^(Resolves|Fixes):\s*[#][0-9]+`.  
@@ -161,10 +145,6 @@ and will cause an error if supplied.
  
 
 ```
-
-
-
----
 
 
  

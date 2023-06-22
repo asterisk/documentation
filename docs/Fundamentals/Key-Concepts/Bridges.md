@@ -29,15 +29,12 @@ Generally, a bridge is created when Asterisk knows that two or more channels wan
 
 
 
----
+!!! tip Asterisk 12+: Bridging Changed
+    In Asterisk 12, the bridging framework that [ConfBridge](/Configuration/Applications/Conferencing-Applications/ConfBridge) was built on top of was extended to all bridges that Asterisk creates (with the exception of MeetMe). There are some new capabilities that this afforded Asterisk users; where applicable, this page will call out features that only apply to Asterisk 12 and later versions.
 
-**Tip: Asterisk 12+: Bridging Changed** In Asterisk 12, the bridging framework that [ConfBridge](/Configuration/Applications/Conferencing-Applications/ConfBridge) was built on top of was extended to all bridges that Asterisk creates (with the exception of MeetMe). There are some new capabilities that this afforded Asterisk users; where applicable, this page will call out features that only apply to Asterisk 12 and later versions.
+      
+[//]: # (end-tip)
 
-  
-
-
-
----
 
 
 Destruction
@@ -55,15 +52,12 @@ There are many types of bridges in Asterisk, each of which determine how the med
 
 
 
----
+!!! tip Asterisk 12+: Bridges are Smart
+    In Asterisk 12, the bridging framework is smart! It will automatically choose the best mixing technology available based on the channels in the bridge and - if needed - it will dynamically change the mixing type of the bridge based on conditions that occur. For example, a two-party core bridge may turn into a multiparty bridge if an attended transfer converges into a three-way bridge via the `atxferthreeway` DTMF option.
 
-**Tip: Asterisk 12+: Bridges are Smart**  In Asterisk 12, the bridging framework is smart! It will automatically choose the best mixing technology available based on the channels in the bridge and - if needed - it will dynamically change the mixing type of the bridge based on conditions that occur. For example, a two-party core bridge may turn into a multiparty bridge if an attended transfer converges into a three-way bridge via the `atxferthreeway` DTMF option.
+      
+[//]: # (end-tip)
 
-  
-
-
-
----
 
 
 Two-Party
@@ -90,15 +84,12 @@ The following channel technologies support native bridging:
 
 
 
----
+!!! tip Asterisk 12+ IAX2 Native Bridging is Gone
+    As it turned out, IAX2 native bridging was not much more efficient than a standard core bridge. In an IAX2 native bridge, the media must still be handled a good bit, i.e., placed into internal Asterisk frames. As such, when the bridging in Asterisk was converted to the new smart bridging framework, the IAX2 native bridge did not survive the transition.
 
-**Tip: Asterisk 12+ IAX2 Native Bridging is Gone** As it turned out, IAX2 native bridging was not much more efficient than a standard core bridge. In an IAX2 native bridge, the media must still be handled a good bit, i.e., placed into internal Asterisk frames. As such, when the bridging in Asterisk was converted to the new smart bridging framework, the IAX2 native bridge did not survive the transition.
+      
+[//]: # (end-tip)
 
-  
-
-
-
----
 
 #### Local
 

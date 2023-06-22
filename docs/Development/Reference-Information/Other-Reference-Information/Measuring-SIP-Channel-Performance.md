@@ -60,10 +60,6 @@ context test11
 ```
 
 
-
----
-
-
 Basically, incoming SIP calls are answered, and the demo-instruct sound file is played endlessly to the caller. This test depends on the calling party to hang up, thus allowing sipp to determine the length of a call.
 
 
@@ -92,10 +88,6 @@ allow=ulaw
 
 
 ```
-
-
-
----
 
 
 Note that it's pretty simplistic; no authentication beyond the host ip, and it uses ulaw, which is pretty efficient, low-cpu-intensive codec.
@@ -127,10 +119,6 @@ Call processing power is measured with extremely short duration calls:
 ```
 
 
-
----
-
-
 The above tells sipp to call your asterisk test machine (192.168.134.252) at extension 12, each call lasts just .1 second, with a limit of 256 simultaneous calls. The simultaneous calls will be the rate/sec of incoming calls times the call length, so 1 simultaneous call at 10 calls/sec, and 45 at 450 calls/sec. Setting the limit to 256 implies you do not intend to test above 2560 calls/sec.
 
 
@@ -155,10 +143,6 @@ Simultaneous calls can be measured with very long duration calls:
 
 
 ```
-
-
-
----
 
 
 This will place 100 sec duration calls to Asterisk. The number of simultaneous calls will increase until the maximum of 270 is reached. If Asterisk survives this number and is not at 100% cpu utilization, you can stop sipp and run it again with a higher -l argument.

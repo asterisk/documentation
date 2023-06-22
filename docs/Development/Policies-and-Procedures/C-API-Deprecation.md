@@ -27,15 +27,12 @@ Marking A C API As Deprecated For Standard Release
 
 
 
----
+!!! note 
+    Reminder: C API deprecation practices within the tree are only eligible to be done in master when the next release is a standard release. No C API deprecation can be done during the development of a long term supported release.
 
-**Note:**  Reminder: C API deprecation practices within the tree are only eligible to be done in master when the next release is a standard release. No C API deprecation can be done during the development of a long term supported release.
+      
+[//]: # (end-note)
 
-  
-
-
-
----
 
 
  
@@ -57,15 +54,12 @@ Removing A C API
 
 
 
----
+!!! note 
+    Reminder: C API removal is only eligible to be done in master when the next release is a standard release. No C API removal can be done during the development of a long term supported release.
 
-**Note:**  Reminder: C API removal is only eligible to be done in master when the next release is a standard release. No C API removal can be done during the development of a long term supported release.
+      
+[//]: # (end-note)
 
-  
-
-
-
----
 
 
  

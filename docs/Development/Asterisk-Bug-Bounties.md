@@ -25,16 +25,12 @@ It is the case that some corporate users of Asterisk will pay you hard cash for 
 
 
 
----
+!!! warning 
+    Bounty arrangements are made between the sponsor and the programmer, and are NOT via Digium or any other third-party middleman. Payment terms, guarantees, etc. etc. are the problem of the two parties (programmer and bounty sponsor) and the bugtracker simply permits an open forum for discussion of the problems and for the bounty.
 
-**WARNING!:**   
-Bounty arrangements are made between the sponsor and the programmer, and are NOT via Digium or any other third-party middleman. Payment terms, guarantees, etc. etc. are the problem of the two parties (programmer and bounty sponsor) and the bugtracker simply permits an open forum for discussion of the problems and for the bounty.
+      
+[//]: # (end-warning)
 
-  
-
-
-
----
 
 
 ### But what about ... ?

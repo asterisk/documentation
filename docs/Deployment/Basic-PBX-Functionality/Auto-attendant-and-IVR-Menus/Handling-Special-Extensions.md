@@ -16,15 +16,8 @@ Let's add a few more lines to our **[docs:demo-menu]** context, to handle invali
 
 
 
----
-
-  
-  
-
-
-```
-
-javascript[demo-menu]
+```javascript title=" " linenums="1"
+[demo-menu]
 exten => s,1,Answer(500)
  same => n(loop),Background(press-1&or&press-2)
  same => n,WaitExten()
@@ -44,10 +37,6 @@ exten => t,1,Playback(are-you-still-there)
  same => n,Goto(s,loop)
 
 ```
-
-
-
----
 
 
 Now dial your auto-attendant menu again (by dialing extension **6598**), and try entering an invalid option (such as **3**) at the auto-attendant menu. If you watch the Asterisk command-line interface while you dial and your verbosity level is three or higher, you should see something similar to the following:
@@ -81,10 +70,6 @@ Now dial your auto-attendant menu again (by dialing extension **6598**), and try
 -- <SIP/demo-alice-00000008> Playing 'press-2.gsm' (language 'en')
 
 ```
-
-
-
----
 
 
 If you don't enter anything at the auto-attendant menu and instead wait approximately ten seconds, you should hear (and see) Asterisk go to the **t** extension as well.

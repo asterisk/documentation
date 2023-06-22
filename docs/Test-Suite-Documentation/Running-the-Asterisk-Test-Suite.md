@@ -24,15 +24,7 @@ The simplest way of executing tests, all tests in the Test Suite can be run by s
 
 
 
----
-
-  
-  
-
-
-```
-
-
+```bash title=" " linenums="1"
 # ./runtests.py
 
 Running tests for Asterisk SVN-trunk-r366462M
@@ -48,21 +40,13 @@ Running ['tests/example/run-test'] ...
 
 
 
----
 
+!!! note 
+    Depending on permissions and the modules installed, you may need to run the runtests.py script with elevated permissions.
 
+      
+[//]: # (end-note)
 
-
----
-
-**Note:**  
-Depending on permissions and the modules installed, you may need to run the runtests.py script with elevated permissions.
-
-  
-
-
-
----
 
 
 Since this can take a long time to execute to completion - and may cover functionality you do not want to test - there are a variety of other ways to run tests as well.
@@ -77,15 +61,7 @@ A single test can be executed using the *-t* command line option.
 
 
 
----
-
-  
-  
-
-
-```
-
-
+```bash title=" " linenums="1"
 # ./runtests.py -t tests/dialplan
 
 
@@ -93,21 +69,13 @@ A single test can be executed using the *-t* command line option.
 
 
 
----
 
+!!! note 
+    You can determine what tests are available for execution by using the *-l* command line option.
 
+      
+[//]: # (end-note)
 
-
----
-
-**Note:**  
-You can determine what tests are available for execution by using the *-l* command line option.
-
-  
-
-
-
----
 
 
 Executing a set of tests by tag
@@ -119,15 +87,7 @@ Many tests in the Asterisk Test Suite have tags that group them according to fun
 
 
 
----
-
-  
-  
-
-
-```
-
-
+```bash title=" " linenums="1"
 # ./runtests.py -L
 Available test tags:
  AGI AMI apps 
@@ -147,32 +107,16 @@ Available test tags:
 ```
 
 
-
----
-
-
 All tests that have a tag can be executed using the *-g* command line option:
 
 
 
 
----
-
-  
-  
-
-
-```
-
-
+```bash title=" " linenums="1"
 # ./runtests.py -g SIP
 
 
 ```
-
-
-
----
 
 
 Multiple tags can be specified as well, using multiple invocations of the *-g* command line option. A test must satisfy each tag specified in order to be executed.
@@ -180,23 +124,11 @@ Multiple tags can be specified as well, using multiple invocations of the *-g* c
 
 
 
----
-
-  
-  
-
-
-```
-
-
+```bash title=" " linenums="1"
 # ./runtests.py -g SIP -g CDR
 
 
 ```
-
-
-
----
 
 
 Executing pre-defined sets of tests
@@ -208,16 +140,7 @@ Pre-defined sets of tests can be set up in the top level *test-config.yaml* conf
 
 
 
----
-
-  
-  
-
-
-```
-
-
-
+```bash title=" " linenums="1"
 # Global settings
 global-settings:
  # The active test configuration. The value must match a subsequent key
@@ -232,25 +155,12 @@ config-quick:
 ```
 
 
-
----
-
-
 A test configuration can exclude tests from a run by using the *exclude-tests* key. Each value under that key is a test that will **not** be run when the *runtests.py* script executes.
 
 
 
 
----
-
-  
-  
-
-
-```
-
-
-
+```bash title=" " linenums="1"
 # Exclude some long-running tests
 config-quick:
  exclude-tests:
@@ -282,9 +192,5 @@ config-quick:
 
 
 ```
-
-
-
----
 
 

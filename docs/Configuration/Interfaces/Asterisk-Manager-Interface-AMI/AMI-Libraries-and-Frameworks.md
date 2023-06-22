@@ -6,16 +6,12 @@ pageid: 32375585
 
 
 
----
+!!! warning 
+    This page is under construction!
 
-**WARNING!:**   
-This page is under construction!
+      
+[//]: # (end-warning)
 
-  
-
-
-
----
 
 
 

@@ -18,14 +18,10 @@ The following, for the most part, assumes that the channels use RTP for media an
 
 
 
----
+!!! note 
+    The Offer/Answer use cases below only apply to `chan_pjsip`. `chan_sip`, for better or worse, has its own fun rules about what codecs are offered and when.
+[//]: # (end-note)
 
-**Note:**  The Offer/Answer use cases below only apply to `chan_pjsip`. `chan_sip`, for better or worse, has its own fun rules about what codecs are offered and when.
-
-
-
-
----
 
   
   
@@ -54,11 +50,6 @@ Changing `chan_sip` is fraught with peril. As such, we're going to try and give 
 ```
 
 
-
-
----
-
-
 General Rules
 -------------
 
@@ -80,16 +71,12 @@ Single Channel
 
 
 
----
+!!! info ""
+    Each of the tests with a Single Media Stream should be repeated for each media stream that a channel driver supports, i.e., audio, video, RTT, etc.
 
+      
+[//]: # (end-info)
 
-**Information:**  Each of the tests with a Single Media Stream should be repeated for each media stream that a channel driver supports, i.e., audio, video, RTT, etc.
-
-  
-
-
-
----
 
 
 #### Offer Negotiation - Nominal
@@ -100,20 +87,17 @@ Single Channel
 
 
 
----
+!!! tip 
+    This should also verify various SDP offers:
 
-**Tip:**  This should also verify various SDP offers:
+    1. Lack of rtpmap attributes for specific codecs, e.g., 0 implies ulaw (See Table 2, RFC 1890)
+    2. Non-standard rtpmap designations for codecs
 
-1. Lack of rtpmap attributes for specific codecs, e.g., 0 implies ulaw (See Table 2, RFC 1890)
-2. Non-standard rtpmap designations for codecs
+    While these could be considered "off-nominal", they are allowed by the various RFCs and should be covered under a 'nominal negotiation', where the set of codecs offered match completely with what is configured in Asterisk
 
-While these could be considered "off-nominal", they are allowed by the various RFCs and should be covered under a 'nominal negotiation', where the set of codecs offered match completely with what is configured in Asterisk
+      
+[//]: # (end-tip)
 
-  
-
-
-
----
 
 
 #### Offer Negotiation - Subset (Alice)
@@ -153,20 +137,16 @@ All use cases covered in Nominal Offer/Answer (Single Media Stream) apply here a
 
 
 
----
+!!! info ""
+    Each of the following tests be repeated to include multiple media streams in various combinations:
 
+    * Audio + Video
+    * Video + Text
+    * Audio + Text
+    * Audio + Video + Text
+      
+[//]: # (end-info)
 
-**Information:**  Each of the following tests be repeated to include multiple media streams in various combinations:
-
-* Audio + Video
-* Video + Text
-* Audio + Text
-* Audio + Video + Text
-  
-
-
-
----
 
 
 ### Restricted Offer/Answer (Single Stream)
@@ -269,15 +249,12 @@ Multiple Channels
 
 
 
----
+!!! tip 
+    Variants to test: Bob's channel being set to re-INVITE back to a native bridge, as well as both channels being set to re-INVITE.
 
-**Tip:**  Variants to test: Bob's channel being set to re-INVITE back to a native bridge, as well as both channels being set to re-INVITE.
+      
+[//]: # (end-tip)
 
-  
-
-
-
----
 * Asterisk dials Bob with his set of codecs in his endpoint's priority order.
 * Bob responds back with a set of codecs. The set of codecs should have at least one format in common.
 * Asterisk Answers Alice with her preferred codecs.
@@ -298,15 +275,12 @@ Multiple Channels
 
 
 
----
+!!! tip 
+    Variants to test: Bob rejects the re-INVITE; both Alice and Bob reject the re-INVITE
 
-**Tip:**  Variants to test: Bob rejects the re-INVITE; both Alice and Bob reject the re-INVITE
+      
+[//]: # (end-tip)
 
-  
-
-
-
----
 * Asterisk sends an UPDATE request (if Alice/Bob support it) with the previous SDP (see RFC 6337, section 3.4)
 * Asterisk transcodes media between Alice and Bob
 
@@ -319,15 +293,12 @@ Multiple Channels
 
 
 
----
+!!! tip 
+    This scenario should test sending Bob both acceptable codecs for his endpoint, as well as codecs that are unsupported.
 
-**Tip:**  This scenario should test sending Bob both acceptable codecs for his endpoint, as well as codecs that are unsupported.
+      
+[//]: # (end-tip)
 
-  
-
-
-
----
 
 ### Modified inbound response
 
@@ -342,15 +313,12 @@ Multiple Channels
 
 
 
----
+!!! note 
+    This needs to be populated with tests that exercise SIP\_CODEC
 
-**Note:**  This needs to be populated with tests that exercise SIP\_CODEC
+      
+[//]: # (end-note)
 
-  
-
-
-
----
 
 
  
@@ -435,10 +403,6 @@ struct ast\_codec \*ast\_codec\_get(const char \*name, enum ast\_format\_type ty
 ```
 
 
-
----
-
-
 Codec structures will be immutable once registered and created only once. If a user of the API wants to retrieve a codec they will use ast\_codec\_get with the provided information.
 
 ### struct ast\_format
@@ -463,10 +427,6 @@ struct ast\_format {
 };
 
 ```
-
-
-
----
 
 
 Because it is astobj2 allocated additional information can be stored within it, such as a pointer to attribute information and a pointer to the attribute interface to use with it. This reduces the size of the structure by quite a lot and removes the need for container lookups on comparison.
@@ -501,10 +461,6 @@ struct ast\_format\_cap {
 ```
 
 
-
----
-
-
 This presents an easy mechanism to see if a format is present in the structure.
 
 The framing and preference order is now also made available directly in the cap structure itself, allowing this information to persist in additional places.
@@ -520,15 +476,12 @@ The ast\_format\_copy operation will simply be incrementing the reference count 
 
 
 
----
+!!! note 
+    I don't foresee needing a function which does a deep copy. In practice you don't copy a media format and then modify it.
 
-**Note:**  I don't foresee needing a function which does a deep copy. In practice you don't copy a media format and then modify it.
+      
+[//]: # (end-note)
 
-  
-
-
-
----
 
 
 ### ast\_format\_cmp
@@ -569,10 +522,6 @@ struct ast\_format \*ast\_format\_create(struct ast\_codec \*codec);
 ```
 
 
-
----
-
-
  
 
 Example:
@@ -606,10 +555,6 @@ static void example(void)
 ```
 
 
-
----
-
-
  
 
 #### Setting attributes
@@ -630,10 +575,6 @@ Attribute information can be set on a format by using the ast\_format\_attribute
 int ast\_format\_attribute\_set(struct ast\_format \*format, const char \*attribute, const char \*value); 
 
 ```
-
-
-
----
 
 
  
@@ -678,20 +619,13 @@ static void test\_example(void)
 
 
 
----
 
+!!! note 
+    Since format attributes are stored in an implementation specific manner there is no API for getting/retrieving/clearing/etc attributes.
 
+      
+[//]: # (end-note)
 
-
----
-
-**Note:**  Since format attributes are stored in an implementation specific manner there is no API for getting/retrieving/clearing/etc attributes.
-
-  
-
-
-
----
 
 
 ### Format Capabilities Usage
@@ -714,10 +648,6 @@ The function to allocate a capabilities structure is unchanged but the format ca
 struct ast\_format\_cap \*ast\_format\_cap\_alloc(enum ast\_format\_cap\_flags flags);
 
 ```
-
-
-
----
 
 
  
@@ -745,10 +675,6 @@ static void example(void)
 ```
 
 
-
----
-
-
 #### Adding a format to the capabilities structure
 
 This is slightly changed from the existing API in that the format passed in is not const. The implementation also increments the reference count of the format instead of copying it.
@@ -767,10 +693,6 @@ This is slightly changed from the existing API in that the format passed in is n
 void ast\_format\_cap\_add(struct ast\_format\_cap \*cap, struct ast\_format \*format);
 
 ```
-
-
-
----
 
 
  
@@ -822,20 +744,13 @@ static void example(void)
 
 
 
----
 
+!!! note 
+    Ordering of format additions to a capabilities structure is preserved and forms the format preference order.
 
+      
+[//]: # (end-note)
 
-
----
-
-**Note:**  Ordering of format additions to a capabilities structure is preserved and forms the format preference order.
-
-  
-
-
-
----
 
 
 #### Capabilities structure manipulation
@@ -866,10 +781,6 @@ void ast\_format\_cap\_remove\_all(struct ast\_format\_cap \*cap);
 ```
 
 
-
----
-
-
 #### Capabilities structure iteration
 
 As the capabilities structure is now stored using an array iteration will involve two functions, ast\_format\_cap\_count and ast\_format\_cap\_get, which returns the number of formats in the structure and gets a specific one based on index.
@@ -889,10 +800,6 @@ size\_t ast\_format\_cap\_count(const struct ast\_format\_cap \*cap);
 struct ast\_format \*ast\_format\_cap\_get(const struct ast\_format\_cap \*cap, int index);
 
 ```
-
-
-
----
 
 
  
@@ -932,10 +839,6 @@ static void example(void)
 ```
 
 
-
----
-
-
 #### Framing size
 
 The framing size controls the length of media frames (in milliseconds). Previously this was stored in a separate structure but has now been rolled into ast\_format\_cap. To allow control two API calls will be added.
@@ -955,10 +858,6 @@ void ast\_format\_cap\_framing\_set(struct ast\_format\_cap \*cap, const struct 
 unsigned int ast\_format\_cap\_framing\_get(const struct ast\_format\_cap \*cap, const struct ast\_format \*format);
 
 ```
-
-
-
----
 
 
  
@@ -1011,10 +910,6 @@ static void example(void)
 ```
 
 
-
----
-
-
 #### Getting joint capabilities
 
 Joint capabilities are the common compatible formats between two capabilities structure. These will be done using the existing API functions but will now take preference order into consideration. This will be done by using the order of the first capabilities structure passed in.
@@ -1035,10 +930,6 @@ int ast\_format\_cap\_joint\_copy(const struct ast\_format\_cap \*cap1, const st
 int ast\_format\_cap\_joint\_append(const struct ast\_format\_cap \*cap1, const struct ast\_format\_cap \*cap2, struct ast\_format\_cap \*result);
 
 ```
-
-
-
----
 
 
  
@@ -1098,9 +989,5 @@ static void example(void)
 }
 
 ```
-
-
-
----
 
 

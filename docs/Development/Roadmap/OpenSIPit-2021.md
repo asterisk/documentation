@@ -12,16 +12,12 @@ Stir/Shaken
 
 
 
----
+!!! info ""
+    REMINDER: The Asterisk STIR/SHAKEN work was all done last year before things were finalized and there hasn't been anyone to test with until now so it's nor surprising that we have interoperability issues.
 
+      
+[//]: # (end-info)
 
-**Information:**  REMINDER: The Asterisk STIR/SHAKEN work was all done last year before things were finalized and there hasn't been anyone to test with until now so it's nor surprising that we have interoperability issues.
-
-  
-
-
-
----
 
 
 ### George's Notes:

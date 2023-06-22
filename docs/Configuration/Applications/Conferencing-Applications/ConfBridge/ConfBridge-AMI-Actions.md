@@ -44,10 +44,6 @@ ListItems: 1
 ```
 
 
-
----
-
-
 On This PageConfbridgeListRooms
 -------------------
 
@@ -86,10 +82,6 @@ ListItems: 1
 ```
 
 
-
----
-
-
 ConfbridgeMute
 --------------
 
@@ -117,10 +109,6 @@ Message: User muted
 
 
 ```
-
-
-
----
 
 
 ConfbridgeUnmute
@@ -152,10 +140,6 @@ Message: User unmuted
 ```
 
 
-
----
-
-
 ConfbridgeKick
 --------------
 
@@ -183,10 +167,6 @@ Message: User kicked
 
 
 ```
-
-
-
----
 
 
 ConfbridgeLock
@@ -217,10 +197,6 @@ Message: Conference locked
 ```
 
 
-
----
-
-
 ConfbridgeUnlock
 ----------------
 
@@ -247,10 +223,6 @@ Message: Conference unlocked
 
 
 ```
-
-
-
----
 
 
 ConfbridgeStartRecord
@@ -286,10 +258,6 @@ Uniqueid: 1303309869.6
 
 
 ```
-
-
-
----
 
 
 ConfbridgeStopRecord
@@ -329,10 +297,6 @@ Cause-txt: Unknown
 ```
 
 
-
----
-
-
 ConfbridgeSetSingleVideoSrc
 ---------------------------
 
@@ -360,9 +324,5 @@ Message: Conference single video source set.
 
 
 ```
-
-
-
----
 
 

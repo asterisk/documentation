@@ -6,16 +6,12 @@ pageid: 32375195
 
 
 
----
+!!! warning 
+    WORK IN PROGRESS
 
-**WARNING!:**   
-WORK IN PROGRESS
+      
+[//]: # (end-warning)
 
-  
-
-
-
----
 
 
  
@@ -25,16 +21,12 @@ At this stage in development, a resolver has been implemented, and backend suppo
 
 
 
----
+!!! info ""
+    For all of the following tests, we're assuming a scenario where the Asterisk testsuite is being used. Because of this, Asterisk and whatever remote endpoint is being looked up will reside on the same machine. Some of the processes in RFC 3263 require using port 5060 and 5061 as default ports for outbound lookups, so all of these tests should have SIP run on non-standard ports to avoid Asterisk sending requests to itself.
 
+      
+[//]: # (end-info)
 
-**Information:**  For all of the following tests, we're assuming a scenario where the Asterisk testsuite is being used. Because of this, Asterisk and whatever remote endpoint is being looked up will reside on the same machine. Some of the processes in RFC 3263 require using port 5060 and 5061 as default ports for outbound lookups, so all of these tests should have SIP run on non-standard ports to avoid Asterisk sending requests to itself.
-
-  
-
-
-
----
 
 
 SRV Tests
@@ -64,10 +56,6 @@ IN SRV 0 1 5060 main.test.internal.
 IN SRV 1 1 5060 backup.test.internal.
 
 ```
-
-
-
----
 * Disable NAPTR lookups for this test. Only allow UDP transport to be used.
 * Place an outbound SIP request to `sip:test.internal`.
 * Ensure that an SRV lookup of `_sip._udp.test.internal` is performed.
@@ -76,18 +64,14 @@ IN SRV 1 1 5060 backup.test.internal.
 
 
 
----
+!!! info ""
+    It is unknown whether the DNS engine in Asterisk will try to optimize by performing simultaneous lookups of both `main.test.internal` and `backup.test.internal` instead of going sequentially. If the domains are looked up in parallel, then this test cannot determine if the correct priority is being honored simply by monitoring A/AAAA record lookups. The test would have to be expanded in the following way:
 
+    Add distinct A records for both `main.test.internal` and `backup.test.internal`. Ensure that the outgoing SIP request ends up being sent to the IP address retrieved from the A record lookup of `main.test.internal` and not the IP address retrieved by an A record lookup of `backup.test.internal`
 
-**Information:**  It is unknown whether the DNS engine in Asterisk will try to optimize by performing simultaneous lookups of both `main.test.internal` and `backup.test.internal` instead of going sequentially. If the domains are looked up in parallel, then this test cannot determine if the correct priority is being honored simply by monitoring A/AAAA record lookups. The test would have to be expanded in the following way:
+      
+[//]: # (end-info)
 
-Add distinct A records for both `main.test.internal` and `backup.test.internal`. Ensure that the outgoing SIP request ends up being sent to the IP address retrieved from the A record lookup of `main.test.internal` and not the IP address retrieved by an A record lookup of `backup.test.internal`
-
-  
-
-
-
----
 
 ### Failover order
 
@@ -117,10 +101,6 @@ slow.test.internal IN A 127.0.0.1
  IN SRV 1 100 5063 backup.test.internal.
 
 ```
-
-
-
----
 * Set up two SIPp scenarios
 	+ `fast.xml` runs at 127.0.0.1, port 5060. It expects an incoming INVITE and responds to the INVITE with a 503 response
 	+ `slow.xml` runs at 127.0.0.1, port 5061. It expects an incoming INVITE and does not respond to it
@@ -137,19 +117,16 @@ slow.test.internal IN A 127.0.0.1
 
 
 
----
+!!! note 
+    RFC 3263 section 4.2 states:
 
-**Note:**  RFC 3263 section 4.2 states:
+    "If no SRV records were found, the client performs an A or AAAA record lookup of the domain name."
 
-"If no SRV records were found, the client performs an A or AAAA record lookup of the domain name."
+    My interpretation of this is that since we did find SRV records, we should not fail over to A/AAAA record lookups of `test.internal`. However, this may be an overly strict interpretation.
 
-My interpretation of this is that since we did find SRV records, we should not fail over to A/AAAA record lookups of `test.internal`. However, this may be an overly strict interpretation.
+      
+[//]: # (end-note)
 
-  
-
-
-
----
 
 ### Failover to A/AAAA
 
@@ -173,10 +150,6 @@ Procedure:
 test.internal IN A 127.0.0.1
 
 ```
-
-
-
----
 * Disable NAPTR lookups for this test. Only enable UDP as the transport.
 * Place an outbound call to `sip:test.internal`
 * Ensure that an SRV lookup of `_sip._udp.test.internal` is attempted.
@@ -190,24 +163,21 @@ NAPTR tests provided here are designed around the context of how SIP should be h
 
 
 
----
+!!! note 
+    The following NAPTR tests may have a flaw in them. From RFC 3263 section 4.1:
 
-**Note:**  The following NAPTR tests may have a flaw in them. From RFC 3263 section 4.1:
+    'If a SIP proxy, redirect server, or registrar is to be contacted through the lookup of NAPTR records, there MUST be at least three records - one with a "SIP+D2T" service field, one with a "SIP+D2U" service field, and one with a "SIPS+D2T" service field.'
 
-'If a SIP proxy, redirect server, or registrar is to be contacted through the lookup of NAPTR records, there MUST be at least three records - one with a "SIP+D2T" service field, one with a "SIP+D2U" service field, and one with a "SIPS+D2T" service field.'
+    Many of the NAPTR tests below do NOT have three records. The problems I have with this snippet are:
 
-Many of the NAPTR tests below do NOT have three records. The problems I have with this snippet are:
+    * It is not clear who this "MUST" language is directed to. Is this directed at nameservers that serve the NAPTR records, or is this aimed at SIP clients that look up the NAPTR records? My interpretation is that this restriction applies to those who are populating the DNS servers. We take the approach that as a SIP client, if not all three records exist, then we do not automatically consider the NAPTR lookup to have failed, and we will work with what we've been given.
+    * How are we supposed to know whether the entity we are contacting is a proxy, redirect server, or registrar? When sending a REGISTER, we might infer that we are contacting a registrar. For other types of requests, we have no idea what type of SIP entity we will be contacting. This reinforces my belief that this statement is directed towards the people that add the NAPTR records to DNS and that clients should be prepared to handle whatever SIP NAPTR records it gets from a lookup.
 
-* It is not clear who this "MUST" language is directed to. Is this directed at nameservers that serve the NAPTR records, or is this aimed at SIP clients that look up the NAPTR records? My interpretation is that this restriction applies to those who are populating the DNS servers. We take the approach that as a SIP client, if not all three records exist, then we do not automatically consider the NAPTR lookup to have failed, and we will work with what we've been given.
-* How are we supposed to know whether the entity we are contacting is a proxy, redirect server, or registrar? When sending a REGISTER, we might infer that we are contacting a registrar. For other types of requests, we have no idea what type of SIP entity we will be contacting. This reinforces my belief that this statement is directed towards the people that add the NAPTR records to DNS and that clients should be prepared to handle whatever SIP NAPTR records it gets from a lookup.
+    So as far as these tests are concerned, since they involve placing outbound calls to simulated phones, we're technically not in violation by not providing the required three NAPTR records. But even if the tests were testing outbound registrations, the client behavior described in these tests would be the same, even if the required NAPTR records are not present in the lookup.
 
-So as far as these tests are concerned, since they involve placing outbound calls to simulated phones, we're technically not in violation by not providing the required three NAPTR records. But even if the tests were testing outbound registrations, the client behavior described in these tests would be the same, even if the required NAPTR records are not present in the lookup.
+      
+[//]: # (end-note)
 
-  
-
-
-
----
 
 
 Nominal Tests
@@ -237,10 +207,6 @@ IN NAPTR 50 50 "s" "SIP+D2T" "" \_sip.\_tcp.test.internal.
 IN NAPTR 90 40 "s" "SIP+D2U" "" \_sip.\_udp.test.internal.
 
 ```
-
-
-
----
 * Enable NAPTR lookups for outbound SIP calls. Allow both UDP and TCP transports to be used for the outgoing call.
 * Place an outbound SIP call to `sip:test.internal`.
 * Ensure that a NAPTR lookup of `test.internal` occurs
@@ -270,10 +236,6 @@ IN NAPTR 50 50 "s" "SIP+D2T" "" \_sip.\_tcp.test.internal.
 IN NAPTR 50 90 "s" "SIP+D2U" "" \_sip.\_udp.test.internal.
 
 ```
-
-
-
----
 * Enable NAPTR lookups for outbound SIP calls. Allow both UDP and TCP transports to be used for the outgoing call.
 * Place an outbound SIP call to `sip:test.internal`
 * Ensure that a NAPTR lookup of `test.internal` occurs
@@ -282,18 +244,14 @@ IN NAPTR 50 90 "s" "SIP+D2U" "" \_sip.\_udp.test.internal.
 
 
 
----
+!!! info ""
+    It is unknown whether the DNS engine in Asterisk will try to optimize by performing simultaneous SRV lookups of both `_sip._tcp.test.internal` and `_sip._udp.test.internal` instead of going sequentially. If the domains are looked up in parallel, then this test cannot determine if the correct preference is being honored simply by monitoring SRV record lookups. The test would have to be expanded in the following way:
 
+    Add distinct SRV records for `_sip._tcp.test.internal` and `_sip._udp.test.internal`. Each of the domains pointed to by those SRV records should be distinct A records. Ensure that the outgoing SIP request ends up being sent to the IP address retrieved from the A record lookup of the domain pointed to by the `_sip._tcp.test.internal` SRV record.
 
-**Information:**  It is unknown whether the DNS engine in Asterisk will try to optimize by performing simultaneous SRV lookups of both `_sip._tcp.test.internal` and `_sip._udp.test.internal` instead of going sequentially. If the domains are looked up in parallel, then this test cannot determine if the correct preference is being honored simply by monitoring SRV record lookups. The test would have to be expanded in the following way:
+      
+[//]: # (end-info)
 
-Add distinct SRV records for `_sip._tcp.test.internal` and `_sip._udp.test.internal`. Each of the domains pointed to by those SRV records should be distinct A records. Ensure that the outgoing SIP request ends up being sent to the IP address retrieved from the A record lookup of the domain pointed to by the `_sip._tcp.test.internal` SRV record.
-
-  
-
-
-
----
 
 ### Restricted Transport
 
@@ -319,10 +277,6 @@ IN NAPTR 50 50 "s" "SIP+D2T" "" \_sip.\_tcp.test.internal.
 IN NAPTR 60 50 "s" "SIP+D2U" "" \_sip.\_udp.test.internal.
 
 ```
-
-
-
----
 * Enable NAPTR lookups for outbound SIP calls. Only allow UDP to be used for the outgoing call.
 * Place an outbound call to `sip:test.internal`
 * Ensure that a NAPTR lookup of `test.internal` occurs
@@ -353,10 +307,6 @@ test.internal IN NAPTR 50 50 "s" "SIP+D2T" "" \_sip.\_tcp.test.internal.
 \_sip.\_udp.test.internal IN SRV 1 1 5060 sip.test.internal
 
 ```
-
-
-
----
 * Enable NAPTR lookups for outbound SIP calls. Allow both UDP and TCP to be used for the outgoing call.
 * Place an outbound call to `sip:test.internal`
 * Ensure that a NAPTR lookup of `test.internal` occurs.
@@ -384,19 +334,16 @@ Goal: To ensure that if no NAPTR records are configured on the DNS server that w
 
 
 
----
+!!! note 
+    This test is based on an interpretation of RFC 3263 section 4.1:
 
-**Note:**  This test is based on an interpretation of RFC 3263 section 4.1:
+    "If no NAPTR records are found, the client constructs SRV queries for those transport protocols it supports, and does a query for each."
 
-"If no NAPTR records are found, the client constructs SRV queries for those transport protocols it supports, and does a query for each."
+    My interpretation of "no NAPTR records are found" can mean either that there are no NAPTR records at all OR that there are NAPTR records but not for SIP services.
 
-My interpretation of "no NAPTR records are found" can mean either that there are no NAPTR records at all OR that there are NAPTR records but not for SIP services.
+      
+[//]: # (end-note)
 
-  
-
-
-
----
 
 
 Goal: To ensure that if a NAPTR lookup gives no recognized SIP services, that we fail over to an SRV lookup instead.
@@ -422,10 +369,6 @@ IN NAPTR 100 50 "a" "rcds+N2C" "" cidserver.test.internal.
 IN NAPTR 100 50 "s" "http+N2L+N2C+N2R" "" www.test.internal.
 
 ```
-
-
-
----
 * Enable NAPTR lookups for outbound SIP calls. Enable TCP, UDP, and TLS transports to be used.
 * Place an outbound call to `sip:test.internal`
 * Ensure that none of the returned NAPTR records are used for further lookups.
@@ -455,10 +398,6 @@ IN NAPTR 50 50 "s" "SIPS+D2T" "" \_sips.\_tcp.test.internal.
 IN NAPTR 60 50 "s" "SIP+D2T" "" \_sip.\_tcp.test.internal.
 
 ```
-
-
-
----
 * Enable NAPTR lookups for outbound SIP calls. Enable only UDP transport to be used.
 * Place an outbound call to `sip:test.internal`
 * Ensure that none of the returned NAPTR records are used for further lookups.
@@ -469,19 +408,16 @@ IN NAPTR 60 50 "s" "SIP+D2T" "" \_sip.\_tcp.test.internal.
 
 
 
----
+!!! note 
+    This test is based around the following text in RFC 3263 section 4.1:
 
-**Note:**  This test is based around the following text in RFC 3263 section 4.1:
+    "These NAPTR records provide a mapping from a domain to the SRV record for contacting a server with the specific transport protocol in the NAPTR services field"
 
-"These NAPTR records provide a mapping from a domain to the SRV record for contacting a server with the specific transport protocol in the NAPTR services field"
+    My interpretation of this is that NAPTR records for SIP services MUST have the "s" flag set, and any records with other flags set are not compatible with RFC 3263
 
-My interpretation of this is that NAPTR records for SIP services MUST have the "s" flag set, and any records with other flags set are not compatible with RFC 3263
+      
+[//]: # (end-note)
 
-  
-
-
-
----
 
 
 Goal: To ensure that only NAPTR records which indicate SRV lookups are considered.
@@ -506,10 +442,6 @@ IN NAPTR 50 50 "a" "SIP+D2T" "" sip.tcp.test.internal.
 IN NAPTR 60 50 "s" "SIP+D2T" "" \_sip.\_tcp.test.internal.
 
 ```
-
-
-
----
 * Enable NAPTR lookups for outbound SIP calls. Enable UDP, TCP, and TLS transports to be used.
 * Place an outbound call to `sip:test.internal`
 * Ensure that an SRV lookup is performed for `_sip._tcp.test.internal`, and no A or AAAA lookup is performed for `sip.tcp.test.internal`.
@@ -519,19 +451,16 @@ IN NAPTR 60 50 "s" "SIP+D2T" "" \_sip.\_tcp.test.internal.
 
 
 
----
+!!! note 
+    This test is based around the following text from RFC 3263 section 4.1:
 
-**Note:**  This test is based around the following text from RFC 3263 section 4.1:
+    "The resource record will contain an empty regular expression and a replacement value, which is the SRV record for that particular transport protocol"
 
-"The resource record will contain an empty regular expression and a replacement value, which is the SRV record for that particular transport protocol"
+    My interpretation is that NAPTR records for SIP services MUST NOT have regular expressions in them. Records that have regular expressions are ignored.
 
-My interpretation is that NAPTR records for SIP services MUST NOT have regular expressions in them. Records that have regular expressions are ignored.
+      
+[//]: # (end-note)
 
-  
-
-
-
----
 
 
 Goal: Ensure that only NAPTR records without regular expressions are processed
@@ -556,10 +485,6 @@ IN NAPTR 50 50 "s" "SIP+D2T" "!.\*!\_sip.\_tcp.test.internal!" .
 IN NAPTR 60 50 "s" "SIP+D2U" "" \_sip.\_udp.test.internal.
 
 ```
-
-
-
----
 * Enable NAPTR lookups for outbound SIP calls. Enable UDP, TCP, and TLS transports to be used.
 * Place an outbound call to `sip:test.internal`
 * Ensure that an SRV lookup is performed for `_sip._udp.test.internal`, and no other SRV lookups are performed.
@@ -589,10 +514,6 @@ test.internal IN NAPTR 50 50 "s" "SIP+D2T" "" \_sip.\_tcp.test.internal.
 \_sip.\_udp.test.internal IN SRV 1 1 5060 sip.test.internal
 
 ```
-
-
-
----
 
 
 Note that there is no SRV record for `_sip._tcp.test.internal`
@@ -644,10 +565,6 @@ udp.test.internal IN A 127.0.0.1
  IN AAAA ::1
 
 ```
-
-
-
----
 
 
  
@@ -723,10 +640,6 @@ main.test.internal IN A 127.0.0.1
 test.internal IN NAPTR 0 0 "s" "SIP+D2U" "" \_sip.\_udp.test.internal
 
 ```
-
-
-
----
 * Place a call to `sip:test.internal`
 * Ensure that a NAPTR lookup is performed for `test.internal`
 * Ensure that an SRV lookup is performed for `_sip._udp.test.internal`

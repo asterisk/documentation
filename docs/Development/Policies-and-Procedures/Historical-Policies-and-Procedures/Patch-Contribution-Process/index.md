@@ -11,15 +11,12 @@ As an open source project, the Asterisk project welcomes contributions that enha
 
 
 
----
+!!! note Read More!
+    This page links to many other pages on the wiki that provide deeper explanations regarding reporting of issues, writing of patches, and participation in the Asterisk project. Please read the information on those linked pages! Having well tested, high quality patches proposed to the Asterisk project helps everyone.
 
-**Note: Read More!** This page links to many other pages on the wiki that provide deeper explanations regarding reporting of issues, writing of patches, and participation in the Asterisk project. Please read the information on those linked pages! Having well tested, high quality patches proposed to the Asterisk project helps everyone.
+      
+[//]: # (end-note)
 
-  
-
-
-
----
 
 
 On This PageAdditional InformationSubmitting a Patch

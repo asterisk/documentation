@@ -12,17 +12,13 @@ This wiki page describes using parts of the new Configuration Framework introduc
 
 
 
----
+!!! info ""
+    NOTE
+    All source code in this article is for demonstration purposes only.
 
+      
+[//]: # (end-info)
 
-**Information:**  NOTE
-All source code in this article is for demonstration purposes only.
-
-  
-
-
-
----
 
 
 Configuration Loading Overview
@@ -45,17 +41,13 @@ As we'll see, while performing these operations there are some common pitfalls t
 
 
 
----
+!!! info ""
+    NOTE
+    We'll disregard configuration information retrieved from an Asterisk Realtime Architecture (ARA) backend, and instead assume that the configuration information is read from static Asterisk configuration files. ARA is complex enough to deserve its own set of pages.
 
+      
+[//]: # (end-info)
 
-**Information:**  NOTE
-We'll disregard configuration information retrieved from an Asterisk Realtime Architecture (ARA) backend, and instead assume that the configuration information is read from static Asterisk configuration files. ARA is complex enough to deserve its own set of pages.
-
-  
-
-
-
----
 
 
 Traditional Configuration Loading in Asterisk
@@ -95,10 +87,6 @@ bar = Some string value
 
 
 ```
-
-
-
----
 
 
 So that's fairly straight forward. How would we consume it in a module in Asterisk?
@@ -195,10 +183,6 @@ AST\_MODULE\_INFO(ASTERISK\_GPL\_KEY, AST\_MODFLAG\_LOAD\_ORDER, "my\_module",
 
 
 ```
-
-
-
----
 
 
 That's fairly simple. So, what do we have?
@@ -300,10 +284,6 @@ cleanup:
 ```
 
 
-
----
-
-
 The function `load_configuration` boils down to two operations:
 
 
@@ -341,10 +321,6 @@ bar = I'm a new string value
 ```
 
 
-
----
-
-
 Since `foo` is a string and not an integer, the `load_configuration` function will fail and cause the module reload operation to be declined. Ideally, if that happens, none of the values in the module should change - we don't want operations currently using the module to start having weird behavior just because an administrator entered some invalid data. What would the actual state of the module be?
 
 
@@ -368,10 +344,6 @@ bar = Some string value
 
 
 ```
-
-
-
----
 
 
 Yikes.
@@ -525,10 +497,6 @@ cleanup:
 ```
 
 
-
----
-
-
 So, that's a little bit better, and now we can guarantee that a reload won't mess with `log_module_values`. That's nice, but now we have to put a lock around every access to `foo`, `bar`, and `foobar`. That can get tricky - and expensive - very quickly. And it doesn't solve the previous problem of inconsistent module state when an off nominal reload occurs.
 
 
@@ -612,10 +580,6 @@ static struct aco\_type general\_option {
 ```
 
 
-
----
-
-
 So, that looks different! Let's run down what we have.
 
 
@@ -676,10 +640,6 @@ static void module\_config\_destructor(void \*obj)
 ```
 
 
-
----
-
-
 Note that as part of creating the `module_config` object, we also create the general settings object. Because we want the lifetime of the general settings to be tied to the lifetime of the `module_config` object, we explicitly handle its destruction in `module_config_destructor`, rather than pass a destructor function to `ao2_alloc` when we create it.
 
 
@@ -711,10 +671,6 @@ static struct aco\_type \*general\_options[] = ACO\_TYPES(&general\_option);
 
 
 ```
-
-
-
----
 
 
 That isn't a lot of code, but what is there does a lot of powerful stuff. Let's go down the list:
@@ -796,10 +752,6 @@ load\_error:
 ```
 
 
-
----
-
-
 Recall that `foo` has to be an integer between `-32` and `32`, and that `foobar` should be a boolean value with a default value of `1`. Using the Configuration Framework, we've specified how we want those parameters to be extracted in `aco_option_register`. Once we've registered the configuration items to be extracted, all of the configuration parsing and loading into the in-memory objects is handled by `aco_process_config`. Once `aco_process_config` is finished, the `module_configs` `ao2` container will have an instance of `module_config` inside of it populated with the configuration information from the configuration file `my_module.conf`.
 
 
@@ -849,10 +801,6 @@ static int reload\_module(void)
 
 
 ```
-
-
-
----
 
 
 Let's take those in reverse order.
@@ -1061,10 +1009,6 @@ AST\_MODULE\_INFO(ASTERISK\_GPL\_KEY, AST\_MODFLAG\_LOAD\_ORDER, "my\_module",
 
 
 ```
-
-
-
----
 
 
 Conclusions

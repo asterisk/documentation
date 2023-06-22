@@ -6,18 +6,14 @@ pageid: 5243336
 
 
 
----
+!!! info "Historical Page"
+    The Asterisk project no longer uses Subversion for source control. It now uses Git. Instructions on using Git with Asterisk can be on the [Git Usage](/Development/Policies-and-Procedures/Historical-Policies-and-Procedures/Git-Usage) page.
 
+    This page is being kept only for historical purposes.
 
-**Information: Historical Page** The Asterisk project no longer uses Subversion for source control. It now uses Git. Instructions on using Git with Asterisk can be on the [Git Usage](/Development/Policies-and-Procedures/Historical-Policies-and-Procedures/Git-Usage) page.
+      
+[//]: # (end-info)
 
-This page is being kept only for historical purposes.
-
-  
-
-
-
----
 
 
 

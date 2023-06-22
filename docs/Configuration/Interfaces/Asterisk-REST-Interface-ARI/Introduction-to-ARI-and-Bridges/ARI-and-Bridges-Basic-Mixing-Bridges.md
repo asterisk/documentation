@@ -67,10 +67,6 @@ exten => 1000,1,NoOp()
 ```
 
 
-
----
-
-
 Python
 ------
 
@@ -89,15 +85,12 @@ The following code shows the `StasisStart` callback handler for the `inbound` ch
 
 
 
----
+!!! tip Be careful of errors!
+    Note that we wrap the origination with a `try / except` block, in case the endpoint provided by the dialplan doesn't exist. When taking in input from a user or from the Asterisk dialplan, it is always good to be mindful of possible errors.
 
-**Tip: Be careful of errors!** Note that we wrap the origination with a `try / except` block, in case the endpoint provided by the dialplan doesn't exist. When taking in input from a user or from the Asterisk dialplan, it is always good to be mindful of possible errors.
+      
+[//]: # (end-tip)
 
-  
-
-
-
----
 
 
 
@@ -149,10 +142,6 @@ truepy31def stasis\_start\_cb(channel\_obj, ev):
 ```
 
 
-
----
-
-
 The `safe_hangup` function referenced above simply does a "safe" hangup on the channel provided. This is because it is entirely possible for both parties to hang up nearly simultaneously. Since our Python code is running in a separate process from Asterisk, we may be processing the hang up of the first party and instruct Asterisk to hang up the second party when they are already technically hung up! Again, it is always a good idea to view the processing of a communications application in an asynchronous fashion: we live in an asynchronous world, and a user can take an action at any moment in time.
 
 
@@ -176,10 +165,6 @@ truepy12def safe\_hangup(channel):
  raise e
 
 ```
-
-
-
----
 
 
 We now have to handle the outbound channel when it answers. Currently, when it answers it will be immediately placed in our Stasis application, which will call the `stasis_start_cb` we previously defined. While we could have some additional `if / else` blocks in that handler, we can also just apply a `StasisStart` callback to the outbound channel after we create it, and handle its entrance separately.
@@ -223,10 +208,6 @@ truepy67 def outgoing\_start\_cb(channel\_obj, ev):
  outgoing.on\_event('StasisStart', outgoing\_start\_cb)
 
 ```
-
-
-
----
 
 
 Note that the `safe_bridge_destroy` function is similar to the `safe_hangup` function, except that it attempts to safely destroy the mixing bridge, as opposed to hanging up the other party.
@@ -343,10 +324,6 @@ client.run(apps='bridge-dial')
 ```
 
 
-
----
-
-
 ### bridge-dial.py in action
 
 The following shows the output of the `bridge-dial.py` script when a `PJSIP` channel for `alice` enters the application and dials a `PJSIP` channel for `bob`:
@@ -368,10 +345,6 @@ PJSIP/Bob-00000002 answered; bridging with PJSIP/Alice-00000001
 Hung up PJSIP/Bob-00000002
 
 ```
-
-
-
----
 
 
  
@@ -420,10 +393,6 @@ truejs22function stasisStart(event, channel) {
 ```
 
 
-
----
-
-
 We then prepare an object with a locally generate Id for the dialed channel and register event callbacks either channels hanging up and the dialed channel entering into the Stasis application. We then originate a call to the endpoint specified by the first command line argument to the script passing in a Stasis application argument of dialed so we can skip the dialed channel when the original StasisStart event callback fires for it:
 
 
@@ -462,10 +431,6 @@ truejs47function originate(channel) {
 }
 
 ```
-
-
-
----
 
 
 We then handle either channel hanging up by hanging up the other channel. Note that we skip any errors that occur on hangup since it is possible that the channel we are attempting to hang up is the one that has already left and would result in an HTTP error as it is no longer a Statis channel:
@@ -509,10 +474,6 @@ function hangupOriginal(channel, dialed) {
 ```
 
 
-
----
-
-
 We then handle the StasisStart event for the dialed channel by registered an event callback for the StasisEnd event on the dialed channel, answer that answer, creating a new mixing bridge, and finally calling a function to add the two channels to the new bridge:
 
 
@@ -553,10 +514,6 @@ truejs99function joinMixingBridge(channel, dialed) {
 ```
 
 
-
----
-
-
 We then handle the dialed channel exiting the Stasis application by destroying the mixing bridge:
 
 
@@ -583,10 +540,6 @@ truejs124function dialedExit(dialed, bridge) {
 }
 
 ```
-
-
-
----
 
 
 Finally, the function that was called earlier by the callback handling the StasisStart event for the dialed channel adds the two channels to the mixing bridge which allows media to flow between the two channels:
@@ -616,10 +569,6 @@ truejs137function addChannelsToBridge(channel, dialed, bridge) {
 ```
 
 
-
----
-
-
 ### bridge-dial.js
 
 The full source code for `bridge-dial.js` is shown below:
@@ -627,14 +576,7 @@ The full source code for `bridge-dial.js` is shown below:
 
 
 
----
-
-  
-bridge-dial.js  
-
-
-```
-
+```javascript title="bridge-dial.js" linenums="1"
 truejs/\*jshint node:true\*/
 'use strict';
 
@@ -790,10 +732,6 @@ function clientLoaded (err, client) {
 ```
 
 
-
----
-
-
 ### bridge-dial.js in action
 
 The following shows the output of the `bridge-dial.js` script when a `PJSIP` channel for `alice` enters the application and dials a PJSIP channel for bob:
@@ -817,9 +755,5 @@ Dialed channel PJSIP/bob-00000002 has been hung up, hanging up channel PJSIP/ali
 Channel PJSIP/alice-00000001 left our application, hanging up dialed channel undefined
 
 ```
-
-
-
----
 
 

@@ -13,15 +13,12 @@ Overview
 
 
 
----
+!!! tip Asterisk 12 and Later
+    This content only applies to Asterisk 12 and later.
 
-**Tip: Asterisk 12 and Later** This content only applies to Asterisk 12 and later.
+      
+[//]: # (end-tip)
 
-  
-
-
-
----
 
 
 In Asterisk 12, a new core component was added to Asterisk: the Stasis Message Bus. As the name suggests, Stasis is an internal publish/subscribe message bus that lets the real-time core of Asterisk inform other modules or components – who subscribe for specific information topic – about events that occurred that they were interested in.

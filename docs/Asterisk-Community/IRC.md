@@ -13,22 +13,11 @@ Use <https://libera.chat/> IRC server to connect with Asterisk developers and u
 
 
 
----
-
-  
-  
-
-
-```
-
+```bash title=" " linenums="1"
 #asterisk 
 
 
 ```
-
-
-
----
 
 
 ### Asterisk Developers Room
@@ -36,22 +25,11 @@ Use <https://libera.chat/> IRC server to connect with Asterisk developers and u
 
 
 
----
-
-  
-  
-
-
-```
-
+```bash title=" " linenums="1"
 #asterisk-dev 
 
 
 ```
-
-
-
----
 
 
 ### Asterisk ARI/Application Developers Room
@@ -59,20 +37,9 @@ Use <https://libera.chat/> IRC server to connect with Asterisk developers and u
 
 
 
----
-
-  
-  
-
-
-```
-
+```bash title=" " linenums="1"
 #asterisk-ari
 
 ```
-
-
-
----
 
 

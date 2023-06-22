@@ -44,15 +44,12 @@ The Protocol
 
 
 
----
+!!! note 
+    The protocol is purposely simple and generalized to allow further expansion or additional request types as needed. This includes the possibility of using it for external media purposes with ARI applications.
 
-**Note:**  The protocol is purposely simple and generalized to allow further expansion or additional request types as needed. This includes the possibility of using it for external media purposes with ARI applications.
+      
+[//]: # (end-note)
 
-  
-
-
-
----
 
 
 As mentioned above, JSON will be used for the protocol. There are requests:
@@ -90,10 +87,6 @@ text{
 ```
 
 
-
----
-
-
 And responses:
 
 
@@ -123,10 +116,6 @@ text{
 
 
 
----
-
-
-
 
 ---
 
@@ -143,10 +132,6 @@ text{
 }
 
 ```
-
-
-
----
 
 
 
@@ -168,10 +153,6 @@ text{
 
 
 
----
-
-
-
 
 ---
 
@@ -188,10 +169,6 @@ text{
 }
 
 ```
-
-
-
----
 
 
 The app\_config section contains arbitrary configuration options and are not defined by this protocol. They will be able to be set by the user, and then consumed by the external application.
@@ -231,10 +208,6 @@ text{
 ```
 
 
-
----
-
-
 The first response lets us know that everything is good to go for translation.
 
 
@@ -259,10 +232,6 @@ text{
 ```
 
 
-
----
-
-
 The second response lets us know that translation is complete, with our result in the JSON under *data.*
 
 
@@ -283,10 +252,6 @@ text{
 }
 
 ```
-
-
-
----
 
 
 **Scenario 2 (failure)**
@@ -319,10 +284,6 @@ text{
 
 
 
----
-
-
-
 
 ---
 
@@ -339,10 +300,6 @@ text{
 }
 
 ```
-
-
-
----
 
 
 ****Scenario 3 (language not supported)****
@@ -375,10 +332,6 @@ text{
 
 
 
----
-
-
-
 
 ---
 
@@ -395,10 +348,6 @@ text{
 }
 
 ```
-
-
-
----
 
 
   
@@ -446,10 +395,6 @@ text{
 ```
 
 
-
----
-
-
 Unlike speech to text, we only need to know if setup was successful. Then we know that media will flow over the websocket.
 
 
@@ -475,10 +420,6 @@ text{
 }
 
 ```
-
-
-
----
 
 
  
@@ -516,10 +457,6 @@ text{
 
 
 
----
-
-
-
 
 ---
 
@@ -536,10 +473,6 @@ text{
 }
 
 ```
-
-
-
----
 
 
 ****Scenario 3 (codec not supported)****
@@ -575,10 +508,6 @@ text{
 
 
 
----
-
-
-
 
 ---
 
@@ -595,9 +524,5 @@ text{
 }
 
 ```
-
-
-
----
 
 

@@ -8,14 +8,12 @@ There are many different types of modules, each providing their own functionalit
 
 
 
----
+!!! tip **  Use the [CLI](/Operation/Asterisk-Command-Line-Interface) command **module show
+    to see all the loaded modules in your Asterisk system. See the command usage for details on how to filter the results shown with a pattern.
 
-**Tip:**  Use the [CLI](/Operation/Asterisk-Command-Line-Interface) command **module show** to see all the loaded modules in your Asterisk system. See the command usage for details on how to filter the results shown with a pattern.
+    Click here for example "module show" output...
+[//]: # (end-tip)
 
-Click here for example "module show" output...
-
-
----
 
   
   
@@ -38,11 +36,6 @@ app\_authenticate.so Authentication Application 0 Running core
 
 
 ```
-
-
-
-
----
 
 
 Various Module Types

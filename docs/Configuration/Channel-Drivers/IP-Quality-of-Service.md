@@ -27,10 +27,6 @@ vconfig set\_egress\_map [vlan-device] [skb-priority] [vlan-qos]
 ```
 
 
-
----
-
-
 The table below shows all VoIP channel drivers and other Asterisk modules that support QoS settings for network traffic. It also shows the type(s) of traffic for which each module can support setting QoS settings:
 
 
@@ -123,15 +119,12 @@ Similarly, there are there parameters that control the 802.1p CoS settings: a **
 
 
 
----
+!!! tip **  Changes to a chan\_pjsip **type=transport
+    require an Asterisk restart to be affected. They are not affected by simply reloading Asterisk.
 
-**Tip:**  Changes to a chan\_pjsip **type=transport** require an Asterisk restart to be affected. They are not affected by simply reloading Asterisk.
+      
+[//]: # (end-tip)
 
-  
-
-
-
----
 
 
  

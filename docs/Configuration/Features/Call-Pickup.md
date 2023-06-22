@@ -6,16 +6,12 @@ pageid: 21463197
 
 
 
----
+!!! info ""
+    Call pickup support added in Asterisk 11
 
+      
+[//]: # (end-info)
 
-**Information:**  Call pickup support added in Asterisk 11
-
-  
-
-
-
----
 
 
 Overview
@@ -68,10 +64,6 @@ same => n,Set(CHANNEL(callgroup)=1,5-7)
 ```
 
 
-
----
-
-
 The CHANNEL(namedcallgroup) option specifies which named pickup groups that this channel is a member.
 
 
@@ -91,22 +83,15 @@ same => n,Set(CHANNEL(namedcallgroup)=engineering,sales)
 
 
 
----
 
+!!! note 
+    For this option to be effective, you must set it on the outgoing channel. There are a couple of ways:
 
+    * You can use the setvar option available with several channel driver configuration files to set the pickup groups.
+    * You can use a pre-dial handler.
+      
+[//]: # (end-note)
 
-
----
-
-**Note:**  For this option to be effective, you must set it on the outgoing channel. There are a couple of ways:
-
-* You can use the setvar option available with several channel driver configuration files to set the pickup groups.
-* You can use a pre-dial handler.
-  
-
-
-
----
 
 
 ### pickupgroup/namedpickupgroup
@@ -129,10 +114,6 @@ same => n,Set(CHANNEL(pickupgroup)=1,6-8)
 ```
 
 
-
----
-
-
 The CHANNEL(namedpickupgroup) option specifies which named pickup groups this channel can pickup.
 
 
@@ -152,21 +133,14 @@ same => n,Set(CHANNEL(namedpickupgroup)=engineering,sales)
 
 
 
----
 
+!!! note 
+    For this option to be effective, you must set it on the channel before executing the Pickup application or calling the pickupexten.
 
+    * You can use the setvar option available with several channel driver configuration files to set the pickup groups.
+      
+[//]: # (end-note)
 
-
----
-
-**Note:**  For this option to be effective, you must set it on the channel before executing the Pickup application or calling the pickupexten.
-
-* You can use the setvar option available with several channel driver configuration files to set the pickup groups.
-  
-
-
-
----
 
 
 Configuration Options
@@ -179,15 +153,12 @@ Calls picked up using pickupexten can hear an optional sound file for success an
 
 
 
----
+!!! note 
+    The current channel drivers that support calling the pickupexten to pickup a call are: chan\_dahdi/analog, chan\_mgcp, chan\_misdn, chan\_sip, chan\_unistim and chan\_pjsip.
 
-**Note:**  The current channel drivers that support calling the pickupexten to pickup a call are: chan\_dahdi/analog, chan\_mgcp, chan\_misdn, chan\_sip, chan\_unistim and chan\_pjsip.
+      
+[//]: # (end-note)
 
-  
-
-
-
----
 
 
 
@@ -205,10 +176,6 @@ pickupsound = beep ; to indicate a successful pickup (default: no sound)
 pickupfailsound = beeperr ; to indicate that the pickup failed (default: no sound)
 
 ```
-
-
-
----
 
 
 ### Numeric call pickup groups
@@ -232,10 +199,6 @@ pickupgroup=[number[-number][,number[-number][,...]]]
 ```
 
 
-
----
-
-
 * callgroup - specifies which numeric pickup groups that this channel is a member.
 * pickupgroup - specifies which numeric pickup groups this channel can pickup.
 
@@ -254,10 +217,6 @@ callgroup=1,5-7
 pickupgroup=1
 
 ```
-
-
-
----
 
 
 Configuration should be supported in several channel drivers, including:
@@ -288,10 +247,6 @@ pickup\_group=1
 ```
 
 
-
----
-
-
 ### Named call pickup groups
 
 A named callgroup and pickupgroup can be set to a comma separated list of case sensitive name strings. The number of named groups is unlimited. The number of named groups you can specify at once is limited by the line length supported.
@@ -313,10 +268,6 @@ namedpickupgroup=[name[,name[,...]]]
 ```
 
 
-
----
-
-
 * namedcallgroup - specifies which named pickup groups that this channel is a member.
 * namedpickupgroup - specifies which named pickup groups this channel can pickup.
 
@@ -335,10 +286,6 @@ namedcallgroup=engineering,sales,netgroup,protgroup
 namedpickupgroup=sales
 
 ```
-
-
-
----
 
 
 Configuration should be supported in several channel drivers, including:
@@ -368,22 +315,15 @@ named\_pickup\_group=sales
 
 
 
----
 
+!!! note 
+    You can use named pickup groups in parallel with numeric pickup groups. For example, the named pickup group '4' is not the same as the numeric pickup group '4'.
 
+    Named pickup groups are new with Asterisk 11.
 
+      
+[//]: # (end-note)
 
----
-
-**Note:**  You can use named pickup groups in parallel with numeric pickup groups. For example, the named pickup group '4' is not the same as the numeric pickup group '4'.
-
-Named pickup groups are new with Asterisk 11.
-
-  
-
-
-
----
 
 
  

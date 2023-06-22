@@ -11,16 +11,12 @@ The **switch** statement permits a server to share the dialplan with another ser
 
 
 
----
+!!! warning 
+    Use with care: Reciprocal switch statements are not allowed (e.g. both A -> B and B -> A), and the switched server need to be on-line or else dialing can be severely delayed.
 
-**WARNING!:**   
-Use with care: Reciprocal switch statements are not allowed (e.g. both A -> B and B -> A), and the switched server need to be on-line or else dialing can be severely delayed.
+      
+[//]: # (end-warning)
 
-  
-
-
-
----
 
 
 Basic switch statement
@@ -45,10 +41,6 @@ switch => IAX2/user:password@myserver/mycontext
 ```
 
 
-
----
-
-
 The lswitch statement
 ---------------------
 
@@ -70,10 +62,6 @@ lswitch => Loopback/12${EXTEN}@othercontext
 ```
 
 
-
----
-
-
 The eswitch statement
 ---------------------
 
@@ -93,10 +81,6 @@ An "eswitch" is like a switch but the evaluation of variable substitution is per
 eswitch => IAX2/context@${CURSERVER}
 
 ```
-
-
-
----
 
 
  

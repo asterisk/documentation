@@ -6,29 +6,18 @@ pageid: 20189328
 
 
 
----
+!!! info "**  Hangup Handlers were added in **Asterisk 11"
+    ---
 
 
-**Information:**  Hangup Handlers were added in **Asterisk 11**
+    Overview
+    --------
 
-  
+    Hangup handlers are subroutines attached to a channel that will execute when that channel hangs up. Unlike the traditional [h extension](/Deployment/Basic-PBX-Functionality/Auto-attendant-and-IVR-Menus/Handling-Special-Extensions), hangup handlers follow the channel. Thus hangup handlers are always run when a channel is hung up, regardless of where in the dialplan a channel is executing.
 
+    Multiple hangup handlers can be attached to a single channel. If multiple hangup handlers are attached to a channel, the hangup handlers will be executed in the order of most recently added first.
+[//]: # (end-info)
 
-
----
-
-
-Overview
---------
-
-Hangup handlers are subroutines attached to a channel that will execute when that channel hangs up. Unlike the traditional [h extension](/Deployment/Basic-PBX-Functionality/Auto-attendant-and-IVR-Menus/Handling-Special-Extensions), hangup handlers follow the channel. Thus hangup handlers are always run when a channel is hung up, regardless of where in the dialplan a channel is executing.
-
-Multiple hangup handlers can be attached to a single channel. If multiple hangup handlers are attached to a channel, the hangup handlers will be executed in the order of most recently added first.
-
-
-
-
----
 
 
 **Information: NOTES** * Please note that when the hangup handlers execute in relation to the h extension is not defined. They could execute before or after the h extension.
@@ -43,17 +32,13 @@ Multiple hangup handlers can be attached to a single channel. If multiple hangup
 
 
 
----
+!!! warning WARNINGS
+    * As hangup handlers are subroutines, they must be terminated with a call to [Return](/Asterisk-11-Application_Return).
+    * Adding a hangup handler in the h extension or during a hangup handler execution is undefined behaviour.
+    * As always, hangup handlers, like the h extension, need to execute quickly because they are in the hangup sequence path of the call leg. Specific channel driver protocols like ISDN and SIP may not be able to handle excessive delays completing the hangup sequence.
+      
+[//]: # (end-warning)
 
-**WARNING!: WARNINGS**  
-* As hangup handlers are subroutines, they must be terminated with a call to [Return](/Asterisk-11-Application_Return).
-* Adding a hangup handler in the h extension or during a hangup handler execution is undefined behaviour.
-* As always, hangup handlers, like the h extension, need to execute quickly because they are in the hangup sequence path of the call leg. Specific channel driver protocols like ISDN and SIP may not be able to handle excessive delays completing the hangup sequence.
-  
-
-
-
----
 
 
 Dialplan Applications and Functions
@@ -82,10 +67,6 @@ same => n,Set(CHANNEL(hangup\_handler\_push)=[[context,]exten,]priority[(arg1[,.
 ```
 
 
-
----
-
-
 ### hangup\_handler\_pop
 
 Used to pop a hangup handler off a channel. Optionally, a replacement hangup handler can be added to the channel.
@@ -107,10 +88,6 @@ same => n,Set(CHANNEL(hangup\_handler\_pop)=[[[context,]exten,]priority[(arg1[,.
 ```
 
 
-
----
-
-
 ### hangup\_handler\_wipe
 
 Remove all hangup handlers on the channel. Optionally, a new hangup handler can be pushed onto the channel.
@@ -130,10 +107,6 @@ same => n,Set(CHANNEL(hangup\_handler\_wipe)=[[[context,]exten,]priority[(arg1[,
 
 
 ```
-
-
-
----
 
 
 ### Examples
@@ -177,10 +150,6 @@ same => n,Return()
 
 
 ```
-
-
-
----
 
 
 ##### Removing and replacing hangup handlers
@@ -234,10 +203,6 @@ same => n,Return()
 ```
 
 
-
----
-
-
 CLI Commands
 ------------
 
@@ -256,10 +221,6 @@ core show hanguphandlers <chan>
 
 
 ```
-
-
-
----
 
 
 
@@ -282,10 +243,6 @@ Channel Handler
 
 
 
----
-
-
-
 
 ---
 
@@ -299,10 +256,6 @@ core show hanguphandlers all
 
 
 ```
-
-
-
----
 
 
 
@@ -325,9 +278,5 @@ Channel Handler
 
 
 ```
-
-
-
----
 
 

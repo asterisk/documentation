@@ -35,10 +35,6 @@ exten => 100,n,VoicemailMain(${CALLERID(num)@mycontext,s)
 ```
 
 
-
----
-
-
 Example (This will not):
 
 
@@ -58,9 +54,5 @@ exten => 100,n,VoicemailMain(${CALLERID(num)@mycontext,s)
 
 
 ```
-
-
-
----
 
 

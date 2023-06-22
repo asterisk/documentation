@@ -6,16 +6,12 @@ pageid: 4817260
 
 
 
----
+!!! warning 
+    AJAM is not supported and may have issues and may be removed in the future. Do not use it if at all possible. Use standard TCP based AMI instead.
 
-**WARNING!:**   
-AJAM is not supported and may have issues and may be removed in the future. Do not use it if at all possible. Use standard TCP based AMI instead.
+      
+[//]: # (end-warning)
 
-  
-
-
-
----
 
 
 Configuring manager.conf
@@ -35,16 +31,12 @@ Once those configurations are complete you can reload or restart Asterisk and yo
 
 
 
----
+!!! info ""
+    Be sure the syntax for the URLs below is followed precisely
 
+      
+[//]: # (end-info)
 
-**Information:**  Be sure the syntax for the URLs below is followed precisely
-
-  
-
-
-
----
 
 
 * http://localhost:8088/manager?action=login&username=foo&secret=bar
@@ -68,14 +60,9 @@ A sample library (astman.js) is included to help ease the creation of manager HT
 
 
 
----
+!!! note **  For the demo, there is no need for **any external web server.
 
-**Note:**  For the demo, there is no need for **any external web server.**
+[//]: # (end-note)
 
-  
-
-
-
----
 
 

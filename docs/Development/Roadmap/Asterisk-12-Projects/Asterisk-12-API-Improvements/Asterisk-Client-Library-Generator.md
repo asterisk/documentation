@@ -122,7 +122,3 @@ asterisk\_rest\_libraries
 ```
 
 
-
----
-
-

@@ -23,20 +23,11 @@ some\_object => settings
 
 
 
----
 
+!!! tip 
+    Confused by Object Syntax?  
+[//]: # (end-tip)
 
-
-
----
-
-**Tip:**  Confused by Object Syntax?  
-
-
-
-
-
----
 
   
   
@@ -64,20 +55,8 @@ It is common to see both versions of the syntax, especially in online Asterisk d
 
 
 
----
-
-
-
-
----
-
-  
-  
-
-
-```
-
-javascript[section-name]
+```javascript title="---" linenums="1"
+[section-name]
 label1=value1
 label2=value2
 object1 => name1
@@ -87,10 +66,6 @@ label3=value3
 object2 => name2
 
 ```
-
-
-
----
 
 
 In this example, **object1** inherits both **label1** and **label2**. It is important to note that **object2** also inherits **label2**, along with **label1** (with the new overridden value **value0**) and **label3**.

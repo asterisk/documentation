@@ -13,15 +13,12 @@ Asterisk typically retrieves its configuration information by *pulling* it from 
 On This PageVersion Information
 
 
----
+!!! note 
+    This feature was introduced in ARI version 1.8.0, or Asterisk 13.5.0 or later.
 
-**Note:**  This feature was introduced in ARI version 1.8.0, or Asterisk 13.5.0 or later.
+      
+[//]: # (end-note)
 
-  
-
-
-
----
 
 
 Push Configuration Workflow
@@ -79,24 +76,16 @@ registration=astdb,ps\_registrations
 
 
 
----
 
+!!! warning 
+    You **must** configure `sorcery.conf` for this feature to work. The standard data provider Sorcery uses for PJSIP objects is the static configuration file driver. This driver does not support creation, updating, or deletion of objects - which means only the `GET` request will succeed. Any of the following drivers will work to support push configuration:
 
+    * `res_sorcery_memory`
+    * `res_sorcery_astdb`
+    * `res_sorcery_realtime`
+      
+[//]: # (end-warning)
 
-
----
-
-**WARNING!:**   
-You **must** configure `sorcery.conf` for this feature to work. The standard data provider Sorcery uses for PJSIP objects is the static configuration file driver. This driver does not support creation, updating, or deletion of objects - which means only the `GET` request will succeed. Any of the following drivers will work to support push configuration:
-
-* `res_sorcery_memory`
-* `res_sorcery_astdb`
-* `res_sorcery_realtime`
-  
-
-
-
----
 
 
 Pushing PJSIP Configuration
@@ -157,10 +146,6 @@ aors=alice
 ```
 
 
-
----
-
-
 If we then ask Asterisk what endpoints we have, it will show us something like the following:
 
 
@@ -191,10 +176,6 @@ Asterisk CLI
 \*CLI> 
 
 ```
-
-
-
----
 
 
 **Our goal is to recreate alice, using ARI.**
@@ -231,10 +212,6 @@ bind=0.0.0.0:5060
 ```
 
 
-
----
-
-
 ### Sorcery
 
 Tell the Sorcery data abstraction framework to pull *endpoint*, *aor*, and *auth* objects from the Asterisk Database:
@@ -258,10 +235,6 @@ aor=astdb,ps\_aors
 ```
 
 
-
----
-
-
 ### Asterisk CLI
 
 Now, if we ask Asterisk for the PJSIP endpoints, it will tell us none are defined:
@@ -283,10 +256,6 @@ No objects found.
 ```
 
 
-
----
-
-
 Pushing Configuration
 ---------------------
 
@@ -295,23 +264,12 @@ First, let's push in Alice's authentication:
 
 
 
----
-
-  
-  
-
-
-```
-
+```bash title=" " linenums="1"
 $ curl -X PUT -H "Content-Type: application/json" -u asterisk:secret -d '{"fields": [ { "attribute": "auth\_type", "value": "userpass"}, {"attribute": "username", "value": "alice"}, {"attribute": "password", "value": "secret" } ] }' https://localhost:8088/ari/asterisk/config/dynamic/res\_pjsip/auth/alice
 
 [{"attribute":"md5\_cred","value":""},{"attribute":"realm","value":""},{"attribute":"auth\_type","value":"userpass"},{"attribute":"password","value":"secret"},{"attribute":"nonce\_lifetime","value":"32"},{"attribute":"username","value":"alice"}]
 
 ```
-
-
-
----
 
 
 We can note a few things from this:
@@ -325,14 +283,7 @@ Next, we can push in Alice's AoRs:
 
 
 
----
-
-  
-  
-
-
-```
-
+```bash title=" " linenums="1"
 $ curl -X PUT -H "Content-Type: application/json" -u asterisk:secret -d '{"fields": [ { "attribute": "support\_path", "value": "yes"}, {"attribute": "remove\_existing", "value": "yes"}, {"attribute": "max\_contacts", "value": "1"} ] }' https://localhost:8088/ari/asterisk/config/dynamic/res\_pjsip/aor/alice
 
 [{"attribute":"support\_path","value":"true"},{"attribute":"default\_expiration","value":"3600"},{"attribute":"qualify\_timeout","value":"3.000000"},{"attribute":"mailboxes","value":""},{"attribute":"minimum\_expiration","value":"60"},{"attribute":"outbound\_proxy","value":""},{"attribute":"maximum\_expiration","value":"7200"},{"attribute":"qualify\_frequency","value":"0"},{"attribute":"authenticate\_qualify","value":"false"},{"attribute":"contact","value":""},{"attribute":"max\_contacts","value":"1"},{"attribute":"remove\_existing","value":"true"}]
@@ -340,32 +291,17 @@ $ curl -X PUT -H "Content-Type: application/json" -u asterisk:secret -d '{"field
 ```
 
 
-
----
-
-
 Finally, we can push in Alice's endpoint:
 
 
 
 
----
-
-  
-  
-
-
-```
-
+```bash title=" " linenums="1"
 $ curl -X PUT -H "Content-Type: application/json" -u asterisk:secret -d '{"fields": [ { "attribute": "from\_user", "value": "alice" }, { "attribute": "allow", "value": "!all,g722,ulaw,alaw"}, {"attribute": "ice\_support", "value": "yes"}, {"attribute": "force\_rport", "value": "yes"}, {"attribute": "rewrite\_contact", "value": "yes"}, {"attribute": "rtp\_symmetric", "value": "yes"}, {"attribute": "context", "value": "default" }, {"attribute": "auth", "value": "alice" }, {"attribute": "aors", "value": "alice"} ] }' https://localhost:8088/ari/asterisk/config/dynamic/res\_pjsip/endpoint/alice
 
 [{"attribute":"timers\_sess\_expires","value":"1800"},{"attribute":"device\_state\_busy\_at","value":"0"},{"attribute":"dtls\_cipher","value":""},{"attribute":"from\_domain","value":""},{"attribute":"dtls\_rekey","value":"0"},{"attribute":"dtls\_fingerprint","value":"SHA-256"},{"attribute":"direct\_media\_method","value":"invite"},{"attribute":"send\_rpid","value":"false"},{"attribute":"pickup\_group","value":""},{"attribute":"sdp\_session","value":"Asterisk"},{"attribute":"dtls\_verify","value":"No"},{"attribute":"message\_context","value":""},{"attribute":"mailboxes","value":""},{"attribute":"named\_pickup\_group","value":""},{"attribute":"record\_on\_feature","value":"automixmon"},{"attribute":"dtls\_private\_key","value":""},{"attribute":"named\_call\_group","value":""},{"attribute":"t38\_udptl\_maxdatagram","value":"0"},{"attribute":"media\_encryption\_optimistic","value":"false"},{"attribute":"aors","value":"alice"},{"attribute":"rpid\_immediate","value":"false"},{"attribute":"outbound\_proxy","value":""},{"attribute":"identify\_by","value":"username"},{"attribute":"inband\_progress","value":"false"},{"attribute":"rtp\_symmetric","value":"true"},{"attribute":"transport","value":""},{"attribute":"t38\_udptl\_ec","value":"none"},{"attribute":"fax\_detect","value":"false"},{"attribute":"t38\_udptl\_nat","value":"false"},{"attribute":"allow\_transfer","value":"true"},{"attribute":"tos\_video","value":"0"},{"attribute":"srtp\_tag\_32","value":"false"},{"attribute":"timers\_min\_se","value":"90"},{"attribute":"call\_group","value":""},{"attribute":"sub\_min\_expiry","value":"0"},{"attribute":"100rel","value":"yes"},{"attribute":"direct\_media","value":"true"},{"attribute":"g726\_non\_standard","value":"false"},{"attribute":"dtmf\_mode","value":"rfc4733"},{"attribute":"dtls\_cert\_file","value":""},{"attribute":"media\_encryption","value":"no"},{"attribute":"media\_use\_received\_transport","value":"false"},{"attribute":"direct\_media\_glare\_mitigation","value":"none"},{"attribute":"trust\_id\_inbound","value":"false"},{"attribute":"force\_avp","value":"false"},{"attribute":"record\_off\_feature","value":"automixmon"},{"attribute":"send\_diversion","value":"true"},{"attribute":"language","value":""},{"attribute":"mwi\_from\_user","value":""},{"attribute":"rtp\_ipv6","value":"false"},{"attribute":"ice\_support","value":"true"},{"attribute":"callerid","value":"<unknown>"},{"attribute":"aggregate\_mwi","value":"true"},{"attribute":"one\_touch\_recording","value":"false"},{"attribute":"moh\_passthrough","value":"false"},{"attribute":"cos\_video","value":"0"},{"attribute":"accountcode","value":""},{"attribute":"allow","value":"(g722|ulaw|alaw)"},{"attribute":"rewrite\_contact","value":"true"},{"attribute":"t38\_udptl\_ipv6","value":"false"},{"attribute":"tone\_zone","value":""},{"attribute":"user\_eq\_phone","value":"false"},{"attribute":"allow\_subscribe","value":"true"},{"attribute":"rtp\_engine","value":"asterisk"},{"attribute":"auth","value":"alice"},{"attribute":"from\_user","value":"alice"},{"attribute":"disable\_direct\_media\_on\_nat","value":"false"},{"attribute":"set\_var","value":""},{"attribute":"use\_ptime","value":"false"},{"attribute":"outbound\_auth","value":""},{"attribute":"media\_address","value":""},{"attribute":"tos\_audio","value":"0"},{"attribute":"dtls\_ca\_path","value":""},{"attribute":"dtls\_setup","value":"active"},{"attribute":"force\_rport","value":"true"},{"attribute":"connected\_line\_method","value":"invite"},{"attribute":"callerid\_tag","value":""},{"attribute":"timers","value":"yes"},{"attribute":"sdp\_owner","value":"-"},{"attribute":"trust\_id\_outbound","value":"false"},{"attribute":"use\_avpf","value":"false"},{"attribute":"context","value":"default"},{"attribute":"moh\_suggest","value":"default"},{"attribute":"send\_pai","value":"false"},{"attribute":"t38\_udptl","value":"false"},{"attribute":"dtls\_ca\_file","value":""},{"attribute":"callerid\_privacy","value":"allowed\_not\_screened"},{"attribute":"cos\_audio","value":"0"}]
 
 ```
-
-
-
----
 
 
 We can now verify that Alice's endpoint exists:
@@ -400,20 +336,13 @@ text\*CLI> pjsip show endpoints
 
 
 
----
 
+!!! note Order Matters!
+    While ARI itself won't care about the order you create objects in, PJSIP will. A PJSIP endpoint is used to look-up the endpoint's authentication and AoRs. Asterisk and ARI will let you create the endpoint first, referencing an authentication and AoR object that don't yet exist. If an inbound request arrives for that endpoint, the request will be rejected because the endpoint won't be able to find the authentication or store the Contact on a REGISTER request! By creating things in the order that we did, we can guarantee that everything will be in place when the endpoint is instantiated.
 
+      
+[//]: # (end-note)
 
-
----
-
-**Note: Order Matters!**  While ARI itself won't care about the order you create objects in, PJSIP will. A PJSIP endpoint is used to look-up the endpoint's authentication and AoRs. Asterisk and ARI will let you create the endpoint first, referencing an authentication and AoR object that don't yet exist. If an inbound request arrives for that endpoint, the request will be rejected because the endpoint won't be able to find the authentication or store the Contact on a REGISTER request! By creating things in the order that we did, we can guarantee that everything will be in place when the endpoint is instantiated.
-
-  
-
-
-
----
 
 
 We can also verify that Alice exists in the AstDB:
@@ -439,10 +368,6 @@ text\*CLI> database show
 ```
 
 
-
----
-
-
 Deleting Configuration
 ----------------------
 
@@ -451,23 +376,12 @@ If we no longer want Alice to have an endpoint, we can remove it and its related
 
 
 
----
-
-  
-  
-
-
-```
-
+```bash title=" " linenums="1"
 $ curl -X DELETE -u asterisk:secret https://localhost:8088/ari/asterisk/config/dynamic/res\_pjsip/endpoint/alice
 $ curl -X DELETE -u asterisk:secret https://localhost:8088/ari/asterisk/config/dynamic/res\_pjsip/aor/alice
 $ curl -X DELETE -u asterisk:secret https://localhost:8088/ari/asterisk/config/dynamic/res\_pjsip/auth/alice
 
 ```
-
-
-
----
 
 
 And we can confirm that Alice no longer exists:
@@ -493,20 +407,13 @@ No objects found.
 
 
 
----
 
+!!! note Order Matters!
+    Note that we remove Alice in reverse order of how her endpoint was created - we first remove the endpoint, then its related objects. Once the endpoint is removed, further requests will no longer be serviced, which allows us to safely remove the auth and aor objects.
 
+      
+[//]: # (end-note)
 
-
----
-
-**Note: Order Matters!**  Note that we remove Alice in reverse order of how her endpoint was created - we first remove the endpoint, then its related objects. Once the endpoint is removed, further requests will no longer be serviced, which allows us to safely remove the auth and aor objects.
-
-  
-
-
-
----
 
 
  

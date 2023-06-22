@@ -6,17 +6,12 @@ pageid: 22085835
 
 
 
----
+!!! warning 
+    This page is a work in progress. Please refrain from making comments until this warning has been removed
 
-**WARNING!:**   
+      
+[//]: # (end-warning)
 
-This page is a work in progress. Please refrain from making comments until this warning has been removed
-
-  
-
-
-
----
 
 
 Overview
@@ -165,10 +160,6 @@ struct ast\_sip\_endpoint\_identifier {
 ```
 
 
-
----
-
-
 Service registration
 --------------------
 
@@ -271,10 +262,6 @@ void ast\_sip\_unregister\_endpoint\_identifier(struct ast\_sip\_endpoint\_ident
 ```
 
 
-
----
-
-
 Threadpool usage
 ----------------
 
@@ -327,10 +314,6 @@ int ast\_sip\_push\_task(struct ast\_sip\_work \*work, int (\*sip\_task)(void \*
 
 
 ```
-
-
-
----
 
 
 Common SIP methods
@@ -517,9 +500,5 @@ int ast\_sip\_append\_body(struct pjsip\_tx\_data \*tdata, const char \*body);
 
 
 ```
-
-
-
----
 
 

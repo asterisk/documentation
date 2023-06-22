@@ -11,16 +11,12 @@ Endpoints within chan\_pjsip are a representation of the configuration informati
 
 
 
----
+!!! info "**  An endpoint **MUST"
+    be available at all times. For cases where anonymous inbound calls are permitted an explicit anonymous endpoint could be used.
 
+      
+[//]: # (end-info)
 
-**Information:**  An endpoint **MUST** be available at all times. For cases where anonymous inbound calls are permitted an explicit anonymous endpoint could be used.
-
-  
-
-
-
----
 
 
 Locations are broken up into AORs and contacts. An AOR is a local identifying name for reaching a specific destination. A contact contains the information required to actually contact the destination and is associated with an AOR. An AOR may have multiple contacts if configured with them or if configured to allow multiple to be externally added. The APIs which collectively provide this functionality are referred to as the "location service". For cases where an AOR is configured to allow external manipulation the system can be configured using sorcery to persist the contact information to an external persistence mechanism, such as the local astdb or another database. This allows location information to persist in case Asterisk has to be restarted or suddenly quits. The location service is a thin wrapper around the data access layer which uses sorcery. Any available sorcery wizard can be used as a persistence mechanism.
@@ -28,16 +24,12 @@ Locations are broken up into AORs and contacts. An AOR is a local identifying na
 
 
 
----
+!!! info ""
+    An AOR and contact is not required to reach arbitrary destinations. An explicit SIP or SIPS URI can be provided.
 
+      
+[//]: # (end-info)
 
-**Information:**  An AOR and contact is not required to reach arbitrary destinations. An explicit SIP or SIPS URI can be provided.
-
-  
-
-
-
----
 
 
  
@@ -50,15 +42,12 @@ Modules which are responsible for identifying what endpoint should be used for i
 
 
 
----
+!!! note 
+    The load order of the endpoint identifiers determines the order in which they are called for endpoint identification purposes.
 
-**Note:**  The load order of the endpoint identifiers determines the order in which they are called for endpoint identification purposes.
+      
+[//]: # (end-note)
 
-  
-
-
-
----
 
 
 Endpoint identifiers are given whole incoming requests and are expected to execute logic to retrieve an endpoint. If no endpoint is returned from all available endpoint identifiers the incoming request is rejected. A system running without any endpoint identifiers will not accept any incoming requests.
@@ -93,15 +82,12 @@ When dialing an explicit SIP or SIPS URI only the provided URI is contacted.
 
 
 
----
+!!! tip 
+    For end users who want to establish sessions with all contacts for an AOR from the dialplan the PJSIP\_DIAL\_CONTACTS dialplan function can be used to construct a dial string which dials all contacts. This is done to leverage the core support for multiple outgoing sessions.
 
-**Tip:**  For end users who want to establish sessions with all contacts for an AOR from the dialplan the PJSIP\_DIAL\_CONTACTS dialplan function can be used to construct a dial string which dials all contacts. This is done to leverage the core support for multiple outgoing sessions.
+      
+[//]: # (end-tip)
 
-  
-
-
-
----
 
 
 Configuration Examples
@@ -132,10 +118,6 @@ aors=5000
 ```
 
 
-
----
-
-
  If explicitly dialed without specifying a URI or AOR the configured AOR of "5000" will be used.
 
 An example AOR configuration, with support for external manipulation, is as follows:
@@ -156,10 +138,6 @@ type=aor
 max\_contacts=10
 
 ```
-
-
-
----
 
 
  This will allow a maximum of 10 contacts to be externally added to it. If exceeded the registrar will reject the registration attempt.
@@ -185,10 +163,6 @@ remove\_existing=yes
 ```
 
 
-
----
-
-
 This will cause only a single contact to be registered. Any subsequent registration attempts will cause the existing contact to be removed.
 
 An example AOR configuration, with no support for external manipulation, is as follows:
@@ -211,25 +185,17 @@ static=sip:5000@internal.mypbx
 ```
 
 
-
----
-
-
  Since a static contact has been specified it will be used if this AOR is queried.
 
 
 
 
----
+!!! warning 
+    The example configuration can be used with the user endpoint identifier by configuring a SIP device with username "5000". Note that no authentication is configured so authentication will not occur. This is not recommended for a production environment.
 
-**WARNING!:**   
-The example configuration can be used with the user endpoint identifier by configuring a SIP device with username "5000". Note that no authentication is configured so authentication will not occur. This is not recommended for a production environment.
+      
+[//]: # (end-warning)
 
-  
-
-
-
----
 
 
 Dialing an endpoint can be accomplished using the following:
@@ -250,10 +216,6 @@ Dial(PJSIP/5000)
 ```
 
 
-
----
-
-
 Dialing an explicit AOR using an endpoint can be accomplished using the following:
 
 
@@ -272,10 +234,6 @@ Dial(PJSIP/5000/5000)
 ```
 
 
-
----
-
-
 Dialing an explicit SIP URI using an endpoint can be accomplished using the following:
 
 
@@ -292,9 +250,5 @@ Dialing an explicit SIP URI using an endpoint can be accomplished using the foll
 Dial(PJSIP/5000/sip:1234@test.com)
 
 ```
-
-
-
----
 
 

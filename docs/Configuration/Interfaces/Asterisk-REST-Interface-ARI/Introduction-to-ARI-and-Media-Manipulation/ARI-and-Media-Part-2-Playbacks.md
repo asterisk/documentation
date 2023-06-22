@@ -86,19 +86,8 @@ class GreetingState(object):
 
 
 
----
 
-
-
-
----
-
-  
-greeting\_state.js  
-
-
-```
-
+```javascript title="greeting\_state.js" linenums="1"
 jstruevar Event = require('./event');
 
 function sounds\_installed(client) {
@@ -159,10 +148,6 @@ function GreetingState(call) {
 ```
 
 
-
----
-
-
 The `sounds.get()` method employed here allows for a single sound to be retrieved based on input parameters. Here, we simply specify the name of the recording we want to ensure that it exists in some form on the system. By checking for the sound's existence in the initialization of `GreetingState`, we can abort the call early if the sound is not installed.
 
 And here is our updated state machine:
@@ -212,19 +197,8 @@ from greeting\_state import GreetingState
 
 
 
----
 
-
-
-
----
-
-  
-vm-call.js  
-
-
-```
-
+```javascript title="vm-call.js" linenums="1"
 jstrue//At the top of the file
 var GreetingState = require('./greeting\_state');
 
@@ -248,10 +222,6 @@ this.setup\_state\_machine = function() {
 }
 
 ```
-
-
-
----
 
 
 Here is a sample run where the user cuts off the greeting by pressing the '#' key, records a greeting and presses the '#' key, and after listening to the recording presses the '#' key once more.
@@ -279,10 +249,6 @@ Accepted recording voicemail/305/1411503204.75 on DTMF #
 Ending voice mail call from PJSIP/200-0000000b
 
 ```
-
-
-
----
 
 
 silverseagreenReader Exercise 1solidblackOur current implementation of `GreetingState` does not take language into consideration. The `sounds_installed` method checks for the existence of the sound file, but it does not ensure that we have the sound file in the language of the channel that is in our application.
@@ -437,19 +403,8 @@ client.run(apps=sys.argv[1])
 
 
 
----
 
-
-
-
----
-
-  
-vm-playback.js  
-
-
-```
-
+```javascript title="vm-playback.js" linenums="1"
 jstrue/\*jshint node:true\*/
 'use strict';
  
@@ -559,10 +514,6 @@ function clientLoaded(err, client) {
 ```
 
 
-
----
-
-
 Quite a bit of this is similar to what we were using for our voice mail recording application. The biggest difference here is that the call has many more methods defined since playing back voice mails is more complicated than recording a single one.
 
 Now that we have the state machine defined and the application written, let's actually write the required new states. First of the new states is the "preamble" state.
@@ -668,19 +619,8 @@ class PreambleState(object):
 
 
 
----
 
-
-
-
----
-
-  
-preamble\_state.js  
-
-
-```
-
+```javascript title="preamble\_state.js" linenums="1"
 jstruevar Event = require('./event');
 
 function sounds\_installed(client) {
@@ -775,10 +715,6 @@ module.exports = PreambleState;
 ```
 
 
-
----
-
-
 `PreambleState` should look similar to the `GreetingState` introduced previously on this page. The biggest difference is that the code is structured to play multiple sound files instead of just a single one. Note that it is acceptable to call `channel.play()` while a playback is playing on a channel in order to queue a second playback. For our application though, we have elected to play the second sound only after the first has completed. The reason for this is that if there is only a single active playback at any given time, then it becomes easier to clean up the current state when an event occurs that causes a state change.
 
 Next, here is the "empty" state code:
@@ -849,19 +785,8 @@ class EmptyState(object):
 
 
 
----
 
-
-
-
----
-
-  
-empty\_state.js  
-
-
-```
-
+```javascript title="empty\_state.js" linenums="1"
 jstruevar Event = require('./event');
 
 function sounds\_installed(client) {
@@ -910,10 +835,6 @@ function EmptyState(call) {
 module.exports = EmptyState;
 
 ```
-
-
-
----
 
 
 This state does not introduce anything we haven't seen already, so let's move on to the "listening" state code:
@@ -1016,19 +937,8 @@ class ListeningState(object):
 
 
 
----
 
-
-
-
----
-
-  
-listening\_state.js  
-
-
-```
-
+```javascript title="listening\_state.js" linenums="1"
 jstruevar Event = require('./event');
 
 var ListeningState = function(call) {
@@ -1131,10 +1041,6 @@ function ListeningState(call) {
 module.exports = ListeningState;
 
 ```
-
-
-
----
 
 
 `ListeningState` is where we introduce new playback control concepts. Playbacks have their controlling operations wrapped in a single method, `control()`, rather than having lots of separate operations. All control operations (reverse, pause, unpause, forward, and restart) are demonstrated by this state.

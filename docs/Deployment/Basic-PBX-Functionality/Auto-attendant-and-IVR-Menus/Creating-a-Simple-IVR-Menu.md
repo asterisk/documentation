@@ -8,16 +8,12 @@ Let's go ahead and apply what we've learned about the various dialplan applicati
 
 
 
----
+!!! info "Sample Sound Prompts"
+    Please note that the example below (and many of the other examples in this guide) use sound prompts that are part of the *extra* sounds packages. If you didn't install the extra sounds earlier, now might be a good time to do that.
 
+      
+[//]: # (end-info)
 
-**Information: Sample Sound Prompts** Please note that the example below (and many of the other examples in this guide) use sound prompts that are part of the *extra* sounds packages. If you didn't install the extra sounds earlier, now might be a good time to do that.
-
-  
-
-
-
----
 
 
 
@@ -46,10 +42,6 @@ exten => 2,1,Playback(you-entered)
 ```
 
 
-
----
-
-
 Before we can use the demo menu above, we need to add an extension to the **[docs:users]** context to redirect the caller to our menu. Add this line to the **[docs:users]** context in your dialplan:
 
 
@@ -67,10 +59,6 @@ exten => 6598,1,Goto(demo-menu,s,1)
 
 
 ```
-
-
-
----
 
 
 Reload your dialplan, and then try dialing extension **6598** to test your auto-attendant menu.

@@ -35,10 +35,6 @@ demo-bob 192.168.5.105 D A 5060 Unmonitored
 ```
 
 
-
----
-
-
 In the example above, you can see that Alice's phone has not registered, but Bob's phone has registered.
 
 For chan\_pjsip you can use **pjsip show endpoints**.
@@ -46,16 +42,12 @@ For chan\_pjsip you can use **pjsip show endpoints**.
 
 
 
----
+!!! tip 
+    Debugging SIP Registrations
 
-**Tip:**  Debugging SIP Registrations
+    If you're having troubles getting a phone to register to Asterisk, make sure you watch the Asterisk CLI with the verbosity level set to at least three while you reboot the phone. You'll likely see error messages indicating what the problem is, like in this example:
+[//]: # (end-tip)
 
-If you're having troubles getting a phone to register to Asterisk, make sure you watch the Asterisk CLI with the verbosity level set to at least three while you reboot the phone. You'll likely see error messages indicating what the problem is, like in this example:
-
-
-
-
----
 
   
   
@@ -76,10 +68,5 @@ As you can see, Asterisk has detected that the password entered into the phone d
 
 
 ```
-
-
-
-
----
 
 

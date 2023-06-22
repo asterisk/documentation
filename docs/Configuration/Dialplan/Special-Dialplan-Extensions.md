@@ -11,16 +11,12 @@ Here we'll list all of the special built-in dialplan extensions and their usage.
 
 
 
----
+!!! info ""
+    Other than special extensions, there is a special context "default" that is used when either a) an extension context is deleted while an extension is in use, or b) a specific starting extension handler has not been defined (unless overridden by the low level channel interface).
 
+      
+[//]: # (end-info)
 
-**Information:**  Other than special extensions, there is a special context "default" that is used when either a) an extension context is deleted while an extension is in use, or b) a specific starting extension handler has not been defined (unless overridden by the low level channel interface).
-
-  
-
-
-
----
 
 
 a: Assistant extension

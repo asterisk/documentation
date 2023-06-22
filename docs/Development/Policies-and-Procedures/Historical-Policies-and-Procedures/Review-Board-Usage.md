@@ -6,18 +6,14 @@ pageid: 4816917
 
 
 
----
+!!! info "Historical Page"
+    The Asterisk project used Review Board for code review when Subversion was used for source control. After to moving to Git, Gerrit is now used for Code Reviews.
 
+    Please see the [Gerrit Usage](/Development/Policies-and-Procedures/Historical-Policies-and-Procedures/Code-Review/Gerrit-Usage) page for more information on using Gerrit for code review.
 
-**Information: Historical Page** The Asterisk project used Review Board for code review when Subversion was used for source control. After to moving to Git, Gerrit is now used for Code Reviews.
+      
+[//]: # (end-info)
 
-Please see the [Gerrit Usage](/Development/Policies-and-Procedures/Historical-Policies-and-Procedures/Code-Review/Gerrit-Usage) page for more information on using Gerrit for code review.
-
-  
-
-
-
----
 
 
  
@@ -40,17 +36,14 @@ Posting Code to Review Board
 
 
 
----
+!!! note 
+    It is acceptable for a contributor to post patches to Review Board before they are complete to get some feedback on the approach being taken. However, if the code is not yet ready to be merged, it must be documented as such.
 
-**Note:**  It is acceptable for a contributor to post patches to Review Board before they are complete to get some feedback on the approach being taken. However, if the code is not yet ready to be merged, it must be documented as such.
+    A review request with a patch proposed for merging should have documented testing and should not have blatant [Coding Guidelines](/Development/Policies-and-Procedures/Historical-Policies-and-Procedures/Code-Review/Coding-Guidelines) violations. If a patch has substantial issues, the review will be closed and you will be asked to re-submit it once it conforms to the project guidelines.
 
-A review request with a patch proposed for merging should have documented testing and should not have blatant [Coding Guidelines](/Development/Policies-and-Procedures/Historical-Policies-and-Procedures/Code-Review/Coding-Guidelines) violations. If a patch has substantial issues, the review will be closed and you will be asked to re-submit it once it conforms to the project guidelines.
+      
+[//]: # (end-note)
 
-  
-
-
-
----
 
 
 Using post-review
@@ -61,15 +54,12 @@ The easiest way to post a patch to Review Board is by using the rbt tool. Instal
 
 
 
----
+!!! note 
+    If you do not already have `easy_install`, install the `python-setuptools` package.
 
-**Note:**  If you do not already have `easy_install`, install the `python-setuptools` package.
+      
+[//]: # (end-note)
 
-  
-
-
-
----
 
 
 
@@ -86,10 +76,6 @@ The easiest way to post a patch to Review Board is by using the rbt tool. Instal
 
 
 ```
-
-
-
----
 
 
 Essentially, rbt is a script that will take the output of `svn diff` and create a review request out of it for you. Once you have a working copy with the changes you expect in the output of `svn diff`, run the following command:
@@ -111,10 +97,6 @@ Essentially, rbt is a script that will take the output of `svn diff` and create 
 ```
 
 
-
----
-
-
 If it complains about not knowing which Review Board server to use, add the server option:
 
 
@@ -132,10 +114,6 @@ If it complains about not knowing which Review Board server to use, add the serv
 
 
 ```
-
-
-
----
 
 
 ### Dealing with New Files
@@ -161,10 +139,6 @@ You would start by getting your changes applied to a trunk working copy:
 ```
 
 
-
----
-
-
 Then, apply the changes from your branch:
 
 
@@ -182,10 +156,6 @@ Then, apply the changes from your branch:
 
 
 ```
-
-
-
----
 
 
 Now, the code is merged into your working copy. However, for a new file, subversion treats it as a copy of existing content and not new content, so new files don't show up in `svn diff` at this point. To get it to show up in the diff, use the following commands so svn treats it as new content and publishes it in the diff:
@@ -206,10 +176,6 @@ Now, the code is merged into your working copy. However, for a new file, subvers
 
 
 ```
-
-
-
----
 
 
 Now, it should work, and you can run "rbt" as usual.
@@ -245,9 +211,5 @@ Most of the time, a patch on Review Board will require multiple iterations befor
 
 
 ```
-
-
-
----
 
 

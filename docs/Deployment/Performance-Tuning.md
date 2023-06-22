@@ -15,16 +15,12 @@ There are two threadpools of interest:  pjsip and stasis.
 
 
 
----
+!!! warning 
+    Any changes to threadpool settings require a full Asterisk restart. A reload is insufficient.
 
-**WARNING!:**   
-Any changes to threadpool settings require a full Asterisk restart. A reload is insufficient.
+      
+[//]: # (end-warning)
 
-  
-
-
-
----
 
 
  
@@ -85,10 +81,6 @@ threadpool\_max\_size=100
 ```
 
 
-
----
-
-
 ### 
 
 Although the stasis message bus is not used much for simple call processing, it *is* used heavily for ARI and AGI processing, transfers, conference bridges, AMI, CDR and CEL processing, etc.  The threadpool is configured in stasis.conf:
@@ -118,10 +110,6 @@ max\_size = 60
 
 
 ```
-
-
-
----
 
 
 If you don't need AMI, CDR, or CEL then disabling those modules will reduce resource usage.  The CDR module uses a lot of processing to create the CDR records and can easily get backed up on a busy system.
@@ -168,10 +156,6 @@ timer\_b=6400
 ```
 
 
-
----
-
-
 ### Identification Priority
 
 The order in which endpoint identification methods are tried when an incoming request is received directly affects transaction rate.  The default order is set in the `global` of pjsip.conf (or the ps\_globals table in the database).
@@ -197,10 +181,6 @@ endpoint\_identifier\_order=username,ip,anonymous
  
 
 ```
-
-
-
----
 
 
  
@@ -278,10 +258,6 @@ registration=realtime,ps\_registrations
 
 
 ```
-
-
-
----
 
 
 ### Flushing the caches:

@@ -31,13 +31,10 @@ Install Support Packages
 
 
 
----
+!!! note 
+    The testsuite also provides an install\_prereq script in the contrib/scripts directory which can be used to install the base dependencies on various distributions. If this is used then there is no need to manually install SIPp or asttest.  
+[//]: # (end-note)
 
-**Note:**   The testsuite also provides an install\_prereq script in the contrib/scripts directory which can be used to install the base dependencies on various distributions. If this is used then there is no need to manually install SIPp or asttest.  
-
-
-
----
 
 
  
@@ -49,15 +46,8 @@ Install Support Packages
 
 
 
----
-
-  
-sipp Installation  
-
-
-```
-
-bash$ cd /usr/src/asterisk
+```bash title="sipp Installation  " linenums="1"
+$ cd /usr/src/asterisk
 $ git clone https://github.com/SIPp/sipp.git
 $ cd sipp
 $ git checkout v3.6.0 ## This is the latest version we KNOW works.
@@ -66,33 +56,18 @@ $ ./build.sh --prefix=/usr --with-openssl --with-pcap --with-rtpstream --with-sc
 ```
 
 
-
----
-
-
 When the build completes, check the version:
 
 
 
 
----
-
-  
-Check sipp version  
-
-
-```
-
-bash $ ./sipp -v
+```bash title="Check sipp version  " linenums="1"
+ $ ./sipp -v
  
  SIPp v3.6.0-TLS-SCTP-PCAP-RTPSTREAM.
 ...
 
 ```
-
-
-
----
 
 
 If everything's OK, install it:
@@ -102,21 +77,10 @@ If everything's OK, install it:
 
 
 
----
-
-  
-make install  
-
+```bash title="make install  " linenums="1"
+$ sudo make install
 
 ```
-
-bash$ sudo make install
-
-```
-
-
-
----
 
 
 Install Asterisk
@@ -133,23 +97,12 @@ Install Asterisk
 
 
 
----
-
-  
-  
-
-
-```
-
-bash$ make
+```bash title=" " linenums="1"
+$ make
 $ sudo make install
 $ sudo make install-headers
 
 ```
-
-
-
----
 
 
 The testsuite needs the sample configuration files installed but before you do that, **make sure you've saved the contents of /etc/asterisk if you've customized any files**.  Once you're sure you don't need anything in /etc/asterisk...
@@ -157,21 +110,10 @@ The testsuite needs the sample configuration files installed but before you do t
 
 
 
----
-
-  
-  
-
+```bash title=" " linenums="1"
+$ sudo make samples
 
 ```
-
-bash$ sudo make samples
-
-```
-
-
-
----
 
 
  
@@ -186,23 +128,12 @@ Currently we need to get the current Review, but the dev branch should be availa
 
 
 
----
-
-  
-  
-
-
-```
-
+```bash title=" " linenums="1"
 $ git clone "https://gerrit.asterisk.org/testsuite"
 $ cd /usr/src/asterisk/testsuite
 $ git fetch https://gerrit.asterisk.org/testsuite
 
 ```
-
-
-
----
 
 
 ASTTest Installation
@@ -213,23 +144,12 @@ ASTTest Installation
 
 
 
----
-
-  
-  
-
-
-```
-
-bash$ cd asttest
+```bash title=" " linenums="1"
+$ cd asttest
 $ make
 $ sudo make install
 
 ```
-
-
-
----
 
 
 Creating a Python 3 Testsuite Virtual Environment
@@ -242,21 +162,10 @@ At a minimum Python3 and matching pip need to be installed.  The minimum python
 
 
 
----
-
-  
-  
-
+```bash title=" " linenums="1"
+$ ./setupVenv.sh
 
 ```
-
-bash$ ./setupVenv.sh
-
-```
-
-
-
----
 
 
 * The *.venv* directory will be created locally.  *.gitignore* is set to ignore the *.venv* folder.  You can use another directory, but you will need to watch out for git if you choose a different name.
@@ -272,21 +181,10 @@ Running the Testsuite Within the Virtual Environment
 
 
 
----
-
-  
-  
-
+```bash title=" " linenums="1"
+$ ./runInVenv.sh python runtests.py -l
 
 ```
-
-bash$ ./runInVenv.sh python runtests.py -l
-
-```
-
-
-
----
 
 
  
@@ -300,15 +198,12 @@ If you use the included scripts, you should not have to interact with the virtua
 
 
 
----
+!!! tip 
+    If you want to install the Python dependencies globally on the system and not in a Python Virtual Environment you can examine the setupVenv.sh shell script to see how it executes pip to install them, and execute globally instead.
 
-**Tip:**  If you want to install the Python dependencies globally on the system and not in a Python Virtual Environment you can examine the setupVenv.sh shell script to see how it executes pip to install them, and execute globally instead.
+      
+[//]: # (end-tip)
 
-  
-
-
-
----
 
 
  
@@ -323,24 +218,13 @@ A bind mount is useful if you are trying to run the container against a version 
 
 
 
----
-
-  
-run with bind mount  
-
-
-```
-
-bash$ docker run \
+```bash title="run with bind mount  " linenums="1"
+$ docker run \
 --name myNewContainer -it -d \
 --mount type=bind,source=/usr/src/asterisk-docker,target=/usr/src/asterisk \
 testsuite/centos7
 
 ```
-
-
-
----
 
 
 A note about using this method.  This is useful if you want to run git and your ide on your local OS while building and testing on the container.  However, you want to use a separate directory for this bind mount from your normal local-builds because if you build on both the container and host from the same directory, the temporary files that are created can and will collide unless care is taken to clean between building on each OS.
@@ -350,15 +234,8 @@ If you do not plan on developing for the testsuite and simply want to run it, th
 
 
 
----
-
-  
-run with volume  
-
-
-```
-
-bash$ docker run \
+```bash title="run with volume  " linenums="1"
+$ docker run \
 --name myNewContainer -it -d \
 --mount source=ast-build,target=/usr/src/asterisk \
 testsuite/centos7 bash
@@ -366,32 +243,17 @@ testsuite/centos7 bash
 ```
 
 
-
----
-
-
 This will create or re-use an existing ast-build Docker volume
 
 
 
 
----
-
-  
-docker volumes  
-
-
-```
-
-bash$ docker volume ls
+```bash title="docker volumes  " linenums="1"
+$ docker volume ls
 DRIVER VOLUME NAME
 local ast-build
 
 ```
-
-
-
----
 
 
 A sample <Dockerfile> can be found [here](Dockerfile).  The git pull for the testsuite should be updated to the latest branch / review.
@@ -401,14 +263,7 @@ Docker by default does not enable ipv6.  If you want to run any ipv6 tests, ple
 
 
 
----
-
-  
-daemon.json  
-
-
-```
-
+```json title="daemon.json" linenums="1"
 xml{
  "ipv6": true,
  "fixed-cidr-v6": "fd00::/80"
@@ -418,26 +273,11 @@ xml{
 
 
 
----
 
-
-
-
----
-
-  
-reload docker  
-
+```bash title="reload docker  " linenums="1"
+$ sudo systemctl reload docker
 
 ```
-
-bash$ sudo systemctl reload docker
-
-```
-
-
-
----
 
 
 Even though we are running inside a container, we can still use the *setupVenv.sh and *runInVenv.sh** scripts because they activate and run within the same shell.
@@ -452,15 +292,11 @@ Even though we are running inside a container, we can still use the *setupVenv.
 
 
 
----
+!!! info "\*A note about pjsua"
+    pjsua and the test suite's phone app were used to help with more complicated SIP scenarios, mostly transfer scenarios that require registration. These can be covered via the 3pcc and ooscf features of sipp, but the complexity of the scripts in some cases is quite high. We should look at creating a separate test user agent and a standardization of scenarios long-term.
 
+      
+[//]: # (end-info)
 
-**Information: \*A note about pjsua** pjsua and the test suite's phone app were used to help with more complicated SIP scenarios, mostly transfer scenarios that require registration. These can be covered via the 3pcc and ooscf features of sipp, but the complexity of the scripts in some cases is quite high. We should look at creating a separate test user agent and a standardization of scenarios long-term.
-
-  
-
-
-
----
 
 

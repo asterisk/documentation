@@ -27,10 +27,6 @@ variable=value
 ```
 
 
-
----
-
-
 The file 'config.h' specifies a relatively simple API for parsing these config files. Configuration information can usually be reloaded by the Asterisk user via the Asterisk command-line or manager interfaces. These reloads run in a different thread than any created by the specific module being reloaded. It is very important to handle reloads in an atomic, thread-safe manner. To help ensure this, a new configuration API has been added on top of the config.h API: the Config Options API.
 
 
@@ -71,10 +67,6 @@ variable2 = value2
 ```
 
 
-
----
-
-
 aco\_option - A configuration variable of a specific option type. An option may have a default value and has a handler responsible for parsing the textual representation of the option's value and storing its type-specific config object.
 
 
@@ -107,10 +99,6 @@ static AO2\_GLOBAL\_OBJ\_STATIC(globals);
 
 
 ```
-
-
-
----
 2. Define a structure to contain any global settings or containers used for configurable items as well as an ao2 allocator and destructor function for it.
 
 
@@ -156,10 +144,6 @@ error:
 
 
 ```
-
-
-
----
 3. Define config types to map config categories to the appropriate internal types
 
 
@@ -191,10 +175,6 @@ static struct aco\_type private\_options = {
 
 
 ```
-
-
-
----
 4. Create an aco\_file for any config files that will be processed. Set the filename and aco\_types that are valid for the file.
 
 
@@ -215,10 +195,6 @@ struct aco\_file my\_conf = {
 
 
 ```
-
-
-
----
 5. Define module-level configuration parsing options in a config info struct
 
 
@@ -238,10 +214,6 @@ CONFIG\_INFO\_STANDARD(cfg\_info, globals, my\_config\_alloc,
 
 
 ```
-
-
-
----
 6. Initialize the aco\_info and register default and custom options with the config info struct
 
 
@@ -268,10 +240,6 @@ static int load\_module(void)
 
 
 ```
-
-
-
----
 7. Process the config via aco\_process\_config(), passing in whether or not this is a reload or not.
 
 
@@ -289,10 +257,6 @@ aco\_process\_config(&cfg\_info, 0);
 
 
 ```
-
-
-
----
 
 
 ### Using config data
@@ -330,21 +294,12 @@ void some\_func\_that\_accesses\_config\_data(void)
 
 
 
----
 
+!!! info ""
+    It is important to note that upon reload, items are completely rebuilt. If a configured item (like a SIP peer) needs to maintain state information between reloads, it is important that it be stored in an object separate from the item in an ao2 object. The item can store a pointer to this state information. When allocating a new item that requires this state information, do a search for the item in the active config and store a reference to to its state in the newly allocated item. If no item is found, allocate a new state object and store that reference in the item. See skel\_level\_alloc and skel\_find\_or\_create\_state in apps/app\_skel.c for an example.
 
+      
+[//]: # (end-info)
 
-
----
-
-
-**Information:**  
-It is important to note that upon reload, items are completely rebuilt. If a configured item (like a SIP peer) needs to maintain state information between reloads, it is important that it be stored in an object separate from the item in an ao2 object. The item can store a pointer to this state information. When allocating a new item that requires this state information, do a search for the item in the active config and store a reference to to its state in the newly allocated item. If no item is found, allocate a new state object and store that reference in the item. See skel\_level\_alloc and skel\_find\_or\_create\_state in apps/app\_skel.c for an example.
-
-  
-
-
-
----
 
 

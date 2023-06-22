@@ -40,10 +40,6 @@ root@localhost:/usr/local/src# tar xvfz radiusclient-ng-0.5.2.tar.gz
 ```
 
 
-
----
-
-
 ##### Compile and install the library:
 
 
@@ -65,10 +61,6 @@ root@localhost:/usr/local/src/radiusclient-ng-0.5.2# make install
 
 
 ```
-
-
-
----
 
 
 ##### Configuration of the Radiusclient library
@@ -97,10 +89,6 @@ authserver localhost
 ```
 
 
-
----
-
-
 This is the hostname or IP address of the RADIUS server used for authentication. You will have to change this unless the server is running on the same host as your Asterisk PBX. 
 
 
@@ -119,10 +107,6 @@ acctserver localhost
 
 
 ```
-
-
-
----
 
 
 This is the hostname or IP address of the RADIUS server used for accounting. You will have to change this unless the server is running on the same host as your Asterisk PBX. 
@@ -160,10 +144,6 @@ File "dictionary"
 ```
 
 
-
----
-
-
 Asterisk uses some attributes that are not included in the dictionary of radiusclient library, therefore it is necessary to add them. A file called dictionary.digium (kept in the contrib dir) was created to list all new attributes used by Asterisk. Add to the end of the main dictionary 
 
 
@@ -172,23 +152,11 @@ file /usr/local/etc/radiusclient-ng/dictionary the line:
 
 
 
----
-
-  
-  
-
-
-```
-
-
+```bash title=" " linenums="1"
 $INCLUDE /path/to/dictionary.digium
 
 
 ```
-
-
-
----
 
 
 ### Install FreeRADIUS Server (Version 1.1.1)
@@ -222,10 +190,6 @@ root@localhost"/usr/local/src/freeradius-1.1.1# make install
 
 
 ```
-
-
-
----
 
 
 All the configuration files of FreeRADIUS server will be in /usr/local/etc/raddb directory.
@@ -263,10 +227,6 @@ client myhost { secret = mysecret shortname = foo }
 ```
 
 
-
----
-
-
 This fragment allows access from RADIUS clients on "myhost" if they use "mysecret" as the shared secret. The file already contains an entry for localhost (127.0.0.1), so if you are running the RADIUS server on the same host as your Asterisk server, then modify the existing entry instead, replacing the default password. 
 
 
@@ -275,16 +235,12 @@ This fragment allows access from RADIUS clients on "myhost" if they use "mysecre
 
 
 
----
+!!! note 
+    As of version 1.1.2, the dictionary.digium file ships with FreeRADIUS.
 
-**Note:**  
-As of version 1.1.2, the dictionary.digium file ships with FreeRADIUS.
+      
+[//]: # (end-note)
 
-  
-
-
-
----
 
 
 The following procedure brings the dictionary.digium file to previous versions of FreeRADIUS. 
@@ -295,23 +251,11 @@ File /usr/local/etc/raddb/dictionary contains the dictionary of FreeRADIUS serve
 
 
 
----
-
-  
-  
-
-
-```
-
-
+```bash title=" " linenums="1"
 $INCLUDE /path/to/dictionary.digium 
 
 
 ```
-
-
-
----
 
 
 That will include the same new attribute definitions that are used in radiusclient-ng library so the client and server will understand each other.

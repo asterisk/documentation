@@ -57,15 +57,12 @@ Agenda
 
 
 
----
+!!! note 
+    All times are in PDT
 
-**Note:**  All times are in PDT
+      
+[//]: # (end-note)
 
-  
-
-
-
----
 
 
 Project Policies (10-11:15am)

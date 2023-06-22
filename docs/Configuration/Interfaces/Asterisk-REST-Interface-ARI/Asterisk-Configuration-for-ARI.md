@@ -11,15 +11,12 @@ ARI has a number of parts to it - the HTTP server in Asterisk servicing requests
 
 
 
----
+!!! tip 
+    This page does not include all of the configuration options available to a system administrator. It does cover some of the basics that you might be interested in when setting up your Asterisk system for ARI.
 
-**Tip:**  This page does not include all of the configuration options available to a system administrator. It does cover some of the basics that you might be interested in when setting up your Asterisk system for ARI.
+      
+[//]: # (end-tip)
 
-  
-
-
-
----
 
 
 Asterisk Configuration Options for ARI
@@ -69,20 +66,13 @@ bindport = 8088
 
 
 
----
 
+!!! note Use TLS!** It is **highly
+    recommended that you encrypt your HTTP signalling with TLS, and use secure WebSockets (WSS) for your events. This requires configuring the TLS information in `http.conf`, and establishing secure websocket/secure HTTP connections from your ARI application.
 
+      
+[//]: # (end-note)
 
-
----
-
-**Note: Use TLS!** It is **highly** recommended that you encrypt your HTTP signalling with TLS, and use secure WebSockets (WSS) for your events. This requires configuring the TLS information in `http.conf`, and establishing secure websocket/secure HTTP connections from your ARI application.
-
-  
-
-
-
----
 
 
 ARI Configuration
@@ -140,10 +130,6 @@ password\_format = crypt
 ```
 
 
-
----
-
-
  
 
 Configuring the Dialplan for ARI
@@ -186,10 +172,6 @@ exten => conference,1,NoOp()
 ```
 
 
-
----
-
-
  
 
 When a channel enters into a Stasis application, Asterisk will check to see if a WebSocket connection has been established for that application. If so, the channel is handed over to ARI for control, a subscription for the channel is made for the WebSocket, and a [StasisStart](/Asterisk+12+REST+Data+Models#Asterisk12RESTDataModels-StasisStart) event is sent to the WebSocket notifying it that a channel has entered into its application.
@@ -197,16 +179,13 @@ When a channel enters into a Stasis application, Asterisk will check to see if a
 
 
 
----
+!!! note A WebSocket connection is necessary!
+    If you have not connected a WebSocket to Asterisk for a particular application, when a channel enters into Stasis for that application, Asterisk will immediately eject the channel from the application and return back to the dialplan. This is to prevent channels from entering into an application before something is ready to handle them.
 
-**Note: A WebSocket connection is necessary!** If you have not connected a WebSocket to Asterisk for a particular application, when a channel enters into Stasis for that application, Asterisk will immediately eject the channel from the application and return back to the dialplan. This is to prevent channels from entering into an application before something is ready to handle them.
+    Note that if a connection is broken, Asterisk will know that a connection previously existed and will allow channels to enter (although you may got warned that events are about to get missed...)
 
-Note that if a connection is broken, Asterisk will know that a connection previously existed and will allow channels to enter (although you may got warned that events are about to get missed...)
+      
+[//]: # (end-note)
 
-  
-
-
-
----
 
 

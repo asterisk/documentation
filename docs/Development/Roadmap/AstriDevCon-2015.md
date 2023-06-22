@@ -23,17 +23,14 @@ Participants
 
 
 
----
+!!! note Apologies in Advance
+    I often misspell names while I'm taking them at the start of AstriDevCon. If you see your name here and it is typed incorrectly, please comment on the bottom of the page and we'll get it fixed up quickly. The same goes for your organization as well.
 
-**Note: Apologies in Advance**  I often misspell names while I'm taking them at the start of AstriDevCon. If you see your name here and it is typed incorrectly, please comment on the bottom of the page and we'll get it fixed up quickly. The same goes for your organization as well.
+    If you were in attendance at AstriDevCon and I don't have you on the list, please also comment and we'll make sure you're noted.
 
-If you were in attendance at AstriDevCon and I don't have you on the list, please also comment and we'll make sure you're noted.
+      
+[//]: # (end-note)
 
-  
-
-
-
----
 
 
 
@@ -146,15 +143,12 @@ Presentations
 
 
 
----
+!!! note Where is Sean's Presentation?
+    Sean, in a fit of daring, presented completely without slides. Impressive!
 
-**Note: Where is Sean's Presentation?** Sean, in a fit of daring, presented completely without slides. Impressive!
+      
+[//]: # (end-note)
 
-  
-
-
-
----
 
 
 * Sean has now migrated/rewritten several systems that previously used AMI and AGI with Asterisk 11 to Asterisk 13, ARI, Go, and Docker

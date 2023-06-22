@@ -77,10 +77,6 @@ Despite the above two possibilities, there is a workaround to make Asterisk comp
 ```
 
 
-
----
-
-
 #### Makefile layouts
 
 
@@ -95,15 +91,7 @@ If you want to alter the install locations you will need to hand-edit the Makefi
 
 
 
----
-
-  
-  
-
-
-```
-
-
+```bash title=" " linenums="1"
 # Define standard directories for various platforms
 # These apply if they are not redefined in asterisk.conf
 ifeq ($(OSARCH),SunOS)
@@ -123,10 +111,6 @@ else
 
 
 ```
-
-
-
----
 
 
 Note that, despite the comment, these definitions have build-time and run-time implications. Make sure you make these changes BEFORE you build!

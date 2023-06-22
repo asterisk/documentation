@@ -29,15 +29,12 @@ There's no question that Asterisk is a huge project that interacts with a wide v
 
 
 
----
+!!! note 
+    If you'd like to act as the primary maintainer in an area of Asterisk development that is currently marked as "extended" and is not listed below, please contact the [asterisk-dev mailing list](/Asterisk-Community/Mailing-Lists).
 
-**Note:**  If you'd like to act as the primary maintainer in an area of Asterisk development that is currently marked as "extended" and is not listed below, please contact the [asterisk-dev mailing list](/Asterisk-Community/Mailing-Lists).
+      
+[//]: # (end-note)
 
-  
-
-
-
----
 
 
 

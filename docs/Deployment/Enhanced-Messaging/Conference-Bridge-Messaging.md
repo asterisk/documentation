@@ -83,10 +83,6 @@ When Bob joins the ConfBridge he receives the ConfbridgeWelcome event:
 ```
 
 
-
----
-
-
 In the ConfbridgeWelcome event, the "channels" arrays contains all of the channels currently in the bridge, including Bob himself.  In this case, Alice was already in the conference when Bob joined.
 
 The ConfbridgeJoin event is sent to all other participants when someone joins the conference.  In this case Bob is joining the conference.  If the "echo\_events" option is enabled, Bob can also receive his join message when he joins.
@@ -128,10 +124,6 @@ The ConfbridgeJoin event is sent to all other participants when someone joins th
 }
 
 ```
-
-
-
----
 
 
 Since this is an event related to a specific participant, the "channels" array just has Bob's channel in it.
@@ -183,25 +175,17 @@ enable\_events=yes ; If enabled, recipients who joined the bridge via a channel 
 ```
 
 
-
----
-
-
 Of course, your configuration will be different but those are the parameters that need to be set.
 
 
 
 
----
+!!! warning 
+    If a user connects to the bridge via a DAHDI channel or some other non-SIP based channel, they may receive messages in another format, like SMS, which is probably not a good idea.  To prevent this, you may want to use two different user profiles, one with events enabled and one without.  You could then do some simple dialplan logic to look at the incoming channel technology and call ConfBridge() with the appropriate user profile.
 
-**WARNING!:**   
-If a user connects to the bridge via a DAHDI channel or some other non-SIP based channel, they may receive messages in another format, like SMS, which is probably not a good idea.  To prevent this, you may want to use two different user profiles, one with events enabled and one without.  You could then do some simple dialplan logic to look at the incoming channel technology and call ConfBridge() with the appropriate user profile.
+      
+[//]: # (end-warning)
 
-  
-
-
-
----
 
 
 In the browser

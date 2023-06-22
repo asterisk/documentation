@@ -10,16 +10,12 @@ Example output on this page is from Asterisk 11.
 
 
 
----
+!!! warning Warning!
+    Compiling with DEBUG\_THREADS can reduce the performance of Asterisk. Primarily in terms of CPU consumption.
 
-**WARNING!: Warning!**  
-Compiling with DEBUG\_THREADS can reduce the performance of Asterisk. Primarily in terms of CPU consumption.
+      
+[//]: # (end-warning)
 
-  
-
-
-
----
 
 
 This command is not available until you compile with [DEBUG\_THREADS](/Getting-Started/Installing-Asterisk/Installing-Asterisk-From-Source/Using-Menuselect-to-Select-Asterisk-Options) and it is generally preferred that you also compile with [BETTER\_BACKTRACES](/Getting-Started/Installing-Asterisk/Installing-Asterisk-From-Source/Using-Menuselect-to-Select-Asterisk-Options) to get the most useful output.
@@ -74,10 +70,6 @@ ubuntu\*CLI> core show locks
 ```
 
 
-
----
-
-
 Example output with DEBUG\_THREADS and BETTER\_BACKTRACES
 
 
@@ -122,10 +114,6 @@ ubuntu\*CLI> core show locks
 ```
 
 
-
----
-
-
 ### core show taskprocessors
 
 List instantiated task processors and statistics
@@ -156,10 +144,6 @@ ubuntu\*CLI> core show taskprocessors
 
 
 ```
-
-
-
----
 
 
 Example command output (Asterisk 13)
@@ -204,10 +188,6 @@ subp:PJSIP/weblooper-00000024 6 0 1 450 500
 ```
 
 
-
----
-
-
 ### core show threads
 
 Shows running threads!  Doesn't require any compilation flags to be set.
@@ -238,10 +218,6 @@ ubuntu\*CLI> core show threads
 
 
 ```
-
-
-
----
 
 
 ### core show fd
@@ -277,10 +253,6 @@ Current maxfiles: unlimited
  24 asterisk.c:4489 (main ): pipe({23,24})
 
 ```
-
-
-
----
 
 
  

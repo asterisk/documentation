@@ -6,28 +6,21 @@ pageid: 27200305
 
 
 
----
+!!! warning 
+    Under Construction
 
-**WARNING!:**   
-Under Construction
-
-  
-
-
-
----
+      
+[//]: # (end-warning)
 
 
 
 
----
 
-**Note:**  Top-level page for resources, tutorials or ideas regarding emergency dialing and calling, E-911, etc.
+!!! note 
+    Top-level page for resources, tutorials or ideas regarding emergency dialing and calling, E-911, etc.
 
-  
+      
+[//]: # (end-note)
 
-
-
----
 
 

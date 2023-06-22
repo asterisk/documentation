@@ -8,18 +8,14 @@ The last things we need to do to enable Alice and Bob to call each other is to c
 
 
 
----
+!!! info ""
+    ##### What is an Extension?
 
+    When dealing with Asterisk, the term extension does not represent a physical device such as a phone. An extension is simply a set of actions in the dialplan which may or may not write a physical device. In addition to writing a phone, an extensions might be used for such things auto-attendant menus and conference bridges. In this guide we will be careful to use the words phone or device when referring to the physical phone, and extension when referencing the set of instructions in the Asterisk dialplan.
 
-**Information:**  ##### What is an Extension?
+      
+[//]: # (end-info)
 
-When dealing with Asterisk, the term extension does not represent a physical device such as a phone. An extension is simply a set of actions in the dialplan which may or may not write a physical device. In addition to writing a phone, an extensions might be used for such things auto-attendant menus and conference bridges. In this guide we will be careful to use the words phone or device when referring to the physical phone, and extension when referencing the set of instructions in the Asterisk dialplan.
-
-  
-
-
-
----
 
 
 Let's take a quick look at the dialplan, and then add two extensions.
@@ -39,15 +35,8 @@ Underneath that context name, we'll create an extesion numbered **6001** which a
 
 
 
----
-
-  
-  
-
-
-```
-
-javascript[from-internal]
+```javascript title=" " linenums="1"
+[from-internal]
 exten=>6001,1,Dial(SIP/demo-alice,20)
 exten=>6002,1,Dial(SIP/demo-bob,20)
 
@@ -55,20 +44,13 @@ exten=>6002,1,Dial(SIP/demo-bob,20)
 
 
 
----
 
+!!! note 
+    Each channel driver can have its own way of dialling it. The above example is for use when dialing chan\_sip extensions. If you are using PJSIP then you would dial "PJSIP/demo-alice" and "PJSIP/demo-bob" respectively.
 
+      
+[//]: # (end-note)
 
-
----
-
-**Note:**  Each channel driver can have its own way of dialling it. The above example is for use when dialing chan\_sip extensions. If you are using PJSIP then you would dial "PJSIP/demo-alice" and "PJSIP/demo-bob" respectively.
-
-  
-
-
-
----
 
 
  
@@ -97,23 +79,16 @@ server\*CLI> dialplan show from-internal
 ```
 
 
-
----
-
-
 Now we're ready to make a test call!
 
 
 
 
----
+!!! tip 
+    Learn more about dialplan format in the [Contexts, Extensions, and Priorities](/Configuration/Dialplan/Contexts-Extensions-and-Priorities) section.
 
-**Tip:**  Learn more about dialplan format in the [Contexts, Extensions, and Priorities](/Configuration/Dialplan/Contexts-Extensions-and-Priorities) section.
+      
+[//]: # (end-tip)
 
-  
-
-
-
----
 
 

@@ -25,10 +25,6 @@ exten => 1,2,Set(koko=$[2 \* ${lala}])
 ```
 
 
-
----
-
-
 the value of variable koko is "6".
 
 And, further:
@@ -48,10 +44,6 @@ exten => 1,1,Set(lala=$[ 1 + 2 ]);
 
 
 ```
-
-
-
----
 
 
 will parse as intended. Extra spaces are ignored.

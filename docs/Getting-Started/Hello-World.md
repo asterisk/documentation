@@ -51,10 +51,6 @@ cd /etc/asterisk
 ```
 
 
-
----
-
-
 Configure extensions.conf
 -------------------------
 
@@ -75,10 +71,6 @@ mv extensions.conf extensions.sample
 vim extensions.conf
 
 ```
-
-
-
----
 
 
 I'm assuming you use the VI/VIM editor here, after all, it is the best.
@@ -107,10 +99,6 @@ same = n,Hangup()
 ```
 
 
-
----
-
-
 When a phone dials extension 100, we are telling Asterisk to **Answer** the call, **Wait** one second, then Play (**Playback**) a sound file (hello-world) to the channel and **Hangup**.
 
 Configure a SIP channel driver
@@ -121,16 +109,12 @@ Depending on the version of Asterisk in use, you may have the option of more tha
 
 
 
----
+!!! info ""
+    * Asterisk 11 and previous: chan\_sip is the primary option.
+    * Asterisk 12 and beyond: You'll probably want to use chan\_pjsip (the newest driver), but you still have the option of using chan\_sip as well
+      
+[//]: # (end-info)
 
-
-**Information:**  * Asterisk 11 and previous: chan\_sip is the primary option.
-* Asterisk 12 and beyond: You'll probably want to use chan\_pjsip (the newest driver), but you still have the option of using chan\_sip as well
-  
-
-
-
----
 
 
 Follow the instructions below for the channel driver you chose.
@@ -164,10 +148,6 @@ disallow=all
 allow=ulaw
 
 ```
-
-
-
----
 
 
 Basic configuration will be explained in more detail in other sections of the wiki. For this example to work, just make sure you have everything exactly as written above. For the sake of terminology, it is useful to note that though we have this SIP configuration configured with "type=friend", most people refer to this as configuring a SIP peer.
@@ -215,10 +195,6 @@ max\_contacts=1
 ```
 
 
-
----
-
-
 Configure your SIP phone
 ------------------------
 
@@ -262,10 +238,6 @@ asterisk -cvvvvv
 ```
 
 
-
----
-
-
 Or if Asterisk is already running, restart Asterisk from the shell and connect to it.
 
 
@@ -283,10 +255,6 @@ asterisk -rx "core restart now"
 asterisk -rvvvvv
 
 ```
-
-
-
----
 
 
 Make the call

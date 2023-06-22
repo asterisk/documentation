@@ -17,17 +17,14 @@ All of that said, even when a single implementation language is chosen, there is
 
 
 
----
+!!! tip 
+    For a list of all pluggable test objects and modules in the Test Suite, see the sample YAML files:
 
-**Tip:**  For a list of all pluggable test objects and modules in the Test Suite, see the sample YAML files:
+    <http://svn.asterisk.org/svn/testsuite/asterisk/trunk/sample-yaml/>
 
-<http://svn.asterisk.org/svn/testsuite/asterisk/trunk/sample-yaml/>
+      
+[//]: # (end-tip)
 
-  
-
-
-
----
 
 
  
@@ -42,14 +39,7 @@ As an example, consider two tests written in Python that run SIPp scenarios - **
 
 
 
----
-
-  
-  
-
-
-```
-
+```bash title=" " linenums="1"
 #!/usr/bin/env python
 '''
 Copyright (C) 2010, Digium, Inc.
@@ -99,23 +89,12 @@ if \_\_name\_\_ == "\_\_main\_\_":
 ```
 
 
-
----
-
-
 ##### message\_disabled
 
 
 
 
----
-
-  
-  
-
-
-```
-
+```bash title=" " linenums="1"
 #!/usr/bin/env python
 '''
 Copyright (C) 2010, Digium, Inc.
@@ -158,10 +137,6 @@ if \_\_name\_\_ == "\_\_main\_\_":
 
 
 ```
-
-
-
----
 
 
 Both of these are very straight-forward tests that simply execute their SIPp scenarios and base their pass/fail status on the result of those scenarios. Even still, there is repeated code:
@@ -226,10 +201,6 @@ test-object-config:
 ```
 
 
-
----
-
-
 ##### message\_disabled
 
 
@@ -268,10 +239,6 @@ properties:
 
 
 ```
-
-
-
----
 
 
 All of this, hopefully, gives the following benefits:

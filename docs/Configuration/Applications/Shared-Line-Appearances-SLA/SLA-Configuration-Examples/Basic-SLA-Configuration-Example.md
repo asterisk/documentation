@@ -48,10 +48,6 @@ device=SIP/station3
 ```
 
 
-
----
-
-
 With this configuration, the dialplan is generated automatically. The first DAHDI channel should have its context set to "line1" and the second should be set to "line2" in dahdi.conf. In sip.conf, station1, station2, and station3 should all have their context set to "sla\_stations".   
 
 
@@ -92,9 +88,5 @@ exten => station3\_line2,1,SLAStation(station3\_line2)
 
 
 ```
-
-
-
----
 
 

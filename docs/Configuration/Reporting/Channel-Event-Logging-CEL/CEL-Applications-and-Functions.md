@@ -13,16 +13,12 @@ The event triggered is the **`USER_DEFINED`** event as listed in the [Asterisk
 
 
 
----
+!!! warning 
+    Please note that there is no restrictions on the name supplied. If it happens to match a standard CEL event name, it will look like that event was generated. This could be a blessing or a curse!
 
-**WARNING!:**   
-Please note that there is no restrictions on the name supplied. If it happens to match a standard CEL event name, it will look like that event was generated. This could be a blessing or a curse!
+      
+[//]: # (end-warning)
 
-  
-
-
-
----
 
 
  

@@ -73,10 +73,6 @@ redirect = /cmp2k /static/cyber\_mega\_phone\_2k/index.html
 ```
 
 
-
----
-
-
 Restart Asterisk or issue the CLI command "`config reload /etc/asterisk/http.conf`"
 
 Now check that the configuration was applied.  From the Asterisk CLI...
@@ -127,10 +123,6 @@ Enabled Redirects:
 ```
 
 
-
----
-
-
  
 
 Notice that there's a new Redirect entry.  
@@ -140,22 +132,11 @@ For security reasons, the HTTP server will not serve arbitrary paths so the  `/
 
 
 
----
-
-  
-Shell Prompt  
-
-
-```
-
-bash# cd /var/lib/asterisk/static-http
+```bash title="Shell Prompt  " linenums="1"
+# cd /var/lib/asterisk/static-http
 # ln -s /usr/src/asterisk/cyber\_mega\_phone\_2k
 
 ```
-
-
-
----
 
 
 OK, let's test.  From your web browser, visit `https://pbx.example.com:8089/cmp2k` remembering to substitute your hostname or ip address as appropriate.
@@ -203,10 +184,6 @@ max\_video\_streams = 15
 ```
 
 
-
----
-
-
 You may already have some of the config from previous webrtc endpoints for certificates, keys, encryption, ice support etc and think you don't need to add the magical `webrtc=yes` but you do! The `webrtc=yes` flag does more than just shortcut already existing flags which are needed for proper SFU support.
 
 There are two more Asterisk changes we need to make so no need to restart Asterisk just yet.
@@ -238,10 +215,6 @@ video\_mode = sfu
 ```
 
 
-
----
-
-
 One more change...
 
 Configure extensions.conf
@@ -265,10 +238,6 @@ exten = my\_video\_conference,1,Confbridge(MYCONF,default\_bridge,default\_user,
 
 
 ```
-
-
-
----
 
 
 NOW, restart Asterisk!

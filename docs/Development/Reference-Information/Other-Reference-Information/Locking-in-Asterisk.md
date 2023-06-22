@@ -32,10 +32,6 @@ When more that one lock is involved in a given code path, there is the potential
 ```
 
 
-
----
-
-
 In this case, there is a deadlock between threads 1 and 2. This deadlock would have been avoided if both threads had agreed that one must acquire Lock A before Lock B.
 
 
@@ -114,10 +110,6 @@ lock(pvt);
 ```
 
 
-
----
-
-
 is *not* correct for two reasons:
 
 
@@ -150,10 +142,6 @@ while (trylock(ast\_channel) == FAILURE) {
 
 
 ```
-
-
-
----
 
 
 Here the trylock() is non blocking, so we do not deadlock if the ast\_channel is already locked by someone else: in this case, we try to unlock the PVT (which happens only if the PVT lock counter is 1), yield the CPU to give other threads a chance to run, and then acquire the lock again.
@@ -190,10 +178,6 @@ if (trylock(ast\_channel) == FAILURE) {
 ```
 
 
-
----
-
-
 which has the same issues as the while(trylock...) code, but just deadlocks instead of looping forever in case of lock counts > 1.
 
 
@@ -221,10 +205,6 @@ if (trylock(ast\_channel) == FAILURE) {
 
 
 ```
-
-
-
----
 
 
 The issue with unexpected unlocks remains, though.
@@ -257,10 +237,6 @@ lock(MAX(chan1, chan2));
 ```
 
 
-
----
-
-
 That type of code would follow an established locking order of always locking the channel that has a lower address first. Also keep in mind  
 
 
@@ -291,17 +267,13 @@ So, never use deadlock avoidance unless you have to grab two channel locks at th
 
 
 
----
-
-**Note:**  
-As a side note, if you ever find yourself in the position where you are designing a program and think using deadlock avoidance is a quick solution for a concurrency problem you run into, it is not. Running into a deadlock almost certainly means your design is flawed. I'd go as far as to say if you ever find yourself designing a system with multiple locks held at the same time, your design is flawed. Seriously, anyone who reads this remember this, and say it to yourself every time you create a new mutex.  
+!!! note 
+    As a side note, if you ever find yourself in the position where you are designing a program and think using deadlock avoidance is a quick solution for a concurrency problem you run into, it is not. Running into a deadlock almost certainly means your design is flawed. I'd go as far as to say if you ever find yourself designing a system with multiple locks held at the same time, your design is flawed. Seriously, anyone who reads this remember this, and say it to yourself every time you create a new mutex.  
 
 
-  
+      
+[//]: # (end-note)
 
-
-
----
 
 
 ##### Do not sleep while holding a lock
@@ -343,10 +315,6 @@ foo(/\* ... \*/) {
 
 
 ```
-
-
-
----
 
 
 and call them according to the needs.

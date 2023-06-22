@@ -6,28 +6,21 @@ pageid: 28314861
 
 
 
----
+!!! warning 
+    Under Construction
 
-**WARNING!:**   
-Under Construction
-
-  
-
-
-
----
+      
+[//]: # (end-warning)
 
 
 
 
----
 
-**Note:**  Top-level page for configuration pages about ODBC modules, native database connectors and modules used for realtime.
+!!! note 
+    Top-level page for configuration pages about ODBC modules, native database connectors and modules used for realtime.
 
-  
+      
+[//]: # (end-note)
 
-
-
----
 
 

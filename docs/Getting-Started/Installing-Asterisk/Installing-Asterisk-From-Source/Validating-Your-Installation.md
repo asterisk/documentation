@@ -22,10 +22,6 @@ Before continuing on, let's check a few things to make sure your system is in go
 ```
 
 
-
----
-
-
 If the command returns nothing, then DAHDI has not been started. Start DAHDI by running:
 
 
@@ -46,19 +42,11 @@ If the command returns nothing, then DAHDI has not been started. Start DAHDI by 
 
 
 
----
 
+!!! tip Different Methods for Starting Initscripts
+    Many Linux distributions have different methods for starting initscripts. On most Red Hat based distributions (such as Red Hat Enterprise Linux, Fedora, and CentOS) you can run:
+[//]: # (end-tip)
 
-
-
----
-
-**Tip: Different Methods for Starting Initscripts** Many Linux distributions have different methods for starting initscripts. On most Red Hat based distributions (such as Red Hat Enterprise Linux, Fedora, and CentOS) you can run:
-
-
-
-
----
 
   
   
@@ -80,10 +68,6 @@ Distributions based on Debian (such as Ubuntu) have a similar command, though it
 
 
 ```
-
-
-
----
 
 
 If you have DAHDI running, the output of **lsmod | grep dahdi** should look something like the output below. (The exact details may be different, depending on which DAHDI modules have been built, and so forth.)
@@ -109,10 +93,6 @@ crc\_ccitt 2096 1 dahdi
 ```
 
 
-
----
-
-
 Now that DAHDI is running, you can run **dahdi\_hardware** to list any DAHDI-compatible devices in your system. You can also run the **dahdi\_tool** utility to show the various DAHDI-compatible devices, and their current state.
 
 To check if Asterisk is running, you can use the Asterisk `initscript`.
@@ -135,10 +115,6 @@ asterisk is stopped
 ```
 
 
-
----
-
-
 To start Asterisk, we'll use the `initscript` again, this time giving it the start action:
 
 
@@ -159,10 +135,6 @@ Starting asterisk:
 ```
 
 
-
----
-
-
 When Asterisk starts, it runs as a background service (or daemon), so you typically won't see any response on the command line. We can check the status of Asterisk and see that it's running using the command below. (The process identifier, or pid, will obviously be different on your system.)
 
 
@@ -181,10 +153,6 @@ asterisk (pid 32117) is running...
 
 
 ```
-
-
-
----
 
 
 And there you have it! You've compiled and installed Asterisk, DAHDI, and libpri from source code.

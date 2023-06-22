@@ -36,10 +36,6 @@ country=us
 ```
 
 
-
----
-
-
 As an example, the above set the default country to the tone set for the USA.
 
 Within any location specific configuration, several tone types may be configured.
@@ -85,10 +81,6 @@ Explanation of the 'tonelist' usage:
 ```
 
 
-
----
-
-
  
 
 Example of a location specific tone configuration:
@@ -122,9 +114,5 @@ info = 950/330,1400/330,1800/330
 stutter = 350+440
 
 ```
-
-
-
----
 
 

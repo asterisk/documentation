@@ -62,10 +62,6 @@ username=bob
 
 
 
----
-
-
-
 
 ---
 
@@ -97,10 +93,6 @@ same => n,Hangup()
 
 
 ```
-
-
-
----
 
 
 Incoming Call tests

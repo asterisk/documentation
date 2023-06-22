@@ -10,15 +10,12 @@ Features are configured in features.conf and most require additional configurati
 
 
 
----
+!!! tip 
+    Versions of Asterisk older than 12 included parking configuration inside features.conf. In Asterisk 12 parking configuration was moved out into res\_parking.conf.
 
-**Tip:**  Versions of Asterisk older than 12 included parking configuration inside features.conf. In Asterisk 12 parking configuration was moved out into res\_parking.conf.
+      
+[//]: # (end-tip)
 
-  
-
-
-
----
 
 
 The core features discussed in this section are:

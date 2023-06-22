@@ -6,15 +6,12 @@ pageid: 29396023
 
 
 
----
+!!! note 
+    This is an Asterisk-specific concept. Not to be confused with Caller-ID or a SIP 'Call-ID' field. 
 
-**Note:**  This is an Asterisk-specific concept. Not to be confused with Caller-ID or a SIP 'Call-ID' field. 
+      
+[//]: # (end-note)
 
-  
-
-
-
----
 
 
 What is a call?

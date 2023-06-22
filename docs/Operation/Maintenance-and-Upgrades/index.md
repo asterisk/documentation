@@ -40,16 +40,12 @@ Maintenance can mean keeping an eye on the system and its state. The [wiki discu
 
 
 
----
+!!! info "Reporting Issues that You Encounter"
+    In the process of monitoring the operation of your system, you might spot an issue. If you believe the issue is a bug with Asterisk rather than a configuration issue, then you should follow the guidelines at the [Asterisk Issue Guidelines](/Asterisk-Community/Asterisk-Issue-Guidelines) page to report a bug.
 
+      
+[//]: # (end-info)
 
-**Information: Reporting Issues that You Encounter** In the process of monitoring the operation of your system, you might spot an issue. If you believe the issue is a bug with Asterisk rather than a configuration issue, then you should follow the guidelines at the [Asterisk Issue Guidelines](/Asterisk-Community/Asterisk-Issue-Guidelines) page to report a bug.
-
-  
-
-
-
----
 
 
  

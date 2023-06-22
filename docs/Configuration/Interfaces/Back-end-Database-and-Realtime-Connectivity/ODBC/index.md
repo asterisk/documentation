@@ -6,28 +6,21 @@ pageid: 28314864
 
 
 
----
+!!! warning 
+    Under Construction
 
-**WARNING!:**   
-Under Construction
-
-  
-
-
-
----
+      
+[//]: # (end-warning)
 
 
 
 
----
 
-**Note:**  Top-level page for everything about configuring ODBC connectivity, res\_odbc, func\_odbc, etc
+!!! note 
+    Top-level page for everything about configuring ODBC connectivity, res\_odbc, func\_odbc, etc
 
-  
+      
+[//]: # (end-note)
 
-
-
----
 
 

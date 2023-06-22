@@ -8,16 +8,12 @@ Interaction with is done through a series of predefined objects provided by pbx\
 
 
 
----
+!!! note Naming Conflicts Between Lua and Asterisk
+    Asterisk applications, variables or functions whose names conflict with Lua reserved words or contain special characters must be referenced using the `[]` operator. For example, Lua 5.2 introduced the `goto` control statement which conflicts with the Asterisk `goto` dialplan application. So...
 
-**Note: Naming Conflicts Between Lua and Asterisk** Asterisk applications, variables or functions whose names conflict with Lua reserved words or contain special characters must be referenced using the `[]` operator. For example, Lua 5.2 introduced the `goto` control statement which conflicts with the Asterisk `goto` dialplan application. So...
+     
+[//]: # (end-note)
 
- 
-
-
-
-
----
 
 **WARNING!:**   
 The following will cause pbx\_lua.so to fail to load with Lua 5.2 or later because `goto` is a reserved word.
@@ -42,24 +38,16 @@ app.goto("default", 1000, 1)
 
 
 ```
-  
-
-
-
----
 
 
 
 
----
+!!! tip 
+    The following will work with all Lua versions...
 
-**Tip:**  The following will work with all Lua versions...
+    app["goto"]("default", 1000, 1)  
+[//]: # (end-tip)
 
-app["goto"]("default", 1000, 1)  
-
-
-
----
 
 
 
@@ -91,10 +79,6 @@ app.dial("SIP/100", nil, "m")
 ```
 
 
-
----
-
-
 Any dialplan application can be executed using the `app` table. Application names are case insensitive. Arguments are passed to dialplan applications just as arguments are passed to functions in lua. String arguments must be quoted as they are lua strings. Empty arguments may be passed as `nil` or as empty strings.
 
 Channel Variables
@@ -117,10 +101,6 @@ channel.my\_variable = "my\_value"
 ```
 
 
-
----
-
-
 After this the channel variable `${my_variable`} contains the value "my\_value".
 
 
@@ -140,24 +120,15 @@ value = channel.my\_variable:get()
 ```
 
 
-
----
-
-
 Any channel variable can be read and set using the `channel` table. Local and global lua variables can be used as they normally would and are completely unrelated to channel variables.
 
 
 
 
----
+!!! warning 
+    The following construct will NOT work.
+[//]: # (end-warning)
 
-**WARNING!:**   
-The following construct will NOT work.
-
-
-
-
----
 
   
   
@@ -179,19 +150,10 @@ value = channel.my\_variable -- does not work as expected (value:get() could be 
 
 
 
----
+!!! tip 
+    If the variable name is an Lua reserved word or contains characters that Lua considers special use the `[]` operator to access them.
+[//]: # (end-tip)
 
-
-
-
----
-
-**Tip:**  If the variable name is an Lua reserved word or contains characters that Lua considers special use the `[]` operator to access them.
-
-
-
-
----
 
   
   
@@ -210,11 +172,6 @@ value = channel["my\_variable"]:get()
 
 
 ```
-
-
-
-
----
 
 
 ### Dialplan Functions
@@ -237,10 +194,6 @@ channel.FAXOPT("modems"):set("v17,v27,v29")
 
 
 
----
-
-
-
 
 ---
 
@@ -256,23 +209,15 @@ value = channel.FAXOPT("modems"):get()
 ```
 
 
-
----
-
-
 Note the use of the `:` operator with the `get()` and `set()` methods.
 
 
 
 
----
+!!! tip 
+    If the function name is an Lua reserved word or contains characters that Lua considers special use the `[]` operator to access them.
+[//]: # (end-tip)
 
-**Tip:**  If the function name is an Lua reserved word or contains characters that Lua considers special use the `[]` operator to access them.
-
-
-
-
----
 
   
   
@@ -295,20 +240,10 @@ value = channel["FAXOPT(modems)"]:get()
 
 
 
----
+!!! warning 
+    The following constructs will NOT work.
+[//]: # (end-warning)
 
-
-
-
----
-
-**WARNING!:**   
-The following constructs will NOT work.
-
-
-
-
----
 
   
   
@@ -331,20 +266,11 @@ value = channel.FAXOPT("modems") -- does not work as expected (value:get() could
 
 
 
----
+!!! info ""
+    Dialplan function names are case sensitive.
 
+      
+[//]: # (end-info)
 
-
-
----
-
-
-**Information:**  Dialplan function names are case sensitive.
-
-  
-
-
-
----
 
 

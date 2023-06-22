@@ -18,17 +18,14 @@ This page serves as a place to put thoughts and findings on moving to Git, docum
 
 
 
----
+!!! note This Page Is Historical
+    Two things to keep in mind when reading this page:
 
-**Note: This Page Is Historical** Two things to keep in mind when reading this page:
+    1. This page's purpose was always meant to record things for historical purposes. Don't take what is on here as gospel.
+    2. Per the discussion on the [asterisk-dev](http://lists.digium.com/pipermail/asterisk-dev/2014-September/070303.html) mailing list, the tools chosen for managing review/CI around git are Gerrit and Jenkins.
+      
+[//]: # (end-note)
 
-1. This page's purpose was always meant to record things for historical purposes. Don't take what is on here as gospel.
-2. Per the discussion on the [asterisk-dev](http://lists.digium.com/pipermail/asterisk-dev/2014-September/070303.html) mailing list, the tools chosen for managing review/CI around git are Gerrit and Jenkins.
-  
-
-
-
----
 
 
  

@@ -30,15 +30,12 @@ While we understand that contributors prefer that new features and improvements 
 
 
 
----
+!!! note 
+    If a new feature or improvement patch is submitted for review on Gerrit without prior discussion, and a reviewer voices an opinion to not allow the new feature or improvement, or desires more discussion about it then the review may be suspended (given a -2), and the submitter will be required to create a new post to initiate further discussion on the asterisk-dev mailing list about the change, and why it should be allowed in.
 
-**Note:**  If a new feature or improvement patch is submitted for review on Gerrit without prior discussion, and a reviewer voices an opinion to not allow the new feature or improvement, or desires more discussion about it then the review may be suspended (given a -2), and the submitter will be required to create a new post to initiate further discussion on the asterisk-dev mailing list about the change, and why it should be allowed in.
+      
+[//]: # (end-note)
 
-  
-
-
-
----
 
 
 If the discussion concludes in acceptance, then the new feature or improvement, even if specialized or of limited use, will be accepted. If the discussion concludes in the new feature or improvement not being accepted then as a courtesy a JIRA issue can remain open for the new feature or improvement with patch attached to allow others to download and use it. If the JIRA issue sees comments indicating it has become a widely used feature or improvement the decision can be revisited by posting to the asterisk-dev mailing list. If you have ideas for module additions that might make Asterisk more useful for a smaller subset of the user base, consider creating a GitHub repository of your own that builds those modules out-of-tree (as opposed to a fork of Asterisk). If your changes become popular we can consider including them in the base Asterisk distribution at a later date when contributed using the normal contribution method.

@@ -9,15 +9,7 @@ Here is the table structure used by MySQL for Realtime SIP friends
 
 
 
----
-
-  
-  
-
-
-```
-
-
+```bash title=" " linenums="1"
 #
 # Table structure for table `sipfriends`
 #
@@ -119,9 +111,5 @@ CREATE TABLE IF NOT EXISTS `sipfriends` (
 
 
 ```
-
-
-
----
 
 

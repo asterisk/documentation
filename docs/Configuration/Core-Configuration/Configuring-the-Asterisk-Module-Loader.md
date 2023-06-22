@@ -51,10 +51,6 @@ Let's show a few arbitrary examples below.
 ```
 
 
-
----
-
-
 CLI Commands
 ============
 
@@ -77,10 +73,6 @@ Usage: module show [like keyword]
  Shows Asterisk modules currently in use, and usage statistics.
 
 ```
-
-
-
----
 * module load
 
 
@@ -98,10 +90,6 @@ Usage: module load <module name>
  Loads the specified module into Asterisk.
 
 ```
-
-
-
----
 * module unload
 
 
@@ -123,10 +111,6 @@ Usage: module unload [-f|-h] <module\_1> [<module\_2> ... ]
  which almost always will cause a crash.
 
 ```
-
-
-
----
 * module reload
 
 
@@ -145,10 +129,6 @@ Usage: module reload [module ...]
  reloading, or for all supported modules if none are listed.
 
 ```
-
-
-
----
 
  
 

@@ -18,16 +18,12 @@ See [Asterisk Versions](/About-the-Project/Asterisk-Versions) for the approximat
 
 
 
----
+!!! info "**  For an excellent article on Software Configuration Management branching schemes and a description of the **Mainline"
+    branching model, see [Branching Strategies by Stephen Vance](http://www.vance.com/steve/perforce/Branching_Strategies.html)
 
+      
+[//]: # (end-info)
 
-**Information:**  For an excellent article on Software Configuration Management branching schemes and a description of the **Mainline** branching model, see [Branching Strategies by Stephen Vance](http://www.vance.com/steve/perforce/Branching_Strategies.html)
-
-  
-
-
-
----
 
 
 On This Page 
@@ -89,15 +85,12 @@ ExampleA bug is reported against Asterisk 13. The current supported branches are
 
 
 
----
+!!! tip 
+    See [Git Usage](/Git-Usage) and [Gerrit Usage](/Development/Policies-and-Procedures/Historical-Policies-and-Procedures/Code-Review/Gerrit-Usage) for more information on cherry-picking between Asterisk branches.
 
-**Tip:**  See [Git Usage](/Git-Usage) and [Gerrit Usage](/Development/Policies-and-Procedures/Historical-Policies-and-Procedures/Code-Review/Gerrit-Usage) for more information on cherry-picking between Asterisk branches.
+      
+[//]: # (end-tip)
 
-  
-
-
-
----
 
 
  
@@ -125,15 +118,12 @@ New features should follow the same procedure as bug fixes however they are, sub
 
 
 
----
+!!! tip 
+    Tests are always good and encouraged, especially for new features. Having tests is a mandatory requirement for new features in release branches to minimize the risk of regression.
 
-**Tip:**  Tests are always good and encouraged, especially for new features. Having tests is a mandatory requirement for new features in release branches to minimize the risk of regression.
+      
+[//]: # (end-tip)
 
-  
-
-
-
----
 * The new feature or improvement must be backwards compatible with the previous releases in those major versions. That is, users upgrading from one point release to the next should **not** be aware of any new feature or improvement unless they want to use said feature. Some things that should **not** be changed naturally follow from this:
 	+ APIs that follow semantic versioning should not receive a major version increase.
 	+ Configuration and database schemas can be added to or updated, but users should not be required to update their configuration or databases.
@@ -163,16 +153,12 @@ A breaking change is any that invalidates a previous configuration or changes th
 
 
 
----
+!!! warning 
+    Within a major version branch, there are times when a breaking change must be introduced - usually to fix a serious, critical bug within that branch. Or because we switched source control systems. When this occurs, the UPGRADE text file delivered with Asterisk will be updated noting the change.
 
-**WARNING!:**   
-Within a major version branch, there are times when a breaking change must be introduced - usually to fix a serious, critical bug within that branch. Or because we switched source control systems. When this occurs, the UPGRADE text file delivered with Asterisk will be updated noting the change.
+      
+[//]: # (end-warning)
 
-  
-
-
-
----
 
 
 The following items **can be changed** between minor versions in a major version branch:
@@ -193,14 +179,11 @@ Asterisk uses three digits in its version number sequence:
 
 
 
----
+!!! note 
+    Over the years, the Asterisk version numbers have changed. A lot. For anyone who has ever had to write a script that parses Asterisk version numbers, we apologize. We'll try hard not to change it again.
 
-**Note:**  Over the years, the Asterisk version numbers have changed. A lot. For anyone who has ever had to write a script that parses Asterisk version numbers, we apologize. We'll try hard not to change it again.
+      
+[//]: # (end-note)
 
-  
-
-
-
----
 
 

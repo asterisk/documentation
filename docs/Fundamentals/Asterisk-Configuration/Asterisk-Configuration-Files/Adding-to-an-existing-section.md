@@ -8,25 +8,14 @@ If you want to add settings to an existing section of a configuration file (eith
 
 
 
----
-
-  
-  
-
-
-```
-
-javascript[section-name]
+```javascript title=" " linenums="1"
+[section-name]
 setting1=value1
 
 [section-name](+)
 setting2=value2
 
 ```
-
-
-
----
 
 
 This example shows that the **setting2** setting was added to the existing section of the configuration file.
@@ -62,10 +51,6 @@ default\_expiration=1200
 ```
 
 
-
----
-
-
  
 
 With qualifiers:
@@ -97,10 +82,6 @@ allow=g722
 
 
 ```
-
-
-
----
 
 
  
@@ -135,10 +116,6 @@ allow=g722
 ```
 
 
-
----
-
-
 You can also include multiple filters.
 
 
@@ -167,10 +144,6 @@ default\_expiration=1200
 allow=g722
 
 ```
-
-
-
----
 
 
 And finally, you can elect to include or restrict parameters inherited from templates in the search.
@@ -203,10 +176,6 @@ default\_expiration=1200
 allow=g722
 
 ```
-
-
-
----
 
 
  

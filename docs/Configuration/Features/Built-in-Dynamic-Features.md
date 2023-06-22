@@ -8,18 +8,12 @@ The [FEATURE](/Asterisk-11-Function_FEATURE) and [FEATUREMAP](/Asterisk-11-Funct
 
 
 
----
+!!! info "**  To see what options are currently supported, look at the FEATURE and FEATUREMAP function descriptions. **These functions were added in Asterisk 11."
+    At this time the functions do not work with custom features. Those are set with a channel variable as described in the [Custom Dynamic Features](/Configuration/Features/Custom-Dynamic-Features) section.
 
+      
+[//]: # (end-info)
 
-**Information:**  To see what options are currently supported, look at the FEATURE and FEATUREMAP function descriptions. **These functions were added in Asterisk 11.**
-
-At this time the functions do not work with custom features. Those are set with a channel variable as described in the [Custom Dynamic Features](/Configuration/Features/Custom-Dynamic-Features) section.
-
-  
-
-
-
----
 
 
 
@@ -41,10 +35,6 @@ same => n,Hangup()
 
 
 
----
-
-
-
 
 ---
 
@@ -60,9 +50,5 @@ same => n,Hangup()
 
 
 ```
-
-
-
----
 
 

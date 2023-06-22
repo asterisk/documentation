@@ -48,10 +48,6 @@ Else: R = 93.2 - (Effective Latency - 120) / 10
 ```
 
 
-
----
-
-
   
 
 
@@ -78,20 +74,13 @@ textR = R - Packets Lost \* 2.5
 
 
 
----
 
+!!! note **  With the exception of the starting ‘R’ value of 93.2 most all the other numbers and factors **can
+    be tweaked, if needed, based on further testing or other recommendations.
 
+      
+[//]: # (end-note)
 
-
----
-
-**Note:**  With the exception of the starting ‘R’ value of 93.2 most all the other numbers and factors **can** be tweaked, if needed, based on further testing or other recommendations.
-
-  
-
-
-
----
 
 
   
@@ -118,10 +107,6 @@ Else if R > 100: Opinion = 4.5
 Else: Opinion = 1 + (0.035 \* R) + (R \* (R - 60) \* (100 - R) \* 0.0000007);
 
 ```
-
-
-
----
 
 
 In Asterisk

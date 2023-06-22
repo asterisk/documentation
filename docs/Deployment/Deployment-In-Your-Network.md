@@ -6,28 +6,21 @@ pageid: 27200289
 
 
 
----
+!!! warning 
+    Under Construction
 
-**WARNING!:**   
-Under Construction
-
-  
-
-
-
----
+      
+[//]: # (end-warning)
 
 
 
 
----
 
-**Note:**  Top-level page for pages on dealing with NAT, Firewalling and more in relation to Asterisk.
+!!! note 
+    Top-level page for pages on dealing with NAT, Firewalling and more in relation to Asterisk.
 
-  
+      
+[//]: # (end-note)
 
-
-
----
 
 

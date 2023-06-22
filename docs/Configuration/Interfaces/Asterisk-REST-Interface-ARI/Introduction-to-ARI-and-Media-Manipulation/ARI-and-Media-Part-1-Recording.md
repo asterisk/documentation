@@ -81,19 +81,8 @@ client.run(apps=sys.argv[1])
 
 
 
----
 
-
-
-
----
-
-  
-vm-record.js  
-
-
-```
-
+```javascript title="vm-record.js" linenums="1"
 jstrue/\*jshint node:true\*/
 'use strict';
  
@@ -147,10 +136,6 @@ function clientLoaded(err, client) {
 ```
 
 
-
----
-
-
 With a few modifications, this same application skeleton can be adapted for use with non-voice mail applications. The biggest voice mail-specific thing being done here is the calculation of the path for voice mail recordings based on the application argument. The intended use of this application is something like the following:
 
 
@@ -170,10 +155,6 @@ exten => \_3XX,1,NoOp()
  same => n,Hangup()
 
 ```
-
-
-
----
 
 
 This way, when calling any three-digit extension that begins with the number '3', the user will call into the application with the mailbox dialled (e.g. dialling "305" will allow the user to leave a message for mailbox "305").
@@ -246,19 +227,8 @@ class RecordingState(object):
 
 
 
----
 
-
-
-
----
-
-  
-recording\_state.js  
-
-
-```
-
+```javascript title="recording\_state.js" linenums="1"
 jstruevar Event = require('./event')
 
 function RecordingState(call) {
@@ -301,10 +271,6 @@ module.exports = RecordingState;
 ```
 
 
-
----
-
-
 When entered, the state sets up listeners for hangup and DTMF events on the channel, since those are the events that will cause the state to change. In all cases, before a state change occurs, the `cleanup()` function is invoked to remove event listeners. This way, the event listeners set by the recording state will not accidentally still be set up when the next state is entered. This same `cleanup()` method will be used for all states we create that set up ARI event listeners.
 
 The `stop` method causes a live recording to finish and be saved to the file system. Notice that the `on_hangup()` method does not attempt to stop the live recording. This is because when a channel hangs up, any live recordings on that channel are automatically stopped and stored.
@@ -337,19 +303,8 @@ pytrueclass EndingState(object):
 
 
 
----
 
-
-
-
----
-
-  
-ending\_state.js  
-
-
-```
-
+```javascript title="ending\_state.js" linenums="1"
 jstruefunction EndingState(call) {
  this.state\_name = "ending";
 
@@ -363,10 +318,6 @@ jstruefunction EndingState(call) {
 module.exports = EndingState;
 
 ```
-
-
-
----
 
 
 
@@ -393,19 +344,8 @@ pytrueclass HungUpState(object):
 
 
 
----
 
-
-
-
----
-
-  
-hungup\_state.js  
-
-
-```
-
+```javascript title="hungup\_state.js" linenums="1"
 jstruefunction HungUpState(call) {
  this.state\_name = "hungup";
 
@@ -418,10 +358,6 @@ jstruefunction HungUpState(call) {
 module.exports = HungUpState;
 
 ```
-
-
-
----
 
 
 These two states are two sides to the same coin. The `EndingState` is used to end the call by hanging up the channel, and the `HungUpState` is used to terminate the state machine when the caller has hung up. You may find yourself wondering why a `HungUpState` is needed at all. For our application, it does not do much, but it's a great place to perform post-call logic if your application demands it. See the second reader exercise on this page to see an example of that.
@@ -461,19 +397,8 @@ from hungup\_state import HungUpState
 
 
 
----
 
-
-
-
----
-
-  
-vm-call.js  
-
-
-```
-
+```javascript title="vm-call.js" linenums="1"
 jstrue// At the top of the file
 var RecordingState = require('./recording\_state');
 var EndingState = require('./ending\_state');
@@ -493,10 +418,6 @@ var HungUpState = require('./hungup\_state');
  }
 
 ```
-
-
-
----
 
 
 The following is a sample output of a user calling the application and pressing the '#' key when finished recording
@@ -520,10 +441,6 @@ Cleaning up event handlers
 Ending voice mail call from PJSIP/200-00000003
 
 ```
-
-
-
----
 
 
 silverseagreenReader Exercise 1solidblackCurrently, the voicemails being recorded are all kept in a single "folder" for a specific mailbox. See if you can change the code to record messages in an "INBOX" folder on the mailbox instead.silverseagreenReader Exercise 2solidblack`EndingState` and `HungUpState` don't do much of anything at the moment. States like these can be great in voice mail applications for updating the message-waiting state of mailboxes on a system. If you're feeling industrious, read the API for the `/mailboxes` resource in ARI. Try to change `HungUpState` and `EndingState` to update the message-waiting status of a mailbox when a new message is left. To keep the exercise simple, for now you can assume the following:
@@ -570,19 +487,8 @@ pytrue def on\_dtmf(self, channel, event):
 
 
 
----
 
-
-
-
----
-
-  
-recording\_state.js  
-
-
-```
-
+```javascript title="recording\_state.js" linenums="1"
 jstrue function on\_dtmf(event, channel) {
  switch (event.digit) {
  case '#':
@@ -604,10 +510,6 @@ jstrue function on\_dtmf(event, channel) {
  }
 
 ```
-
-
-
----
 
 
 The first part of the method is the same as it was before, but we have added extra handling for when the user presses the '\*' key. The `cancel()` method for live recordings causes the live recording to be stopped and for it not to be stored on the file system.
@@ -642,19 +544,8 @@ pytrue def setup\_state\_machine(self):
 
 
 
----
 
-
-
-
----
-
-  
-vm-call.js  
-
-
-```
-
+```javascript title="vm-call.js" linenums="1"
 jstruethis.setup\_state\_machine = function() {
  var hungup\_state = new HungUpState(this);
  var recording\_state = new RecordingState(this);
@@ -668,10 +559,6 @@ jstruethis.setup\_state\_machine = function() {
 }
 
 ```
-
-
-
----
 
 
 This is exactly the same as it was, except for the penultimate line adding the ``Event.DTMF_STAR`` transition. Here is sample output for when a user calls in, presses '\*' twice, and then presses '#' to complete the call
@@ -703,10 +590,6 @@ Cleaning up event handlers
 Ending voice mail call from PJSIP/200-00000007
 
 ```
-
-
-
----
 
 
 silverseagreenReader Exercise 3solidblackWe have covered the `stop()` and `cancel()` methods, but live recordings provide other methods as well. In particular, there are `pause()`, which causes the live recording to temporarily stop recording audio, and `unpause()`, which causes the live recording to resume recording audio.
@@ -796,19 +679,8 @@ class ReviewingState(object):
 
 
 
----
 
-
-
-
----
-
-  
-reviewing\_state.js  
-
-
-```
-
+```javascript title="reviewing\_state.js" linenums="1"
 jstruevar Event = require('./event');
 
 function ReviewingState(call) {
@@ -868,10 +740,6 @@ module.exports = ReviewingState;
 ```
 
 
-
----
-
-
 The code for this state is similar to the code from `RecordingState`. The big difference is that instead of recording a message, it is playing back a stored recording. Stored recordings can be played using the channel's [`play()`](/Asterisk+13+Channels+REST+API#Asterisk13ChannelsRESTAPI-play) method (or as we have used in the python code, `playWithId()`). If the URI of the media to be played is prefixed with the "recording:" scheme, then Asterisk knows to search for the specified file where recordings are stored. More information on playing back files on channels, as well as a detailed list of media URI schemes can be found [here](/Configuration/Interfaces/Asterisk-REST-Interface-ARI/Introduction-to-ARI-and-Channels/ARI-and-Channels-Simple-Media-Manipulation). Note the method that is called when a DTMF '\*' is received. The `deleteStored()` method can be used on the `/recordings` resource of the ARI client to delete a stored recording from the file system on which Asterisk is running.
 
 One more thing to point out is the code that runs in `on_playback_finished()`. When reviewing a voicemail recording, the message may finish playing back before the user decides what to do with it. If this happens, we detect that the playback has finished so that we do not attempt to stop an already-finished playback once the user decides how to proceed.
@@ -917,19 +785,8 @@ from reviewing\_state import ReviewingState
 
 
 
----
 
-
-
-
----
-
-  
-vm-call.js  
-
-
-```
-
+```javascript title="vm-call.js" linenums="1"
 jstrue// At the top of the file
 var ReviewingState = require('./reviewing\_state');
 
@@ -951,10 +808,6 @@ this.setup\_state\_machine = function() {
 }
 
 ```
-
-
-
----
 
 
 The following is the output from a sample call. The user records audio, then presses '#'. Upon hearing the recording, the user decides to record again, so the user presses '\*'. After re-recording, the user presses '#'. The user hears the new version of the recording played back and is satisfied with it, so the user presses '#' to accept the recording.
@@ -986,10 +839,6 @@ Accepted recording voicemail/305/1411501058.42 on DTMF #
 Ending voice mail call from PJSIP/200-00000009
 
 ```
-
-
-
----
 
 
 silverseagreenReader Exercise 5solidblackIn the previous section we introduced the ability to delete a stored recording. Stored recordings have a second operation available to them: [copying](/Asterisk+13+Recordings+REST+API#Asterisk13RecordingsRESTAPI-copyStored). The `copy()` method of a stored recording can be used to copy the stored recording from one location to another.

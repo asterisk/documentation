@@ -97,16 +97,12 @@ Objects returned are always copies and can be modified.
 
 
 
----
+!!! note 
+    After examining the usage of configuration and persistent objects within Asterisk the vast majority is simply retrieval, with no creation/deletion/updating. This makes me think that the behavior of returning a copy should be available as a flag.
 
-**Note:**  
-After examining the usage of configuration and persistent objects within Asterisk the vast majority is simply retrieval, with no creation/deletion/updating. This makes me think that the behavior of returning a copy should be available as a flag.
+      
+[//]: # (end-note)
 
-  
-
-
-
----
 
 
 Search criteria allows specifying the specific unique identifier for an object OR specific fields with expected values. The search criteria gets passed to the underlying providers so they have the most information available to efficiently retrieve the object.

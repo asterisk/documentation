@@ -6,16 +6,12 @@ pageid: 30278351
 
 
 
----
+!!! warning 
+    This page is under construction. Please refrain from commenting here until this warning is removed.
 
-**WARNING!:**   
-This page is under construction. Please refrain from commenting here until this warning is removed.
+      
+[//]: # (end-warning)
 
-  
-
-
-
----
 
 
 Overview
@@ -51,10 +47,6 @@ contact\_user = inbound-calls
 ```
 
 
-
----
-
-
 This results in the following outbound REGISTER request being sent by Asterisk:
 
 
@@ -86,10 +78,6 @@ Content-Length: 0
 ```
 
 
-
----
-
-
 Let's go over how the options were applied to this REGISTER:
 
 * The `server_uri` is the actual URI where the registrar is located. If you are registering with a SIP provider, they should give this information to you.
@@ -101,14 +89,10 @@ An English translation of the above REGISTER is "Tell the server at sip:registra
 
 
 
----
+!!! tip 
+    The transport type, e.g. tcp, for the registration can be specified by appending the details to the client\_uri and/or server\_uri parameters, e.g.:
+[//]: # (end-tip)
 
-**Tip:**  The transport type, e.g. tcp, for the registration can be specified by appending the details to the client\_uri and/or server\_uri parameters, e.g.:
-
-
-
-
----
 
   
   
@@ -129,11 +113,6 @@ contact\_user = inbound-calls
 
 
 ```
-
-
-
-
----
 
 
  
@@ -163,10 +142,6 @@ match = <ip address of provider>
 endpoint = my\_provider 
 
 ```
-
-
-
----
 
 
 This represents the bare minimum necessary in order to accept incoming calls from the provider. The `identify` section makes it so that incoming SIP traffic from the IP address in the `match` option will be associated with the endpoint called `my_provider_endpoint`.
@@ -201,22 +176,14 @@ contact = sip:my\_provider@example.com
 
 
 
----
 
 
+!!! warning 
+    Let me reiterate that this is the **bare minimum**. If you want calls to and from the provider to actually work correctly, you will want to set a context, codecs, authentication, etc. on the endpoint.
 
+      
+[//]: # (end-warning)
 
-
----
-
-**WARNING!:**   
-Let me reiterate that this is the **bare minimum**. If you want calls to and from the provider to actually work correctly, you will want to set a context, codecs, authentication, etc. on the endpoint.
-
-  
-
-
-
----
 
 
 Authentication
@@ -248,10 +215,6 @@ username = my\_username
 password = my\_password
 
 ```
-
-
-
----
 
 
 With this configuration, now if the registrar responds to a REGISTER by challenging for authentication, Asterisk will use the authentication credentials in the provider\_auth section in order to authenticate. Details about what options are available in auth sections can be found [here](/Asterisk-13-Configuration_res_pjsip) in the "auth" section.
@@ -308,10 +271,6 @@ max\_retries = 20
 ```
 
 
-
----
-
-
 In general, this configuration is more lenient than the default. We will retry registration more times, we will retry after authentication requests and forbidden responses, and we will retry more often.
 
 CLI and AMI
@@ -339,10 +298,6 @@ You can monitor the status of your configured outbound registrations via the CLI
  outreg/sip:registrar@example.com n/a Unregistered 
 
 ```
-
-
-
----
 
 
 On this particular Asterisk instance, there are two outbound registrations configured. The headers at the top explain what is in each column. The "Status" can be one of the following values:
@@ -387,10 +342,6 @@ In addition, you can see the details of a particular registration by issuing the
  transport : 
 
 ```
-
-
-
----
 
 
 This provides the same status line as before and also provides the configured values for the outbound registration.
@@ -464,10 +415,6 @@ NotRegistered: 2
 ```
 
 
-
----
-
-
 The command sends `OutboundRegistrationDetail` events for each configured outbound registration. Most information is the same as the CLI displays, but there is one additional piece of data displayed: NextReg. This is the number of seconds until Asterisk will send a new REGISTER request to the registrar. In this particular scenario, that number is 0 because the two outbound registrations have reached their maximum number of retries.
 
 Manually Unregistering
@@ -478,15 +425,12 @@ The AMI and CLI provide ways for you to manually unregister if you want. The CLI
 
 
 
----
+!!! note 
+    After manually unregistering, the specified outbound registration will continue to reregister based on its last registration expiration.
 
-**Note:**  After manually unregistering, the specified outbound registration will continue to reregister based on its last registration expiration.
+      
+[//]: # (end-note)
 
-  
-
-
-
----
 
 
  

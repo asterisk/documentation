@@ -14,16 +14,12 @@ Either fork and clone a copy of that repository, or clone it directly and check 
 
 
 
----
+!!! info "pjproject"
+    The latest release for pjproject can be found either on their websites [downloads page](https://www.pjsip.org/download.htm), or directly from their [github repository](https://github.com/pjsip/pjproject/releases).
 
+      
+[//]: # (end-info)
 
-**Information: pjproject** The latest release for pjproject can be found either on their websites [downloads page](https://www.pjsip.org/download.htm), or directly from their [github repository](https://github.com/pjsip/pjproject/releases).
-
-  
-
-
-
----
 
 
 The build process for bundled software currently expects tarballs compressed using bz2. So if the software you are downloading is not compressed as such (\*.tar.bz2 format) you'll need to convert it first. Once you have the tarball you'll either need to also get the associated MD5 checksum for it, or create one for it. Create a file called MD5SUM.TXT and add the checksum(s) to it (see examples from previous upgrades in the [third party mirror](https://github.com/asterisk/third-party)).
@@ -31,14 +27,10 @@ The build process for bundled software currently expects tarballs compressed usi
 
 
 
----
+!!! note 
+    The md5 file format must be unix. If using vim, you can check this by opening the file and typing:
+[//]: # (end-note)
 
-**Note:**  The md5 file format must be unix. If using vim, you can check this by opening the file and typing:
-
-
-
-
----
 
   
   
@@ -57,11 +49,6 @@ If you don't see fileformat=unix, you will need to convert formats.
 
 
 ```
-
-
-
-
----
 
 
  Lastly add the \*.tar.bz2 tarball and checksum file to your repository, push the changes, and then create a pull request on github.
@@ -87,10 +74,6 @@ true$ cp MD5SUM.TXT ~/src/asterisk/third-party/pjproject/pjproject-2.10.tar.bz2.
 ```
 
 
-
----
-
-
 Be sure to also remove the previous version of that file from the source tree:
 
 
@@ -108,10 +91,6 @@ true$ git rm ~/src/asterisk/third-party/pjproject/pjproject-2.9.tar.bz2.md5
 
 
 ```
-
-
-
----
 
 
 Next modify the *versions.mak* file, which can be found in the third-party directory of your Asterisk directory, to the version number being upgraded to:
@@ -133,25 +112,17 @@ truePJPROJECT\_VERSION = 2.10
 ```
 
 
-
----
-
-
 Now remove any patches found beneath the ./third-party/{project}/patches directory that have been added since the last version, **and** are now included in this new version. Again, only remove those patches that are currently included in the new version of the released software being upgraded to.
 
 
 
 
----
+!!! info ""
+    Hint: patch files starting with '0000' (all zeros) are ones that are always carried over, and shouldn't require removing unless they have been contributed and accepted upstream.
 
+      
+[//]: # (end-info)
 
-**Information:**  Hint: patch files starting with '0000' (all zeros) are ones that are always carried over, and shouldn't require removing unless they have been contributed and accepted upstream.
-
-  
-
-
-
----
 
 
 To know which patches need to be removed either visit the project's website, and find the change log of issues/patches included, or probably better for each patch check the actual git log of the new software and ensure the patch has been included.

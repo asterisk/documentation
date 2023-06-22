@@ -73,16 +73,12 @@ C++ requires the inclusion and initialization of the C++ run-time library. On ma
 
 
 
----
+!!! info ""
+    Manually managing the loading and loading of a run-time library may raise issues such as race conditions during startup and shutdown.
 
+      
+[//]: # (end-info)
 
-**Information:**   Manually managing the loading and loading of a run-time library may raise issues such as race conditions during startup and shutdown.
-
-  
-
-
-
----
 
 
 Asterisk Specific Considerations
@@ -133,15 +129,12 @@ Implementing and maintaining a facade or "wrapper" around any third party librar
 
 
 
----
+!!! note 
+    One consequence of this approach is that the more of a library you use, the more of a facade you need to build. If the third-party library API changes in some significant way in a major release, Asterisk must either remain on the old version, possibly maintaining it past it's EOL horizon or alter the facade to match the third-party library's changes. Either situation is against one of the principle reasons for using a third party library in the first place.
 
-**Note:**  One consequence of this approach is that the more of a library you use, the more of a facade you need to build. If the third-party library API changes in some significant way in a major release, Asterisk must either remain on the old version, possibly maintaining it past it's EOL horizon or alter the facade to match the third-party library's changes. Either situation is against one of the principle reasons for using a third party library in the first place.
+      
+[//]: # (end-note)
 
-  
-
-
-
----
 
 
 reSIProcate\_C\_Cpp\_FacadeL

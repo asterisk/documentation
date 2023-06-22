@@ -1,0 +1,35 @@
+---
+- pattern: "---\\n+\\*\\*Information:\\s*(.*)?\\*\\*\\s*((?:.*\\n)+?)\\n+---"
+  repl: '!!! info "\1"\n\2[//]: # (end-info)\n'
+
+- pattern: "---\\n+\\*\\*Note:\\s*(.*)?\\*\\*\\s*((?:.*\\n)+?)\\n+---"
+  repl: '!!! note \1\n\2[//]: # (end-note)\n'
+
+- pattern: "---\\n+\\*\\*Tip:\\s*(.*)?\\*\\*\\s*((?:.*\\n)+?)\\n+---"
+  repl: '!!! tip \1\n\2[//]: # (end-tip)\n'
+
+- pattern: "---\\n+\\*\\*WARNING!:\\s*(.*)?\\*\\*\\s*((?:.*\\n)+?)\\n+---"
+  repl: '!!! warning \1\n\2[//]: # (end-warning)\n'
+
+- pattern: "---\\s+([^\\n]+)\\s+```\\n+(\\$|#)"
+  repl: '```bash title="\1" linenums="1"\n\2'
+
+- pattern: "---\\s+([^\\n]+)\\s+```\\n+bash"
+  repl: '```bash title="\1" linenums="1"\n'
+
+- pattern: "---\\s+(.+[.]json)\\s+```\\n+"
+  repl: '```json title="\1" linenums="1"\n'
+
+- pattern: "---\\s+(.+)\\s+```\\n+json"
+  repl: '```json title="\1" linenums="1"\n'
+
+- pattern: "---\\s+(.+[.]js)\\s+```\\n+"
+  repl: '```javascript title="\1" linenums="1"\n'
+
+- pattern: "---\\s+(.+)\\s+```\\n+javascript"
+  repl: '```javascript title="\1" linenums="1"\n'
+
+- pattern: "^```\\s+---\\n"
+  repl: '```\n'
+
+## Need 'sed' to fix indents

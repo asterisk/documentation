@@ -53,10 +53,6 @@ offer request
 ```
 
 
-
----
-
-
 "request", "id", and "version" are all required fields and must be included. The version is a value that represents the current AEAP message version. As well, at least one or more "codecs" must be specified. While the codec "name" is mandatory, codec attributes are optional. However, if a codec attribute is given then both the attribute "name" and "value" must be provided. "params" is optional, but when given each parameter must be specified as a "name"/"value" pair.
 
 
@@ -81,10 +77,6 @@ true{
 
 
 
----
-
-
-
 
 ---
 
@@ -102,10 +94,6 @@ true{
 }
 
 ```
-
-
-
----
 
 
 
@@ -127,10 +115,6 @@ true{
 }
 
 ```
-
-
-
----
 
 
 A "setup" response must only be sent in response to a "setup" request, and must be formatted as follows:
@@ -161,10 +145,6 @@ offer response okay
 ```
 
 
-
----
-
-
 Much like the initial request, "response", "id", and "codecs" are required fields. The codec "name" is also required, and must match one of the names given in the request's codec list. "attributes" are again optional.
 
 
@@ -185,10 +165,6 @@ true{
 }
 
 ```
-
-
-
----
 
 
 Get
@@ -216,10 +192,6 @@ get request
 ```
 
 
-
----
-
-
 All fields are required, and at least one parameter name to retrieve must be specified. Parameter names should be the name of the attribute, setting, etc... to be retrieved.
 
 
@@ -240,10 +212,6 @@ true{
 }
 
 ```
-
-
-
----
 
 
 A "get" response is similar, but retrieved "params" are made available in name/value pairs:
@@ -268,10 +236,6 @@ get response okay
 ```
 
 
-
----
-
-
 Be aware that the returned value's type is named parameter dependent. For instance, depending on the given "param" the returned "value" could be a string, an integer, or even an array of values.
 
 
@@ -292,10 +256,6 @@ true{
 }
 
 ```
-
-
-
----
 
 
 Set
@@ -323,10 +283,6 @@ set request
 ```
 
 
-
----
-
-
 All fields are required. Similar to "get", a named parameter's value type varies based on the parameters themselves.
 
 
@@ -347,10 +303,6 @@ true{
 }
 
 ```
-
-
-
----
 
 
 A "set" response to a successful request is just a basic acknowledgment that only contains response name and id:
@@ -375,10 +327,6 @@ set response
 
 
 
----
-
-
-
 
 ---
 
@@ -394,10 +342,6 @@ true {
 }
 
 ```
-
-
-
----
 
 
 Errors
@@ -426,10 +370,6 @@ error response
 
 
 
----
-
-
-
 
 ---
 
@@ -446,10 +386,6 @@ true{
 }
 
 ```
-
-
-
----
 
 
 
@@ -472,10 +408,6 @@ true{
 
 
 
----
-
-
-
 
 ---
 
@@ -492,10 +424,6 @@ true{
 }
 
 ```
-
-
-
----
 
 
  

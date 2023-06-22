@@ -42,10 +42,6 @@ trueexten => 1000,1,NoOp()
 ```
 
 
-
----
-
-
 Python
 ------
 
@@ -93,10 +89,6 @@ def find\_or\_create\_holding\_bridge():
 ```
 
 
-
----
-
-
 When the inbound channel enters the application, we'll place it into our waiting bridge:
 
 
@@ -114,10 +106,6 @@ truepy79 wait\_bridge = find\_or\_create\_holding\_bridge()
  wait\_bridge.addChannel(channel=channel.id)
 
 ```
-
-
-
----
 
 
 When the dialed channel answers, we can remove the inbound channel from the waiting bridge - since there is only one waiting bridge being used, we can use `find_or_create_holding_bridge` to obtain it. We then place it into a newly created mixing bridge along with the dialed channel, in the same fashion as the `bridge-dial.py` example.
@@ -145,10 +133,6 @@ truepy97 print "{} answered; bridging with {}".format(outgoing.json.get('name'),
 
 
 ```
-
-
-
----
 
 
 ### bridge-move.py
@@ -289,10 +273,6 @@ client.run(apps='bridge-move')
 ```
 
 
-
----
-
-
 ### bridge-move.py in action
 
 The following shows the output of the `bridge-move.py` script when a `PJSIP` channel for `alice` enters the application and dials a PJSIP channel for bob:
@@ -314,10 +294,6 @@ PJSIP/Bob-00000002 answered; bridging with PJSIP/Alice-00000001
 Hung up PJSIP/Bob-00000002
 
 ```
-
-
-
----
 
 
 JavaScript (Node.js)
@@ -363,10 +339,6 @@ truejs39function findOrCreateHoldingBridge(channel) {
 ```
 
 
-
----
-
-
 We then add the channel to the holding bridge and start music on hold before continuing with dialing we we did in the bridge-dial.js example:
 
 
@@ -390,10 +362,6 @@ truejs64holdingBridge.addChannel({channel: channel.id}, function(err) {
 });
 
 ```
-
-
-
----
 
 
 Once the endpoint has answered and a mixing bridge has been created, we proceed by first removing the original channel from the holding bridge and then adding both channels to the mixing bridge as before:
@@ -430,10 +398,6 @@ truejs145function moveToMixingBridge(channel, dialed, mixingBridge, holdingBridg
 ```
 
 
-
----
-
-
 Note that we need to keep track of one more variable as we go down the application flow to ensure we have a reference to both the holding and mixing bridge. Again we use anonymous functions to pass extra arguments to callback handlers to keep the nested callbacks to a minimum.
 
 ### bridge-move.js
@@ -443,14 +407,7 @@ The full source code for `bridge-move.js` is shown below:
 
 
 
----
-
-  
-bridge-move.js  
-
-
-```
-
+```javascript title="bridge-move.js" linenums="1"
 truejs /\*jshint node:true\*/
 'use strict';
 
@@ -621,10 +578,6 @@ function clientLoaded (err, client) {
 ```
 
 
-
----
-
-
 ### bridge-move.js in action
 
 The following shows the output of the `bridge-move.js` script when a `PJSIP` channel for `alice` enters the application and dials a PJSIP channel for bob:
@@ -649,9 +602,5 @@ Hanging up channel PJSIP/alice-00000001
 Hanging up channel undefined
 
 ```
-
-
-
----
 
 

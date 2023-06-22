@@ -63,10 +63,6 @@ exten => h,n(hu\_exit),noop(All HANGUPCAUSE entries processed)
 ```
 
 
-
----
-
-
 Additional Usage
 ================
 

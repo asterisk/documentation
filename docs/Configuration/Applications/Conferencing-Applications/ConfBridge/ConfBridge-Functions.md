@@ -30,10 +30,6 @@ CONFBRIDGE(type,option)
 ```
 
 
-
----
-
-
 * type - Refers to which type of profile the option belongs to. Type can be either "bridge" or "user."
 * option - Refers to the confbridge.conf option that is to be set dynamically on the channel. This can also refer to an existing Bridge or User Profile by using the keyword "template." In this case, an existing Bridge or User Profile can be appended or modified on-the-fly.
 
@@ -63,10 +59,6 @@ exten => 1,n,ConfBridge(1)
 ```
 
 
-
----
-
-
 **Example 2**  
 
 
@@ -91,10 +83,6 @@ exten => 1,n,ConfBridge(1)
 ```
 
 
-
----
-
-
 Function CONFBRIDGE\_INFO
 =========================
 
@@ -117,10 +105,6 @@ CONFBRIDGE\_INFO(type,conf)
 
 
 ```
-
-
-
----
 
 
 * type - Refers to which information type to be retrieved. Type can be either "parties," "admins," "marked," or "locked."

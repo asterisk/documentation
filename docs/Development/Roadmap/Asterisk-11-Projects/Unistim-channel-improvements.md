@@ -57,10 +57,6 @@ line => 200 ; Key #3 - rings on Unistim/100@violet
 ```
 
 
-
----
-
-
 Multiple languages support
 --------------------------
 

@@ -6,17 +6,12 @@ pageid: 22773838
 
 
 
----
+!!! warning 
+    This page is a work in progress. Please do not make comments on this until this warning is removed
 
-**WARNING!:**   
+      
+[//]: # (end-warning)
 
-This page is a work in progress. Please do not make comments on this until this warning is removed
-
-  
-
-
-
----
 
 
 Asterisk's SIP implementation has a need for supporting RFC 3265's event subscription system since the original `chan_sip` had support for it.
@@ -196,10 +191,6 @@ void ast\_sip\_subscription\_remove\_datastore(struct ast\_sip\_subscription \*s
 
 
 ```
-
-
-
----
 
 
 Subscription handlers
@@ -382,10 +373,6 @@ void ast\_sip\_unregister\_subscription\_handler(const struct ast\_sip\_subscrip
 ```
 
 
-
----
-
-
 Event publication
 =================
 
@@ -550,9 +537,5 @@ void ast\_sip\_subscription\_remove\_datastore(struct ast\_sip\_subscription \*s
 
 
 ```
-
-
-
----
 
 

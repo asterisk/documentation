@@ -23,7 +23,3 @@ exten => 1234,hint,SIP/30&Mobile/dave&Mobile/blackberry
 ```
 
 
-
----
-
-

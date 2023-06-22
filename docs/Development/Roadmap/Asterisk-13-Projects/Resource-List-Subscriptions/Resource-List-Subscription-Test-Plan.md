@@ -42,10 +42,6 @@ context = default
 ```
 
 
-
----
-
-
 extensions.conf:
 
 
@@ -64,10 +60,6 @@ exten => alice,hint,Custom:alice
 exten => bob,hint,Custom:bob
 
 ```
-
-
-
----
 
 
 It is expected that tests that use the `mail_list` are using external MWI, not app\_voicemail.
@@ -127,10 +119,6 @@ full\_state = yes
 ```
 
 
-
----
-
-
 Use SIPp to subscribe to a list. After Asterisk sends the initial notification, change the state of alice. Ensure that Asterisk sends a NOTIFY and that the following changes from the first NOTIFY are present:
 
 * The list element in the RLMI body part has attribute version="1"
@@ -155,10 +143,6 @@ Add the following line to the configured list in pjsip.conf:
 full\_state = no
 
 ```
-
-
-
----
 
 
 Repeat Test 3. This time, the NOTIFY sent on the state change should have the following changes from the first NOTIFY sent:
@@ -203,15 +187,12 @@ Have the SIPp scenario attempt to subscribe to `mail_list` but set the Event hea
 
 
 
----
+!!! note 
+    If the circumstances are reversed (i.e. SIPp attempts to subscribe to `pres_list` with "Event: message-summary" in the SUBSCRIBE), the SUBSCRIBE will succeed, subscribing to a single mailbox called "mail\_list".
 
-**Note:**  If the circumstances are reversed (i.e. SIPp attempts to subscribe to `pres_list` with "Event: message-summary" in the SUBSCRIBE), the SUBSCRIBE will succeed, subscribing to a single mailbox called "mail\_list".
+      
+[//]: # (end-note)
 
-  
-
-
-
----
 
 
 #### Test 3: List does not exist
@@ -252,10 +233,6 @@ list\_item = alice@default
 list\_item = alice@default
 
 ```
-
-
-
----
 
 
 Have SIPp subscribe to `pres_list`. Ensure that Asterisk responds to the SUBSCRIBE with a 200 OK. Ensure that the NOTIFY Asterisk sends contains an RLMI body part with only a single resource (for alice) and only one application/pidf+xml body part.
@@ -307,10 +284,6 @@ context = default
 ```
 
 
-
----
-
-
 extensions.conf:
 
 
@@ -329,10 +302,6 @@ exten => alice,hint,Custom:alice
 exten => bob,hint,Custom:bob
 
 ```
-
-
-
----
 
 
 Nominal Tests
@@ -362,15 +331,12 @@ The multipart/related part should satisfy the same properties as the nominal tes
 
 
 
----
+!!! note 
+    It was about at this point while writing this test plan that I decided that if I was going to finish it before I grew old and died, I should pare down the amount of detail
 
-**Note:**  It was about at this point while writing this test plan that I decided that if I was going to finish it before I grew old and died, I should pare down the amount of detail
+      
+[//]: # (end-note)
 
-  
-
-
-
----
 
 
 #### Test 2: State change
@@ -435,10 +401,6 @@ context = default
 ```
 
 
-
----
-
-
 extensions.conf
 
 
@@ -458,10 +420,6 @@ exten => bob,hint,Custom:bob
 exten => carol,hint,Custom:carol
 
 ```
-
-
-
----
 
 
 #### Test 1: Subscription establishment
@@ -496,15 +454,12 @@ Configuration has a list that contains resource "alice" and a sublist that conta
 
 
 
----
+!!! note 
+    Once code is written, come back and specify whether we expect the sole resource or the sublist resource to be the one that is listed.
 
-**Note:**  Once code is written, come back and specify whether we expect the sole resource or the sublist resource to be the one that is listed.
+      
+[//]: # (end-note)
 
-  
-
-
-
----
 
 
 Batched Notifications

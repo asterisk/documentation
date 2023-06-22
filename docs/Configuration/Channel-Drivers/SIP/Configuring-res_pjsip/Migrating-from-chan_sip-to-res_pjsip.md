@@ -20,14 +20,7 @@ To insure that the script can read any [#include'd](/Fundamentals/Asterisk-Confi
 
 
 
----
-
-  
-  
-
-
-```
-
+```bash title=" " linenums="1"
 # /path/to/asterisk/source/contrib/scripts/sip\_to\_pjsip/sip\_to\_pjsip.py --help
 Usage: sip\_to\_pjsip.py [options] [input-file [output-file]]
 input-file defaults to 'sip.conf'
@@ -41,23 +34,12 @@ Options:
 ```
 
 
-
----
-
-
 ### Example of Use
 
 
 
 
----
-
-  
-  
-
-
-```
-
+```bash title=" " linenums="1"
 # cd /etc/asterisk
 # /path/to/asterisk/source/contrib/scripts/sip\_to\_pjsip/sip\_to\_pjsip.py
 Reading sip.conf
@@ -65,10 +47,6 @@ Converting to PJSIP...
 Writing pjsip.conf
 
 ```
-
-
-
----
 
 
 On this Page
@@ -82,15 +60,12 @@ These examples contain only the configuration required for sip.conf/pjsip.conf a
 
 
 
----
+!!! note 
+    It is important to know that PJSIP syntax and configuration format is stricter than the older chan\_sip driver. When in doubt, try to follow the documentation exactly, avoid extra spaces or strange capitalization. Always check your logs for warnings or errors if you suspect something is wrong.
 
-**Note:**  It is important to know that PJSIP syntax and configuration format is stricter than the older chan\_sip driver. When in doubt, try to follow the documentation exactly, avoid extra spaces or strange capitalization. Always check your logs for warnings or errors if you suspect something is wrong.
+      
+[//]: # (end-note)
 
-  
-
-
-
----
 
 
 Example Endpoint Configuration
@@ -135,10 +110,6 @@ context=internal
 secret=1234
 
 ```
-
-
-
----
 
 
    | 
@@ -192,10 +163,6 @@ username=6001
 
 ```
 
-
-
----
-
  |
 
 Example SIP Trunk Configuration
@@ -235,10 +202,6 @@ allow=ulaw
 context=from-external
 
 ```
-
-
-
----
 
  | 
 
@@ -284,10 +247,6 @@ match=203.0.113.1
 
 ```
 
-
-
----
-
  |
 
  
@@ -322,10 +281,6 @@ noload => res\_pjsip\_exten\_state.so
 noload => res\_pjsip\_log\_forwarder.so
 
 ```
-
-
-
----
 
 
 Having a noload for the above modules should (at the moment of writing this) prevent any PJSIP related modules from loading.
@@ -415,10 +370,6 @@ nat=route
 
 ```
 
-
-
----
-
  | 
 
 ---
@@ -457,10 +408,6 @@ rewrite\_contact=yes
  
 
 ```
-
-
-
----
 
  |
 

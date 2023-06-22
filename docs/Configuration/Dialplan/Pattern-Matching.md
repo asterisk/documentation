@@ -84,10 +84,6 @@ exten => \_64XX,1,SayDigits(${EXTEN})
 ```
 
 
-
----
-
-
 In this example, each **X** represents a single digit, with any value from zero to nine. 
 
 The above pattern will match the following examples:
@@ -122,10 +118,6 @@ exten => \_64.,1,SayDigits(${EXTEN})
 ```
 
 
-
----
-
-
 The first example: The first must be a six, the second digit must be a four, the third digit can be anything from zero to nine, and the fourth digit must be between four and nine
 
 The second example: The first digit must be between six and four, the second digit must be four, the third digit must be between four and nine
@@ -142,18 +134,15 @@ You can also use ranges within square brackets. For example, **[1-468]** would m
 
 
 
----
+!!! note 
+    The X, N, and Z convenience notations mentioned earlier have no special meaning within a set.
 
-**Note:**  The X, N, and Z convenience notations mentioned earlier have no special meaning within a set.
-
-The only characters with special meaning within a set are the '-' character, to define a range between two characters, the  '\' character to escape a special character available within a set, and  
-
-
-  
+    The only characters with special meaning within a set are the '-' character, to define a range between two characters, the  '\' character to escape a special character available within a set, and  
 
 
+      
+[//]: # (end-note)
 
----
 
 
 Other Special Characters
@@ -166,31 +155,24 @@ The exclamation mark (**!**) character is similar to the period and matches zero
 
 
 
----
+!!! tip **  Asterisk treats a period or exclamation mark as the end of a pattern. If you want a period or exclamation mark in your pattern as a plain character you should put it into a character set: **[.]** or **[!]
+    .
 
-**Tip:**  Asterisk treats a period or exclamation mark as the end of a pattern. If you want a period or exclamation mark in your pattern as a plain character you should put it into a character set: **[.]** or **[!]**.
-
-  
-
-
-
----
+      
+[//]: # (end-tip)
 
 
 
 
----
 
-**WARNING!: Be Careful With Wildcards in Pattern Matches**  
-Please be extremely cautious when using the period and exclamation mark characters in your pattern matches. They match more than just digits. They match on characters. If you're not careful to filter the input from your callers, a malicious caller might try to use these wildcards to bypass security boundaries on your system.
+!!! warning Be Careful With Wildcards in Pattern Matches
+    Please be extremely cautious when using the period and exclamation mark characters in your pattern matches. They match more than just digits. They match on characters. If you're not careful to filter the input from your callers, a malicious caller might try to use these wildcards to bypass security boundaries on your system.
 
-For a more complete explanation of this topic and how you can protect yourself, please refer to the **README-SERIOUSLY.bestpractices.txt** file in the Asterisk source code.
+    For a more complete explanation of this topic and how you can protect yourself, please refer to the **README-SERIOUSLY.bestpractices.txt** file in the Asterisk source code.
 
-  
+      
+[//]: # (end-warning)
 
-
-
----
 
 
 Order of Pattern Matching
@@ -232,10 +214,6 @@ exten => \_6[34]NX,1,SayAlpha(G)
 ```
 
 
-
----
-
-
 Can you tell (without reading ahead) which one would match?
 
 Using the sorting rules explained above, the extensions sort as follows:  
@@ -264,10 +242,6 @@ exten => \_6.,1,SayAlpha(D)
 ```
 
 
-
----
-
-
 When Alice dials **6421**, Asterisk searches through its list of sorted extensions and uses the first matching extension. In this case **\_64NX** is found.
 
 To verify that Asterisk actually does sort the extensions in the manner that we've shown, add the following extensions to the **[users]** context of your own dialplan.
@@ -293,10 +267,6 @@ exten => \_6[34]NX,1,SayAlpha(G)
 
 
 ```
-
-
-
----
 
 
 Reload the dialplan, and then type **dialplan show 6421@users** at the Asterisk CLI. Asterisk will show you all extensions that match in the **[users]** context. If you were to dial extension **6421** in the **[users]** context the first found extension will execute.
@@ -328,10 +298,6 @@ server\*CLI> dialplan show 6421@users
 
 
 
----
-
-
-
 
 ---
 
@@ -357,24 +323,15 @@ server\*CLI> dialplan show users
 ```
 
 
-
----
-
-
 You can dial extension **6421** to try it out on your own.
 
 
 
 
----
+!!! warning Be Careful with Pattern Matching
+    Please be aware that because of the way auto-fallthrough works, if Asterisk can't find the next priority number for the current extension or pattern match, it will also look for that same priority in a less specific pattern match. Consider the following example:
+[//]: # (end-warning)
 
-**WARNING!: Be Careful with Pattern Matching**  
-Please be aware that because of the way auto-fallthrough works, if Asterisk can't find the next priority number for the current extension or pattern match, it will also look for that same priority in a less specific pattern match. Consider the following example:
-
-
-
-
----
 
   
   
@@ -398,11 +355,6 @@ We strongly recommend you make the **Hangup()** application be the last priority
 
 
 ```
-
-
-
-
----
 
 
 Matching on Caller ID
@@ -436,24 +388,15 @@ same => n,Hangup()
 ```
 
 
-
----
-
-
 The phone with Caller ID 101, when dialing 306, will hear the prompt "year" and will be hung up.  The phone with Caller ID 102, when dialing 306, will hear the "beep" sound and will be hung up.  The phone with Caller ID 103, or any other caller, when dialing 306, will hear the "goodbye" prompt and will be hung up.
 
 
 
 
----
+!!! warning Rewriting Caller ID
+    Changing the value of **CALLERID(num)** variable inside of extension handler matched by Caller ID can immediately **throw the call to another handler**. Consider the following example:
+[//]: # (end-warning)
 
-**WARNING!: Rewriting Caller ID**  
-Changing the value of **CALLERID(num)** variable inside of extension handler matched by Caller ID can immediately **throw the call to another handler**. Consider the following example:
-
-
-
-
----
 
   
   
@@ -481,10 +424,5 @@ You'd expect the call with Caller ID 100 to hang up, but instead you'd hear Aste
 
 
 ```
-
-
-
-
----
 
 

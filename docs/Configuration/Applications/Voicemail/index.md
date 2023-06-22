@@ -26,15 +26,11 @@ The **[VoiceMailMain()](/Asterisk-13-Application_VoiceMailMain)** application al
 
 
 
----
+!!! warning Direct Access to Voicemail
+    Please exercise extreme caution when using the s option! With this option set, anyone which has access to this extension can retrieve voicemail messages without entering the mailbox passcode.
 
-**WARNING!: Direct Access to Voicemail**  
-Please exercise extreme caution when using the s option! With this option set, anyone which has access to this extension can retrieve voicemail messages without entering the mailbox passcode.
+      
+[//]: # (end-warning)
 
-  
-
-
-
----
 
 

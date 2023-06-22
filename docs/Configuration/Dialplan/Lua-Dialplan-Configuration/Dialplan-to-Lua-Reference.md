@@ -41,10 +41,6 @@ exten => \_2XX,1,Voicemail(${EXTEN:1})
 
 
 
----
-
-
-
 50%
 
 extensions.lua
@@ -76,10 +72,6 @@ end
 
 
 ```
-
-
-
----
 
 
 
@@ -123,10 +115,6 @@ include => users
 
 
 
----
-
-
-
 50%
 
 extensions.lua
@@ -167,10 +155,6 @@ extensions = {
 
 
 
----
-
-
-
 Loops
 -----
 
@@ -204,10 +188,6 @@ exten => 100,n,EndWhile
 
 
 
----
-
-
-
 50%
 
 extensions.lua
@@ -232,10 +212,6 @@ end
 
 
 ```
-
-
-
----
 
 
 
@@ -269,10 +245,6 @@ exten => 100,n,Verbose(my\_variable = ${my\_variable})
 
 
 
----
-
-
-
 50%
 
 extensions.lua
@@ -295,10 +267,6 @@ app.verbose("my\_variable = " .. channel.my\_variable:get())
 
 
 ```
-
-
-
----
 
 
 
@@ -331,10 +299,6 @@ exten => 100,1,Dial("SIP/100",,m)
 
 
 
----
-
-
-
 50%
 
 extensions.lua
@@ -356,10 +320,6 @@ app.dial("SIP/100", nil, "m")
 
 
 ```
-
-
-
----
 
 
 
@@ -400,10 +360,6 @@ exten => 100,1,Macro(dial,SIP/100)
 
 
 
----
-
-
-
 50%
 
 extensions.lua
@@ -434,10 +390,6 @@ end
 
 
 ```
-
-
-
----
 
 
 
@@ -477,10 +429,6 @@ exten => 102,n,Hangup
 
 
 
----
-
-
-
 50%
 
 extensions.lua
@@ -516,22 +464,12 @@ end
 
 
 
----
 
 
+!!! info ""
+    The `app.goto()` function will not work as expected in pbx\_lua in Asterisk 1.8. If you must use `app.goto()` you must manually return control back to asterisk using `return` from the dialplan extension function, otherwise execution will continue after the call to `app.goto()`. Calls to `app.goto()` should work as expected in Asterisk 10 but still should not be necessary in most cases.
+[//]: # (end-info)
 
-
-
----
-
-
-**Information:**  
-The `app.goto()` function will not work as expected in pbx\_lua in Asterisk 1.8. If you must use `app.goto()` you must manually return control back to asterisk using `return` from the dialplan extension function, otherwise execution will continue after the call to `app.goto()`. Calls to `app.goto()` should work as expected in Asterisk 10 but still should not be necessary in most cases.
-
-
-
-
----
 
   
 In Asterisk 1.8, use return  
@@ -555,10 +493,5 @@ end
 
 
 ```
-
-
-
-
----
 
 

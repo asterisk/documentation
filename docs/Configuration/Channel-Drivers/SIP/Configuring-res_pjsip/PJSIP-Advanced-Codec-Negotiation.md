@@ -72,25 +72,14 @@ The parameters are specified as **`<name>:<value>`** pairs separated by commas 
 
 
 
----
-
-  
-Codec Negotiation preference Defaults  
-
-
-```
-
-bashallow = !all,g722,ulaw
+```bash title="Codec Negotiation preference Defaults  " linenums="1"
+allow = !all,g722,ulaw
 codec\_prefs\_incoming\_offer = prefer: pending, operation: union, keep: all, transcode: allow
 codec\_prefs\_outgoing\_offer = prefer: pending, operation: intersect, keep: all, transcode: allow
 codec\_prefs\_outgoing\_offer = prefer: pending, operation: union, keep: all, transcode: allow
 codec\_prefs\_outgoing\_offer = prefer: pending, operation: union, keep: all, transcode: allow
 
 ```
-
-
-
----
 
 
 You'll notice that the defaults always prefer the "pending" topology so in our example, what Alice sends in her SDP offer sets the stage.

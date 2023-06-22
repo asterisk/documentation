@@ -41,7 +41,3 @@ ical iCalendar .ics calendars
 ```
 
 
-
----
-
-

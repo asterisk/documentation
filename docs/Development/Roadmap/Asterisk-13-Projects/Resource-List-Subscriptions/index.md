@@ -98,10 +98,6 @@ struct rlmi\_data {
 ```
 
 
-
----
-
-
 This seems a bit minimalistic, but it should be enough.
 
 * The resource name for any subscription can be retrieved via an API call.

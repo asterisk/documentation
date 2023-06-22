@@ -29,21 +29,10 @@ So, from the CLI, perform:
 
 
 
----
-
-  
-  
-
-
-```
-
+```bash title=" " linenums="1"
 # apt-get install unixodbc unixodbc-dev libmyodbc python-dev python-pip python-mysqldb
 
 ```
-
-
-
----
 
 
 Once these packages are installed, check your Asterisk installation's **make menuconfig** tool to make sure that the **res\_config\_odbc** and **res\_odbc** resource modules, as well as the **res\_pjsip\_xxx** modules are selected for installation.  If they are, then go through the normal Asterisk installation process: **./configure; make; make install**
@@ -58,21 +47,10 @@ Use the **mysqladmin** tool to create the database that we'll use to store the c
 
 
 
----
-
-  
-  
-
-
-```
-
+```bash title=" " linenums="1"
 # mysqladmin -u root -p create asterisk
 
 ```
-
-
-
----
 
 
 This will prompt you for your MySQL database password and then create a database named **asterisk** that we'll use to store our PJSIP configuration.
@@ -87,21 +65,10 @@ First, install Alembic:
 
 
 
----
-
-  
-  
-
-
-```
-
+```bash title=" " linenums="1"
 # pip install alembic
 
 ```
-
-
-
----
 
 
 Then, move to the Asterisk source directory containing the Alembic scripts:
@@ -109,21 +76,10 @@ Then, move to the Asterisk source directory containing the Alembic scripts:
 
 
 
----
-
-  
-  
-
-
-```
-
+```bash title=" " linenums="1"
 # cd contrib/ast-db-manage/
 
 ```
-
-
-
----
 
 
 Next, edit the **config.ini.sample** file and change the **sqlalchemy.url** option, e.g.
@@ -144,10 +100,6 @@ sqlalchemy.url = mysql://root:password@localhost/asterisk
 ```
 
 
-
----
-
-
 such that the URL matches the username and password required to access your database.
 
 Then rename the config.ini.sample file to config.ini
@@ -155,21 +107,10 @@ Then rename the config.ini.sample file to config.ini
 
 
 
----
-
-  
-  
-
-
-```
-
+```bash title=" " linenums="1"
 # cp config.ini.sample config.ini
 
 ```
-
-
-
----
 
 
 Finally, use Alembic to setup the database tables:
@@ -177,21 +118,10 @@ Finally, use Alembic to setup the database tables:
 
 
 
----
-
-  
-  
-
-
-```
-
+```bash title=" " linenums="1"
 # alembic -c config.ini upgrade head
 
 ```
-
-
-
----
 
 
 You'll see something similar to:
@@ -199,14 +129,7 @@ You'll see something similar to:
 
 
 
----
-
-  
-  
-
-
-```
-
+```bash title=" " linenums="1"
 # alembic -c config.ini upgrade head
 INFO [alembic.migration] Context impl MySQLImpl.
 INFO [alembic.migration] Will assume non-transactional DDL.
@@ -217,23 +140,12 @@ INFO [alembic.migration] Running upgrade 4da0c5f79a9c -> 43956d550a44, Add table
 ```
 
 
-
----
-
-
 You can then connect to MySQL to see that the tables were created:
 
 
 
 
----
-
-  
-  
-
-
-```
-
+```bash title=" " linenums="1"
 # mysql -u root -p -D asterisk
 
 mysql> show tables;
@@ -259,10 +171,6 @@ mysql> quit
 ```
 
 
-
----
-
-
 Configuring ODBC
 ----------------
 
@@ -286,10 +194,6 @@ Setup = /usr/lib/x86\_64-linux-gnu/odbc/libodbcmyS.so
 UsageCount = 2
 
 ```
-
-
-
----
 
 
 Next, we'll tell ODBC **which** MySQL database to use.  To do this, we'll edit the **/etc/odbc.ini** configuration file and create a database handle called **asterisk**.  Your file should look something like:
@@ -318,10 +222,6 @@ Socket = /var/run/mysqld/mysqld.sock
 ```
 
 
-
----
-
-
 Take care to use your database access UserName and Password, and not necessarily what's defined in this example.
 
 Now, we need to configure Asterisk's ODBC resource, res\_odbc, to connect to the ODBC **asterisk** database handle that we just created.  res\_odbc is configured using the **/etc/asterisk/res\_odbc.conf** configuration file.  There, you'll want:
@@ -347,10 +247,6 @@ pre-connect => yes
 ```
 
 
-
----
-
-
 Again, take care to use the proper username and password.
 
 Now, you can start Asterisk and you can check its connection to your "asterisk" MySQL database using the "asterisk" res\_odbc connector to ODBC.  You can do this by executing "odbc show" from the Asterisk CLI.  If everything went well, you'll see:
@@ -358,14 +254,7 @@ Now, you can start Asterisk and you can check its connection to your "asterisk" 
 
 
 
----
-
-  
-  
-
-
-```
-
+```bash title=" " linenums="1"
 # asterisk -vvvvc
 \*CLI> odbc show
  
@@ -379,10 +268,6 @@ ODBC DSN Settings
 \*CLI> 
 
 ```
-
-
-
----
 
 
 Connecting PJSIP Sorcery to the Realtime Database
@@ -426,10 +311,6 @@ identify=realtime,ps\_endpoint\_id\_ips
 ```
 
 
-
----
-
-
 The items use the following nomenclature:
 
 
@@ -446,10 +327,6 @@ The items use the following nomenclature:
 {object\_type} = {sorcery\_wizard\_name},{wizard\_arguments}
 
 ```
-
-
-
----
 
 
 In our case, the `sorcery_wizard_name` is **realtime**, and the **wizard\_arguments** are the name of the database connector ("asterisk") to associate with our object types. Note that the "identify" object is separated from the rest of the configuration objects. This is because this object type is provided by an optional module (res\_pjsip\_endpoint\_idenfifier\_ip.so) and not the main PJSIP module (res\_pjsip.so). 
@@ -476,10 +353,6 @@ endpoint=realtime,ps\_endpoints
 endpoint=config,pjsip.conf,criteria=type=endpoint
 
 ```
-
-
-
----
 
 
 You can swap the order to control which data source is read first.
@@ -515,21 +388,13 @@ ps\_contacts => odbc,asterisk
 
 
 
----
 
+!!! info ""
+    Other tables allowed but not demonstrated in this tutorial: ps\_systems, ps\_globals, ps\_transports, and ps\_registrations.
 
+      
+[//]: # (end-info)
 
-
----
-
-
-**Information:**  Other tables allowed but not demonstrated in this tutorial: ps\_systems, ps\_globals, ps\_transports, and ps\_registrations.
-
-  
-
-
-
----
 
 
  
@@ -539,16 +404,12 @@ At this point, Asterisk is nearly ready to use the tables created by alembic wit
 
 
 
----
+!!! warning A warning for adventurous types:
+    Sorcery.conf allows you to try to configure other PJSIP objects such as transport using realtime and it currently won't stop you from doing so. However, some of these object types should not be used with realtime and this can lead to errant behavior.
 
-**WARNING!: A warning for adventurous types:**  
-Sorcery.conf allows you to try to configure other PJSIP objects such as transport using realtime and it currently won't stop you from doing so. However, some of these object types should not be used with realtime and this can lead to errant behavior.
+      
+[//]: # (end-warning)
 
-  
-
-
-
----
 
 
 Asterisk Startup Configuration
@@ -576,10 +437,6 @@ noload => chan\_sip.so 
 ```
 
 
-
----
-
-
 Asterisk PJSIP configuration
 ----------------------------
 
@@ -604,10 +461,6 @@ bind=0.0.0.0
 ```
 
 
-
----
-
-
 Here, we created a transport called **transport-udp** that we'll reference in the next section.
 
 Endpoint Population
@@ -618,14 +471,7 @@ Now, we need to create our endpoints inside of the database.  For this example,
 
 
 
----
-
-  
-  
-
-
-```
-
+```bash title=" " linenums="1"
 # mysql -u root -p -D asterisk;
 mysql> insert into ps\_aors (id, max\_contacts) values (101, 1);
 mysql> insert into ps\_aors (id, max\_contacts) values (102, 1);
@@ -636,10 +482,6 @@ mysql> insert into ps\_endpoints (id, transport, aors, auth, context, disallow, 
 mysql> quit;
 
 ```
-
-
-
----
 
 
 In this example, we first created an **aor** for each peer, one called **101** and the other **102**.
@@ -653,14 +495,7 @@ Now, you can start Asterisk and you can check to see if it's finding your PJSIP 
 
 
 
----
-
-  
-  
-
-
-```
-
+```bash title=" " linenums="1"
 # asterisk -vvvvc
 \*CLI> pjsip show endpoints
 Endpoints:
@@ -669,10 +504,6 @@ Endpoints:
 \*CLI> 
 
 ```
-
-
-
----
 
 
 A Little Dialplan
@@ -698,10 +529,6 @@ same => n,Dial(PJSIP/${EXTEN})
 ```
 
 
-
----
-
-
 Or to dial multiple AOR contacts at the same time, use the PJSIP\_DIAL\_CONTACTS function:
 
 
@@ -722,10 +549,6 @@ same => n,Dial(${PJSIP\_DIAL\_CONTACTS(${EXTEN})})
 ```
 
 
-
----
-
-
 Reserved Characters
 -------------------
 
@@ -734,14 +557,10 @@ Realtime uses the semicolon ( ; ) as a delimiter for multiple entries.  It must
 
 
 
----
+!!! info ""
+    "^3B" is the corresponding byte value of the semicolon character in ASCII, represented as a pair of hexadecimal digits, preceded by a caret ( ^ ) acting as the escape character.  
+[//]: # (end-info)
 
-
-**Information:**  "^3B" is the corresponding byte value of the semicolon character in ASCII, represented as a pair of hexadecimal digits, preceded by a caret ( ^ ) acting as the escape character.  
-
-
-
----
 
 
  
@@ -764,10 +583,6 @@ sip:10.30.100.28:5060;lr
 ```
 
 
-
----
-
-
 should be stored in the database as
 
 
@@ -784,10 +599,6 @@ should be stored in the database as
 sip:10.30.100.28:5060^3Blr
 
 ```
-
-
-
----
 
 
 Conclusion

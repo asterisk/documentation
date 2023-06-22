@@ -6,16 +6,12 @@ pageid: 27200342
 
 
 
----
+!!! warning 
+    Under Construction
 
-**WARNING!:**   
-Under Construction
+      
+[//]: # (end-warning)
 
-  
-
-
-
----
 
 
 Sorcery Overview
@@ -93,10 +89,6 @@ object\_type[/options] = wizard\_name[,wizard\_configuration\_data] ;Bracketed i
 ```
 
 
-
----
-
-
 ### Module name
 
 Object/Wizard mappings are defined within sections denoted by the module name in brackets. The section name must match the module.
@@ -146,10 +138,6 @@ test=memory
 ```
 
 
-
----
-
-
 The following object mapping is the default mapping of external MWI mailbox objects to give persistence to the message counts.
 
 
@@ -167,10 +155,6 @@ The following object mapping is the default mapping of external MWI mailbox obj
 mailboxes=astdb,mwi\_external
 
 ```
-
-
-
----
 
 
 The following object mappings set PJSIP objects to use realtime database mappings from extconfig with the table names used when automatically generating configuration from the alembic script.
@@ -197,10 +181,6 @@ contact=realtime,ps\_contacts
 identify=realtime,ps\_endpoint\_id\_ips
 
 ```
-
-
-
----
 
 
 PJSIP Default Wizard Configurations
@@ -239,10 +219,6 @@ outbound-publish=config,pjsip.conf,criteria=type=outbound-publish
 registration=config,pjsip.conf,criteria=type=registration
 
 ```
-
-
-
----
 
 
  

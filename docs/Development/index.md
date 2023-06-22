@@ -20,15 +20,12 @@ Most of the documentation related to the source code is embedded in the source f
 
 
 
----
+!!! note **  The information on the pages in this section may be developer planning notes, which can differ quite a bit from the final implementation. Do **not
+    assume that a page in this section reflects the implemented behaviour in Asterisk!
 
-**Note:**  The information on the pages in this section may be developer planning notes, which can differ quite a bit from the final implementation. Do **not** assume that a page in this section reflects the implemented behaviour in Asterisk!
+      
+[//]: # (end-note)
 
-  
-
-
-
----
 
 
 Topics

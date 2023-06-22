@@ -6,13 +6,12 @@ pageid: 52069711
 
 
 
----
+!!! note 
+    The Asterisk Project Issue Tracking and Code Management functions were successfully moved to GitHub on April 29th 2023!
 
-**Note:**  The Asterisk Project Issue Tracking and Code Management functions were successfully moved to GitHub on April 29th 2023!
+    <https://github.com/asterisk/asterisk>
 
-<https://github.com/asterisk/asterisk>
-
-The following pages have been updated with new information:
+    The following pages have been updated with new information:
 
 [Code Contribution](/Development/Policies-and-Procedures/Code-Contribution)
 
@@ -26,15 +25,13 @@ The following pages have been updated with new information:
 
 [Asterisk Community Services](/Asterisk-Community/Asterisk-Community-Services)
 
- 
+     
 
-Migration of this Wiki is still pending.
+    Migration of this Wiki is still pending.
 
-  
+      
+[//]: # (end-note)
 
-
-
----
 
 
 Overview

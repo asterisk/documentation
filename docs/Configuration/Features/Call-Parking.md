@@ -22,15 +22,12 @@ Before we move any further, there is one more rather important detail to address
 
 
 
----
+!!! note 
+    `res_parking` uses the configuration framework. If an invalid configuration is  supplied, `res_parking` will fail to load or fail to reload. Previously,  invalid configurations would generally be accepted, with certain errors  resulting in individually disabled parking lots.
 
-**Note:**   `res_parking` uses the configuration framework. If an invalid configuration is  supplied, `res_parking` will fail to load or fail to reload. Previously,  invalid configurations would generally be accepted, with certain errors  resulting in individually disabled parking lots.
+      
+[//]: # (end-note)
 
-  
-
-
-
----
 
 
 Now that we've covered all of that, let's look at some examples of how all this works.
@@ -98,10 +95,6 @@ findslot => next ; Configures the parking slot selection behavior. For this exam
 
 
 
----
-
-
-
 
 ---
 
@@ -122,10 +115,6 @@ parkcall => #72 ; Parks the call (one-step parking). For this example, a call wi
 
 
 ```
-
-
-
----
 
 
 
@@ -169,10 +158,6 @@ exten => 5555001,1,NoOp(Route to a local extension.)
 
 
 ```
-
-
-
----
 
 
 Basic Handling for Call Parking Timeouts
@@ -255,10 +240,6 @@ comebacktoorigin=yes ; Determines what should be done with a parked call if it i
 
 
 
----
-
-
-
 
 ---
 
@@ -279,10 +260,6 @@ parkcall => #72 ; Parks the call (one-step parking). For this example, a call wi
 
 
 ```
-
-
-
----
 
 
 
@@ -332,10 +309,6 @@ exten => t,1,NoOp(End of the line for a timed-out parked call.)
 
 
 ```
-
-
-
----
 
 
 Custom Handling for Call Parking Timeouts
@@ -415,10 +388,6 @@ comebackcontext=parkedcallstimeout ; The context that a parked call will be rout
 
 
 
----
-
-
-
 
 ---
 
@@ -439,10 +408,6 @@ parkcall => #72 ; Parks the call (one-step parking). For this example, a call wi
 
 
 ```
-
-
-
----
 
 
 
@@ -490,9 +455,5 @@ exten => s,1,NoOp(This is all that happens to parked calls if they time out.)
 
 
 ```
-
-
-
----
 
 

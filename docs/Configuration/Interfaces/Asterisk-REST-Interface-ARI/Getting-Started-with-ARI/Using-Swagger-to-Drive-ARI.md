@@ -42,10 +42,6 @@ password=peekaboo
 ```
 
 
-
----
-
-
  
 
 ![Getting Started with ARI](swagger-ui-screenshot.png)

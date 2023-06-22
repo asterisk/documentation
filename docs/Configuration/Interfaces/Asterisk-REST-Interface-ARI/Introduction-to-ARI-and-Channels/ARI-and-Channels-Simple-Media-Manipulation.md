@@ -30,17 +30,14 @@ On This Page 
 
 
 
----
+!!! tip Specify your own ID!** It is **highly
+    recommended that the `POST /channels/{channel_id}/play/{playback_id}` operation be used instead of the `POST /channels/{channel_id}/play` variant. Asterisk lives in an asynchronous world - which is the same world you and I live in. Sometimes, if things happen *very* quickly, you may get notifications over the WebSocket about things you have started before the HTTP response completes!
 
-**Tip: Specify your own ID!** It is **highly** recommended that the `POST /channels/{channel_id}/play/{playback_id}` operation be used instead of the `POST /channels/{channel_id}/play` variant. Asterisk lives in an asynchronous world - which is the same world you and I live in. Sometimes, if things happen *very* quickly, you may get notifications over the WebSocket about things you have started before the HTTP response completes!
+    When you specify your own ID, you have the ability to tie information coming from events back to whatever operation you initiated - if you so choose to. If you use the non-ID providing variant, Asterisk will happily generate a UUID for your `Playback` object - but then it is up to you to deal with whatever information comes back from the WebSocket.
 
-When you specify your own ID, you have the ability to tie information coming from events back to whatever operation you initiated - if you so choose to. If you use the non-ID providing variant, Asterisk will happily generate a UUID for your `Playback` object - but then it is up to you to deal with whatever information comes back from the WebSocket.
+      
+[//]: # (end-tip)
 
-  
-
-
-
----
 
 
 Early Media
@@ -82,10 +79,6 @@ truetextexten => 1000,1,NoOp()
 ```
 
 
-
----
-
-
 Python
 ------
 
@@ -111,10 +104,6 @@ truepy46 playback\_id = str(uuid.uuid4())
 ```
 
 
-
----
-
-
 Since this is a media operation and not *technically* a ringing indication, when we `answer` the channel, the tone playback will not stop! To stop playing back our French ringing tone, we issue a `stop` operation on the `playback` object. This actually maps to a [`DELETE /playbacks/{playback_id}`](/Asterisk+12+Playbacks+REST+API#Asterisk12PlaybacksRESTAPI-stop) operation.
 
 
@@ -136,10 +125,6 @@ truepy26 def answer\_channel(channel, playback):
  channel.answer()
 
 ```
-
-
-
----
 
 
 Once answered, we'll schedule another Python timer that will do the actual hanging up of the channel.
@@ -223,10 +208,6 @@ client.run(apps='channel-tones')
 ```
 
 
-
----
-
-
 ### channel-tones.py in action
 
 The following shows the output of the `channel-tones.js` script when a `PJSIP` channel for `alice` enters the application:
@@ -248,10 +229,6 @@ Hanging up channel PJSIP/alice-00000000
 Channel PJSIP/alice-00000000 just left our application
 
 ```
-
-
-
----
 
 
 JavaScript (Node.js)
@@ -283,10 +260,6 @@ timers[channel.id] = timer;
 
 
 ```
-
-
-
----
 
 
 Since this is a media operation and not *technically* a ringing indication, when we `answer` the channel, the tone playback will not stop! To stop playing back our French ringing tone, we issue a `stop` operation on the `playback` object. This actually maps to a [`DELETE /playbacks/{playback_id}`](/Asterisk+12+Playbacks+REST+API#Asterisk12PlaybacksRESTAPI-stop) operation. Notice that we use the fact that the answer callback closes on the original channel and playback variables to access them from the callback.
@@ -322,10 +295,6 @@ truejs33function answer() {
 ```
 
 
-
----
-
-
 Once answered, we'll schedule another timeout that will do the actual hanging up of the channel.
 
 ### channel-tones.js
@@ -338,14 +307,7 @@ The full source code for `channel-tones.js` is shown below:
 
 
 
----
-
-  
-channel-tones.js  
-
-
-```
-
+```javascript title="channel-tones.js" linenums="1"
 truejs/\*jshint node: true\*/
 'use strict';
 
@@ -426,10 +388,6 @@ function clientLoaded (err, client) {
 ```
 
 
-
----
-
-
 ### channel-tones.js in action
 
 The following shows the output of the `channel-tones.js` script when a `PJSIP` channel for `alice` enters the application:
@@ -468,10 +426,6 @@ truetextexten => 1000,1,NoOp()
 ```
 
 
-
----
-
-
 Python
 ------
 
@@ -494,10 +448,6 @@ truepy32  playback\_id = str(uuid.uuid4())
  playback.on\_event('PlaybackFinished', playback\_finished)
 
 ```
-
-
-
----
 
 
 Unfortunately, `ari-py` doesn't let us pass arbitrary data to a callback function in the same fashion as a Python timer. Nuts. Luckily, the `Playback` object has a property, `target_uri`, that tells us which object it just finished playing to. Using that, we can get the `channel` object back from Asterisk so we can hang it up.
@@ -524,10 +474,6 @@ truepy19 def playback\_finished(playback, ev):
  channel.hangup() 
 
 ```
-
-
-
----
 
 
 Note that unlike the `channel-tones.py` example, this application eschews the use of Python timers and simply responds to ARI events as they happen. This means we don't have to do much in our `StasisEnd` event, and we have to track less state.
@@ -595,10 +541,6 @@ client.run(apps='channel-playback-monkeys')
 ```
 
 
-
----
-
-
 ### channel-playback-monkeys.py in action
 
 The following shows the output of the `channel-playback-monkeys`.py script when a `PJSIP` channel for `alice` enters the application:
@@ -619,10 +561,6 @@ Monkeys successfully vanquished PJSIP/alice-00000000; hanging them up
 Channel PJSIP/alice-00000000 just left our application
 
 ```
-
-
-
----
 
 
 JavaScript (Node.js)
@@ -653,10 +591,6 @@ playback.on('PlaybackFinished', playbackFinished);
 ```
 
 
-
----
-
-
 Notice that we use the fact that the playbackFinished callback closes over the original channel variable to perform a hangup operation using that object directly.
 
 
@@ -682,10 +616,6 @@ truejs29function playbackFinished(event, completedPlayback) {
 }
 
 ```
-
-
-
----
 
 
 Note that unlike the `channel-tones.js` example, this application eschews the use of JavaScript timeouts and simply responds to ARI events as they happen. This means we don't have to do much in our `StasisEnd` event, and we have to track less state.
@@ -761,10 +691,6 @@ function clientLoaded (err, client) {
 ```
 
 
-
----
-
-
 ### channel-playback-monkeys.js in action
 
 The following shows the output of the `channel-playback-monkeys`.js script when a `PJSIP` channel for `alice` enters the application:
@@ -785,9 +711,5 @@ Monkeys successfully vanquished PJSIP/alice-00000000; hanging them up
 Channel PJSIP/alice-00000000 just left our application
 
 ```
-
-
-
----
 
 

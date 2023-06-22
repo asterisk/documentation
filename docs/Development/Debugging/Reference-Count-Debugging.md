@@ -30,10 +30,6 @@ astobj2.c: bad magic number for object 0xfb5230. Object is likely destroyed
 ```
 
 
-
----
-
-
  
 
 In such cases, its often very useful to determine what in Asterisk manipulated the reference count on the object. The `astobj2` API supports creating a reference count log for all objects managed by the API.
@@ -43,15 +39,12 @@ In all cases, when providing the **refs** file to Asterisk developers for debugg
 
 
 
----
+!!! note 
+    These instructions apply to Asterisk versions 11.10.0, 13.0.0 or greater.
 
-**Note:**  These instructions apply to Asterisk versions 11.10.0, 13.0.0 or greater.
+      
+[//]: # (end-note)
 
-  
-
-
-
----
 
 
 Enabling Reference Count Logs in Asterisk 14+
@@ -117,10 +110,6 @@ Options:
 ```
 
 
-
----
-
-
  
 
 Interpreting a Raw Reference Count Log
@@ -158,10 +147,6 @@ Each change in the reference count value of an `ao2` object will generate one li
 
 
 ```
-
-
-
----
 
 
 * The first column is the object address.

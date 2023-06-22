@@ -28,16 +28,12 @@ Please use this page as a template for your projects under the [Roadmap](/Develo
 
 
 
----
+!!! note 
+    Remove this section ("Description") for your project.
 
-**Note:**  
-Remove this section ("Description") for your project.
+      
+[//]: # (end-note)
 
-  
-
-
-
----
 
 
 Project Overview
@@ -63,17 +59,12 @@ If needed, break this section up into multiple subsections. Several subsection e
 
 
 
----
+!!! info ""
+    If sufficiently complex, subpages should be used to provide reference information. In particular, sufficiently large configuration schemas and detailed API descriptions may benefit from their own subpage.
 
+      
+[//]: # (end-info)
 
-**Information:**  
-If sufficiently complex, subpages should be used to provide reference information. In particular, sufficiently large configuration schemas and detailed API descriptions may benefit from their own subpage.
-
-  
-
-
-
----
 
 
 Use Cases
@@ -187,17 +178,12 @@ JIRA Issues
 
 
 
----
+!!! info ""
+    The configuration of Jira/Confluence still needs a few tweaks to show the issues in the macro below. --Matt
 
+      
+[//]: # (end-info)
 
-**Information:**  
-The configuration of Jira/Confluence still needs a few tweaks to show the issues in the macro below. --Matt
-
-  
-
-
-
----
 
 
 true

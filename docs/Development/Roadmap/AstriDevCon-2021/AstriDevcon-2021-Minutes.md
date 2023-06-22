@@ -149,225 +149,225 @@ Yitzchak Pachtman - Israel, NY Based IT MSP, Ast & FreePBX for 5 years (Pitzkey)
 + States that change may be reverted if it causes a regression
 
 * Major happens in standard
-* Test!!!
-* What other new policies should be added?
-+ “Out of Tree” Modules, package manager?
-+ Good discussion of providing a place for contributions to live without being official
+    * Test!!!
+    * What other new policies should be added?
+    + “Out of Tree” Modules, package manager?
+    + Good discussion of providing a place for contributions to live without being official
 
-* Should we have the option to deny improvements as well?
-+ Is changing a default an improvement?
-+ Could easily come with the same risks
+    * Should we have the option to deny improvements as well?
+    + Is changing a default an improvement?
+    + Could easily come with the same risks
 
-  
+      
 
 
-11:50 - G Joseph, Releases and numbering in flight
+    11:50 - G Joseph, Releases and numbering in flight
 
-* Going straight to 22?
-+ Tie to year and skip the last few years
+    * Going straight to 22?
+    + Tie to year and skip the last few years
 
-* Does it help or hurt having multiple LTS?
-+ Picking one branch for review before moving on
-+ LTS reliability?
-+ Is the stability due to LTS or because there were a number of stability improvements that occurred at the same time?
+    * Does it help or hurt having multiple LTS?
+    + Picking one branch for review before moving on
+    + LTS reliability?
+    + Is the stability due to LTS or because there were a number of stability improvements that occurred at the same time?
 
-  
+      
 
 
-12:10 - Joran, Codec Handling
+    12:10 - Joran, Codec Handling
 
-* Where did things land?
-+ Busy year from Sangoma Development
-+ Still in development
-+ E911 deadlines
-+ Is still on the list for development
+    * Where did things land?
+    + Busy year from Sangoma Development
+    + Still in development
+    + E911 deadlines
+    + Is still on the list for development
 
-  
+      
 
 
-12:20 - BJ, Question about SWP JIRAs (11321)
+    12:20 - BJ, Question about SWP JIRAs (11321)
 
-  
+      
 
 
-12:30 - Break for Lunch
+    12:30 - Break for Lunch
 
-  
+      
 
 
-2PM - Taco Talk
+    2PM - Taco Talk
 
-  
+      
 
 
-2:05 - Pascal, Audio quality issues with confbridge
+    2:05 - Pascal, Audio quality issues with confbridge
 
-* 1on1 Calls Google Chrome was compensating for packet loss
-* Initial determination is that compensation is usually done on the write side, but this is not possible after it has already been mixed
-* Jitter buffer would have to be set on the read side, or on the internal write
+    * 1on1 Calls Google Chrome was compensating for packet loss
+    * Initial determination is that compensation is usually done on the write side, but this is not possible after it has already been mixed
+    * Jitter buffer would have to be set on the read side, or on the internal write
 
-  
+      
 
 
-2:20 - J Colp, Atlassian move 
+    2:20 - J Colp, Atlassian move 
 
-* Force of move to cloud, not possible with asterisk community
-* Trouble tickets and wiki in particular
-* Possible move to github
-+ Well documented
-+ Makes movement easy
-+ Automated CLA
+    * Force of move to cloud, not possible with asterisk community
+    * Trouble tickets and wiki in particular
+    * Possible move to github
+    + Well documented
+    + Makes movement easy
+    + Automated CLA
 
-* Gitlab?
-* Wiki transition will require further research
-* Question on what to do with old, closed tickets after migration
-+ 30K, too many to move, but…
-+ Would be good to still have searching for definitive fixes
-+ How to move open tickets to the new system and have users mapped properly.
+    * Gitlab?
+    * Wiki transition will require further research
+    * Question on what to do with old, closed tickets after migration
+    + 30K, too many to move, but…
+    + Would be good to still have searching for definitive fixes
+    + How to move open tickets to the new system and have users mapped properly.
 
-* Bugzilla, Tuleap, explore other issue trackers
+    * Bugzilla, Tuleap, explore other issue trackers
 
-  
+      
 
 
-2:40 - J Colp, Working better in a cloud environment
+    2:40 - J Colp, Working better in a cloud environment
 
-* Off system storage (S3?)
-+ Scalable back-end storage
-+ Voicemail, call recording (URL playback&recording), MoH
-+ Could the new Speech methods help stream to off-box (if made sufficiently generic?)
+    * Off system storage (S3?)
+    + Scalable back-end storage
+    + Voicemail, call recording (URL playback&recording), MoH
+    + Could the new Speech methods help stream to off-box (if made sufficiently generic?)
 
-* Move to more ARI based solutions
-* Aggregate threat handling
-+ Is fail2ban enough?
-+ Run kamilio on same host as asterisk
+    * Move to more ARI based solutions
+    * Aggregate threat handling
+    + Is fail2ban enough?
+    + Run kamilio on same host as asterisk
 
-* Sharing asterisk database information between clusters
-+ State information is more complicated for a B2BUA than a proxy
-+ Limit over-use of astdb
+    * Sharing asterisk database information between clusters
+    + State information is more complicated for a B2BUA than a proxy
+    + Limit over-use of astdb
 
-* Distributed provisioning
-+ Mostly higher level
-+ Push configuration (ala pjsip?)
-+ Tools like ansible
+    * Distributed provisioning
+    + Mostly higher level
+    + Push configuration (ala pjsip?)
+    + Tools like ansible
 
-* Aggregate monitoring
-+ AMI, SIP OPTIONS
-+ Prometheus
-+ Look at bridges, channel counts, playback/recording
-+ Taskprocessor queues, open file handles, open ports
-+ Peers
-+ RTP / RTCP
-+ Error rates
+    * Aggregate monitoring
+    + AMI, SIP OPTIONS
+    + Prometheus
+    + Look at bridges, channel counts, playback/recording
+    + Taskprocessor queues, open file handles, open ports
+    + Peers
+    + RTP / RTCP
+    + Error rates
 
-  
+      
 
 
-3:30 - 15 minute break
+    3:30 - 15 minute break
 
-  
+      
 
 
-3:45 - M Bradeen, e911
+    3:45 - M Bradeen, e911
 
-* What are the actual requirements?
-+ Pidi flow additional headers (dynamic location in xml)
-+ Jloaction header
+    * What are the actual requirements?
+    + Pidi flow additional headers (dynamic location in xml)
+    + Jloaction header
 
-* NG 112 EU, similar to US
-* Add a dialplan app to check an IP against a known list and return location information
+    * NG 112 EU, similar to US
+    * Add a dialplan app to check an IP against a known list and return location information
 
-  
+      
 
 
-4PM - Joran, Multiple entities subscribing to an ARI application
+    4PM - Joran, Multiple entities subscribing to an ARI application
 
-* Ensure you always hit an application in case the stasis topic is not watched
-* Load balance or redundancy between registered applications.
+    * Ensure you always hit an application in case the stasis topic is not watched
+    * Load balance or redundancy between registered applications.
 
-  
+      
 
 
-4:05 - Yitzchak, Dynamic features in holding bridges (parked call) 
+    4:05 - Yitzchak, Dynamic features in holding bridges (parked call) 
 
-* Allow a caller to exit park to go to an operator, VM, etc.
-* Allow dynamic features, such as changing MoH
-* No DTMF receiver attached
-* Pull limited Queue functionality into parked calls
+    * Allow a caller to exit park to go to an operator, VM, etc.
+    * Allow dynamic features, such as changing MoH
+    * No DTMF receiver attached
+    * Pull limited Queue functionality into parked calls
 
-  
+      
 
 
-4:15 - Yitxchak, controlling MoH from another channel or AMI
+    4:15 - Yitxchak, controlling MoH from another channel or AMI
 
-* FreePBX using chanspy overlays announcement on MoH
-* Interrupting MoH can be done but then the other periodic announcements get unreliable.
+    * FreePBX using chanspy overlays announcement on MoH
+    * Interrupting MoH can be done but then the other periodic announcements get unreliable.
 
-  
+      
 
 
-4:20 - Joran, Timeouts on a Stasis application
+    4:20 - Joran, Timeouts on a Stasis application
 
-* To prevent a call hanging due to the application hanging.
-* Prefer to not to have to wait for SIP level timers.
+    * To prevent a call hanging due to the application hanging.
+    * Prefer to not to have to wait for SIP level timers.
 
-  
+      
 
 
-4:40 - J Colp, DDoS
+    4:40 - J Colp, DDoS
 
-* Rate limiting individual accounts
-* Pjsip global settings can help mitigate, blacklist past certain configurable parameters
-* Greylist registration, request second registration
-* Sliding scale of response, bigger fish requires more coverage and cost
+    * Rate limiting individual accounts
+    * Pjsip global settings can help mitigate, blacklist past certain configurable parameters
+    * Greylist registration, request second registration
+    * Sliding scale of response, bigger fish requires more coverage and cost
 
-  
+      
 
 
-5:05 - Sylvan, Asterisk 20(22)?
+    5:05 - Sylvan, Asterisk 20(22)?
 
-* E911 - pidi flow
-* Speech to text
-* Planning to come soon after Astricon
-* Wish list
-+ Making ARI more robust?
-+ AMR-WB?  Other codecs?
-+ MS teams?
+    * E911 - pidi flow
+    * Speech to text
+    * Planning to come soon after Astricon
+    * Wish list
+    + Making ARI more robust?
+    + AMR-WB?  Other codecs?
+    + MS teams?
 
-  
+      
 
 
-5:20 - M Cargile, Pre-join warning to conference (vs post-join)
+    5:20 - M Cargile, Pre-join warning to conference (vs post-join)
 
-* Alert existing participants before a caller joins
-* Work-arounds with connecting a local channel ahead of time, but would like to have it as an in-app option.
-* Patches welcome ;)
-* ARI all the things
+    * Alert existing participants before a caller joins
+    * Work-arounds with connecting a local channel ahead of time, but would like to have it as an in-app option.
+    * Patches welcome ;)
+    * ARI all the things
 
-  
+      
 
 
-5:25 - Torrey, Adding custom MIME body
+    5:25 - Torrey, Adding custom MIME body
 
-* Can be adapted from Pidi Flow work
+    * Can be adapted from Pidi Flow work
 
-  
+      
 
 
-5:30 - ARI ALL THE THINGS
+    5:30 - ARI ALL THE THINGS
 
-  
+      
 
 
-5:35 - Pitzkey final question, 
+    5:35 - Pitzkey final question, 
 
-* GoSUB loops to validate user
-* Place outgoing call to user getting variables from previous call
-+ Store in AGI script?
+    * GoSUB loops to validate user
+    * Place outgoing call to user getting variables from previous call
+    + Store in AGI script?
 
-  
+      
 
 
-5:50 - Wrap up!
+    5:50 - Wrap up!
 
-  
+      

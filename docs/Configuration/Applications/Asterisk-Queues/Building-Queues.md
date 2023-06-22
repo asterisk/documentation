@@ -12,15 +12,12 @@ Written by: Leif Madsen
 
 
 
----
+!!! note 
+    Note that this documentation is based on Asterisk 1.6.2, and this is just one approach to creating queues and the dialplan logic. You may create a better way, and in that case, I would encourage you to submit it to the Asterisk issue tracker at <https://github.com/asterisk/asterisk/issues> for inclusion in Asterisk.
 
-**Note:**  Note that this documentation is based on Asterisk 1.6.2, and this is just one approach to creating queues and the dialplan logic. You may create a better way, and in that case, I would encourage you to submit it to the Asterisk issue tracker at <https://github.com/asterisk/asterisk/issues> for inclusion in Asterisk.
+      
+[//]: # (end-note)
 
-  
-
-
-
----
 
 
 In this article, we'll look at setting up a pair of queues in Asterisk called 'sales' and 'support'. These queues can be logged into by queue members, and those members will also have the ability to pause and unpause themselves.
@@ -64,10 +61,6 @@ allow=ulaw
 ```
 
 
-
----
-
-
 What we're doing here is creating a [std-device] template and applying it to a pair of peers that we'll register as 0004f2040001 and 0004f2040002; our devices.
 
 Then our devices can register to Asterisk. In my case I have a hard phone and a soft phone registered. I can verify their connectivity by running 'sip show peers'.
@@ -93,10 +86,6 @@ Name/username Host Dyn Nat ACL Port Status
 ```
 
 
-
----
-
-
 ##### Configuring Device State
 
 Next, we need to configure our system to track the state of the devices. We do this by defining a 'hint' in the dialplan which creates the ability for a device subscription to be retained in memory. By default we can see there are no hints registered in our system by running the 'core show hints' command.
@@ -117,10 +106,6 @@ There are no registered dialplan hint
 
 
 ```
-
-
-
----
 
 
 We need to add the devices we're going to track to the extensions.conf file under the [default] context which is the default configuration in sip.conf, however we can change this to any context we want with the 'subscribecontext'  
@@ -145,10 +130,6 @@ exten => 0004f2040002,hint,SIP/0004f2040002
 
 
 ```
-
-
-
----
 
 
 Then perform a 'dialplan reload' in order to reload the dialplan.
@@ -178,10 +159,6 @@ After reloading our dialplan, you can see the status of the devices with 'core s
 ```
 
 
-
----
-
-
 At this point, create an extension that you can dial that will play a prompt that is long enough for you to go back to the Asterisk console to check the state of your device while it is in use.
 
 To do this, add the 555 extension to the [devices] context and make it playback the tt-monkeys file.
@@ -205,10 +182,6 @@ exten => 555,1,Playback(tt-monkeys)
 
 
 ```
-
-
-
----
 
 
 Dial that extension and then check the state of your device on the console.
@@ -238,10 +211,6 @@ Dial that extension and then check the state of your device on the console.
 
 
 ```
-
-
-
----
 
 
 Aha, we're not getting the device state correctly. There must be something else we need to configure.
@@ -278,10 +247,6 @@ callcounter=yes ; <-- add this
 ```
 
 
-
----
-
-
 Then reload chan\_sip with 'sip reload' and perform our 555 test again. Dial 555 and then check the device state with 'core show hints'.
 
 
@@ -309,10 +274,6 @@ Then reload chan\_sip with 'sip reload' and perform our 555 test again. Dial 555
 
 
 ```
-
-
-
----
 
 
 Note that now we have the correct device state when extension 555 is dialed, showing that our device is InUse after dialing extension 555. This is important when creating queues, otherwise our queue members would get multiple calls from the queues.
@@ -345,10 +306,6 @@ shared\_lastcall=no
 
 
 ```
-
-
-
----
 
 
 We can then define a [queue\_template] that we'll assign to each of the queues we create. These definitions can be overridden by each queue individually if you reassign them under the [sales] or [support] headers. So under the [general]  
@@ -385,10 +342,6 @@ ringinuse=no ; don't ring members when already InUse
 ```
 
 
-
----
-
-
 After defining our queues, lets reload our app\_queue.so module.
 
 
@@ -409,10 +362,6 @@ After defining our queues, lets reload our app\_queue.so module.
 
 
 ```
-
-
-
----
 
 
 Then verify our queues loaded with 'queue show'.
@@ -441,10 +390,6 @@ sales has 0 calls (max unlimited) in 'rrmemory' strategy (0s holdtime, 0s talkti
 ```
 
 
-
----
-
-
 ##### Adding Queue Members
 
 You'll notice that we have no queue members available to take calls from the queues. We can add queue members from the Asterisk CLI with the 'queue add member' command.
@@ -469,10 +414,6 @@ Usage: queue add member <channel> to <queue> [[[penalty <penalty>] as <membernam
 ```
 
 
-
----
-
-
 The penalty, membername, and state\_interface are all optional values. Special attention should be brought to the 'state\_interface' option for a member though. The reason for state\_interface is that if you're using a channel that does not have device state itself (for example, if you were using the Local channel to deliver a call to an end point) then you could assign the device state of a SIP device to the pseudo channel. This allows the state of a SIP device to be applied to the Local channel for correct device state information.
 
 Lets add our device located at SIP/0004f2040001
@@ -493,10 +434,6 @@ Added interface 'SIP/0004f2040001' to queue 'sales'
 
 
 ```
-
-
-
----
 
 
 Then lets verify our member was indeed added.
@@ -520,10 +457,6 @@ sales has 0 calls (max unlimited) in 'rrmemory' strategy (0s holdtime, 0s talkti
 
 
 ```
-
-
-
----
 
 
 Now, if we dial our 555 extension, we should see that our member becomes InUse within the queue.
@@ -554,10 +487,6 @@ sales has 0 calls (max unlimited) in 'rrmemory' strategy (0s holdtime, 0s talkti
 ```
 
 
-
----
-
-
 We can also remove our members from the queue using the 'queue remove' CLI command.
 
 
@@ -576,10 +505,6 @@ Removed interface 'SIP/0004f2040001' from queue 'sales'
 
 
 ```
-
-
-
----
 
 
 Because we don't want to have to add queue members manually from the CLI, we should create a method that allows queue members to login and out from their devices. We'll do that in the next section.
@@ -611,10 +536,6 @@ exten => 101,1,Queue(support)
 ```
 
 
-
----
-
-
 Then reload the dialplan, and try calling extension 100 from SIP/0004f2040002, which is the device we have not logged into the queue.
 
 
@@ -632,10 +553,6 @@ Then reload the dialplan, and try calling extension 100 from SIP/0004f2040002, w
 
 
 ```
-
-
-
----
 
 
 And now we call the queue at extension 100 which will ring our device at SIP/0004f2040001.
@@ -659,10 +576,6 @@ And now we call the queue at extension 100 which will ring our device at SIP/000
 
 
 ```
-
-
-
----
 
 
 We can see the device state has changed to Ringing while the device is ringing.
@@ -689,10 +602,6 @@ sales has 1 calls (max unlimited) in 'rrmemory' strategy (2s holdtime, 3s talkti
 ```
 
 
-
----
-
-
 Our queue member then answers the phone.
 
 
@@ -712,10 +621,6 @@ Our queue member then answers the phone.
 
 
 ```
-
-
-
----
 
 
 And we can see the queue member is now in use.
@@ -741,10 +646,6 @@ sales has 0 calls (max unlimited) in 'rrmemory' strategy (3s holdtime, 3s talkti
 ```
 
 
-
----
-
-
 Then the call is hung up.
 
 
@@ -762,10 +663,6 @@ Then the call is hung up.
 
 
 ```
-
-
-
----
 
 
 And we see that our queue member is available to take another call.
@@ -789,10 +686,6 @@ sales has 0 calls (max unlimited) in 'rrmemory' strategy (3s holdtime, 4s talkti
 
 
 ```
-
-
-
----
 
 
 ##### Logging In and Out of Queues
@@ -833,10 +726,6 @@ exten => invalid\_queue,n,Hangup()
 ```
 
 
-
----
-
-
 The [globals](/globals) section contains the following two global variables.
 
 
@@ -858,10 +747,6 @@ QUEUE\_101=support
 ```
 
 
-
----
-
-
 So when we dial extension 100, it matches our pattern \_1XX. The number we dialed (100) is then retrievable via ${EXTEN} and we can get the name of queue 100 (sales) from the global variable QUEUE\_100. We then assign it to the channel variable thisQueue so it is easier to work with in our dialplan.
 
 
@@ -881,10 +766,6 @@ exten => \_1XX,n,Set(thisQueue=${GLOBAL(QUEUE\_${EXTEN})})
 ```
 
 
-
----
-
-
 We then check to see if we've gotten a value back from the global variable which would indicate whether the queue was valid or not.
 
 
@@ -902,10 +783,6 @@ exten => \_1XX,n,GotoIf($["${thisQueue}" = ""]?invalid\_queue,1)
 
 
 ```
-
-
-
----
 
 
 If ${thisQueue} returns nothing, then we Goto the invalid\_queue extension and playback the 'invalid' file.
@@ -933,10 +810,6 @@ exten => \_\*10[0-1],n,Goto(queueLoginLogout,member\_check,1) ; check if already
 
 
 ```
-
-
-
----
 
 
 We save the value of ${EXTEN:1} to the 'xtn' channel variable so we don't need to keep typing the complicated pattern match.
@@ -972,10 +845,6 @@ exten => member\_check,n,GotoIf($["${queueMembers}" = ""]?q\_login,1) ; short ci
 ```
 
 
-
----
-
-
 At this point if there are no members currently logged into our sales queue, we then short-circuit our dialplan to go to the 'q\_login' extension since there is no point in wasting cycles searching to see if we're already logged in.
 
 The next step is to finish initializing some values we need within the While() loop that we'll use to check if we're already logged into the queue. We set our ${field} variable to 1, which will be used as the field number offset in the CUT() function.
@@ -1001,10 +870,6 @@ exten => member\_check,n,Set(thisQueueMember=${CUT(queueMembers,\,,${field})}) ;
 ```
 
 
-
----
-
-
 Now we get to enter our While() loop to determine if we're already logged in.
 
 
@@ -1023,10 +888,6 @@ exten => member\_check,n,While($[${EXISTS(${thisQueueMember})}]) ; while we have
 
 
 ```
-
-
-
----
 
 
 This is where we check to see if the member at this position of the list is the same as the device we're calling from. If it doesn't match, then we go to the 'check\_next' priority label (where we increase our ${field} counter variable). If it does match, then we continue on in the dialplan.
@@ -1051,10 +912,6 @@ exten => member\_check,n,GotoIf($["${thisQueueMember}" != "${thisActiveMember}"]
 ```
 
 
-
----
-
-
 If we continued on in the dialplan, then we set the ${logged\_in} channel variable to '1' which represents we're already logged into this queue. We then exit the While() loop with the ExitWhile() dialplan application.
 
 
@@ -1073,10 +930,6 @@ exten => member\_check,n,ExitWhile() ; then exit our loop
 
 
 ```
-
-
-
----
 
 
 If we didn't match this peer name in the list, then we increase our ${field} counter variable by one, update the ${thisQueueMember} channel variable and then move back to the top of the loop for another round of checks.
@@ -1100,10 +953,6 @@ exten => member\_check,n,EndWhile() ; ...end of our loop
 ```
 
 
-
----
-
-
 And once we exit our loop, we determine whether we need to log our device in or out of the queue.
 
 
@@ -1122,10 +971,6 @@ exten => member\_check,n,GotoIf($[${logged\_in} = 0]?q\_login,1:q\_logout,1) ; i
 
 
 ```
-
-
-
----
 
 
 The following two extensions are used to either log the device in or out of the queue. We use the AddQueueMember() and RemovQueueMember() applications to login or logout the device from the queue.
@@ -1165,10 +1010,6 @@ exten => q\_logout,n,Hangup()
 ```
 
 
-
----
-
-
 And that's it! Give it a shot and you should see console output similar to the following which will login and logout your queue members to the queues you've configured.
 
 You can see there are already a couple of queue members logged into the sales queue.
@@ -1193,10 +1034,6 @@ sales has 0 calls (max unlimited) in 'rrmemory' strategy (3s holdtime, 4s talkti
 
 
 ```
-
-
-
----
 
 
 Then we dial \*100 to logout the active device from the sales queue.
@@ -1247,10 +1084,6 @@ Then we dial \*100 to logout the active device from the sales queue.
 ```
 
 
-
----
-
-
 And we can see that the device we loggd out by running 'queue show sales'.
 
 
@@ -1272,10 +1105,6 @@ sales has 0 calls (max unlimited) in 'rrmemory' strategy (3s holdtime, 4s talkti
 
 
 ```
-
-
-
----
 
 
 ##### Pausing and Unpausing Members of Queues
@@ -1306,10 +1135,6 @@ sales has 0 calls (max unlimited) in 'rrmemory' strategy (0s holdtime, 0s talkti
 ```
 
 
-
----
-
-
 We can then pause our devices with 'queue pause' which has the following format.
 
 
@@ -1332,10 +1157,6 @@ Usage: queue {pause|unpause} member <member> [queue <queue> [reason <reason>]]
 ```
 
 
-
----
-
-
 Lets pause device 0004f2040001 in the sales queue by executing the following.
 
 
@@ -1354,10 +1175,6 @@ paused interface 'SIP/0004f2040001' in queue 'sales' for reason 'lunch'
 
 
 ```
-
-
-
----
 
 
 And we can see they are paused with 'queue show sales'.
@@ -1384,10 +1201,6 @@ sales has 0 calls (max unlimited) in 'rrmemory' strategy (0s holdtime, 0s talkti
 ```
 
 
-
----
-
-
 At this point the queue member will no longer receive calls from the system. We can unpause them with the CLI command 'queue unpause member'.
 
 
@@ -1408,10 +1221,6 @@ unpaused interface 'SIP/0004f2040001' in queue 'sales'
 ```
 
 
-
----
-
-
 And if you don't specify a queue, it will pause or unpause from all queues.
 
 
@@ -1430,10 +1239,6 @@ paused interface 'SIP/0004f2040001'
 
 
 ```
-
-
-
----
 
 
 Of course we want to allow the agents to pause and unpause themselves from their devices, so we need to create an extension and some dialplan logic for that to happen.
@@ -1470,10 +1275,6 @@ exten => \_\*0[01]!,n,GotoIf($[${ISNULL(${thisQueue})} & ${EXISTS(${xtn})}]?inva
 ```
 
 
-
----
-
-
 The following line will determine if we're trying to pause or unpause. This is done by taking the value dialed (e.g. \*00100) and chopping off the first 2 digits which leaves us with 0100, and then the :1 will return the next digit, which in this case is '0' that we're using to signify that the queue member wants to be paused (in queue 100).
 
 So we're doing the following with our EXTEN variable.
@@ -1494,10 +1295,6 @@ offset ^ ^ length
 
 
 ```
-
-
-
----
 
 
 Which causes the following.
@@ -1524,10 +1321,6 @@ Which causes the following.
 
 
 
----
-
-
-
 
 ---
 
@@ -1542,10 +1335,6 @@ exten => \_\*0[01]!,n,GotoIf($[${EXTEN:2:1} = 0]?pause,1:unpause,1) ; determine 
 
 
 ```
-
-
-
----
 
 
 The following two extensions, pause & unpause, are used for pausing and unpausing our extension from the queue(s). We use the PauseQueueMember() and UnpauseQueueMember() dialplan applications which accept the queue name (optional) and the queue member name. If the queue name is not provided, then it is assumed we want to pause or unpause from all logged in queues.
@@ -1569,10 +1358,6 @@ exten => unpause,n,UnpauseQueueMember(${thisQueue},SIP/${CHANNEL(peername)}) ; i
 
 
 ```
-
-
-
----
 
 
 Once we've unpaused ourselves, we use GoSub() to perform some common dialplan logic that is used for pausing and unpausing. We pass three arguments to the subroutine:
@@ -1601,10 +1386,6 @@ exten => unpause,n,Hangup()
 ```
 
 
-
----
-
-
 And the same method is done for pausing.
 
 
@@ -1626,10 +1407,6 @@ exten => pause,n,Hangup()
 
 
 ```
-
-
-
----
 
 
 Lets explore what happens in the subroutine we're using for pausing and unpausing.
@@ -1658,10 +1435,6 @@ exten => start,n,Playback(silence/1) ; answer line with silence
 ```
 
 
-
----
-
-
 The following line is probably the most complex. We're using the IF() function inside the Playback() application which determines which file to playback to the user.
 
 Those three values we passed in from the pause and unpause extensions could have been something like:
@@ -1675,22 +1448,11 @@ So when expanded, we'd end up with the following inside the IF() function.
 
 
 
----
-
-  
-  
-
-
-```
-
+```bash title=" " linenums="1"
 $["${PQMSTATUS}" = "PAUSED"]?unavailable:not-yet-connected
 
 
 ```
-
-
-
----
 
 
 ${PQMSTATUS} would then be expanded further to contain the status of our PauseQueueMember() dialplan application, which could either be PAUSED or NOTFOUND. So if ${PQMSTATUS} returned PAUSED, then it would match what we're looking to match on, and we'd then return 'unavailable' to Playback() that would tell the user they are now unavailable.
@@ -1719,10 +1481,6 @@ exten => start,n,Playback(${IF($["${${ARG1}}" = "${ARG2}"]?${ARG3}:not-yet-conne
 ```
 
 
-
----
-
-
 If ${xtn} is null, then we just go to the end of the subroutine, but if it isn't then we will play back "in the queue" followed by the queue extension number indicating which queue they were (un)paused from.
 
 
@@ -1743,10 +1501,6 @@ exten => start,n(end),Return() ; return from were we came
 
 
 ```
-
-
-
----
 
 
 ##### Queue Variables
@@ -1771,10 +1525,6 @@ exten => show\_variables,1,NoOp()
  same => n,Hangup()
 
 ```
-
-
-
----
 
 
 Note, QUEUE\_VARIABLES needs to be called with a valid queue name, and prior to calling the other queue variable functions in order to ensure retrieval of the correctly associated values for a given queue.

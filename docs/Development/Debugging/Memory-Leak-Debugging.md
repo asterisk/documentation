@@ -10,15 +10,12 @@ If Asterisk developers suspect that you have a memory leak then you will be aske
 
 
 
----
+!!! tip 
+    Follow the instructions here and all linked instructions closely to speed up the debugging process.
 
-**Tip:**  Follow the instructions here and all linked instructions closely to speed up the debugging process.
+      
+[//]: # (end-tip)
 
-  
-
-
-
----
 
 
  

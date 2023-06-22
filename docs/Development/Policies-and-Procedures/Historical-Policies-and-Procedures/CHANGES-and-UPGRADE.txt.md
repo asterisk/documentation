@@ -39,20 +39,13 @@ res\_rtp\_relevant\_title.txt
 
 
 
----
 
+!!! note 
+    These files must be ".txt" files in order to be parsed. The only exception to this is the README.md file, which should never be modified or removed.
 
+      
+[//]: # (end-note)
 
-
----
-
-**Note:**  These files must be ".txt" files in order to be parsed. The only exception to this is the README.md file, which should never be modified or removed.
-
-  
-
-
-
----
 
 
 Inside of one of these files (say, the first one), it should follow the format of subject lines, headers, blank line, then a description of the change. It could look something like this:
@@ -79,10 +72,6 @@ But you get the idea!
 ```
 
 
-
----
-
-
  
 
  
@@ -90,15 +79,12 @@ But you get the idea!
 
 
 
----
+!!! note 
+    The "Subject: res\_pjsip" line is considered a special header and is case sensitive. This is what the script uses to determine what goes where and what content belongs to. Other headers can be added in the future this way, following the subject header.
 
-**Note:**  The "Subject: res\_pjsip" line is considered a special header and is case sensitive. This is what the script uses to determine what goes where and what content belongs to. Other headers can be added in the future this way, following the subject header.
+      
+[//]: # (end-note)
 
-  
-
-
-
----
 
 
 Viola! That's all there is to it. One thing to note is that changes will be sorted alphabetically, and then sorted by commit timestamp (in epoch). The reasoning will be explained below.
@@ -130,21 +116,13 @@ A master only change!
 
 
 
----
 
+!!! info ""
+    The value for "Master-Only" can be "True" or "true", but will NEVER be false. This header should only be present in the master branch and is used to distinguish between the other changes that build up over time from other release branches.
 
+      
+[//]: # (end-info)
 
-
----
-
-
-**Information:**  The value for "Master-Only" can be "True" or "true", but will NEVER be false. This header should only be present in the master branch and is used to distinguish between the other changes that build up over time from other release branches.
-
-  
-
-
-
----
 
 
 These changes will be separated into a different storage structure and added BEFORE the other changes, so that the new stuff is seen first!

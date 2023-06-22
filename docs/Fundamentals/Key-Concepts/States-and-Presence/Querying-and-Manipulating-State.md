@@ -32,10 +32,6 @@ devstate list -- List currently known custom device states
 ```
 
 
-
----
-
-
 On this Page
 
 
@@ -67,10 +63,6 @@ myserver\*CLI> core show hints
 ```
 
 
-
----
-
-
 Presence State
 ==============
 
@@ -94,10 +86,6 @@ presencestate change -- Change a custom presence state
 presencestate list -- List currently know custom presence states
 
 ```
-
-
-
----
 
 
  

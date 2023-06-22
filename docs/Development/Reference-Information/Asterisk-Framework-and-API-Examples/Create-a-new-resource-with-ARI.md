@@ -15,14 +15,7 @@ These API declarations are documented using [Swagger](https://developers.hellor
 
 
 
----
-
-  
-fizzbuzz.json  
-
-
-```
-
+```json title="fizzbuzz.json" linenums="1"
 truejstrue{
  "\_copyright": "Copyright (C) 2013, Digium, Inc.",
  "\_author": "David M. Lee, II <dlee@digium.com>",
@@ -70,10 +63,6 @@ truejstrue{
 ```
 
 
-
----
-
-
 Add it to `resources.json`
 ==========================
 
@@ -109,10 +98,6 @@ diffIndex: rest-api/resources.json
 ```
 
 
-
----
-
-
 Generate the code
 =================
 
@@ -121,28 +106,18 @@ The API declarations are used to generate much of the boilerplate code in Asteri
 
 
 
----
+!!! note 
+    The code generator requires [Pystache](https://pypi.python.org/pypi/pystache), which can be installed using `pip install pystache`.
 
-**Note:**  The code generator requires [Pystache](https://pypi.python.org/pypi/pystache), which can be installed using `pip install pystache`.
-
-  
-
-
-
----
+      
+[//]: # (end-note)
 
 
 
 
----
 
-  
-  
-
-
-```
-
-bash$ make ari-stubs
+```bash title=" " linenums="1"
+$ make ari-stubs
 /usr/bin/python rest-api-templates/make\_ari\_stubs.py \
  rest-api/resources.json .
 Writing ./doc/rest-api/Asterisk 12 Fizzbuzz REST API.wiki
@@ -152,10 +127,6 @@ Writing ./res/ari/resource\_fizzbuzz.c
 Writing ./res/ari.make
 
 ```
-
-
-
----
 
 
 Implement the API
@@ -210,10 +181,6 @@ truecppvoid ast\_ari\_fizzbuzz(struct ast\_variable \*headers,
 }
 
 ```
-
-
-
----
 
 
 Recommended practices

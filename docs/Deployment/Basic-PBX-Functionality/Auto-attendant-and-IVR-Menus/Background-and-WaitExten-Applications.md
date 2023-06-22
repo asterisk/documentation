@@ -11,14 +11,10 @@ The Background() application takes the name of the sound prompt as the first par
 
 
 
----
+!!! tip Multiple Prompts
+    If you have multiple prompts you'd like to play during the Background() application, simply concatenate them together with the ampersand (&) character, like this:
+[//]: # (end-tip)
 
-**Tip: Multiple Prompts** If you have multiple prompts you'd like to play during the Background() application, simply concatenate them together with the ampersand (&) character, like this:
-
-
-
-
----
 
   
   
@@ -38,25 +34,13 @@ javascriptexten => 6123,1,Background(prompt1&prompt2&prompt3)
 ```
 
 
-
-
----
-
-
 One problems you may encounter with the **Background()** application is that you may want Asterisk to wait a few more seconds after playing the sound prompt. In order to do this, you can call the **WaitExten()** application. You'll usually see the **WaitExten()** application called immediately after the **Background()** application. The first parameter to the **WaitExten()** application is the number of seconds to wait for the caller to enter an extension. If you don't supply the first parameter, Asterisk will use the built-in response timeout (which can be modified with the **TIMEOUT()** dialplan function).
 
 
 
 
----
-
-  
-  
-
-
-```
-
-javascript[auto\_attendant]
+```javascript title=" " linenums="1"
+[auto\_attendant]
 exten => start,1,Verbose(2,Incoming call from ${CALLERID(all)})
  same => n,Playback(silence/1)
  same => n,Background(prompt1&prompt2&prompt3)
@@ -69,9 +53,5 @@ exten => timeout-handler,1)
  same => n,Hangup()
 
 ```
-
-
-
----
 
 

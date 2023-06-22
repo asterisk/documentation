@@ -43,10 +43,6 @@ struct ast\_sip\_subscription {
 ```
 
 
-
----
-
-
 With the division between real and virtual subscriptions, it makes no sense for virtual subscriptions to have a pointer to a `pjsip_evsub`. Instead, having a pointer to the parent subscription makes much more sense. Real subscriptions should still have a pointer to the PJSIP subscription, though. A union works well for this. Given the tree-like structure of `ast_sip_subscription`, appropriate fields need to be added to support this. As a final change, since users of the pubsub API will need access to the data, the name of the subscribed resource will need to be added to the structure.
 
 
@@ -83,10 +79,6 @@ struct ast\_sip\_subscription {
 ```
 
 
-
----
-
-
 General API changes
 ===================
 
@@ -107,10 +99,6 @@ pjsip\_evsub \*ast\_sip\_subscription\_get\_evsub(struct ast\_sip\_subscription 
 pjsip\_dialog \*ast\_sip\_subscription\_get\_dlg(struct ast\_sip\_subscription \*sub);
 
 ```
-
-
-
----
 
 
 Those two functions assume that the subscription has a corresponding PJSIP subscription. However, users of the pubsub API can no longer make such an assumption since the subscription they interact with may be virtual. The main uses of these two functions by subscription handlers were as follows:
@@ -163,10 +151,6 @@ void ast\_sip\_subscription\_terminate(struct ast\_sip\_subscripiton \*sub);
 ```
 
 
-
----
-
-
 You'll notice that there is no function to get the current subscription state. This is because state can be determined by the core pubsub API in most cases or can be determined based on the operation being performed. For instance, if `ast_sip_subscription_terminate` is called by a notifier, then the pubsub core will rightly set the subscription state as "terminated".
 
 Subscriber-side API additions will be required in addition, but those changes are being saved for the larger-scale [Outbound Subscriptions](/Development/Roadmap/Asterisk-13-Projects/Resource-List-Subscriptions) task to be accomplished later.
@@ -197,10 +181,6 @@ struct ast\_sip\_subscription\_handler {
 };
 
 ```
-
-
-
----
 
 
 All of these currently contain a `pjsip_rx_data` structure as a parameter. A notifier no longer can can operate on a `pjsip_rx_data` structure since the subscription as a whole may not pertain to the list member that the notifier is handling. In practice, a notifier should never need an entire SIP request to operate on; they care about the resource that is being subscribed to. Given that notifiers will not be directly responding to SIP requests, it means that the API can be made easier to use for notifiers. Also, since edits are being made in this area, a long-standing personal desire to separate subscribers and notifiers can be done here.
@@ -240,10 +220,6 @@ const char \*ast\_sip\_subscription\_get\_resource\_name(struct ast\_sip\_subscr
 ```
 
 
-
----
-
-
 The biggest change is the one being made to the `new_subscribe` callback. Previously, this callback required the notifier to respond to the SIP SUBSCRIBE, then create an `ast_sip_subscription` structure, send an initial NOTIFY request, and then return the created `ast_sip_subscription`. The callback has been simplified greatly. Now, the notifier returns a response code for the pubsub core to send in response to the SUBSCRIBE request. If the response is a 200-class response, then the pubsub core will create the `ast_sip_subscription` itself, then immediately call back into the notifier with the `notify_required` callback in order to send the initial NOTIFY. At first, this appears to give a disadvantage over the previous version since the notifier will not have access to the `ast_sip_subscription` structure in the `new_subscribe` callback. However, since the `notify_required` callback is guranteed to be immediately called into with `AST_SIP_SUBSCRIPTION_NOTIFY_REASON_STARTED` as the reason, the notifier can use that opportunity to do anything that requires the subscription, such as setting up the underlying stasis subscription or adding datastores.
 
 The `notify_required` callback tells the notifier that it needs to generate a NOTIFY. The reason lets the notifier know why the NOTIFY is needed. Because one of the reasons is `AST_SIP_SUBSCRIPTION_NOTIFY_REASON_TERMINATED` there is no reason to have a separate `subscription_terminated` callback for notifiers.
@@ -279,10 +255,6 @@ struct ast\_sip\_subscription\_handler {
 ```
 
 
-
----
-
-
 Here is the revised version:
 
 
@@ -306,10 +278,6 @@ struct ast\_sip\_subscriber {
 }
 
 ```
-
-
-
----
 
 
 `ast_sip_create_subscription` is now only used by subscribers; notifiers have no need to create subscriptions themselves. As such, in addition to creating the `ast_sip_subscription` structure, it will also send out the initial SUBSCRIBE request to the specified resource at the specified endpoint.
@@ -341,10 +309,6 @@ struct ast\_sip\_publication\_handler {
 struct ast\_sip\_publication \*ast\_sip\_create\_publication(struct ast\_sip\_endpoint \*endpoint, pjsip\_rx\_data \*rdata);
 
 ```
-
-
-
----
 
 
 Here is the revised edition:
@@ -379,10 +343,6 @@ struct ast\_sip\_publication\_handler {
 const char \*ast\_sip\_publish\_get\_resource(struct ast\_sip\_publication \*pub);
 
 ```
-
-
-
----
 
 
 Like with the notifier, the `new_publication` callback is being simplified just to be an indicator if the PUBLISH should be accepted or not. The pubsub core will take care of creating the publication and will then immediately call into the `publication_state_change` callback to relay the actual PUBLISH body to the handler. `publish_refresh` and `publish_termination` are not needed since the `publication_state_change` covers their functionality.

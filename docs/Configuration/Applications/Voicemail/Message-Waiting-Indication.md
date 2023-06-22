@@ -42,15 +42,12 @@ Depending on your Asterisk version and configuration, there are a few different 
 
 
 
----
+!!! note **  **res\_pjsip
+    : The functionality for outbound SIP subscription is not available in res\_pjsip yet. Internal infrastructure is built that would allow it, so if this is something you want to work on, please contact the [Asterisk development community](http://www.asterisk.org/community/discuss).
 
-**Note:**  **res\_pjsip**: The functionality for outbound SIP subscription is not available in res\_pjsip yet. Internal infrastructure is built that would allow it, so if this is something you want to work on, please contact the [Asterisk development community](http://www.asterisk.org/community/discuss).
+      
+[//]: # (end-note)
 
-  
-
-
-
----
 
 
 Outbound MWI subscription with chan\_sip
@@ -83,10 +80,6 @@ Asterisk can subscribe to receive MWI from another SIP server and store it local
 ```
 
 
-
----
-
-
 MWI received will be stored in the 1234 mailbox of the SIP\_Remote context. It can be used by other phones by setting their SIP peers "mailbox" option to the <mailbox\_number>@SIP\_Remote. e.g. mailbox=1234@SIP\_Remote
 
 Reception of unsolicited MWI NOTIFY with chan\_sip
@@ -111,10 +104,6 @@ A chan\_sip peer can be configured to receive unsolicited MWI NOTIFY messages an
 ```
 
 
-
----
-
-
 If the remote SIP server sends an unsolicited MWI NOTIFY message the new/old message count will be stored in the configured virtual mailbox. It can be used by any device supporting MWI by specifying mailbox=<configured value>@SIP\_Remote as the mailbox for the desired SIP peer.
 
 res\_external\_mwi
@@ -129,16 +118,12 @@ External sources can use the API provided by res\_external\_mwi to communicate M
 
 
 
----
+!!! warning 
+    res\_external\_mwi.so is mutually exclusive with app\_voicemail.so. You'll have to load only the one you want to use.
 
-**WARNING!:**   
-res\_external\_mwi.so is mutually exclusive with app\_voicemail.so. You'll have to load only the one you want to use.
+      
+[//]: # (end-warning)
 
-  
-
-
-
----
 
 
 chan\_pjsip

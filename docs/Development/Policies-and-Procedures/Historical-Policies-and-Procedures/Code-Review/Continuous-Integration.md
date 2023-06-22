@@ -33,15 +33,12 @@ The Zuul server monitors events from Gerrit and, if an event matches a configure
 
 
 
----
+!!! note 
+    The Zuul server actually lives on [gerrit.asterisk.org](https://gerrit.asterisk.org), due to some quirks with its underlying SSH library and to ensure that it has the best connection possible back to the Gerrit instance.
 
-**Note:**  The Zuul server actually lives on [gerrit.asterisk.org](https://gerrit.asterisk.org), due to some quirks with its underlying SSH library and to ensure that it has the best connection possible back to the Gerrit instance.
+      
+[//]: # (end-note)
 
-  
-
-
-
----
 
 
 ### Zuul Merger

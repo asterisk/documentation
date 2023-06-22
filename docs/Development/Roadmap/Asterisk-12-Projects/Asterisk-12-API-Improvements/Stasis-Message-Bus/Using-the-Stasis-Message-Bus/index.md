@@ -63,10 +63,6 @@ static int unload\_module(void)
 ```
 
 
-
----
-
-
 For every message that's published to the `ast_channel_topic_all()` topic, the `statsmake()` callback will be invoked with the data pointer given in the subscription, the subscription being dispatched, the topic the message was originally published to (useful when messages are forwarded between topics), and, finally, the message itself.
 
 You have some really strong guarantees about how the messages get dispatched to your callback.
@@ -114,10 +110,6 @@ static void statsmaker(void \*data, struct stasis\_subscription \*sub,
 }
 
 ```
-
-
-
----
 
 
 When you unsubscribe from a topic, messages are still being dispatched to the callback. You need to wait until the final message has been processed before you can dispose of the data pointer given to the subscription.
@@ -182,10 +174,6 @@ static int unload\_module(void)
 }
 
 ```
-
-
-
----
 
 
 Messages are dispatched to the router with the same guarantees as a regular subscription. The difference is that you can provide a different callback for every message type that you're interested in. You can also add a default route, which is useful for handling miscellaneous messages, such as the final message.

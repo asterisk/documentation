@@ -30,10 +30,6 @@ Usage: channel request hangup <channel>|<all>
 ```
 
 
-
----
-
-
 An example:
 
 
@@ -57,10 +53,6 @@ Requested Hangup on channel 'SIP/6001-00000001'
 [May 2 09:51:19] WARNING[7045][C-00000001]: app\_playback.c:493 playback\_exec: Playback failed on SIP/6001-00000001 for demo-congrats
 
 ```
-
-
-
----
 
 
 Here I made a call to an extension calling Playback, then from the CLI I requested that the established channel be hung up. You can see that it hung up in the middle of playing a sound file, so that sound file fails to continue playing.
@@ -98,10 +90,6 @@ used. If no extension is given, the 's' extension will be used.
 ```
 
 
-
----
-
-
 An example:
 
 
@@ -128,10 +116,6 @@ newtonr-laptop\*CLI> channel originate SIP/6001 extension 9999@somecontext
 ```
 
 
-
----
-
-
 We originated a call to the chan\_sip peer 6001 in this case. The extension parameter tells it what extension to connect that channel to once the channel answers. In this case we connect it to an extension calling VoiceMailMain.
 
 channel redirect
@@ -154,10 +138,6 @@ Usage: channel redirect <channel> <[[context,]exten,]priority>
  Redirect an active channel to a specified extension.
 
 ```
-
-
-
----
 
 
 An example:
@@ -183,10 +163,6 @@ Channel 'SIP/6001-00000005' successfully redirected to somecontext,9999,1
  -- <SIP/6001-00000005> Playing 'vm-login.gsm' (language 'en')
 
 ```
-
-
-
----
 
 
 Here we make a call from SIP/6001 to a 100@from-internal, which results in a call to Playback. After the call is established, we issue a 'channel redirect' to redirect that channel to the extension 9999 in the context 'somecontext'. It is immediately placed into that extension and we hear the VoicemailMain prompt.

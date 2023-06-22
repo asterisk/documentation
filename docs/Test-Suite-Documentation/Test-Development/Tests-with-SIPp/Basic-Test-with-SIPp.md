@@ -60,10 +60,6 @@ SIPp Scenario
 ```
 
 
-
----
-
-
 Asterisk Configuration
 ----------------------
 
@@ -93,10 +89,6 @@ host=dynamic
 ```
 
 
-
----
-
-
 Asterisk Test Suite run-test
 ----------------------------
 
@@ -106,15 +98,7 @@ The Asterisk Test Suite provides a class, SIPpTest, that inherits from TestCase 
 
 
 
----
-
-  
-  
-
-
-```
-
-
+```bash title=" " linenums="1"
 #!/usr/bin/env python
 
 import sys
@@ -152,20 +136,12 @@ if \_\_name\_\_ == "\_\_main\_\_":
 
 
 
----
 
+!!! note 
+    Any number of scenarios can be passed to the SIPpTest. The class takes in as its third parameter a list of dictionaries, where each dictionary specifies a scenario to execute.
 
+      
+[//]: # (end-note)
 
-
----
-
-**Note:**  
-Any number of scenarios can be passed to the SIPpTest. The class takes in as its third parameter a list of dictionaries, where each dictionary specifies a scenario to execute.
-
-  
-
-
-
----
 
 

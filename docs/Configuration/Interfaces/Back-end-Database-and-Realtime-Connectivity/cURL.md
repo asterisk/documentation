@@ -6,15 +6,12 @@ pageid: 28314908
 
 
 
----
+!!! note 
+    This page is under construction and may be incomplete or missing information in some areas. If you have questions, please wait until this notice is removed before asking, since it is possible your question will be answered by the time this page is completed.
 
-**Note:**  This page is under construction and may be incomplete or missing information in some areas. If you have questions, please wait until this notice is removed before asking, since it is possible your question will be answered by the time this page is completed.
+      
+[//]: # (end-note)
 
-  
-
-
-
----
 
 
  
@@ -53,10 +50,6 @@ apt-get install libcurl4-openssl-dev
 ```
 
 
-
----
-
-
  
 
 If you use a distribution with yum-based packaging (CentOS, RHEL, Fedora, et al), then use this command to install:
@@ -77,10 +70,6 @@ yum -y install libcurl-devel
 ```
 
 
-
----
-
-
 Both of the above commands assume that you have permission to install the packages. You may need to prepend the command with "sudo" in order to be able to install the packages.
 
 Once you have the libcurl development libraries installed, you need to run Asterisk's configure script in order for Asterisk to detect the installed library:
@@ -88,21 +77,10 @@ Once you have the libcurl development libraries installed, you need to run Aster
 
 
 
----
-
-  
-  
-
-
-```
-
+```bash title=" " linenums="1"
 $ ./configure
 
 ```
-
-
-
----
 
 
 In addition to the libcurl development library, `res_config_curl.so` relies on two other modules within Asterisk: `res_curl.so` and `func_curl.so`. `res_curl.so` initializes the cURL library within Asterisk. `func_curl.so` provides dialplan functions ( `CURL` and `CURLOPT`) that are used directly by `res_config_curl.so`.
@@ -112,21 +90,10 @@ After running the configure script, run
 
 
 
----
-
-  
-  
-
-
-```
-
+```bash title=" " linenums="1"
 $ make menuselect
 
 ```
-
-
-
----
 
 
 to select which modules to build. Ensure that you can select `res_curl` and `res_config_curl` from the "Resource Modules" menu and that you can select `func_curl` from the "Dialplan Functions" menu. Once you have ensured that these have been selected, save your changes ('x' key if using curses-based menuselect or select the "Save & Exit" option if using newt-based or gtk-based menuselect). After, you just need to run
@@ -134,21 +101,10 @@ to select which modules to build. Ensure that you can select `res_curl` and `res
 
 
 
----
-
-  
-  
-
-
-```
-
+```bash title=" " linenums="1"
 $ make && make install
 
 ```
-
-
-
----
 
 
 in order to build Asterisk and install it on the system. You may need to prepend "sudo" to the "make install" command if there are permission problems when attempting to install. Once you have installed Asterisk, you can test that `res_config_curl.so` has been installed properly by starting Asterisk:
@@ -156,21 +112,10 @@ in order to build Asterisk and install it on the system. You may need to prepend
 
 
 
----
-
-  
-  
-
-
-```
-
+```bash title=" " linenums="1"
 $ asterisk -c
 
 ```
-
-
-
----
 
 
 Once Asterisk has started, type the following on the CLI:
@@ -194,10 +139,6 @@ res\_config\_curl.so Realtime Curl configuration 0 Running
 
 
 ```
-
-
-
----
 
 
 The output when you run the command should look like what is shown above. If it does, then Asterisk is capable of using cURL for realtime.
@@ -233,10 +174,6 @@ queues = curl,http://myserver.com:8000/my\_queues
 ```
 
 
-
----
-
-
 The basic syntax when using cURL is:
 
 
@@ -253,10 +190,6 @@ The basic syntax when using cURL is:
 realtime\_data = curl,<HTTP URL>
 
 ```
-
-
-
----
 
 
 There are no hard-and-fast rules on what URL you place here. In the above sample, each of the various realtime stores correspond to resources on the same HTTP server. However, it would be perfectly valid to specify completely different servers for different realtime stores. Notice also that there is no requirement for the name of the realtime store to appear in the HTTP URL. In the above example the "queues" realtime store maps to the resource "my\_queues" on the HTTP server.
@@ -306,10 +239,6 @@ mailboxes => curl,http://myserver.com:8000/mwi
 ```
 
 
-
----
-
-
 ### single
 
 The "single" resource is used for Asterisk to retrieve a single object from realtime.
@@ -339,10 +268,6 @@ id=Dazed
 ```
 
 
-
----
-
-
   In this case, the request from Asterisk wants a single object whose id is "Dazed". Given the data we have stored, we would respond like so:
 
 
@@ -364,10 +289,6 @@ Content-Type: text/html
 msgs\_new=5&msgs\_old=4&id=Dazed
 
 ```
-
-
-
----
 
 
 The parameters describing the requested mailbox are returned on a single line in the HTTP response body. The order that the parameters are listed in is irrelevant.
@@ -403,10 +324,6 @@ id%20LIKE=%25
 ```
 
 
-
----
-
-
 The "multi" resource is one where Asterisk shows a weakness when not dealing with a relational database as its realtime backend. In this case, Asterisk has requested multiple rows with "id LIKE=%". What this means is that Asterisk wants to retrieve every object from the particular realtime store with an id equal to anything. Other queries Asterisk may send may be more like "foo LIKE=%bar%". In this case, Asterisk would be requesting all objects with a foo parameter that has "bar" as part of its value (so something with foo=barbara would match the query).
 
 For this particular request, we would respond with the following:
@@ -431,10 +348,6 @@ msgs\_new=5&msgs\_old=4&id=Dazed
 msgs\_new=6&msgs\_old=8&id=Confused
 
 ```
-
-
-
----
 
 
 Each returned object is on its own line of the response.
@@ -468,10 +381,6 @@ id=Shocked&msgs\_old=5&msgs\_new=7
 ```
 
 
-
----
-
-
 In this case, Asterisk is attempting to store a new object with id "Shocked", 5 old messages and 7 new messages. Our realtime backend should reply with the number of objects stored.
 
 
@@ -493,10 +402,6 @@ Content-Type: text/html
 1
 
 ```
-
-
-
----
 
 
 Since we have stored one new object, we return "1" as our response.
@@ -532,10 +437,6 @@ msgs\_old=25&msgs\_new=300
 ```
 
 
-
----
-
-
 In this case, the URL parameter "id=Dazed" tells us that Asterisk wants us to update all objects whose id is "Dazed". For any objects that match the criteria, we should update the number of old messages to 25 and the number of new messages to 300.
 
 Our response indicates how many objects we updated. In this case, since we have updated one object, we respond with "1".
@@ -559,10 +460,6 @@ Content-Type: text/html
 1
 
 ```
-
-
-
----
 
 
 If there are no items that match the criteria, you may either respond with a "0" response body or return an HTTP error.
@@ -596,10 +493,6 @@ id=Dazed
 ```
 
 
-
----
-
-
 In this case, Asterisk has requested that we delete the object with the id of "Dazed".
 
 The body of our response indicates the number of items we deleted. Since we have deleted one object, we put "1" in our response body:
@@ -623,10 +516,6 @@ Content-Type: text/html
 1
 
 ```
-
-
-
----
 
 
 If asked to delete an object that does not exist, you may either respond with a "0" body or with an HTTP error.
@@ -699,10 +588,6 @@ context=fabulous
 ```
 
 
-
----
-
-
  Asterisk uses an HTTP GET to request static realtime data, using a URL parameter to indicate which filename it cares about. Here is an example of such a request:
 
 
@@ -722,10 +607,6 @@ Host: localhost:8000
 Accept: \*/\*
 
 ```
-
-
-
----
 
 
 In this case, Asterisk wants all static realtime objects whose filename is "pjsip.conf". Note that the HTTP request calls the parameter "file", whereas the actual name of the parameter returned from the realtime store is called "filename".
@@ -753,10 +634,6 @@ category=alice&commented=0&var\_metric=1&var\_name=allow&var\_val=ulaw&id=1&file
 category=alice&commented=0&var\_metric=2&var\_name=context&var\_val=fabulous&id=2&filename=pjsip.conf&cat\_metric=0
 
 ```
-
-
-
----
 
 
 Unlike other realtime responses, the static realtime response needs to present the data in a particular order:
@@ -799,10 +676,6 @@ Content-Type: application/x-www-form-urlencoded
 paused=integer1%3A1&uniqueid=uinteger2%3A5
 
 ```
-
-
-
----
 
 
 Decoded, the body is "paused=integer1:1&uniqueid=uinteger2:5". The types that Asterisk can ask for are the following:
@@ -853,10 +726,6 @@ Content-Type: text/html
 0
 
 ```
-
-
-
----
 
 
 Other Information

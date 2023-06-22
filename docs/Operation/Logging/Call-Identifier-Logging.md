@@ -35,10 +35,6 @@ No configuration is needed to take advantage of this feature. Asterisk 11 will s
 ```
 
 
-
----
-
-
 C-00000000 is the call identifier associated with this attempted call. All call identifiers are represented as C-XXXXXXXX where XXXXXXXX is an 8 digit hexadecimal value much like what you will see with SIP and local channel names.
 
 

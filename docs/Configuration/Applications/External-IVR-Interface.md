@@ -29,10 +29,6 @@ textExternalIVR(/full/path/to/application[(arguments)],options)
 ```
 
 
-
----
-
-
 The arguments are optional, however if they exist they must be enclosed in parentheses. The external application will be executed in a child process, with its standard file handles connected to the Asterisk process as follows:
 
 * `stdin` (0) - Events will be received on this handle
@@ -42,16 +38,12 @@ The arguments are optional, however if they exist they must be enclosed in paren
 
 
 
----
+!!! info ""
+    Use of `stderr` for message communication is discouraged because it is not supported by a socket connection.
 
+      
+[//]: # (end-info)
 
-**Information:**  Use of `stderr` for message communication is discouraged because it is not supported by a socket connection.
-
-  
-
-
-
----
 
 
 To create a socket connection use the form:
@@ -71,10 +63,6 @@ textExternalIVR(ivr://host[:port][(arguments)],options)
 
 
 ```
-
-
-
----
 
 
 The host can be a fully qualified domain name or an IP address (both IPv4 and IPv6 are supported). The port is optional and, if not specified, is `2949` by default. The `ExternalIVR` application will connect to the specified socket server and establish a bidirectional socket connection, where events will be sent to the TCP/IP server and commands received from it.
@@ -115,10 +103,6 @@ texttag,timestamp[,data]
 
 
 ```
-
-
-
----
 
 
 The tag can be one of the following characters:
@@ -211,10 +195,6 @@ ExternalIVR(/usr/bin/foo(arg1,arg2),n)
 ```
 
 
-
----
-
-
 The response to the `P` command would be:
 
 
@@ -235,20 +215,13 @@ P,TIMESTAMP,/usr/bin/foo,arg1,arg2
 
 
 
----
 
+!!! note 
+    This is the only way for a TCP/IP server to be able to get retrieve the arguments.
 
+      
+[//]: # (end-note)
 
-
----
-
-**Note:**  This is the only way for a TCP/IP server to be able to get retrieve the arguments.
-
-  
-
-
-
----
 
 
 
@@ -257,15 +230,12 @@ The `L` command puts a message into the Asterisk log.
 
 
 
----
+!!! note 
+    This is preferred to using `stderr` and is the only way for a TCP/IP server to log a message.
 
-**Note:**  This is preferred to using `stderr` and is the only way for a TCP/IP server to log a message.
+      
+[//]: # (end-note)
 
-  
-
-
-
----
 
 
 ##### Inform Messages

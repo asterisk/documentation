@@ -30,16 +30,12 @@ Please head to the asterisk-biz mailing list at <http://lists.digium.com>. If wh
 
 
 
----
+!!! warning 
+    Security vulnerability issues must NEVER be reported as regular bugs in the issue tracker. Instead they must be reported at [Security Vulnerabilities](https://github.com/asterisk/asterisk/security/advisories/new). You can reach this page by navigating to <https://github.com/asterisk/asterisk> and clicking the "Security" tab at the top of the page.
 
-**WARNING!:**   
-Security vulnerability issues must NEVER be reported as regular bugs in the issue tracker. Instead they must be reported at [Security Vulnerabilities](https://github.com/asterisk/asterisk/security/advisories/new). You can reach this page by navigating to <https://github.com/asterisk/asterisk> and clicking the "Security" tab at the top of the page.
+      
+[//]: # (end-warning)
 
-  
-
-
-
----
 
 
  
@@ -57,16 +53,12 @@ Bug Reporting Check List
 
 
 
----
+!!! warning Before filing a bug report...
+    Your issue may not be a bug or could have been fixed already. Run through the check list below to verify you have done your due diligence.
 
-**WARNING!: Before filing a bug report...**  
-Your issue may not be a bug or could have been fixed already. Run through the check list below to verify you have done your due diligence.
+      
+[//]: # (end-warning)
 
-  
-
-
-
----
 
 
 * **Are** **you reporting a suspected security vulnerability?**

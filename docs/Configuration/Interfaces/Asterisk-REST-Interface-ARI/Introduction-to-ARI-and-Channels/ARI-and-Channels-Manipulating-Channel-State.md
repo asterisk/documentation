@@ -17,15 +17,12 @@ While there are many states a channel can be in, the following are the most comm
 
 
 
----
+!!! note More Channel States
+    Certain channel technologies, such as DAHDI analog channels, may have additional channel states (such as "Pre-ring" or "Dialing Offhook"). When handling channel state, consult the [Channel data model](/Asterisk+12+REST+Data+Models#Asterisk12RESTDataModels-Channel) for all possible values.
 
-**Note: More Channel States** Certain channel technologies, such as DAHDI analog channels, may have additional channel states (such as "Pre-ring" or "Dialing Offhook"). When handling channel state, consult the [Channel data model](/Asterisk+12+REST+Data+Models#Asterisk12RESTDataModels-Channel) for all possible values.
+      
+[//]: # (end-note)
 
-  
-
-
-
----
 
 
 40%On This Page 
@@ -85,10 +82,6 @@ trueexten => 1000,1,NoOp()
 ```
 
 
-
----
-
-
 Python
 ------
 
@@ -118,10 +111,6 @@ truepy11channel\_timers = {}
 ```
 
 
-
----
-
-
 And we can register for our three events:
 
 
@@ -140,10 +129,6 @@ client.on\_channel\_event('ChannelStateChange', channel\_state\_change\_cb)
 client.on\_channel\_event('StasisEnd', stasis\_end\_cb)
 
 ```
-
-
-
----
 
 
  
@@ -172,10 +157,6 @@ truepy47 channel.ring()
 ```
 
 
-
----
-
-
 If we didn't have that there, then the caller would probably just have dead space to listen to! Not very enjoyable. We store the timer in the `channel_timers` dictionary so that our `StasisEnd` event can cancel it for us if the user hangs up the phone.
 2. Once we're in the `answer_channel` handler, we answer the channel and start silence on the channel. That (hopefully) gives them a slightly more ambient silence noise. Note that we'll go ahead and declare `answer_channel` as a nested function inside our `StasisStart` handler, `stasis_start_cb`:
 
@@ -200,10 +181,6 @@ truepy24def stasis\_start\_cb(channel\_obj, ev):
  channel.startSilence()
 
 ```
-
-
-
----
 3. After we've answered the channel, we kick off another Python timer to hang up the channel in 4 seconds. When that timer fires, it will call `hangup_channel`. This does the final action on the channel by hanging it up. Again, we'll declare `hangup_channel` as a nested function inside our `StasisStart` handler:
 
 
@@ -224,10 +201,6 @@ truepy38 def hangup\_channel(channel):
  channel.hangup()
 
 ```
-
-
-
----
 
 When we create a timer - such as when we started ringing on the channel - we stored it in our `channel_timers` dictionary. In our `StasisEnd` event handler, we'll want to cancel any pending timers. Otherwise, our timers may fire and try to perform an action on channel that has already left our Stasis application, which is a good way to get an HTTP error response code.
 
@@ -256,10 +229,6 @@ truepy13 def stasis\_end\_cb(channel, ev):
 ```
 
 
-
----
-
-
  
 
 Finally, we want to print out the state of the channel in the `ChannelStateChanged` handler. This will tell us exactly when our channel has been answered:
@@ -281,10 +250,6 @@ truepy53 def channel\_state\_change\_cb(channel, ev):
  channel.json.get('state'))
 
 ```
-
-
-
----
 
 
 ### channel-state.py
@@ -368,10 +333,6 @@ client.run(apps='channel-state')
 ```
 
 
-
----
-
-
 ### channel-state.py in action
 
 Here, we see the output from the `channel-state.py` script when a PJSIP channel for endpoint 'alice' enters into the application:
@@ -394,10 +355,6 @@ Hanging up channel PJSIP/alice-00000001
 Channel PJSIP/alice-00000001 just left our application
 
 ```
-
-
-
----
 
 
 JavaScript (Node.js)
@@ -429,10 +386,6 @@ truejs7timers = {}
 ```
 
 
-
----
-
-
 And we can register for our three events:
 
 
@@ -451,10 +404,6 @@ client.on\_channel\_event('ChannelStateChange', channel\_state\_change\_cb)
 client.on\_channel\_event('StasisEnd', stasis\_end\_cb)
 
 ```
-
-
-
----
 
 
  
@@ -484,10 +433,6 @@ var timer = setTimeout(answer, 2000);
 timers[channel.id] = timer;
 
 ```
-
-
-
----
 
 
 If we didn't have that there, then the caller would probably just have dead space to listen to! Not very enjoyable. We store the timer in the `timers` object so that our `StasisEnd` event can cancel it for us if the user hangs up the phone.
@@ -523,10 +468,6 @@ function answer() {
 }
 
 ```
-
-
-
----
 3. After we've answered the channel, we kick off another timer to hang up the channel in 4 seconds. When that timer fires, it will call `the hangup callback`. This does the final action on the channel by hanging it up:
 
 
@@ -551,10 +492,6 @@ function hangup() {
 }
 
 ```
-
-
-
----
 
 When we create a timer - such as when we started ringing on the channel - we stored it in our `timers` object. In our `StasisEnd` event handler, we'll want to cancel any pending timers. Otherwise, our timers may fire and try to perform an action on channel that has already left our Stasis application, which is a good way to get an HTTP error response code.
 
@@ -583,10 +520,6 @@ function stasisEnd(event, channel) {
 ```
 
 
-
----
-
-
  
 
 Finally, we want to print out the state of the channel in the `ChannelStateChanged` callback. This will tell us exactly when our channel has been answered:
@@ -611,10 +544,6 @@ function channelStateChange(event, channel) {
 ```
 
 
-
----
-
-
 ### channel-state.js
 
 
@@ -625,14 +554,7 @@ The full source code for `channel-state.js` is shown below:
 
 
 
----
-
-  
-channel-state.js  
-
-
-```
-
+```javascript title="channel-state.js" linenums="1"
 truejs/\*jshint node: true\*/
 'use strict';
 
@@ -718,10 +640,6 @@ function clientLoaded (err, client) {
 ```
 
 
-
----
-
-
 ### channel-state.js in action
 
 Here, we see the output from the `channel-state.js` script when a PJSIP channel for endpoint 'alice' enters into the application:
@@ -744,9 +662,5 @@ Hanging up channel PJSIP/alice-00000001
 Channel PJSIP/alice-00000001 just left our application
 
 ```
-
-
-
----
 
 

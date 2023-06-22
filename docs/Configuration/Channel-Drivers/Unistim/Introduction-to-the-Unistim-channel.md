@@ -63,10 +63,6 @@ line => 102
 ```
 
 
-
----
-
-
 then use:
 
 
@@ -86,10 +82,6 @@ exten => 2100,1,Dial(USTM/102@violet)
 ```
 
 
-
----
-
-
 You can display a text with :
 
 
@@ -107,10 +99,6 @@ exten => 555,1,SendText(Sends text to client. Greetings)
 
 
 ```
-
-
-
----
 
 
 ##### Rebooting a Nortel phone
@@ -142,10 +130,6 @@ exten => 2100,1,Dial(USTM/102@violet/r1)
 ```
 
 
-
----
-
-
 Select the ring style #4 with a very loud volume :
 
 
@@ -163,10 +147,6 @@ exten => 2100,1,Dial(USTM/102@violet/r43)
 
 
 ```
-
-
-
----
 
 
 ##### Country code
@@ -197,10 +177,6 @@ exten => 2100,1,Dial(USTM/102@violet/r43)
 
 
 ```
-
-
-
----
 
 
 * When the second letter of bookmark= is @, then the first character is used for positioning this entry
@@ -239,10 +215,6 @@ bookmark=Support@123 ; Every phone will have a softkey Support
 ```
 
 
-
----
-
-
 * If a first phone have a mac = 006038abcdef, a new device named USTM/100@006038abcdef will be created.
 * If a second phone have a mac = 006038000000, it will be named USTM/101@006038000000 and so on.
 * When autoprovisioning=tn, new phones will ask for a tn, if this number match a tn= entry in a device, this phone will be mapped into.
@@ -266,10 +238,6 @@ line => 100
 
 
 ```
-
-
-
----
 
 
 * If a user enter TN 1234, the phone will be known as USTM/100@black.

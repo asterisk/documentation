@@ -29,7 +29,3 @@ setting=false ; this is a comment
 ```
 
 
-
----
-
-

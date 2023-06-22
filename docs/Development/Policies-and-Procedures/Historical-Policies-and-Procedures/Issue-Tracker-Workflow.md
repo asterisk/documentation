@@ -11,16 +11,12 @@ This document describes how issues move through the [Asterisk Issue Tracker on 
 
 
 
----
+!!! warning 
+    Security vulnerability issues must NEVER be reported as regular bugs in the issue tracker. Instead they must be reported at [Security Vulnerabilities](https://github.com/asterisk/asterisk/security/advisories/new). You can reach this page by navigating to <https://github.com/asterisk/asterisk> and clicking the "Security" tab at the top of the page.
 
-**WARNING!:**   
-Security vulnerability issues must NEVER be reported as regular bugs in the issue tracker. Instead they must be reported at [Security Vulnerabilities](https://github.com/asterisk/asterisk/security/advisories/new). You can reach this page by navigating to <https://github.com/asterisk/asterisk> and clicking the "Security" tab at the top of the page.
+      
+[//]: # (end-warning)
 
-  
-
-
-
----
 
 
 On This Page
@@ -37,15 +33,12 @@ The workflow in the issue tracker is handled in the following way:
 
 
 
----
+!!! note 
+    Issues should also have enough information for a developer to either reproduce the issue or determine where an issue exists (or both). If this is not the case then the issue should be moved to 'Waiting for Feedback' with the appropriate information requested. See [Asterisk Issue Guidelines](/Asterisk-Community/Asterisk-Issue-Guidelines) for more information on what an issue should have before it is accepted.
 
-**Note:**  Issues should also have enough information for a developer to either reproduce the issue or determine where an issue exists (or both). If this is not the case then the issue should be moved to 'Waiting for Feedback' with the appropriate information requested. See [Asterisk Issue Guidelines](/Asterisk-Community/Asterisk-Issue-Guidelines) for more information on what an issue should have before it is accepted.
+      
+[//]: # (end-note)
 
-  
-
-
-
----
 3. If a patch has been created for the issue, it is acceptable to modify the summary with the text "[patch]" to indicate that a patch is available for the issue. If a patch has been included with the issue, it should be submitted for [Code Review](/Development/Policies-and-Procedures/Historical-Policies-and-Procedures/Code-Review) on [Gerrit](https://gerrit.asterisk.org).
 4. The next step is to determine whether the report is about a bug or a submission of a new feature:
 	* BUG: A bug should be moved into the **Open** status by clicking *Acknowledge* if enough information has been provided by the reporter to either reproduce the issue or clearly see where an issue may lie. The bug may also be assigned to a developer for the creation of the initial patch, or review of the issue.
@@ -74,16 +67,12 @@ This is a submitted bug or new feature (with patch!) which has yet to be worked 
 
 
 
----
+!!! info "**  An issue can also be in the **Reopen** state, indicating that it was closed but reopened for some reason. This state is semantically the same as **Open"
+    .
 
+      
+[//]: # (end-info)
 
-**Information:**  An issue can also be in the **Reopen** state, indicating that it was closed but reopened for some reason. This state is semantically the same as **Open**.
-
-  
-
-
-
----
 
 
 ### In Progress
@@ -102,16 +91,12 @@ Severity levels can be selected for an issue and may be viewed by bug marshals a
 
 
 
----
+!!! warning 
+    The **Blocker** severity may be used by bug marshals as a way to indicate that the Asterisk developer community has decided that an issue is of such critical importance that it should prevent release of a new version of Asterisk in the affected branches. In general, this status should be used sparingly and may warrant discussion on the issue tracker if assigned to an issue. Issue reporters should not select the **Blocker** severity.
 
-**WARNING!:**   
-The **Blocker** severity may be used by bug marshals as a way to indicate that the Asterisk developer community has decided that an issue is of such critical importance that it should prevent release of a new version of Asterisk in the affected branches. In general, this status should be used sparingly and may warrant discussion on the issue tracker if assigned to an issue. Issue reporters should not select the **Blocker** severity.
+      
+[//]: # (end-warning)
 
-  
-
-
-
----
 
 
 Notes

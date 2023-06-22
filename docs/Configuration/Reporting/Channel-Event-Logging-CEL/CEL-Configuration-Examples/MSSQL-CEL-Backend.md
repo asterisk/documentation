@@ -14,16 +14,12 @@ The following provide some examples known to get asterisk working with mssql.
 
 
 
----
+!!! note 
+    Only choose one db connector.
 
-**Note:**  
-Only choose one db connector.
+      
+[//]: # (end-note)
 
-  
-
-
-
----
 
 
 ### ODBC using cel\_odbc
@@ -49,10 +45,6 @@ tar -zxvf unixODBC-2.2.9.tar.gz && cd unixODBC-2.2.9 && ./configure --sysconfdir
 ```
 
 
-
----
-
-
 ##### Compile, configure, and install the latest FreeTDS package:
 
 
@@ -73,10 +65,6 @@ tar -zxvf freetds-0.62.4.tar.gz && cd freetds-0.62.4 && ./configure --prefix=/us
 ```
 
 
-
----
-
-
 ##### Compile, or recompile, asterisk so that it will now add support for cel\_odbc.
 
 
@@ -95,10 +83,6 @@ make clean && ./configure --with-odbc && make update && make && make install
 
 
 ```
-
-
-
----
 
 
 ##### Setup odbc configuration files.
@@ -131,10 +115,6 @@ FileUsage = 1
 ```
 
 
-
----
-
-
 /etc/odbc.ini
 
 
@@ -163,21 +143,11 @@ language = us\_english
 
 
 
----
 
+!!! warning 
+    Only install one database connector. Do not confuse asterisk by using both ODBC (cel\_odbc) and FreeTDS (cel\_tds). This command will erase the contents of cel\_tds.conf 
+[//]: # (end-warning)
 
-
-
----
-
-**WARNING!:**   
-
-Only install one database connector. Do not confuse asterisk by using both ODBC (cel\_odbc) and FreeTDS (cel\_tds). This command will erase the contents of cel\_tds.conf 
-
-
-
-
----
 
   
   
@@ -200,21 +170,12 @@ Only install one database connector. Do not confuse asterisk by using both ODBC 
 
 
 
----
+!!! note 
+    unixODBC requires the freeTDS package, but asterisk does not call freeTDS directly. 
 
+      
+[//]: # (end-note)
 
-
-
----
-
-**Note:**  
-unixODBC requires the freeTDS package, but asterisk does not call freeTDS directly. 
-
-  
-
-
-
----
 
 
 ##### Now set up cel\_odbc configuration files.
@@ -245,10 +206,6 @@ loguniqueid=yes
 
 
 ```
-
-
-
----
 
 
 ##### And finally, create the 'cel' table in your mssql database.
@@ -289,10 +246,6 @@ CREATE TABLE cel (
 ```
 
 
-
----
-
-
 Start asterisk in verbose mode, you should see that asterisk logs a connection to the database and will now record every desired channel event at the moment it occurs.
 
 
@@ -319,10 +272,6 @@ tar -zxvf freetds-0.62.4.tar.gz && cd freetds-0.62.4 && ./configure --prefix=/us
 ```
 
 
-
----
-
-
 ##### Compile, or recompile, asterisk so that it will now add support for cel\_tds.
 
 
@@ -344,21 +293,11 @@ make clean && ./configure --with-tds && make update && make && make install
 
 
 
----
 
+!!! warning 
+    Only install one database connector. Do not confuse asterisk by using both ODBC (cel\_odbc) and FreeTDS (cel\_tds). This command will erase the contents of cel\_odbc.conf 
+[//]: # (end-warning)
 
-
-
----
-
-**WARNING!:**   
-
-Only install one database connector. Do not confuse asterisk by using both ODBC (cel\_odbc) and FreeTDS (cel\_tds). This command will erase the contents of cel\_odbc.conf 
-
-
-
-
----
 
   
   
@@ -377,11 +316,6 @@ Only install one database connector. Do not confuse asterisk by using both ODBC 
 
 
 ```
-
-
-
-
----
 
 
 ##### Setup cel\_tds configuration files.
@@ -414,10 +348,6 @@ charset=BIG5
 
 
 ```
-
-
-
----
 
 
 ##### And finally, create the 'cel' table in your mssql database.
@@ -456,10 +386,6 @@ CREATE TABLE cel (
 
 
 ```
-
-
-
----
 
 
 Start asterisk in verbose mode, you should see that asterisk logs a connection to the database and will now record every call to the database when it's complete.

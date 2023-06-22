@@ -37,6 +37,8 @@ theme:
     - search.highlight
     - search.share
     - content.action.edit
+    - content.code.copy
+    - content.code.annotate
 
 plugins:
   - search

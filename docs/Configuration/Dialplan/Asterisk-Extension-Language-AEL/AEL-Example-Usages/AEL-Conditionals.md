@@ -73,97 +73,72 @@ context conditional {
 
 
 
----
+
+!!! note 
+    The conditional expression in if() statements (the "${DIALSTATUS}" = "BUSY" above) is wrapped by the compiler in $[] for evaluation.
+
+      
+[//]: # (end-note)
 
 
 
 
----
 
-**Note:**  The conditional expression in if() statements (the "${DIALSTATUS}" = "BUSY" above) is wrapped by the compiler in $[] for evaluation.
+!!! note 
+    Neither the switch nor case values are wrapped in $[ ]; they can be constants, or ${var} type references only.
 
-  
-
-
-
----
+      
+[//]: # (end-note)
 
 
 
 
----
 
-**Note:**  Neither the switch nor case values are wrapped in $[ ]; they can be constants, or ${var} type references only.
+!!! note 
+    AEL generates each case as a separate extension. case clauses with no terminating 'break', or 'goto', have a goto inserted, to the next clause, which creates a 'fall thru' effect.
 
-  
-
-
-
----
+      
+[//]: # (end-note)
 
 
 
 
----
 
-**Note:**  AEL generates each case as a separate extension. case clauses with no terminating 'break', or 'goto', have a goto inserted, to the next clause, which creates a 'fall thru' effect.
+!!! note 
+    AEL introduces the ifTime keyword/statement, which works just like the if() statement, but the expression is a time value, exactly like that used by the application GotoIfTime(). See Asterisk cmd GotoIfTime
 
-  
-
-
-
----
+      
+[//]: # (end-note)
 
 
 
 
----
 
-**Note:**  AEL introduces the ifTime keyword/statement, which works just like the if() statement, but the expression is a time value, exactly like that used by the application GotoIfTime(). See Asterisk cmd GotoIfTime
+!!! note 
+    The pattern statement makes sure the new extension that is created has an '\_' preceding it to make sure asterisk recognizes the extension name as a pattern.
 
-  
-
-
-
----
+      
+[//]: # (end-note)
 
 
 
 
----
 
-**Note:**  The pattern statement makes sure the new extension that is created has an '\_' preceding it to make sure asterisk recognizes the extension name as a pattern.
+!!! note 
+    Every character enclosed by the switch expression's parenthesis are included verbatim in the labels generated. So watch out for spaces!
 
-  
-
-
-
----
+      
+[//]: # (end-note)
 
 
 
 
----
 
-**Note:**  Every character enclosed by the switch expression's parenthesis are included verbatim in the labels generated. So watch out for spaces!
+!!! note 
+    NEW: Previous to version 0.13, the random statement used the "Random()" application, which has been deprecated. It now uses the RAND() function instead, in the GotoIf application.
 
-  
+      
+[//]: # (end-note)
 
-
-
----
-
-
-
-
----
-
-**Note:**  NEW: Previous to version 0.13, the random statement used the "Random()" application, which has been deprecated. It now uses the RAND() function instead, in the GotoIf application.
-
-  
-
-
-
----
 
 

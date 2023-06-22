@@ -28,10 +28,6 @@ ulaw--->slin--->GSM--->| |<---GSM
 ```
 
 
-
----
-
-
 The arrows indicate the direction of audio flow. Each channel has a write path (the top arrow) and a read path (the bottom arrow). In this setup, PLC can be used when sending audio to A, but it cannot be used when sending audio to B. The reason is simple, the write path to A's channel contains a slin step, but the write path to B contains no slin step. Such a translation setup is perfectly valid, and Asterisk can potentially set up such a path depending on circumstances. When we use PLC, however, we want slin audio to be present on the write paths of both A and B. A visual representation of what we want is the following:
 
 Fig. 2
@@ -55,10 +51,6 @@ ulaw--->slin--->| |<---slin<---GSM
  
 
 ```
-
-
-
----
 
 
 In this scenario, the write paths for both A and B begin with slin, and so PLC may be applied to either channel. This translation behavior has, in the past been doable with the transcode\_via\_sln option in asterisk.conf. Recent changes to the PLC code have also made the `genericplc` option in codecs.conf imply the `transcode_via_sln` option. The result is that by enabling `genericplc` in codecs.conf, the translation path set up in Fig. 2 should automatically be used as long as the two codecs required transcoding in the first place.

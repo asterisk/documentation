@@ -39,10 +39,6 @@ table=cel
 ```
 
 
-
----
-
-
 Now create a table in postgresql for your cels 
 
 
@@ -83,9 +79,5 @@ CREATE TABLE cel (
 
 
 ```
-
-
-
----
 
 

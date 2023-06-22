@@ -27,10 +27,6 @@ No such command 'sip show peers'
 ```
 
 
-
----
-
-
 We can presume that something is wrong with **chan\_sip** module since we know it provides the 'sip' commands and sub-commands.
 
 Problem
@@ -77,10 +73,6 @@ chan\_sip.so Session Initiation Protocol (SIP) 0
 ```
 
 
-
----
-
-
 In Asterisk 12 and beyond you can quickly see if a module is loaded and whether it is running or not.
 
 
@@ -100,10 +92,6 @@ chan\_sip.so Session Initiation Protocol (SIP) 0 Not Running
 1 modules loaded
 
 ```
-
-
-
----
 
 
 Make sure Asterisk is configured to load the module
@@ -131,10 +119,6 @@ noload => chan\_sip.so
 ```
 
 
-
----
-
-
 That would tell Asterisk to not load chan\_sip.so.
 
 If you are not using **autoload**, then be sure you have a **load** line for the module you desire to load.
@@ -153,10 +137,6 @@ If you are not using **autoload**, then be sure you have a **load** line for the
 load => chan\_sip.so
 
 ```
-
-
-
----
 
 
 Check For Module Loading Issues on Asterisk Startup
@@ -184,10 +164,6 @@ asterisk -rx "core stop now"
 ```
 
 
-
----
-
-
 or
 
 
@@ -204,10 +180,6 @@ or
 service asterisk stop
 
 ```
-
-
-
----
 
 
 ### Enable logging channels
@@ -231,10 +203,6 @@ full => notice,warning,error,debug,verbose
 ```
 
 
-
----
-
-
 ### Clear out old logs
 
 You don't want to mistakenly look at an older log where Asterisk was loading appropriately.
@@ -244,21 +212,10 @@ Remove the most recent log file, or else move it somewhere you want to keep it.
 
 
 
----
-
-  
-  
-
-
-```
-
+```bash title=" " linenums="1"
 # rm /var/log/asterisk/full
 
 ```
-
-
-
----
 
 
 ### Start Asterisk with appropriate log levels
@@ -268,21 +225,10 @@ It is important to start Asterisk with [log levels](/Operation/Logging/Basic-Log
 
 
 
----
-
-  
-  
-
-
-```
-
+```bash title=" " linenums="1"
 # asterisk -cvvvvvddd
 
 ```
-
-
-
----
 
 
 You'll see a lot of information output in the terminal as Asterisk loads.
@@ -305,10 +251,6 @@ After the output calms down and Asterisk has finished loading, go ahead and stop
 \*CLI> core stop now
 
 ```
-
-
-
----
 
 
 ### Search logs for lines related to suspect module
@@ -342,10 +284,6 @@ Search the [log file](/Fundamentals/Directory-and-File-Structure) using keywords
 ```
 
 
-
----
-
-
 Based on the lines found, you can then use an editor like VIM to view the full log and jump to where the relevant messages are.
 
 
@@ -368,10 +306,6 @@ Based on the lines found, you can then use an editor like VIM to view the full l
 ```
 
 
-
----
-
-
 In this case, not much more is revealed past what we saw with grep. You can see that Asterisk tries to load and run chan\_sip, it fails because the contents of sip.conf are invalid and cannot be parsed. The most specific clue is the WARNING:
 
 
@@ -388,10 +322,6 @@ In this case, not much more is revealed past what we saw with grep. You can see 
 WARNING[21809] config.c: parse error: No category context for line 1 of /etc/asterisk/sip.conf
 
 ```
-
-
-
----
 
 
 ### Edit the related config file to resolve the issue
@@ -414,10 +344,6 @@ context=public
 allowoverlap=no
 
 ```
-
-
-
----
 
 
 For our example, a square bracket is missing from the context definition! Fix this issue, restart Asterisk and things should work assuming I don't have any other syntax errors.

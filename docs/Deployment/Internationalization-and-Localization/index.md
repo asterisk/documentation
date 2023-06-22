@@ -6,28 +6,21 @@ pageid: 27200307
 
 
 
----
+!!! warning 
+    Under Construction
 
-**WARNING!:**   
-Under Construction
-
-  
-
-
-
----
+      
+[//]: # (end-warning)
 
 
 
 
----
 
-**Note:**  Top-level page for pages discussing Asterisk's capabilities for adapting to various language environments for text, sound prompts and more.
+!!! note 
+    Top-level page for pages discussing Asterisk's capabilities for adapting to various language environments for text, sound prompts and more.
 
-  
+      
+[//]: # (end-note)
 
-
-
----
 
 

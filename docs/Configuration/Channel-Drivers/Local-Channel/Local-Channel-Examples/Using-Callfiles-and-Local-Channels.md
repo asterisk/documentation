@@ -28,10 +28,6 @@ Data: silence/1&tt-weasels
 ```
 
 
-
----
-
-
 Add the callfile information to a file such as 'callfile.new' or some other appropriately named file.
 
 Our dialplan will perform a lookup in the AstDB to determine which device to call, and will then call the device, and upon answer, Playback() the silence/1 (1 second of silence) and the tt-weasels sound files.
@@ -55,10 +51,6 @@ Before looking at our dialplan, lets put some data into AstDB that we can then l
 ```
 
 
-
----
-
-
 We've now put the device destination (SIP/0004f2040001) into the 201/device key within the phones family. This will allow us to lookup the device location for extension 201 from the database.
 
 We can then verify our entry in the database using the 'database show' CLI command:
@@ -78,10 +70,6 @@ We can then verify our entry in the database using the 'database show' CLI comma
 
 
 ```
-
-
-
----
 
 
 Now lets create the dialplan that will allow us to call SIP/0004f2040001 when we request extension 201 from the [extensions](/extensions) context via our Local channel.
@@ -109,10 +97,6 @@ exten => 201,n(hangup),Hangup()
 ```
 
 
-
----
-
-
 Then, we can perform a call to our device using the callfile by moving it into the /var/spool/asterisk/outgoing/ directory.
 
 
@@ -132,10 +116,6 @@ mv callfile.new /var/spool/asterisks/outgoing\*
 ```
 
 
-
----
-
-
 Then after a moment, you should see output on your console similar to the following, and your device ringing. Information about what is going on during the output has also been added throughout.
 
 
@@ -153,10 +133,6 @@ Then after a moment, you should see output on your console similar to the follow
 
 
 ```
-
-
-
----
 
 
 You'll see the line above as soon as Asterisk gets the request from the callfile.
@@ -179,10 +155,6 @@ You'll see the line above as soon as Asterisk gets the request from the callfile
 ```
 
 
-
----
-
-
 This is where we performed our lookup in the AstDB. The value of SIP/0004f2040001 was then returned and saved to the DEVICE channel variable.
 
 
@@ -200,10 +172,6 @@ This is where we performed our lookup in the AstDB. The value of SIP/0004f204000
 
 
 ```
-
-
-
----
 
 
 We perform a check to make sure ${DEVICE} isn't NULL. If it is, we'll just hangup here.
@@ -227,10 +195,6 @@ We perform a check to make sure ${DEVICE} isn't NULL. If it is, we'll just hangu
 ```
 
 
-
----
-
-
 Now we call our device SIP/0004f2040001 from the Local channel.
 
 
@@ -248,10 +212,6 @@ SIP/0004f2040001-00000022 answered Local/201@devices-ecf0;2\*
 
 
 ```
-
-
-
----
 
 
 We answer the call.
@@ -274,10 +234,6 @@ We answer the call.
 ```
 
 
-
----
-
-
 We then start playing back the files.
 
 
@@ -298,10 +254,6 @@ We then start playing back the files.
 ```
 
 
-
----
-
-
 At this point we now see the Local channel has been optimized out of the call path. This is important as we'll see in examples later. By default, the Local channel will try to optimize itself out of the call path as soon as it can. Now that the call has been established and audio is flowing, it gets out of the way.
 
 
@@ -320,10 +272,6 @@ At this point we now see the Local channel has been optimized out of the call pa
 
 
 ```
-
-
-
----
 
 
 We can now see the tt-weasels file is played directly to the destination (instead of through the Local channel which was optimized out of the call path) and then a NOTICE stating the call was completed.

@@ -29,10 +29,6 @@ Conference: 1111
 ```
 
 
-
----
-
-
 On This PageConfbridgeJoin
 --------------
 
@@ -61,10 +57,6 @@ CallerIDname: mypeer
 
 
 ```
-
-
-
----
 
 
 ConfbridgeLeave
@@ -97,10 +89,6 @@ CallerIDname: mypeer
 ```
 
 
-
----
-
-
 ConfbridgeEnd
 -------------
 
@@ -125,10 +113,6 @@ Conference: 1111
 
 
 ```
-
-
-
----
 
 
 ConfbridgeTalking
@@ -160,10 +144,6 @@ TalkingStatus: on
 ```
 
 
-
----
-
-
 **Stop talking Example**
 
 
@@ -186,9 +166,5 @@ TalkingStatus: off
 
 
 ```
-
-
-
----
 
 

@@ -71,10 +71,6 @@ callcounter=yes
 ```
 
 
-
----
-
-
 And dialplan:
 
 
@@ -102,10 +98,6 @@ exten => s,n,Return
 
 
 ```
-
-
-
----
 
 
 #### Events
@@ -175,10 +167,6 @@ exten => s,(end),Return
 ```
 
 
-
----
-
-
 Redirecting Information
 -----------------------
 
@@ -240,9 +228,5 @@ exten => s,(end),Return
 
 
 ```
-
-
-
----
 
 

@@ -31,10 +31,6 @@ Kicking SIP/mypeer-00000000 from confbridge 1111
 ```
 
 
-
----
-
-
 On This Pageconfbridge list
 ---------------
 
@@ -58,10 +54,6 @@ Conference Bridge Name Users Marked Locked?
 
 
 ```
-
-
-
----
 
 
 confbridge list <conference>
@@ -89,10 +81,6 @@ SIP/mypeer-00000001 default\_user 1111 sample\_user\_menu
 ```
 
 
-
----
-
-
 confbridge lock <conference>
 ----------------------------
 
@@ -114,10 +102,6 @@ Conference 1111 is locked.
 
 
 ```
-
-
-
----
 
 
 confbridge unlock <conference>
@@ -143,10 +127,6 @@ Conference 1111 is unlocked.
 ```
 
 
-
----
-
-
 confbridge mute <conference> <channel>
 --------------------------------------
 
@@ -168,10 +148,6 @@ Muting SIP/mypeer-00000001 from confbridge 1111
 
 
 ```
-
-
-
----
 
 
 confbridge unmute <conference> <channel>
@@ -197,10 +173,6 @@ Unmuting SIP/mypeer-00000001 from confbridge 1111
 ```
 
 
-
----
-
-
 confbridge record start <conference> <file>
 -------------------------------------------
 
@@ -223,10 +195,6 @@ Recording started
 
 
 ```
-
-
-
----
 
 
 confbridge record stop <confererence>
@@ -254,10 +222,6 @@ Recording stopped.
 ```
 
 
-
----
-
-
 confbridge show menus
 ---------------------
 
@@ -281,10 +245,6 @@ sample\_user\_menu
 
 
 ```
-
-
-
----
 
 
 confbridge show menu <menu name>
@@ -319,10 +279,6 @@ Name: sample\_admin\_menu
 ```
 
 
-
----
-
-
 confbridge show profile bridges
 -------------------------------
 
@@ -346,10 +302,6 @@ default\_bridge
 
 
 ```
-
-
-
----
 
 
 confbridge show profile bridge <bridge>
@@ -397,10 +349,6 @@ sound\_error\_menu: conf-errormenu
 ```
 
 
-
----
-
-
 confbridge show profile users
 -----------------------------
 
@@ -424,10 +372,6 @@ default\_user
 
 
 ```
-
-
-
----
 
 
 confbirdge show profile user <user>
@@ -470,9 +414,5 @@ Announce User Count all: enabled
 
 
 ```
-
-
-
----
 
 

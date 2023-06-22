@@ -34,10 +34,6 @@ callcounter=yes
 ```
 
 
-
----
-
-
 busylevel
 ---------
 
@@ -61,10 +57,6 @@ type=friend
 busylevel=2
 
 ```
-
-
-
----
 
 
 notifyhold
@@ -91,10 +83,6 @@ Default: yes
 notifyhold=no
 
 ```
-
-
-
----
 
 
  
@@ -129,10 +117,6 @@ allowsubscribe=no
 ```
 
 
-
----
-
-
 subscribecontext
 ----------------
 
@@ -161,10 +145,6 @@ subscribecontext=myhints
 ```
 
 
-
----
-
-
 notifyringing
 -------------
 
@@ -187,10 +167,6 @@ Default: yes
 notifyringing=no
 
 ```
-
-
-
----
 
 
 notifycid
@@ -228,10 +204,6 @@ Default: no
  ; to PICKUPMARK.
 
 ```
-
-
-
----
 
 
  

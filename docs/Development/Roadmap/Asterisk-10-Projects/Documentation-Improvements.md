@@ -100,10 +100,6 @@ for each application/function/AGI command/AMI action {
 ```
 
 
-
----
-
-
 ##### Wiki Syntax
 
 

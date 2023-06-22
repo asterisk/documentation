@@ -13,18 +13,15 @@ The currently supported versions of Asterisk are documented on the [Asterisk Ver
 
 
 
----
+!!! tip Which version should I install?** * If you want a rock solid communications framework, choose the latest **Long Term Support (LTS)
+    release.
+    * If you want the latest cool features and capabilities, choose the latest release of Asterisk. If that is a **Standard** release, note that these releases may have larger changes made in them than LTS releases.
 
-**Tip: Which version should I install?** * If you want a rock solid communications framework, choose the latest **Long Term Support (LTS)** release.
-* If you want the latest cool features and capabilities, choose the latest release of Asterisk. If that is a **Standard** release, note that these releases may have larger changes made in them than LTS releases.
+    Unless otherwise noted, for the purposes of this section we will assume that Asterisk 14 is being installed.
 
-Unless otherwise noted, for the purposes of this section we will assume that Asterisk 14 is being installed.
+      
+[//]: # (end-tip)
 
-  
-
-
-
----
 
 
 Review Asterisk's [System Requirements](/Operation/System-Requirements) in order to determine what needs to be installed for the version of Asterisk you are installing. While Asterisk will look for any missing system requirements during compilation, it's often best to install these prior to configuring and compiling Asterisk.
@@ -66,10 +63,6 @@ asterisk-14-current.tar.gz 100%[================================================
 ```
 
 
-
----
-
-
 Other Projects
 ==============
 
@@ -92,15 +85,12 @@ You will only need to install DAHDI if you are going to utilize DAHDI compatible
 
 
 
----
+!!! tip Why is DAHDI split into different pieces?
+    DAHDI has been split into two pieces (the Linux drivers and the tools) as third parties have begun porting the DAHDI drivers to other operating systems, such as FreeBSD. Eventually, we may have dahdi-linux, dahdi-freebsd, and so on.
 
-**Tip: Why is DAHDI split into different pieces?** DAHDI has been split into two pieces (the Linux drivers and the tools) as third parties have begun porting the DAHDI drivers to other operating systems, such as FreeBSD. Eventually, we may have dahdi-linux, dahdi-freebsd, and so on.
+      
+[//]: # (end-tip)
 
-  
-
-
-
----
 
 
 Download Locations

@@ -6,28 +6,21 @@ pageid: 28314840
 
 
 
----
+!!! warning 
+    Under Construction
 
-**WARNING!:**   
-Under Construction
-
-  
-
-
-
----
+      
+[//]: # (end-warning)
 
 
 
 
----
 
-**Note:**  Top-level page for talking about frames, frame-hooks/audio-hooks.
+!!! note 
+    Top-level page for talking about frames, frame-hooks/audio-hooks.
 
-  
+      
+[//]: # (end-note)
 
-
-
----
 
 

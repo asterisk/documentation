@@ -6,17 +6,14 @@ pageid: 50463027
 
 
 
----
+!!! note 
+    The Asterisk project moved to GitHub on April 29th 2023.
 
-**Note:**  The Asterisk project moved to GitHub on April 29th 2023.
+    https://github.com/asterisk
 
-https://github.com/asterisk
+      
+[//]: # (end-note)
 
-  
-
-
-
----
 
 
  

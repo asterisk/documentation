@@ -6,16 +6,12 @@ pageid: 44370563
 
 
 
----
+!!! warning 
+    STIR/Shaken from a technical perspective has improved quite a lot, so much so that some companies have been able to do interop and it does work. The problematic area is really the foundational aspects and policy side of things. It's one thing to say "oh you use private key to sign some stuff" but who issues such things? Who actually does the work of signing and verifying? Are the certificates short lived ephemeral ones? Do you have to use a proprietary API to some upstream to manage things? There's still lots to flesh out there by the industry and governments.
 
-**WARNING!:**   
-STIR/Shaken from a technical perspective has improved quite a lot, so much so that some companies have been able to do interop and it does work. The problematic area is really the foundational aspects and policy side of things. It's one thing to say "oh you use private key to sign some stuff" but who issues such things? Who actually does the work of signing and verifying? Are the certificates short lived ephemeral ones? Do you have to use a proprietary API to some upstream to manage things? There's still lots to flesh out there by the industry and governments.
+      
+[//]: # (end-warning)
 
-  
-
-
-
----
 
 
 Welcome to the party!
@@ -39,29 +35,26 @@ Implementation
 
 
 
----
+!!! note 
+    If you're actually planning to work on this here's some handy links!
 
-**Note:**  If you're actually planning to work on this here's some handy links!
+    <https://tools.ietf.org/html/rfc8224>
 
-<https://tools.ietf.org/html/rfc8224>
+    <https://tools.ietf.org/html/rfc8225>
 
-<https://tools.ietf.org/html/rfc8225>
+    <https://tools.ietf.org/html/rfc8226>
 
-<https://tools.ietf.org/html/rfc8226>
+    <https://datatracker.ietf.org/doc/draft-ietf-stir-cert-delegation/>
 
-<https://datatracker.ietf.org/doc/draft-ietf-stir-cert-delegation/>
+    <http://nanc-chair.org/docs/mtg_docs/May_18_Call_Authentication_Trust_Anchor_NANC_Final_Report.pdf>
 
-<http://nanc-chair.org/docs/mtg_docs/May_18_Call_Authentication_Trust_Anchor_NANC_Final_Report.pdf>
+    <https://transnexus.com/whitepapers/understanding-stir-shaken/>
 
-<https://transnexus.com/whitepapers/understanding-stir-shaken/>
+    <https://www.telecompaper.com/news/atis-picks-iconectiv-as-policy-administrator-of-shakenstir-framework--1295009>
 
-<https://www.telecompaper.com/news/atis-picks-iconectiv-as-policy-administrator-of-shakenstir-framework--1295009>
+      
+[//]: # (end-note)
 
-  
-
-
-
----
 
 
  
@@ -98,10 +91,6 @@ cache\_max\_size=1000
 ```
 
 
-
----
-
-
  
 
 Individual certificates can be configured using the "certificate" type.
@@ -125,10 +114,6 @@ public\_key\_url=http://joshua-colp.com/jcolp.crt
 ```
 
 
-
----
-
-
  
 
 A group of certificates can be configured using the "store" type.
@@ -150,10 +135,6 @@ path=/etc/stir
 public\_key\_url=http://joshua-colp.com/${CERTIFICATE}.crt
 
 ```
-
-
-
----
 
 
 If the "store" type is used then all certificates in the directory will be examined and loaded. The public key URL is generated based on the filename and variable substitution.
@@ -202,10 +183,6 @@ void ast\_stir\_shaken\_payload\_free(struct ast\_stir\_shaken\_payload \*payloa
 ```
 
 
-
----
-
-
 The structure could be made opaque with accessors if we desired.
 
 ### Signing
@@ -231,10 +208,6 @@ The module will expose a single API call that can be used to sign a payload.
 struct ast\_stir\_shaken\_payload \*ast\_stir\_shaken\_sign(struct ast\_json \*json);
 
 ```
-
-
-
----
 
 
 The API call will:
@@ -267,10 +240,6 @@ The module will expose a single API call that can be used to verify a payload.
 struct ast\_stir\_shaken\_payload \*ast\_stir\_shaken\_verify(const char \*header, const char \*payload, const char \*signature, const char \*algorithm, const char \*public\_key\_url);
 
 ```
-
-
-
----
 
 
 The API call will:
@@ -315,10 +284,6 @@ int ast\_stir\_shaken\_add\_verification(struct ast\_channel \*chan, const char 
 ```
 
 
-
----
-
-
 The API call will use a datastore to place STIR/SHAKEN verify results on the channel for usage in the dialplan.
 
 
@@ -338,10 +303,6 @@ exten => s,n,NoOp(First STIR/SHAKEN attestation: ${STIR\_SHAKEN(0,attestation)})
 exten => s,n,NoOp(First STIR/SHAKEN verify result: ${STIR\_SHAKEN(0,verify\_result)})
 
 ```
-
-
-
----
 
 
 In the dialplan the STIR/SHAKEN identities can then be iterated or examine and based on that the user can choose what to do.

@@ -50,10 +50,6 @@ pre-connect => yes
 ```
 
 
-
----
-
-
 Then start up Asterisk and assuming res\_odbc loads properly on the CLI you can use odbc show to verify a DSN is configured and shows up:
 
 
@@ -75,10 +71,6 @@ ODBC DSN Settings
  Last connection attempt: 1969-12-31 18:00:00
 
 ```
-
-
-
----
 
 
 To verify the connection works you should use func\_odbc or something similar to query the data source from Asterisk.

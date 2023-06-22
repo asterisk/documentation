@@ -28,10 +28,6 @@ Local/101@mycontext/n
 ```
 
 
-
----
-
-
 You can add more than one modifier by adding them directly adjacent to the previous modifier.
 
 
@@ -48,10 +44,6 @@ You can add more than one modifier by adding them directly adjacent to the previ
 Local/101@mycontext/nj
 
 ```
-
-
-
----
 
 
 List of Modifiers

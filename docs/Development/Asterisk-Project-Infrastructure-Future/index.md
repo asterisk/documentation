@@ -11,17 +11,14 @@ This page describes the general future of the Asterisk project infrastructure. T
 
 
 
----
+!!! note 
+    The Asterisk Project moved to GitHub on April 29th, 2023.
 
-**Note:**  The Asterisk Project moved to GitHub on April 29th, 2023.
+    https://github.com/asterisk
 
-https://github.com/asterisk
+      
+[//]: # (end-note)
 
-  
-
-
-
----
 
 
 On this Page
@@ -35,16 +32,12 @@ A Github account will be needed for things. The old Asterisk Atlassian/community
 
 
 
----
+!!! info ""
+    If you have previously contributed to Asterisk then it is best to ensure that the email address you have used in your commits is also linked to your Github, for proper attribution and searching. This is not required but would be ideal.
 
+      
+[//]: # (end-info)
 
-**Information:**  If you have previously contributed to Asterisk then it is best to ensure that the email address you have used in your commits is also linked to your Github, for proper attribution and searching. This is not required but would be ideal.
-
-  
-
-
-
----
 
 
 Issue Tracking
@@ -68,15 +61,12 @@ Automation
 
 
 
----
+!!! note 
+    For all cases where Github Actions are referenced for automation a market place action will be used if it works for our usage.
 
-**Note:**  For all cases where Github Actions are referenced for automation a market place action will be used if it works for our usage.
+      
+[//]: # (end-note)
 
-  
-
-
-
----
 
 
 Much like we do with the existing Atlassian and Gerrit based infrastructure, we would like to leverage automation as much as possible to reduce the amount of work we have to do. Github provides Actions which will be utilized by the process to automate things.

@@ -9,16 +9,12 @@ include, tryinclude and exec
 
 
 
----
+!!! info ""
+    You might have arrived here looking for [Include Statements](/Configuration/Dialplan/Include-Statements) specific to Asterisk dialplan.
 
+      
+[//]: # (end-info)
 
-**Information:**  You might have arrived here looking for [Include Statements](/Configuration/Dialplan/Include-Statements) specific to Asterisk dialplan.
-
-  
-
-
-
----
 
 
 There are two other constructs we can use within all of our configuration files. They are **#include** and **#exec**.
@@ -39,17 +35,14 @@ The **#exec**, **#include**, and #**tryinclude** constructs do not work in the f
 
 
 
----
+!!! note 
+    #### Enabling #exec Functionality
 
-**Note:**  #### Enabling #exec Functionality
+    The #exec construct is not enabled by default, as it has some risks both in terms of performance and security. To enable this functionality, go to the **asterisk.conf** configuration file (by default located in */etc/asterisk*) and set **execincludes=yes** in the **[options]** section. By default both the **[options]** section heading and the **execincludes=yes** option have been commented out, you you'll need to remove the semicolon from the beginning of both lines.
 
-The #exec construct is not enabled by default, as it has some risks both in terms of performance and security. To enable this functionality, go to the **asterisk.conf** configuration file (by default located in */etc/asterisk*) and set **execincludes=yes** in the **[options]** section. By default both the **[options]** section heading and the **execincludes=yes** option have been commented out, you you'll need to remove the semicolon from the beginning of both lines.
+      
+[//]: # (end-note)
 
-  
-
-
-
----
 
 
 Examples
@@ -60,25 +53,14 @@ Let's look at example of both constructs in action. This is a generic example me
 
 
 
----
-
-  
-  
-
-
-```
-
-javascript[section-name]
+```javascript title=" " linenums="1"
+[section-name]
 setting=true
 #include otherconfig.conf ; include another configuration file
 #include my\_other\_files/\*.conf ; include all .conf files in the subdirectory my\_other\_files
 #exec otherprogram ; include output of otherprogram
 
 ```
-
-
-
----
 
 
 You can use #tryinclude if there is any chance the target file may not exist and you still want Asterisk to load the configuration for the module.
@@ -88,21 +70,10 @@ Here is a more realistic example of how #exec might be used with real-world comm
 
 
 
----
-
-  
-  
-
-
-```
-
+```bash title=" " linenums="1"
 #exec /usr/bin/curl -s http://example.com/mystuff > /etc/asterisk/mystuff
 #include mystuff
 
 ```
-
-
-
----
 
 

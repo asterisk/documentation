@@ -106,10 +106,6 @@ Note that the actual CEL events below are in CSV format and do not include the ;
 ```
 
 
-
----
-
-
  
 
 In terms of Manager events, the above Events correspond to the following 80 Manager events shown in the expansion link.
@@ -743,10 +739,6 @@ Cause-txt: Normal Clearing
 ```
 
 
-
----
-
-
 And, humorously enough, the above 80 manager events, or 42 CEL events, correspond to the following two CDR records (at the moment!):
 
 
@@ -765,9 +757,5 @@ And, humorously enough, the above 80 manager events, or 42 CEL events, correspon
 
 
 ```
-
-
-
----
 
 

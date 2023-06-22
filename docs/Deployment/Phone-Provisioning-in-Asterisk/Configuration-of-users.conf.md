@@ -38,10 +38,6 @@ profile=polycom
 ```
 
 
-
----
-
-
 The profile is optional if a default\_profile is set in phoneprov.conf. The following is a sample users.conf entry, with the template variables commented next to the settings:
 
 
@@ -82,10 +78,6 @@ cid\_number = 6001 ; ${CALLERID}
 
 
 ```
-
-
-
----
 
 
 The variables above, are the user-specfic variables that can be substituted into dynamic filenames and config templates.

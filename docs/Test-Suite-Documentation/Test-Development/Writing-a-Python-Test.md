@@ -6,18 +6,14 @@ pageid: 19008058
 
 
 
----
+!!! warning 
+    ### This method of creating tests is deprecated.
 
-**WARNING!:**   
-### This method of creating tests is deprecated.
+    #### We strongly recommend that you write your tests using test-config.yaml and pluggable modules rather than in Python. If you find yourself limited by the pluggable modules, we'd all be better off if you updated an existing module or created a new one to handle your scenario.
 
-#### We strongly recommend that you write your tests using test-config.yaml and pluggable modules rather than in Python. If you find yourself limited by the pluggable modules, we'd all be better off if you updated an existing module or created a new one to handle your scenario.
+      
+[//]: # (end-warning)
 
-  
-
-
-
----
 
 
 Overview
@@ -80,10 +76,6 @@ same => n,UserEvent(TestResult,result:pass)
 
 ```
 
-
-
----
-
 At the end of this, you should have:
 
 * A folder in *tests* named *sample*
@@ -111,16 +103,12 @@ Each test has a corresponding [yaml](http://yaml.org/) file that defines informa
 
 
 
----
+!!! info ""
+    NoteSee the Test Suite's README.txt for all of the possible fields in a test configuration file
 
+      
+[//]: # (end-info)
 
-**Information:**  NoteSee the Test Suite's README.txt for all of the possible fields in a test configuration file
-
-  
-
-
-
----
 
 
 The *test-config.yaml* file for our *sample* test is below.
@@ -151,10 +139,6 @@ properties:
 ```
 
 
-
----
-
-
 While we've created our test description, we haven't yet told the Test Suite of its existence. Upon startup, *runtests.py* checks *tests/tests.yaml* for the tests that exist. That file defines the folders that contain tests, where each folder contains another *tests.yaml* file that further defines tests and folders. In order for the Test Suite to find our sample test, open the *tests/tests.yaml* file and insert our test:
 
 
@@ -178,10 +162,6 @@ truetruetests:
 
 
 ```
-
-
-
----
 
 
 Writing run-test
@@ -235,10 +215,6 @@ if \_\_name\_\_ == "\_\_main\_\_":
 
 
 ```
-
-
-
----
 
 
 There are a few things to note from this:
@@ -317,10 +293,6 @@ truepythontrueclass SampleTest(TestCase):
 ```
 
 
-
----
-
-
 At the end of this, we have the following:
 
 * A class that inherits from *TestCase*. In its constructor, it calls the base class constructor and creates an instance of Asterisk by calling the *TestCase.create\_asterisk()* method. The base class provides us a few attributes that are of particular use:
@@ -363,10 +335,6 @@ truepythontruedef ami\_connect(self, ami):
 
 
 ```
-
-
-
----
 
 
 What we've now instructed the test to do is, upon an AMI connection, originate a call to the *s* extension in context *default*, using a Local channel. starpy's *originate* method returns a deferred object, which lets us assign a callback handler in case of an error. We've used the TestCase class's *handleOriginateFailure* method for this, which will automagically fail our test for us if the originate fails.
@@ -420,10 +388,6 @@ truepythontruedef ami\_connect(self, ami):
 ```
 
 
-
----
-
-
 Now we've registered for the UserEvent that should be raised from the dialplan after monkeys are played back. We make the assumption in the handler that we could have other UserEvents that return failure results - in our case, we don't have failure scenarios, but many tests do. Regardless, once we receive a user event we stop the twisted reactor, which will cause our test to be stopped and the results evaluated.
 
 We should now be ready to run our test.
@@ -448,10 +412,6 @@ From a console window, browse to the base directory of the Test Suite and type t
 
 
 ```
-
-
-
----
 
 
 You should see something similar to the following:
@@ -480,10 +440,6 @@ Parsing /tmp/asterisk-testsuite/sample/ast1/etc/asterisk/logger.logfiles.conf.in
 
 
 ```
-
-
-
----
 
 
 We can inspect the log files created by the Test Suite for more information. The Test Suite makes two log files - full.txt and messages.txt - by default, DEBUG and higher are sent to full.txt, while INFO and higher are sent to mssages.txt. The following is a snippet from messages.txt - yours should look similar.
@@ -515,10 +471,6 @@ We can inspect the log files created by the Test Suite for more information. The
 ```
 
 
-
----
-
-
 Sample Test
 ===========
 
@@ -543,10 +495,6 @@ same => n,UserEvent(TestResult,result:pass)
 
 
 ```
-
-
-
----
 
 
 test-config.yaml
@@ -576,10 +524,6 @@ properties:
 
 
 ```
-
-
-
----
 
 
 run-test
@@ -712,9 +656,5 @@ if \_\_name\_\_ == "\_\_main\_\_":
 
 
 ```
-
-
-
----
 
 

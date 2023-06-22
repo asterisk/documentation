@@ -12,15 +12,12 @@ Interception routines
 
 
 
----
+!!! note 
+    As Interception routines are implemented internally using the [Gosub](/Asterisk-11-Application_Gosub) application, all routines should end with an explicit call to the [Return](/Asterisk-11-Application_Return) application.
 
-**Note:**  As Interception routines are implemented internally using the [Gosub](/Asterisk-11-Application_Gosub) application, all routines should end with an explicit call to the [Return](/Asterisk-11-Application_Return) application.
+      
+[//]: # (end-note)
 
-  
-
-
-
----
 
 
 The interception routines give the administrator an opportunity to alter [connected line and redirecting information](/Configuration/Functions/Manipulating-Party-ID-Information) before the channel driver is given the information. If the routine does not change a value then that is what is going to be passed to the channel driver.
@@ -32,16 +29,12 @@ The 'i' option of the CONNECTEDLINE dialplan function should always be used in t
 
 
 
----
+!!! info ""
+    Note that Interception routines do not attempt to draw a distinction between caller/callee. As it turned out, it was not a good thing to distinguish since transfers make a mockery of caller/callee.
 
+      
+[//]: # (end-info)
 
-**Information:**  Note that Interception routines do not attempt to draw a distinction between caller/callee. As it turned out, it was not a good thing to distinguish since transfers make a mockery of caller/callee.
-
-  
-
-
-
----
 
 
 * ${REDIRECTING\_SEND\_SUB}
@@ -57,16 +50,12 @@ Interception macros
 
 
 
----
+!!! warning WARNING
+    Interception macros have been deprecated in Asterisk 11 due to deprecation of [Macro](/Asterisk-11-Application_Macro). Users of the interception functionality should plan to migrate to [Interception routines](#interception_routines).
 
-**WARNING!: WARNING**  
-Interception macros have been deprecated in Asterisk 11 due to deprecation of [Macro](/Asterisk-11-Application_Macro). Users of the interception functionality should plan to migrate to [Interception routines](#interception_routines).
+      
+[//]: # (end-warning)
 
-  
-
-
-
----
 
 
 The interception macros give the administrator an opportunity to alter [connected line and redirecting information](/Configuration/Functions/Manipulating-Party-ID-Information) before the channel driver is given the information. If the macro does not change a value then that is what is going to be passed to the channel driver.

@@ -6,34 +6,23 @@ pageid: 20189344
 
 
 
----
+!!! info "**  Pre-Dial Handlers were added in **Asterisk 11"
+    ---
 
 
-**Information:**  Pre-Dial Handlers were added in **Asterisk 11**
+    Overview
+    --------
 
-  
+    Pre-dial handlers allow you to execute a dialplan subroutine on a channel before a call is placed but after the application performing a dial action is invoked. This means that the handlers are executed after the creation of the caller/callee channels, but before any actions have been taken to actually dial the callee channels. You can execute a dialplan subroutine on the caller channel and on each callee channel dialed.
 
+    There are two ways in which a pre-dial handler can be invoked:
 
+    * The '**B**' option in an application executes a dialplan subroutine on the caller channel before any callee channels are created.
+    * The '**b**' option in an application executes a dialplan subroutine on each callee channel after it is created but before the call is placed to the end-device.
 
----
+    Pre-dial handlers are supported in the [Dial](/Asterisk-11-Application_Dial) application and the [FollowMe](/Asterisk-11-Application_FollowMe) application.
+[//]: # (end-info)
 
-
-Overview
---------
-
-Pre-dial handlers allow you to execute a dialplan subroutine on a channel before a call is placed but after the application performing a dial action is invoked. This means that the handlers are executed after the creation of the caller/callee channels, but before any actions have been taken to actually dial the callee channels. You can execute a dialplan subroutine on the caller channel and on each callee channel dialed.
-
-There are two ways in which a pre-dial handler can be invoked:
-
-* The '**B**' option in an application executes a dialplan subroutine on the caller channel before any callee channels are created.
-* The '**b**' option in an application executes a dialplan subroutine on each callee channel after it is created but before the call is placed to the end-device.
-
-Pre-dial handlers are supported in the [Dial](/Asterisk-11-Application_Dial) application and the [FollowMe](/Asterisk-11-Application_FollowMe) application.
-
-
-
-
----
 
 **WARNING!: WARNINGS**  
 * As pre-dial handlers are implemented using [Gosub](/Asterisk-11-Application_Gosub) subroutines, they must be terminated with a call to [Return](/Asterisk-11-Application_Return).
@@ -69,21 +58,13 @@ B([[context^]exten^]priority[(arg1[^...][^argN])])
 
 
 
----
 
+!!! info ""
+    If context or exten are not supplied then the current values from the caller channel are used.
 
+      
+[//]: # (end-info)
 
-
----
-
-
-**Information:**  If context or exten are not supplied then the current values from the caller channel are used.
-
-  
-
-
-
----
 
 
 Examples
@@ -125,10 +106,6 @@ same => n,Return()
 
 
 
----
-
-
-
 
 ---
 
@@ -145,10 +122,6 @@ Example 1 CLI Output
 
 
 ```
-
-
-
----
 
 
 #### Example 2 - Executing a pre-dial handler on a callee channel
@@ -180,10 +153,6 @@ same => n,Return()
 
 
 
----
-
-
-
 
 ---
 
@@ -200,10 +169,6 @@ Example 2 CLI Output
 
 
 ```
-
-
-
----
 
 
 #### Example 3 - Executing a pre-dial handler on multiple callee channels
@@ -235,10 +200,6 @@ same => n,Return()
 
 
 
----
-
-
-
 
 ---
 
@@ -258,9 +219,5 @@ Example 3 CLI Output
 
 
 ```
-
-
-
----
 
 

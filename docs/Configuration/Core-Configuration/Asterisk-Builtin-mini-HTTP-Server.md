@@ -36,10 +36,6 @@ bindport=8088
 ```
 
 
-
----
-
-
 That configuration would enable the HTTP server and have it bind to all available network interfaces on port 8088.
 
 Configuration Options

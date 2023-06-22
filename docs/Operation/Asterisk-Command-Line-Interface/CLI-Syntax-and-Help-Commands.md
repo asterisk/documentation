@@ -17,15 +17,12 @@ For example:
 
 
 
----
+!!! note 
+    Commands are provided by the core, or by Asterisk modules. If the component that provides the commands is not loaded, then the commands it provides won't be available.
 
-**Note:**  Commands are provided by the core, or by Asterisk modules. If the component that provides the commands is not loaded, then the commands it provides won't be available.
+      
+[//]: # (end-note)
 
-  
-
-
-
----
 
 
 Asterisk does support command aliases. You can find information in the [Asterisk CLI Configuration](/Configuration/Core-Configuration/Asterisk-CLI-Configuration) section.
@@ -66,10 +63,6 @@ ael reload -- Reload AEL configuration
 ```
 
 
-
----
-
-
 The 'help' alias may also be used to obtain more detailed information on how to use a particular command and listing sub-commands. For example, if you type 'help core show', Asterisk will respond with a list of all commands that start with that string. If you type 'help core show version', specifying a complete command, Asterisk will respond with a usage message which describes how to use that command. As with other commands on the Asterisk console, the help command also responds to tab command line completion.
 
 
@@ -92,10 +85,6 @@ core show application -- Describe a specific dialplan application
 
 
 
----
-
-
-
 
 ---
 
@@ -110,10 +99,6 @@ Usage: core show version
  Shows Asterisk version information.
 
 ```
-
-
-
----
 
 
 Help for functions, applications and more
@@ -153,10 +138,6 @@ seconds
 ```
 
 
-
----
-
-
 Module Configuration Help
 -------------------------
 
@@ -194,10 +175,6 @@ Usage: config show help [<module> [<type> [<option>]]]
 ```
 
 
-
----
-
-
 For example maybe we see the 'callerid' option in a pjsip.conf file sent to us from a friend. We want to know what that option configures. If we know that pjsip.conf is provided by the res\_pjsip module then we can find help on that configuration option.
 
 
@@ -220,9 +197,5 @@ CallerID information for the endpoint
  Must be in the format 'Name <Number>', or only '<Number>'. 
 
 ```
-
-
-
----
 
 

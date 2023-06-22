@@ -45,10 +45,6 @@ list\_item = carol
 ```
 
 
-
----
-
-
 It should be simple to glean the intent of this list. We have created a list called "sales" that provides the presence of the sales team of alice, bob, and carol. Let's go over each of the options in more detail.
 
 * `type`: This must be set to "resource\_list" so that the configuration parser knows that it is looking at a resource list.
@@ -92,10 +88,6 @@ notification\_batch\_interval = 2000
 ```
 
 
-
----
-
-
 The units for the `notification_batch_interval` are milliseconds. With this configuration, Asterisk will collect resource state changes for 2000 milliseconds before sending notifications on this resource list.
 
 The biggest advantage of notification batching is that it can decrease the number of NOTIFY requests that Asterisk sends. If two SIP phones on a PBX are having a conversation with one another, when a call completes, both phones are likely to change states to being not in use. By having a batching interval configured, it would allow for a single NOTIFY to indicate both devices' state changes instead of having to send two separate NOTIFY requests.
@@ -131,10 +123,6 @@ list\_item = carol
 ```
 
 
-
----
-
-
 And you have the following in `extensions.conf`
 
 extensions.conf
@@ -153,10 +141,6 @@ exten => alice,hint,PJSIP/alice
 exten => bob,hint,PJSIP/bob
 
 ```
-
-
-
----
 
 
 Notice that there is no "carol" extension in `extensions.conf`. What happens when a user attempts to subscribe to the sales list?
@@ -192,10 +176,6 @@ event = presence
 list\_item = sales
 
 ```
-
-
-
----
 
 
 Notice that the sales list contains the tech\_support list, and the tech\_support list contains the sales list. We have a loop here. How is that handled?
@@ -235,10 +215,6 @@ list\_item = sales
 list\_item = alice
 
 ```
-
-
-
----
 
 
 Notice that the tech\_support list now also has alice as a list\_item. How does the process change on a subscription attempt to sales?
@@ -288,10 +264,6 @@ list\_item = carol
 ```
 
 
-
----
-
-
 And let's say you have the following `extensions.conf`:
 
 extensions.conf
@@ -309,10 +281,6 @@ true[default]
 exten => sales,hint,Custom:sales
 
 ```
-
-
-
----
 
 
 What happens if someone attempts to subscribe to the "sales" presence resource?
@@ -352,10 +320,6 @@ list\_item = bob
 notification\_batch\_interval = 10000
 
 ```
-
-
-
----
 
 
 What is the batch interval when a user subscribes to the sales list?

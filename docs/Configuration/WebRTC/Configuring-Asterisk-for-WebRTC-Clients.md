@@ -45,15 +45,12 @@ From the Asterisk source directory run the following commands. You'll be prompte
 
 
 
----
+!!! note Private Key Size
+    In Asterisk 13, 16, and 17, the `ast_tls_cert` script creates 1024 bit private keys by default. Newer versions of OpenSSL prevent Asterisk from loading private keys that are only 1024 bits resulting in a "key too small" error. The `ast_tls_cert` script in Asterisk versions 13.32.0, 16.9.0, and 17.3.0 and later includes a new command line flag (`-b`) that allows you to set the size of the generated private key in bits.
 
-**Note: Private Key Size**  In Asterisk 13, 16, and 17, the `ast_tls_cert` script creates 1024 bit private keys by default. Newer versions of OpenSSL prevent Asterisk from loading private keys that are only 1024 bits resulting in a "key too small" error. The `ast_tls_cert` script in Asterisk versions 13.32.0, 16.9.0, and 17.3.0 and later includes a new command line flag (`-b`) that allows you to set the size of the generated private key in bits.
+      
+[//]: # (end-note)
 
-  
-
-
-
----
 
 
 
@@ -111,10 +108,6 @@ total 32
 ```
 
 
-
----
-
-
 We'll use the `asterisk.crt` and `asterisk.key` files later to configure the HTTP server.
 
 Asterisk Configuration
@@ -149,20 +142,13 @@ tlsprivatekey=/etc/asterisk/keys/asterisk.key
 
 
 
----
 
+!!! note 
+    If you have not used the generated self-signed certificates produced in the "[Create Certificates](#CreateCertificates)" section then you will need to set the "`tlscertfile`" and "`tlsprivatekey`" to the path of your own certificates if they differ.
 
+      
+[//]: # (end-note)
 
-
----
-
-**Note:**  If you have not used the generated self-signed certificates produced in the "[Create Certificates](#CreateCertificates)" section then you will need to set the "`tlscertfile`" and "`tlsprivatekey`" to the path of your own certificates if they differ.
-
-  
-
-
-
----
 
 
  
@@ -210,10 +196,6 @@ Enabled URI's:
 ```
 
 
-
----
-
-
 Note that the HTTPS Server is enabled and bound to `[::]:8089` and that the `/ws` URI is enabled.
 
 Configure PJSIP
@@ -245,10 +227,6 @@ bind=0.0.0.0
 
 
 ```
-
-
-
----
 
 
 ### PJSIP Endpoint, AOR and Auth
@@ -299,10 +277,6 @@ allow=opus,ulaw
 
 
 ```
-
-
-
----
 
 
 An explanation of each of these settings parameters can be found on the [Asterisk 16 Configuration for `res_pjsip`](/Asterisk-16-Configuration_res_pjsip) page. Briefly:

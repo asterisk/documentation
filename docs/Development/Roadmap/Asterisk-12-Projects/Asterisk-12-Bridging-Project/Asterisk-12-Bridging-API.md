@@ -6,17 +6,12 @@ pageid: 22088074
 
 
 
----
+!!! warning READ THIS
+    The API described below is a work in progress. Certain aspects, such as the semantics of what happens to a channel when it is ejected from a bridge and needs to execute a new location in the dialplan, are still being worked out. Treat the documentation here as a working reference, rather than a contractual guarantee.
 
-**WARNING!: READ THIS**  
+      
+[//]: # (end-warning)
 
-The API described below is a work in progress. Certain aspects, such as the semantics of what happens to a channel when it is ejected from a bridge and needs to execute a new location in the dialplan, are still being worked out. Treat the documentation here as a working reference, rather than a contractual guarantee.
-
-  
-
-
-
----
 
 
 [Bridging Framework](http://svn.asterisk.org/svn/asterisk/team/group/bridge_construction/include/asterisk/bridging.h)
@@ -68,10 +63,6 @@ enum ast\_bridge\_capability {
 ```
 
 
-
----
-
-
 ### ast\_bridge\_channel\_state enum
 
 
@@ -109,10 +100,6 @@ enum ast\_bridge\_channel\_state {
 ```
 
 
-
----
-
-
 ### ast\_bridge\_write\_result
 
 
@@ -144,10 +131,6 @@ enum ast\_bridge\_write\_result {
 
 
 ```
-
-
-
----
 
 
 ### ast\_bridge\_action\_type
@@ -186,10 +169,6 @@ enum ast\_bridge\_action\_type {
 ```
 
 
-
----
-
-
 ### ast\_bridge\_video\_mode\_type
 
 
@@ -221,10 +200,6 @@ enum ast\_bridge\_video\_mode\_type {
 
 
 ```
-
-
-
----
 
 
 Structures
@@ -268,10 +243,6 @@ struct ast\_bridge\_tech\_optimizations {
 
 
 ```
-
-
-
----
 
 
 ### ast\_bridge\_channel
@@ -334,10 +305,6 @@ struct ast\_bridge\_channel {
 ```
 
 
-
----
-
-
 ### ast\_bridge\_video\_single\_src\_data
 
 
@@ -366,10 +333,6 @@ struct ast\_bridge\_video\_single\_src\_data {
 
 
 ```
-
-
-
----
 
 
 ### ast\_bridge\_video\_talker\_src\_data
@@ -406,10 +369,6 @@ struct ast\_bridge\_video\_talker\_src\_data {
 ```
 
 
-
----
-
-
 ### ast\_bridge\_video\_mode
 
 
@@ -440,10 +399,6 @@ struct ast\_bridge\_video\_mode {
 
 
 ```
-
-
-
----
 
 
 ### ast\_bridge
@@ -516,10 +471,6 @@ struct ast\_bridge {
 ```
 
 
-
----
-
-
 Functions on ast\_bridge
 ------------------------
 
@@ -568,10 +519,6 @@ struct ast\_bridge \*ast\_bridge\_new(uint32\_t capabilities, int flags);
 ```
 
 
-
----
-
-
 ### ast\_bridge\_lock
 
 
@@ -608,10 +555,6 @@ static inline void \_ast\_bridge\_lock(struct ast\_bridge \*bridge, const char \
 ```
 
 
-
----
-
-
 ### ast\_bridge\_unlock
 
 
@@ -646,10 +589,6 @@ static inline void \_ast\_bridge\_unlock(struct ast\_bridge \*bridge, const char
 
 
 ```
-
-
-
----
 
 
 ### ast\_bridge\_check
@@ -694,10 +633,6 @@ int ast\_bridge\_check(uint32\_t capabilities);
 ```
 
 
-
----
-
-
 ### ast\_bridge\_destroy
 
 
@@ -737,10 +672,6 @@ int ast\_bridge\_destroy(struct ast\_bridge \*bridge);
 
 
 ```
-
-
-
----
 
 
 ### ast\_bridge\_join
@@ -811,10 +742,6 @@ enum ast\_bridge\_channel\_state ast\_bridge\_join(struct ast\_bridge \*bridge,
 
 
 ```
-
-
-
----
 
 
 ### ast\_bridge\_impart
@@ -901,10 +828,6 @@ int ast\_bridge\_impart(struct ast\_bridge \*bridge, struct ast\_channel \*chan,
 ```
 
 
-
----
-
-
 ### ast\_bridge\_depart
 
 
@@ -950,10 +873,6 @@ int ast\_bridge\_depart(struct ast\_bridge \*bridge, struct ast\_channel \*chan)
 
 
 ```
-
-
-
----
 
 
 ### ast\_bridge\_remove
@@ -1003,10 +922,6 @@ int ast\_bridge\_remove(struct ast\_bridge \*bridge, struct ast\_channel \*chan)
 ```
 
 
-
----
-
-
 ### ast\_bridge\_merge
 
 
@@ -1051,10 +966,6 @@ int ast\_bridge\_merge(struct ast\_bridge \*bridge0, struct ast\_bridge \*bridge
 
 
 ```
-
-
-
----
 
 
 ### ast\_bridge\_suspend
@@ -1104,10 +1015,6 @@ int ast\_bridge\_suspend(struct ast\_bridge \*bridge, struct ast\_channel \*chan
 ```
 
 
-
----
-
-
 ### ast\_bridge\_unsuspend
 
 
@@ -1154,10 +1061,6 @@ int ast\_bridge\_unsuspend(struct ast\_bridge \*bridge, struct ast\_channel \*ch
 ```
 
 
-
----
-
-
 ### ast\_bridge\_change\_state
 
 
@@ -1166,17 +1069,12 @@ Change the state of a bridged channel.
 
 
 
----
+!!! warning WARNING
+    You shouldn't use this unless you are implementing a bridging feature hook.
 
-**WARNING!: WARNING**  
+      
+[//]: # (end-warning)
 
-You shouldn't use this unless you are implementing a bridging feature hook.
-
-  
-
-
-
----
 
 
 
@@ -1216,10 +1114,6 @@ void ast\_bridge\_change\_state(struct ast\_bridge\_channel \*bridge\_channel, e
 ```
 
 
-
----
-
-
 ### ast\_bridge\_set\_internal\_sample\_rate
 
 
@@ -1255,10 +1149,6 @@ void ast\_bridge\_set\_internal\_sample\_rate(struct ast\_bridge \*bridge, unsig
 ```
 
 
-
----
-
-
 ### ast\_bridge\_set\_mixing\_interval
 
 
@@ -1292,10 +1182,6 @@ void ast\_bridge\_set\_mixing\_interval(struct ast\_bridge \*bridge, unsigned in
 ```
 
 
-
----
-
-
 ### ast\_bridge\_set\_single\_src\_video\_mode
 
 
@@ -1322,10 +1208,6 @@ void ast\_bridge\_set\_single\_src\_video\_mode(struct ast\_bridge \*bridge, str
 
 
 ```
-
-
-
----
 
 
 ### ast\_bridge\_set\_talker\_src\_video\_mode
@@ -1357,10 +1239,6 @@ void ast\_bridge\_set\_talker\_src\_video\_mode(struct ast\_bridge \*bridge);
 ```
 
 
-
----
-
-
 ### ast\_bridge\_update\_talker\_src\_video\_mode
 
 
@@ -1389,10 +1267,6 @@ void ast\_bridge\_update\_talker\_src\_video\_mode(struct ast\_bridge \*bridge, 
 ```
 
 
-
----
-
-
 ### ast\_bridge\_number\_video\_src
 
 
@@ -1419,10 +1293,6 @@ int ast\_bridge\_number\_video\_src(struct ast\_bridge \*bridge);
 
 
 ```
-
-
-
----
 
 
 ### ast\_bridge\_is\_video\_src
@@ -1458,10 +1328,6 @@ int ast\_bridge\_is\_video\_src(struct ast\_bridge \*bridge, struct ast\_channel
 ```
 
 
-
----
-
-
 ### ast\_bridge\_remove\_video\_src
 
 
@@ -1488,10 +1354,6 @@ void ast\_bridge\_remove\_video\_src(struct ast\_bridge \*bridge, struct ast\_ch
 
 
 ```
-
-
-
----
 
 
 [Bridging Technologies](http://svn.asterisk.org/svn/asterisk/team/group/bridge_construction/include/asterisk/bridging_technology.h)
@@ -1531,10 +1393,6 @@ enum ast\_bridge\_preference {
 
 
 ```
-
-
-
----
 
 
 Structs
@@ -1607,10 +1465,6 @@ struct ast\_bridge\_technology {
 ```
 
 
-
----
-
-
 Functions
 ---------
 
@@ -1662,10 +1516,6 @@ int \_\_ast\_bridge\_technology\_register(struct ast\_bridge\_technology \*techn
 ```
 
 
-
----
-
-
 ### ast\_bridge\_technology\_unregister
 
 
@@ -1707,10 +1557,6 @@ int ast\_bridge\_technology\_unregister(struct ast\_bridge\_technology \*technol
 
 
 ```
-
-
-
----
 
 
 ### ast\_bridge\_handle\_trip
@@ -1757,10 +1603,6 @@ void ast\_bridge\_handle\_trip(struct ast\_bridge \*bridge, struct ast\_bridge\_
 ```
 
 
-
----
-
-
 ### ast\_bridge\_notify\_talking
 
 
@@ -1797,10 +1639,6 @@ void ast\_bridge\_notify\_talking(struct ast\_bridge\_channel \*bridge\_channel,
 
 
 ```
-
-
-
----
 
 
 ### ast\_bridge\_technology\_suspend
@@ -1843,10 +1681,6 @@ void ast\_bridge\_technology\_suspend(struct ast\_bridge\_technology \*technolog
 ```
 
 
-
----
-
-
 ### ast\_bridge\_technology\_unsuspend
 
 
@@ -1884,9 +1718,5 @@ void ast\_bridge\_technology\_unsuspend(struct ast\_bridge\_technology \*technol
 
 
 ```
-
-
-
----
 
 

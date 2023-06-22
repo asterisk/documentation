@@ -64,10 +64,6 @@ int ao2\_hash\_fn(const void \*obj, int flags)
 ```
 
 
-
----
-
-
 ### Sort Function
 
 
@@ -114,10 +110,6 @@ int ao2\_sort\_fn(const void \*obj\_left, const void \*obj\_right, int flags)
 ```
 
 
-
----
-
-
 ### Sorted vs. Unsorted Container Searching
 
 The sort/hash comparison functions act as a filter before the `ao2_callback_fn` function is called.  Every object is matched first by the sort/hash functions.  This callback just adds additional discrimination between otherwise equal matches.  For most sorted container searches you won't need a special callback and can use the default to match everything by passing NULL for this function.
@@ -149,10 +141,6 @@ int ao2\_callback\_fn\_sorted\_cmp(void \*obj, void \*arg, int flags)
 }
 
 ```
-
-
-
----
 
 
 Unsorted containers must do more work selecting objects since traversals will either traverse the whole container or one hash bucket.
@@ -210,9 +198,5 @@ int ao2\_callback\_fn\_unsorted\_cmp(void \*obj, void \*arg, int flags)
 }
 
 ```
-
-
-
----
 
 

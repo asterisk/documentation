@@ -37,10 +37,6 @@ M(macro[^arg[^...]])
 ```
 
 
-
----
-
-
 The variable MACRO\_RESULT can be set with certain options inside the specified macro to determine behavior when the macro finishes. The options are documented in the [Dial application documentation](/Asterisk-13-Application_Dial).
 
 
@@ -66,10 +62,6 @@ U(x[^arg[^...]])
 ```
 
 
-
----
-
-
 The variable GOSUB\_RESULT can be set within certain options inside the specified gosub to determine behavior when the gosub returns. The options are documented in the [Dial application documentation](/Asterisk-13-Application_Dial).
 
 Queue application
@@ -91,10 +83,6 @@ The Queue application, similar to Dial, has two options for handling pre-bridge 
 Queue(queuename[,options[,URL[,announceoverride[,timeout[,AGI[,macro[,gosub[,rule[,position]]]]]]]]])
 
 ```
-
-
-
----
 
 
 **macro** and **gosub** can both be populated with the name of a macro or gosub routine to execute on the called party channel as described in the overview.
@@ -130,10 +118,6 @@ exten = s,1,NoOp()
 ```
 
 
-
----
-
-
 CLI output
 
 
@@ -161,10 +145,6 @@ CLI output
  == Spawn extension (from-internal, 6001, 1) exited non-zero on 'PJSIP/BOB-00000014'
 
 ```
-
-
-
----
 
 
  
@@ -195,10 +175,6 @@ exten = s,1,NoOp()
  same = n,Return()
 
 ```
-
-
-
----
 
 
 CLI output
@@ -234,10 +210,6 @@ CLI output
 ```
 
 
-
----
-
-
 ### Example 3 - Executing a pre-bridge gosub handler from Queue
 
 ALICE(6001) dials Queue 'sales' where BOB(6002) is a member. Once BOB answers the queue call, the Playback is executed from within the gosub.
@@ -266,10 +238,6 @@ same => n,Queue(sales,,,,,,,sub-announcement)
 same => n,Hangup()
 
 ```
-
-
-
----
 
 
 CLI output
@@ -314,10 +282,6 @@ CLI output
 ```
 
 
-
----
-
-
 ### Example 4 - Executing a pre-bridge macro handler from Queue
 
 BOB(6002) calls the queue 'support' where ALICE(6001) is a member. Once ALICE answers the queue call, the Playback is executed from within the macro.
@@ -345,10 +309,6 @@ same => n,Queue(support,,,,,,announcement)
 same => n,Hangup()
 
 ```
-
-
-
----
 
 
 CLI output
@@ -387,9 +347,5 @@ CLI output
  == Spawn extension (from-internal, 7001, 2) exited non-zero on 'PJSIP/BOB-00000004'
 
 ```
-
-
-
----
 
 

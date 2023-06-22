@@ -63,10 +63,6 @@ atxfer = \*2
 ```
 
 
-
----
-
-
 Now that you have the feature enabled you need to configure the dialplan such that a particular channel will be allowed to use the feature.
 
 As an example if you want to allow transfers via the [Dial](/Asterisk-13-Application_Dial) application you can use two options, "t" or "T".
@@ -92,24 +88,17 @@ exten = 102,1,Dial(PJSIP/BOB,30,T)
 ```
 
 
-
----
-
-
 Asterisk should be restarted or relevant modules should be reloaded for changes to take effect.
 
 
 
 
----
+!!! tip 
+    The same arguments ("t" and "T") work for the [Queue](/Asterisk-13-Application_Queue) and [Dial](/Asterisk-13-Application_Dial) applications!
 
-**Tip:**  The same arguments ("t" and "T") work for the [Queue](/Asterisk-13-Application_Queue) and [Dial](/Asterisk-13-Application_Dial) applications!
+      
+[//]: # (end-tip)
 
-  
-
-
-
----
 
 
 Feature codes for attended transfer control
@@ -155,10 +144,6 @@ atxferswap = \*6
 ```
 
 
-
----
-
-
 Configuring attended transfer callbacks
 ---------------------------------------
 
@@ -202,10 +187,6 @@ atxfercallbackretries = 2
 ```
 
 
-
----
-
-
 Behavior Options
 ================
 
@@ -230,10 +211,6 @@ These options are configured in the "[general]" section of features.conf
 ```
 
 
-
----
-
-
 ### Attended transfer options
 
 
@@ -256,10 +233,6 @@ These options are configured in the "[general]" section of features.conf
 
 
 ```
-
-
-
----
 
 
 Basic Transfer Examples

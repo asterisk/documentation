@@ -36,10 +36,6 @@ ${TOLOWER(${MAC})}-directory.xml => 000000000000-directory.xml
 ```
 
 
-
----
-
-
 A static\_file is set by specifying the file name, relative to AST\_DATA\_DIR/phoneprov. The mime-type of the file can optionally be specified after a comma. If staticdir is set, all static files will be relative to the subdirectory of AST\_DATA\_DIR/phoneprov specified. 
 
 
@@ -51,15 +47,11 @@ A default mime-type for the profile can be defined by setting mime-type. If a cu
 
 
 
----
+!!! note 
+    Any dialplan function that is used for generation of dynamic file names MUST be loaded before res\_phoneprov. Add "preload = modulename.so" to modules.conf for required functions. In the example above, "preload = func\_strings.so" would be required.
 
-**Note:**  
-Any dialplan function that is used for generation of dynamic file names MUST be loaded before res\_phoneprov. Add "preload = modulename.so" to modules.conf for required functions. In the example above, "preload = func\_strings.so" would be required.
+      
+[//]: # (end-note)
 
-  
-
-
-
----
 
 

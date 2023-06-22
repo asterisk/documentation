@@ -32,21 +32,13 @@ app.stopmusiconhold()
 
 
 
----
 
+!!! info ""
+    In Asterisk 10 an autoservice is automatically started for you by default.
 
+      
+[//]: # (end-info)
 
-
----
-
-
-**Information:**  In Asterisk 10 an autoservice is automatically started for you by default.
-
-  
-
-
-
----
 
 
 Defining Extensions Dynamically
@@ -82,10 +74,6 @@ extensions.default[101] = sip\_exten(101)
 ```
 
 
-
----
-
-
 Creating Custom Aliases for Built-in Constructs
 -----------------------------------------------
 
@@ -112,10 +100,6 @@ end
 
 
 ```
-
-
-
----
 
 
 Re-purposing The `print` Function
@@ -151,10 +135,6 @@ end
 ```
 
 
-
----
-
-
 Splitting Configuration into Multiple Files
 -------------------------------------------
 
@@ -185,10 +165,6 @@ luac -o extensions.lua extensions.lua.lua
 
 
 ```
-
-
-
----
 
 
 The pbx\_lua module automatically knows the difference between a lua text file and a lua bytecode file.

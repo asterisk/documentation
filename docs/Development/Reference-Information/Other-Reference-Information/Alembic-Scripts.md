@@ -33,10 +33,6 @@ def upgrade():
 ```
 
 
-
----
-
-
  
 
 Merging Alembic Scripts
@@ -75,10 +71,6 @@ down\_revision = '21e526ad3040' <---- change this version to the previous head
 
 
 ```
-
-
-
----
 
 
 4) If the above fails consult the alembic tutorial here for more information about resolving the conflict in the working with branches section: <http://alembic.zzzcomputing.com/en/latest/branches.html>

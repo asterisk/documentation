@@ -36,10 +36,6 @@ Refer-To: <sip:carol@server\_b.com?Replaces=ABCDE%3Bto-tag%3DBtoBobfrom-tag%3DBo
 ```
 
 
-
----
-
-
 That's a bit verbose. So let's break it down a little bit. First, there is a SIP URI:
 
 
@@ -58,10 +54,6 @@ sip:carol@server\_b.com
 ```
 
 
-
----
-
-
 Next, there is a Replaces URI header. There are some URL-escaped character sequences in there. If we decode them, we get the following:
 
 
@@ -78,10 +70,6 @@ Next, there is a Replaces URI header. There are some URL-escaped character seque
 Replaces: ABCDE;to-tag=BtoBob;from-tag=BobtoB
 
 ```
-
-
-
----
 
 
 If we break down the parts of this, what the Replaces section tells us is that the REFER request is saying that the SIP dialog with Call-ID "ABCDE", to-tag "BtoBob" and from-tag "BobtoB" needs to be replaced by the party (or parties) that Bob is talking to.
@@ -113,10 +101,6 @@ Replaces: ABCDE;to-tag=BtoBob;from-tag=BobtoB
 ```
 
 
-
----
-
-
 When Server B receives this INVITE, it will essentially swap this new call in for the call referenced by the Replaces header. By doing this, the final picture looks something like the following:
 
 ![](Complete-transfer.png)
@@ -146,15 +130,12 @@ If you do want to write an `external_replaces` extension, the first thing you wa
 
 
 
----
+!!! note 
+    Asterisk dialplan contains functions for manipulating strings. A function [Asterisk 13 Function\_PJSIP\_PARSE\_URI](/Asterisk+13+Function_PJSIP_PARSE_URI) exists for parsing a URI within the dialplan.
 
-**Note:**  Asterisk dialplan contains functions for manipulating strings. A function [Asterisk 13 Function\_PJSIP\_PARSE\_URI](/Asterisk+13+Function_PJSIP_PARSE_URI) exists for parsing a URI within the dialplan.
+      
+[//]: # (end-note)
 
-  
-
-
-
----
 
 
 If you decide not to perform the transfer, the simplest thing to do is to call the `Hangup()` application.
@@ -162,15 +143,12 @@ If you decide not to perform the transfer, the simplest thing to do is to call t
 
 
 
----
+!!! note 
+    Calling `Hangup()` in this situation can have different effects depending on what type of phone Bob is using. Asterisk updates the phone with a notification that the attended transfer failed. It is up to the phone to decide if it wants to try to reinvite itself back into the original conversation with Alice or simply hang up.
 
-**Note:**  Calling `Hangup()` in this situation can have different effects depending on what type of phone Bob is using. Asterisk updates the phone with a notification that the attended transfer failed. It is up to the phone to decide if it wants to try to reinvite itself back into the original conversation with Alice or simply hang up.
+      
+[//]: # (end-note)
 
-  
-
-
-
----
 
 
 If you decide to perform the transfer, the most straightforward way to do this is with the `Dial()` application. Here is an example of how one might complete the transfer
@@ -190,10 +168,6 @@ exten => external\_replaces,1,NoOp()
  same => n,Dial(PJSIP/default\_outgoing/${SIPREFERTOHDR})
 
 ```
-
-
-
----
 
 
 Let's examine that `Dial()` more closely. First, we're dialing using PJSIP, which is pretty obvious. Next, we have the endpoint name. The endpoint name could be any configured endpoint you want to use to make this call. Remember that endpoint settings are things such as what codecs to use, what user name to place in the from header, etc. By default, if you just dial `PJSIP/some_endpoint`, Asterisk looks at some\_endpoint's configured `aors` to determine what location to send the outgoing call to. However, you can override this default behavior and specify a URI to send the call to instead. This is what is being done in this `Dial()` statement. We're dialing using settings for an endpoint called "default\_outgoing", presumably used as a default endpoint for outgoing calls. We're sending the call out to the URI specified by `SIPREFERTOHDR` though. Using the scenario on this page, the `Dial()` command would route the call to `sip:carol@server_b`.

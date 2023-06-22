@@ -38,14 +38,11 @@ Support for Polycom's patent-encumbered but free G.722.1 Siren7 and G.722.1C Sir
 
 
 
----
+!!! tip 
+    On the Asterisk Command Line Interface, use the command "core show translation" to show the translation times between all registered audio formats.
 
-**Tip:**  On the Asterisk Command Line Interface, use the command "core show translation" to show the translation times between all registered audio formats.
+      
+[//]: # (end-tip)
 
-  
-
-
-
----
 
 

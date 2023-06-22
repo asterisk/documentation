@@ -9,16 +9,12 @@ Overview
 
 
 
----
+!!! warning 
+    Macros are very similar in function to the [Gosub](/Configuration/Dialplan/Subroutines/Gosub) application **which deprecates Macro**. This information is here for historical purposes and you should really use Gosub wherever you would have previously used Macro.
 
-**WARNING!:**   
-Macros are very similar in function to the [Gosub](/Configuration/Dialplan/Subroutines/Gosub) application **which deprecates Macro**. This information is here for historical purposes and you should really use Gosub wherever you would have previously used Macro.
+      
+[//]: # (end-warning)
 
-  
-
-
-
----
 
 
 Macro is a dialplan application that facilitates code-reuse within the dialplan. That is, a macro, once defined can be called from almost anywhere else within the dialplan using the Macro application or else via flags and arguments for other applications that allow calling macros. 
@@ -56,10 +52,6 @@ exten = s,1,NoOp()
 ```
 
 
-
----
-
-
 Calling a Macro
 ===============
 
@@ -81,10 +73,6 @@ Macro(name,[arg1],[argN])
 ```
 
 
-
----
-
-
 Here is an example within Asterisk dialplan.
 
 
@@ -104,10 +92,6 @@ same = n,Macro(announcement)
 same = n,Dial(PJSIP/ALICE)
 
 ```
-
-
-
----
 
 
 As you can see we are calling the 'announcement' macro at context 'macro-announcement', extension 's' , priority '1'.
@@ -138,10 +122,6 @@ same = n,Dial(PJSIP/ALICE)
 ```
 
 
-
----
-
-
 Below notice that make use of ARG1 in the Verbose message we print during the subroutine execution.
 
 
@@ -161,10 +141,6 @@ same = s,n,Playback(tt-weasels)
 same = s,n,Return()
 
 ```
-
-
-
----
 
 
 To use multiple arguments, simply separate them via commas when defining them in the Macro call. Then within the Macro reference them as ARG1, ARG2, ARG3, etc.

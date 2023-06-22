@@ -34,10 +34,6 @@ Syntax:
 ```
 
 
-
----
-
-
 Syntax Fields:
 
 
@@ -84,10 +80,6 @@ unpauseMonitor => #3,self/callee,UnPauseMonitor
 ```
 
 
-
----
-
-
 Example feature descriptions:
 
 * playmonkeys - Allow both the caller and callee to play tt-monkeys to the bridged channel.
@@ -121,19 +113,12 @@ extensions.conf
 
 
 
----
 
+!!! tip Tip: Variable Inheritance
+    The [two leading underscores](/Configuration/Dialplan/Variables/Channel-Variables/Variable-Inheritance) allow these feature settings to be set on the outbound channels, as well.  Otherwise, only the original channel will have access to these features.
 
+      
+[//]: # (end-tip)
 
-
----
-
-**Tip: Tip: Variable Inheritance** The [two leading underscores](/Configuration/Dialplan/Variables/Channel-Variables/Variable-Inheritance) allow these feature settings to be set on the outbound channels, as well.  Otherwise, only the original channel will have access to these features.
-
-  
-
-
-
----
 
 

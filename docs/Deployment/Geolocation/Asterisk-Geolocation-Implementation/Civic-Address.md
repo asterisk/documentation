@@ -107,10 +107,6 @@ location\_refinement = FLR=32, ROOM=32A6
 ```
 
 
-
----
-
-
 PIDF-LO XML Examples
 ====================
 
@@ -165,10 +161,6 @@ Here's what Alice's PIDF-LO would look like:
 ```
 
 
-
----
-
-
 Here's what Bob's PIDF-LO would look like:
 
 
@@ -218,10 +210,6 @@ Here's what Bob's PIDF-LO would look like:
 
 
 ```
-
-
-
----
 
 
 Note that the only civicAddress difference between the two are the `FLR` and `ROOM`.

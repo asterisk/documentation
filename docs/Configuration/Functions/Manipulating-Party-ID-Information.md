@@ -40,15 +40,12 @@ The CONNECTEDLINE function does the opposite of the CALLERID function. CONNECTED
 
 
 
----
+!!! note 
+    It is up to the channel technology to determine when to act upon connected line updates before the call is answered. ISDN will just store the updated information until the call is answered. SIP could immediately update the caller with a provisional response or wait for some other event to notify the caller.
 
-**Note:**  It is up to the channel technology to determine when to act upon connected line updates before the call is answered. ISDN will just store the updated information until the call is answered. SIP could immediately update the caller with a provisional response or wait for some other event to notify the caller.
+      
+[//]: # (end-note)
 
-  
-
-
-
----
 
 
 Since the connected line information can be sent while a call is connected, you may need to prevent the channel driver from acting on a **partial** update. The 'i' option is used to inhibit the channel driver from sending the changed information immediately.
@@ -119,10 +116,6 @@ exten => 1000,n,Hangup
 ```
 
 
-
----
-
-
 ### Straightforward dial through
 
 
@@ -149,10 +142,6 @@ exten => 1000,n,Hangup
 
 
 ```
-
-
-
----
 
 
 ### Use of interception macro
@@ -186,10 +175,6 @@ exten => 1000,n,Hangup
 
 
 ```
-
-
-
----
 
 
 ### Simple redirection
@@ -231,10 +216,6 @@ exten => 1000,n,Hangup
 ```
 
 
-
----
-
-
 Party ID propagation
 ====================
 
@@ -258,10 +239,6 @@ Party A \_\_\_ CALLERID() -------------------> CONNECTEDLINE() \_\_\_ Party B
 
 
 ```
-
-
-
----
 
 
 The CALLERID() information is the party identification of the remote party. For Channel A that is Party A. For Channel B that is Party B.
@@ -290,10 +267,6 @@ CALLERID() <-------- CONNECTEDLINE()
 ```
 
 
-
----
-
-
 A normal call where Party A calls Party B with a local channel in the chain.
 
 
@@ -314,10 +287,6 @@ Party A \_\_\_ CALLERID() -------------------> CONNECTEDLINE() ---> CALLERID() -
 
 
 ```
-
-
-
----
 
 
 Originated calls make the incoming and outgoing labels a bit confusing because both channels start off as outgoing. Once the originated channel answers it becomes an "incoming" channel to run dialplan. A better way is to just distinguish which channel is running dialplan. For consistency, I'll continue using the incoming and outgoing labels.
@@ -345,10 +314,6 @@ Party A \_\_\_ CALLERID() -------------------> CONNECTEDLINE() \_\_\_ Party B
 ```
 
 
-
----
-
-
 An example of originating a local channel (which will always be a Local;1) to a dialplan exten.  
 
 
@@ -370,10 +335,6 @@ Party A \_\_\_ CALLERID() -------------------> CONNECTEDLINE() ---> CALLERID() -
 
 
 ```
-
-
-
----
 
 
 Ideas for usage

@@ -44,16 +44,12 @@ Contributors must fork the [asterisk/asterisk](https://github.com/asterisk/aster
 
 
 
----
+!!! warning 
+    The `gh repo fork` command has a `--clone` option that's supposed to do both of the above steps at the same time however it rarely works and usually creates a mess. The reason is that after a fork operation *appears* to complete, it can take a few seconds before GitHub finishes background work during which time attempts to clone will fail. The `gh` tool doesn't account for this and tries to clone immediately which fails with a "repository not found" message.
 
-**WARNING!:**   
-The `gh repo fork` command has a `--clone` option that's supposed to do both of the above steps at the same time however it rarely works and usually creates a mess. The reason is that after a fork operation *appears* to complete, it can take a few seconds before GitHub finishes background work during which time attempts to clone will fail. The `gh` tool doesn't account for this and tries to clone immediately which fails with a "repository not found" message.
+      
+[//]: # (end-warning)
 
-  
-
-
-
----
 
 
 Git Remotes will automatically be created for both your fork and the upstream repo.
@@ -80,16 +76,12 @@ If your work fixes a bug in a non-master branch that doesn't exist in the higher
 
 
 
----
+!!! warning 
+    You should never do work in the upstream branches like '18', '20', or 'master'.  Doing so will pollute those branches in your fork and will make updating them difficult.
 
-**WARNING!:**   
-You should never do work in the upstream branches like '18', '20', or 'master'.  Doing so will pollute those branches in your fork and will make updating them difficult.
+      
+[//]: # (end-warning)
 
-  
-
-
-
----
 
 
 Now make your change and test locally.
@@ -97,15 +89,12 @@ Now make your change and test locally.
 
 
 
----
+!!! note 
+    You no longer have to create entries in the doc/CHANGES-staging or doc/UPGRADE-staging directories. The change logs are generated from the commit messages. See below.
 
-**Note:**  You no longer have to create entries in the doc/CHANGES-staging or doc/UPGRADE-staging directories. The change logs are generated from the commit messages. See below.
+      
+[//]: # (end-note)
 
-  
-
-
-
----
 
 
 Commit
@@ -148,10 +137,6 @@ UserNote: app\_something has been updated to include new feature "X".
 ```
 
 
-
----
-
-
 Test and check for Cherry-pick-ability
 --------------------------------------
 
@@ -186,10 +171,6 @@ cherry-pick-to: 18
 ```
 
 
-
----
-
-
 Each branch must be on a separate line and don't put anything else in the comment.  When all the PR tests and checks have passed, an Asterisk Core developer will trigger the cherry-pick test process which will look for that comment.  If the commit can't be cherry-picked cleanly to the branches you indicated or the tests fail, none of the commits will be merged.  This is why it's important for you to make sure your commit cherry-picks cleanly before submitting the first pull request.
 
 If you don't need your PR automatically cherry-picked, please add a comment stating "No cherry-picks required".  This saves us not having to ask if you want it cherry-picked.
@@ -197,29 +178,22 @@ If you don't need your PR automatically cherry-picked, please add a comment stat
 
 
 
----
+!!! note 
+    You can also add comments to a PR from the command line with `gh pr comment`. See the man page for more info.
 
-**Note:**  You can also add comments to a PR from the command line with `gh pr comment`. See the man page for more info.
-
-  
-
-
-
----
+      
+[//]: # (end-note)
 
 
 
 
----
 
-**WARNING!:**   
-**If you change your mind and don't want your PR automatically cherry-picked, edit the comment and replace the "cherry-pick-to" lines with "No cherry-picks required".** Don't use formatting or other means to say "nevermind". The automation might not understand.
+!!! warning 
+    **If you change your mind and don't want your PR automatically cherry-picked, edit the comment and replace the "cherry-pick-to" lines with "No cherry-picks required".** Don't use formatting or other means to say "nevermind". The automation might not understand.
 
-  
+      
+[//]: # (end-warning)
 
-
-
----
 
 
  
@@ -263,17 +237,14 @@ These are comments you have about the code itself.  These are left by clicking 
 
 
 
----
+!!! note 
+    If you're not the submitter but you want to test a PR locally, you can do so easily with the gh tool:
 
-**Note:**  If you're not the submitter but you want to test a PR locally, you can do so easily with the gh tool:
+    `gh pr checkout <pr_number>` 
 
-`gh pr checkout <pr_number>` 
+      
+[//]: # (end-note)
 
-  
-
-
-
----
 
 
 Address Review Comments and Test Failures
@@ -290,14 +261,10 @@ This will force push the commit to your fork first, then update the PR with the 
 
 
 
----
+!!! warning 
+    Unlike Gerrit, GitHub allows you to have multiple commits for a pull request but it was intended to allow a PR to be broken up into multiple logical chunks, not to address review comments. Using multiple commits to address review comments will make the commit history messy and confusing. Please amend and force push for them.  
+[//]: # (end-warning)
 
-**WARNING!:**   
-Unlike Gerrit, GitHub allows you to have multiple commits for a pull request but it was intended to allow a PR to be broken up into multiple logical chunks, not to address review comments. Using multiple commits to address review comments will make the commit history messy and confusing. Please amend and force push for them.  
-
-
-
----
 
 
 Cherry-Pick Tests

@@ -8,22 +8,11 @@ The sounds tools are available in the publicly accessible repotools repository. 
 
 
 
----
-
-  
-  
-
-
-```
-
+```bash title=" " linenums="1"
 # git clone https://gerrit.asterisk.org/repotools
 
 
 ```
-
-
-
----
 
 
 The sound tools are available in the subdirectory sound\_tools/ which contains the following directories:

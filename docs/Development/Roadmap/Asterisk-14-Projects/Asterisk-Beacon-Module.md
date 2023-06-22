@@ -41,14 +41,7 @@ Swagger Definition
 
 
 
----
-
-  
-resources.json  
-
-
-```
-
+```json title="resources.json" linenums="1"
 truejs{
  "apiVersion": "1.0.0",
  "swaggerVersion": "1.2",
@@ -64,19 +57,8 @@ truejs{
 
 
 
----
 
-
-
-
----
-
-  
-beacon.json  
-
-
-```
-
+```json title="beacon.json" linenums="1"
 truejs {
  "apiVersion": "1.0.0",
  "swaggerVersion": "1.2",
@@ -369,10 +351,6 @@ truejs {
 ```
 
 
-
----
-
-
 Example Request/Responses
 -------------------------
 
@@ -402,10 +380,6 @@ Response: 200 OK
 }
 
 ```
-
-
-
----
 
 
 ### Client Server Update
@@ -466,10 +440,6 @@ PUT https://beacon.asterisk.org:80/servers/bc5829cc-4584-43e5-8395-a9b1206d7e02?
 ```
 
 
-
----
-
-
 Client: res\_beacon
 ===================
 
@@ -478,16 +448,12 @@ Asterisk shall have a new resource module, `res_beacon`. As a user of `cURL`, `r
 
 
 
----
+!!! info ""
+    Yes. This means that if a system doesn't have `cURL` on it, we won't get its stats. That beats doing something silly like rolling our own transport.
 
+      
+[//]: # (end-info)
 
-**Information:**  Yes. This means that if a system doesn't have `cURL` on it, we won't get its stats. That beats doing something silly like rolling our own transport.
-
-  
-
-
-
----
 
 
 The module will be able to send data to both the Asterisk Beacon server (hard coded, can't change or remove without re-compiling) as well as any configurable number of other servers. Those other servers allow a user to set up their own instance of the publicly defined API and collect their own statistics themselves.
@@ -540,10 +506,6 @@ Asterisk Ready.
 \*CLI>
 
 ```
-
-
-
----
 
 
 Configuration
@@ -599,10 +561,6 @@ verify\_cert = false
 ```
 
 
-
----
-
-
 CLI Commands
 ------------
 
@@ -645,10 +603,6 @@ Operating System:
  Linux 3.13.0-24-generic #47-Ubuntu SMP Fri May 2 23:30:00 UTC 2014 x86\_64
 
 ```
-
-
-
----
 
 
 ### beacon show configuration
@@ -704,10 +658,6 @@ OperatingSystemMachine: x86\_64
 ```
 
 
-
----
-
-
 ARI Resources (13+)
 -------------------
 
@@ -752,10 +702,6 @@ truejs{
 }
 
 ```
-
-
-
----
 
 
  

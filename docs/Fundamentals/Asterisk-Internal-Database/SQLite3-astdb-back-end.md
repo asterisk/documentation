@@ -6,15 +6,12 @@ pageid: 19005573
 
 
 
----
+!!! note **  Starting with **Asterisk 10** , Asterisk uses **SQLite3
+    for its internal database instead of the Berkeley DB database used by Asterisk 1.8 and previous versions.
 
-**Note:**  Starting with **Asterisk 10** , Asterisk uses **SQLite3** for its internal database instead of the Berkeley DB database used by Asterisk 1.8 and previous versions.
+      
+[//]: # (end-note)
 
-  
-
-
-
----
 
 
  Every effort has been made to make this transition as automatic and painless for users as possible. This page will describe the upgrade process, any potential problems, and the appropriate solutions to those problems.
@@ -29,16 +26,12 @@ When Asterisk 10 is run, as part of the initialization process it checks for the
 
 
 
----
+!!! info ""
+    It is important that you perform the upgrade process at the same permission level that you expect Asterisk to run at. For example, if you upgrade as root, but run Asterisk as a user with lower permissions, the SQLite3 database created as part of the upgrade will not be able to be accessed by Asterisk.
 
+      
+[//]: # (end-info)
 
-**Information:**  It is important that you perform the upgrade process at the same permission level that you expect Asterisk to run at. For example, if you upgrade as root, but run Asterisk as a user with lower permissions, the SQLite3 database created as part of the upgrade will not be able to be accessed by Asterisk.
-
-  
-
-
-
----
 
 
 Troubleshooting an upgrade

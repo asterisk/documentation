@@ -56,10 +56,6 @@ aors=CATHY
 ```
 
 
-
----
-
-
 We set the option "allow" to a string of values "!all,ulaw".
 
 * The value "**!all**" means "Disallow all" and is identical to "disallow=all". This tells Asterisk to disallow all codecs except what we further define in the allow option.
@@ -84,10 +80,6 @@ voicemail.conf
 format=wav49,wav,gsm
 
 ```
-
-
-
----
 
 
 In the general section of voicemail.conf you can set the formats used when writing [voicemail](/Configuration/Applications/Voicemail)to the file-system. We set the option "format" to a string of file format names.
@@ -168,14 +160,10 @@ Asterisk can resample between several different sampling rates and can read/writ
 
 
 
----
+!!! tip 
+    Users can create 16-bit Signed Linear files of varying sampling rates from WAV files using the sox command-line audio utility.
+[//]: # (end-tip)
 
-**Tip:**  Users can create 16-bit Signed Linear files of varying sampling rates from WAV files using the sox command-line audio utility.
-
-
-
-
----
 
   
   
@@ -195,11 +183,6 @@ In this example, an input WAV file has been converted to Signed Linear at a dept
 
 
 ```
-
-
-
-
----
 
 
  

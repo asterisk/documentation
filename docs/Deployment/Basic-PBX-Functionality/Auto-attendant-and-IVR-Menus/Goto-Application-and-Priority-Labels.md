@@ -11,15 +11,8 @@ The **Goto()** application can be called with either one, two, or three paramete
 
 
 
----
-
-  
-  
-
-
-```
-
-javascript[StartingContext]
+```javascript title=" " linenums="1"
+[StartingContext]
 exten => 100,1,Goto(monkeys)
  same => n,NoOp(We skip this)
  same => n(monkeys),Playback(tt-monkeys)
@@ -42,9 +35,5 @@ exten => start,1,NoOp()
 
 
 ```
-
-
-
----
 
 

@@ -48,10 +48,6 @@ astsbindir => /usr/sbin
 ```
 
 
-
----
-
-
 The directories listed above are explained in detail in the [Directory and File Structure](/Fundamentals/Directory-and-File-Structure) page.
 
 Options Context
@@ -62,15 +58,12 @@ Some additional annotation for each configuration option is included inline.
 
 
 
----
+!!! note 
+    TODO: Match this up with what is current in the sample, and update both.
 
-**Note:**  TODO: Match this up with what is current in the sample, and update both.
+      
+[//]: # (end-note)
 
-  
-
-
-
----
 
 
 
@@ -190,9 +183,5 @@ lockmode = lockfile | flock
 ;astctl = asterisk.ctl
 
 ```
-
-
-
----
 
 

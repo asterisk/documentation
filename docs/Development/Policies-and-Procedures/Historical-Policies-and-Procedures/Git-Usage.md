@@ -45,15 +45,12 @@ Users may participate in code reviews or contribute patches if they have signed 
 
 
 
----
+!!! note 
+    When submitting a patch to Gerrit, you are explicitly doing so under the terms and conditions of the [Contributor License Agreement](https://github.com/asterisk/asterisk/issues/jira/secure/DigiumLicense.jspa). If you do not wish to contribute a patch back to the Asterisk project, please do not push a patch up to Gerrit.
 
-**Note:**  When submitting a patch to Gerrit, you are explicitly doing so under the terms and conditions of the [Contributor License Agreement](https://github.com/asterisk/asterisk/issues/jira/secure/DigiumLicense.jspa). If you do not wish to contribute a patch back to the Asterisk project, please do not push a patch up to Gerrit.
+      
+[//]: # (end-note)
 
-  
-
-
-
----
 
 
 Gerrit Policies
@@ -67,15 +64,12 @@ Code Reviews
 
 
 
----
+!!! note 
+    If you use a `-2`, please be prepared to justify its usage.
 
-**Note:**  If you use a `-2`, please be prepared to justify its usage.
+      
+[//]: # (end-note)
 
-  
-
-
-
----
 * A `+2` should generally not be given unless someone has already given the review a `+1`.
 * Related to the previous, users who provide a `+2` should generally not provide it to a change that they provided the `+1` on.
 * Please read the Asterisk project [Coding Guidelines](/Coding-Guidelines) prior to submitting patches. When performing code reviews, please refer to the [Code Review Checklist](/Development/Policies-and-Procedures/Historical-Policies-and-Procedures/Code-Review/Code-Review-Checklist).
@@ -88,21 +82,10 @@ Topics
 
 
 
----
-
-  
-  
-
-
-```
-
+```bash title=" " linenums="1"
 $ git review -t ASTERISK-12345
 
 ```
-
-
-
----
 
 
 This helps to tie Gerrit reviews to the JIRA issue that necessitated the change.

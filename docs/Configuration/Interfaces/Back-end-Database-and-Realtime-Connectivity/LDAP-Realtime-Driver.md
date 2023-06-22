@@ -14,15 +14,12 @@ See [configs/res\_ldap.conf.sample](https://raw.githubusercontent.com/asterisk/a
 
 
 
----
+!!! note 
+    To use static realtime with certain core configuration files the realtime backend you wish to use must be preloaded in `modules.conf`.
 
-**Note:**  To use static realtime with certain core configuration files the realtime backend you wish to use must be preloaded in `modules.conf`.
+      
+[//]: # (end-note)
 
-  
-
-
-
----
 
 
 From within your Asterisk source directory:
@@ -47,10 +44,6 @@ sudo ldapadd -Y EXTERNAL -H ldapi:/// -f ./asterisk.ldif
 ```
 
 
-
----
-
-
 Let's edit the extconfig.conf file to specify LDAP as our realtime storage engine and where Asterisk will look for data.
 
 
@@ -73,20 +66,13 @@ extensions = ldap,"ou=extensions,dc=example,dc=domain",extensions
 
 
 
----
 
+!!! note 
+    You'll want to reference the Asterisk res\_ldap.conf file which holds the LDAP mapping configuration when building your own record schema.
 
+      
+[//]: # (end-note)
 
-
----
-
-**Note:**  You'll want to reference the Asterisk res\_ldap.conf file which holds the LDAP mapping configuration when building your own record schema.
-
-  
-
-
-
----
 
 
 **Basic** sip users record layout which will need to be saved to a file (we'll use 'createduser.ldif' here as an example). This example record is for sip user '1000'. This example record is for sip user '1000'.
@@ -125,10 +111,6 @@ AstExtension: 1000
 ```
 
 
-
----
-
-
 Let's add the record to the LDAP server:
 
 
@@ -146,10 +128,6 @@ sudo ldapadd -D "cn=admin,dc=example,dc=domain" -x -W -f createduser.ldif
 
 
 ```
-
-
-
----
 
 
 When creating your own record schema, you'll obviously want to incorporate authentication. Asterisk + LDAP requires that the user secrets be stored as an MD5 hash. MD5 hashes can be created using 'md5sum'.
@@ -173,10 +151,6 @@ printf "<secret composed of username, realm, and password goes here>" | md5sum
 ```
 
 
-
----
-
-
 For AstMD5secret authentication use this.
 
 
@@ -194,9 +168,5 @@ printf "password" | md5sum
 
 
 ```
-
-
-
----
 
 

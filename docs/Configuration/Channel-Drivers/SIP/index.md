@@ -6,28 +6,21 @@ pageid: 28314848
 
 
 
----
+!!! warning 
+    Under Construction
 
-**WARNING!:**   
-Under Construction
-
-  
-
-
-
----
+      
+[//]: # (end-warning)
 
 
 
 
----
 
-**Note:**  Section to hold information on configuring the SIP channel drivers, chan\_sip and chan\_pjsip
+!!! note 
+    Section to hold information on configuring the SIP channel drivers, chan\_sip and chan\_pjsip
 
-  
+      
+[//]: # (end-note)
 
-
-
----
 
 

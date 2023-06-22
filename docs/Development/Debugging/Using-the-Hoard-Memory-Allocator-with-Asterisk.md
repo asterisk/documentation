@@ -42,10 +42,6 @@ For example:
 ```
 
 
-
----
-
-
 Note that we don't specify the full path to libhoard.so, just the directory where it resides.
 
 
@@ -63,23 +59,11 @@ Run the standard build commands:
 
 
 
----
-
-  
-  
-
-
-```
-
-
+```bash title=" " linenums="1"
 # make
 # make install
 
 
 ```
-
-
-
----
 
 

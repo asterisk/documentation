@@ -10,14 +10,11 @@ If you have any questions about the content here please talk with developers on 
 
 
 
----
+!!! note **  Information on these pages should **not
+    be considered end-user documentation (even if they may appear that way at first).
 
-**Note:**  Information on these pages should **not** be considered end-user documentation (even if they may appear that way at first).
+      
+[//]: # (end-note)
 
-  
-
-
-
----
 
 

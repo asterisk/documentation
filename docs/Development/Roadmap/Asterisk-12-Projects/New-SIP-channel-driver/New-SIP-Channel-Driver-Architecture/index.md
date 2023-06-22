@@ -6,17 +6,12 @@ pageid: 21464468
 
 
 
----
+!!! warning 
+    This page is under construction. Please refrain from adding comments until a draft has been completed
 
-**WARNING!:**   
+      
+[//]: # (end-warning)
 
-This page is under construction. Please refrain from adding comments until a draft has been completed
-
-  
-
-
-
----
 
 
 A proposed architecture for the new SIP channel driver architecture is below.

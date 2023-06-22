@@ -70,10 +70,6 @@ server = 127.0.0.1 ; server[:port] of statsd server to use.
 ```
 
 
-
----
-
-
 If you wish to add a port, such as 8126, to the server address, then you would add it at the end of the address with a colon, like so: *127.0.0.1:8126*.
 
 #### extension.conf
@@ -104,10 +100,6 @@ exten => 200,1,NoOp()
  same => n,Hangup()
 
 ```
-
-
-
----
 
 
  

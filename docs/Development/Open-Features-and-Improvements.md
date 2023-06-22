@@ -25,10 +25,6 @@ issuetype in (Improvement, "New Feature") AND status in (Open, Reopened,
 ```
 
 
-
----
-
-
  
 
 Community Reported Features and Improvements in Open Status

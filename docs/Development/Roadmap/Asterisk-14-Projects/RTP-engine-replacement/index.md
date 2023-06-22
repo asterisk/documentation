@@ -6,16 +6,12 @@ pageid: 31752285
 
 
 
----
+!!! warning 
+    This page has not received peer review and is still undergoing edits.
 
-**WARNING!:**   
-This page has not received peer review and is still undergoing edits.
+      
+[//]: # (end-warning)
 
-  
-
-
-
----
 
 
 Purpose of this project

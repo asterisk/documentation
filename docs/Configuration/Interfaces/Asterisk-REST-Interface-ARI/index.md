@@ -58,15 +58,12 @@ All three pieces work together, allowing a developer to manipulate and control t
 
 
 
----
+!!! tip Developer Documentation
+    You can find some historical documents [on the wiki](/Asterisk-12-API-Improvements) about the development and architecture of ARI.
 
-**Tip: Developer Documentation** You can find some historical documents [on the wiki](/Asterisk-12-API-Improvements) about the development and architecture of ARI.
+      
+[//]: # (end-tip)
 
-  
-
-
-
----
 
 
 What is REST?
@@ -152,10 +149,6 @@ for channel in channels:
  ari.delete('channels', channel['id'])
 
 ```
-
-
-
----
 
 
 In other words: **use one of the aforementioned libraries or write your own!**

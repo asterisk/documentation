@@ -8,16 +8,12 @@ Asterisk supports the ability to write dialplan instructions in the [Lua](http:/
 
 
 
----
+!!! info "Dependencies"
+    To use pbx\_lua, the lua development libraries must be installed before Asterisk is configured and built. You can get these libraries directly from <http://lua.org>, but it is easier to install them using your distribution's package management tool. The package is probably named liblua5.1-dev, liblua-dev, or lua-devel depending on your linux distribution.
 
+      
+[//]: # (end-info)
 
-**Information: Dependencies** To use pbx\_lua, the lua development libraries must be installed before Asterisk is configured and built. You can get these libraries directly from <http://lua.org>, but it is easier to install them using your distribution's package management tool. The package is probably named liblua5.1-dev, liblua-dev, or lua-devel depending on your linux distribution.
-
-  
-
-
-
----
 
 
 PBX Lua Basics
@@ -54,10 +50,6 @@ extensions = {
 ```
 
 
-
----
-
-
 The `extensions.lua` file can be reloaded by reloading the pbx\_lua module.
 
 
@@ -77,24 +69,16 @@ The `extensions.lua` file can be reloaded by reloading the pbx\_lua module.
 ```
 
 
-
----
-
-
 If there are errors in the file, the errors will be reported and the existing extensions.lua file will remain in use. Channels that existed before the reload command was issued will also continue to use the existing extensions.lua file.
 
 
 
 
----
+!!! info ""
+    Runtime errors are logged and the channel on which the error occurred is hung up.
 
+      
+[//]: # (end-info)
 
-**Information:**  Runtime errors are logged and the channel on which the error occurred is hung up.
-
-  
-
-
-
----
 
 

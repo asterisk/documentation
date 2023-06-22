@@ -26,10 +26,6 @@ Unable to connect to remote asterisk (does /var/run/asterisk/asterisk.ctl exist?
 ```
 
 
-
----
-
-
 First, let's break down the message.
 
 * "Unable to connect to remote asterisk"

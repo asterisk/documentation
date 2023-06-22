@@ -40,58 +40,33 @@ ARI needs a WebSocket connection to receive events. For the sake of this example
 
 
 
----
-
-  
-  
-
+```bash title=" " linenums="1"
+$ apt-get install npm
 
 ```
-
-bash$ apt-get install npm
-
-```
-
-
-
----
 2. **Install** the `ws` node package:
 
 
 
 
----
-
-  
-  
-
-
-```
-
-bash$ npm install -g wscat
+```bash title=" " linenums="1"
+$ npm install -g wscat
 
 ```
 
 
 
----
 
-
-
-
----
-
-**Tip:**  Some distributions repos (e.g. Ubuntu) may have older versions of nodejs and npm that will throw a wrench in your install of the ws package. You'll have to install a newer version from another repo or via source.
+!!! tip 
+    Some distributions repos (e.g. Ubuntu) may have older versions of nodejs and npm that will throw a wrench in your install of the ws package. You'll have to install a newer version from another repo or via source.
 
 [Installing Nodejs via packages](https://github.com/joyent/node/wiki/Installing-Node.js-via-package-manager)
 
 [Installing npm in a variety of ways](https://github.com/npm/npm)
 
-  
+      
+[//]: # (end-tip)
 
-
-
----
 
 
  
@@ -104,21 +79,10 @@ In order to control a channel in the Stasis dialplan application through ARI, we
 
 
 
----
-
-  
-  
-
+```bash title=" " linenums="1"
+$ apt-get install curl
 
 ```
-
-bash$ apt-get install curl
-
-```
-
-
-
----
 
 
 Configuring Asterisk
@@ -142,10 +106,6 @@ enabled = yes
 bindaddr = 0.0.0.0
 
 ```
-
-
-
----
 2. Configure an ARI user in `ari.conf`:
 
 
@@ -172,21 +132,13 @@ password = asterisk
 
 
 
----
 
+!!! warning This is just a demo
+    Please use a more secure account user and password for production applications. Outside of examples and demos, asterisk/asterisk is a terrible, horrible, no-good choice...
 
+      
+[//]: # (end-warning)
 
-
----
-
-**WARNING!: This is just a demo**  
-Please use a more secure account user and password for production applications. Outside of examples and demos, asterisk/asterisk is a terrible, horrible, no-good choice...
-
-  
-
-
-
----
 3. Create a dialplan extension for your Stasis application. Here, we're choosing extension `1000` in context `default` - if your SIP phone is configured for a different context, adjust accordingly.
 
 
@@ -209,10 +161,6 @@ exten => 1000,1,NoOp()
 
 ```
 
-
-
----
-
 Hello World!
 ------------
 
@@ -221,23 +169,12 @@ Hello World!
 
 
 
----
-
-  
-  
-
-
-```
-
-bash$ wscat -c "ws://localhost:8088/ari/events?api\_key=asterisk:asterisk&app=hello-world"
+```bash title=" " linenums="1"
+$ wscat -c "ws://localhost:8088/ari/events?api\_key=asterisk:asterisk&app=hello-world"
 connected (press CTRL+C to quit)
 >
 
 ```
-
-
-
----
 
 
 In Asterisk, we should see a new WebSocket connection and a message telling us that our Stasis application has been created:
@@ -257,10 +194,6 @@ text == WebSocket connection from '127.0.0.1:37872' for protocol '' accepted usi
  Creating Stasis app 'hello-world'
 
 ```
-
-
-
----
 2. From your SIP device, dial extension 1000:
 
 
@@ -280,10 +213,6 @@ text  -- Executing [1000@default:1] NoOp("PJSIP/1000-00000001", "") in new stac
  -- Executing [1000@default:3] Stasis("PJSIP/1000-00000001", "hello-world") in new stack
 
 ```
-
-
-
----
 
 
 In wscat, we should see the `StasisStart` event, indicating that a channel has entered into our Stasis application:
@@ -324,30 +253,15 @@ js< {
 >  
 
 ```
-
-
-
----
 3. Using `curl`, tell Asterisk to playback `hello-world`. Note that the identifier of the channel in the `channels` resource **must** match the channel `id` passed back in the `StasisStart` event:
 
 
 
 
----
-
-  
-  
-
+```bash title=" " linenums="1"
+$ curl -v -u asterisk:asterisk -X POST "http://localhost:8088/ari/channels/1400609726.3/play?media=sound:hello-world"
 
 ```
-
-bash$ curl -v -u asterisk:asterisk -X POST "http://localhost:8088/ari/channels/1400609726.3/play?media=sound:hello-world"
-
-```
-
-
-
----
 
 
 The response to our HTTP request will tell us whether or not the request succeeded or failed (in our case, a success will queue the playback onto the channel), as well as return in JSON the Playback resource that was created for the operation:
@@ -393,10 +307,6 @@ $
 ```
 
 
-
----
-
-
 In Asterisk, the sound file will be played back to the channel:
 
 
@@ -413,10 +323,6 @@ In Asterisk, the sound file will be played back to the channel:
 text -- <PJSIP/1000-00000001> Playing 'hello-world.gsm' (language 'en') 
 
 ```
-
-
-
----
 
 
 And in our `wscat` WebSocket connection, we'll be informed of the start of the playback, as well as it finishing:
@@ -453,10 +359,6 @@ js< {"application":"hello-world",
  }
 
 ```
-
-
-
----
 4. Hang up the phone! This will cause the channel in Asterisk to be hung up, and the channel will leave the Stasis application, notifying the client via a `StasisEnd` event:
 
 
@@ -492,10 +394,6 @@ js < {"application":"hello-world",
  }
 
 ```
-
-
-
----
 
  
 

@@ -22,9 +22,5 @@ exten=>6123,n,Verbose(2,The unique id is ${UNIQUEID})
 ```
 
 
-
----
-
-
 The **NoOp()** application stands for "No Operation". In other words, it does nothing. Because of the way Asterisk prints everything to the console if your verbosity level is three or higher, however, the **NoOp()** application is often used to print debugging information to the console like the **Verbose()** does. While you'll probably come across examples of the **NoOp()** application in other examples, we recommend you use the **Verbose()** application instead.
 

@@ -37,10 +37,6 @@ exten => s,1,Verbose("Here we are in a subroutine! Let's listen to some weasels"
 ```
 
 
-
----
-
-
 Here is an example where we do wish to return.
 
 
@@ -60,10 +56,6 @@ exten => s,1,Verbose("Here we are in a subroutine! Let's listen to some weasels"
  same => n,Return()
 
 ```
-
-
-
----
 
 
 Calling Gosub
@@ -87,10 +79,6 @@ Gosub([[context,]exten,]priority[(arg1[,...][,argN])])
 ```
 
 
-
----
-
-
 Here is an example within Asterisk dialplan.
 
 
@@ -110,10 +98,6 @@ exten => 7000,1,Verbose("We are going to run a Gosub before Dialing!")
  same => n,Dial(PJSIP/ALICE)
 
 ```
-
-
-
----
 
 
 Here we are calling the `my-gosub` context at extension `s` , priority `1`.
@@ -144,10 +128,6 @@ exten => 7000,1,Verbose("We are going to run a Gosub before Dialing!")
 ```
 
 
-
----
-
-
 Below we make use of `ARG1` in the `Verbose` message we print during the subroutine execution.
 
 
@@ -167,10 +147,6 @@ exten => s,1,Verbose("Here we are in a subroutine! This subroutine was called fr
  same => n,Return()
 
 ```
-
-
-
----
 
 
 To use multiple arguments, simply separate them via commas when defining them in the `Gosub` call. Then within the `Gosub` reference them as `ARG1`, `ARG2`, `ARG3`, etc.

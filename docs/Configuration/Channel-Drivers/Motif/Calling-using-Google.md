@@ -6,16 +6,12 @@ pageid: 5996698
 
 
 
----
+!!! warning 
+    This new page replaces the [old page](/Old-Calling-using-Google). The old page documents behavior that is not functional or supported going forward. This new page documents behavior as of Asterisk 11. For more information, please see the blog posting <http://blogs.digium.com/2012/07/24/asterisk-11-development-the-motive-for-motif/>
 
-**WARNING!:**   
-This new page replaces the [old page](/Old-Calling-using-Google). The old page documents behavior that is not functional or supported going forward. This new page documents behavior as of Asterisk 11. For more information, please see the blog posting <http://blogs.digium.com/2012/07/24/asterisk-11-development-the-motive-for-motif/>
+      
+[//]: # (end-warning)
 
-  
-
-
-
----
 
 
 Prerequisites
@@ -58,10 +54,6 @@ icesupport=yes
 ```
 
 
-
----
-
-
 If this option is not enabled you will receive the following error message.
 
 
@@ -79,10 +71,6 @@ Unable to add Google ICE candidates as ICE support not available or no candidate
 
 
 ```
-
-
-
----
 
 
 Motif configuration
@@ -111,10 +99,6 @@ connection=google
 
 
 ```
-
-
-
----
 
 
 This general section of this configuration specifies several items.
@@ -182,10 +166,6 @@ timeout=5
 ```
 
 
-
----
-
-
 The default general section does not need any modification.
 
 The google section of this configuration specifies several items.
@@ -235,10 +215,6 @@ context=local
 ```
 
 
-
----
-
-
 Dialplan configuration
 ----------------------
 
@@ -269,20 +245,13 @@ exten => s,1,NoOp()
 
 
 
----
 
+!!! note 
+    Did you know that the Google Chat client does this same thing; it waits, and then sends a DTMF 1. Really.
 
+      
+[//]: # (end-note)
 
-
----
-
-**Note:**  Did you know that the Google Chat client does this same thing; it waits, and then sends a DTMF 1. Really.
-
-  
-
-
-
----
 
 
 This example uses the "s" unmatched extension, because we're only configuring one client connection in this example.
@@ -293,16 +262,12 @@ In this example, we're Waiting 1 second, answering the call, sending the DTMF "1
 
 
 
----
+!!! tip Using Google's voicemail** Another method for accomplishing the sending of the DTMF event is to use Dial option "D." The D option tells Asterisk to send a specified DTMF string after the called party has answered. DTMF events specified before a colon are sent to the **called** party. DTMF events specified after a colon are sent to the **calling
+    party.
 
-**Tip: Using Google's voicemail** Another method for accomplishing the sending of the DTMF event is to use Dial option "D." The D option tells Asterisk to send a specified DTMF string after the called party has answered. DTMF events specified before a colon are sent to the **called** party. DTMF events specified after a colon are sent to the **calling** party.
+    In this example then, one does not need to actually answer the call first, though one should still wait at least a second for things, like STUN setup, to finish. This means that if the called party doesn't answer, Google will resort to sending the call to one's Google Voice voicemail box, instead of leaving it at Asterisk.
+[//]: # (end-tip)
 
-In this example then, one does not need to actually answer the call first, though one should still wait at least a second for things, like STUN setup, to finish. This means that if the called party doesn't answer, Google will resort to sending the call to one's Google Voice voicemail box, instead of leaving it at Asterisk.
-
-
-
-
----
 
   
   
@@ -324,19 +289,10 @@ exten => s,1,Dial(SIP/malcolm,20,D(:1))
 
 
 
----
+!!! tip Filtering Caller ID
+    The inbound CallerID from Google is going to look a bit nasty, e.g.:
+[//]: # (end-tip)
 
-
-
-
----
-
-**Tip: Filtering Caller ID** The inbound CallerID from Google is going to look a bit nasty, e.g.:
-
-
-
-
----
 
   
   
@@ -364,10 +320,6 @@ exten => s,1,NoOp()
 ```
 
 
-
----
-
-
 First, we set a variable called **crazygooglecid** to be equal to the name field of the CALLERID function. Next, we use the CUT function to grab everything that's before the @ symbol, and save it in a new variable called **stripcrazysuffix.** We'll set this new variable to the CALLERID that we're going to use for our Dial. Finally, we'll actually Dial our internal destination.
 
 ### Outgoing calls
@@ -391,10 +343,6 @@ exten => 100,1,Dial(Motif/google/mybuddy@gmail.com,,r)
 ```
 
 
-
----
-
-
 Where the technology is "Motif," the dialing peer is "google" as defined in xmpp.conf, and the dial string is the Google account name.
 
 We use the Dial option "r" because Google doesn't provide ringing indications.
@@ -416,10 +364,6 @@ exten => \_1XXXXXXXXXX,1,Dial(Motif/google/${EXTEN}@voice.google.com,,r)
 
 
 ```
-
-
-
----
 
 
 Where the technology is "Motif," the dialing peer is "google" as defined in motif.conf, and the dial string is a full E.164 number, sans the plus character.

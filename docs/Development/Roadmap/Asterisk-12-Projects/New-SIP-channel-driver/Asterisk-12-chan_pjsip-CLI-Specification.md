@@ -6,16 +6,12 @@ pageid: 26478200
 
 
 
----
+!!! warning 
+    This is a draft under construction.
 
-**WARNING!:**   
-This is a draft under construction.
+      
+[//]: # (end-warning)
 
-  
-
-
-
----
 
 
 Asterisk 12 chan\_pjsip CLI Specification

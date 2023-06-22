@@ -38,10 +38,6 @@ table=cdr
 ```
 
 
-
----
-
-
 Now create a table in postgresql for your cdrs
 
 
@@ -79,10 +75,6 @@ CREATE TABLE cdr (
 ```
 
 
-
----
-
-
 ##### In 1.8 and later
 
 
@@ -106,9 +98,5 @@ The following columns can also be defined:
 
 
 ```
-
-
-
----
 
 

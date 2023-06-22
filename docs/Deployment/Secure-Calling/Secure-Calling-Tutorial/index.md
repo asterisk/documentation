@@ -9,15 +9,12 @@ Overview
 
 
 
----
+!!! note 
+    This tutorial makes use of SRTP and TLS. SRTP support was added in Asterisk 1.8, TLS was added in 1.6.
 
-**Note:**  This tutorial makes use of SRTP and TLS. SRTP support was added in Asterisk 1.8, TLS was added in 1.6.
+      
+[//]: # (end-note)
 
-  
-
-
-
----
 
 
 So you'd like to make some secure calls.
@@ -53,10 +50,6 @@ mkdir /etc/asterisk/keys
 ```
 
 
-
----
-
-
 Next, use the "ast\_tls\_cert" script in the "contrib/scripts" Asterisk source directory to make a self-signed certificate authority and an Asterisk certificate.
 
 
@@ -74,10 +67,6 @@ Next, use the "ast\_tls\_cert" script in the "contrib/scripts" Asterisk source d
 
 
 ```
-
-
-
----
 
 
 * The "-C" option is used to define our host - DNS name or our IP address.
@@ -107,10 +96,6 @@ Next, we generate a client certificate for our SIP device.
 
 
 ```
-
-
-
----
 
 
 * The "-m client" option tells the script that we want a client certificate, not a server certificate.
@@ -153,23 +138,15 @@ tmp.cfg
 ```
 
 
-
----
-
-
 Next, copy the malcolm.pem and ca.crt files to the computer running the Blink soft client.
 
 
 
 
----
+!!! tip .p12 Client Certificates
+    If your client requires a .p12 certificate file instead, you can generate that using openssl like:
+[//]: # (end-tip)
 
-**Tip: .p12 Client Certificates** If your client requires a .p12 certificate file instead, you can generate that using openssl like:
-
-
-
-
----
 
   
   
@@ -186,11 +163,6 @@ Next, copy the malcolm.pem and ca.crt files to the computer running the Blink so
 
 
 ```
-
-
-
-
----
 
 
  
@@ -222,10 +194,6 @@ priv\_key\_file=/etc/asterisk/keys/asterisk.key
 method=sslv23
 
 ```
-
-
-
----
 
 
 Note the **protocol**, **cert\_file**, **priv\_key\_file**, and **method** options.  Here, we're using the TLS protocol, we're specifying the keys that we generated earlier for **cert\_file** and **priv\_key\_file** and we're setting the **method** to SSLv23.
@@ -268,10 +236,6 @@ media\_encryption=sdes
 ```
 
 
-
----
-
-
 Note the **media\_encryption** option for the endpoint.  In this case, we've configured an endpoint that will be using SDES encryption for RTP.
 
 You might be tempted to add a **transport=transport-tls**to the endpoint but in pjproject versions at least as late as 2.4.5, this will cause issues like **Connection refused** in a few situations.  Let pjproject do the transport selection on its own.  If you still see issues, set **rewrite\_contact = yes** in the endpoint configuration.
@@ -303,10 +267,6 @@ tlscafile=/etc/asterisk/keys/ca.crt
 ```
 
 
-
----
-
-
 Here, we're enabling TLS support.  
 
 
@@ -335,10 +295,6 @@ transport=tls
 
 
 ```
-
-
-
----
 
 
 Notice the **transport** option. The Asterisk SIP channel driver supports three types: udp, tcp and tls. Since we're configuring for TLS, we'll set that. It's also possible to list several supported transport types for the peer by separating them with commas.
@@ -388,10 +344,6 @@ Depending on your Asterisk CLI logging levels, you should see something like:
 ```
 
 
-
----
-
-
 Notice that we registered on port 5061, the TLS port.
 
 Now, make a call. You should see a small secure lockbox in your Blink calling window to indicate that the call was made using secure (TLS) signaling:
@@ -422,10 +374,6 @@ When calling **from** Asterisk to Blink or another client, you might run into an
 ```
 
 
-
----
-
-
 This is the opposite scenario, where Asterisk is acting as the client and by default attempting to verify the destination server against the cert.
 
 You can set **tlsdontverifyserver=yes** in sip.conf to prevent Asterisk from attempting to verify the server.
@@ -448,10 +396,6 @@ You can set **tlsdontverifyserver=yes** in sip.conf to prevent Asterisk from att
 ; Default is no.
 
 ```
-
-
-
----
 
 
  
@@ -478,10 +422,6 @@ SRTP support is provided by libsrtp. libsrtp has to be installed on the machine 
 
 
 ```
-
-
-
----
 
 
 on your Asterisk CLI. If you do see that, install libsrtp (and the development headers), and then reinstall Asterisk (./configure; make; make install).
@@ -513,10 +453,6 @@ context=local
 
 
 ```
-
-
-
----
 
 
 Next, we'll set Blink to use SRTP:

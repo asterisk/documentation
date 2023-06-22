@@ -6,16 +6,12 @@ pageid: 27199498
 
 
 
----
+!!! info ""
+    At one time, Asterisk packages were also available for Ubuntu. Currently, packages are not being made by the Asterisk project for this distribution. Information detailing the Ubuntu build environment has been moved onto this page for historical purposes.
 
+      
+[//]: # (end-info)
 
-**Information:**  At one time, Asterisk packages were also available for Ubuntu. Currently, packages are not being made by the Asterisk project for this distribution. Information detailing the Ubuntu build environment has been moved onto this page for historical purposes.
-
-  
-
-
-
----
 
 
  
@@ -38,19 +34,7 @@ Install Ubuntu 10.04 (Lucid)
 [Installing Ubuntu 10.04 (Lucid)](/Installing-Ubuntu-10.04--Lucid-)
 
 Enable Backports
-----------------
-
-
-
-
----
-
-  
-  
-
-
-```
-
+-------------```bash title="---" linenums="1"
 $ sudo apt-get install python-software-properties
 $ sudo add-apt-repository "deb http://ca.archive.ubuntu.com/ubuntu/ $(lsb\_release --short --codename)-backports main universe"
 
@@ -58,24 +42,8 @@ $ sudo add-apt-repository "deb http://ca.archive.ubuntu.com/ubuntu/ $(lsb\_relea
 ```
 
 
-
----
-
-
 Upgrade Lucid to the latest release:
-------------------------------------
-
-
-
-
----
-
-  
-  
-
-
-```
-
+---------------------------------```bash title="---" linenums="1"
 $ sudo apt-get update
 $ sudo apt-get dist-upgrade
 $ sudo apt-get autoremove
@@ -85,48 +53,16 @@ $ sudo reboot
 ```
 
 
-
----
-
-
 Install required software
--------------------------
-
-
-
-
----
-
-  
-  
-
-
-```
-
+----------------------```bash title="---" linenums="1"
 $ sudo apt-get install build-essential pbuilder debian-archive-keyring ccache
 
 
 ```
 
 
-
----
-
-
 pbuilder
---------
-
-
-
-
----
-
-  
-  
-
-
-```
-
+-----```bash title="---" linenums="1"
 $ sudo mkdir -p /var/cache/pbuilder/ccache
 $ sudo mkdir -p /var/cache/pbuilder/hook.d
 
@@ -135,27 +71,11 @@ $ sudo mkdir -p /var/cache/pbuilder/hook.d
 
 
 
----
-
-
-
-
----
-
-  
-  
-
-
-```
-
+```bash title="---" linenums="1"
 $ sudo vi /etc/pbuilder/pbuilderrc
 
 
 ```
-
-
-
----
 
 
 
@@ -264,31 +184,16 @@ fi
 ```
 
 
-
----
-
-
 ### Debian
 
 
 
 
----
-
-  
-  
-
-
-```
-
+```bash title=" " linenums="1"
 $ for x in unstable testing stable; do for y in i386 amd64; do sudo DIST=${x} ARCH=${y} pbuilder create; done; done
 
 
 ```
-
-
-
----
 
 
 ### Ubuntu
@@ -296,46 +201,19 @@ $ for x in unstable testing stable; do for y in i386 amd64; do sudo DIST=${x} AR
 
 
 
----
-
-  
-  
-
-
-```
-
+```bash title=" " linenums="1"
 $ for x in lucid maverick natty; do for y in i386 amd64; do sudo DIST=${x} ARCH=${y} pbuilder create; done; done
 
 
 ```
 
 
-
----
-
-
 svn-buildpackage
-----------------
-
-
-
-
----
-
-  
-  
-
-
-```
-
+-------------```bash title="---" linenums="1"
 $ vi ~/.svn-buildpackage.conf
 
 
 ```
-
-
-
----
 
 
 
@@ -355,32 +233,12 @@ svn-noautodch
 ```
 
 
-
----
-
-
 quilt
------
-
-
-
-
----
-
-  
-  
-
-
-```
-
+--```bash title="---" linenums="1"
 $ vi ~/.quiltrc
 
 
 ```
-
-
-
----
 
 
 
@@ -404,32 +262,12 @@ QUILT\_DIFF\_ARGS="-p ab --no-timestamps --no-index --color=auto"
 ```
 
 
-
----
-
-
 devscripts
-----------
-
-
-
-
----
-
-  
-  
-
-
-```
-
+-------```bash title="---" linenums="1"
 $ vi ~/.devscripts
 
 
 ```
-
-
-
----
 
 
 
@@ -455,10 +293,6 @@ USCAN\_DESTDIR=../tarballs
 ```
 
 
-
----
-
-
 Create a GPG Key
 ----------------
 
@@ -467,22 +301,11 @@ Create a GPG Key
 
 
 
----
-
-  
-  
-
-
-```
-
+```bash title=" " linenums="1"
 $ vi ~/.bashrc
 
 
 ```
-
-
-
----
 
 
 
@@ -504,10 +327,6 @@ export EDITOR=vi
 ```
 
 
-
----
-
-
 See also
 --------
 
@@ -524,14 +343,7 @@ New upstream release
 
 
 
----
-
-  
-  
-
-
-```
-
+```bash title=" " linenums="1"
 $ mkdir -p ~/digium
 $ cd ~/digium
 $ svn http://blah.org/svn/blah
@@ -540,31 +352,16 @@ $ svn http://blah.org/svn/blah
 ```
 
 
-
----
-
-
 ### Upstream tarball
 
 
 
 
----
-
-  
-  
-
-
-```
-
+```bash title=" " linenums="1"
 $ uscan --verbose
 
 
 ```
-
-
-
----
 
 
 ### Update the changelog file
@@ -572,22 +369,11 @@ $ uscan --verbose
 
 
 
----
-
-  
-  
-
-
-```
-
+```bash title=" " linenums="1"
 $ dch -e
 
 
 ```
-
-
-
----
 
 
 ### Update patches
@@ -595,22 +381,11 @@ $ dch -e
 
 
 
----
-
-  
-  
-
-
-```
-
+```bash title=" " linenums="1"
 $ while quilt push; do quilt refresh; done
 
 
 ```
-
-
-
----
 
 
 ### Release package
@@ -618,22 +393,11 @@ $ while quilt push; do quilt refresh; done
 
 
 
----
-
-  
-  
-
-
-```
-
+```bash title=" " linenums="1"
 $ dch -r
 
 
 ```
-
-
-
----
 
 
 ### Build package source
@@ -641,22 +405,11 @@ $ dch -r
 
 
 
----
-
-  
-  
-
-
-```
-
+```bash title=" " linenums="1"
 $ svn-buildpackage -S
 
 
 ```
-
-
-
----
 
 
 ### Compile package
@@ -664,22 +417,11 @@ $ svn-buildpackage -S
 
 
 
----
-
-  
-  
-
-
-```
-
+```bash title=" " linenums="1"
 $ dput ppa:pabelanger/testing ../build-area/\*.changes
 
 
 ```
-
-
-
----
 
 
 rebuildd
@@ -713,23 +455,12 @@ sudo apt-get install rebuildd reprepro apache2
 ```
 
 
-
----
-
-
 ### reprepro
 
 
 
 
----
-
-  
-  
-
-
-```
-
+```bash title=" " linenums="1"
 $ sudo adduser --system --shell /bin/bash --gecos 'Reprepro Daemon' --group --disabled-password reprepro
 
 
@@ -737,19 +468,7 @@ $ sudo adduser --system --shell /bin/bash --gecos 'Reprepro Daemon' --group --di
 
 
 
----
-
-
-
-
----
-
-  
-  
-
-
-```
-
+```bash title="---" linenums="1"
 $ sudo su reprepro
 
 
@@ -757,19 +476,7 @@ $ sudo su reprepro
 
 
 
----
-
-
-
-
----
-
-  
-  
-
-
-```
-
+```bash title="---" linenums="1"
 $ cd ~
 $ mkdir bin conf incoming
 
@@ -778,27 +485,11 @@ $ mkdir bin conf incoming
 
 
 
----
-
-
-
-
----
-
-  
-  
-
-
-```
-
+```bash title="---" linenums="1"
 $ vi ~/conf/distributions
 
 
 ```
-
-
-
----
 
 
 
@@ -825,27 +516,11 @@ Log: logfile
 
 
 
----
-
-
-
-
----
-
-  
-  
-
-
-```
-
+```bash title="---" linenums="1"
 $ vi ~/conf/incoming
 
 
 ```
-
-
-
----
 
 
 
@@ -869,27 +544,11 @@ TempDir: tmp
 
 
 
----
-
-
-
-
----
-
-  
-  
-
-
-```
-
+```bash title="---" linenums="1"
 $ vi ~/conf/apache.conf
 
 
 ```
-
-
-
----
 
 
 
@@ -915,19 +574,7 @@ Alias /debian /home/reprepro/
 
 
 
----
-
-
-
-
----
-
-  
-  
-
-
-```
-
+```bash title="---" linenums="1"
 $ vi ~/bin/build\_sources
 
 
@@ -935,19 +582,7 @@ $ vi ~/bin/build\_sources
 
 
 
----
-
-
-
-
----
-
-  
-  
-
-
-```
-
+```bash title="---" linenums="1"
 #!/bin/bash
  
 action=$1
@@ -977,19 +612,7 @@ echo "$package $version 1 $release" | sudo rebuildd-job add
 
 
 
----
-
-
-
-
----
-
-  
-  
-
-
-```
-
+```bash title="---" linenums="1"
 $ reprepro -V -b . createsymlinks
 $ reprepro -V -b . processincoming incoming
 
@@ -998,27 +621,11 @@ $ reprepro -V -b . processincoming incoming
 
 
 
----
-
-
-
-
----
-
-  
-  
-
-
-```
-
+```bash title="---" linenums="1"
 $ exit
 
 
 ```
-
-
-
----
 
 
 ### rebuildd
@@ -1026,22 +633,11 @@ $ exit
 
 
 
----
-
-  
-  
-
-
-```
-
+```bash title=" " linenums="1"
 $ sudo vi /etc/default/rebuildd
 
 
 ```
-
-
-
----
 
 
 
@@ -1062,10 +658,6 @@ DISTS="lucid"
 ```
 
 
-
----
-
-
 Also see
 --------
 
@@ -1080,14 +672,7 @@ Working with Source Packages
 
 
 
----
-
-  
-  
-
-
-```
-
+```bash title=" " linenums="1"
 $ sudo apt-get build-dep asterisk
 
 
@@ -1095,27 +680,11 @@ $ sudo apt-get build-dep asterisk
 
 
 
----
-
-
-
-
----
-
-  
-  
-
-
-```
-
+```bash title="---" linenums="1"
 $ DEB\_BUILD\_OPTIONS="debug" apt-get -b source asterisk
 
 
 ```
-
-
-
----
 
 
  

@@ -81,10 +81,6 @@ exec\_after\_rotate=gzip -9 ${filename}.2
 ```
 
 
-
----
-
-
 Log Files Section:
 ------------------
 
@@ -161,9 +157,5 @@ syslog.local0 => notice,warning,error
 
 
 ```
-
-
-
----
 
 

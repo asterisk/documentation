@@ -8,16 +8,12 @@ The following are use cases for Bridging in Asterisk. These are written at a ver
 
 
 
----
+!!! note Note
+    Unless otherwise specified, it is assumed that all channels are hung up, resources disposed of, and the bridge destroyed at the end of any use case.
 
-**Note: Note** 
-Unless otherwise specified, it is assumed that all channels are hung up, resources disposed of, and the bridge destroyed at the end of any use case.
+      
+[//]: # (end-note)
 
-  
-
-
-
----
 
 
 Two Party Bridging
@@ -127,19 +123,15 @@ DTMF Features
 
 
 
----
-
-**Note: Note** 
-1. For each DTMF initiated feature, it should be assumed that unless otherwise specified, the option only has an effect on the specified party. Thus, if a feature applies to the caller, the callee should **not** be able to use the feature.
-2. If the feature can be initiated by one party, then a configuration item exists to have it initiated by the other party as well. For example, if a caller can initiate a feature because of a configuration parameter, then another configuration parameter exists that lets the callee initiate the same feature.
-3. DTMF features are not specific to two-party calls, unless otherwise noted.
+!!! note Note
+    1. For each DTMF initiated feature, it should be assumed that unless otherwise specified, the option only has an effect on the specified party. Thus, if a feature applies to the caller, the callee should **not** be able to use the feature.
+    2. If the feature can be initiated by one party, then a configuration item exists to have it initiated by the other party as well. For example, if a caller can initiate a feature because of a configuration parameter, then another configuration parameter exists that lets the callee initiate the same feature.
+    3. DTMF features are not specific to two-party calls, unless otherwise noted.
 
 
-  
+      
+[//]: # (end-note)
 
-
-
----
 
 
 DTMF Disconnect

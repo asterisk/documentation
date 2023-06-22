@@ -6,16 +6,12 @@ pageid: 36215464
 
 
 
----
+!!! warning 
+    UNDER CONSTRUCTION
 
-**WARNING!:**   
-UNDER CONSTRUCTION
+      
+[//]: # (end-warning)
 
-  
-
-
-
----
 
 
  
@@ -52,10 +48,6 @@ same = n,Set(CHANNEL(hangup\_handler\_push)=default,s,1)
 ```
 
 
-
----
-
-
 Using the CHANNEL function along with the Log application, we can log the current state of the channel.
 
 
@@ -74,10 +66,6 @@ same = n,Log(NOTICE, This channel is: ${CHANNEL(state)})
 ```
 
 
-
----
-
-
 Set the channel variable myvar to a space-delimited list of all channels.
 
 
@@ -94,10 +82,6 @@ Set the channel variable myvar to a space-delimited list of all channels.
 same = n,Set(myvar=${CHANNELS})
 
 ```
-
-
-
----
 
 
  
@@ -129,10 +113,6 @@ same = n,Set(DB(testfamily/testkey)=Alice)
 ```
 
 
-
----
-
-
 Dialing a PJSIP endpoint using the value of the previously set key as the endpoint name.
 
 
@@ -149,10 +129,6 @@ Dialing a PJSIP endpoint using the value of the previously set key as the endpoi
 same = n,Dial(PJSIP/${DB(testfamily/testkey)})
 
 ```
-
-
-
----
 
 
 Go to a specific dialplan location (via [label](/Configuration/Dialplan/Contexts-Extensions-and-Priorities)) depending on if the key exists or does not.
@@ -173,10 +149,6 @@ same = n,Gotoif($[${DB\_EXISTS(testfamily/testkey)}]?keyexists:keydoesnotexist)
 ```
 
 
-
----
-
-
 Delete the entry while logging the value of the key!
 
 
@@ -193,9 +165,5 @@ Delete the entry while logging the value of the key!
 same = n,Log(NOTICE, Deleting the key testfamily/testkey which had the value: ${DB\_DELETE(testfamily/testkey)})
 
 ```
-
-
-
----
 
 

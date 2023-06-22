@@ -57,10 +57,6 @@ apt-get install corosync corosync-dev
 
 
 
----
-
-
-
 Red Hat / Fedora
 
 
@@ -78,10 +74,6 @@ yum install corosync corosynclib corosynclib-devel
 
 
 ```
-
-
-
----
 
 
 * ###### Authkey
@@ -107,10 +99,6 @@ corosync-keygen
 
 
 
----
-
-
-
 This creates a key in /etc/corosync/authkey.
 
 
@@ -128,10 +116,6 @@ asterisk\_active:~# scp /etc/corosync/authkey asterisk\_standby:
 
 
 ```
-
-
-
----
 
 
 
@@ -154,10 +138,6 @@ asterisk\_standby:~# chmod 400 /etc/corosync/authkey
 
 
 ```
-
-
-
----
 * ###### /etc/corosync/corosync.conf
 
 
@@ -267,10 +247,6 @@ service corosync start
 ```
 
 
-
----
-
-
 ###### Asterisk
 
 
@@ -296,10 +272,6 @@ make install
 
 
 ```
-
-
-
----
 
 
 * ###### /etc/asterisk/res\_corosync.conf
@@ -353,10 +325,6 @@ subscribe\_event = device\_state
 
 
 
----
-
-
-
 In the general section of the res\_corosync.conf file we are specifying which events we'd like to publish and subscribe to (at the moment this is either device\_state or mwi).
 
 
@@ -392,10 +360,6 @@ If everything is setup correctly, you should see this output after executing a '
 ```
 
 
-
----
-
-
 After starting Corosync and Asterisk on your second node, the 'corosync show members' output should look something like this:
 
 
@@ -427,9 +391,5 @@ After starting Corosync and Asterisk on your second node, the 'corosync show mem
 
 
 ```
-
-
-
----
 
 

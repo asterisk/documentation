@@ -62,10 +62,6 @@ exten => 1,n,ConfBridge(1234)
 ```
 
 
-
----
-
-
 **Example 2**  
 
 
@@ -85,10 +81,6 @@ exten => 1,n,ConfBridge(1234,,1234\_participants,1234\_menu)
 
 
 ```
-
-
-
----
 
 
 Usage Notes, FAQ and Other

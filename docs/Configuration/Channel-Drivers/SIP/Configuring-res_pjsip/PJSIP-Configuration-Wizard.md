@@ -34,10 +34,6 @@ aor/qualify\_frequency = 15
 ```
 
 
-
----
-
-
    | `pjsip.conf`
 
 
@@ -78,10 +74,6 @@ match = sip.my-itsp.net
 
 
 ```
-
-
-
----
 
 
   |
@@ -241,10 +233,6 @@ phoneprov/MAC = deadbeef4dad
 
 ```
 
-
-
----
-
  | This example demonstrates the power of both wizards and templates.Once the template is created, adding a new phone could be as simple as creating a wizard objectOf course, you can override ANYTHING in the wizard object or specify everything and not use templates at all. |
 
 ### Trunk to an ITSP requiring registration:
@@ -295,10 +283,6 @@ registration/support\_path = no
 
 ```
 
-
-
----
-
  | This is an example of trunks to 2 different ITSPs each of which has a primary andIt also shows most of the endpoint and aor parameters being left at their defaults.In this scenario, each wizard object takes the place of an endpoint, aor, auth, |
 
 ### Trunk between trusted peers:
@@ -324,10 +308,6 @@ sends\_auth = no
 accepts\_auth = no
 
 ```
-
-
-
----
 
  | This one's even simpler. The `sends_` and `accepts_` parameters all default to `no` so you don't really |
 

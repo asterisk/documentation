@@ -6,16 +6,12 @@ pageid: 4260059
 
 
 
----
+!!! warning 
+    The LibSS7 project is not actively developed or maintained.
 
-**WARNING!:**   
-The LibSS7 project is not actively developed or maintained.
+      
+[//]: # (end-warning)
 
-  
-
-
-
----
 
 
 ### Where to get LibSS7?
@@ -52,16 +48,12 @@ You must then do a `make; make install` in each of the directories that you inst
 
 
 
----
+!!! note 
+    In order to check out the code, you must have the subversion client installed. This is how to check them out from the public subversion server.
 
-**Note:**  In order to check out the code, you must have the subversion client installed. This is how to check them out from the public subversion server.
+    These are the commands you would type to install them:
+[//]: # (end-note)
 
-These are the commands you would type to install them:
-
-
-
-
----
 
   
   
@@ -95,11 +87,6 @@ This should build DAHDI, libss7, and Asterisk with SS7 support.
 
 
 ```
-
-
-
-
----
 
 
 In the past, there was a special asterisk-ss7 branch to use which contained the SS7 code. That code has been merged back into the trunk version of Asterisk, and the old asterisk-ss7 branch has been deprecated and removed. If you are still using the asterisk-ss7 branch, it will not work against the current version of libss7, and you should switch to asterisk-trunk instead.
@@ -164,10 +151,6 @@ sigchan = 48 ; This would put two signalling channels in our linkset, one at
 
 
 ```
-
-
-
----
 
 
 This is how a basic linkset is setup. For more detailed chan\_dahdi.conf SS7 config information as well as other options available for that file, see the default chan\_dahdi.conf that comes with the samples in asterisk. If you would like, you can do a `make samples` in your asterisk-trunk directory and it will install a sample chan\_dahdi.conf for you that contains  

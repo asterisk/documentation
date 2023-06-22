@@ -65,10 +65,6 @@ busylevel=1
 ```
 
 
-
----
-
-
 We are setting one option in the general section, and then a few options across the three SIP peers involved.
 
 **callcounter** and **busylevel** are the most essential options. **callcounter** needs to be enabled for chan\_sip to provide accurate device. **busylevel**=1 says we want the device states of those peers to show busy if they have at least one call in progress. The **subscribecontext** option tells Asterisk which dialplan context to look for the hint. **allowsubscribe** says that we will allow subscriptions for that peer. It is really set to yes by default, but we are defining it here to demonstrate that you could allow and disallow subscriptions on a per-peer basis if you wanted.
@@ -102,10 +98,6 @@ exten = 6001,hint,SIP/Bob-mobile&SIP/Bob-desk
 ```
 
 
-
----
-
-
 Defining the hint is pretty straightforward and follows the syntax discussed in the [Extension State and Hints](/Fundamentals/Key-Concepts/States-and-Presence/Extension-State-and-Hints) section.
 
 Notice that we put it in the context we set in **subscribecontext** in sip.conf earlier. Otherwise we would need to make sure it is in the same context that the SIP peer uses (defined with "context").
@@ -128,10 +120,6 @@ If you have restarted Asterisk to load the hints, then you can check to make sur
  6001@default : SIP/Bob-mobile&SIP/B State:Unavailable Watchers 0
 
 ```
-
-
-
----
 
 
 You'll see the state changes to Idle or something else if you have your sip.conf configured properly and the two SIP devices are at least available.
@@ -175,10 +163,6 @@ SUBSCRIBE(w/ Auth) --->
 200 OK --->
 
 ```
-
-
-
----
 
 
 In the expanding frame below is a SIP trace of a successful subscription for reference. You could see this on your own system by running "sip set debug on" and then watching for the subscription. You might have to restart your phone again or re-add a contact to see it.
@@ -336,10 +320,6 @@ Content-Length: 0
 ```
 
 
-
----
-
-
 Once the subscription has taken place, there is a command to list them. "sip show subscriptions"
 
 
@@ -359,10 +339,6 @@ Peer User Call ID Extension Last state Type Mailbox Expiry
 1 active SIP subscription
 
 ```
-
-
-
----
 
 
 From this point onward, Asterisk should send out a SIP NOTIFY to the Alice peer whenever state changes for any of the devices mapped to the hint 6001. Alice's phone should then reflect that state on its display.

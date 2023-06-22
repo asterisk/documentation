@@ -51,7 +51,3 @@ database showkey -- Shows database contents
 ```
 
 
-
----
-
-

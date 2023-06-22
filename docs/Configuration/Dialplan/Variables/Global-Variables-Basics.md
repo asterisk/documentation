@@ -8,22 +8,11 @@ Global variables are variables that don't live on one particular channel — the
 
 
 
----
-
-  
-  
-
-
-```
-
-javascript[globals]
+```javascript title=" " linenums="1"
+[globals]
 MYGLOBALVAR=somevalue
 
 ```
-
-
-
----
 
 
 You can also set global variables from dialplan logic using the **GLOBAL()** dialplan function along with the **Set()** application. Simply use the syntax:
@@ -31,22 +20,11 @@ You can also set global variables from dialplan logic using the **GLOBAL()** dia
 
 
 
----
-
-  
-  
+```javascript title=" " linenums="1"
+exten=>6124,1,Set(GLOBAL(MYGLOBALVAR)=somevalue)
 
 
 ```
-
-javascriptexten=>6124,1,Set(GLOBAL(MYGLOBALVAR)=somevalue)
-
-
-```
-
-
-
----
 
 
 To retrieve the value of a global channel variable, use the same syntax as you would if you were retrieving the value of a channel variable.

@@ -6,16 +6,12 @@ pageid: 30279846
 
 
 
----
+!!! info "Disclaimer"
+    This page contains many of the ideas that I've been discussing with unknown user. Bear in mind that currently, much is missing here, so don't expect any actions items to spring from this page in the near future.
 
+      
+[//]: # (end-info)
 
-**Information: Disclaimer**  This page contains many of the ideas that I've been discussing with unknown user. Bear in mind that currently, much is missing here, so don't expect any actions items to spring from this page in the near future.
-
-  
-
-
-
----
 
 
 Overview
