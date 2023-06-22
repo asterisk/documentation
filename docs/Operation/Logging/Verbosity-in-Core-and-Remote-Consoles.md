@@ -38,7 +38,7 @@ This starts Asterisk in console mode (will be the root console) with a verbose l
 
 ```
 
-\*CLI> core show settings
+*CLI> core show settings
 
 PBX Core settings
 -----------------
@@ -69,7 +69,7 @@ A remote console can now be attached with an initial verbosity level of "3" and 
 
 asterisk -rvvv
 
-\*CLI> core show settings
+*CLI> core show settings
 
 PBX Core settings
 -----------------
@@ -98,9 +98,9 @@ Changing the root console's verbosity will be reflected on both:
 
 ```
 
-\*CLI> core set verbose 2
+*CLI> core set verbose 2
 Console verbose was 1 and is now 2.
-\*CLI> core show settings
+*CLI> core show settings
 
 PBX Core settings
 -----------------
@@ -129,7 +129,7 @@ and then on the remote console:
 
 ```
 
-\*CLI> core show settings
+*CLI> core show settings
 
 PBX Core settings
 -----------------

@@ -30,7 +30,7 @@ No configuration is needed to take advantage of this feature. Asterisk 11 will s
 
 ```
 
-[Oct 18 10:26:11] NOTICE[27538][C-00000000]: chan\_sip.c:25107 handle\_request\_invite: Call from 'gold' (10.24.22.201:5060) to extension '645613' rejected because extension not found in context 'default'.
+[Oct 18 10:26:11] NOTICE[27538][C-00000000]: chan_sip.c:25107 handle_request_invite: Call from 'gold' (10.24.22.201:5060) to extension '645613' rejected because extension not found in context 'default'.
 
 ```
 
