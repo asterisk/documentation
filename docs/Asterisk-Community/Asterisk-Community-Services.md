@@ -11,4 +11,6 @@ There are several services provided for the development of Asterisk.
 * [Source Browsing](https://github.com/asterisk/asterisk)
 * [Mailing Lists](/Asterisk-Community/Mailing-Lists)
 
-There is a regular maintenance window every Monday from 9:00 PM to 10:00 PM Central Time, during which services may have intermittent availability while we apply patches, upgrades, etc. If maintenance is required outside of this window, notice will be sent to the [asterisk-announce](http://lists.digium.com/mailman/listinfo/asterisk-announce) mailing list. If any of the community services are unavailable outside of a scheduled maintenance time, please notify [the Asterisk development team.](mailto:asteriskteam@digium.com?subject=Community-Service-Interruption)
+The Asterisk development team directly maintain a subset of community services, specifically the legacy Atlassian services and the downloads server. If downtime is expected a notice will be sent to the [asterisk-announce](http://lists.digium.com/mailman/listinfo/asterisk-announce) mailing list.
+
+If community services are unavailable for a prolonged period of time, please notify [the Asterisk development team.](mailto:asteriskteam@digium.com?subject=Community-Service-Interruption)

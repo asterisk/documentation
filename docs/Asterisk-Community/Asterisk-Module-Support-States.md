@@ -34,35 +34,37 @@ MODULEINFO Configurations
 
 At the top of modules there is the ability to set meta information about that module. Currently we have the following tags:
 
-* **<defaultenabled>**
-* **<use>**
-* **<depend>**
+```
+<defaultenabled>
+<use>
+<depend>
+```
 
-The meta data added to **MODULEINFO** in the module causes data to be generated in *menuselect*. For example, when you use **<defaultenabled>no</defaultenabled>** the module will not be selected by default. We would use the **<defaultenabled>** tag for *deprecated* modules so that they are not built unless explicitly selected by an Asterisk administrator.
+The meta data added to **MODULEINFO** in the module causes data to be generated in *menuselect*. For example, when you use ```<defaultenabled>no</defaultenabled>``` the module will not be selected by default. We would use the ```<defaultenabled>``` tag for *deprecated* modules so that they are not built unless explicitly selected by an Asterisk administrator.
 
 Adding New Metadata
 -------------------
 
 On top of the existing tags, we would add two additional tags to communicate via menuselect that a module was extended or deprecated (and what module supersedes the deprecated module). These tags include:
 
-* **<support\_level>**
-	+ *Example: <support\_level>deprecated</support\_level>*  --  This module would be deprecated. Maintenance of this module may not exist. It is possible this module could eventually be tagged as deprecated, or removed from the tree entirely.
-* **<replacement>**
-	+ *Example: <replacement>func\_odbc</replacement>*  --  The replacement for this module is the func\_odbc module. This is used when the *<support\_level>* is set to **deprecated**.
+- ```<support_level>```
+	+ *Example: ```<support_level>deprecated</support_level>```*  --  This module would be deprecated. Maintenance of this module may not exist. It is possible this module could eventually be tagged as deprecated, or removed from the tree entirely.
+- ```<replacement>```
+	+ *Example: ```<replacement>func_odbc</replacement>```  --  The replacement for this module is the func\_odbc module. This is used when the ```<support_level>``` is set to **deprecated**.
 
 ### Menuselect Display
 
-The following two images show the suggested menuselect output based on the addition of the *<support\_level>* and *<replacement>* tags. This would be a new line that has not been used before, and therefore would be added to menuselect as that new line.
+The following two images show the suggested menuselect output based on the addition of the ```<support_level>``` and ```<replacement>``` tags. This would be a new line that has not been used before, and therefore would be added to menuselect as that new line.
 
-If the **deprecated** value is used, then the value between the **<replacement>** tags will replace the value of *app\_superQ* as shown in the image below. The text surrounding *app\_superQ* would be static (same for all modules that used **deprecated**).
+If the **deprecated** value is used, then the value between the ```<replacement>``` tags will replace the value of *app_superQ* as shown in the image below. The text surrounding *app_superQ* would be static (same for all modules that used **deprecated**).
 
 ![](menuselect-deprecated.png)
 
-If the **<support\_level>** tag is used, then the value of *extended* would cause the additional text of **\***\* EXTENDED \***\*** to be displayed.
+If the ```<support_level>``` tag is used, then the value of *extended* would cause the additional text of **EXTENDED** to be displayed.
 
 ![](menuselect-unmaintained.png)
 
-Display in menuselect-newt for supported modules. If no <support\_level> is specified, then it is assumed the module is supported:
+Display in menuselect-newt for supported modules. If no ```<support_level>``` is specified, then it is assumed the module is supported:
 
 ![](menuselect-newt-supported.png)
 

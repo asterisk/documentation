@@ -18,7 +18,9 @@ The Asterisk project takes the issue of its users security seriously. If you bel
 
 
 
-!!! warning The Issue Tracker is Public!
+!!! warning
+
+    The Issue Tracker is Public!
     The [Asterisk Issue Tracker](https://github.com/asterisk/asterisk/issues) is a public site, and all bug reports against Asterisk can be viewed openly by the public. While this results in a transparent, open process - which is good - reporting a security vulnerability on the issue tracker without properly selecting "[Report a vulnerability](https://github.com/asterisk/asterisk/security/advisories/new)" on the [New Issue page](https://github.com/asterisk/asterisk/issues/new/choose) makes the entire Asterisk user community vulnerable.
 
     Reporting a vulnerability will automatically restrict who can view the information. If you have any difficulties with that we'll help; please follow the instructions here and e-mail the team at [security@asterisk.org.](mailto:security@asterisk.org)

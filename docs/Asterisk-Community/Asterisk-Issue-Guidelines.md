@@ -53,7 +53,8 @@ Bug Reporting Check List
 
 
 
-!!! warning Before filing a bug report...
+!!! warning
+    Before filing a bug report...
     Your issue may not be a bug or could have been fixed already. Run through the check list below to verify you have done your due diligence.
 
       
@@ -152,10 +153,10 @@ If your bug was closed, but you get additional debug or data later on, you can a
 
 
 
-How to request a feature
+How to request a feature or improvement
 ------------------------
 
-Feature requests without patches are not typically monitored or kept on the tracker. Even a feature request with a patch will still have to be approved by the core maintainers and community developers. Many people want Asterisk to do many different things; however, unless the feature has some extremely obvious (to many people) benefit, then it's best to have a community discussion and consensus on a feature before it goes into Asterisk. Feature requests are openly discussed on the [mailing lists](/Mailing-Lists) and [IRC channels](/Asterisk-Community/IRC). Most bug marshals and Asterisk developers actively participate and will note the request if it makes sense.
+Feature or improvement requests without patches are not kept on the primary issue tracker. A [second issue tracker](https://github.com/asterisk/asterisk-feature-requests) is maintained for this purpose on Github. There is no guarantee that any request filed on this issue tracker will be implemented.
 
 New features and major architecture changes are often discussed at the [AstriDevCon](/Development/Roadmap/AstriDevCon) event held before Astricon.
 
@@ -164,29 +165,7 @@ If you really need the feature, but are not a programmer, you'll need to find so
 Patch and Code Submission
 -------------------------
 
-Patches for all issues are always welcome. Issues with patches are typically resolved much faster than those without. Please see the [Patch Contribution Process](/Development/Policies-and-Procedures/Historical-Policies-and-Procedures/Patch-Contribution-Process) for information on submitting a patch to the Asterisk project.
-
-For information on writing a new feature for Asterisk, please see the [New Feature Guidelines](/Development/Policies-and-Procedures/Historical-Policies-and-Procedures/Patch-Contribution-Process/New-Feature-Guidelines).
-
-Issue Lifetime
---------------
-
-The status of all issues in the tracker are reflected in the tracker. As issues are worked, they will move through several statuses. Issues that are "Closed" or "Complete" will have a disposition that determines their resolution. Issues with a disposition of "Fixed" have been committed to the project and will be released in the next bug fix release for all supported releases of Asterisk.
-
-For any particular issue you'll want to look at the "Status" field and the comments tab under "Activity".
-
-You can read more about the issue workflow at [Issue Tracker Workflow](/Development/Policies-and-Procedures/Historical-Policies-and-Procedures/Issue-Tracker-Workflow).
-
-
-
-| Status Field Value | Meaning |
-| --- | --- |
-| Triage | The issue has not been acknowledged yet. First a bug marshal needs to verify it's a valid report. Check the comments! |
-| Open\Reopened | Issue has been acknowledged and is waiting for a developer to take it on. Typically we can't provide an ETA for development as priorities are complex and change constantly. |
-| In Progress | A developer is working on this issue. Check the comments! |
-| Waiting for Feedback | Check the comments. This issue is waiting on the "Assignee" to provide feedback needed for it to move forward.Once feedback is provided you need to click "Send Back". |
-| Closed | Issue has been closed. Check the "Resolution" field for further information. |
-| Complete | The intended resolution was reached, but additional tasks may remain before the issue can be completely closed out. |
+Patches for all issues are always welcome. Issues with patches are typically resolved much faster than those without. Please see the [Code Contribution Process](/Development/Policies-and-Procedures/Code-Contribution) for information on submitting a patch to the Asterisk project.
 
 Frequently Asked Questions
 --------------------------
@@ -198,16 +177,6 @@ There are some key qualities to keep in mind. These should be reflected in your 
 * Specific: Pertaining to a certain, clearly defined issue with data to provide evidence of said issue
 * Reproducible: Not random - you have some idea when this issue occurs and how to make it happen again
 * Concise: Brief but comprehensive. Don't provide an essay on what you think is wrong. Provide only the facts and debug output that supports them.
-
-#### How can I be notified when an issue's status changes?
-
-**Watch an issue:**  You can receive E-mails whenever an issue is updated. You'll see a "watch" link on the actual JIRA issue, click that!
-
-![](Selection_001.png)
-
-#### What's the deal with the clone of my issue (SWP-1234)?
-
-You can safely ignore the issues starting with SWP. Digium has a whole group of developers dedicated to working on Asterisk open source issues. They use a separate project for internal time tracking purposes only to avoid cluttering up the main project. The clone being created does not indicate any particular status, and any updates to the issue will be made in the ASTERISK project.
 
 #### How can I speed up my issue resolution?
 
