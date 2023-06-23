@@ -9,7 +9,7 @@ The next application we'll cover is named **Directory()**, because it presents t
 
 
 ```javascript title=" " linenums="1"
-Directory([voicemail\_context,[dialplan\_context,[options]]])
+Directory([voicemail_context,[dialplan_context,[options]]])
 
 
 ```
@@ -18,13 +18,13 @@ Directory([voicemail\_context,[dialplan\_context,[options]]])
 The **Directory()** application takes three parameters:
 
 
-#### voicemail\_context
+#### voicemail_context
 
 
-This is the context within **voicemail.conf** in which to search for a matching directory entry. If not specified , the **[docs:default]** context will be searched.
+This is the context within **voicemail.conf** in which to search for a matching directory entry. If not specified , the **default** context will be searched.
 
 
-#### dialplan\_context
+#### dialplan_context
 
 
 When the caller finds the directory entry they are looking for, Asterisk will dial the extension matching their mailbox in this context.
@@ -38,7 +38,8 @@ A set of options for controlling the dial-by-name directory. Common options incl
 
 
 
-!!! tip Directory() Options** To see the complete list of options for the Directory() application, type **core show application Directory
+!!! tip
+    To see the complete list of options for the Directory() application, type **core show application Directory**
     at the Asterisk CLI.
 
       
@@ -46,7 +47,7 @@ A set of options for controlling the dial-by-name directory. Common options incl
 
 
 
-Let's add a dial-by-name directory to our dialplan. Simply add this line to your **[docs:users]** context in **extensions.conf**:
+Let's add a dial-by-name directory to our dialplan. Simply add this line to your **users** context in **extensions.conf**:
 
 
 

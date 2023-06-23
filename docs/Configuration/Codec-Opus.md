@@ -56,7 +56,7 @@ Limit the maximum playback rate of any endpoint that allow "opus" and don't incl
 
 [opus]
 type=opus
-max\_playback\_rate=8000 ; Limit the bandwidth on the encoder to narrow band
+max_playback_rate=8000 ; Limit the bandwidth on the encoder to narrow band
 fec=no ; Do not include in-band forward error correction data
 
 ```
