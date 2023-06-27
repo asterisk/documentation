@@ -33,12 +33,15 @@ theme:
     - navigation.instant
     - navigation.instant.prefetch
     - navigation.indexes
+    - navigation.top
     - search.suggest
     - search.highlight
     - search.share
     - content.action.edit
     - content.code.copy
     - content.code.annotate
+    - toc.follow
+
 
 plugins:
   - search
