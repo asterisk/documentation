@@ -111,9 +111,9 @@ Lets use some Character Sets and Wildcards
 
 ```
 
-exten => \_64X[4-9],1,SayDigits(${EXTEN})
-exten => \_[6-4]4[4-9],1,SayDigits(${EXTEN})
-exten => \_64.,1,SayDigits(${EXTEN})
+exten => _64X[4-9],1,SayDigits(${EXTEN})
+exten => _[6-4]4[4-9],1,SayDigits(${EXTEN})
+exten => _64.,1,SayDigits(${EXTEN})
 
 ```
 
@@ -155,7 +155,8 @@ The exclamation mark (**!**) character is similar to the period and matches zero
 
 
 
-!!! tip **  Asterisk treats a period or exclamation mark as the end of a pattern. If you want a period or exclamation mark in your pattern as a plain character you should put it into a character set: **[.]** or **[!]
+!!! tip
+**  Asterisk treats a period or exclamation mark as the end of a pattern. If you want a period or exclamation mark in your pattern as a plain character you should put it into a character set: **[.]** or **[!]
     .
 
       
@@ -202,13 +203,13 @@ Let's look at an example to better understand how this works. Let's assume Alice
 
 ```
 
-exten => \_6XX1,1,SayAlpha(A)
-exten => \_64XX,1,SayAlpha(B)
-exten => \_640X,1,SayAlpha(C)
-exten => \_6.,1,SayAlpha(D)
-exten => \_64NX,1,SayAlpha(E)
-exten => \_6[45]NX,1,SayAlpha(F)
-exten => \_6[34]NX,1,SayAlpha(G)
+exten => _6XX1,1,SayAlpha(A)
+exten => _64XX,1,SayAlpha(B)
+exten => _640X,1,SayAlpha(C)
+exten => _6.,1,SayAlpha(D)
+exten => _64NX,1,SayAlpha(E)
+exten => _6[45]NX,1,SayAlpha(F)
+exten => _6[34]NX,1,SayAlpha(G)
 
 
 ```
@@ -230,13 +231,13 @@ Sorted extensions
 
 ```
 
-exten => \_640X,1,SayAlpha(C)
-exten => \_64NX,1,SayAlpha(E)
-exten => \_64XX,1,SayAlpha(B)
-exten => \_6[34]NX,1,SayAlpha(G)
-exten => \_6[45]NX,1,SayAlpha(F)
-exten => \_6XX1,1,SayAlpha(A)
-exten => \_6.,1,SayAlpha(D)
+exten => _640X,1,SayAlpha(C)
+exten => _64NX,1,SayAlpha(E)
+exten => _64XX,1,SayAlpha(B)
+exten => _6[34]NX,1,SayAlpha(G)
+exten => _6[45]NX,1,SayAlpha(F)
+exten => _6XX1,1,SayAlpha(A)
+exten => _6.,1,SayAlpha(D)
 
 
 ```
@@ -257,13 +258,13 @@ To verify that Asterisk actually does sort the extensions in the manner that we'
 
 ```
 
-exten => \_6XX1,1,SayAlpha(A)
-exten => \_64XX,1,SayAlpha(B)
-exten => \_640X,1,SayAlpha(C)
-exten => \_6.,1,SayAlpha(D)
-exten => \_64NX,1,SayAlpha(E)
-exten => \_6[45]NX,1,SayAlpha(F)
-exten => \_6[34]NX,1,SayAlpha(G)
+exten => _6XX1,1,SayAlpha(A)
+exten => _64XX,1,SayAlpha(B)
+exten => _640X,1,SayAlpha(C)
+exten => _6.,1,SayAlpha(D)
+exten => _64NX,1,SayAlpha(E)
+exten => _6[45]NX,1,SayAlpha(F)
+exten => _6[34]NX,1,SayAlpha(G)
 
 
 ```
@@ -282,14 +283,14 @@ Reload the dialplan, and then type **dialplan show 6421@users** at the Asterisk 
 
 ```
 
-server\*CLI> dialplan show 6421@users
-[ Context 'users' created by 'pbx\_config' ]
- '\_64NX' => 1. SayAlpha(E) [pbx\_config]
- '\_64XX' => 1. SayAlpha(B) [pbx\_config]
- '\_6[34]NX' => 1. SayAlpha(G) [pbx\_config]
- '\_6[45]NX' => 1. SayAlpha(F) [pbx\_config]
- '\_6XX1' => 1. SayAlpha(A) [pbx\_config]
- '\_6.' => 1. SayAlpha(D) [pbx\_config]
+server*CLI> dialplan show 6421@users
+[ Context 'users' created by 'pbxp_config' ]
+ '_64NX' => 1. SayAlpha(E) [pbx_config]
+ '_64XX' => 1. SayAlpha(B) [pbx_config]
+ '_6[34]NX' => 1. SayAlpha(G) [pbx_config]
+ '_6[45]NX' => 1. SayAlpha(F) [pbx_config]
+ '_6XX1' => 1. SayAlpha(A) [pbx_config]
+ '_6.' => 1. SayAlpha(D) [pbx_config]
 
 -= 6 extensions (6 priorities) in 1 context. =-
 
@@ -307,15 +308,15 @@ server\*CLI> dialplan show 6421@users
 
 ```
 
-server\*CLI> dialplan show users
-[ Context 'users' created by 'pbx\_config' ]
- '\_640X' => 1. SayAlpha(C) [pbx\_config]
- '\_64NX' => 1. SayAlpha(E) [pbx\_config]
- '\_64XX' => 1. SayAlpha(B) [pbx\_config]
- '\_6[34]NX' => 1. SayAlpha(G) [pbx\_config]
- '\_6[45]NX' => 1. SayAlpha(F) [pbx\_config]
- '\_6XX1' => 1. SayAlpha(A) [pbx\_config]
- '\_6.' => 1. SayAlpha(D) [pbx\_config]
+server*CLI> dialplan show users
+[ Context 'users' created by 'pbx_config' ]
+ '_640X' => 1. SayAlpha(C) [pbx_config]
+ '_64NX' => 1. SayAlpha(E) [pbx_config]
+ '_64XX' => 1. SayAlpha(B) [pbx_config]
+ '_6[34]NX' => 1. SayAlpha(G) [pbx_config]
+ '_6[45]NX' => 1. SayAlpha(F) [pbx_config]
+ '_6XX1' => 1. SayAlpha(A) [pbx_config]
+ '_6.' => 1. SayAlpha(D) [pbx_config]
 
 -= 7 extensions (7 priorities) in 1 context. =-
 
@@ -340,10 +341,10 @@ You can dial extension **6421** to try it out on your own.
 ```
 
 exten => 6410,1,SayDigits(987)
-exten => \_641X,1,SayDigits(12345)
-exten => \_641X,n,SayDigits(54321)
+exten => _641X,1,SayDigits(12345)
+exten => _641X,n,SayDigits(54321)
   
-
+```
 
 
 ---
@@ -377,11 +378,11 @@ exten => 306,1,NoOp()
 same => n,Background(goodbye)
 same => n,Hangup()
  
-exten => 306/\_101,1,NoOp()
+exten => 306/_101,1,NoOp()
 same => n,Background(year)
 same => n,Hangup()
  
-exten => 306/\_102,1,NoOp()
+exten => 306/_102,1,NoOp()
 same => n,Background(beep)
 same => n,Hangup()
 
@@ -406,10 +407,10 @@ The phone with Caller ID 101, when dialing 306, will hear the prompt "year" and 
 
 [unexpected-jump-test]
 
-exten => s/\_1XX,1,Set(CALLERID(num)=200) ; <- Example call starts here
+exten => s/_1XX,1,Set(CALLERID(num)=200) ; <- Example call starts here
 same => 2,Hangup() ; <- This line is NEVER reached normally because of the assignment above
 
-exten => s/\_2XX,1,SayDigits(1)
+exten => s/_2XX,1,SayDigits(1)
 same => 2,SayDigits(2) ; <- This is where the dialplan proceeds instead
 same => 3,SayDigits(3)
 same => 4,SayDigits(4)  
