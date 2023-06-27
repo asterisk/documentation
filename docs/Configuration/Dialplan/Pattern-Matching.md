@@ -78,7 +78,7 @@ Now let's look at a sample pattern. If you wanted to match all four-digit number
 
 ```
 
-exten => \_64XX,1,SayDigits(${EXTEN})
+exten => _64XX,1,SayDigits(${EXTEN})
 
 
 ```
