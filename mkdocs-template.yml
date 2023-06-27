@@ -46,20 +46,20 @@ theme:
 
 plugins:
   - search
-  - tags:
-      tags_file: index.md
+#  - tags:
+#      tags_file: index.md
 #  - git-revision-date-localized:
 #      enable_creation_date: true
 #      fallback_to_build_date: true
-  - mike:
-      # These fields are all optional; the defaults are as below...
+#  - mike:
+#      # These fields are all optional; the defaults are as below...
 #      alias_type: 'symlink'
 #      redirect_template: null
 #      deploy_prefix: ''
-      canonical_version: 'general'
-      version_selector: true
-      css_dir: css
-      javascript_dir: js
+#      canonical_version: 'general'
+#      version_selector: true
+#      css_dir: css
+#      javascript_dir: js
 
 extra:
   version:
