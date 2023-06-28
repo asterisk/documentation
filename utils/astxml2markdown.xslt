@@ -680,7 +680,7 @@ the XML again with the full descriptions, and forms bulleted lists.
     <!-- Note: we do a for-each to preserve the order of the nodes -->
     <for-each select="./*">
         <xsl:apply-templates select="./*">
-            <xsl:with-param name="bullet" select="concat($bullet,'  ')"/>
+            <xsl:with-param name="bullet" select="concat($bullet,'    ')"/>
             <xsl:with-param name="returntype">single</xsl:with-param>
         </xsl:apply-templates>
     </for-each>
@@ -725,7 +725,7 @@ the XML again with the full descriptions, and forms bulleted lists.
     </xsl:choose>
     <for-each select="./*">
         <xsl:apply-templates select="./*">
-            <xsl:with-param name="bullet" select="concat($bullet,'  ')"/>
+            <xsl:with-param name="bullet" select="concat($bullet,'    ')"/>
             <xsl:with-param name="separator" select="@argsep"/>
             <xsl:with-param name="returntype">single</xsl:with-param>
         </xsl:apply-templates>
@@ -852,10 +852,10 @@ be displayed.
         </xsl:otherwise>
     </xsl:choose>
     <xsl:apply-templates select="parameter">
-        <xsl:with-param name="bullet" select="concat($bullet,'  ')"/>
+        <xsl:with-param name="bullet" select="concat($bullet,'    ')"/>
     </xsl:apply-templates>
     <xsl:apply-templates select="enumlist">
-        <xsl:with-param name="bullet" select="concat($bullet,'  ')"/>
+        <xsl:with-param name="bullet" select="concat($bullet,'    ')"/>
     </xsl:apply-templates>
     <xsl:apply-templates select="note">
         <xsl:with-param name="returntype">single</xsl:with-param>
@@ -913,14 +913,14 @@ be displayed.
         </xsl:otherwise>
     </xsl:choose>
     <xsl:apply-templates select="variablelist">
-        <xsl:with-param name="bullet" select="concat($bullet,'  ')"/>
+        <xsl:with-param name="bullet" select="concat($bullet,'    ')"/>
     </xsl:apply-templates>
     <xsl:apply-templates select="argument">
-        <xsl:with-param name="bullet" select="concat($bullet,'  ')"/>
+        <xsl:with-param name="bullet" select="concat($bullet,'    ')"/>
         <xsl:with-param name="separator" select="@argsep"/>
     </xsl:apply-templates>
     <xsl:apply-templates select="enumlist">
-        <xsl:with-param name="bullet" select="concat($bullet,'  ')"/>
+        <xsl:with-param name="bullet" select="concat($bullet,'    ')"/>
     </xsl:apply-templates>
 </xsl:template>
 
