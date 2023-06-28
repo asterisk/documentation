@@ -4,3 +4,4 @@ mkdocs-material>=9.1.9
 mkdocs-material-extensions>=1.1.1
 mkdocs-table-reader-plugin>=2.0.1
 mike>=1.1.2
+lxml>=4.8.0

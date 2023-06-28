@@ -11,7 +11,7 @@ theme:
   name: material
   favicon: favicon.ico
   logo: favicon.ico
-  custom_dir: ../overrides
+  custom_dir: ../../overrides
   icon:
     repo: fontawesome/brands/github
 

@@ -1,5 +1,4 @@
 .venv
-site
-docs-*
 Makefile.inc
+temp
 

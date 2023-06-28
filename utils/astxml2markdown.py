@@ -70,6 +70,9 @@ class AstXML2Markdown:
             'module': 'Modules'
         }
 
+        if self.args['xslt'] == '':
+            self.args['xslt'] = 'astxml2markdown.xslt'
+
         if self.args['file'] == '':
             sys.stderr.write("Please specify a path to core-en_US.xml.\n")
             sys.stderr.write(usage)
@@ -146,8 +149,10 @@ class AstXML2Markdown:
             link = refnode.text.replace(" ", "_")
 
             if self.parent.get(type) is not None:
-                link = '[%s %s%s](/%s/%s/%s%s.md)' % (self.parent[type], link, module,
-                                              self.args['branch'], self.parent[type].replace(' ', '_'), link, module)
+                link = '[%s %s%s](/%s/_%s/%s%s)' % (
+                    self.parent[type], link, module,
+                    self.args['branch'],
+                    self.parent[type].replace(' ', '_'), link, module)
             else:
                 link = '{{%s}}\n' % link
 
@@ -183,7 +188,7 @@ class AstXML2Markdown:
     def generate(self):
         ''' generate the markdown files according to formatting '''
 
-        xslt = etree.XSLT(etree.parse('astxml2markdown.xslt'))
+        xslt = etree.XSLT(etree.parse(self.args['xslt']))
 
         markdown_path = self.args['directory']
 
