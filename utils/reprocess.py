@@ -106,7 +106,7 @@ def reprocess():
             for name in files:
                 if name.endswith(".md"):
                     fn=os.path.join(root, name)
-                    fix_document(page_num, path, md_fixes, args)
+                    fix_document(page_num, fn, md_fixes, args)
                     page_num += 1
 
     if not args.quiet:
