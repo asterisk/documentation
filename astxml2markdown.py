@@ -194,7 +194,7 @@ class AstXML2Markdown:
 
         # Go through the parents creating their directories and pages
         for parent in self.parent:
-            os.makedirs(markdown_path + "/" + self.parent[parent].replace(' ', '_'), exist_ok=True)
+            os.makedirs(markdown_path + "/_" + self.parent[parent].replace(' ', '_'), exist_ok=True)
 
         for node in self.elements:
             name = node.attrib.get('name')
@@ -215,7 +215,7 @@ class AstXML2Markdown:
 
             filename = name.replace(" ", "_") + ".md"
 
-            f = open(markdown_path + "/" + self.parent[node.tag].replace(' ', '_') + "/" + filename, "w")
+            f = open(markdown_path + "/_" + self.parent[node.tag].replace(' ', '_') + "/" + filename, "w")
             f.write(markdown)
             f.close()
 

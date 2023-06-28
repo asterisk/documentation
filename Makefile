@@ -1,4 +1,4 @@
-
+SHELL := /usr/bin/bash
 REMOTE=local
 include Makefile.inc
 
@@ -21,9 +21,16 @@ docs-%/source/asterisk-docs.xml:
 		echo "No current docs job" ;\
 		exit 1 ;\
 	fi
-	@echo "Retrieving documentation from job $(LAST_JOB) for branch: $%"
+	@echo "Retrieving documentation from job $(LAST_JOB) for branch: $(BRANCH)"
+	@[ -d docs-$(BRANCH)/source ] && mv docs-$(BRANCH)/source docs-$(BRANCH)/source.bak || :
 	@mkdir -p docs-$(BRANCH)/source
-	@gh run download --repo asterisk/asterisk $(LAST_JOB) -n documentation-$(BRANCH) -D docs-$(BRANCH)/source
+	@gh run download --repo asterisk/asterisk $(LAST_JOB) -n documentation-$(BRANCH) -D docs-$(BRANCH)/source ||\
+		{ [ -d docs-$(BRANCH)/source.bak ] && {\
+			rm -rf docs-$(BRANCH)/source ;\
+			mv docs-$(BRANCH)/source.bak docs-$(BRANCH)/source ;\
+			exit 1 ;\
+		} ; }
+	@[ -d docs-$(BRANCH)/source.bak ] && rm -rf docs-$(BRANCH)/source.bak
 
 docs-general: FORCE
 	@echo "Copying general docs"
@@ -35,15 +42,24 @@ docs-general: FORCE
 	
 docs-%: private BRANCH = $(subst docs-,,$@)
 docs-%: docs-%/source/asterisk-docs.xml FORCE  
-	@mkdir -p $@/docs/Asterisk_REST_Interface
+	@mkdir -p $@/docs/_Asterisk_REST_Interface
+	@rsync -vaH $@/source/*.md $@/docs/_Asterisk_REST_Interface/
 	@cp mkdocs-template.yml $@/mkdocs.yml
-	@rsync -vaH $@/source/*.md $@/docs/Asterisk_REST_Interface/
 	@echo "# Asterisk $(BRANCH) Documentation" > $@/docs/index.md
 	./astxml2markdown.py --file=$@/source/asterisk-docs.xml --directory=$@/docs/ --branch=$(BRANCH) --version=GIT
-	mike deploy -F $@/mkdocs.yml -r $(REMOTE) -u -p -t "Asterisk $(BRANCH)" $(BRANCH)
-	mike set-default -F $@/mkdocs.yml -r $(REMOTE) -p general  
+	@if [ "$(BRANCH)" == "$(LATEST)" ] ; then \
+		rsync -vaH docs/. ./$@/docs/ ;\
+		mike deploy -F $@/mkdocs.yml -r $(REMOTE) -u -p \
+			-t "Asterisk Latest ($(BRANCH))" $(BRANCH) latest ;\
+		mike set-default -F $@/mkdocs.yml -r $(REMOTE) -p $(BRANCH) ;\
+	else \
+		mike deploy -F $@/mkdocs.yml -r $(REMOTE) -u -p \
+			-t "Asterisk $(BRANCH)" $(BRANCH) ;\
+	fi
 
 FORCE:
+
+#.PHONY: $(EVERYTHING) $(append /source/asterisk-docs.xml,$(EVERYTHING))
 
 clean:
 	rm -rf docs-$(BRANCH)
