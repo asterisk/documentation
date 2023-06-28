@@ -1,4 +1,9 @@
 ---
+# Replace all the \xA0 non-breaking spaces with regular spaces
+- pattern: '\xA0'
+  repl: ' '
+# Prefix all internal links in the static docs with '/latest'
+# so they resolve correctly when re-homed under the latest branch.
 - pattern: "\\[([^]]+)\\]\\(/([^)]+)\\)"
   repl: '[\1](/latest/\2)'
 
