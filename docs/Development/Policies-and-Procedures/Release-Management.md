@@ -40,24 +40,24 @@ Summary:
 ----------------------------------------
 
 - .github: Add AsteriskReleaser
-- chan\_pjsip: also return all codecs on empty re-INVITE for late offers
+- chan_pjsip: also return all codecs on empty re-INVITE for late offers
 - cel: add local optimization begin event
 - core: Cleanup gerrit and JIRA references. (#57)
 - .github: Fix CherryPickTest to only run when it should
-- .github: Fix reference to CHERRY\_PICK\_TESTING\_IN\_PROGRESS
+- .github: Fix reference to CHERRY_PICK_TESTING_IN_PROGRESS
 - .github: Remove separate set labels step from new PR
 - .github: Refactor CP progress and add new PR test progress
-- res\_pjsip: mediasec: Add Security-Client headers after 401
+- res_pjsip: mediasec: Add Security-Client headers after 401
 
 User Notes:
 ----------------------------------------
 
 - ### cel: add local optimization begin event
- The new AST\_CEL\_LOCAL\_OPTIMIZE\_BEGIN can be used
+ The new AST_CEL_LOCAL_OPTIMIZE_BEGIN can be used
  by itself or in conert with the existing
- AST\_CEL\_LOCAL\_OPTIMIZE to book-end local channel optimizaion.
+ AST_CEL_LOCAL_OPTIMIZE to book-end local channel optimizaion.
 
-- ### chan\_dahdi: Add dialmode option for FXS lines.
+- ### chan_dahdi: Add dialmode option for FXS lines.
  A "dialmode" option has been added which allows
  specifying, on a per-channel basis, what methods of
  subscriber dialing (pulse and/or tone) are permitted.
@@ -65,35 +65,35 @@ User Notes:
  at any point during a call using the CHANNEL
  function.
 
-- ### res\_http\_media\_cache: Introduce options and customize
- The res\_http\_media\_cache module now attempts to load
- configuration from the res\_http\_media\_cache.conf file.
+- ### res_http_media_cache: Introduce options and customize
+ The res_http_media_cache module now attempts to load
+ configuration from the res_http_media_cache.conf file.
  The following options were added:
- \* timeout\_secs
- \* user\_agent
- \* follow\_location
- \* max\_redirects
+ \* timeout_secs
+ \* user_agent
+ \* follow_location
+ \* max_redirects
  \* protocols
- \* redirect\_protocols
- \* dns\_cache\_timeout\_secs
+ \* redirect_protocols
+ \* dns_cache_timeout_secs
 
 
 Upgrade Notes:
 ----------------------------------------
 
 - ### cel: add local optimization begin event
- The existing AST\_CEL\_LOCAL\_OPTIMIZE can continue
- to be used as-is and the AST\_CEL\_LOCAL\_OPTIMIZE\_BEGIN event
+ The existing AST_CEL_LOCAL_OPTIMIZE can continue
+ to be used as-is and the AST_CEL_LOCAL_OPTIMIZE_BEGIN event
  can be ignored if desired.
 
 
 Closed Issues:
 ----------------------------------------
 
- - #35: [New Feature]: chan\_dahdi: Allow disabling pulse or tone dialing
+ - #35: [New Feature]: chan_dahdi: Allow disabling pulse or tone dialing
  - #39: [Bug]: Remove .gitreview from repository.
  - #43: [Bug]: Link to trademark policy is no longer correct
- - #48: [bug]: res\_pjsip: Mediasec requires different headers on 401 response
+ - #48: [bug]: res_pjsip: Mediasec requires different headers on 401 response
  - #52: [improvement]: Add local optimization begin cel event
 
 Commits By Author:
@@ -104,14 +104,14 @@ Commits By Author:
  - configure: fix detection of re-entrant resolver functions
 
 - ### George Joseph (12):
- - make\_version: Strip svn stuff and suppress ref HEAD errors
+ - make_version: Strip svn stuff and suppress ref HEAD errors
  - test.c: Fix counting of tests and add 2 new tests
  - Initial GitHub Issue Templates
  - Initial GitHub PRs
 
 - ### Henning Westerholt (2):
- - chan\_pjsip: fix music on hold continues after INVITE with replaces
- - chan\_pjsip: also return all codecs on empty re-INVITE for late offers
+ - chan_pjsip: fix music on hold continues after INVITE with replaces
+ - chan_pjsip: also return all codecs on empty re-INVITE for late offers
 
 Detail:
 ----------------------------------------
@@ -121,7 +121,7 @@ Detail:
  Date: 2023-05-05 
 
 
-- ### chan\_pjsip: also return all codecs on empty re-INVITE for late offers
+- ### chan_pjsip: also return all codecs on empty re-INVITE for late offers
  Author: Henning Westerholt 
  Date: 2023-05-03 
 
@@ -137,20 +137,20 @@ Detail:
  Author: Mike Bradeen 
  Date: 2023-05-02 
 
- The current AST\_CEL\_LOCAL\_OPTIMIZE event is and has been
+ The current AST_CEL_LOCAL_OPTIMIZE event is and has been
  triggered on a local optimization end to serve as a flag
  indicating the event occurred. This change adds a second
- AST\_CEL\_LOCAL\_OPTIMIZE\_BEGIN event for further detail.
+ AST_CEL_LOCAL_OPTIMIZE_BEGIN event for further detail.
 
  Resolves: #52
 
- UpgradeNote: The existing AST\_CEL\_LOCAL\_OPTIMIZE can continue
- to be used as-is and the AST\_CEL\_LOCAL\_OPTIMIZE\_BEGIN event
+ UpgradeNote: The existing AST_CEL_LOCAL_OPTIMIZE can continue
+ to be used as-is and the AST_CEL_LOCAL_OPTIMIZE_BEGIN event
  can be ignored if desired.
 
- UserNote: The new AST\_CEL\_LOCAL\_OPTIMIZE\_BEGIN can be used
+ UserNote: The new AST_CEL_LOCAL_OPTIMIZE_BEGIN can be used
  by itself or in conert with the existing
- AST\_CEL\_LOCAL\_OPTIMIZE to book-end local channel optimizaion.
+ AST_CEL_LOCAL_OPTIMIZE to book-end local channel optimizaion.
 
 
 

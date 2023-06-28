@@ -27,7 +27,7 @@ No such command 'sip show peers'
 ```
 
 
-We can presume that something is wrong with **chan\_sip** module since we know it provides the 'sip' commands and sub-commands.
+We can presume that something is wrong with **chan_sip** module since we know it provides the 'sip' commands and sub-commands.
 
 Problem
 =======
@@ -65,9 +65,9 @@ Previous to Asterisk 12, you could only see if the module is loaded. However it 
 
 ```
 
-\*CLI> module show like chan\_sip.so 
+\*CLI> module show like chan_sip.so 
 Module Description Use Count 
-chan\_sip.so Session Initiation Protocol (SIP) 0 
+chan_sip.so Session Initiation Protocol (SIP) 0 
 1 modules loaded
 
 ```
@@ -86,9 +86,9 @@ In Asterisk 12 and beyond you can quickly see if a module is loaded and whether 
 
 ```
 
-\*CLI> module show like chan\_sip.so 
+\*CLI> module show like chan_sip.so 
 Module Description Use Count Status
-chan\_sip.so Session Initiation Protocol (SIP) 0 Not Running
+chan_sip.so Session Initiation Protocol (SIP) 0 Not Running
 1 modules loaded
 
 ```
@@ -114,12 +114,12 @@ Verify that there is **not** a '**noload'** line for the module that is failing 
 
 ```
 
-noload => chan\_sip.so
+noload => chan_sip.so
 
 ```
 
 
-That would tell Asterisk to not load chan\_sip.so.
+That would tell Asterisk to not load chan_sip.so.
 
 If you are not using **autoload**, then be sure you have a **load** line for the module you desire to load.
 
@@ -134,7 +134,7 @@ If you are not using **autoload**, then be sure you have a **load** line for the
 
 ```
 
-load => chan\_sip.so
+load => chan_sip.so
 
 ```
 
@@ -268,15 +268,15 @@ Search the [log file](/Fundamentals/Directory-and-File-Structure) using keywords
 
 ```
 
-/var/log/asterisk# grep -i chan\_sip full
-[Oct 9 14:54:43] VERBOSE[21809] chan\_sip.c: SIP channel loading...
-[Oct 9 14:54:43] ERROR[21809] chan\_sip.c: Contents of sip.conf are invalid and cannot be parsed
+/var/log/asterisk# grep -i chan_sip full
+[Oct 9 14:54:43] VERBOSE[21809] chan_sip.c: SIP channel loading...
+[Oct 9 14:54:43] ERROR[21809] chan_sip.c: Contents of sip.conf are invalid and cannot be parsed
 
 /var/log/asterisk# grep -i sip.conf full
 [Oct 9 14:54:43] DEBUG[21809] config.c: Parsing /etc/asterisk/sip.conf
 [Oct 9 14:54:43] VERBOSE[21809] config.c: == Parsing '/etc/asterisk/sip.conf': Found
 [Oct 9 14:54:43] WARNING[21809] config.c: parse error: No category context for line 1 of /etc/asterisk/sip.conf
-[Oct 9 14:54:43] ERROR[21809] chan\_sip.c: Contents of sip.conf are invalid and cannot be parsed
+[Oct 9 14:54:43] ERROR[21809] chan_sip.c: Contents of sip.conf are invalid and cannot be parsed
 [Oct 9 14:54:55] DEBUG[21809] config.c: Parsing /etc/asterisk/sip.conf
 [Oct 9 14:54:55] VERBOSE[21809] config.c: == Parsing '/etc/asterisk/sip.conf': Found
 [Oct 9 14:54:55] WARNING[21809] config.c: parse error: No category context for line 1 of /etc/asterisk/sip.conf
@@ -297,16 +297,16 @@ Based on the lines found, you can then use an editor like VIM to view the full l
 
 ```
 
-[Oct 9 14:54:43] VERBOSE[21809] chan\_sip.c: SIP channel loading...
+[Oct 9 14:54:43] VERBOSE[21809] chan_sip.c: SIP channel loading...
 [Oct 9 14:54:43] DEBUG[21809] config.c: Parsing /etc/asterisk/sip.conf
 [Oct 9 14:54:43] VERBOSE[21809] config.c: == Parsing '/etc/asterisk/sip.conf': Found
 [Oct 9 14:54:43] WARNING[21809] config.c: parse error: No category context for line 1 of /etc/asterisk/sip.conf
-[Oct 9 14:54:43] ERROR[21809] chan\_sip.c: Contents of sip.conf are invalid and cannot be parsed
+[Oct 9 14:54:43] ERROR[21809] chan_sip.c: Contents of sip.conf are invalid and cannot be parsed
 
 ```
 
 
-In this case, not much more is revealed past what we saw with grep. You can see that Asterisk tries to load and run chan\_sip, it fails because the contents of sip.conf are invalid and cannot be parsed. The most specific clue is the WARNING:
+In this case, not much more is revealed past what we saw with grep. You can see that Asterisk tries to load and run chan_sip, it fails because the contents of sip.conf are invalid and cannot be parsed. The most specific clue is the WARNING:
 
 
 

@@ -24,7 +24,7 @@ Other dialplan applications, such as [Dial](/Asterisk-13-Application_Dial) and [
 Variables and arguments available within a Macro
 ================================================
 
-The calling extension, context, and priority are stored in **MACRO\_EXTEN**, **MACRO\_CONTEXT** and **MACRO\_PRIORITY** respectively. Arguments become **ARG1**, **ARG2**, etc in the macro context. If you Goto out of the Macro context, the Macro will terminate and control will be returned at the location of the Goto. If **MACRO\_OFFSET** is set at termination, Macro will attempt to continue at priority **MACRO\_OFFSET + N + 1** if such a step exists, and **N + 1** otherwise.
+The calling extension, context, and priority are stored in **MACRO_EXTEN**, **MACRO_CONTEXT** and **MACRO_PRIORITY** respectively. Arguments become **ARG1**, **ARG2**, etc in the macro context. If you Goto out of the Macro context, the Macro will terminate and control will be returned at the location of the Goto. If **MACRO_OFFSET** is set at termination, Macro will attempt to continue at priority **MACRO_OFFSET + N + 1** if such a step exists, and **N + 1** otherwise.
 
 Defining a dialplan context for use with Macro
 ==============================================

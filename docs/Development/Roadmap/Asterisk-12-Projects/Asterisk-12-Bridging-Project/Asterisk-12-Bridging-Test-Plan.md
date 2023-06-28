@@ -105,7 +105,7 @@ DTMF disconnect
 ### Test 2:
 
 
-* Party A sets the BRIDGE\_FEATURES channel variable to 'H'.
+* Party A sets the BRIDGE_FEATURES channel variable to 'H'.
 * Party A dials party B.
 * Party B attempts to disconnect the call using the configured disconnect key (this should fail)
 * Party A presses the configured disconnect key in order to end the call.
@@ -122,7 +122,7 @@ DTMF disconnect
 ### Test 4:
 
 
-* Party A sets the BRIDGE\_FEATURES channel variable to 'h'.
+* Party A sets the BRIDGE_FEATURES channel variable to 'h'.
 * Party A dials party B.
 * Party A attempts to disconnect the call using the configured disconnect key (this should fail)
 * Party B presses the configured disconnect key in order to end the call.
@@ -149,7 +149,7 @@ The following tests are written using the 'W' and 'w' options and the word "Auto
 ### Test 2:
 
 
-* Party A sets the BRIDGE\_FEATURES channel variable to 'W'
+* Party A sets the BRIDGE_FEATURES channel variable to 'W'
 * Party A dials Party B
 * Party B attempts to record the call using the configured Auto-Monitor key (this should fail)
 * Party A presses the configured Auto-Monitor key to record the call
@@ -176,7 +176,7 @@ Either party hangs up
 ### Test 4:
 
 
-* Party A sets the BRIDGE\_FEATURES channel variable to 'w'
+* Party A sets the BRIDGE_FEATURES channel variable to 'w'
 * Party A dials Party B
 * Party A attempts to record the call using the configured Auto-Monitor key (this should fail)
 * Party B presses the configured Auto-Monitor key to record the call
@@ -207,7 +207,7 @@ Like with previous tests for DTMF features, the focus of this test is that the D
 ### Test 2:
 
 
-* Party A sets the BRIDGE\_FEATURES channel variable to 'K'
+* Party A sets the BRIDGE_FEATURES channel variable to 'K'
 * Party A dials Party B
 * Party B attempts to park the call using the configured one touch parking key (this should fail)
 * Party A presses the configured one touch parking key to park the call
@@ -226,7 +226,7 @@ Like with previous tests for DTMF features, the focus of this test is that the D
 ### Test 4:
 
 
-* Party A sets the BRIDGE\_FEATURES channel variable to 'k'
+* Party A sets the BRIDGE_FEATURES channel variable to 'k'
 * Party A dials Party B
 * Party A attempts to park the call using the configured one touch parking key (this should fail)
 * Party B presses the configured one touch parking key to park the call
@@ -260,7 +260,7 @@ Either party hangs up.
 ### Test 2:
 
 
-* Party A sets the BRIDGE\_FEATURES channel variable to 'T'
+* Party A sets the BRIDGE_FEATURES channel variable to 'T'
 * Party A dials Party B
 * Party B attempts to transfer the call with the configured blind transfer key (this should fail)
 * Party B attempts to transfer the call with the configured attended transfer key (this should fail)
@@ -289,7 +289,7 @@ Either party hangs up.
 ### Test 4:
 
 
-* Party A sets the BRIDGE\_FEATURES channel variable to 't'
+* Party A sets the BRIDGE_FEATURES channel variable to 't'
 * Party A dials Party B
 * Party A attempts to transfer the call with the configured blind transfer key (this should fail)
 * Party A attempts to transfer the call with the configured attended transfer key (this should fail)
@@ -535,7 +535,7 @@ All tests should make sure after the timeout that the PARKINGSLOT, PARKEDLOT, an
 
 
 * comebacktoorigin is set to no.
-* comebackcontext is set to "park\_context"
+* comebackcontext is set to "park_context"
 * Ensure that extension corresponding to parker's channel name is called back.
 * Parker answers the call, then hangs up.
 
@@ -544,7 +544,7 @@ All tests should make sure after the timeout that the PARKINGSLOT, PARKEDLOT, an
 
 
 * comebacktoorigin is set to no.
-* comebackcontext is set to "park\_context"
+* comebackcontext is set to "park_context"
 * Ensure that extension corresponding to parker's channel name is called back.
 * Parker does not answer
 
@@ -553,7 +553,7 @@ All tests should make sure after the timeout that the PARKINGSLOT, PARKEDLOT, an
 
 
 * comebacktoorigin is set to no.
-* comebackcontext is set to "park\_context"
+* comebackcontext is set to "park_context"
 * Ensure that extension corresponding to parker's channel name is called back.
 * Parker is busy
 
@@ -562,7 +562,7 @@ All tests should make sure after the timeout that the PARKINGSLOT, PARKEDLOT, an
 
 
 * comebacktoorigin is set to no.
-* comebackcontext is set to "park\_context"
+* comebackcontext is set to "park_context"
 * There is no extension corresponding to parker's channel name.
 * Ensure that 's' extension is called.
 
@@ -571,7 +571,7 @@ All tests should make sure after the timeout that the PARKINGSLOT, PARKEDLOT, an
 
 
 * comebacktoorigin is set to no.
-* comebackcontext is set to "park\_context"
+* comebackcontext is set to "park_context"
 * There is no extension corresponding to parker's channel name.
 * There is no 's' extension
 * Ensure parked call is hung up properly

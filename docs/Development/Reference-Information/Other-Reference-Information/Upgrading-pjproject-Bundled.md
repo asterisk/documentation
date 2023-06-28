@@ -106,7 +106,7 @@ pjproject example
 
 ```
 
-truePJPROJECT\_VERSION = 2.10
+truePJPROJECT_VERSION = 2.10
 
 
 ```

@@ -28,7 +28,7 @@ Go to the bottom of your **extensions.conf** file, and add a new context named *
 
 ##### Naming Your Dialplan Contexts
 
-There's nothing special about the name **from-internal** for this context. It could have been named **strawberry\_milkshake**, and it would have behaved exactly the same way. It is considered best practice, however, to name your contexts for the types of extensions that are contained in that context. Since this context contains extensions that will be dialing from inside the network, we'll call it from-internal.
+There's nothing special about the name **from-internal** for this context. It could have been named **strawberry_milkshake**, and it would have behaved exactly the same way. It is considered best practice, however, to name your contexts for the types of extensions that are contained in that context. Since this context contains extensions that will be dialing from inside the network, we'll call it from-internal.
 
 Underneath that context name, we'll create an extesion numbered **6001** which attempts to ring Alice's phone for twenty seconds, and an extension **6002** which attempts to rings Bob's phone for twenty seconds.
 
@@ -46,7 +46,7 @@ exten=>6002,1,Dial(SIP/demo-bob,20)
 
 
 !!! note 
-    Each channel driver can have its own way of dialling it. The above example is for use when dialing chan\_sip extensions. If you are using PJSIP then you would dial "PJSIP/demo-alice" and "PJSIP/demo-bob" respectively.
+    Each channel driver can have its own way of dialling it. The above example is for use when dialing chan_sip extensions. If you are using PJSIP then you would dial "PJSIP/demo-alice" and "PJSIP/demo-bob" respectively.
 
       
 [//]: # (end-note)
@@ -69,9 +69,9 @@ After adding that section to **extensions.conf**, go to the Asterisk command-lin
 ```
 
 server\*CLI> dialplan show from-internal
-[ Context 'from-internal' created by 'pbx\_config' ]
- '6001' => 1. Dial(SIP/demo-alice,20) [pbx\_config]
- '6002' => 1. Dial(SIP/demo-bob,20) [pbx\_config]
+[ Context 'from-internal' created by 'pbx_config' ]
+ '6001' => 1. Dial(SIP/demo-alice,20) [pbx_config]
+ '6002' => 1. Dial(SIP/demo-bob,20) [pbx_config]
 
 -= 2 extensions (2 priorities) in 1 context. =-  
 

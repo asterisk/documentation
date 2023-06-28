@@ -247,7 +247,7 @@ callcounter=yes ; <-- add this
 ```
 
 
-Then reload chan\_sip with 'sip reload' and perform our 555 test again. Dial 555 and then check the device state with 'core show hints'.
+Then reload chan_sip with 'sip reload' and perform our 555 test again. Dial 555 and then check the device state with 'core show hints'.
 
 
 
@@ -302,13 +302,13 @@ queues.conf
 persistentmembers=yes
 autofill=yes
 monitor-type=MixMonitor
-shared\_lastcall=no
+shared_lastcall=no
 
 
 ```
 
 
-We can then define a [queue\_template] that we'll assign to each of the queues we create. These definitions can be overridden by each queue individually if you reassign them under the [sales] or [support] headers. So under the [general]  
+We can then define a [queue_template] that we'll assign to each of the queues we create. These definitions can be overridden by each queue individually if you reassign them under the [sales] or [support] headers. So under the [general]  
 
 
 
@@ -325,24 +325,24 @@ We can then define a [queue\_template] that we'll assign to each of the queues w
 queues.conf
 ----------
 
-[queue\_template](!)
+[queue_template](!)
 musicclass=default ; play [default] music
 strategy=rrmemory ; use the Round Robin Memory strategy
 joinempty=yes ; join the queue when no members available
 leavewhenempty=no ; don't leave the queue no members available
 ringinuse=no ; don't ring members when already InUse
 
-[sales](queue\_template)
+[sales](queue_template)
 ; Sales queue
 
-[support](queue\_template)
+[support](queue_template)
 ; Support queue
 
 
 ```
 
 
-After defining our queues, lets reload our app\_queue.so module.
+After defining our queues, lets reload our app_queue.so module.
 
 
 
@@ -355,8 +355,8 @@ After defining our queues, lets reload our app\_queue.so module.
 
 ```
 
-\*CLI> module reload app\_queue.so
- -- Reloading module 'app\_queue.so' (True Call Queueing)
+\*CLI> module reload app_queue.so
+ -- Reloading module 'app_queue.so' (True Call Queueing)
 
  == Parsing '/etc/asterisk/queues.conf': == Found
 
@@ -407,14 +407,14 @@ This is the format of the 'queue add member' command:
 
 ```
 
-Usage: queue add member <channel> to <queue> [[[penalty <penalty>] as <membername>] state\_interface <interface>]
- Add a channel to a queue with optionally: a penalty, membername and a state\_interface
+Usage: queue add member <channel> to <queue> [[[penalty <penalty>] as <membername>] state_interface <interface>]
+ Add a channel to a queue with optionally: a penalty, membername and a state_interface
 
 
 ```
 
 
-The penalty, membername, and state\_interface are all optional values. Special attention should be brought to the 'state\_interface' option for a member though. The reason for state\_interface is that if you're using a channel that does not have device state itself (for example, if you were using the Local channel to deliver a call to an end point) then you could assign the device state of a SIP device to the pseudo channel. This allows the state of a SIP device to be applied to the Local channel for correct device state information.
+The penalty, membername, and state_interface are all optional values. Special attention should be brought to the 'state_interface' option for a member though. The reason for state_interface is that if you're using a channel that does not have device state itself (for example, if you were using the Local channel to deliver a call to an end point) then you could assign the device state of a SIP device to the pseudo channel. This allows the state of a SIP device to be applied to the Local channel for correct device state information.
 
 Lets add our device located at SIP/0004f2040001
 
@@ -711,16 +711,16 @@ So we replace extension 100 and 101 with the following dialplan.
 ```
 
 ; Call any of the queues we've defined in the [globals] section.
-exten => \_1XX,1,Verbose(2,Call queue as configured in the QUEUE\_${EXTEN} global variable)
-exten => \_1XX,n,Set(thisQueue=${GLOBAL(QUEUE\_${EXTEN})})
-exten => \_1XX,n,GotoIf($["${thisQueue}" = ""]?invalid\_queue,1)
-exten => \_1XX,n,Verbose(2, --> Entering the ${thisQueue} queue)
-exten => \_1XX,n,Queue(${thisQueue})
-exten => \_1XX,n,Hangup()
+exten => _1XX,1,Verbose(2,Call queue as configured in the QUEUE_${EXTEN} global variable)
+exten => _1XX,n,Set(thisQueue=${GLOBAL(QUEUE_${EXTEN})})
+exten => _1XX,n,GotoIf($["${thisQueue}" = ""]?invalid_queue,1)
+exten => _1XX,n,Verbose(2, --> Entering the ${thisQueue} queue)
+exten => _1XX,n,Queue(${thisQueue})
+exten => _1XX,n,Hangup()
 
-exten => invalid\_queue,1,Verbose(2,Attempted to enter invalid queue)
-exten => invalid\_queue,n,Playback(silence/1&invalid)
-exten => invalid\_queue,n,Hangup()
+exten => invalid_queue,1,Verbose(2,Attempted to enter invalid queue)
+exten => invalid_queue,n,Playback(silence/1&invalid)
+exten => invalid_queue,n,Hangup()
 
 
 ```
@@ -740,14 +740,14 @@ The [globals](/globals) section contains the following two global variables.
 ```
 
 [globals]
-QUEUE\_100=sales
-QUEUE\_101=support
+QUEUE_100=sales
+QUEUE_101=support
 
 
 ```
 
 
-So when we dial extension 100, it matches our pattern \_1XX. The number we dialed (100) is then retrievable via ${EXTEN} and we can get the name of queue 100 (sales) from the global variable QUEUE\_100. We then assign it to the channel variable thisQueue so it is easier to work with in our dialplan.
+So when we dial extension 100, it matches our pattern _1XX. The number we dialed (100) is then retrievable via ${EXTEN} and we can get the name of queue 100 (sales) from the global variable QUEUE_100. We then assign it to the channel variable thisQueue so it is easier to work with in our dialplan.
 
 
 
@@ -760,7 +760,7 @@ So when we dial extension 100, it matches our pattern \_1XX. The number we diale
 
 ```
 
-exten => \_1XX,n,Set(thisQueue=${GLOBAL(QUEUE\_${EXTEN})})
+exten => _1XX,n,Set(thisQueue=${GLOBAL(QUEUE_${EXTEN})})
 
 
 ```
@@ -779,15 +779,15 @@ We then check to see if we've gotten a value back from the global variable which
 
 ```
 
-exten => \_1XX,n,GotoIf($["${thisQueue}" = ""]?invalid\_queue,1)
+exten => _1XX,n,GotoIf($["${thisQueue}" = ""]?invalid_queue,1)
 
 
 ```
 
 
-If ${thisQueue} returns nothing, then we Goto the invalid\_queue extension and playback the 'invalid' file.
+If ${thisQueue} returns nothing, then we Goto the invalid_queue extension and playback the 'invalid' file.
 
-We could alternatively limit our pattern match to only extension 100 and 101 with the \_10[0-1] pattern instead.
+We could alternatively limit our pattern match to only extension 100 and 101 with the _10[0-1] pattern instead.
 
 Lets move into the nitty-gritty section and show how we can login and logout our devices to the pair of queues we've created.
 
@@ -805,8 +805,8 @@ First, we create a pattern match that takes star  plus the queue number that we 
 ```
 
 ; Extension \*100 or \*101 will login/logout a queue member from sales or support queues respectively.
-exten => \_\*10[0-1],1,Set(xtn=${EXTEN:1}) ; save ${EXTEN} with \* chopped off to ${xtn}
-exten => \_\*10[0-1],n,Goto(queueLoginLogout,member\_check,1) ; check if already logged into a queue
+exten => _\*10[0-1],1,Set(xtn=${EXTEN:1}) ; save ${EXTEN} with \* chopped off to ${xtn}
+exten => _\*10[0-1],n,Goto(queueLoginLogout,member_check,1) ; check if already logged into a queue
 
 
 ```
@@ -816,7 +816,7 @@ We save the value of ${EXTEN:1} to the 'xtn' channel variable so we don't need t
 
 Now we move into the meat of our login/out dialplan inside the [queueLoginLogout] context.
 
-The first section is initializing some variables that we need throughout the member\_check extension such as the name of the queue, the members currently logged into the queue, and the current device peer name (i.e. SIP/0004f2040001).
+The first section is initializing some variables that we need throughout the member_check extension such as the name of the queue, the members currently logged into the queue, and the current device peer name (i.e. SIP/0004f2040001).
 
 
 
@@ -831,13 +831,13 @@ The first section is initializing some variables that we need throughout the mem
 
 ; ### Login or Logout a Queue Member
 [queueLoginLogout]
-exten => member\_check,1,Verbose(2,Logging queue member in or out of the request queue)
-exten => member\_check,n,Set(thisQueue=${GLOBAL(QUEUE\_${xtn})}) ; assign queue name to a variable
-exten => member\_check,n,Set(queueMembers=${QUEUE\_MEMBER\_LIST(${thisQueue})}) ; assign list of logged in members of thisQueue to
+exten => member_check,1,Verbose(2,Logging queue member in or out of the request queue)
+exten => member_check,n,Set(thisQueue=${GLOBAL(QUEUE_${xtn})}) ; assign queue name to a variable
+exten => member_check,n,Set(queueMembers=${QUEUE_MEMBER_LIST(${thisQueue})}) ; assign list of logged in members of thisQueue to
  ; a variable (comma separated)
-exten => member\_check,n,Set(thisActiveMember=SIP/${CHANNEL(peername)}) ; initialize 'thisActiveMember' as current device
+exten => member_check,n,Set(thisActiveMember=SIP/${CHANNEL(peername)}) ; initialize 'thisActiveMember' as current device
 
-exten => member\_check,n,GotoIf($["${queueMembers}" = ""]?q\_login,1) ; short circuit to logging in if we don't have
+exten => member_check,n,GotoIf($["${queueMembers}" = ""]?q_login,1) ; short circuit to logging in if we don't have
  ; any members logged into this queue
 
 
@@ -845,7 +845,7 @@ exten => member\_check,n,GotoIf($["${queueMembers}" = ""]?q\_login,1) ; short ci
 ```
 
 
-At this point if there are no members currently logged into our sales queue, we then short-circuit our dialplan to go to the 'q\_login' extension since there is no point in wasting cycles searching to see if we're already logged in.
+At this point if there are no members currently logged into our sales queue, we then short-circuit our dialplan to go to the 'q_login' extension since there is no point in wasting cycles searching to see if we're already logged in.
 
 The next step is to finish initializing some values we need within the While() loop that we'll use to check if we're already logged into the queue. We set our ${field} variable to 1, which will be used as the field number offset in the CUT() function.
 
@@ -861,9 +861,9 @@ The next step is to finish initializing some values we need within the While() l
 ```
 
 ; Initialize some values we'll use in the While() loop
-exten => member\_check,n,Set(field=1) ; start our field counter at one
-exten => member\_check,n,Set(logged\_in=0) ; initialize 'logged\_in' to "not logged in"
-exten => member\_check,n,Set(thisQueueMember=${CUT(queueMembers,\,,${field})}) ; initialize 'thisQueueMember' with the value in the
+exten => member_check,n,Set(field=1) ; start our field counter at one
+exten => member_check,n,Set(logged_in=0) ; initialize 'logged_in' to "not logged in"
+exten => member_check,n,Set(thisQueueMember=${CUT(queueMembers,\,,${field})}) ; initialize 'thisQueueMember' with the value in the
  ; first field of the comma-separated list
 
 
@@ -884,13 +884,13 @@ Now we get to enter our While() loop to determine if we're already logged in.
 ```
 
 ; Enter our loop to check if our member is already logged into this queue
-exten => member\_check,n,While($[${EXISTS(${thisQueueMember})}]) ; while we have a queue member...
+exten => member_check,n,While($[${EXISTS(${thisQueueMember})}]) ; while we have a queue member...
 
 
 ```
 
 
-This is where we check to see if the member at this position of the list is the same as the device we're calling from. If it doesn't match, then we go to the 'check\_next' priority label (where we increase our ${field} counter variable). If it does match, then we continue on in the dialplan.
+This is where we check to see if the member at this position of the list is the same as the device we're calling from. If it doesn't match, then we go to the 'check_next' priority label (where we increase our ${field} counter variable). If it does match, then we continue on in the dialplan.
 
 
 
@@ -903,7 +903,7 @@ This is where we check to see if the member at this position of the list is the 
 
 ```
 
-exten => member\_check,n,GotoIf($["${thisQueueMember}" != "${thisActiveMember}"]?check\_next) ; if 'thisQueueMember' is not the
+exten => member_check,n,GotoIf($["${thisQueueMember}" != "${thisActiveMember}"]?check_next) ; if 'thisQueueMember' is not the
  ; same as our active peer, then
  ; check the next in the list of
  ; logged in queue members
@@ -912,7 +912,7 @@ exten => member\_check,n,GotoIf($["${thisQueueMember}" != "${thisActiveMember}"]
 ```
 
 
-If we continued on in the dialplan, then we set the ${logged\_in} channel variable to '1' which represents we're already logged into this queue. We then exit the While() loop with the ExitWhile() dialplan application.
+If we continued on in the dialplan, then we set the ${logged_in} channel variable to '1' which represents we're already logged into this queue. We then exit the While() loop with the ExitWhile() dialplan application.
 
 
 
@@ -925,8 +925,8 @@ If we continued on in the dialplan, then we set the ${logged\_in} channel variab
 
 ```
 
-exten => member\_check,n,Set(logged\_in=1) ; if we got here, set as logged in
-exten => member\_check,n,ExitWhile() ; then exit our loop
+exten => member_check,n,Set(logged_in=1) ; if we got here, set as logged in
+exten => member_check,n,ExitWhile() ; then exit our loop
 
 
 ```
@@ -945,9 +945,9 @@ If we didn't match this peer name in the list, then we increase our ${field} cou
 
 ```
 
-exten => member\_check,n(check\_next),Set(field=$[${field} + 1]) ; if we got here, increase counter
-exten => member\_check,n,Set(thisQueueMember=${CUT(queueMembers,\,,${field})}) ; get next member in the list
-exten => member\_check,n,EndWhile() ; ...end of our loop
+exten => member_check,n(check_next),Set(field=$[${field} + 1]) ; if we got here, increase counter
+exten => member_check,n,Set(thisQueueMember=${CUT(queueMembers,\,,${field})}) ; get next member in the list
+exten => member_check,n,EndWhile() ; ...end of our loop
 
 
 ```
@@ -967,7 +967,7 @@ And once we exit our loop, we determine whether we need to log our device in or 
 ```
 
 ; if not logged in, then login to this queue, otherwise, logout
-exten => member\_check,n,GotoIf($[${logged\_in} = 0]?q\_login,1:q\_logout,1) ; if not logged in, then login, otherwise, logout
+exten => member_check,n,GotoIf($[${logged_in} = 0]?q_login,1:q_logout,1) ; if not logged in, then login, otherwise, logout
 
 
 ```
@@ -989,22 +989,22 @@ The first two arguments for AddQueueMember() and RemoveQueueMember() are 'queue'
 ```
 
 ; ### Login queue member ###
-exten => q\_login,1,Verbose(2,Logging ${thisActiveMember} into the ${thisQueue} queue)
-exten => q\_login,n,AddQueueMember(${thisQueue},${thisActiveMember}) ; login our active device to the queue 
+exten => q_login,1,Verbose(2,Logging ${thisActiveMember} into the ${thisQueue} queue)
+exten => q_login,n,AddQueueMember(${thisQueue},${thisActiveMember}) ; login our active device to the queue 
  ; requested
-exten => q\_login,n,Playback(silence/1) ; answer the channel by playing one second of silence
+exten => q_login,n,Playback(silence/1) ; answer the channel by playing one second of silence
 
 ; If the member was added to the queue successfully, then playback "Agent logged in", otherwise, state an error occurred
-exten => q\_login,n,ExecIf($["${AQMSTATUS}" = "ADDED"]?Playback(agent-loginok):Playback(an-error-has-occurred))
-exten => q\_login,n,Hangup()
+exten => q_login,n,ExecIf($["${AQMSTATUS}" = "ADDED"]?Playback(agent-loginok):Playback(an-error-has-occurred))
+exten => q_login,n,Hangup()
 
 
 ; ### Logout queue member ###
-exten => q\_logout,1,Verbose(2,Logging ${thisActiveMember} out of ${thisQueue} queue)
-exten => q\_logout,n,RemoveQueueMember(${thisQueue},${thisActiveMember})
-exten => q\_logout,n,Playback(silence/1)
-exten => q\_logout,n,ExecIf($["${RQMSTATUS}" = "REMOVED"]?Playback(agent-loggedoff):Playback(an-error-has-occurred))
-exten => q\_logout,n,Hangup()
+exten => q_logout,1,Verbose(2,Logging ${thisActiveMember} out of ${thisQueue} queue)
+exten => q_logout,n,RemoveQueueMember(${thisQueue},${thisActiveMember})
+exten => q_logout,n,Playback(silence/1)
+exten => q_logout,n,ExecIf($["${RQMSTATUS}" = "REMOVED"]?Playback(agent-loggedoff):Playback(an-error-has-occurred))
+exten => q_logout,n,Hangup()
 
 
 ```
@@ -1051,34 +1051,34 @@ Then we dial \*100 to logout the active device from the sales queue.
 
 \*CLI> == Using SIP RTP CoS mark 5
  -- Executing [\*100@devices:1] Set("SIP/0004f2040001-00000012", "xtn=100") in new stack
- -- Executing [\*100@devices:2] Goto("SIP/0004f2040001-00000012", "queueLoginLogout,member\_check,1") in new stack
- -- Goto (queueLoginLogout,member\_check,1)
- -- Executing [member\_check@queueLoginLogout:1] Verbose("SIP/0004f2040001-00000012", "2,Logging queue member in or out of the request queue") in new stack
+ -- Executing [\*100@devices:2] Goto("SIP/0004f2040001-00000012", "queueLoginLogout,member_check,1") in new stack
+ -- Goto (queueLoginLogout,member_check,1)
+ -- Executing [member_check@queueLoginLogout:1] Verbose("SIP/0004f2040001-00000012", "2,Logging queue member in or out of the request queue") in new stack
  == Logging queue member in or out of the request queue
- -- Executing [member\_check@queueLoginLogout:2] Set("SIP/0004f2040001-00000012", "thisQueue=sales") in new stack
- -- Executing [member\_check@queueLoginLogout:3] Set("SIP/0004f2040001-00000012", "queueMembers=SIP/0004f2040001,SIP/0004f2040002") in new stack
- -- Executing [member\_check@queueLoginLogout:4] Set("SIP/0004f2040001-00000012", "thisActiveMember=SIP/0004f2040001") in new stack
- -- Executing [member\_check@queueLoginLogout:5] GotoIf("SIP/0004f2040001-00000012", "0?q\_login,1") in new stack
- -- Executing [member\_check@queueLoginLogout:6] Set("SIP/0004f2040001-00000012", "field=1") in new stack
- -- Executing [member\_check@queueLoginLogout:7] Set("SIP/0004f2040001-00000012", "logged\_in=0") in new stack
- -- Executing [member\_check@queueLoginLogout:8] Set("SIP/0004f2040001-00000012", "thisQueueMember=SIP/0004f2040001") in new stack
- -- Executing [member\_check@queueLoginLogout:9] While("SIP/0004f2040001-00000012", "1") in new stack
- -- Executing [member\_check@queueLoginLogout:10] GotoIf("SIP/0004f2040001-00000012", "0?check\_next") in new stack
- -- Executing [member\_check@queueLoginLogout:11] Set("SIP/0004f2040001-00000012", "logged\_in=1") in new stack
- -- Executing [member\_check@queueLoginLogout:12] ExitWhile("SIP/0004f2040001-00000012", "") in new stack
+ -- Executing [member_check@queueLoginLogout:2] Set("SIP/0004f2040001-00000012", "thisQueue=sales") in new stack
+ -- Executing [member_check@queueLoginLogout:3] Set("SIP/0004f2040001-00000012", "queueMembers=SIP/0004f2040001,SIP/0004f2040002") in new stack
+ -- Executing [member_check@queueLoginLogout:4] Set("SIP/0004f2040001-00000012", "thisActiveMember=SIP/0004f2040001") in new stack
+ -- Executing [member_check@queueLoginLogout:5] GotoIf("SIP/0004f2040001-00000012", "0?q_login,1") in new stack
+ -- Executing [member_check@queueLoginLogout:6] Set("SIP/0004f2040001-00000012", "field=1") in new stack
+ -- Executing [member_check@queueLoginLogout:7] Set("SIP/0004f2040001-00000012", "logged_in=0") in new stack
+ -- Executing [member_check@queueLoginLogout:8] Set("SIP/0004f2040001-00000012", "thisQueueMember=SIP/0004f2040001") in new stack
+ -- Executing [member_check@queueLoginLogout:9] While("SIP/0004f2040001-00000012", "1") in new stack
+ -- Executing [member_check@queueLoginLogout:10] GotoIf("SIP/0004f2040001-00000012", "0?check_next") in new stack
+ -- Executing [member_check@queueLoginLogout:11] Set("SIP/0004f2040001-00000012", "logged_in=1") in new stack
+ -- Executing [member_check@queueLoginLogout:12] ExitWhile("SIP/0004f2040001-00000012", "") in new stack
  -- Jumping to priority 15
- -- Executing [member\_check@queueLoginLogout:16] GotoIf("SIP/0004f2040001-00000012", "0?q\_login,1:q\_logout,1") in new stack
- -- Goto (queueLoginLogout,q\_logout,1)
- -- Executing [q\_logout@queueLoginLogout:1] Verbose("SIP/0004f2040001-00000012", "2,Logging SIP/0004f2040001 out of sales queue") in new stack
+ -- Executing [member_check@queueLoginLogout:16] GotoIf("SIP/0004f2040001-00000012", "0?q_login,1:q_logout,1") in new stack
+ -- Goto (queueLoginLogout,q_logout,1)
+ -- Executing [q_logout@queueLoginLogout:1] Verbose("SIP/0004f2040001-00000012", "2,Logging SIP/0004f2040001 out of sales queue") in new stack
  == Logging SIP/0004f2040001 out of sales queue
- -- Executing [q\_logout@queueLoginLogout:2] RemoveQueueMember("SIP/0004f2040001-00000012", "sales,SIP/0004f2040001") in new stack
-[Nov 12 12:08:51] NOTICE[11582]: app\_queue.c:4842 rqm\_exec: Removed interface 'SIP/0004f2040001' from queue 'sales'
- -- Executing [q\_logout@queueLoginLogout:3] Playback("SIP/0004f2040001-00000012", "silence/1") in new stack
+ -- Executing [q_logout@queueLoginLogout:2] RemoveQueueMember("SIP/0004f2040001-00000012", "sales,SIP/0004f2040001") in new stack
+[Nov 12 12:08:51] NOTICE[11582]: app_queue.c:4842 rqm_exec: Removed interface 'SIP/0004f2040001' from queue 'sales'
+ -- Executing [q_logout@queueLoginLogout:3] Playback("SIP/0004f2040001-00000012", "silence/1") in new stack
  -- <SIP/0004f2040001-00000012> Playing 'silence/1.slin' (language 'en')
- -- Executing [q\_logout@queueLoginLogout:4] ExecIf("SIP/0004f2040001-00000012", "1?Playback(agent-loggedoff):Playback(an-error-has-occurred)") in new stack
+ -- Executing [q_logout@queueLoginLogout:4] ExecIf("SIP/0004f2040001-00000012", "1?Playback(agent-loggedoff):Playback(an-error-has-occurred)") in new stack
  -- <SIP/0004f2040001-00000012> Playing 'agent-loggedoff.slin' (language 'en')
- -- Executing [q\_logout@queueLoginLogout:5] Hangup("SIP/0004f2040001-00000012", "") in new stack
- == Spawn extension (queueLoginLogout, q\_logout, 5) exited non-zero on 'SIP/0004f2040001-00000012'
+ -- Executing [q_logout@queueLoginLogout:5] Hangup("SIP/0004f2040001-00000012", "") in new stack
+ == Spawn extension (queueLoginLogout, q_logout, 5) exited non-zero on 'SIP/0004f2040001-00000012'
 
 
 ```
@@ -1243,7 +1243,7 @@ paused interface 'SIP/0004f2040001'
 
 Of course we want to allow the agents to pause and unpause themselves from their devices, so we need to create an extension and some dialplan logic for that to happen.
 
-Below we've created the pattern patch \_**0[01]! which will match on \*00 and \*01, and will \*also** match with zero or more digits following it, such as the queue extension number.
+Below we've created the pattern patch _**0[01]! which will match on \*00 and \*01, and will \*also** match with zero or more digits following it, such as the queue extension number.
 
 So if we want to pause ourselves in all queues, we can dial \*00; unpausing can be done with \*01. But if our agents just need to pause or unpause themselves from a single queue, then we will also accept \*00100 to pause in queue 100 (sales), or we can unpause ourselves from sales with \*01100.
 
@@ -1263,11 +1263,11 @@ extensions.conf
 
 ; Allow queue members to pause and unpause themselves from all queues, or an individual queue.
 ;
-; \_\*0[01]! pattern match will match on \*00 and \*01 plus 0 or more digits.
-exten => \_\*0[01]!,1,Verbose(2,Pausing or unpausing queue member from one or more queues)
-exten => \_\*0[01]!,n,Set(xtn=${EXTEN:3}) ; save the queue extension to 'xtn'
-exten => \_\*0[01]!,n,Set(thisQueue=${GLOBAL(QUEUE\_${xtn})}) ; get the queue name if available
-exten => \_\*0[01]!,n,GotoIf($[${ISNULL(${thisQueue})} & ${EXISTS(${xtn})}]?invalid\_queue,1) ; if 'thisQueue' is blank and the
+; _\*0[01]! pattern match will match on \*00 and \*01 plus 0 or more digits.
+exten => _\*0[01]!,1,Verbose(2,Pausing or unpausing queue member from one or more queues)
+exten => _\*0[01]!,n,Set(xtn=${EXTEN:3}) ; save the queue extension to 'xtn'
+exten => _\*0[01]!,n,Set(thisQueue=${GLOBAL(QUEUE_${xtn})}) ; get the queue name if available
+exten => _\*0[01]!,n,GotoIf($[${ISNULL(${thisQueue})} & ${EXISTS(${xtn})}]?invalid_queue,1) ; if 'thisQueue' is blank and the
  ; the agent dialed a queue exten,
  ; we will tell them it's invalid
 
@@ -1330,7 +1330,7 @@ Which causes the following.
 
 ```
 
-exten => \_\*0[01]!,n,GotoIf($[${EXTEN:2:1} = 0]?pause,1:unpause,1) ; determine if they wanted to pause
+exten => _\*0[01]!,n,GotoIf($[${EXTEN:2:1} = 0]?pause,1:unpause,1) ; determine if they wanted to pause
  ; or to unpause.
 
 
@@ -1518,8 +1518,8 @@ Sometimes you may want to retrieve information about a particular queue's state.
 
 ```
 
-exten => show\_variables,1,NoOp()
- same => n,Noop(${QUEUE\_VARIABLES(thisQueue)})
+exten => show_variables,1,NoOp()
+ same => n,Noop(${QUEUE_VARIABLES(thisQueue)})
  same => n,Verbose(0,strategy = ${QUEUESTRATEGY})
  same => n,Verbose(0,calls = ${QUEUECALLS})
  same => n,Hangup()
@@ -1527,7 +1527,7 @@ exten => show\_variables,1,NoOp()
 ```
 
 
-Note, QUEUE\_VARIABLES needs to be called with a valid queue name, and prior to calling the other queue variable functions in order to ensure retrieval of the correctly associated values for a given queue.
+Note, QUEUE_VARIABLES needs to be called with a valid queue name, and prior to calling the other queue variable functions in order to ensure retrieval of the correctly associated values for a given queue.
 
 ##### Conclusion
 

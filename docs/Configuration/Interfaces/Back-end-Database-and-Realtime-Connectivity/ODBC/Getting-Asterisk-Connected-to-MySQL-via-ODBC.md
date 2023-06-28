@@ -30,13 +30,13 @@ On This Page### Install MySQL server package and start the DB service
 
 ### Secure the installation if appropriate
 
-If you intend to push this install into production or practice as if you were then you will want to use the mysql\_secure\_installation script to apply some basic security. 
+If you intend to push this install into production or practice as if you were then you will want to use the mysql_secure_installation script to apply some basic security. 
 
 
 
 
 ```bash title=" " linenums="1"
-# sudo /usr/bin/mysql\_secure\_installation
+# sudo /usr/bin/mysql_secure_installation
 
 ```
 
@@ -62,7 +62,7 @@ Now verify you are at the MySQL command prompt. It should look like "mysql>". Th
 
 
 ```bash title=" " linenums="1"
-# CREATE USER 'asterisk'@'%' IDENTIFIED BY 'replace\_with\_strong\_password';
+# CREATE USER 'asterisk'@'%' IDENTIFIED BY 'replace_with_strong_password';
 # CREATE DATABASE asterisk;
 # GRANT ALL PRIVILEGES ON asterisk.\* TO 'asterisk'@'%';
 # exit
@@ -213,7 +213,7 @@ Test the ODBC Data Source Name connection
 
 Now is a good time to test your database by connecting to it and performing a query. The unixODBC package provides **`isql`**; a command line utility that allows you to connect to the Data Source, send SQL commands to it and receive results back. The syntax used is:
 
-isql -v *dsn\_name* *db\_username* *db\_password*
+isql -v *dsn_name* *db_username* *db_password*
 
 So, for our purposes you would enter:
 
@@ -221,7 +221,7 @@ So, for our purposes you would enter:
 
 
 ```bash title=" " linenums="1"
-# isql -v asterisk-connector asterisk replace\_with\_strong\_password
+# isql -v asterisk-connector asterisk replace_with_strong_password
 
 ```
 
@@ -305,13 +305,13 @@ If you already had Asterisk installed from source and the modules you need are a
 ```
 
 
-Otherwise you should follow the typical Asterisk installation process to make sure modules such as res\_odbc, res\_config\_odbc, cdr\_odbc, cdr\_adaptive\_odbc and func\_odbc have their dependencies fulfilled and that they will be built.
+Otherwise you should follow the typical Asterisk installation process to make sure modules such as res_odbc, res_config_odbc, cdr_odbc, cdr_adaptive_odbc and func_odbc have their dependencies fulfilled and that they will be built.
 
 See [Building and Installing Asterisk](/Building-and-Installing-Asterisk) and [Using Menuselect to Select Asterisk Options](/Getting-Started/Installing-Asterisk/Installing-Asterisk-From-Source/Using-Menuselect-to-Select-Asterisk-Options).
 
 ### Configuring Asterisk's ODBC connection
 
-The basic configuration for an Asterisk ODBC connection is handled in res\_odbc.conf. You should check out the [Configuring res\_odbc](/Configuration/Interfaces/Back-end-Database-and-Realtime-Connectivity/ODBC/Configuring-res_odbc) page and follow it using the DSN and database username and password you setup earlier.
+The basic configuration for an Asterisk ODBC connection is handled in res_odbc.conf. You should check out the [Configuring res_odbc](/Configuration/Interfaces/Back-end-Database-and-Realtime-Connectivity/ODBC/Configuring-res_odbc) page and follow it using the DSN and database username and password you setup earlier.
 
 After you have the connection set up in Asterisk you are ready to then configure your database tables with the proper schema depending on what exactly you want to do with them. Asterisk comes with some helpful tools to do this, such as Alembic. See the [Managing Realtime Databases with Alembic](/Managing-Realtime-Databases-with-Alembic) section to get started with Alembic if you are working towards an Asterisk Realtime setup.
 

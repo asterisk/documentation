@@ -31,7 +31,7 @@ The following packages are recommend for building Asterisk 1.6 and later on Open
 * SUNWggrp (GNU grep)
 * SUNWgsed (GNU sed)
 * SUNWdoxygen (optional; needed for "make progdocs")
-* SUNWopenldap (optional; needed for res\_config\_ldap; see below)
+* SUNWopenldap (optional; needed for res_config_ldap; see below)
 * SUNWgnu-coreutils (optional; provides GNU install; see below)
 
 
@@ -47,13 +47,13 @@ Because OpenSolaris ships by default with Sun's LDAP libraries, you must install
 There are two possible solutions:
 
 
-1. Port res\_config\_ldap to use only the RFC-specified API. This should allow it to link against Sun's LDAP libraries.
-	* The problem is centered around the use of the OpenLDAP-specific ldap\_initialize() call.
+1. Port res_config_ldap to use only the RFC-specified API. This should allow it to link against Sun's LDAP libraries.
+	* The problem is centered around the use of the OpenLDAP-specific ldap_initialize() call.
 2. Change the detection routines in configure to use OpenSolaris' layout of OpenLDAP.
 	* This seems doubtful simply because the filesystem layout of SUNWopenldap is so non-standard.
 
 
-Despite the above two possibilities, there is a workaround to make Asterisk compile with res\_config\_ldap.
+Despite the above two possibilities, there is a workaround to make Asterisk compile with res_config_ldap.
 
 
 * Modify the "configure" script, changing all instances of "-lldap" to "-lldap-2.4".
@@ -71,7 +71,7 @@ Despite the above two possibilities, there is a workaround to make Asterisk comp
 ```
 
 
-"make LDAP\_INCLUDE=-I/usr/include/openldap"
+"make LDAP_INCLUDE=-I/usr/include/openldap"
 
 
 ```

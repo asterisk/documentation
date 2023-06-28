@@ -20,7 +20,7 @@ Currently, all released branches of Asterisk including trunk use the released ve
 
 The latest compatible libss7 code can be obtained from the [1.0 SVN branch](http://svn.asterisk.org/svn/libss7/branches/1.0)
 
-As of 7/2013, the libss7 trunk ([http://svn.asterisk.org/svn/libss7/trunk](http://svn.asterisk.org/svn/libss7/trunk)(http://svn.asterisk.org/svn/libss7/branches/1.0)) is currently only usable with this Asterisk branch ([http://svn.asterisk.org/svn/asterisk/team/rmudgett/ss7\_27\_knk](http://svn.asterisk.org/svn/asterisk/team/rmudgett/ss7\_27\_knk)(http://svn.asterisk.org/svn/libss7/branches/1.0)) based off of Asterisk trunk.
+As of 7/2013, the libss7 trunk ([http://svn.asterisk.org/svn/libss7/trunk](http://svn.asterisk.org/svn/libss7/trunk)(http://svn.asterisk.org/svn/libss7/branches/1.0)) is currently only usable with this Asterisk branch ([http://svn.asterisk.org/svn/asterisk/team/rmudgett/ss7_27_knk](http://svn.asterisk.org/svn/asterisk/team/rmudgett/ss7_27_knk)(http://svn.asterisk.org/svn/libss7/branches/1.0)) based off of Asterisk trunk.
 
 ##### Tested Switches:
 
@@ -95,7 +95,7 @@ In the past, there was a special asterisk-ss7 branch to use which contained the 
 
 In /etc/dahdi/system.conf, your signalling channel(s) should be a "dchan" and your bearers should be set as "bchan".
 
-The sample chan\_dahdi.conf contains sample configuration for setting up an E1 link.
+The sample chan_dahdi.conf contains sample configuration for setting up an E1 link.
 
 In brief, here is a simple ss7 linkset setup:
 
@@ -113,7 +113,7 @@ In brief, here is a simple ss7 linkset setup:
 signalling = ss7
 ss7type = itu ; or ansi if you are using an ANSI link
 
-linkset = 1 ; Pick a number for your linkset identifier in chan\_dahdi.conf
+linkset = 1 ; Pick a number for your linkset identifier in chan_dahdi.conf
 
 pointcode = 28 ; The decimal form of your point code. If you are using an
  ; ANSI linkset, you can use the xxx-xxx-xxx notation for
@@ -147,13 +147,13 @@ sigchan = 48 ; This would put two signalling channels in our linkset, one at
  ; DAHDI/16 and one at DAHDI/48 which both would be used to send/receive
  ; ISUP traffic.
 
-; End of chan\_dahdi.conf
+; End of chan_dahdi.conf
 
 
 ```
 
 
-This is how a basic linkset is setup. For more detailed chan\_dahdi.conf SS7 config information as well as other options available for that file, see the default chan\_dahdi.conf that comes with the samples in asterisk. If you would like, you can do a `make samples` in your asterisk-trunk directory and it will install a sample chan\_dahdi.conf for you that contains  
+This is how a basic linkset is setup. For more detailed chan_dahdi.conf SS7 config information as well as other options available for that file, see the default chan_dahdi.conf that comes with the samples in asterisk. If you would like, you can do a `make samples` in your asterisk-trunk directory and it will install a sample chan_dahdi.conf for you that contains  
 
 
 For more information, you can ask questions of the community on the asterisk-ss7 or asterisk-dev mailing lists.

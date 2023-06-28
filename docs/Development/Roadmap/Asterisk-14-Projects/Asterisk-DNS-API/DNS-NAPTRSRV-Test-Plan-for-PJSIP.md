@@ -16,7 +16,7 @@ pageid: 32375195
 
  
 
-At this stage in development, a resolver has been implemented, and backend support for NAPTR and SRV have been added. However, there are no users of NAPTR or (the new) SRV in Asterisk. The first user of them will be res\_pjsip.so. In writing tests for res\_pjsip, RFC 3263 will be the model for how SIP servers are to be located.
+At this stage in development, a resolver has been implemented, and backend support for NAPTR and SRV have been added. However, there are no users of NAPTR or (the new) SRV in Asterisk. The first user of them will be res_pjsip.so. In writing tests for res_pjsip, RFC 3263 will be the model for how SIP servers are to be located.
 
 
 
@@ -96,7 +96,7 @@ fast.test.internal IN A 127.0.0.1
 slow.test.internal IN A 127.0.0.1
  
 ;; Priority Weight Port Target
-\_sip.\_udp.test.internal IN SRV 0 3 5061 fast.test.internal.
+_sip._udp.test.internal IN SRV 0 3 5061 fast.test.internal.
  IN SRV 0 1 5062 slow.test.internal.
  IN SRV 1 100 5063 backup.test.internal.
 
@@ -203,8 +203,8 @@ Procedure:
 ```
 
 ; order pref flags service regexp replacement
-IN NAPTR 50 50 "s" "SIP+D2T" "" \_sip.\_tcp.test.internal.
-IN NAPTR 90 40 "s" "SIP+D2U" "" \_sip.\_udp.test.internal.
+IN NAPTR 50 50 "s" "SIP+D2T" "" _sip._tcp.test.internal.
+IN NAPTR 90 40 "s" "SIP+D2U" "" _sip._udp.test.internal.
 
 ```
 * Enable NAPTR lookups for outbound SIP calls. Allow both UDP and TCP transports to be used for the outgoing call.
@@ -232,8 +232,8 @@ Procedure:
 ```
 
 ; order pref flags service regexp replacement
-IN NAPTR 50 50 "s" "SIP+D2T" "" \_sip.\_tcp.test.internal.
-IN NAPTR 50 90 "s" "SIP+D2U" "" \_sip.\_udp.test.internal.
+IN NAPTR 50 50 "s" "SIP+D2T" "" _sip._tcp.test.internal.
+IN NAPTR 50 90 "s" "SIP+D2U" "" _sip._udp.test.internal.
 
 ```
 * Enable NAPTR lookups for outbound SIP calls. Allow both UDP and TCP transports to be used for the outgoing call.
@@ -273,8 +273,8 @@ Procedure:
 ```
 
 ; order pref flags service regexp replacement
-IN NAPTR 50 50 "s" "SIP+D2T" "" \_sip.\_tcp.test.internal.
-IN NAPTR 60 50 "s" "SIP+D2U" "" \_sip.\_udp.test.internal.
+IN NAPTR 50 50 "s" "SIP+D2T" "" _sip._tcp.test.internal.
+IN NAPTR 60 50 "s" "SIP+D2U" "" _sip._udp.test.internal.
 
 ```
 * Enable NAPTR lookups for outbound SIP calls. Only allow UDP to be used for the outgoing call.
@@ -301,10 +301,10 @@ Procedure:
 
 ```
 
-test.internal IN NAPTR 50 50 "s" "SIP+D2T" "" \_sip.\_tcp.test.internal.
- IN NAPTR 50 60 "s" "SIP+D2U" "" \_sip.\_udp.test.internal.
+test.internal IN NAPTR 50 50 "s" "SIP+D2T" "" _sip._tcp.test.internal.
+ IN NAPTR 50 60 "s" "SIP+D2U" "" _sip._udp.test.internal.
  
-\_sip.\_udp.test.internal IN SRV 1 1 5060 sip.test.internal
+_sip._udp.test.internal IN SRV 1 1 5060 sip.test.internal
 
 ```
 * Enable NAPTR lookups for outbound SIP calls. Allow both UDP and TCP to be used for the outgoing call.
@@ -394,8 +394,8 @@ Procedure:
 ```
 
 ; order pref flags service regexp replacement
-IN NAPTR 50 50 "s" "SIPS+D2T" "" \_sips.\_tcp.test.internal.
-IN NAPTR 60 50 "s" "SIP+D2T" "" \_sip.\_tcp.test.internal.
+IN NAPTR 50 50 "s" "SIPS+D2T" "" _sips._tcp.test.internal.
+IN NAPTR 60 50 "s" "SIP+D2T" "" _sip._tcp.test.internal.
 
 ```
 * Enable NAPTR lookups for outbound SIP calls. Enable only UDP transport to be used.
@@ -439,7 +439,7 @@ Procedure:
 
 ; order pref flags service regexp replacement
 IN NAPTR 50 50 "a" "SIP+D2T" "" sip.tcp.test.internal.
-IN NAPTR 60 50 "s" "SIP+D2T" "" \_sip.\_tcp.test.internal.
+IN NAPTR 60 50 "s" "SIP+D2T" "" _sip._tcp.test.internal.
 
 ```
 * Enable NAPTR lookups for outbound SIP calls. Enable UDP, TCP, and TLS transports to be used.
@@ -481,8 +481,8 @@ Procedure:
 ```
 
 ; order pref flags service regexp replacement
-IN NAPTR 50 50 "s" "SIP+D2T" "!.\*!\_sip.\_tcp.test.internal!" .
-IN NAPTR 60 50 "s" "SIP+D2U" "" \_sip.\_udp.test.internal.
+IN NAPTR 50 50 "s" "SIP+D2T" "!.\*!_sip._tcp.test.internal!" .
+IN NAPTR 60 50 "s" "SIP+D2U" "" _sip._udp.test.internal.
 
 ```
 * Enable NAPTR lookups for outbound SIP calls. Enable UDP, TCP, and TLS transports to be used.
@@ -508,10 +508,10 @@ Procedure:
 
 ```
 
-test.internal IN NAPTR 50 50 "s" "SIP+D2T" "" \_sip.\_tcp.test.internal.
- IN NAPTR 60 50 "s" "SIP+D2U" "" \_sip.\_udp.test.internal.
+test.internal IN NAPTR 50 50 "s" "SIP+D2T" "" _sip._tcp.test.internal.
+ IN NAPTR 60 50 "s" "SIP+D2U" "" _sip._udp.test.internal.
  
-\_sip.\_udp.test.internal IN SRV 1 1 5060 sip.test.internal
+_sip._udp.test.internal IN SRV 1 1 5060 sip.test.internal
 
 ```
 
@@ -545,14 +545,14 @@ This is a mega-test that will require many sub-tests. The following DNS entries 
 ```
 
 ; NAPTR records
-test.internal IN NAPTR 50 50 "s" "SIPS+D2T" "" \_sips.\_tcp.test.internal.
- IN NAPTR 60 50 "s" "SIP+D2T" "" \_sip.\_tcp.test.internal.
- IN NAPTR 90 50 "s" "SIP+D2U" "" \_sip.\_udp.test.internal.
+test.internal IN NAPTR 50 50 "s" "SIPS+D2T" "" _sips._tcp.test.internal.
+ IN NAPTR 60 50 "s" "SIP+D2T" "" _sip._tcp.test.internal.
+ IN NAPTR 90 50 "s" "SIP+D2U" "" _sip._udp.test.internal.
  
 ; SRV records
-\_sips.\_tcp.test.internal IN SRV 0 100 5061 tls.test.internal.
-\_sip.\_tcp.test.internal IN SRV 0 100 5060 tcp.test.internal.
-\_sip.\_udp.test.internal IN SRV 0 100 5060 udp.test.internal.
+_sips._tcp.test.internal IN SRV 0 100 5061 tls.test.internal.
+_sip._tcp.test.internal IN SRV 0 100 5060 tcp.test.internal.
+_sip._udp.test.internal IN SRV 0 100 5060 udp.test.internal.
  
 ; A/AAAA records
 tls.test.internal IN A 127.0.0.1
@@ -634,10 +634,10 @@ main.test.internal IN A 127.0.0.1
  IN AAAA ::1
  
 ;; Priority Weight Port Target
-\_sip.\_udp.test.internal IN SRV 0 100 5060 main.test.internal.
+_sip._udp.test.internal IN SRV 0 100 5060 main.test.internal.
  IN SRV 1 100 5060 backup.test.internal.
  
-test.internal IN NAPTR 0 0 "s" "SIP+D2U" "" \_sip.\_udp.test.internal
+test.internal IN NAPTR 0 0 "s" "SIP+D2U" "" _sip._udp.test.internal
 
 ```
 * Place a call to `sip:test.internal`

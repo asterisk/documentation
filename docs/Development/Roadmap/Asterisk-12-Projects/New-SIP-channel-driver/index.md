@@ -11,15 +11,15 @@ Project Overview
 
 This project's aim is to create a new SIP channel driver to be included in Asterisk 12.
 
-Asterisk's current SIP channel driver (hereon referred to as "chan\_sip") basically has the flaw of being poorly architected.
+Asterisk's current SIP channel driver (hereon referred to as "chan_sip") basically has the flaw of being poorly architected.
 
 * The code is not arranged in a stack. Attempting to add elements such as a new transport or other new feature means touching the code in places you would never expect to have to touch.
-* chan\_sip is monolithic; all aspects of SIP reside in the channel driver. Attempting to have a SIP registrar that does not accept calls is not easy.
-* Fixing bugs in chan\_sip is rarely straightforward. Changing code in order to fix one bug usually leads to new faults being discovered as a result.
-* chan\_sip takes up the lion's share of issues in the issue tracker. [Here](https://github.com/asterisk/asterisk/issues/jira/secure/IssueNavigator.jspa?mode=hide&requestId=11822) is an up-to-date list of open issues against chan\_sip. This accounts for about 25% of the open issues in the issue tracker.
-* Many limitations are deeply-ingrained in chan\_sip. For instance, trying to change chan\_sip to support binding to multiple addresses would require huge changes.
+* chan_sip is monolithic; all aspects of SIP reside in the channel driver. Attempting to have a SIP registrar that does not accept calls is not easy.
+* Fixing bugs in chan_sip is rarely straightforward. Changing code in order to fix one bug usually leads to new faults being discovered as a result.
+* chan_sip takes up the lion's share of issues in the issue tracker. [Here](https://github.com/asterisk/asterisk/issues/jira/secure/IssueNavigator.jspa?mode=hide&requestId=11822) is an up-to-date list of open issues against chan_sip. This accounts for about 25% of the open issues in the issue tracker.
+* Many limitations are deeply-ingrained in chan_sip. For instance, trying to change chan_sip to support binding to multiple addresses would require huge changes.
 
-Asterisk developers have on several occasions attempted projects to give chan\_sip a transaction layer, or to give it some semblance of a refactor. In every case, they've found that the magnitute of their efforts was much greater than originally expected. In the end, their frustration got the better of them and they reported that the effort that it would take in order to do whatever task they were doing would be better spent in rewriting chan\_sip altogether.
+Asterisk developers have on several occasions attempted projects to give chan_sip a transaction layer, or to give it some semblance of a refactor. In every case, they've found that the magnitute of their efforts was much greater than originally expected. In the end, their frustration got the better of them and they reported that the effort that it would take in order to do whatever task they were doing would be better spent in rewriting chan_sip altogether.
 
 Requirements and Specification
 ==============================
@@ -27,7 +27,7 @@ Requirements and Specification
 SIP stack
 ---------
 
-The new chan\_sip will use a third-party SIP stack. Research was done into various offerings. SIP stack research can be found [here](/Development/Roadmap/Asterisk-12-Projects/New-SIP-channel-driver/SIP-Stack-Research). The result of the research was to choose PJSIP as the SIP stack. This was communicated on the [asterisk-dev mailing list on December 10th, 2012](http://lists.digium.com/pipermail/asterisk-dev/2012-December/057997.html).
+The new chan_sip will use a third-party SIP stack. Research was done into various offerings. SIP stack research can be found [here](/Development/Roadmap/Asterisk-12-Projects/New-SIP-channel-driver/SIP-Stack-Research). The result of the research was to choose PJSIP as the SIP stack. This was communicated on the [asterisk-dev mailing list on December 10th, 2012](http://lists.digium.com/pipermail/asterisk-dev/2012-December/057997.html).
 
 As part of this work, pjproject has been pulled out of the Asterisk source tree and placed into its own Git repository. The repository is available at <git://github.com/asterisk/pjproject.git>.
 
@@ -116,14 +116,14 @@ rm -f /usr/lib/libpj\*.a /usr/lib/libmilenage\*.a /usr/lib/pkgconfig/libpjprojec
 
 Configuration
 
-Configuration for the new chan\_sip will be redesigned entirely. Configuration will be more modular, allowing easier control over aspects than previously allowed. At the same time, the new chan\_sip MUST be backwards-compatible with the old chan\_sip's configuration to ease upgrade. The tentative plan for this is to parse old configuration and translate the options into their new equivalents where possible.
+Configuration for the new chan_sip will be redesigned entirely. Configuration will be more modular, allowing easier control over aspects than previously allowed. At the same time, the new chan_sip MUST be backwards-compatible with the old chan_sip's configuration to ease upgrade. The tentative plan for this is to parse old configuration and translate the options into their new equivalents where possible.
 
 At this stage, no configuration schema have been devised. This will be added as it is decided.
 
 Features
 --------
 
-A brief high-level overview of features for the new chan\_sip includes:
+A brief high-level overview of features for the new chan_sip includes:
 
 * Transports (all IPv4 and IPv6)
 	+ UDP
@@ -157,7 +157,7 @@ Since A SIP channel driver has so many use cases, these reside on their own sub-
 Documentation
 -------------
 
-In order to increase adoption of the new chan\_sip and encourage enhancement, detailed documentation MUST be provided. Documentation will be provided in several forms.
+In order to increase adoption of the new chan_sip and encourage enhancement, detailed documentation MUST be provided. Documentation will be provided in several forms.
 
 ##### In-code documentation
 
@@ -179,7 +179,7 @@ The wiki will be used to document high-level information, ranging from configura
 APIs
 ----
 
-At a minimum, all dialplan applications, dialplan functions, manager commands, and CLI commands that worked with the old chan\_sip must also work with new chan\_sip. The following will be present
+At a minimum, all dialplan applications, dialplan functions, manager commands, and CLI commands that worked with the old chan_sip must also work with new chan_sip. The following will be present
 
 ### Dialplan applications
 
@@ -199,7 +199,7 @@ TBD
 ##### Legacy functions
 
 * [CHANNEL](/Asterisk-11-Function_CHANNEL) (The SIP-specific bits)
-* [SIP\_HEADER](/Asterisk-11-Function_SIP_HEADER)
+* [SIP_HEADER](/Asterisk-11-Function_SIP_HEADER)
 * [SIPPEER](/Asterisk-11-Function_SIPPEER)
 * [CHECKSIPDOMAIN](/Asterisk-11-Function_CHECKSIPDOMAIN)
 
@@ -272,19 +272,19 @@ Since a SIP stack has not been chosen yet, it is difficult to go about trying to
 Test Plan
 =========
 
-The new chan\_sip test plan can be found [here](/Development/Roadmap/Asterisk-12-Projects/New-SIP-channel-driver/SIP-Test-Plan)
+The new chan_sip test plan can be found [here](/Development/Roadmap/Asterisk-12-Projects/New-SIP-channel-driver/SIP-Test-Plan)
 
 Project Planning
 ================
 
-Jira issues will be posted here for the new chan\_sip as they become created. If you are interested in helping with any of these, feel free to step forward and help out. Please comment on the specific Jira issue rather than on this page. If you wish to have more in-depth discussions about a task you wish to take on, then please direct the discussion to the [Asterisk developers mailing list](http://lists.digium.com/mailman/listinfo/asterisk-dev)
+Jira issues will be posted here for the new chan_sip as they become created. If you are interested in helping with any of these, feel free to step forward and help out. Please comment on the specific Jira issue rather than on this page. If you wish to have more in-depth discussions about a task you wish to take on, then please direct the discussion to the [Asterisk developers mailing list](http://lists.digium.com/mailman/listinfo/asterisk-dev)
 
 true
 
 Reference information
 =====================
 
-The decision to move forward with a new chan\_sip was made at [AstriDevCon 2012](/Development/Roadmap/AstriDevCon-2012).
+The decision to move forward with a new chan_sip was made at [AstriDevCon 2012](/Development/Roadmap/AstriDevCon-2012).
 
 Testing
 -------
@@ -298,8 +298,8 @@ Notable Reviews
 
 | Review | Link |
 | --- | --- |
-| res\_sip and res\_sip\_session design review | <https://reviewboard.asterisk.org/r/2251/> |
-| Initial work for res\_sip and res\_sip\_session: Inbound and outbound calls work | <https://reviewboard.asterisk.org/r/2285/> |
+| res_sip and res_sip_session design review | <https://reviewboard.asterisk.org/r/2251/> |
+| Initial work for res_sip and res_sip_session: Inbound and outbound calls work | <https://reviewboard.asterisk.org/r/2285/> |
 | SIP authentication support | <https://reviewboard.asterisk.org/r/2310/> |
 | Pimp My SIP Media Improvements | <https://reviewboard.asterisk.org/r/2318/> |
 | Make new SIP work make use of threadpool | <https://reviewboard.asterisk.org/r/2305/> |

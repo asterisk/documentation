@@ -36,10 +36,10 @@ Agenda:
 * Presentation by George Joseph and Kevin Harwell about performance improvements in 16 - 30 min
 * Presentation by Ben Ford about video improvements in 16 - 30 min
 * Lunch 12 -1
-* Have discussion about proposing that chan\_sip be marked deprecated
+* Have discussion about proposing that chan_sip be marked deprecated
 * Discuss how Sangoma's acquisition of Digium affects the future of Asterisk
 * Opportunistic DTLS
-* Discuss deprecation/removal of res\_monitor
+* Discuss deprecation/removal of res_monitor
 * Making it easier to send audio to/from Amazon, Google, IBM (especially in context of speech recognition)
 * Getting access to end of call statistics (regardless of who hangs up first)
 * Getting rid of extensions.conf for ARI applications
@@ -47,7 +47,7 @@ Agenda:
 	+ Some kind of integrated functionality that takes what ARIProxy does and marry it with parts of Asterisk
 	+ Can we have multiple websocket connections to the same ARI application (for better redundancy)
 * Discussion around removal of macro functionality
-* res\_xmpp/chan\_motif should they remain core supported (due to dependency on unmaintained libraries)
+* res_xmpp/chan_motif should they remain core supported (due to dependency on unmaintained libraries)
 * Alexander wants to talk about RTCP/media-interaction with audio codecs
 * Josh Elson wants to talk about task processor architecture limitations
 * Josh Elson wants to talk about challenges with 50,000 sparsely registering endpoint

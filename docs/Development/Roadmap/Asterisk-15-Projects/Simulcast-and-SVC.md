@@ -36,7 +36,7 @@ Asterisk
 
 RTCP is critically important for simulcast usage. Extensions like [REMB](https://datatracker.ietf.org/doc/draft-alvestrand-rmcat-remb/), [TMMBR (and PLI)](https://tools.ietf.org/html/rfc5104), and [transport-cc](https://tools.ietf.org/html/draft-holmer-rmcat-transport-wide-cc-extensions-01) allow bandwidth estimation to occur so that remote parties know the conditions and can adjust the video encoding accordingly. They are also important to Asterisk so it can know what streams (when simulcast is in use) to forward depending on the conditions to the remote participant. While simulcast is a huge part of this it is not useful at all without the proper RTCP support.
 
-The data provided by the improved RTCP support will need to be propagated up so higher level implementations can use the information accordingly, for example bridge\_softmix to know what simulcast stream to use. This should be done by either providing a new control frame that includes the information, or the existing RTCP frame.
+The data provided by the improved RTCP support will need to be propagated up so higher level implementations can use the information accordingly, for example bridge_softmix to know what simulcast stream to use. This should be done by either providing a new control frame that includes the information, or the existing RTCP frame.
 
 ### Streams
 
@@ -50,13 +50,13 @@ Support for the MID RTP extension will need to be added. Support for the RtpStre
 
 Support for mapping not just a stream to a stream but also a stream to a substream will need to be added.
 
-### bridge\_softmix
+### bridge_softmix
 
 The module will need to react to RTCP information it receives and update the substream mappings accordingly if possible.
 
-### chan\_pjsip
+### chan_pjsip
 
-Support for the Chrome method of simulcast will need to be added, as well as the RFC implementation. Substreams will be present in the ast\_sip\_session\_media, with 0 being the main stream. This should keep changes fairly minimal.
+Support for the Chrome method of simulcast will need to be added, as well as the RFC implementation. Substreams will be present in the ast_sip_session_media, with 0 being the main stream. This should keep changes fairly minimal.
 
 ### Core
 

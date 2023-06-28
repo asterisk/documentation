@@ -30,12 +30,12 @@ Agenda
 	+ Video Handling - Florian/Maximilian
 		- Developing cloud voice/video solution, not typical telephony aspect, use Asterisk as media engine
 		- Intercom company
-		- Using Kamailio + Asterisk in the cloud, Kamailio as registrar/SBC/LB, Asterisk as media/call engine, using chan\_pjsip
+		- Using Kamailio + Asterisk in the cloud, Kamailio as registrar/SBC/LB, Asterisk as media/call engine, using chan_pjsip
 		- Using early video
-		- Dialplan + func\_curl currently
+		- Dialplan + func_curl currently
 		- ARI based implementation in early dev
 		- Physical, mobile, web client
-		- Moh\_passthrough enabled, SDP offers get confused/incorrect
+		- Moh_passthrough enabled, SDP offers get confused/incorrect
 		- Have patch to do early media video
 * Other Discussion
 	+ Mailing Lists - Joshua Colp  
@@ -65,7 +65,7 @@ Agenda
 		- I hope to slot in more media stuff here
 		- G729 as open source
 		- It would be nice to have generic configuration to allow passthrough codecs to be easily added
-		- codec\_opus and FEC? no change currently
+		- codec_opus and FEC? no change currently
 		- Alternate g729 codec modules exist
 	+ Meetme vs ConfBridge - Michael Cargile
 		- Does mixing happen in the dahdi driver? Yes

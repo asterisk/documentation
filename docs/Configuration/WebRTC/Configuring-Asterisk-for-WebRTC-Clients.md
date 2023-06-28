@@ -38,7 +38,7 @@ If you already have certificate files (certificate, key, CA certificate), whethe
 
 ### Create Certificates
 
-Asterisk provides a utility script, `**ast\_tls\_cert**` in the `**contrib/scripts**` source directory. We will use it to make a self-signed certificate authority and a server certificate for Asterisk, signed by our new authority.
+Asterisk provides a utility script, `**ast_tls_cert**` in the `**contrib/scripts**` source directory. We will use it to make a self-signed certificate authority and a server certificate for Asterisk, signed by our new authority.
 
 From the Asterisk source directory run the following commands. You'll be prompted to set a a pass phrase for the CA key, then you'll be asked for that same pass phrase a few times. Use anything you can easily remember. The pass phrase is indicated below with "`********`".  Replace "`pbx.example.com`" with your PBX's hostname or IP address. Replace "`My Organization`" as appropriate.
 
@@ -64,7 +64,7 @@ From the Asterisk source directory run the following commands. You'll be prompte
 ```
 
 text$ sudo mkdir /etc/asterisk/keys
-$ sudo contrib/scripts/ast\_tls\_cert -C pbx.example.com -O "My Organization" -b 2048 -d /etc/asterisk/keys
+$ sudo contrib/scripts/ast_tls_cert -C pbx.example.com -O "My Organization" -b 2048 -d /etc/asterisk/keys
  
 No config file specified, creating '/etc/asterisk/keys/tmp.cfg'
 You can use this config file to create additional certs without
@@ -176,8 +176,8 @@ Server Enabled and Bound to [::]:8088
 HTTPS Server Enabled and Bound to [::]:8089
 
 Enabled URI's:
-/test\_media\_cache/... => HTTP Media Cache Test URI
-/guimohdir\_rh => HTTP POST mapping
+/test_media_cache/... => HTTP Media Cache Test URI
+/guimohdir_rh => HTTP POST mapping
 /httpstatus => Asterisk HTTP General Status
 /phoneprov/... => Asterisk HTTP Phone Provisioning Tool
 /amanager => HTML Manager Event Interface w/Digest authentication
@@ -244,32 +244,32 @@ We now need to create the basic PJSIP objects that represent the client. In this
 
 ```
 
-[webrtc\_client]
+[webrtc_client]
 type=aor
-max\_contacts=5
-remove\_existing=yes
+max_contacts=5
+remove_existing=yes
  
-[webrtc\_client]
+[webrtc_client]
 type=auth
-auth\_type=userpass
-username=webrtc\_client
-password=webrtc\_client ; This is a completely insecure password! Do NOT expose this 
+auth_type=userpass
+username=webrtc_client
+password=webrtc_client ; This is a completely insecure password! Do NOT expose this 
  ; system to the Internet without utilizing a better password.
 
-[webrtc\_client]
+[webrtc_client]
 type=endpoint
-aors=webrtc\_client
-auth=webrtc\_client
-dtls\_auto\_generate\_cert=yes
+aors=webrtc_client
+auth=webrtc_client
+dtls_auto_generate_cert=yes
 webrtc=yes
 ; Setting webrtc=yes is a shortcut for setting the following options:
-; use\_avpf=yes
-; media\_encryption=dtls
-; dtls\_verify=fingerprint
-; dtls\_setup=actpass
-; ice\_support=yes
-; media\_use\_received\_transport=yes
-; rtcp\_mux=yes
+; use_avpf=yes
+; media_encryption=dtls
+; dtls_verify=fingerprint
+; dtls_setup=actpass
+; ice_support=yes
+; media_use_received_transport=yes
+; rtcp_mux=yes
 context=default
 disallow=all
 allow=opus,ulaw

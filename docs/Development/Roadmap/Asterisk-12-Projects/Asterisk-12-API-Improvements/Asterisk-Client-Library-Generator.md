@@ -7,7 +7,7 @@ Asterisk Client Library Generator
 =================================
 
 
-Generator for client libraries for [Asterisk's REST API](/Asterisk-12-API-Improvements) which is provided by res\_http\_stasis.
+Generator for client libraries for [Asterisk's REST API](/Asterisk-12-API-Improvements) which is provided by res_http_stasis.
 
 
 Languages
@@ -25,22 +25,22 @@ Library structure
 
 
 * Top-level library or object or structure
-	+ Asterisk.get\_info()
-	+ Endpoints.get\_endpoints()
-	+ Channels.get\_channels()
-	+ Bridges.get\_bridges()
-	+ Recordings.get\_recordings()
-	+ Endpoint.get\_endpoint(id)
-	+ Channel.get\_channel(id)
-	+ Bridges.get\_bridge(id)
-	+ Recordings.get\_recording(id)
-	+ add\_event\_handler(event\_name, function)
-	+ remove\_event\_handler(event\_name, function)
+	+ Asterisk.get_info()
+	+ Endpoints.get_endpoints()
+	+ Channels.get_channels()
+	+ Bridges.get_bridges()
+	+ Recordings.get_recordings()
+	+ Endpoint.get_endpoint(id)
+	+ Channel.get_channel(id)
+	+ Bridges.get_bridge(id)
+	+ Recordings.get_recording(id)
+	+ add_event_handler(event_name, function)
+	+ remove_event_handler(event_name, function)
 * Each object in the Swagger resource files
 	+ Methods listed therein
 	+ Relevant object attribute getters
-	+ add\_event\_handler(event\_name, function)
-	+ remove\_event\_handler(event\_name, function)
+	+ add_event_handler(event_name, function)
+	+ remove_event_handler(event_name, function)
 
 
 Library behavior
@@ -74,7 +74,7 @@ Project location and directory structure
 ========================================
 
 
-This project is located [on GitHub](https://github.com/asterisk/asterisk_rest_libraries). Inside asterisk\_rest\_libraries
+This project is located [on GitHub](https://github.com/asterisk/asterisk_rest_libraries). Inside asterisk_rest_libraries
 
 
 
@@ -88,28 +88,28 @@ This project is located [on GitHub](https://github.com/asterisk/asterisk_rest_li
 ```
 
 
-asterisk\_rest\_libraries
- generate\_library.py
+asterisk_rest_libraries
+ generate_library.py
  api.py
- test\_api\_calls.py
- test\_asterispy.py
+ test_api_calls.py
+ test_asterispy.py
  perl/
  lib/
  templates/
  ... et. al.
  python/
  lib/
- \_\_init\_\_.py
+ __init__.py
  asteriskpy.py
- asterisk\_rest\_api.py
+ asterisk_rest_api.py
  errors.py
  ... and generated files
  templates/
  copyright.proto
- class\_def.proto
- method\_def.proto
+ class_def.proto
+ method_def.proto
  ... and perhaps more in the future
- test\_resources/
+ test_resources/
  asterisk.json
  bridges.json
  channels.json

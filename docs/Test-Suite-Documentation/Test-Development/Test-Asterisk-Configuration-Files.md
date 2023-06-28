@@ -9,7 +9,7 @@ Introduction
 Asterisk instances started by the Testsuite get their configuration files from 3 sources in order
 
 1. /etc/asterisk which should be the result of a clean "make samples" run in the Asterisk source tree.
-2. The Testsuite's common config files located in <TESTSUITE\_DIR>/configs
+2. The Testsuite's common config files located in <TESTSUITE_DIR>/configs
 3. The test's own configs and files directories.
 
 Most of the files are handled simply where a file in the test's configs/astX directory replaces one found in the Testsuite's directory and one in the Testsuite's directory replaces one in /etc/asterisk.  Some have another level of processing though. 
@@ -34,7 +34,7 @@ Most test directories will have the following structure:
 
 ```
 
-<test\_name>/
+<test_name>/
  configs/ Contains configuration files to go in each Asterisk instance's virtual /etc/asterisk directory.
  ast1/ All tests have at least 1 Asterisk instance.
  ...
@@ -78,7 +78,7 @@ Files placed in any of the "ast\*dir" directories can be referenced by configura
 
 ```
 
-<test\_name>/
+<test_name>/
  configs/
  ast1/
  extensions.conf
@@ -126,9 +126,9 @@ Your config files would then look line this:
 [transport-tls]
 type=transport
 protocol = tls
-ca\_list\_file = <astvarlibdir>>/keys/ca.pem
-cert\_file = <astvarlibdir>>/keys/ast1-cert.pem
-priv\_key\_file = <astvarlibdir>>/keys/ast1-key.pem
+ca_list_file = <astvarlibdir>>/keys/ca.pem
+cert_file = <astvarlibdir>>/keys/ast1-cert.pem
+priv_key_file = <astvarlibdir>>/keys/ast1-key.pem
 
 ```
 

@@ -26,5 +26,5 @@ If the channel has a CDR, that CDR has its own set of variables which can be acc
 * ${CDR(userfield)} The channels uses specified field.
 
 
-In addition, you can set your own extra variables by using Set(CDR(name)=value). These variables can be output into a text-format CDR by using the cdr\_custom CDR driver; see the cdr\_custom.conf.sample file in the configs directory for an example of how to do this.
+In addition, you can set your own extra variables by using Set(CDR(name)=value). These variables can be output into a text-format CDR by using the cdr_custom CDR driver; see the cdr_custom.conf.sample file in the configs directory for an example of how to do this.
 

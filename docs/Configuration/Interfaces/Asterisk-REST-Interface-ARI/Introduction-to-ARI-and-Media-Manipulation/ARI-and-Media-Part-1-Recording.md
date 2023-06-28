@@ -40,41 +40,41 @@ import os
 import sys
 
 from event import Event
-from state\_machine import StateMachine
+from state_machine import StateMachine
 # As we add more states to our state machine, we'll import the necessary
 # states here.
 
 logging.basicConfig(level=logging.ERROR)
-LOGGER = logging.getLogger(\_\_name\_\_)
+LOGGER = logging.getLogger(__name__)
 
 client = ari.connect('http://localhost:8088', 'asterisk', 'asterisk')
 
 
 class VoiceMailCall(object):
- def \_\_init\_\_(self, ari\_client, channel, mailbox):
- self.client = ari\_client
+ def __init__(self, ari_client, channel, mailbox):
+ self.client = ari_client
  self.channel = channel
- self.vm\_path = os.path.join('voicemail', mailbox, str(time.time()))
- self.setup\_state\_machine()
+ self.vm_path = os.path.join('voicemail', mailbox, str(time.time()))
+ self.setup_state_machine()
 
- def setup\_state\_machine(self):
+ def setup_state_machine(self):
  # This is where we will initialize states, create a state machine, add
  # state transitions to the state machine, and start the state machine.
 
 
-def stasis\_start\_cb(channel\_obj, event):
- channel = channel\_obj['channel']
- channel\_name = channel.json.get('name')
+def stasis_start_cb(channel_obj, event):
+ channel = channel_obj['channel']
+ channel_name = channel.json.get('name')
  mailbox = event.get('args')[0]
 
  print("Channel {0} recording voicemail for {1}".format(
- channel\_name, mailbox))
+ channel_name, mailbox))
 
  channel.answer()
  VoiceMailCall(client, channel, mailbox)
 
 
-client.on\_channel\_event('StasisStart', stasis\_start\_cb)
+client.on_channel_event('StasisStart', stasis_start_cb)
 client.run(apps=sys.argv[1])
 
 ```
@@ -91,23 +91,23 @@ var util = require('util');
 var path = require('path');
 
 var Event = require('./event');
-var StateMachine = require('./state\_machine');
+var StateMachine = require('./state_machine');
 // As we add new states to our state machine, this is where we will
 // add the new required states. 
  
 ari.connect('http://localhost:8088', 'asterisk', 'asterisk', clientLoaded);
 
-var VoiceMailCall = function(ari\_client, channel, mailbox) {
- this.client = ari\_client;
+var VoiceMailCall = function(ari_client, channel, mailbox) {
+ this.client = ari_client;
  this.channel = channel;
- this.vm\_path = path.join('voicemail', mailbox, Date.now().toString());
+ this.vm_path = path.join('voicemail', mailbox, Date.now().toString());
 
- this.setup\_state\_machine = function() {
+ this.setup_state_machine = function() {
  // This is where we will initialize states, create a state machine, add
  // state transitions to the state machine, and start the state machine.
  }
 
- this.setup\_state\_machine();
+ this.setup_state_machine();
 }
 
 
@@ -150,7 +150,7 @@ With a few modifications, this same application skeleton can be adapted for use 
 ```
 
 [default]
-exten => \_3XX,1,NoOp()
+exten => _3XX,1,NoOp()
  same => n,Stasis(vm-record, ${EXTEN})
  same => n,Hangup()
 
@@ -176,7 +176,7 @@ For this, we will be defining three states: recording, hungup, and ending. The f
 ---
 
   
-recording\_state.py  
+recording_state.py  
 
 
 ```
@@ -184,81 +184,81 @@ recording\_state.py
 pytruefrom event import Event
 
 class RecordingState(object):
- state\_name = "recording"
+ state_name = "recording"
 
- def \_\_init\_\_(self, call):
+ def __init__(self, call):
  self.call = call
- self.hangup\_event = None
- self.dtmf\_event = None
+ self.hangup_event = None
+ self.dtmf_event = None
  self.recording = None
 
  def enter(self):
  print "Entering recording state"
- self.hangup\_event = self.call.channel.on\_event('ChannelHangupRequest',
- self.on\_hangup)
- self.dtmf\_event = self.call.channel.on\_event('ChannelDtmfReceived',
- self.on\_dtmf)
- self.recording = self.call.channel.record(name=self.call.vm\_path,
+ self.hangup_event = self.call.channel.on_event('ChannelHangupRequest',
+ self.on_hangup)
+ self.dtmf_event = self.call.channel.on_event('ChannelDtmfReceived',
+ self.on_dtmf)
+ self.recording = self.call.channel.record(name=self.call.vm_path,
  format='wav',
  beep=True,
  ifExists='overwrite')
- print "Recording voicemail at {0}".format(self.call.vm\_path)
+ print "Recording voicemail at {0}".format(self.call.vm_path)
 
  def cleanup(self):
  print "Cleaning up event handlers"
- self.dtmf\_event.close()
- self.hangup\_event.close()
+ self.dtmf_event.close()
+ self.hangup_event.close()
 
- def on\_hangup(self, channel, event):
- print "Accepted recording {0} on hangup".format(self.call.vm\_path)
+ def on_hangup(self, channel, event):
+ print "Accepted recording {0} on hangup".format(self.call.vm_path)
  self.cleanup()
- self.call.state\_machine.change\_state(Event.HANGUP)
+ self.call.state_machine.change_state(Event.HANGUP)
 
- def on\_dtmf(self, channel, event):
+ def on_dtmf(self, channel, event):
  digit = event.get('digit')
  if digit == '#':
- rec\_name = self.recording.json.get('name')
- print "Accepted recording {0} on DTMF #".format(rec\_name)
+ rec_name = self.recording.json.get('name')
+ print "Accepted recording {0} on DTMF #".format(rec_name)
  self.cleanup()
  self.recording.stop()
- self.call.state\_machine.change\_state(Event.DTMF\_OCTOTHORPE)
+ self.call.state_machine.change_state(Event.DTMF_OCTOTHORPE)
 
 ```
 
 
 
 
-```javascript title="recording\_state.js" linenums="1"
+```javascript title="recording_state.js" linenums="1"
 jstruevar Event = require('./event')
 
 function RecordingState(call) {
- this.state\_name = "recording";
+ this.state_name = "recording";
 
  this.enter = function() {
- var recording = call.client.LiveRecording(call.client, {name: call.vm\_path});
+ var recording = call.client.LiveRecording(call.client, {name: call.vm_path});
  console.log("Entering recording state");
- call.channel.on("ChannelHangupRequest", on\_hangup);
- call.channel.on("ChannelDtmfReceived", on\_dtmf);
+ call.channel.on("ChannelHangupRequest", on_hangup);
+ call.channel.on("ChannelDtmfReceived", on_dtmf);
  call.channel.record({name: recording.name, format: 'wav', beep: true, ifExists: 'overwrite'}, recording);
 
  function cleanup() {
- call.channel.removeListener('ChannelHangupRequest', on\_hangup);
- call.channel.removeListener('ChannelDtmfReceived', on\_dtmf);
+ call.channel.removeListener('ChannelHangupRequest', on_hangup);
+ call.channel.removeListener('ChannelDtmfReceived', on_dtmf);
  }
 
- function on\_hangup(event, channel) {
+ function on_hangup(event, channel) {
  console.log("Accepted recording %s on hangup", recording.name);
  cleanup();
- call.state\_machine.change\_state(Event.HANGUP);
+ call.state_machine.change_state(Event.HANGUP);
  }
 
- function on\_dtmf(event, channel) {
+ function on_dtmf(event, channel) {
  switch (event.digit) {
  case '#':
- console.log("Accepted recording", call.vm\_path);
+ console.log("Accepted recording", call.vm_path);
  cleanup();
  recording.stop(function(err) {
- call.state\_machine.change\_state(Event.DTMF\_OCTOTHORPE);
+ call.state_machine.change_state(Event.DTMF_OCTOTHORPE);
  });
  break;
  }
@@ -283,20 +283,20 @@ The other two states in the state machine are much simpler, since they are termi
 ---
 
   
-ending\_state.py  
+ending_state.py  
 
 
 ```
 
 pytrueclass EndingState(object):
- state\_name = "ending"
+ state_name = "ending"
 
- def \_\_init\_\_(self, call):
+ def __init__(self, call):
  self.call = call
 
  def enter(self):
- channel\_name = self.call.channel.json.get('name')
- print "Ending voice mail call from {0}".format(channel\_name)
+ channel_name = self.call.channel.json.get('name')
+ print "Ending voice mail call from {0}".format(channel_name)
  self.call.channel.hangup()
 
 ```
@@ -304,13 +304,13 @@ pytrueclass EndingState(object):
 
 
 
-```javascript title="ending\_state.js" linenums="1"
+```javascript title="ending_state.js" linenums="1"
 jstruefunction EndingState(call) {
- this.state\_name = "ending";
+ this.state_name = "ending";
 
  this.enter = function() {
- channel\_name = call.channel.name;
- console.log("Ending voice mail call from", channel\_name);
+ channel_name = call.channel.name;
+ console.log("Ending voice mail call from", channel_name);
  call.channel.hangup();
  }
 }
@@ -325,33 +325,33 @@ module.exports = EndingState;
 ---
 
   
-hangup\_state.py  
+hangup_state.py  
 
 
 ```
 
 pytrueclass HungUpState(object):
- state\_name = "hungup"
+ state_name = "hungup"
 
- def \_\_init\_\_(self, call):
+ def __init__(self, call):
  self.call = call
 
  def enter(self):
- channel\_name = self.call.channel.json.get('name')
- print "Channel {0} hung up".format(channel\_name)
+ channel_name = self.call.channel.json.get('name')
+ print "Channel {0} hung up".format(channel_name)
 
 ```
 
 
 
 
-```javascript title="hungup\_state.js" linenums="1"
+```javascript title="hungup_state.js" linenums="1"
 jstruefunction HungUpState(call) {
- this.state\_name = "hungup";
+ this.state_name = "hungup";
 
  this.enter = function() {
- channel\_name = call.channel.name;
- console.log("Channel %s hung up", channel\_name);
+ channel_name = call.channel.name;
+ console.log("Channel %s hung up", channel_name);
  }
 }
 
@@ -376,22 +376,22 @@ vm-call.py
 ```
 
 pytrue# At the top of the file
-from recording\_state import RecordingState
-from ending\_state import EndingState
-from hungup\_state import HungUpState
+from recording_state import RecordingState
+from ending_state import EndingState
+from hungup_state import HungUpState
 
 # Inside our VoiceMailCall class
- def setup\_state\_machine(self):
- hungup\_state = HungUpState(self)
- recording\_state = RecordingState(self)
- ending\_state = EndingState(self)
+ def setup_state_machine(self):
+ hungup_state = HungUpState(self)
+ recording_state = RecordingState(self)
+ ending_state = EndingState(self)
 
- self.state\_machine = StateMachine()
- self.state\_machine.add\_transition(recording\_state, Event.DTMF\_OCTOTHORPE,
- ending\_state)
- self.state\_machine.add\_transition(recording\_state, Event.HANGUP,
- hungup\_state)
- self.state\_machine.start(recording\_state)
+ self.state_machine = StateMachine()
+ self.state_machine.add_transition(recording_state, Event.DTMF_OCTOTHORPE,
+ ending_state)
+ self.state_machine.add_transition(recording_state, Event.HANGUP,
+ hungup_state)
+ self.state_machine.start(recording_state)
 
 ```
 
@@ -400,21 +400,21 @@ from hungup\_state import HungUpState
 
 ```javascript title="vm-call.js" linenums="1"
 jstrue// At the top of the file
-var RecordingState = require('./recording\_state');
-var EndingState = require('./ending\_state');
-var HungUpState = require('./hungup\_state');
+var RecordingState = require('./recording_state');
+var EndingState = require('./ending_state');
+var HungUpState = require('./hungup_state');
 
 
  // Inside our VoiceMailCall function
- this.setup\_state\_machine = function() {
- var hungup\_state = new HungUpState(self)
- var recording\_state = new RecordingState(self)
- var ending\_state = new EndingState(self)
+ this.setup_state_machine = function() {
+ var hungup_state = new HungUpState(self)
+ var recording_state = new RecordingState(self)
+ var ending_state = new EndingState(self)
 
- this.state\_machine = new StateMachine()
- this.state\_machine.add\_transition(recording\_state, Event.DTMF\_OCTOTHORPE, ending\_state)
- this.state\_machine.add\_transition(recording\_state, Event.HANGUP, hungup\_state)
- this.state\_machine.start(recording\_state)
+ this.state_machine = new StateMachine()
+ this.state_machine.add_transition(recording_state, Event.DTMF_OCTOTHORPE, ending_state)
+ this.state_machine.add_transition(recording_state, Event.HANGUP, hungup_state)
+ this.state_machine.start(recording_state)
  }
 
 ```
@@ -462,48 +462,48 @@ All that has changed is that there is a new transition, which means a minimal ch
 ---
 
   
-recording\_state.py  
+recording_state.py  
 
 
 ```
 
-pytrue def on\_dtmf(self, channel, event):
+pytrue def on_dtmf(self, channel, event):
  digit = event.get('digit')
  if digit == '#':
- rec\_name = self.recording.json.get('name')
- print "Accepted recording {0} on DTMF #".format(rec\_name)
+ rec_name = self.recording.json.get('name')
+ print "Accepted recording {0} on DTMF #".format(rec_name)
  self.cleanup()
  self.recording.stop()
- self.call.state\_machine.change\_state(Event.DTMF\_OCTOTHORPE)
+ self.call.state_machine.change_state(Event.DTMF_OCTOTHORPE)
  # NEW CONTENT
  elif digit == '\*':
- rec\_name = self.recording.json.get('name')
- print "Canceling recording {0} on DTMF \*".format(rec\_name)
+ rec_name = self.recording.json.get('name')
+ print "Canceling recording {0} on DTMF \*".format(rec_name)
  self.cleanup()
  self.recording.cancel()
- self.call.state\_machine.change\_state(Event.DTMF\_STAR)
+ self.call.state_machine.change_state(Event.DTMF_STAR)
 
 ```
 
 
 
 
-```javascript title="recording\_state.js" linenums="1"
-jstrue function on\_dtmf(event, channel) {
+```javascript title="recording_state.js" linenums="1"
+jstrue function on_dtmf(event, channel) {
  switch (event.digit) {
  case '#':
- console.log("Accepted recording", call.vm\_path);
+ console.log("Accepted recording", call.vm_path);
  cleanup();
  recording.stop(function(err) {
- call.state\_machine.change\_state(Event.DTMF\_OCTOTHORPE);
+ call.state_machine.change_state(Event.DTMF_OCTOTHORPE);
  });
  break;
  // NEW CONTENT
  case '\*':
- console.log("Canceling recording", call.vm\_path);
+ console.log("Canceling recording", call.vm_path);
  cleanup();
  recording.cancel(function(err) {
- call.state\_machine.change\_state(Event.DTMF\_STAR);
+ call.state_machine.change_state(Event.DTMF_STAR);
  });
  break;
  }
@@ -527,18 +527,18 @@ vm-call.py
 
 ```
 
-pytrue def setup\_state\_machine(self):
- hungup\_state = HungUpState(self)
- recording\_state = RecordingState(self)
- ending\_state = EndingState(self)
- self.state\_machine = StateMachine()
- self.state\_machine.add\_transition(recording\_state, Event.DTMF\_OCTOTHORPE,
- ending\_state)
- self.state\_machine.add\_transition(recording\_state, Event.HANGUP,
- hungup\_state)
- self.state\_machine.add\_transition(recording\_state, Event.DTMF\_STAR,
- recording\_state)
- self.state\_machine.start(recording\_state)
+pytrue def setup_state_machine(self):
+ hungup_state = HungUpState(self)
+ recording_state = RecordingState(self)
+ ending_state = EndingState(self)
+ self.state_machine = StateMachine()
+ self.state_machine.add_transition(recording_state, Event.DTMF_OCTOTHORPE,
+ ending_state)
+ self.state_machine.add_transition(recording_state, Event.HANGUP,
+ hungup_state)
+ self.state_machine.add_transition(recording_state, Event.DTMF_STAR,
+ recording_state)
+ self.state_machine.start(recording_state)
 
 ```
 
@@ -546,16 +546,16 @@ pytrue def setup\_state\_machine(self):
 
 
 ```javascript title="vm-call.js" linenums="1"
-jstruethis.setup\_state\_machine = function() {
- var hungup\_state = new HungUpState(this);
- var recording\_state = new RecordingState(this);
- var ending\_state = new EndingState(this);
+jstruethis.setup_state_machine = function() {
+ var hungup_state = new HungUpState(this);
+ var recording_state = new RecordingState(this);
+ var ending_state = new EndingState(this);
 
- this.state\_machine = new StateMachine();
- this.state\_machine.add\_transition(recording\_state, Event.DTMF\_OCTOTHORPE, ending\_state);
- this.state\_machine.add\_transition(recording\_state, Event.HANGUP, hungup\_state);
- this.state\_machine.add\_transition(recording\_state, Event.DTMF\_STAR, recording\_state);
- this.state\_machine.start(recording\_state);
+ this.state_machine = new StateMachine();
+ this.state_machine.add_transition(recording_state, Event.DTMF_OCTOTHORPE, ending_state);
+ this.state_machine.add_transition(recording_state, Event.HANGUP, hungup_state);
+ this.state_machine.add_transition(recording_state, Event.DTMF_STAR, recording_state);
+ this.state_machine.start(recording_state);
 }
 
 ```
@@ -615,7 +615,7 @@ To realize this, here is the code for our new "reviewing" state:
 ---
 
   
-reviewing\_state.py  
+reviewing_state.py  
 
 
 ```
@@ -623,112 +623,112 @@ reviewing\_state.py
 pytrueimport uuid
 
 class ReviewingState(object):
- state\_name = "reviewing"
+ state_name = "reviewing"
 
- def \_\_init\_\_(self, call):
+ def __init__(self, call):
  self.call = call
- self.playback\_id = None
- self.hangup\_event = None
- self.playback\_finished = None
- self.dtmf\_event = None
+ self.playback_id = None
+ self.hangup_event = None
+ self.playback_finished = None
+ self.dtmf_event = None
  self.playback = None
 
  def enter(self):
- self.playback\_id = str(uuid.uuid4())
+ self.playback_id = str(uuid.uuid4())
  print "Entering reviewing state"
- self.hangup\_event = self.call.channel.on\_event("ChannelHangupRequest",
- self.on\_hangup)
- self.playback\_finished = self.call.client.on\_event(
- 'PlaybackFinished', self.on\_playback\_finished)
- self.dtmf\_event = self.call.channel.on\_event('ChannelDtmfReceived',
- self.on\_dtmf)
+ self.hangup_event = self.call.channel.on_event("ChannelHangupRequest",
+ self.on_hangup)
+ self.playback_finished = self.call.client.on_event(
+ 'PlaybackFinished', self.on_playback_finished)
+ self.dtmf_event = self.call.channel.on_event('ChannelDtmfReceived',
+ self.on_dtmf)
  self.playback = self.call.channel.playWithId(
- playbackId=self.playback\_id, media="recording:{0}".format(
- self.call.vm\_path))
+ playbackId=self.playback_id, media="recording:{0}".format(
+ self.call.vm_path))
 
  def cleanup(self):
- self.playback\_finished.close()
+ self.playback_finished.close()
  if self.playback:
  self.playback.stop()
- self.dtmf\_event.close()
- self.hangup\_event.close()
+ self.dtmf_event.close()
+ self.hangup_event.close()
 
- def on\_hangup(self, channel, event):
- print "Accepted recording {0} on hangup".format(self.call.vm\_path)
+ def on_hangup(self, channel, event):
+ print "Accepted recording {0} on hangup".format(self.call.vm_path)
  self.cleanup()
- self.call.state\_machine.change\_state(Event.HANGUP)
+ self.call.state_machine.change_state(Event.HANGUP)
 
- def on\_playback\_finished(self, event):
- if self.playback\_id == event.get('playback').get('id'):
+ def on_playback_finished(self, event):
+ if self.playback_id == event.get('playback').get('id'):
  self.playback = None
 
- def on\_dtmf(self, channel, event):
+ def on_dtmf(self, channel, event):
  digit = event.get('digit')
  if digit == '#':
- print "Accepted recording {0} on DTMF #".format(self.call.vm\_path)
+ print "Accepted recording {0} on DTMF #".format(self.call.vm_path)
  self.cleanup()
- self.call.state\_machine.change\_state(Event.DTMF\_OCTOTHORPE)
+ self.call.state_machine.change_state(Event.DTMF_OCTOTHORPE)
  elif digit == '\*':
- print "Discarding stored recording {0} on DTMF \*".format(self.call.vm\_path)
+ print "Discarding stored recording {0} on DTMF \*".format(self.call.vm_path)
  self.cleanup()
  self.call.client.recordings.deleteStored(
- recordingName=self.call.vm\_path)
- self.call.state\_machine.change\_state(Event.DTMF\_STAR)
+ recordingName=self.call.vm_path)
+ self.call.state_machine.change_state(Event.DTMF_STAR)
 
 ```
 
 
 
 
-```javascript title="reviewing\_state.js" linenums="1"
+```javascript title="reviewing_state.js" linenums="1"
 jstruevar Event = require('./event');
 
 function ReviewingState(call) {
- this.state\_name = "reviewing";
+ this.state_name = "reviewing";
 
  this.enter = function() {
  var playback = call.client.Playback();
- var url = "recording:" + call.vm\_path;
+ var url = "recording:" + call.vm_path;
  console.log("Entering reviewing state");
- call.channel.on("ChannelHangupRequest", on\_hangup);
- call.channel.on("ChannelDtmfReceived", on\_dtmf);
- call.client.on("PlaybackFinished", on\_playback\_finished);
+ call.channel.on("ChannelHangupRequest", on_hangup);
+ call.channel.on("ChannelDtmfReceived", on_dtmf);
+ call.client.on("PlaybackFinished", on_playback_finished);
  call.channel.play({media: url}, playback);
 
  function cleanup() {
- call.channel.removeListener('ChannelHangupRequest', on\_hangup);
- call.channel.removeListener('ChannelDtmfReceived', on\_dtmf);
- call.client.removeListener('PlaybackFinished', on\_playback\_finished);
+ call.channel.removeListener('ChannelHangupRequest', on_hangup);
+ call.channel.removeListener('ChannelDtmfReceived', on_dtmf);
+ call.client.removeListener('PlaybackFinished', on_playback_finished);
  if (playback) {
  playback.stop();
  }
  }
 
- function on\_hangup(event, channel) {
- console.log("Accepted recording %s on hangup", call.vm\_path);
+ function on_hangup(event, channel) {
+ console.log("Accepted recording %s on hangup", call.vm_path);
  playback = null;
  cleanup();
- call.state\_machine.change\_state(Event.HANGUP);
+ call.state_machine.change_state(Event.HANGUP);
  }
 
- function on\_playback\_finished(event) {
+ function on_playback_finished(event) {
  if (playback && (playback.id === event.playback.id)) {
  playback = null;
  }
  }
 
- function on\_dtmf(event, channel) {
+ function on_dtmf(event, channel) {
  switch (event.digit) {
  case '#':
- console.log("Accepted recording", call.vm\_path);
+ console.log("Accepted recording", call.vm_path);
  cleanup();
- call.state\_machine.change\_state(Event.DTMF\_OCTOTHORPE);
+ call.state_machine.change_state(Event.DTMF_OCTOTHORPE);
  break;
  case '\*':
- console.log("Canceling recording", call.vm\_path);
+ console.log("Canceling recording", call.vm_path);
  cleanup();
- call.client.recordings.deleteStored({recordingName: call.vm\_path});
- call.state\_machine.change\_state(Event.DTMF\_STAR);
+ call.client.recordings.deleteStored({recordingName: call.vm_path});
+ call.state_machine.change_state(Event.DTMF_STAR);
  break;
  }
  }
@@ -758,28 +758,28 @@ vm-call.py
 ```
 
 pytrue#At the top of the file
-from reviewing\_state import ReviewingState
+from reviewing_state import ReviewingState
 
-#In VoiceMailCall::setup\_state\_machine
- def setup\_state\_machine(self):
- hungup\_state = HungUpState(self)
- recording\_state = RecordingState(self)
- ending\_state = EndingState(self)
- reviewing\_state = ReviewingState(self)
- self.state\_machine = StateMachine()
- self.state\_machine.add\_transition(recording\_state, Event.DTMF\_OCTOTHORPE,
- reviewing\_state) 
- self.state\_machine.add\_transition(recording\_state, Event.HANGUP,
- hungup\_state)
- self.state\_machine.add\_transition(recording\_state, Event.DTMF\_STAR,
- recording\_state) 
- self.state\_machine.add\_transition(reviewing\_state, Event.HANGUP,
- hungup\_state)
- self.state\_machine.add\_transition(reviewing\_state, Event.DTMF\_OCTOTHORPE,
- ending\_state)
- self.state\_machine.add\_transition(reviewing\_state, Event.DTMF\_STAR,
- recording\_state)
- self.state\_machine.start(recording\_state)
+#In VoiceMailCall::setup_state_machine
+ def setup_state_machine(self):
+ hungup_state = HungUpState(self)
+ recording_state = RecordingState(self)
+ ending_state = EndingState(self)
+ reviewing_state = ReviewingState(self)
+ self.state_machine = StateMachine()
+ self.state_machine.add_transition(recording_state, Event.DTMF_OCTOTHORPE,
+ reviewing_state) 
+ self.state_machine.add_transition(recording_state, Event.HANGUP,
+ hungup_state)
+ self.state_machine.add_transition(recording_state, Event.DTMF_STAR,
+ recording_state) 
+ self.state_machine.add_transition(reviewing_state, Event.HANGUP,
+ hungup_state)
+ self.state_machine.add_transition(reviewing_state, Event.DTMF_OCTOTHORPE,
+ ending_state)
+ self.state_machine.add_transition(reviewing_state, Event.DTMF_STAR,
+ recording_state)
+ self.state_machine.start(recording_state)
 
 ```
 
@@ -788,23 +788,23 @@ from reviewing\_state import ReviewingState
 
 ```javascript title="vm-call.js" linenums="1"
 jstrue// At the top of the file
-var ReviewingState = require('./reviewing\_state');
+var ReviewingState = require('./reviewing_state');
 
-// In VoicemailCall::setup\_state\_machine
-this.setup\_state\_machine = function() {
- var hungup\_state = new HungUpState(this);
- var recording\_state = new RecordingState(this);
- var ending\_state = new EndingState(this);
- var reviewing\_state = new ReviewingState(this);
+// In VoicemailCall::setup_state_machine
+this.setup_state_machine = function() {
+ var hungup_state = new HungUpState(this);
+ var recording_state = new RecordingState(this);
+ var ending_state = new EndingState(this);
+ var reviewing_state = new ReviewingState(this);
 
- this.state\_machine = new StateMachine();
- this.state\_machine.add\_transition(recording\_state, Event.DTMF\_OCTOTHORPE, reviewing\_state);
- this.state\_machine.add\_transition(recording\_state, Event.HANGUP, hungup\_state);
- this.state\_machine.add\_transition(recording\_state, Event.DTMF\_STAR, recording\_state);
- this.state\_machine.add\_transition(reviewing\_state, Event.DTMF\_OCTOTHORPE, ending\_state);
- this.state\_machine.add\_transition(reviewing\_state, Event.HANGUP, hungup\_state);
- this.state\_machine.add\_transition(reviewing\_state, Event.DTMF\_STAR, recording\_state);
- this.state\_machine.start(recording\_state);
+ this.state_machine = new StateMachine();
+ this.state_machine.add_transition(recording_state, Event.DTMF_OCTOTHORPE, reviewing_state);
+ this.state_machine.add_transition(recording_state, Event.HANGUP, hungup_state);
+ this.state_machine.add_transition(recording_state, Event.DTMF_STAR, recording_state);
+ this.state_machine.add_transition(reviewing_state, Event.DTMF_OCTOTHORPE, ending_state);
+ this.state_machine.add_transition(reviewing_state, Event.HANGUP, hungup_state);
+ this.state_machine.add_transition(reviewing_state, Event.DTMF_STAR, recording_state);
+ this.state_machine.start(recording_state);
 }
 
 ```

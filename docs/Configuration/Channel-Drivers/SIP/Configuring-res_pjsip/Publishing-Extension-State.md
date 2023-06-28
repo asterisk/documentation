@@ -42,7 +42,7 @@ The **@context** option specifies a filter for context. This is a regular expres
 
 The **@exten** option specifies a filter for extensions. This is a regular expression and is optional.
 
-An additional option which is required on the outbound publish is the **multi\_user**option. This enables support in the outbound publish module for publishing to different users. This is needed for extension state publishing so the specific extension can be published to. Without this option enabled all PUBLISH requests would go to the same user.
+An additional option which is required on the outbound publish is the **multi_user**option. This enables support in the outbound publish module for publishing to different users. This is needed for extension state publishing so the specific extension can be published to. Without this option enabled all PUBLISH requests would go to the same user.
 
 Example Configuration
 ---------------------
@@ -62,10 +62,10 @@ Example Configuration
 
 [test-esc]
 type=outbound-publish
-server\_uri=sip:172.16.0.100
-from\_uri=sip:172.16.0.100
+server_uri=sip:172.16.0.100
+from_uri=sip:172.16.0.100
 event=dialog
-multi\_user=yes
+multi_user=yes
 @body=application/dialog-info+xml
 @context=^users
 @exten=^1000
@@ -88,10 +88,10 @@ multi\_user=yes
 
 [test-esc]
 type=outbound-publish
-server\_uri=sip:172.16.0.100
-from\_uri=sip:172.16.0.100
+server_uri=sip:172.16.0.100
+from_uri=sip:172.16.0.100
 event=dialog
-multi\_user=yes
+multi_user=yes
 @body=application/dialog-info+xml
 @context=^users
 
@@ -146,6 +146,6 @@ Despite being added after startup, this hint will still be given to the extensio
 The Other Entity
 ----------------
 
-Throughout this page, I've mentioned another entity; but what can you use? Kamailio! Kamailio has event state compositor support available using the [presence module](http://kamailio.org/docs/modules/4.4.x/modules/presence.html). It can be configured to accept SUBSCRIBE and PUBLISH requests, persist information in a database, and to then send NOTIFY messages to each subscribed device. The module exports the handle\_publish and handle\_subscribe functions for handling each.  
+Throughout this page, I've mentioned another entity; but what can you use? Kamailio! Kamailio has event state compositor support available using the [presence module](http://kamailio.org/docs/modules/4.4.x/modules/presence.html). It can be configured to accept SUBSCRIBE and PUBLISH requests, persist information in a database, and to then send NOTIFY messages to each subscribed device. The module exports the handle_publish and handle_subscribe functions for handling each.  
 
 

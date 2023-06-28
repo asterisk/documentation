@@ -131,13 +131,13 @@ Consider the dialplan below.
 
 exten => 1234,1,Verbose("Valid Number")
 exten => 4567,1,Verbose("Another Valid Number")
-exten => \_.!,1,Verbose("Catch all for invalid numbers")
-exten => \_.!,n,Verbose("Surprise - executed for all numbers!")
+exten => _.!,1,Verbose("Catch all for invalid numbers")
+exten => _.!,n,Verbose("Surprise - executed for all numbers!")
 
 ```
 
 
-It may not be immediately intuitive, but the "\_.!" extension with the "n" priority will be executed after any of the preceding lines are executed.
+It may not be immediately intuitive, but the "_.!" extension with the "n" priority will be executed after any of the preceding lines are executed.
 
 Application calls
 -----------------

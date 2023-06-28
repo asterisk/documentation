@@ -276,7 +276,7 @@ By default FreeRADIUS server will log all accounting requests into /usr/local/va
 Asterisk now generates Call Detail Records. See /include/asterisk/cdr.h for all the fields which are recorded. By default, records in comma separated values will be created in /var/log/asterisk/cdr-csv. 
 
 
-The configuration file for cdr\_radius.so module is /etc/asterisk/cdr.conf 
+The configuration file for cdr_radius.so module is /etc/asterisk/cdr.conf 
 
 
 This is where you can set CDR related parameters as well as the path to the radiusclient-ng library configuration file.

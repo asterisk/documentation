@@ -29,14 +29,14 @@ $ curl -X GET -u asterisk:SECRET https://localhost:8088/ari/asterisk/info
 {
  "status":
  {
- "startup\_time": "2015-07-16T21:01:37.273-0500",
- "last\_reload\_time": "2015-07-16T21:01:37.273-0500"
+ "startup_time": "2015-07-16T21:01:37.273-0500",
+ "last_reload_time": "2015-07-16T21:01:37.273-0500"
  },
  "build":
  {
  "user": "mjordan",
- "options": "AST\_DEVMODE, LOADABLE\_MODULES, OPTIONAL\_API, TEST\_FRAMEWORK",
- "machine": "x86\_64",
+ "options": "AST_DEVMODE, LOADABLE_MODULES, OPTIONAL_API, TEST_FRAMEWORK",
+ "machine": "x86_64",
  "os": "Linux",
  "kernel": "3.13.0-24-generic",
  "date": "2015-07-11 15:51:57 UTC"
@@ -44,11 +44,11 @@ $ curl -X GET -u asterisk:SECRET https://localhost:8088/ari/asterisk/info
  "system":
  {
  "version": "GIT-master-0b2cbeaM",
- "entity\_id": "ec:f4:bb:67:a6:d0"
+ "entity_id": "ec:f4:bb:67:a6:d0"
  },
  "config":
  {
- "default\_language": "en",
+ "default_language": "en",
  "name":"mjordan-laptop",
  "setid":
  {

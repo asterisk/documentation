@@ -72,7 +72,7 @@ Removing A C API
 6. Remove any logic in the respective Makefile for the API implementation if it exists.
 7. Remove any logic from configure.ac
 8. Remove any mention from makeopts.in
-9. Remove any mention from build\_tools/menuselect-deps.in
+9. Remove any mention from build_tools/menuselect-deps.in
 10. Remove any dependency from the contrib/scripts/install-prereq script
 11. Add an UPGRADE.txt document stating that the API has been removed.
 12. Write a commit message describing the change and referencing the Asterisk issue you created as part of step 1.

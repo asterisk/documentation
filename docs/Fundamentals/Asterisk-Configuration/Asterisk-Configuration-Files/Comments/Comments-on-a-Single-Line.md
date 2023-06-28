@@ -19,7 +19,7 @@ Single-line comments begin with the semicolon (;) character. The Asterisk config
 [section-name]
 setting=true
 
-[another\_section]
+[another_section]
 setting=false ; this is a comment
 ; this entire line is a comment
 ;awesome=true

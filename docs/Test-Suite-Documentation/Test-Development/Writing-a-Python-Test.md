@@ -21,7 +21,7 @@ Overview
 
 While the Asterisk Test Suite can execute a test written in any scripting language, [Python](http://www.python.org) has become the de facto language of choice. The Asterisk Test Suite contains a number of modules written in Python to help with writing tests; as such, we strongly encourage people to make use of the existing infrastructure - and, of course - add to it as necessary!
 
-The following walkthrough produces a test similar to the *tests/skeleton\_test*, which is included in the Asterisk Test Suite and provides a template for a Python test. You can use that test as a starting point for tests that you write.
+The following walkthrough produces a test similar to the *tests/skeleton_test*, which is included in the Asterisk Test Suite and provides a template for a Python test. You can use that test as a starting point for tests that you write.
 
 Developing a test can be broken down into the following steps:
 
@@ -189,9 +189,9 @@ import logging
 from twisted.internet import reactor
 
 sys.path.append("lib/python")
-from asterisk.test\_case import TestCase
+from asterisk.test_case import TestCase
 
-LOGGER = logging.getLogger(\_\_name\_\_)
+LOGGER = logging.getLogger(__name__)
 
 def main():
  """
@@ -210,7 +210,7 @@ def main():
 
  return 0
 
-if \_\_name\_\_ == "\_\_main\_\_":
+if __name__ == "__main__":
  sys.exit(main() or 0)
 
 
@@ -228,7 +228,7 @@ Moving on!
 Defining the Test Class
 -----------------------
 
-We'll need a test the inherits from TestCase. For now, we'll assume that the basic class provides our start\_asterisk and stop\_asterisk methods and that we don't need to override them (which is a safe assumption in most cases). We'll fill in some of these methods a bit more later.
+We'll need a test the inherits from TestCase. For now, we'll assume that the basic class provides our start_asterisk and stop_asterisk methods and that we don't need to override them (which is a safe assumption in most cases). We'll fill in some of these methods a bit more later.
 
 
 
@@ -247,24 +247,24 @@ truepythontrueclass SampleTest(TestCase):
  heavy lifting.
  """
 
- def \_\_init\_\_(self):
- super(SampleTest, self).\_\_init\_\_()
- """ You should always call the base class implementation of \_\_init\_\_ prior
+ def __init__(self):
+ super(SampleTest, self).__init__()
+ """ You should always call the base class implementation of __init__ prior
  to initializing your test conditions here. Some useful variables the TestCase
  class provides:
  - passed - set to False initially. Set to True if your test passes.
  - ast - a list of Asterisk instance
  - ami - a list of StarPY manager (AMI) instances, corresponding to each Asterisk instance
- - reactor\_timeout - maximum time a test can execute before it is considered to fail. This
+ - reactor_timeout - maximum time a test can execute before it is considered to fail. This
  prevents tests from hanging and never finishing. You can reset this timer using a call
- to TestCase.reset\_timeout
+ to TestCase.reset_timeout
 
- In your initialization, you should usually set the reactor\_timeout if it should
- be something other than 30 (the default). You should also call create\_asterisk, which
+ In your initialization, you should usually set the reactor_timeout if it should
+ be something other than 30 (the default). You should also call create_asterisk, which
  will create and initialize the Asterisk instances. You can specify as a parameter the number
  of Asterisk instances to create.
  """
- self.create\_asterisk()
+ self.create_asterisk()
 
  def run(self):
  """
@@ -278,10 +278,10 @@ truepythontrueclass SampleTest(TestCase):
 
  # Create a connection over AMI to the created Asterisk instance. If you need to communicate with
  # all of the instances of Asterisk that were created, specify the number of AMI connections to make.
- # When the AMI connection succeeds, ami\_connect will be called.
- self.create\_ami\_factory()
+ # When the AMI connection succeeds, ami_connect will be called.
+ self.create_ami_factory()
 
- def ami\_connect(self, ami):
+ def ami_connect(self, ami):
  """
  This method is called by the StarPY manager class when AMI connects to Asterisk.
 
@@ -295,20 +295,20 @@ truepythontrueclass SampleTest(TestCase):
 
 At the end of this, we have the following:
 
-* A class that inherits from *TestCase*. In its constructor, it calls the base class constructor and creates an instance of Asterisk by calling the *TestCase.create\_asterisk()* method. The base class provides us a few attributes that are of particular use:
+* A class that inherits from *TestCase*. In its constructor, it calls the base class constructor and creates an instance of Asterisk by calling the *TestCase.create_asterisk()* method. The base class provides us a few attributes that are of particular use:
 	+ *passed* - a boolean variable that we can set to True or False
 	+ *ast* - a list of asterisk instances, that provide access to a running Asterisk application
 	+ *ami* - a list of AMI connections corresponding to each asterisk instance
-	+ *reactor\_timeout* - the amount of time (in seconds) that the twisted reactor will wait before it stops itself. This is used to prevent tests from hanging.
-	+ *TestCase* has a method we can call called *create\_asterisk()*, that, well, creates instances of Asterisk. Yay!
-	+ *TestCase* has another method we can call called *create\_ami\_factory()* that creates AMI connections to our previously created instances of Asterisk. We do this after the twisted reactor has started, so that Asterisk has a chance to start up.
+	+ *reactor_timeout* - the amount of time (in seconds) that the twisted reactor will wait before it stops itself. This is used to prevent tests from hanging.
+	+ *TestCase* has a method we can call called *create_asterisk()*, that, well, creates instances of Asterisk. Yay!
+	+ *TestCase* has another method we can call called *create_ami_factory()* that creates AMI connections to our previously created instances of Asterisk. We do this after the twisted reactor has started, so that Asterisk has a chance to start up.
 * An entry point for the twisted reactor called *run()*. This calls the base class's implementation of the method, then spawns an AMI connection. Note that in our *main* method, we start up the created Asterisk instances prior to starting the twisted reactor - so when *run()* is called by twisted, Asterisk should already be started and ready for an AMI connection.
-* A method, *ami\_connect*, that is called when an AMI connection succeeds. This same method is used for all AMI connections - so to tell which AMI connection you are receiving, we can check the *ami.id* property. Each AMI connection corresponds exactly to the instance of Asterisk in the *ast* list - so *ast[ami.id]* will reference the Asterisk instance associated with the *ami* object.
+* A method, *ami_connect*, that is called when an AMI connection succeeds. This same method is used for all AMI connections - so to tell which AMI connection you are receiving, we can check the *ami.id* property. Each AMI connection corresponds exactly to the instance of Asterisk in the *ast* list - so *ast[ami.id]* will reference the Asterisk instance associated with the *ami* object.
 
 Making the Test do something
 ----------------------------
 
-So, we have a test that will start up, spawn an instance of Asterisk, and connect to it over AMI. That's interesting, but doesn't really test anything. Based on our *extensions.conf*, we want to call the *s* extension in *default*, hopefully have monkeys possess our channel, and then check that the *UserEvent* fired off to determine if we passed. If we don't see the UserEvent, we should eventually fail. Lets start off by adding some code to *ami\_connect*.
+So, we have a test that will start up, spawn an instance of Asterisk, and connect to it over AMI. That's interesting, but doesn't really test anything. Based on our *extensions.conf*, we want to call the *s* extension in *default*, hopefully have monkeys possess our channel, and then check that the *UserEvent* fired off to determine if we passed. If we don't see the UserEvent, we should eventually fail. Lets start off by adding some code to *ami_connect*.
 
 
 
@@ -321,7 +321,7 @@ So, we have a test that will start up, spawn an instance of Asterisk, and connec
 
 ```
 
-truepythontruedef ami\_connect(self, ami):
+truepythontruedef ami_connect(self, ami):
  """
  This method is called by the StarPY manager class when AMI connects to Asterisk.
 
@@ -331,7 +331,7 @@ truepythontruedef ami\_connect(self, ami):
  LOGGER.info("Instructing monkeys to rise up and overthrow their masters")
  deferred = ami.originate(channel="Local/s@default",
  application="Echo")
- deferred.addErrback(self.handle\_originate\_failure)
+ deferred.addErrback(self.handle_originate_failure)
 
 
 ```
@@ -339,7 +339,7 @@ truepythontruedef ami\_connect(self, ami):
 
 What we've now instructed the test to do is, upon an AMI connection, originate a call to the *s* extension in context *default*, using a Local channel. starpy's *originate* method returns a deferred object, which lets us assign a callback handler in case of an error. We've used the TestCase class's *handleOriginateFailure* method for this, which will automagically fail our test for us if the originate fails.
 
-Now we need something to handle the UserEvent when monkeys inevitably enslave our phone system. Let's add that to our *ami\_connect* method as well.
+Now we need something to handle the UserEvent when monkeys inevitably enslave our phone system. Let's add that to our *ami_connect* method as well.
 
 
 
@@ -352,7 +352,7 @@ Now we need something to handle the UserEvent when monkeys inevitably enslave ou
 
 ```
 
-truepythontruedef ami\_connect(self, ami):
+truepythontruedef ami_connect(self, ami):
  """
  This method is called by the StarPY manager class when AMI connects to Asterisk.
 
@@ -360,14 +360,14 @@ truepythontruedef ami\_connect(self, ami):
  ami - The StarPY manager object that connected
  """
 
- ami.registerEvent('UserEvent', self.user\_event)
+ ami.registerEvent('UserEvent', self.user_event)
 
  LOGGER.info("Instructing monkeys to rise up and overthrow their masters")
  deferred = ami.originate(channel="Local/s@default",
  application="Echo")
- deferred.addErrback(self.handle\_originate\_failure)
+ deferred.addErrback(self.handle_originate_failure)
 
- def user\_event(self, ami, event):
+ def user_event(self, ami, event):
  """
  Handler for the AMI UserEvent
  Keyword Arguements:
@@ -382,7 +382,7 @@ truepythontruedef ami\_connect(self, ami):
  LOGGER.info("Monkeys detected; test passes!")
  else:
  LOGGER.error("No monkeys found :-(")
- self.stop\_reactor()
+ self.stop_reactor()
 
 
 ```
@@ -455,17 +455,17 @@ We can inspect the log files created by the Test Suite for more information. The
 
 ```
 
-[Feb 07 17:04:51] INFO[6991]: asterisk.TestCase:86 \_\_init\_\_: Executing tests/sample
-[Feb 07 17:04:51] INFO[6991]: asterisk.TestCase:135 create\_asterisk: Creating Asterisk instance 1
-[Feb 07 17:04:52] INFO[6991]: asterisk.TestCase:208 start\_asterisk: Starting Asterisk instance 1
-[Feb 07 17:04:52] INFO[6991]: asterisk.TestCase:159 create\_ami\_factory: Creating AMIFactory 1
+[Feb 07 17:04:51] INFO[6991]: asterisk.TestCase:86 __init__: Executing tests/sample
+[Feb 07 17:04:51] INFO[6991]: asterisk.TestCase:135 create_asterisk: Creating Asterisk instance 1
+[Feb 07 17:04:52] INFO[6991]: asterisk.TestCase:208 start_asterisk: Starting Asterisk instance 1
+[Feb 07 17:04:52] INFO[6991]: asterisk.TestCase:159 create_ami_factory: Creating AMIFactory 1
 [Feb 07 17:04:52] INFO[6991]: AMI:158 connectionMade: Connection Made
 [Feb 07 17:04:52] INFO[6991]: AMI:172 onComplete: Login Complete: {'message': 'Authentication accepted', 'response': 'Success', 'actionid': 'mjordan-laptop-22006600-1'}
-[Feb 07 17:04:52] INFO[6991]: asterisk.TestCase:297 \_\_ami\_connect: AMI Connect instance 1
-[Feb 07 17:04:52] INFO[6991]: \_\_main\_\_:67 ami\_connect: Instructing monkeys to rise up and overthrow their masters
-[Feb 07 17:05:09] INFO[6991]: \_\_main\_\_:85 user\_event: Monkeys detected; test passes!
-[Feb 07 17:05:09] INFO[6991]: asterisk.TestCase:256 stop\_reactor: Stopping Reactor
-[Feb 07 17:05:09] INFO[6991]: asterisk.TestCase:223 stop\_asterisk: Stopping Asterisk instance 1
+[Feb 07 17:04:52] INFO[6991]: asterisk.TestCase:297 __ami_connect: AMI Connect instance 1
+[Feb 07 17:04:52] INFO[6991]: __main__:67 ami_connect: Instructing monkeys to rise up and overthrow their masters
+[Feb 07 17:05:09] INFO[6991]: __main__:85 user_event: Monkeys detected; test passes!
+[Feb 07 17:05:09] INFO[6991]: asterisk.TestCase:256 stop_reactor: Stopping Reactor
+[Feb 07 17:05:09] INFO[6991]: asterisk.TestCase:223 stop_asterisk: Stopping Asterisk instance 1
 
 
 ```
@@ -558,9 +558,9 @@ import logging
 from twisted.internet import reactor
 
 sys.path.append("lib/python")
-from asterisk.test\_case import TestCase
+from asterisk.test_case import TestCase
 
-LOGGER = logging.getLogger(\_\_name\_\_)
+LOGGER = logging.getLogger(__name__)
 
 class SampleTest(TestCase):
  """
@@ -568,24 +568,24 @@ class SampleTest(TestCase):
  heavy lifting.
  """
 
- def \_\_init\_\_(self):
- super(SampleTest, self).\_\_init\_\_()
- """ You should always call the base class implementation of \_\_init\_\_ prior
+ def __init__(self):
+ super(SampleTest, self).__init__()
+ """ You should always call the base class implementation of __init__ prior
  to initializing your test conditions here. Some useful variables the TestCase
  class provides:
  - passed - set to False initially. Set to True if your test passes.
  - ast - a list of Asterisk instance
  - ami - a list of StarPY manager (AMI) instances, corresponding to each Asterisk instance
- - reactor\_timeout - maximum time a test can execute before it is considered to fail. This
+ - reactor_timeout - maximum time a test can execute before it is considered to fail. This
  prevents tests from hanging and never finishing. You can reset this timer using a call
- to TestCase.reset\_timeout
+ to TestCase.reset_timeout
 
- In your initialization, you should usually set the reactor\_timeout if it should
- be something other than 30 (the default). You should also call create\_asterisk, which
+ In your initialization, you should usually set the reactor_timeout if it should
+ be something other than 30 (the default). You should also call create_asterisk, which
  will create and initialize the Asterisk instances. You can specify as a parameter the number
  of Asterisk instances to create.
  """
- self.create\_asterisk()
+ self.create_asterisk()
 
  def run(self):
  """
@@ -598,10 +598,10 @@ class SampleTest(TestCase):
 
  # Create a connection over AMI to the created Asterisk instance. If you need to communicate with
  # all of the instances of Asterisk that were created, specify the number of AMI connections to make.
- # When the AMI connection succeeds, ami\_connect will be called.
- self.create\_ami\_factory()
+ # When the AMI connection succeeds, ami_connect will be called.
+ self.create_ami_factory()
 
- def ami\_connect(self, ami):
+ def ami_connect(self, ami):
  """
  This method is called by the StarPY manager class when AMI connects to Asterisk.
 
@@ -609,14 +609,14 @@ class SampleTest(TestCase):
  ami - The StarPY manager object that connected
  """
 
- ami.registerEvent('UserEvent', self.user\_event)
+ ami.registerEvent('UserEvent', self.user_event)
 
  LOGGER.info("Instructing monkeys to rise up and overthrow their masters")
  deferred = ami.originate(channel="Local/s@default",
  application="Echo")
- deferred.addErrback(self.handle\_originate\_failure)
+ deferred.addErrback(self.handle_originate_failure)
 
- def user\_event(self, ami, event):
+ def user_event(self, ami, event):
  """
  Handler for the AMI UserEvent
  Keyword Arguements:
@@ -631,7 +631,7 @@ class SampleTest(TestCase):
  LOGGER.info("Monkeys detected; test passes!")
  else:
  LOGGER.error("No monkeys found :-(")
- self.stop\_reactor()
+ self.stop_reactor()
 
 
 def main():
@@ -651,7 +651,7 @@ def main():
 
  return 0
 
-if \_\_name\_\_ == "\_\_main\_\_":
+if __name__ == "__main__":
  sys.exit(main() or 0)
 
 

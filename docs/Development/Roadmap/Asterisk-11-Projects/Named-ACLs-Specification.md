@@ -30,7 +30,7 @@ Actors
 
 
 * Named ACL Subsystem - the ACL subsystem that owns the definition of the named ACLs. Currently, this is acl.c.
-* Consumers - subsystems that use named ACLs to make internal decisions, e.g., chan\_sip.
+* Consumers - subsystems that use named ACLs to make internal decisions, e.g., chan_sip.
 
 
 Note that the configuration information for these actors could come from a variety of sources, such as .conf files, RealTime backends, etc.
@@ -287,12 +287,12 @@ ACL Consumer Usage
 ------------------
 
 
-### ast\_acl structure
+### ast_acl structure
 
 
-The concept of an ast\_acl should replace the usage of ast\_ha structs at the consumer level.  
+The concept of an ast_acl should replace the usage of ast_ha structs at the consumer level.  
 
-The ast\_acl struct is similar to the current ast\_ha struct in that it is a linked list of rules. Instead of each node being a single rule though, each node contains a list of rules. The whole thing could be written as an index.  
+The ast_acl struct is similar to the current ast_ha struct in that it is a linked list of rules. Instead of each node being a single rule though, each node contains a list of rules. The whole thing could be written as an index.  
 
 example:
 
@@ -314,8 +314,8 @@ example:
 ...
 
 
-When evaluating an ast\_acl structure, each individual ACL within the list will be evaluated separately against the provided address.  The application will return with AST\_SENSE\_PERMIT if and only if all of the applications of that individual ACLs return AST\_SENSE\_PERMIT. If any of the rules return AST\_SENSE\_DENY, the whole ACL will return AST\_SENSE\_DENY.
+When evaluating an ast_acl structure, each individual ACL within the list will be evaluated separately against the provided address.  The application will return with AST_SENSE_PERMIT if and only if all of the applications of that individual ACLs return AST_SENSE_PERMIT. If any of the rules return AST_SENSE_DENY, the whole ACL will return AST_SENSE_DENY.
 
 
-This approach is useful because it makes updating ACL containers easy.  If we want to update a whole container, we can simply iterate through the named elements of the ast\_acl and ast\_free\_ha the head of each list and attach a fresh duplicate retrieved from the named ACL subsystem.
+This approach is useful because it makes updating ACL containers easy.  If we want to update a whole container, we can simply iterate through the named elements of the ast_acl and ast_free_ha the head of each list and attach a fresh duplicate retrieved from the named ACL subsystem.
 

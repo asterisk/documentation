@@ -62,7 +62,7 @@ Some tests that were introduced in versions prior to the release of Asterisk 15 
 Testsuite: New In Asterisk 15
 -----------------------------
 
-The tests added in Asterisk 15 are all under **tests/channels/pjsip/sdp\_offer\_answer/incoming/nominal/multiple-media-stream**.
+The tests added in Asterisk 15 are all under **tests/channels/pjsip/sdp_offer_answer/incoming/nominal/multiple-media-stream**.
 
 * audio-video
 	+ bundled
@@ -87,7 +87,7 @@ Unit Tests
 
 A comprehensive list of unit tests that are relevant to streams.
 
-* test\_core\_format.c
+* test_core_format.c
 	+ test creation of a format
 	+ test creation of a format with attributes
 	+ test retrieval of format attributes
@@ -103,13 +103,13 @@ A comprehensive list of unit tests that are relevant to streams.
 	+ test that attribute retrieval on a format without an interface fails
 	+ test that sdp parsing on format without an interface fails
 	+ test that sdp parsing and generation on format with an interface succeeds
-* test\_format\_cache.c
+* test_format_cache.c
 	+ test that adding a cached format succeeds
 	+ test that adding acached format multiple times succeeds
 	+ test that adding a NULL or empty format to the cache does not succeed
 	+ test that getting of a cached format succeeds
 	+ test that getting of a non-existant cached format does not succeed
-* test\_format\_cap.c
+* test_format_cap.c
 	+ test that allocation of a format capabilities structure succeeds
 	+ test that adding a single format to a format capabilities structure succeeds
 	+ test that adding multiple formats to a format capabilities structure succeeds
@@ -129,7 +129,7 @@ A comprehensive list of unit tests that are relevant to streams.
 	+ test that checking if there are compatible formats between two capabilities structures succeeds
 	+ test that obtaining the names from a format capabilities structure produces the expected output
 	+ test that we can get the best format type out of a capabilities structure
-* test\_jitterbuf.c
+* test_jitterbuf.c
 	+ tests the nominal case of putting audio data into a jitter buffer, retrieving the frames, and querying for the next frame
 	+ tests the nominal case of putting control frames into a jitter buffer, retrieving the frames, and querying for the next frame
 	+ every 5th frame sent to a jitter buffer is reversed with the previous frame, the expected result is to have a jitter buffer with frames in order, while a total of 10 frames should be recorded as having been received out of order (voice & control frames)
@@ -140,7 +140,7 @@ A comprehensive list of unit tests that are relevant to streams.
 	+ tests overfilling a jitterbuffer with control frames
 	+ tests sending voice frames that force a resynch
 	+ tests sending control frames that force a resynch
-* test\_stream.c
+* test_stream.c
 	+ test that creating a stream results in a stream with the expected values
 	+ test that creating a stream with no name works
 	+ test that changing the type of a stream works
@@ -182,13 +182,13 @@ While we do have decent test coverage, there's always room for improvements! Thi
 * video
 	+ accept inbound offer with multiple video streams then hold a certain number of video streams
 	+ accept inbound offer with multiple video streams then add an audio stream
-	+ accept inbound offer with multiple video streams, but only allow the maximum allowed number (max\_video\_streams)
+	+ accept inbound offer with multiple video streams, but only allow the maximum allowed number (max_video_streams)
 	+ offer a set of codecs with multuple video codecs and get them back in priority order
 	+ test holding a video stream with a re-invite as well as unholding
 * audio
 	+ accept inbound offer with multiple audio streams then hold a certain number of audio streams
 	+ accept inbound offer with multiple audio streams, then add a video stream
-	+ accept inbound offer with multiple audio streams, but only allow the maximum allowed number (max\_audio\_streams)
+	+ accept inbound offer with multiple audio streams, but only allow the maximum allowed number (max_audio_streams)
 * outbound
 	+ one instance of Asterisk originates an outgoing call with audio and video to SIPp with audio and video, which should succeed, and each side should recieve the other's audio and video steam
 	+ one instance of Asterisk originates an outgoing call with audio and video to SIPp with audio only, which should succeed, but SIPp will receive both of the streams from Asterisk while Asterisk receives only the audio stream from SIPp
@@ -217,7 +217,7 @@ The above scenarios are more general. If we get into more specific scenarios (li
 
 These scenarios provide a thorough testing of stream topologies and some unique interactions with different setups. As for unit tests, here are some more that could be added to the current list.
 
-* test\_stream.c
+* test_stream.c
 
 There is a chance that some cases won't be caught in unit tests due to timing since the environment will be under ideal circumstances.
 
@@ -247,7 +247,7 @@ This list's purpose is to narrow down the above improvements and order them base
 		
 			1. Add two users with audio and video. Use the packet sniffer to make sure audio and video are being sent and received by both users.
 			2. Add a user with audio and video. Add another user with audio only. Use the packet sniffer to make sure audio and video is being received by the audio only user, and the user with audio and video is only receiving audio.
-		2. Run through these common scenarios that resulted in finicky behavior, e.g. this message popping up on Asterisk CLI when things go wrong: “res\_pjsip\_sdp\_rtp.c: set\_caps: No joint capabilities for ‘video’ media stream between our configuration ((vp8)) and incoming sdp ((ulaw))”.  
+		2. Run through these common scenarios that resulted in finicky behavior, e.g. this message popping up on Asterisk CLI when things go wrong: “res_pjsip_sdp_rtp.c: set_caps: No joint capabilities for ‘video’ media stream between our configuration ((vp8)) and incoming sdp ((ulaw))”.  
 		
 			1. Add a user with audio only. Add a user with audio and video. The user with audio only will be waiting for video. The packet sniffer should be used here to figure out if anything is actually being sent. Adding another user with audio and video results in all users receiving video. If the user that joined second leaves, the user with audio only loses video again.
 			2. Add a user with audio and video. Add another user with audio and video. Add a third user with audio only. Then remove the first user that joined. The user with audio only will lose video.

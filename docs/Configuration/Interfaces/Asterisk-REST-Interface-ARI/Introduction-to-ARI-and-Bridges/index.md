@@ -132,7 +132,7 @@ Once we've made our connection, our first task is to look for an existing holdin
 
 truepy10# find or create a holding bridge
 bridges = [candidate for candidate in client.bridges.list() if
- candidate.json['bridge\_type'] == 'holding']
+ candidate.json['bridge_type'] == 'holding']
 if bridges:
  bridge = bridges[0]
  print "Using bridge %s" % bridge.id
@@ -158,8 +158,8 @@ Our next step involves adding channels that enter our Stasis application to the 
 
 ```
 
-truepy36client.on\_channel\_event('StasisStart', stasis\_start\_cb)
-client.on\_channel\_event('StasisEnd', stasis\_end\_cb)
+truepy36client.on_channel_event('StasisStart', stasis_start_cb)
+client.on_channel_event('StasisEnd', stasis_end_cb)
 
 ```
 
@@ -177,17 +177,17 @@ We need two handler functions - `stasis_start_cb` for the `StasisStart` event an
 
 ```
 
-truepy20def stasis\_start\_cb(channel\_obj, ev):
+truepy20def stasis_start_cb(channel_obj, ev):
  """Handler for StasisStart event"""
 
- channel = channel\_obj.get('channel')
+ channel = channel_obj.get('channel')
  print "Channel %s just entered our application, adding it to bridge %s" % (
  channel.json.get('name'), bridge.id)
  channel.answer()
  bridge.addChannel(channel=channel.id)
  bridge.startMoh()
 
-def stasis\_end\_cb(channel, ev):
+def stasis_end_cb(channel, ev):
  """Handler for StasisEnd event"""
 
  print "Channel %s just left our application" % channel.json.get('name')
@@ -239,7 +239,7 @@ client = ari.connect('http://localhost:8088', 'asterisk', 'asterisk')
 
 # find or create a holding bridge
 bridges = [candidate for candidate in client.bridges.list() if
- candidate.json['bridge\_type'] == 'holding']
+ candidate.json['bridge_type'] == 'holding']
 if bridges:
  bridge = bridges[0]
  print "Using bridge %s" % bridge.id
@@ -247,10 +247,10 @@ else:
  bridge = client.bridges.create(type='holding')
  print "Created bridge %s" % bridge.id
 
-def stasis\_start\_cb(channel\_obj, ev):
+def stasis_start_cb(channel_obj, ev):
  """Handler for StasisStart event"""
 
- channel = channel\_obj.get('channel')
+ channel = channel_obj.get('channel')
  print "Channel %s just entered our application, adding it to bridge %s" % (
  channel.json.get('name'), bridge.id)
 
@@ -258,13 +258,13 @@ def stasis\_start\_cb(channel\_obj, ev):
  bridge.addChannel(channel=channel.id)
  bridge.startMoh()
 
-def stasis\_end\_cb(channel, ev):
+def stasis_end_cb(channel, ev):
  """Handler for StasisEnd event"""
 
  print "Channel %s just left our application" % channel.json.get('name')
 
-client.on\_channel\_event('StasisStart', stasis\_start\_cb)
-client.on\_channel\_event('StasisEnd', stasis\_end\_cb)
+client.on_channel_event('StasisStart', stasis_start_cb)
+client.on_channel_event('StasisEnd', stasis_end_cb)
 
 client.run(apps='bridge-hold')
 
@@ -369,7 +369,7 @@ client.bridges.list(function(err, bridges) {
  throw err;
  }
  bridge = bridges.filter(function(candidate) {
- return candidate.bridge\_type === 'holding';
+ return candidate.bridge_type === 'holding';
  })[0];
  if (bridge) {
  console.log(util.format('Using bridge %s', bridge.id));
@@ -511,7 +511,7 @@ function clientLoaded (err, client) {
  }
 
  bridge = bridges.filter(function(candidate) {
- return candidate.bridge\_type === 'holding';
+ return candidate.bridge_type === 'holding';
  })[0];
 
  if (bridge) {

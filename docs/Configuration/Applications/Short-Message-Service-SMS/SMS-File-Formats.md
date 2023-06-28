@@ -21,7 +21,7 @@ The user data (ud) field is treated as being UTF-8 encoded unless the DCS is spe
 * pid - One byte decimal protocol ID See GSM specs for more details Normally 0 or absent
 * dcs - One byte decimal data coding scheme If omitted, a sensible default is used (see below) See GSM specs for more details
 * mr - One byte decimal message reference Present on mobile originated messages, added by default if absent
-* srr - 0 or 1 for status report request Does not work in UK yet, not implemented in app\_sms yet
+* srr - 0 or 1 for status report request Does not work in UK yet, not implemented in app_sms yet
 * rp - 0 or 1 return path See GSM specs for details
 * vp - Validity period in seconds Does not work in UK yet
 * udh - Hex string of user data header prepended to the SMS contents, excluding initial length byte. Consistent with ud, this is specified as udh# rather than udh= If blank, this means that the udhi flag will be set but any user data header must be in the ud field
@@ -40,5 +40,5 @@ ud can also be specified as ud# followed by hex (2 hex digits per byte) containi
 ud can also be specified as ud## followed by hex (4 hex digits per byte) containing UCS-2 characters. 
 
 
-When written by app\_sms (e.g. incoming messages), the file is written with ud= if it can be (no control characters). If it cannot, the a comment line ;ud= is used to show the user data for human readability and ud# or ud## is used.
+When written by app_sms (e.g. incoming messages), the file is written with ud= if it can be (no control characters). If it cannot, the a comment line ;ud= is used to show the user data for human readability and ud# or ud## is used.
 

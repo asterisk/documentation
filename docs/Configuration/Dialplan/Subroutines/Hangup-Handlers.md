@@ -46,7 +46,7 @@ Dialplan Applications and Functions
 
 All manipulation of a channel's hangup handlers are done using the [CHANNEL](/Asterisk-11-Function_CHANNEL) function. All values manipulated for hangup handlers are write-only.
 
-### hangup\_handler\_push
+### hangup_handler_push
 
 Used to push a hangup handler onto a channel.
 
@@ -61,13 +61,13 @@ Used to push a hangup handler onto a channel.
 
 ```
 
-same => n,Set(CHANNEL(hangup\_handler\_push)=[[context,]exten,]priority[(arg1[,...][,argN])]);
+same => n,Set(CHANNEL(hangup_handler_push)=[[context,]exten,]priority[(arg1[,...][,argN])]);
 
 
 ```
 
 
-### hangup\_handler\_pop
+### hangup_handler_pop
 
 Used to pop a hangup handler off a channel. Optionally, a replacement hangup handler can be added to the channel.
 
@@ -82,13 +82,13 @@ Used to pop a hangup handler off a channel. Optionally, a replacement hangup han
 
 ```
 
-same => n,Set(CHANNEL(hangup\_handler\_pop)=[[[context,]exten,]priority[(arg1[,...][,argN])]]);
+same => n,Set(CHANNEL(hangup_handler_pop)=[[[context,]exten,]priority[(arg1[,...][,argN])]]);
 
 
 ```
 
 
-### hangup\_handler\_wipe
+### hangup_handler_wipe
 
 Remove all hangup handlers on the channel. Optionally, a new hangup handler can be pushed onto the channel.
 
@@ -103,7 +103,7 @@ Remove all hangup handlers on the channel. Optionally, a new hangup handler can 
 
 ```
 
-same => n,Set(CHANNEL(hangup\_handler\_wipe)=[[[context,]exten,]priority[(arg1[,...][,argN])]]);
+same => n,Set(CHANNEL(hangup_handler_wipe)=[[[context,]exten,]priority[(arg1[,...][,argN])]]);
 
 
 ```
@@ -127,9 +127,9 @@ In this example, three hangup handlers are added to a channel: hdlr3, hdlr2, and
 ```
 
 ; Some dialplan extension
-same => n,Set(CHANNEL(hangup\_handler\_push)=hdlr3,s,1(args));
-same => n,Set(CHANNEL(hangup\_handler\_push)=hdlr2,s,1(args));
-same => n,Set(CHANNEL(hangup\_handler\_push)=hdlr1,s,1(args));
+same => n,Set(CHANNEL(hangup_handler_push)=hdlr3,s,1(args));
+same => n,Set(CHANNEL(hangup_handler_push)=hdlr2,s,1(args));
+same => n,Set(CHANNEL(hangup_handler_push)=hdlr1,s,1(args));
 ; Continuing in some dialplan extension
 
 [hdlr1]
@@ -154,7 +154,7 @@ same => n,Return()
 
 ##### Removing and replacing hangup handlers
 
-In this example, three hangup handlers are added to a channel: hdlr3, hdlr2, and hdlr1. Using the [CHANNEL](/Asterisk-11-Function_CHANNEL) function's **hangup\_handler\_pop** value, hdlr1 is removed from the stack of hangup handlers. Then, using the **hangup\_handler\_pop** value again, hdlr2 is replaced with hdlr4. When the channel is hung up, hdlr4 will be executed, followed by hdlr3.
+In this example, three hangup handlers are added to a channel: hdlr3, hdlr2, and hdlr1. Using the [CHANNEL](/Asterisk-11-Function_CHANNEL) function's **hangup_handler_pop** value, hdlr1 is removed from the stack of hangup handlers. Then, using the **hangup_handler_pop** value again, hdlr2 is replaced with hdlr4. When the channel is hung up, hdlr4 will be executed, followed by hdlr3.
 
 
 
@@ -168,13 +168,13 @@ In this example, three hangup handlers are added to a channel: hdlr3, hdlr2, and
 ```
 
 ; Some dialplan extension
-same => n,Set(CHANNEL(hangup\_handler\_push)=hdlr3,s,1(args));
-same => n,Set(CHANNEL(hangup\_handler\_push)=hdlr2,s,1(args));
-same => n,Set(CHANNEL(hangup\_handler\_push)=hdlr1,s,1(args));
+same => n,Set(CHANNEL(hangup_handler_push)=hdlr3,s,1(args));
+same => n,Set(CHANNEL(hangup_handler_push)=hdlr2,s,1(args));
+same => n,Set(CHANNEL(hangup_handler_push)=hdlr1,s,1(args));
 ; Remove hdlr1
-same => n,Set(CHANNEL(hangup\_handler\_pop)=)
+same => n,Set(CHANNEL(hangup_handler_pop)=)
 ; Replace hdlr2 with hdlr4
-same => n,Set(CHANNEL(hangup\_handler\_pop)=hdlr4,s,1(args));
+same => n,Set(CHANNEL(hangup_handler_pop)=hdlr4,s,1(args));
 
 ; Continuing in some dialplan extension
 

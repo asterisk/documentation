@@ -27,8 +27,8 @@ To add a channel as a participant to a holding bridge, you can either not specif
 
 ```
 
-POST /bridges/{bridge\_id}/addChannel?channel=12345
-POST /bridges/{bridge\_id}/addChannel?channel=12345&role=participant
+POST /bridges/{bridge_id}/addChannel?channel=12345
+POST /bridges/{bridge_id}/addChannel?channel=12345&role=participant
 
 ```
 
@@ -49,7 +49,7 @@ To add a channel as an announcer to a holding bridge, you must specify a role of
 
 ```
 
-POST /bridges/{bridge\_id}/addChannel?channel=56789&role=announcer
+POST /bridges/{bridge_id}/addChannel?channel=56789&role=announcer
 
 ```
 
@@ -129,26 +129,26 @@ When a channel enters our Stasis application, we first look for an existing hold
 ```
 
 truepy11# find or create a holding bridge
-holding\_bridge = None
+holding_bridge = None
 
 # Announcer timer
-announcer\_timer = None
+announcer_timer = None
 
-def find\_or\_create\_bridge():
+def find_or_create_bridge():
  """Find our infinite wait bridge, or create a new one
 
  Returns:
  The one and only holding bridge
  """
 
- global holding\_bridge
- global announcer\_timer
+ global holding_bridge
+ global announcer_timer
 
- if holding\_bridge:
- return holding\_bridge
+ if holding_bridge:
+ return holding_bridge
 
  bridges = [candidate for candidate in client.bridges.list() if
- candidate.json['bridge\_type'] == 'holding']
+ candidate.json['bridge_type'] == 'holding']
  if bridges:
  bridge = bridges[0]
  print "Using bridge %s" % bridge.id
@@ -157,30 +157,30 @@ def find\_or\_create\_bridge():
  bridge.startMoh()
  print "Created bridge %s" % bridge.id
 
- def play\_announcement(bridge):
+ def play_announcement(bridge):
  """Play an announcement to the bridge"""
 
- def on\_playback\_finished(playback, ev):
+ def on_playback_finished(playback, ev):
  """Handler for the announcement's PlaybackFinished event"""
- global announcer\_timer
- global holding\_bridge
+ global announcer_timer
+ global holding_bridge
 
- holding\_bridge.startMoh()
+ holding_bridge.startMoh()
 
- announcer\_timer = threading.Timer(30, play\_announcement,
- [holding\_bridge])
- announcer\_timer.start()
+ announcer_timer = threading.Timer(30, play_announcement,
+ [holding_bridge])
+ announcer_timer.start()
 
  bridge.stopMoh()
  print "Letting the everyone know we care..."
- thanks\_playback = bridge.play(media='sound:thnk-u-for-patience')
- thanks\_playback.on\_event('PlaybackFinished', on\_playback\_finished)
+ thanks_playback = bridge.play(media='sound:thnk-u-for-patience')
+ thanks_playback.on_event('PlaybackFinished', on_playback_finished)
 
- holding\_bridge = bridge
- holding\_bridge.on\_event('ChannelLeftBridge', on\_channel\_left\_bridge)
+ holding_bridge = bridge
+ holding_bridge.on_event('ChannelLeftBridge', on_channel_left_bridge)
  # After 30 seconds, let everyone in the bridge know that we care
- announcer\_timer = threading.Timer(30, play\_announcement, [holding\_bridge])
- announcer\_timer.start()
+ announcer_timer = threading.Timer(30, play_announcement, [holding_bridge])
+ announcer_timer.start()
  return bridge
 
 ```
@@ -199,14 +199,14 @@ The function that does this work, `find_or_create_bridge`, is called from our `S
 
 ```
 
-truepy87def stasis\_start\_cb(channel\_obj, ev):
+truepy87def stasis_start_cb(channel_obj, ev):
  """Handler for StasisStart event"""
  
- bridge = find\_or\_create\_bridge()
+ bridge = find_or_create_bridge()
 
- channel = channel\_obj.get('channel')
+ channel = channel_obj.get('channel')
  print "Channel %s just entered our application, adding it to bridge %s" % (
- channel.json.get('name'), holding\_bridge.id)
+ channel.json.get('name'), holding_bridge.id)
  
  channel.answer()
  bridge.addChannel(channel=channel.id)
@@ -228,23 +228,23 @@ In the `find_or_create_bridge` function, we also subscribed for the `ChannelLeft
 
 ```
 
-truepy59 def on\_channel\_left\_bridge(bridge, ev):
+truepy59 def on_channel_left_bridge(bridge, ev):
  """Handler for ChannelLeftBridge event"""
- global holding\_bridge
- global announcer\_timer
+ global holding_bridge
+ global announcer_timer
 
  channel = ev.get('channel')
- channel\_count = len(bridge.json.get('channels'))
+ channel_count = len(bridge.json.get('channels'))
 
  print "Channel %s left bridge %s" % (channel.get('name'), bridge.id)
- if holding\_bridge.id == bridge.id and channel\_count == 0:
- if announcer\_timer:
- announcer\_timer.cancel()
- announcer\_timer = None
+ if holding_bridge.id == bridge.id and channel_count == 0:
+ if announcer_timer:
+ announcer_timer.cancel()
+ announcer_timer = None
  
  print "Destroying bridge %s" % bridge.id
- holding\_bridge.destroy()
- holding\_bridge = None
+ holding_bridge.destroy()
+ holding_bridge = None
 
 
 
@@ -277,26 +277,26 @@ logging.basicConfig(level=logging.ERROR)
 client = ari.connect('http://localhost:8088', 'asterisk', 'asterisk')
  
 # find or create a holding bridge
-holding\_bridge = None
+holding_bridge = None
 
 # Announcer timer
-announcer\_timer = None
+announcer_timer = None
 
-def find\_or\_create\_bridge():
+def find_or_create_bridge():
  """Find our infinite wait bridge, or create a new one
 
  Returns:
  The one and only holding bridge
  """
 
- global holding\_bridge
- global announcer\_timer
+ global holding_bridge
+ global announcer_timer
 
- if holding\_bridge:
- return holding\_bridge
+ if holding_bridge:
+ return holding_bridge
 
  bridges = [candidate for candidate in client.bridges.list() if
- candidate.json['bridge\_type'] == 'holding']
+ candidate.json['bridge_type'] == 'holding']
  if bridges:
  bridge = bridges[0]
  print "Using bridge %s" % bridge.id
@@ -305,72 +305,72 @@ def find\_or\_create\_bridge():
  bridge.startMoh()
  print "Created bridge %s" % bridge.id
 
- def play\_announcement(bridge):
+ def play_announcement(bridge):
  """Play an announcement to the bridge"""
 
- def on\_playback\_finished(playback, ev):
+ def on_playback_finished(playback, ev):
  """Handler for the announcement's PlaybackFinished event"""
- global announcer\_timer
- global holding\_bridge
+ global announcer_timer
+ global holding_bridge
 
- holding\_bridge.startMoh()
+ holding_bridge.startMoh()
 
- announcer\_timer = threading.Timer(30, play\_announcement,
- [holding\_bridge])
- announcer\_timer.start()
+ announcer_timer = threading.Timer(30, play_announcement,
+ [holding_bridge])
+ announcer_timer.start()
 
  bridge.stopMoh()
  print "Letting the everyone know we care..."
- thanks\_playback = bridge.play(media='sound:thnk-u-for-patience')
- thanks\_playback.on\_event('PlaybackFinished', on\_playback\_finished)
+ thanks_playback = bridge.play(media='sound:thnk-u-for-patience')
+ thanks_playback.on_event('PlaybackFinished', on_playback_finished)
 
- def on\_channel\_left\_bridge(bridge, ev):
+ def on_channel_left_bridge(bridge, ev):
  """Handler for ChannelLeftBridge event"""
- global holding\_bridge
- global announcer\_timer
+ global holding_bridge
+ global announcer_timer
 
  channel = ev.get('channel')
- channel\_count = len(bridge.json.get('channels'))
+ channel_count = len(bridge.json.get('channels'))
 
  print "Channel %s left bridge %s" % (channel.get('name'), bridge.id)
- if holding\_bridge.id == bridge.id and channel\_count == 0:
- if announcer\_timer:
- announcer\_timer.cancel()
- announcer\_timer = None
+ if holding_bridge.id == bridge.id and channel_count == 0:
+ if announcer_timer:
+ announcer_timer.cancel()
+ announcer_timer = None
  
  print "Destroying bridge %s" % bridge.id
- holding\_bridge.destroy()
- holding\_bridge = None
+ holding_bridge.destroy()
+ holding_bridge = None
 
- holding\_bridge = bridge
- holding\_bridge.on\_event('ChannelLeftBridge', on\_channel\_left\_bridge)
+ holding_bridge = bridge
+ holding_bridge.on_event('ChannelLeftBridge', on_channel_left_bridge)
 
  # After 30 seconds, let everyone in the bridge know that we care
- announcer\_timer = threading.Timer(30, play\_announcement, [holding\_bridge])
- announcer\_timer.start()
+ announcer_timer = threading.Timer(30, play_announcement, [holding_bridge])
+ announcer_timer.start()
 
  return bridge
 
 
-def stasis\_start\_cb(channel\_obj, ev):
+def stasis_start_cb(channel_obj, ev):
  """Handler for StasisStart event"""
  
- bridge = find\_or\_create\_bridge()
+ bridge = find_or_create_bridge()
 
- channel = channel\_obj.get('channel')
+ channel = channel_obj.get('channel')
  print "Channel %s just entered our application, adding it to bridge %s" % (
- channel.json.get('name'), holding\_bridge.id)
+ channel.json.get('name'), holding_bridge.id)
  
  channel.answer()
  bridge.addChannel(channel=channel.id)
  
-def stasis\_end\_cb(channel, ev):
+def stasis_end_cb(channel, ev):
  """Handler for StasisEnd event"""
  
  print "Channel %s just left our application" % channel.json.get('name')
  
-client.on\_channel\_event('StasisStart', stasis\_start\_cb)
-client.on\_channel\_event('StasisEnd', stasis\_end\_cb)
+client.on_channel_event('StasisStart', stasis_start_cb)
+client.on_channel_event('StasisEnd', stasis_end_cb)
  
 client.run(apps='bridge-infinite-wait')
 
@@ -430,7 +430,7 @@ truejs18 console.log('Channel %s just entered our application', channel.name);
  }
 
  var bridge = bridges.filter(function(candidate) {
- return candidate.bridge\_type === 'holding';
+ return candidate.bridge_type === 'holding';
  })[0];
 
  if (bridge) {
@@ -449,10 +449,10 @@ truejs18 console.log('Channel %s just entered our application', channel.name);
  });
  joinBridge(newBridge);
 
- timer = setTimeout(play\_announcement, 30000);
+ timer = setTimeout(play_announcement, 30000);
 
  // callback that will let our users know how much we care
- function play\_announcement() {
+ function play_announcement() {
  console.log('Letting everyone know we care...');
  newBridge.stopMoh(function(err) {
  if (err) {
@@ -472,7 +472,7 @@ truejs18 console.log('Channel %s just entered our application', channel.name);
  throw err;
  }
  });
- timer = setTimeout(play\_announcement, 30000);
+ timer = setTimeout(play_announcement, 30000);
  });
  });
  }
@@ -587,7 +587,7 @@ function clientLoaded (err, client) {
  }
 
  var bridge = bridges.filter(function(candidate) {
- return candidate.bridge\_type === 'holding';
+ return candidate.bridge_type === 'holding';
  })[0];
 
  if (bridge) {
@@ -606,10 +606,10 @@ function clientLoaded (err, client) {
  });
  joinBridge(newBridge);
 
- timer = setTimeout(play\_announcement, 30000);
+ timer = setTimeout(play_announcement, 30000);
 
  // callback that will let our users know how much we care
- function play\_announcement() {
+ function play_announcement() {
  console.log('Letting everyone know we care...');
  newBridge.stopMoh(function(err) {
  if (err) {
@@ -629,7 +629,7 @@ function clientLoaded (err, client) {
  throw err;
  }
  });
- timer = setTimeout(play\_announcement, 30000);
+ timer = setTimeout(play_announcement, 30000);
  });
  });
  }

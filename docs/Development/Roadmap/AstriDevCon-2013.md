@@ -152,22 +152,22 @@ Some questions and comments that came up during the discussion:
 	+ At this point in time, information about bridges is not exposed through Sorcery. In general, a bridge is created and configured through other interfaces, and state conveyed through events. Since this is a cached object in Stasis, there are possible ways in which its state could be conveyed out to Sorcery.
 * How does bridging key into the DSP subsystem?
 	+ It uses the same APIs as channels.
-* Is chan\_sip still supported?
-	+ Yes, but its future depends on what happens with chan\_pjsip in the next year. Our goal is to some day obsolete chan\_sip if possible; however, we fully expect many people to continue to use chan\_sip for some time.
+* Is chan_sip still supported?
+	+ Yes, but its future depends on what happens with chan_pjsip in the next year. Our goal is to some day obsolete chan_sip if possible; however, we fully expect many people to continue to use chan_sip for some time.
 * Is it possible to have Stasis pub/sub distributed across servers?
-	+ At this time, Stasis is an internal message bus only. Distribution of state across systems is still provided by interfaces built on top of Stasis, such as res\_xmpp or res\_corosync. It would be possible however to extend that state across systems, but a lot of thought would have to be given on how to use channel, bridge, and endpoint state in external systems.
+	+ At this time, Stasis is an internal message bus only. Distribution of state across systems is still provided by interfaces built on top of Stasis, such as res_xmpp or res_corosync. It would be possible however to extend that state across systems, but a lot of thought would have to be given on how to use channel, bridge, and endpoint state in external systems.
 * Can core show channels show state of stuff after it dies?
 	+ No. The cache maintaining state of dead things would be a security issue - this would result in a slow leak of memory. Today, the cache purges itself when a call hangs up (channels), or when a bridge is destroyed.
 * Is it possible for external systems to use an API to inject new messages on the Stasis message bus?
 	+ Stasis is an internal message bus, but you could write wrapper over stasis to expose what you want to AMI or other API.
-* Anyone using chan\_agent? silence (except JSmith).  
+* Anyone using chan_agent? silence (except JSmith).  
 
 
 
 
 
 !!! info ""
-    chan\_agent is dead in Asterisk 12, replaced by [Asterisk 12 Application\_AgentRequest](/Asterisk-12-Application_AgentRequest) and [Asterisk 12 Application\_AgentLogin](/Asterisk-12-Application_AgentLogin). No one seemed to mind.
+    chan_agent is dead in Asterisk 12, replaced by [Asterisk 12 Application_AgentRequest](/Asterisk-12-Application_AgentRequest) and [Asterisk 12 Application_AgentLogin](/Asterisk-12-Application_AgentLogin). No one seemed to mind.
 
       
 [//]: # (end-info)
@@ -181,7 +181,7 @@ Some questions and comments that came up during the discussion:
 	+ Who uses CEL to build CDR ? ~5 in attendance
 * Origination of calls (AMI): is there any reason to add something to Originate that would create a bridge and connect an outbound call automatically to it?
 	+ Originate uses dialplan extension or application, rather than a bridge. This still should be possible, given a bridge to drop the originated call into. Alternatively, originating to an extension could accomplish this task if a dialplan application exists that adds the channel to a bridge.
-* Discussion of ARI, a new interface in Asterisk 12. ARI is not a replacement for AMI or AGI. ARI is meant as a way to replace dialplan applications with externally controlled applications - that is, "write your own app\_queue"
+* Discussion of ARI, a new interface in Asterisk 12. ARI is not a replacement for AMI or AGI. ARI is meant as a way to replace dialplan applications with externally controlled applications - that is, "write your own app_queue"
 	+ Is it possible to manipulate channel variables regardless of the state the channel is in?
 	+ How about user events?
 		- No, we should add that capabilities. **Action to Matt Jordan to file an issue to add this functionality**.
@@ -212,13 +212,13 @@ Agenda
 
 * Policy in general/Release policy
 * Expanding the ARI / rest api
-* PJSIP / chan\_sip45
+* PJSIP / chan_sip45
 * Media negotiation adaptive stuff magic dynamic stuff
 	+ Off load media handling
 * Clustering / distributed environments
 	+ Distributed conferencing
 * Opus
-    * Kill app\_queue!!!!
+    * Kill app_queue!!!!
     * Asteri18n - mailing list exists!
     * Video!!!
     * RTP / improvements
@@ -258,7 +258,7 @@ Agenda
     	+ Issue: How do we hand control of a channel back to the dialplan / or to specific app
     		- Currently, the channel is sent back to the dialplan, but there is not a way to send it directly to an application. This would require some careful thought, as the releasing back to the dialplan guarantees that something can still execute the channel - sending it directly to an application would almost have to guarantee that the channel is immediately destroyed when the application terminates.
     	+ Issue: Queue-related stuff missing - members, queue status,
-    		- Much of this is higher level application logic that would be provided by someone implementing a replacement for app\_queue
+    		- Much of this is higher level application logic that would be provided by someone implementing a replacement for app_queue
     		- Question: do we need to have a RESTful interface that replaces AMI?
     			* Answer: that would be highly desired (Jared, Dan, etc.)
     				+ Need to discuss what functionality should be carried over from AMI and put behind a REST interface; some might not make sense. **Action - have a discussion on the asterisk-dev list about replacing AMI with a REST interface**
@@ -304,7 +304,7 @@ Agenda
     	+ SDK will be released on github - python and javascript
     		- Digium working on the initial client library implementations that are auto-generated from the resources. **Update:**Paul Belanger working on a Python implementation as well.
 
-    CHAN\_PJSIP
+    CHAN_PJSIP
     -----------
 
     * Number one issue: Get PJSIP installed
@@ -315,7 +315,7 @@ Agenda
     * PJSIP support of the "SIP/" prefix
     	+ Configurable switch - should we allow people to map SIP to PJSIP?
     		- Pros: easier to switch between dialplan
-    		- Cons: confusion as to what you're running; chan\_sip to chan\_pjsip nomenclature doesn't have a one to one correlation
+    		- Cons: confusion as to what you're running; chan_sip to chan_pjsip nomenclature doesn't have a one to one correlation
     	+ Not really just dialing (which has its own issues) - things like device state, out of call messaging are also affected
     * Ability to dial any SIP URI is important - YES!!!
     	+ **Action: create an issue to round out this functionality and/or provide sufficient documentation on how it should be configured**
@@ -365,7 +365,7 @@ Agenda
     ### Opus
 
     * Asterisk 12 includes formats for pass-through of Opus and VP8
-    * There are patches on github.com/meetecho for Codec\_opus
+    * There are patches on github.com/meetecho for Codec_opus
     * mp3/ilbc
     	+ mp3: use newer implementations
     	+ ilbc: remove embedded source, use newer implementation from Google. **Action: create an issue for versions of Asterisk to look for a library and use it if available; otherwise use embedded source. Remove embedded source in trunk.**
@@ -381,11 +381,11 @@ Agenda
     * No "clean way" to distribute states between asterisk servers.
     	+ Stasis is an internal message bus. Replacing it with something that supports distributed pub/sub is theoretically possible, as Stasis is an opaque implementation and does not inspect the contents of the messages distributed on it; however, this would be quite a large project
     	+ Bigger question: what are the use cases for distributing state?
-    		- Full call fail over is a much larger task than just channel / channel\_pvt distribution. You actually have to do something with the state once you have it.
+    		- Full call fail over is a much larger task than just channel / channel_pvt distribution. You actually have to do something with the state once you have it.
     		- What use case is there for bridge/channel state outside of Asterisk that requires something like redis and that can't be built with AMI/ARI? Need more requirements/use cases.
     * Bar-bof Paul Belanger
 
-    Kill app\_queue - ARI apps in Asterisk
+    Kill app_queue - ARI apps in Asterisk
     --------------------------------------
 
     * There should be a replacement delivered with Asterisk, but probably initially on github
@@ -419,7 +419,7 @@ Agenda
     Two themes emerged from people's comments on what the future of Asterisk is:
 
     1. Asterisk should be a communications engine, and not provide the business logic. ARI is a step in the right direction and needs to be expanded to fully realize that.
-    2. PJSIP is great, but needs to be refined before it can be a full replacement for chan\_sip
+    2. PJSIP is great, but needs to be refined before it can be a full replacement for chan_sip
 
     Random quotes
     =============

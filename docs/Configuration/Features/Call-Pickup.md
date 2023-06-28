@@ -154,7 +154,7 @@ Calls picked up using pickupexten can hear an optional sound file for success an
 
 
 !!! note 
-    The current channel drivers that support calling the pickupexten to pickup a call are: chan\_dahdi/analog, chan\_mgcp, chan\_misdn, chan\_sip, chan\_unistim and chan\_pjsip.
+    The current channel drivers that support calling the pickupexten to pickup a call are: chan_dahdi/analog, chan_mgcp, chan_misdn, chan_sip, chan_unistim and chan_pjsip.
 
       
 [//]: # (end-note)
@@ -221,7 +221,7 @@ pickupgroup=1
 
 Configuration should be supported in several channel drivers, including:
 
-* chan\_dahdi.conf
+* chan_dahdi.conf
 * misdn.conf
 * mgcp.conf
 * sip.conf
@@ -241,8 +241,8 @@ Configuration in pjsip.conf
 
 ```
 
-call\_group=1,5-7
-pickup\_group=1
+call_group=1,5-7
+pickup_group=1
 
 ```
 
@@ -290,7 +290,7 @@ namedpickupgroup=sales
 
 Configuration should be supported in several channel drivers, including:
 
-* chan\_dahdi.conf
+* chan_dahdi.conf
 * misdn.conf
 * sip.conf
 * pjsip.conf
@@ -308,8 +308,8 @@ pjsip.conf uses snake case:
 
 ```
 
-named\_call\_group=engineering,sales,netgroup,protgroup
-named\_pickup\_group=sales
+named_call_group=engineering,sales,netgroup,protgroup
+named_pickup_group=sales
 
 ```
 

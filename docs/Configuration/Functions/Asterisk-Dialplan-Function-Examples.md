@@ -24,7 +24,7 @@ Asterisk includes a wide variety of functions. Here we'll show you a few commonl
 CHANNEL and CHANNELS
 --------------------
 
-CHANNEL Gets or sets various pieces of information about the channel. Additional arguments may be available from the channel driver; see its documentation for details. Any item requested that is not available on the current channel will return an empty string. CHANNELS on the other hand, gets the list of channels while optionally filtering by a regular expression (provided via argument). If no argument is provided, all known channels are returned. The regular\_expression must correspond to the POSIX.2 specification, as shown in regex(7). The list returned will be space-delimited.
+CHANNEL Gets or sets various pieces of information about the channel. Additional arguments may be available from the channel driver; see its documentation for details. Any item requested that is not available on the current channel will return an empty string. CHANNELS on the other hand, gets the list of channels while optionally filtering by a regular expression (provided via argument). If no argument is provided, all known channels are returned. The regular_expression must correspond to the POSIX.2 specification, as shown in regex(7). The list returned will be space-delimited.
 
 See the [CHANNEL function](/Asterisk-14-Function_CHANNEL) reference documentation for an extensive list of arguments.
 
@@ -43,7 +43,7 @@ Push a [hangup handler](/Configuration/Dialplan/Subroutines/Hangup-Handlers) sub
 
 ```
 
-same = n,Set(CHANNEL(hangup\_handler\_push)=default,s,1)
+same = n,Set(CHANNEL(hangup_handler_push)=default,s,1)
 
 ```
 
@@ -89,9 +89,9 @@ same = n,Set(myvar=${CHANNELS})
 DB and other DB functions
 -------------------------
 
-The DB function will read from or write a value to the [Asterisk Internal Database](/Fundamentals/Asterisk-Internal-Database). On a read, this function returns the corresponding value from the database, or blank if it does not exist. Reading a database value will also set the variable DB\_RESULT. There are a few related functions. DB\_EXISTS, DB\_DELETE and DB\_KEYS.
+The DB function will read from or write a value to the [Asterisk Internal Database](/Fundamentals/Asterisk-Internal-Database). On a read, this function returns the corresponding value from the database, or blank if it does not exist. Reading a database value will also set the variable DB_RESULT. There are a few related functions. DB_EXISTS, DB_DELETE and DB_KEYS.
 
-If you wish to find out if an entry exists, use the DB\_EXISTS function. The DB\_DELETE function will retrieve a value from the Asterisk database and then remove that key from the database. DB\_RESULT will be set to the key's value if it exists. Finally, the DB\_KEYS will return a comma-separated list of keys existing at the prefix specified within the Asterisk database. If no argument is provided, then a list of key families will be returned.
+If you wish to find out if an entry exists, use the DB_EXISTS function. The DB_DELETE function will retrieve a value from the Asterisk database and then remove that key from the database. DB_RESULT will be set to the key's value if it exists. Finally, the DB_KEYS will return a comma-separated list of keys existing at the prefix specified within the Asterisk database. If no argument is provided, then a list of key families will be returned.
 
 **Examples:**
 
@@ -144,7 +144,7 @@ Go to a specific dialplan location (via [label](/Configuration/Dialplan/Contexts
 
 ```
 
-same = n,Gotoif($[${DB\_EXISTS(testfamily/testkey)}]?keyexists:keydoesnotexist)
+same = n,Gotoif($[${DB_EXISTS(testfamily/testkey)}]?keyexists:keydoesnotexist)
 
 ```
 
@@ -162,7 +162,7 @@ Delete the entry while logging the value of the key!
 
 ```
 
-same = n,Log(NOTICE, Deleting the key testfamily/testkey which had the value: ${DB\_DELETE(testfamily/testkey)})
+same = n,Log(NOTICE, Deleting the key testfamily/testkey which had the value: ${DB_DELETE(testfamily/testkey)})
 
 ```
 

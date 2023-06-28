@@ -3,7 +3,7 @@ title: Mobile Channel Dialplan Hints
 pageid: 4817207
 ---
 
-chan\_mobile supports 'device status' so you can do somthing like 
+chan_mobile supports 'device status' so you can do somthing like 
 
 
 

@@ -44,7 +44,7 @@ Next, we'll run a command called **./configure**, which will perform a number of
 ```
 
 
-This will run for a couple of minutes, and warn you of any missing system libraries or other dependencies. Unless you've installed all of the [System Requirements](/Operation/System-Requirements) for your version of Asterisk, the **configure** script is likely to fail. If that happens, resolve the missing dependency manually, or use the [install\_prereq](#install_prereq) script to resolve all of the dependencies on your system.
+This will run for a couple of minutes, and warn you of any missing system libraries or other dependencies. Unless you've installed all of the [System Requirements](/Operation/System-Requirements) for your version of Asterisk, the **configure** script is likely to fail. If that happens, resolve the missing dependency manually, or use the [install_prereq](#install_prereq) script to resolve all of the dependencies on your system.
 
 Once a dependency is resolved, run **configure** again to make sure the missing dependency is fixed.
 
@@ -97,9 +97,9 @@ $$$$ $$$$7 .$$$.
 
 configure: Package configured for:&nbsp;
 configure: OS type &nbsp;: linux-gnu
-configure: Host CPU : x86\_64
-configure: build-cpu:vendor:os: x86\_64 : unknown : linux-gnu :
-configure: host-cpu:vendor:os: x86\_64 : unknown : linux-gnu :
+configure: Host CPU : x86_64
+configure: build-cpu:vendor:os: x86_64 : unknown : linux-gnu :
+configure: host-cpu:vendor:os: x86_64 : unknown : linux-gnu :
 
 
 ```
@@ -135,10 +135,10 @@ You can then re-run **./configure**.
 
 
 
-Using install\_prereq
+Using install_prereq
 =====================
 
-The **install\_prereq** script is included with every release of Asterisk in the `contrib/scripts` subdirectory. The script has the following options:
+The **install_prereq** script is included with every release of Asterisk in the `contrib/scripts` subdirectory. The script has the following options:
 
 * **test** - print only the libraries to be installed.
 * **install** - install package dependencies only. Depending on your distribution of Linux, version of Asterisk, and capabilities you wish to use, this may be sufficient.
@@ -167,9 +167,9 @@ The **install\_prereq** script is included with every release of Asterisk in the
 
 [root@server asterisk-14.X.Y]# cd contrib/scripts
 
-[root@server asterisk-14.X.Y/contrib/scripts]# ./install\_prereq install
+[root@server asterisk-14.X.Y/contrib/scripts]# ./install_prereq install
 
-[root@server asterisk-14.X.Y/contrib/scripts]# ./install\_prereq install-unpackaged
+[root@server asterisk-14.X.Y/contrib/scripts]# ./install_prereq install-unpackaged
 
 ```
 

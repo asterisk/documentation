@@ -17,7 +17,7 @@ pageid: 5996698
 Prerequisites
 =============
 
-Asterisk communicates with Google Voice and Google Talk using the chan\_motif Channel Driver and the res\_xmpp Resource module. Before proceeding, please ensure that both are compiled and part of your installation. Compilation of res\_xmpp and chan\_motif for use with Google Talk / Voice are dependant on the iksemel library files as well as the OpenSSL development libraries presence on your system.
+Asterisk communicates with Google Voice and Google Talk using the chan_motif Channel Driver and the res_xmpp Resource module. Before proceeding, please ensure that both are compiled and part of your installation. Compilation of res_xmpp and chan_motif for use with Google Talk / Voice are dependant on the iksemel library files as well as the OpenSSL development libraries presence on your system.
 
 Calling using Google Voice or via the Google Talk web client requires the use of Asterisk 11.0 or greater. Older versions of Asterisk will not work.
 
@@ -34,7 +34,7 @@ Google Voice can now be used with Google Apps accounts.
 RTP configuration
 -----------------
 
-ICE support is required for chan\_motif to operate. It is disabled by default and must be explicitly enabled in the RTP configuration file rtp.conf as follows.
+ICE support is required for chan_motif to operate. It is disabled by default and must be explicitly enabled in the RTP configuration file rtp.conf as follows.
 
 
 
@@ -133,7 +133,7 @@ It should be noted that calling using Google Voice requires the G.711 ulaw codec
 XMPP Configuration
 ------------------
 
-The res\_xmpp Resource is configured with the xmpp.conf configuration file, typically located in /etc/asterisk. What follows is an example configuration for successful operation.
+The res_xmpp Resource is configured with the xmpp.conf configuration file, typically located in /etc/asterisk. What follows is an example configuration for successful operation.
 
 ### Example XMPP Configuration
 
@@ -172,8 +172,8 @@ The google section of this configuration specifies several items.
 
 1. The type is set to client, as we're connecting to Google as a service; type=client
 2. The serverhost is Google's talk server; serverhost=talk.google.com
-3. Our username is configured as your\_google\_username@gmail.com; username=your\_google\_username@gmail.com
-4. Our password is configured using the secret option; secret=your\_google\_password
+3. Our username is configured as your_google_username@gmail.com; username=your_google_username@gmail.com
+4. Our password is configured using the secret option; secret=your_google_password
 5. Google's talk service operates on port 5222; port=5222
 6. Our priority is set to 25; priority=25
 7. TLS encryption is required by Google; usetls=yes
@@ -185,7 +185,7 @@ The google section of this configuration specifies several items.
 
 As many different connections to Google are possible simultaneously via different client mechanisms, it is important to understand the role of priorities in the routing of inbound calls. Proper usage of the priority setting can allow use of a Google account that is not otherwise entirely dedicated to voice services.
 
-With priorities, the higher the setting value, the more any client using that value is preferred as a destination for inbound calls, in deference to any other client with a lower priority value. Known values of commonly used clients include the Gmail chat client, which maintains a priority of **20**, and the Windows GTalk client, which uses a priority of **24**. The maximum allowable value is **127**. Thus, setting one's **priority** option for the XMPP peer in res\_xmpp.conf to a value higher than 24 will cause inbound calls to flow to Asterisk, even while one is logged into either Gmail or the Windows GTalk client.
+With priorities, the higher the setting value, the more any client using that value is preferred as a destination for inbound calls, in deference to any other client with a lower priority value. Known values of commonly used clients include the Gmail chat client, which maintains a priority of **20**, and the Windows GTalk client, which uses a priority of **24**. The maximum allowable value is **127**. Thus, setting one's **priority** option for the XMPP peer in res_xmpp.conf to a value higher than 24 will cause inbound calls to flow to Asterisk, even while one is logged into either Gmail or the Windows GTalk client.
 
 Outbound calls are unaffected by the priority setting.
 
@@ -207,7 +207,7 @@ Now, let's create a phone. The configuration of a SIP device for this purpose wo
 
 [malcolm]
 type=peer
-secret=my\_secure\_password
+secret=my_secure_password
 host=dynamic
 context=local
 
@@ -360,7 +360,7 @@ Outgoing calls made to Google Voice take the form of:
 
 ```
 
-exten => \_1XXXXXXXXXX,1,Dial(Motif/google/${EXTEN}@voice.google.com,,r)
+exten => _1XXXXXXXXXX,1,Dial(Motif/google/${EXTEN}@voice.google.com,,r)
 
 
 ```

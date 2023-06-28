@@ -84,16 +84,16 @@ If you have DAHDI running, the output of **lsmod | grep dahdi** should look some
 ```
 
 [root@server asterisk-14.X.Y]# lsmod | grep dahdi
-dahdi\_transcode 7928 1 wctc4xxp
-dahdi\_voicebus 40464 2 wctdm24xxp,wcte12xp
+dahdi_transcode 7928 1 wctc4xxp
+dahdi_voicebus 40464 2 wctdm24xxp,wcte12xp
 dahdi 196544 12 wctdm24xxp,wcte11xp,wct1xxp,wcte12xp,wct4xxp
-crc\_ccitt 2096 1 dahdi
+crc_ccitt 2096 1 dahdi
 
 
 ```
 
 
-Now that DAHDI is running, you can run **dahdi\_hardware** to list any DAHDI-compatible devices in your system. You can also run the **dahdi\_tool** utility to show the various DAHDI-compatible devices, and their current state.
+Now that DAHDI is running, you can run **dahdi_hardware** to list any DAHDI-compatible devices in your system. You can also run the **dahdi_tool** utility to show the various DAHDI-compatible devices, and their current state.
 
 To check if Asterisk is running, you can use the Asterisk `initscript`.
 

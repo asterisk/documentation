@@ -37,7 +37,7 @@ M(macro[^arg[^...]])
 ```
 
 
-The variable MACRO\_RESULT can be set with certain options inside the specified macro to determine behavior when the macro finishes. The options are documented in the [Dial application documentation](/Asterisk-13-Application_Dial).
+The variable MACRO_RESULT can be set with certain options inside the specified macro to determine behavior when the macro finishes. The options are documented in the [Dial application documentation](/Asterisk-13-Application_Dial).
 
 
 
@@ -62,7 +62,7 @@ U(x[^arg[^...]])
 ```
 
 
-The variable GOSUB\_RESULT can be set within certain options inside the specified gosub to determine behavior when the gosub returns. The options are documented in the [Dial application documentation](/Asterisk-13-Application_Dial).
+The variable GOSUB_RESULT can be set within certain options inside the specified gosub to determine behavior when the gosub returns. The options are documented in the [Dial application documentation](/Asterisk-13-Application_Dial).
 
 Queue application
 -----------------
@@ -138,10 +138,10 @@ CLI output
  -- Executing [s@macro-announcement:1] NoOp("PJSIP/ALICE-00000015", "") in new stack
  -- Executing [s@macro-announcement:2] Playback("PJSIP/ALICE-00000015", "tt-weasels") in new stack
  -- <PJSIP/ALICE-00000015> Playing 'tt-weasels.gsm' (language 'en')
- -- Channel PJSIP/BOB-00000014 joined 'simple\_bridge' basic-bridge <612c2313-98bf-48ce-89b1-d530b06e44d7>
- -- Channel PJSIP/ALICE-00000015 joined 'simple\_bridge' basic-bridge <612c2313-98bf-48ce-89b1-d530b06e44d7>
- -- Channel PJSIP/BOB-00000014 left 'native\_rtp' basic-bridge <612c2313-98bf-48ce-89b1-d530b06e44d7>
- -- Channel PJSIP/ALICE-00000015 left 'native\_rtp' basic-bridge <612c2313-98bf-48ce-89b1-d530b06e44d7>
+ -- Channel PJSIP/BOB-00000014 joined 'simple_bridge' basic-bridge <612c2313-98bf-48ce-89b1-d530b06e44d7>
+ -- Channel PJSIP/ALICE-00000015 joined 'simple_bridge' basic-bridge <612c2313-98bf-48ce-89b1-d530b06e44d7>
+ -- Channel PJSIP/BOB-00000014 left 'native_rtp' basic-bridge <612c2313-98bf-48ce-89b1-d530b06e44d7>
+ -- Channel PJSIP/ALICE-00000015 left 'native_rtp' basic-bridge <612c2313-98bf-48ce-89b1-d530b06e44d7>
  == Spawn extension (from-internal, 6001, 1) exited non-zero on 'PJSIP/BOB-00000014'
 
 ```
@@ -200,11 +200,11 @@ CLI output
  -- <PJSIP/BOB-00000017> Playing 'tt-weasels.gsm' (language 'en')
  -- Executing [s@sub-announcement:3] Return("PJSIP/BOB-00000017", "") in new stack
  == Spawn extension (from-internal, , 1) exited non-zero on 'PJSIP/BOB-00000017'
- -- PJSIP/BOB-00000017 Internal Gosub(sub-announcement,s,1) complete GOSUB\_RETVAL=
- -- Channel PJSIP/ALICE-00000016 joined 'simple\_bridge' basic-bridge <16e76a40-4a24-441d-a2b2-5c9ddfb21d7a>
- -- Channel PJSIP/BOB-00000017 joined 'simple\_bridge' basic-bridge <16e76a40-4a24-441d-a2b2-5c9ddfb21d7a>
- -- Channel PJSIP/BOB-00000017 left 'native\_rtp' basic-bridge <16e76a40-4a24-441d-a2b2-5c9ddfb21d7a>
- -- Channel PJSIP/ALICE-00000016 left 'native\_rtp' basic-bridge <16e76a40-4a24-441d-a2b2-5c9ddfb21d7a>
+ -- PJSIP/BOB-00000017 Internal Gosub(sub-announcement,s,1) complete GOSUB_RETVAL=
+ -- Channel PJSIP/ALICE-00000016 joined 'simple_bridge' basic-bridge <16e76a40-4a24-441d-a2b2-5c9ddfb21d7a>
+ -- Channel PJSIP/BOB-00000017 joined 'simple_bridge' basic-bridge <16e76a40-4a24-441d-a2b2-5c9ddfb21d7a>
+ -- Channel PJSIP/BOB-00000017 left 'native_rtp' basic-bridge <16e76a40-4a24-441d-a2b2-5c9ddfb21d7a>
+ -- Channel PJSIP/ALICE-00000016 left 'native_rtp' basic-bridge <16e76a40-4a24-441d-a2b2-5c9ddfb21d7a>
  == Spawn extension (from-internal, 6002, 1) exited non-zero on 'PJSIP/ALICE-00000016'
 
 ```
@@ -268,15 +268,15 @@ CLI output
  -- <PJSIP/BOB-0000000a> Playing 'tt-weasels.gsm' (language 'en')
  -- Executing [s@sub-announcement:3] Return("PJSIP/BOB-0000000a", "") in new stack
  == Spawn extension (from-internal, 7002, 1) exited non-zero on 'PJSIP/BOB-0000000a'
- -- PJSIP/BOB-0000000a Internal Gosub(sub-announcement,s,1) complete GOSUB\_RETVAL=
- -- Channel PJSIP/ALICE-00000009 joined 'simple\_bridge' basic-bridge <cbc54ed6-1f51-4b10-be99-4994f52d851f>
- -- Channel PJSIP/BOB-0000000a joined 'simple\_bridge' basic-bridge <cbc54ed6-1f51-4b10-be99-4994f52d851f>
- > Bridge cbc54ed6-1f51-4b10-be99-4994f52d851f: switching from simple\_bridge technology to native\_rtp
+ -- PJSIP/BOB-0000000a Internal Gosub(sub-announcement,s,1) complete GOSUB_RETVAL=
+ -- Channel PJSIP/ALICE-00000009 joined 'simple_bridge' basic-bridge <cbc54ed6-1f51-4b10-be99-4994f52d851f>
+ -- Channel PJSIP/BOB-0000000a joined 'simple_bridge' basic-bridge <cbc54ed6-1f51-4b10-be99-4994f52d851f>
+ > Bridge cbc54ed6-1f51-4b10-be99-4994f52d851f: switching from simple_bridge technology to native_rtp
  > Remotely bridged 'PJSIP/BOB-0000000a' and 'PJSIP/ALICE-00000009' - media will flow directly between them
  > Remotely bridged 'PJSIP/BOB-0000000a' and 'PJSIP/ALICE-00000009' - media will flow directly between them
  > 0x7f74d400c620 -- Probation passed - setting RTP source address to 10.24.18.16:4040
- -- Channel PJSIP/BOB-0000000a left 'native\_rtp' basic-bridge <cbc54ed6-1f51-4b10-be99-4994f52d851f>
- -- Channel PJSIP/ALICE-00000009 left 'native\_rtp' basic-bridge <cbc54ed6-1f51-4b10-be99-4994f52d851f>
+ -- Channel PJSIP/BOB-0000000a left 'native_rtp' basic-bridge <cbc54ed6-1f51-4b10-be99-4994f52d851f>
+ -- Channel PJSIP/ALICE-00000009 left 'native_rtp' basic-bridge <cbc54ed6-1f51-4b10-be99-4994f52d851f>
  == Spawn extension (from-internal, 7002, 2) exited non-zero on 'PJSIP/ALICE-00000009'
 
 ```
@@ -336,14 +336,14 @@ CLI output
  -- Executing [s@macro-announcement:1] NoOp("PJSIP/ALICE-00000005", "") in new stack
  -- Executing [s@macro-announcement:2] Playback("PJSIP/ALICE-00000005", "tt-weasels") in new stack
  -- <PJSIP/ALICE-00000005> Playing 'tt-weasels.gsm' (language 'en')
- -- Channel PJSIP/BOB-00000004 joined 'simple\_bridge' basic-bridge <8283212f-b12d-4571-9653-0c8484e88980>
- -- Channel PJSIP/ALICE-00000005 joined 'simple\_bridge' basic-bridge <8283212f-b12d-4571-9653-0c8484e88980>
- > Bridge 8283212f-b12d-4571-9653-0c8484e88980: switching from simple\_bridge technology to native\_rtp
+ -- Channel PJSIP/BOB-00000004 joined 'simple_bridge' basic-bridge <8283212f-b12d-4571-9653-0c8484e88980>
+ -- Channel PJSIP/ALICE-00000005 joined 'simple_bridge' basic-bridge <8283212f-b12d-4571-9653-0c8484e88980>
+ > Bridge 8283212f-b12d-4571-9653-0c8484e88980: switching from simple_bridge technology to native_rtp
  > Remotely bridged 'PJSIP/ALICE-00000005' and 'PJSIP/BOB-00000004' - media will flow directly between them
  > Remotely bridged 'PJSIP/ALICE-00000005' and 'PJSIP/BOB-00000004' - media will flow directly between them
  > 0x7f84500145d0 -- Probation passed - setting RTP source address to 10.24.18.138:4050
- -- Channel PJSIP/ALICE-00000005 left 'native\_rtp' basic-bridge <8283212f-b12d-4571-9653-0c8484e88980>
- -- Channel PJSIP/BOB-00000004 left 'native\_rtp' basic-bridge <8283212f-b12d-4571-9653-0c8484e88980>
+ -- Channel PJSIP/ALICE-00000005 left 'native_rtp' basic-bridge <8283212f-b12d-4571-9653-0c8484e88980>
+ -- Channel PJSIP/BOB-00000004 left 'native_rtp' basic-bridge <8283212f-b12d-4571-9653-0c8484e88980>
  == Spawn extension (from-internal, 7001, 2) exited non-zero on 'PJSIP/BOB-00000004'
 
 ```

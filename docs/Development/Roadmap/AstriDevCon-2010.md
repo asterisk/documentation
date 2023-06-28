@@ -52,7 +52,7 @@ P0 are committed projects that are going to get done.
 \*\* (caveats for using Asterisk on operating system xyz; pull a PDF of the Wiki documentation into the source, don't forget to include basic installation information, and do it all in .txt - Ben)
 \* Fix libs to optionally init OpenSSL (Digium)
 \*\* (or use existing tools; sort of a bug)
-\* Make ast\_channel an opaque type (Digium)
+\* Make ast_channel an opaque type (Digium)
 
 ## (P1)
 
@@ -127,7 +127,7 @@ P1 is the highest priority.
 
 ## (P?, Research Required)
 
-\* New app\_queue (as if? no, seriously? talking about this scares Russell)
+\* New app_queue (as if? no, seriously? talking about this scares Russell)
 \* Identify and fix all bugs in AMI
 \* Broadsoft or Dialog Info shared line appearance (SLA) support
 \*\* (Tabled for later discussion)
@@ -138,7 +138,7 @@ P1 is the highest priority.
 \* Use a channel as a MoH Source
 \* Kill Masquerades
 \* Bridging thread pool
-\* Threadify chan\_sip
+\* Threadify chan_sip
 \* Export ISDN ROSE information up to Asterisk channels
 
 
@@ -168,7 +168,7 @@ We discussed the automated testing that has been built for Asterisk and discusse
 - Testing against a SIP Proxy
 - Non-root isolated test suite
 - RFC4475 and RFC5118 tests (SIP Torture tests)
-- More chan\_sip parsing unit tests
+- More chan_sip parsing unit tests
 - SDP testing multiple media streaming
 - protos SIP tester
 - TAHI SIP tester for IPv6
@@ -189,8 +189,8 @@ We discussed Asterisk release policy. Specifically, we were considering the curr
 
 We rock.
 
-!IMG\_4162.JPG|align=center,thumbnail!
-!IMG\_4164.JPG|align=center,thumbnail!
-!IMG\_4165.JPG|align=center,thumbnail!
-!IMG\_4166.JPG|align=center,thumbnail!
+!IMG_4162.JPG|align=center,thumbnail!
+!IMG_4164.JPG|align=center,thumbnail!
+!IMG_4165.JPG|align=center,thumbnail!
+!IMG_4166.JPG|align=center,thumbnail!
 

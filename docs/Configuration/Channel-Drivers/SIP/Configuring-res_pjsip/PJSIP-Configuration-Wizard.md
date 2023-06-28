@@ -20,13 +20,13 @@ The following configurations demonstrate a simple ITSP scenario.
 
 [my-itsp]
 type = wizard
-sends\_auth = yes
-sends\_registrations = yes
-remote\_hosts = sip.my-itsp.net
-outbound\_auth/username = my\_username
-outbound\_auth/password = my\_password
+sends_auth = yes
+sends_registrations = yes
+remote_hosts = sip.my-itsp.net
+outbound_auth/username = my_username
+outbound_auth/password = my_password
 endpoint/context = default
-aor/qualify\_frequency = 15
+aor/qualify_frequency = 15
 
 
 
@@ -46,25 +46,25 @@ aor/qualify\_frequency = 15
 [my-itsp]
 type = endpoint
 aors = my-itsp
-outbound\_auth = my-itsp-auth
+outbound_auth = my-itsp-auth
 context = default
  
 [my-itsp]
 type = aor
 contact = sip:sip.my-itsp.net
-qualify\_frequency = 15
+qualify_frequency = 15
 
 [my-itsp-auth]
 type = auth
-auth\_type = userpass
-username = my\_username
-password = my\_password
+auth_type = userpass
+username = my_username
+password = my_password
 
 [my-itsp-reg]
 type = registration
-outbound\_auth = my-itsp-auth
-server\_uri = sip:sip.my-itsp.net
-client\_uri = sip:my\_username@sip.my-itsp.net
+outbound_auth = my-itsp-auth
+server_uri = sip:sip.my-itsp.net
+client_uri = sip:my_username@sip.my-itsp.net
 
 [my-itsp-identify]
 type = identify
@@ -105,19 +105,19 @@ Configuration Reference:
 | Parameter | Description |
 | --- | --- |
 | type | Must be `wizard` |
-| sends\_auth | Will create an outbound auth object for the endpoint anddefault = `no`  |
-| accepts\_auth | Will create an inbound auth object for the endpoint.default = `no`  |
-| sends\_registrations | Will create an outbound registration object for eachdefault = `no` |
-| remote\_hosts | A comma separated list of remote hosts in the form ofdefault = `""` |
+| sends_auth | Will create an outbound auth object for the endpoint anddefault = `no`  |
+| accepts_auth | Will create an inbound auth object for the endpoint.default = `no`  |
+| sends_registrations | Will create an outbound registration object for eachdefault = `no` |
+| remote_hosts | A comma separated list of remote hosts in the form ofdefault = `""` |
 | transport | The transport to use for the endpoint and registrationsdefault = the pjsip default |
-| server\_uri\_pattern | The pattern used to construct the registration `server_uri`.The replaceable parameter `${REMOTE_HOST`} is available for use.default = `sip:${REMOTE_HOST`} |
-| client\_uri\_pattern | The pattern used to construct the registration `client_uri`.The replaceable parameters ${REMOTE\_HOST} and${USERNAME} are available for use.default = {{sip:${USERNAME}@${REMOTE\_HOST}}} |
-| contact\_pattern | The pattern used to construct the aor contact.The replaceable parameter ${REMOTE\_HOST} is available for use.default = `sip:${REMOTE_HOST`} |
-| has\_phoneprov | Will create a phoneprov object. If yes, both `phoneprov/MAC` and `phoneprov/PROFILE`must be specified.default = `no`  |
-| has\_hint | Enables the automatic creation of dialplan hints.Two entries will be created.  One hint for 'hint\_exten' and one application to execute when 'hint\_exten' is dialed. |
-| hint\_context | The context into which hints are placed. |
-| hint\_exten | The extension this hint will be registered with. |
-| hint\_application | An application with parameters to execute when 'hint\_exten' is dialed.`Example: Gosub(stdexten,${EXTEN},1(${HINT}))` |
+| server_uri_pattern | The pattern used to construct the registration `server_uri`.The replaceable parameter `${REMOTE_HOST`} is available for use.default = `sip:${REMOTE_HOST`} |
+| client_uri_pattern | The pattern used to construct the registration `client_uri`.The replaceable parameters ${REMOTE_HOST} and${USERNAME} are available for use.default = {{sip:${USERNAME}@${REMOTE_HOST}}} |
+| contact_pattern | The pattern used to construct the aor contact.The replaceable parameter ${REMOTE_HOST} is available for use.default = `sip:${REMOTE_HOST`} |
+| has_phoneprov | Will create a phoneprov object. If yes, both `phoneprov/MAC` and `phoneprov/PROFILE`must be specified.default = `no`  |
+| has_hint | Enables the automatic creation of dialplan hints.Two entries will be created.  One hint for 'hint_exten' and one application to execute when 'hint_exten' is dialed. |
+| hint_context | The context into which hints are placed. |
+| hint_exten | The extension this hint will be registered with. |
+| hint_application | An application with parameters to execute when 'hint_exten' is dialed.`Example: Gosub(stdexten,${EXTEN},1(${HINT}))` |
 | <object>/<parameter> | These parameters are passed unmodified to the native object. |
 
  
@@ -128,7 +128,7 @@ Configuration Notes:
 --------------------
 
 * Wizards must be defined in `pjsip_wizard.conf`.
-* Using pjsip\_wizard.conf doesn't remove the need for pjsip.conf or any other config file.
+* Using pjsip_wizard.conf doesn't remove the need for pjsip.conf or any other config file.
 * Transport, system and global sections still need to be defined in pjsip.conf.
 * You can continue to create discrete endpoint, aor, etc. objects in pjsip.conf but there can be no name collisions between wizard created objects and discretely created objects.
 * An endpoint and aor are created for each wizard.
@@ -180,53 +180,53 @@ Full Examples:
 
 ```
 
-[user\_defaults](!)
+[user_defaults](!)
 type = wizard
 transport = ipv4
-accepts\_registrations = yes
-sends\_registrations = no
-accepts\_auth = yes
-sends\_auth = no
-has\_hint = yes
-hint\_context = DLPN\_DialPlan1
-hint\_application = Gosub(stdexten,${EXTEN},1(${HINT}))
-endpoint/context = DLPN\_DialPlan1
-endpoint/allow\_subscribe = yes
+accepts_registrations = yes
+sends_registrations = no
+accepts_auth = yes
+sends_auth = no
+has_hint = yes
+hint_context = DLPN_DialPlan1
+hint_application = Gosub(stdexten,${EXTEN},1(${HINT}))
+endpoint/context = DLPN_DialPlan1
+endpoint/allow_subscribe = yes
 endpoint/allow = !all,ulaw,gsm,g722
-endpoint/direct\_media = yes
-endpoint/force\_rport = yes
-endpoint/disable\_direct\_media\_on\_nat = yes
-endpoint/direct\_media\_method = invite
-endpoint/ice\_support = yes
-endpoint/moh\_suggest = default
-endpoint/send\_rpid = yes
-endpoint/rewrite\_contact = yes
-endpoint/send\_pai = yes
-endpoint/allow\_transfer = yes
-endpoint/trust\_id\_inbound = yes
-endpoint/device\_state\_busy\_at = 1
-endpoint/trust\_id\_outbound = yes
-endpoint/send\_diversion = yes
-aor/qualify\_frequency = 30
-aor/authenticate\_qualify = no
-aor/max\_contacts = 1
-aor/remove\_existing = yes
-aor/minimum\_expiration = 30
-aor/support\_path = yes
+endpoint/direct_media = yes
+endpoint/force_rport = yes
+endpoint/disable_direct_media_on_nat = yes
+endpoint/direct_media_method = invite
+endpoint/ice_support = yes
+endpoint/moh_suggest = default
+endpoint/send_rpid = yes
+endpoint/rewrite_contact = yes
+endpoint/send_pai = yes
+endpoint/allow_transfer = yes
+endpoint/trust_id_inbound = yes
+endpoint/device_state_busy_at = 1
+endpoint/trust_id_outbound = yes
+endpoint/send_diversion = yes
+aor/qualify_frequency = 30
+aor/authenticate_qualify = no
+aor/max_contacts = 1
+aor/remove_existing = yes
+aor/minimum_expiration = 30
+aor/support_path = yes
 phoneprov/PROFILE = profile1
 
-[bob](user\_defaults)
-hint\_exten = 1000
-inbound\_auth/username = bob
-inbound\_auth/password = bobspassword
+[bob](user_defaults)
+hint_exten = 1000
+inbound_auth/username = bob
+inbound_auth/password = bobspassword
 
-[alice](user\_defaults)
-hint\_exten = 1001
+[alice](user_defaults)
+hint_exten = 1001
 endpoint/callerid = Alice <1001>
 endpoint/allow = !all,ulaw
-inbound\_auth/username = alice
-inbound\_auth/password = alicespassword
-has\_phoneprov = yes
+inbound_auth/username = alice
+inbound_auth/password = alicespassword
+has_phoneprov = yes
 phoneprov/MAC = deadbeef4dad
 
  
@@ -249,37 +249,37 @@ phoneprov/MAC = deadbeef4dad
 
 ```
 
-[trunk\_defaults](!)
+[trunk_defaults](!)
 type = wizard
 transport = ipv4
-endpoint/allow\_subscribe = no
+endpoint/allow_subscribe = no
 endpoint/allow = !all,ulaw
-aor/qualify\_frequency = 30
+aor/qualify_frequency = 30
 registration/expiration = 1800
  
-[myitsp](trunk\_defaults)
-sends\_auth = yes
-sends\_registrations = yes
-endpoint/context = DID\_myitsp
-remote\_hosts = sip1.myitsp.net,sip2.myitsp.net
-accepts\_registrations = no
-endpoint/send\_rpid = yes
-endpoint/send\_pai = yes
-outbound\_auth/username = my\_username
-outbound\_auth/password = my\_password
+[myitsp](trunk_defaults)
+sends_auth = yes
+sends_registrations = yes
+endpoint/context = DID_myitsp
+remote_hosts = sip1.myitsp.net,sip2.myitsp.net
+accepts_registrations = no
+endpoint/send_rpid = yes
+endpoint/send_pai = yes
+outbound_auth/username = my_username
+outbound_auth/password = my_password
  
-[my\_other\_itsp](trunk\_defaults)
-sends\_auth = yes
-sends\_registrations = yes
-endpoint/context = DID\_myitsp
-remote\_hosts = sip1.my-other-itsp.net,sip2.my-other-itsp.net
-accepts\_registrations = no
-endpoint/send\_rpid = yes
-endpoint/send\_pai = yes
-outbound\_auth/username = my\_username
-outbound\_auth/password = my\_password
+[my_other_itsp](trunk_defaults)
+sends_auth = yes
+sends_registrations = yes
+endpoint/context = DID_myitsp
+remote_hosts = sip1.my-other-itsp.net,sip2.my-other-itsp.net
+accepts_registrations = no
+endpoint/send_rpid = yes
+endpoint/send_pai = yes
+outbound_auth/username = my_username
+outbound_auth/password = my_password
 registration/expiration = 900
-registration/support\_path = no
+registration/support_path = no
 
 ```
 
@@ -299,13 +299,13 @@ registration/support\_path = no
 
 ```
 
-[trusted-peer](trunk\_defaults)
-endpoint/context = peer\_context
-remote\_hosts = sip1.peer.com:45060
-sends\_registrations = no
-accepts\_registrations = no
-sends\_auth = no
-accepts\_auth = no
+[trusted-peer](trunk_defaults)
+endpoint/context = peer_context
+remote_hosts = sip1.peer.com:45060
+sends_registrations = no
+accepts_registrations = no
+sends_auth = no
+accepts_auth = no
 
 ```
 

@@ -26,7 +26,7 @@ pageid: 5243336
 
 The subversion server uses SSL client certificates to handle authentication of users. When you are granted commit access, you will be provided two files. These files should be placed in your {{~/.subversion/}} directory.
 
-# [Digium\_SVN-cacert-sha1.pem|http://svnview.digium.com/svn/repotools/Digium\_SVN-cacert-sha1.pem]
+# [Digium_SVN-cacert-sha1.pem|http://svnview.digium.com/svn/repotools/Digium_SVN-cacert-sha1.pem]
 # <name>-cert.p12
 
 The following should be placed in the {{~/.subversion/servers}} file:
@@ -39,7 +39,7 @@ digium = \*.digium.com
 ssl-client-cert-file = /home/<username>/.subversion/<name>-cert.p12
 
 [global]
-ssl-authority-files = /home/<username>/.subversion/Digium\_SVN-cacert-sha1.pem
+ssl-authority-files = /home/<username>/.subversion/Digium_SVN-cacert-sha1.pem
 {code}
 
 ## SVN Checkouts
@@ -109,26 +109,26 @@ The column on the right describes the scripts you will use to merge between vers
 {column}
 {column:width=75%}
 \* 1.8 -> 11
-\*\* {{merge811 \_<revision>\_}}
-\*\* {{block811 \_<revision>\_}}
+\*\* {{merge811 _<revision>_}}
+\*\* {{block811 _<revision>_}}
 
 \* 11 -> 12
-\*\* {{merge1112 \_<revision>\_}}
-\*\* {{block1112 \_<revision>\_}}
+\*\* {{merge1112 _<revision>_}}
+\*\* {{block1112 _<revision>_}}
 \* 12 -> 13
-\*\* {{merge1213 \_<revision>\_}}
-\*\* {{block1213 \_<revision>\_}}
+\*\* {{merge1213 _<revision>_}}
+\*\* {{block1213 _<revision>_}}
 \* 13 -> trunk
-\*\* {{merge13trunk \_<revision>\_}}
-\*\* {{block13trunk \_<revision>\_}}
+\*\* {{merge13trunk _<revision>_}}
+\*\* {{block13trunk _<revision>_}}
 
 The <revision> number passed to each script should be the revision resulting from the commit to an older branch. The script would be run from the checkout directory for the Asterisk version you are merging \*to\*.
 
 For example if you have committed a change to 13 and that needs to be merged through to trunk, the commands would look similar to the following:
 
 ```
-/svn-asterisk-13$ svn commit -F ../commit\_msg
-Sending apps/app\_voicemail.c
+/svn-asterisk-13$ svn commit -F ../commit_msg
+Sending apps/app_voicemail.c
 Transmitting file data .
 Committed revision 376262.
 /svn-asterisk-13$ cd ../svn-asterisk-trunk

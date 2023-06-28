@@ -49,7 +49,7 @@ On this Page
 
 ```
 
-[2014-10-13 16:12:17.349] DEBUG[27284]: res\_pjsip\_endpoint\_identifier\_user.c:106 username\_identify: Could not identify endpoint by username 'eggowaffles'
+[2014-10-13 16:12:17.349] DEBUG[27284]: res_pjsip_endpoint_identifier_user.c:106 username_identify: Could not identify endpoint by username 'eggowaffles'
 
 ```
 
@@ -67,7 +67,7 @@ or
 
 ```
 
-[2014-10-13 16:13:07.201] DEBUG[27507]: res\_pjsip\_endpoint\_identifier\_ip.c:113 ip\_identify\_match\_check: Source address 127.0.0.1:5061 does not match identify 'david-ident'
+[2014-10-13 16:13:07.201] DEBUG[27507]: res_pjsip_endpoint_identifier_ip.c:113 ip_identify_match_check: Source address 127.0.0.1:5061 does not match identify 'david-ident'
 
 ```
 
@@ -134,13 +134,13 @@ But what if you have configured an endpoint called "eggowaffles"? It is possible
 
 ```
 
-[2014-10-13 16:25:01.674] ERROR[27771]: config\_options.c:710 aco\_process\_var: Could not find option suitable for category 'eggowaffles' named 'setvar' at line 390 of 
-[2014-10-13 16:25:01.674] ERROR[27771]: res\_sorcery\_config.c:275 sorcery\_config\_internal\_load: Could not create an object of type 'endpoint' with id 'eggowaffles' from configuration file 'pjsip.conf'
+[2014-10-13 16:25:01.674] ERROR[27771]: config_options.c:710 aco_process_var: Could not find option suitable for category 'eggowaffles' named 'setvar' at line 390 of 
+[2014-10-13 16:25:01.674] ERROR[27771]: res_sorcery_config.c:275 sorcery_config_internal_load: Could not create an object of type 'endpoint' with id 'eggowaffles' from configuration file 'pjsip.conf'
 
 ```
 
 
-In this case, I set an endpoint option called "setvar" instead of the appropriate "set\_var". The result was that the endpoint was not loaded.
+In this case, I set an endpoint option called "setvar" instead of the appropriate "set_var". The result was that the endpoint was not loaded.
 * If you do not see such error messages in the logs, but you do not see the endpoint listed in "pjsip show endpoints", it may be that you forgot to put `type = endpoint` in your endpoint section. In this case, the entire section would be ignored since Asterisk did not know that this was an endpoint section.
 
 ### Identify by IP address
@@ -161,7 +161,7 @@ Asterisk can also recognize endpoints based on the source IP address of the SIP 
 ```
 
 Module Description Use Count Status Support Level
-res\_pjsip\_endpoint\_identifier\_ip.so PJSIP IP endpoint identifier 0 Running core
+res_pjsip_endpoint_identifier_ip.so PJSIP IP endpoint identifier 0 Running core
 
 ```
 * Run the troubleshooting steps from the Identify by User section to ensure that the endpoint you have configured has actually been properly loaded.
@@ -239,8 +239,8 @@ sorcery.conf
 
 ```
 
-true[res\_pjsip\_endpoint\_identifier\_ip]
-identify = realtime,ps\_endpoint\_id\_ips
+true[res_pjsip_endpoint_identifier_ip]
+identify = realtime,ps_endpoint_id_ips
 
 ```
 
@@ -259,7 +259,7 @@ extconfig.conf
 ```
 
 true[settings]
-ps\_endpoint\_id\_ips => odbc 
+ps_endpoint_id_ips => odbc 
 
 ```
 
@@ -281,7 +281,7 @@ Anonymous endpoint identification allows for a specially-named endpoint called "
 ```
 
 Module Description Use Count Status Support Level
-res\_pjsip\_endpoint\_identifier\_anonymous.so PJSIP Anonymous endpoint identifier 0 Running core
+res_pjsip_endpoint_identifier_anonymous.so PJSIP Anonymous endpoint identifier 0 Running core
 
 ```
 * Ensure that the "anonymous" endpoint has been properly loaded. See the troubleshooting steps in the Identify by User section for more details about how to determine if an endpoint has been loaded.
@@ -315,7 +315,7 @@ Allow: PRACK, INVITE, ACK, BYE, CANCEL, UPDATE, SUBSCRIBE, NOTIFY, REFER, MESSAG
 Supported: replaces, 100rel, timer, norefersub
 Session-Expires: 1800
 Min-SE: 90
-User-Agent: Digium D40 1\_4\_0\_0\_57389
+User-Agent: Digium D40 1_4_0_0_57389
 Content-Type: application/sdp
 Content-Length: 430
 
@@ -375,7 +375,7 @@ Allow: PRACK, INVITE, ACK, BYE, CANCEL, UPDATE, SUBSCRIBE, NOTIFY, REFER, MESSAG
 Supported: replaces, 100rel, timer, norefersub
 Session-Expires: 1800
 Min-SE: 90
-User-Agent: Digium D40 1\_4\_0\_0\_57389
+User-Agent: Digium D40 1_4_0_0_57389
 Authorization: Digest username="200", realm="asterisk", nonce="1413305427/8dd1b7f56aba97da45754f7052d8a688", uri="sip:201@10.24.20.249", response="2da759314909af8507a59cd1b6bc0baa", algorithm=md5, cnonce="-me-qsYc.rGU-I5A6n-Dy8IhCBg9wKe8", opaque="3b9c806b61adf911", qop=auth, nc=00000001
 Content-Type: application/sdp
 Content-Length: 430
@@ -488,7 +488,7 @@ If you are seeing a message like the following on your CLI when you place an inc
 
 ```
 
-[2014-10-14 13:22:45.886] NOTICE[1583]: res\_pjsip\_session.c:1538 new\_invite: Call from '201' (UDP:10.24.18.87:5060) to extension '456789' rejected because extension not found in context 'default'.
+[2014-10-14 13:22:45.886] NOTICE[1583]: res_pjsip_session.c:1538 new_invite: Call from '201' (UDP:10.24.18.87:5060) to extension '456789' rejected because extension not found in context 'default'.
 
 ```
 
@@ -537,7 +537,7 @@ If you see a message like the following:
 
 ```
 
-[2014-10-14 15:50:50.407] ERROR[2004]: chan\_pjsip.c:1767 request: Unable to create PJSIP channel - endpoint 'hammerhead' was not found
+[2014-10-14 15:50:50.407] ERROR[2004]: chan_pjsip.c:1767 request: Unable to create PJSIP channel - endpoint 'hammerhead' was not found
 
 ```
 
@@ -557,9 +557,9 @@ Alternatively, if you see a message like the following:
 
 ```
 
-[2014-10-14 15:55:06.292] ERROR[2578][C-00000000]: netsock2.c:303 ast\_sockaddr\_resolve: getaddrinfo("hammerhead", "(null)", ...): Name or service not known
-[2014-10-14 15:55:06.292] WARNING[2578][C-00000000]: chan\_sip.c:6116 create\_addr: No such host: hammerhead
-[2014-10-14 15:55:06.292] DEBUG[2578][C-00000000]: chan\_sip.c:29587 sip\_request\_call: Cant create SIP call - target device not registered
+[2014-10-14 15:55:06.292] ERROR[2578][C-00000000]: netsock2.c:303 ast_sockaddr_resolve: getaddrinfo("hammerhead", "(null)", ...): Name or service not known
+[2014-10-14 15:55:06.292] WARNING[2578][C-00000000]: chan_sip.c:6116 create_addr: No such host: hammerhead
+[2014-10-14 15:55:06.292] DEBUG[2578][C-00000000]: chan_sip.c:29587 sip_request_call: Cant create SIP call - target device not registered
 
 ```
 
@@ -577,8 +577,8 @@ or
 
 ```
 
-[2014-10-14 15:55:58.440] WARNING[2700][C-00000000]: channel.c:5946 ast\_request: No channel type registered for 'SIP'
-[2014-10-14 15:55:58.440] WARNING[2700][C-00000000]: app\_dial.c:2431 dial\_exec\_full: Unable to create channel of type 'SIP' (cause 66 - Channel not implemented)
+[2014-10-14 15:55:58.440] WARNING[2700][C-00000000]: channel.c:5946 ast_request: No channel type registered for 'SIP'
+[2014-10-14 15:55:58.440] WARNING[2700][C-00000000]: app_dial.c:2431 dial_exec_full: Unable to create channel of type 'SIP' (cause 66 - Channel not implemented)
 
 ```
 
@@ -601,8 +601,8 @@ If Asterisk is finding your endpoint successfully, it may be that Asterisk has n
 
 ```
 
-[2014-10-14 15:58:06.690] WARNING[2743]: res\_pjsip/location.c:155 ast\_sip\_location\_retrieve\_contact\_from\_aor\_list: Unable to determine contacts from empty aor list
-[2014-10-14 15:58:06.690] WARNING[2834][C-00000000]: app\_dial.c:2431 dial\_exec\_full: Unable to create channel of type 'PJSIP' (cause 3 - No route to destination)
+[2014-10-14 15:58:06.690] WARNING[2743]: res_pjsip/location.c:155 ast_sip_location_retrieve_contact_from_aor_list: Unable to determine contacts from empty aor list
+[2014-10-14 15:58:06.690] WARNING[2834][C-00000000]: app_dial.c:2431 dial_exec_full: Unable to create channel of type 'PJSIP' (cause 3 - No route to destination)
 
 ```
 
@@ -670,8 +670,8 @@ Then it means the AoR did not get loaded properly. Here are some troubleshooting
 
 ```
 
-[2014-10-14 16:16:20.658] ERROR[2939]: config\_options.c:710 aco\_process\_var: Could not find option suitable for category '1000' named 'awesomeness' at line 219 of 
-[2014-10-14 16:16:20.659] ERROR[2939]: res\_sorcery\_config.c:275 sorcery\_config\_internal\_load: Could not create an object of type 'aor' with id '1000' from configuration file 'pjsip.conf'
+[2014-10-14 16:16:20.658] ERROR[2939]: config_options.c:710 aco_process_var: Could not find option suitable for category '1000' named 'awesomeness' at line 219 of 
+[2014-10-14 16:16:20.659] ERROR[2939]: res_sorcery_config.c:275 sorcery_config_internal_load: Could not create an object of type 'aor' with id '1000' from configuration file 'pjsip.conf'
 
 ```
 
@@ -727,9 +727,9 @@ Direct media is a feature that allows for media to bypass Asterisk and flow dire
 	+ The Chanspy() application
 	+ The JACK() application
 	+ The VOLUME() function
-	+ The TALK\_DETECT() function
+	+ The TALK_DETECT() function
 	+ The SPEEX() function
-	+ The PERIODIC\_HOOK() function
+	+ The PERIODIC_HOOK() function
 	+ The 'L' option to the Dial() application
 	+ An ARI snoop
 	+ A jitter buffer
@@ -765,7 +765,7 @@ From: "200" <sip:200@10.24.20.249>;tag=BXs-nct8-XOe7Q7tspK3Vl3iqUa0cmzc
 To: "200" <sip:200@10.24.20.249>
 Call-ID: C0yYQJ8h776wbheBiUEqCin.ZhcBB.tZ
 CSeq: 5200 REGISTER
-User-Agent: Digium D40 1\_4\_0\_0\_57389
+User-Agent: Digium D40 1_4_0_0_57389
 Contact: "200" <sip:200@10.24.16.37:5060;ob>
 Expires: 300
 Allow: PRACK, INVITE, ACK, BYE, CANCEL, UPDATE, SUBSCRIBE, NOTIFY, REFER, MESSAGE, OPTIONS
@@ -820,7 +820,7 @@ More likely, the issue will be that an AoR will be listed, but there will be no 
 ```
 
 Module Description Use Count Status Support Level
-res\_pjsip\_registrar.so PJSIP Registrar Support 0 Running core
+res_pjsip_registrar.so PJSIP Registrar Support 0 Running core
 
 ```
 * Ensure that the AoR has a `max_contacts` value configured on it. If this option is not set, then registration cannot succeed. You will see this message on the CLI:
@@ -836,7 +836,7 @@ res\_pjsip\_registrar.so PJSIP Registrar Support 0 Running core
 
 ```
 
-[2014-10-16 11:34:07.887] WARNING[2940]: res\_pjsip\_registrar.c:685 registrar\_on\_rx\_request: AOR '200' has no configured max\_contacts. Endpoint '200' unable to register
+[2014-10-16 11:34:07.887] WARNING[2940]: res_pjsip_registrar.c:685 registrar_on_rx_request: AOR '200' has no configured max_contacts. Endpoint '200' unable to register
 
 ```
 
@@ -859,7 +859,7 @@ If you initially have successful registrations but they later start failing, the
 
 ```
 
-[2014-10-16 11:34:07.887] WARNING[2940]: res\_pjsip\_registrar.c:411 rx\_task: Registration attempt from endpoint '200' to AOR '200' will exceed max contacts of 1
+[2014-10-16 11:34:07.887] WARNING[2940]: res_pjsip_registrar.c:411 rx_task: Registration attempt from endpoint '200' to AOR '200' will exceed max contacts of 1
 
 ```
 
@@ -889,7 +889,7 @@ If you are still having trouble, here are some troubleshooting steps:
 
 ```
 
-[2014-10-16 12:05:16.064] ERROR[3187]: res\_pjsip\_outbound\_registration.c:724 sip\_outbound\_registration\_regc\_alloc: Invalid server URI 'registrar@example.com' specified on outbound registration 'outreg'
+[2014-10-16 12:05:16.064] ERROR[3187]: res_pjsip_outbound_registration.c:724 sip_outbound_registration_regc_alloc: Invalid server URI 'registrar@example.com' specified on outbound registration 'outreg'
 
 ```
 
@@ -928,7 +928,7 @@ If you are attempting to subscribe to the presence or dialog event packages, the
 
 ```
 
-[2014-10-16 12:56:58.605] WARNING[3780]: res\_pjsip\_exten\_state.c:337 new\_subscribe: Extension blah does not exist or has no associated hint
+[2014-10-16 12:56:58.605] WARNING[3780]: res_pjsip_exten_state.c:337 new_subscribe: Extension blah does not exist or has no associated hint
 
 ```
 
@@ -955,7 +955,7 @@ If you are attempting to subscribe to the message-summary package, then here are
 
 ```
 
-[2014-10-16 13:06:51.323] NOTICE[3963]: res\_pjsip\_mwi.c:566 mwi\_validate\_for\_aor: Endpoint '200' already configured for unsolicited MWI for mailbox '200'. Denying MWI subscription to 200
+[2014-10-16 13:06:51.323] NOTICE[3963]: res_pjsip_mwi.c:566 mwi_validate_for_aor: Endpoint '200' already configured for unsolicited MWI for mailbox '200'. Denying MWI subscription to 200
 
 ```
 
@@ -984,8 +984,8 @@ If you look into your logs you might messages similar to the following:
 
 ```
 
-[Dec 12 00:58:31] ERROR[10157] config\_options.c: Error parsing bind=:: at line 8 of 
-[Dec 12 00:58:31] ERROR[10157] res\_sorcery\_config.c: Could not create an object of type 'transport' with id 'my-ipv6-transport' from configuration file 'pjsip.conf'
+[Dec 12 00:58:31] ERROR[10157] config_options.c: Error parsing bind=:: at line 8 of 
+[Dec 12 00:58:31] ERROR[10157] res_sorcery_config.c: Could not create an object of type 'transport' with id 'my-ipv6-transport' from configuration file 'pjsip.conf'
 
 ```
 

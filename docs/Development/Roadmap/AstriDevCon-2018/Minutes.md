@@ -108,7 +108,7 @@ What's new in 16?
 
 Webrtc video   
 webrtc api   
-chan\_pjsip performance  
+chan_pjsip performance  
 misc fun
 
 Improving video resilance
@@ -148,11 +148,11 @@ uses in-dialog sip MESSAGE, you can set the content type, but only use UTF-8
 George did alot of work on the conference bridge, don't want to take away his thunder  
   
 PJSIP performace improvements  
-good talk ref chan\_sip vs pjsip last year, large attendence room was packed.  in alot of cases chan\_pjsip performed better, but some cases it did not  
+good talk ref chan_sip vs pjsip last year, large attendence room was packed.  in alot of cases chan_pjsip performed better, but some cases it did not  
 however not a considerable difference, but we still wanted to address them  
   
 approx 7% in cpu usage worse in reg handling  
-after some perfomance improvements we now have chan\_pjsip perform better than chan\_sip, 2k req/s for chan\_pjsip vs 300 for chan\_sip  
+after some perfomance improvements we now have chan_pjsip perform better than chan_sip, 2k req/s for chan_pjsip vs 300 for chan_sip  
   
 Misc fun  
 build improvements: DragonFly BSD, NetBSD, OpenBSD, Solaris 11, FreeBSD  
@@ -166,10 +166,10 @@ Does anybody use Dundi? (not that you shouldn't be useing it but it often gets f
 pjproject updated to v2.8  
 ability to bundle build libjansson, some versions of jansson have bugs, so bundling helps  
 misc gccc bug fixes  
-enhanced messaging with app\_sendtext  
+enhanced messaging with app_sendtext  
 new databuffer api added to the internal core api of asterisk, allows to do things like packet retransmisison buffers
 
-early media video support in app\_dial  
+early media video support in app_dial  
   
   
 
@@ -238,9 +238,9 @@ rmudgett spent a good amount of time with CDRs to reduce the time and resources 
 
 it doesn't really impact cps or quality, so do we care? yes, it takes reasources away from those other things.
 
-stasis is another area, it's our internal pubsub buss.  over the last 1.5 months we have done alot of work to reduce the overhead. one of the areas we discovered was that app\_voicemail when you start it, and you have holding turned on, app\_voicemail wants to know which mailboxes currently have subscribers so it only polls the mailboxes with subscribers. 
+stasis is another area, it's our internal pubsub buss.  over the last 1.5 months we have done alot of work to reduce the overhead. one of the areas we discovered was that app_voicemail when you start it, and you have holding turned on, app_voicemail wants to know which mailboxes currently have subscribers so it only polls the mailboxes with subscribers. 
 
-most people don't have that turned on, collected via stasis, and in order to do that stasis had to keep track of every mailbox, it had to also have to keep track of the message flowing on the buss & never flushed cached.  even if you didn't have polling turned on then you had alot of memory growth, which in turned caused cpu growth.  all for app\_voicemail.  We cut that out, resulting in significat memory & cpu reduction
+most people don't have that turned on, collected via stasis, and in order to do that stasis had to keep track of every mailbox, it had to also have to keep track of the message flowing on the buss & never flushed cached.  even if you didn't have polling turned on then you had alot of memory growth, which in turned caused cpu growth.  all for app_voicemail.  We cut that out, resulting in significat memory & cpu reduction
 
  
 
@@ -285,17 +285,17 @@ we only loaded the modules required for the test (only loaded registration modul
 
 we used sipp scenario to over local network
 
-res\_pjsip uses 7-8% more cpu than chan\_sip, not many retransmissions
+res_pjsip uses 7-8% more cpu than chan_sip, not many retransmissions
 
-13.23.0 now uses less cpu than chan\_sip for registration traffic (1-2% less cpu usage)
+13.23.0 now uses less cpu than chan_sip for registration traffic (1-2% less cpu usage)
 
 asterisk 16.1.0
 
 cpu has dropped even more (3% less cpu than chan sip) mem use dropped by 3-4 mb
 
-chan\_sip can safely handle 300req/s but will choke on retransmisisons after
+chan_sip can safely handle 300req/s but will choke on retransmisisons after
 
-res\_pjsip can easily handle that & much more, here you can see it easily handle 2k reg/s, at 2.5k/s retransmissions did climb a bit, but still ok
+res_pjsip can easily handle that & much more, here you can see it easily handle 2k reg/s, at 2.5k/s retransmissions did climb a bit, but still ok
 
 in the latest version of asterisk should see more improvements, some will be shipped in 16.1, be sure to test
 
@@ -313,19 +313,19 @@ answer: improvements should be across the board regardless of the backend tech
 
 question: what was the motivation of performace evaluation
 
-answer: there was a presentation last year that did a comparison of chan\_sip vs chan\_pjsip
+answer: there was a presentation last year that did a comparison of chan_sip vs chan_pjsip
 
 answer: there should be a blogpost with a link to the tests
 
 question: in the presentaiton ref performace, there was also a performance hit ref concurrent calls
 
-answer: concurrent calls depends on media processing, chan\_pjsip and chan\_sip share the same underlaying media processing, so we confused by that and have no idea how to test that
+answer: concurrent calls depends on media processing, chan_pjsip and chan_sip share the same underlaying media processing, so we confused by that and have no idea how to test that
 
 answer: the delta between the two was only 1-2 concurrent call difference, so we were looking for more extreme differences that
 
 answer: if anything could make the difference, it could be memory as pjsip does use more memory
 
-answer: don't have any data-points but I found that chan\_pjsip can handle more concurrent calls than chan\_sip
+answer: don't have any data-points but I found that chan_pjsip can handle more concurrent calls than chan_sip
 
 answer: found a performance difference between 1.4 and 1.6 and it came down to a one line change ref DNS, there should be more performance tests on a regular basis
 
@@ -442,24 +442,24 @@ it's possible to receive nack request from multiple participants asterisk needs 
 
 Discussions:
 
-* Have discussion about proposing that chan\_sip be marked deprecated
+* Have discussion about proposing that chan_sip be marked deprecated
 
-Torrey brings up the point that chan\_sip should be no-loaded by default.  PJSIP users often have to nuke chan\_sip just to use PJSIP.  
-Dan brings up the point that the plan for chan\_sip (warnings on startup, no-load in 16) didn't happen.  Dan also suggests no-loading chan\_sip in SuperAwesome Company.  
+Torrey brings up the point that chan_sip should be no-loaded by default.  PJSIP users often have to nuke chan_sip just to use PJSIP.  
+Dan brings up the point that the plan for chan_sip (warnings on startup, no-load in 16) didn't happen.  Dan also suggests no-loading chan_sip in SuperAwesome Company.  
 Jason suggests that even though 16.0 doesn't have the warnings; we should add them anyway.  MattF disagrees and doesn't think we should make the change, given that 16 exists.  
 Fred points out that warnings should be noisy in the logs - not just errors.  
 A point was made that there still are some gaps in capability.  MattF's rebuttal is that those capabilities are ones that are lightly used and the user community hasn't ported them forward for years.  
-Alexander makes the point that forcing users to move by no-loading or making it harder to use chan\_sip, could result in user exodus.  He also makes the point that it is good to ensure people don't end up on a channel driver that isn't well-supported.
+Alexander makes the point that forcing users to move by no-loading or making it harder to use chan_sip, could result in user exodus.  He also makes the point that it is good to ensure people don't end up on a channel driver that isn't well-supported.
 
-* res\_xmpp/chan\_motif should they remain core supported (due to dependency on unmaintained libraries)
+* res_xmpp/chan_motif should they remain core supported (due to dependency on unmaintained libraries)
 
 Corey notes that the last commit on the supporting library is 2011, and it isn't even packaged in Fedora.  
 Jared seconds.  
 No dissent.
 
-* Discuss deprecation/removal of res\_monitor
+* Discuss deprecation/removal of res_monitor
 
-Torrey wants to know what replaces res\_monitor.  chan\_spy replaces res\_monitor.  
+Torrey wants to know what replaces res_monitor.  chan_spy replaces res_monitor.  
 Corey prefers mixmonitor because it uses framehooks; monitor requires separate core code (and doesn't use framehooks).  
 No dissent.
 
@@ -469,19 +469,19 @@ macro is long-deprecated.
 
 * Opportunistic DTLS
 
-Torrey uses Kamailio.  Kamailio is one endpoint.  He'd like to have one endpoint configuration that'd work for both.  Most things work except for use\_received\_transport.  The outbound leg doesn't work, but may not be as necessary.  
+Torrey uses Kamailio.  Kamailio is one endpoint.  He'd like to have one endpoint configuration that'd work for both.  Most things work except for use_received_transport.  The outbound leg doesn't work, but may not be as necessary.  
 A patch had been submitted but was rejected. <https://gerrit.asterisk.org/#/c/asterisk/+/10245/>  
 Discussion will resume on the mailing list.
 
 * Making it easier to send audio to/from Amazon, Google, IBM (especially in context of speech recognition)
 
 Dan prefers not putting audio on the machine itself when his ARI apps are themselves, remote.  It'd be nice to have an HTTP endpoint way to get one or both sides of the media stream for a call and relay them somewhere else.  In particular, Dan's looking to push that audio out to a remote speech API.  
-Sean references (GRPC) as a means for sending audio.  He has similar needs to Dan and built something called app\_audiosocket, that directs a call over a TCP socket to anywhere; sends audio (SLIN) + metadata and receives audio back.  It solved his problem and he'll hopefully demo it tomorrow.  He pipes it to Google or to a websocket connection for manipulation.  It's a better solution than app\_jack, which is only local, and UniMRCP.  
+Sean references (GRPC) as a means for sending audio.  He has similar needs to Dan and built something called app_audiosocket, that directs a call over a TCP socket to anywhere; sends audio (SLIN) + metadata and receives audio back.  It solved his problem and he'll hopefully demo it tomorrow.  He pipes it to Google or to a websocket connection for manipulation.  It's a better solution than app_jack, which is only local, and UniMRCP.  
 Sean and Dan want a way to use ARI to control where the audio is being sent to and received from.  ASR, TTS, audio manipulations.  
 George - so a REST endpoint that allows you to specify the channel, a hostname, and a port.  
 Sean's app does the work, but it's not callable via ARI.  
-Ivan wants the feature callable not only by ARI, but also via Dialplan.  He's familiar with chan\_rtp, but it's hard to use for his purposes.  
-Matt - big picture, the capabilities today aren't enough to handle these requests in chan\_rtp.  
+Ivan wants the feature callable not only by ARI, but also via Dialplan.  He's familiar with chan_rtp, but it's hard to use for his purposes.  
+Matt - big picture, the capabilities today aren't enough to handle these requests in chan_rtp.  
 Dan points out that other projects handle this with individual modules for individual services.
 
 * Getting access to end of call statistics (regardless of who hangs up first)

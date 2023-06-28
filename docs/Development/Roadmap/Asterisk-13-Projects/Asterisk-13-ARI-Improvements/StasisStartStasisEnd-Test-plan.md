@@ -686,30 +686,30 @@ Current Status
 
 | Test | Issue | TestSuite Test |
 | --- | --- | --- |
-| 1.1 Attended: Non-Stasis Application to Stasis Bridge |  | tests/rest\_api/external\_interaction/attended\_transfer/non\_stasis\_app\_to\_stasis\_bridge |
-| 1.2 Attended: Non-Stasis Bridge to Stasis Bridge |  | tests/rest\_api/external\_interaction/attended\_transfer/non\_stasis\_bridge\_to\_stasis\_bridge |
-| 1.3 Attended: Non-Stasis Bridge to Stasis Application |  | tests/rest\_api/external\_interaction/attended\_transfer/stasis\_bridge\_to\_stasis\_app |
-| 1.4 Attended: Stasis Bridge to Non-Stasis Application |  | tests/rest\_api/external\_interaction/attended\_transfer/stasis\_bridge\_to\_non\_stasis\_app |
+| 1.1 Attended: Non-Stasis Application to Stasis Bridge |  | tests/rest_api/external_interaction/attended_transfer/non_stasis_app_to_stasis_bridge |
+| 1.2 Attended: Non-Stasis Bridge to Stasis Bridge |  | tests/rest_api/external_interaction/attended_transfer/non_stasis_bridge_to_stasis_bridge |
+| 1.3 Attended: Non-Stasis Bridge to Stasis Application |  | tests/rest_api/external_interaction/attended_transfer/stasis_bridge_to_stasis_app |
+| 1.4 Attended: Stasis Bridge to Non-Stasis Application |  | tests/rest_api/external_interaction/attended_transfer/stasis_bridge_to_non_stasis_app |
 | 1.5 Attended: Stasis Bridge to Non-Stasis Bridge |  |  |
-| 1.6 Attended: Stasis Bridge to Stasis Bridge in same Stasis application |  | tests/rest\_api/external\_interaction/attended\_transfer/stasis\_bridge\_to\_stasis\_bridge/same\_stasis\_app |
-| 1.7 Attended: Stasis Bridge to Stasis Bridge in Different Stasis application |  | tests/rest\_api/external\_interaction/attended\_transfer/stasis\_bridge\_to\_stasis\_bridge/different\_stasis\_app |
-| 1.8 Blind: Stasis Bridge to Non-Stasis application |  | tests/rest\_api/bridges/blind\_transfer/stasis\_bridge\_to\_non\_stasis\_app |
-| 1.9 Blind: Stasis Bridge to same Stasis application |  | tests/rest\_api/external\_interaction/blind\_transfer/stasis\_bridge\_to\_same\_stasis\_app |
-| 1.10 Blind: Stasis Bridge to different Stasis application |  | tests/rest\_api/external\_interaction/blind\_transfer/stasis\_bridge\_to\_different\_stasis\_app |
-| 2.1 One channel in Stasis Bridge, One channel in non-Stasis application – 2.1.1 AMI Bridge Action |  | tests/rest\_api/external\_interaction/ami\_bridge/stasis\_bridge/non\_stasis\_app |
-| 2.1 One channel in Stasis Bridge, One channel in non-Stasis application – 2.1.2 Bridge() Dialplan Application |  | tests/rest\_api/external\_interaction/bridge\_app/stasis\_bridge |
-| 2.1 One channel in Stasis Bridge, One channel in non-Stasis application – 2.1.3 Bridge() Dialplan Application (x option) |  | tests/rest\_api/external\_interaction/bridge\_app/x\_option/stasis\_bridge |
-| 2.2 One channel in Stasis Bridge, One channel in non-Stasis Bridge |  | tests/rest\_api/external\_interaction/ami\_bridge/stasis\_bridge/non\_stasis\_bridge |
-| 2.3 One channel in Stasis Bridge, One channel in Same Stasis application |  | tests/rest\_api/external\_interaction/ami\_bridge/stasis\_bridge/same\_stasis\_app |
-| 2.4 One channel in Stasis Bridge, One channel in Different Stasis application |  | tests/rest\_api/external\_interaction/ami\_bridge/stasis\_bridge/different\_stasis\_app |
-| 2.5 Both channels in Stasis Bridge, Same Stasis Application |  | tests/rest\_api/external\_interaction/ami\_bridge/stasis\_bridge/two\_channel\_same\_stasis\_app |
-| 2.6 Both channels in Stasis Bridge, Different Stasis Application |  | tests/rest\_api/external\_interaction/ami\_bridge/stasis\_bridge/two\_channel\_different\_stasis\_app |
-| 2.7 Both channels in Same Stasis application |  | tests/rest\_api/external\_interaction/ami\_bridge/stasis\_app/two\_channel\_same\_stasis\_app |
-| 2.8 Both channels in Different Stasis applications |  | tests/rest\_api/external\_interaction/ami\_bridge/stasis\_app/two\_channel\_different\_stasis\_app |
+| 1.6 Attended: Stasis Bridge to Stasis Bridge in same Stasis application |  | tests/rest_api/external_interaction/attended_transfer/stasis_bridge_to_stasis_bridge/same_stasis_app |
+| 1.7 Attended: Stasis Bridge to Stasis Bridge in Different Stasis application |  | tests/rest_api/external_interaction/attended_transfer/stasis_bridge_to_stasis_bridge/different_stasis_app |
+| 1.8 Blind: Stasis Bridge to Non-Stasis application |  | tests/rest_api/bridges/blind_transfer/stasis_bridge_to_non_stasis_app |
+| 1.9 Blind: Stasis Bridge to same Stasis application |  | tests/rest_api/external_interaction/blind_transfer/stasis_bridge_to_same_stasis_app |
+| 1.10 Blind: Stasis Bridge to different Stasis application |  | tests/rest_api/external_interaction/blind_transfer/stasis_bridge_to_different_stasis_app |
+| 2.1 One channel in Stasis Bridge, One channel in non-Stasis application – 2.1.1 AMI Bridge Action |  | tests/rest_api/external_interaction/ami_bridge/stasis_bridge/non_stasis_app |
+| 2.1 One channel in Stasis Bridge, One channel in non-Stasis application – 2.1.2 Bridge() Dialplan Application |  | tests/rest_api/external_interaction/bridge_app/stasis_bridge |
+| 2.1 One channel in Stasis Bridge, One channel in non-Stasis application – 2.1.3 Bridge() Dialplan Application (x option) |  | tests/rest_api/external_interaction/bridge_app/x_option/stasis_bridge |
+| 2.2 One channel in Stasis Bridge, One channel in non-Stasis Bridge |  | tests/rest_api/external_interaction/ami_bridge/stasis_bridge/non_stasis_bridge |
+| 2.3 One channel in Stasis Bridge, One channel in Same Stasis application |  | tests/rest_api/external_interaction/ami_bridge/stasis_bridge/same_stasis_app |
+| 2.4 One channel in Stasis Bridge, One channel in Different Stasis application |  | tests/rest_api/external_interaction/ami_bridge/stasis_bridge/different_stasis_app |
+| 2.5 Both channels in Stasis Bridge, Same Stasis Application |  | tests/rest_api/external_interaction/ami_bridge/stasis_bridge/two_channel_same_stasis_app |
+| 2.6 Both channels in Stasis Bridge, Different Stasis Application |  | tests/rest_api/external_interaction/ami_bridge/stasis_bridge/two_channel_different_stasis_app |
+| 2.7 Both channels in Same Stasis application |  | tests/rest_api/external_interaction/ami_bridge/stasis_app/two_channel_same_stasis_app |
+| 2.8 Both channels in Different Stasis applications |  | tests/rest_api/external_interaction/ami_bridge/stasis_app/two_channel_different_stasis_app |
 | 2.9 One channel in Stasis application, One channel in non-Stasis Bridge |  |  |
-| 2.10 One channel in Stasis application, One channel in non-Stasis application – 2.10.1 AMI Bridge Action |  | tests/rest\_api/external\_interaction/ami\_bridge/stasis\_app/non\_stasis\_app |
+| 2.10 One channel in Stasis application, One channel in non-Stasis application – 2.10.1 AMI Bridge Action |  | tests/rest_api/external_interaction/ami_bridge/stasis_app/non_stasis_app |
 | 2.10 One channel in Stasis application, One channel in non-Stasis application – 2.10.2 Bridge() Dialplan Application |  |  |
 | 2.10 One channel in Stasis application, One channel in non-Stasis application – 2.10.3 Bridge() Dialplan Application (x option) |  |  |
-| 3 AMI Redirect – 3.1 Channel in a Stasis application |  | tests/rest\_api/external\_interaction/ami\_redirect/stasis\_app |
-| 3 AMI Redirect – 3.2 Channel in a Stasis bridge |  | tests/rest\_api/external\_interaction/ami\_redirect/stasis\_bridge |
+| 3 AMI Redirect – 3.1 Channel in a Stasis application |  | tests/rest_api/external_interaction/ami_redirect/stasis_app |
+| 3 AMI Redirect – 3.2 Channel in a Stasis bridge |  | tests/rest_api/external_interaction/ami_redirect/stasis_bridge |
 

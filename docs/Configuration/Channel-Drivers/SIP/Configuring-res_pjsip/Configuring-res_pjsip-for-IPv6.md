@@ -11,7 +11,7 @@ The configuration described here happens in the pjsip.conf file within transport
 Bind PJSIP to a specific interface
 ----------------------------------
 
-To configure res\_pjsip for communication over an IPv6 interface you must modify the bind address for your transports in pjsip.conf.
+To configure res_pjsip for communication over an IPv6 interface you must modify the bind address for your transports in pjsip.conf.
 
 
 

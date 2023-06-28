@@ -28,31 +28,31 @@ Bad code we all wrote at first
 
 ```
 
-struct ast\_foo {
+struct ast_foo {
  /\* foo's stuffz \*/
  /\*! Very important subscription \*/
- struct stasis\_subscription \*sub;
+ struct stasis_subscription \*sub;
 };
-static void foo\_dtor(void \*obj) {
- struct ast\_foo \*foo = obj;
-     stasis\_unsubscribe(foo->sub); /\* !!! WRONG !!! \*/
+static void foo_dtor(void \*obj) {
+ struct ast_foo \*foo = obj;
+     stasis_unsubscribe(foo->sub); /\* !!! WRONG !!! \*/
      /\* destroy foo's stuffz \*/
     }
 
-    static void foo\_cb(void \*data, struct stasis\_subscription \*sub,
-     struct stasis\_topic \*topic, struct stasis\_message \*message)
+    static void foo_cb(void \*data, struct stasis_subscription \*sub,
+     struct stasis_topic \*topic, struct stasis_message \*message)
     {
      struct foo \*foo = data;
      /\* Message handling \*/
     }
 
-    struct ast\_foo \*ast\_foo\_create(void) {
-     RAII\_VAR(struct ast\_foo \*, foo, NULL, ao2\_cleanup);
-     foo = ao2\_alloc(sizeof(\*foo), foo\_dtor);
+    struct ast_foo \*ast_foo_create(void) {
+     RAII_VAR(struct ast_foo \*, foo, NULL, ao2_cleanup);
+     foo = ao2_alloc(sizeof(\*foo), foo_dtor);
      if (!foo) { return NULL; }
-     foo->sub = stasis\_subscribe(some\_topic(), foo\_cb, foo);
+     foo->sub = stasis_subscribe(some_topic(), foo_cb, foo);
      if (!foo->sub) { return NULL; }
-     ao2\_ref(foo, +1);
+     ao2_ref(foo, +1);
      return foo;
     }
 
@@ -80,35 +80,35 @@ static void foo\_dtor(void \*obj) {
 
     ```
 
-    struct ast\_foo {
+    struct ast_foo {
      /\* foo's stuffz \*/
      /\*! Very important subscription \*/
-     struct stasis\_subscription \*sub;
+     struct stasis_subscription \*sub;
     };
-    static void foo\_dtor(void \*obj) {
-     struct ast\_foo \*foo = obj;
-     stasis\_unsubscribe(foo->sub); /\* !!! STILL WRONG !!! \*/
+    static void foo_dtor(void \*obj) {
+     struct ast_foo \*foo = obj;
+     stasis_unsubscribe(foo->sub); /\* !!! STILL WRONG !!! \*/
      /\* destroy foo's stuffz \*/
     }
-    static void foo\_cb(void \*data, struct stasis\_subscription \*sub,
-     struct stasis\_topic \*topic, struct stasis\_message \*message)
+    static void foo_cb(void \*data, struct stasis_subscription \*sub,
+     struct stasis_topic \*topic, struct stasis_message \*message)
     {
      struct foo \*foo = data;
      /\* Now we have to clean up the reference on the final message \*/
-     if (stasis\_subscription\_final\_message(sub, message)) {
-     ao2\_cleanup(foo);
+     if (stasis_subscription_final_message(sub, message)) {
+     ao2_cleanup(foo);
      return;
      }
      /\* Message handling \*/
     }
-    struct ast\_foo \*ast\_foo\_create(void) {
-     RAII\_VAR(struct ast\_foo \*, foo, NULL, ao2\_cleanup);
-     foo = ao2\_alloc(sizeof(\*foo), foo\_dtor);
+    struct ast_foo \*ast_foo_create(void) {
+     RAII_VAR(struct ast_foo \*, foo, NULL, ao2_cleanup);
+     foo = ao2_alloc(sizeof(\*foo), foo_dtor);
      if (!foo) { return NULL; }
-     foo->sub = stasis\_subscribe(some\_topic(), foo\_cb, foo);
+     foo->sub = stasis_subscribe(some_topic(), foo_cb, foo);
      if (!foo->sub) { return NULL; }
-     ao2\_ref(foo, +1); /\* Subscription now has a reference \*/
-     ao2\_ref(foo, +1);
+     ao2_ref(foo, +1); /\* Subscription now has a reference \*/
+     ao2_ref(foo, +1);
      return foo;
     }
 
@@ -135,43 +135,43 @@ static void foo\_dtor(void \*obj) {
 
     ```
 
-    struct ast\_foo {
+    struct ast_foo {
      /\* foo's stuffz \*/
      /\*! Very important subscription \*/
-     struct stasis\_subscription \*sub;
+     struct stasis_subscription \*sub;
     };
-    static void foo\_dtor(void \*obj) {
-     struct ast\_foo \*foo = obj;
+    static void foo_dtor(void \*obj) {
+     struct ast_foo \*foo = obj;
      /\* destroy foo's stuffz \*/
      printf("%p\n", foo);
     }
-    static void foo\_cb(void \*data, struct stasis\_subscription \*sub,
-     struct stasis\_topic \*topic, struct stasis\_message \*message)
+    static void foo_cb(void \*data, struct stasis_subscription \*sub,
+     struct stasis_topic \*topic, struct stasis_message \*message)
     {
-     struct ast\_foo \*foo = data;
-     if (stasis\_subscription\_final\_message(sub, message)) {
+     struct ast_foo \*foo = data;
+     if (stasis_subscription_final_message(sub, message)) {
      /\* Last message; all done \*/
-     ao2\_cleanup(foo);
+     ao2_cleanup(foo);
      return;
      }
      /\* Message handling \*/
     }
-    struct ast\_foo \*ast\_foo\_create(void) {
-     RAII\_VAR(struct ast\_foo \*, foo, NULL, ao2\_cleanup);
-     foo = ao2\_alloc(sizeof(\*foo), foo\_dtor);
+    struct ast_foo \*ast_foo_create(void) {
+     RAII_VAR(struct ast_foo \*, foo, NULL, ao2_cleanup);
+     foo = ao2_alloc(sizeof(\*foo), foo_dtor);
      if (!foo) { return NULL; }
-     foo->sub = stasis\_subscribe(some\_topic(), foo\_cb, foo);
+     foo->sub = stasis_subscribe(some_topic(), foo_cb, foo);
      if (!foo->sub) { return NULL; }
      /\* This is the reference the subscription has \*/
-     ao2\_ref(foo, +1);
+     ao2_ref(foo, +1);
      /\* We're not bumping the refcount, since the caller doesn't
-     \* get a direct reference. The call ast\_foo\_shutdown() instead
+     \* get a direct reference. The call ast_foo_shutdown() instead
      \*/
      return foo;
     }
-    void ast\_foo\_shutdown(struct ast\_foo \*foo) {
+    void ast_foo_shutdown(struct ast_foo \*foo) {
      if (!foo) { return; }
-     stasis\_unsubscribe(foo->sub);
+     stasis_unsubscribe(foo->sub);
     }
 
     ```

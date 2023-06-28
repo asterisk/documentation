@@ -62,7 +62,7 @@ Your summary should, if possible, be preceded by the subsystem(s) affected by th
 
 ```
 
-app\_foo: Fix crash caused by invalid widget frobbing.
+app_foo: Fix crash caused by invalid widget frobbing.
 
 ```
 
@@ -122,7 +122,7 @@ With the migration to GitHub, Changelog and Upgrade notes are no longer supplied
 
 ```
 
-app\_foo.c: Add new 'x' argument to the Foo application
+app_foo.c: Add new 'x' argument to the Foo application
  
 The Foo application now has an addition argument 'x' that can manipulate
 the output RTP stream of the remote channel by causing it to pause for

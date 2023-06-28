@@ -3,13 +3,13 @@ title: MALLOC_DEBUG Compiler Flag
 pageid: 28315432
 ---
 
-MALLOC\_DEBUG enhancements can be used as a poor-man's [Valgrind](/Valgrind) if Valgrind performance makes the PC unusable due to resource consumption.
+MALLOC_DEBUG enhancements can be used as a poor-man's [Valgrind](/Valgrind) if Valgrind performance makes the PC unusable due to resource consumption.
 
 
 
 
 !!! warning 
-    Don't attempt to use Asterisk compiled with MALLOC\_DEBUG and run Valgrind at the same time, as they will compete and render the findings invalid for either tool.
+    Don't attempt to use Asterisk compiled with MALLOC_DEBUG and run Valgrind at the same time, as they will compete and render the findings invalid for either tool.
 
       
 [//]: # (end-warning)
@@ -23,7 +23,7 @@ Gathering output
 
 
 !!! info ""
-    For this output to be useful make sure to upgrade Asterisk versions 1.8.20, 11.2.0 or above as they include important enhancements to MALLOC\_DEBUG
+    For this output to be useful make sure to upgrade Asterisk versions 1.8.20, 11.2.0 or above as they include important enhancements to MALLOC_DEBUG
 
       
 [//]: # (end-info)
@@ -32,10 +32,10 @@ Gathering output
 
  
 
-1. Run [menuselect](/Getting-Started/Installing-Asterisk/Installing-Asterisk-From-Source/Using-Menuselect-to-Select-Asterisk-Options) and in the Compiler Options, enable MALLOC\_DEBUG. A bug marshal may also ask you to enable additional compiler flags depending upon the nature of the issue.
+1. Run [menuselect](/Getting-Started/Installing-Asterisk/Installing-Asterisk-From-Source/Using-Menuselect-to-Select-Asterisk-Options) and in the Compiler Options, enable MALLOC_DEBUG. A bug marshal may also ask you to enable additional compiler flags depending upon the nature of the issue.
 2. Rebuild and install Asterisk
 3. Run Asterisk and reproduce the issue.
-4. Collect the /var/log/asterisk/mmlog (which will be generated only if you successfully compiled with the MALLOC\_DEBUG flag)
+4. Collect the /var/log/asterisk/mmlog (which will be generated only if you successfully compiled with the MALLOC_DEBUG flag)
 5. Attach the mmlog file as mmlog.txt to the issue in our [issue tracker](/Asterisk-Community/Asterisk-Issue-Guidelines).
 
 Commands provided

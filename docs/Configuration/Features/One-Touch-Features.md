@@ -17,7 +17,7 @@ Available Features
 * **automixmon** - (One-touch Recording) Has the same behavior as automon, but uses MixMonitor instead of Monitor.
 * **disconnect** - (One-touch Disconnect) When this code is detected on a channel that channel will be immediately hung up.
 * **parkcall** - (One-touch Parking) Sets a feature code for quickly parking a call.
-	+ Most parking options and behavior are configured in res\_parking.conf in Asterisk 12 and newer.
+	+ Most parking options and behavior are configured in res_parking.conf in Asterisk 12 and newer.
 
 Enabling the Features
 =====================

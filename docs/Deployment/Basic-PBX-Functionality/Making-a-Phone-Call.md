@@ -39,9 +39,9 @@ At this point, you have a very basic PBX. It has two extensions which can dial e
 
     The most important troubleshooting step is to set your verbosity level to three (or higher), and watch the command-line interface for errors or warnings as calls are placed.
 
-    To ensure that your SIP phones are registered, type **sip show peers**(chan\_sip), or **pjsip show endpoints**(chan\_pjsip) at the Asterisk CLI.
+    To ensure that your SIP phones are registered, type **sip show peers**(chan_sip), or **pjsip show endpoints**(chan_pjsip) at the Asterisk CLI.
 
-    To see which context your SIP phones will send calls to, type **sip show users**(chan\_sip) or **pjsip show endpoint <endpoint name>**(chan\_pjsip).
+    To see which context your SIP phones will send calls to, type **sip show users**(chan_sip) or **pjsip show endpoint <endpoint name>**(chan_pjsip).
 
     To ensure that you've created the extensions correctly in the **[from-internal]** context in the dialplan, type **dialplan show from-internal**.
 

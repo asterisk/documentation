@@ -15,7 +15,7 @@ Preparing Asterisk To Produce Core Files On Crash
 
 First of all, when you start Asterisk, you MUST start it with option -g. This tells Asterisk to produce a core file if it crashes.
 
-If you start Asterisk with the safe\_asterisk script, it automatically starts using the option -g.
+If you start Asterisk with the safe_asterisk script, it automatically starts using the option -g.
 
 If you're not sure if Asterisk is running with the -g option, type the following command in your shell:
 
@@ -34,15 +34,15 @@ root 3018 1.1 2.7 636212 27768 pts/1 Sl+ 08:06 0:00 asterisk -vvvvvg -c
 
 The interesting information is located in the last column.
 
-Second, your copy of Asterisk must have been built without optimization or the backtrace will be (nearly) unusable. This can be done by selecting the 'DONT\_OPTIMIZE' option in the Compiler Flags submenu in the 'make menuselect' tree before building Asterisk.
+Second, your copy of Asterisk must have been built without optimization or the backtrace will be (nearly) unusable. This can be done by selecting the 'DONT_OPTIMIZE' option in the Compiler Flags submenu in the 'make menuselect' tree before building Asterisk.
 
 
 
 
 !!! note 
-    | Using BETTER\_BACKTRACES |
+    | Using BETTER_BACKTRACES |
     | --- |
-    | As of Asterisk versions 1.4.40, 1.6.2.17, and 1.8.3, the option BETTER\_BACKTRACES which uses libbfd, will provide better symbol information within both the Asterisk binary, as well as loaded modules, to assist when using inline backtraces to track down problems. **It is recommended that you enable both DONT\_OPTIMIZE and BETTER\_BACKTRACES** |
+    | As of Asterisk versions 1.4.40, 1.6.2.17, and 1.8.3, the option BETTER_BACKTRACES which uses libbfd, will provide better symbol information within both the Asterisk binary, as well as loaded modules, to assist when using inline backtraces to track down problems. **It is recommended that you enable both DONT_OPTIMIZE and BETTER_BACKTRACES** |
 
       
 [//]: # (end-note)
@@ -59,7 +59,7 @@ Second, your copy of Asterisk must have been built without optimization or the b
 
 
 
-Running a production server with DONT\_OPTIMIZE is generally safe. You'll notice the binary files may be a bit larger, but in terms of Asterisk performance, impact should be negligible.
+Running a production server with DONT_OPTIMIZE is generally safe. You'll notice the binary files may be a bit larger, but in terms of Asterisk performance, impact should be negligible.
 
 After Asterisk crashes, a file named "core" will be dumped in the present working directory of the Linux shell from which Asterisk was started.
 
@@ -134,8 +134,8 @@ Now load the core file in gdb with the following command. This will also save th
 [...]
 (You would see a lot of output here.)
 [...]
-Reading symbols from /usr/lib/asterisk/modules/app\_externalivr.so...done.
-Loaded symbols for /usr/lib/asterisk/modules/app\_externalivr.so
+Reading symbols from /usr/lib/asterisk/modules/app_externalivr.so...done.
+Loaded symbols for /usr/lib/asterisk/modules/app_externalivr.so
 #0 0x29b45d7e in ?? ()
 (gdb)
 
@@ -168,14 +168,14 @@ Now at the gdb prompt, type: bt You would see output similar to:
 #6 0x180bf894 in ?? ()
 #7 0x0bf80008 in ?? ()
 #8 0x180b0818 in ?? ()
-#9 0x08068008 in ast\_stopstream (tmp=0x40758d38) at file.c:180
+#9 0x08068008 in ast_stopstream (tmp=0x40758d38) at file.c:180
 #10 0x000000a0 in ?? ()
 #11 0x000000a0 in ?? ()
 #12 0x00000000 in ?? ()
-#13 0x407513c3 in confcall\_careful\_stream (conf=0x8180bf8, filename=0x8181de8 "DAHDI/pseudo-1324221520") at app\_meetme.c:262
-#14 0x40751332 in streamconfthread (args=0x8180bf8) at app\_meetme.c:1965
+#13 0x407513c3 in confcall_careful_stream (conf=0x8180bf8, filename=0x8181de8 "DAHDI/pseudo-1324221520") at app_meetme.c:262
+#14 0x40751332 in streamconfthread (args=0x8180bf8) at app_meetme.c:1965
 #15 0xbcdffbe0 in ?? ()
-#16 0x40028e51 in pthread\_start\_thread () from /lib/libpthread.so.0
+#16 0x40028e51 in pthread_start_thread () from /lib/libpthread.so.0
 #17 0x401ec92a in clone () from /lib/libc.so.6
 (gdb)
 
@@ -217,7 +217,7 @@ No symbol table info available.
 No symbol table info available.
 #8 0x180b0818 in ?? ()
 No symbol table info available.
-#9 0x08068008 in ast\_stopstream (tmp=0x40758d38) at file.c:180
+#9 0x08068008 in ast_stopstream (tmp=0x40758d38) at file.c:180
 No locals.
 #10 0x000000a0 in ?? ()
 No symbol table info available.
@@ -225,14 +225,14 @@ No symbol table info available.
 No symbol table info available.
 #12 0x00000000 in ?? ()
 No symbol table info available.
-#13 0x407513c3 in confcall\_careful\_stream (conf=0x8180bf8, filename=0x8181de8 "DAHDI/pseudo-1324221520") at app\_meetme.c:262
- f = (struct ast\_frame \*) 0x8180bf8
- trans = (struct ast\_trans\_pvt \*) 0x0
-#14 0x40751332 in streamconfthread (args=0x8180bf8) at app\_meetme.c:1965
+#13 0x407513c3 in confcall_careful_stream (conf=0x8180bf8, filename=0x8181de8 "DAHDI/pseudo-1324221520") at app_meetme.c:262
+ f = (struct ast_frame \*) 0x8180bf8
+ trans = (struct ast_trans_pvt \*) 0x0
+#14 0x40751332 in streamconfthread (args=0x8180bf8) at app_meetme.c:1965
 No locals.
 #15 0xbcdffbe0 in ?? ()
 No symbol table info available.
-#16 0x40028e51 in pthread\_start\_thread () from /lib/libpthread.so.0
+#16 0x40028e51 in pthread_start_thread () from /lib/libpthread.so.0
 No symbol table info available.
 #17 0x401ec92a in clone () from /lib/libc.so.6
 No symbol table info available.
@@ -269,14 +269,14 @@ Thread 1 (process 26252):
 #6 0x180bf894 in ?? ()
 #7 0x0bf80008 in ?? ()
 #8 0x180b0818 in ?? ()
-#9 0x08068008 in ast\_stopstream (tmp=0x40758d38) at file.c:180
+#9 0x08068008 in ast_stopstream (tmp=0x40758d38) at file.c:180
 #10 0x000000a0 in ?? ()
 #11 0x000000a0 in ?? ()
 #12 0x00000000 in ?? ()
-#13 0x407513c3 in confcall\_careful\_stream (conf=0x8180bf8, filename=0x8181de8 "DAHDI/pseudo-1324221520") at app\_meetme.c:262
-#14 0x40751332 in streamconfthread (args=0x8180bf8) at app\_meetme.c:1965
+#13 0x407513c3 in confcall_careful_stream (conf=0x8180bf8, filename=0x8181de8 "DAHDI/pseudo-1324221520") at app_meetme.c:262
+#14 0x40751332 in streamconfthread (args=0x8180bf8) at app_meetme.c:1965
 #15 0xbcdffbe0 in ?? ()
-#16 0x40028e51 in pthread\_start\_thread () from /lib/libpthread.so.0
+#16 0x40028e51 in pthread_start_thread () from /lib/libpthread.so.0
 #17 0x401ec92a in clone () from /lib/libc.so.6
 (gdb)
 
@@ -294,7 +294,7 @@ Whenever collecting information about a deadlock it is useful to have additional
 
 
 
-!!! note **  In the Compiler Flags menu of menuselect and you should enable **DEBUG\_THREADS**, **DONT\_OPTIMIZE** and **BETTER\_BACKTRACES
+!!! note **  In the Compiler Flags menu of menuselect and you should enable **DEBUG_THREADS**, **DONT_OPTIMIZE** and **BETTER_BACKTRACES
     . Then, you need to recompile, re-install, and restart Asterisk before following the steps below.
 
       
@@ -332,7 +332,7 @@ Verify Your Backtraces
 
 Before uploading your backtraces to the issue tracker, you should double check to make sure the data you have is of use to the developers.
 
-Check your backtrace files to make sure you compiled with **DONT\_OPTIMIZE**:
+Check your backtrace files to make sure you compiled with **DONT_OPTIMIZE**:
 
 
 
@@ -351,15 +351,15 @@ Check your backtrace files to make sure you compiled with **DONT\_OPTIMIZE**:
 ```
 
 
-If you are seeing the above text in your backtrace, then you likely haven't compiled with DONT\_OPTIMIZE. The impact of DONT\_OPTIMIZE is negligible on most systems, so go ahead and enable it as with optimizations the backtraces are often not useful to the developers. Be sure you've enabled the DONT\_OPTIMIZE flag within the Compiler Flags section of menuselect. After doing so, be sure to run 'make && make install' and restart Asterisk.
+If you are seeing the above text in your backtrace, then you likely haven't compiled with DONT_OPTIMIZE. The impact of DONT_OPTIMIZE is negligible on most systems, so go ahead and enable it as with optimizations the backtraces are often not useful to the developers. Be sure you've enabled the DONT_OPTIMIZE flag within the Compiler Flags section of menuselect. After doing so, be sure to run 'make && make install' and restart Asterisk.
 
-If you are getting a backtrace for a deadlock then be sure you compiled with **DEBUG\_THREADS**. One way to verify this is by checking your backtrace for a thread calling **ast\_rentrancy\_lock**. For example:
+If you are getting a backtrace for a deadlock then be sure you compiled with **DEBUG_THREADS**. One way to verify this is by checking your backtrace for a thread calling **ast_rentrancy_lock**. For example:
 
 
 
 
 ```bash title=" " linenums="1"
-#2 0x0813c6c7 in ast\_reentrancy\_lock (lt=0x6b736972) at /usr/local/src/asterisk-11.14/asterisk-11.14.0-rc1/include/asterisk/lock.h:420
+#2 0x0813c6c7 in ast_reentrancy_lock (lt=0x6b736972) at /usr/local/src/asterisk-11.14/asterisk-11.14.0-rc1/include/asterisk/lock.h:420
  res = 135518668
 
 ```

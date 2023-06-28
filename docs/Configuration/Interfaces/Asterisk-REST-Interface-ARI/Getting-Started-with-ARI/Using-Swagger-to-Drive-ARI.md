@@ -30,14 +30,14 @@ enabled=yes
 ;
 ; In this example, we are going to use the version of Swagger-UI that is hosted
 ; at ari.asterisk.org. In order to get past CORS restrictions in the browser,
-; That origin needs to be added to the allowed\_origins list.
+; That origin needs to be added to the allowed_origins list.
 ;
-allowed\_origins=http://ari.asterisk.org
+allowed_origins=http://ari.asterisk.org
  
 [hey]
 type=user
 password=peekaboo
-;read\_only=no ; Set to yes for read-only applications 
+;read_only=no ; Set to yes for read-only applications 
 
 ```
 

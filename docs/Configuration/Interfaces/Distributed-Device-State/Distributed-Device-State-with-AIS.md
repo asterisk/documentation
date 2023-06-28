@@ -11,7 +11,7 @@ pageid: 4259996
 
 Various changes have been made related to "event handling" in Asterisk. One of the most important things included in these changes is the ability to share certain events between servers. The two types of events that can currently be shared between servers are:
 
-# \*MWI\* - \_Message Waiting Indication\_ - This gives you a high performance option for letting servers in a cluster be aware of changes in the state of a mailbox. Instead of having each server have to poll an ODBC database, this lets the server that actually made the change to the mailbox generate an event which will get distributed to the other servers that have subscribed to this information.
+# \*MWI\* - _Message Waiting Indication_ - This gives you a high performance option for letting servers in a cluster be aware of changes in the state of a mailbox. Instead of having each server have to poll an ODBC database, this lets the server that actually made the change to the mailbox generate an event which will get distributed to the other servers that have subscribed to this information.
 # \*Device State\* - This lets servers in a local cluster inform each other about changes in the state of a device on that particular server. When the state of a device changes on any server, the overall state of that device across the cluster will get recalculated. So, any subscriptions to the state of a device, such as hints in the dialplan or an application like Queue() which reads device state, will then reflect the state of a device across a cluster.
 
 # OpenAIS Installation
@@ -115,7 +115,7 @@ Nov 13 06:55:30 corosync [MAIN ] Completed service synchronization, ready to pro
 
 # Installing Asterisk
 
-Install Asterisk as usual. Just make sure that you run the configure script after OpenAIS gets installed. That way, it will find the AIS header files and will let you build the res\_ais module. Check menuselect to make sure that res\_ais is going to get compiled and installed.
+Install Asterisk as usual. Just make sure that you run the configure script after OpenAIS gets installed. That way, it will find the AIS header files and will let you build the res_ais module. Check menuselect to make sure that res_ais is going to get compiled and installed.
 
 ```
 $ cd asterisk-source
@@ -125,7 +125,7 @@ $ make menuselect
  ---> Resource Modules
 ```
 
-If you have existing configuration on the system being used for testing, just be sure to install the addition configuration file needed for res\_ais.
+If you have existing configuration on the system being used for testing, just be sure to install the addition configuration file needed for res_ais.
 
 ```
 $ sudo cp configs/ais.conf.sample /etc/asterisk/ais.conf
@@ -150,7 +150,7 @@ $ sudo ${EDITOR:-vim} /etc/asterisk/asterisk.conf
 {code:title=asterisk.conf}
 [options]
 
-entity\_id=01:23:45:67:89:ab
+entity_id=01:23:45:67:89:ab
 {code}
 
 Edit the Asterisk ais.conf to enable distributed events. For example, if you would like to enable distributed device state, you should add the following section to the file:
@@ -160,10 +160,10 @@ $ sudo ${EDITOR:-vim} /etc/asterisk/ais.conf
 ```
 
 {code:title=/etc/asterisk/ais.conf}
-[device\_state]
-type=event\_channel
-publish\_event=device\_state
-subscribe\_event=device\_state
+[device_state]
+type=event_channel
+publish_event=device_state
+subscribe_event=device_state
 {code}
 
 For more information on the contents and available options in this configuration file, please see the sample configuration file:
@@ -218,9 +218,9 @@ The next thing to do is to verify that you have successfully configured some eve
 =============================================================
 ===
 === ---------------------------------------------------------
-=== Event Channel Name: device\_state
-=== ==> Publishing Event Type: device\_state
-=== ==> Subscribing to Event Type: device\_state
+=== Event Channel Name: device_state
+=== ==> Publishing Event Type: device_state
+=== ==> Subscribing to Event Type: device_state
 === ---------------------------------------------------------
 ===
 =============================================================
@@ -229,10 +229,10 @@ The next thing to do is to verify that you have successfully configured some eve
 
 # Testing Distributed Device State
 
-The easiest way to test distributed device state is to use the DEVICE\_STATE() diaplan function. For example, you could have the following piece of dialplan on every server:
+The easiest way to test distributed device state is to use the DEVICE_STATE() diaplan function. For example, you could have the following piece of dialplan on every server:
 
 {code:title=/etc/asterisk/extensions.conf}
-[devstate\_test]
+[devstate_test]
 
 exten => 1234,hint,Custom:mystate
 {code}
@@ -240,10 +240,10 @@ exten => 1234,hint,Custom:mystate
 Now, you can test that the cluster-wide state of "Custom:mystate" is what you would expect after going to the CLI of each server and adjusting the state.
 
 ```
-server1\*CLI> dialplan set global DEVICE\_STATE(Custom:mystate) NOT\_INUSE
+server1\*CLI> dialplan set global DEVICE_STATE(Custom:mystate) NOT_INUSE
  ...
 
-server2\*CLI> dialplan set global DEVICE\_STATE(Custom:mystate) INUSE
+server2\*CLI> dialplan set global DEVICE_STATE(Custom:mystate) INUSE
  ...
 ```
 
@@ -253,7 +253,7 @@ state change with distributed device state:
 ```
 server2\*CLI> core show hints
  -= Registered Asterisk Dial Plan Hints =-
- 1234@devstate\_test : Custom:mystate State:InUse Watchers 0
+ 1234@devstate_test : Custom:mystate State:InUse Watchers 0
 ```
 
 One other helpful thing here during testing and debugging is to enable debug logging. To do so, enable debug on the console in /etc/asterisk/logger.conf. Also, enable debug at the Asterisk CLI.

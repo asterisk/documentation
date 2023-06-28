@@ -125,7 +125,7 @@ pretty = yes
 
 [asterisk]
 type = user
-read\_only = no
+read_only = no
 password = asterisk
 
 ```
@@ -170,7 +170,7 @@ Hello World!
 
 
 ```bash title=" " linenums="1"
-$ wscat -c "ws://localhost:8088/ari/events?api\_key=asterisk:asterisk&app=hello-world"
+$ wscat -c "ws://localhost:8088/ari/events?api_key=asterisk:asterisk&app=hello-world"
 connected (press CTRL+C to quit)
 >
 
@@ -282,7 +282,7 @@ text\* About to connect() to localhost port 8088 (#0)
 \* Server auth using Basic with user 'asterisk'
 > POST /ari/channels/1400609726.3/play?media=sound:hello-world HTTP/1.1
 > Authorization: Basic YXN0ZXJpc2s6c2VjcmV0
-> User-Agent: curl/7.22.0 (x86\_64-pc-linux-gnu) libcurl/7.22.0 OpenSSL/1.0.1 zlib/1.2.3.4 libidn/1.23 librtmp/2.3
+> User-Agent: curl/7.22.0 (x86_64-pc-linux-gnu) libcurl/7.22.0 OpenSSL/1.0.1 zlib/1.2.3.4 libidn/1.23 librtmp/2.3
 > Host: localhost:8088
 > Accept: \*/\*
 > 
@@ -297,8 +297,8 @@ text\* About to connect() to localhost port 8088 (#0)
 < 
 \* Closing connection #0
 {"id":"9567ea46-440f-41be-a044-6ecc8100730a",
- "media\_uri":"sound:hello-world",
- "target\_uri":"channel:1400609726.3",
+ "media_uri":"sound:hello-world",
+ "target_uri":"channel:1400609726.3",
  "language":"en",
  "state":"queued"}
 
@@ -342,8 +342,8 @@ js< {"application":"hello-world",
  "type":"PlaybackStarted",
  "playback":{
  "id":"9567ea46-440f-41be-a044-6ecc8100730a",
- "media\_uri":"sound:hello-world",
- "target\_uri":"channel:1400609726.3",
+ "media_uri":"sound:hello-world",
+ "target_uri":"channel:1400609726.3",
  "language":"en",
  "state":"playing"}
  }
@@ -352,8 +352,8 @@ js< {"application":"hello-world",
  "type":"PlaybackFinished",
  "playback":{
  "id":"9567ea46-440f-41be-a044-6ecc8100730a",
- "media\_uri":"sound:hello-world",
- "target\_uri":"channel:1400609726.3",
+ "media_uri":"sound:hello-world",
+ "target_uri":"channel:1400609726.3",
  "language":"en",
  "state":"done"}
  }

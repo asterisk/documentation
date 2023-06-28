@@ -12,7 +12,7 @@ Configuring your particular phone is obviously beyond the scope of this guide, b
 * **SIP Authentication User/Auth User** - On Asterisk-based systems, this will be the same as the SIP user name above.
 * **Proxy Server/Outbound Proxy Server** - This is the server with which your phone communicates to make outside calls. This should be set to the IP address of your Asterisk system.
 
-When using chan\_sip you can tell whether or not your phone has registered successfully to Asterisk by checking the output of the **sip show peers** command at the Asterisk CLI. If the **Host** column says **(Unspecified)**, the phone has not yet registered. On the other hand, if the **Host** column contains an IP address and the **Dyn** column contains the letter **D**, you know that the phone has successfully registered.
+When using chan_sip you can tell whether or not your phone has registered successfully to Asterisk by checking the output of the **sip show peers** command at the Asterisk CLI. If the **Host** column says **(Unspecified)**, the phone has not yet registered. On the other hand, if the **Host** column contains an IP address and the **Dyn** column contains the letter **D**, you know that the phone has successfully registered.
 
 
 
@@ -37,7 +37,7 @@ demo-bob 192.168.5.105 D A 5060 Unmonitored
 
 In the example above, you can see that Alice's phone has not registered, but Bob's phone has registered.
 
-For chan\_pjsip you can use **pjsip show endpoints**.
+For chan_pjsip you can use **pjsip show endpoints**.
 
 
 
@@ -55,7 +55,7 @@ For chan\_pjsip you can use **pjsip show endpoints**.
 
 ```
 
-NOTICE[22214]: chan\_sip.c:20824 handle\_request\_register: Registration from '"Alice"&nbsp;
+NOTICE[22214]: chan_sip.c:20824 handle_request_register: Registration from '"Alice"&nbsp;
 <sip:demo-alice@192.168.5.50>' failed for '192.168.5.103' - Wrong password
   
 

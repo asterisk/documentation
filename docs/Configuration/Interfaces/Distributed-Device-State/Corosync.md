@@ -21,7 +21,7 @@ The project, at it's core, provides four C api features:
 ##### Corosync and Asterisk
 
 
-Using Corosync together with res\_corosync allows events to be shared amongst a local cluster of Asterisk servers. Specifically, the types of events that may be shared include:
+Using Corosync together with res_corosync allows events to be shared amongst a local cluster of Asterisk servers. Specifically, the types of events that may be shared include:
 
 
 * Device state
@@ -112,7 +112,7 @@ This creates a key in /etc/corosync/authkey.
 ```
 
 
-asterisk\_active:~# scp /etc/corosync/authkey asterisk\_standby:
+asterisk_active:~# scp /etc/corosync/authkey asterisk_standby:
 
 
 ```
@@ -132,9 +132,9 @@ Now, on the standby node, you'll need to stick the authkey in it's new home and 
 ```
 
 
-asterisk\_standby:~# mv ~/authkey /etc/corosync/authkey
-asterisk\_standby:~# chown root:root /etc/corosync/authkey
-asterisk\_standby:~# chmod 400 /etc/corosync/authkey
+asterisk_standby:~# mv ~/authkey /etc/corosync/authkey
+asterisk_standby:~# chown root:root /etc/corosync/authkey
+asterisk_standby:~# chmod 400 /etc/corosync/authkey
 
 
 ```
@@ -162,14 +162,14 @@ The interface section under the totem block defines the communication path(s) to
 	totem {
 	 version: 2
 	 token: 160
-	 token\_retransmits\_before\_loss\_const: 3
+	 token_retransmits_before_loss_const: 3
 	 join: 30
 	 consensus: 300
 	 vsftype: none
-	 max\_messages: 20
+	 max_messages: 20
 	 threads: 0
 	 nodeid: 1
-	 rrp\_mode: none
+	 rrp_mode: none
 	 interface {
 	 ringnumber: 0
 	 bindnetaddr: 192.168.1.0
@@ -203,14 +203,14 @@ The interface section under the totem block defines the communication path(s) to
 	totem {
 	 version: 2
 	 token: 160
-	 token\_retransmits\_before\_loss\_const: 3
+	 token_retransmits_before_loss_const: 3
 	 join: 30
 	 consensus: 300
 	 vsftype: none
-	 max\_messages: 20
+	 max_messages: 20
 	 threads: 0
 	 nodeid: 2
-	 rrp\_mode: none
+	 rrp_mode: none
 	 interface {
 	 ringnumber: 0
 	 bindnetaddr: 192.168.1.0
@@ -274,7 +274,7 @@ make install
 ```
 
 
-* ###### /etc/asterisk/res\_corosync.conf
+* ###### /etc/asterisk/res_corosync.conf
 
 
 
@@ -289,7 +289,7 @@ make install
 
 
 ;
-; Sample configuration file for res\_corosync.
+; Sample configuration file for res_corosync.
 ;
 ; This module allows events to be shared amongst a local cluster of
 ; Asterisk servers. Specifically, the types of events that may be
@@ -308,16 +308,16 @@ make install
 ;
 ; Publish Message Waiting Indication (MWI) events from this server to the
 ; cluster.
-publish\_event = mwi
+publish_event = mwi
 ;
 ; Subscribe to MWI events from the cluster.
-subscribe\_event = mwi
+subscribe_event = mwi
 ;
 ; Publish Device State (presence) events from this server to the cluster.
-publish\_event = device\_state
+publish_event = device_state
 ;
 ; Subscribe to Device State (presence) events from the cluster.
-subscribe\_event = device\_state
+subscribe_event = device_state
 ;
 
 
@@ -325,7 +325,7 @@ subscribe\_event = device\_state
 
 
 
-In the general section of the res\_corosync.conf file we are specifying which events we'd like to publish and subscribe to (at the moment this is either device\_state or mwi).
+In the general section of the res_corosync.conf file we are specifying which events we'd like to publish and subscribe to (at the moment this is either device_state or mwi).
 
 
 * ###### Verifying Installation

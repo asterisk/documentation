@@ -57,7 +57,7 @@ Let's look at example of both constructs in action. This is a generic example me
 [section-name]
 setting=true
 #include otherconfig.conf ; include another configuration file
-#include my\_other\_files/\*.conf ; include all .conf files in the subdirectory my\_other\_files
+#include my_other_files/\*.conf ; include all .conf files in the subdirectory my_other_files
 #exec otherprogram ; include output of otherprogram
 
 ```

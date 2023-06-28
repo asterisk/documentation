@@ -8,7 +8,7 @@ Dialing from dialplan
 
 We are assuming you already know a little bit about the Dial application here. To see the full help for it, see "core show application Dial" on the Asterisk CLI, or see [Dial](/Application_Dial).
 
-Below we'll simply dial an endpoint using the chan\_pjsip channel driver. This is really going to look at the AOR of the same name as the endpoint and start dialing the first contact associated.
+Below we'll simply dial an endpoint using the chan_pjsip channel driver. This is really going to look at the AOR of the same name as the endpoint and start dialing the first contact associated.
 
 
 
@@ -21,7 +21,7 @@ Below we'll simply dial an endpoint using the chan\_pjsip channel driver. This i
 
 ```
 
-exten => \_6XXX,1,Dial(PJSIP/${EXTEN})
+exten => _6XXX,1,Dial(PJSIP/${EXTEN})
 
 ```
 
@@ -39,7 +39,7 @@ To dial all the contacts associated with the endpoint, use the `PJSIP_DIAL_CONTA
 
 ```
 
-exten => \_6XXX,1,Dial(${PJSIP\_DIAL\_CONTACTS(${EXTEN})})
+exten => _6XXX,1,Dial(${PJSIP_DIAL_CONTACTS(${EXTEN})})
 
 ```
 
@@ -57,7 +57,7 @@ Heres how you would dial with an explicit SIP URI, user and domain, via an endpo
 
 ```
 
-exten => \_9NXXNXXXXXX,1,Dial(PJSIP/mytrunk/sip:${EXTEN:1}@203.0.113.1:5060)
+exten => _9NXXNXXXXXX,1,Dial(PJSIP/mytrunk/sip:${EXTEN:1}@203.0.113.1:5060)
 
 ```
 
@@ -75,7 +75,7 @@ This uses a contact(and its domain) set in the AOR associated with the **mytrunk
 
 ```
 
-exten => \_9NXXNXXXXXX,1,Dial(PJSIP/${EXTEN:1}@mytrunk)
+exten => _9NXXNXXXXXX,1,Dial(PJSIP/${EXTEN:1}@mytrunk)
 
 ```
 

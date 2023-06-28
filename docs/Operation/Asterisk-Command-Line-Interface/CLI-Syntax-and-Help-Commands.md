@@ -10,8 +10,8 @@ Commands follow a general syntax of **<module name> <action type> <parameters>**
 
 For example:
 
-* **sip show peers** - returns a list of chan\_sip loaded peers
-* **voicemail show users** - returns a list of app\_voicemail loaded users
+* **sip show peers** - returns a list of chan_sip loaded peers
+* **voicemail show users** - returns a list of app_voicemail loaded users
 * **core set debug 5** - sets the core debug to level 5 verbosity.
 
 
@@ -175,7 +175,7 @@ Usage: config show help [<module> [<type> [<option>]]]
 ```
 
 
-For example maybe we see the 'callerid' option in a pjsip.conf file sent to us from a friend. We want to know what that option configures. If we know that pjsip.conf is provided by the res\_pjsip module then we can find help on that configuration option.
+For example maybe we see the 'callerid' option in a pjsip.conf file sent to us from a friend. We want to know what that option configures. If we know that pjsip.conf is provided by the res_pjsip module then we can find help on that configuration option.
 
 
 
@@ -188,7 +188,7 @@ For example maybe we see the 'callerid' option in a pjsip.conf file sent to us f
 
 ```
 
-\*CLI> config show help res\_pjsip endpoint callerid
+\*CLI> config show help res_pjsip endpoint callerid
 [endpoint]
 callerid = [(null)] (Default: n/a) (Regex: False)
 

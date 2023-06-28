@@ -61,7 +61,7 @@ Enabling Reference Count Logs in Asterisk 14+
 Enabling Reference Count Logs
 =============================
 
-1. Enable **REF\_DEBUG** under Compiler Flags in [menuselect](/Getting-Started/Installing-Asterisk/Installing-Asterisk-From-Source/Using-Menuselect-to-Select-Asterisk-Options).
+1. Enable **REF_DEBUG** under Compiler Flags in [menuselect](/Getting-Started/Installing-Asterisk/Installing-Asterisk-From-Source/Using-Menuselect-to-Select-Asterisk-Options).
 2. [Recompile](/Getting-Started/Installing-Asterisk/Installing-Asterisk-From-Source).
 3. [Re-install Asterisk](/Getting-Started/Installing-Asterisk/Installing-Asterisk-From-Source).
 4. Reproduce the issue for which you need reference count debug.
@@ -129,20 +129,20 @@ Each change in the reference count value of an `ao2` object will generate one li
 ```
 
 ...
-0x7f9dbc002048,+1,19256,chan\_sip.c,8651,sip\_alloc,\*\*constructor\*\*,allocate a dialog(pvt) struct
-0x7f9dbc002048,+1,19256,chan\_sip.c,8795,sip\_alloc,1,link pvt into dialogs table
-0x7f9dbc002048,+1,19256,chan\_sip.c,4186,\_\_sip\_reliable\_xmit,2,\_\_sip\_reliable\_xmit: setting pkt->owner
-0x7f9dbc002048,+1,19256,chan\_sip.c,4352,sip\_scheddestroy,3,setting ref as passing into ast\_sched\_add for \_\_sip\_autodestruct
-0x7f9dbc002048,-1,19256,chan\_sip.c,28226,handle\_request\_do,4,throw away dialog ptr from find\_call at end of routine
-0x7f9dbc002048,+1,19256,chan\_sip.c,9248,find\_call,3,pedantic ao2\_find in dialogs
-0x7f9dbc002048,-1,19256,chan\_sip.c,4430,\_\_sip\_ack,4,unref pkt cur->owner dialog from sip ack before freeing pkt
-0x7f9dbc002048,+1,19256,chan\_sip.c,3373,pvt\_set\_needdestroy,3,link pvt into dialogs\_needdestroy container
-0x7f9dbc002048,-1,19256,chan\_sip.c,28226,handle\_request\_do,4,throw away dialog ptr from find\_call at end of routine
-0x7f9dbc002048,+1,19256,chan\_sip.c,3284,dialog\_unlink\_all,3,Let's bump the count in the unlink so it doesn't accidentally become dead before we are done
-0x7f9dbc002048,-1,19256,chan\_sip.c,3286,dialog\_unlink\_all,4,unlinking dialog via ao2\_unlink
-0x7f9dbc002048,-1,19256,chan\_sip.c,3287,dialog\_unlink\_all,3,unlinking dialog\_needdestroy via ao2\_unlink
-0x7f9dbc002048,-1,19256,chan\_sip.c,3335,dialog\_unlink\_all,2,when you delete the autokillid sched, you should dec the refcount for the stored dialog ptr
-0x7f9dbc002048,-1,19256,chan\_sip.c,3352,dialog\_unlink\_all,\*\*destructor\*\*,Let's unbump the count in the unlink so the poor pvt can disappear if it is time
+0x7f9dbc002048,+1,19256,chan_sip.c,8651,sip_alloc,\*\*constructor\*\*,allocate a dialog(pvt) struct
+0x7f9dbc002048,+1,19256,chan_sip.c,8795,sip_alloc,1,link pvt into dialogs table
+0x7f9dbc002048,+1,19256,chan_sip.c,4186,__sip_reliable_xmit,2,__sip_reliable_xmit: setting pkt->owner
+0x7f9dbc002048,+1,19256,chan_sip.c,4352,sip_scheddestroy,3,setting ref as passing into ast_sched_add for __sip_autodestruct
+0x7f9dbc002048,-1,19256,chan_sip.c,28226,handle_request_do,4,throw away dialog ptr from find_call at end of routine
+0x7f9dbc002048,+1,19256,chan_sip.c,9248,find_call,3,pedantic ao2_find in dialogs
+0x7f9dbc002048,-1,19256,chan_sip.c,4430,__sip_ack,4,unref pkt cur->owner dialog from sip ack before freeing pkt
+0x7f9dbc002048,+1,19256,chan_sip.c,3373,pvt_set_needdestroy,3,link pvt into dialogs_needdestroy container
+0x7f9dbc002048,-1,19256,chan_sip.c,28226,handle_request_do,4,throw away dialog ptr from find_call at end of routine
+0x7f9dbc002048,+1,19256,chan_sip.c,3284,dialog_unlink_all,3,Let's bump the count in the unlink so it doesn't accidentally become dead before we are done
+0x7f9dbc002048,-1,19256,chan_sip.c,3286,dialog_unlink_all,4,unlinking dialog via ao2_unlink
+0x7f9dbc002048,-1,19256,chan_sip.c,3287,dialog_unlink_all,3,unlinking dialog_needdestroy via ao2_unlink
+0x7f9dbc002048,-1,19256,chan_sip.c,3335,dialog_unlink_all,2,when you delete the autokillid sched, you should dec the refcount for the stored dialog ptr
+0x7f9dbc002048,-1,19256,chan_sip.c,3352,dialog_unlink_all,\*\*destructor\*\*,Let's unbump the count in the unlink so the poor pvt can disappear if it is time
 ...
 
 

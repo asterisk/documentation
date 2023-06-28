@@ -71,11 +71,11 @@ Dialplan will run on SIP/def-123234 and allow you to know right away what channe
 You can run dialplan on the caller channel right before the dial, which is a great place to do a last microsecond UNLOCK to ensure good channel behavior.
 
 {noformat:title=Example}
-exten => \_X.,1,GotoIf($[${LOCK(foo)}=1]?:failed)
-exten => \_X.,n,do stuff
-exten => \_X.,n,Set(Is\_Unlocked=${UNLOCK(foo)})
-exten => \_X.,n,Dial(SIP/abc)
-exten => \_X.,n(failed),Hangup()
+exten => _X.,1,GotoIf($[${LOCK(foo)}=1]?:failed)
+exten => _X.,n,do stuff
+exten => _X.,n,Set(Is_Unlocked=${UNLOCK(foo)})
+exten => _X.,n,Dial(SIP/abc)
+exten => _X.,n(failed),Hangup()
 ```
 
 With this above example, say SIP/123 and SIP/234 are running this dialplan.
@@ -92,16 +92,16 @@ Now you have two channels dialing SIP/abc when there was supposed to be one.
 If your intention is to ensure that Dial(SIP/abc) is only done one at a time, you may have unexpected behavior lurking.
 
 {noformat:title=New way}
-exten => \_X.,1,GotoIf($[${LOCK(foo)}=1]?:failed)
-exten => \_X.,n,do stuff...
-exten => \_X.,n,Dial(SIP/abc,,B(unlock^s^1))
-exten => \_X.,n,GotoIf($[${Is\_Unlocked}=1]?already\_unlocked:not\_unlocked)
-exten => \_X.,n(not\_unlocked),Set(Is\_Unlocked=${UNLOCK(foo)})
-exten => \_X.,n(already\_unlocked),Do after dial stuff...
-exten => \_X.,n(failed),Hangup()
+exten => _X.,1,GotoIf($[${LOCK(foo)}=1]?:failed)
+exten => _X.,n,do stuff...
+exten => _X.,n,Dial(SIP/abc,,B(unlock^s^1))
+exten => _X.,n,GotoIf($[${Is_Unlocked}=1]?already_unlocked:not_unlocked)
+exten => _X.,n(not_unlocked),Set(Is_Unlocked=${UNLOCK(foo)})
+exten => _X.,n(already_unlocked),Do after dial stuff...
+exten => _X.,n(failed),Hangup()
 
 [unlock]
-exten => s,1,Set(Is\_Unlocked=${UNLOCK(foo)})
+exten => s,1,Set(Is_Unlocked=${UNLOCK(foo)})
 ```
 
 Now, under no circumstances can this dialplan be run through and execute the Dial unless lock 'foo' is released. Obviously this doesn't ensure that you're not calling SIP/abc more than once (you would need more dialplan logic for that), but it will allow a dialplan coder to also put the Dial in the locked section to ensure tighter control.

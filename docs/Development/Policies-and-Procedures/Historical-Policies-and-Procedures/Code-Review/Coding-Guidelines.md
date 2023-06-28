@@ -61,11 +61,11 @@ Next, you should #include extra headers according to the functionality that your
 \*\* parsing of application arguments
 
 \* asterisk/channel.h
-\*\* struct ast\_channel and functions to manipulate it
+\*\* struct ast_channel and functions to manipulate it
 
 For more information look at the headers in include/asterisk/. These files are usually self-sufficient, i.e. they recursively #include all the extra headers they need.
 
-The equivalent of 'private' members of a class are either directly in the C source file, or in files named asterisk/mod\_\*.h to make it clear that they are not for inclusion by generic code.
+The equivalent of 'private' members of a class are either directly in the C source file, or in files named asterisk/mod_\*.h to make it clear that they are not for inclusion by generic code.
 
 Keep the number of header files small by not including them unnecessarily. Don't cut&paste list of header files from other sources, but only include those you really need. Apart from obvious cases (e.g. module.h which is almost always necessary) write a short comment next to each #include to explain why you need it.
 
@@ -79,7 +79,7 @@ Keep the number of header files small by not including them unnecessarily. Don't
 $ pglobal \-vf <path to .o file>
 ```
 
-\* When reading integer numeric input with scanf (or variants), do \_NOT\_ use '%i' unless you specifically want to allow non-base-10 input; '%d' is always a better choice, since it will not silently turn numbers with leading zeros into base-8.
+\* When reading integer numeric input with scanf (or variants), do _NOT_ use '%i' unless you specifically want to allow non-base-10 input; '%d' is always a better choice, since it will not silently turn numbers with leading zeros into base-8.
 
 \* Strings that are coming from input should not be used as the format argument to any printf-style function.
 
@@ -96,7 +96,7 @@ struct foo {
 On nearly every 64-bit platform, this will result in 4 bytes of dead space between 'bar' and 'xyz', because pointers on 64-bit platforms must be aligned on 8-byte boundaries. Once you have your code written and tested, it may be worthwhile to review your structure definitions to look for problems of this nature. If you are on a Linux platform with the 'dwarves' package available, the 'pahole' tool from that package can be used to both check for padding issues of this type and also propose reorganized structure definitions to eliminate it. Usage is quite simple; for a structure named 'foo', the command would look something like this:
 
 ```
-$ pahole \--reorganize \--show\_reorg\_steps \-C foo <path to module>
+$ pahole \--reorganize \--show_reorg_steps \-C foo <path to module>
 ```
 
 The 'pahole' tool has many other modes available, including some that will list all the structures declared in the module and the amount of padding in each one that could possibly be recovered.
@@ -105,7 +105,7 @@ The 'pahole' tool has many other modes available, including some that will list 
 
 Make sure you are aware of the string and data handling functions that exist within Asterisk to enhance portability and in some cases to produce more secure and thread-safe code. Check utils.c/utils.h for these.
 
-If you need to create a detached thread, use the ast\_pthread\_create\_detached() normally or ast\_pthread\_create\_detached\_background() for a thread with a smaller stack size. This reduces the replication of the code to handle the pthread\_attr\_t structure.
+If you need to create a detached thread, use the ast_pthread_create_detached() normally or ast_pthread_create_detached_background() for a thread with a smaller stack size. This reduces the replication of the code to handle the pthread_attr_t structure.
 
 ## Code formatting
 
@@ -239,13 +239,13 @@ for excess code indenting without requiring duplication of cleanup code.
 
 ## Do not cast 'void \\*'
 
-Do not explicitly cast 'void \\*' into any other type, nor should you cast any other type into 'void \\*'. Implicit casts to/from 'void \\*' are explicitly allowed by the C specification. This means the results of malloc(), calloc(), alloca(), and similar functions do not \_ever\_ need to be cast to a specific type, and when you are passing a pointer to (for example) a callback function that accepts a 'void \\*' you do not need to cast into that type.
+Do not explicitly cast 'void \\*' into any other type, nor should you cast any other type into 'void \\*'. Implicit casts to/from 'void \\*' are explicitly allowed by the C specification. This means the results of malloc(), calloc(), alloca(), and similar functions do not _ever_ need to be cast to a specific type, and when you are passing a pointer to (for example) a callback function that accepts a 'void \\*' you do not need to cast into that type.
 
 ## Function naming
 
-All public functions (those not marked 'static'), must be named "ast\_<something>" and have a descriptive name.
+All public functions (those not marked 'static'), must be named "ast_<something>" and have a descriptive name.
 
-As an example, suppose you wanted to take a local function "find\_feature", defined as static in a file, and used only in that file, and make it public, and use it in other files. You will have to remove the "static" declaration and define a prototype in an appropriate header file (usually in include/asterisk). A more specific name should be given, such as "ast\_find\_call\_feature".
+As an example, suppose you wanted to take a local function "find_feature", defined as static in a file, and used only in that file, and make it public, and use it in other files. You will have to remove the "static" declaration and define a prototype in an appropriate header file (usually in include/asterisk). A more specific name should be given, such as "ast_find_call_feature".
 
 ## Variable function argument parsing
 
@@ -260,45 +260,45 @@ find your code in 100 years. All variable names should be in lower case, except 
 use upper\- or mixed-case variable names; in that situation, it is preferable to follow the external API/specification for ease of understanding.
 
 Make some indication in the name of global variables which represent options that they are in fact intended to be global.
-e.g.: {{static char global\_something{}}}{{\[80\]}}
+e.g.: {{static char global_something{}}}{{\[80\]}}
 
 ## Don't use unnecessary typedef's
 
 Don't use 'typedef' just to shorten the amount of typing; there is no substantial benefit in this:
-\{\{struct foo \{ int bar; \}; typedef struct foo foo\_t;\}\}
+\{\{struct foo \{ int bar; \}; typedef struct foo foo_t;\}\}
 
-In fact, don't use 'variable type' suffixes at all; it's much preferable to just type 'struct foo' rather than 'foo\_s'.
+In fact, don't use 'variable type' suffixes at all; it's much preferable to just type 'struct foo' rather than 'foo_s'.
 
 ## Use enums instead of #define where possible
 
 Use enums rather than long lists of #define-d numeric constants when possible; this allows structure members, local variables and function arguments to be declared as using the enum's type. For example:
 {code:C}
 enum option {
- OPT\_FOO = 1,
- OPT\_BAR = 2,
- OPT\_BAZ = 4,
+ OPT_FOO = 1,
+ OPT_BAR = 2,
+ OPT_BAZ = 4,
 };
 
-static enum option global\_option;
+static enum option global_option;
 
-static handle\_option(const enum option opt)
+static handle_option(const enum option opt)
 {
  ...
 }
 {code}
 
-Note: The compiler will \_not\_ force you to pass an entry from the enum as an argument to this function; this recommendation serves only to make
+Note: The compiler will _not_ force you to pass an entry from the enum as an argument to this function; this recommendation serves only to make
 the code clearer and somewhat self-documenting. In addition, when using switch/case blocks that switch on enum values, the compiler will warn you if you forget to handle one or more of the enum values, which can be handy.
 
 ## String handling
 
-Don't use strncpy for copying whole strings; it does not guarantee that the output buffer will be null-terminated. Use ast\_copy\_string instead, which is also slightly more efficient (and allows passing the actual buffer size, which makes the code clearer).
+Don't use strncpy for copying whole strings; it does not guarantee that the output buffer will be null-terminated. Use ast_copy_string instead, which is also slightly more efficient (and allows passing the actual buffer size, which makes the code clearer).
 
-Don't use ast\_copy\_string (or any length-limited copy function) for copying fixed (known at compile time) strings into buffers, if the buffer is something that has been allocated in the function doing the copying. In that case, you know at the time you are writing the code whether the buffer is large enough for the fixed string or not, and if it's not, your code won't work anyway\! Use strcpy() for this operation, or directly set the first two characters of the buffer if you are just trying to store a one character string in the buffer. If you are trying to 'empty' the buffer, just store a single NULL character ('\0') in the first byte of the buffer; nothing else is needed, and any other method is wasteful.
+Don't use ast_copy_string (or any length-limited copy function) for copying fixed (known at compile time) strings into buffers, if the buffer is something that has been allocated in the function doing the copying. In that case, you know at the time you are writing the code whether the buffer is large enough for the fixed string or not, and if it's not, your code won't work anyway\! Use strcpy() for this operation, or directly set the first two characters of the buffer if you are just trying to store a one character string in the buffer. If you are trying to 'empty' the buffer, just store a single NULL character ('\0') in the first byte of the buffer; nothing else is needed, and any other method is wasteful.
 
 In addition, if the previous operations in the function have already determined that the buffer in use is adequately sized to hold the string
 you wish to put into it (even if you did not allocate the buffer yourself), use a direct strcpy(), as it can be inlined and optimized to simple
-processor operations, unlike ast\_copy\_string().
+processor operations, unlike ast_copy_string().
 
 ## String conversions
 
@@ -308,22 +308,22 @@ When converting from strings to integers or floats, use the sscanf function in p
 
 For the sake of uclibc, do not use index, bcopy or bzero; use strchr(), memset(), and memmove() instead. uclibc can be configured to supply these functions, but we can save these users time and consternation if we abstain from using these functions.
 
-When making applications, always ast\_strdupa(data) to a local pointer if you intend to parse the incoming data string.
+When making applications, always ast_strdupa(data) to a local pointer if you intend to parse the incoming data string.
 {code:C}
  if (data) {
- mydata = ast\_strdupa(data);
+ mydata = ast_strdupa(data);
  }
 {code}
 
 Use the argument parsing macros to declare arguments and parse them, i.e.:
 {code:C}
- AST\_DECLARE\_APP\_ARGS(args,
- AST\_APP\_ARG(arg1);
- AST\_APP\_ARG(arg2);
- AST\_APP\_ARG(arg3);
+ AST_DECLARE_APP_ARGS(args,
+ AST_APP_ARG(arg1);
+ AST_APP_ARG(arg2);
+ AST_APP_ARG(arg3);
  );
- parse = ast\_strdupa(data);
- AST\_STANDARD\_APP\_ARGS(args, parse);
+ parse = ast_strdupa(data);
+ AST_STANDARD_APP_ARGS(args, parse);
 {code}
 
 Make sure you are not duplicating any functionality already found in an API call somewhere. If you are duplicating functionality found in
@@ -351,14 +351,14 @@ struct foo \*tmp;
 
 ...
 
-tmp = ast\_calloc(1, sizeof(\*tmp));
+tmp = ast_calloc(1, sizeof(\*tmp));
 {code}
 
-Avoid the combination of ast\_malloc() and memset(). Instead, always use ast\_calloc(). This will allocate and zero the memory in a single operation. In the case that uninitialized memory is acceptable, there should be a comment in the code that states why this is the case.
+Avoid the combination of ast_malloc() and memset(). Instead, always use ast_calloc(). This will allocate and zero the memory in a single operation. In the case that uninitialized memory is acceptable, there should be a comment in the code that states why this is the case.
 
 Using sizeof(\*tmp) instead of sizeof(struct foo) eliminates duplication of the 'struct foo' identifier, which makes the code easier to read and also ensures that if it is copy-and-pasted it won't require as much editing.
 
-The ast\_\\* family of functions for memory allocation are functionally the same. They just add an Asterisk log error message in the case that the allocation fails for some reason. This eliminates the need to generate custom messages throughout the code to log that this has occurred.
+The ast_\\* family of functions for memory allocation are functionally the same. They just add an Asterisk log error message in the case that the allocation fails for some reason. This eliminates the need to generate custom messages throughout the code to log that this has occurred.
 
 h3. String Duplications
 
@@ -370,12 +370,12 @@ The functions strdup and strndup can \*not\* accept a NULL argument. This result
  newstr = NULL;
  }
 {code}
-However, the ast\_strdup and ast\_strdupa functions will happily accept a NULL
+However, the ast_strdup and ast_strdupa functions will happily accept a NULL
 argument without generating an error. The same code can be written as:
 {code:C}
- newstr = ast\_strdup(str);
+ newstr = ast_strdup(str);
 {code}
-Furthermore, it is unnecessary to have code that malloc/calloc's for the length of a string (+1 for the terminating '\0') and then using strncpy to copy the copy the string into the resulting buffer. This is the exact same thing as using ast\_strdup.
+Furthermore, it is unnecessary to have code that malloc/calloc's for the length of a string (+1 for the terminating '\0') and then using strncpy to copy the copy the string into the resulting buffer. This is the exact same thing as using ast_strdup.
 
 ## CLI Commands
 
@@ -394,9 +394,9 @@ There are two methods of adding functionality to the Asterisk dialplan: applicat
 the apps/ directory) should be collections of code that interact with a channel and/or user in some significant way. Functions (which can be
 provided by any type of module) are used when the provided functionality is simple... getting/retrieving a value, for example. Functions should also be used when the operation is in no way related to a channel (a computation or string operation, for example).
 
-Applications are registered and invoked using the ast\_register\_application function; see the apps/app\_skel.c file for an example.
+Applications are registered and invoked using the ast_register_application function; see the apps/app_skel.c file for an example.
 
-Functions are registered using 'struct ast\_custom\_function' structures and the ast\_custom\_function\_register function.
+Functions are registered using 'struct ast_custom_function' structures and the ast_custom_function_register function.
 
 ## Doxygen API Documentation Guidelines
 
@@ -414,7 +414,7 @@ When writing Asterisk API documentation the following format should be followed.
  \* \retval zero on success
  \* \retval -1 on error.
  \*/
-int ast\_interesting\_stuff(int thing1, int thing2)
+int ast_interesting_stuff(int thing1, int thing2)
 {
  return 0;
 }
@@ -433,7 +433,7 @@ Structures should be documented as follows.
 /\*!
  \* \brief A very interesting structure.
  \*/
-struct interesting\_struct
+struct interesting_struct
 {
  /\*! \brief A data member. \*/
  int member1;

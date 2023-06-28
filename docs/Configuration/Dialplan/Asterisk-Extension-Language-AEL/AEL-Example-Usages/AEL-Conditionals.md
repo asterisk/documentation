@@ -17,7 +17,7 @@ AEL supports if and switch statements, like AEL, but adds ifTime, and random. Un
 ```
 
 context conditional {
- \_8XXX => {
+ _8XXX => {
  Dial(SIP/${EXTEN});
  if ("${DIALSTATUS}" = "BUSY") 
  {
@@ -50,7 +50,7 @@ context conditional {
  }
  }
  } 
- \_777X => {
+ _777X => {
  switch (${EXTEN}) {
  case 7771:
  NoOp(You called 7771!); 
@@ -115,7 +115,7 @@ context conditional {
 
 
 !!! note 
-    The pattern statement makes sure the new extension that is created has an '\_' preceding it to make sure asterisk recognizes the extension name as a pattern.
+    The pattern statement makes sure the new extension that is created has an '_' preceding it to make sure asterisk recognizes the extension name as a pattern.
 
       
 [//]: # (end-note)

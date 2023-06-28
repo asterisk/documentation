@@ -42,8 +42,8 @@ The {{\{code\}}} macro supports a bunch of different programming languages. See 
 <?xml version="1.0"?>
 
 <menu name="Asterisk Module and Build Option Selection">
- <category name="MENUSELECT\_ADDONS" displayname="Add-ons (See README-addons.txt)" remove\_on\_change="addons/modules.link">
- <member name="app\_mysql" displayname="Simple Mysql Interface" remove\_on\_change="addons/app\_mysql.o addons/app\_mysql.so">
+ <category name="MENUSELECT_ADDONS" displayname="Add-ons (See README-addons.txt)" remove_on_change="addons/modules.link">
+ <member name="app_mysql" displayname="Simple Mysql Interface" remove_on_change="addons/app_mysql.o addons/app_mysql.so">
  <depend>mysqlclient</depend>
  <defaultenabled>no</defaultenabled>
  </member>

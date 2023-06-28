@@ -94,7 +94,7 @@ Each stream in order of type from each channel is connected. If stream changes a
 Older Channel Drivers
 ---------------------
 
-The older channel drivers should have a default stream representation based on the formats on the channel. If audio and video is negotiated, then there should be an audio and video stream and it should be transparent to the channel driver. Ideally \_no\_ changes would be required to the channel drivers. Any requests to change, manipulate, add, or remove streams will result in an error and the operation failing.
+The older channel drivers should have a default stream representation based on the formats on the channel. If audio and video is negotiated, then there should be an audio and video stream and it should be transparent to the channel driver. Ideally _no_ changes would be required to the channel drivers. Any requests to change, manipulate, add, or remove streams will result in an error and the operation failing.
 
 So How Do We Get There?
 =======================
@@ -134,34 +134,34 @@ This file holds the public stream API. This covers functionality for inspection 
 /\*!
  \* \brief Forward declaration for a stream, as it is opaque
  \*/
-struct ast\_stream;
+struct ast_stream;
  
 /\*!
  \* \brief The topology of a set of streams
  \*/
-struct ast\_stream\_topology;
+struct ast_stream_topology;
 
-enum ast\_stream\_state {
+enum ast_stream_state {
  /\*!
  \* \brief Set when the stream has been removed
  \*/
- AST\_STREAM\_STATE\_REMOVED = 0,
+ AST_STREAM_STATE_REMOVED = 0,
  /\*!
  \* \brief Set when the stream is sending and receiving media
  \*/
- AST\_STREAM\_STATE\_SENDRECV,
+ AST_STREAM_STATE_SENDRECV,
  /\*!
  \* \brief Set when the stream is sending media only
  \*/
- AST\_STREAM\_STATE\_SENDONLY,
+ AST_STREAM_STATE_SENDONLY,
  /\*!
  \* \brief Set when the stream is receiving media only
  \*/
- AST\_STREAM\_STATE\_RECVONLY,
+ AST_STREAM_STATE_RECVONLY,
  /\*!
  \* \brief Set when the stream is not sending OR receiving media
  \*/
- AST\_STREAM\_STATE\_INACTIVE,
+ AST_STREAM_STATE_INACTIVE,
 };
  
 /\*!
@@ -177,14 +177,14 @@ enum ast\_stream\_state {
  \*
  \* \note The stream will default to an inactive state until changed.
  \*/
-struct ast\_stream \*ast\_stream\_create(const char \*name, enum ast\_media\_type type);
+struct ast_stream \*ast_stream_create(const char \*name, enum ast_media_type type);
 
 /\*!
  \* \brief Destroy a media stream representation
  \*
  \* \param stream The media stream
  \*/
-void ast\_stream\_destroy(struct ast\_stream \*stream);
+void ast_stream_destroy(struct ast_stream \*stream);
 
 /\*!
  \* \brief Get the name of a stream
@@ -193,7 +193,7 @@ void ast\_stream\_destroy(struct ast\_stream \*stream);
  \*
  \* \return The name of the stream
  \*/
-const char \*ast\_stream\_get\_name(const struct ast\_stream \*stream);
+const char \*ast_stream_get_name(const struct ast_stream \*stream);
 
 /\*!
  \* \brief Get the media type of a stream
@@ -202,7 +202,7 @@ const char \*ast\_stream\_get\_name(const struct ast\_stream \*stream);
  \*
  \* \return The media type of the stream
  \*/
-enum ast\_media\_type ast\_stream\_get\_type(const struct ast\_stream \*stream);
+enum ast_media_type ast_stream_get_type(const struct ast_stream \*stream);
  
 /\*!
  \* \brief Change the media type of a stream
@@ -210,7 +210,7 @@ enum ast\_media\_type ast\_stream\_get\_type(const struct ast\_stream \*stream);
  \* \param stream The media stream
  \* \param type The new media type
  \*/
-void ast\_stream\_set\_type(struct ast\_stream \*stream, enum ast\_media\_type type);
+void ast_stream_set_type(struct ast_stream \*stream, enum ast_media_type type);
 /\*!
  \* \brief Get the current negotiated formats of a stream
  \*
@@ -220,7 +220,7 @@ void ast\_stream\_set\_type(struct ast\_stream \*stream, enum ast\_media\_type t
  \*
  \* \note The reference count is not increased
  \*/
-struct ast\_format\_cap \*ast\_stream\_get\_formats(const struct ast\_stream \*stream);
+struct ast_format_cap \*ast_stream_get_formats(const struct ast_stream \*stream);
  
 /\*!
  \* \brief Set the current negotiated formats of a stream
@@ -228,7 +228,7 @@ struct ast\_format\_cap \*ast\_stream\_get\_formats(const struct ast\_stream \*s
  \* \param stream The media stream
  \* \param caps The current negotiated formats
  \*/
-void ast\_stream\_set\_formats(struct ast\_stream \*stream, ast\_format\_cap \*caps);
+void ast_stream_set_formats(struct ast_stream \*stream, ast_format_cap \*caps);
 
 /\*!
  \* \brief Get the current state of a stream
@@ -237,7 +237,7 @@ void ast\_stream\_set\_formats(struct ast\_stream \*stream, ast\_format\_cap \*c
  \*
  \* \return The state of the stream
 \*/
-enum ast\_stream\_state ast\_stream\_get\_state(const struct ast\_stream \*stream);
+enum ast_stream_state ast_stream_get_state(const struct ast_stream \*stream);
  
 /\*!
  \* \brief Set the state of a stream
@@ -247,7 +247,7 @@ enum ast\_stream\_state ast\_stream\_get\_state(const struct ast\_stream \*strea
  \*
  \* \note Used by stream creator to update internal state
  \*/
-void ast\_stream\_set\_state(struct ast\_stream \*stream, enum ast\_stream\_state state);
+void ast_stream_set_state(struct ast_stream \*stream, enum ast_stream_state state);
 
 /\*!
  \* \brief Get the number of the stream
@@ -256,7 +256,7 @@ void ast\_stream\_set\_state(struct ast\_stream \*stream, enum ast\_stream\_stat
  \*
  \* \return The number of the stream
  \*/
-unsigned int ast\_stream\_get\_num(const struct ast\_stream \*stream);
+unsigned int ast_stream_get_num(const struct ast_stream \*stream);
  
 /\*!
  \* \brief Create a stream topology
@@ -264,7 +264,7 @@ unsigned int ast\_stream\_get\_num(const struct ast\_stream \*stream);
  \* \retval non-NULL success
  \* \retval NULL failure
  \*/
-struct ast\_stream\_topology \*ast\_stream\_topology\_new(void);
+struct ast_stream_topology \*ast_stream_topology_new(void);
 
 /\*!
  \* \brief Add a stream to the topology
@@ -275,7 +275,7 @@ struct ast\_stream\_topology \*ast\_stream\_topology\_new(void);
  \* \retval 0 success
  \* \retval -1 failure
  \*/
-int ast\_stream\_topology\_add(struct ast\_stream\_topology \*topology, struct ast\_stream \*stream);
+int ast_stream_topology_add(struct ast_stream_topology \*topology, struct ast_stream \*stream);
 
 /\*!
  \* \brief Get the number of streams in a topology
@@ -284,7 +284,7 @@ int ast\_stream\_topology\_add(struct ast\_stream\_topology \*topology, struct a
  \*
  \* \return the number of streams
  \*/
-size\_t ast\_stream\_topology\_num(const struct ast\_stream\_topology \*topology);
+size_t ast_stream_topology_num(const struct ast_stream_topology \*topology);
 
 /\*!
  \* \brief Get a specific stream from the topology
@@ -294,7 +294,7 @@ size\_t ast\_stream\_topology\_num(const struct ast\_stream\_topology \*topology
  \* \retval non-NULL success
  \* \retval NULL failure
  \*/
-struct ast\_stream \*ast\_stream\_topology\_get(const struct ast\_stream\_topology \*topology, unsigned int stream\_num);
+struct ast_stream \*ast_stream_topology_get(const struct ast_stream_topology \*topology, unsigned int stream_num);
 
 /\*!
  \* \brief Copy an existing stream topology
@@ -304,7 +304,7 @@ struct ast\_stream \*ast\_stream\_topology\_get(const struct ast\_stream\_topolo
  \* \retval non-NULL success
  \* \retval NULL failure
  \*/
-struct ast\_stream\_topology \*ast\_stream\_topology\_copy(const struct ast\_stream\_topology \*topology);
+struct ast_stream_topology \*ast_stream_topology_copy(const struct ast_stream_topology \*topology);
  
 /\*!
  \* \brief Set a specific numbered stream in a topology
@@ -318,7 +318,7 @@ struct ast\_stream\_topology \*ast\_stream\_topology\_copy(const struct ast\_str
  \*
  \* \note If an existing stream exists it will be destroyed
  \*/
-int ast\_stream\_topology\_set(struct ast\_stream\_topology \*topology, unsigned int num, struct ast\_stream \*stream);
+int ast_stream_topology_set(struct ast_stream_topology \*topology, unsigned int num, struct ast_stream \*stream);
  
 /\*!
  \* \brief A helper function that given a set of formats creates a topology with the required streams to satisfy them
@@ -332,7 +332,7 @@ int ast\_stream\_topology\_set(struct ast\_stream\_topology \*topology, unsigned
  \*
  \* \note Each stream will be to sendrecv state
  \*/
-struct ast\_stream\_topology \*ast\_stream\_topology\_make(struct ast\_format\_cap \*caps);
+struct ast_stream_topology \*ast_stream_topology_make(struct ast_format_cap \*caps);
 
 /\*!
  \* \brief Destroy a stream topology
@@ -341,7 +341,7 @@ struct ast\_stream\_topology \*ast\_stream\_topology\_make(struct ast\_format\_c
  \*
  \* \note All streams contained within the topology will be destroyed
  \*/
-void ast\_stream\_topology\_destroy(struct ast\_stream\_topology \*topology);
+void ast_stream_topology_destroy(struct ast_stream_topology \*topology);
 
 ```
 
@@ -372,11 +372,11 @@ The stream implementation will hold the actual definition of a stream and the im
 
 ```
 
-struct ast\_stream {
+struct ast_stream {
  /\*!
  \* \brief The type of media the stream is handling
  \*/
- enum ast\_media\_type type;
+ enum ast_media_type type;
  /\*!
  \* \brief Unique number for the stream within the context of the channel it is on
  \*/
@@ -384,22 +384,22 @@ struct ast\_stream {
  /\*!
  \* \brief Current formats negotiated on the stream
  \*/
- struct ast\_format\_cap \*formats;
+ struct ast_format_cap \*formats;
  /\*!
  \* \brief The current state of the stream
  \*/
- enum ast\_stream\_state state;
+ enum ast_stream_state state;
  /\*!
  \* \brief Name for the stream within the context of the channel it is on
  \*/
  char name[0];
 };
  
-struct ast\_stream\_topology {
+struct ast_stream_topology {
  /\*!
  \* \brief A vector of all the streams in this topology
  \*/
- AST\_VECTOR(, struct ast\_stream \*) streams;
+ AST_VECTOR(, struct ast_stream \*) streams;
 };
 
 ```
@@ -426,20 +426,20 @@ The channel header file will be minimally changed to add multiple stream support
  /\*!
  \* \brief Channels with this particular technology support multiple simultaneous streams
  \*/
- AST\_CHAN\_TP\_MULTISTREAM = (1 << 3),
+ AST_CHAN_TP_MULTISTREAM = (1 << 3),
  
-struct ast\_channel\_tech {
+struct ast_channel_tech {
  /\*!
  \* \brief Callback invoked to write a frame to a specific stream
  \*/
- int (\* const write\_stream)(struct ast\_channel \*chan, unsigned int stream\_num, struct ast\_frame \*frame);
+ int (\* const write_stream)(struct ast_channel \*chan, unsigned int stream_num, struct ast_frame \*frame);
 };
  
 /\*!
  \* \brief Write a frame to a specific stream on a channel
  \*
  \* \param chan The channel to write to
- \* \param stream\_num The number of the specific stream to send the frame out on
+ \* \param stream_num The number of the specific stream to send the frame out on
  \* \param frame The frame to write out
  \*
  \* \pre chan is locked
@@ -447,20 +447,20 @@ struct ast\_channel\_tech {
  \* \retval 0 success
  \* \retval -1 failure
  \*/
-int ast\_write\_stream(struct ast\_channel \*chan, unsigned int stream\_num, struct ast\_frame \*frame);
+int ast_write_stream(struct ast_channel \*chan, unsigned int stream_num, struct ast_frame \*frame);
  
 /\*!
  \* \brief Read a frame from all streams
  \*
  \* \param chan The channel to read from
- \* \param stream\_num[out] The number of the specific stream the frame originated from, if a media frame
+ \* \param stream_num[out] The number of the specific stream the frame originated from, if a media frame
  \*
  \* \pre chan is locked
  \*
  \* \retval non-NULL success
  \* \retval NULL failure
  \*/
-struct ast\_frame \*ast\_read\_streams(struct ast\_channel \*chan, unsigned int \*stream\_num);
+struct ast_frame \*ast_read_streams(struct ast_channel \*chan, unsigned int \*stream_num);
 
 /\*!
  \* \brief Retrieve the topology of streams on a channel
@@ -472,7 +472,7 @@ struct ast\_frame \*ast\_read\_streams(struct ast\_channel \*chan, unsigned int 
  \* \retval non-NULL success
  \* \retval NULL failure
  \*/
-struct ast\_stream\_topology \*ast\_channel\_get\_stream\_topology(const struct ast\_channel \*chan);
+struct ast_stream_topology \*ast_channel_get_stream_topology(const struct ast_channel \*chan);
  
 /\*!
  \* \brief Request that the stream topology of a channel change
@@ -486,14 +486,14 @@ struct ast\_stream\_topology \*ast\_channel\_get\_stream\_topology(const struct 
  \* \retval -1 request could not be attempted
  \*
  \* \note This function initiates an asynchronous request to change the stream topology. It is not
- \* guaranteed that the topology will change and until an AST\_CONTROL\_STREAM\_TOPOLOGY\_CHANGED
+ \* guaranteed that the topology will change and until an AST_CONTROL_STREAM_TOPOLOGY_CHANGED
  \* frame is received from the channel the current handler of the channel must tolerate the
  \* stream topology as it currently exists.
  \*
  \* \note This interface is provided for applications and resources to request that the topology change.
  \* It is not for use by the channel driver itself.
  \*/
-int ast\_channel\_stream\_topology\_request\_change(struct ast\_channel \*chan, struct ast\_stream\_topology \*topology);
+int ast_channel_stream_topology_request_change(struct ast_channel \*chan, struct ast_stream_topology \*topology);
  
 /\*!
  \* \brief Provide notice to a channel that the stream topology has changed
@@ -507,7 +507,7 @@ int ast\_channel\_stream\_topology\_request\_change(struct ast\_channel \*chan, 
  \* \note This interface is provided for applications and resources to accept a topology change.
  \* It is not for use by the channel driver itself.
  \*/
-int ast\_channel\_stream\_topology\_changed(struct ast\_channel \*chan, struct ast\_stream\_topology \*topology);
+int ast_channel_stream_topology_changed(struct ast_channel \*chan, struct ast_stream_topology \*topology);
 
 ```
 
@@ -522,21 +522,21 @@ If the multiple stream property is set the act of creating and adding streams is
 
 #### Writing Frames
 
-The ast\_write function will choose a default stream based on the media type of the frame being written. If no default stream exists the frame will not be written.
+The ast_write function will choose a default stream based on the media type of the frame being written. If no default stream exists the frame will not be written.
 
-The ast\_write\_stream function will provide the given frame to the channel driver with the given stream. It is up to the channel driver to write the frame out on that stream. All frames written using either ast\_write or ast\_write\_stream will be provided to the channel driver using the write\_stream technology callback.
+The ast_write_stream function will provide the given frame to the channel driver with the given stream. It is up to the channel driver to write the frame out on that stream. All frames written using either ast_write or ast_write_stream will be provided to the channel driver using the write_stream technology callback.
 
 #### Reading Frames
 
-The ast\_read function will read frames from ONLY default streams and non-media. If a frame is received on a non-default stream it will be discarded and a null frame returned. This mirrors current behavior.
+The ast_read function will read frames from ONLY default streams and non-media. If a frame is received on a non-default stream it will be discarded and a null frame returned. This mirrors current behavior.
 
-The ast\_read\_streams function will read frames from ALL streams and non-media. It is up to the caller to then decide to do based on the stream.
+The ast_read_streams function will read frames from ALL streams and non-media. It is up to the caller to then decide to do based on the stream.
 
 #### Changing Stream Topology
 
-An external entity (such as a SIP phone) can request that the stream topology change at any time. The channel driver receives the change in an implementation specific fashion and queues an AST\_CONTROL\_STREAM\_TOPOLOGY\_REQUEST\_CHANGE on the channel. The current handler of the channel reads the frame and acts upon the stream topology within it. The stream topology (whether it is changed or not) is provided to the channel using the ast\_channel\_stream\_topology\_changed function. For legacy reasons the ast\_read() function will not allow topology changes and the current negotiated stream topology will be returned within its implementation, signaling that the topology change did not result in an accepted change.
+An external entity (such as a SIP phone) can request that the stream topology change at any time. The channel driver receives the change in an implementation specific fashion and queues an AST_CONTROL_STREAM_TOPOLOGY_REQUEST_CHANGE on the channel. The current handler of the channel reads the frame and acts upon the stream topology within it. The stream topology (whether it is changed or not) is provided to the channel using the ast_channel_stream_topology_changed function. For legacy reasons the ast_read() function will not allow topology changes and the current negotiated stream topology will be returned within its implementation, signaling that the topology change did not result in an accepted change.
 
-Components in Asterisk can request that a stream topology change by providing a new topology to the ast\_channel\_stream\_topology\_request\_change function. This is provided to the channel driver and is implementation specific how it is done. The existing stream topology can be used as a base by retrieving the topology from the channel and calling the ast\_stream\_topology\_copy function to copy it. Once the stream topology change result is known in the channel driver it queues an AST\_CONTROL\_STREAM\_TOPOLOGY\_CHANGED frame.
+Components in Asterisk can request that a stream topology change by providing a new topology to the ast_channel_stream_topology_request_change function. This is provided to the channel driver and is implementation specific how it is done. The existing stream topology can be used as a base by retrieving the topology from the channel and calling the ast_stream_topology_copy function to copy it. Once the stream topology change result is known in the channel driver it queues an AST_CONTROL_STREAM_TOPOLOGY_CHANGED frame.
 
 Both of these control frames contain the complete stream topology.
 
@@ -556,9 +556,9 @@ The only change to frame related stuff is mere control frame additions.
 
 ```
 
-enum ast\_control\_frame\_type {
- AST\_CONTROL\_STREAM\_TOPOLOGY\_REQUEST\_CHANGE = 35, /\*!< Channel indication that a stream topology change has been requested by the channel driver (only visible if ast\_read\_streams is used) \*/
- AST\_CONTROL\_STREAM\_TOPOLOGY\_CHANGED = 36, /\*!< Channel indication that a stream topology change has occurred on the channel driver \*/
+enum ast_control_frame_type {
+ AST_CONTROL_STREAM_TOPOLOGY_REQUEST_CHANGE = 35, /\*!< Channel indication that a stream topology change has been requested by the channel driver (only visible if ast_read_streams is used) \*/
+ AST_CONTROL_STREAM_TOPOLOGY_CHANGED = 36, /\*!< Channel indication that a stream topology change has occurred on the channel driver \*/
 };
 
 ```
@@ -583,15 +583,15 @@ Creating streams on a channel
 
 ```
 
- struct ast\_stream \*audio\_stream, \*video\_stream;
+ struct ast_stream \*audio_stream, \*video_stream;
  
- audio\_stream = ast\_stream\_create("audio", AST\_MEDIA\_TYPE\_AUDIO);
- video\_stream = ast\_stream\_create("video", AST\_MEDIA\_TYPE\_VIDEO);
+ audio_stream = ast_stream_create("audio", AST_MEDIA_TYPE_AUDIO);
+ video_stream = ast_stream_create("video", AST_MEDIA_TYPE_VIDEO);
  
- ast\_channel\_lock(chan);
- ast\_stream\_topology\_add(ast\_channel\_get\_stream\_topology(chan), audio\_stream);
- ast\_stream\_topology\_add(ast\_channel\_get\_stream\_topology(chan), video\_stream);
- ast\_channel\_unlock(chan);
+ ast_channel_lock(chan);
+ ast_stream_topology_add(ast_channel_get_stream_topology(chan), audio_stream);
+ ast_stream_topology_add(ast_channel_get_stream_topology(chan), video_stream);
+ ast_channel_unlock(chan);
 
 ```
 
@@ -613,18 +613,18 @@ Iterating
 ```
 
  int i;
- struct ast\_stream\_topology \*topology;
+ struct ast_stream_topology \*topology;
  
- ast\_channel\_lock(chan);
+ ast_channel_lock(chan);
  
- topology = ast\_channel\_get\_stream\_topology(chan);
- for (i = 0; i < ast\_stream\_topology\_num(topology); i++) {
- struct ast\_stream \*stream;
+ topology = ast_channel_get_stream_topology(chan);
+ for (i = 0; i < ast_stream_topology_num(topology); i++) {
+ struct ast_stream \*stream;
  
- stream = ast\_stream\_topology\_get(topology, i);
+ stream = ast_stream_topology_get(topology, i);
  }
  
- ast\_channel\_unlock(chan);
+ ast_channel_unlock(chan);
 
 ```
 
@@ -645,17 +645,17 @@ Requesting a change to the stream topology
 
 ```
 
- struct ast\_stream\_topology \*modified;
- struct ast\_stream \*first;
+ struct ast_stream_topology \*modified;
+ struct ast_stream \*first;
 
- ast\_channel\_lock(chan);
+ ast_channel_lock(chan);
 
- modified = ast\_stream\_topology\_copy(ast\_channel\_get\_stream\_topology(chan));
- first = ast\_stream\_topology\_get(modified, 0);
- ast\_stream\_set\_state(first, AST\_STREAM\_STATE\_INACTIVE);
- ast\_channel\_stream\_topology\_request\_change(chan, modified);
+ modified = ast_stream_topology_copy(ast_channel_get_stream_topology(chan));
+ first = ast_stream_topology_get(modified, 0);
+ ast_stream_set_state(first, AST_STREAM_STATE_INACTIVE);
+ ast_channel_stream_topology_request_change(chan, modified);
 
- ast\_channel\_unlock(chan);
+ ast_channel_unlock(chan);
 
 ```
 
@@ -676,17 +676,17 @@ Handling a request to change the stream topology
 
 ```
 
- struct ast\_frame \*frame;
- unsigned int stream\_num;
+ struct ast_frame \*frame;
+ unsigned int stream_num;
 
- frame = ast\_read\_streams(chan, &stream\_num);
- if (frame->frametype == AST\_CONTROL && frame->subclass.integer == AST\_CONTROL\_STREAM\_TOPOLOGY\_REQUEST\_CHANGE) {
- ast\_channel\_stream\_topology\_changed(chan, frame->data.ptr); 
+ frame = ast_read_streams(chan, &stream_num);
+ if (frame->frametype == AST_CONTROL && frame->subclass.integer == AST_CONTROL_STREAM_TOPOLOGY_REQUEST_CHANGE) {
+ ast_channel_stream_topology_changed(chan, frame->data.ptr); 
  }
- ast\_frfree(frame);
+ ast_frfree(frame);
 
 ```
 
 
-This code reads in a request to change the topology and accepts the topology as requested. Note that we only receive request changes if we are capable of supporting multiple streams. If this were to use ast\_read() the topology request change would be internally handled.
+This code reads in a request to change the topology and accepts the topology as requested. Note that we only receive request changes if we are capable of supporting multiple streams. If this were to use ast_read() the topology request change would be internally handled.
 

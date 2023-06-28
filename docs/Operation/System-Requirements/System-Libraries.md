@@ -59,7 +59,7 @@ We recommend you use the package management system of your operating system to i
 !!! tip 
     Help Finding the Right Libraries
 
-    Asterisk comes with a shell script called install\_prereq.sh in the contrib/scripts sub-directory. If you run install\_prereq test, it will give you the exact commands to install the necessary system libraries on your operating system. If you run install\_prereq install, it will attempt to download and install the prerequisites automatically.
+    Asterisk comes with a shell script called install_prereq.sh in the contrib/scripts sub-directory. If you run install_prereq test, it will give you the exact commands to install the necessary system libraries on your operating system. If you run install_prereq install, it will attempt to download and install the prerequisites automatically.
 
       
 [//]: # (end-tip)

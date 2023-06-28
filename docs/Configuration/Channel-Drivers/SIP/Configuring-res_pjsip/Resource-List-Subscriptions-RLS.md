@@ -22,7 +22,7 @@ Resource list subscriptions provide relief for this problem by allowing for reso
 Configuring Resource List Subscriptions
 =======================================
 
-RLS is configured in `pjsip.conf` using a special configuration section type called "resource\_list". Here is an example of a simple resource list:
+RLS is configured in `pjsip.conf` using a special configuration section type called "resource_list". Here is an example of a simple resource list:
 
 pjsip.conf
 
@@ -36,18 +36,18 @@ pjsip.conf
 ```
 
 true[sales]
-type = resource\_list
+type = resource_list
 event = presence
-list\_item = alice
-list\_item = bob
-list\_item = carol
+list_item = alice
+list_item = bob
+list_item = carol
 
 ```
 
 
 It should be simple to glean the intent of this list. We have created a list called "sales" that provides the presence of the sales team of alice, bob, and carol. Let's go over each of the options in more detail.
 
-* `type`: This must be set to "resource\_list" so that the configuration parser knows that it is looking at a resource list.
+* `type`: This must be set to "resource_list" so that the configuration parser knows that it is looking at a resource list.
 * `event`: The SIP event package provided by this resource list. Asterisk, as provided by Digium, provides support for the following event packages:
 	+ presence: Provides ability to determine when devices are in use or not. Commonly known as BLF.
 	+ dialog: An alternate method of providing BLF. Used by certain SIP equipment instead of the presence event package.
@@ -78,12 +78,12 @@ pjsip.conf
 ```
 
 true[sales]
-type = resource\_list
+type = resource_list
 event = presence
-list\_item = alice
-list\_item = bob
-list\_item = carol
-notification\_batch\_interval = 2000
+list_item = alice
+list_item = bob
+list_item = carol
+notification_batch_interval = 2000
 
 ```
 
@@ -114,11 +114,11 @@ pjsip.conf
 ```
 
 true[sales]
-type = resource\_list
+type = resource_list
 event = presence
-list\_item = alice
-list\_item = bob
-list\_item = carol
+list_item = alice
+list_item = bob
+list_item = carol
 
 ```
 
@@ -166,25 +166,25 @@ pjsip.conf
 ```
 
 true[sales]
-type = resource\_list
+type = resource_list
 event = presence
-list\_item = tech\_support
+list_item = tech_support
  
-[tech\_support]
-type = resource\_list
+[tech_support]
+type = resource_list
 event = presence
-list\_item = sales
+list_item = sales
 
 ```
 
 
-Notice that the sales list contains the tech\_support list, and the tech\_support list contains the sales list. We have a loop here. How is that handled?
+Notice that the sales list contains the tech_support list, and the tech_support list contains the sales list. We have a loop here. How is that handled?
 
 Asterisk's policy with loops is to try to resolve the issue while being as graceful as possible. The way it does this is that when it detects a loop, it essentially considers the looped subscription to be a failed list item subscription. The process would go something like this:
 
 1. A subscription arrives for the sales list.
-2. We attempt to subscribe to the tech\_support list item in the sales list.
-3. Inside the tech\_support list, we see the sales list as a list item.
+2. We attempt to subscribe to the tech_support list item in the sales list.
+3. Inside the tech_support list, we see the sales list as a list item.
 4. We notice that we've already visited the sales list, so we fail the subscription to the sales list list item.
 5. Since subscriptions to all list items in the tech support list failed, the subscription to the tech support list failed.
 6. Since the tech support list was the only list item in the sales list, and that subscription failed, the subscription to the sales list fails as well.
@@ -203,29 +203,29 @@ pjsip.conf
 ```
 
 true[sales]
-type = resource\_list
+type = resource_list
 event = presence
-list\_item = tech\_support
+list_item = tech_support
 
 
-[tech\_support]
-type = resource\_list
+[tech_support]
+type = resource_list
 event = presence
-list\_item = sales
-list\_item = alice
+list_item = sales
+list_item = alice
 
 ```
 
 
-Notice that the tech\_support list now also has alice as a list\_item. How does the process change on a subscription attempt to sales?
+Notice that the tech_support list now also has alice as a list_item. How does the process change on a subscription attempt to sales?
 
 1. A subscription arrives for the sales list
-2. We attempt to subscribe to the tech\_support list item in the sales list.
-3. Inside the tech\_support list, we see the sales list as a list item.
+2. We attempt to subscribe to the tech_support list item in the sales list.
+3. Inside the tech_support list, we see the sales list as a list item.
 4. We notice that we've already visited the sales list, so we fail the subscription to the sales list list item.
-5. We move on to the next list\_item in tech\_support, alice.
+5. We move on to the next list_item in tech_support, alice.
 6. We attempt a subscription to alice, and it succeeds.
-7. Since at least one subscription to a list item in tech\_support succeeded, the subscription to tech\_support succeeds.
+7. Since at least one subscription to a list item in tech_support succeeded, the subscription to tech_support succeeds.
 8. Since the subscription to the only list item in sales succeeded, the subscription to sales succeeds.
 
 So in this case, even though the configuration contains a loop, Asterisk is able to successfully create a subscription while trimming the loops out.
@@ -255,11 +255,11 @@ pjsip.conf
 ```
 
 true[sales]
-type = resource\_list
+type = resource_list
 event = presence
-list\_item = alice
-list\_item = bob
-list\_item = carol
+list_item = alice
+list_item = bob
+list_item = carol
 
 ```
 
@@ -305,19 +305,19 @@ pjsip.conf
 ```
 
 true[sales]
-type = resource\_list
+type = resource_list
 event = presence
-list\_item = sales\_b
-list\_item = carol
-list\_item = david
-notification\_batch\_interval = 3000
+list_item = sales_b
+list_item = carol
+list_item = david
+notification_batch_interval = 3000
  
-[sales\_b]
-type = resource\_list
+[sales_b]
+type = resource_list
 event = presence
-list\_item = alice
-list\_item = bob
-notification\_batch\_interval = 10000
+list_item = alice
+list_item = bob
+notification_batch_interval = 10000
 
 ```
 

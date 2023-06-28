@@ -90,14 +90,14 @@ Examples:
 
 ```
 
-location\_info = shape=Point, crs=2d, pos="39.12345 -105.98766"
-location\_info = shape=Point, crs=3d, pos="39.12345 -105.98766 1892.0"
-location\_info = shape=Circle, crs=2d, pos="39.12345 -105.98766" radius="45"
-location\_info = shape=Sphere, crs=3d, pos="39.12345 -105.98766 1902" radius="20"
-location\_info = shape=Ellipse, crs=2d, pos="39.12345 -105.98766" semiMajorAxis="20", semiMinorAxis="10", orientation="25 radians"
-location\_info = shape=ArcBand, crs=2d, pos="39.12345 -105.98766" innerRadius="1200", outerRadius="1500", startAngle="90", openingAngle="120"
-location\_info = shape=Polygon, crs=2d, pos="39.12345 -105.98766", pos=40.7890 -105.98766", pos="40.7890 -106.3456", pos=39.12345 -106.3456"
-location\_info = shape=Prism, crs=3d, pos="39.12345 -105.98766 1890", pos="40.7890 -105.98766 1890", pos="40.7890 -106.3456 1890", pos=39.12345 -106.3456 1890", height="45"
+location_info = shape=Point, crs=2d, pos="39.12345 -105.98766"
+location_info = shape=Point, crs=3d, pos="39.12345 -105.98766 1892.0"
+location_info = shape=Circle, crs=2d, pos="39.12345 -105.98766" radius="45"
+location_info = shape=Sphere, crs=3d, pos="39.12345 -105.98766 1902" radius="20"
+location_info = shape=Ellipse, crs=2d, pos="39.12345 -105.98766" semiMajorAxis="20", semiMinorAxis="10", orientation="25 radians"
+location_info = shape=ArcBand, crs=2d, pos="39.12345 -105.98766" innerRadius="1200", outerRadius="1500", startAngle="90", openingAngle="120"
+location_info = shape=Polygon, crs=2d, pos="39.12345 -105.98766", pos=40.7890 -105.98766", pos="40.7890 -106.3456", pos=39.12345 -106.3456"
+location_info = shape=Prism, crs=3d, pos="39.12345 -105.98766 1890", pos="40.7890 -105.98766 1890", pos="40.7890 -106.3456 1890", pos=39.12345 -106.3456 1890", height="45"
 
 
 ```

@@ -43,15 +43,15 @@ ARI Output
 
 When a channel is output into ARI the output should also contain information about the streams on the channel. This should include the name, type, formats, and state.
 
-func\_channel
+func_channel
 =============
 
 The dialplan function should be extended to allow retrieving information about the streams on the channel. This should include how many there are and individual stream details (name, type, formats).
 
-res\_mutestream
+res_mutestream
 ===============
 
-This module should be updated to allow specifying what stream to mute, or if all streams should be muted. Since this uses a common core API (ast\_channel\_suppress) that API will need to be updated first to allow this. Two new API calls, ast\_channel\_suppress\_stream and ast\_channel\_unsuppress\_stream, should be added that take in a stream position on a channel (instead of a frame type) and mute specifically that stream.
+This module should be updated to allow specifying what stream to mute, or if all streams should be muted. Since this uses a common core API (ast_channel_suppress) that API will need to be updated first to allow this. Two new API calls, ast_channel_suppress_stream and ast_channel_unsuppress_stream, should be added that take in a stream position on a channel (instead of a frame type) and mute specifically that stream.
 
 Unreal/Local Channels
 
@@ -60,18 +60,18 @@ Unreal channels are used by Local channels and other things to create a virtual 
 Framehooks
 ==========
 
-Framehooks currently only hook themselves into the first stream of each type. The API should be extended to add an additional callback which is invoked on all streams. If the framehook implementation implements this callback it receives frames for all streams, with the frame stream\_num guaranteed to be the stream position. It is up to the framehook itself to filter things appropriately.
+Framehooks currently only hook themselves into the first stream of each type. The API should be extended to add an additional callback which is invoked on all streams. If the framehook implementation implements this callback it receives frames for all streams, with the frame stream_num guaranteed to be the stream position. It is up to the framehook itself to filter things appropriately.
 
-func\_jitterbuffer
+func_jitterbuffer
 
 This module should be updated to allow specifying what stream to place the jitterbuffer on (or even all audio streams). This will leverage the framehooks changes.
 
-func\_volume
+func_volume
 ============
 
 This module should be updated to allow specifying what stream to manipulate volume on (or even all audio streams). This will leverage the framehooks changes.
 
-func\_speex
+func_speex
 ===========
 
 This module should be updated to allow specifying what stream to enact DENOISE or AGC on (or even all audio streams). This will leverage the framehooks changes.
@@ -79,27 +79,27 @@ This module should be updated to allow specifying what stream to enact DENOISE o
 Audiohooks
 ==========
 
-As they exist now audiohooks hook themselves into every audio frame of the first audio stream that is passing through a channel. The API should be extended to allow hooking into a specific stream (based on stream number). If a user of audiohooks wants to hook into multiple streams they should create an audiohook for each stream. A new API call, ast\_audiohook\_attach\_stream, should be added that adds a stream position parameter which attaches the audiohook strictly to that stream.
+As they exist now audiohooks hook themselves into every audio frame of the first audio stream that is passing through a channel. The API should be extended to allow hooking into a specific stream (based on stream number). If a user of audiohooks wants to hook into multiple streams they should create an audiohook for each stream. A new API call, ast_audiohook_attach_stream, should be added that adds a stream position parameter which attaches the audiohook strictly to that stream.
 
-func\_periodic\_hook
+func_periodic_hook
 ====================
 
-This module should be updated to allow specifying what stream to act on. This information will be given to ast\_audiohook\_attach\_stream. This will leverage the audiohooks changes.
+This module should be updated to allow specifying what stream to act on. This information will be given to ast_audiohook_attach_stream. This will leverage the audiohooks changes.
 
-func\_talkdetect
+func_talkdetect
 ================
 
-This module should be updated to allow specifying what stream to act on. This information will be given to ast\_audiohook\_attach\_stream. This will leverage the audiohooks changes.
+This module should be updated to allow specifying what stream to act on. This information will be given to ast_audiohook_attach_stream. This will leverage the audiohooks changes.
 
 Channel Translation
 ===================
 
-Translation currently only reliably creates a translation path for the audio portion of a channel. Since a channel may have multiple streams on it it should be possible for each stream on a channel to have a read and write format set on it, allowing translation of that specific stream. Translation paths should be stored based on stream number on a channel with the existing API calls using the default audio type stream. New API calls should be added (ast\_set\_stream\_read\_format, ast\_set\_stream\_write\_format, etc) which control the translation for each individual stream. When a topology is set on the channel the translation paths should be reconciled such that any existing requested formats are maintained if possible. Streams may need to be extended to also have a format capabilities which are the active formats (not just the negotiated ones). This would allow more intelligent translation path choice. The ast\_channel\_make\_compatible\_helper function also needs to be updated to be aware of individual streams and set up translation paths on them accordingly.
+Translation currently only reliably creates a translation path for the audio portion of a channel. Since a channel may have multiple streams on it it should be possible for each stream on a channel to have a read and write format set on it, allowing translation of that specific stream. Translation paths should be stored based on stream number on a channel with the existing API calls using the default audio type stream. New API calls should be added (ast_set_stream_read_format, ast_set_stream_write_format, etc) which control the translation for each individual stream. When a topology is set on the channel the translation paths should be reconciled such that any existing requested formats are maintained if possible. Streams may need to be extended to also have a format capabilities which are the active formats (not just the negotiated ones). This would allow more intelligent translation path choice. The ast_channel_make_compatible_helper function also needs to be updated to be aware of individual streams and set up translation paths on them accordingly.
 
 RTP Native Bridging
 ===================
 
-A new glue interface should be defined that allows retrieving an RTP instance based on stream position, querying whether bridging is permitted given an RTP instance and a stream number, indicating that streams are about to be native bridged, specifying a stream on the channel is remotely bridged to another RTP instance, and indicating that all native bridge requests are complete. This would allow the updating of each RTP instance with remotely bridging information to be done as separate calls instead of being done in a single call. Code would retrieve all the RTP instances for streams, indicate that native bridging is to begin, individually set each stream to be bridged, then indicate it is finished. Only at this point would the underlying channel driver act on the request. In SIP this would result in a reinvite. The bridge\_native\_rtp module ideally should support interop between both glues as best as possible, but at a minimum allow old glue and old glue to work with each other.
+A new glue interface should be defined that allows retrieving an RTP instance based on stream position, querying whether bridging is permitted given an RTP instance and a stream number, indicating that streams are about to be native bridged, specifying a stream on the channel is remotely bridged to another RTP instance, and indicating that all native bridge requests are complete. This would allow the updating of each RTP instance with remotely bridging information to be done as separate calls instead of being done in a single call. Code would retrieve all the RTP instances for streams, indicate that native bridging is to begin, individually set each stream to be bridged, then indicate it is finished. Only at this point would the underlying channel driver act on the request. In SIP this would result in a reinvite. The bridge_native_rtp module ideally should support interop between both glues as best as possible, but at a minimum allow old glue and old glue to work with each other.
 
 File Playback/Recording
 =======================

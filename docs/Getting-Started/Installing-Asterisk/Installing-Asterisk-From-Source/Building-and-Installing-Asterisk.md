@@ -153,7 +153,7 @@ To see all of the flags passed to gcc, build using the `NOISY_BUILD` setting set
 
 ```
 
-[root@server asterisk-14.X.Y]# make NOISY\_BUILD=yes
+[root@server asterisk-14.X.Y]# make NOISY_BUILD=yes
 
 ```
 
@@ -173,7 +173,7 @@ Generally, Asterisk attempts to optimize itself for the machine on which it is b
 
 ```
 
-[root@server asterisk-14.X.Y]# menuselect/menuselect --disable BUILD\_NATIVE menuselect.makeopts
+[root@server asterisk-14.X.Y]# menuselect/menuselect --disable BUILD_NATIVE menuselect.makeopts
 
 [root@server asterisk-14.X.Y]# make
 
@@ -195,7 +195,7 @@ While there are multiple ways to sandbox an instance of Asterisk, the preferred 
 
 ```
 
-[root@server asterisk-14.X.Y]# ./configure --prefix=/usr/local/my\_special\_folder
+[root@server asterisk-14.X.Y]# ./configure --prefix=/usr/local/my_special_folder
 
 ```
 

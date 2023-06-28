@@ -33,24 +33,24 @@ General Section:
 dateformat = %F %T.%3q ; ISO 8601 date format with milliseconds
 
 ; Write callids to log messages (defaults to yes)
-use\_callids = yes
+use_callids = yes
 
 ; Append the hostname to the name of the log files (defaults to no)
 appendhostname = no
 
 ; Log queue events to a file (defaults to yes)
-queue\_log = yes
+queue_log = yes
 
 ; Always log queue events to a file, even when a realtime backend is
 ; present (defaults to no).
-queue\_log\_to\_file = no
+queue_log_to_file = no
 
-; Set the queue\_log filename (defaults to queue\_log)
-queue\_log\_name = queue\_log
+; Set the queue_log filename (defaults to queue_log)
+queue_log_name = queue_log
 
 ; When using realtime for the queue log, use GMT for the timestamp
 ; instead of localtime. (defaults to no)
-queue\_log\_realtime\_use\_gmt = no
+queue_log_realtime_use_gmt = no
 
 ; Log rotation strategy (defaults to sequential):
 ; none: Do not perform any log rotation at all. You should make
@@ -58,15 +58,15 @@ queue\_log\_realtime\_use\_gmt = no
 ; as the asterisk logs can get very large, very quickly.
 ; sequential: Rename archived logs in order, such that the newest
 ; has the highest sequence number. When
-; exec\_after\_rotate is set, ${filename} will specify
+; exec_after_rotate is set, ${filename} will specify
 ; the new archived logfile.
 ; rotate: Rotate all the old files, such that the oldest has the
 ; highest sequence number (this is the expected behavior
-; for Unix administrators). When exec\_after\_rotate is
+; for Unix administrators). When exec_after_rotate is
 ; set, ${filename} will specify the original root filename.
 ; timestamp: Rename the logfiles using a timestamp instead of a
 ; sequence number when "logger rotate" is executed.
-; When exec\_after\_rotate is set, ${filename} will
+; When exec_after_rotate is set, ${filename} will
 ; specify the new archived logfile.
 rotatestrategy = rotate
 
@@ -74,7 +74,7 @@ rotatestrategy = rotate
 ; useful for rotatestrategy=rotate. The example allows the last
 ; two archive files to remain uncompressed, but after that point,
 ; they are compressed on disk.
-exec\_after\_rotate=gzip -9 ${filename}.2
+exec_after_rotate=gzip -9 ${filename}.2
 
 
 

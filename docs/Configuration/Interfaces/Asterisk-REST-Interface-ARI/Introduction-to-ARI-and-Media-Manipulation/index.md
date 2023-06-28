@@ -44,26 +44,26 @@ event.py
 
 pytrueclass Event(object):
  # DTMF digits
- DTMF\_1 = "1"
- DTMF\_2 = "2"
- DTMF\_3 = "3"
- DTMF\_4 = "4"
- DTMF\_5 = "5"
- DTMF\_6 = "6"
- DTMF\_7 = "7"
- DTMF\_8 = "8"
- DTMF\_9 = "9"
- DTMF\_0 = "0"
+ DTMF_1 = "1"
+ DTMF_2 = "2"
+ DTMF_3 = "3"
+ DTMF_4 = "4"
+ DTMF_5 = "5"
+ DTMF_6 = "6"
+ DTMF_7 = "7"
+ DTMF_8 = "8"
+ DTMF_9 = "9"
+ DTMF_0 = "0"
  # Use "octothorpe" so there is no confusion about "pound" or "hash"
  # terminology.
- DTMF\_OCTOTHORPE = "#"
- DTMF\_STAR = "\*"
+ DTMF_OCTOTHORPE = "#"
+ DTMF_STAR = "\*"
  # Call has hung up
  HANGUP = "hangup"
  # Playback of a file has completed
- PLAYBACK\_COMPLETE = "playback\_complete"
+ PLAYBACK_COMPLETE = "playback_complete"
  # Mailbox has been emptied
- MAILBOX\_EMPTY = "empty"
+ MAILBOX_EMPTY = "empty"
 
 ```
 
@@ -73,26 +73,26 @@ pytrueclass Event(object):
 ```javascript title="event.js" linenums="1"
 jstruevar Event = {
  // DTMF digits
- DTMF\_1: "1",
- DTMF\_2: "2",
- DTMF\_3: "3",
- DTMF\_4: "4",
- DTMF\_5: "5",
- DTMF\_6: "6",
- DTMF\_7: "7",
- DTMF\_8: "8",
- DTMF\_9: "9",
- DTMF\_0: "0",
+ DTMF_1: "1",
+ DTMF_2: "2",
+ DTMF_3: "3",
+ DTMF_4: "4",
+ DTMF_5: "5",
+ DTMF_6: "6",
+ DTMF_7: "7",
+ DTMF_8: "8",
+ DTMF_9: "9",
+ DTMF_0: "0",
  // Use "octothorpe" so there is no confusion about "pound" or "hash"
  // terminology.
- DTMF\_OCTOTHORPE: "#",
- DTMF\_STAR: "\*",
+ DTMF_OCTOTHORPE: "#",
+ DTMF_STAR: "\*",
  // Call has hung up
  HANGUP: "hangup",
  // Playback of a file has completed
- PLAYBACK\_COMPLETE: "playback\_complete",
+ PLAYBACK_COMPLETE: "playback_complete",
  // Mailbox has been emptied
- MAILBOX\_EMPTY: "empty"
+ MAILBOX_EMPTY: "empty"
 }
 module.exports = Event;
 
@@ -109,55 +109,55 @@ After we have defined our events, we need to create a state machine itself. The 
 ---
 
   
-state\_machine.py  
+state_machine.py  
 
 
 ```
 
 pytrueclass StateMachine(object):
- def \_\_init\_\_(self):
+ def __init__(self):
  self.transitions = {}
- self.current\_state = None
+ self.current_state = None
 
- def add\_transition(self, src\_state, event, dst\_state):
- if not self.transitions.get(src\_state.state\_name):
- self.transitions[src\_state.state\_name] = {}
+ def add_transition(self, src_state, event, dst_state):
+ if not self.transitions.get(src_state.state_name):
+ self.transitions[src_state.state_name] = {}
 
- self.transitions[src\_state.state\_name][event] = dst\_state
+ self.transitions[src_state.state_name][event] = dst_state
 
- def change\_state(self, event):
- self.current\_state = self.transitions[self.current\_state.state\_name][event]
- self.current\_state.enter()
+ def change_state(self, event):
+ self.current_state = self.transitions[self.current_state.state_name][event]
+ self.current_state.enter()
 
- def start(self, initial\_state):
- self.current\_state = initial\_state
- self.current\_state.enter()
+ def start(self, initial_state):
+ self.current_state = initial_state
+ self.current_state.enter()
 
 ```
 
 
 
 
-```javascript title="state\_machine.js" linenums="1"
+```javascript title="state_machine.js" linenums="1"
 jstruefunction StateMachine() {
  var transitions = {};
- var current\_state = null;
+ var current_state = null;
 
- this.add\_transition = function(src\_state, event, dst\_state) {
- if (!transitions.hasOwnProperty(src\_state.state\_name)) {
- transitions[src\_state.state\_name] = {};
+ this.add_transition = function(src_state, event, dst_state) {
+ if (!transitions.hasOwnProperty(src_state.state_name)) {
+ transitions[src_state.state_name] = {};
  }
- transitions[src\_state.state\_name][event] = dst\_state;
- }
-
- this.change\_state = function(event) {
- current\_state = transitions[current\_state.state\_name][event];
- current\_state.enter();
+ transitions[src_state.state_name][event] = dst_state;
  }
 
- this.start = function(initial\_state) {
- current\_state = initial\_state;
- current\_state.enter();
+ this.change_state = function(event) {
+ current_state = transitions[current_state.state_name][event];
+ current_state.enter();
+ }
+
+ this.start = function(initial_state) {
+ current_state = initial_state;
+ current_state.enter();
  }
 }
 

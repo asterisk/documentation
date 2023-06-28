@@ -22,7 +22,7 @@ The transport object contains information about configured SIP transports. These
 | --- | --- | --- |
 |  name  |  string  |  Unique name for transport  |
 |  type  |  enum  |  Type of transport (UDP, TCP, TLS, WS, WSS)  |
-|  host  |  ast\_sockaddr  |  IP address for transport to bind to (may be optional)  |
+|  host  |  ast_sockaddr  |  IP address for transport to bind to (may be optional)  |
 |  port  |  integer  |  Port to bind to (may be optional)  |
 
 
@@ -53,12 +53,12 @@ The endpoint object contains information about a SIP trunk or SIP device.
 |  Variable Name  |  Type  |  Contents  |
 | --- | --- | --- |
 |  name  |  string  |  Unique name for endpoint  |
-|  codecs  |  ast\_format\_cap  |  Allowed formats  |
+|  codecs  |  ast_format_cap  |  Allowed formats  |
 |  dtmf  |  enum  |  DTMF method to use (inband, INFO, RFC2833)  |
 |  transport  |  string  |  Name of transport to force endpoint to use  |
-|  cid\_num  |  string  |  Caller ID number  |
-|  cid\_name  |  string  |  Caller ID name  |
-|  cid\_tag  |  string  |  Caller ID tag  |
+|  cid_num  |  string  |  Caller ID number  |
+|  cid_name  |  string  |  Caller ID name  |
+|  cid_tag  |  string  |  Caller ID tag  |
 |  context  |  string  |  Context to place incoming calls into  |
 |  registrations  |  list  |  Outgoing registrations associated with endpoint  |
 |  domain  |  string  |  Domain that the endpoint belongs to  |

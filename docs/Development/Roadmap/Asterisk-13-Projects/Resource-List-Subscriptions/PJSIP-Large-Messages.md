@@ -126,7 +126,7 @@ Content-Length: 449
  </tuple>
  <tuple id="digium-presence">
  <status>
- <digium\_presence type="away" subtype="dogs">fats</digium\_presence>
+ <digium_presence type="away" subtype="dogs">fats</digium_presence>
  </status>
  </tuple>
 </presence>
@@ -147,7 +147,7 @@ Content-Length: 407
  </tuple>
  <tuple id="digium-presence">
  <status>
- <digium\_presence type />
+ <digium_presence type />
  </status>
  </tuple>
 </presence>
@@ -168,7 +168,7 @@ Content-Length: 415
  </tuple>
  <tuple id="digium-presence">
  <status>
- <digium\_presence type />
+ <digium_presence type />
  </status>
  </tuple>
 </presence>
@@ -189,7 +189,7 @@ Content-Length: 415
  </tuple>
  <tuple id="digium-presence">
  <status>
- <digium\_presence type />
+ <digium_presence type />
  </status>
  </tuple>
 </presence>
@@ -210,7 +210,7 @@ Content-Length: 415
  </tuple>
  <tuple id="digium-presence">
  <status>
- <digium\_presence type />
+ <digium_presence type />
  </status>
  </tuple>
 </presence>
@@ -231,7 +231,7 @@ Content-Length: 415
  </tuple>
  <tuple id="digium-presence">
  <status>
- <digium\_presence type />
+ <digium_presence type />
  </status>
  </tuple>
 </presence>
@@ -252,7 +252,7 @@ Content-Length: 415
  </tuple>
  <tuple id="digium-presence">
  <status>
- <digium\_presence type />
+ <digium_presence type />
  </status>
  </tuple>
 </presence>
@@ -273,7 +273,7 @@ Content-Length: 415
  </tuple>
  <tuple id="digium-presence">
  <status>
- <digium\_presence type />
+ <digium_presence type />
  </status>
  </tuple>
 </presence>
@@ -294,7 +294,7 @@ Content-Length: 415
  </tuple>
  <tuple id="digium-presence">
  <status>
- <digium\_presence type />
+ <digium_presence type />
  </status>
  </tuple>
 </presence>
@@ -315,7 +315,7 @@ Content-Length: 415
  </tuple>
  <tuple id="digium-presence">
  <status>
- <digium\_presence type />
+ <digium_presence type />
  </status>
  </tuple>
 </presence>
@@ -336,7 +336,7 @@ Content-Length: 415
  </tuple>
  <tuple id="digium-presence">
  <status>
- <digium\_presence type />
+ <digium_presence type />
  </status>
  </tuple>
 </presence>
@@ -357,7 +357,7 @@ Content-Length: 415
  </tuple>
  <tuple id="digium-presence">
  <status>
- <digium\_presence type />
+ <digium_presence type />
  </status>
  </tuple>
 </presence>
@@ -378,7 +378,7 @@ Content-Length: 415
  </tuple>
  <tuple id="digium-presence">
  <status>
- <digium\_presence type />
+ <digium_presence type />
  </status>
  </tuple>
 </presence>
@@ -399,7 +399,7 @@ Content-Length: 415
  </tuple>
  <tuple id="digium-presence">
  <status>
- <digium\_presence type />
+ <digium_presence type />
  </status>
  </tuple>
 </presence>
@@ -420,7 +420,7 @@ Content-Length: 415
  </tuple>
  <tuple id="digium-presence">
  <status>
- <digium\_presence type />
+ <digium_presence type />
  </status>
  </tuple>
 </presence>
@@ -441,7 +441,7 @@ Content-Length: 415
  </tuple>
  <tuple id="digium-presence">
  <status>
- <digium\_presence type />
+ <digium_presence type />
  </status>
  </tuple>
 </presence>
@@ -455,7 +455,7 @@ On subsequent NOTIFYs that are caused by a single resource's state change, a par
 
 ### In PJSIP
 
-When working with PJSIP, we manipulate a structure called `pjsip_tx_data` which contains data relating to the request or response that we intend to send. When the time comes to send the request, we use a high-level method to send a request within the subscription's dialog. Several layers down, PJSIP calls a (public) function called `pjsip_tx_data_encode()` which takes the `pjsip_tx_data` structure and creates a SIP request/response based on its data. This function allocates a buffer on the `pjsip_tx_data` that is sized at `PJSIP_MAX_PKT_LEN`, a constant that is defined at PJSIP's compilation time. By default, `PJSIP_MAX_PKT_LEN` is 4000, but it can be overridden by defining a different value in pjlib/include/pj/config\_site.h. After allocating the buffer, the `pjsip_msg_print()` is used to attempt to write the request/response to the buffer. If the buffer is too small, then the encoding operation fails, causing the higher-level operation of sending the request/response to fail as well. As can be seen based on the NOTIFY above, 11585 > 4000, so we are unable to send a full state RLS NOTIFY.
+When working with PJSIP, we manipulate a structure called `pjsip_tx_data` which contains data relating to the request or response that we intend to send. When the time comes to send the request, we use a high-level method to send a request within the subscription's dialog. Several layers down, PJSIP calls a (public) function called `pjsip_tx_data_encode()` which takes the `pjsip_tx_data` structure and creates a SIP request/response based on its data. This function allocates a buffer on the `pjsip_tx_data` that is sized at `PJSIP_MAX_PKT_LEN`, a constant that is defined at PJSIP's compilation time. By default, `PJSIP_MAX_PKT_LEN` is 4000, but it can be overridden by defining a different value in pjlib/include/pj/config_site.h. After allocating the buffer, the `pjsip_msg_print()` is used to attempt to write the request/response to the buffer. If the buffer is too small, then the encoding operation fails, causing the higher-level operation of sending the request/response to fail as well. As can be seen based on the NOTIFY above, 11585 > 4000, so we are unable to send a full state RLS NOTIFY.
 
 Possible Solutions
 ==================

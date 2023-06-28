@@ -78,7 +78,7 @@ If the child process dies, or the remote server disconnects, `ExternalIVR` will 
 ##### `ExternalIVR` Options
 
 * `n` - 'n'oanswer, don't answer an otherwise unanswered channel.
-* `i` - 'i'gnore\_hangup, instead of sending an `H` event and exiting `ExternalIVR` upon channel hangup, it instead sends an `I` event and expects the external application to exit the process.
+* `i` - 'i'gnore_hangup, instead of sending an `H` event and exiting `ExternalIVR` upon channel hangup, it instead sends an `I` event and expects the external application to exit the process.
 * `d` - 'd'ead, allows the operation of `ExternalIVR` on channels that have already been hung up.
 
 

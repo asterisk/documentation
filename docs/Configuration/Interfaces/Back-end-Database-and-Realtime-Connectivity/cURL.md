@@ -131,9 +131,9 @@ Once Asterisk has started, type the following on the CLI:
 
 ```
 
-\*CLI> module show like res\_config\_curl
+\*CLI> module show like res_config_curl
 Module Description Use Count Status
-res\_config\_curl.so Realtime Curl configuration 0 Running
+res_config_curl.so Realtime Curl configuration 0 Running
 1 modules loaded
 
 
@@ -169,7 +169,7 @@ Unlike other realtime backends, Asterisk does not have a specific configuration 
 [settings]
 voicemail = curl,http://myserver.com:8000/voicemail
 sippeers = curl,http://myserver.com:8000/sippeers
-queues = curl,http://myserver.com:8000/my\_queues
+queues = curl,http://myserver.com:8000/my_queues
 
 ```
 
@@ -187,12 +187,12 @@ The basic syntax when using cURL is:
 
 ```
 
-realtime\_data = curl,<HTTP URL>
+realtime_data = curl,<HTTP URL>
 
 ```
 
 
-There are no hard-and-fast rules on what URL you place here. In the above sample, each of the various realtime stores correspond to resources on the same HTTP server. However, it would be perfectly valid to specify completely different servers for different realtime stores. Notice also that there is no requirement for the name of the realtime store to appear in the HTTP URL. In the above example the "queues" realtime store maps to the resource "my\_queues" on the HTTP server.
+There are no hard-and-fast rules on what URL you place here. In the above sample, each of the various realtime stores correspond to resources on the same HTTP server. However, it would be perfectly valid to specify completely different servers for different realtime stores. Notice also that there is no requirement for the name of the realtime store to appear in the HTTP URL. In the above example the "queues" realtime store maps to the resource "my_queues" on the HTTP server.
 
 Operations
 ==========
@@ -206,19 +206,19 @@ The operations, as well as what is expected in response, are defined below.
 For the first five examples, we will be using external MWI as the sample realtime store that Asterisk will be interacting with. The realtime MWI store stores the following data for each object
 
 * id: The name of the mailbox for which MWI is being provided
-* msgs\_new: The number of new messages the mailbox currently has
-* msgs\_old: The number of old messages the mailbox currently has
+* msgs_new: The number of new messages the mailbox currently has
+* msgs_old: The number of old messages the mailbox currently has
 
 We will operate with the assumption that the following two objects exist in the realtime store:
 
 * -
 	+ id: "Dazed"
-	+ msgs\_new: 5
-	+ msgs\_old: 4
+	+ msgs_new: 5
+	+ msgs_old: 4
 * -
 	+ id: "Confused"
-	+ msgs\_new: 6
-	+ msgs\_old: 8
+	+ msgs_new: 6
+	+ msgs_old: 8
 
 Our `extconfig.conf` file looks like this:
 
@@ -286,7 +286,7 @@ Date: Sat, 15 Mar 2014 18:23:21 GMT
 Content-Length: 30
 Content-Type: text/html
  
-msgs\_new=5&msgs\_old=4&id=Dazed
+msgs_new=5&msgs_old=4&id=Dazed
 
 ```
 
@@ -344,8 +344,8 @@ Date: Sat, 15 Mar 2014 18:40:58 GMT
 Content-Length: 65
 Content-Type: text/html
  
-msgs\_new=5&msgs\_old=4&id=Dazed
-msgs\_new=6&msgs\_old=8&id=Confused
+msgs_new=5&msgs_old=4&id=Dazed
+msgs_new=6&msgs_old=8&id=Confused
 
 ```
 
@@ -376,7 +376,7 @@ Accept: \*/\*
 Content-Length: 30
 Content-Type: application/x-www-form-urlencoded
  
-id=Shocked&msgs\_old=5&msgs\_new=7
+id=Shocked&msgs_old=5&msgs_new=7
 
 ```
 
@@ -432,7 +432,7 @@ Accept: \*/\*
 Content-Length: 24
 Content-Type: application/x-www-form-urlencoded
  
-msgs\_old=25&msgs\_new=300
+msgs_old=25&msgs_new=300
 
 ```
 
@@ -530,41 +530,41 @@ Static realtime "objects" are all the same, no matter what configuration file th
 
 * id: A unique numerical id for the static realtime object
 * filename: The configuration file that this static realtime object belongs to
-* cat\_metric: Numerical id for a configuration category. Used by Asterisk to order categories for evaluation.
+* cat_metric: Numerical id for a configuration category. Used by Asterisk to order categories for evaluation.
 * category: Name of the configuration category
-* var\_metric: Numerical id for a variable within a category. Used by Asterisk to order variables for evaluation.
-* var\_name: Parameter name
-* var\_val: Parameter value
+* var_metric: Numerical id for a variable within a category. Used by Asterisk to order variables for evaluation.
+* var_name: Parameter name
+* var_val: Parameter value
 * commented: If non-zero, indicates this object should be ignored
 
 For our example, we will have the following objects stored in our static realtime store:
 
 * -
 	+ id: 0
-	+ cat\_metric: 0
-	+ var\_metric: 0
+	+ cat_metric: 0
+	+ var_metric: 0
 	+ filename: pjsip.conf
 	+ category: alice
-	+ var\_name: type
-	+ var\_val: endpoint
+	+ var_name: type
+	+ var_val: endpoint
 	+ commented: 0
 * -
 	+ id: 1
-	+ cat\_metric: 0
-	+ var\_metric: 1
+	+ cat_metric: 0
+	+ var_metric: 1
 	+ filename: pjsip.conf
 	+ category: alice
-	+ var\_name: allow
-	+ var\_val: ulaw
+	+ var_name: allow
+	+ var_val: ulaw
 	+ commented: 0
 * -
 	+ id: 2
-	+ cat\_metric: 0
-	+ var\_metric: 2
+	+ cat_metric: 0
+	+ var_metric: 2
 	+ filename: pjsip.conf
 	+ category: alice
-	+ var\_name: context
-	+ var\_val: fabulous
+	+ var_name: context
+	+ var_val: fabulous
 	+ commented: 0
 
 This schema is identical to the `pjsip.conf` configuration file:
@@ -629,21 +629,21 @@ Date: Sat, 15 Mar 2014 19:13:41 GMT
 Content-Length: 328
 Content-Type: text/html
 
-category=alice&commented=0&var\_metric=0&var\_name=type&var\_val=endpoint&id=0&filename=pjsip.conf&cat\_metric=0
-category=alice&commented=0&var\_metric=1&var\_name=allow&var\_val=ulaw&id=1&filename=pjsip.conf&cat\_metric=0
-category=alice&commented=0&var\_metric=2&var\_name=context&var\_val=fabulous&id=2&filename=pjsip.conf&cat\_metric=0
+category=alice&commented=0&var_metric=0&var_name=type&var_val=endpoint&id=0&filename=pjsip.conf&cat_metric=0
+category=alice&commented=0&var_metric=1&var_name=allow&var_val=ulaw&id=1&filename=pjsip.conf&cat_metric=0
+category=alice&commented=0&var_metric=2&var_name=context&var_val=fabulous&id=2&filename=pjsip.conf&cat_metric=0
 
 ```
 
 
 Unlike other realtime responses, the static realtime response needs to present the data in a particular order:
 
-* First order: by descending cat\_metric
-* Second order: by ascending var\_metric
+* First order: by descending cat_metric
+* Second order: by ascending var_metric
 * Third: lexicographically by category name
 * Fourth: lexicographically by variable name
 
-Note that Asterisk only pays attention to the "cat\_metric", "var\_metric", "category", "var\_name", and "var\_value" you return here, but you are free to return the entire object if you want. Note that Asterisk will not pay attention to the "commented" field, so be sure not to return any objects that have a non-zero "commented" value.
+Note that Asterisk only pays attention to the "cat_metric", "var_metric", "category", "var_name", and "var_value" you return here, but you are free to return the entire object if you want. Note that Asterisk will not pay attention to the "commented" field, so be sure not to return any objects that have a non-zero "commented" value.
 
 In summary, static realtime is cumbersome, confusing, and not worth it. Stay clear unless you just really need to use it.
 
@@ -666,7 +666,7 @@ Asterisk sends an HTTP POST with body parameters describing what type it expects
 
 ```
 
-POST /queue\_members/require HTTP/1.1
+POST /queue_members/require HTTP/1.1
 User-Agent: asterisk-libcurl-agent/1.0
 Host: localhost:8000
 Accept: \*/\*

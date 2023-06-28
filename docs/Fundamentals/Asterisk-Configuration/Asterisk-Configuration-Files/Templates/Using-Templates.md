@@ -82,10 +82,10 @@ host=charlie.example.com
 ```
 
 
-chan\_sip Template Example
+chan_sip Template Example
 ==========================
 
-Here is a more extensive and realistic example from the chan\_sip channel driver's sample configuration file.
+Here is a more extensive and realistic example from the chan_sip channel driver's sample configuration file.
 
 
 
@@ -129,9 +129,9 @@ Here is a more extensive and realistic example from the chan\_sip channel driver
 ; [2133](natted-phone,my-codecs)
 ; secret = peekaboo
 ; [2134](natted-phone,ulaw-phone)
-; secret = not\_very\_secret
+; secret = not_very_secret
 ; [2136](public-phone,ulaw-phone)
-; secret = not\_very\_secret\_either
+; secret = not_very_secret_either
 
 ```
 

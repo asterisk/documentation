@@ -40,25 +40,25 @@ The old names are still available but deprecated until all code is converted to 
 
 ```
 
-int ao2\_hash\_fn(const void \*obj, int flags)
+int ao2_hash_fn(const void \*obj, int flags)
 {
- const struct my\_object \*object;
+ const struct my_object \*object;
  const char \*key;
 
- switch (flags & OBJ\_SEARCH\_MASK) {
- case OBJ\_SEARCH\_KEY:
+ switch (flags & OBJ_SEARCH_MASK) {
+ case OBJ_SEARCH_KEY:
  key = obj;
  break;
- case OBJ\_SEARCH\_OBJECT:
+ case OBJ_SEARCH_OBJECT:
  object = obj;
  key = object->key;
  break;
  default:
  /\* Hash can only work on something with a full key. \*/
- ast\_assert(0);
+ ast_assert(0);
  return 0;
  }
- return ast\_str\_hash(key);
+ return ast_str_hash(key);
 }
 
 ```
@@ -77,30 +77,30 @@ int ao2\_hash\_fn(const void \*obj, int flags)
 
 ```
 
-int ao2\_sort\_fn(const void \*obj\_left, const void \*obj\_right, int flags)
+int ao2_sort_fn(const void \*obj_left, const void \*obj_right, int flags)
 {
- const struct my\_object \*object\_left = obj\_left;
- const struct my\_object \*object\_right = obj\_right;
- const char \*right\_key = obj\_right;
+ const struct my_object \*object_left = obj_left;
+ const struct my_object \*object_right = obj_right;
+ const char \*right_key = obj_right;
  int cmp;
 
- switch (flags & OBJ\_SEARCH\_MASK) {
- case OBJ\_SEARCH\_OBJECT:
- right\_key = object\_right->username;
+ switch (flags & OBJ_SEARCH_MASK) {
+ case OBJ_SEARCH_OBJECT:
+ right_key = object_right->username;
  /\* Fall through \*/
- case OBJ\_SEARCH\_KEY:
- cmp = strcmp(object\_left->username, right\_key);
+ case OBJ_SEARCH_KEY:
+ cmp = strcmp(object_left->username, right_key);
  break;
- case OBJ\_SEARCH\_PARTIAL\_KEY:
+ case OBJ_SEARCH_PARTIAL_KEY:
  /\*
  \* We could also use a partial key struct containing a length
  \* so strlen() does not get called for every comparison instead.
  \*/
- cmp = strncmp(object\_left->username, right\_key, strlen(right\_key));
+ cmp = strncmp(object_left->username, right_key, strlen(right_key));
  break;
  default:
  /\* Sort can only work on something with a full or partial key. \*/
- ast\_assert(0);
+ ast_assert(0);
  cmp = 0;
  break;
  }
@@ -114,9 +114,9 @@ int ao2\_sort\_fn(const void \*obj\_left, const void \*obj\_right, int flags)
 
 The sort/hash comparison functions act as a filter before the `ao2_callback_fn` function is called.  Every object is matched first by the sort/hash functions.  This callback just adds additional discrimination between otherwise equal matches.  For most sorted container searches you won't need a special callback and can use the default to match everything by passing NULL for this function.
 
-However, with OBJ\_CONTINUE, the sort/hash functions are only used to find the starting point in a container traversal of all objects.
+However, with OBJ_CONTINUE, the sort/hash functions are only used to find the starting point in a container traversal of all objects.
 
-This function should not return CMP\_STOP unless you never want a container search to find multiple objects with the OBJ\_MULTIPLE flag.
+This function should not return CMP_STOP unless you never want a container search to find multiple objects with the OBJ_MULTIPLE flag.
 
 ### Sorted container cmp function
 
@@ -135,9 +135,9 @@ This function should not return CMP\_STOP unless you never want a container sear
  \* This callback function is exactly what you get when you pass
  \* NULL as the callback function.
  \*/
-int ao2\_callback\_fn\_sorted\_cmp(void \*obj, void \*arg, int flags)
+int ao2_callback_fn_sorted_cmp(void \*obj, void \*arg, int flags)
 {
- return CMP\_MATCH;
+ return CMP_MATCH;
 }
 
 ```
@@ -158,26 +158,26 @@ Unsorted containers must do more work selecting objects since traversals will ei
 
 ```
 
-int ao2\_callback\_fn\_unsorted\_cmp(void \*obj, void \*arg, int flags)
+int ao2_callback_fn_unsorted_cmp(void \*obj, void \*arg, int flags)
 {
- const struct my\_object \*object\_left = obj;
- const struct my\_object \*object\_right = arg;
- const char \*right\_key = arg;
+ const struct my_object \*object_left = obj;
+ const struct my_object \*object_right = arg;
+ const char \*right_key = arg;
  int cmp;
 
- switch (flags & OBJ\_SEARCH\_MASK) {
- case OBJ\_SEARCH\_OBJECT:
- right\_key = object\_right->username;
+ switch (flags & OBJ_SEARCH_MASK) {
+ case OBJ_SEARCH_OBJECT:
+ right_key = object_right->username;
  /\* Fall through \*/
- case OBJ\_SEARCH\_KEY:
- cmp = strcmp(object\_left->username, right\_key);
+ case OBJ_SEARCH_KEY:
+ cmp = strcmp(object_left->username, right_key);
  break;
- case OBJ\_SEARCH\_PARTIAL\_KEY:
+ case OBJ_SEARCH_PARTIAL_KEY:
  /\*
  \* We could also use a partial key struct containing a length
  \* so strlen() does not get called for every comparison instead.
  \*/
- cmp = strncmp(object\_left->username, right\_key, strlen(right\_key));
+ cmp = strncmp(object_left->username, right_key, strlen(right_key));
  break;
  default:
  /\*
@@ -194,7 +194,7 @@ int ao2\_callback\_fn\_unsorted\_cmp(void \*obj, void \*arg, int flags)
  \* At this point the traversal callback is identical to a sorted
  \* container.
  \*/
- return ao2\_callback\_fn\_sorted\_cmp(obj, arg, flags);
+ return ao2_callback_fn_sorted_cmp(obj, arg, flags);
 }
 
 ```

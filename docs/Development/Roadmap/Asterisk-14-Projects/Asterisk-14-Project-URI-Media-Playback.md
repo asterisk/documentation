@@ -238,7 +238,7 @@ http://localhost:8088/ari/channels/12345/play/p3
 {
  "media": "playlist",
  "playlist": [
- { "media\_group": [
+ { "media_group": [
  {
  "scheme": "uri",
  "resource": "http://myserver.com/monkeys.wav"
@@ -249,7 +249,7 @@ http://localhost:8088/ari/channels/12345/play/p3
  }
  ]
  }
- { "media\_group": [
+ { "media_group": [
  { "scheme": "uri",
  "resource": "http://myserver.com/awesome-sound.wav",
   }
@@ -275,7 +275,7 @@ No configuration should be needed.
 Design
 ======
 
-Core - media\_cache
+Core - media_cache
 -------------------
 
 This new file in the Asterisk core will provide the following:
@@ -308,33 +308,33 @@ cpp/\*
  \* \retval 0 The item is not in the cache
  \* \retval 1 The item is in the cache
  \*/
-int ast\_media\_cache\_exists(const char \*uri);
+int ast_media_cache_exists(const char \*uri);
 
 /\*
  \* \brief Retrieve media from a URI or in the cache
  \*
- \* \param preferred\_file\_name If not yet retrieved from the remote server, use the preferred file name
+ \* \param preferred_file_name If not yet retrieved from the remote server, use the preferred file name
  \* for the media file. Note that this does not include the extension of the
  \* file, if any.
- \* \param file\_path Buffer to hold the location of the media on the local file system, minus the extension
- \* \param len Length of \c file\_path
+ \* \param file_path Buffer to hold the location of the media on the local file system, minus the extension
+ \* \param len Length of \c file_path
  \*
  \* \retval 0 on success
  \* \retval -1 on error
  \*/
-int ast\_media\_cache\_retrieve(const char \*uri, const char \*preferred\_file\_name, char \*file\_path, size\_t len);
+int ast_media_cache_retrieve(const char \*uri, const char \*preferred_file_name, char \*file_path, size_t len);
 
 /\*!
  \* \brief Update an item in the cache
  \*
  \* \param uri The item to update
- \* \param file\_path The location to the local file to associate with \c uri
+ \* \param file_path The location to the local file to associate with \c uri
  \* \param metadata A list of key/value pairs to store with the URI
  \*
  \* \retval 0 success
  \* \retval -1 error
  \*/
-int ast\_media\_cache\_create\_or\_update(const char \*uri, const char \*file\_path, struct ast\_variable \*metadata);
+int ast_media_cache_create_or_update(const char \*uri, const char \*file_path, struct ast_variable \*metadata);
 
 /\*
  \* \brief Remove an item from the cache
@@ -344,7 +344,7 @@ int ast\_media\_cache\_create\_or\_update(const char \*uri, const char \*file\_p
  \* \retval 0 success
  \* \retval -1 error
  \*/
-int ast\_media\_cache\_delete(const char \*uri);
+int ast_media_cache_delete(const char \*uri);
 
 
 ```
@@ -370,9 +370,9 @@ Just for fun! It'd be good to see what is in the cache, the timestamps, etc.
 \*CLI>core show media-cache
 
 URI Last update Local file
-http://myserver.com/awesome.wav 2014-10-30 00:52:25 UTC /var/spool/asterisk/media\_cache/ahsd98d1.wav
-http://myserver.com/monkeys.wav 2014-09-14 10:10:00 UTC /var/spool/asterisk/media\_cache/77asdf7a.wav
-http://myserver.com/monkeys.h264 2014-09-14 10:10:00 UTC /var/spool/asterisk/media\_cache/77asdf7a.h264 
+http://myserver.com/awesome.wav 2014-10-30 00:52:25 UTC /var/spool/asterisk/media_cache/ahsd98d1.wav
+http://myserver.com/monkeys.wav 2014-09-14 10:10:00 UTC /var/spool/asterisk/media_cache/77asdf7a.wav
+http://myserver.com/monkeys.h264 2014-09-14 10:10:00 UTC /var/spool/asterisk/media_cache/77asdf7a.h264 
 
 3 items found.
 
@@ -408,7 +408,7 @@ URI Last update Local file
 ```
 
 
-res\_http\_media\_cache
+res_http_media_cache
 -----------------------
 
 ### File Retrieval
@@ -418,7 +418,7 @@ A module should be implemented that does the actual work of using `libcurl` to r
 * Implement the HTTP caching, noted previously
 * cURL files down to a local file, create a bucket, and store the bucket along with the appropriate metadata
 
-Core - Usage of ast\_openstream
+Core - Usage of ast_openstream
 -------------------------------
 
 Prior to call `ast_openstream`, users who want to support URI playback should first:
@@ -438,11 +438,11 @@ Prior to call `ast_openstream`, users who want to support URI playback should fi
 
 
 
-### Core - file.c::ast\_streamfile
+### Core - file.c::ast_streamfile
 
 This covers most functionality, as most dialplan applications (and other things) end up calling `ast_streamfile`.
 
-### AGI - res\_agi.c::handle\_streamfile | handle\_getoption
+### AGI - res_agi.c::handle_streamfile | handle_getoption
 
 AGI implementations of basic sound playback, which emulate their dialplan counterparts. These will need to be updated in the same way as `ast_streamfile`.
 
@@ -473,7 +473,7 @@ Support for a new Content-Type, `text/uri-list`, needs to be added to the HTTP s
  \* \retval NULL on error or a body not encoded as text/uri-list
  \* \retval A list of URIs. This an ao2 object that must be disposed of by the caller of the function.
  \*/
-struct ast\_uri\_list \*ast\_http\_get\_uri\_list(struct ast\_tcptls\_session\_instance \*ser, struct ast\_variable \*headers);
+struct ast_uri_list \*ast_http_get_uri_list(struct ast_tcptls_session_instance \*ser, struct ast_variable \*headers);
 
 ```
 
@@ -498,52 +498,52 @@ struct ast\_uri\_list \*ast\_http\_get\_uri\_list(struct ast\_tcptls\_session\_i
  \*
  \* \retval The string representation of the URI.
  \*/
-const char \*ast\_uri\_to\_string(struct ast\_uri \*uri);
+const char \*ast_uri_to_string(struct ast_uri \*uri);
 
-struct ast\_uri\_list;
-struct ast\_uri\_list\_iterator;
+struct ast_uri_list;
+struct ast_uri_list_iterator;
 
 /\*!
  \* \brief Create a URI list
  \*
- \* \retval A new \c ast\_uri\_list on success. This is an ao2 object.
+ \* \retval A new \c ast_uri_list on success. This is an ao2 object.
  \* \retval NULL on error
  \*/
-struct ast\_uri\_list \*ast\_uri\_list\_create(void);
+struct ast_uri_list \*ast_uri_list_create(void);
 
 /\*!
- \* \brief Append a \c ast\_uri to a \c ast\_uri\_list
+ \* \brief Append a \c ast_uri to a \c ast_uri_list
  \*
- \* \param uri The \c ast\_uri to append
+ \* \param uri The \c ast_uri to append
  \*/
-void ast\_uri\_list\_append(struct ast\_uri \*uri);
+void ast_uri_list_append(struct ast_uri \*uri);
 
 /\*!
- \* \brief Create an iterator for a \c ast\_uri\_list
+ \* \brief Create an iterator for a \c ast_uri_list
  \*
- \* \param uri\_list The \c ast\_uri\_list to iterate over
+ \* \param uri_list The \c ast_uri_list to iterate over
  \*
- \* \retval A \c ast\_uri\_list\_iterator on success
+ \* \retval A \c ast_uri_list_iterator on success
  \* \retval NULL on error
  \*/
-struct ast\_uri\_list\_iterator \*ast\_uri\_list\_iterator\_create(struct ast\_uri\_list \*uri\_list);
+struct ast_uri_list_iterator \*ast_uri_list_iterator_create(struct ast_uri_list \*uri_list);
 
 /\*!
- \* \brief Dispose of a \c ast\_uri\_list\_iterator
+ \* \brief Dispose of a \c ast_uri_list_iterator
  \*
- \* \param iterator The \c ast\_uri\_list\_iterator to destroy
+ \* \param iterator The \c ast_uri_list_iterator to destroy
  \*/
-void ast\_uri\_list\_iterator\_destroy(struct ast\_uri\_list\_iterator \*iterator);
+void ast_uri_list_iterator_destroy(struct ast_uri_list_iterator \*iterator);
 
 /\*!
- \* \brief Retrieve the next \c ast\_uri in an \c ast\_uri\_list
+ \* \brief Retrieve the next \c ast_uri in an \c ast_uri_list
  \*
- \* \param iterator The \c ast\_uri\_list\_iterator for the list
+ \* \param iterator The \c ast_uri_list_iterator for the list
  \*
  \* \retval NULL if no more items in the list
- \* \retval The next \c ast\_uri otherwise
+ \* \retval The next \c ast_uri otherwise
  \*/
-struct ast\_uri \*ast\_uri\_list\_iterator\_next(struct ast\_uri\_list\_iterator \*iterator);
+struct ast_uri \*ast_uri_list_iterator_next(struct ast_uri_list_iterator \*iterator);
 
 ```
 
@@ -573,17 +573,17 @@ js "models": {
  "description": "ID for this playback operation",
  "required": true
  },
- "media\_uri": {
+ "media_uri": {
  "type": "string",
  "description": "URI for the media to play back.",
  "required": true
  },
  "playlist": {
  "$ref": "Playlist",
- "description": "If media\_uri is of schema type playlist, the playlist to play",
+ "description": "If media_uri is of schema type playlist, the playlist to play",
  "required": false
  },
- "target\_uri": {
+ "target_uri": {
  "type": "string",
  "description": "URI for the channel or bridge to play the media on",
  "required": true
@@ -627,7 +627,7 @@ js "models": {
  "id": "MediaGroup",
  "description": "One or more MediaResources that are associated together as a logical unit",
  "properties": {
- "media\_group": {
+ "media_group": {
  "type": "array",
  "description": "Array of MediaResources to treat as a single logical unit",
  "required": true,
@@ -738,7 +738,7 @@ Unit Tests
 | `/main/media_cache/retrieve` | `nominal` | Retrieve a file from the Asterisk HTTP server (using magic!) and make sure it is in the cache. Retrieve it again and make sure we didn't do an HTTP request twice. |
 | `/main/media_cache/retrieve` | `non_existent` | Ask for a file that doesn't exist. Get an error back. |
 | `/main/media_cache/retrieve` | `bad_scheme` | Ask for something that has a bad URI scheme. |
-| `/main/media_cache/retrieve` | `bad_params` | Ask for something with no URI and no file\_path. Make sure we reject it. |
+| `/main/media_cache/retrieve` | `bad_params` | Ask for something with no URI and no file_path. Make sure we reject it. |
 | `/main/media_cache/retrieve` | `new_file` | Retrieve a media file, cache it. Update the file, ask for the file again; make sure it gets the new copy. |
 | `/main/media_cache/retrieve` | `preferred_file_name` | Ask for a file with a preferred file name; verify that we retrieve the file and set the file name accordingly (with the right extension). |
 | `/main/media_cache/delete` | `nominal` | Put something in the cache. Call delete; verify the cache is purged. |
@@ -795,7 +795,7 @@ See peer reviews:
 | Integrate with the AstDB | When items are created via a bucket `create` or `retrieve`, update entries in the AstDB.When Asterisk is started, re-create buckets based on the entries currently in the AstDB. | Done |
 | Add CLI commands | Both for showing elements in the media cache as well as for purging the cache. If the cache is purged, remove entries from the AstDB. | Done |
 
-Phase Two - res\_http\_media\_cache
+Phase Two - res_http_media_cache
 -----------------------------------
 
 

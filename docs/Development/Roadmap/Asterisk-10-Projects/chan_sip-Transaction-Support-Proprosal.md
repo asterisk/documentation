@@ -6,7 +6,7 @@ pageid: 10649861
 
 
 # Introduction
-SIP is a transactional protocol. Asterisk's chan\_sip has no transaction concept of a transaction layer. Developers have spent countless hours providing workarounds for bugs caused by this situation. In fact, more hours have been spent trying to work around the issue than it would take to actually implement a transaction layer for chan\_sip. This document outlines how a transaction layer can be added to chan\_sip with a relatively minimal amount of change to existing code.
+SIP is a transactional protocol. Asterisk's chan_sip has no transaction concept of a transaction layer. Developers have spent countless hours providing workarounds for bugs caused by this situation. In fact, more hours have been spent trying to work around the issue than it would take to actually implement a transaction layer for chan_sip. This document outlines how a transaction layer can be added to chan_sip with a relatively minimal amount of change to existing code.
 
 # Table of Contents
 
@@ -25,11 +25,11 @@ SIP is a transactional protocol. Asterisk's chan\_sip has no transaction concept
 # What is a transaction layer?
 SIP is a transactional protocol. A transaction is basically a single request and all of the responses to that request. Essentially, the SIP transaction layer sits between the User Agent core code and the transmission layer. The purpose of the transaction layer is to handle sending retransmissions of messages that have not received a timely response (with some exceptions) and to filter out (most) retransmissions and invalid messages instead of having the UA core code handle them.
 
-# What does chan\_sip currently do instead of using a transaction layer?
+# What does chan_sip currently do instead of using a transaction layer?
 
-chan\_sip, instead of maintaining a full transaction layer, tries to identify incoming retransmissions and marks them with an "ignore" flag. Then, in every request/response handling function where we think it might be important, we try to handle falling through the code to "do the right thing." This has led to many, many bugs. Many times we end up trying to reconstruct the same response to a request based on some state that isn't guaranteed not to have changed. The core code, in most circumstances should not even be aware that a retransmission has been received, let alone make a response to it one.
+chan_sip, instead of maintaining a full transaction layer, tries to identify incoming retransmissions and marks them with an "ignore" flag. Then, in every request/response handling function where we think it might be important, we try to handle falling through the code to "do the right thing." This has led to many, many bugs. Many times we end up trying to reconstruct the same response to a request based on some state that isn't guaranteed not to have changed. The core code, in most circumstances should not even be aware that a retransmission has been received, let alone make a response to it one.
 
-For retransmitting messages that chan\_sip's UA code sends, chan\_sip relies on the retrans\_pkt function which is scheduled to run from sip\_reliable\_xmit.
+For retransmitting messages that chan_sip's UA code sends, chan_sip relies on the retrans_pkt function which is scheduled to run from sip_reliable_xmit.
 
 # Proposed solution
 

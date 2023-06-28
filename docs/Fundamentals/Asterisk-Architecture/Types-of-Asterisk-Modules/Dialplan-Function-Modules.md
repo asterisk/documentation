@@ -7,5 +7,5 @@ Dialplan functions are somewhat similar to dialplan applications, but instead of
 
 For more information on dialplan functions, see [PBX Features](/PBX-Features).
 
-All dialplan function modules have file names that looks like **func\_xxxxx.so**, such as **func\_callerid.so**, however applications and functions can also be provided by the core and other modules. Modules like res\_musiconhold and res\_xmpp provide applications related to their own functionality.
+All dialplan function modules have file names that looks like **func_xxxxx.so**, such as **func_callerid.so**, however applications and functions can also be provided by the core and other modules. Modules like res_musiconhold and res_xmpp provide applications related to their own functionality.
 

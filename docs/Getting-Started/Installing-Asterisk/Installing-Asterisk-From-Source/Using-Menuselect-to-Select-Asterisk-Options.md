@@ -193,26 +193,26 @@ To list only the categories, use the `--category-list` command line parameter:
 ```
 
 [root@server asterisk-14.X.Y]# menuselect/menuselect --category-list
-MENUSELECT\_ADDONS
-MENUSELECT\_APPS
-MENUSELECT\_BRIDGES
-MENUSELECT\_CDR
-MENUSELECT\_CEL
-MENUSELECT\_CHANNELS
-MENUSELECT\_CODECS
-MENUSELECT\_FORMATS
-MENUSELECT\_FUNCS
-MENUSELECT\_PBX
-MENUSELECT\_RES
-MENUSELECT\_TESTS
-MENUSELECT\_CFLAGS
-MENUSELECT\_OPTS\_app\_voicemail
-MENUSELECT\_UTILS
-MENUSELECT\_AGIS
-MENUSELECT\_EMBED
-MENUSELECT\_CORE\_SOUNDS
-MENUSELECT\_MOH
-MENUSELECT\_EXTRA\_SOUNDS
+MENUSELECT_ADDONS
+MENUSELECT_APPS
+MENUSELECT_BRIDGES
+MENUSELECT_CDR
+MENUSELECT_CEL
+MENUSELECT_CHANNELS
+MENUSELECT_CODECS
+MENUSELECT_FORMATS
+MENUSELECT_FUNCS
+MENUSELECT_PBX
+MENUSELECT_RES
+MENUSELECT_TESTS
+MENUSELECT_CFLAGS
+MENUSELECT_OPTS_app_voicemail
+MENUSELECT_UTILS
+MENUSELECT_AGIS
+MENUSELECT_EMBED
+MENUSELECT_CORE_SOUNDS
+MENUSELECT_MOH
+MENUSELECT_EXTRA_SOUNDS
 
 ```
 
@@ -232,10 +232,10 @@ To list the options in a category, use the `--list-category` command line parame
 
 ```
 
-[root@server asterisk-14.X.Y]# menuselect/menuselect --list-category MENUSELECT\_OPTS\_app\_voicemail
-+ FILE\_STORAGE
-- ODBC\_STORAGE
-- IMAP\_STORAGE
+[root@server asterisk-14.X.Y]# menuselect/menuselect --list-category MENUSELECT_OPTS_app_voicemail
++ FILE_STORAGE
+- ODBC_STORAGE
+- IMAP_STORAGE
 
 ```
 
@@ -256,7 +256,7 @@ To enable an option in Menuselect, use the `--enable` command line parameter:
 
 ```
 
-[root@server asterisk-14.X.Y]# menuselect/menuselect --enable IMAP\_STORAGE menuselect.makeopts
+[root@server asterisk-14.X.Y]# menuselect/menuselect --enable IMAP_STORAGE menuselect.makeopts
 
 ```
 
@@ -274,7 +274,7 @@ To enable an option in Menuselect, use the `--enable` command line parameter:
 
 ```
 
-[root@server asterisk-14.X.Y]# menuselect/menuselect --enable app\_voicemail --enable IMAP\_STORAGE menuselect.makeopts  
+[root@server asterisk-14.X.Y]# menuselect/menuselect --enable app_voicemail --enable IMAP_STORAGE menuselect.makeopts  
 
 
 
@@ -301,7 +301,7 @@ To disable an option in **Menuselect**, use the `--disable` command line paramet
 
 ```
 
-[root@server asterisk-14.X.Y]# menuselect/menuselect --disable app\_voicemail menuselect.makeopts
+[root@server asterisk-14.X.Y]# menuselect/menuselect --disable app_voicemail menuselect.makeopts
 
 ```
 
@@ -322,7 +322,7 @@ An entire category can be enabled in **Menuselect** using the `--enable-category
 
 ```
 
-[root@server asterisk-14.X.Y]# menuselect/menuselect --enable-category MENUSELECT\_ADDONS menuselect.makeopts
+[root@server asterisk-14.X.Y]# menuselect/menuselect --enable-category MENUSELECT_ADDONS menuselect.makeopts
 
 ```
 

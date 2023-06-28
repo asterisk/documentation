@@ -53,7 +53,7 @@ ulaw--->slin--->| |<---slin<---GSM
 ```
 
 
-In this scenario, the write paths for both A and B begin with slin, and so PLC may be applied to either channel. This translation behavior has, in the past been doable with the transcode\_via\_sln option in asterisk.conf. Recent changes to the PLC code have also made the `genericplc` option in codecs.conf imply the `transcode_via_sln` option. The result is that by enabling `genericplc` in codecs.conf, the translation path set up in Fig. 2 should automatically be used as long as the two codecs required transcoding in the first place.
+In this scenario, the write paths for both A and B begin with slin, and so PLC may be applied to either channel. This translation behavior has, in the past been doable with the transcode_via_sln option in asterisk.conf. Recent changes to the PLC code have also made the `genericplc` option in codecs.conf imply the `transcode_via_sln` option. The result is that by enabling `genericplc` in codecs.conf, the translation path set up in Fig. 2 should automatically be used as long as the two codecs required transcoding in the first place.
 
 If the codecs on the inbound and outbound channels are the same or do not require transcoding, PLC won't normally be used for the reasons stated above.  You can however, force transcoding and PLC in this situation by setting the `genericplc_on_equal_codecs parameter` in the `plc` section of codecs.conf to true.  This feature was introduced in Asterisk 13.21 and 15.4.
 

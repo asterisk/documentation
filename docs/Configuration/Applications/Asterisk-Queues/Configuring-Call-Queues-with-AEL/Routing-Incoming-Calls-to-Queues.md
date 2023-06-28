@@ -132,9 +132,9 @@ context customerservice {
  WaitExten(0.3); 
  Background(digium/AtAnyTimeYouMayPress0ToSpeakWithAnOperatorOr8ToLeaveAMessage); 
  Set(CALLERID(name)=Cust Svc); 
- Set(QUEUE\_MAX\_PENALTY=10); 
+ Set(QUEUE_MAX_PENALTY=10); 
  Queue(customerservice,t);
- Set(QUEUE\_MAX\_PENALTY=0); 
+ Set(QUEUE_MAX_PENALTY=0); 
  Queue(customerservice,t); 
  Set(CALLERID(name)=EmptyCSVQ); 
  goto dispatch,s,1; 
@@ -150,7 +150,7 @@ context customerservice {
 ```
 
 
-Note that calls coming into customerservice will first be try to queue calls to those agents with a QUEUE\_MAX\_PENALTY of 10, and if none are available, then all agents are rung.
+Note that calls coming into customerservice will first be try to queue calls to those agents with a QUEUE_MAX_PENALTY of 10, and if none are available, then all agents are rung.
 
 
 
@@ -171,11 +171,11 @@ context dispatch {
  WaitExten(0.3);
  Background(digium/YourCallWillBeAnsweredByOurNextAvailableOperator); 
  Background(digium/PleaseHold); 
- Set(QUEUE\_MAX\_PENALTY=10);
+ Set(QUEUE_MAX_PENALTY=10);
  Queue(dispatch,t); 
- Set(QUEUE\_MAX\_PENALTY=20); 
+ Set(QUEUE_MAX_PENALTY=20); 
  Queue(dispatch,t); 
- Set(QUEUE\_MAX\_PENALTY=0);
+ Set(QUEUE_MAX_PENALTY=0);
  Queue(dispatch,t);
  Background(digium/NoOneIsAvailableToTakeYourCall); 
  Background(digium/PleaseLeaveAMessageInOurGeneralVoiceMailBox);
@@ -193,12 +193,12 @@ And in the dispatch context, first agents of priority 10 are tried, then 20, and
 
 Notice that a common pattern is followed in each of the three queue contexts:
 
-First, you set QUEUE\_MAX\_PENALTY to a value, then you call Queue(queue-name,option,...) (see the Queue application documetation for details)
+First, you set QUEUE_MAX_PENALTY to a value, then you call Queue(queue-name,option,...) (see the Queue application documetation for details)
 
 In the above, note that the "t" option is specified, and this allows the agent picking up the incoming call the luxury of transferring the call to other parties.
 
-The purpose of specifying the QUEUE\_MAX\_PENALTY is to develop a set of priorities amongst agents. By the above usage, agents with lower number priorities will be given the calls first, and then, if no-one picks up the call, the QUEUE\_MAX\_PENALTY will be incremented, and the queue tried   
+The purpose of specifying the QUEUE_MAX_PENALTY is to develop a set of priorities amongst agents. By the above usage, agents with lower number priorities will be given the calls first, and then, if no-one picks up the call, the QUEUE_MAX_PENALTY will be incremented, and the queue tried   
 
 
-The final attempt to queue in most of our examples sets the QUEUE\_MAX\_PENALTY to zero, which means to try all available agents.
+The final attempt to queue in most of our examples sets the QUEUE_MAX_PENALTY to zero, which means to try all available agents.
 

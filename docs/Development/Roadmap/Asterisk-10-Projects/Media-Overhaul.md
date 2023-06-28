@@ -33,7 +33,7 @@ Rework media representation completely across all of Asterisk, while maintaining
 \* Design a new way to represent codecs
 \*\* translation interface
 \*\* capabilities
-\*\* ast\_frame handling
+\*\* ast_frame handling
 \*\* Initial call setup codec negotiation
 \*\* everything that touches media ...
 \* Exercise what we have done so far

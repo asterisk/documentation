@@ -32,13 +32,13 @@ followme:
  takecall DTMF used to accept the call and be connected. For obvious reasons,
  this needs to be a single digit, '\*', or '#'.
  declinecall DTMF used to refuse the call, sending it onto the next step, if any.
- call\_from\_prompt Prompt to play to the callee, announcing the call.
- norecording\_prompt The alternate prompt to play to the callee, when the caller
+ call_from_prompt Prompt to play to the callee, announcing the call.
+ norecording_prompt The alternate prompt to play to the callee, when the caller
  refuses to leave a name (or the option isn't set to allow them).
- options\_prompt Normally, "press 1 to accept, 2 to decline".
- hold\_prompt Message played to the caller while dialing the followme steps.
- status\_prompt Normally, "Party is not at their desk".
- sorry\_prompt Normally, "Unable to locate party".
+ options_prompt Normally, "press 1 to accept, 2 to decline".
+ hold_prompt Message played to the caller while dialing the followme steps.
+ status_prompt Normally, "Party is not at their desk".
+ sorry_prompt Normally, "Unable to locate party".
 
 
 ```
@@ -55,7 +55,7 @@ followme:
 ```
 
 
-followme\_numbers:
+followme_numbers:
  name Name of this followme entry. Must match the name above.
  ordinal An integer, specifying the order in which these numbers will be
  followed.

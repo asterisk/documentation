@@ -32,174 +32,174 @@ One of the key problems the new media architecture must address is how to repres
 
 In order to address this limitation, media formats will have the ability to be further defined using format specific attribute structures. These structures along with usage examples are outlined in below.
 
-## Introducing ast\_format, The New and Improved format\_t
-The ast\_format structure completely replaces format\_t everywhere in the code. This new structure allows for a format to be represented not only by a unique ID, but with an attribute structure as well. This means if a channel's read format is SILK and it understands 8khz->16khz without the need of translation, this can be now represented using only a single format identifier. In this case the ast\_format's uid would be AST\_FORMAT\_SILK, and the attribute structure would be configured to further define this format as having a possible dynamic sample rate between 8khz and 16khz.
+## Introducing ast_format, The New and Improved format_t
+The ast_format structure completely replaces format_t everywhere in the code. This new structure allows for a format to be represented not only by a unique ID, but with an attribute structure as well. This means if a channel's read format is SILK and it understands 8khz->16khz without the need of translation, this can be now represented using only a single format identifier. In this case the ast_format's uid would be AST_FORMAT_SILK, and the attribute structure would be configured to further define this format as having a possible dynamic sample rate between 8khz and 16khz.
 
-The ast\_format structure on an ast\_frame has a slightly different behavior than representing a read and write format though. When on a frame the attributes structure must be used only to further define the frame's payload. In the SILK read format example discussed above, the attribute structure is used to represent a sample rate range the channel's read format is capable of understanding without translation, but when the attribute structure is used on a frame it must represent a very precise set of parameters directly related to the media payload being transported. In the case of SILK, the attribute structure on a frame would represent precisely what sample rate the payload contains.
+The ast_format structure on an ast_frame has a slightly different behavior than representing a read and write format though. When on a frame the attributes structure must be used only to further define the frame's payload. In the SILK read format example discussed above, the attribute structure is used to represent a sample rate range the channel's read format is capable of understanding without translation, but when the attribute structure is used on a frame it must represent a very precise set of parameters directly related to the media payload being transported. In the case of SILK, the attribute structure on a frame would represent precisely what sample rate the payload contains.
 
 ## The Ast Format API
 {code:title=format.h|borderStyle=solid}
 
 /\*! \brief This structure contains the buffer used for format attributes \*/
-struct ast\_format\_attr {
- uint8\_t format\_attr[AST\_FORMATNEW\_ATTR\_SIZE];
+struct ast_format_attr {
+ uint8_t format_attr[AST_FORMATNEW_ATTR_SIZE];
 };
 
 /\*! \brief Represents a media format within Asterisk. \*/
-struct ast\_format {
+struct ast_format {
  /\*! The unique id representing this format from all the other formats. \*/
- enum ast\_format\_id id;
+ enum ast_format_id id;
  /\*! Attribute structure used to associate attributes with a format. \*/
- struct ast\_format\_attr fattr;
+ struct ast_format_attr fattr;
 };
 
-enum ast\_format\_cmp\_res {
+enum ast_format_cmp_res {
  /\*! structure 1 is identical to structure 2. \*/
- AST\_FORMAT\_CMP\_EQUAL = 0,
+ AST_FORMAT_CMP_EQUAL = 0,
  /\*! structure 1 contains elements not in structure 2. \*/
- AST\_FORMAT\_CMP\_NOT\_EQUAL,
+ AST_FORMAT_CMP_NOT_EQUAL,
  /\*! structure 1 is a proper subset of the elements in structure 2.\*/
- AST\_FORMAT\_CMP\_SUBSET,
+ AST_FORMAT_CMP_SUBSET,
 };
 
 /\*!
- \* \brief This function is used to set an ast\_format object to represent a media format
+ \* \brief This function is used to set an ast_format object to represent a media format
  \* with optional format attributes represented by format specific key value pairs.
  \*
  \* \param format to set
  \* \param id, format id to set on format
- \* \param set\_attributes, are there attributes to set on this format. 0 == false, 1 == True.
- \* \param var list of attribute key value pairs, must end with AST\_FORMATNEW\_ATTR\_END;
+ \* \param set_attributes, are there attributes to set on this format. 0 == false, 1 == True.
+ \* \param var list of attribute key value pairs, must end with AST_FORMATNEW_ATTR_END;
  \*
  \* \details Example usage.
- \* ast\_format\_set(format, AST\_FORMATNEW\_ULAW, 0); // no capability attributes are needed for ULAW
+ \* ast_format_set(format, AST_FORMATNEW_ULAW, 0); // no capability attributes are needed for ULAW
  \*
- \* ast\_format\_set(format, AST\_FORMATNEW\_SILK, 1, // SILK has capability attributes.
- \* AST\_FORMATNEW\_SILK\_ATTR\_RATE, 24000,
- \* AST\_FORMATNEW\_SILK\_ATTR\_RATE, 16000,
- \* AST\_FORMATNEW\_SILK\_ATTR\_RATE, 12000,
- \* AST\_FORMATNEW\_SILK\_ATTR\_RATE, 8000,
- \* AST\_FORMATNEW\_ATTR\_END);
+ \* ast_format_set(format, AST_FORMATNEW_SILK, 1, // SILK has capability attributes.
+ \* AST_FORMATNEW_SILK_ATTR_RATE, 24000,
+ \* AST_FORMATNEW_SILK_ATTR_RATE, 16000,
+ \* AST_FORMATNEW_SILK_ATTR_RATE, 12000,
+ \* AST_FORMATNEW_SILK_ATTR_RATE, 8000,
+ \* AST_FORMATNEW_ATTR_END);
  \*
- \* \return Pointer to ast\_format object, same pointer that is passed in
+ \* \return Pointer to ast_format object, same pointer that is passed in
  \* by the first argument.
  \*/
-struct ast\_format \*ast\_format\_set(struct ast\_format \*format, enum ast\_format\_id id, int set\_attributes, ... );
+struct ast_format \*ast_format_set(struct ast_format \*format, enum ast_format_id id, int set_attributes, ... );
 
 /\*!
- \* \brief This function is used to set an ast\_format object to represent a media format
+ \* \brief This function is used to set an ast_format object to represent a media format
  \* with optional capability attributes represented by format specific key value pairs.
  \*
  \* \details Example usage. Is this SILK format capable of 8khz
- \* is\_8khz = ast\_format\_isset(format, AST\_FORMATNEW\_SILK\_CAP\_RATE, 8000);
+ \* is_8khz = ast_format_isset(format, AST_FORMATNEW_SILK_CAP_RATE, 8000);
  \*
  \* \return 0, The format key value pairs are within the capabilities defined in this structure.
- \* \return -1, The format key value pairs are \_NOT\_ within the capabilities of this structure.
+ \* \return -1, The format key value pairs are _NOT_ within the capabilities of this structure.
  \*/
-int ast\_format\_isset(struct ast\_format \*format, ... );
+int ast_format_isset(struct ast_format \*format, ... );
 
 /\*!
- \* \brief Compare ast\_formats structures
+ \* \brief Compare ast_formats structures
  \*
- \* \retval ast\_format\_cmp\_res representing the result of comparing format1 and format2.
+ \* \retval ast_format_cmp_res representing the result of comparing format1 and format2.
  \*/
-enum ast\_format\_cmp\_res ast\_format\_cmp(struct ast\_format \*format1, struct ast\_format \*format2);
+enum ast_format_cmp_res ast_format_cmp(struct ast_format \*format1, struct ast_format \*format2);
 
 /\*!
- \* \brief Find joint format attributes of two ast\_format
+ \* \brief Find joint format attributes of two ast_format
  \* structures containing the same uid and return the intersection in the
  \* result structure.
  \*
  \* retval 0, joint attribute capabilities exist.
  \* retval -1, no joint attribute capabilities exist.
  \*/
-int ast\_format\_joint(struct ast\_format \*format1, struct ast\_format \*format2, struct ast\_format \*result);
+int ast_format_joint(struct ast_format \*format1, struct ast_format \*format2, struct ast_format \*result);
 
 /\*!
  \* \brief copy format src into format dst.
  \*/
-void ast\_format\_copy(struct ast\_format \*src, struct ast\_format \*dst);
+void ast_format_copy(struct ast_format \*src, struct ast_format \*dst);
 
 /\*!
- \* \brief ast\_format to iax2 bitfield format represenatation
+ \* \brief ast_format to iax2 bitfield format represenatation
  \*
  \* \note This is only to be used for IAX2 compatibility 
  \*
- \* \retval iax2 representation of ast\_format
+ \* \retval iax2 representation of ast_format
  \* \retval 0, if no representation existis for iax2
  \*/
-uint64\_t ast\_format\_to\_iax2(struct ast\_format \*format);
+uint64_t ast_format_to_iax2(struct ast_format \*format);
 
 /\*!
- \* \brief convert iax2 bitfield format to ast\_format represenatation
+ \* \brief convert iax2 bitfield format to ast_format represenatation
  \* \note This is only to be used for IAX2 compatibility 
  \*
  \* \retval on success, pointer to the dst format in the input parameters
  \* \retval on failure, NULL
  \*/
-struct ast\_format \*ast\_format\_from\_iax2(uint64\_t src, struct ast\_format \*dst);
+struct ast_format \*ast_format_from_iax2(uint64_t src, struct ast_format \*dst);
 
 
 {code}
 
 ## Introducing the Format Attribute Structure
 
-The attribute structure is present on every ast\_format object. This attribute structure is an opaque buffer that can be used in anyway necessary by the format it represents. Since it will be necessary for Asterisk to perform a few generic operations on these attribute structures, every format requiring the use of the attribute structure must implement and register a format attribute interface with Asterisk. These registered interfaces are used by the Ast Format API allowing for attributes on an ast\_format structure to be set, removed, and compared using a single set of API functions for all format types. The Ast Format API does all the work of finding the correct interface to use and calling the correct interface functions.
+The attribute structure is present on every ast_format object. This attribute structure is an opaque buffer that can be used in anyway necessary by the format it represents. Since it will be necessary for Asterisk to perform a few generic operations on these attribute structures, every format requiring the use of the attribute structure must implement and register a format attribute interface with Asterisk. These registered interfaces are used by the Ast Format API allowing for attributes on an ast_format structure to be set, removed, and compared using a single set of API functions for all format types. The Ast Format API does all the work of finding the correct interface to use and calling the correct interface functions.
 
 The size of the buffer in the attribute structure was determined by researching the media format with the largest number of attributes expected to be present in Asterisk 10. In this case the H.264 SVC draft was used, which is an expanded form of RFC 3984 allowing for some additional functionality. The attributes required by H.264 SVC are determined based upon the SDP parameters defined in the draft. The SDP parameters used by the draft do not all have fixed sizes, but it was determined that an attribute buffer of ~70 bytes will easily suffice for representing the most common use cases. In order to account for undefined future development, this buffer is initially set at 128 bytes which satisfies the current estimated attribute size requirements.
 
 ## The Ast Format Attribute API
-{code:title=format\_attribute.h|borderStyle=solid}
-#define AST\_FORMAT\_ATTR\_SIZE 128
+{code:title=format_attribute.h|borderStyle=solid}
+#define AST_FORMAT_ATTR_SIZE 128
 
-struct ast\_format\_attr {
- uint8\_t format\_attr[AST\_FORMAT\_FORMAT\_ATTR\_SIZE];
+struct ast_format_attr {
+ uint8_t format_attr[AST_FORMAT_FORMAT_ATTR_SIZE];
 }
 
 /\*! \brief A format must register an attribute interface if it requires the use of the format attributes void pointer \*/
-struct ast\_format\_attr\_interface {
+struct ast_format_attr_interface {
  /\*! format type \*/
- enum ast\_format\_id id;
+ enum ast_format_id id;
 
- /\*! \brief Determine if format\_attr 1 is a subset of format\_attr 2.
+ /\*! \brief Determine if format_attr 1 is a subset of format_attr 2.
  \*
- \* \retval ast\_format\_cmp\_res representing the result of comparing fattr1 and fattr2.
+ \* \retval ast_format_cmp_res representing the result of comparing fattr1 and fattr2.
  \*/
- enum ast\_format\_cmp\_res (\* const format\_attr\_cmp)(struct ast\_format\_attr \*fattr1, struct ast\_format\_attr \*fattr2);
+ enum ast_format_cmp_res (\* const format_attr_cmp)(struct ast_format_attr \*fattr1, struct ast_format_attr \*fattr2);
 
  /\*! \brief Get joint attributes of same format type if they exist.
  \*
  \* \retval 0 if joint attributes exist
  \* \retval -1 if no joint attributes are present
  \*/
- int (\* const format\_attr\_get\_joint)(struct ast\_format\_attr \*fattr1, struct ast\_format\_attr \*fattr2, struct ast\_format\_attr \*result);
+ int (\* const format_attr_get_joint)(struct ast_format_attr \*fattr1, struct ast_format_attr \*fattr2, struct ast_format_attr \*result);
 
- /\*! \brief Set format capabilities from a list of key value pairs ending with AST\_FORMAT\_ATTR\_END.
- \* \note This function is expected to call va\_end(ap) after processing the va\_list. \*/
- void (\* const format\_attr\_set)(struct ast\_format\_attr \*format\_attr, va\_list ap);
+ /\*! \brief Set format capabilities from a list of key value pairs ending with AST_FORMAT_ATTR_END.
+ \* \note This function is expected to call va_end(ap) after processing the va_list. \*/
+ void (\* const format_attr_set)(struct ast_format_attr \*format_attr, va_list ap);
 };
 
-/\*! \brief register ast\_format\_attr\_interface with core.
+/\*! \brief register ast_format_attr_interface with core.
  \*
  \* \retval 0 success
  \* \retval -1 failure
  \*/
-int ast\_format\_attr\_reg\_interface(struct ast\_format\_attr\_interface \*interface);
+int ast_format_attr_reg_interface(struct ast_format_attr_interface \*interface);
 
 /\*!
- \* \brief unregister format\_attr interface with core.
+ \* \brief unregister format_attr interface with core.
  \*
  \* \retval 0 success
  \* \retval -1 failure
  \*/
-int ast\_format\_attr\_unreg\_interface(struct ast\_format\_attr\_interface \*interface);
+int ast_format_attr_unreg_interface(struct ast_format_attr_interface \*interface);
 {code}
 
 ## The New Format Unique Identifier
 
-Media formats in Asterisk are currently defined using a bit field, format\_t, where every format is uniquely identified by a single bit. While this makes comparing media format capabilities extremely simple using bitwise operations, this representation limits the number of media formats that can be represented due to the limited size of the bit field in use. Even if a bit field could represent an infinite number of bits, this representation has no concept of how to compare format capability attributes.
+Media formats in Asterisk are currently defined using a bit field, format_t, where every format is uniquely identified by a single bit. While this makes comparing media format capabilities extremely simple using bitwise operations, this representation limits the number of media formats that can be represented due to the limited size of the bit field in use. Even if a bit field could represent an infinite number of bits, this representation has no concept of how to compare format capability attributes.
 
-In order to remove the limitation of the number of unique formats that can be represented the identifier will change from a single bit representation to a numeric representation. This means that #define AST\_FORMAT\_ULAW (1 << 0) now becomes #define AST\_FORMAT\_ULAW 1. By changing the way media formats are identified from a bit in a bit field to a numeric value, the limit on the number of formats that can be represented goes from 64 to 4,294,967,296. Altering this representation completely removes the ability to use bitwise operations on a bit field containing multiple media format capabilities, but since these bitwise operations lack the ability to process format attributes, they must be replaced by a more robust system anyway. The new system for computing joint media capabilities between peers hinted at here is discussed in detail in the Representation of Format Capabilities section.
+In order to remove the limitation of the number of unique formats that can be represented the identifier will change from a single bit representation to a numeric representation. This means that #define AST_FORMAT_ULAW (1 << 0) now becomes #define AST_FORMAT_ULAW 1. By changing the way media formats are identified from a bit in a bit field to a numeric value, the limit on the number of formats that can be represented goes from 64 to 4,294,967,296. Altering this representation completely removes the ability to use bitwise operations on a bit field containing multiple media format capabilities, but since these bitwise operations lack the ability to process format attributes, they must be replaced by a more robust system anyway. The new system for computing joint media capabilities between peers hinted at here is discussed in detail in the Representation of Format Capabilities section.
 
 ## Format Unique Identifier Organization
 
@@ -212,90 +212,90 @@ Since the number of formats that can be represented will likely never be exhaust
 
 {code:title=frame.h Old|borderStyle=solid}
 /\*OLD\*/
-#define AST\_FORMAT\_AUDIO\_MASK 0xFFFF0000FFFFULL
-#define AST\_FORMAT\_G723\_1 (1ULL << 0)
-#define AST\_FORMAT\_GSM (1ULL << 1)
-#define AST\_FORMAT\_ULAW (1ULL << 2)
-#define AST\_FORMAT\_ALAW (1ULL << 3)
+#define AST_FORMAT_AUDIO_MASK 0xFFFF0000FFFFULL
+#define AST_FORMAT_G723_1 (1ULL << 0)
+#define AST_FORMAT_GSM (1ULL << 1)
+#define AST_FORMAT_ULAW (1ULL << 2)
+#define AST_FORMAT_ALAW (1ULL << 3)
 
-#define AST\_FORMAT\_VIDEO\_MASK ((((1ULL << 25)-1) & ~(AST\_FORMAT\_AUDIO\_MASK)) | 0x7FFF000000000000ULL)
-#define AST\_FORMAT\_H263\_PLUS (1ULL << 20)
-#define AST\_FORMAT\_MP4\_VIDEO (1ULL << 22)
+#define AST_FORMAT_VIDEO_MASK ((((1ULL << 25)-1) & ~(AST_FORMAT_AUDIO_MASK)) | 0x7FFF000000000000ULL)
+#define AST_FORMAT_H263_PLUS (1ULL << 20)
+#define AST_FORMAT_MP4_VIDEO (1ULL << 22)
 {code}
 {code:title=frame.h New Changes|borderStyle=solid}
 /\*NEW\*/
-#define AST\_FORMAT\_INC 100000
+#define AST_FORMAT_INC 100000
 
 /\* ALL FORMAT CATEGORIES \*/
-enum ast\_format\_type {
- AST\_FORMAT\_TYPE\_AUDIO = 1 \* FORMAT\_INC,
- AST\_FORMAT\_TYPE\_VIDEO = 2 \* FORMAT\_INC,
- AST\_FORMAT\_TYPE\_IMAGE = 3 \* FORMAT\_INC,
+enum ast_format_type {
+ AST_FORMAT_TYPE_AUDIO = 1 \* FORMAT_INC,
+ AST_FORMAT_TYPE_VIDEO = 2 \* FORMAT_INC,
+ AST_FORMAT_TYPE_IMAGE = 3 \* FORMAT_INC,
 };
 
-enum ast\_format\_id {
+enum ast_format_id {
  /\* ALL AUDIO FORMATS \*/
- AST\_FORMAT\_G723\_1 = 1 + AST\_FORMAT\_TYPE\_AUDIO,
- AST\_FORMAT\_GSM = 2 + AST\_FORMAT\_TYPE\_AUDIO,
- AST\_FORMAT\_ULAW = 3 + AST\_FORMAT\_TYPE\_AUDIO,
- AST\_FORMAT\_ALAW = 4 + AST\_FORMAT\_TYPE\_AUDIO,
+ AST_FORMAT_G723_1 = 1 + AST_FORMAT_TYPE_AUDIO,
+ AST_FORMAT_GSM = 2 + AST_FORMAT_TYPE_AUDIO,
+ AST_FORMAT_ULAW = 3 + AST_FORMAT_TYPE_AUDIO,
+ AST_FORMAT_ALAW = 4 + AST_FORMAT_TYPE_AUDIO,
 
  /\* ALL VIDEO FORMATS \*/
- AST\_FORMAT\_H263\_PLUS = 1 + AST\_FORMAT\_TYPE\_VIDEO,
- AST\_FORMAT\_MP4\_VIDEO = 2 + AST\_FORMAT\_TYPE\_VIDEO,
+ AST_FORMAT_H263_PLUS = 1 + AST_FORMAT_TYPE_VIDEO,
+ AST_FORMAT_MP4_VIDEO = 2 + AST_FORMAT_TYPE_VIDEO,
 };
 
 /\* Determine what category a format type is in \*/
-#define AST\_FORMAT\_GET\_TYPE(format) (((unsigned int) (format->uid / AST\_FORMAT\_INC)) \* AST\_FORMAT\_INC)
+#define AST_FORMAT_GET_TYPE(format) (((unsigned int) (format->uid / AST_FORMAT_INC)) \* AST_FORMAT_INC)
 {code}
 ## New Format Representation Code Examples and Use cases.
 
-This section shows example usage of the ast\_format structure and how it replaces existing functionality in Asterisk. It also outlines other highlevel use cases that can not easilly be represented by a code example.
+This section shows example usage of the ast_format structure and how it replaces existing functionality in Asterisk. It also outlines other highlevel use cases that can not easilly be represented by a code example.
 
-Example 1: One to one mapping of old format\_t usage with ast\_format structure and its API.
+Example 1: One to one mapping of old format_t usage with ast_format structure and its API.
 {code:title=Example 1 - Old |borderStyle=solid}
- /\* OLD: Media formats are represented by a bit in the format\_t bit field. \*/
- format\_t read\_format;
- read\_format = AST\_FORMAT\_ULAW;
+ /\* OLD: Media formats are represented by a bit in the format_t bit field. \*/
+ format_t read_format;
+ read_format = AST_FORMAT_ULAW;
 {code}
 {code:title=Example 1 - New |borderStyle=solid}
- /\* NEW: Media formats are represented using the ast\_format struct and are stored in an ast\_cap object. \*/
- struct ast\_format read\_format;
- ast\_format\_set(&read, AST\_FORMAT\_ULAW);
+ /\* NEW: Media formats are represented using the ast_format struct and are stored in an ast_cap object. \*/
+ struct ast_format read_format;
+ ast_format_set(&read, AST_FORMAT_ULAW);
 {code}
 
-Example 2: Set an optional format attribute structure for a SILK ast\_format structure capable of a dynamic sample rate.
+Example 2: Set an optional format attribute structure for a SILK ast_format structure capable of a dynamic sample rate.
 {code:title=Example 2|borderStyle=solid}
-struct ast\_format read\_format;
-ast\_format\_set(&read, AST\_FORMAT\_SILK,
- AST\_FORMAT\_SILK\_RATE, 24000,
- AST\_FORMAT\_SILK\_RATE, 16000,
- AST\_FORMAT\_SILK\_RATE, 12000,
- AST\_FORMAT\_SILK\_RATE, 8000,
- AST\_FORMAT\_END);
+struct ast_format read_format;
+ast_format_set(&read, AST_FORMAT_SILK,
+ AST_FORMAT_SILK_RATE, 24000,
+ AST_FORMAT_SILK_RATE, 16000,
+ AST_FORMAT_SILK_RATE, 12000,
+ AST_FORMAT_SILK_RATE, 8000,
+ AST_FORMAT_END);
 {code}
 
-Example 3: Set the sample rate of SILK ast\_frame representing the sample rate of the frame's payload. Then compare the format of the ast\_frame with a read format determine if translation is required.
+Example 3: Set the sample rate of SILK ast_frame representing the sample rate of the frame's payload. Then compare the format of the ast_frame with a read format determine if translation is required.
 {code:title=Example 3|borderStyle=solid}
-struct ast\_format read\_format;
+struct ast_format read_format;
 /\* The read format is of format type SILK and can be of sample rates 8khz and 12khz \*/
-ast\_format\_set(&read, AST\_FORMAT\_SILK,
- AST\_FORMAT\_SILK\_RATE, 12000,
- AST\_FORMAT\_SILK\_RATE, 8000,
- AST\_FORMAT\_END);
+ast_format_set(&read, AST_FORMAT_SILK,
+ AST_FORMAT_SILK_RATE, 12000,
+ AST_FORMAT_SILK_RATE, 8000,
+ AST_FORMAT_END);
 
 /\* The frame's format type is SILK and the payload is 24khz audio. \*/
-ast\_format\_set(frame->subclass.format, AST\_FORMAT\_SILK,
- AST\_FORMAT\_SILK\_RATE, 24000,
- AST\_FORMAT\_END);
+ast_format_set(frame->subclass.format, AST_FORMAT_SILK,
+ AST_FORMAT_SILK_RATE, 24000,
+ AST_FORMAT_END);
 
 /\* Comparing the frame with the read format shows that while the formats are identical
  \* their attributes make them incompatible requiring a translation path to be built. \*/
-if ((ast\_format\_cmp(&read\_format, frame->subclass.format) < 0)) {
+if ((ast_format_cmp(&read_format, frame->subclass.format) < 0)) {
  /\* Build Translation Path.
  \* This will be the outcome of this example. \*/
 } else {
- /\* Frame's format is either identical or a subset of the read\_format
+ /\* Frame's format is either identical or a subset of the read_format
  \* requiring no translation path. \*/
 }
 {code}
@@ -303,16 +303,16 @@ if ((ast\_format\_cmp(&read\_format, frame->subclass.format) < 0)) {
 Example 4. Determine if a format is of type audio.
 {code:title=Example 4 Old|borderStyle=solid}
 /\*OLD\*/
-format\_t format = AST\_FORMAT\_ULAW;
-if (format & AST\_FORMAT\_AUDO\_MASK) {
+format_t format = AST_FORMAT_ULAW;
+if (format & AST_FORMAT_AUDO_MASK) {
  /\* this is of type audio \*/
 }
 {code}
 {code:title=Example 4 New|borderStyle=solid}
 /\*NEW\*/
-struct ast\_format format;
-ast\_format\_set(&format, AST\_FORMAT\_ULAW);
-if (AST\_FORMAT\_GET\_TYPE(&format) == AST\_FORMAT\_TYPE\_AUDIO) {
+struct ast_format format;
+ast_format_set(&format, AST_FORMAT_ULAW);
+if (AST_FORMAT_GET_TYPE(&format) == AST_FORMAT_TYPE_AUDIO) {
  /\* this is of type audio \*/
 }
 {code}
@@ -320,101 +320,101 @@ if (AST\_FORMAT\_GET\_TYPE(&format) == AST\_FORMAT\_TYPE\_AUDIO) {
 Example 5: Media format seamlessly changes parameters midstream.
 
 1. A channel is defined to have a write format of SILK with the capabilities of understanding 8khz and 16khz without translation.
-2. A stream of SILK audio ast\_frames containing 16khz frame attributes begin to be written to the channel.
+2. A stream of SILK audio ast_frames containing 16khz frame attributes begin to be written to the channel.
 3. During the call the audio stream's SILK frame attributes change to 8khz.
-4. ast\_write() determines this change is still within the channel's write format capabilities and continues without translation.
+4. ast_write() determines this change is still within the channel's write format capabilities and continues without translation.
 
 Example 6: Media format changes parameters requiring translation midstream.
 
 1. A channel is defined to have a write format of SILK with the capabilities of understanding 8khz and 16khz without translation.
-2. A stream of SILK audio ast\_frames containing 16khz frame attributes begin to be written to the channel.
+2. A stream of SILK audio ast_frames containing 16khz frame attributes begin to be written to the channel.
 3. During the call the audio stream's SILK frame attributes change to 24khz.
-4. ast\_write() determines this change is not within the bounds of the channel's write format capabilities and builds a translation path from 24khz SILK to 16khz SILK.
+4. ast_write() determines this change is not within the bounds of the channel's write format capabilities and builds a translation path from 24khz SILK to 16khz SILK.
 
 # Representation of Format Capabilities
 ## Problem Overview
-The new way of handling format capabilities must address two issues. First, formats are no longer represented by the format\_t bit field and are replaced by the ast\_format structure. This means that the old system of representing format capability sets with a bit field must be replaced as well. Second, even if we could use a bit field to represent format capability sets, the bitwise operators used to compare capabilities and calculate joint capabilities are incapable of processing the new format attribute structures. In order to handle both of these changes, an opaque capabilities container must be created to manipulate sets of ast\_format structures. This container must also be coupled with an API that abstracts all the work required to compare sets of ast\_formats and their internal format attributes.
+The new way of handling format capabilities must address two issues. First, formats are no longer represented by the format_t bit field and are replaced by the ast_format structure. This means that the old system of representing format capability sets with a bit field must be replaced as well. Second, even if we could use a bit field to represent format capability sets, the bitwise operators used to compare capabilities and calculate joint capabilities are incapable of processing the new format attribute structures. In order to handle both of these changes, an opaque capabilities container must be created to manipulate sets of ast_format structures. This container must also be coupled with an API that abstracts all the work required to compare sets of ast_formats and their internal format attributes.
 
-## Introducing ast\_cap, The Format Capability Container.
+## Introducing ast_cap, The Format Capability Container.
 
-The Format Capability API introduces a new container type, struct ast\_cap, which acts as the opaque capabilities container discussed in the overview. Like an ao2\_container holds astobj2 objects, the ast\_cap container holds ast\_format objects. The thing that sets the ast\_cap container apart from other generic containers in Asterisk is that it is designed specifically for the purpose of comparing and manipulating sets of ast\_format structures. API functions for adding/removing ast\_formats, computing joint capabilities, and retrieving all capabilities for a specific media type are present. The best way to communicate the big picture for how this new container and API replaces the current architecture is by providing some examples. These examples will walk through the sections discussed so far and provide a better understanding for how the ast\_format and ast\_cap containers interact with each other using the new API. All the examples below take code from the existing media architecture in Asterisk and show how the new architecture replaces it.
+The Format Capability API introduces a new container type, struct ast_cap, which acts as the opaque capabilities container discussed in the overview. Like an ao2_container holds astobj2 objects, the ast_cap container holds ast_format objects. The thing that sets the ast_cap container apart from other generic containers in Asterisk is that it is designed specifically for the purpose of comparing and manipulating sets of ast_format structures. API functions for adding/removing ast_formats, computing joint capabilities, and retrieving all capabilities for a specific media type are present. The best way to communicate the big picture for how this new container and API replaces the current architecture is by providing some examples. These examples will walk through the sections discussed so far and provide a better understanding for how the ast_format and ast_cap containers interact with each other using the new API. All the examples below take code from the existing media architecture in Asterisk and show how the new architecture replaces it.
 
 Example 1: Add format capabilities to a peer.
 {code:title=Example 1 - Old|borderStyle=solid}
 /\* ---OLD: Media formats are represented by a bit in a bit field. \*/
-format\_t capabilities = 0;
-capabilities |= AST\_FORMAT\_ULAW;
-capabilities |= AST\_FORMAT\_GSM;
+format_t capabilities = 0;
+capabilities |= AST_FORMAT_ULAW;
+capabilities |= AST_FORMAT_GSM;
 /\* XXX SILK can not be set using a bit since it requires a capability
  \* attribute to be associated with it.
- \* capabilities |= AST\_FORMAT\_SILK;
+ \* capabilities |= AST_FORMAT_SILK;
  \*/
 {code}
 
 {code:title=Example 1 - New|borderStyle=solid}
-/\* ---NEW: Media formats are represented using the ast\_format struct and are stored in an ast\_cap object.\*/
-struct ast\_format tmp = { 0, };
+/\* ---NEW: Media formats are represented using the ast_format struct and are stored in an ast_cap object.\*/
+struct ast_format tmp = { 0, };
 
-ast\_cap\_add(capabilties, ast\_format\_set(&tmp, AST\_FORMAT\_ULAW));
-ast\_cap\_add(capabilties, ast\_format\_set(&tmp, AST\_FORMAT\_GSM));
+ast_cap_add(capabilties, ast_format_set(&tmp, AST_FORMAT_ULAW));
+ast_cap_add(capabilties, ast_format_set(&tmp, AST_FORMAT_GSM));
 
 /\* SILK media format requires the format capability attribute to be set.\*/
-ast\_format\_set(&tmp, AST\_FORMAT\_SILK,
- AST\_FORMAT\_SILK\_CAP\_RATE, 24000,
- AST\_FORMAT\_SILK\_CAP\_RATE, 16000,
- AST\_FORMAT\_SILK\_CAP\_RATE, 12000,
- AST\_FORMAT\_SILK\_CAP\_RATE, 8000,
- AST\_FORMAT\_ATTR\_END);
-ast\_cap\_add(capabilties, &tmp);
+ast_format_set(&tmp, AST_FORMAT_SILK,
+ AST_FORMAT_SILK_CAP_RATE, 24000,
+ AST_FORMAT_SILK_CAP_RATE, 16000,
+ AST_FORMAT_SILK_CAP_RATE, 12000,
+ AST_FORMAT_SILK_CAP_RATE, 8000,
+ AST_FORMAT_ATTR_END);
+ast_cap_add(capabilties, &tmp);
 {code}
 
 Example 2: Find joint capabilities between a peer and remote endpoint.
 {code:title=Example 2 - Old|borderStyle=solid}
 /\*---OLD: Peer and remote capabilities are bit fields, no capability attributes can be used.\*/
-format\_t jointcapabilties = 0;
+format_t jointcapabilties = 0;
 
-peer->capability |= (AST\_FORMAT\_ULAW | AST\_FORMAT\_GSM);
+peer->capability |= (AST_FORMAT_ULAW | AST_FORMAT_GSM);
 
 /\*
  \* peer->capability = ULAW and GSM
  \*
- \* remote\_capabilities structure is already built to contain uLaw
- \* remote\_capability = ULAW
+ \* remote_capabilities structure is already built to contain uLaw
+ \* remote_capability = ULAW
  \*
  \* jointcapabilities will be ULAW
  \*/
-jointcapabilties = peer->capability & remote\_capability
+jointcapabilties = peer->capability & remote_capability
 {code}
 
 {code:title=Example 2 - New|borderStyle=solid}
-/\*---NEW: Peer and remote capabilities are ast\_cap objects.\*/
-struct ast\_cap \*jointcapabilities;
+/\*---NEW: Peer and remote capabilities are ast_cap objects.\*/
+struct ast_cap \*jointcapabilities;
 
-ast\_cap\_add(peer->capability, ast\_format\_set(&tmp, AST\_FORMAT\_ULAW));
-ast\_cap\_add(peer->capability, ast\_format\_set(&tmp, AST\_FORMAT\_GSM));
+ast_cap_add(peer->capability, ast_format_set(&tmp, AST_FORMAT_ULAW));
+ast_cap_add(peer->capability, ast_format_set(&tmp, AST_FORMAT_GSM));
 
-ast\_format\_set(&tmp, AST\_FORMAT\_SILK,
- AST\_FORMAT\_SILK\_CAP\_RATE, 24000,
- AST\_FORMAT\_SILK\_CAP\_RATE, 16000,
- AST\_FORMAT\_SILK\_CAP\_RATE, 12000,
- AST\_FORMAT\_SILK\_CAP\_RATE, 8000,
- AST\_FORMAT\_ATTR\_END);
-ast\_cap\_add(peer->capabilties, &tmp);
+ast_format_set(&tmp, AST_FORMAT_SILK,
+ AST_FORMAT_SILK_CAP_RATE, 24000,
+ AST_FORMAT_SILK_CAP_RATE, 16000,
+ AST_FORMAT_SILK_CAP_RATE, 12000,
+ AST_FORMAT_SILK_CAP_RATE, 8000,
+ AST_FORMAT_ATTR_END);
+ast_cap_add(peer->capabilties, &tmp);
 
-ast\_format\_set(&tmp, AST\_FORMAT\_H264,
- AST\_FORMAT\_H264\_CAP\_PACKETIZATION, 0,
- AST\_FORMAT\_H264\_CAP\_PACKETIZATION, 1,
- AST\_FORMAT\_H264\_CAP\_RES, "CIF",
- AST\_FORMAT\_H264\_CAP\_RES, "VGA",
- AST\_FORMAT\_ATTR\_END);
-ast\_cap\_add(peer->capabilties, &tmp);
+ast_format_set(&tmp, AST_FORMAT_H264,
+ AST_FORMAT_H264_CAP_PACKETIZATION, 0,
+ AST_FORMAT_H264_CAP_PACKETIZATION, 1,
+ AST_FORMAT_H264_CAP_RES, "CIF",
+ AST_FORMAT_H264_CAP_RES, "VGA",
+ AST_FORMAT_ATTR_END);
+ast_cap_add(peer->capabilties, &tmp);
 
 /\*
  \* peer->capabilities structure was just built to contain.
  \* silk (rate = 24000, rate = 16000, rate = 12000, rate = 8000)
  \* h.264 (packetization = 0, packetization = 1, res = vga, res = cif)
  \*
- \* remote\_capabilities structure is already built to contain
+ \* remote_capabilities structure is already built to contain
  \* silk (rate = 16000)
  \* h.264 (packetization = 0, res = vga, res = svga)
  \*
@@ -426,147 +426,147 @@ ast\_cap\_add(peer->capabilties, &tmp);
  \* possible because of the format attribute interface each format requiring
  \* attributes must implement and register with the core.
  \*/
-jointcapabilities = ast\_cap\_joint(peer->capability, remote\_capability);
+jointcapabilities = ast_cap_joint(peer->capability, remote_capability);
 {code}
 
 Example 3: Separate audio, video, and text capabilities.
 {code:title=Example 3 - Old|borderStyle=solid}
 /\*---OLD: Separate media types are separated by a bit mask.\*/
-format\_t video\_capabilities = capabilities & AST\_FORMAT\_VIDEO\_MASK;
-format\_t audio\_capabilities = capabilities & AST\_FORMAT\_AUDIO\_MASK;
-format\_t text\_capabilities = capabilities & AST\_FORMAT\_TEXT\_MASK;
+format_t video_capabilities = capabilities & AST_FORMAT_VIDEO_MASK;
+format_t audio_capabilities = capabilities & AST_FORMAT_AUDIO_MASK;
+format_t text_capabilities = capabilities & AST_FORMAT_TEXT_MASK;
 {code}
 {code:title=Example 3 - New|borderStyle=solid}
-/\*---NEW: Separate media types are returned on a new capabilities structure using ast\_cap\_get\_type()\*/
-struct ast\_cap \*video = ast\_cap\_get\_type(capabilities, AST\_FORMAT\_TYPE\_AUDIO);
-struct ast\_cap \*voice = ast\_cap\_get\_type(capabilities, AST\_FORMAT\_TYPE\_VIDEO);
-struct ast\_cap \*text = ast\_cap\_get\_type(capabilities, AST\_FORMAT\_TYPE\_TEXT);
+/\*---NEW: Separate media types are returned on a new capabilities structure using ast_cap_get_type()\*/
+struct ast_cap \*video = ast_cap_get_type(capabilities, AST_FORMAT_TYPE_AUDIO);
+struct ast_cap \*voice = ast_cap_get_type(capabilities, AST_FORMAT_TYPE_VIDEO);
+struct ast_cap \*text = ast_cap_get_type(capabilities, AST_FORMAT_TYPE_TEXT);
 {code}
 ## Ast Format Capability API Defined
-{code:title=format\_capability.h|borderStyle=solid}
-/\*! Capabilities are represented by an opaque structure statically defined in format\_capability.c \*/
-struct ast\_cap;
+{code:title=format_capability.h|borderStyle=solid}
+/\*! Capabilities are represented by an opaque structure statically defined in format_capability.c \*/
+struct ast_cap;
 
-/\*! \brief Allocate a new ast\_cap structure.
+/\*! \brief Allocate a new ast_cap structure.
  \*
- \* \retval ast\_cap object on success.
+ \* \retval ast_cap object on success.
  \* \retval NULL on failure.
  \*/
-struct ast\_cap \*ast\_cap\_alloc(void);
+struct ast_cap \*ast_cap_alloc(void);
 
-/\*! \brief Destroy an ast\_cap structure.
+/\*! \brief Destroy an ast_cap structure.
  \*
  \* \return NULL
  \*/
-void \*ast\_cap\_destroy(struct ast\_cap \*cap);
+void \*ast_cap_destroy(struct ast_cap \*cap);
 
 /\*! \brief Add format capability to capabilities structure.
  \*
  \* \note A copy of the input format is made and that copy is
- \* what is placed in the ast\_cap structure. The actual
+ \* what is placed in the ast_cap structure. The actual
  \* input format ptr is not stored.
  \*/
-void ast\_cap\_add(struct ast\_cap \*cap, struct ast\_format \*format);
+void ast_cap_add(struct ast_cap \*cap, struct ast_format \*format);
 
 /\*! \brief Remove format capability from capability structure.
  \*
- \* \Note format must match Exactly to format in ast\_cap object in order
+ \* \Note format must match Exactly to format in ast_cap object in order
  \* to be removed.
  \*
  \* \retval 0, remove was successful
  \* \retval -1, remove failed. Could not find format to remove
  \*/
-int ast\_cap\_remove(struct ast\_cap \*cap, struct ast\_format \*format);
+int ast_cap_remove(struct ast_cap \*cap, struct ast_format \*format);
 
 /\*! \brief Remove all format capabilities from capability
  \* structure for a specific format id.
  \*
- \* \Note This will remove \_ALL\_ formats matching the format id from the
+ \* \Note This will remove _ALL_ formats matching the format id from the
  \* capabilities structure.
  \*
  \* \retval 0, remove was successful
  \* \retval -1, remove failed. Could not find formats to remove
  \*/
-int ast\_cap\_remove\_byid(struct ast\_cap \*cap, enum ast\_format\_id id);
+int ast_cap_remove_byid(struct ast_cap \*cap, enum ast_format_id id);
 
-/\*! \brief Find if ast\_format is within the capabilities of the ast\_cap object.
+/\*! \brief Find if ast_format is within the capabilities of the ast_cap object.
  \*
- \* retval 1 format is compatible with formats held in ast\_cap object.
- \* retval 0 format is not compatible with any formats in ast\_cap object.
+ \* retval 1 format is compatible with formats held in ast_cap object.
+ \* retval 0 format is not compatible with any formats in ast_cap object.
  \*/
-int ast\_cap\_iscompatible(struct ast\_cap \*cap, struct ast\_format \*format);
+int ast_cap_iscompatible(struct ast_cap \*cap, struct ast_format \*format);
 
 /\*! \brief Get joint capability structure.
  \*
  \* \retval !NULL success
  \* \retval NULL failure
  \*/
-struct ast\_cap \*ast\_cap\_joint(struct ast\_cap \*cap1, struct ast\_cap \*cap2);
+struct ast_cap \*ast_cap_joint(struct ast_cap \*cap1, struct ast_cap \*cap2);
 
 /\*! \brief Get all capabilities for a specific media type
  \*
  \* \retval !NULL success
  \* \retval NULL failure
  \*/
-struct ast\_cap \*ast\_cap\_get\_type(struct ast\_cap \*cap, enum ast\_format\_type ftype);
+struct ast_cap \*ast_cap_get_type(struct ast_cap \*cap, enum ast_format_type ftype);
 
 
 /\*! \brief Start iterating formats \*/
-void ast\_cap\_iter\_start(struct ast\_cap \*cap);
+void ast_cap_iter_start(struct ast_cap \*cap);
 
 /\*! \brief Next format in interation
  \*
  \* \details
- \* Here is how to use the ast\_cap iterator.
+ \* Here is how to use the ast_cap iterator.
  \*
- \* 1. call ast\_cap\_iter\_start
- \* 2. call ast\_cap\_iter\_next in a loop until it returns -1
- \* 3. call ast\_cap\_iter\_end to terminate the iterator.
+ \* 1. call ast_cap_iter_start
+ \* 2. call ast_cap_iter_next in a loop until it returns -1
+ \* 3. call ast_cap_iter_end to terminate the iterator.
  \*
  \* example:
  \*
- \* ast\_cap\_iter\_start(cap);
- \* while (!ast\_cap\_iter\_next(cap, &format)) {
+ \* ast_cap_iter_start(cap);
+ \* while (!ast_cap_iter_next(cap, &format)) {
  \*
  \* }
- \* ast\_cap\_iter\_end(Cap);
+ \* ast_cap_iter_end(Cap);
  \*
  \* \retval 0 on success, new format is copied into input format struct
  \* \retval -1, no more formats are present.
  \*/
-int ast\_cap\_iter\_next(struct ast\_cap \*cap, struct ast\_format \*format);
+int ast_cap_iter_next(struct ast_cap \*cap, struct ast_format \*format);
 
-/\*! \brief Ends ast\_cap iteration.
- \* \note this must be call after every ast\_cap\_iter\_start
+/\*! \brief Ends ast_cap iteration.
+ \* \note this must be call after every ast_cap_iter_start
  \*/
-void ast\_cap\_iter\_end(struct ast\_cap \*cap);
+void ast_cap_iter_end(struct ast_cap \*cap);
 
 /\*!
- \* \brief ast\_cap to iax2 bitfield format represenatation
+ \* \brief ast_cap to iax2 bitfield format represenatation
  \*
  \* \note This is only to be used for IAX2 compatibility 
  \*
- \* \retval iax2 representation of ast\_cap
- \* \retval 0, if no iax2 capabilities are present in ast\_cap
+ \* \retval iax2 representation of ast_cap
+ \* \retval 0, if no iax2 capabilities are present in ast_cap
  \*/
-uint64\_t ast\_cap\_to\_iax2(struct ast\_cap \*cap);
+uint64_t ast_cap_to_iax2(struct ast_cap \*cap);
 
 /\*!
- \* \brief convert iax2 bitfield format to ast\_cap represenatation
+ \* \brief convert iax2 bitfield format to ast_cap represenatation
  \* \note This is only to be used for IAX2 compatibility 
  \*/
-void ast\_cap\_from\_iax2(uint64\_t src, struct ast\_cap \*dst);
+void ast_cap_from_iax2(uint64_t src, struct ast_cap \*dst);
 {code}
 
 # IAX2 Ast Format API Compatibility
 
-IAX2 represents media formats the same way Asterisk currently does using a bit field. This allows Asterisk to communicate format capabilities over IAX2 using the exact same representation Asterisk uses internally. This relationship between Asterisk and IAX2 breaks with the introduction of the ast\_format and ast\_cap structures though. In order for Asterisk to maintain compatiblity with IAX2 a conversion layer must exist between the previous format representation and the new format representation. This conversion layer will be limited to the formats defined at the moment the media format representation in Asterisk changes to use the ast\_format structure. As new media formats are introduced, they must be added to this conversion layer in order to be transported over IAX2. Any media formats requiring the use of media attributes may have to be excluded from this conversion depending on their complexity. Eventually the number of media formats that can be represented in IAX2 will be exhasted. At that point it must be decided to either accept that limitation or alter the protocol in a way that will expand it to take advantage of Asterisk's new format capabilities. This proposal is not defining a change any changes to the IAX2 protocol.
+IAX2 represents media formats the same way Asterisk currently does using a bit field. This allows Asterisk to communicate format capabilities over IAX2 using the exact same representation Asterisk uses internally. This relationship between Asterisk and IAX2 breaks with the introduction of the ast_format and ast_cap structures though. In order for Asterisk to maintain compatiblity with IAX2 a conversion layer must exist between the previous format representation and the new format representation. This conversion layer will be limited to the formats defined at the moment the media format representation in Asterisk changes to use the ast_format structure. As new media formats are introduced, they must be added to this conversion layer in order to be transported over IAX2. Any media formats requiring the use of media attributes may have to be excluded from this conversion depending on their complexity. Eventually the number of media formats that can be represented in IAX2 will be exhasted. At that point it must be decided to either accept that limitation or alter the protocol in a way that will expand it to take advantage of Asterisk's new format capabilities. This proposal is not defining a change any changes to the IAX2 protocol.
 
 # Revised Format Translation
 ## Problem Overview
 There are two sets of problems that must be addressed in regards to media translation in Asterisk. The first set of problems is a ripple effect caused by the changes surrounding the new representation of media formats with attributes. Translators must gain the ability to process these attributes and build translation paths between formats requiring the use of them. The other set of problems involves the ability to translate between media types other than just audio. The current translation architecture is very audio specific. It assumes that all translators are audio format translators of some kind, and that no other media type will ever be translated. This assumption is not only within the translation code, it is also deeply rooted throughout the code base. The ability to translate between media other than audio is a concept Asterisk completely lacks at the moment.
 
-This section builds upon the foundation established by the new ast\_format media format representation and uses it to redefine what translators look like and how translation paths are built. After these changes are made Asterisk will still not be able to translate video or other types of media even if translation paths actually exist between them. This problem is a result of limitations set in place by the Ast Channel API. The changes required to lift that limitation are discussed in the "Handling Multiple Media Streams" section.
+This section builds upon the foundation established by the new ast_format media format representation and uses it to redefine what translators look like and how translation paths are built. After these changes are made Asterisk will still not be able to translate video or other types of media even if translation paths actually exist between them. This problem is a result of limitations set in place by the Ast Channel API. The changes required to lift that limitation are discussed in the "Handling Multiple Media Streams" section.
 
 ## Building Translation Paths
 
@@ -643,7 +643,7 @@ Note that the table costs actually defined in the code are larger than the ones 
  \* \brief Translator Cost Table definition.
  \*
  \* \note The defined values in this table must be used to set
- \* the translator's table\_cost value.
+ \* the translator's table_cost value.
  \*
  \* \note The cost value of the first two values must always add
  \* up to be greater than the largest value defined in this table.
@@ -659,58 +659,58 @@ Note that the table costs actually defined in the code are larger than the ones 
  \* sample rate across the translation will always have precedence
  \* over a path that involves any re-sampling.
  \*/
-enum ast\_trans\_cost\_table {
+enum ast_trans_cost_table {
 
  /\* Lossless Source Translation Costs \*/
 
  /\*! [lossless -> lossless] original sampling \*/
- AST\_TRANS\_COST\_LL\_LL\_ORIGSAMP = 400000,
+ AST_TRANS_COST_LL_LL_ORIGSAMP = 400000,
  /\*! [lossless -> lossy] original sampling \*/
- AST\_TRANS\_COST\_LL\_LY\_ORIGSAMP = 600000,
+ AST_TRANS_COST_LL_LY_ORIGSAMP = 600000,
 
  /\*! [lossless -> lossless] up sample \*/
- AST\_TRANS\_COST\_LL\_LL\_UPSAMP = 800000,
+ AST_TRANS_COST_LL_LL_UPSAMP = 800000,
  /\*! [lossless -> lossy] up sample \*/
- AST\_TRANS\_COST\_LL\_LY\_UPSAMP = 825000,
+ AST_TRANS_COST_LL_LY_UPSAMP = 825000,
 
  /\*! [lossless -> lossless] down sample \*/
- AST\_TRANS\_COST\_LL\_LL\_DOWNSAMP = 850000,
+ AST_TRANS_COST_LL_LL_DOWNSAMP = 850000,
  /\*! [lossless -> lossy] down sample \*/
- AST\_TRANS\_COST\_LL\_LY\_DOWNSAMP = 875000,
+ AST_TRANS_COST_LL_LY_DOWNSAMP = 875000,
 
  /\*! [lossless -> unknown] unknown.
  \* This value is for a lossless source translation
  \* with an unknown destination and or sample rate conversion. \*/
- AST\_TRANS\_COST\_LL\_UNKNOWN = 885000,
+ AST_TRANS_COST_LL_UNKNOWN = 885000,
 
  /\* Lossy Source Translation Costs \*/
 
  /\*! [lossy -> lossless] original sampling \*/
- AST\_TRANS\_COST\_LY\_LL\_ORIGSAMP = 900000,
+ AST_TRANS_COST_LY_LL_ORIGSAMP = 900000,
  /\*! [lossy -> lossy] original sampling \*/
- AST\_TRANS\_COST\_LY\_LY\_ORIGSAMP = 915000,
+ AST_TRANS_COST_LY_LY_ORIGSAMP = 915000,
 
  /\*! [lossy -> lossless] up sample \*/
- AST\_TRANS\_COST\_LY\_LL\_UPSAMP = 930000,
+ AST_TRANS_COST_LY_LL_UPSAMP = 930000,
  /\*! [lossy -> lossy] up sample \*/
- AST\_TRANS\_COST\_LY\_LY\_UPSAMP = 945000,
+ AST_TRANS_COST_LY_LY_UPSAMP = 945000,
 
  /\*! [lossy -> lossless] down sample \*/
- AST\_TRANS\_COST\_LY\_LL\_DOWNSAMP = 960000,
+ AST_TRANS_COST_LY_LL_DOWNSAMP = 960000,
  /\*! [lossy -> lossy] down sample \*/
- AST\_TRANS\_COST\_LY\_LY\_DOWNSAMP = 975000,
+ AST_TRANS_COST_LY_LY_DOWNSAMP = 975000,
 
  /\*! [lossy -> unknown] unknown.
  \* This value is for a lossy source translation
  \* with an unknown destination and or sample rate conversion. \*/
- AST\_TRANS\_COST\_LY\_UNKNOWN = 985000,
+ AST_TRANS_COST_LY_UNKNOWN = 985000,
 
 };
 {code}
 
 h3. Creation of Translation Path Matrix
 
-Most least cost algorithms take a matrix as input. The current code's translation path matrix is represented by a 2 dimensional array of translation path structures. The current matrix will not change structurally, but there are some complications involved. The current code accesses translation paths from the matrix using index values which represent individual formats. The index values are computed by converting the format's bit representation to a numeric value. Since the numeric representation of a format bit has to be between 1 and 64, the maximum size of the bit field in use, the numeric representation works as an index for the current two dimensional matrix. With the introduction of the ast\_format structure, this conversion between a format's unique id and the a matrix index value is not clean. To account for this complication a hash table mapping every format id to a matrix index value will be used.
+Most least cost algorithms take a matrix as input. The current code's translation path matrix is represented by a 2 dimensional array of translation path structures. The current matrix will not change structurally, but there are some complications involved. The current code accesses translation paths from the matrix using index values which represent individual formats. The index values are computed by converting the format's bit representation to a numeric value. Since the numeric representation of a format bit has to be between 1 and 64, the maximum size of the bit field in use, the numeric representation works as an index for the current two dimensional matrix. With the introduction of the ast_format structure, this conversion between a format's unique id and the a matrix index value is not clean. To account for this complication a hash table mapping every format id to a matrix index value will be used.
 
 h3. Computing Least Cost Translation Paths
 
@@ -732,43 +732,43 @@ In order to prioritize redundant translators, computational cost will be used. F
 
 ## Redefining The Translator Interface
 
-Translators are currently defined by a simple set of functions (constructor, destructor, framein, frameout) coupled with a source and destination media format to translate between. There is not much that needs to be changed about this interface except that the source and destination formats must be converted to be ast\_format structures in all the existing code, and each translator must provide a cost value. There will be a table available to guide exactly what cost value to use. In order to make any future changes to the cost table effortless, defined values will be used when assigning cost to a translator. Otherwise this interface is in great shape for the changes ahead.
+Translators are currently defined by a simple set of functions (constructor, destructor, framein, frameout) coupled with a source and destination media format to translate between. There is not much that needs to be changed about this interface except that the source and destination formats must be converted to be ast_format structures in all the existing code, and each translator must provide a cost value. There will be a table available to guide exactly what cost value to use. In order to make any future changes to the cost table effortless, defined values will be used when assigning cost to a translator. Otherwise this interface is in great shape for the changes ahead.
 
 {code:title=Registering Translator Interface|borderStyle=solid}
 /\* each format must be declared statically now \*/
-static struct ast\_format slin16;
-static struct ast\_format g722;
+static struct ast_format slin16;
+static struct ast_format g722;
 
 /\* each interface holds a pointer to the static formats. \*/
-static struct ast\_translator lin16tog722 = {
+static struct ast_translator lin16tog722 = {
  .name = "lin16tog722",
- .cost = AST\_TRANS\_COST\_LL\_LY\_ORIGSAMP,
+ .cost = AST_TRANS_COST_LL_LY_ORIGSAMP,
  .srcfmt = &slin16,
  .dstfmt = &g722,
- .newpvt = lin16tog722\_new, /\* same for both directions \*/
- .framein = lintog722\_framein,
- .sample = slin16\_sample,
- .desc\_size = sizeof(struct g722\_encoder\_pvt),
- .buffer\_samples = BUFFER\_SAMPLES \* 2,
- .buf\_size = BUFFER\_SAMPLES,
+ .newpvt = lin16tog722_new, /\* same for both directions \*/
+ .framein = lintog722_framein,
+ .sample = slin16_sample,
+ .desc_size = sizeof(struct g722_encoder_pvt),
+ .buffer_samples = BUFFER_SAMPLES \* 2,
+ .buf_size = BUFFER_SAMPLES,
 };
 
 /\* Notice the static formats are initialized before registering the translator \*/
-static int load\_module(void)
+static int load_module(void)
 {
  int res = 0;
 
- ast\_format\_set(&slin16, AST\_FORMAT\_SLIN16);
- ast\_format\_set(&g722, AST\_FORMAT\_G722);
+ ast_format_set(&slin16, AST_FORMAT_SLIN16);
+ ast_format_set(&g722, AST_FORMAT_G722);
 
- res |= ast\_register\_translator(&lin16tog722);
+ res |= ast_register_translator(&lin16tog722);
 
  if (res) {
- unload\_module();
- return AST\_MODULE\_LOAD\_FAILURE;
+ unload_module();
+ return AST_MODULE_LOAD_FAILURE;
  } 
 
- return AST\_MODULE\_LOAD\_SUCCESS;
+ return AST_MODULE_LOAD_SUCCESS;
 }
 {code}
 
@@ -777,9 +777,9 @@ static int load\_module(void)
 Asterisk was designed from the ground up with the idea of only one audio media path being passed between channels. The code that handles this media path is done in such a way that makes expanding it to multiple media paths very difficult, especially media that is not audio. Asterisk has gotten away with being able to support very limited video functionality by not treating it as a media path at all. Instead of putting all media in the same media path as audio, video and other forms of media are just passed through similar to the way signalling is done. In order to bring all media into the same code path as audio, several fundamental design changes must be made to the way channels represent media streams. This section discusses those changes and how they affect channel drivers and other applications requiring access to media streams.
 
 ## Defining a Media Stream in Asterisk
-The first step in improving Asterisk's ability to represent multiple media streams is to actually define what a media stream is. At the moment, a stream in Asterisk is a very abstract idea. There is no tangible representation of a stream, no stream object or structure. The best representation of a stream Asterisk has now is the ast\_channel structure which is capable of representing a single set of audio tx/rx streams through the use of a bunch disjoint elements. Lets start this discussion by breaking out the elements of the ast\_channel structure that allow it to represent these streams.
+The first step in improving Asterisk's ability to represent multiple media streams is to actually define what a media stream is. At the moment, a stream in Asterisk is a very abstract idea. There is no tangible representation of a stream, no stream object or structure. The best representation of a stream Asterisk has now is the ast_channel structure which is capable of representing a single set of audio tx/rx streams through the use of a bunch disjoint elements. Lets start this discussion by breaking out the elements of the ast_channel structure that allow it to represent these streams.
 
-In order for the ast\_channel structure to represent a single set of audio tx/rx streams it needs the following things.
+In order for the ast_channel structure to represent a single set of audio tx/rx streams it needs the following things.
 
 # \*Read translator\* - Translates stream on the read path going into the Asterisk Core.
 # \*Write translator\* - Translates stream on the write path going out to the channel driver.
@@ -789,15 +789,15 @@ In order for the ast\_channel structure to represent a single set of audio tx/rx
 # \*Write Format\* - Requested write format after translation on the write path.
 # \*Raw Read Format\* - Expected write format before translation.
 
-The combination of all these items represent everything Asterisk needs to make channels compatible with one another and build translation paths between one another for a single set of corresponding tx/rx streams. The problem with this architecture is that all these disjoint elements make it impossible to replicate this functionality allowing for multiple tx/rx streams to exist on a single channel. In order for channels in Asterisk to gain the ability to process multiple tx/rx stream sets on a single channel all of theses stream elements must be organized into an isolated structure that can be easily replicated and manipulated. This new structure is called the \*ast\_channel\_stream\* structure and is discussed in detail in the next section.
+The combination of all these items represent everything Asterisk needs to make channels compatible with one another and build translation paths between one another for a single set of corresponding tx/rx streams. The problem with this architecture is that all these disjoint elements make it impossible to replicate this functionality allowing for multiple tx/rx streams to exist on a single channel. In order for channels in Asterisk to gain the ability to process multiple tx/rx stream sets on a single channel all of theses stream elements must be organized into an isolated structure that can be easily replicated and manipulated. This new structure is called the \*ast_channel_stream\* structure and is discussed in detail in the next section.
 
-## Introducing ast\_channel\_stream, Making Sense out of Madness
-The ast\_channel\_stream structure is made up of all the individual elements required to represent single set of tx/rx streams on an ast\_channel structure. This allows all the disjoint translators and formats on the ast\_channel structure associated with the audio streams go away and be replaced by a single ast\_channel\_stream structure. Everyplace in the current code base that directly accesses any of the stream elements on a channel such as nativeformats, readformat, and writeformat will be replaced by a set of API functions provided by the new Ast Channel Stream API. This API contains all the common operations channel drivers and applications need to perform on a stream, such as setting the native format capabilities, initializing the read/write formats, retrieving the current read/write formats, and setting the read/write formats. By using this API, channels also gain the ability to contain more than one media stream set. This is done through the concept of stream identifiers which is further discussed in the next section.
+## Introducing ast_channel_stream, Making Sense out of Madness
+The ast_channel_stream structure is made up of all the individual elements required to represent single set of tx/rx streams on an ast_channel structure. This allows all the disjoint translators and formats on the ast_channel structure associated with the audio streams go away and be replaced by a single ast_channel_stream structure. Everyplace in the current code base that directly accesses any of the stream elements on a channel such as nativeformats, readformat, and writeformat will be replaced by a set of API functions provided by the new Ast Channel Stream API. This API contains all the common operations channel drivers and applications need to perform on a stream, such as setting the native format capabilities, initializing the read/write formats, retrieving the current read/write formats, and setting the read/write formats. By using this API, channels also gain the ability to contain more than one media stream set. This is done through the concept of stream identifiers which is further discussed in the next section.
 
 ## Stream Identifiers
-The ast\_channel\_stream structure isolates the concept of tx/rx streams to a single entity allowing channels to represent multiple streams through the use of multiple ast\_channel\_stream structures. Since it is prohibited for any part of Asterisk except channel.c to directly access the ast\_channel\_stream structures on a channel, the rest of Asterisk needs a way access these individual streams through the use of the Ast Channel Stream API. This introduces the concept of \*stream identifiers\*. Stream identifiers completely abstract away the concept of the ast\_channel\_stream structure from the rest of Asterisk. Every ast\_channel\_stream structure on a channel will have a unique stream id assigned to it. This stream id is required by every function in the Ast Channel Stream API to access and manipulate the individual streams on a channel.
+The ast_channel_stream structure isolates the concept of tx/rx streams to a single entity allowing channels to represent multiple streams through the use of multiple ast_channel_stream structures. Since it is prohibited for any part of Asterisk except channel.c to directly access the ast_channel_stream structures on a channel, the rest of Asterisk needs a way access these individual streams through the use of the Ast Channel Stream API. This introduces the concept of \*stream identifiers\*. Stream identifiers completely abstract away the concept of the ast_channel_stream structure from the rest of Asterisk. Every ast_channel_stream structure on a channel will have a unique stream id assigned to it. This stream id is required by every function in the Ast Channel Stream API to access and manipulate the individual streams on a channel.
 
-In order to separate ast\_frames belonging to separate streams, a stream id will also be present on each frame. This will involve placing a new value on the ast\_frame structure to represent what stream the frame belongs to. By default the current code will not use the stream id on the ast\_frame even though it will be present. This concept is discussed in more detail in the "Default Streams" section.
+In order to separate ast_frames belonging to separate streams, a stream id will also be present on each frame. This will involve placing a new value on the ast_frame structure to represent what stream the frame belongs to. By default the current code will not use the stream id on the ast_frame even though it will be present. This concept is discussed in more detail in the "Default Streams" section.
 
 Steam identifiers are organized into three categories. For the sake of organization and ABI compatibility each of these categories are given a range of unique stream identifiers available to them. Separating the default streams from the auxiliary and dynamic streams also makes it much easier to filter out auxiliary and dynamic streams for applications and modules that do not support them. Once a new stream identifier is defined, its unique id must remain consistent. 
 
@@ -806,9 +806,9 @@ Steam identifiers are organized into three categories. For the sake of organizat
 # \*dynamic streams\*: Unique id defined between 200000 - 299999
 
 h3. Default Streams
-Since Asterisk was designed with the concept of a single audio tx/rx stream set existing on a channel, some provisions must be made to allow for a smooth transition into the concept of multiple stream sets. This is where default streams come into play. Every ast\_channel structure will contain a set of default streams associated with it, each with a predefined consistent stream id.
+Since Asterisk was designed with the concept of a single audio tx/rx stream set existing on a channel, some provisions must be made to allow for a smooth transition into the concept of multiple stream sets. This is where default streams come into play. Every ast_channel structure will contain a set of default streams associated with it, each with a predefined consistent stream id.
 
-\*Default Audio Streams\* - The first default tx/rx stream set present on every channel is the default audio streams. This is the stream set all of Asterisk already knows about. It is the one that used to be made of individual elements in the ast\_channel structure but was stripped out after defining the ast\_channel\_stream structure. Every channel driver built so far already knows how to manipulate these streams and many applications require access to them as well. All ast\_frames of type AST\_FRAME\_VOICE with a stream id of 0 will automatically match this default stream set on a channel. Since 0 is the default initialization value for the stream id on a frame, all the channel drivers and applications already making use of these streams do not have to be modified.
+\*Default Audio Streams\* - The first default tx/rx stream set present on every channel is the default audio streams. This is the stream set all of Asterisk already knows about. It is the one that used to be made of individual elements in the ast_channel structure but was stripped out after defining the ast_channel_stream structure. Every channel driver built so far already knows how to manipulate these streams and many applications require access to them as well. All ast_frames of type AST_FRAME_VOICE with a stream id of 0 will automatically match this default stream set on a channel. Since 0 is the default initialization value for the stream id on a frame, all the channel drivers and applications already making use of these streams do not have to be modified.
 
 It should be noted that while additional audio streams will be possible in the future, it is likely the default audio stream will be the only one that any kind of tone detection is performed on for DTMF, FAX, etc. This document does not attempt to alter this limitation in any way.
 
@@ -817,29 +817,29 @@ It should be noted that while additional audio streams will be possible in the f
 As more media types are introduced, it may be beneficial to define additional default stream sets. Initially only audio and video will present.
 
 h3. Auxiliary Streams
-If a channel driver is capable of negotiating more streams than can be represented by the default rx/tx stream sets on a channel, the auxiliary media stream sets can be used. These stream sets work the exact same way as the default stream sets except they require the use of the media stream id on frames. With auxiliary streams the stream id must be present on every ast\_frame created for the stream. This allows channels and applications not capable of processing auxiliary streams to filter out the frames they don't understand.
+If a channel driver is capable of negotiating more streams than can be represented by the default rx/tx stream sets on a channel, the auxiliary media stream sets can be used. These stream sets work the exact same way as the default stream sets except they require the use of the media stream id on frames. With auxiliary streams the stream id must be present on every ast_frame created for the stream. This allows channels and applications not capable of processing auxiliary streams to filter out the frames they don't understand.
 
 Since Asterisk supports multiple protocols with various capabilities, all the auxiliary streams that can be used anywhere in Asterisk must be defined at compile time. This means when a channel driver is extended to make use of a new type of auxiliary stream, that stream must be defined with a stream id that uniquely represents it across the entire code base. This is the only way to keep the different types of auxiliary streams and what they are used for consistent across all modules.
 
 {code:title=Auxiliary Stream Usage Example|borderStyle=solid} 
 
-Example 1: Chan\_sip is extended to make use of up to four video and audio streams per call. This sort of functionality has never been done before so six new auxiliary streams must be defined for the three new video and three new audio streams.
+Example 1: Chan_sip is extended to make use of up to four video and audio streams per call. This sort of functionality has never been done before so six new auxiliary streams must be defined for the three new video and three new audio streams.
 
-enum ast\_channel\_stream\_id {
+enum ast_channel_stream_id {
  /\*! Define Default Streams below \*/
- AST\_STREAM\_DEFAULT\_AUDIO = 1,
- AST\_STREAM\_DEFAULT\_VIDEO = 2,
+ AST_STREAM_DEFAULT_AUDIO = 1,
+ AST_STREAM_DEFAULT_VIDEO = 2,
 
  /\*! Define Auxiliary Streams Below \*/
- AST\_STREAM\_VIDEO\_AUX1 = 100000,
- AST\_STREAM\_VIDEO\_AUX2, = 100001,
- AST\_STREAM\_VIDEO\_AUX3, = 100002,
- AST\_STREAM\_AUDIO\_AUX1, = 100003,
- AST\_STREAM\_AUDIO\_AUX2, = 100004,
- AST\_STREAM\_AUDIO\_AUX3, = 100005,
+ AST_STREAM_VIDEO_AUX1 = 100000,
+ AST_STREAM_VIDEO_AUX2, = 100001,
+ AST_STREAM_VIDEO_AUX3, = 100002,
+ AST_STREAM_AUDIO_AUX1, = 100003,
+ AST_STREAM_AUDIO_AUX2, = 100004,
+ AST_STREAM_AUDIO_AUX3, = 100005,
 }
 
-As chan\_sip receives individual stream payloads and creates ast\_frames to pass into the core, each frame's stream id is marked with the ast\_channel\_stream\_id it belongs to. Any channel driver or applications that gets passed an audio or video frame belonging to one of these newly defined auxiliary streams that does not support it will ignore it.
+As chan_sip receives individual stream payloads and creates ast_frames to pass into the core, each frame's stream id is marked with the ast_channel_stream_id it belongs to. Any channel driver or applications that gets passed an audio or video frame belonging to one of these newly defined auxiliary streams that does not support it will ignore it.
 
 {code}
 
@@ -852,55 +852,55 @@ It is possible that Asterisk will need the ability to pass through streams conta
 
 {code:title=channel.c additions|borderStyle=solid}
 /\*! \brief Definition of opaque channel stream structure \*/
-struct ast\_channel\_stream {
+struct ast_channel_stream {
  /\*! represents the stream type \*/
- enum ast\_channel\_stream\_id id;
+ enum ast_channel_stream_id id;
 
- struct ast\_trans\_pvt \*writetrans;
- struct ast\_trans\_pvt \*readtrans;
+ struct ast_trans_pvt \*writetrans;
+ struct ast_trans_pvt \*readtrans;
 
- struct ast\_cap nativeformats;
+ struct ast_cap nativeformats;
 
- struct ast\_format readformat;
- struct ast\_format writeformat;
- struct ast\_format rawreadformat;
- struct ast\_format rawwriteformat;
+ struct ast_format readformat;
+ struct ast_format writeformat;
+ struct ast_format rawreadformat;
+ struct ast_format rawwriteformat;
 };
 {code}
 
 {code:title=channel.h additions and changes |borderStyle=solid}
 
-/\*! \brief stream identifier structure. Present on both ast\_frame
- \* and ast\_channel\_stream structure.
+/\*! \brief stream identifier structure. Present on both ast_frame
+ \* and ast_channel_stream structure.
  \*/
-enum ast\_channel\_stream\_id {
+enum ast_channel_stream_id {
  /\*! Define all Default Streams below. \*/
- AST\_STREAM\_DEFAULT\_AUDIO = 1,
- AST\_STREAM\_DEFAULT\_VIDEO = 2,
+ AST_STREAM_DEFAULT_AUDIO = 1,
+ AST_STREAM_DEFAULT_VIDEO = 2,
 
  /\*! Define Auxiliary Streams Below starting at 100000
  \* Example:
- \* AST\_STREAM\_VIDEO\_AUX1 = 100000,
+ \* AST_STREAM_VIDEO_AUX1 = 100000,
  \*/
 }
 
-void ast\_channel\_init\_write\_format(struct ast\_channel \*chan, enum ast\_channel\_stream\_id id, struct ast\_format \*format)
+void ast_channel_init_write_format(struct ast_channel \*chan, enum ast_channel_stream_id id, struct ast_format \*format)
 
-void ast\_channel\_init\_read\_format(struct ast\_channel \*chan, enum ast\_channel\_stream\_id id, struct ast\_format \*format)
+void ast_channel_init_read_format(struct ast_channel \*chan, enum ast_channel_stream_id id, struct ast_format \*format)
 
-void ast\_channel\_set\_native\_cap(struct ast\_channel \*chan, enum ast\_channel\_stream\_id id, struct ast\_cap \*cap)
+void ast_channel_set_native_cap(struct ast_channel \*chan, enum ast_channel_stream_id id, struct ast_cap \*cap)
 
-int ast\_channel\_copy\_readwrite\_format(struct ast\_channel \*chan1, struct ast\_channel \*chan2, enum ast\_channel\_stream\_id id)
+int ast_channel_copy_readwrite_format(struct ast_channel \*chan1, struct ast_channel \*chan2, enum ast_channel_stream_id id)
 
-void ast\_channel\_set\_read\_format(struct ast\_channel \*chan, enum ast\_channel\_stream\_id id, struct ast\_format \*format)
+void ast_channel_set_read_format(struct ast_channel \*chan, enum ast_channel_stream_id id, struct ast_format \*format)
 
-void ast\_channel\_set\_write\_format(struct ast\_channel \*chan, enum ast\_channel\_stream\_id id, struct ast\_format \*format)
+void ast_channel_set_write_format(struct ast_channel \*chan, enum ast_channel_stream_id id, struct ast_format \*format)
 
-int ast\_channel\_get\_native\_cap(struct ast\_channel \*chan, enum ast\_channel\_stream\_id id, struct ast\_cap \*result)
+int ast_channel_get_native_cap(struct ast_channel \*chan, enum ast_channel_stream_id id, struct ast_cap \*result)
 
-int ast\_channel\_get\_write\_format(struct ast\_channel \*chan, enum ast\_channel\_stream\_id id, struct ast\_format \*result)
+int ast_channel_get_write_format(struct ast_channel \*chan, enum ast_channel_stream_id id, struct ast_format \*result)
 
-int ast\_channel\_get\_read\_format(struct ast\_channel \*chan, enum ast\_channel\_stream\_id id, struct ast\_format \*result)
+int ast_channel_get_read_format(struct ast_channel \*chan, enum ast_channel_stream_id id, struct ast_format \*result)
 
 {code}
 
@@ -911,25 +911,25 @@ This sections shows how the Ast Channel Stream API replaces existing usage in As
 Example 1: A channel driver creating a new channel and initializing the default audio stream's formats and capabilities.
 {code:title=Example 1 - Old|borderStyle=solid}
 chan->nativeformats = capabilty;
-chan->readformat = best\_format;
-chan->rawreadformat = best\_format;
-chan->writeformat = best\_format;
-chan->rawwriteformat = best\_format;
+chan->readformat = best_format;
+chan->rawreadformat = best_format;
+chan->writeformat = best_format;
+chan->rawwriteformat = best_format;
 {code}
 
 {code:title=Example 1 - New|borderStyle=solid}
-ast\_channel\_set\_native\_cap(chan, AST\_STREAM\_DEFAULT\_AUDIO, capability);
-ast\_channel\_init\_write\_format(chan, AST\_STREAM\_DEFAULT\_AUDIO, best\_format);
-ast\_channel\_init\_read\_format(chan, AST\_STREAM\_DEFAULT\_AUDIO, best\_format);
+ast_channel_set_native_cap(chan, AST_STREAM_DEFAULT_AUDIO, capability);
+ast_channel_init_write_format(chan, AST_STREAM_DEFAULT_AUDIO, best_format);
+ast_channel_init_read_format(chan, AST_STREAM_DEFAULT_AUDIO, best_format);
 {code}
 
 Example 2: Setting the read format on a channel.
 {code:title=Example 2 - Old|borderStyle=solid}
-ast\_set\_read\_format(chan, format);
+ast_set_read_format(chan, format);
 {code}
 
 {code:title=Example 2 - New|borderStyle=solid}
-ast\_set\_read\_format(chan, AST\_STREAM\_DEFAULT\_AUDIO, format);
+ast_set_read_format(chan, AST_STREAM_DEFAULT_AUDIO, format);
 {code}
 
 # Media Format with Attributes User Configuration
@@ -940,17 +940,17 @@ With the addtion of media formats with attributes, users will need a way to repr
 
 {code:title=Example 1 - codecs.conf|borderStyle=solid}
 /\* Limit negotiation of SILK to only 8khz and 12khz. \*/
-[silk\_nb]
+[silk_nb]
 type=silk
 samplerates=8000,12000
 
 /\* Limit negotiation of SILK to only 16khz and 24khz \*/
-[silk\_wb]
+[silk_wb]
 type=silk
 samplerates=16000,24000
 
 /\* Allow any SILK sample rate a device is capable of to be negotiated \*/
-[silk\_all]
+[silk_all]
 type=silk
 samplerates=8000,12000,16000,24000
 
@@ -959,18 +959,18 @@ samplerates=8000,12000,16000,24000
 {code:title=Example 1 - sip.conf|borderStyle=solid}
 
 /\* Define a peer using only the narrow band custom SILK format definition \*/
-[sip\_peer]
+[sip_peer]
 type=friend
 host=dynamic
 disallow=all
-allow=silk\_nb
+allow=silk_nb
 {code}
 
 \*Example 2\*. H.264 is capable of negotiating a wide range of attributes. If specific attributes are to be negotiated, a custom format must be created to represent this.
 
 {code:title=Example 2 - codecs.conf|borderStyle=solid}
 /\* H.264 at vga or svga resolutions, 30 frames per second. \*/
-[h264\_custom1]
+[h264_custom1]
 type=h264
 res=vga,svga
 framerate=30
@@ -978,13 +978,13 @@ framerate=30
 {code}
 {code:title=Example 2 - sip.conf|borderStyle=solid}
 
-/\* Define a peer using the new h264\_custom1 custom format type. \*/
-[sip\_peer]
+/\* Define a peer using the new h264_custom1 custom format type. \*/
+[sip_peer]
 type=friend
 host=dynamic
 disallow=all
-allow\_ulaw
-allow=h264\_custom1
+allow_ulaw
+allow=h264_custom1
 {code}
 
 Notice from these examples that both the SILK and H264 custom formats are defined using fields specific to their format. Each format will define what fields are applicable to them. If there are common fields used for several different media formats, those fields should be named in a consistent way across all the media formats that use them. Every format allowing custom media formats to be defined must be documented in codecs.conf along with all the available fields.
@@ -1004,31 +1004,31 @@ Please note that this section is incomplete. A very high level approach to forma
 ## Problem Overview
 When it is at all possible, it is always better to have two bridged channels share the same media formats for their audio streams than to have to perform translation. Translation for audio is expensive, but translation for video is exponentially more expensive that audio. Because of the computational complexity involved with translating video, the concept of being able to renegotiate media after a call is estabilshed in an attempt to get the device to do the translation for us is very important. Right now Asterisk lacks this ability.
 
-## Making ast\_channel\_make\_compatible() Smarter
+## Making ast_channel_make_compatible() Smarter
 
-Every time a channel is bridged with another channel a call to ast\_channel\_make\_compatible() is made. This function takes the two channels to be bridged as input and figures out all the translation paths and intermediate media formats that need to be set in order for the two channels to talk to each other. With protocols like SIP, it is possible to renegotiate the call parameters after call setup has taken place. By placing a feature in ast\_channel\_make\_compatible() that can make the two channels aware of each other's native media format before translation takes place, it is possible for one side to re-negotiate its session to switch to the same media format used by the other side. When this is possible, Asterisk is able to avoid translation completely.
+Every time a channel is bridged with another channel a call to ast_channel_make_compatible() is made. This function takes the two channels to be bridged as input and figures out all the translation paths and intermediate media formats that need to be set in order for the two channels to talk to each other. With protocols like SIP, it is possible to renegotiate the call parameters after call setup has taken place. By placing a feature in ast_channel_make_compatible() that can make the two channels aware of each other's native media format before translation takes place, it is possible for one side to re-negotiate its session to switch to the same media format used by the other side. When this is possible, Asterisk is able to avoid translation completely.
 
 h3. How Renegotiation Works
 
-At the heart of renegotiation is the introduction of a channel option called \*AST\_OPTION\_FORMAT\_RENEGOTIATE\* and a structure called \*ast\_option\_renegotiate\_param\*. The ast\_format\_renegotiate\_param structure is passed as the data for the AST\_OPTION\_FORMAT\_RENEGOTIATE's query and set actions. This structure contains both a format to renegotiate for each stream renegotation must take place on, a function pointer containing the place a channel tech must report the result of its renegotiation attempt, and an internal structure used to determine what action to take next after a channel tech reports the renegotiation attempt.
+At the heart of renegotiation is the introduction of a channel option called \*AST_OPTION_FORMAT_RENEGOTIATE\* and a structure called \*ast_option_renegotiate_param\*. The ast_format_renegotiate_param structure is passed as the data for the AST_OPTION_FORMAT_RENEGOTIATE's query and set actions. This structure contains both a format to renegotiate for each stream renegotation must take place on, a function pointer containing the place a channel tech must report the result of its renegotiation attempt, and an internal structure used to determine what action to take next after a channel tech reports the renegotiation attempt.
 
-On query, the ast\_option\_renegotiate\_param structure is passed down to the channel tech pvt containing information about all the formats and streams to renegotiate. The result of a query request indicates whether or not the channel tech is capable of attempting renegotiation with the formats provided or not. Queries are performed synchronously, meaning the result of a query request must never block for a network transaction to take place.
+On query, the ast_option_renegotiate_param structure is passed down to the channel tech pvt containing information about all the formats and streams to renegotiate. The result of a query request indicates whether or not the channel tech is capable of attempting renegotiation with the formats provided or not. Queries are performed synchronously, meaning the result of a query request must never block for a network transaction to take place.
 
-On set, the ast\_option\_renegotiate\_param structure is passed down to the channel tech pvt containing both the formats and streams to renegotiate along with a place to report the result of the renegotiation. Renegotiation is event driven, meaning that the channel tech pvt is given the renegotation parameters and it must report back at a later time the result of the renegotiation attempt. This allows the set operation to avoid blocking the bridge code by performing the renegotation asynchronously.
+On set, the ast_option_renegotiate_param structure is passed down to the channel tech pvt containing both the formats and streams to renegotiate along with a place to report the result of the renegotiation. Renegotiation is event driven, meaning that the channel tech pvt is given the renegotation parameters and it must report back at a later time the result of the renegotiation attempt. This allows the set operation to avoid blocking the bridge code by performing the renegotation asynchronously.
 
-During ast\_channel\_make\_compatible(), if it is determined that translation is required to make two channels compatible both channels are queried using the AST\_OPTION\_FORMAT\_RENEGOTIATE option and ast\_option\_renegotiate\_param structures. After the queries, if either of the two channels are capable of renegotiating the set action is used on best candidate to attempt the renegotiation. If the channel used for the first renegotiation attempt reports a failure, a second attempt at renegotiation may take place for the bridged channel if neither channel has hung up.
+During ast_channel_make_compatible(), if it is determined that translation is required to make two channels compatible both channels are queried using the AST_OPTION_FORMAT_RENEGOTIATE option and ast_option_renegotiate_param structures. After the queries, if either of the two channels are capable of renegotiating the set action is used on best candidate to attempt the renegotiation. If the channel used for the first renegotiation attempt reports a failure, a second attempt at renegotiation may take place for the bridged channel if neither channel has hung up.
 
 h3. Renegotiation with Intermediary Translation
 
 \* Make Compatible Flow of Events
-\*\* ast\_channel\_make\_compatible() is invoked
+\*\* ast_channel_make_compatible() is invoked
 \*\* read and write formats are different between channels for at least one stream
 \*\* translation paths are built for streams requiring translation
-\*\* query to AST\_OPTION\_FORMAT\_RENEGOTIATE is made on both channels
-\*\* if candidate for renegotation exists, renegotiation parameters are set to the channel using AST\_OPTION\_FORMAT\_RENEGOTIATE
+\*\* query to AST_OPTION_FORMAT_RENEGOTIATE is made on both channels
+\*\* if candidate for renegotation exists, renegotiation parameters are set to the channel using AST_OPTION_FORMAT_RENEGOTIATE
 \*\* channels are bridged
 \* Asynchronous Renegotation Flow of Events
-\*\* channel tech is set with renegotation paramters using AST\_OPTION\_FORMAT\_RENEGOTIATE
+\*\* channel tech is set with renegotation paramters using AST_OPTION_FORMAT_RENEGOTIATE
 \*\* channel tech attempts renegotiation and reports result to renegotiation parameter result function
 \*\*\* on SUCCESS: new format is set for renegotated stream and translation path goes away
 \*\*\* on FAILURE: result function attempts renegotation with bridged channel if possible, else translation must remain
@@ -1036,15 +1036,15 @@ h3. Renegotiation with Intermediary Translation
 h3. Renegotiation with no Intermediary Translation
 
 \* Make Compatible Flow of Events
-\*\* ast\_channel\_make\_compatible() is invoked
+\*\* ast_channel_make_compatible() is invoked
 \*\* channel's read and write formats are different for at least one stream
 \*\* \*NO\* translation path is possible to make channels compatible
-\*\* query to AST\_OPTION\_FORMAT\_RENEGOTIATE is made to both channels
-\*\* if best candidate for renegotiation is found, renegotiation parameters are set to the channel using AST\_OPTION\_FORMAT\_RENEGOTIATE
+\*\* query to AST_OPTION_FORMAT_RENEGOTIATE is made to both channels
+\*\* if best candidate for renegotiation is found, renegotiation parameters are set to the channel using AST_OPTION_FORMAT_RENEGOTIATE
 \*\* channel is bridged
 \*\* media for incompatible streams are blocked for a period of time while renegotiation takes place
 \* Asynchronous Renegotiation Flow of Events
-\*\* channel tech is set with renegotiation parameters using AST\_OPTION\_FORMAT\_RENEGOTIATE.
+\*\* channel tech is set with renegotiation parameters using AST_OPTION_FORMAT_RENEGOTIATE.
 \*\* channel tech attempts renegotiation and reports result to renegotiation parameter result function
 \*\*\* on SUCCESS: new format is set for renegotiated stream and translation path goes away
 \*\*\* on FAILURE: result function attempts renegotiation with bridged channel if possible
@@ -1062,7 +1062,7 @@ From the user perspective, no functionality changes will be present during this 
 \*\* Define new format unique ID system using numbers rather than bits. Allow this definition to remain unused during this step except by the new APIs.
 \*\* Create Ast Format API + unit tests.
 \*\* Create Ast Capibility API + unit tests.
-\*\* Create IAX2 Conversion layer for ast\_format and ast\_cap objects. Create unit tests and leave this layer inactive until conversion to new APIs takes place.
+\*\* Create IAX2 Conversion layer for ast_format and ast_cap objects. Create unit tests and leave this layer inactive until conversion to new APIs takes place.
 
 \* Step 2
 \*\* Define translation cost table.
@@ -1072,8 +1072,8 @@ From the user perspective, no functionality changes will be present during this 
 
 \* Step 3
 \*\* Replace old format unique ID system with the new system. This will temporarily break all asterisk media functionality.
-\*\* Add media functionality back into Asterisk by replacing all instances of format\_t with ast\_format and ast\_cap.
-\*\* Completely remove format\_t type def.
+\*\* Add media functionality back into Asterisk by replacing all instances of format_t with ast_format and ast_cap.
+\*\* Completely remove format_t type def.
 
 ## Phase 2: Exercise the functionality introduced by formats with attributes
 
@@ -1084,24 +1084,24 @@ This is done by introducing the SILK codec and allowing H.264 to be negotiated w
 \*\* Create SILK format attribute interface.
 \*\* Make SILK translators to and from signed linear.
 \*\* Add the ability to define custom media formats with attributes in user configuration.
-\*\* Extend the rtp mapping code to allow chan\_sip to advertise SILK appropriately in SDPs.
+\*\* Extend the rtp mapping code to allow chan_sip to advertise SILK appropriately in SDPs.
 
 \* Step 2
 \*\* Create H.264 format attribute interface.
 \*\* Extend codecs.conf to allow custom H.264 format definitions.
-\*\* Extend chan\_sip to be able to correctly advertise and negotiate H.264 with attributes in SDPs.
+\*\* Extend chan_sip to be able to correctly advertise and negotiate H.264 with attributes in SDPs.
 
 ## Phase 3: Extend Asterisk to handle multiple media streams
 
 \* Step 1
 \*\* Create Ast Channel Stream API
-\*\* Define default audio stream by replacing current audio stream formats and translators on a channel with an ast\_channel\_stream structure.
-\*\* Define default video stream by introducing a new ast\_channel\_stream structure used solely for negotiating the primary video stream.
+\*\* Define default audio stream by replacing current audio stream formats and translators on a channel with an ast_channel_stream structure.
+\*\* Define default video stream by introducing a new ast_channel_stream structure used solely for negotiating the primary video stream.
 
 \* Step 2
-\*\* Add the stream id field to the ast\_frame structure.
+\*\* Add the stream id field to the ast_frame structure.
 \*\* Block the ability to read anything other than the default streams with all current channel drivers and applications.
-\*\* Introduce new ast\_read functionality for reading auxiliary streams when it is explicitly requested.
+\*\* Introduce new ast_read functionality for reading auxiliary streams when it is explicitly requested.
 
 \* Step 3
 \*\* Exercise the new ability to build video translation paths using an FFMPEG addon translation module.
@@ -1116,5 +1116,5 @@ Allowing calls to renegotiate their media formats after call setup is perhaps th
 
 \* Step 2
 \*\* Implement core functionality changes required to detect and attempt format renegotiation with channel techs.
-\*\* Implement chan\_sip configuration options and functionality required to allow format renegotiation triggered by the Asterisk core to occur after call setup.
+\*\* Implement chan_sip configuration options and functionality required to allow format renegotiation triggered by the Asterisk core to occur after call setup.
 

@@ -15,7 +15,7 @@ The sounds tools are available in the publicly accessible repotools repository. 
 ```
 
 
-The sound tools are available in the subdirectory sound\_tools/ which contains the following directories:
+The sound tools are available in the subdirectory sound_tools/ which contains the following directories:
 
 * audiofilter
 * makeg722

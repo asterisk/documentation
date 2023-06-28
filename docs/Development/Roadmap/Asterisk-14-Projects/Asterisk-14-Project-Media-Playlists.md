@@ -211,13 +211,13 @@ frame.h
 
 ```
 
-truecpp312  AST\_CONTROL\_STREAM\_STOP = 1000, /\*!< Indicate to a channel in playback to stop the stream \*/
- AST\_CONTROL\_STREAM\_SUSPEND = 1001, /\*!< Indicate to a channel in playback to suspend the stream \*/
- AST\_CONTROL\_STREAM\_RESTART = 1002, /\*!< Indicate to a channel in playback to restart the stream \*/
- AST\_CONTROL\_STREAM\_REVERSE = 1003, /\*!< Indicate to a channel in playback to rewind \*/
- AST\_CONTROL\_STREAM\_FORWARD = 1004, /\*!< Indicate to a channel in playback to fast forward \*/
- AST\_CONTROL\_STREAM\_PREV = 1005, /\*!< Indicate to a channel in playback to play the previous stream \*/
- AST\_CONTROL\_STREAM\_NEXT = 1006, /\*!< Indicate to a channel in playback to play the next stream \*/
+truecpp312  AST_CONTROL_STREAM_STOP = 1000, /\*!< Indicate to a channel in playback to stop the stream \*/
+ AST_CONTROL_STREAM_SUSPEND = 1001, /\*!< Indicate to a channel in playback to suspend the stream \*/
+ AST_CONTROL_STREAM_RESTART = 1002, /\*!< Indicate to a channel in playback to restart the stream \*/
+ AST_CONTROL_STREAM_REVERSE = 1003, /\*!< Indicate to a channel in playback to rewind \*/
+ AST_CONTROL_STREAM_FORWARD = 1004, /\*!< Indicate to a channel in playback to fast forward \*/
+ AST_CONTROL_STREAM_PREV = 1005, /\*!< Indicate to a channel in playback to play the previous stream \*/
+ AST_CONTROL_STREAM_NEXT = 1006, /\*!< Indicate to a channel in playback to play the next stream \*/
 
 ```
 
@@ -226,7 +226,7 @@ truecpp312  AST\_CONTROL\_STREAM\_STOP = 1000, /\*!< Indicate to a channel in p
 * Have `file.c` `waitstream_core` handle the two new frame types. These should break out of the control loop and return the frame value.
 * Add a new function to `app.h` (because we don't have enough yet) called `ast_control_streamfile_lang_w_cb`. Its usage should be somewhat obvious.
 
-res\_stasis\_playback
+res_stasis_playback
 ---------------------
 
 In addition model and parameter changes that will ripple through the auto-generated HTTP server/resource bindings, the control of the playback will have to be modified in the following ways in `res_stasis_playback`:
@@ -237,7 +237,7 @@ In addition model and parameter changes that will ripple through the auto-genera
 	+ Implement handling for the control frame values corresponding to `PREV` and `NEXT`.
 * Add two new function handlers for `playback_opreation_cb` - `playback_next` and `playback_prev`. Queue the control frames appropriately.
 
-app\_controlplayback
+app_controlplayback
 --------------------
 
 Currently, the `ControlPlayback` dialplan application does not support playback of multiple files. As such, handling of the new feature should be defensive in nature only.
@@ -245,19 +245,19 @@ Currently, the `ControlPlayback` dialplan application does not support playback 
 * `controlplayback_exec` should be modified to handle the return of `AST_CONTROL_STREAM_PREV` and `AST_CONTROL_STREAM_NEXT` gracefully. Since the application does not currently handle multiple playbacks, it should simply return with the correct `CPLAYBACKSTATUS` as `PREVIOUS` or `NEXT`, respectively.
 * `controlplayback_manager` should be updated to understand "prev" and "next" as valid control signals (as, who knows, you may want to use AMI to control a channel in ARI, if you're that crazy)
 
-res\_agi
+res_agi
 --------
 
 The `control stream file` AGI command does not support playback of multiple files. As such, handling of the new feature should be defensive in nature only.
 
 * `handle_controlstreamfile` should be modified to handle the return of `AST_CONTROL_STREAM_PREV` and `AST_CONTROL_STREAM_NEXT` gracefully. The result of `CPLAYBACKSTATUS` should mirror that of `app_controlplayback`.
 
-chan\_iax2
+chan_iax2
 ----------
 
 * Explicitly specify that the two new control frames should not be passed over the wire.
 
-func\_frame\_trace
+func_frame_trace
 ------------------
 
 * Do the frame trace dance
@@ -268,20 +268,20 @@ Testing
 
 | Test | Path | Purpose |
 | --- | --- | --- |
-| control\_prev | tests/apps/control\_playback | Verify that sending a remote initiated `prev` command via AMI results in `CPLAYBACKSTATUS` being set to `PREVIOUS`. |
-| control\_next | tests/apps/control\_playback | Verify that sending a remote initiated `next` command via AMI results in `CPLAYBACKSTATUS` being set to `NEXT`. |
-| remote\_prev | tests/apps/playback | Verify that sending a remote initiated `prev` command via AMI results in a test event indicating that the playback was broken |
-| remote\_next | tests/apps/playback | Verify that sending a remote initiated `next` command via AMI results in a test event indicating that the playback was broken |
-| channels/playback/list | tests/rest\_api | Verify that nominal playback of a list - with no user control - occurs in the expected fashion, and that each sound file in the list is played in the correct sequence |
-| channels/playback/list\_forward | tests/rest\_api | Verify that playback of a list where a user fast forwards plays through each sound file in sequence. Verify that unsupported skippable media is handled correctly. |
-| channels/playback/list\_reverse | tests/rest\_api | Verify that playback of a list where a user reverses through each sound file is handled correctly, including restarting already played media. Verify that media that cannot be reversed through is restarted as well. |
-| channels/playback/next | tests/rest\_api | Verify that playback of a list supports skipping to the next media in the list, for multiple media resource types |
-| channels/playback/prev | tests/rest\_api | Verify that playback of a list supports skipping to the previous media in the list, for multiple media resource types |
-| bridges/playback/list | tests/rest\_api | Verify that nominal playback of a list - with no user control - occurs in the expected fashion, and that each sound file in the list is played in the correct sequence |
-| bridges/playback/list\_forward | tests/rest\_api | Verify that playback of a list where a user fast forwards plays through each sound file in sequence. Verify that unsupported skippable media is handled correctly. |
-| bridges/playback/list\_reverse | tests/rest\_api | Verify that playback of a list where a user reverses through each sound file is handled correctly, including restarting already played media. Verify that media that cannot be reversed through is restarted as well. |
-| bridges/playback/next | tests/rest\_api | Verify that playback of a list supports skipping to the next media in the list, for multiple media resource types |
-| bridges/playback/prev | tests/rest\_api | Verify that playback of a list supports skipping to the previous media in the list, for multiple media resource types |
+| control_prev | tests/apps/control_playback | Verify that sending a remote initiated `prev` command via AMI results in `CPLAYBACKSTATUS` being set to `PREVIOUS`. |
+| control_next | tests/apps/control_playback | Verify that sending a remote initiated `next` command via AMI results in `CPLAYBACKSTATUS` being set to `NEXT`. |
+| remote_prev | tests/apps/playback | Verify that sending a remote initiated `prev` command via AMI results in a test event indicating that the playback was broken |
+| remote_next | tests/apps/playback | Verify that sending a remote initiated `next` command via AMI results in a test event indicating that the playback was broken |
+| channels/playback/list | tests/rest_api | Verify that nominal playback of a list - with no user control - occurs in the expected fashion, and that each sound file in the list is played in the correct sequence |
+| channels/playback/list_forward | tests/rest_api | Verify that playback of a list where a user fast forwards plays through each sound file in sequence. Verify that unsupported skippable media is handled correctly. |
+| channels/playback/list_reverse | tests/rest_api | Verify that playback of a list where a user reverses through each sound file is handled correctly, including restarting already played media. Verify that media that cannot be reversed through is restarted as well. |
+| channels/playback/next | tests/rest_api | Verify that playback of a list supports skipping to the next media in the list, for multiple media resource types |
+| channels/playback/prev | tests/rest_api | Verify that playback of a list supports skipping to the previous media in the list, for multiple media resource types |
+| bridges/playback/list | tests/rest_api | Verify that nominal playback of a list - with no user control - occurs in the expected fashion, and that each sound file in the list is played in the correct sequence |
+| bridges/playback/list_forward | tests/rest_api | Verify that playback of a list where a user fast forwards plays through each sound file in sequence. Verify that unsupported skippable media is handled correctly. |
+| bridges/playback/list_reverse | tests/rest_api | Verify that playback of a list where a user reverses through each sound file is handled correctly, including restarting already played media. Verify that media that cannot be reversed through is restarted as well. |
+| bridges/playback/next | tests/rest_api | Verify that playback of a list supports skipping to the next media in the list, for multiple media resource types |
+| bridges/playback/prev | tests/rest_api | Verify that playback of a list supports skipping to the previous media in the list, for multiple media resource types |
 
 Project Planning
 ================

@@ -6,7 +6,7 @@ pageid: 31096903
 What is a remote SIP transfer?
 ==============================
 
-Let's imagine a scenario where Alice places a call to Bob, and then Bob performs an attended transfer to Carol. In this scenario, Alice is registered to Asterisk instance A (asterisk\_a.com), and Bob is registered to Server B (server\_b.com), a non-Asterisk PBX. The key to this scenario is that Asterisk A has been explicitly configured to be able to call Bob directly, despite the fact that Bob does not register to Asterisk A.
+Let's imagine a scenario where Alice places a call to Bob, and then Bob performs an attended transfer to Carol. In this scenario, Alice is registered to Asterisk instance A (asterisk_a.com), and Bob is registered to Server B (server_b.com), a non-Asterisk PBX. The key to this scenario is that Asterisk A has been explicitly configured to be able to call Bob directly, despite the fact that Bob does not register to Asterisk A.
 
 Initially, Alice places a call to Bob through Alice's Asterisk instance:
 
@@ -31,7 +31,7 @@ As you can see, Bob has simultaneous calls through two separate servers. Now whe
 
 ```
 
-Refer-To: <sip:carol@server\_b.com?Replaces=ABCDE%3Bto-tag%3DBtoBobfrom-tag%3DBobtoB>
+Refer-To: <sip:carol@server_b.com?Replaces=ABCDE%3Bto-tag%3DBtoBobfrom-tag%3DBobtoB>
 
 ```
 
@@ -49,7 +49,7 @@ That's a bit verbose. So let's break it down a little bit. First, there is a SIP
 
 ```
 
-sip:carol@server\_b.com
+sip:carol@server_b.com
 
 ```
 
@@ -110,9 +110,9 @@ A new dialog with Call-ID ZYXWV has replaced the previous dialog with Call-ID AB
 How Asterisk handles this
 =========================
 
-Asterisk will rarely ever directly place outbound calls without going through the dialplan. When Asterisk A receives the REFER request from Bob, Asterisk does not immediately send an INVITE with Replaces header to Server B. Instead, Asterisk A looks for a specifically-named extension called "external\_replaces". Asterisk searches for this extension in the context specified by the `TRANSFER_CONTEXT` channel variable on Bob's channel. If `TRANSFER_CONTEXT` is not specified, then Asterisk searches for the extension in Bob's endpoint's context setting. Once in the dialplan, it is the job of the dialplan writer to determine whether to complete the transfer or not.
+Asterisk will rarely ever directly place outbound calls without going through the dialplan. When Asterisk A receives the REFER request from Bob, Asterisk does not immediately send an INVITE with Replaces header to Server B. Instead, Asterisk A looks for a specifically-named extension called "external_replaces". Asterisk searches for this extension in the context specified by the `TRANSFER_CONTEXT` channel variable on Bob's channel. If `TRANSFER_CONTEXT` is not specified, then Asterisk searches for the extension in Bob's endpoint's context setting. Once in the dialplan, it is the job of the dialplan writer to determine whether to complete the transfer or not.
 
-In the external\_replaces extension, you will have access to the following channel variables:
+In the external_replaces extension, you will have access to the following channel variables:
 
 * `SIPTRANSFER`: This variable is set to "yes" upon entering the `external_replaces` extension, and indicates that a SIP transfer is happening. This is only useful if, for whatever reason, you are using the `external_replaces` extension for additional purposes than a SIP remote attended transfer.
 * `SIPREFERRINGCONTEXT`: This is the dialplan context in which the `external_replaces` extension was found. This may be useful if your `external_replaces` extension calls into subroutines or jumps to other contexts.
@@ -131,7 +131,7 @@ If you do want to write an `external_replaces` extension, the first thing you wa
 
 
 !!! note 
-    Asterisk dialplan contains functions for manipulating strings. A function [Asterisk 13 Function\_PJSIP\_PARSE\_URI](/Asterisk+13+Function_PJSIP_PARSE_URI) exists for parsing a URI within the dialplan.
+    Asterisk dialplan contains functions for manipulating strings. A function [Asterisk 13 Function_PJSIP_PARSE_URI](/Asterisk+13+Function_PJSIP_PARSE_URI) exists for parsing a URI within the dialplan.
 
       
 [//]: # (end-note)
@@ -164,13 +164,13 @@ If you decide to perform the transfer, the most straightforward way to do this i
 
 ```
 
-exten => external\_replaces,1,NoOp()
- same => n,Dial(PJSIP/default\_outgoing/${SIPREFERTOHDR})
+exten => external_replaces,1,NoOp()
+ same => n,Dial(PJSIP/default_outgoing/${SIPREFERTOHDR})
 
 ```
 
 
-Let's examine that `Dial()` more closely. First, we're dialing using PJSIP, which is pretty obvious. Next, we have the endpoint name. The endpoint name could be any configured endpoint you want to use to make this call. Remember that endpoint settings are things such as what codecs to use, what user name to place in the from header, etc. By default, if you just dial `PJSIP/some_endpoint`, Asterisk looks at some\_endpoint's configured `aors` to determine what location to send the outgoing call to. However, you can override this default behavior and specify a URI to send the call to instead. This is what is being done in this `Dial()` statement. We're dialing using settings for an endpoint called "default\_outgoing", presumably used as a default endpoint for outgoing calls. We're sending the call out to the URI specified by `SIPREFERTOHDR` though. Using the scenario on this page, the `Dial()` command would route the call to `sip:carol@server_b`.
+Let's examine that `Dial()` more closely. First, we're dialing using PJSIP, which is pretty obvious. Next, we have the endpoint name. The endpoint name could be any configured endpoint you want to use to make this call. Remember that endpoint settings are things such as what codecs to use, what user name to place in the from header, etc. By default, if you just dial `PJSIP/some_endpoint`, Asterisk looks at some_endpoint's configured `aors` to determine what location to send the outgoing call to. However, you can override this default behavior and specify a URI to send the call to instead. This is what is being done in this `Dial()` statement. We're dialing using settings for an endpoint called "default_outgoing", presumably used as a default endpoint for outgoing calls. We're sending the call out to the URI specified by `SIPREFERTOHDR` though. Using the scenario on this page, the `Dial()` command would route the call to `sip:carol@server_b`.
 
 This will create automatically place the *Replaces*Header in the INVITE.
 

@@ -104,9 +104,9 @@ SIP Subscription to Asterisk hints
 
 Once a hint is configured, Asterisk's SIP drivers can be configured to allow SIP User Agents to subscribe to the hints. A subscription will result in state change notifications being sent to the subscriber.
 
-Configuration for **chan\_sip** is discussed in [Configuring chan\_sip for Presence Subscriptions](/Configuration/Channel-Drivers/SIP/Configuring-chan_sip/Configuring-chan_sip-for-Presence-Subscriptions)
+Configuration for **chan_sip** is discussed in [Configuring chan_sip for Presence Subscriptions](/Configuration/Channel-Drivers/SIP/Configuring-chan_sip/Configuring-chan_sip-for-Presence-Subscriptions)
 
-Configuration for **res\_pjsip** is discussed in [Configuring res\_pjsip for Presence Subscriptions](/Configuration/Channel-Drivers/SIP/Configuring-res_pjsip/Configuring-res_pjsip-for-Presence-Subscriptions)
+Configuration for **res_pjsip** is discussed in [Configuring res_pjsip for Presence Subscriptions](/Configuration/Channel-Drivers/SIP/Configuring-res_pjsip/Configuring-res_pjsip-for-Presence-Subscriptions)
 
  
 

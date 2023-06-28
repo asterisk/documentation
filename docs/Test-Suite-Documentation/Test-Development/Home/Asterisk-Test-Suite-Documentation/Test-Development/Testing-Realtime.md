@@ -29,7 +29,7 @@ Configuration Engine
 --------------------
 
 
-To allow the tests to operate in an automated fashion without configuration the res\_config\_sqlite3 realtime configuration engine should be used. As sqlite3 is simply a file based database no host details or persistent daemons are required. Each test should have a clean database with a table using the desired schema.
+To allow the tests to operate in an automated fashion without configuration the res_config_sqlite3 realtime configuration engine should be used. As sqlite3 is simply a file based database no host details or persistent daemons are required. Each test should have a clean database with a table using the desired schema.
 
 
 Testsuite

@@ -40,7 +40,7 @@ A channel masquerade is a fundamental yet incredibly confusing concept in Asteri
 ---
 
   
-A comment from ast\_do\_masquerade  
+A comment from ast_do_masquerade  
 
 
 ```
@@ -58,7 +58,7 @@ A comment from ast\_do\_masquerade
 The way the operation works is to take two channels and 'swap' portions of them. In the diagram below, assume that Thread A has a channel that Thread B wants to take over. Thread B creates a new channel ("Original") and starts a Masquerade operation on the channel owned by Thread A ("Clone"). Both channels are locked, and the state of the Clone channel is moved into the Original channel, while the Clone channel obtains the Original channel's state. In order to denote that the channel is about to die, a special ZOMBIE flag is put on the channel and the name renamed to Clone<ZOMBIE>. The lock is released, and the Original channel - which now has the state associated with Clone channel - executes in Thread B, while the Clone channel (which is now quite dead) see's that its dead and goes off to silently contemplate its demise in an `h` extension.
 
 
-Asterisk\_12\_MasqueradesL
+Asterisk_12_MasqueradesL
 Except, of course, that this is a dramatic simplification. It's never quite that easy.
 
 
@@ -175,31 +175,31 @@ Note that the diagram below is not meant to contain all functions and attributes
 
 
 Bridge API DesignL
-#### ast\_bridge\_controller
+#### ast_bridge_controller
 
 
 The `ast_bridge_controller` manages one or more bridges. It provides the thread that services actions that are being taken within a bridge and operations between bridges.
 
 
-#### ast\_bridge
+#### ast_bridge
 
 
 An `ast_bridge` object **is** the bridge. A bridge may have many channels in it, and the bridge object is responsible for keeping track of the state of the bridge and managing the channels. The `ast_bridge_technology` callbacks provide the way in which operations on the bridge and its channels are implemented for different ways of 'bridging'. For example, in a two-party bridge, the bridge technology may only have to pass frames between two channels and can simply swap the frames between two `ast_bridge_channel` objects. In a multi-party bridge, however, the bridge technology has to decide which `ast_bridge_channel` objects receive frames from what other `ast_bridge_channel` objects, how those frames are mixed, etc.
 
 
-#### ast\_bridge\_channel
+#### ast_bridge_channel
 
 
 The `ast_bridge_channel` object manages the thread, state, and actions executing on a channel in a bridge. There is a one to one relationship between the `ast_bridge_channel` object and an `ast_channel` object in a bridge. An `ast_bridge` manages channels through the `ast_bridge_channel` object.
 
 
-#### ast\_bridge\_technology
+#### ast_bridge_technology
 
 
 The `ast_bridge_technology` provides the callbacks that specific bridging implementations implement. It is up to the bridging implementations to determine how frames are passed between the `ast_bridge_channel` objects, what Asterisk control frames are processed and how, etc.
 
 
-#### ast\_bridge\_features
+#### ast_bridge_features
 
 
 The `ast_bridge_features` object provides hooks that can be passed to `ast_bridge_channel` objects when they join that bridge. The feature hooks implement specific interception callbacks that occur on DTMF key presses, after some period of time has passed, or given some other criteria. These callbacks can affect the channels in a bridge but may also affect the entire bridge.
@@ -215,7 +215,7 @@ Richard's Ramblings on Bridging
 ### The Existing API and Proposed Changes
 
 
-#### enum ast\_bridge\_channel\_state ast\_bridge\_join(struct ast\_bridge \*bridge, struct ast\_channel \*chan, struct ast\_channel \*swap, struct ast\_bridge\_features \*features, struct, ast\_bridge\_tech\_optimizations \*tech\_args, int pass\_reference);
+#### enum ast_bridge_channel_state ast_bridge_join(struct ast_bridge \*bridge, struct ast_channel \*chan, struct ast_channel \*swap, struct ast_bridge_features \*features, struct, ast_bridge_tech_optimizations \*tech_args, int pass_reference);
 
 
 * Put a channel into the specified bridge. The bridge takes custody of the channel.
@@ -223,12 +223,12 @@ Richard's Ramblings on Bridging
 		- the channel hangs up
 		- the channel is kicked out
 		- the bridge dissolves
-			* The caller must then run the PBX which runs the h exten, next dialplan location, or ast\_async\_goto() location.
+			* The caller must then run the PBX which runs the h exten, next dialplan location, or ast_async_goto() location.
 * An error joining the bridge gives the channel back.
-* The pass\_reference flag passes the bridge reference of the caller back to the bridge so the bridge will complete destroying itself when the last channel leaves the bridge. The caller cannot use the bridge pointer when the function returns.
+* The pass_reference flag passes the bridge reference of the caller back to the bridge so the bridge will complete destroying itself when the last channel leaves the bridge. The caller cannot use the bridge pointer when the function returns.
 
 
-#### int ast\_bridge\_impart(struct ast\_bridge \*bridge, struct ast\_channel \*chan, struct ast\_channel \*swap, struct ast\_bridge\_features \*features, int independent);
+#### int ast_bridge_impart(struct ast_bridge \*bridge, struct ast_channel \*chan, struct ast_channel \*swap, struct ast_bridge_features \*features, int independent);
 
 
 * Put a channel into the specified bridge. The bridge takes custody of the channel.
@@ -236,14 +236,14 @@ Richard's Ramblings on Bridging
 * An error joining the bridge gives the channel back.
 * On success, the caller does not get the channel back.
 * When the channel leaves the bridge the channel will:
-	+ wait for another thread to claim it with ast\_bridge\_depart() if not specified as independent
-	+ run a PBX at the set location if exited by AST\_SOFTHANGUP\_ASYNCGOTO (any exit location datastore is removed)
+	+ wait for another thread to claim it with ast_bridge_depart() if not specified as independent
+	+ run a PBX at the set location if exited by AST_SOFTHANGUP_ASYNCGOTO (any exit location datastore is removed)
 	+ run a PBX if a location is specified by datastore
 	+ run the h exten if specifed by datastore then hangup
 	+ hangup
 
 
-#### int ast\_bridge\_depart(struct ast\_channel \*chan);
+#### int ast_bridge_depart(struct ast_channel \*chan);
 
 
 * This function must be removed from the API or severely restricted.
@@ -252,13 +252,13 @@ Richard's Ramblings on Bridging
 API changed that when a channel is imparted, it must be specified that the channel will be departed. These channels can not be moved/merged to another bridge. Channels that can be departed are special channels because the channel must be departed and can not be made to normally execute dialplan when they leave a bridge.
 
 
-With the change that ast\_channel has an ast\_bridge\_channel pointer instead of an ast\_bridge pointer, ast\_bridge\_depart() does not need to be provided an ast\_bridge pointer. Also these channels can move to other bridges and still be departed.
+With the change that ast_channel has an ast_bridge_channel pointer instead of an ast_bridge pointer, ast_bridge_depart() does not need to be provided an ast_bridge pointer. Also these channels can move to other bridges and still be departed.
 
 
-Departing from the bridge must not interfere with an AST\_BRIDGE\_CHANNEL\_STATE\_END in progress since it is likely to dissolve the bridge. (Sorta fixed with AST\_BRIDGE\_CHANNEL\_STATE\_DEPART\_END. Really need to revamp the depart mess.)
+Departing from the bridge must not interfere with an AST_BRIDGE_CHANNEL_STATE_END in progress since it is likely to dissolve the bridge. (Sorta fixed with AST_BRIDGE_CHANNEL_STATE_DEPART_END. Really need to revamp the depart mess.)
 
 
-#### int ast\_bridge\_remove(struct ast\_bridge \*bridge, struct ast\_channel \*chan);
+#### int ast_bridge_remove(struct ast_bridge \*bridge, struct ast_channel \*chan);
 
 
 * Request that the channel be removed from the specified bridge.
@@ -268,22 +268,22 @@ Departing from the bridge must not interfere with an AST\_BRIDGE\_CHANNEL\_STATE
 Channels are removed when the bridge action kicks the channel out. It does not matter if the channel is currently suspended from the bridge.
 
 
-#### int ast\_bridge\_move(struct ast\_bridge \*bridge, struct ast\_channel \*chan, struct ast\_channel \*swap, struct ast\_bridge\_features \*features, struct ast\_bridge\_tech\_optimizations \*tech\_args);
+#### int ast_bridge_move(struct ast_bridge \*bridge, struct ast_channel \*chan, struct ast_channel \*swap, struct ast_bridge_features \*features, struct ast_bridge_tech_optimizations \*tech_args);
 
 
 * Move a channel from its current bridge to the specified bridge.
-* The channel knows which bridge it is in because ast\_channel\_internal\_bridge() returns it.
+* The channel knows which bridge it is in because ast_channel_internal_bridge() returns it.
 * If the channel is not in a bridge then return error.
 * If the channel is not moveable then return error.
 * If the channel is already in the bridge then return error.
 * If the bridge cannot accept the channel then return error.
 
 
-#### int ast\_bridge\_merge(struct ast\_bridge \*bridge\_dest, struct ast\_bridge \*bridge\_src, struct ast\_channel \*\*exclude\_chans, int num\_chans);
+#### int ast_bridge_merge(struct ast_bridge \*bridge_dest, struct ast_bridge \*bridge_src, struct ast_channel \*\*exclude_chans, int num_chans);
 
 
-* Merge bridge\_src into bridge\_dest and kick out the channels specified by exclude\_chans from the bridges. The bridge\_src is gutted and may destroy itself.
-* bridge\_dest can be given new properties.
+* Merge bridge_src into bridge_dest and kick out the channels specified by exclude_chans from the bridges. The bridge_src is gutted and may destroy itself.
+* bridge_dest can be given new properties.
 * Channel properties/roles may need to change.
 * Channel driver attended transfers can be accomplished by merging bridges.
 
@@ -294,22 +294,22 @@ This is likely only going to be used for local channel optimization. Unfortunate
 Switching to-from-native to 1-1 bridges is going to need to be done on a bridge channel thread as well. (Now do it on the bridge thread.)
 
 
-Always have a bridge thread. It will control the bridge restructuring, bridge tech selection, bridge hooks, and bridge timer hooks. The bridge thread will also do the bridge media handling depending upon the bridge tech. The early, native, and simple tech will use the bridge thread for media. The multiplexed bridge tech will pass the media duties to a thread common to several bridge instances. The softmix bridge uses the bridge thread for mixing the media after each bridge\_channel thread has read it from the channel. Always having a bridge thread means it does not get created/destroyed when the bridge tech is changed by the smart bridge code.
+Always have a bridge thread. It will control the bridge restructuring, bridge tech selection, bridge hooks, and bridge timer hooks. The bridge thread will also do the bridge media handling depending upon the bridge tech. The early, native, and simple tech will use the bridge thread for media. The multiplexed bridge tech will pass the media duties to a thread common to several bridge instances. The softmix bridge uses the bridge thread for mixing the media after each bridge_channel thread has read it from the channel. Always having a bridge thread means it does not get created/destroyed when the bridge tech is changed by the smart bridge code.
 
 
-The bridge\_dest needs to pull the channels from bridge\_src for a merge/move. This will avoid the bridge ao2 reference problem if the bridge\_src pushes the channels to bridge\_dest.
+The bridge_dest needs to pull the channels from bridge_src for a merge/move. This will avoid the bridge ao2 reference problem if the bridge_src pushes the channels to bridge_dest.
 
 
-#### int ast\_bridge\_suspend(struct ast\_bridge \*bridge, struct ast\_channel \*chan);
+#### int ast_bridge_suspend(struct ast_bridge \*bridge, struct ast_channel \*chan);
 
 
-#### int ast\_bridge\_unsuspend(struct ast\_bridge \*bridge, struct ast\_channel \*chan);
+#### int ast_bridge_unsuspend(struct ast_bridge \*bridge, struct ast_channel \*chan);
 
 
 * Peers of suspended channels need to act like autoserviced channels and save important frames like DTMF and control frames.
 
 
-##### int ast\_is\_deferrable\_frame(const struct ast\_frame \*frame);
+##### int ast_is_deferrable_frame(const struct ast_frame \*frame);
 
 
 Those frames get sent to the suspended channel and put in its action queue. The bridge needs to generate silence frames to the peer while DTMF is being collected or the chan is suspended.
@@ -318,13 +318,13 @@ Those frames get sent to the suspended channel and put in its action queue. The 
 The suspend/unsuspend functions by a third party should be removed. The bridging code mostly assumes that suspends are from the bridge channel thread and not an external party.
 
 
-#### int ast\_bridge\_count\_channels(struct ast\_bridge \*bridge);
+#### int ast_bridge_count_channels(struct ast_bridge \*bridge);
 
 
 Return number of channels in the bridge.
 
 
-#### struct ast\_channel \*ast\_bridge\_peer(struct ast\_bridge \*bridge, struct ast\_channel \*chan);
+#### struct ast_channel \*ast_bridge_peer(struct ast_bridge \*bridge, struct ast_channel \*chan);
 
 
 Return the bridge peer channel of the given channel. The peer channel is returned with an increased ref count.
@@ -333,51 +333,51 @@ Return the bridge peer channel of the given channel. The peer channel is returne
 This function feels dangerous.
 
 
-#### int ast\_channel\_is\_bridged(struct ast\_channel \*chan);
+#### int ast_channel_is_bridged(struct ast_channel \*chan);
 
 
 Return TRUE if the channel is currently bridged.
 
 
-#### struct ast\_bridge \*ast\_channel\_get\_bridge(struct ast\_channel \*chan);
+#### struct ast_bridge \*ast_channel_get_bridge(struct ast_channel \*chan);
 
 
 Get the bridge the channel is currently in.
 
 
-#### int ast\_bridge\_play\_to\_chan(struct ast\_bridge \*bridge, struct ast\_channel \*chan, const char \*file);
+#### int ast_bridge_play_to_chan(struct ast_bridge \*bridge, struct ast_channel \*chan, const char \*file);
 
 
 Play a file to the specified channel in a bridge.  
 
 
 
-#### int ast\_bridge\_play\_to\_bridge(struct ast\_bridge \*bridge, const char \*file);
+#### int ast_bridge_play_to_bridge(struct ast_bridge \*bridge, const char \*file);
 
 
 Play a file to the specified bridge.
 
 
-#### int ast\_bridge\_transfer\_blind(struct ast\_channel \*transferrer, const char \*context, const char \*exten, int priority);
+#### int ast_bridge_transfer_blind(struct ast_channel \*transferrer, const char \*context, const char \*exten, int priority);
 
 
 * The bridge peer of the transferrer channel is blind transferred.
-* The bridge peer action runs ast\_channel\_transfer\_blind() after UNHOLDing the channel. The target location is also checked for a Parking exten and a park is performed instead.
+* The bridge peer action runs ast_channel_transfer_blind() after UNHOLDing the channel. The target location is also checked for a Parking exten and a park is performed instead.
 
 
-#### int ast\_channel\_transfer\_blind(struct ast\_channel \*target, const char \*transferrer\_chan\_name, const char \*ctx\_exten\_pri);
+#### int ast_channel_transfer_blind(struct ast_channel \*target, const char \*transferrer_chan_name, const char \*ctx_exten_pri);
 
 
-* The ctx\_exten\_pri is a parseable string: "[[context,](/context-)exten,]priority". The optional values are filled in by the target channel. transferrer\_chan\_name can be NULL if done anonymously.
+* The ctx_exten_pri is a parseable string: "[[context,](/context-)exten,]priority". The optional values are filled in by the target channel. transferrer_chan_name can be NULL if done anonymously.
 
 
 * Set BLINDTRANSFER on target channel with transferer channel name. I don't see why it has historically been put on both channels since the Park app is who needs the variable set so it can announce the parking slot.
 * UNHOLD target.
 * Post AMI blind transfer event.
-* Do the ast\_async\_goto steps.
+* Do the ast_async_goto steps.
 
 
-#### ast\_async\_goto()
+#### ast_async_goto()
 
 
 This function actually is a blind transfer!
@@ -388,27 +388,27 @@ This function actually is a blind transfer!
 		- set PBX location on the channel + 1 because autoloop will decrement
 	+ else
 		- set PBX location on the channel
-	+ set AST\_SOFTHANGUP\_ASYNCGOTO
+	+ set AST_SOFTHANGUP_ASYNCGOTO
 * else if channel has a PBX
 	+ set PBX location on the channel + 1 because autoloop will decrement
-	+ set AST\_SOFTHANGUP\_ASYNCGOTO
+	+ set AST_SOFTHANGUP_ASYNCGOTO
 * else
 	+ create new channel
 	+ set PBX location on the channel
 	+ masquerade into it
 
 
-#### int ast\_bridge\_transfer\_attended(struct ast\_channel \*party\_a, struct ast\_channel \*party\_c);
+#### int ast_bridge_transfer_attended(struct ast_channel \*party_a, struct ast_channel \*party_c);
 
 
-* UNHOLD target party\_a peer.
+* UNHOLD target party_a peer.
 * Post AMI attended transfer event.
-* If party\_a and party\_c are in bridges, ast\_bridge\_merge() party\_c bridge into party\_a bridge removing party\_a and party\_c channels from the bridges.
+* If party_a and party_c are in bridges, ast_bridge_merge() party_c bridge into party_a bridge removing party_a and party_c channels from the bridges.
 * If one of the channels is not bridged then we'll have to do it the old way with masquerades.
 * If neither of the channels are in bridges then return error.
 
 
-Problems if party\_c is in the parking bridge. How to get party\_a to take party\_c's place in that bridge? Need an `ast_bridge_park(struct ast_bridge *parking_bridge, struct ast_bridge_channel *chan, struct ast_bridge_channel *swap);` The original party\_a bridge is then dissolved.
+Problems if party_c is in the parking bridge. How to get party_a to take party_c's place in that bridge? Need an `ast_bridge_park(struct ast_bridge *parking_bridge, struct ast_bridge_channel *chan, struct ast_bridge_channel *swap);` The original party_a bridge is then dissolved.
 
 
 Problem is worse for ConfBridge. You cannot swap a channel into that bridge because ConfBridge maintains a lot of state outside of the bridge module. You can only masquerade into the ConfBridge.
@@ -427,22 +427,22 @@ To eliminate the masquerade here it is likely that every application needs to be
 
 
 
-#### int ast\_bridge\_park(struct ast\_bridge \*parking\_bridge, struct ast\_bridge\_channel \*chan, struct ast\_bridge\_channel \*swap);
+#### int ast_bridge_park(struct ast_bridge \*parking_bridge, struct ast_bridge_channel \*chan, struct ast_bridge_channel \*swap);
 
 
-Moves chan into the parking bridge and replaces the swap channel already in the bridge at the same parking space. This is a specialized ast\_bridge\_move().
+Moves chan into the parking bridge and replaces the swap channel already in the bridge at the same parking space. This is a specialized ast_bridge_move().
 
 
 ### Features and other thoughts
 
 
-#### chan\_agent ideas:
+#### chan_agent ideas:
 
 
 * Agent logs in and waits for calls just like now. The agent could be placed into a holding bridge with some kind of monitoring for a caller.
 
 
-* Calls come in and get put into a waiting call list container. These calls can abort if chan\_agent is not configured to allow multiple waiting calls or if the agent is not logged in.
+* Calls come in and get put into a waiting call list container. These calls can abort if chan_agent is not configured to allow multiple waiting calls or if the agent is not logged in.
 
 
 * Agent thread sees waiting call in the container and finds the early bridge the call is in. The agent can decide when to accept the call. The agent thread then does a Pickup of the incoming call by joining the early bridge.
@@ -493,7 +493,7 @@ Moves chan into the parking bridge and replaces the swap channel already in the 
 #### Add new CHANNEL() option:
 
 
-CHANNEL(after\_bridge\_goto)=<parseable-goto>  
+CHANNEL(after_bridge_goto)=<parseable-goto>  
 
 
 
@@ -509,7 +509,7 @@ Potential new dialplan appliction that puts the channel into a holding bridge th
 The DTMF features could be a channel property datastore so they can be removed/restored to the channel depending upon which bridge they are in at the time. As a property they could be set by the CHANNEL() function.
 
 
-Two party bridges need to keep ast\_channel\_internal\_bridged\_channel\_set() up to date with the peer.
+Two party bridges need to keep ast_channel_internal_bridged_channel_set() up to date with the peer.
 
 
 The default controlling channel for impromptu threeway bridges is the oldest channel controls the destruction of the bridge. A channel variable or CHANNEL(value) set by dialplan could be used to alter the bridge controller.
@@ -545,7 +545,7 @@ A way to implement the toggle between A and C parties is to have an atxfer bridg
 The atxfer bridges grant B the transfer menu because it has the TransferrerRoll defined on the channel. When the transfer is completed, the TransferrerRoll is removed.
 
 
-The atxfer bridges have AST\_BRIDGE\_FLAG\_MERGE\_INHIBIT\_TO set. They also have the inhibit merge count non-zero while the transfer is incomplete to prevent any local channel optimization.
+The atxfer bridges have AST_BRIDGE_FLAG_MERGE_INHIBIT_TO set. They also have the inhibit merge count non-zero while the transfer is incomplete to prevent any local channel optimization.
 
 
 The only difference between a self managing bridge and an externally managed bridge is if there is something outside of the bridge referencing it. The bridge destructor posts the AMI bridge destroy event.
@@ -554,7 +554,7 @@ The only difference between a self managing bridge and an externally managed bri
 Suspended channels can still be removed from a bridge. When they try to unsuspend, they find out if they are still part of the bridge or if it is still active.
 
 
-Non-native 1-1 bridges need to generate AST\_CONTROL\_SRCUPDATE frames.
+Non-native 1-1 bridges need to generate AST_CONTROL_SRCUPDATE frames.
 
 
 A channel that dissolves the bridge needs to update the peer channels hangup cause as it ejects them.
@@ -579,7 +579,7 @@ Event hooks are needed for the following type of events:
 The bridge channel needs to keep track of the last HOLD/UNHOLD state and any DTMF digit in progress so they can be stopped when the channel is removed from the bridge.
 
 
-The bridge\_channel action queue will fix many of the issues I have been having with bridge member updates. The bridge core code determines which bridge\_channel to put actions on from a feature hook. For example:
+The bridge_channel action queue will fix many of the issues I have been having with bridge member updates. The bridge core code determines which bridge_channel to put actions on from a feature hook. For example:
 
 
 * Blind transfer hook triggers
@@ -674,7 +674,7 @@ Future role flags (softmix bridge):
 * Announcer-receiver
 
 
-Recorder/Announcer channels need an option flag to exit the bridge if there is noone else in the bridge. Otherwise there is the possibility that the bridge will become orphaned with just those special channels in the bridge. AST\_BRIDGE\_FLAG\_LONELY
+Recorder/Announcer channels need an option flag to exit the bridge if there is noone else in the bridge. Otherwise there is the possibility that the bridge will become orphaned with just those special channels in the bridge. AST_BRIDGE_FLAG_LONELY
 
 
 ### New Objects
@@ -683,18 +683,18 @@ Recorder/Announcer channels need an option flag to exit the bridge if there is n
 #### Design patterns
 
 
-* The state pattern could be applied to ast\_bridge.
-	+ ast\_bridge could be thought of as a state of ast\_bridge\_channel.
+* The state pattern could be applied to ast_bridge.
+	+ ast_bridge could be thought of as a state of ast_bridge_channel.
 	+ Changing states is moving to another bridge. This is a bit of a stretch though.
 
 
-ast\_bridge\_technology is the strategy pattern
+ast_bridge_technology is the strategy pattern
 
 
-The decorator pattern could be applied to ast\_bridge\_channel to decorate the channel with feature hooks. Decorators can be added/removed at run time just like features. Though this pattern may be a bit expensive resource wise.
+The decorator pattern could be applied to ast_bridge_channel to decorate the channel with feature hooks. Decorators can be added/removed at run time just like features. Though this pattern may be a bit expensive resource wise.
 
 
-The Basic, Parking, ConfBridge, atxfer, and Queue bridges could be thought of as a strategy instead of subclassing ast\_bridge\_channel. It is looks more like ast\_bridge\_technology in relation to ast\_bridge/ast\_bridge\_channel. Changed this back to just subclassing ast\_bridge.
+The Basic, Parking, ConfBridge, atxfer, and Queue bridges could be thought of as a strategy instead of subclassing ast_bridge_channel. It is looks more like ast_bridge_technology in relation to ast_bridge/ast_bridge_channel. Changed this back to just subclassing ast_bridge.
 
 
 #### Bridge Classes
@@ -717,20 +717,20 @@ Park, Queue, ConfBridge could be derivative classes of the abstract bridge class
 ```
 
 
-class ast\_bridge {
- join(struct ast\_channel \*chan);
- depart(struct ast\_channel \*chan);
- remove(struct ast\_channel \*chan);
- move\_pull(class ast\_bridge\_channel \*chan);
+class ast_bridge {
+ join(struct ast_channel \*chan);
+ depart(struct ast_channel \*chan);
+ remove(struct ast_channel \*chan);
+ move_pull(class ast_bridge_channel \*chan);
  Pull a channel out of this bridge to be pushed into another bridge.
- move\_push(class ast\_bridge\_channel \*chan, class ast\_bridge\_channel \*swap);
+ move_push(class ast_bridge_channel \*chan, class ast_bridge_channel \*swap);
  Push a channel into this bridge that was pulled from another bridge.
- masquerade\_pull(class ast\_bridge\_channel \*chan);
+ masquerade_pull(class ast_bridge_channel \*chan);
  A masquerade is figuratively pulling this channel out of the bridge
  to be pushed back in as a new channel.
  This is done for the clone and original channels because a masquerade
  swaps the guts of the two channels.
- masquerade\_push(class ast\_bridge\_channel \*chan);
+ masquerade_push(class ast_bridge_channel \*chan);
  Push the channel back into the bridge as a new channel.
  poke();
  new();
@@ -743,8 +743,8 @@ class ast\_bridge {
  The class needs to have a channel inherit the configuration
  of a swapped channel when it is pushed or joined.
 };
-class ast\_bridge\_channel {
- class ast\_bridge \*bridge;
+class ast_bridge_channel {
+ class ast_bridge \*bridge;
  suspend();
  Mark channel as suspended and poke the bridge to recognize it.
  unsuspend();
@@ -769,13 +769,13 @@ class ast\_bridge\_channel {
 ```
 
 
- bridges ao2\_container
+ bridges ao2_container
  |
- ast\_bridge
+ ast_bridge
  |
- channels ao2\_container ast\_bridge\_channel
- | \_\_\_\_\_\_\_\_\_\_\_\_\_/
- ast\_channel
+ channels ao2_container ast_bridge_channel
+ | _____________/
+ ast_channel
  /
 channel private
 
@@ -801,7 +801,7 @@ channel private
 
 
 !!! note 
-    We are, unfortunately, punting on the Early Media Bridge Technology. Not because it isn't awesome or the right way to do it, but because app\_dial and app\_queue are a bitch to refactor.
+    We are, unfortunately, punting on the Early Media Bridge Technology. Not because it isn't awesome or the right way to do it, but because app_dial and app_queue are a bitch to refactor.
 
       
 [//]: # (end-note)
@@ -815,9 +815,9 @@ channel private
 * Parking bridges are found in a container by parking lot name.
 * Parking lots can be configured with COLP information.
 * The parking tech has extra methods to manage the parking lot:
-	+ move\_bridged\_channel\_to\_parking,
-	+ move\_bridged\_channel\_from\_parking,
-	+ swap\_bridged\_channel\_with\_parked
+	+ move_bridged_channel_to_parking,
+	+ move_bridged_channel_from_parking,
+	+ swap_bridged_channel_with_parked
 * Actually these extra methods look like they should be part of the base bridge class.
 * Timed out calls leave the parking lot by blind transfer.
 
@@ -835,7 +835,7 @@ channel private
 * Check if it is a parking exten and park instead.
 * Queue action to bridge peer to blind transfer.
 	+ Supply transfering channel, exten@context
-* Peer channel executes blind transfer action. ast\_async\_goto().
+* Peer channel executes blind transfer action. ast_async_goto().
 	+ Channel leaves bridge and starts executing dialplan.
 * Drop non-merge count on host bridge.
 
@@ -853,8 +853,8 @@ channel private
 	+ Bridge times out,
 	+ Bridge non-mergable(to prevent local channel optimization)
 * Dial party C
-* Pull party B bridge\_channel out of the bridge
-* Create an atxfer caretaker thread to see it through. Pass party B bridge\_channel, party C, and early media bridge
+* Pull party B bridge_channel out of the bridge
+* Create an atxfer caretaker thread to see it through. Pass party B bridge_channel, party C, and early media bridge
 	+ The early media bridge is not really viable here unless we want to allow it to be able to keep going with no caller.
 	+ If party B hangs up before party C answers we need to save party B channel name, release party B channel, and wait the timeout for party C to answer
 	+ If party C answers within the timeout then we can impart it into the original bridge to talk to party A.
@@ -906,7 +906,7 @@ channel private
 	+ Supply parking channel name, parking channel
 * Peer channel executes park-me action
 * Park-me action queues play slot number or failure message back to peer
-* Park-me action masquerades bridge\_channel to parking channel.
+* Park-me action masquerades bridge_channel to parking channel.
 * Parking channel is put into the parking manager thread.
 
 
@@ -942,7 +942,7 @@ channel private
 ##### FollowMe:
 
 
-* For followme need an event-hook/frame-hook to intercept the AST\_CONTROL\_ANSWER so it can handle the user query. Each outgoing channel needs to have its own timer so it can drop out if it isn't answered. The main followme thread also has a timer to dump the next round of calls into the early-media bridge.
+* For followme need an event-hook/frame-hook to intercept the AST_CONTROL_ANSWER so it can handle the user query. Each outgoing channel needs to have its own timer so it can drop out if it isn't answered. The main followme thread also has a timer to dump the next round of calls into the early-media bridge.
 
 
 ##### Queue:
@@ -1066,7 +1066,7 @@ Call pickup occurs entirely before a bridge is formed, therefore it does not bel
 ### Invoking bridges from multiple applications
 
 
-Since we're concerned with the operation of the actual bridge, it does not matter how the bridge gets invoked. Whether app\_dial, app\_queue, or app\_followme is used to create the bridge, it makes no difference in the way the bridge ends up operating. This also means the various forms of call origination don't need to be tested, either.
+Since we're concerned with the operation of the actual bridge, it does not matter how the bridge gets invoked. Whether app_dial, app_queue, or app_followme is used to create the bridge, it makes no difference in the way the bridge ends up operating. This also means the various forms of call origination don't need to be tested, either.
 
 
 Common elements to check during tests
@@ -1099,22 +1099,22 @@ High Level Bridging construction tasks:
 ---------------------------------------
 
 
-* **DONE** Change ast\_bridge\_call callers to not expect getting peer back. Part of this is to add an optional goto dialplan location datastore to set where the peer should go when it exits the bridge. The location datastore is removed if a channel exits with AST\_SOFTHANGUP\_ASYNCGOTO set or the channel is masqueraded. Part of this is to implement the self managing bridge functionality.
+* **DONE** Change ast_bridge_call callers to not expect getting peer back. Part of this is to add an optional goto dialplan location datastore to set where the peer should go when it exits the bridge. The location datastore is removed if a channel exits with AST_SOFTHANGUP_ASYNCGOTO set or the channel is masqueraded. Part of this is to implement the self managing bridge functionality.
 
 
 * **DONE** Make all bridge technologies have a bridging thread to handle bridge restructuring tasks like smart bridge and bridge merges. When the bridge thread is not being used to restructure the
 
 
-* **DONE** Implement a v-method table to subclass struct ast\_bridge. Parking, Queues, ConfBridge, and other holding bridges would then be able to subclass ast\_bridge to allow merge/moves between bridges.
+* **DONE** Implement a v-method table to subclass struct ast_bridge. Parking, Queues, ConfBridge, and other holding bridges would then be able to subclass ast_bridge to allow merge/moves between bridges.
 
 
-* **DONE**(except for the role support in softmix. It won't be needed until much later if ever.): Add control frame support/processing. Part of this needs to add AST\_CONTROL\_SRCUPDATE generation on 1-1 bridging. Part of this needs to add the caller role flag for the initial role flags support. Mark normal channels with the peer role flag and respect it. Initially all channels not in a ConfBridge will be marked as a peer.
+* **DONE**(except for the role support in softmix. It won't be needed until much later if ever.): Add control frame support/processing. Part of this needs to add AST_CONTROL_SRCUPDATE generation on 1-1 bridging. Part of this needs to add the caller role flag for the initial role flags support. Mark normal channels with the peer role flag and respect it. Initially all channels not in a ConfBridge will be marked as a peer.
 
 
 * **DONE** Add bridge CLI commands. Part is to add bridge id support. How unique does the bridge id need to be? UUID, hostname/timestamp/sequence-no, timestamp/sequence-no, or just sequence-no AMI Transfer start/complete events. Implements the global bridges ao2 container. This container is needed for ConfBridge, Parking, BridgeWait, and Queue to find bridges by name. As a consequence of this, bridges must explicitly know when to die rather than counting on the ao2 reference count to drop to zero.
 
 
-* **DONE** Create the Basic bridge subclass. This bridge enables the DTMF features controlled by features.conf: One-touch-parking, Blind transfer, attended transfer, monitor-recording, mixmonitor-recording, dynamic features. The Basic bridge subclass pulls most of the code from ast\_bridge\_call into itself.
+* **DONE** Create the Basic bridge subclass. This bridge enables the DTMF features controlled by features.conf: One-touch-parking, Blind transfer, attended transfer, monitor-recording, mixmonitor-recording, dynamic features. The Basic bridge subclass pulls most of the code from ast_bridge_call into itself.
 
 
 * **DONE** Add bridge and bridge channel hooks for enter/leave/answer/merge/tech-change/empty events. An answer hook will not be usable until the early bridge is implemented.
@@ -1123,13 +1123,13 @@ High Level Bridging construction tasks:
 * **DONE** (save for complete) Add create/enter/leave/destroy bridge stasis/AMI events. The complete event is needed to indicate if the transfer was successful, aborted, or was turned into a threeway.
 
 
-* Get local channel optimization functional again. I would like to pull chan\_local into the bridging module. There seem to be times where it could be useful to create a local channel structure and impart the channels into different bridges or put one end into a bridge and the other executes an application. Pulling chal\_local into the bridge module could wait until I actually have a real need to do so.
+* Get local channel optimization functional again. I would like to pull chan_local into the bridging module. There seem to be times where it could be useful to create a local channel structure and impart the channels into different bridges or put one end into a bridge and the other executes an application. Pulling chal_local into the bridge module could wait until I actually have a real need to do so.
 
 
-* Implement ast\_bridge\_transfer\_blind() and ast\_bridge\_transfer\_attended(). Attended transfer needs to update the caller role flags on peer channels. Attended transfer will need revisiting when parking is reworked.
+* Implement ast_bridge_transfer_blind() and ast_bridge_transfer_attended(). Attended transfer needs to update the caller role flags on peer channels. Attended transfer will need revisiting when parking is reworked.
 
 
-* Get the channel drivers to use the ast\_bridge\_transfer\_blind() and ast\_bridge\_transfer\_attended() calls. This can be a task for each channel driver: chan\_dahdi, chan\_sip, chan\_misdn, etc...
+* Get the channel drivers to use the ast_bridge_transfer_blind() and ast_bridge_transfer_attended() calls. This can be a task for each channel driver: chan_dahdi, chan_sip, chan_misdn, etc...
 
 
 * Implement early bridging. I'm now thinking that the early media bridge will turn into just enhancing the dialing API because of the way Page works. Dial/Queue/FollowMe would need to be converted to use the dialing API.
@@ -1167,7 +1167,7 @@ High Level Bridging construction tasks:
 * Implement DTMF one touch record. Monitor and MixMonitor support.
 
 
-* Get chan\_agent working again since the chan->\_bridge pointer is no more. Must be done after early bridging so the agent channel can Pickup the caller.
+* Get chan_agent working again since the chan->_bridge pointer is no more. Must be done after early bridging so the agent channel can Pickup the caller.
 
 
 * Lastly native bridging technology.

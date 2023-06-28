@@ -245,7 +245,7 @@ Transfers/redirections
 !!! note 
     The behavior described here is highly dependent on the phone used by Bob. Some phones may react to a failed blind transfer by attempting to revive the initial call, while others may unconditionally end their call on a blind transfer no matter the outcome.
 
-    Also note that the scenario described below will not work in current Asterisk because chan\_sip "fakes" the sip-frag NOTIFY to Bob saying the call to Carol succeeded before Asterisk actually knows the outcome of the call. Alice and Bob will not be reconnected when Carol is found to be busy.
+    Also note that the scenario described below will not work in current Asterisk because chan_sip "fakes" the sip-frag NOTIFY to Bob saying the call to Carol succeeded before Asterisk actually knows the outcome of the call. Alice and Bob will not be reconnected when Carol is found to be busy.
 
       
 [//]: # (end-note)
@@ -277,7 +277,7 @@ Transfers/redirections
 !!! note 
     The behavior described here is highly dependent on the phone used by Bob. Some phones may react to a failed blind transfer by attempting to revive the initial call, while others may unconditionally end their call on a blind transfer no matter the outcome.
 
-    Note that unlike the previous scenario, this one actually should work in Asterisk's current chan\_sip.
+    Note that unlike the previous scenario, this one actually should work in Asterisk's current chan_sip.
 
       
 [//]: # (end-note)
@@ -311,7 +311,7 @@ Transfers/redirections
 
     The behavior described here is highly dependent on the phone used by Bob. Some phones may react to a failed blind transfer by attempting to revive the initial call, while others may unconditionally end their call on a blind transfer no matter the outcome.
 
-    Also note that the scenario described below will not work in current Asterisk because chan\_sip "fakes" the sip-frag NOTIFY to Bob saying the call to Carol succeeded before Asterisk actually knows the outcome of the call. Alice and Bob will not be reconnected when Carol does not answer.
+    Also note that the scenario described below will not work in current Asterisk because chan_sip "fakes" the sip-frag NOTIFY to Bob saying the call to Carol succeeded before Asterisk actually knows the outcome of the call. Alice and Bob will not be reconnected when Carol does not answer.
 
       
 [//]: # (end-note)
@@ -503,7 +503,7 @@ Registrations
 
 
 !!! note 
-    The following scenarios were created under the assumption that the new chan\_sip will, like the current chan\_sip, initially only support a single contact URI per address of record. If multiple contacts are allowed per AoR, then there are several further use cases that could be listed.
+    The following scenarios were created under the assumption that the new chan_sip will, like the current chan_sip, initially only support a single contact URI per address of record. If multiple contacts are allowed per AoR, then there are several further use cases that could be listed.
 
       
 [//]: # (end-note)
@@ -552,7 +552,7 @@ Subscriptions
 
 
 !!! note 
-    The tests described below exercise features that the current Asterisk chan\_sip has. It may be worthwhile to pursue more options in the new chan\_sip, especially as it pertains to PUBLISH support.
+    The tests described below exercise features that the current Asterisk chan_sip has. It may be worthwhile to pursue more options in the new chan_sip, especially as it pertains to PUBLISH support.
 
       
 [//]: # (end-note)

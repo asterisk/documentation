@@ -14,7 +14,7 @@ pageid: 26478200
 
 
 
-Asterisk 12 chan\_pjsip CLI Specification
+Asterisk 12 chan_pjsip CLI Specification
 =========================================
 
 Here we are specifying what the use and output of each command should look like.

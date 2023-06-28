@@ -62,28 +62,28 @@ c
 /\*!
  \* \brief Opaque structure representing an RFC 3265 SIP subscription
  \*/
-struct ast\_sip\_subscription;
+struct ast_sip_subscription;
 
 /\*!
  \* \brief Role for the subscription that is being created
  \*/
-enum ast\_sip\_subscription\_role {
+enum ast_sip_subscription_role {
  /\* Sending SUBSCRIBEs, receiving NOTIFYs \*/
- AST\_SIP\_SUBSCRIBER,
+ AST_SIP_SUBSCRIBER,
  /\* Sending NOTIFYs, receiving SUBSCRIBEs \*/
- AST\_SIP\_NOTIFIER,
+ AST_SIP_NOTIFIER,
 };
 
 /\*!
- \* \brief Create a new ast\_sip\_subscription structure
+ \* \brief Create a new ast_sip_subscription structure
  \*
  \* \param handler The subsription handler for this subscription
  \* \param role Whether we are acting as subscriber or notifier for this subscription
  \* \param endpoint The endpoint involved in this subscription
  \* \param rdata If acting as a notifier, the SUBSCRIBE request that triggered subscription creation
  \*/
-struct ast\_sip\_subscription \*ast\_sip\_create\_subscription(const struct ast\_sip\_subscription\_handler \*handler,
- enum ast\_sip\_subscription\_role role, struct ast\_sip\_endpoint \*endpoint, pjsip\_rx\_data \*rdata);
+struct ast_sip_subscription \*ast_sip_create_subscription(const struct ast_sip_subscription_handler \*handler,
+ enum ast_sip_subscription_role role, struct ast_sip_endpoint \*endpoint, pjsip_rx_data \*rdata);
 
 
 /\*!
@@ -92,7 +92,7 @@ struct ast\_sip\_subscription \*ast\_sip\_create\_subscription(const struct ast\
  \* \retval NULL Could not get endpoint
  \* \retval non-NULL The endpoint
  \*/
-struct ast\_sip\_endpoint \*ast\_sip\_subscription\_get\_endpoint(struct ast\_sip\_subscription \*sub);
+struct ast_sip_endpoint \*ast_sip_subscription_get_endpoint(struct ast_sip_subscription \*sub);
 
 /\*!
  \* \brief Get the serializer for the subscription
@@ -104,7 +104,7 @@ struct ast\_sip\_endpoint \*ast\_sip\_subscription\_get\_endpoint(struct ast\_si
  \* \retval NULL Failure
  \* \retval non-NULL The subscription's serializer
  \*/
-struct ast\_sip\_serializer \*ast\_sip\_subscription\_get\_serializer(struct ast\_sip\_subscription \*sub);
+struct ast_sip_serializer \*ast_sip_subscription_get_serializer(struct ast_sip_subscription \*sub);
 
 /\*!
  \* \brief Get the underlying PJSIP evsub structure
@@ -112,14 +112,14 @@ struct ast\_sip\_serializer \*ast\_sip\_subscription\_get\_serializer(struct ast
  \* This is useful when wishing to call PJSIP's API calls in order to
  \* create SUBSCRIBEs, NOTIFIES, etc. as well as get subscription state
  \*
- \* This function, as well as all methods called on the pjsip\_evsub should
+ \* This function, as well as all methods called on the pjsip_evsub should
  \* be done in a SIP servant thread.
  \*
  \* \param sub The subscription
  \* \retval NULL Failure
- \* \retval non-NULL The underlying pjsip\_evsub
+ \* \retval non-NULL The underlying pjsip_evsub
  \*/
-pjsip\_evsub \*ast\_sip\_subscription\_get\_evsub(struct ast\_sip\_subscription \*sub);
+pjsip_evsub \*ast_sip_subscription_get_evsub(struct ast_sip_subscription \*sub);
 
 /\*!
  \* \brief Send a request created via a PJSIP evsub method
@@ -132,16 +132,16 @@ pjsip\_evsub \*ast\_sip\_subscription\_get\_evsub(struct ast\_sip\_subscription 
  \* \retval 0 Success
  \* \retval non-zero Failure
  \*/
-int ast\_sip\_subscription\_send\_request(struct ast\_sip\_subscription \*sub, pjsip\_tx\_data \*tdata);
+int ast_sip_subscription_send_request(struct ast_sip_subscription \*sub, pjsip_tx_data \*tdata);
 
 /\*!
- \* \brief Alternative for ast\_datastore\_alloc()
+ \* \brief Alternative for ast_datastore_alloc()
  \*
- \* There are two major differences between this and ast\_datastore\_alloc()
+ \* There are two major differences between this and ast_datastore_alloc()
  \* 1) This allocates a refcounted object
  \* 2) This will fill in a uid if one is not provided
  \*
- \* DO NOT call ast\_datastore\_free() on a datastore allocated in this
+ \* DO NOT call ast_datastore_free() on a datastore allocated in this
  \* way since that function will attempt to free the datastore rather
  \* than play nicely with its refcount.
  \*
@@ -150,33 +150,33 @@ int ast\_sip\_subscription\_send\_request(struct ast\_sip\_subscription \*sub, p
  \* \retval NULL Failed to allocate datastore
  \* \retval non-NULL Newly allocated datastore
  \*/
-struct ast\_datastore \*ast\_sip\_subscription\_alloc\_datastore(const struct ast\_datastore\_info \*info, const char \*uid);
+struct ast_datastore \*ast_sip_subscription_alloc_datastore(const struct ast_datastore_info \*info, const char \*uid);
 
 /\*!
  \* \brief Add a datastore to a SIP subscription
  \*
  \* Note that SIP uses reference counted datastores. The datastore passed into this function
- \* must have been allocated using ao2\_alloc() or there will be serious problems.
+ \* must have been allocated using ao2_alloc() or there will be serious problems.
  \*
  \* \param subscription The ssubscription to add the datastore to
  \* \param datastore The datastore to be added to the subscription
  \* \retval 0 Success
  \* \retval -1 Failure
  \*/
-int ast\_sip\_subscription\_add\_datastore(struct ast\_sip\_subscription \*subscription, struct ast\_datastore \*datastore);
+int ast_sip_subscription_add_datastore(struct ast_sip_subscription \*subscription, struct ast_datastore \*datastore);
 
 /\*!
  \* \brief Retrieve a subscription datastore
  \*
  \* The datastore retrieved will have its reference count incremented. When the caller is done
- \* with the datastore, the reference counted needs to be decremented using ao2\_ref().
+ \* with the datastore, the reference counted needs to be decremented using ao2_ref().
  \*
  \* \param subscription The subscription from which to retrieve the datastore
  \* \param name The name of the datastore to retrieve
  \* \retval NULL Failed to find the specified datastore
  \* \retval non-NULL The specified datastore
  \*/
-struct ast\_datastore \*ast\_sip\_subscription\_get\_datastore(struct ast\_sip\_subscription \*subscription, const char \*name);
+struct ast_datastore \*ast_sip_subscription_get_datastore(struct ast_sip_subscription \*subscription, const char \*name);
 
 /\*!
  \* \brief Remove a subscription datastore from the subscription
@@ -187,7 +187,7 @@ struct ast\_datastore \*ast\_sip\_subscription\_get\_datastore(struct ast\_sip\_
  \* \param subscription The subscription to remove the datastore from
  \* \param name The name of the datastore to remove
  \*/
-void ast\_sip\_subscription\_remove\_datastore(struct ast\_sip\_subscription \*subscription, const char \*name);
+void ast_sip_subscription_remove_datastore(struct ast_sip_subscription \*subscription, const char \*name);
 
 
 ```
@@ -223,20 +223,20 @@ c
  \* will automatically respond with a 200 OK response if we do
  \* not provide it with any data.
  \*/
-struct ast\_sip\_subscription\_response\_data {
+struct ast_sip_subscription_response_data {
  /\*! Status code of the response \*/
- int status\_code;
+ int status_code;
  /\*! Optional status text \*/
- const char \*status\_text;
+ const char \*status_text;
  /\*! Optional additional headers to add to the response \*/
- struct ast\_variable \*headers;
+ struct ast_variable \*headers;
  /\*! Optional body to add to the response \*/
- struct ast\_sip\_body \*body;
+ struct ast_sip_body \*body;
 };
 
-struct ast\_sip\_subscription\_handler {
+struct ast_sip_subscription_handler {
  /\*! The name of the event this handler deals with \*/
- const char \*event\_name;
+ const char \*event_name;
  /\*! The types of body this handler accepts \*/
  const char \*accept[];
 
@@ -249,7 +249,7 @@ struct ast\_sip\_subscription\_handler {
  \* during this callback. This callback is useful for performing any
  \* necessary cleanup
  \*/
- void (\*subscription\_shutdown)(struct ast\_sip\_subscription \*subscription);
+ void (\*subscription_shutdown)(struct ast_sip_subscription \*subscription);
 
  /\*!
  \* \brief Called when a SUBSCRIBE arrives in order to create a new subscription
@@ -257,10 +257,10 @@ struct ast\_sip\_subscription\_handler {
  \* This is a notifier callback.
  \*
  \* If the notifier wishes to accept the subscription, then it can create
- \* a new ast\_sip\_subscription to do so. 
+ \* a new ast_sip_subscription to do so. 
  \*
  \* If the notifier chooses to create a new subscription, then it must accept
- \* the incoming subscription using pjsip\_evsub\_accept() and it must also
+ \* the incoming subscription using pjsip_evsub_accept() and it must also
  \* send an initial NOTIFY with the current subscription state.
  \*
  \* \param endpoint The endpoint from which we received the SUBSCRIBE
@@ -268,8 +268,8 @@ struct ast\_sip\_subscription\_handler {
  \* \retval NULL The SUBSCRIBE has not been accepted
  \* \retval non-NULL The newly-created subscription
  \*/
- struct ast\_sip\_subscription \*(\*new\_subscribe)(struct ast\_sip\_endpoint \*endpoint,
- pjsip\_rx\_data \*rdata);
+ struct ast_sip_subscription \*(\*new_subscribe)(struct ast_sip_endpoint \*endpoint,
+ pjsip_rx_data \*rdata);
 
  /\*!
  \* \brief Called when an endpoint renews a subscription.
@@ -284,8 +284,8 @@ struct ast\_sip\_subscription\_handler {
  \* \retval NULL Allow the default 200 OK response to be sent
  \* \retval non-NULL Send a response with the specified data present
  \*/
- struct ast\_sip\_subscription\_response\_data \*(\*resubscribe)(struct ast\_sip\_subscription \*sub,
- pjsip\_rx\_data \*rdata);
+ struct ast_sip_subscription_response_data \*(\*resubscribe)(struct ast_sip_subscription \*sub,
+ pjsip_rx_data \*rdata);
 
  /\*!
  \* \brief Called when a subscription times out.
@@ -297,7 +297,7 @@ struct ast\_sip\_subscription\_handler {
  \*
  \* \param sub The subscription that has timed out
  \*/
- void (\*subscription\_timeout)(struct ast\_sip\_subscription \*sub);
+ void (\*subscription_timeout)(struct ast_sip_subscription \*sub);
 
  /\*!
  \* \brief Called when a subscription is terminated via a SUBSCRIBE request
@@ -311,7 +311,7 @@ struct ast\_sip\_subscription\_handler {
  \* \param sub The subscription being terminated
  \* \param rdata The SUBSCRIBE request that terminated the subscription
  \*/
- void (\*subscription\_terminated)(struct ast\_sip\_subscription \*sub, pjsip\_rx\_data \*rdata);
+ void (\*subscription_terminated)(struct ast_sip_subscription \*sub, pjsip_rx_data \*rdata);
 
  /\*!
  \* \brief Called when a subscription handler's outbound NOTIFY receives a response
@@ -321,7 +321,7 @@ struct ast\_sip\_subscription\_handler {
  \* \param sub The subscription
  \* \param rdata The NOTIFY response
  \*/
- void (\*notify\_response)(struct ast\_sip\_subscription \*sub, pjsip\_rx\_data \*rdata);
+ void (\*notify_response)(struct ast_sip_subscription \*sub, pjsip_rx_data \*rdata);
 
  /\*!
  \* \brief Called when a subscription handler receives an inbound NOTIFY
@@ -338,22 +338,22 @@ struct ast\_sip\_subscription\_handler {
  \* \retval NULL Have the framework send the default 200 OK response
  \* \retval non-NULL Send a response with the specified data
  \*/
- struct ast\_sip\_subscription\_response\_data \*(\*notify\_request)(struct ast\_sip\_subscription \*sub,
- pjsip\_rx\_data \*rdata);
+ struct ast_sip_subscription_response_data \*(\*notify_request)(struct ast_sip_subscription \*sub,
+ pjsip_rx_data \*rdata);
 
  /\*!
  \* \brief Called when it is time for a subscriber to resubscribe
  \*
  \* This is a subscriber callback.
  \*
- \* The subscriber can reresh the subscription using the pjsip\_evsub\_initiate()
+ \* The subscriber can reresh the subscription using the pjsip_evsub_initiate()
  \* function.
  \*
  \* \param sub The subscription to refresh
  \* \retval 0 Success
  \* \retval non-zero Failure
  \*/
- int (\*refresh\_subscription)(struct ast\_sip\_subscription \*sub);
+ int (\*refresh_subscription)(struct ast_sip_subscription \*sub);
 };
 
 /\*!
@@ -362,12 +362,12 @@ struct ast\_sip\_subscription\_handler {
  \* \retval 0 Handler was registered successfully
  \* \retval non-zero Handler was not registered successfully
  \*/
-int ast\_sip\_register\_subscription\_handler(const struct ast\_sip\_subscription\_handler \*handler);
+int ast_sip_register_subscription_handler(const struct ast_sip_subscription_handler \*handler);
 
 /\*!
  \* \brief Unregister a subscription handler
  \*/
-void ast\_sip\_unregister\_subscription\_handler(const struct ast\_sip\_subscription\_handler \*handler);
+void ast_sip_unregister_subscription_handler(const struct ast_sip_subscription_handler \*handler);
 
 
 ```
@@ -404,12 +404,12 @@ c
 /\*!
  \* \brief Opaque structure representing a publication
  \*/
-struct ast\_sip\_publication;
+struct ast_sip_publication;
 
 /\*!
  \* \brief Callbacks that publication handlers will define
  \*/
-struct ast\_sip\_publication\_handler {
+struct ast_sip_publication_handler {
  /\*!
  \* \brief Called when a PUBLISH to establish a new publication arrives.
  \*
@@ -418,7 +418,7 @@ struct ast\_sip\_publication\_handler {
  \* \retval NULL PUBLISH was not accepted
  \* \retval non-NULL New publication
  \*/
- struct ast\_sip\_publication \*(\*new\_publication)(struct ast\_sip\_endpoint \*endpoint, pjsip\_rx\_data \*rdata);
+ struct ast_sip_publication \*(\*new_publication)(struct ast_sip_endpoint \*endpoint, pjsip_rx_data \*rdata);
  /\*!
  \* \brief Called when a PUBLISH for an existing publication arrives.
  \*
@@ -431,11 +431,11 @@ struct ast\_sip\_publication\_handler {
  \* \retval 0 Publication was accepted
  \* \retval non-zero Publication was denied
  \*/
- int (\*publish\_refresh)(struct ast\_sip\_publication \*pub, pjsip\_rx\_data \*rdata);
+ int (\*publish_refresh)(struct ast_sip_publication \*pub, pjsip_rx_data \*rdata);
  /\*!
  \* \brief Called when a publication has reached its expiration.
  \*/
- void (\*publish\_expire)(struct ast\_sip\_publication \*pub);
+ void (\*publish_expire)(struct ast_sip_publication \*pub);
  /\*!
  \* \brief Called when a PUBLISH arrives to terminate a publication.
  \*
@@ -444,7 +444,7 @@ struct ast\_sip\_publication\_handler {
  \* \param pub The publication that is terminating
  \* \param rdata The PUBLISH request terminating the publication
  \*/
- void (\*publish\_termination)(struct ast\_sip\_publication \*pub, pjsip\_rx\_data \*rdata);
+ void (\*publish_termination)(struct ast_sip_publication \*pub, pjsip_rx_data \*rdata);
 };
 
 /\*!
@@ -457,7 +457,7 @@ struct ast\_sip\_publication\_handler {
  \* \retval NULL Failed to create a publication
  \* \retval non-NULL The newly-created publication
  \*/
-struct ast\_sip\_publication \*ast\_sip\_create\_publication(struct ast\_sip\_endpoint \*endpoint, pjsip\_rx\_data \*rdata);
+struct ast_sip_publication \*ast_sip_create_publication(struct ast_sip_endpoint \*endpoint, pjsip_rx_data \*rdata);
 
 /\*!
  \* \brief Given a publication, get the associated endpoint
@@ -466,28 +466,28 @@ struct ast\_sip\_publication \*ast\_sip\_create\_publication(struct ast\_sip\_en
  \* \retval NULL Failure
  \* \retval non-NULL The associated endpoint
  \*/
-struct ast\_sip\_endpoint \*ast\_sip\_publication\_get\_endpoint(struct ast\_sip\_publication \*pub);
+struct ast_sip_endpoint \*ast_sip_publication_get_endpoint(struct ast_sip_publication \*pub);
 
 /\*!
  \* \brief Create a response to an inbound PUBLISH
  \*
- \* The created response can be sent using pjsip\_endpt\_send\_response() or pjsip\_endpt\_send\_response2()
+ \* The created response can be sent using pjsip_endpt_send_response() or pjsip_endpt_send_response2()
  \*
  \* \param pub The publication
  \* \param status code The status code to place in the response
  \* \param rdata The request to which the response is being made
  \* \param[out] tdat The created response
  \*/
-int ast\_sip\_publication\_create\_response(struct ast\_sip\_publication \*pub, int status\_code, pjsip\_rx\_data \*rdata);
+int ast_sip_publication_create_response(struct ast_sip_publication \*pub, int status_code, pjsip_rx_data \*rdata);
 
 /\*!
- \* \brief Alternative for ast\_datastore\_alloc()
+ \* \brief Alternative for ast_datastore_alloc()
  \*
- \* There are two major differences between this and ast\_datastore\_alloc()
+ \* There are two major differences between this and ast_datastore_alloc()
  \* 1) This allocates a refcounted object
  \* 2) This will fill in a uid if one is not provided
  \*
- \* DO NOT call ast\_datastore\_free() on a datastore allocated in this
+ \* DO NOT call ast_datastore_free() on a datastore allocated in this
  \* way since that function will attempt to free the datastore rather
  \* than play nicely with its refcount.
  \*
@@ -496,33 +496,33 @@ int ast\_sip\_publication\_create\_response(struct ast\_sip\_publication \*pub, 
  \* \retval NULL Failed to allocate datastore
  \* \retval non-NULL Newly allocated datastore
  \*/
-struct ast\_datastore \*ast\_sip\_subscription\_alloc\_datastore(const struct ast\_datastore\_info \*info, const char \*uid);
+struct ast_datastore \*ast_sip_subscription_alloc_datastore(const struct ast_datastore_info \*info, const char \*uid);
 
 /\*!
  \* \brief Add a datastore to a SIP subscription
  \*
  \* Note that SIP uses reference counted datastores. The datastore passed into this function
- \* must have been allocated using ao2\_alloc() or there will be serious problems.
+ \* must have been allocated using ao2_alloc() or there will be serious problems.
  \*
  \* \param subscription The ssubscription to add the datastore to
  \* \param datastore The datastore to be added to the subscription
  \* \retval 0 Success
  \* \retval -1 Failure
  \*/
-int ast\_sip\_subscription\_add\_datastore(struct ast\_sip\_subscription \*subscription, struct ast\_datastore \*datastore);
+int ast_sip_subscription_add_datastore(struct ast_sip_subscription \*subscription, struct ast_datastore \*datastore);
 
 /\*!
  \* \brief Retrieve a subscription datastore
  \*
  \* The datastore retrieved will have its reference count incremented. When the caller is done
- \* with the datastore, the reference counted needs to be decremented using ao2\_ref().
+ \* with the datastore, the reference counted needs to be decremented using ao2_ref().
  \*
  \* \param subscription The subscription from which to retrieve the datastore
  \* \param name The name of the datastore to retrieve
  \* \retval NULL Failed to find the specified datastore
  \* \retval non-NULL The specified datastore
  \*/
-struct ast\_datastore \*ast\_sip\_subscription\_get\_datastore(struct ast\_sip\_subscription \*subscription, const char \*name);
+struct ast_datastore \*ast_sip_subscription_get_datastore(struct ast_sip_subscription \*subscription, const char \*name);
 
 /\*!
  \* \brief Remove a subscription datastore from the subscription
@@ -533,7 +533,7 @@ struct ast\_datastore \*ast\_sip\_subscription\_get\_datastore(struct ast\_sip\_
  \* \param subscription The subscription to remove the datastore from
  \* \param name The name of the datastore to remove
  \*/
-void ast\_sip\_subscription\_remove\_datastore(struct ast\_sip\_subscription \*subscription, const char \*name);
+void ast_sip_subscription_remove_datastore(struct ast_sip_subscription \*subscription, const char \*name);
 
 
 ```

@@ -24,10 +24,10 @@ Deprecated Modules
 
 | **Module Name** | Deprecated Version | Removal Version | Notes |
 | --- | --- | --- | --- |
-| app\_meetme | 19 | 21 | Requested to be extended from ViciDial, under consideration, paused for now |
-| app\_getcpeid | 16 | - | Remaining in tree as deprecated, being maintained by Naveen Albert, if no longer maintained then eligible for removal |
-| app\_adsiprog | 16 | - | Remaining in tree as deprecated, being maintained by Naveen Albert, if no longer maintained then eligible for removal |
-| res\_adsi | 16 | - | Remaining in tree as deprecated, being maintained by Naveen Albert, if no longer maintained then eligible for removal |
+| app_meetme | 19 | 21 | Requested to be extended from ViciDial, under consideration, paused for now |
+| app_getcpeid | 16 | - | Remaining in tree as deprecated, being maintained by Naveen Albert, if no longer maintained then eligible for removal |
+| app_adsiprog | 16 | - | Remaining in tree as deprecated, being maintained by Naveen Albert, if no longer maintained then eligible for removal |
+| res_adsi | 16 | - | Remaining in tree as deprecated, being maintained by Naveen Albert, if no longer maintained then eligible for removal |
 
 Removed Modules
 ===============
@@ -36,29 +36,29 @@ Removed Modules
 
 | **Module Name** | Deprecated Version | Removed Version | Notes |
 | --- | --- | --- | --- |
-| app\_osplookup | 19 | 21 |  |
-| chan\_alsa | 19 | 21 |  |
-| chan\_mgcp | 19 | 21 |  |
-| chan\_skinny | 19 | 21 |  |
-| res\_pktccops | 19 | 21 |  |
-| app\_macro | 16 | 21 |  |
-| chan\_sip | 17 | 21 |  |
-| res\_monitor | 16 | 21 |  |
-| cdr\_mysql | 1.8 | 19 |  |
-| app\_mysql | 1.8 | 19 |  |
-| app\_ices | 16 | 19 |  |
-| app\_fax | 16 | 19 |  |
-| app\_url | 16 | 19 |  |
-| app\_image | 16 | 19 |  |
-| app\_nbscat | 16 | 19 |  |
-| app\_dahdiras | 16 | 19 |  |
-| cdr\_syslog | 16 | 19 |  |
-| chan\_oss | 16 | 19 |  |
-| chan\_phone | 16 | 19 |  |
-| chan\_nbs | 16 | 19 |  |
-| chan\_misdn | 16 | 19 |  |
-| chan\_vpb | 16 | 19 |  |
-| res\_config\_sqlite | 16 | 19 |  |
+| app_osplookup | 19 | 21 |  |
+| chan_alsa | 19 | 21 |  |
+| chan_mgcp | 19 | 21 |  |
+| chan_skinny | 19 | 21 |  |
+| res_pktccops | 19 | 21 |  |
+| app_macro | 16 | 21 |  |
+| chan_sip | 17 | 21 |  |
+| res_monitor | 16 | 21 |  |
+| cdr_mysql | 1.8 | 19 |  |
+| app_mysql | 1.8 | 19 |  |
+| app_ices | 16 | 19 |  |
+| app_fax | 16 | 19 |  |
+| app_url | 16 | 19 |  |
+| app_image | 16 | 19 |  |
+| app_nbscat | 16 | 19 |  |
+| app_dahdiras | 16 | 19 |  |
+| cdr_syslog | 16 | 19 |  |
+| chan_oss | 16 | 19 |  |
+| chan_phone | 16 | 19 |  |
+| chan_nbs | 16 | 19 |  |
+| chan_misdn | 16 | 19 |  |
+| chan_vpb | 16 | 19 |  |
+| res_config_sqlite | 16 | 19 |  |
 | conf2ael | 16 | 19 |  |
 | muted | 16 | 19 |  |
 

@@ -6,17 +6,17 @@ pageid: 29393398
 Background
 ----------
 
-Asterisk has permitted the exchange of device and mailbox state for many versions. This has normally been accomplished using the res\_xmpp module for instances across networks or using res\_corosync for instances on the same network. This has required, in some cases, an extreme amount of work to setup. In the case of res\_xmpp this also adds another point of failure for the exchange in the form of the XMPP server itself. The res\_pjsip\_publish\_asterisk module on the other hand does not suffer from this.
+Asterisk has permitted the exchange of device and mailbox state for many versions. This has normally been accomplished using the res_xmpp module for instances across networks or using res_corosync for instances on the same network. This has required, in some cases, an extreme amount of work to setup. In the case of res_xmpp this also adds another point of failure for the exchange in the form of the XMPP server itself. The res_pjsip_publish_asterisk module on the other hand does not suffer from this.
 
 Operation
 ---------
 
-The res\_pjsip\_publish\_asterisk module establishes an optionally bidirectional or unidirectional relationship between Asterisk instances. When the device or mailbox state on one Asterisk changes it is sent to the other Asterisk instance using a PUBLISH message containing an Asterisk specific body. This body is comprised of JSON and contains the information required to reflect the remote state change. For situations where you may not want to expose all states or you may not want to allow all states to be received you can optionally filter using a regular expression. This limits the scope of traffic.
+The res_pjsip_publish_asterisk module establishes an optionally bidirectional or unidirectional relationship between Asterisk instances. When the device or mailbox state on one Asterisk changes it is sent to the other Asterisk instance using a PUBLISH message containing an Asterisk specific body. This body is comprised of JSON and contains the information required to reflect the remote state change. For situations where you may not want to expose all states or you may not want to allow all states to be received you can optionally filter using a regular expression. This limits the scope of traffic.
 
 Configuration
 -------------
 
-Configuring things to exchange state requires a few different objects: endpoint, publish, asterisk-publication, and optionally auth. These all configure a specific part in the exchange. An endpoint must be configured as a fundamental part of PJSIP is that **all** incoming requests are associated with an endpoint. A publish object tells the res\_pjsip\_outbound\_publish where to send the PUBLISH and what type of PUBLISH message to send. An asterisk-publication object configures handling of PUBLISH messages, including whether they are permitted and from whom. Last you can optionally use authentication so that PUBLISH messages are challenged for credentials.
+Configuring things to exchange state requires a few different objects: endpoint, publish, asterisk-publication, and optionally auth. These all configure a specific part in the exchange. An endpoint must be configured as a fundamental part of PJSIP is that **all** incoming requests are associated with an endpoint. A publish object tells the res_pjsip_outbound_publish where to send the PUBLISH and what type of PUBLISH message to send. An asterisk-publication object configures handling of PUBLISH messages, including whether they are permitted and from whom. Last you can optionally use authentication so that PUBLISH messages are challenged for credentials.
 
 Example Configuration
 ---------------------
@@ -41,25 +41,25 @@ type=endpoint
 
 [instance2-devicestate]
 type=outbound-publish
-server\_uri=sip:instance1@172.16.10.2
+server_uri=sip:instance1@172.16.10.2
 event=asterisk-devicestate
 
 [instance2-mwi]
 type=outbound-publish
-server\_uri=sip:instance1@172.16.10.2
+server_uri=sip:instance1@172.16.10.2
 event=asterisk-mwi
  
 [instance2]
 type=inbound-publication
-event\_asterisk-devicestate=instance2
-event\_asterisk-mwi=instance2
+event_asterisk-devicestate=instance2
+event_asterisk-mwi=instance2
 
 [instance2]
 type=asterisk-publication
-devicestate\_publish=instance2-devicestate
-mailboxstate\_publish=instance2-mwi
-device\_state=yes
-mailbox\_state=yes
+devicestate_publish=instance2-devicestate
+mailboxstate_publish=instance2-mwi
+device_state=yes
+mailbox_state=yes
 
 ```
 
@@ -84,25 +84,25 @@ type=endpoint
 
 [instance1-devicestate]
 type=outbound-publish
-server\_uri=sip:instance2@172.16.10.1
+server_uri=sip:instance2@172.16.10.1
 event=asterisk-devicestate
  
 [instance1-mwi]
 type=outbound-publish
-server\_uri=sip:instance2@172.16.10.1
+server_uri=sip:instance2@172.16.10.1
 event=asterisk-mwi
  
 [instance1]
 type=inbound-publication
-event\_asterisk-devicestate=instance1
-event\_asterisk-mwi=instance1
+event_asterisk-devicestate=instance1
+event_asterisk-mwi=instance1
 
 [instance1]
 type=asterisk-publication
-devicestate\_publish=instance1-devicestate
-mailboxstate\_publish=instance1-mwi
-device\_state=yes
-mailbox\_state=yes
+devicestate_publish=instance1-devicestate
+mailboxstate_publish=instance1-mwi
+device_state=yes
+mailbox_state=yes
 
 ```
 
@@ -112,7 +112,7 @@ This configures the second instance to publish device and mailbox state to 'inst
 Filtering
 ---------
 
-As previously mentioned state events can be filtered by the device or mailbox they relate to using a regular expression. This is configured on 'publish' types using '@device\_state\_filter' and '@mailbox\_state\_filter' and on 'asterisk-publication' types using 'device\_state\_filter' and 'mailbox\_state\_filter'. As each event is sent or received the device or mailbox is given to the regular expression and if it does not match the event is stopped.
+As previously mentioned state events can be filtered by the device or mailbox they relate to using a regular expression. This is configured on 'publish' types using '@device_state_filter' and '@mailbox_state_filter' and on 'asterisk-publication' types using 'device_state_filter' and 'mailbox_state_filter'. As each event is sent or received the device or mailbox is given to the regular expression and if it does not match the event is stopped.
 
 #### Example
 
@@ -132,27 +132,27 @@ type=endpoint
 
 [instance1-devicestate]
 type=outbound-publish
-server\_uri=sip:instance2@172.16.10.1
+server_uri=sip:instance2@172.16.10.1
 event=asterisk-devicestate
 
 [instance1-mwi]
 type=outbound-publish
-server\_uri=sip:instance2@172.16.10.1
+server_uri=sip:instance2@172.16.10.1
 event=asterisk-mwi
  
 [instance1]
 type=inbound-publication
-event\_asterisk-devicestate=instance1
-event\_asterisk-mwi=instance1
+event_asterisk-devicestate=instance1
+event_asterisk-mwi=instance1
 
 [instance1]
 type=asterisk-publication
-devicestate\_publish=instance1-devicestate
-mailboxstate\_publish=instance1-mwi
-device\_state=yes
-device\_state\_filter=^PJSIP/
-mailbox\_state=yes
-mailbox\_state\_filter=^1000
+devicestate_publish=instance1-devicestate
+mailboxstate_publish=instance1-mwi
+device_state=yes
+device_state_filter=^PJSIP/
+mailbox_state=yes
+mailbox_state_filter=^1000
  
 
 ```
@@ -174,5 +174,5 @@ This builds upon the initial configuration for instance #2 but adds filtering of
 Fresh Startup
 -------------
 
-When the res\_pjsip\_publish\_asterisk module is loaded it will send its own current states for all applicable devices and mailboxes to all configured 'publish' types. Instances may optionally be configured to send a refresh request to 'publish' types as well by setting the 'devicestate\_publish' and/or 'mailboxstate\_publish' option in the 'asterisk-publication' type. This refresh request causes the remote instances to send current states for all applicable devices and mailboxes back, bringing the potentially newly started Asterisk up to date with its peers.
+When the res_pjsip_publish_asterisk module is loaded it will send its own current states for all applicable devices and mailboxes to all configured 'publish' types. Instances may optionally be configured to send a refresh request to 'publish' types as well by setting the 'devicestate_publish' and/or 'mailboxstate_publish' option in the 'asterisk-publication' type. This refresh request causes the remote instances to send current states for all applicable devices and mailboxes back, bringing the potentially newly started Asterisk up to date with its peers.
 

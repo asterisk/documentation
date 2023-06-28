@@ -130,8 +130,8 @@ Then, you can LogOut and Login and see something like:
 ```
 
 == WebSocket connection from '192.168.147.245:49976' for protocol 'sip' accepted using version '13'
--- Added contact 'sips:webrtc\_client@192.168.147.245:49976;transport=ws;rtcweb-breaker=no' to AOR 'webrtc\_client' with expiration of 200 seconds
-== Endpoint webrtc\_client is now Reachable
+-- Added contact 'sips:webrtc_client@192.168.147.245:49976;transport=ws;rtcweb-breaker=no' to AOR 'webrtc_client' with expiration of 200 seconds
+== Endpoint webrtc_client is now Reachable
 
 
 

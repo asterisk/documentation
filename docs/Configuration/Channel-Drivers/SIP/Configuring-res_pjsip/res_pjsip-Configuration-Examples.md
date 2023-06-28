@@ -3,7 +3,7 @@ title: res_pjsip Configuration Examples
 pageid: 30278066
 ---
 
-Below are some sample configurations to demonstrate various scenarios with complete pjsip.conf files. To see examples side by side with old chan\_sip config head to [Migrating from chan\_sip to res\_pjsip](/Migrating-from-chan_sip-to-res_pjsip). Explanations of the config sections found in each example can be found in [PJSIP Configuration Sections and Relationships](/Configuration/Channel-Drivers/SIP/Configuring-res_pjsip/PJSIP-Configuration-Sections-and-Relationships).
+Below are some sample configurations to demonstrate various scenarios with complete pjsip.conf files. To see examples side by side with old chan_sip config head to [Migrating from chan_sip to res_pjsip](/Migrating-from-chan_sip-to-res_pjsip). Explanations of the config sections found in each example can be found in [PJSIP Configuration Sections and Relationships](/Configuration/Channel-Drivers/SIP/Configuring-res_pjsip/PJSIP-Configuration-Sections-and-Relationships).
 
 A tutorial on secure and encrypted calling is located in the [Secure Calling](/Deployment/Secure-Calling) section of the wiki.
 
@@ -40,19 +40,19 @@ aors=6001
 
 [auth6001]
 type=auth
-auth\_type=userpass
+auth_type=userpass
 password=6001
 username=6001
 
 [6001]
 type=aor
-max\_contacts=1
+max_contacts=1
 
 ```
 
 
-* auth= is used for the endpoint as opposed to outbound\_auth= since we want to allow inbound registration for this endpoint
-* max\_contacts= is set to something non-zero as we want to allow contacts to be created through registration
+* auth= is used for the endpoint as opposed to outbound_auth= since we want to allow inbound registration for this endpoint
+* max_contacts= is set to something non-zero as we want to allow contacts to be created through registration
 
  
 
@@ -88,14 +88,14 @@ bind=0.0.0.0
 
 [mytrunk]
 type=registration
-outbound\_auth=mytrunk
-server\_uri=sip:sip.example.com
-client\_uri=sip:1234567890@sip.example.com
-retry\_interval=60
+outbound_auth=mytrunk
+server_uri=sip:sip.example.com
+client_uri=sip:1234567890@sip.example.com
+retry_interval=60
 
 [mytrunk]
 type=auth
-auth\_type=userpass
+auth_type=userpass
 password=1234567890
 username=1234567890
 
@@ -108,7 +108,7 @@ type=endpoint
 context=from-external
 disallow=all
 allow=ulaw
-outbound\_auth=mytrunk
+outbound_auth=mytrunk
 aors=mytrunk
 
 [mytrunk]
@@ -121,7 +121,7 @@ match=sip.example.com
 
 
 * "contact=sip:203.0.113.1:5060", we don't define the user portion statically since we'll set that dynamically in dialplan when we call the Dial application.
-* "outbound\_auth=mytrunk", we use "outbound\_auth" instead of "auth" since the provider isn't typically going to authenticate with us when calling, but we will probably
+* "outbound_auth=mytrunk", we use "outbound_auth" instead of "auth" since the provider isn't typically going to authenticate with us when calling, but we will probably
 * We use an identify object to map all traffic from the provider's IP as traffic to that endpoint since the user portion of their From: header may vary with each call.
 * This example assumes that [sip.example.com](http://sip.example.com) resolves to 203.0.113.1
 
@@ -129,7 +129,7 @@ match=sip.example.com
 
 
 !!! tip 
-    You can specify the transport type by appending it to the server\_uri and client\_uri parameters. e.g.:
+    You can specify the transport type by appending it to the server_uri and client_uri parameters. e.g.:
 [//]: # (end-tip)
 
 
@@ -141,10 +141,10 @@ match=sip.example.com
 
 [mytrunk]
 type=registration
-outbound\_auth=mytrunk
-server\_uri=sip:sip.example.com\;transport=tcp
-client\_uri=sip:1234567890@sip.example.com\;transport=tcp
-retry\_interval=60  
+outbound_auth=mytrunk
+server_uri=sip:sip.example.com\;transport=tcp
+client_uri=sip:1234567890@sip.example.com\;transport=tcp
+retry_interval=60  
 
 
 
@@ -188,11 +188,11 @@ allow=ulaw
 
 [auth-userpass](!)
 type=auth
-auth\_type=userpass
+auth_type=userpass
 
 [aor-single-reg](!)
 type=aor
-max\_contacts=1
+max_contacts=1
 
 ;===============EXTENSION 6001
 

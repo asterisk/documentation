@@ -41,13 +41,13 @@ There's no question that Asterisk is a huge project that interacts with a wide v
 
 | Module | Related File(s) | Issue Owner |
 | --- | --- | --- |
-| Open Objective H.323 Protocol | chan\_ooh323 | unknown user (may213) |
-| Unified Networks IP Stimulus | chan\_unistim | unknown user (igorg) |
-| Cisco SCCP | chan\_skinny | unknown user (wedhorn) |
-| External IVR | app\_externalivr | unknown user |
-| SMS Application | app\_sms | unknown user |
-| AEL | pbx\_ael | unknown user |
-| ADSI | res\_adsi, app\_getcpeid | Naveen Albert (NA, InterLinked) |
+| Open Objective H.323 Protocol | chan_ooh323 | unknown user (may213) |
+| Unified Networks IP Stimulus | chan_unistim | unknown user (igorg) |
+| Cisco SCCP | chan_skinny | unknown user (wedhorn) |
+| External IVR | app_externalivr | unknown user |
+| SMS Application | app_sms | unknown user |
+| AEL | pbx_ael | unknown user |
+| ADSI | res_adsi, app_getcpeid | Naveen Albert (NA, InterLinked) |
 
 General community contributors
 ==============================

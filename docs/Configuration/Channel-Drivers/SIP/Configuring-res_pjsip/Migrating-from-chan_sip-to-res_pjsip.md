@@ -6,14 +6,14 @@ pageid: 30278068
 Overview
 ========
 
-This page documents any useful tools, tips or examples on moving from the old chan\_sip channel driver to the new chan\_pjsip/res\_pjsip added in Asterisk 12.
+This page documents any useful tools, tips or examples on moving from the old chan_sip channel driver to the new chan_pjsip/res_pjsip added in Asterisk 12.
 
 Configuration Conversion Script
 -------------------------------
 
-Contained within a download of Asterisk, there is a Python script, sip\_to\_pjsip.py, found within the contrib/scripts/sip\_to\_pjsip subdirectory, that provides a basic conversion of a sip.conf config to a pjsip.conf config. It is not intended to work for every scenario or configuration; for basic configurations it should provide a good example of how to convert it over to pjsip.conf style config.
+Contained within a download of Asterisk, there is a Python script, sip_to_pjsip.py, found within the contrib/scripts/sip_to_pjsip subdirectory, that provides a basic conversion of a sip.conf config to a pjsip.conf config. It is not intended to work for every scenario or configuration; for basic configurations it should provide a good example of how to convert it over to pjsip.conf style config.
 
-To insure that the script can read any [#include'd](/Fundamentals/Asterisk-Configuration/Asterisk-Configuration-Files/Using-The-include-tryinclude-and-exec-Constructs) files, run it from the /etc/asterisk directory or in another location with a copy of the sip.conf and any included files. The default input file is sip.conf, and the default output file is pjsip.conf. Any included files will also be converted, and written out with a pjsip\_ prefix, unless changed with the --prefix=*xxx* option.
+To insure that the script can read any [#include'd](/Fundamentals/Asterisk-Configuration/Asterisk-Configuration-Files/Using-The-include-tryinclude-and-exec-Constructs) files, run it from the /etc/asterisk directory or in another location with a copy of the sip.conf and any included files. The default input file is sip.conf, and the default output file is pjsip.conf. Any included files will also be converted, and written out with a pjsip_ prefix, unless changed with the --prefix=*xxx* option.
 
 ### Command line usage
 
@@ -21,8 +21,8 @@ To insure that the script can read any [#include'd](/Fundamentals/Asterisk-Confi
 
 
 ```bash title=" " linenums="1"
-# /path/to/asterisk/source/contrib/scripts/sip\_to\_pjsip/sip\_to\_pjsip.py --help
-Usage: sip\_to\_pjsip.py [options] [input-file [output-file]]
+# /path/to/asterisk/source/contrib/scripts/sip_to_pjsip/sip_to_pjsip.py --help
+Usage: sip_to_pjsip.py [options] [input-file [output-file]]
 input-file defaults to 'sip.conf'
 output-file defaults to 'pjsip.conf'
 Options:
@@ -41,7 +41,7 @@ Options:
 
 ```bash title=" " linenums="1"
 # cd /etc/asterisk
-# /path/to/asterisk/source/contrib/scripts/sip\_to\_pjsip/sip\_to\_pjsip.py
+# /path/to/asterisk/source/contrib/scripts/sip_to_pjsip/sip_to_pjsip.py
 Reading sip.conf
 Converting to PJSIP...
 Writing pjsip.conf
@@ -61,7 +61,7 @@ These examples contain only the configuration required for sip.conf/pjsip.conf a
 
 
 !!! note 
-    It is important to know that PJSIP syntax and configuration format is stricter than the older chan\_sip driver. When in doubt, try to follow the documentation exactly, avoid extra spaces or strange capitalization. Always check your logs for warnings or errors if you suspect something is wrong.
+    It is important to know that PJSIP syntax and configuration format is stricter than the older chan_sip driver. When in doubt, try to follow the documentation exactly, avoid extra spaces or strange capitalization. Always check your logs for warnings or errors if you suspect something is wrong.
 
       
 [//]: # (end-note)
@@ -74,7 +74,7 @@ Example Endpoint Configuration
 This examples shows the configuration required for:
 
 * two SIP phones need to make calls to or through Asterisk, we also want to be able to call them from Asterisk
-* for them to be identified as users (in the old chan\_sip) or endpoints (in the new res\_sip/chan\_pjsip)
+* for them to be identified as users (in the old chan_sip) or endpoints (in the new res_sip/chan_pjsip)
 * both devices need to use username and password authentication
 * 6001 is setup to allow registration to Asterisk, and 6002 is setup with a static host/contact
 
@@ -135,11 +135,11 @@ auth = auth6001
 
 [6001]
 type = aor
-max\_contacts = 1
+max_contacts = 1
 
 [auth6001]
 type=auth
-auth\_type=userpass
+auth_type=userpass
 password=1234
 username=6001
 
@@ -157,7 +157,7 @@ contact = sip:6002@192.0.2.1:5060
 
 [auth6002]
 type=auth
-auth\_type=userpass
+auth_type=userpass
 password=1234
 username=6001
 
@@ -218,13 +218,13 @@ bind=0.0.0.0
 
 [mytrunk]
 type=registration
-outbound\_auth=mytrunk
-server\_uri=sip:myaccountname@203.0.113.1:5060
-client\_uri=sip:myaccountname@203.0.133.1:5060
+outbound_auth=mytrunk
+server_uri=sip:myaccountname@203.0.113.1:5060
+client_uri=sip:myaccountname@203.0.133.1:5060
 
 [mytrunk]
 type=auth
-auth\_type=userpass
+auth_type=userpass
 password=1234567890
 username=myaccountname
 
@@ -237,7 +237,7 @@ type=endpoint
 context=from-external
 disallow=all
 allow=ulaw
-outbound\_auth=mytrunk
+outbound_auth=mytrunk
 aors=mytrunk
 
 [mytrunk]
@@ -251,10 +251,10 @@ match=203.0.113.1
 
  
 
-Disabling res\_pjsip and chan\_pjsip
+Disabling res_pjsip and chan_pjsip
 ====================================
 
-You may want to keep using chan\_sip for a short time in Asterisk 12+ while you migrate to res\_pjsip. In that case, it is best to disable res\_pjsip unless you understand how to configure them both together.
+You may want to keep using chan_sip for a short time in Asterisk 12+ while you migrate to res_pjsip. In that case, it is best to disable res_pjsip unless you understand how to configure them both together.
 
 There are several methods to disable or remove modules in Asterisk. Which method is best depends on your intent.
 
@@ -273,12 +273,12 @@ If you have built Asterisk with the PJSIP modules, but don't intend to use them 
 
 ```
 
-noload => res\_pjsip.so
-noload => res\_pjsip\_pubsub.so
-noload => res\_pjsip\_session.so
-noload => chan\_pjsip.so
-noload => res\_pjsip\_exten\_state.so
-noload => res\_pjsip\_log\_forwarder.so
+noload => res_pjsip.so
+noload => res_pjsip_pubsub.so
+noload => res_pjsip_session.so
+noload => chan_pjsip.so
+noload => res_pjsip_exten_state.so
+noload => res_pjsip_log_forwarder.so
 
 ```
 
@@ -291,22 +291,22 @@ Other possibilities would be:
 * Remove all PJSIP modules from the modules directory (often, /usr/lib/asterisk/modules)
 * Remove the configuration file (pjsip.conf)
 * Un-install and re-install Asterisk with no PJSIP related modules.
-* If you are wanting to use chan\_pjsip alongside chan\_sip, you could change the port or bind interface of your chan\_pjsip transport in pjsip.conf
+* If you are wanting to use chan_pjsip alongside chan_sip, you could change the port or bind interface of your chan_pjsip transport in pjsip.conf
 
 Network Address Translation (NAT)
 =================================
 
-When configured with **chan\_sip**, peers that are, relative to Asterisk, located behind a NAT are configured using the **nat** parameter.  In versions 1.8 and greater of Asterisk, the following nat parameter options are available:
+When configured with **chan_sip**, peers that are, relative to Asterisk, located behind a NAT are configured using the **nat** parameter.  In versions 1.8 and greater of Asterisk, the following nat parameter options are available:
 
 
 
 | Value | Description |
 | --- | --- |
 | no | Do not perform NAT handling other than [RFC 3581](http://www.ietf.org/rfc/rfc3581.txt). |
-| force\_rport | When the rport parameter is not present, send responses to the source IP address and port anyway, as though the rport parameter was present |
+| force_rport | When the rport parameter is not present, send responses to the source IP address and port anyway, as though the rport parameter was present |
 | comedia | Send media to the address and port from which Asterisk received it, regardless of where SDP indicates that it should be sent |
-| auto\_force\_rport | Automatically enable the sending of responses to the source IP address and port, as though rport were present, if Asterisk detects NAT. Default. |
-| auto\_comedia | Automatically send media to the port from which Asterisk received it, regardless of where SDP indicates that it should be sent, if Asterisk detects NAT. |
+| auto_force_rport | Automatically enable the sending of responses to the source IP address and port, as though rport were present, if Asterisk detects NAT. Default. |
+| auto_comedia | Automatically send media to the port from which Asterisk received it, regardless of where SDP indicates that it should be sent, if Asterisk detects NAT. |
 
 Versions of Asterisk prior to 1.8 had less granularity for the nat parameter:
 
@@ -319,17 +319,17 @@ Versions of Asterisk prior to 1.8 had less granularity for the nat parameter:
 | never | Do not perform any NAT handling |
 | route | Send media to the port from which Asterisk received it, regardless of where SDP indicates that it should be sent and rewrite the SIP Contact to the source address and port of the request so that subsequent requests go to that address and port. |
 
-In **chan\_pjsip**, the **endpoint** options that control NAT behavior are:
+In **chan_pjsip**, the **endpoint** options that control NAT behavior are:
 
-* rtp\_symmetric - Send media to the address and port from which Asterisk receives it, regardless of where SDP indicates that it should be sent
-* force\_rport - Send responses to the source IP address and port as though port were present, even if it's not
-* rewrite\_contact - Rewrite SIP Contact to the source address and port of the request so that subsequent requests go to that address and port.
+* rtp_symmetric - Send media to the address and port from which Asterisk receives it, regardless of where SDP indicates that it should be sent
+* force_rport - Send responses to the source IP address and port as though port were present, even if it's not
+* rewrite_contact - Rewrite SIP Contact to the source address and port of the request so that subsequent requests go to that address and port.
 
 Thus, the following are equivalent:
 
 
 
-| chan\_sip (sip.conf) | chan\_pjsip (pjsip.conf) |
+| chan_sip (sip.conf) | chan_pjsip (pjsip.conf) |
 | --- | --- |
 | 
 
@@ -380,30 +380,30 @@ nat=route
 
 [mypeer1]
 type=endpoint
-rtp\_symmetric=yes
-force\_rport=yes
-rewrite\_contact=yes
+rtp_symmetric=yes
+force_rport=yes
+rewrite_contact=yes
 ;...
  
 [mypeer2]
 type=endpoint
-rtp\_symmetric=no
-force\_rport=no
-rewrite\_contact=no
+rtp_symmetric=no
+force_rport=no
+rewrite_contact=no
 ;...
  
 [mypeer3]
 type=endpoint
-rtp\_symmetric=no
-force\_rport=no
-rewrite\_contact=no
+rtp_symmetric=no
+force_rport=no
+rewrite_contact=no
 ;...
  
 [mypeer4]
 type=endpoint
-rtp\_symmetric=no
-force\_rport=yes
-rewrite\_contact=yes
+rtp_symmetric=no
+force_rport=yes
+rewrite_contact=yes
 ;...
  
 

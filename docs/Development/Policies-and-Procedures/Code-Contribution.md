@@ -121,18 +121,18 @@ Sample Commit Message
 
 ```
 
-textapp\_something:  Add some new capability 
+textapp_something:  Add some new capability 
  
-app\_something has been updated to include new feature "X". To configure,
-edit app\_something.conf and add an "X = something" to the "general"
+app_something has been updated to include new feature "X". To configure,
+edit app_something.conf and add an "X = something" to the "general"
 section.
  
 Resolves: #456
  
-UpgradeNote: The old "X" option in app\_something.conf has been renamed to
+UpgradeNote: The old "X" option in app_something.conf has been renamed to
 "Z" to better reflect its true purpose.
  
-UserNote: app\_something has been updated to include new feature "X".
+UserNote: app_something has been updated to include new feature "X".
 
 ```
 

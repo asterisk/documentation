@@ -119,7 +119,7 @@ In this example, the user wishes to use a built-in variable in order to determin
 ```
 
 
-exten => \_X.,1,Dial(SIP/${EXTEN})
+exten => _X.,1,Dial(SIP/${EXTEN})
 
 
 ```
@@ -139,7 +139,7 @@ Since the variable `EXTEN` is a built-in variable, the following would **not** b
 ```
 
 
-exten => \_X.,1,Dial(SIP/${exten})
+exten => _X.,1,Dial(SIP/${exten})
 
 
 ```
@@ -165,7 +165,7 @@ In this example, the user wishes to suggest to the SIP channel driver what codec
 ```
 
 
-exten => 1000,Set(SIP\_CODEC=g729)
+exten => 1000,Set(SIP_CODEC=g729)
 same => n,Dial(SIP/1000,15)
 
 
@@ -186,7 +186,7 @@ same => n,Dial(SIP/1000,15)
 ```
 
 
-exten => 1000,Set(sip\_codec=g729)
+exten => 1000,Set(sip_codec=g729)
  same => n,Dial(SIP/1000,15)
 
 
@@ -207,7 +207,7 @@ This can lead to some rather confusing situations. Consider that a user wrote th
 ```
 
 
-exten => 1000,Set(SIP\_CODEc=g729)
+exten => 1000,Set(SIP_CODEc=g729)
  same => n,Dial(SIP/1000,15)
 
 
@@ -228,8 +228,8 @@ As has already been discussed, this is not equivalent to using `SIP_CODEC`. The 
 ```
 
 
-exten => 1000,Set(SIP\_CODEc=g729)
- same => n,NoOp(${SIP\_CODEC})
+exten => 1000,Set(SIP_CODEc=g729)
+ same => n,NoOp(${SIP_CODEC})
  same => n,Dial(SIP/1000,15)
 
 

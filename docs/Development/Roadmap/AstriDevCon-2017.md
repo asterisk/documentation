@@ -140,19 +140,19 @@ New Asterisk sounds release (1.6)
 
 Google OAuth 2.0 protocol support for XMPP/Motif
 
-Chan\_rtp uses ulaw by default now instead of slinear
+Chan_rtp uses ulaw by default now instead of slinear
 
 Binaural audio support patches for confbridge were merged
 
-Debug\_utilities: ast\_coredumper
+Debug_utilities: ast_coredumper
 
-Debug\_utilities: ast\_loggrabber
+Debug_utilities: ast_loggrabber
 
 ### Video, WebRTC, and more, Oh My!:
 
 Support for RTCP-MUX
 
-‘Webrtc’ endpoint option in res\_pjsip.conf
+‘Webrtc’ endpoint option in res_pjsip.conf
 
 VP9 passthrough support
 
@@ -176,15 +176,15 @@ Support for more than 32 dynamic RTP payloads now exists.
 
 Abstracted SDP layer was added (and is still being worked on)
 
-Added support within the Asterisk core for multi-audio and multi-video stream media per ast\_channel
+Added support within the Asterisk core for multi-audio and multi-video stream media per ast_channel
 
 Added support within the Asterisk core to renegotiate media capabilities on an active call as required
 
 Support for BUNDLE was added
 
-app\_steram\_echo added
+app_steram_echo added
 
-SFU support in app\_confbridge
+SFU support in app_confbridge
 
   
 
@@ -327,7 +327,7 @@ Existing APIs create streams automatically as appropriate
 
 Does not have any knowledge of new stream support
 
-Ast\_read, ast\_write, ast\_channel\_nativeformats
+Ast_read, ast_write, ast_channel_nativeformats
 
 Required no code changes to legacy useres
 
@@ -349,7 +349,7 @@ Simple
 
 Softmix (What confbridge uses)
 
-Other bridge modules, e.g. bridge\_native\_rtp, unchanged and behave the same
+Other bridge modules, e.g. bridge_native_rtp, unchanged and behave the same
 
 ### How Simple Bridging Now Works
 
@@ -385,7 +385,7 @@ Each channel can have a mappping from bridge specific stream number to channel v
 
 Audio is still mixed server side to provide same ConfBridge audio experience as previously
 
-Enabled using video\_mode=sfu in ConfBridge
+Enabled using video_mode=sfu in ConfBridge
 
 ### WebRTC
 
@@ -477,7 +477,7 @@ Agenda:
 	+ Stability - Both actual and perceived
 	+ Performance - Both actual and perceived
 	+ Outside Forces - Is there a business case for keeping `chan_sip` around?
-	+ Leaving it around misrepresents its support status to people within the community (no current maintainer for chan\_sip)
+	+ Leaving it around misrepresents its support status to people within the community (no current maintainer for chan_sip)
 	+ Proposed deprecation plan:
 		- Gain feature parity (16 ?)
 		- Give warning on load (Wait until feature parity question is resolved - maybe into 15.x.0?)
@@ -485,7 +485,7 @@ Agenda:
 		- noload in modules.conf/remove from default menuselect enabled modules (maybe 16?)
 		- Kill it with fire
 * How do we get to an all ARI solution?
-	+ pbx\_ari
+	+ pbx_ari
 	+ Can we have ARI be more system aware (subscribe to all channels) instead of channel aware
 		- There's already a parameter that causes your ARI application to receive all events on the system.
 * Getting features from 14 into an LTS.
@@ -534,7 +534,7 @@ We already talked about this feature at the last AstriDevCon
   
 
 
-### Res\_amqp
+### Res_amqp
 
 AMQP client for Asterisk
 
@@ -561,7 +561,7 @@ To install
   
 
 
-### Res\_stasis\_amqp
+### Res_stasis_amqp
 
 Publish stasis message to AMQP
 
@@ -575,9 +575,9 @@ Support
 
  Stasis Channel
 
-Depends on res\_amqp
+Depends on res_amqp
 
-Configuration /etc/asterisk/res\_stasis\_amqp.conf
+Configuration /etc/asterisk/res_stasis_amqp.conf
 
 To install:
 
@@ -603,7 +603,7 @@ Integration in Asterisk
 
 Proposal
 
- Submit to gerrit the res\_amqp support
+ Submit to gerrit the res_amqp support
 
  Submit to gerrit the res-stasis-amqp support
 
@@ -625,7 +625,7 @@ Roadmap
   
 
 
-Now, Ludovic to talk about res\_calendar!
+Now, Ludovic to talk about res_calendar!
 
   
 
@@ -779,7 +779,7 @@ A fix was submitted on Gerrit: ASTERISK-27296 / <https://gerrit.asterisk.org/#/c
 
 For now, they have 973 calendars in production.
 
-Right now, there is no file system support for res\_calendar..working on a patch but it has memory leaks.
+Right now, there is no file system support for res_calendar..working on a patch but it has memory leaks.
 
 Might do python bindings for libical.
 
@@ -950,7 +950,7 @@ Post-DevCon discussion to be had at the Wine event.
   
 
 
-#### Proposed deprecation of app\_macro
+#### Proposed deprecation of app_macro
 
  Gosub has existed for 12 years now and is a suitable replacement, but not 100% compatible.
 
@@ -972,17 +972,17 @@ Post-DevCon discussion to be had at the Wine event.
   
 
 
-#### Proposed deprecation of chan\_sip
+#### Proposed deprecation of chan_sip
 
- Feature Parity - What features are available in chan\_sip that are not available in chan\_pjsip and what is the level of effort to get us there?
+ Feature Parity - What features are available in chan_sip that are not available in chan_pjsip and what is the level of effort to get us there?
 
- Configuration - sip.conf vs. pjsip.conf vs. pjsip\_wizard.conf vs. contrib/scripts/sip\_to\_pjsip
+ Configuration - sip.conf vs. pjsip.conf vs. pjsip_wizard.conf vs. contrib/scripts/sip_to_pjsip
 
  Stability - Both actual and perceived
 
  Performance- Both actual and perceived
 
- Outside Forces - Is there a business case for keeping chan\_sip around?
+ Outside Forces - Is there a business case for keeping chan_sip around?
 
   
 
@@ -992,7 +992,7 @@ What 3 features are missing?  CCSS, AOC and outbound Subscriptions.  The only 
   
 
 
-What about stability?  The FreePBX community has a large thread with users indicating issues with PJSIP that they don’t experience with chan\_sip, but no one is filing bugs or presenting actual issues - it appears to be primarily anecdotal.
+What about stability?  The FreePBX community has a large thread with users indicating issues with PJSIP that they don’t experience with chan_sip, but no one is filing bugs or presenting actual issues - it appears to be primarily anecdotal.
 
   
 
@@ -1002,7 +1002,7 @@ Is it already defacto deprecated since it’s in extended support and there is n
   
 
 
-What about configuration?  The converter isn’t necessarily feature complete; but is written in Python (hint, non-C developers)  There’s built-in help in Asterisk’s CLI (config show help [res\_pjsip\_endpoint.so](http://res_pjsip_endpoint.so), for example).  Is it worthwhile to make PJSIP read sip.conf?  (There are problems here as a friend and a peer are different and if you move that to PJSIP under the hood you can end up with weird configuration or vulnerability issues)
+What about configuration?  The converter isn’t necessarily feature complete; but is written in Python (hint, non-C developers)  There’s built-in help in Asterisk’s CLI (config show help [res_pjsip_endpoint.so](http://res_pjsip_endpoint.so), for example).  Is it worthwhile to make PJSIP read sip.conf?  (There are problems here as a friend and a peer are different and if you move that to PJSIP under the hood you can end up with weird configuration or vulnerability issues)
 
   
 
@@ -1014,7 +1014,7 @@ We need a plan of attack.  Something in 15 (warning on startup, something else 
 
 #### How do we get to an all ARI solution?
 
- Pbx\_ari?
+ Pbx_ari?
 
  Worry that users could get themselves into trouble here, because their ARI apps could get into trouble.
 
@@ -1022,7 +1022,7 @@ We need a plan of attack.  Something in 15 (warning on startup, something else 
 
  Proposal to set stasis=xyz on an endpoint so that an incoming call to an endpoint goes straight to a Stasis app.  The room really likes this proposal.
 
- But with a pbx\_ari you can just map a dialplan context to a Stasis app.
+ But with a pbx_ari you can just map a dialplan context to a Stasis app.
 
  How can an ARI app know more than just what’s in its own app?  “Subscribe all” when connecting the web socket.
 

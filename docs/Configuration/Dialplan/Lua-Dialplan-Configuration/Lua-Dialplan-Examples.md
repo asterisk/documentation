@@ -25,12 +25,12 @@ extensions.lua
 
 
 -- this function serves as an extension function directly
-function call\_user(c, user)
+function call_user(c, user)
  app.dial("SIP/" .. user, 60)
 end
 
 -- this function returns an extension function
-function call\_sales\_queue(queue)
+function call_sales_queue(queue)
  return function(c, e)
  app.queue(queue)
  end
@@ -42,12 +42,12 @@ e.default = {}
 e.default.include = {"users", "sales"}
 
 e.users = {}
-e.users["100"] = call\_user
-e.users["101"] = call\_user
+e.users["100"] = call_user
+e.users["101"] = call_user
 
 e.sales = {}
-e.sales["5000"] = call\_sales\_queue("sales1")
-e.sales["6000"] = call\_sales\_queue("sales2")
+e.sales["5000"] = call_sales_queue("sales1")
+e.sales["6000"] = call_sales_queue("sales2")
 
 extensions = e
 
@@ -85,7 +85,7 @@ function register(context, extension, func)
  extensions[context][extension] = func
 end
 
-function include(context, included\_context)
+function include(context, included_context)
  if not extensions then
  extensions = {}
  end
@@ -98,16 +98,16 @@ function include(context, included\_context)
  extensions[context].include = {}
  end
 
- table.insert(extensions[context].include, included\_context)
+ table.insert(extensions[context].include, included_context)
 end
 
 -- this function serves as an extension function directly
-function call\_user(c, user)
+function call_user(c, user)
  app.dial("SIP/" .. user, 60)
 end
 
 -- this function returns an extension function
-function call\_sales\_queue(queue)
+function call_sales_queue(queue)
  return function(c, e)
  app.queue(queue)
  end
@@ -116,11 +116,11 @@ end
 include("default", "users")
 include("default", "sales")
 
-register("users", "100", call\_user)
-register("users", "101", call\_user)
+register("users", "100", call_user)
+register("users", "101", call_user)
 
-register("sales", "5000", call\_sales\_queue("sales1"))
-register("sales", "6000", call\_sales\_queue("sales2"))
+register("sales", "5000", call_sales_queue("sales1"))
+register("sales", "6000", call_sales_queue("sales2"))
 register("sales", "7000", function()
  app.queue("sales3")
 end)

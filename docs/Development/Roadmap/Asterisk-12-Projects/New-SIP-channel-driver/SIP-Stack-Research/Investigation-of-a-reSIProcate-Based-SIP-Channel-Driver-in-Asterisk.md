@@ -39,14 +39,14 @@ C++ exception support results in the generation of additional code to support st
 The most basic form of this scenario is an uncaught exception propagating to a C call frame. This may easily be avoided in practice but exceptions may be useful if the same function is also called from C++. In this case, two versions of the function are required.
 
 
-reSIProcate\_C\_calling\_CPlusPlusL
+reSIProcate_C_calling_CPlusPlusL
 ### Exception passing through C code to be caught in C++
 
 
 This is a far more severe example: a function implemented in C++ invokes a utility function implemented in C that in turn invokes a C++ function that throws an exception. With a gcc/g++ built executable, the thrown exception actually safely makes its way up the stack due to the way the GNU compiler framework implements C++ exceptions. Weird stack problems or disappearing exceptions do not occur. However, the exception causes immediate stack unwinding and the `free()` and `unlock_mutex()` calls in the example C function is skipped. There is no remedy for that particular issue and the results are potentially disastrous.
 
 
-reSIProcate\_Cpp\_to\_C\_to\_CppL
+reSIProcate_Cpp_to_C_to_CppL
 While it may be difficult to create an example that demonstrates all of the issues around exceptions, it **is** clear that C code cannot handle C++ exceptions. Exceptions allowed to propagate out of C++ calls into C code will either cause crashes and aborts, undefined behavior or skipped "cleanup" code or essential "matching" operations. To avoid these issues, all C++ exceptions must be caught within the C++ code and either entirely handled there or converted to error codes and data and returned to the caller. The resultant code tends to be neither C++ or C like and unpleasant to maintain. C++ exceptions are difficult to simply avoid altogether as they are necessary for using certain C++ features properly (e.g. exceptions thrown from constructors allow proper automatic cleanup of partially created objects).
 
 
@@ -61,7 +61,7 @@ Passing Objects Back And Forth Across the API Boundary
 ------------------------------------------------------
 
 
-Pointers to C++ objects may be assigned to void\* and cast back to the original type via static\_cast<T>() without issue. However, there are potential complications with virtual and multiple inheritance and pointer values. Pointers to the "same" object may not agree if they are obtained by different means.
+Pointers to C++ objects may be assigned to void\* and cast back to the original type via static_cast<T>() without issue. However, there are potential complications with virtual and multiple inheritance and pointer values. Pointers to the "same" object may not agree if they are obtained by different means.
 
 
 Build Time Requirements
@@ -117,7 +117,7 @@ Using a C++ based implementation as basis for a related functionality implies on
 Allowing or requiring C++ to pervade or "creep" into several modules implies that each module be written with care to address the C++ related challenges described above. This is a development, maintenance and support risk, particularly for a community that may not be experienced with C+. The "natural boundary" at which C+ may be hidden behind may prove to be ambiguous or flexible in time, resulting in inconsistencies in interface definitions and modules of inconsistent utility.
 
 
-reSIProcate\_Cpp\_Natural\_BoundaryL
+reSIProcate_Cpp_Natural_BoundaryL
 It is worthwhile noting that C++ code libraries developed to aide in the implementation of the C++ Asterisk modules are, in the same way as the third party C++ library, not available to C Asterisk modules unless wrapped in a facade.
 
 
@@ -137,7 +137,7 @@ Implementing and maintaining a facade or "wrapper" around any third party librar
 
 
 
-reSIProcate\_C\_Cpp\_FacadeL
+reSIProcate_C_Cpp_FacadeL
 Integration with Asterisk Specific Utility Libraries
 ----------------------------------------------------
 

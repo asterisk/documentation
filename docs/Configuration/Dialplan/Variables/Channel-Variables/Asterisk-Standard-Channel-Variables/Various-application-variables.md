@@ -27,6 +27,6 @@ pageid: 4620405
 * `${TOUCH_MIXMONITOR_FORMAT`} - The audio format to use with Touch MixMonitor (auto record)
 * `${TOUCH_MIXMONITOR_OUTPUT`} - Recorded file from Touch MixMonitor (auto record)
 * `${TXTCIDNAME`} - Result of application TXTCIDName
-* `${VPB_GETDTMF`} - chan\_vpb
+* `${VPB_GETDTMF`} - chan_vpb
 
 

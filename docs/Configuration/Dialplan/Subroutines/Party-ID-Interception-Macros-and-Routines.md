@@ -24,7 +24,7 @@ The interception routines give the administrator an opportunity to alter [connec
 
 The tag string available in CALLERID, CONNECTEDLINE, and REDIRECTING is useful for the interception routines to provide some information about where the information originally came from.
 
-The 'i' option of the CONNECTEDLINE dialplan function should always be used in the CONNECTED\_LINE interception routines. The interception routine always passes the connected line information on to the channel driver when the routine returns. Similarly, the 'i' option of the REDIRECTING dialplan function should always be used in the REDIRECTING interception routines.
+The 'i' option of the CONNECTEDLINE dialplan function should always be used in the CONNECTED_LINE interception routines. The interception routine always passes the connected line information on to the channel driver when the routine returns. Similarly, the 'i' option of the REDIRECTING dialplan function should always be used in the REDIRECTING interception routines.
 
 
 
@@ -37,12 +37,12 @@ The 'i' option of the CONNECTEDLINE dialplan function should always be used in t
 
 
 
-* ${REDIRECTING\_SEND\_SUB}
-* ${REDIRECTING\_SEND\_SUB\_ARGS}
-* ${CONNECTED\_LINE\_SEND\_SUB}  
+* ${REDIRECTING_SEND_SUB}
+* ${REDIRECTING_SEND_SUB_ARGS}
+* ${CONNECTED_LINE_SEND_SUB}  
  Subroutine to call before sending a connected line update to the party.
-* ${CONNECTED\_LINE\_SEND\_SUB\_ARGS}  
- Arguments to pass to ${CONNECTED\_LINE\_SEND\_SUB}.
+* ${CONNECTED_LINE_SEND_SUB_ARGS}  
+ Arguments to pass to ${CONNECTED_LINE_SEND_SUB}.
 
 Interception macros
 ===================
@@ -62,19 +62,19 @@ The interception macros give the administrator an opportunity to alter [connecte
 
 The tag string available in CALLERID, CONNECTEDLINE, and REDIRECTING is useful for the interception macros to provide some information about where the information originally came from.
 
-The 'i' option of the CONNECTEDLINE dialplan function should always be used in the CONNECTED\_LINE interception macros. The interception macro always passes the connected line information on to the channel driver when the macro exits. Similarly, the 'i' option of the REDIRECTING dialplan function should always be used in the REDIRECTING interception macros.
+The 'i' option of the CONNECTEDLINE dialplan function should always be used in the CONNECTED_LINE interception macros. The interception macro always passes the connected line information on to the channel driver when the macro exits. Similarly, the 'i' option of the REDIRECTING dialplan function should always be used in the REDIRECTING interception macros.
 
-* ${REDIRECTING\_CALLEE\_SEND\_MACRO}
-* ${REDIRECTING\_CALLEE\_SEND\_MACRO\_ARGS}
-* ${REDIRECTING\_CALLER\_SEND\_MACRO}  
+* ${REDIRECTING_CALLEE_SEND_MACRO}
+* ${REDIRECTING_CALLEE_SEND_MACRO_ARGS}
+* ${REDIRECTING_CALLER_SEND_MACRO}  
  Macro to call before sending a redirecting update to the caller.
-* ${REDIRECTING\_CALLER\_SEND\_MACRO\_ARGS}  
- Arguments to pass to ${REDIRECTING\_CALLER\_SEND\_MACRO}.
-* ${CONNECTED\_LINE\_CALLEE\_SEND\_MACRO}  
+* ${REDIRECTING_CALLER_SEND_MACRO_ARGS}  
+ Arguments to pass to ${REDIRECTING_CALLER_SEND_MACRO}.
+* ${CONNECTED_LINE_CALLEE_SEND_MACRO}  
  Macro to call before sending a connected line update to the callee.
-* ${CONNECTED\_LINE\_CALLEE\_SEND\_MACRO\_ARGS}  
- Arguments to pass to ${CONNECTED\_LINE\_CALLEE\_SEND\_MACRO}.
-* ${CONNECTED\_LINE\_CALLER\_SEND\_MACRO}  
+* ${CONNECTED_LINE_CALLEE_SEND_MACRO_ARGS}  
+ Arguments to pass to ${CONNECTED_LINE_CALLEE_SEND_MACRO}.
+* ${CONNECTED_LINE_CALLER_SEND_MACRO}  
  Macro to call before sending a connected line update to the caller.
-* ${CONNECTED\_LINE\_CALLER\_SEND\_MACRO\_ARGS}  
- Arguments to pass to ${CONNECTED\_LINE\_CALLER\_SEND\_MACRO}.
+* ${CONNECTED_LINE_CALLER_SEND_MACRO_ARGS}  
+ Arguments to pass to ${CONNECTED_LINE_CALLER_SEND_MACRO}.

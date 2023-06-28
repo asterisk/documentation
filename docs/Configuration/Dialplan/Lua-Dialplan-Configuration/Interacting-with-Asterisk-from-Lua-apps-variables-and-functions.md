@@ -3,7 +3,7 @@ title: Interacting with Asterisk from Lua (apps, variables, and functions)
 pageid: 16548029
 ---
 
-Interaction with is done through a series of predefined objects provided by pbx\_lua. The `app` table is used to access dialplan applications. Any asterisk application can be accessed and executed as if it were a function attached to the `app` table. Dialplan variables and functions are accessed and executed via the `channel` table.
+Interaction with is done through a series of predefined objects provided by pbx_lua. The `app` table is used to access dialplan applications. Any asterisk application can be accessed and executed as if it were a function attached to the `app` table. Dialplan variables and functions are accessed and executed via the `channel` table.
 
 
 
@@ -16,7 +16,7 @@ Interaction with is done through a series of predefined objects provided by pbx\
 
 
 **WARNING!:**   
-The following will cause pbx\_lua.so to fail to load with Lua 5.2 or later because `goto` is a reserved word.
+The following will cause pbx_lua.so to fail to load with Lua 5.2 or later because `goto` is a reserved word.
 
 
 
@@ -95,13 +95,13 @@ Set a Variable
 
 ```
 
-channel.my\_variable = "my\_value"
+channel.my_variable = "my_value"
 
 
 ```
 
 
-After this the channel variable `${my_variable`} contains the value "my\_value".
+After this the channel variable `${my_variable`} contains the value "my_value".
 
 
 
@@ -114,7 +114,7 @@ Read a Variable
 
 ```
 
-value = channel.my\_variable:get()
+value = channel.my_variable:get()
 
 
 ```
@@ -136,7 +136,7 @@ Any channel variable can be read and set using the `channel` table. Local and gl
 
 ```
 
-value = channel.my\_variable -- does not work as expected (value:get() could be used to get the value after this line)
+value = channel.my_variable -- does not work as expected (value:get() could be used to get the value after this line)
   
 
 
@@ -161,8 +161,8 @@ value = channel.my\_variable -- does not work as expected (value:get() could be 
 
 ```
 
-channel["my\_variable"] = "my\_value"
-value = channel["my\_variable"]:get()
+channel["my_variable"] = "my_value"
+value = channel["my_variable"]:get()
   
 
 

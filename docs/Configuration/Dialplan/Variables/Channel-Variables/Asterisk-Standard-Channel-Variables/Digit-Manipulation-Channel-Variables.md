@@ -10,7 +10,7 @@ pageid: 4620442
 
 * `${REDIRECTING_CALLEE_SEND_MACRO_ARGS`}  
 
- Arguments to pass to ${REDIRECTING\_CALLEE\_SEND\_MACRO}
+ Arguments to pass to ${REDIRECTING_CALLEE_SEND_MACRO}
 
 
 —
@@ -23,7 +23,7 @@ pageid: 4620442
 
 * `${REDIRECTING_CALLER_SEND_MACRO_ARGS`}  
 
- Arguments to pass to ${REDIRECTING\_CALLER\_SEND\_MACRO}
+ Arguments to pass to ${REDIRECTING_CALLER_SEND_MACRO}
 
 
 
@@ -38,7 +38,7 @@ pageid: 4620442
 
 * `${CONNECTED_LINE_CALLEE_SEND_MACRO_ARGS`}  
 
- Arguments to pass to ${CONNECTED\_LINE\_CALLEE\_SEND\_MACRO}
+ Arguments to pass to ${CONNECTED_LINE_CALLEE_SEND_MACRO}
 
 
 —
@@ -51,6 +51,6 @@ pageid: 4620442
 
 * `${CONNECTED_LINE_CALLER_SEND_MACRO_ARGS`}  
 
- Arguments to pass to ${CONNECTED\_LINE\_CALLER\_SEND\_MACRO}
+ Arguments to pass to ${CONNECTED_LINE_CALLER_SEND_MACRO}
 
 

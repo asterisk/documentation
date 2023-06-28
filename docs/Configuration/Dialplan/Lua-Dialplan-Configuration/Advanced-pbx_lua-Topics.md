@@ -10,7 +10,7 @@ Behind the scenes, a number of things happen to make the integration of lua into
 -----------------------------
 
 
-The `extensions.lua` file is loaded into memory once when the pbx\_lua module is loaded or reloaded. The file is then read from memory and executed once for each channel that looks up or executes a lua based extension. Since the file is executed once for each channel, it may not be wise to do things like connect to external services directly from the main script or build your extensions table from a webservice or database.
+The `extensions.lua` file is loaded into memory once when the pbx_lua module is loaded or reloaded. The file is then read from memory and executed once for each channel that looks up or executes a lua based extension. Since the file is executed once for each channel, it may not be wise to do things like connect to external services directly from the main script or build your extensions table from a webservice or database.
 
 
 
@@ -30,11 +30,11 @@ extensions = {}
 extensions.default = {}
 
 -- might be a bad idea, this will run each time a channel is created
-data = query\_webservice\_for\_extensions\_list("site1")
+data = query_webservice_for_extensions_list("site1")
 
-for \_, e in ipairs(data) do
+for _, e in ipairs(data) do
  extensions.default[e.exten] = function()
- app.dial("SIP/" .. e.sip\_peer, e.dial\_timeout)
+ app.dial("SIP/" .. e.sip_peer, e.dial_timeout)
  end
 end
 
@@ -46,7 +46,7 @@ The `extensions` Table
 ----------------------
 
 
-The `extensions` table is a standard lua table and can be defined however you like. The pbx\_lua module loads and sorts the table when it is needed. The keys in the table are context names and each value is another lua table containing extensions. Each key in the context table is an extension name and each value is an extension function.
+The `extensions` table is a standard lua table and can be defined however you like. The pbx_lua module loads and sorts the table when it is needed. The keys in the table are context names and each value is another lua table containing extensions. Each key in the context table is an extension name and each value is an extension function.
 
 
 
@@ -61,7 +61,7 @@ The `extensions` table is a standard lua table and can be defined however you li
 
 
 extensions = {
- context\_table = {
+ context_table = {
  extension1 = function()
  end;
  extension2 = function()
@@ -77,7 +77,7 @@ Where did the priorities go?
 ----------------------------
 
 
-There are no priorities. Asterisk uses priorities to define the order in which dialplan operations occur. The pbx\_lua module uses functions to define extensions and execution occurs within the lua interpreter, priorities don't make sense in this context. To Asterisk, each pbx\_lua extension appears as an extension with one priority. Lua extensions can be referenced using the context name, extension, and priority 1, e.g. `Goto(default,1234,1)`. You would only reference extensions this way from outside of pbx\_lua (i.e. from `extensions.conf` or `extensions.ael`). From with in pbx\_lua you can just execute that extension's function. 
+There are no priorities. Asterisk uses priorities to define the order in which dialplan operations occur. The pbx_lua module uses functions to define extensions and execution occurs within the lua interpreter, priorities don't make sense in this context. To Asterisk, each pbx_lua extension appears as an extension with one priority. Lua extensions can be referenced using the context name, extension, and priority 1, e.g. `Goto(default,1234,1)`. You would only reference extensions this way from outside of pbx_lua (i.e. from `extensions.conf` or `extensions.ael`). From with in pbx_lua you can just execute that extension's function. 
 
 
 
@@ -123,7 +123,7 @@ channel variable: var is the placeholder object
 ```
 
 
-var = channel.my\_variable
+var = channel.my_variable
 var:set("my value")
 value = var:get("my value")
 
@@ -136,18 +136,18 @@ value = var:get("my value")
 ---
 
   
-dialplan function: fax\_modems is the placeholder object  
+dialplan function: fax_modems is the placeholder object  
 
 
 ```
 
 
-fax\_modems = channel.FAXOPT("module")
+fax_modems = channel.FAXOPT("module")
 
 -- the function arguments are stored in the placeholder
 
-fax\_modems:set("v17")
-value = fax\_modems:get()
+fax_modems:set("v17")
+value = fax_modems:get()
 
 
 ```

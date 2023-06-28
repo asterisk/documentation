@@ -50,7 +50,7 @@ On top of the existing tags, we would add two additional tags to communicate via
 - ```<support_level>```
 	+ *Example: ```<support_level>deprecated</support_level>```*  --  This module would be deprecated. Maintenance of this module may not exist. It is possible this module could eventually be tagged as deprecated, or removed from the tree entirely.
 - ```<replacement>```
-	+ *Example: ```<replacement>func_odbc</replacement>```  --  The replacement for this module is the func\_odbc module. This is used when the ```<support_level>``` is set to **deprecated**.
+	+ *Example: ```<replacement>func_odbc</replacement>```  --  The replacement for this module is the func_odbc module. This is used when the ```<support_level>``` is set to **deprecated**.
 
 ### Menuselect Display
 

@@ -36,13 +36,13 @@ The file 'config.h' specifies a relatively simple API for parsing these config f
 user-defined config snapshot object - This is an astobj2 object containing pointers to any global options and ao2 containers for configurable items.
 
 
-aco\_info - Module-level config information.
+aco_info - Module-level config information.
 
 
-aco\_file - Information about a specific config file and how to process it.
+aco_file - Information about a specific config file and how to process it.
 
 
-aco\_type - A mapping between categories in a config file and user-defined objects.
+aco_type - A mapping between categories in a config file and user-defined objects.
 
 
 category - A section of a config field denoted by a bracketed name. A category named "general" might look like:
@@ -67,7 +67,7 @@ variable2 = value2
 ```
 
 
-aco\_option - A configuration variable of a specific option type. An option may have a default value and has a handler responsible for parsing the textual representation of the option's value and storing its type-specific config object.
+aco_option - A configuration variable of a specific option type. An option may have a default value and has a handler responsible for parsing the textual representation of the option's value and storing its type-specific config object.
 
 
 option handler - A callback function responsible for parsing the textual representation of an option's value and storing it in a config object.
@@ -82,7 +82,7 @@ custom option handler - A module-specific option handler for custom options.
 ### Parsing overview
 
 
-1. Define an ao2\_global\_obj hold global the active config snapshot object.
+1. Define an ao2_global_obj hold global the active config snapshot object.
 
 
 
@@ -95,7 +95,7 @@ custom option handler - A module-specific option handler for custom options.
 ```
 
 C
-static AO2\_GLOBAL\_OBJ\_STATIC(globals);
+static AO2_GLOBAL_OBJ_STATIC(globals);
 
 
 ```
@@ -112,33 +112,33 @@ static AO2\_GLOBAL\_OBJ\_STATIC(globals);
 ```
 
 C
-struct my\_config {
- struct my\_global\_cfg \*global;
- struct ao2\_container \*items;
+struct my_config {
+ struct my_global_cfg \*global;
+ struct ao2_container \*items;
 };
 
-static void my\_config\_destructor(void \*obj)
+static void my_config_destructor(void \*obj)
 {
- struct my\_config \*cfg = obj;
- ao2\_cleanup(cfg->global);
- ao2\_cleanup(cfg->items);
+ struct my_config \*cfg = obj;
+ ao2_cleanup(cfg->global);
+ ao2_cleanup(cfg->items);
 }
 
-static void \*my\_config\_alloc(void)
+static void \*my_config_alloc(void)
 {
- struct my\_config \*cfg;
- if (!(cfg = ao2\_alloc(sizeof(\*cfg), my\_config\_destructor))) {
+ struct my_config \*cfg;
+ if (!(cfg = ao2_alloc(sizeof(\*cfg), my_config_destructor))) {
  return NULL;
  }
- if (!(cfg->global = my\_global\_cfg\_alloc())) {
+ if (!(cfg->global = my_global_cfg_alloc())) {
  goto error;
  }
- if (!(cfg->items = ao2\_container\_alloc(BUCKETS, item\_hash\_fn, item\_cmp\_fn))) {
+ if (!(cfg->items = ao2_container_alloc(BUCKETS, item_hash_fn, item_cmp_fn))) {
  goto error;
  }
  return cfg;
 error:
- ao2\_ref(cfg, -1);
+ ao2_ref(cfg, -1);
  return NULL;
 }
 
@@ -157,25 +157,25 @@ error:
 ```
 
 C
-static struct aco\_type general\_options = {
- .type = ACO\_GLOBAL,
- .category\_allow = ACO\_WHITELIST,
+static struct aco_type general_options = {
+ .type = ACO_GLOBAL,
+ .category_allow = ACO_WHITELIST,
  .category = "^general$",
- .item\_offset = offsetof(struct my\_config, global),
+ .item_offset = offsetof(struct my_config, global),
 };
 
-static struct aco\_type private\_options = {
- .type = ACO\_PRIVATE,
- .category\_allow = ACO\_BLACKLIST,
+static struct aco_type private_options = {
+ .type = ACO_PRIVATE,
+ .category_allow = ACO_BLACKLIST,
  .category = "^general$",
- .item\_alloc = my\_item\_alloc,
- .item\_find = my\_item\_find,
- .item\_offset = offsetof(struct my\_config, itemss),
+ .item_alloc = my_item_alloc,
+ .item_find = my_item_find,
+ .item_offset = offsetof(struct my_config, itemss),
 };
 
 
 ```
-4. Create an aco\_file for any config files that will be processed. Set the filename and aco\_types that are valid for the file.
+4. Create an aco_file for any config files that will be processed. Set the filename and aco_types that are valid for the file.
 
 
 
@@ -188,9 +188,9 @@ static struct aco\_type private\_options = {
 ```
 
 C
-struct aco\_file my\_conf = {
+struct aco_file my_conf = {
  .filename = "my.conf",
- .types = ACO\_TYPES(&general\_option, &private\_options),
+ .types = ACO_TYPES(&general_option, &private_options),
 };
 
 
@@ -208,13 +208,13 @@ struct aco\_file my\_conf = {
 ```
 
 C
-CONFIG\_INFO\_STANDARD(cfg\_info, globals, my\_config\_alloc,
- .files = ACO\_FILES(&my\_conf),
+CONFIG_INFO_STANDARD(cfg_info, globals, my_config_alloc,
+ .files = ACO_FILES(&my_conf),
 );
 
 
 ```
-6. Initialize the aco\_info and register default and custom options with the config info struct
+6. Initialize the aco_info and register default and custom options with the config info struct
 
 
 
@@ -227,20 +227,20 @@ CONFIG\_INFO\_STANDARD(cfg\_info, globals, my\_config\_alloc,
 ```
 
 C
-static int load\_module(void)
+static int load_module(void)
 {
 ...
- if (aco\_info\_init(&cfg\_info)) {
+ if (aco_info_init(&cfg_info)) {
  goto error;
  }
- aco\_option\_register(&cfg\_info, "bindaddr", my\_conf.types, "0.0.0.0:1234", OPT\_SOCKADDR\_T, PARSE\_PORT\_REQUIRE, FLDSET(struct my\_global\_cfg, bindaddr));
- aco\_option\_register(&cfg\_info, "description", my\_conf.types, NULL, OPT\_STRINGFIELD\_T, 0, STRFLDSET(struct my\_item, description));
+ aco_option_register(&cfg_info, "bindaddr", my_conf.types, "0.0.0.0:1234", OPT_SOCKADDR_T, PARSE_PORT_REQUIRE, FLDSET(struct my_global_cfg, bindaddr));
+ aco_option_register(&cfg_info, "description", my_conf.types, NULL, OPT_STRINGFIELD_T, 0, STRFLDSET(struct my_item, description));
 ...
 }
 
 
 ```
-7. Process the config via aco\_process\_config(), passing in whether or not this is a reload or not.
+7. Process the config via aco_process_config(), passing in whether or not this is a reload or not.
 
 
 
@@ -253,7 +253,7 @@ static int load\_module(void)
 ```
 
 C
-aco\_process\_config(&cfg\_info, 0);
+aco_process_config(&cfg_info, 0);
 
 
 ```
@@ -276,15 +276,15 @@ A completely consistent snapshot of config data can be accessed via
 ```
 
 C
-void some\_func\_that\_accesses\_config\_data(void)
+void some_func_that_accesses_config_data(void)
 {
- RAII\_VAR(struct my\_config \*, cfg, ao2\_global\_obj\_ref(globals), ao2\_cleanup);
- RAII\_VAR(struct my\_item \*, item, NULL, ao2\_cleanup);
+ RAII_VAR(struct my_config \*, cfg, ao2_global_obj_ref(globals), ao2_cleanup);
+ RAII_VAR(struct my_item \*, item, NULL, ao2_cleanup);
  if (!cfg) {
  return;
  }
- do\_stuff\_with(cfg->general->bindaddr);
- if (!(item = ao2\_find(cfg->items, "bob", 0))) {
+ do_stuff_with(cfg->general->bindaddr);
+ if (!(item = ao2_find(cfg->items, "bob", 0))) {
  return;
  }
 }
@@ -296,7 +296,7 @@ void some\_func\_that\_accesses\_config\_data(void)
 
 
 !!! info ""
-    It is important to note that upon reload, items are completely rebuilt. If a configured item (like a SIP peer) needs to maintain state information between reloads, it is important that it be stored in an object separate from the item in an ao2 object. The item can store a pointer to this state information. When allocating a new item that requires this state information, do a search for the item in the active config and store a reference to to its state in the newly allocated item. If no item is found, allocate a new state object and store that reference in the item. See skel\_level\_alloc and skel\_find\_or\_create\_state in apps/app\_skel.c for an example.
+    It is important to note that upon reload, items are completely rebuilt. If a configured item (like a SIP peer) needs to maintain state information between reloads, it is important that it be stored in an object separate from the item in an ao2 object. The item can store a pointer to this state information. When allocating a new item that requires this state information, do a search for the item in the active config and store a reference to to its state in the newly allocated item. If no item is found, allocate a new state object and store that reference in the item. See skel_level_alloc and skel_find_or_create_state in apps/app_skel.c for an example.
 
       
 [//]: # (end-info)

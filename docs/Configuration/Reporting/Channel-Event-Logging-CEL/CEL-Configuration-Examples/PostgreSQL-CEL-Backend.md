@@ -3,16 +3,16 @@ title: PostgreSQL CEL Backend
 pageid: 5242956
 ---
 
-If you want to go directly to postgresql database, and have the cel\_pgsql.so compiled you can use the following sample setup. On Debian, before compiling asterisk, just install libpqxx-dev. Other distros will likely have a similiar package.
+If you want to go directly to postgresql database, and have the cel_pgsql.so compiled you can use the following sample setup. On Debian, before compiling asterisk, just install libpqxx-dev. Other distros will likely have a similiar package.
 
 
-Once you have the compile done, copy the sample cel\_pgsql.conf file or create your own. 
+Once you have the compile done, copy the sample cel_pgsql.conf file or create your own. 
 
 
 Here is a sample: 
 
 
-/etc/asterisk/cel\_pgsql.conf
+/etc/asterisk/cel_pgsql.conf
 
 
 
@@ -58,11 +58,11 @@ CREATE TABLE cel (
  eventtype varchar (30) NOT NULL ,
  eventtime timestamp NOT NULL ,
  userdeftype varchar(255) NOT NULL ,
- cid\_name varchar (80) NOT NULL , 
- cid\_num varchar (80) NOT NULL ,
- cid\_ani varchar (80) NOT NULL , 
- cid\_rdnis varchar (80) NOT NULL ,
- cid\_dnid varchar (80) NOT NULL ,
+ cid_name varchar (80) NOT NULL , 
+ cid_num varchar (80) NOT NULL ,
+ cid_ani varchar (80) NOT NULL , 
+ cid_rdnis varchar (80) NOT NULL ,
+ cid_dnid varchar (80) NOT NULL ,
  exten varchar (80) NOT NULL ,
  context varchar (80) NOT NULL , 
  channame varchar (80) NOT NULL ,

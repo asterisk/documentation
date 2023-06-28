@@ -54,7 +54,7 @@ The programming language and supporting libraries are left as an option to the i
 The "astxmltowiki" tool should take the following arguments:
 
 
-* path/to/core-en\_US.xml
+* path/to/core-en_US.xml
 	+ Asterisk XML documentation file
 
 

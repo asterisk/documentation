@@ -17,9 +17,9 @@ These API declarations are documented using [Swagger](https://developers.hellor
 
 ```json title="fizzbuzz.json" linenums="1"
 truejstrue{
- "\_copyright": "Copyright (C) 2013, Digium, Inc.",
- "\_author": "David M. Lee, II <dlee@digium.com>",
- "\_svn\_revision": "$Revision$",
+ "_copyright": "Copyright (C) 2013, Digium, Inc.",
+ "_author": "David M. Lee, II <dlee@digium.com>",
+ "_svn_revision": "$Revision$",
  "apiVersion": "0.0.1",
  "swaggerVersion": "1.1",
  "basePath": "http://localhost:8088/stasis",
@@ -118,12 +118,12 @@ The API declarations are used to generate much of the boilerplate code in Asteri
 
 ```bash title=" " linenums="1"
 $ make ari-stubs
-/usr/bin/python rest-api-templates/make\_ari\_stubs.py \
+/usr/bin/python rest-api-templates/make_ari_stubs.py \
  rest-api/resources.json .
 Writing ./doc/rest-api/Asterisk 12 Fizzbuzz REST API.wiki
-Writing ./res/res\_ari\_fizzbuzz.c
-Writing ./res/ari/resource\_fizzbuzz.h
-Writing ./res/ari/resource\_fizzbuzz.c
+Writing ./res/res_ari_fizzbuzz.c
+Writing ./res/ari/resource_fizzbuzz.h
+Writing ./res/ari/resource_fizzbuzz.c
 Writing ./res/ari.make
 
 ```
@@ -142,42 +142,42 @@ The parameters described in your API declaration are parsed into an `args` struc
 ---
 
   
-resource\_fizzbuzz.c  
+resource_fizzbuzz.c  
 
 
 ```
 
-truecppvoid ast\_ari\_fizzbuzz(struct ast\_variable \*headers,
- struct ast\_fizzbuzz\_args \*args,
- struct ast\_ari\_response \*response)
+truecppvoid ast_ari_fizzbuzz(struct ast_variable \*headers,
+ struct ast_fizzbuzz_args \*args,
+ struct ast_ari_response \*response)
 {
- RAII\_VAR(struct ast\_json \*, json, NULL, ast\_json\_unref);
- struct ast\_json \*fb;
+ RAII_VAR(struct ast_json \*, json, NULL, ast_json_unref);
+ struct ast_json \*fb;
  int i;
  int max = 100;
  if (args->max) {
  max = args->max;
  }
- json = ast\_json\_pack("{s: []}", "fizzbuzz");
- fb = ast\_json\_object\_get(json, "fizzbuzz");
+ json = ast_json_pack("{s: []}", "fizzbuzz");
+ fb = ast_json_object_get(json, "fizzbuzz");
  /\* This is what one would call "business logic", and doesn't belong in
  \* the ARI layer. But this is just a silly example.
  \*/
  for (i = 1; i <= max; ++i) {
  if (i % 15 == 0) {
- ast\_json\_array\_append(fb,
- ast\_json\_string\_create("FizzBuzz"));
+ ast_json_array_append(fb,
+ ast_json_string_create("FizzBuzz"));
  } else if (i % 5 == 0) {
- ast\_json\_array\_append(fb,
- ast\_json\_string\_create("Buzz"));
+ ast_json_array_append(fb,
+ ast_json_string_create("Buzz"));
  } else if (i % 3 == 0) {
- ast\_json\_array\_append(fb,
- ast\_json\_string\_create("Fizz"));
+ ast_json_array_append(fb,
+ ast_json_string_create("Fizz"));
  } else {
- ast\_json\_array\_append(fb, ast\_json\_integer\_create(i));
+ ast_json_array_append(fb, ast_json_integer_create(i));
  }
  }
- ast\_ari\_response\_ok(response, json);
+ ast_ari_response_ok(response, json);
 }
 
 ```

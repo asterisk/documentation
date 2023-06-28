@@ -3,15 +3,15 @@ title: PostgreSQL CDR Backend
 pageid: 5242923
 ---
 
-If you want to go directly to postgresql database, and have the cdr\_pgsql.so compiled you can use the following sample setup. On Debian, before compiling asterisk, just install libpqxx-dev. Other distros will likely have a similiar package.   
+If you want to go directly to postgresql database, and have the cdr_pgsql.so compiled you can use the following sample setup. On Debian, before compiling asterisk, just install libpqxx-dev. Other distros will likely have a similiar package.   
 
-Once you have the compile done, copy the sample cdr\_pgsql.conf file or create your own. 
+Once you have the compile done, copy the sample cdr_pgsql.conf file or create your own. 
 
 
 Here is a sample:
 
 
-/etc/asterisk/cdr\_pgsql.conf
+/etc/asterisk/cdr_pgsql.conf
 
 
 

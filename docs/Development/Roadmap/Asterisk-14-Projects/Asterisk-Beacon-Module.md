@@ -161,12 +161,12 @@ truejs {
  "required": [
  ],
  "properties": {
- "startup\_time": {
+ "startup_time": {
  "type": "string",
  "format": "date-time",
  "description": "When this instance was started"
  },
- "last\_reload\_time": {
+ "last_reload_time": {
  "type": "string",
  "format": "date-time",
  "description": "When this instance was last reloaded"
@@ -197,7 +197,7 @@ truejs {
  "required": [
  ],
  "properties": {
- "run\_time": {
+ "run_time": {
  "$ref": "RunTimeStats",
  "description": "Statistics on how long Asterisk has been running"
  },
@@ -228,7 +228,7 @@ truejs {
  "type": "string",
  "description": "The current state of the module"
  },
- "support\_level": {
+ "support_level": {
  "type": "string",
  "description": "The support level of the module"
  }
@@ -282,7 +282,7 @@ truejs {
  "required": [
  ],
  "properties": {
- "sys\_name": {
+ "sys_name": {
  "type": "string",
  "description": "The system name, e.g., Linux"
  },
@@ -296,7 +296,7 @@ truejs {
  },
  "machine": {
  "type": "string",
- "description": "The machine hardware identifier, e.g., x86\_64"
+ "description": "The machine hardware identifier, e.g., x86_64"
  }
  }
  },
@@ -315,11 +315,11 @@ truejs {
  "$ref": "Asterisk",
  "description": "Information about Asterisk"
  },
- "operating\_system": {
+ "operating_system": {
  "$ref": "OperatingSystem",
  "description": "Information about the system OS"
  },
- "private\_name": {
+ "private_name": {
  "type": "string",
  "description": "A name for the server that is never displayed on the Asterisk Beacon server. It is provided via configuration for custom use."
  }
@@ -409,18 +409,18 @@ PUT https://beacon.asterisk.org:80/servers/bc5829cc-4584-43e5-8395-a9b1206d7e02?
  },
  "modules": [
  {
- "name": "res\_pjsip.so",
+ "name": "res_pjsip.so",
  "description": "Basic SIP resource",
  "status": "Running",
- "support\_level": "core"
+ "support_level": "core"
  },
  ...
  ],
  "stats": {
- "run\_time":
+ "run_time":
  {
- startup\_time: "23:00:00 UTC 2014",
- last\_reload\_time: "23:10:00 UTC 2014"
+ startup_time: "23:00:00 UTC 2014",
+ last_reload_time: "23:10:00 UTC 2014"
  },
  "calls":
  {
@@ -429,18 +429,18 @@ PUT https://beacon.asterisk.org:80/servers/bc5829cc-4584-43e5-8395-a9b1206d7e02?
  }
  }
  },
- "operating\_system": {
- "sys\_name": "Linux",
+ "operating_system": {
+ "sys_name": "Linux",
  "release": "3.13.0-24-generic",
  "version": "#47-Ubuntu SMP Fri May 2 23:30:00 UTC 2014",
- "machine": "x86\_64"
+ "machine": "x86_64"
  }
 }
 
 ```
 
 
-Client: res\_beacon
+Client: res_beacon
 ===================
 
 Asterisk shall have a new resource module, `res_beacon`. As a user of `cURL`, `res_beacon` will depend on the `cURL` library and the `res_curl` module.
@@ -493,15 +493,15 @@ When logging is enabled, the CLI will display - as the last thing that is displa
 
 ```
 
-[Dec 29 16:10:59] NOTICE[13489]: app\_queue.c:8885 reload\_queues: No call queueing config file (queues.conf), so no call queues
- Loading res\_manager\_devicestate.so.
+[Dec 29 16:10:59] NOTICE[13489]: app_queue.c:8885 reload_queues: No call queueing config file (queues.conf), so no call queues
+ Loading res_manager_devicestate.so.
  == Manager registered action DeviceStateList
- == res\_manager\_devicestate.so => (Manager Device State Topic Forwarder)
- Loading res\_manager\_presencestate.so.
+ == res_manager_devicestate.so => (Manager Device State Topic Forwarder)
+ Loading res_manager_presencestate.so.
  == Manager registered action PresenceStateList
- == res\_manager\_presencestate.so => (Manager Presence State Topic Forwarder)
+ == res_manager_presencestate.so => (Manager Presence State Topic Forwarder)
  Asterisk Malloc Debugger Started (see /var/log/asterisk/mmlog))
-[Dec 29 16:10:59] NOTICE[13489]: res\_beacon.c:103 load\_module: <<< <<< <<< ANONYMOUS USAGE STATISTICS ENABLED >>> >>> >>>
+[Dec 29 16:10:59] NOTICE[13489]: res_beacon.c:103 load_module: <<< <<< <<< ANONYMOUS USAGE STATISTICS ENABLED >>> >>> >>>
 Asterisk Ready.
 \*CLI>
 
@@ -519,18 +519,18 @@ Configuration shall be provided by `res_beacon.conf`.
 | --- | --- | --- | --- | --- |
 | ^general$ | WHITELIST |  |  | Settings that apply to all servers |
 |  | enabled | Boolean | True | Enable/disable sending to all servers |
-|  | private\_name | String |  | Name of the system to send in reports. This is not shown on the Beacon server. |
+|  | private_name | String |  | Name of the system to send in reports. This is not shown on the Beacon server. |
 | ^beacon$ | WHITELIST |  |  | Settings that apply to the Asterisk beacon server |
 |  | proxy | String |  | Set an optional user:pass@proxy to use |
 |  | interval | Int32 | 360 | How often, in minutes, to send a report, minimum 60 |
-|  | start\_time | Time | 00:00 | When to start sending reports |
+|  | start_time | Time | 00:00 | When to start sending reports |
 | ^general$|^beacon$ | BLACKLIST |  |  |  |
 |  | type | String |  | Must be server |
 |  | proxy | String |  | Set an optional user:pass@proxy to use |
 |  | interval | Int32 | 360 | How often, in minutes, to send a report |
-|  | start\_time | Time | 00:00 | When to start sending reports |
-|  | verify\_cert | Boolean | True | Whether or not to verify the server certificates. |
-|  | ca\_path | String |  | Location of client certificates to use for the server. |
+|  | start_time | Time | 00:00 | When to start sending reports |
+|  | verify_cert | Boolean | True | Whether or not to verify the server certificates. |
+|  | ca_path | String |  | Location of client certificates to use for the server. |
 
 ### Example
 
@@ -547,16 +547,16 @@ Configuration shall be provided by `res_beacon.conf`.
 
 [general]
 enabled = True
-private\_name = My awesome server
+private_name = My awesome server
 
 [beacon]
 interval = 180
-start\_time = 12:00
+start_time = 12:00
 
-[awesome\_stats\_server]
+[awesome_stats_server]
 type = server
-proxy = https://batman:rocks@awesome\_stats\_server.mydomain.com/beacon
-verify\_cert = false
+proxy = https://batman:rocks@awesome_stats_server.mydomain.com/beacon
+verify_cert = false
 
 ```
 
@@ -600,7 +600,7 @@ Asterisk Information:
  Module:
  ... (laundry list)
 Operating System:
- Linux 3.13.0-24-generic #47-Ubuntu SMP Fri May 2 23:30:00 UTC 2014 x86\_64
+ Linux 3.13.0-24-generic #47-Ubuntu SMP Fri May 2 23:30:00 UTC 2014 x86_64
 
 ```
 
@@ -639,7 +639,7 @@ TokenId: ca74af9d-260c-4764-b452-e0628a9468a9
 TokenIssuedDate: Mon Dec 29 2014 15:37:18 UTC
 LastPosting: Mon Dec 29 2014 15:37:18 UTC
 NextPosting: Mon Dec 29 2014 21:37:18 UTC
-Module0Name: res\_pjsip.so
+Module0Name: res_pjsip.so
 Module0Description: Basic SIP resource
 Module0Status: Running
 Module0SupportLevel: core
@@ -651,7 +651,7 @@ ProcessedCalls: 1238
 OperatingSystemName: Linux
 OperatingSystemRelease: 3.13.0-24-generic
 OperatingSystemVersion: #47-Ubuntu SMP Fri May 2 23:30:00 UTC 2014
-OperatingSystemMachine: x86\_64
+OperatingSystemMachine: x86_64
 
 
 

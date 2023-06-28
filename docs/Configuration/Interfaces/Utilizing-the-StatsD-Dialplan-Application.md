@@ -34,7 +34,7 @@ Requirements
 Only a few requirements are needed for working with the StatsD application.
 
 * You need a statsd capable backend to receive statistics.
-* Build Asterisk with the res\_statsd module. This provides the StatsD dialplan application.
+* Build Asterisk with the res_statsd module. This provides the StatsD dialplan application.
 * Configure and enable StatsD support in Asterisk's statsd.conf
 
 Configuration
@@ -63,7 +63,7 @@ enabled = yes ; When set to yes, statsd support is enabled
 server = 127.0.0.1 ; server[:port] of statsd server to use.
  ; If not specified, the port is 8125
 ;prefix = ; Prefix to prepend to all metrics
-;add\_newline = no ; Append a newline to every event. This is
+;add_newline = no ; Append a newline to every event. This is
  ; useful if you want to run a fake statsd
  ; server using netcat (nc -lu 8125)
 
@@ -89,7 +89,7 @@ If you wish to add a port, such as 8126, to the server address, then you would a
 
 exten => 100,1,NoOp()
  same => n,StatsD(g,confBridgeUsers,+1,1)
- same => n,Set(CHANNEL(hangup\_handler\_push)=default,200,1);
+ same => n,Set(CHANNEL(hangup_handler_push)=default,200,1);
  same => n,ConfBridge(1000)
  same => n,StatsD(g,confBridgeUsers,-1,1)
  same => n,Hangup()

@@ -117,7 +117,7 @@ bind=0.0.0.0
 type=transport
 protocol=tls
 bind=0.0.0.0:5061
-cert\_file=certificate
+cert_file=certificate
  
  
 [phone]
@@ -159,7 +159,7 @@ bind=5.5.5.5
 type=transport
 protocol=tls
 bind=5.5.5.5:5061
-cert\_file=certificate
+cert_file=certificate
 
 
 [system-local-udp]
@@ -178,7 +178,7 @@ bind=192.168.1.1
 type=transport
 protocol=tls
 bind=192.168.1.1:5061
-cert\_file=certificate
+cert_file=certificate
  
 [phone-internet]
 type=endpoint
@@ -296,7 +296,7 @@ Common Issues
 Changeover to TCP when sending via UDP
 --------------------------------------
 
-If you turn the "disable\_tcp\_switch" option off in the pjsip.conf system section it is possible for an automatic switch to TCP to occur when sending a large message out using UDP. If your system has not been configured with a TCP transport this will fail. The sending of the message may also fail if the remote side is not listening on TCP.Sending using a transport that is not available
+If you turn the "disable_tcp_switch" option off in the pjsip.conf system section it is possible for an automatic switch to TCP to occur when sending a large message out using UDP. If your system has not been configured with a TCP transport this will fail. The sending of the message may also fail if the remote side is not listening on TCP.Sending using a transport that is not available
 -----------------------------------------------
 
 If a transport can not be found during the transport selection process you will receive a warning message: 
@@ -312,7 +312,7 @@ If a transport can not be found during the transport selection process you will 
 
 ```
 
-Failed to send Request msg INVITE/cseq=7846 (tdta0x7fa920002e50)! err=171060 (Unsupported transport (PJSIP\_EUNSUPTRANSPORT))
+Failed to send Request msg INVITE/cseq=7846 (tdta0x7fa920002e50)! err=171060 (Unsupported transport (PJSIP_EUNSUPTRANSPORT))
 
 ```
 

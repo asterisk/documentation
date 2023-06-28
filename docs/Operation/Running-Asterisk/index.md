@@ -15,7 +15,7 @@ Running Asterisk from the Command Line
 # asterisk
 
 # ps aux | grep asterisk
-my\_user 26246 2.0 4.1 2011992 165520 ? Ssl 16:35 0:16 asterisk
+my_user 26246 2.0 4.1 2011992 165520 ? Ssl 16:35 0:16 asterisk
 
 ```
 * In order to connect to a running Asterisk process, you can attach a **remote console** using the `-r` option:
@@ -111,7 +111,7 @@ License version 2 and other licenses; you are welcome to redistribute it under
 certain conditions. Type 'core show license' for details.
 =========================================================================
 Connected to Asterisk 11.9.0 currently running on asterisk-server (pid = 26246)
-[May 16 17:02:50] NOTICE[27035]: loader.c:1323 load\_modules: 287 modules will be loaded.
+[May 16 17:02:50] NOTICE[27035]: loader.c:1323 load_modules: 287 modules will be loaded.
 Asterisk Ready.
 \*CLI> 
 

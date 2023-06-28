@@ -344,7 +344,7 @@ Here's a quick sample commit message:
 
 ```
 
-res\_pjsip: Change something in res\_pjsip
+res_pjsip: Change something in res_pjsip
  
 This is where you should describe the change and any background information
 that will help a reviewer or future developer understand the purpose of
@@ -462,7 +462,7 @@ $ git review -d 9999
 ```
 
 
-This will create (or reuse) a branch named "review/<your\_name>/<topic>" and switch you to it.  In this example and assuming your name is "Joe Developer", the branch would be "review/joe\_developer/ASTERISK-12345".
+This will create (or reuse) a branch named "review/<your_name>/<topic>" and switch you to it.  In this example and assuming your name is "Joe Developer", the branch would be "review/joe_developer/ASTERISK-12345".
 
 Make and test your changes
 --------------------------
@@ -511,7 +511,7 @@ If you have to make multiple changes over the lifetime of the review, you should
 
 ```bash title=" " linenums="1"
 $ git checkout 13
-$ git branch -D reviews/joe\_developer/ASTERISK-12345
+$ git branch -D reviews/joe_developer/ASTERISK-12345
 $ git review -d 10000
 
 ```
@@ -570,17 +570,17 @@ Solution: Until your Contributor License Agreement is approved, you will not be 
 Traceback (most recent call last):
  File "/usr/local/bin/git-review", line 11, in <module>
  sys.exit(main())
- File "/usr/local/lib/python2.6/dist-packages/git\_review/cmd.py", line 1132, in main
- (os.path.split(sys.argv[0])[-1], get\_version()))
- File "/usr/local/lib/python2.6/dist-packages/git\_review/cmd.py", line 180, in get\_version
- provider = pkg\_resources.get\_provider(requirement)
- File "/usr/lib/python2.6/dist-packages/pkg\_resources.py", line 176, in get\_provider
- return working\_set.find(moduleOrReq) or require(str(moduleOrReq))[0]
- File "/usr/lib/python2.6/dist-packages/pkg\_resources.py", line 648, in require
- needed = self.resolve(parse\_requirements(requirements))
- File "/usr/lib/python2.6/dist-packages/pkg\_resources.py", line 546, in resolve
+ File "/usr/local/lib/python2.6/dist-packages/git_review/cmd.py", line 1132, in main
+ (os.path.split(sys.argv[0])[-1], get_version()))
+ File "/usr/local/lib/python2.6/dist-packages/git_review/cmd.py", line 180, in get_version
+ provider = pkg_resources.get_provider(requirement)
+ File "/usr/lib/python2.6/dist-packages/pkg_resources.py", line 176, in get_provider
+ return working_set.find(moduleOrReq) or require(str(moduleOrReq))[0]
+ File "/usr/lib/python2.6/dist-packages/pkg_resources.py", line 648, in require
+ needed = self.resolve(parse_requirements(requirements))
+ File "/usr/lib/python2.6/dist-packages/pkg_resources.py", line 546, in resolve
  raise DistributionNotFound(req)
-pkg\_resources.DistributionNotFound: git-review
+pkg_resources.DistributionNotFound: git-review
 
 ```
 

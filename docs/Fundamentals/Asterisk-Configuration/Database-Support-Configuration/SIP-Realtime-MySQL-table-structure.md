@@ -15,7 +15,7 @@ Here is the table structure used by MySQL for Realtime SIP friends
 #
 
 CREATE TABLE IF NOT EXISTS `sipfriends` (
- `id` int(11) NOT NULL AUTO\_INCREMENT,
+ `id` int(11) NOT NULL AUTO_INCREMENT,
  `name` varchar(10) NOT NULL,
  `ipaddr` varchar(15) DEFAULT NULL,
  `port` int(5) DEFAULT NULL,
@@ -63,7 +63,7 @@ CREATE TABLE IF NOT EXISTS `sipfriends` (
  `session-expires` int(11) DEFAULT NULL,
  `session-minse` int(11) DEFAULT NULL,
  `session-refresher` enum('uac','uas') DEFAULT NULL,
- `t38pt\_usertpsource` varchar(40) DEFAULT NULL,
+ `t38pt_usertpsource` varchar(40) DEFAULT NULL,
  `regexten` varchar(40) DEFAULT NULL,
  `fromdomain` varchar(40) DEFAULT NULL,
  `fromuser` varchar(40) DEFAULT NULL,
@@ -88,8 +88,8 @@ CREATE TABLE IF NOT EXISTS `sipfriends` (
  `auth` varchar(40) DEFAULT NULL,
  `fullname` varchar(40) DEFAULT NULL,
  `trunkname` varchar(40) DEFAULT NULL,
- `cid\_number` varchar(40) DEFAULT NULL,
- `callingpres` enum('allowed\_not\_screened','allowed\_passed\_screen','allowed\_failed\_screen','allowed','prohib\_not\_screened','prohib\_passed\_screen','prohib\_failed\_screen','prohib') DEFAULT NULL,
+ `cid_number` varchar(40) DEFAULT NULL,
+ `callingpres` enum('allowed_not_screened','allowed_passed_screen','allowed_failed_screen','allowed','prohib_not_screened','prohib_passed_screen','prohib_failed_screen','prohib') DEFAULT NULL,
  `mohinterpret` varchar(40) DEFAULT NULL,
  `mohsuggest` varchar(40) DEFAULT NULL,
  `parkinglot` varchar(40) DEFAULT NULL,

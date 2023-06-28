@@ -9,7 +9,7 @@ The asterisk-gui sets up extensions, SIP/IAX2 peers, and a host of other setting
 ### The [general] section
 
 
-There are only two settings in the general section of users.conf that apply to phone provisioning: localextenlength which maps to template variable EXTENSION\_LENGTH and vmexten which maps to the VOICEMAIL\_EXTEN variable.
+There are only two settings in the general section of users.conf that apply to phone provisioning: localextenlength which maps to template variable EXTENSION_LENGTH and vmexten which maps to the VOICEMAIL_EXTEN variable.
 
 
 ### Individual Users
@@ -38,7 +38,7 @@ profile=polycom
 ```
 
 
-The profile is optional if a default\_profile is set in phoneprov.conf. The following is a sample users.conf entry, with the template variables commented next to the settings:
+The profile is optional if a default_profile is set in phoneprov.conf. The following is a sample users.conf entry, with the template variables commented next to the settings:
 
 
 
@@ -69,12 +69,12 @@ autoprov = yes
 profile = polycom 
 directmedia = no 
 nat = no 
-fullname = User Two ; ${DISPLAY\_NAME} 
+fullname = User Two ; ${DISPLAY_NAME} 
 secret = test ; ${SECRET} 
 username = 6001 ; ${USERNAME} 
 macaddress = deadbeef4dad ; ${MAC} 
 label = 6001 ; ${LABEL} 
-cid\_number = 6001 ; ${CALLERID}
+cid_number = 6001 ; ${CALLERID}
 
 
 ```

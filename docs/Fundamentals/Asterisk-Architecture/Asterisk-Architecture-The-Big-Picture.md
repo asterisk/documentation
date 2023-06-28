@@ -38,7 +38,7 @@ Modules are not only optionally built, but you can affect at load-time whether t
 
 From a logistical standpoint, these modules are typically files with a **.so** file extension, which live in the Asterisk [modules directory](/Directory-and-File-Structure) (which is typically **/usr/lib/asterisk/modules**). When [Asterisk starts up](/Operation/Running-Asterisk), it loads these files and adds their functionality to the system.
 
-Asterisk modules which are part of the core have a file name that look like **pbx\_xxxxx.so**. All of the modules types are discussed in the section [Types of Asterisk Modules](/Fundamentals/Asterisk-Architecture/Types-of-Asterisk-Modules).
+Asterisk modules which are part of the core have a file name that look like **pbx_xxxxx.so**. All of the modules types are discussed in the section [Types of Asterisk Modules](/Fundamentals/Asterisk-Architecture/Types-of-Asterisk-Modules).
 
 
 
@@ -51,10 +51,10 @@ Asterisk modules which are part of the core have a file name that look like **pb
 
 ### A Few Module Examples
 
-* **chan\_pjsip** uses **res\_pjsip** and many other res\_pjsip modules to provide a SIP stack for SIP devices to interact with Asterisk and with each other through Asterisk.
-* **app\_voicemail** provides traditional PBX-type voicemail features.
-* **app\_confbridge** provides conference bridges with many optional features.
-* **res\_agi** provides the Asterisk Gateway Interface, an API that allows call control from external scripts and programs.
+* **chan_pjsip** uses **res_pjsip** and many other res_pjsip modules to provide a SIP stack for SIP devices to interact with Asterisk and with each other through Asterisk.
+* **app_voicemail** provides traditional PBX-type voicemail features.
+* **app_confbridge** provides conference bridges with many optional features.
+* **res_agi** provides the Asterisk Gateway Interface, an API that allows call control from external scripts and programs.
 
 Calls and Channels
 ------------------
@@ -67,7 +67,7 @@ Here are some example "calls".
 
 * A phone calling another phone through Asterisk.
 * A phone calling many phones at once (for example, paging) through Asterisk.
-* A phone calls an application or the reverse happens. e.g., app\_voicemail or app\_queue
+* A phone calls an application or the reverse happens. e.g., app_voicemail or app_queue
 * A local channel is created and interacts with an application or another channel.
 
 Note that I primarily use phones as an example, however you could refer to any channel or group of channels as a call. It doesn't matter if the devices are phones or something else, like an alarm system sensor or garage door opener.

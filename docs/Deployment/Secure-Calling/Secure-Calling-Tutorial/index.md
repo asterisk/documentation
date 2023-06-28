@@ -50,7 +50,7 @@ mkdir /etc/asterisk/keys
 ```
 
 
-Next, use the "ast\_tls\_cert" script in the "contrib/scripts" Asterisk source directory to make a self-signed certificate authority and an Asterisk certificate.
+Next, use the "ast_tls_cert" script in the "contrib/scripts" Asterisk source directory to make a self-signed certificate authority and an Asterisk certificate.
 
 
 
@@ -63,7 +63,7 @@ Next, use the "ast\_tls\_cert" script in the "contrib/scripts" Asterisk source d
 
 ```
 
-./ast\_tls\_cert -C pbx.mycompany.com -O "My Super Company" -d /etc/asterisk/keys -b 2048
+./ast_tls_cert -C pbx.mycompany.com -O "My Super Company" -d /etc/asterisk/keys -b 2048
 
 
 ```
@@ -92,7 +92,7 @@ Next, we generate a client certificate for our SIP device.
 
 ```
 
-./ast\_tls\_cert -m client -c /etc/asterisk/keys/ca.crt -k /etc/asterisk/keys/ca.key -C phone1.mycompany.com -O "My Super Company" -d /etc/asterisk/keys -o malcolm -b 2048
+./ast_tls_cert -m client -c /etc/asterisk/keys/ca.crt -k /etc/asterisk/keys/ca.key -C phone1.mycompany.com -O "My Super Company" -d /etc/asterisk/keys -o malcolm -b 2048
 
 
 ```
@@ -167,7 +167,7 @@ Next, copy the malcolm.pem and ca.crt files to the computer running the Blink so
 
  
 
-Asterisk chan\_pjsip configuration
+Asterisk chan_pjsip configuration
 ----------------------------------
 
 Now, let's configure Asterisk's PJSIP channel driver to use TLS.
@@ -189,14 +189,14 @@ In the **pjsip.conf** configuration file, you'll need to enable a TLS-capable tr
 type=transport
 protocol=tls
 bind=0.0.0.0:5061
-cert\_file=/etc/asterisk/keys/asterisk.crt
-priv\_key\_file=/etc/asterisk/keys/asterisk.key
+cert_file=/etc/asterisk/keys/asterisk.crt
+priv_key_file=/etc/asterisk/keys/asterisk.key
 method=sslv23
 
 ```
 
 
-Note the **protocol**, **cert\_file**, **priv\_key\_file**, and **method** options.  Here, we're using the TLS protocol, we're specifying the keys that we generated earlier for **cert\_file** and **priv\_key\_file** and we're setting the **method** to SSLv23.
+Note the **protocol**, **cert_file**, **priv_key_file**, and **method** options.  Here, we're using the TLS protocol, we're specifying the keys that we generated earlier for **cert_file** and **priv_key_file** and we're setting the **method** to SSLv23.
 
 Next, you'll need to configure a TLS-capable endpoint.  An example of one would resemble:
 
@@ -213,12 +213,12 @@ Next, you'll need to configure a TLS-capable endpoint.  An example of one would
 
 [malcolm]
 type=aor
-max\_contacts=1
-remove\_existing=yes
+max_contacts=1
+remove_existing=yes
  
 [malcolm]
 type=auth
-auth\_type=userpass
+auth_type=userpass
 username=malcolm
 password=useabetterpasswordplease
  
@@ -229,21 +229,21 @@ auth=malcolm
 context=local
 disallow=all
 allow=g722
-dtmf\_mode=rfc4733
-media\_encryption=sdes
+dtmf_mode=rfc4733
+media_encryption=sdes
  
 
 ```
 
 
-Note the **media\_encryption** option for the endpoint.  In this case, we've configured an endpoint that will be using SDES encryption for RTP.
+Note the **media_encryption** option for the endpoint.  In this case, we've configured an endpoint that will be using SDES encryption for RTP.
 
-You might be tempted to add a **transport=transport-tls**to the endpoint but in pjproject versions at least as late as 2.4.5, this will cause issues like **Connection refused** in a few situations.  Let pjproject do the transport selection on its own.  If you still see issues, set **rewrite\_contact = yes** in the endpoint configuration.
+You might be tempted to add a **transport=transport-tls**to the endpoint but in pjproject versions at least as late as 2.4.5, this will cause issues like **Connection refused** in a few situations.  Let pjproject do the transport selection on its own.  If you still see issues, set **rewrite_contact = yes** in the endpoint configuration.
 
-Asterisk chan\_sip configuration
+Asterisk chan_sip configuration
 --------------------------------
 
-Or, if you are using chan\_sip, you can use the following to assist.
+Or, if you are using chan_sip, you can use the following to assist.
 
 In the **sip.conf** configuration file, set the following:
 
@@ -368,8 +368,8 @@ When calling **from** Asterisk to Blink or another client, you might run into an
 
 ```
 
-[Jan 29 16:04:11] DEBUG[11217]: tcptls.c:248 handle\_tcptls\_connection: SSL Common Name compare s1='10.24.18.124' s2='phone1.mycompany.com'
-[Jan 29 16:04:11] ERROR[11217]: tcptls.c:256 handle\_tcptls\_connection: Certificate common name did not match (10.24.18.124)
+[Jan 29 16:04:11] DEBUG[11217]: tcptls.c:248 handle_tcptls_connection: SSL Common Name compare s1='10.24.18.124' s2='phone1.mycompany.com'
+[Jan 29 16:04:11] ERROR[11217]: tcptls.c:256 handle_tcptls_connection: Certificate common name did not match (10.24.18.124)
 
 ```
 
@@ -418,7 +418,7 @@ SRTP support is provided by libsrtp. libsrtp has to be installed on the machine 
 
 ```
 
-[Jan 24 09:29:16] ERROR[10167]: chan\_sip.c:27987 setup\_srtp: No SRTP module loaded, can't setup SRTP session.
+[Jan 24 09:29:16] ERROR[10167]: chan_sip.c:27987 setup_srtp: No SRTP module loaded, can't setup SRTP session.
 
 
 ```

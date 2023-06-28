@@ -15,7 +15,7 @@ This tutorial assumes the following:
 
 * You have a SIP phone plugged into the same LAN where the Asterisk server is plugged in, or can install the Zoiper softphone used in the example
 * If you use your own hardware phone, we assume both the phone and Asterisk can reach each other and are on the same subnet.
-* When you built Asterisk, you should have made sure to build the SIP channel driver you wanted to use, which may imply other requirements. For example if you want to use chan\_pjsip, then make sure you followed the [Installing pjproject](/Getting-Started/Installing-Asterisk/Installing-Asterisk-From-Source/PJSIP-pjproject) guide.
+* When you built Asterisk, you should have made sure to build the SIP channel driver you wanted to use, which may imply other requirements. For example if you want to use chan_pjsip, then make sure you followed the [Installing pjproject](/Getting-Started/Installing-Asterisk/Installing-Asterisk-From-Source/PJSIP-pjproject) guide.
 
 Configuration files needed
 --------------------------
@@ -110,8 +110,8 @@ Depending on the version of Asterisk in use, you may have the option of more tha
 
 
 !!! info ""
-    * Asterisk 11 and previous: chan\_sip is the primary option.
-    * Asterisk 12 and beyond: You'll probably want to use chan\_pjsip (the newest driver), but you still have the option of using chan\_sip as well
+    * Asterisk 11 and previous: chan_sip is the primary option.
+    * Asterisk 12 and beyond: You'll probably want to use chan_pjsip (the newest driver), but you still have the option of using chan_sip as well
       
 [//]: # (end-info)
 
@@ -119,7 +119,7 @@ Depending on the version of Asterisk in use, you may have the option of more tha
 
 Follow the instructions below for the channel driver you chose.
 
-### Configure chan\_sip
+### Configure chan_sip
 
 Backup and edit a new blank **sip.conf**, just like you did with extensions.conf.
 
@@ -152,7 +152,7 @@ allow=ulaw
 
 Basic configuration will be explained in more detail in other sections of the wiki. For this example to work, just make sure you have everything exactly as written above. For the sake of terminology, it is useful to note that though we have this SIP configuration configured with "type=friend", most people refer to this as configuring a SIP peer.
 
-### Configure chan\_pjsip
+### Configure chan_pjsip
 
 Backup and edit a new blank **pjsip.conf**, just like you did with extensions.conf.
 
@@ -184,13 +184,13 @@ aors=6001
 
 [6001]
 type=auth
-auth\_type=userpass
+auth_type=userpass
 password=unsecurepassword
 username=6001
 
 [6001]
 type=aor
-max\_contacts=1
+max_contacts=1
 
 ```
 

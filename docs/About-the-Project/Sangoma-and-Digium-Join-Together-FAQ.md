@@ -45,7 +45,7 @@ pageid: 40817607
 
  **Will card drivers from Sangoma and others get integrated into the DAHDI project?**
 
-**A:** DAHDI, as it pertains to Asterisk via chan\_dahdi, works with existing Sangoma telephony cards as-is, with no changes anticipated.  The extensive software support provided for Sangoma’s telephony cards for applications other than Asterisk (e.g. data protocol and Windows support) mean that pulling them directly into DAHDI isn’t a practicable solution at this time.
+**A:** DAHDI, as it pertains to Asterisk via chan_dahdi, works with existing Sangoma telephony cards as-is, with no changes anticipated.  The extensive software support provided for Sangoma’s telephony cards for applications other than Asterisk (e.g. data protocol and Windows support) mean that pulling them directly into DAHDI isn’t a practicable solution at this time.
 
  **What happens to libss7 (due to Sangoma already having commercial stacks) or opepnr2?**
 

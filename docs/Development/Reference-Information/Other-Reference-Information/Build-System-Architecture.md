@@ -14,10 +14,10 @@ The asterisk build architecture relies on autoconf to detect the system configur
 The first step, usually to be done soon after a checkout, is running "./configure", which will store its findings in two files:
 
 \* include/asterisk/autoconfig.h
-\*\* contains C macros, normally #define HAVE\_FOO or HAVE\_FOO\_H , for all functions and headers that have been detected at build time. These are meant to be used by C or C++ source files.
+\*\* contains C macros, normally #define HAVE_FOO or HAVE_FOO_H , for all functions and headers that have been detected at build time. These are meant to be used by C or C++ source files.
 
 \* makeopts
-\*\* contains variables that can be used by Makefiles. In addition to the usual CC, LD, ... variables pointing to the various build tools, and prefix, includedir ... which are useful for generic compiler flags, there are variables for each package detected. These are normally of the form FOO\_INCLUDE=... FOO\_LIB=... FOO\_DIR=... indicating, for each package, the useful libraries and header files.
+\*\* contains variables that can be used by Makefiles. In addition to the usual CC, LD, ... variables pointing to the various build tools, and prefix, includedir ... which are useful for generic compiler flags, there are variables for each package detected. These are normally of the form FOO_INCLUDE=... FOO_LIB=... FOO_DIR=... indicating, for each package, the useful libraries and header files.
 
 The next step is to run "make menuselect", to extract the dependencies existing between files and modules, and to store build options.
 menuselect produces two files, both to be read by the Makefile:
@@ -39,11 +39,11 @@ This section is not complete...
 
 # Adding new modules
 
-If your module is going in the {{addons/}} directory, you must edit {{addons/Makefile}} and add it to the list of modules assigned to the {{ALL\_C\_MODS}} variable. Once that is done, continue to the next steps. For any other directory, just continue.
+If your module is going in the {{addons/}} directory, you must edit {{addons/Makefile}} and add it to the list of modules assigned to the {{ALL_C_MODS}} variable. Once that is done, continue to the next steps. For any other directory, just continue.
 
 ## Modules with no dependencies
 
-If your module has no dependencies on external libraries, it can be dropped into the appropriate directory and the build system will automatically detect it and build it for you. For example, if you write {{app\_custom.c}}, drop it in the {{apps/}} directory.
+If your module has no dependencies on external libraries, it can be dropped into the appropriate directory and the build system will automatically detect it and build it for you. For example, if you write {{app_custom.c}}, drop it in the {{apps/}} directory.
 
 ## Modules with dependencies
 
@@ -51,15 +51,15 @@ If your module has an external dependency, you have a bit more work to do to int
 
 h3. {{./configure.ac}}
 
-This is the source of the {{./configure}} script. There are \_many\_ examples to draw from in this file. Search for the two instances of {{ALSA}} in this file to find one of the simpler examples of checking for a library. If you do modify {{./configure.ac}}, you must run {{./bootstrap.sh}} to regenerate {{./configure}} and {{./include/asterisk/autoconfig.h.in}} (both of which must be checked in if submitting a patch). Also, if the library provides a pkg-config .pc file, you can use the {{AST\_PKG\_CONFIG\_CHECK}} macro instead of {{AST\_EXT\_LIB\_CHECK}}.
+This is the source of the {{./configure}} script. There are _many_ examples to draw from in this file. Search for the two instances of {{ALSA}} in this file to find one of the simpler examples of checking for a library. If you do modify {{./configure.ac}}, you must run {{./bootstrap.sh}} to regenerate {{./configure}} and {{./include/asterisk/autoconfig.h.in}} (both of which must be checked in if submitting a patch). Also, if the library provides a pkg-config .pc file, you can use the {{AST_PKG_CONFIG_CHECK}} macro instead of {{AST_EXT_LIB_CHECK}}.
 
-h3. {{./build\_tools/menuselect-deps.in}}
+h3. {{./build_tools/menuselect-deps.in}}
 
-Add a line in this file for your new library. The configure script uses this file as input and outputs build\_tools/menuselect-deps. The {{menuselect}} utility reads in this file to know which libraries have been found on the system.
+Add a line in this file for your new library. The configure script uses this file as input and outputs build_tools/menuselect-deps. The {{menuselect}} utility reads in this file to know which libraries have been found on the system.
 
 h3. {{./makeopts.in}}
 
-Add {{LIBNAME\_LIB}} and {{LIBNAME\_INCLUDE}} lines into this file. The configure script will use this file as input and output the {{makeopts}} file. When this library is found, these lines will have the appropriate {{CFLAGS}} and {{LDFLAGS}} needed to build and link a module with the library. Follow the other examples that are already in this file for formatting.
+Add {{LIBNAME_LIB}} and {{LIBNAME_INCLUDE}} lines into this file. The configure script will use this file as input and output the {{makeopts}} file. When this library is found, these lines will have the appropriate {{CFLAGS}} and {{LDFLAGS}} needed to build and link a module with the library. Follow the other examples that are already in this file for formatting.
 
 h3. Update your module
 

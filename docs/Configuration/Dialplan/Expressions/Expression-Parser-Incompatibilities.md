@@ -25,7 +25,7 @@ The following list gives some (and most likely, not all) of areas of possible co
 5. Added the unary '-' operator. So you can 3+ -4 and get -1.
 6. Added the unary '!' operator, which is a logical complement. Basically, if the string or number is null, empty, or '0', a '1' is returned. Otherwise a '0' is returned.
 7. Added the '=~' operator, just in case someone is just looking for match anywhere in the string. The only diff with the ':' is that match doesn't have to be anchored to the beginning of the string.
-8. Added the conditional operator 'expr1 ? true\_expr :: false\_expr' First, all 3 exprs are evaluated, and if expr1 is false, the 'false\_expr' is returned as the result. See above for details.
+8. Added the conditional operator 'expr1 ? true_expr :: false_expr' First, all 3 exprs are evaluated, and if expr1 is false, the 'false_expr' is returned as the result. See above for details.
 9. Unary operators '-' and '!' were made right associative.
 
 

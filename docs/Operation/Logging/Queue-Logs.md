@@ -3,12 +3,12 @@ title: Queue Logs
 pageid: 5243044
 ---
 
-In order to properly manage ACD queues, it is important to be able to keep track of details of call setups and teardowns in much greater detail than traditional call detail records provide. In order to support this, extensive and detailed tracing of every queued call is stored in the queue log, located (by default) in /var/log/asterisk/queue\_log.
+In order to properly manage ACD queues, it is important to be able to keep track of details of call setups and teardowns in much greater detail than traditional call detail records provide. In order to support this, extensive and detailed tracing of every queued call is stored in the queue log, located (by default) in /var/log/asterisk/queue_log.
 
 How do I interpret the lines in the Queue log?
 ----------------------------------------------
 
-The actual queue\_log file will contain lines looking like the following:
+The actual queue_log file will contain lines looking like the following:
 
 `1366720340|1366720340.303267|MYQUEUE|SIP/8007|RINGNOANSWER|1000`The pipe delimited fields from left to right are:
 
@@ -50,7 +50,7 @@ These are the events (and associated information) in the queue log:
 Queue log options
 -----------------
 
-There are one or more options for queue logging in queues.conf, such as "log\_membername\_as\_agent". See the queues.conf sample file for explanations of those options.
+There are one or more options for queue logging in queues.conf, such as "log_membername_as_agent". See the queues.conf sample file for explanations of those options.
 
  
 

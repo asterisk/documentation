@@ -38,7 +38,7 @@ In This Section 
 Available functions
 -------------------
 
-Many functions come with Asterisk by default. For a complete list of the dialplan functions available to your installation of Asterisk, type **core show functions** at the Asterisk CLI. Not all functions are compiled with Asterisk by default, so if you have the source available then you may want to browse the functions listed in [menuselect](/Getting-Started/Installing-Asterisk/Installing-Asterisk-From-Source/Using-Menuselect-to-Select-Asterisk-Options) under "Dialplan Functions". Dedicated function modules start with "func\_", but the core or other large modules may provide functions as well.
+Many functions come with Asterisk by default. For a complete list of the dialplan functions available to your installation of Asterisk, type **core show functions** at the Asterisk CLI. Not all functions are compiled with Asterisk by default, so if you have the source available then you may want to browse the functions listed in [menuselect](/Getting-Started/Installing-Asterisk/Installing-Asterisk-From-Source/Using-Menuselect-to-Select-Asterisk-Options) under "Dialplan Functions". Dedicated function modules start with "func_", but the core or other large modules may provide functions as well.
 
 Since anyone can write an Asterisk module they can also be obtained from sources outside the Asterisk distribution. Pre-packaged community or commercial Asterisk distributions that have a special purpose may include a custom function or two.
 

@@ -32,9 +32,9 @@ All of that said, even when a single implementation language is chosen, there is
 An Example - Two Traditional Tests Using SIPp
 =============================================
 
-As an example, consider two tests written in Python that run SIPp scenarios - **message\_auth** and **message\_disabled**.
+As an example, consider two tests written in Python that run SIPp scenarios - **message_auth** and **message_disabled**.
 
-##### message\_auth
+##### message_auth
 
 
 
@@ -58,12 +58,12 @@ from twisted.internet import reactor
 from asterisk.sipp import SIPpTest
 
 
-WORKING\_DIR = "sip/message\_auth"
-TEST\_DIR = os.path.dirname(os.path.realpath(\_\_file\_\_))
+WORKING_DIR = "sip/message_auth"
+TEST_DIR = os.path.dirname(os.path.realpath(__file__))
 
-SIPP\_SCENARIOS = [
+SIPP_SCENARIOS = [
  {
- 'scenario' : 'message\_recv.xml',
+ 'scenario' : 'message_recv.xml',
  '-p' : '5062'
  },
  {
@@ -74,14 +74,14 @@ SIPP\_SCENARIOS = [
 
 
 def main():
- test = SIPpTest(WORKING\_DIR, TEST\_DIR, SIPP\_SCENARIOS)
+ test = SIPpTest(WORKING_DIR, TEST_DIR, SIPP_SCENARIOS)
  reactor.run()
  if not test.passed:
  return 1
 
  return 0
 
-if \_\_name\_\_ == "\_\_main\_\_":
+if __name__ == "__main__":
  sys.exit(main())
 
 
@@ -89,7 +89,7 @@ if \_\_name\_\_ == "\_\_main\_\_":
 ```
 
 
-##### message\_disabled
+##### message_disabled
 
 
 
@@ -113,10 +113,10 @@ from twisted.internet import reactor
 from asterisk.sipp import SIPpTest
 
 
-WORKING\_DIR = "sip/message\_disabled"
-TEST\_DIR = os.path.dirname(os.path.realpath(\_\_file\_\_))
+WORKING_DIR = "sip/message_disabled"
+TEST_DIR = os.path.dirname(os.path.realpath(__file__))
 
-SIPP\_SCENARIOS = [
+SIPP_SCENARIOS = [
  {
  'scenario' : 'message.xml',
  }
@@ -124,7 +124,7 @@ SIPP\_SCENARIOS = [
 
 
 def main():
- test = SIPpTest(WORKING\_DIR, TEST\_DIR, SIPP\_SCENARIOS)
+ test = SIPpTest(WORKING_DIR, TEST_DIR, SIPP_SCENARIOS)
  reactor.run()
  if not test.passed:
  return 1
@@ -132,7 +132,7 @@ def main():
  return 0
 
 
-if \_\_name\_\_ == "\_\_main\_\_":
+if __name__ == "__main__":
  sys.exit(main())
 
 
@@ -150,21 +150,21 @@ In fact, if we look at what is unique, it consists only of the SIPp scenarios to
 A Pluggable Framework Implementation
 ====================================
 
-These observations led to the development of a pluggable component framework for the Asterisk Test Suite. Tests that support this framework specify what components they need and their configuration in their *test-config.yaml* configuration files. A Python module, *test\_runner.py*, is responsible for starting execution, instantiating the components and injecting their dependencies, starting the test, and reporting results. The actual "business logic" of the test itself is deferred to the components specified in the test configuration.
+These observations led to the development of a pluggable component framework for the Asterisk Test Suite. Tests that support this framework specify what components they need and their configuration in their *test-config.yaml* configuration files. A Python module, *test_runner.py*, is responsible for starting execution, instantiating the components and injecting their dependencies, starting the test, and reporting results. The actual "business logic" of the test itself is deferred to the components specified in the test configuration.
 
 Components in the test configuration fall into two categories:
 
-1. *test\_object*: This is typically an object derived from the *test\_case.TestCase* class and is responsible for managing Asterisk, its interfaces (AMI/FastAgi/ARI), holding the pass/fail status of the test, and generally orchestrating the entire test process. It is the central point that other pluggable modules typically attach to. A test may only have **on****e** test object.
-2. *pluggable\_module*: A piece of functionality that attaches to a *test\_object* and provides some test functionality. This could be verifying that an AMI event is received, executing some callback when an AMI event is received, validating CDRs, or any test specific piece of code. A test may have any number of pluggable modules.
+1. *test_object*: This is typically an object derived from the *test_case.TestCase* class and is responsible for managing Asterisk, its interfaces (AMI/FastAgi/ARI), holding the pass/fail status of the test, and generally orchestrating the entire test process. It is the central point that other pluggable modules typically attach to. A test may only have **on****e** test object.
+2. *pluggable_module*: A piece of functionality that attaches to a *test_object* and provides some test functionality. This could be verifying that an AMI event is received, executing some callback when an AMI event is received, validating CDRs, or any test specific piece of code. A test may have any number of pluggable modules.
 
-See the [test-config.yaml.sample](http://svn.asterisk.org/svn/testsuite/asterisk/trunk/sample-yaml/test-config.yaml.sample) file for an example of specifying a *test\_object* and its pluggable modules.
+See the [test-config.yaml.sample](http://svn.asterisk.org/svn/testsuite/asterisk/trunk/sample-yaml/test-config.yaml.sample) file for an example of specifying a *test_object* and its pluggable modules.
 
 Example - Two Pluggable Module Tests Using SIPp
 ===============================================
 
 Looking again at the two tests using SIPp, we could discard both of their *run-test* script files, and instead express all of their intent simply in their *test-config.yaml* configuration files. Assuming the SIPpTest class was modified slightly to be able to parse the scenario information from the YAML file, one particular implementation of this could express those tests in the following manner:
 
-##### message\_auth
+##### message_auth
 
 
 
@@ -191,7 +191,7 @@ test-object-config:
  pass-on-sipp-scenario: True
  scenarios:
  -
- scenario: 'message\_recv.xml'
+ scenario: 'message_recv.xml'
  -p: '5062'
  -
  scenario: 'message.xml'
@@ -201,7 +201,7 @@ test-object-config:
 ```
 
 
-##### message\_disabled
+##### message_disabled
 
 
 

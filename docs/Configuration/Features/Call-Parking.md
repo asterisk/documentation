@@ -15,9 +15,9 @@ Call Parking Configuration Files and Module
 
 In versions of Asterisk prior to Asterisk 12, call parking was considered an Asterisk core feature and was configured using `features.conf`. However, Asterisk 12 underwent vast architectural changes, several of which were directed at call parking support. Because the amount of changes introduced in Asterisk 12 was quite extensive, they have been omitted from this document. For reference, you can find a comprehensive list of these changes here:  [New in 12](/New-in-12) .
 
-In a nutshell, Asterisk 12 relocated its support for call parking from the Asterisk core into a separate, loadable module, `res\_parking`. As a result, configuration for call parking was also moved to `[res\_parking.conf](/Asterisk+12+Configuration_res_parking)`. Configuration for call parking through `[features.conf](/Asterisk+12+Configuration_features)` for versions of Asterisk 12 and beyond, is no longer supported. Additionally, support for the `[ParkAndAnnounce](/Asterisk+12+Application_ParkAndAnnounce)` application was relocated to the `res\_parking` module and the `app\_parkandannounce` module was removed.
+In a nutshell, Asterisk 12 relocated its support for call parking from the Asterisk core into a separate, loadable module, `res_parking`. As a result, configuration for call parking was also moved to `[res_parking.conf](/Asterisk+12+Configuration_res_parking)`. Configuration for call parking through `[features.conf](/Asterisk+12+Configuration_features)` for versions of Asterisk 12 and beyond, is no longer supported. Additionally, support for the `[ParkAndAnnounce](/Asterisk+12+Application_ParkAndAnnounce)` application was relocated to the `res_parking` module and the `app_parkandannounce` module was removed.
 
-Before we move any further, there is one more rather important detail to address regarding configuration for `res\_parking`:
+Before we move any further, there is one more rather important detail to address regarding configuration for `res_parking`:
 
 
 
@@ -43,7 +43,7 @@ Example Configurations
 Basic Call Parking/Retrieval Scenario
 -------------------------------------
 
-This is a basic scenario that only requires minimal adjustments to the following configuration files: `res\_parking.conf`, `features.conf`, and `extensions.conf`.
+This is a basic scenario that only requires minimal adjustments to the following configuration files: `res_parking.conf`, `features.conf`, and `extensions.conf`.
 
 In this scenario, our dialplan contains an extension to accept calls from the outside. Let's assume that the extension the caller dialed was: `5555001`. The handler will then attempt to dial the `alice` extension, using the `k` option.
 
@@ -63,7 +63,7 @@ In summary:
 ---
 
   
-res\_parking.conf  
+res_parking.conf  
 
 
 ```
@@ -163,15 +163,15 @@ exten => 5555001,1,NoOp(Route to a local extension.)
 Basic Handling for Call Parking Timeouts
 ----------------------------------------
 
-Next we will move on to explain how to handle situations where a call is parked but is not retrieved before the value specified as the `parkingtime` option elapses. Just like the scenario above, this is a basic scenario that only requires minimal adjustments to the following configuration files: `res\_parking.conf`, `features.conf`, and `extensions.conf`.
+Next we will move on to explain how to handle situations where a call is parked but is not retrieved before the value specified as the `parkingtime` option elapses. Just like the scenario above, this is a basic scenario that only requires minimal adjustments to the following configuration files: `res_parking.conf`, `features.conf`, and `extensions.conf`.
 
 Like before, our dialplan contains an extension to accept calls from the outside. Again, let's assume that the extension the caller dialed was: `5555001`. The handler will then attempt to dial the `alice` extension, using the `k` option.
 
 Sadly for our caller, the `alice` extension answers the call and immediately sends the DTMF digits to invoke the call parking feature without giving the caller a chance to speak. Unlike in the previous scenario, however, the `alice` extension does not retrieve the parked call. Our sad caller is now even more sad.
 
-After a period of `300 seconds`, or `5 minutes` (as defined in the `parkingtime` option in `res\_parking.conf`), the call will time out. Because we told Asterisk to return a timed-out parked call to the party that originally parked the call (`comebacktoorigin=yes`), Asterisk will attempt to call `alice` using an extension automagically created in the special context, `park-dial`.
+After a period of `300 seconds`, or `5 minutes` (as defined in the `parkingtime` option in `res_parking.conf`), the call will time out. Because we told Asterisk to return a timed-out parked call to the party that originally parked the call (`comebacktoorigin=yes`), Asterisk will attempt to call `alice` using an extension automagically created in the special context, `park-dial`.
 
-Unfortunately, the `alice` extension has no time to be bothered with us at this moment, so the call is not answered. After a period of `20 seconds` elapses (the value specified for the `comebackdialtime` option in `res\_parking.conf`), Asterisk finally gives up and the `t` extension in the `park-dial` context is executed. Our caller is then told "Goodbye" before being disconnected.
+Unfortunately, the `alice` extension has no time to be bothered with us at this moment, so the call is not answered. After a period of `20 seconds` elapses (the value specified for the `comebackdialtime` option in `res_parking.conf`), Asterisk finally gives up and the `t` extension in the `park-dial` context is executed. Our caller is then told "Goodbye" before being disconnected.
 
 In summary:
 
@@ -190,7 +190,7 @@ In summary:
 ---
 
   
-res\_parking.conf  
+res_parking.conf  
 
 
 ```
@@ -314,13 +314,13 @@ exten => t,1,NoOp(End of the line for a timed-out parked call.)
 Custom Handling for Call Parking Timeouts
 -----------------------------------------
 
-Finally, we will move on to explain how to handle situations where upon a parked call session timing out, it is not desired to return to the parked call to the device from where the call was originally parked. (This might be handy for situations where you have a dedicated receptionist or service desk extension to handle incoming call traffic.) Just like the previous two examples, this is a basic scenario that only requires minimal adjustments to the following configuration files: `res\_parking.conf`, `features.conf`, and `extensions.conf`.
+Finally, we will move on to explain how to handle situations where upon a parked call session timing out, it is not desired to return to the parked call to the device from where the call was originally parked. (This might be handy for situations where you have a dedicated receptionist or service desk extension to handle incoming call traffic.) Just like the previous two examples, this is a basic scenario that only requires minimal adjustments to the following configuration files: `res_parking.conf`, `features.conf`, and `extensions.conf`.
 
 Like before, our dialplan contains an extension to accept calls from the outside. Again, let's assume that the extension the caller dialed was: `5555001`. The handler will then attempt to dial the `alice` extension, using the `k` option.
 
 Sadly for our caller, the `alice` extension answers the call and immediately sends the DTMF digits to invoke the call parking feature without giving the caller a chance to speak. Just like in the previous scenario, the `alice` extension does not retrieve the parked call. Maybe the `alice` extension is having a bad day.
 
-After a period of `300 seconds`, or `5 minutes` (as defined in the `parkingtime` option in `res\_parking.conf`), the call will time out. Because we told Asterisk to send a timed-out parked call to the `parkedcallstimeout` context (`comebacktoorigin=no`), we are able to bypass the default logic that directs Asterisk to returning the call to the person who initiated the park. In our example, when a parked call enters our `s` extension in our `parkedcallstimeout` context, we only play a sound file to the caller and hangup the call, but this is where you could do any custom logic like returning the call to a different extension, or performing a lookup of some sort.
+After a period of `300 seconds`, or `5 minutes` (as defined in the `parkingtime` option in `res_parking.conf`), the call will time out. Because we told Asterisk to send a timed-out parked call to the `parkedcallstimeout` context (`comebacktoorigin=no`), we are able to bypass the default logic that directs Asterisk to returning the call to the person who initiated the park. In our example, when a parked call enters our `s` extension in our `parkedcallstimeout` context, we only play a sound file to the caller and hangup the call, but this is where you could do any custom logic like returning the call to a different extension, or performing a lookup of some sort.
 
 In summary:
 
@@ -337,7 +337,7 @@ In summary:
 ---
 
   
-res\_parking.conf  
+res_parking.conf  
 
 
 ```

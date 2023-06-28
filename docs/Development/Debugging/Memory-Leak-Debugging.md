@@ -25,8 +25,8 @@ If Asterisk developers suspect that you have a memory leak then you will be aske
 	2. Information about the call flow - What channel driver is in use? What dialplan do the calls execute? Attach specific configuration details and examples if possible.
 2. You should attach logger output showing general Asterisk activity during the problem.
 	1. [Collecting Debug Information](/Operation/Logging/Collecting-Debug-Information)
-3. You should attach output generated (mmlog file) utilizing the MALLOC\_DEBUG compiler flag.
-	1. [MALLOC\_DEBUG Compiler Flag](/Development/Debugging/MALLOC_DEBUG-Compiler-Flag)
+3. You should attach output generated (mmlog file) utilizing the MALLOC_DEBUG compiler flag.
+	1. [MALLOC_DEBUG Compiler Flag](/Development/Debugging/MALLOC_DEBUG-Compiler-Flag)
 
 All debug should be attached using ( More > Attach Files ) on the JIRA issue report.
 

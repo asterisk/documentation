@@ -21,7 +21,7 @@ An example calendar.conf might look like:
 
 ```
 
-[calendar\_joe]
+[calendar_joe]
 type = ical 
 url = https://example.com/home/jdoe/Calendar 
 user = jdoe 
@@ -30,7 +30,7 @@ refresh = 15
 timeframe = 600 
 autoreminder = 10 
 channel = SIP/joe 
-context = calendar\_event\_notify 
+context = calendar_event_notify 
 extension = s 
 waittime = 30
 
@@ -69,7 +69,7 @@ Google Calendar
 
 Requirements:
 
-* The res\_calendar\_icalendar.so module must be loaded and running.
+* The res_calendar_icalendar.so module must be loaded and running.
 * You must have a Google calendar!
 * Google requires that you share the calendar publicly. However you can choose to only share busy/free information to limit exposure to details.
 * Configure Asterisk to connect to the specific public calendar.
@@ -113,7 +113,7 @@ This specific configuration isn't too different than the generic example. Your c
 type = ical
 url = https://calendar.google.com/calendar/ical/example%40gmail.com/public/basic.ics
 user = example@gmail.com
-secret = a\_very\_secure\_password
+secret = a_very_secure_password
 refresh = 15
 timeframe = 60
 

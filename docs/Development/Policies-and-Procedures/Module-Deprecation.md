@@ -19,13 +19,13 @@ Policy
 
 Asterisk follows a 2 year module deprecation process. A module is initially marked as deprecated and set to not be built by default in a standard release which is carried over to the next long term supported release. This provides a period of 2 releases and thus 2 years where the module is marked as deprecated. In the next standard release the module is then removed from the source code tree entirely which is carried over to the next long term supported release. As an example (note that this has not occurred),
 
-1. The app\_alarmreceiver is marked as deprecated in master and set to not build by default
-2. Previous version branches (such as 16 and 18) are updated with the version in which app\_alarmreceiver is to be deprecated (19) and the version it is to be removed (21) to display it to the user
-3. The Asterisk 19 (standard release) branch is created from master with app\_alarmreceiver marked as deprecated and set to not build by default
-4. The Asterisk 20 (long term supported release) branch is created from master with app\_alarmreceiver marked as deprecated and set to not build by default
-5. The app\_alarmreceiver module is removed from master
-6. The Asterisk 21 (standard release) branch is created from master with app\_alarmreceiver removed
-7. The Asterisk 22 (long term supported release) branch is created from master with app\_alarmreceiver removed
+1. The app_alarmreceiver is marked as deprecated in master and set to not build by default
+2. Previous version branches (such as 16 and 18) are updated with the version in which app_alarmreceiver is to be deprecated (19) and the version it is to be removed (21) to display it to the user
+3. The Asterisk 19 (standard release) branch is created from master with app_alarmreceiver marked as deprecated and set to not build by default
+4. The Asterisk 20 (long term supported release) branch is created from master with app_alarmreceiver marked as deprecated and set to not build by default
+5. The app_alarmreceiver module is removed from master
+6. The Asterisk 21 (standard release) branch is created from master with app_alarmreceiver removed
+7. The Asterisk 22 (long term supported release) branch is created from master with app_alarmreceiver removed
 
 During the time at which the module is deprecated in both a standard and long term supported release feedback is taken from the community as to the continued use of the module, through forum posts, mailing list posts, and issues. Notice of deprecation and removal is given as part of the release notes for the respective versions, as well as release notes and warnings in older releases. This serves to give as much notice as possible to the community that a module is being deprecated.
 
@@ -51,11 +51,11 @@ Marking A Module As Deprecated For Standard Release
 2. Create a new issue in the [Asterisk project issue tracker](https://github.com/asterisk/asterisk/issues/) using the "Deprecation" issue type. Ensure the issue summary is descriptive as it will go into release notes.
 3. Obtain the Asterisk source code from [Gerrit](https://gerrit.asterisk.org). Since you'll need to put your patch up for review, make an account in Gerrit as well, following the instructions on [Gerrit Usage](/Development/Policies-and-Procedures/Historical-Policies-and-Procedures/Code-Review/Gerrit-Usage).
 4. Create a new Git branch for your deprecation change.
-5. Edit the module MODULEINFO and set the "support\_level" field in the XML to "deprecated".
-6. Edit the module AST\_MODULE\_INFO at the bottom and set the "support\_level" field to "AST\_MODULE\_SUPPORT\_DEPRECATED".
+5. Edit the module MODULEINFO and set the "support_level" field in the XML to "deprecated".
+6. Edit the module AST_MODULE_INFO at the bottom and set the "support_level" field to "AST_MODULE_SUPPORT_DEPRECATED".
 7. Edit the module MODULEINFO and set the "defaultenabled" field in the XML to "no".
-8. Edit the module MODULEINFO and set the "deprecated\_in" field in the XML to the version it has been deprecated in.
-9. Edit the module MODULEINFO and set the "removed\_in" field in the XML to the version it will be removed in.
+8. Edit the module MODULEINFO and set the "deprecated_in" field in the XML to the version it has been deprecated in.
+9. Edit the module MODULEINFO and set the "removed_in" field in the XML to the version it will be removed in.
 10. Add an UPGRADE.txt document stating that the module has been deprecated, will no longer be built by default, and state the version it is scheduled to be removed in.
 11. Write a commit message describing the change and referencing the Asterisk issue you created as part of step 1.
 12. Submit the patch to Gerrit.
@@ -78,8 +78,8 @@ Marking A Module As Deprecated For Standard Release
 
 1. Obtain the Asterisk source code from [Gerrit](https://gerrit.asterisk.org/). Since you'll need to put your patch up for review, make an account in Gerrit as well, following the instructions on [Gerrit Usage](/Development/Policies-and-Procedures/Historical-Policies-and-Procedures/Code-Review/Gerrit-Usage).
 2. Create a new Git branch for your deprecation notice change.
-3. Edit the module MODULEINFO and set the "deprecated\_in" field in the XML to the version it has been deprecated in.
-4. Edit the module MODULEINFO and set the "removed\_in" field in the XML to the version it will be removed in.
+3. Edit the module MODULEINFO and set the "deprecated_in" field in the XML to the version it has been deprecated in.
+4. Edit the module MODULEINFO and set the "removed_in" field in the XML to the version it will be removed in.
 5. Add an UPGRADE.txt document stating that the module has been deprecated, will no longer be built by default, and state the version it is scheduled to be removed in.
 6. Write a commit message describing the change and referencing the Asterisk issue you created as part of deprecating the module in master.
 7. Submit the patch to Gerrit.
@@ -131,7 +131,7 @@ Removing A Module
 7. Remove any sample configuration files.
 8. Remove any logic from configure.ac
 9. Remove any mention from makeopts.in
-10. Remove any mention from build\_tools/menuselect-deps.in
+10. Remove any mention from build_tools/menuselect-deps.in
 11. Remove any dependency from the contrib/scripts/install-prereq script
 12. Add an UPGRADE.txt document stating that the module has been removed.
 13. Write a commit message describing the change and referencing the Asterisk issue you created as part of step 1.

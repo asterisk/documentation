@@ -6,7 +6,7 @@ pageid: 28934285
 Device State
 ============
 
-There are a few configuration options for chan\_sip that affect [Device State](/Fundamentals/Key-Concepts/States-and-Presence/Device-State) behavior.
+There are a few configuration options for chan_sip that affect [Device State](/Fundamentals/Key-Concepts/States-and-Presence/Device-State) behavior.
 
 callcounter
 -----------
@@ -62,7 +62,7 @@ busylevel=2
 notifyhold
 ----------
 
-The **notifyhold** option, when enabled, adds the ONHOLD device state to the range of possible device states that chan\_sip will use.
+The **notifyhold** option, when enabled, adds the ONHOLD device state to the range of possible device states that chan_sip will use.
 
 This option can only be set in the general section.
 

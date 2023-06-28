@@ -40,7 +40,7 @@ One problems you may encounter with the **Background()** application is that you
 
 
 ```javascript title=" " linenums="1"
-[auto\_attendant]
+[auto_attendant]
 exten => start,1,Verbose(2,Incoming call from ${CALLERID(all)})
  same => n,Playback(silence/1)
  same => n,Background(prompt1&prompt2&prompt3)

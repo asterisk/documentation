@@ -159,10 +159,10 @@ Tests for Use Case: Bob calls Alice
 
 |  Test  |  Level  |  Description  |
 | --- | --- | --- |
-|  sip\_basic\_call  |  Integration  |  Test a basic call scenario between two SIP UAs and Asterisk  |
-|  sip\_uri\_parse\_nominal  |  Unit  |  Nominal parsing of SIP URIs  |
-|  sip\_uri\_parse\_off\_nominal  |  Unit  |  Tests that ensure that off nominal SIP URIs are handled properly  |
-|  sip\_invite\_request\_test\_nominal  |  Unit  |  Test INVITE request handling  |
+|  sip_basic_call  |  Integration  |  Test a basic call scenario between two SIP UAs and Asterisk  |
+|  sip_uri_parse_nominal  |  Unit  |  Nominal parsing of SIP URIs  |
+|  sip_uri_parse_off_nominal  |  Unit  |  Tests that ensure that off nominal SIP URIs are handled properly  |
+|  sip_invite_request_test_nominal  |  Unit  |  Test INVITE request handling  |
 
 
 Project Planning

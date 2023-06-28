@@ -38,7 +38,7 @@ As the first LTS release of Asterisk based on the new architecture provided by A
 
 ### Asterisk 12
 
-* New SIP stack and channel driver based on pjproject (chan\_pjsip)
+* New SIP stack and channel driver based on pjproject (chan_pjsip)
 * Revamped Bridging core to support new APIs
 * New infrastructure to support consistent APIs
 * New RESTful API - ARI
@@ -48,7 +48,7 @@ As the first LTS release of Asterisk based on the new architecture provided by A
 * Initial WebRTC support
 * Usability features (hangup handlers, pre-dial, hangup cause)
 * PresenceState
-* New XMPP Channel Driver (chan\_motif)
+* New XMPP Channel Driver (chan_motif)
 
 ### Asterisk 10
 

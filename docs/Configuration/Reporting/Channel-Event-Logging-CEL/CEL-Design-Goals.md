@@ -16,7 +16,7 @@ CEL, or Channel Event Logging, was written with the hopes that it will help solv
 Channel-relevant events
 -----------------------
 
-The fundamental assumption is that the Channel is the fundamental communication object in asterisk, which basically provides a communication channel between two communication ports. It makes sense to have an event system aimed at recording important events on channels. Each event is attached to a channel, like ANSWER or HANGUP. Some events are meant to connect two or more channels, like the BRIDGE\_START event. Some events, like BLINDTRANSFER, are initiated by one channel, but affect two others. These events use the Peer field, like BRIDGE would, to point to the target channel.
+The fundamental assumption is that the Channel is the fundamental communication object in asterisk, which basically provides a communication channel between two communication ports. It makes sense to have an event system aimed at recording important events on channels. Each event is attached to a channel, like ANSWER or HANGUP. Some events are meant to connect two or more channels, like the BRIDGE_START event. Some events, like BLINDTRANSFER, are initiated by one channel, but affect two others. These events use the Peer field, like BRIDGE would, to point to the target channel.
 
 Billing requires detail
 -----------------------
@@ -52,55 +52,55 @@ Note that the actual CEL events below are in CSV format and do not include the ;
 
 ```
 
-"EV\_CHAN\_START","2007-05-09 12:46:16","fxs.52","152","","","","s","extension","Zap/52-1","","","DOCUMENTATION","","1178736376.3","","" ;;; 152 takes the phone off-hook
-"EV\_APP\_START","2007-05-09 12:46:18","fxs.52","152","152","","","151","extension","Zap/52-1","Dial","Zap/51|30|TtWw","DOCUMENTATION","","1178736376.3" ;;; 152 finishes dialing 151 
-"EV\_CHAN\_START","2007-05-09 12:46:18","fxs.51","151","","","","s","extension","Zap/51-1","","","DOCUMENTATION","","1178736378.4","","" ;;; 151 channel created, starts ringing 
+"EV_CHAN_START","2007-05-09 12:46:16","fxs.52","152","","","","s","extension","Zap/52-1","","","DOCUMENTATION","","1178736376.3","","" ;;; 152 takes the phone off-hook
+"EV_APP_START","2007-05-09 12:46:18","fxs.52","152","152","","","151","extension","Zap/52-1","Dial","Zap/51|30|TtWw","DOCUMENTATION","","1178736376.3" ;;; 152 finishes dialing 151 
+"EV_CHAN_START","2007-05-09 12:46:18","fxs.51","151","","","","s","extension","Zap/51-1","","","DOCUMENTATION","","1178736378.4","","" ;;; 151 channel created, starts ringing 
 (151 is ringing) 
-"EV\_ANSWER","2007-05-09 12:46:19","","151","152","","","151","extension","Zap/51-1","AppDial","(Outgoing Line)","DOCUMENTATION","","1178736378.4","","" ;;; 151 answers 
-"EV\_ANSWER","2007-05-09 12:46:19","fxs.52","152","152","","","151","extension","Zap/52-1","Dial","Zap/51|30|TtWw","DOCUMENTATION","","1178736376.3","","" ;;; so does 152 (???) 
-"EV\_BRIDGE\_START","2007-05-09 12:46:20","fxs.52","152","152","","","151","extension","Zap/52-1","Dial","Zap/51|30|TtWw","DOCUMENTATION","","1178736376.3","","Zap/51-1" ;;; 152 and 151 are bridged 
+"EV_ANSWER","2007-05-09 12:46:19","","151","152","","","151","extension","Zap/51-1","AppDial","(Outgoing Line)","DOCUMENTATION","","1178736378.4","","" ;;; 151 answers 
+"EV_ANSWER","2007-05-09 12:46:19","fxs.52","152","152","","","151","extension","Zap/52-1","Dial","Zap/51|30|TtWw","DOCUMENTATION","","1178736376.3","","" ;;; so does 152 (???) 
+"EV_BRIDGE_START","2007-05-09 12:46:20","fxs.52","152","152","","","151","extension","Zap/52-1","Dial","Zap/51|30|TtWw","DOCUMENTATION","","1178736376.3","","Zap/51-1" ;;; 152 and 151 are bridged 
 (151 and 152 are conversing) 
-"EV\_BRIDGE\_END","2007-05-09 12:46:25","fxs.52","152","152","","","151","extension","Zap/52-1","Dial","Zap/51|30|TtWw","DOCUMENTATION","","1178736376.3","","" ;;; after 5 seconds, the bridge ends (152 dials #700?) 
-"EV\_BRIDGE\_START","2007-05-09 12:46:25","fxs.52","152","152","","","151","extension","Zap/52-1","Dial","Zap/51|30|TtWw","DOCUMENTATION","","1178736376.3","","Zap/51-1" ;;; extraneous 0-second bridge? 
-"EV\_BRIDGE\_END","2007-05-09 12:46:25","fxs.52","152","152","","","151","extension","Zap/52-1","Dial","Zap/51|30|TtWw","DOCUMENTATION","","1178736376.3","","" ;;; 
-"EV\_PARK\_START","2007-05-09 12:46:27","","151","152","","","","extension","Zap/51-1","Parked Call","","DOCUMENTATION","","1178736378.4","","" ;;; 151 is parked 
-"EV\_HANGUP","2007-05-09 12:46:29","fxs.52","152","152","","","h","extension","Zap/52-1","","","DOCUMENTATION","","1178736376.3" ,"","" ;;; 152 hangs up 2 sec later 
-"EV\_CHAN\_END","2007-05-09 12:46:29","fxs.52","152","152","","","h","extension","Zap/52-1","","","DOCUMENTATION","","1178736376.3","","" ;;; 152's channel goes away 
+"EV_BRIDGE_END","2007-05-09 12:46:25","fxs.52","152","152","","","151","extension","Zap/52-1","Dial","Zap/51|30|TtWw","DOCUMENTATION","","1178736376.3","","" ;;; after 5 seconds, the bridge ends (152 dials #700?) 
+"EV_BRIDGE_START","2007-05-09 12:46:25","fxs.52","152","152","","","151","extension","Zap/52-1","Dial","Zap/51|30|TtWw","DOCUMENTATION","","1178736376.3","","Zap/51-1" ;;; extraneous 0-second bridge? 
+"EV_BRIDGE_END","2007-05-09 12:46:25","fxs.52","152","152","","","151","extension","Zap/52-1","Dial","Zap/51|30|TtWw","DOCUMENTATION","","1178736376.3","","" ;;; 
+"EV_PARK_START","2007-05-09 12:46:27","","151","152","","","","extension","Zap/51-1","Parked Call","","DOCUMENTATION","","1178736378.4","","" ;;; 151 is parked 
+"EV_HANGUP","2007-05-09 12:46:29","fxs.52","152","152","","","h","extension","Zap/52-1","","","DOCUMENTATION","","1178736376.3" ,"","" ;;; 152 hangs up 2 sec later 
+"EV_CHAN_END","2007-05-09 12:46:29","fxs.52","152","152","","","h","extension","Zap/52-1","","","DOCUMENTATION","","1178736376.3","","" ;;; 152's channel goes away 
 (151 is parked and listening to MOH! now, 150 picks up, and dials 701) 
-"EV\_CHAN\_START","2007-05-09 12:47:08","fxs.50","150","","","","s","extension","Zap/50-1","","","DOCUMENTATION","","1178736428.5","","" ;;; 150 picks up the phone, dials 701 
-"EV\_PARK\_END","2007-05-09 12:47:11","","151","152","","","","extension","Zap/51-1","Parked Call","","DOCUMENTATION","","1178736378.4","","" ;;; 151's park comes to end 
-"EV\_ANSWER","2007-05-09 12:47:11","fxs.50","150","150","","","701","extension","Zap/50-1","ParkedCall","701","DOCUMENTATION","","1178736428.5","","" ;;; 150 gets answer (twice) 
-"EV\_ANSWER","2007-05-09 12:47:12","fxs.50","150","150","","","701","extension","Zap/50-1","ParkedCall","701","DOCUMENTATION","","1178736428.5","","" ;;; 
-"EV\_BRIDGE\_START","2007-05-09 12:47:12","fxs.50","150","150","","","701","extension","Zap/50-1","ParkedCall","701","DOCUMENTATION","","1178736428.5","","Zap/51-1" ;;; bridge begins between 150 and recently parked 151 (150 and 151 are conversing, then 151 hits flash) 
-"EV\_CHAN\_START","2007-05-09 12:47:51","fxs.51","151","","","","s","extension","Zap/51-2","","","DOCUMENTATION","","1178736471.6","","" ;;; 39 seconds later, 51-2 channel is created. (151 flashes hook) 
-"EV\_HOOKFLASH","2007-05-09 12:47:51","","151","152","","","","extension","Zap/51-1","Bridged Call","Zap/50-1","DOCUMENTATION","","1178736378.4","","Zap/51-2" ;;; a marker to record that 151 flashed the hook 
-"EV\_BRIDGE\_END","2007-05-09 12:47:51","fxs.50","150","150","","","701","extension","Zap/50-1","ParkedCall","701","DOCUMENTATION","","1178736428.5","","Zap/51-1" ;;; bridge ends between 150 and 151 
-"EV\_BRIDGE\_START","2007-05-09 12:47:51","fxs.50","150","150","","","701","extension","Zap/50-1","ParkedCall","701","DOCUMENTATION","","1178736428.5","","Zap/51-1" ;;; 0-second bridge from 150 to ? 150 gets no sound at all 
-"EV\_BRIDGE\_END","2007-05-09 12:47:51","fxs.50","150","150","","","701","extension","Zap/50-1","ParkedCall","701","DOCUMENTATION","","1178736428.5","","Zap/51-1" ;;; 
-"EV\_BRIDGE\_START","2007-05-09 12:47:51","fxs.50","150","150","","","701","extension","Zap/50-1","ParkedCall","701","DOCUMENTATION","","1178736428.5","","Zap/51-1" ;;; bridge start on 150 
+"EV_CHAN_START","2007-05-09 12:47:08","fxs.50","150","","","","s","extension","Zap/50-1","","","DOCUMENTATION","","1178736428.5","","" ;;; 150 picks up the phone, dials 701 
+"EV_PARK_END","2007-05-09 12:47:11","","151","152","","","","extension","Zap/51-1","Parked Call","","DOCUMENTATION","","1178736378.4","","" ;;; 151's park comes to end 
+"EV_ANSWER","2007-05-09 12:47:11","fxs.50","150","150","","","701","extension","Zap/50-1","ParkedCall","701","DOCUMENTATION","","1178736428.5","","" ;;; 150 gets answer (twice) 
+"EV_ANSWER","2007-05-09 12:47:12","fxs.50","150","150","","","701","extension","Zap/50-1","ParkedCall","701","DOCUMENTATION","","1178736428.5","","" ;;; 
+"EV_BRIDGE_START","2007-05-09 12:47:12","fxs.50","150","150","","","701","extension","Zap/50-1","ParkedCall","701","DOCUMENTATION","","1178736428.5","","Zap/51-1" ;;; bridge begins between 150 and recently parked 151 (150 and 151 are conversing, then 151 hits flash) 
+"EV_CHAN_START","2007-05-09 12:47:51","fxs.51","151","","","","s","extension","Zap/51-2","","","DOCUMENTATION","","1178736471.6","","" ;;; 39 seconds later, 51-2 channel is created. (151 flashes hook) 
+"EV_HOOKFLASH","2007-05-09 12:47:51","","151","152","","","","extension","Zap/51-1","Bridged Call","Zap/50-1","DOCUMENTATION","","1178736378.4","","Zap/51-2" ;;; a marker to record that 151 flashed the hook 
+"EV_BRIDGE_END","2007-05-09 12:47:51","fxs.50","150","150","","","701","extension","Zap/50-1","ParkedCall","701","DOCUMENTATION","","1178736428.5","","Zap/51-1" ;;; bridge ends between 150 and 151 
+"EV_BRIDGE_START","2007-05-09 12:47:51","fxs.50","150","150","","","701","extension","Zap/50-1","ParkedCall","701","DOCUMENTATION","","1178736428.5","","Zap/51-1" ;;; 0-second bridge from 150 to ? 150 gets no sound at all 
+"EV_BRIDGE_END","2007-05-09 12:47:51","fxs.50","150","150","","","701","extension","Zap/50-1","ParkedCall","701","DOCUMENTATION","","1178736428.5","","Zap/51-1" ;;; 
+"EV_BRIDGE_START","2007-05-09 12:47:51","fxs.50","150","150","","","701","extension","Zap/50-1","ParkedCall","701","DOCUMENTATION","","1178736428.5","","Zap/51-1" ;;; bridge start on 150 
 (151 has dialtone after hitting flash; dials 152) 
-"EV\_APP\_START","2007-05-09 12:47:55","fxs.51","151","151","","","152","extension","Zap/51-2","Dial","Zap/52|30|TtWw","DOCUMENTATION","","1178736471.6","","" ;;; 151-2 dials 152 after 4 seconds 
-"EV\_CHAN\_START","2007-05-09 12:47:55","fxs.52","152","","","","s","extension","Zap/52-1","","","DOCUMENTATION","","1178736475.7" ,"","" ;;; 152 channel created to ring 152. 
+"EV_APP_START","2007-05-09 12:47:55","fxs.51","151","151","","","152","extension","Zap/51-2","Dial","Zap/52|30|TtWw","DOCUMENTATION","","1178736471.6","","" ;;; 151-2 dials 152 after 4 seconds 
+"EV_CHAN_START","2007-05-09 12:47:55","fxs.52","152","","","","s","extension","Zap/52-1","","","DOCUMENTATION","","1178736475.7" ,"","" ;;; 152 channel created to ring 152. 
 (152 ringing) 
-"EV\_ANSWER","2007-05-09 12:47:58","","152","151","","","152","extension","Zap/52-1","AppDial","(Outgoing Line)","DOCUMENTATION","","1178736475.7","","" ;;; 3 seconds later, 152 answers 
-"EV\_ANSWER","2007-05-09 12:47:58","fxs.51","151","151","","","152","extension","Zap/51-2","Dial","Zap/52|30|TtWw","DOCUMENTATION","","1178736471.6","","" ;;; ... and 151-2 also answers 
-"EV\_BRIDGE\_START","2007-05-09 12:47:59","fxs.51","151","151","","","152","extension","Zap/51-2","Dial","Zap/52|30|TtWw","DOCUMENTATION","","1178736471.6","","Zap/51-1" ;;; 1 second later, bridge formed betw. 151-2 and 151 (152 answers, 151 and 152 convering; 150 is listening to silence; 151 hits flash again... to start a 3way) 
-"EV\_3WAY\_START","2007-05-09 12:48:58","","151","152","","","","extension","Zap/51-1","Bridged Call","Zap/50-1","DOCUMENTATION","","1178736378.4","","Zap/51-2" ;;; another hook-flash to begin a 3-way conference 
-"EV\_BRIDGE\_END","2007-05-09 12:48:58","fxs.50","150","150","","","701","extension","Zap/50-1","ParkedCall","701","DOCUMENTATION","","1178736428.5","","Zap/51-1" ;;; - almost 1 minute later, the bridge ends (151 flashes hook again) 
-"EV\_BRIDGE\_START","2007-05-09 12:48:58","fxs.50","150","150","","","701","extension","Zap/50-1","ParkedCall","701","DOCUMENTATION","","1178736428.5","","Zap/51-1" ;;; 0-second bridge at 150. (3 way conf formed) 
-"EV\_BRIDGE\_END","2007-05-09 12:48:58","fxs.50","150","150","","","701","extension","Zap/50-1","ParkedCall","701","DOCUMENTATION","","1178736428.5","","Zap/51-1" ;;; 
-"EV\_BRIDGE\_START","2007-05-09 12:48:58","fxs.50","150","150","","","701","extension","Zap/50-1","ParkedCall","701","DOCUMENTATION","","1178736428.5","","Zap/51-1" ;;; bridge starts for 150 
+"EV_ANSWER","2007-05-09 12:47:58","","152","151","","","152","extension","Zap/52-1","AppDial","(Outgoing Line)","DOCUMENTATION","","1178736475.7","","" ;;; 3 seconds later, 152 answers 
+"EV_ANSWER","2007-05-09 12:47:58","fxs.51","151","151","","","152","extension","Zap/51-2","Dial","Zap/52|30|TtWw","DOCUMENTATION","","1178736471.6","","" ;;; ... and 151-2 also answers 
+"EV_BRIDGE_START","2007-05-09 12:47:59","fxs.51","151","151","","","152","extension","Zap/51-2","Dial","Zap/52|30|TtWw","DOCUMENTATION","","1178736471.6","","Zap/51-1" ;;; 1 second later, bridge formed betw. 151-2 and 151 (152 answers, 151 and 152 convering; 150 is listening to silence; 151 hits flash again... to start a 3way) 
+"EV_3WAY_START","2007-05-09 12:48:58","","151","152","","","","extension","Zap/51-1","Bridged Call","Zap/50-1","DOCUMENTATION","","1178736378.4","","Zap/51-2" ;;; another hook-flash to begin a 3-way conference 
+"EV_BRIDGE_END","2007-05-09 12:48:58","fxs.50","150","150","","","701","extension","Zap/50-1","ParkedCall","701","DOCUMENTATION","","1178736428.5","","Zap/51-1" ;;; - almost 1 minute later, the bridge ends (151 flashes hook again) 
+"EV_BRIDGE_START","2007-05-09 12:48:58","fxs.50","150","150","","","701","extension","Zap/50-1","ParkedCall","701","DOCUMENTATION","","1178736428.5","","Zap/51-1" ;;; 0-second bridge at 150. (3 way conf formed) 
+"EV_BRIDGE_END","2007-05-09 12:48:58","fxs.50","150","150","","","701","extension","Zap/50-1","ParkedCall","701","DOCUMENTATION","","1178736428.5","","Zap/51-1" ;;; 
+"EV_BRIDGE_START","2007-05-09 12:48:58","fxs.50","150","150","","","701","extension","Zap/50-1","ParkedCall","701","DOCUMENTATION","","1178736428.5","","Zap/51-1" ;;; bridge starts for 150 
 (3way now, then 151 hangs up.) 
-"EV\_BRIDGE\_END","2007-05-09 12:49:26","fxs.50","150","150","","","701","extension","Zap/50-1","ParkedCall","701","DOCUMENTATION","","1178736428.5","","Zap/51-1" ;;; 28 seconds later, bridge ends 
-"EV\_HANGUP","2007-05-09 12:49:26","","151","152","","","","extension","Zap/51-1","Bridged Call","Zap/50-1","DOCUMENTATION","","1178736378.4","","" ;;; 151 hangs up, leaves 150 and 152 connected 
-"EV\_CHAN\_END","2007-05-09 12:49:26","","151","152","","","","extension","Zap/51-1","Bridged Call","Zap/50-1","DOCUMENTATION","","1178736378.4","","" ;;; 151 channel ends 
-"EV\_CHAN\_END","2007-05-09 12:49:26","fxs.51","151","151","","","h","extension","Zap/51-2ZOMBIE","","","DOCUMENTATION","","1178736428.5","","" ;;; 152-2 channel ends (zombie) 
+"EV_BRIDGE_END","2007-05-09 12:49:26","fxs.50","150","150","","","701","extension","Zap/50-1","ParkedCall","701","DOCUMENTATION","","1178736428.5","","Zap/51-1" ;;; 28 seconds later, bridge ends 
+"EV_HANGUP","2007-05-09 12:49:26","","151","152","","","","extension","Zap/51-1","Bridged Call","Zap/50-1","DOCUMENTATION","","1178736378.4","","" ;;; 151 hangs up, leaves 150 and 152 connected 
+"EV_CHAN_END","2007-05-09 12:49:26","","151","152","","","","extension","Zap/51-1","Bridged Call","Zap/50-1","DOCUMENTATION","","1178736378.4","","" ;;; 151 channel ends 
+"EV_CHAN_END","2007-05-09 12:49:26","fxs.51","151","151","","","h","extension","Zap/51-2ZOMBIE","","","DOCUMENTATION","","1178736428.5","","" ;;; 152-2 channel ends (zombie) 
 (just 150 and 152 now) 
-"EV\_BRIDGE\_END","2007-05-09 12:50:13","fxs.50","150","150","","","152","extension","Zap/50-1","Dial","Zap/52|30|TtWw","DOCUMENTATION","","1178736471.6","","" ;;; 47 sec later, the bridge from 150 to 152 ends 
-"EV\_HANGUP","2007-05-09 12:50:13","","152","151","","","","extension","Zap/52-1","Bridged Call","Zap/50-1","DOCUMENTATION","","1178736475.7","","" ;;; 152 hangs up 
-"EV\_CHAN\_END","2007-05-09 12:50:13","","152","151","","","","extension","Zap/52-1","Bridged Call","Zap/50-1","DOCUMENTATION","","1178736475.7","","" ;;; 152 channel ends 
-"EV\_HANGUP","2007-05-09 12:50:13","fxs.50","150","150","","","h","extension","Zap/50-1","","","DOCUMENTATION","","1178736471.6","","" ;;; 150 hangs up 
-"EV\_CHAN\_END","2007-05-09 12:50:13","fxs.50","150","150","","","h","extension","Zap/50-1","","","DOCUMENTATION","","1178736471.6","","" ;;; 150 ends 
+"EV_BRIDGE_END","2007-05-09 12:50:13","fxs.50","150","150","","","152","extension","Zap/50-1","Dial","Zap/52|30|TtWw","DOCUMENTATION","","1178736471.6","","" ;;; 47 sec later, the bridge from 150 to 152 ends 
+"EV_HANGUP","2007-05-09 12:50:13","","152","151","","","","extension","Zap/52-1","Bridged Call","Zap/50-1","DOCUMENTATION","","1178736475.7","","" ;;; 152 hangs up 
+"EV_CHAN_END","2007-05-09 12:50:13","","152","151","","","","extension","Zap/52-1","Bridged Call","Zap/50-1","DOCUMENTATION","","1178736475.7","","" ;;; 152 channel ends 
+"EV_HANGUP","2007-05-09 12:50:13","fxs.50","150","150","","","h","extension","Zap/50-1","","","DOCUMENTATION","","1178736471.6","","" ;;; 150 hangs up 
+"EV_CHAN_END","2007-05-09 12:50:13","fxs.50","150","150","","","h","extension","Zap/50-1","","","DOCUMENTATION","","1178736471.6","","" ;;; 150 ends 
 
 
 ```

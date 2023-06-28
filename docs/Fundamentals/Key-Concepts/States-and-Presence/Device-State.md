@@ -6,7 +6,7 @@ pageid: 28934187
 Devices
 =======
 
-Devices are discrete components of functionality within Asterisk that serve a particular task. A device may be a channel technology resource, such as SIP/<name> in the case of chan\_sip.so or a feature resource of another module such as app\_confbridge.so which provides devices like confbridge:<name>.
+Devices are discrete components of functionality within Asterisk that serve a particular task. A device may be a channel technology resource, such as SIP/<name> in the case of chan_sip.so or a feature resource of another module such as app_confbridge.so which provides devices like confbridge:<name>.
 
 State information
 -----------------
@@ -27,14 +27,14 @@ On this Page
 
 | Device State Identifier | Device State Provider |
 | --- | --- |
-| PJSIP/<resource> | PJSIP SIP stack, res\_pjsip.so, chan\_pjsip.so. |
-| SIP/<resource> | The older SIP channel driver, chan\_sip.so. |
-| DAHDI/<resource> | The popular telephony hardware interface driver, chan\_dahdi.so. |
-| IAX2/<resource> | Inter-Asterisk Exchange protocol! chan\_iax2.so. |
-| ConfBridge:<resource> | The conference bridge application, app\_confbridge.so. |
-| MeetMe:<resource> | The older conference bridging app, app\_meetme.so. |
-| Park:<resource> | The Asterisk core in versions up to 11.res\_parking.so in versions 12 or greater. |
-| Calendar:<resource> | res\_calendar.so and related calendaring modules. |
+| PJSIP/<resource> | PJSIP SIP stack, res_pjsip.so, chan_pjsip.so. |
+| SIP/<resource> | The older SIP channel driver, chan_sip.so. |
+| DAHDI/<resource> | The popular telephony hardware interface driver, chan_dahdi.so. |
+| IAX2/<resource> | Inter-Asterisk Exchange protocol! chan_iax2.so. |
+| ConfBridge:<resource> | The conference bridge application, app_confbridge.so. |
+| MeetMe:<resource> | The older conference bridging app, app_meetme.so. |
+| Park:<resource> | The Asterisk core in versions up to 11.res_parking.so in versions 12 or greater. |
+| Calendar:<resource> | res_calendar.so and related calendaring modules. |
 | Custom:<resource> | Custom device state provided by the asterisk core. |
 
 Note that we are not differentiating any device state providers based on what is on the far end. Depending on device state provider, the far end of signaling for state could be a physical device, or just a discrete feature resource inside of Asterisk.  In terms of understanding device state for use in Asterisk, it doesn't really matter. The device state represents the state of the Asterisk device as long as it is able to provide it regardless of what is on the far end of the communication path.
@@ -50,7 +50,7 @@ Possible Device States
 Here are the possible states that a device state may have.
 
 * UNKNOWN
-* NOT\_INUSE
+* NOT_INUSE
 * INUSE
 * BUSY
 * INVALID
@@ -66,7 +66,7 @@ Module Specific Device State
 
 There is module specific configuration that you must be aware of to get optimal behavior with certain state providers.
 
-For **chan\_sip** see the [chan\_sip State and Presence Options](/Configuration/Channel-Drivers/SIP/Configuring-chan_sip/chan_sip-State-and-Presence-Options) section.
+For **chan_sip** see the [chan_sip State and Presence Options](/Configuration/Channel-Drivers/SIP/Configuring-chan_sip/chan_sip-State-and-Presence-Options) section.
 
-For **res\_pjsip** see the [Configuring res\_pjsip for Presence Subscriptions](/Configuration/Channel-Drivers/SIP/Configuring-res_pjsip/Configuring-res_pjsip-for-Presence-Subscriptions) section.
+For **res_pjsip** see the [Configuring res_pjsip for Presence Subscriptions](/Configuration/Channel-Drivers/SIP/Configuring-res_pjsip/Configuring-res_pjsip-for-Presence-Subscriptions) section.
 

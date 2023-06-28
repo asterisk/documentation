@@ -45,7 +45,7 @@ Design
 	+ Do they follow - when possible - the scheme `namespace_object_verb_noun`?
 * Are variable names descriptive?
 * Are global variables used?
-	+ Can they be removed and replaced with an [ao2\_global\_obj](http://doxygen.asterisk.org/trunk/d2/dd8/structao2__global__obj.html)?
+	+ Can they be removed and replaced with an [ao2_global_obj](http://doxygen.asterisk.org/trunk/d2/dd8/structao2__global__obj.html)?
 
 ### Interfaces
 
@@ -126,7 +126,7 @@ Asterisk contains many frameworks. When possible, you should always strive to us
 | AstObj2 | [astobj2.h](http://doxygen.asterisk.org/trunk/d5/da5/astobj2_8h.html) | Provides reference counted objects, including reference counted containers (hash table, red/black tree, list, single object). Probably the most heavily used API in Asterisk. Any object whose lifetime is affected by module reloads, who is shared between threads, or is generally complex should use this API. |
 | Audiohooks | [audiohook.h](http://doxygen.asterisk.org/trunk/d0/d79/audiohook_8h.html) | A special type of frame hook used to intercept and manipulate audio frames. |
 | Bridging | [bridge.h](http://doxygen.asterisk.org/trunk/d4/d56/bridge_8h.html) | A framework for bridging channels together. |
-| Configuration Framework | [config\_options.h](http://doxygen.asterisk.org/trunk/db/dfe/config__options_8h.html) | A framework that manages and wraps a variety of static configuration APIs, including handling `.conf` files and static realtime. The framework provides thread safety, type safety, CLI/wiki documentation integration, and enforces schema consistency across Asterisk. For an example of using the framework, see [Using the Configuration Framework](/Development/Reference-Information/Asterisk-Framework-and-API-Examples/Using-the-Configuration-Framework). If you need support for dynamic realtime, see the Sorcery framework. |
+| Configuration Framework | [config_options.h](http://doxygen.asterisk.org/trunk/db/dfe/config__options_8h.html) | A framework that manages and wraps a variety of static configuration APIs, including handling `.conf` files and static realtime. The framework provides thread safety, type safety, CLI/wiki documentation integration, and enforces schema consistency across Asterisk. For an example of using the framework, see [Using the Configuration Framework](/Development/Reference-Information/Asterisk-Framework-and-API-Examples/Using-the-Configuration-Framework). If you need support for dynamic realtime, see the Sorcery framework. |
 | Datastores | [datastore.h](http://doxygen.asterisk.org/trunk/d9/db6/datastore_8h.html) | API for storing generic information on a channel. |
 | Dialling | [dial.h](http://doxygen.asterisk.org/trunk/df/dcf/dial_8h.html) | A framework for performing outbound dialling operations. |
 | Framehooks | [framehook.h](http://doxygen.asterisk.org/trunk/db/d3c/framehook_8h.html) | An API for intercepting and manipulating frames on a channel. |
@@ -151,7 +151,7 @@ Locking
     Common locking orders:
 
     * Channels are locked before the channel private structure
-    * Bridges are locked before bridge\_channels, and bridge\_channels before channels
+    * Bridges are locked before bridge_channels, and bridge_channels before channels
     * Channel locks must not be held before going into autoservice
       
 [//]: # (end-tip)

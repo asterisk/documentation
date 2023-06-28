@@ -119,8 +119,8 @@ It's useful to have both pieces of data, as we may cancel the menu half-way thro
 truepy16class MenuState(object):
  """A small tracking object for the channel in the menu"""
 
- def \_\_init\_\_(self, current\_sound, complete):
- self.current\_sound = current\_sound
+ def __init__(self, current_sound, complete):
+ self.current_sound = current_sound
  self.complete = complete
 
 ```
@@ -139,7 +139,7 @@ To start, we'll write a function, `play_intro_menu`, that starts the menu on a c
 
 ```
 
-truepy24def play\_intro\_menu(channel):
+truepy24def play_intro_menu(channel):
  """Play our intro menu to the specified channel
  Since we want to interrupt the playback of the menu when the user presses
  a DTMF key, we maintain the state of the menu via the MenuState object.
@@ -151,12 +151,12 @@ truepy24def play\_intro\_menu(channel):
  Keyword Arguments:
  channel The channel in the IVR
  """
- menu\_state = MenuState(0, False)
+ menu_state = MenuState(0, False)
 
- def queue\_up\_sound(channel, menu\_state):
+ def queue_up_sound(channel, menu_state):
  ...
 
- queue\_up\_sound(channel, menu\_state)
+ queue_up_sound(channel, menu_state)
 
 ```
 
@@ -174,21 +174,21 @@ truepy24def play\_intro\_menu(channel):
 
 ```
 
-truepy70 def queue\_up\_sound(channel, menu\_state):
+truepy70 def queue_up_sound(channel, menu_state):
  """Start up the next sound and handle whatever happens
 
  Keywords Arguments:
  channel The channel in the IVR
- menu\_state The current state of the menu
+ menu_state The current state of the menu
  """
 
- current\_playback = play\_next\_sound(menu\_state)
+ current_playback = play_next_sound(menu_state)
 
- if not current\_playback:
+ if not current_playback:
  return
- menu\_state.current\_sound += 1
- current\_playback.on\_event('PlaybackFinished', on\_playback\_finished,
- callback\_args=[menu\_state])
+ menu_state.current_sound += 1
+ current_playback.on_event('PlaybackFinished', on_playback_finished,
+ callback_args=[menu_state])
 
 
 ```
@@ -210,23 +210,23 @@ truepy70 def queue\_up\_sound(channel, menu\_state):
 
 ```
 
-truepy42 def play\_next\_sound(menu\_state):
+truepy42 def play_next_sound(menu_state):
  """Play the next sound, if we should
 
  Keyword Arguments:
- menu\_state The current state of the IVR
+ menu_state The current state of the IVR
 
  Returns:
  None if no playback should occur
  A playback object if a playback was started
  """
- if (menu\_state.current\_sound == len(sounds) or menu\_state.complete):
+ if (menu_state.current_sound == len(sounds) or menu_state.complete):
  return None
  try:
- current\_playback = channel.play(media='sound:%s' % sounds[menu\_state.current\_sound])
+ current_playback = channel.play(media='sound:%s' % sounds[menu_state.current_sound])
  except:
- current\_playback = None
- return current\_playback
+ current_playback = None
+ return current_playback
 
 ```
 
@@ -244,14 +244,14 @@ Our playback finished handler is very simple: since we've already incremented th
 
 ```
 
-truepy60 def on\_playback\_finished(playback, ev, menu\_state):
+truepy60 def on_playback_finished(playback, ev, menu_state):
  """Callback handler for when a playback is finished
  Keyword Arguments:
  playback The playback object that finished
  ev The PlaybackFinished event
- menu\_state The current state of the menu
+ menu_state The current state of the menu
  """
- queue\_up\_sound(channel, menu\_state)
+ queue_up_sound(channel, menu_state)
 
 ```
 
@@ -281,36 +281,36 @@ We should also stop the menu when the channel is hung up. Since the `cancel_menu
 
 ```
 
-truepy70 def queue\_up\_sound(channel, menu\_state):
+truepy70 def queue_up_sound(channel, menu_state):
  """Start up the next sound and handle whatever happens
 
  Keywords Arguments:
  channel The channel in the IVR
- menu\_state The current state of the menu
+ menu_state The current state of the menu
  """
 
- current\_playback = play\_next\_sound(menu\_state)
+ current_playback = play_next_sound(menu_state)
 
- def cancel\_menu(channel, ev, current\_playback, menu\_state):
+ def cancel_menu(channel, ev, current_playback, menu_state):
  """Cancel the menu, as the user did something"""
- menu\_state.complete = True
+ menu_state.complete = True
  try:
- current\_playback.stop()
+ current_playback.stop()
  except:
  pass
  return
 
- if not current\_playback:
+ if not current_playback:
  return
- menu\_state.current\_sound += 1
- current\_playback.on\_event('PlaybackFinished', on\_playback\_finished,
- callback\_args=[menu\_state])
+ menu_state.current_sound += 1
+ current_playback.on_event('PlaybackFinished', on_playback_finished,
+ callback_args=[menu_state])
 
  # If the user hits a key or hangs up, cancel the menu operations
- channel.on\_event('ChannelDtmfReceived', cancel\_menu,
- callback\_args=[current\_playback, menu\_state])
- channel.on\_event('StasisEnd', cancel\_menu,
- callback\_args=[current\_playback, menu\_state])
+ channel.on_event('ChannelDtmfReceived', cancel_menu,
+ callback_args=[current_playback, menu_state])
+ channel.on_event('StasisEnd', cancel_menu,
+ callback_args=[current_playback, menu_state])
 
 ```
 
@@ -330,46 +330,46 @@ Now we can cancel the menu, but we also need to restart it if the user doesn't d
 
 ```
 
-truepy70 def queue\_up\_sound(channel, menu\_state):
+truepy70 def queue_up_sound(channel, menu_state):
  """Start up the next sound and handle whatever happens
  Keywords Arguments:
  channel The channel in the IVR
- menu\_state The current state of the menu
+ menu_state The current state of the menu
  """
 
- def menu\_timeout(channel):
+ def menu_timeout(channel):
  """Callback called by a timer when the menu times out"""
  print 'Channel %s stopped paying attention...' % channel.json.get('name')
   channel.play(media='sound:are-you-still-there')
- play\_intro\_menu(channel)
+ play_intro_menu(channel)
 
- def cancel\_menu(channel, ev, current\_playback, menu\_state):
+ def cancel_menu(channel, ev, current_playback, menu_state):
  """Cancel the menu, as the user did something"""
- menu\_state.complete = True
+ menu_state.complete = True
  try:
- current\_playback.stop()
+ current_playback.stop()
  except:
  pass
  return
 
- current\_playback = play\_next\_sound(menu\_state)
- if not current\_playback:
- if menu\_state.current\_sound == len(sounds):
+ current_playback = play_next_sound(menu_state)
+ if not current_playback:
+ if menu_state.current_sound == len(sounds):
  # Menu played, start a timer!
- timer = threading.Timer(10, menu\_timeout, [channel])
- channel\_timers[channel.id] = timer
+ timer = threading.Timer(10, menu_timeout, [channel])
+ channel_timers[channel.id] = timer
  timer.start()
  return
 
- menu\_state.current\_sound += 1
- current\_playback.on\_event('PlaybackFinished', on\_playback\_finished,
- callback\_args=[menu\_state])
+ menu_state.current_sound += 1
+ current_playback.on_event('PlaybackFinished', on_playback_finished,
+ callback_args=[menu_state])
 
  # If the user hits a key or hangs up, cancel the menu operations
- channel.on\_event('ChannelDtmfReceived', cancel\_menu,
- callback\_args=[current\_playback, menu\_state])
- channel.on\_event('StasisEnd', cancel\_menu,
- callback\_args=[current\_playback, menu\_state])
+ channel.on_event('ChannelDtmfReceived', cancel_menu,
+ callback_args=[current_playback, menu_state])
+ channel.on_event('StasisEnd', cancel_menu,
+ callback_args=[current_playback, menu_state])
 
 ```
 
@@ -387,7 +387,7 @@ Now that we've introduced timers, we know we're going to need to stop them if th
 
 ```
 
-truepy14channel\_timers = {}
+truepy14channel_timers = {}
 
 ```
 
@@ -413,7 +413,7 @@ The following implements these three items, deferring processing of the valid op
 
 ```
 
-truepy150def on\_dtmf\_received(channel, ev):
+truepy150def on_dtmf_received(channel, ev):
  """Our main DTMF handler for a channel in the IVR
 
  Keyword Arguments:
@@ -422,28 +422,28 @@ truepy150def on\_dtmf\_received(channel, ev):
  """
 
  # Since they pressed something, cancel the timeout timer
- cancel\_timeout(channel)
+ cancel_timeout(channel)
  digit = int(ev.get('digit'))
 
  print 'Channel %s entered %d' % (channel.json.get('name'), digit)
  if digit == 1:
- handle\_extension\_one(channel)
+ handle_extension_one(channel)
  elif digit == 2:
- handle\_extension\_two(channel)
+ handle_extension_two(channel)
  else:
  print 'Channel %s entered an invalid option!' % channel.json.get('name')
   channel.play(media='sound:option-is-invalid')
- play\_intro\_menu(channel)
+ play_intro_menu(channel)
 
 
-def stasis\_start\_cb(channel\_obj, ev):
+def stasis_start_cb(channel_obj, ev):
  """Handler for StasisStart event"""
 
- channel = channel\_obj.get('channel')
+ channel = channel_obj.get('channel')
  print "Channel %s has entered the application" % channel.json.get('name')
 
- channel.on\_event('ChannelDtmfReceived', on\_dtmf\_received)
- play\_intro\_menu(channel)
+ channel.on_event('ChannelDtmfReceived', on_dtmf_received)
+ play_intro_menu(channel)
 
 ```
 
@@ -461,16 +461,16 @@ Cancelling the timer is done in a fashion similar to other examples. If the chan
 
 ```
 
-truepy138def cancel\_timeout(channel):
+truepy138def cancel_timeout(channel):
  """Cancel the timeout timer for the channel
 
  Keyword Arguments:
  channel The channel in the IVR
  """
- timer = channel\_timers.get(channel.id)
+ timer = channel_timers.get(channel.id)
  if timer:
  timer.cancel()
- del channel\_timers[channel.id]
+ del channel_timers[channel.id]
 
 ```
 
@@ -488,7 +488,7 @@ Finally, we need to actually do *something* when the user presses a `1` or a `2`
 
 ```
 
-truepy114def handle\_extension\_one(channel):
+truepy114def handle_extension_one(channel):
  """Handler for a channel pressing '1'
 
  Keyword Arguments:
@@ -496,10 +496,10 @@ truepy114def handle\_extension\_one(channel):
  """
  channel.play(media='sound:you-entered')
  channel.play(media='digits:1')
- play\_intro\_menu(channel)
+ play_intro_menu(channel)
 
 
-def handle\_extension\_two(channel):
+def handle_extension_two(channel):
  """Handler for a channel pressing '2'
 
  Keyword Arguments:
@@ -507,7 +507,7 @@ def handle\_extension\_two(channel):
  """
  channel.play(media='sound:you-entered')
  channel.play(media='digits:2')
- play\_intro\_menu(channel)
+ play_intro_menu(channel)
 
 ```
 
@@ -540,17 +540,17 @@ client = ari.connect('http://localhost:8088', 'asterisk', 'asterisk')
 # Note: this uses the 'extra' sounds package
 sounds = ['press-1', 'or', 'press-2']
 
-channel\_timers = {}
+channel_timers = {}
 
 class MenuState(object):
  """A small tracking object for the channel in the menu"""
 
- def \_\_init\_\_(self, current\_sound, complete):
- self.current\_sound = current\_sound
+ def __init__(self, current_sound, complete):
+ self.current_sound = current_sound
  self.complete = complete
 
 
-def play\_intro\_menu(channel):
+def play_intro_menu(channel):
  """Play our intro menu to the specified channel
 
  Since we want to interrupt the playback of the menu when the user presses
@@ -566,82 +566,82 @@ def play\_intro\_menu(channel):
  channel The channel in the IVR
  """
 
- menu\_state = MenuState(0, False)
+ menu_state = MenuState(0, False)
 
- def play\_next\_sound(menu\_state):
+ def play_next_sound(menu_state):
  """Play the next sound, if we should
 
  Keyword Arguments:
- menu\_state The current state of the IVR
+ menu_state The current state of the IVR
 
  Returns:
  None if no playback should occur
  A playback object if a playback was started
  """
- if (menu\_state.current\_sound == len(sounds) or menu\_state.complete):
+ if (menu_state.current_sound == len(sounds) or menu_state.complete):
  return None
  try:
- current\_playback = channel.play(media='sound:%s' % sounds[menu\_state.current\_sound])
+ current_playback = channel.play(media='sound:%s' % sounds[menu_state.current_sound])
  except:
- current\_playback = None
- return current\_playback
+ current_playback = None
+ return current_playback
 
- def on\_playback\_finished(playback, ev, menu\_state):
+ def on_playback_finished(playback, ev, menu_state):
  """Callback handler for when a playback is finished
 
  Keyword Arguments:
  playback The playback object that finished
  ev The PlaybackFinished event
- menu\_state The current state of the menu
+ menu_state The current state of the menu
  """
- queue\_up\_sound(channel, menu\_state)
+ queue_up_sound(channel, menu_state)
 
- def queue\_up\_sound(channel, menu\_state):
+ def queue_up_sound(channel, menu_state):
  """Start up the next sound and handle whatever happens
 
  Keywords Arguments:
  channel The channel in the IVR
- menu\_state The current state of the menu
+ menu_state The current state of the menu
  """
 
- def menu\_timeout(channel):
+ def menu_timeout(channel):
  """Callback called by a timer when the menu times out"""
  print 'Channel %s stopped paying attention...' % channel.json.get('name')
   channel.play(media='sound:are-you-still-there')
- play\_intro\_menu(channel)
+ play_intro_menu(channel)
 
- def cancel\_menu(channel, ev, current\_playback, menu\_state):
+ def cancel_menu(channel, ev, current_playback, menu_state):
  """Cancel the menu, as the user did something"""
- menu\_state.complete = True
+ menu_state.complete = True
  try:
- current\_playback.stop()
+ current_playback.stop()
  except:
  pass
  return
 
- current\_playback = play\_next\_sound(menu\_state)
- if not current\_playback:
- if menu\_state.current\_sound == len(sounds):
+ current_playback = play_next_sound(menu_state)
+ if not current_playback:
+ if menu_state.current_sound == len(sounds):
  # Menu played, start a timer!
- timer = threading.Timer(10, menu\_timeout, [channel])
- channel\_timers[channel.id] = timer
+ timer = threading.Timer(10, menu_timeout, [channel])
+ channel_timers[channel.id] = timer
  timer.start()
  return
 
- menu\_state.current\_sound += 1
- current\_playback.on\_event('PlaybackFinished', on\_playback\_finished,
- callback\_args=[menu\_state])
+ menu_state.current_sound += 1
+ current_playback.on_event('PlaybackFinished', on_playback_finished,
+ callback_args=[menu_state])
 
  # If the user hits a key or hangs up, cancel the menu operations
- channel.on\_event('ChannelDtmfReceived', cancel\_menu,
- callback\_args=[current\_playback, menu\_state])
- channel.on\_event('StasisEnd', cancel\_menu,
- callback\_args=[current\_playback, menu\_state])
+ channel.on_event('ChannelDtmfReceived', cancel_menu,
+ callback_args=[current_playback, menu_state])
+ channel.on_event('StasisEnd', cancel_menu,
+ callback_args=[current_playback, menu_state])
 
- queue\_up\_sound(channel, menu\_state)
+ queue_up_sound(channel, menu_state)
 
 
-def handle\_extension\_one(channel):
+def handle_extension_one(channel):
  """Handler for a channel pressing '1'
 
  Keyword Arguments:
@@ -649,10 +649,10 @@ def handle\_extension\_one(channel):
  """
  channel.play(media='sound:you-entered')
  channel.play(media='digits:1')
- play\_intro\_menu(channel)
+ play_intro_menu(channel)
 
 
-def handle\_extension\_two(channel):
+def handle_extension_two(channel):
  """Handler for a channel pressing '2'
 
  Keyword Arguments:
@@ -660,22 +660,22 @@ def handle\_extension\_two(channel):
  """
  channel.play(media='sound:you-entered')
  channel.play(media='digits:2')
- play\_intro\_menu(channel)
+ play_intro_menu(channel)
 
 
-def cancel\_timeout(channel):
+def cancel_timeout(channel):
  """Cancel the timeout timer for the channel
 
  Keyword Arguments:
  channel The channel in the IVR
  """
- timer = channel\_timers.get(channel.id)
+ timer = channel_timers.get(channel.id)
  if timer:
  timer.cancel()
- del channel\_timers[channel.id]
+ del channel_timers[channel.id]
 
  
-def on\_dtmf\_received(channel, ev):
+def on_dtmf_received(channel, ev):
  """Our main DTMF handler for a channel in the IVR
 
  Keyword Arguments:
@@ -684,39 +684,39 @@ def on\_dtmf\_received(channel, ev):
  """
 
  # Since they pressed something, cancel the timeout timer
- cancel\_timeout(channel)
+ cancel_timeout(channel)
  digit = int(ev.get('digit'))
 
  print 'Channel %s entered %d' % (channel.json.get('name'), digit)
  if digit == 1:
- handle\_extension\_one(channel)
+ handle_extension_one(channel)
  elif digit == 2:
- handle\_extension\_two(channel)
+ handle_extension_two(channel)
  else:
  print 'Channel %s entered an invalid option!' % channel.json.get('name')
   channel.play(media='sound:option-is-invalid')
- play\_intro\_menu(channel)
+ play_intro_menu(channel)
 
 
-def stasis\_start\_cb(channel\_obj, ev):
+def stasis_start_cb(channel_obj, ev):
  """Handler for StasisStart event"""
 
- channel = channel\_obj.get('channel')
+ channel = channel_obj.get('channel')
  print "Channel %s has entered the application" % channel.json.get('name')
 
- channel.on\_event('ChannelDtmfReceived', on\_dtmf\_received)
- play\_intro\_menu(channel)
+ channel.on_event('ChannelDtmfReceived', on_dtmf_received)
+ play_intro_menu(channel)
 
 
-def stasis\_end\_cb(channel, ev):
+def stasis_end_cb(channel, ev):
  """Handler for StasisEnd event"""
 
  print "%s has left the application" % channel.json.get('name')
- cancel\_timeout(channel)
+ cancel_timeout(channel)
 
 
-client.on\_channel\_event('StasisStart', stasis\_start\_cb)
-client.on\_channel\_event('StasisEnd', stasis\_end\_cb)
+client.on_channel_event('StasisStart', stasis_start_cb)
+client.on_channel_event('StasisEnd', stasis_end_cb)
 
 client.run(apps='channel-aa')
 

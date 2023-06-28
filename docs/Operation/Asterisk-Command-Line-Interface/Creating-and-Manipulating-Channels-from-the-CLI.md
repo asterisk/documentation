@@ -50,7 +50,7 @@ SIP/6001-00000001 (None) Up Playback(demo-congrats)
 
 newtonr-laptop\*CLI> channel request hangup SIP/6001-00000001 
 Requested Hangup on channel 'SIP/6001-00000001'
-[May 2 09:51:19] WARNING[7045][C-00000001]: app\_playback.c:493 playback\_exec: Playback failed on SIP/6001-00000001 for demo-congrats
+[May 2 09:51:19] WARNING[7045][C-00000001]: app_playback.c:493 playback_exec: Playback failed on SIP/6001-00000001 for demo-congrats
 
 ```
 
@@ -60,7 +60,7 @@ Here I made a call to an extension calling Playback, then from the CLI I request
 channel originate
 -----------------
 
-Provided by res\_clioriginate.so, this command allows you to create a new channel and have it connect to either a dialplan extension or a specific application.
+Provided by res_clioriginate.so, this command allows you to create a new channel and have it connect to either a dialplan extension or a specific application.
 
 
 
@@ -116,12 +116,12 @@ newtonr-laptop\*CLI> channel originate SIP/6001 extension 9999@somecontext
 ```
 
 
-We originated a call to the chan\_sip peer 6001 in this case. The extension parameter tells it what extension to connect that channel to once the channel answers. In this case we connect it to an extension calling VoiceMailMain.
+We originated a call to the chan_sip peer 6001 in this case. The extension parameter tells it what extension to connect that channel to once the channel answers. In this case we connect it to an extension calling VoiceMailMain.
 
 channel redirect
 ----------------
 
-Provided by res\_clioriginate.so, this command allows you to redirect an existing channel to a dialplan extension.
+Provided by res_clioriginate.so, this command allows you to redirect an existing channel to a dialplan extension.
 
 
 
@@ -158,7 +158,7 @@ An example:
  -- <SIP/6001-00000005> Playing 'demo-congrats.gsm' (language 'en')
 newtonr-laptop\*CLI> channel redirect SIP/6001-00000005 somecontext,9999,1
 Channel 'SIP/6001-00000005' successfully redirected to somecontext,9999,1
-[May 2 09:56:28] WARNING[7056][C-00000005]: app\_playback.c:493 playback\_exec: Playback failed on SIP/6001-00000005 for demo-congrats
+[May 2 09:56:28] WARNING[7056][C-00000005]: app_playback.c:493 playback_exec: Playback failed on SIP/6001-00000005 for demo-congrats
  -- Executing [9999@somecontext:1] VoiceMailMain("SIP/6001-00000005", "") in new stack
  -- <SIP/6001-00000005> Playing 'vm-login.gsm' (language 'en')
 

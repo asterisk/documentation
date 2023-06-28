@@ -55,7 +55,7 @@ Additional Information
 
 SIP URI: sip:31337@astricon.jcn-labs.net
 
-chan\_sip: [SIP/31337@astricon.jcn-labs.net](mailto:SIP/31337@astricon.jcn-labs.net)
+chan_sip: [SIP/31337@astricon.jcn-labs.net](mailto:SIP/31337@astricon.jcn-labs.net)
 
 Audio Only WebRTC: <https://astricon.jcn-labs.net/astridevcon-audio>
 

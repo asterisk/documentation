@@ -95,10 +95,10 @@ This example will use a very similar structure as the [`channel-state.py`](http
 
 ```
 
-truepy46 playback\_id = str(uuid.uuid4())
- playback = channel.playWithId(playbackId=playback\_id,
+truepy46 playback_id = str(uuid.uuid4())
+ playback = channel.playWithId(playbackId=playback_id,
  media='tone:ring;tonezone=fr')
- timer = threading.Timer(8, answer\_channel, [channel, playback])
+ timer = threading.Timer(8, answer_channel, [channel, playback])
 
 
 ```
@@ -117,7 +117,7 @@ Since this is a media operation and not *technically* a ringing indication, when
 
 ```
 
-truepy26 def answer\_channel(channel, playback):
+truepy26 def answer_channel(channel, playback):
  """Callback that will actually answer the channel"""
 
  print "Answering channel %s" % channel.json.get('name')
@@ -155,50 +155,50 @@ logging.basicConfig(level=logging.ERROR)
 
 client = ari.connect('http://localhost:8088', 'asterisk', 'asterisk')
 
-channel\_timers = {}
+channel_timers = {}
 
-def stasis\_end\_cb(channel, ev):
+def stasis_end_cb(channel, ev):
  """Handler for StasisEnd event"""
 
  print "Channel %s just left our application" % channel.json.get('name')
- timer = channel\_timers.get(channel.id)
+ timer = channel_timers.get(channel.id)
  if timer:
  timer.cancel()
- del channel\_timers[channel.id]
+ del channel_timers[channel.id]
 
-def stasis\_start\_cb(channel\_obj, ev):
+def stasis_start_cb(channel_obj, ev):
  """Handler for StasisStart event"""
 
- def answer\_channel(channel, playback):
+ def answer_channel(channel, playback):
  """Callback that will actually answer the channel"""
 
  print "Answering channel %s" % channel.json.get('name')
  playback.stop()
  channel.answer()
 
- timer = threading.Timer(1, hangup\_channel, [channel])
- channel\_timers[channel.id] = timer
+ timer = threading.Timer(1, hangup_channel, [channel])
+ channel_timers[channel.id] = timer
  timer.start()
 
- def hangup\_channel(channel):
+ def hangup_channel(channel):
  """Callback that will actually hangup the channel"""
 
  print "Hanging up channel %s" % channel.json.get('name')
  channel.hangup()
 
- channel = channel\_obj.get('channel')
+ channel = channel_obj.get('channel')
  print "Channel %s has entered the application" % channel.json.get('name')
 
- playback\_id = str(uuid.uuid4())
- playback = channel.playWithId(playbackId=playback\_id,
+ playback_id = str(uuid.uuid4())
+ playback = channel.playWithId(playbackId=playback_id,
  media='tone:ring;tonezone=fr')
- timer = threading.Timer(8, answer\_channel, [channel, playback])
- channel\_timers[channel.id] = timer
+ timer = threading.Timer(8, answer_channel, [channel, playback])
+ channel_timers[channel.id] = timer
  timer.start()
 
 
-client.on\_channel\_event('StasisStart', stasis\_start\_cb)
-client.on\_channel\_event('StasisEnd', stasis\_end\_cb)
+client.on_channel_event('StasisStart', stasis_start_cb)
+client.on_channel_event('StasisEnd', stasis_end_cb)
 
 
 client.run(apps='channel-tones')
@@ -442,10 +442,10 @@ Much like the `[channel-tones.py](https://wiki.asterisk.org/wiki/display/%7Emjor
 
 ```
 
-truepy32  playback\_id = str(uuid.uuid4())
- playback = channel.playWithId(playbackId=playback\_id,
+truepy32  playback_id = str(uuid.uuid4())
+ playback = channel.playWithId(playbackId=playback_id,
  media='sound:tt-monkeys')
- playback.on\_event('PlaybackFinished', playback\_finished)
+ playback.on_event('PlaybackFinished', playback_finished)
 
 ```
 
@@ -463,12 +463,12 @@ Unfortunately, `ari-py` doesn't let us pass arbitrary data to a callback functio
 
 ```
 
-truepy19 def playback\_finished(playback, ev):
+truepy19 def playback_finished(playback, ev):
  """Callback when the monkeys have finished howling"""
 
- target\_uri = playback.json.get('target\_uri')
- channel\_id = target\_uri.replace('channel:', '')
- channel = client.channels.get(channelId=channel\_id)
+ target_uri = playback.json.get('target_uri')
+ channel_id = target_uri.replace('channel:', '')
+ channel = client.channels.get(channelId=channel_id)
 
  print "Monkeys successfully vanquished %s; hanging them up" % channel.json.get('name')
  channel.hangup() 
@@ -503,35 +503,35 @@ logging.basicConfig(level=logging.ERROR)
 
 client = ari.connect('http://localhost:8088', 'asterisk', 'asterisk')
 
-def stasis\_end\_cb(channel, ev):
+def stasis_end_cb(channel, ev):
  """Handler for StasisEnd event"""
 
  print "Channel %s just left our application" % channel.json.get('name')
 
-def stasis\_start\_cb(channel\_obj, ev):
+def stasis_start_cb(channel_obj, ev):
  """Handler for StasisStart event"""
 
- def playback\_finished(playback, ev):
+ def playback_finished(playback, ev):
  """Callback when the monkeys have finished howling"""
 
- target\_uri = playback.json.get('target\_uri')
- channel\_id = target\_uri.replace('channel:', '')
- channel = client.channels.get(channelId=channel\_id)
+ target_uri = playback.json.get('target_uri')
+ channel_id = target_uri.replace('channel:', '')
+ channel = client.channels.get(channelId=channel_id)
 
  print "Monkeys successfully vanquished %s; hanging them up" % channel.json.get('name')
  channel.hangup()
 
- channel = channel\_obj.get('channel')
+ channel = channel_obj.get('channel')
  print "Monkeys! Attack %s!" % channel.json.get('name')
 
- playback\_id = str(uuid.uuid4())
- playback = channel.playWithId(playbackId=playback\_id,
+ playback_id = str(uuid.uuid4())
+ playback = channel.playWithId(playbackId=playback_id,
  media='sound:tt-monkeys')
- playback.on\_event('PlaybackFinished', playback\_finished)
+ playback.on_event('PlaybackFinished', playback_finished)
 
 
-client.on\_channel\_event('StasisStart', stasis\_start\_cb)
-client.on\_channel\_event('StasisEnd', stasis\_end\_cb)
+client.on_channel_event('StasisStart', stasis_start_cb)
+client.on_channel_event('StasisEnd', stasis_end_cb)
 
 
 client.run(apps='channel-playback-monkeys')

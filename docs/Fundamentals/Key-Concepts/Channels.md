@@ -25,13 +25,13 @@ One of the many benefits of Asterisk is the capability to interface with as many
 
 Here are a few commonly used [channel types](/Configuration/Channel-Drivers):
 
-* A SIP channel driver such as [chan\_sip](/Configuring-chan_sip) or [chan\_pjsip](/Configuration/Channel-Drivers/SIP/Configuring-res_pjsip).
-* DAHDI channels provided by [chan\_dahdi](/Configuration/Channel-Drivers/DAHDI).
-* Local channels provided by [chan\_local](/Configuration/Channel-Drivers/Local-Channel). (This was moved into the core in Asterisk 12)
+* A SIP channel driver such as [chan_sip](/Configuring-chan_sip) or [chan_pjsip](/Configuration/Channel-Drivers/SIP/Configuring-res_pjsip).
+* DAHDI channels provided by [chan_dahdi](/Configuration/Channel-Drivers/DAHDI).
+* Local channels provided by [chan_local](/Configuration/Channel-Drivers/Local-Channel). (This was moved into the core in Asterisk 12)
 
 **SIP channels** are used to interface with SIP capable VOIP devices, such as phones, channel banks, other PBXs or Internet Telephony Service Providers.
 
-**DAHDI channels** are used to interface with DAHDI drivers and PRI libraries. In this case chan\_dahdi allows you to use any DAHDI capable devices, such as Digium's line of T1/E1/J1 interface cards.
+**DAHDI channels** are used to interface with DAHDI drivers and PRI libraries. In this case chan_dahdi allows you to use any DAHDI capable devices, such as Digium's line of T1/E1/J1 interface cards.
 
 **Local channels** are used for dialing inward to the system itself, allowing any Asterisk component that can dial to call directly into dialplan. This provides a sort of "fake" call that still executes real instructions.
 

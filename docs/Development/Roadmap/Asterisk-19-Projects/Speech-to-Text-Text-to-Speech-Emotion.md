@@ -67,16 +67,16 @@ As mentioned above, JSON will be used for the protocol. There are requests:
 
 text{
  "version": "1.0",
- "request": "text\_to\_speech" | "speech\_to\_text",
+ "request": "text_to_speech" | "speech_to_text",
  "codecs": [
  {
  "type": "ulaw",
  "attributes": {
- "parameter\_name": "parameter\_value"
+ "parameter_name": "parameter_value"
  }
  }
  ],
- "app\_config": {
+ "app_config": {
  "gender": "male" | "female",
  "language": "english" | "en",
  "ssml": "yes" | "no"
@@ -106,10 +106,10 @@ text{
  "codec": {
  "type": "ulaw",
  "attributes": {
- "parameter\_name": "parameter\_value"
+ "parameter_name": "parameter_value"
  }
  },
- "talk\_detect": "true" | "false"
+ "talk_detect": "true" | "false"
 }
 
 ```
@@ -146,7 +146,7 @@ text{
 
 text{
  "version": "1.0",
- "response": "talk\_detect"
+ "response": "talk_detect"
 }
 
 ```
@@ -165,15 +165,15 @@ text{
 text{
  "version": "1.0",
  "response": "error",
- "error\_msg": "Could not connect to Google (server down)."
+ "error_msg": "Could not connect to Google (server down)."
 }
 
 ```
 
 
-The app\_config section contains arbitrary configuration options and are not defined by this protocol. They will be able to be set by the user, and then consumed by the external application.
+The app_config section contains arbitrary configuration options and are not defined by this protocol. They will be able to be set by the user, and then consumed by the external application.
 
-If we get a response of success with a value of true for talk\_detect, then we know that the application can handle detecting speech once it has started. Otherwise, Asterisk will default to the same functionality as the TALK\_DETECT dialplan function. The talk\_detect response will only be sent once when speech is first detected.
+If we get a response of success with a value of true for talk_detect, then we know that the application can handle detecting speech once it has started. Otherwise, Asterisk will default to the same functionality as the TALK_DETECT dialplan function. The talk_detect response will only be sent once when speech is first detected.
 
 ### Speech to Text
 
@@ -194,13 +194,13 @@ Here are some examples of what speech to text would look like.
 
 text{
  "version": "1.0",
- "request": "speech\_to\_text",
+ "request": "speech_to_text",
  "codecs": [
  {
  "type": "ulaw"
  }
  ],
- "app\_config": {
+ "app_config": {
  "language": "en"
  }
 }
@@ -269,13 +269,13 @@ text{
 
 text{
  "version": "1.0",
- "request": "speech\_to\_text",
+ "request": "speech_to_text",
  "codecs": [
  {
  "type": "ulaw"
  }
  ],
- "app\_config": {
+ "app_config": {
  "language": "en"
  }
 }
@@ -296,7 +296,7 @@ text{
 text{
  "version": "1.0",
  "response": "error",
- "error\_msg": "Could not connect to Google (server down)."
+ "error_msg": "Could not connect to Google (server down)."
 }
 
 ```
@@ -317,13 +317,13 @@ text{
 
 text{
  "version": "1.0",
- "request": "speech\_to\_text",
+ "request": "speech_to_text",
  "codecs": [
  {
  "type": "ulaw"
  }
  ],
- "app\_config": {
+ "app_config": {
  "language": "en"
  }
 }
@@ -344,7 +344,7 @@ text{
 text{
  "version": "1.0",
  "response": "error",
- "error\_msg": "Google does not support the language 'en'."
+ "error_msg": "Google does not support the language 'en'."
 }
 
 ```
@@ -372,7 +372,7 @@ Here are some examples of what text to speech would look like.
 
 text{
  "version": "1.0",
- "request": "text\_to\_speech",
+ "request": "text_to_speech",
  "codecs": [
  {
  "type": "ulaw"
@@ -384,7 +384,7 @@ text{
  }
  }
  ],
- "app\_config": {
+ "app_config": {
  "gender": "male",
  "language": "en",
  "ssml": "no"
@@ -439,13 +439,13 @@ text{
 
 text{
  "version": "1.0",
- "request": "text\_to\_speech",
+ "request": "text_to_speech",
  "codecs": [
  {
  "type": "ulaw"
  }
  ],
- "app\_config": {
+ "app_config": {
  "gender": "male",
  "language": "en",
  "ssml": "no"
@@ -469,7 +469,7 @@ text{
 text{
  "version": "1.0",
  "response": "error",
- "error\_msg": "Could not connect to Google (server down)."
+ "error_msg": "Could not connect to Google (server down)."
 }
 
 ```
@@ -490,13 +490,13 @@ text{
 
 text{
  "version": "1.0",
- "request": "text\_to\_speech",
+ "request": "text_to_speech",
  "codecs": [
  {
  "type": "ulaw"
  }
  ],
- "app\_config": {
+ "app_config": {
  "gender": "male",
  "language": "en",
  "ssml": "no"
@@ -520,7 +520,7 @@ text{
 text{
  "version": "1.0",
  "response": "error",
- "error\_msg": "Google does not support the following codec(s): ulaw."
+ "error_msg": "Google does not support the following codec(s): ulaw."
 }
 
 ```

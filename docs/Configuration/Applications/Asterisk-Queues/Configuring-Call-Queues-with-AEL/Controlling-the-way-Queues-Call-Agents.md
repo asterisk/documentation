@@ -20,18 +20,18 @@ Notice in the above, that the commands to manipulate agents in queues have "@age
 context agents { 
  // General sales queue 
  8010 => {
- Set(QUEUE\_MAX\_PENALTY=10); 
+ Set(QUEUE_MAX_PENALTY=10); 
  Queue(sales-general,t); 
- Set(QUEUE\_MAX\_PENALTY=0); 
+ Set(QUEUE_MAX_PENALTY=0); 
  Queue(sales-general,t); 
  Set(CALLERID(name)=EmptySalQ); 
  goto dispatch,s,1;
  } 
  // Customer Service queue 
  8011 => { 
- Set(QUEUE\_MAX\_PENALTY=10);
+ Set(QUEUE_MAX_PENALTY=10);
  Queue(customerservice,t); 
- Set(QUEUE\_MAX\_PENALTY=0);
+ Set(QUEUE_MAX_PENALTY=0);
  Queue(customerservice,t); 
  Set(CALLERID(name)=EMptyCSVQ);
  goto dispatch,s,1; 
@@ -39,11 +39,11 @@ context agents {
  8013 => {
  Dial(iax2/sweatshop/9456@from-ecstacy);
  Set(CALLERID(name)=EmptySupQ); 
- Set(QUEUE\_MAX\_PENALTY=10); 
+ Set(QUEUE_MAX_PENALTY=10); 
  Queue(support-dispatch,t); 
- Set(QUEUE\_MAX\_PENALTY=20); 
+ Set(QUEUE_MAX_PENALTY=20); 
  Queue(support-dispatch,t);
- Set(QUEUE\_MAX\_PENALTY=0); // means no max 
+ Set(QUEUE_MAX_PENALTY=0); // means no max 
  Queue(support-dispatch,t); 
  goto dispatch,s,1; 
  } 
@@ -78,8 +78,8 @@ Here is the callagent macro, note that if a person in the queue is called, but d
 
 
 macro callagent(device,exten) {
- if( ${GROUP\_COUNT(${exten}@agents)}=0 ) { 
- Set(OUTBOUND\_GROUP\_ONCE=${exten}@agents);
+ if( ${GROUP_COUNT(${exten}@agents)}=0 ) { 
+ Set(OUTBOUND_GROUP_ONCE=${exten}@agents);
  Dial(${device},300,t);
  switch(${DIALSTATUS}) {
  case BUSY: 
@@ -105,5 +105,5 @@ macro callagent(device,exten) {
 In the callagent macro above, the ${exten} will be 6121, or 6165, etc, which is the extension of the agent. 
 
 
-The use of the GROUP\_COUNT, and OUTBOUND\_GROUP follow this line of thinking. Incoming calls can be queued to ring all agents in the current priority. If some of those agents are already talking, they would get bothersome call-waiting tones. To avoid this inconvenience, when an agent gets a call, the OUTBOUND\_GROUP assigns that conversation to the group specified, for instance 6171@agents. The ${GROUP\_COUNT()} variable on a subsequent call should return "1" for that group. If GROUP\_COUNT returns 1, then the busy() is returned without actually trying to dial the agent.
+The use of the GROUP_COUNT, and OUTBOUND_GROUP follow this line of thinking. Incoming calls can be queued to ring all agents in the current priority. If some of those agents are already talking, they would get bothersome call-waiting tones. To avoid this inconvenience, when an agent gets a call, the OUTBOUND_GROUP assigns that conversation to the group specified, for instance 6171@agents. The ${GROUP_COUNT()} variable on a subsequent call should return "1" for that group. If GROUP_COUNT returns 1, then the busy() is returned without actually trying to dial the agent.
 

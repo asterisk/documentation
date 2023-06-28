@@ -118,22 +118,22 @@ runuser = asterisk
 rungroup = asterisk 
 
 ; Enable internal timing support (-I) 
-internal\_timing = yes | no 
+internal_timing = yes | no 
 
 ; Language Options 
-documentation\_language = en | es | ru 
+documentation_language = en | es | ru 
 
 ; These options have no command line equivalent 
 
 ; Cache record() files in another directory until completion 
-cache\_record\_files = yes | no 
-record\_cache\_dir = <dir> 
+cache_record_files = yes | no 
+record_cache_dir = <dir> 
 
 ; Build transcode paths via SLINEAR 
-transcode\_via\_sln = yes | no 
+transcode_via_sln = yes | no 
 
 ; send SLINEAR silence while channel is being recorded 
-transmit\_silence\_during\_record = yes | no 
+transmit_silence_during_record = yes | no 
 
 ; The maximum load average we accept calls for 
 maxload = 1.0 
@@ -151,7 +151,7 @@ execincludes = yes | no
 dontwarn = yes | no 
 
 ; System name. Used to prefix CDR uniqueid and to fill \${SYSTEMNAME} 
-systemname = <a\_string> 
+systemname = <a_string> 
 
 ; Should language code be last component of sound file name or first? 
 ; when off, sound files are searched as <path>/<lang>/<file> 

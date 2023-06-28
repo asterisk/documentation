@@ -44,10 +44,10 @@ First, let's create a new context for local calls.
 
 [local]
 ; seven-digit local numbers
-exten => \_NXXXXXX,1,Dial(SIP/provider/${EXTEN})
+exten => _NXXXXXX,1,Dial(SIP/provider/${EXTEN})
 
 ; ten-digit local numbers
-exten => \_NXXNXXXXXX,1,Dial(SIP/provider/${EXTEN})
+exten => _NXXNXXXXXX,1,Dial(SIP/provider/${EXTEN})
 
 ; emergency services (911), and other three-digit services
 exten => NXX,1,Dial(SIP/provider/${EXTEN})
@@ -69,7 +69,7 @@ Next, we'll build a long-distance context, and link it back to the **local** con
 ```javascript title=" " linenums="1"
 [longdistance]
 ; 1+ ten digit long-distance numbers
-exten => \_1NXXNXXXXXX,1,Dial(SIP/provider/${EXTEN})
+exten => _1NXXNXXXXXX,1,Dial(SIP/provider/${EXTEN})
 
 ; if you don't find a match in this context, look in [local]
 include => local
@@ -85,7 +85,7 @@ Last but not least, let's add an **international** context. In North America, yo
 ```javascript title=" " linenums="1"
 [international]
 ; 1+ ten digit long-distance numbers
-exten => \_011.,1,Dial(SIP/provider/${EXTEN})
+exten => _011.,1,Dial(SIP/provider/${EXTEN})
 
 ; if you don't find a match in this context, look in [longdistance]
 include => longdistance

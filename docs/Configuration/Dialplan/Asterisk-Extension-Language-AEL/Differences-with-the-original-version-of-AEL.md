@@ -10,8 +10,8 @@ pageid: 4816913
 5. It runs several semantic checks after the parsing is over, but before the compiling begins, see the list above.
 6. It handles #include "filepath" directives. - ALMOST anywhere, in fact. You could easily include a file in a context, in an extension, or at the root level. Files can be included in files that are included in files, down to 50 levels of hierarchy...
 7. Local Goto's inside Switch statements automatically have the extension of the location of the switch statement appended to them.
-8. A pretty printer function is available within pbx\_ael.so.
-9. In the utils directory, two standalone programs are supplied for debugging AEL files. One is called "aelparse", and it reads in the /etc/asterisk/extensions.ael file, and shows the results of syntax and semantic checking on stdout, and also shows the results of compilation to stdout. The other is "aelparse1", which uses the original ael compiler to do the same work, reading in "/etc/asterisk/extensions.ael", using the original 'pbx\_ael.so' instead.
+8. A pretty printer function is available within pbx_ael.so.
+9. In the utils directory, two standalone programs are supplied for debugging AEL files. One is called "aelparse", and it reads in the /etc/asterisk/extensions.ael file, and shows the results of syntax and semantic checking on stdout, and also shows the results of compilation to stdout. The other is "aelparse1", which uses the original ael compiler to do the same work, reading in "/etc/asterisk/extensions.ael", using the original 'pbx_ael.so' instead.
 10. AEL supports the "jump" statement, and the "pattern" statement in switch constructs. Hopefully these will be documented in the AEL README.
 11. Added the "return" keyword, which will jump to the end of an extension/Macro.
 12. Added the ifTime (time rangedays of weekdays of monthmonths ) [else](/else) construct, which executes much like an if () statement, but the decision is based on the current time, and the time spec provided in the ifTime. See the example above. (Note: all the other time-dependent Applications can be used via ifTime)

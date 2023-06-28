@@ -32,7 +32,7 @@ Install Support Packages
 
 
 !!! note 
-    The testsuite also provides an install\_prereq script in the contrib/scripts directory which can be used to install the base dependencies on various distributions. If this is used then there is no need to manually install SIPp or asttest.  
+    The testsuite also provides an install_prereq script in the contrib/scripts directory which can be used to install the base dependencies on various distributions. If this is used then there is no need to manually install SIPp or asttest.  
 [//]: # (end-note)
 
 
@@ -88,9 +88,9 @@ Install Asterisk
 
  Make sure you can actually build and install Asterisk at least once before proceeding.  Once you can, you'll need to follow a few more steps to configure Asterisk and rebuild it for testing:
 
-* Add **`--enable-dev-mode`** and optionally, **`--disable-binary-modules`** to your **`./configure`** command line.  Disabling the binary modules just prevents the need to download the external codecs and res\_digium\_phone.
+* Add **`--enable-dev-mode`** and optionally, **`--disable-binary-modules`** to your **`./configure`** command line.  Disabling the binary modules just prevents the need to download the external codecs and res_digium_phone.
 * In menuselect...
-	+ Under **Compiler Flags - Development**,  enable **DONT\_OPTIMIZE**, **MALLOC\_DEBUG**, **`DO_CRASH`** and **`TEST_FRAMEWORK`** and disable **`COMPILE_DOUBLE`**.
+	+ Under **Compiler Flags - Development**,  enable **DONT_OPTIMIZE**, **MALLOC_DEBUG**, **`DO_CRASH`** and **`TEST_FRAMEWORK`** and disable **`COMPILE_DOUBLE`**.
 	+ Make sure all modules are enabled.  You don't need the **Test Modules** though.  If you enter **Test Modules** and press **`F7`**, you can quickly disable all modules.
 * Build and install Asterisk and the development header files.
 

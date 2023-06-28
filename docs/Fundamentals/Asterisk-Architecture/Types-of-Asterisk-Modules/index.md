@@ -23,11 +23,11 @@ There are many different types of modules, each providing their own functionalit
 
 mypbx\*CLI> module show 
 Module Description Use Count Status Support Level
-app\_adsiprog.so Asterisk ADSI Programming Application 0 Running extended
-app\_agent\_pool.so Call center agent pool applications 0 Running core
-app\_alarmreceiver.so Alarm Receiver for Asterisk 0 Running extended
-app\_amd.so Answering Machine Detection Application 0 Running extended
-app\_authenticate.so Authentication Application 0 Running core  
+app_adsiprog.so Asterisk ADSI Programming Application 0 Running extended
+app_agent_pool.so Call center agent pool applications 0 Running core
+app_alarmreceiver.so Alarm Receiver for Asterisk 0 Running extended
+app_amd.so Answering Machine Detection Application 0 Running extended
+app_authenticate.so Authentication Application 0 Running core  
 
 
 

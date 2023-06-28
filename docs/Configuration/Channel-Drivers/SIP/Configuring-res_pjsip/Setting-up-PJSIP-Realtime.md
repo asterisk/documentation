@@ -11,7 +11,7 @@ This tutorial describes the configuration of Asterisk's PJSIP channel driver wit
 Installing Dependencies
 -----------------------
 
-For the purposes of this tutorial, we will assume a base Ubuntu 12.0.4.3 x86\_64 server installation, with the OpenSSH server and LAMP server options, and that Asterisk will use its [ODBC](http://www.unixodbc.org/) connector to reach a back-end [MySQL](http://www.mysql.com/) database.
+For the purposes of this tutorial, we will assume a base Ubuntu 12.0.4.3 x86_64 server installation, with the OpenSSH server and LAMP server options, and that Asterisk will use its [ODBC](http://www.unixodbc.org/) connector to reach a back-end [MySQL](http://www.mysql.com/) database.
 
 Beyond the normal packages needed to install Asterisk 12 on such a server (build-essential, libncurses5-dev, uuid-dev, libjansson-dev, libxml2-dev, libsqlite3-dev) as well as the [Installation of pjproject](/Getting-Started/Installing-Asterisk/Installing-Asterisk-From-Source/PJSIP-pjproject), you will need to install the following packages:
 
@@ -35,7 +35,7 @@ So, from the CLI, perform:
 ```
 
 
-Once these packages are installed, check your Asterisk installation's **make menuconfig** tool to make sure that the **res\_config\_odbc** and **res\_odbc** resource modules, as well as the **res\_pjsip\_xxx** modules are selected for installation.  If they are, then go through the normal Asterisk installation process: **./configure; make; make install**
+Once these packages are installed, check your Asterisk installation's **make menuconfig** tool to make sure that the **res_config_odbc** and **res_odbc** resource modules, as well as the **res_pjsip_xxx** modules are selected for installation.  If they are, then go through the normal Asterisk installation process: **./configure; make; make install**
 
 And, if this is your first installation of Asterisk, be sure to install the sample files: **make samples**
 
@@ -150,18 +150,18 @@ You can then connect to MySQL to see that the tables were created:
 
 mysql> show tables;
 +--------------------+
-| Tables\_in\_asterisk |
+| Tables_in_asterisk |
 +--------------------+
-| alembic\_version |
+| alembic_version |
 | iaxfriends |
 | meetme |
 | musiconhold |
-| ps\_aors |
-| ps\_auths |
-| ps\_contacts |
-| ps\_domain\_aliases |
-| ps\_endpoint\_id\_ips |
-| ps\_endpoints |
+| ps_aors |
+| ps_auths |
+| ps_contacts |
+| ps_domain_aliases |
+| ps_endpoint_id_ips |
+| ps_endpoints |
 | sippeers |
 | voicemail |
 +--------------------+
@@ -189,8 +189,8 @@ Now that we have our MySQL database created and populated, we'll need to setup O
 
 [MySQL]
 Description = ODBC for MySQL
-Driver = /usr/lib/x86\_64-linux-gnu/odbc/libmyodbc.so
-Setup = /usr/lib/x86\_64-linux-gnu/odbc/libodbcmyS.so
+Driver = /usr/lib/x86_64-linux-gnu/odbc/libmyodbc.so
+Setup = /usr/lib/x86_64-linux-gnu/odbc/libodbcmyS.so
 UsageCount = 2
 
 ```
@@ -224,7 +224,7 @@ Socket = /var/run/mysqld/mysqld.sock
 
 Take care to use your database access UserName and Password, and not necessarily what's defined in this example.
 
-Now, we need to configure Asterisk's ODBC resource, res\_odbc, to connect to the ODBC **asterisk** database handle that we just created.  res\_odbc is configured using the **/etc/asterisk/res\_odbc.conf** configuration file.  There, you'll want:
+Now, we need to configure Asterisk's ODBC resource, res_odbc, to connect to the ODBC **asterisk** database handle that we just created.  res_odbc is configured using the **/etc/asterisk/res_odbc.conf** configuration file.  There, you'll want:
 
 
 
@@ -232,7 +232,7 @@ Now, we need to configure Asterisk's ODBC resource, res\_odbc, to connect to the
 ---
 
   
-/etc/asterisk/res\_odbc.conf  
+/etc/asterisk/res_odbc.conf  
 
 
 ```
@@ -249,7 +249,7 @@ pre-connect => yes
 
 Again, take care to use the proper username and password.
 
-Now, you can start Asterisk and you can check its connection to your "asterisk" MySQL database using the "asterisk" res\_odbc connector to ODBC.  You can do this by executing "odbc show" from the Asterisk CLI.  If everything went well, you'll see:
+Now, you can start Asterisk and you can check its connection to your "asterisk" MySQL database using the "asterisk" res_odbc connector to ODBC.  You can do this by executing "odbc show" from the Asterisk CLI.  If everything went well, you'll see:
 
 
 
@@ -275,7 +275,7 @@ Connecting PJSIP Sorcery to the Realtime Database
 
 The PJSIP stack uses a new data abstraction layer in Asterisk called **sorcery**. Sorcery lets a user build a hierarchical layer of data sources for Asterisk to use when it retrieves, updates, creates, or destroys data that it interacts with. This tutorial focuses on getting PJSIP's configuration stored in a realtime back-end; the rest of the details of sorcery are beyond the scope of this page.
 
-PJSIP bases its configuration on types of objects.  For more information about these types of objects, please refer to the [Configuring res\_pjsip](/Configuration/Channel-Drivers/SIP/Configuring-res_pjsip) wiki page.  In this case, we have a total of five objects we need to configure in Sorcery:
+PJSIP bases its configuration on types of objects.  For more information about these types of objects, please refer to the [Configuring res_pjsip](/Configuration/Channel-Drivers/SIP/Configuring-res_pjsip) wiki page.  In this case, we have a total of five objects we need to configure in Sorcery:
 
 * endpoint
 * auth
@@ -298,15 +298,15 @@ Sorcery is configured using the **/etc/asterisk/sorcery.conf** configuration fil
 
 ```
 
-text[res\_pjsip] ; Realtime PJSIP configuration wizard
-endpoint=realtime,ps\_endpoints
-auth=realtime,ps\_auths
-aor=realtime,ps\_aors
-domain\_alias=realtime,ps\_domain\_aliases
-contact=realtime,ps\_contacts
+text[res_pjsip] ; Realtime PJSIP configuration wizard
+endpoint=realtime,ps_endpoints
+auth=realtime,ps_auths
+aor=realtime,ps_aors
+domain_alias=realtime,ps_domain_aliases
+contact=realtime,ps_contacts
  
-[res\_pjsip\_endpoint\_identifier\_ip]
-identify=realtime,ps\_endpoint\_id\_ips
+[res_pjsip_endpoint_identifier_ip]
+identify=realtime,ps_endpoint_id_ips
 
 ```
 
@@ -324,12 +324,12 @@ The items use the following nomenclature:
 
 ```
 
-{object\_type} = {sorcery\_wizard\_name},{wizard\_arguments}
+{object_type} = {sorcery_wizard_name},{wizard_arguments}
 
 ```
 
 
-In our case, the `sorcery_wizard_name` is **realtime**, and the **wizard\_arguments** are the name of the database connector ("asterisk") to associate with our object types. Note that the "identify" object is separated from the rest of the configuration objects. This is because this object type is provided by an optional module (res\_pjsip\_endpoint\_idenfifier\_ip.so) and not the main PJSIP module (res\_pjsip.so). 
+In our case, the `sorcery_wizard_name` is **realtime**, and the **wizard_arguments** are the name of the database connector ("asterisk") to associate with our object types. Note that the "identify" object is separated from the rest of the configuration objects. This is because this object type is provided by an optional module (res_pjsip_endpoint_idenfifier_ip.so) and not the main PJSIP module (res_pjsip.so). 
 
 Optionally configuring sorcery for realtime and non-realtime data sources
 -------------------------------------------------------------------------
@@ -349,7 +349,7 @@ For example if you want to read **endpoints** from both realtime and static conf
 
 ```
 
-endpoint=realtime,ps\_endpoints
+endpoint=realtime,ps_endpoints
 endpoint=config,pjsip.conf,criteria=type=endpoint
 
 ```
@@ -376,12 +376,12 @@ Open extconfig.conf (/etc/asterisk/extconfig.conf) and add the following lines t
 ```
 
 text[settings]
-ps\_endpoints => odbc,asterisk
-ps\_auths => odbc,asterisk
-ps\_aors => odbc,asterisk
-ps\_domain\_aliases => odbc,asterisk
-ps\_endpoint\_id\_ips => odbc,asterisk
-ps\_contacts => odbc,asterisk
+ps_endpoints => odbc,asterisk
+ps_auths => odbc,asterisk
+ps_aors => odbc,asterisk
+ps_domain_aliases => odbc,asterisk
+ps_endpoint_id_ips => odbc,asterisk
+ps_contacts => odbc,asterisk
  
 
 ```
@@ -390,7 +390,7 @@ ps\_contacts => odbc,asterisk
 
 
 !!! info ""
-    Other tables allowed but not demonstrated in this tutorial: ps\_systems, ps\_globals, ps\_transports, and ps\_registrations.
+    Other tables allowed but not demonstrated in this tutorial: ps_systems, ps_globals, ps_transports, and ps_registrations.
 
       
 [//]: # (end-info)
@@ -415,7 +415,7 @@ At this point, Asterisk is nearly ready to use the tables created by alembic wit
 Asterisk Startup Configuration
 ------------------------------
 
-Now, we need to configure Asterisk to load its ODBC driver at an early stage of startup, so that it's available when any other modules might need to take advantage of it.  Also, we're going to prevent the old chan\_sip channel driver from loading, since we're only worried about PJSIP.
+Now, we need to configure Asterisk to load its ODBC driver at an early stage of startup, so that it's available when any other modules might need to take advantage of it.  Also, we're going to prevent the old chan_sip channel driver from loading, since we're only worried about PJSIP.
 
 To do this, edit the **/etc/asterisk/modules.conf** configuration file.  In the **[modules]** section, add the following lines:
 
@@ -430,9 +430,9 @@ To do this, edit the **/etc/asterisk/modules.conf** configuration file.  In the
 
 ```
 
-preload => res\_odbc.so
-preload => res\_config\_odbc.so
-noload => chan\_sip.so 
+preload => res_odbc.so
+preload => res_config_odbc.so
+noload => chan_sip.so 
 
 ```
 
@@ -473,12 +473,12 @@ Now, we need to create our endpoints inside of the database.  For this example,
 
 ```bash title=" " linenums="1"
 # mysql -u root -p -D asterisk;
-mysql> insert into ps\_aors (id, max\_contacts) values (101, 1);
-mysql> insert into ps\_aors (id, max\_contacts) values (102, 1);
-mysql> insert into ps\_auths (id, auth\_type, password, username) values (101, 'userpass', 101, 101);
-mysql> insert into ps\_auths (id, auth\_type, password, username) values (102, 'userpass', 102, 102);
-mysql> insert into ps\_endpoints (id, transport, aors, auth, context, disallow, allow, direct\_media) values (101, 'transport-udp', '101', '101', 'testing', 'all', 'g722', 'no');
-mysql> insert into ps\_endpoints (id, transport, aors, auth, context, disallow, allow, direct\_media) values (102, 'transport-udp', '102', '102', 'testing', 'all', 'g722', 'no');
+mysql> insert into ps_aors (id, max_contacts) values (101, 1);
+mysql> insert into ps_aors (id, max_contacts) values (102, 1);
+mysql> insert into ps_auths (id, auth_type, password, username) values (101, 'userpass', 101, 101);
+mysql> insert into ps_auths (id, auth_type, password, username) values (102, 'userpass', 102, 102);
+mysql> insert into ps_endpoints (id, transport, aors, auth, context, disallow, allow, direct_media) values (101, 'transport-udp', '101', '101', 'testing', 'all', 'g722', 'no');
+mysql> insert into ps_endpoints (id, transport, aors, auth, context, disallow, allow, direct_media) values (102, 'transport-udp', '102', '102', 'testing', 'all', 'g722', 'no');
 mysql> quit;
 
 ```
@@ -523,13 +523,13 @@ Now that we have our PJSIP endpoints stored in our MySQL database, let's add a l
 ```
 
 [testing]
-exten => \_1XX,1,NoOp()
+exten => _1XX,1,NoOp()
 same => n,Dial(PJSIP/${EXTEN})
 
 ```
 
 
-Or to dial multiple AOR contacts at the same time, use the PJSIP\_DIAL\_CONTACTS function:
+Or to dial multiple AOR contacts at the same time, use the PJSIP_DIAL_CONTACTS function:
 
 
 
@@ -543,8 +543,8 @@ Or to dial multiple AOR contacts at the same time, use the PJSIP\_DIAL\_CONTACTS
 ```
 
 [testing]
-exten => \_1XX,1,NoOp()
-same => n,Dial(${PJSIP\_DIAL\_CONTACTS(${EXTEN})})
+exten => _1XX,1,NoOp()
+same => n,Dial(${PJSIP_DIAL_CONTACTS(${EXTEN})})
 
 ```
 
@@ -565,7 +565,7 @@ Realtime uses the semicolon ( ; ) as a delimiter for multiple entries.  It must
 
  
 
-For example, this outbound\_proxy parameter
+For example, this outbound_proxy parameter
 
 
 

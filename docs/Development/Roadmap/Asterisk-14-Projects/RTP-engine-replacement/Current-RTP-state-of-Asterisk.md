@@ -6,11 +6,11 @@ pageid: 31752464
 The API
 -------
 
-RTP in Asterisk is managed by a central API defined in `include/asterisk/rtp_engine.h`. It provides a front-end to pluggable RTP engines. The core Asterisk distribution ships with two RTP engines: res\_rtp\_asterisk and res\_rtp\_multicast.
+RTP in Asterisk is managed by a central API defined in `include/asterisk/rtp_engine.h`. It provides a front-end to pluggable RTP engines. The core Asterisk distribution ships with two RTP engines: res_rtp_asterisk and res_rtp_multicast.
 
 The top-level is mostly used as a front-end to the underlying engines, providing methods for creating RTP instances, setting properties (such as enabling RFC 4733 DTMF, indicating media NAT in existence), reading and writing stream data, and some other miscellaneous utilities.
 
-In addition to the RTP engines, there are other engines as well, such as DTLS engines and ICE engines, each with ICE and DTLS-specific callbacks. These engines currently are implemented within res\_rtp\_asterisk as well.
+In addition to the RTP engines, there are other engines as well, such as DTLS engines and ICE engines, each with ICE and DTLS-specific callbacks. These engines currently are implemented within res_rtp_asterisk as well.
 
 All RTP engines are hidden from users of the RTP API behind public methods that mostly correlate one-to-one to the various engines.
 

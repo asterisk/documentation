@@ -8,9 +8,9 @@ pageid: 22085786
 
 # Introduction
 
-\*pjproject\* is a collection of libraries and utilities for building and testing SIP applications. Asterisk currently "bundles" a copy of pjproject, however this is undesirable for a variety of reasons. However, the pjproject constituents are not available as packages for common Linux distributions or as suitable pre-compiled binaries for popular target platforms. The Asterisk community would benefit from the existence of these packages and so is motivated to, at the very least, contribute to the creation of a package-ready \*pjproject\* distribution and an initial set of packages for CentOS and a distribution that supports the installation of header files and libraries according to a given platform's standards and best practices. Given that \*pjsip\* (the SIP implementation library included in \*pjproject\*) is currently the \_first choice\_ as a basis for the next generation SIP channel driver to be included in Asterisk 12, it is appropriate to address packaging \*pjproject\* now.
+\*pjproject\* is a collection of libraries and utilities for building and testing SIP applications. Asterisk currently "bundles" a copy of pjproject, however this is undesirable for a variety of reasons. However, the pjproject constituents are not available as packages for common Linux distributions or as suitable pre-compiled binaries for popular target platforms. The Asterisk community would benefit from the existence of these packages and so is motivated to, at the very least, contribute to the creation of a package-ready \*pjproject\* distribution and an initial set of packages for CentOS and a distribution that supports the installation of header files and libraries according to a given platform's standards and best practices. Given that \*pjsip\* (the SIP implementation library included in \*pjproject\*) is currently the _first choice_ as a basis for the next generation SIP channel driver to be included in Asterisk 12, it is appropriate to address packaging \*pjproject\* now.
 
-\_Note: Research for this page was done by Brent Eagles.\_
+_Note: Research for this page was done by Brent Eagles._
 
 # Getting Started
 
@@ -22,7 +22,7 @@ It is reasonable that initial packaging efforts focus on a select number of targ
 \* be representative of typical packaging efforts
 \* be relevant to existing activities of the developers doing the work, in this case Digium.
 
-With this in consideration, the current effort will focus on runtime and developer RPMs for CentOS and a source archive with a build system that supports creating shared libraries for the relevant \*pjproject\* libraries and installation targets for runtime and developer installs. The runtime RPM and install targets include the shared libraries that make up the runtime functionality of the relevant \*pjproject\* libraries. The developer RPM and install targets install the header files and any additional resources required to build Asterisk. Installing the developer package or portions of \*pjproject\* are not required for \_running\_ Asterisk. In addition binary RPMs, a source RPM (SRPM) must also be created to support subsequent packaging efforts and updates to \*pjproject\* that may be necessary in the related time frame.
+With this in consideration, the current effort will focus on runtime and developer RPMs for CentOS and a source archive with a build system that supports creating shared libraries for the relevant \*pjproject\* libraries and installation targets for runtime and developer installs. The runtime RPM and install targets include the shared libraries that make up the runtime functionality of the relevant \*pjproject\* libraries. The developer RPM and install targets install the header files and any additional resources required to build Asterisk. Installing the developer package or portions of \*pjproject\* are not required for _running_ Asterisk. In addition binary RPMs, a source RPM (SRPM) must also be created to support subsequent packaging efforts and updates to \*pjproject\* that may be necessary in the related time frame.
 
 Please note that the goal of the initial packaging effort is to focus only on the portions of \*pjproject\* that are relevant to Asterisk. Currently those are:
 \* PJSIP
@@ -33,13 +33,13 @@ Please note that the goal of the initial packaging effort is to focus only on th
 \* PJLIBUtil
 \* PJMedia
 
-In addition to packaging \*pjproject\*, the Asterisk build system will be modified to build against an installed \*pjproject\* instead of a bundled copy as it is now. The {{install\_prereq}} script will also be modified to download, build and install \*pjproject\* if necessary.
+In addition to packaging \*pjproject\*, the Asterisk build system will be modified to build against an installed \*pjproject\* instead of a bundled copy as it is now. The {{install_prereq}} script will also be modified to download, build and install \*pjproject\* if necessary.
 
 h3. pjproject Work Required
 
 h4. The Current Build System
 
-The \*pjproject\* build system is a sort of autoconf/makefile hybrid. Compiler and linker flags, etc. are stored in files named according to their intended target system. The values required for generating the names for the files are calculated during the configure step. The makefiles then include an "options" file that is a hash of the option file type and one of the variables calculated when "configure" was run. The values may be overridden at build type by modifying one or more files specifically set aside for this purpose: e.g. user.mak, config\_site.h.
+The \*pjproject\* build system is a sort of autoconf/makefile hybrid. Compiler and linker flags, etc. are stored in files named according to their intended target system. The values required for generating the names for the files are calculated during the configure step. The makefiles then include an "options" file that is a hash of the option file type and one of the variables calculated when "configure" was run. The values may be overridden at build type by modifying one or more files specifically set aside for this purpose: e.g. user.mak, config_site.h.
 {note}Overriding "defines" and build time variables has seem rather hit-or-miss at times. Usually the issue ends up being that another value (or values) must also be modified.{note}
 The existing build system \*may\* be a suitable foundation for building for packages with certain modifications.
 

@@ -3,7 +3,7 @@ title: Asterisk MES Implementation
 pageid: 50924943
 ---
 
-The res\_rtp\_asterisk module has been updated to provide additional quality statistics in the form of an Asterisk Media Experience Score. The score is available using the same mechanisms you'd use to retrieve jitter, loss, and rtt statistics.
+The res_rtp_asterisk module has been updated to provide additional quality statistics in the form of an Asterisk Media Experience Score. The score is available using the same mechanisms you'd use to retrieve jitter, loss, and rtt statistics.
 
 Local vs Remote:
 ----------------
@@ -25,19 +25,19 @@ The MES can be retrieved from the Dialplan using the same mechanisms available 
 
 ### Using the CHANNEL dialplan application:
 
-`${CHANNEL(rtcp,<stat>)`} (chan\_pjsip only) using the stats:
+`${CHANNEL(rtcp,<stat>)`} (chan_pjsip only) using the stats:
 
-* all\_mes
+* all_mes
 * txmes
 * rxmes
-* remote\_maxmes
-* remote\_minmes
-* remote\_normdevmes
-* remote\_stdevmes
-* local\_maxmes
-* local\_minmes
-* local\_normdevmes
-* local\_stdevmes
+* remote_maxmes
+* remote_minmes
+* remote_normdevmes
+* remote_stdevmes
+* local_maxmes
+* local_minmes
+* local_normdevmes
+* local_stdevmes
 
 ### Via Channel Variables:
 

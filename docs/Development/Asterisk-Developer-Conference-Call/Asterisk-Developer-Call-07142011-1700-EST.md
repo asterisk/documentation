@@ -49,11 +49,11 @@ Asterisk 1.10 is the next major release series of Asterisk. It will be a Standar
 A short list of included features includes:
 
 
-* T.38 gateway functionality has been added to res\_fax (and res\_fax\_spandsp).
+* T.38 gateway functionality has been added to res_fax (and res_fax_spandsp).
 * Protocol independent out-of-call messaging support. Text messages not associated with an active call can now be routed through the Asterisk dialplan. SIP and XMPP are supported so far.
 * New highly optimized and customizable ConfBridge application capable of mixing audio at sample rates ranging from 8KHz-196KHz
-* Addition of video\_mode option in confbridge.conf for the addition of basic video conferencing in the ConfBridge() dialplan application.
-* Support for defining hints has been added to pbx\_lua.
+* Addition of video_mode option in confbridge.conf for the addition of basic video conferencing in the ConfBridge() dialplan application.
+* Support for defining hints has been added to pbx_lua.
 
 
 * Replacement of Berkeley DB with SQLite for the Asterisk Database (AstDB).

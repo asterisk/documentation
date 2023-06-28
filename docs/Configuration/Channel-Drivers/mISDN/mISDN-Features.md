@@ -9,13 +9,13 @@ pageid: 4817151
 * Hardware bridging
 * DTMF detection in HW+mISDNdsp
 * Display messages on phones (on those that support it)
-* app\_SendText
+* app_SendText
 * HOLD/RETRIEVE/TRANSFER on ISDN phones : )
 * Allow/restrict user number presentation
 * Volume control
 * Crypting with mISDNdsp (Blowfish)
 * Data (HDLC) callthrough
-* Data calling (with app\_ptyfork +pppd)
+* Data calling (with app_ptyfork +pppd)
 * Echo cancellation
 * Call deflection
 * Some others

@@ -183,16 +183,16 @@ Channel Drivers
 	+ SCCP being developed by Avencall team. Very interested in replacing the existing `chan_skinny`.
 		- Asked to provide a team branch for Asterisk 1.8. Asterisk Test Suite can be pointed at the team branch.
 		- Forward port to trunk
-		- Double check feature parity with chan\_skinny
-		- Work with Damien Wedhorn (current maintainer of chan\_skinny) to determine feature set
+		- Double check feature parity with chan_skinny
+		- Work with Damien Wedhorn (current maintainer of chan_skinny) to determine feature set
 		- Find ways to integrate development processes with Asterisk. This includes testing, project pages, etc.
-* chan\_rtp - or find a way to expose creating a media stream without signalling
+* chan_rtp - or find a way to expose creating a media stream without signalling
 	+ RTP API exists and is implemented as a resource module.
 	+ Expose RTP functionality without requiring signalling?
 * `chan_agent`, or the future of it.
 	+ Current implementation is buggy and prone to problems. Multiple folks have experienced memory corruptions with no resolution (yet).
-	+ Should we get rid of it? You *technically* can do everything without it. However, its existence makes abstraction of the agent easy (doable without chan\_agent, but hard).
-	+ On that same note, can we replace app\_queue with tiny pieces?
+	+ Should we get rid of it? You *technically* can do everything without it. However, its existence makes abstraction of the agent easy (doable without chan_agent, but hard).
+	+ On that same note, can we replace app_queue with tiny pieces?
 	+ We noted that we could have further discussion on this within APIs
 
 Core
@@ -301,7 +301,7 @@ We discussed prior proposed projects, what was done for Asterisk 11, and what mi
 	+ (or use existing tools; sort of a bug)
 	+ **Review 2011**: Code on reviewboard, need to confirm that the code solves the problem, confirmed it doesn't cause harm
 		- Testing required on multiple platforms and libraries
-* Make ast\_channel an opaque type (Digium)
+* Make ast_channel an opaque type (Digium)
 	+ **Review 2011**: Large project and has not been started. Should not be on P0.
 
 ##### (P1)
@@ -333,7 +333,7 @@ We discussed prior proposed projects, what was done for Asterisk 11, and what mi
 	+ **Review 2011**: Idle
 * [SIP Security Events](/SIP-Security-Events)
 	+ **Review 2011**: Additional work was updated and put into Asterisk 10. Only reported manager authentication events prior to Asterisk 10.
-		- Prior to Asterisk 10 relaxed policy a bit and added chan\_sip security events (only for inbound registration).
+		- Prior to Asterisk 10 relaxed policy a bit and added chan_sip security events (only for inbound registration).
 		- Additional work needed throughout Asterisk to add more events.
 		- Added to Asterisk 10. Reference: <https://github.com/asterisk/asterisk/issues/jira/browse/ASTERISK-18264>
 * Light weight means of holding NAT open in SIP (less complex than current qualify, Consider it done)
@@ -364,7 +364,7 @@ We discussed prior proposed projects, what was done for Asterisk 11, and what mi
 	+ **Review 2011**: No change.
 * Multiple DNS results
 	+ (need to be able to traverse a list of DNS results, rather than just getting back one result)
-	+ **Review 2011**: Some work has been done, but chan\_sip (or others) has not been enhanced to take advantage of that.
+	+ **Review 2011**: Some work has been done, but chan_sip (or others) has not been enhanced to take advantage of that.
 * ICE-lite
 	+ (no code, responding correctly to ICE connectivity checks (STUN multiplexed on the RTP port) and understanding the SDP); it makes NAT traversal work for clients that do ICE; also addressed lightweight NAT refresh)
 	+ **Review 2011**: No change or progress. No one has tried to work on it. Appears to be very little deployment.
@@ -402,16 +402,16 @@ We discussed prior proposed projects, what was done for Asterisk 11, and what mi
 ##### (P8, nice to have)
 
 * Make resource modules that talk to DBs attempt reconnects
-	+ **Review 2011**: Added reconnect support to res\_config\_postgres by Kobaz. Already part of res\_odbc. Other native drivers should have it added. Could abstract the reconnection support so that we don't duplicate code. Some work done, more work still possible.
+	+ **Review 2011**: Added reconnect support to res_config_postgres by Kobaz. Already part of res_odbc. Other native drivers should have it added. Could abstract the reconnection support so that we don't duplicate code. Some work done, more work still possible.
 * Apple's new file streaming format, derived from .m3u
 	+ **Review 2011**: No changes known.
 * Make MixMonitor and Monitor feature compatible
 	+ **Review 2011**: Done in Asterisk 10 (per David Vossel)
-		- Some discussion should be done to move res\_monitor to 'extended' or 'deprecated' support level. MixMonitor() likely is now feature complete for Monitor(), especially since MixMonitor() has been implemented in a more friendly manner (in terms of I/O and threading).
+		- Some discussion should be done to move res_monitor to 'extended' or 'deprecated' support level. MixMonitor() likely is now feature complete for Monitor(), especially since MixMonitor() has been implemented in a more friendly manner (in terms of I/O and threading).
 
 ##### (P?, Research Required)
 
-* New app\_queue (as if? no, seriously? talking about this scares Russell)
+* New app_queue (as if? no, seriously? talking about this scares Russell)
 	+ **Review 2011**: Suggested by Kevin that we could have a single box that handles no media, and just does the signalling. Since the agents can be distributed with distributed device state, all registrations would be remote from the queue server. There needs to be an atomic server that would handle the decision making.
 		- Gregory (irroot) – additional skills based routing code and features.
 * Identify and fix all bugs in AMI
@@ -421,7 +421,7 @@ We discussed prior proposed projects, what was done for Asterisk 11, and what mi
 	+ **Review 2011**: Licensing issues. Code written using documentation that is marked as confidential. No situation change. Unable to merge code.
 * LDAP from within the dialplan
 	+ (we may already have it, needs research to see if the realtime driver does what's desired - Leif)
-	+ **Review 2011**: Yes you can already do this using dialplan functions. REALTIME\_FIELD and REALTIME\_HASH, etc..
+	+ **Review 2011**: Yes you can already do this using dialplan functions. REALTIME_FIELD and REALTIME_HASH, etc..
 * Device state normalization
 	+ **Review 2011**: Unknown what this means. Could be different channel drivers report different types of information. No change.
 * Anything DB over HTTP(s) with failover handling
@@ -432,8 +432,8 @@ We discussed prior proposed projects, what was done for Asterisk 11, and what mi
 	+ **Review 2011**: With fire! (Kevin)
 * Bridging thread pool
 	+ **Review 2011**: If you have 200 calls up, you have 200 threads up just polling, when you could just have 10 that each handle 20 bridges, and then you reduce context switching. (That's the idea.) Code not likely flexible enough to do this. Could be done... (Kevin)
-* Threadify chan\_sip
-	+ **Review 2011**: This would cause an entire re-write on chan\_sip, so this is not possible unless a new channel driver were written.
+* Threadify chan_sip
+	+ **Review 2011**: This would cause an entire re-write on chan_sip, so this is not possible unless a new channel driver were written.
 * Export ISDN ROSE information up to Asterisk channels
 	+ **Review 2011**: Not much was really discussed on this as there has not been much requirement for it.
 
@@ -453,7 +453,7 @@ We discussed prior proposed projects, what was done for Asterisk 11, and what mi
 * Named ACLs (deluxepine)
 	+ Named ACLs committed for Asterisk 11; however, this did not fully capture all of the use cases of Olle's deluxepine branch.
 	+ For folks interested in security, this may be worth looking into.
-* IPv6 Support for chan\_iax2
+* IPv6 Support for chan_iax2
 * Call-ID Logging Filtering
 	+ Make use of the call-id that is tagged with channels through other mechanisms (CLI filtering, etc.)
 

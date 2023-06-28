@@ -31,8 +31,8 @@ Afternoon topics:
 * What happened to the bridge created event in ARI (not showing up until first channel is added)?
 	+ Handling on [-dev list](http://lists.digium.com/pipermail/asterisk-dev/2020-October/078019.html)
 * Is there additional information that needs to be added to certain debug/error/warning messages to better understand the original source of error?
-	+ Consistent identifying attributes on log messages (IAX, chan\_sip) - owner information, callId/reference.
-	+ Add log message per channel driver linking channel\_id and channel\_name and protocol specific callId/callref
+	+ Consistent identifying attributes on log messages (IAX, chan_sip) - owner information, callId/reference.
+	+ Add log message per channel driver linking channel_id and channel_name and protocol specific callId/callref
 	+ Would helper functions help enforce this?
 * Group photo
 * Discussion around challenges supporting queue strategy changes for dynamic environments
@@ -47,15 +47,15 @@ Afternoon topics:
 	+ Better documentation and easier to find
 	+ Do access to things work in hangup handlers?
 * Are there challenges that people have with provisioning fleets of Asterisk instances in the cloud?  (missing provisioning APIs, logging interfaces, ...)?
-	+ Nice to have a solid ARI version of app\_voicemail that works well across multiple instances (all playing together well with recordings, metadata, etc)
-	+ Challenges with the way files are stored with app\_voicemail across multiple instances of Asterisk and shared file stores.
+	+ Nice to have a solid ARI version of app_voicemail that works well across multiple instances (all playing together well with recordings, metadata, etc)
+	+ Challenges with the way files are stored with app_voicemail across multiple instances of Asterisk and shared file stores.
 	+ It would be nice to record files and send them to another server directly from Asterisk (maybe using remote FTP/HTTP storage or something of that nature).  We can already playback remotely, why not recording as well?
 * What would be interesting to see next?
 	+ Blind transfer across Asterisk instances
 	+ Media failover (between Asterisk instances when one fails or for draining of calls from one misbehaving instance to another).
 	+ PauseRecording/UnPauseRecording support in mixmonitor is missing - recommended workaround is to use mixmonitor stop and then mixmonitor append.
 	+ Better handling of RTP header extensions in Asterisk. (passthrough or processing of radio related header, potentially also for webrtc and other header extensions)
-	+ Optimistic encryption support when using DTLS with chan\_pjsip
+	+ Optimistic encryption support when using DTLS with chan_pjsip
 
  
 

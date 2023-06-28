@@ -89,8 +89,8 @@ Yitzchak Pachtman - Israel, NY Based IT MSP, Ast & FreePBX for 5 years (Pitzkey)
 + OPTIONS now has optional auth
 + STUN attribute can be disabled
 + MIN, MAX math
-+ PJSIP\_Headers function
-+ App\_dial A now allows playing to caller
++ PJSIP_Headers function
++ App_dial A now allows playing to caller
 + Originate can set vars on originated channel
 
 * Reminders

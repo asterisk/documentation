@@ -15,7 +15,7 @@ The audiofilter application is used to "tune" the sound files in such a way that
 (There is an ITU specification that states for 8KHz audio that is being compressed frequencies below a certain threshold should be removed because they make the resulting compressed audio sound worse than it should.) 
 
 
-The audiofilter application is used by the 'converter' script located in the scripts subdirectory of repotools/sound\_tools. The values being passed to the audiofilter application is as follows:
+The audiofilter application is used by the 'converter' script located in the scripts subdirectory of repotools/sound_tools. The values being passed to the audiofilter application is as follows:
 
 
 

@@ -57,13 +57,13 @@ Download and install Blink
 root@newtonr-laptop:/usr/src/blink-0.6.0# sudo python setup.py install
 running install
 running build
-running build\_py
-running build\_scripts
-running install\_lib
-running install\_scripts
+running build_py
+running build_scripts
+running install_lib
+running install_scripts
 changing mode of /usr/local/bin/blink to 755
-running install\_data
-running install\_egg\_info
+running install_data
+running install_egg_info
 Removing /usr/local/lib/python2.7/dist-packages/blink-0.6.0.egg-info
 Writing /usr/local/lib/python2.7/dist-packages/blink-0.6.0.egg-info
 
@@ -89,8 +89,8 @@ Run Blink!
 ```
 
 root@newtonr-laptop:/usr/src/blink-0.6.0# blink
-using set\_wakeup\_fd
-"sni-qt/6493" WARN 08:11:15.444 void StatusNotifierItemFactory::connectToSnw() Invalid interface to SNW\_SERVICE 
+using set_wakeup_fd
+"sni-qt/6493" WARN 08:11:15.444 void StatusNotifierItemFactory::connectToSnw() Invalid interface to SNW_SERVICE 
 
 ```
 2. Blink should launch and show up within your graphical desktop.

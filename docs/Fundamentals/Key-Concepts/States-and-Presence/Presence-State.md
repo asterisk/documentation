@@ -58,15 +58,15 @@ A simple use case for `CustomPresence` in dialplan is demonstrated below.
 
 [default]
 exten => 2000,1,Answer()
-same => n,Set(CURRENT\_PRESENCE=${PRESENCE\_STATE(CustomPresence:Bob,value)})
-same => n,GotoIf($[${CURRENT\_PRESENCE}=available]?set\_unavailable:set\_available)
-same => n(set\_available),Set(PRESENCE\_STATE(CustomPresence:Bob)=available,,)
+same => n,Set(CURRENT_PRESENCE=${PRESENCE_STATE(CustomPresence:Bob,value)})
+same => n,GotoIf($[${CURRENT_PRESENCE}=available]?set_unavailable:set_available)
+same => n(set_available),Set(PRESENCE_STATE(CustomPresence:Bob)=available,,)
 same => n,Goto(finished)
-same => n(set\_unavailable),Set(PRESENCE\_STATE(CustomPresence:Bob)=unavailable,,)
+same => n(set_unavailable),Set(PRESENCE_STATE(CustomPresence:Bob)=unavailable,,)
 same => n(finished),Playback(queue-thankyou)
 same => n,Hangup
 
-exten => 2001,1,GotoIf($[${PRESENCE\_STATE(CustomPresence:Bob,value)}!=available]?voicemail)
+exten => 2001,1,GotoIf($[${PRESENCE_STATE(CustomPresence:Bob,value)}!=available]?voicemail)
 same => n,Dial(SIP/Bob)
 same => n(voicemail)VoiceMail(Bob@default)
 
@@ -158,8 +158,8 @@ Click here to see the NOTIFY example
 
 myserver\*CLI> presencestate change CustomPresence:6002 UNAVAILABLE
 Changing 6002 to UNAVAILABLE
-set\_destination: Parsing <sip:6002@10.24.18.138:5060;ob> for address/port to send to
-set\_destination: set destination to 10.24.18.138:5060
+set_destination: Parsing <sip:6002@10.24.18.138:5060;ob> for address/port to send to
+set_destination: set destination to 10.24.18.138:5060
 Reliably Transmitting (no NAT) to 10.24.18.138:5060:
 NOTIFY sip:6002@10.24.18.138:5060;ob SIP/2.0
 Via: SIP/2.0/UDP 10.24.18.124:5060;branch=z9hG4bK68008251;rport
@@ -190,7 +190,7 @@ entity="sip:6002@10.24.18.124">
 </tuple>
 <tuple id="digium-presence">
 <status>
-<digium\_presence type="unavailable" subtype=""></digium\_presence>
+<digium_presence type="unavailable" subtype=""></digium_presence>
 </status>
 </tuple>
 </presence>
@@ -233,7 +233,7 @@ When using Digium phones with the [Digium Phone Module for Asterisk](http://down
 
 
 !!! tip 
-    Digium phones support only the available, away, dnd, xa, and chat states. The unavailable and not\_set states are not supported.
+    Digium phones support only the available, away, dnd, xa, and chat states. The unavailable and not_set states are not supported.
 
       
 [//]: # (end-tip)

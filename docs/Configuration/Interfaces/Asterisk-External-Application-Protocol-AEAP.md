@@ -347,7 +347,7 @@ true {
 Errors
 ======
 
-When an error occurs for any given request all responses follow the same format. Similar to a regular response the response name and id are the same as that of the request. The only other additional field is an "error\_msg", which is a text description of the error:
+When an error occurs for any given request all responses follow the same format. Similar to a regular response the response name and id are the same as that of the request. The only other additional field is an "error_msg", which is a text description of the error:
 
 
 
@@ -363,7 +363,7 @@ error response
 {
  "response": <name of request being responded to>,
  "id": <unique id from request>,
- "error\_msg": <error text description>
+ "error_msg": <error text description>
 }
 
 ```
@@ -382,7 +382,7 @@ Example 1 setup error
 true{
  "response": "setup",
  "id": "b3eda99f-464f-477e-b8a3-4ebafda0b482",
- "error\_msg": "No supported codec(s)"
+ "error_msg": "No supported codec(s)"
 }
 
 ```
@@ -401,7 +401,7 @@ Example 2 get error
 true{
  "response": "get",
  "id": "f066e049-d4ef-4093-a05b-0effef1bc077",
- "error\_msg": "No language parameter available"
+ "error_msg": "No language parameter available"
 }
 
 ```
@@ -420,7 +420,7 @@ Example 3 set error
 true{
  "response": "set",
  "id": "9f424395-736b-412c-b8f4-a67a3497415b",
- "error\_msg": "Unable to set language to 'en-US'"
+ "error_msg": "Unable to set language to 'en-US'"
 }
 
 ```

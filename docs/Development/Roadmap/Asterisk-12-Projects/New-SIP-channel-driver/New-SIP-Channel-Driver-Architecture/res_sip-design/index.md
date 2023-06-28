@@ -18,14 +18,14 @@ Overview
 ========
 
 
-res\_sip is the decadent dark chocolate core of the new SIP work in Asterisk 12. It is the cockpit of the SIP jet. As such, its contents are those upon which all other SIP modules (and potentially non-SIP modules) will rely. The following describes its design and its public APIs.
+res_sip is the decadent dark chocolate core of the new SIP work in Asterisk 12. It is the cockpit of the SIP jet. As such, its contents are those upon which all other SIP modules (and potentially non-SIP modules) will rely. The following describes its design and its public APIs.
 
 
 Makeup
 ======
 
 
-res\_sip can be divided into four overall sections:
+res_sip can be divided into four overall sections:
 
 
 * service registrar
@@ -38,7 +38,7 @@ Startup process
 ===============
 
 
-On startup, res\_sip will create a threadpool for SIP to use. The threadpool's specifics will be discussed on a separate page. The threadpool will be used for as much of SIP's operation as possible. After starting the threadpool, res\_sip will create a PJSIP endpoint and then begin handling incoming requests from the endpoint.
+On startup, res_sip will create a threadpool for SIP to use. The threadpool's specifics will be discussed on a separate page. The threadpool will be used for as much of SIP's operation as possible. After starting the threadpool, res_sip will create a PJSIP endpoint and then begin handling incoming requests from the endpoint.
 
 
 Public methods
@@ -63,14 +63,14 @@ c
 /\*!
  \* \brief Opaque structure representing related SIP tasks
  \*/
-struct ast\_sip\_work;
+struct ast_sip_work;
 
 /\*!
  \* \brief Data used for creating authentication challenges.
  \* 
- \* This data gets populated by an authenticator's get\_authentication\_credentials() callback.
+ \* This data gets populated by an authenticator's get_authentication_credentials() callback.
  \*/
-struct ast\_sip\_digest\_challenge\_data {
+struct ast_sip_digest_challenge_data {
  /\*!
  \* The realm to which the user is authenticating. An authenticator MUST fill this in.
  \*/
@@ -80,11 +80,11 @@ struct ast\_sip\_digest\_challenge\_data {
  \* If this is non-zero, then the data is an MD5 sum. Otherwise, the username and password are plaintext.
  \* Authenticators MUST set this.
  \*/
- int is\_md5;
+ int is_md5;
  /\*!
- \* This is the actual username and secret. The is\_md5 field is used to determine which member
+ \* This is the actual username and secret. The is_md5 field is used to determine which member
  \* of the union is to be used when creating the authentication challenge. In other words, if
- \* is\_md5 is non-zero, then we will use the md5 field of the auth union. Otherwise, we will
+ \* is_md5 is non-zero, then we will use the md5 field of the auth union. Otherwise, we will
  \* use the plain struct in the auth union.
  \* Authenticators MUST fill in the appropriate field of the union.
  \*/
@@ -124,36 +124,36 @@ struct ast\_sip\_digest\_challenge\_data {
  \* \brief An interchangeable way of handling digest authentication for SIP.
  \* 
  \* An authenticator is responsible for filling in the callbacks provided below. Each is called from a publicly available
- \* function in res\_sip. The authenticator can use configuration or other local policy to determine whether authentication
+ \* function in res_sip. The authenticator can use configuration or other local policy to determine whether authentication
  \* should take place and what credentials should be used when challenging and authenticating a request.
  \*/
-struct ast\_sip\_authenticator {
+struct ast_sip_authenticator {
  /\*! 
  \* \brief Check if a request requires authentication
- \* See ast\_sip\_requires\_authentication for more details
+ \* See ast_sip_requires_authentication for more details
  \*/
- int (\*requires\_authentication)(struct ast\_sip\_endpoint \*endpoint, struct pjsip\_rx\_data \*rdata);
+ int (\*requires_authentication)(struct ast_sip_endpoint \*endpoint, struct pjsip_rx_data \*rdata);
  /\*!
  \* \brief Attempt to authenticate the incoming request
- \* See ast\_sip\_authenticate\_request for more details
+ \* See ast_sip_authenticate_request for more details
  \*/
- int (\*authenticate\_request)(struct ast\_sip\_endpoint \*endpoint, struct pjsip\_rx\_data \*rdata);
+ int (\*authenticate_request)(struct ast_sip_endpoint \*endpoint, struct pjsip_rx_data \*rdata);
  /\*!
  \* \brief Get digest authentication details
- \* See ast\_sip\_get\_authentication\_credentials for more details
+ \* See ast_sip_get_authentication_credentials for more details
  \*/
- int (\*get\_authentication\_credentials)(struct ast\_sip\_endpoint \*endpoint, struct sip\_digest\_challenge\_data \*challenge);
+ int (\*get_authentication_credentials)(struct ast_sip_endpoint \*endpoint, struct sip_digest_challenge_data \*challenge);
 };
 
 /\*!
  \* \brief An entity responsible for identifying the source of a SIP message
  \*/
-struct ast\_sip\_endpoint\_identifier {
+struct ast_sip_endpoint_identifier {
  /\*!
  \* \brief Callback used to identify the source of a message.
- \* See ast\_sip\_identify\_endpoint for more details
+ \* See ast_sip_identify_endpoint for more details
  \*/
- struct ast\_sip\_endpoint \*(\*identify\_endpoint)(struct pjsip\_rx\_data \*data);
+ struct ast_sip_endpoint \*(\*identify_endpoint)(struct pjsip_rx_data \*data);
 };
 
 
@@ -178,7 +178,7 @@ c
 /\*!
  \* \brief Register a SIP service in Asterisk.
  \*
- \* This is more-or-less a wrapper around pjsip\_endpt\_register\_module().
+ \* This is more-or-less a wrapper around pjsip_endpt_register_module().
  \* Registering a service makes it so that PJSIP will call into the
  \* service at appropriate times. For more information about PJSIP module
  \* callbacks, see the PJSIP documentation. Asterisk modules that call
@@ -188,16 +188,16 @@ c
  \* \retval 0 Success
  \* \retval -1 Failure
  \*/
-int ast\_sip\_register\_service(pjsip\_module \*module);
+int ast_sip_register_service(pjsip_module \*module);
 
 /\*!
- \* This is the opposite of ast\_sip\_register\_service(). Unregistering a
+ \* This is the opposite of ast_sip_register_service(). Unregistering a
  \* service means that PJSIP will no longer call into the module any more.
  \* This will likely occur when an Asterisk module is unloaded.
  \*
  \* \param module The PJSIP module to unregister
  \*/
-void ast\_sip\_unregister\_service(pjsip\_module \*module);
+void ast_sip_unregister_service(pjsip_module \*module);
 
 /\*!
  \* \brief Register a SIP authenticator
@@ -214,7 +214,7 @@ void ast\_sip\_unregister\_service(pjsip\_module \*module);
  \* \retval 0 Success
  \* \retval -1 Failure
  \*/
-int ast\_sip\_register\_authenticator(struct ast\_sip\_authenticator \*auth);
+int ast_sip_register_authenticator(struct ast_sip_authenticator \*auth);
 
 /\*!
  \* \brief Unregister a SIP authenticator
@@ -224,7 +224,7 @@ int ast\_sip\_register\_authenticator(struct ast\_sip\_authenticator \*auth);
  \*
  \* \param auth The authenticator to unregister
  \*/
-void ast\_sip\_unregister\_authenticator(struct ast\_sip\_authenticator \*auth);
+void ast_sip_unregister_authenticator(struct ast_sip_authenticator \*auth);
 
 /\*!
  \* \brief Register a SIP endpoint identifier
@@ -247,7 +247,7 @@ void ast\_sip\_unregister\_authenticator(struct ast\_sip\_authenticator \*auth);
  \* \retval 0 Success
  \* \retval -1 Failure
  \*/
-int ast\_sip\_register\_endpoint\_identifier(struct ast\_sip\_endpoint\_identifier \*identifier);
+int ast_sip_register_endpoint_identifier(struct ast_sip_endpoint_identifier \*identifier);
 
 /\*!
  \* \brief Unregister a SIP endpoint identifier
@@ -256,7 +256,7 @@ int ast\_sip\_register\_endpoint\_identifier(struct ast\_sip\_endpoint\_identifi
  \*
  \* \param identifier The SIP endoint identifier to unregister
  \*/
-void ast\_sip\_unregister\_endpoint\_identifier(struct ast\_sip\_endpoint\_identifier \*identifier);
+void ast_sip_unregister_endpoint_identifier(struct ast_sip_endpoint_identifier \*identifier);
 
 
 ```
@@ -290,14 +290,14 @@ c
  \* \retval NULL Failure
  \* \retval non-NULL Newly-created SIP work
  \*/
-struct ast\_sip\_work \*ast\_sip\_create\_work(void);
+struct ast_sip_work \*ast_sip_create_work(void);
 
 /\*!
  \* \brief Destroy a SIP work structure
  \*
  \* \param work The SIP work to destroy
  \*/
-void ast\_sip\_destroy\_work(struct ast\_sip\_work \*work);
+void ast_sip_destroy_work(struct ast_sip_work \*work);
 
 /\*!
  \* \brief Pushes a task into the SIP threadpool
@@ -305,12 +305,12 @@ void ast\_sip\_destroy\_work(struct ast\_sip\_work \*work);
  \* This uses the SIP work provided to determine how to push the task.
  \*
  \* \param work The SIP work to which the task belongs
- \* \param sip\_task The task to execute
- \* \param task\_data The parameter to pass to the task when it executes
+ \* \param sip_task The task to execute
+ \* \param task_data The parameter to pass to the task when it executes
  \* \retval 0 Success
  \* \retval -1 Failure
  \*/
-int ast\_sip\_push\_task(struct ast\_sip\_work \*work, int (\*sip\_task)(void \*), void \*task\_data);
+int ast_sip_push_task(struct ast_sip_work \*work, int (\*sip_task)(void \*), void \*task_data);
 
 
 ```
@@ -344,12 +344,12 @@ c
  \* \retval 0 Success
  \* \retval -1 Failure
  \*/
-int ast\_sip\_send\_request(const char \*method, const char \*body, struct pjsip\_dialog \*dlg);
+int ast_sip_send_request(const char \*method, const char \*body, struct pjsip_dialog \*dlg);
 
 /\*!
  \* \brief Determine if an incoming request requires authentication
  \*
- \* This calls into the registered authenticator's requires\_authentication callback
+ \* This calls into the registered authenticator's requires_authentication callback
  \* in order to determine if the request requires authentication.
  \*
  \* If there is no registered authenticator, then authentication will be assumed
@@ -360,12 +360,12 @@ int ast\_sip\_send\_request(const char \*method, const char \*body, struct pjsip
  \* \retval non-zero The request requires authentication
  \* \retval 0 The request does not require authentication
  \*/
-int ast\_sip\_requires\_authentication(struct ast\_sip\_endpoint \*endpoint, struct pjsip\_rx\_data \*rdata);
+int ast_sip_requires_authentication(struct ast_sip_endpoint \*endpoint, struct pjsip_rx_data \*rdata);
 
 /\*!
  \* \brief Authenticate an inbound SIP request
  \*
- \* This calls into the registered authenticator's authenticate\_request callback
+ \* This calls into the registered authenticator's authenticate_request callback
  \* in order to determine if the request contains proper credentials as to be
  \* authenticated.
  \*
@@ -377,12 +377,12 @@ int ast\_sip\_requires\_authentication(struct ast\_sip\_endpoint \*endpoint, str
  \* \retval 0 Successfully authenticated
  \* \retval nonzero Failure to authenticate
  \*/
-int ast\_sip\_authenticate\_request(struct ast\_sip\_endpoint \*endpoint, struct pjsip\_rx\_data \*rdata);
+int ast_sip_authenticate_request(struct ast_sip_endpoint \*endpoint, struct pjsip_rx_data \*rdata);
 
 /\*!
  \* \brief Get authentication credentials in order to challenge a request
  \*
- \* This calls into the registered authenticator's get\_authentication\_credentials
+ \* This calls into the registered authenticator's get_authentication_credentials
  \* callback in order to get credentials required for challenging a request.
  \*
  \* \param endpoint The endpoint whose credentials are being gathered
@@ -390,20 +390,20 @@ int ast\_sip\_authenticate\_request(struct ast\_sip\_endpoint \*endpoint, struct
  \* \retval 0 Success
  \* \retval -1 Failure
  \*/
-int ast\_sip\_get\_authentication\_credentials(struct ast\_sip\_endpoint \*endpoint, struct ast\_sip\_digest\_challenge\_data \*challenge);
+int ast_sip_get_authentication_credentials(struct ast_sip_endpoint \*endpoint, struct ast_sip_digest_challenge_data \*challenge);
 
 /\*!
- \* \brief Possible returns from ast\_sip\_check\_authentication
+ \* \brief Possible returns from ast_sip_check_authentication
  \*/
-enum ast\_sip\_check\_auth\_result {
+enum ast_sip_check_auth_result {
  /\*! Authentication challenge sent \*/
- AST\_SIP\_AUTHENTICATION\_CHALLENGE\_SENT,
+ AST_SIP_AUTHENTICATION_CHALLENGE_SENT,
  /\*! Authentication succeeded \*/
- AST\_SIP\_AUTHENTICATION\_SUCCESS,
+ AST_SIP_AUTHENTICATION_SUCCESS,
  /\*! Authentication failed \*/
- AST\_SIP\_AUTHENTICATION\_FAILED,
+ AST_SIP_AUTHENTICATION_FAILED,
  /\*! Authentication not required \*/
- AST\_SIP\_AUTHENTICATION\_NOT\_REQUIRED,
+ AST_SIP_AUTHENTICATION_NOT_REQUIRED,
 };
 
 /\*!
@@ -412,14 +412,14 @@ enum ast\_sip\_check\_auth\_result {
  \* This is a wrapper that will call into a registered authenticator to see if a request
  \* should be authenticated. Then if it should be, will attempt to authenticate. If the
  \* request cannot be authenticated, then a challenge will be sent. Calling this can be
- \* a suitable substitute for calling ast\_sip\_requires\_authentication(),
- \* ast\_sip\_authenticate\_request(), and ast\_sip\_get\_authentication\_credentials()
+ \* a suitable substitute for calling ast_sip_requires_authentication(),
+ \* ast_sip_authenticate_request(), and ast_sip_get_authentication_credentials()
  \*
  \* \param endpoint The endpoint from the request was sent
  \* \param rdata The request to potentially authenticate
  \* \return The result of checking authentication.
  \*/
-ast\_sip\_check\_authentication(struct ast\_sip\_endpoint \*endpoint, struct pjsip\_rxdata \*rdata);
+ast_sip_check_authentication(struct ast_sip_endpoint \*endpoint, struct pjsip_rxdata \*rdata);
 
 /\*!
  \* \brief Challenge an inbound SIP request with a 401
@@ -432,13 +432,13 @@ ast\_sip\_check\_authentication(struct ast\_sip\_endpoint \*endpoint, struct pjs
  \* \retval 0 Success
  \* \retval -1 Failure
  \*/
-int ast\_sip\_challenge\_request(struct sip\_digest\_challenge\_data \*challenge);
+int ast_sip_challenge_request(struct sip_digest_challenge_data \*challenge);
 
 /\*!
  \* \brief Determine the endpoint that has sent a SIP message
  \*
  \* This will call into each of the registered endpoint identifiers'
- \* identify\_endpoint() callbacks until one returns a non-NULL endpoint.
+ \* identify_endpoint() callbacks until one returns a non-NULL endpoint.
  \* This will return an ao2 object. Its reference count will need to be
  \* decremented when completed using the endpoint.
  \*
@@ -446,7 +446,7 @@ int ast\_sip\_challenge\_request(struct sip\_digest\_challenge\_data \*challenge
  \* \retval NULL No matching endpoint
  \* \retval non-NULL The matching endpoint
  \*/
-struct ast\_sip\_endpoint \*ast\_sip\_identify\_endpoint(struct pjsip\_rx\_data \*rdata);
+struct ast_sip_endpoint \*ast_sip_identify_endpoint(struct pjsip_rx_data \*rdata);
 
 /\*!
  \* \brief Add a header to an outbound SIP message
@@ -457,7 +457,7 @@ struct ast\_sip\_endpoint \*ast\_sip\_identify\_endpoint(struct pjsip\_rx\_data 
  \* \retval 0 Success
  \* \retval -1 Failure
  \*/
-int ast\_sip\_add\_header(struct pjsip\_tx\_data \*tdata, const char \*name, const char \*value);
+int ast_sip_add_header(struct pjsip_tx_data \*tdata, const char \*name, const char \*value);
 
 /\*!
  \* \brief Add a body to an outbound SIP message
@@ -470,7 +470,7 @@ int ast\_sip\_add\_header(struct pjsip\_tx\_data \*tdata, const char \*name, con
  \* \retval 0 Success
  \* \retval -1 Failure
  \*/
-int ast\_sip\_add\_body(struct pjsip\_tx\_data \*tdata, const char \*body);
+int ast_sip_add_body(struct pjsip_tx_data \*tdata, const char \*body);
 
 /\*!
  \* \brief Add a multipart body to an outbound SIP message
@@ -483,12 +483,12 @@ int ast\_sip\_add\_body(struct pjsip\_tx\_data \*tdata, const char \*body);
  \* \retval 0 Success
  \* \retval -1 Failure
  \*/
-int ast\_sip\_add\_body(struct pjsip\_tx\_data \*tdata, const char \*bodies[]);
+int ast_sip_add_body(struct pjsip_tx_data \*tdata, const char \*bodies[]);
 
 /\*!
  \* \brief Append body data to a SIP message
  \*
- \* This acts mostly the same as ast\_sip\_add\_body, except that rather than replacing
+ \* This acts mostly the same as ast_sip_add_body, except that rather than replacing
  \* a body if it currently exists, it appends data to an existing body.
  \*
  \* \param tdata The message to append the body to
@@ -496,7 +496,7 @@ int ast\_sip\_add\_body(struct pjsip\_tx\_data \*tdata, const char \*bodies[]);
  \* \retval 0 Success
  \* \retval -1 Failure
  \*/
-int ast\_sip\_append\_body(struct pjsip\_tx\_data \*tdata, const char \*body);
+int ast_sip_append_body(struct pjsip_tx_data \*tdata, const char \*body);
 
 
 ```

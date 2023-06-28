@@ -38,11 +38,11 @@ Note that H.264 is not enabled by default. You need to add that in the channel c
 
 | Channel Driver | Module | Notes |
 | --- | --- | --- |
-| SIP | `chan_sip.so` | The SIP channel driver (chan\_sip.so) has support for video |
+| SIP | `chan_sip.so` | The SIP channel driver (chan_sip.so) has support for video |
 | IAX2 | `chan_iax2.so` | Supports video calls (over trunks too) |
 | Local | `chan_local.so` | Forwards video calls as a proxy channel |
 | Agent | `chan_agent.so` | Forwards video calls as a proxy channel |
-| oss | `chan_oss.so` | Has support for video display/decoding, see video\_console.txt |
+| oss | `chan_oss.so` | Has support for video display/decoding, see video_console.txt |
 
 
 ##### Applications

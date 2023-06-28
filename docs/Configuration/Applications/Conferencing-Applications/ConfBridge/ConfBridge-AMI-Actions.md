@@ -228,7 +228,7 @@ Message: Conference unlocked
 ConfbridgeStartRecord
 ---------------------
 
-Starts recording a specified conference, with an optional filename. If recording is already in progress, an error will be returned. If RecordFile is not provided, the default record\_file as specified in the conferences Bridge Profile will be used. If record\_file is not specified, a file will automatically be generated in Asterisk's monitor directory.
+Starts recording a specified conference, with an optional filename. If recording is already in progress, an error will be returned. If RecordFile is not provided, the default record_file as specified in the conferences Bridge Profile will be used. If record_file is not specified, a file will automatically be generated in Asterisk's monitor directory.
 
 **Example**
 
@@ -252,7 +252,7 @@ Message: Conference Recording Started.
 Event: VarSet
 Privilege: dialplan,all
 Channel: ConfBridgeRecorder/conf-1111-uid-1653801660
-Variable: MIXMONITOR\_FILENAME
+Variable: MIXMONITOR_FILENAME
 Value: /var/spool/asterisk/monitor/confbridge-1111-1303309869.wav
 Uniqueid: 1303309869.6
 

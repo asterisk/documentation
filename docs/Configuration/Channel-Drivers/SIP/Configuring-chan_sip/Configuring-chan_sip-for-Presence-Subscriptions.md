@@ -6,7 +6,7 @@ pageid: 29392926
 Overview
 ========
 
-This page is a rough guide to get you configuring chan\_sip and Asterisk to accept subscriptions for presence (in this case, [Extension State](/Fundamentals/Key-Concepts/States-and-Presence/Extension-State-and-Hints)) and notify the subscribers of state changes.
+This page is a rough guide to get you configuring chan_sip and Asterisk to accept subscriptions for presence (in this case, [Extension State](/Fundamentals/Key-Concepts/States-and-Presence/Extension-State-and-Hints)) and notify the subscribers of state changes.
 
 Requirements
 ============
@@ -33,7 +33,7 @@ Then following down the page you can find detail on configuring the three major 
 Configure SIP options
 ---------------------
 
-Since this is not a guide on configuring SIP peers, we'll show a very simple **sip.conf**  with only enough configuration to point out where you might set specific [chan\_sip State and Presence Options](/Configuration/Channel-Drivers/SIP/Configuring-chan_sip/chan_sip-State-and-Presence-Options) .
+Since this is not a guide on configuring SIP peers, we'll show a very simple **sip.conf**  with only enough configuration to point out where you might set specific [chan_sip State and Presence Options](/Configuration/Channel-Drivers/SIP/Configuring-chan_sip/chan_sip-State-and-Presence-Options) .
 
 
 
@@ -67,7 +67,7 @@ busylevel=1
 
 We are setting one option in the general section, and then a few options across the three SIP peers involved.
 
-**callcounter** and **busylevel** are the most essential options. **callcounter** needs to be enabled for chan\_sip to provide accurate device. **busylevel**=1 says we want the device states of those peers to show busy if they have at least one call in progress. The **subscribecontext** option tells Asterisk which dialplan context to look for the hint. **allowsubscribe** says that we will allow subscriptions for that peer. It is really set to yes by default, but we are defining it here to demonstrate that you could allow and disallow subscriptions on a per-peer basis if you wanted.
+**callcounter** and **busylevel** are the most essential options. **callcounter** needs to be enabled for chan_sip to provide accurate device. **busylevel**=1 says we want the device states of those peers to show busy if they have at least one call in progress. The **subscribecontext** option tells Asterisk which dialplan context to look for the hint. **allowsubscribe** says that we will allow subscriptions for that peer. It is really set to yes by default, but we are defining it here to demonstrate that you could allow and disallow subscriptions on a per-peer basis if you wanted.
 
 Figure 1![](ExtensionAndDeviceState.png) 
 
@@ -201,7 +201,7 @@ Content-Length: 0
 Sending to 10.24.17.254:37509 (no NAT)
 Creating new subscription
 Sending to 10.24.17.254:37509 (no NAT)
-list\_route: route/path hop: <sip:Alice@10.24.17.254:37509;transport=UDP>
+list_route: route/path hop: <sip:Alice@10.24.17.254:37509;transport=UDP>
 Found peer 'Alice' for 'Alice' from 10.24.17.254:37509
 
 <--- Transmitting (no NAT) to 10.24.17.254:37509 --->
@@ -264,8 +264,8 @@ Content-Length: 0
 
 
 <------------>
-set\_destination: Parsing <sip:Alice@10.24.17.254:37509;transport=UDP> for address/port to send to
-set\_destination: set destination to 10.24.17.254:37509
+set_destination: Parsing <sip:Alice@10.24.17.254:37509;transport=UDP> for address/port to send to
+set_destination: set destination to 10.24.17.254:37509
 Reliably Transmitting (no NAT) to 10.24.17.254:37509:
 NOTIFY sip:Alice@10.24.17.254:37509;transport=UDP SIP/2.0
 Via: SIP/2.0/UDP 10.24.18.124:5060;branch=z9hG4bK14aacddc

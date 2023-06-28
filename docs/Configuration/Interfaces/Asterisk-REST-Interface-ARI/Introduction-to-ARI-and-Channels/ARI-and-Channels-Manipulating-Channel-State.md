@@ -106,7 +106,7 @@ We can store the timers that we've set up for a channel using a dictionary of ch
 
 ```
 
-truepy11channel\_timers = {}
+truepy11channel_timers = {}
 
 ```
 
@@ -124,9 +124,9 @@ And we can register for our three events:
 
 ```
 
-truepy58client.on\_channel\_event('StasisStart', stasis\_start\_cb)
-client.on\_channel\_event('ChannelStateChange', channel\_state\_change\_cb)
-client.on\_channel\_event('StasisEnd', stasis\_end\_cb)
+truepy58client.on_channel_event('StasisStart', stasis_start_cb)
+client.on_channel_event('ChannelStateChange', channel_state_change_cb)
+client.on_channel_event('StasisEnd', stasis_end_cb)
 
 ```
 
@@ -150,8 +150,8 @@ The `StasisStart` event is the most interesting part.
 
 truepy47 channel.ring()
  # Answer the channel after 2 seconds
- timer = threading.Timer(2, answer\_channel, [channel])
- channel\_timers[channel.id] = timer
+ timer = threading.Timer(2, answer_channel, [channel])
+ channel_timers[channel.id] = timer
  timer.start()
 
 ```
@@ -171,10 +171,10 @@ If we didn't have that there, then the caller would probably just have dead spac
 
 ```
 
-truepy24def stasis\_start\_cb(channel\_obj, ev):
+truepy24def stasis_start_cb(channel_obj, ev):
  """Handler for StasisStart event"""
 
- def answer\_channel(channel):
+ def answer_channel(channel):
  """Callback that will actually answer the channel"""
  print "Answering channel %s" % channel.json.get('name')
  channel.answer()
@@ -194,7 +194,7 @@ truepy24def stasis\_start\_cb(channel\_obj, ev):
 
 ```
 
-truepy38 def hangup\_channel(channel):
+truepy38 def hangup_channel(channel):
  """Callback that will actually hangup the channel"""
 
  print "Hanging up channel %s" % channel.json.get('name')
@@ -215,16 +215,16 @@ When we create a timer - such as when we started ringing on the channel - we sto
 
 ```
 
-truepy13 def stasis\_end\_cb(channel, ev):
+truepy13 def stasis_end_cb(channel, ev):
  """Handler for StasisEnd event"""
 
  print "Channel %s just left our application" % channel.json.get('name')
 
  # Cancel any pending timers
- timer = channel\_timers.get(channel.id)
+ timer = channel_timers.get(channel.id)
  if timer:
  timer.cancel()
- del channel\_timers[channel.id]
+ del channel_timers[channel.id]
 
 ```
 
@@ -244,7 +244,7 @@ Finally, we want to print out the state of the channel in the `ChannelStateChang
 
 ```
 
-truepy53 def channel\_state\_change\_cb(channel, ev):
+truepy53 def channel_state_change_cb(channel, ev):
  """Handler for changes in a channel's state"""
  print "Channel %s is now: %s" % (channel.json.get('name'),
  channel.json.get('state'))
@@ -277,56 +277,56 @@ logging.basicConfig(level=logging.ERROR)
 
 client = ari.connect('http://localhost:8088', 'asterisk', 'asterisk')
 
-channel\_timers = {}
+channel_timers = {}
 
-def stasis\_end\_cb(channel, ev):
+def stasis_end_cb(channel, ev):
  """Handler for StasisEnd event"""
 
  print "Channel %s just left our application" % channel.json.get('name')
 
  # Cancel any pending timers
- timer = channel\_timers.get(channel.id)
+ timer = channel_timers.get(channel.id)
  if timer:
  timer.cancel()
- del channel\_timers[channel.id]
+ del channel_timers[channel.id]
 
-def stasis\_start\_cb(channel\_obj, ev):
+def stasis_start_cb(channel_obj, ev):
  """Handler for StasisStart event"""
 
- def answer\_channel(channel):
+ def answer_channel(channel):
  """Callback that will actually answer the channel"""
  print "Answering channel %s" % channel.json.get('name')
  channel.answer()
  channel.startSilence()
 
  # Hang up the channel in 4 seconds
- timer = threading.Timer(4, hangup\_channel, [channel])
- channel\_timers[channel.id] = timer
+ timer = threading.Timer(4, hangup_channel, [channel])
+ channel_timers[channel.id] = timer
  timer.start()
 
-  def hangup\_channel(channel):
+  def hangup_channel(channel):
  """Callback that will actually hangup the channel"""
 
  print "Hanging up channel %s" % channel.json.get('name')
  channel.hangup()
 
- channel = channel\_obj.get('channel')
+ channel = channel_obj.get('channel')
  print "Channel %s has entered the application" % channel.json.get('name')
 
  channel.ring()
  # Answer the channel after 2 seconds
- timer = threading.Timer(2, answer\_channel, [channel])
- channel\_timers[channel.id] = timer
+ timer = threading.Timer(2, answer_channel, [channel])
+ channel_timers[channel.id] = timer
  timer.start()
 
-def channel\_state\_change\_cb(channel, ev):
+def channel_state_change_cb(channel, ev):
  """Handler for changes in a channel's state"""
  print "Channel %s is now: %s" % (channel.json.get('name'),
  channel.json.get('state'))
 
-client.on\_channel\_event('StasisStart', stasis\_start\_cb)
-client.on\_channel\_event('ChannelStateChange', channel\_state\_change\_cb)
-client.on\_channel\_event('StasisEnd', stasis\_end\_cb)
+client.on_channel_event('StasisStart', stasis_start_cb)
+client.on_channel_event('ChannelStateChange', channel_state_change_cb)
+client.on_channel_event('StasisEnd', stasis_end_cb)
 
 client.run(apps='channel-state')
 
@@ -399,9 +399,9 @@ And we can register for our three events:
 
 ```
 
-truejs76client.on\_channel\_event('StasisStart', stasis\_start\_cb)
-client.on\_channel\_event('ChannelStateChange', channel\_state\_change\_cb)
-client.on\_channel\_event('StasisEnd', stasis\_end\_cb)
+truejs76client.on_channel_event('StasisStart', stasis_start_cb)
+client.on_channel_event('ChannelStateChange', channel_state_change_cb)
+client.on_channel_event('StasisEnd', stasis_end_cb)
 
 ```
 

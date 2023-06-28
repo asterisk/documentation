@@ -95,18 +95,18 @@ SIPit testing results and observations
 * Fuzz testing also showed how tolerant PJSIP is to invalid data. Throughout the event traffic was received and did not result in any crashes or incorrect behavior.
 * [STIR](https://tools.ietf.org/html/draft-ietf-stir-rfc4474bis-13) was an RFC that was heavily discussed at SIPit. It is worth watching.
 
-Show of hands - how many are using chan\_sip with 13? (~60% of attendees)
+Show of hands - how many are using chan_sip with 13? (~60% of attendees)
 
-Attendees gave some reasons why they or their customers haven't moved from chan\_sip to chan\_pjsip
+Attendees gave some reasons why they or their customers haven't moved from chan_sip to chan_pjsip
 
 * Bugs (pjsip) holding some users back from moving completely.
 * Complexity of configuration (pjsip).
-* Familiarity with chan\_sip, reluctance to use new stuff.
+* Familiarity with chan_sip, reluctance to use new stuff.
 * Lack of complete feature parity. Or specific features missing.
 
-Digium has released codec\_opus! Digium implemented a codec\_opus as a binary with anonymous stats reporting as a conservative measure for legal protection. Digium didn't write the opus code from scratch, the SDK was used. If community members are aware of specific pitfalls from their own interop testing with opus, they should report the issues and Digium can address it.
+Digium has released codec_opus! Digium implemented a codec_opus as a binary with anonymous stats reporting as a conservative measure for legal protection. Digium didn't write the opus code from scratch, the SDK was used. If community members are aware of specific pitfalls from their own interop testing with opus, they should report the issues and Digium can address it.
 
-Q: What's the deal with the anonymous channel usage reporting in codec\_opus?  
+Q: What's the deal with the anonymous channel usage reporting in codec_opus?  
 A: <http://blogs.digium.com/2016/09/30/opus-in-asterisk/>
 
 10:15AM (BREAK)
@@ -124,7 +124,7 @@ Then, topics we'll try to get to:
 * Scaling ARI
 * migration to PJSIP
 * ARI and using dialplan less
-* When should we deprecate or remove chan\_sip
+* When should we deprecate or remove chan_sip
 * Recording to remote dest
 * Relaxing JIRA rules for feature requests
 * Video transcoding
@@ -178,7 +178,7 @@ Some Q&A with Dennis:
 
 **Q**: **What is theoretical maximum of participants?**
 
-**A**: Basically only limited by processing power: rendering up to 100 \_actively speaking\_ participants requires 20ms on \_one\_ core of an Intel i7 for 48kHz. Required processing power increases if longer HRTF are used (currently 960 samples@48kHz) while it can be reduced by using a lower sampling rate.
+**A**: Basically only limited by processing power: rendering up to 100 _actively speaking_ participants requires 20ms on _one_ core of an Intel i7 for 48kHz. Required processing power increases if longer HRTF are used (currently 960 samples@48kHz) while it can be reduced by using a lower sampling rate.
 
 Afternoon Session
 -----------------
@@ -234,7 +234,7 @@ A:  They don't. Registrations go through BGW first. (kamailio, etc)
 Q: Matt Jordan - How many people in the room have had to tackle a similar problem?  
  A: ~4-5 people. (show of hands)
 
-Sean McCord - Says res\_pjsip makes this so much easier by utilizing AORs.
+Sean McCord - Says res_pjsip makes this so much easier by utilizing AORs.
 
 Q: Is ISPD like RabbitMQ ?  
 A: No, and not open source yet
@@ -262,7 +262,7 @@ How can I use ARI and not require dialplan?
 
 * Should web developers have to write \*any\* dialplan?
 * Dialplan provides separation of duties/concerns which is a security benefit.
-* [pbx\_ari.so?](http://pbx_ari.so)
+* [pbx_ari.so?](http://pbx_ari.so)
 * Use dialplan as a fast filter for bad actors and unwanted traffic?
 * DON'T DEPRECATE THE DIALPLAN
 
@@ -311,15 +311,15 @@ Should we enforce a requirement for tests on all relevant contributions?
 
 #### SIP issues:
 
-Should we deprecate chan\_sip?
+Should we deprecate chan_sip?
 
-* Benefit to security to deprecate it sooner rather than later. As chan\_sip ages without attention, it will become a security risk.
-* Large portion of community still reliant on chan\_sip.. a lot of pain to move too soon.
+* Benefit to security to deprecate it sooner rather than later. As chan_sip ages without attention, it will become a security risk.
+* Large portion of community still reliant on chan_sip.. a lot of pain to move too soon.
 * A lot of reasons to not deprecate anytime soon, and a lot of reasons to deprecate it sooner rather than later.
-* We are on the path..chan\_sip was already moved to extended support in 12.
+* We are on the path..chan_sip was already moved to extended support in 12.
 * Matt F doesn't want to nail down a specific time yet.
 
-Making migration easier from chan\_sip to chan\_pjsip
+Making migration easier from chan_sip to chan_pjsip
 
 * There are current tools available. Python script for migration and pjsip config wizard.
 * Patches accepted! Discuss on the lists if you come up with ideas.

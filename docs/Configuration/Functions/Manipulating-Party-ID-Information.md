@@ -70,7 +70,7 @@ There are several things to do when a call is forwarded by the dialplan:
 
 Special considerations for Q.SIG and ISDN point-to-point links are needed to make the DivertingLegInformation1, DivertingLegInformation2, and DivertingLegInformation3 messages operate properly.
 
-You should manually send the COLR of the redirected-to party for an incoming redirected call if the incoming call could experience further redirects. For chan\_misdn, just set the REDIRECTING(to-num,i) = ${EXTEN} and set the REDIRECTING(to-num-pres) to the COLR. For chan\_dahdi, just set the REDIRECTING(to-num,i) = CALLERID(dnid) and set the REDIRECTING(to-num-pres) to the COLR. (Setting the REDIRECTING(to-num,i) value may not be necessary since the channel driver has already attempted to preset that value for automatic generation of the needed DivertingLegInformation3 message.)
+You should manually send the COLR of the redirected-to party for an incoming redirected call if the incoming call could experience further redirects. For chan_misdn, just set the REDIRECTING(to-num,i) = ${EXTEN} and set the REDIRECTING(to-num-pres) to the COLR. For chan_dahdi, just set the REDIRECTING(to-num,i) = CALLERID(dnid) and set the REDIRECTING(to-num-pres) to the COLR. (Setting the REDIRECTING(to-num,i) value may not be necessary since the channel driver has already attempted to preset that value for automatic generation of the needed DivertingLegInformation3 message.)
 
 For redirected calls out a trunk line, you need to use the 'i' option on all of the REDIRECTING statements before dialing the redirected-to party. The call will update the redirecting-to presentation (COLR) when it becomes available.
 
@@ -157,7 +157,7 @@ exten => 1000,n,Hangup
 
 ```
 
-[macro-add\_pfx]
+[macro-add_pfx]
 ; ARG1 is the prefix to add.
 ; ARG2 is the number of digits at the end to add the prefix to.
 ; When the macro ends the CONNECTEDLINE data is passed to the
@@ -168,8 +168,8 @@ exten => s,n,Set(CONNECTEDLINE(num,i)=${ARG1}${NOPREFIX})
 exten => s,n,MacroExit
 
 exten => 1000,1,NoOp
-exten => 1000,n,Set(\_\_CONNECTED\_LINE\_CALLER\_SEND\_MACRO=add\_pfx)
-exten => 1000,n,Set(\_\_CONNECTED\_LINE\_CALLER\_SEND\_MACRO\_ARGS=45,4)
+exten => 1000,n,Set(__CONNECTED_LINE_CALLER_SEND_MACRO=add_pfx)
+exten => 1000,n,Set(__CONNECTED_LINE_CALLER_SEND_MACRO_ARGS=45,4)
 exten => 1000,n,Dial(SIP/1000,20)
 exten => 1000,n,Hangup
 
@@ -234,7 +234,7 @@ For normal operations where Party A calls Party B this is what the relationship 
 
  Channel A Channel B
  Incoming channel --- bridge --- Outgoing channel
-Party A \_\_\_ CALLERID() -------------------> CONNECTEDLINE() \_\_\_ Party B
+Party A ___ CALLERID() -------------------> CONNECTEDLINE() ___ Party B
  CONNECTEDLINE() <-------------- CALLERID()
 
 
@@ -282,7 +282,7 @@ A normal call where Party A calls Party B with a local channel in the chain.
 
  Channel A Local;1 Local;2 Channel B
  Incoming channel --- bridge --- Outgoing channel --- Incoming channel --- bridge --- Outgoing channel
-Party A \_\_\_ CALLERID() -------------------> CONNECTEDLINE() ---> CALLERID() -------------------> CONNECTEDLINE() \_\_\_ Party B
+Party A ___ CALLERID() -------------------> CONNECTEDLINE() ---> CALLERID() -------------------> CONNECTEDLINE() ___ Party B
  CONNECTEDLINE() <-------------- CALLERID() <-------- CONNECTEDLINE() <-------------- CALLERID()
 
 
@@ -307,7 +307,7 @@ An example of originating a normal channel (Channel A) to a dialplan exten.
 
  Channel A Channel B
  Incoming channel --- bridge --- Outgoing channel
-Party A \_\_\_ CALLERID() -------------------> CONNECTEDLINE() \_\_\_ Party B
+Party A ___ CALLERID() -------------------> CONNECTEDLINE() ___ Party B
  CONNECTEDLINE() <-------------- CALLERID()
 
 
@@ -330,7 +330,7 @@ An example of originating a local channel (which will always be a Local;1) to a 
 
  Channel A Local;2 Local;1 Channel B
  Outgoing channel --- bridge --- Incoming channel --- Incoming channel --- bridge --- Outgoing channel
-Party A \_\_\_ CALLERID() -------------------> CONNECTEDLINE() ---> CALLERID() -------------------> CONNECTEDLINE() \_\_\_ Party B
+Party A ___ CALLERID() -------------------> CONNECTEDLINE() ---> CALLERID() -------------------> CONNECTEDLINE() ___ Party B
  CONNECTEDLINE() <-------------- CALLERID() <-------- CONNECTEDLINE() <-------------- CALLERID()
 
 

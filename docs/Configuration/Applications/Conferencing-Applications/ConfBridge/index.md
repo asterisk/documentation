@@ -6,7 +6,7 @@ pageid: 13076234
 Overview
 ========
 
-Asterisk, since its early days, has offered a conferencing application called MeetMe ([app\_meetme.so](http://app_meetme.so)). MeetMe provides DAHDI-mixed software-based bridges for multi-party audio conferencing. MeetMe is used by nearly all Asterisk implementations - small office, call center, large office, feature-server, third-party application, etc. It has been extremely successful as an audio bridge.
+Asterisk, since its early days, has offered a conferencing application called MeetMe ([app_meetme.so](http://app_meetme.so)). MeetMe provides DAHDI-mixed software-based bridges for multi-party audio conferencing. MeetMe is used by nearly all Asterisk implementations - small office, call center, large office, feature-server, third-party application, etc. It has been extremely successful as an audio bridge.
 
 Over time, several significant limitations of MeetMe have been encountered by its users. Among these are two of distinction: MeetMe requires DAHDI for mixing, and is thus limited to 8kHz (PSTN) audio sampling rates; and MeetMe is delivered in a fairly static form, it does not provide extensive configuration options.
 
@@ -36,7 +36,7 @@ A **Conference Menu** is a named set of options that are provided to a user when
 ConfBridge Application Syntax
 =============================
 
-The ConfBridge application syntax and usage can be found at [Asterisk 13 Application\_ConfBridge](/Asterisk-13-Application_ConfBridge)
+The ConfBridge application syntax and usage can be found at [Asterisk 13 Application_ConfBridge](/Asterisk-13-Application_ConfBridge)
 
 ConfBridge Application Examples
 ===============================
@@ -77,7 +77,7 @@ exten => 1,n,ConfBridge(1234)
 ```
 
 exten => 1,1,Answer()
-exten => 1,n,ConfBridge(1234,,1234\_participants,1234\_menu)
+exten => 1,n,ConfBridge(1234,,1234_participants,1234_menu)
 
 
 ```
@@ -113,15 +113,15 @@ Endpoints that don't or weren't tested:
 
 #### Mixing Interval
 
-The mixing interval for a conference is defined in its Bridge Profile. The allowable options are 10, 20, 40, and 80, all in milliseconds. Usage of 80ms mixing intervals is only supported for conferences that are sampled at 8, 12, 16, 24, 32, and 48kHz. Usage of 40ms intervals includes all of the aforementioned sampling rates as well as 96kHz. 192kHz sampled conferences are only supported at 10 and 20ms mixing intervals. These limitations are imposed because higher mixing intervals at the higher sampling rates causes large increases in memory consumption. Adventurous users may, through changing of the MAX\_DATALEN define in bridge\_softmix.c allow 96kHz and 192kHz sampled conferences to operate at longer intervals - set to 16192 for 96kHz at 80ms or 32384 for 192kHz at 80ms, recompile, and restart.
+The mixing interval for a conference is defined in its Bridge Profile. The allowable options are 10, 20, 40, and 80, all in milliseconds. Usage of 80ms mixing intervals is only supported for conferences that are sampled at 8, 12, 16, 24, 32, and 48kHz. Usage of 40ms intervals includes all of the aforementioned sampling rates as well as 96kHz. 192kHz sampled conferences are only supported at 10 and 20ms mixing intervals. These limitations are imposed because higher mixing intervals at the higher sampling rates causes large increases in memory consumption. Adventurous users may, through changing of the MAX_DATALEN define in bridge_softmix.c allow 96kHz and 192kHz sampled conferences to operate at longer intervals - set to 16192 for 96kHz at 80ms or 32384 for 192kHz at 80ms, recompile, and restart.
 
 #### Maximizing Performance
 
 In order to maximize the performance of a given machine for ConfBridge purposes, there are several steps one should take.
 
-* Enable dsp\_drop\_silence is enabled in the User Profile.
+* Enable dsp_drop_silence is enabled in the User Profile.
 	+ This is the **single most** important step one can take when trying to increase the number of bridge participants that a single machine can handle. Enabling this means that the audio of users that aren't speaking isn't mixed in with the bridge.
-* Lengthen mixing\_interval in the Bridge Profile.
+* Lengthen mixing_interval in the Bridge Profile.
 	+ The default interval is 20ms. Other options are 10, 40, and 80ms. Lower values provide a "tighter" sound, but require substantially more CPU. Higher values provider a "looser" sound, and consume substantially less CPU. Setting the value to 80 provides the highest number of possible participants.
 * Connect clients at the same sampling rate.
 	+ Requiring the bridge to resample between clients that use codecs with different sampling rates is an expensive operation. If all clients are dialed in to the bridge at the same sampling rate, and the bridge operates at that same rate, e.g. 16kHz, then the number of possible clients will be maximized.

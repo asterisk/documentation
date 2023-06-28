@@ -42,11 +42,11 @@ In geolocation.conf, you'd create Location and Profile objects as follows:
 [did-xref]
 type = location
 format = URI
-location = URI='https://my.company.com/location\_query?DID=${CALLERID(num)}'
+location = URI='https://my.company.com/location_query?DID=${CALLERID(num)}'
 
 [employees-outbound]
 type = profile
-location\_reference = did-xref
+location_reference = did-xref
 
 
 ```
@@ -68,7 +68,7 @@ In pjsip.conf, you'd add a `geoloc_outgoing_call_profile` parameter to your *out
 [my-provider]
 type = endpoint
 ...
-geoloc\_outgoing\_call\_profile = employees-outbound
+geoloc_outgoing_call_profile = employees-outbound
 
 
 ```
@@ -87,7 +87,7 @@ Now let's say that Bob has DID `12125551212` assigned to him and he makes an out
 
 ```
 
-Geolocation: <https://my.company.com/location\_query?DID=12125551212>
+Geolocation: <https://my.company.com/location_query?DID=12125551212>
 
 
 ```
@@ -119,13 +119,13 @@ In extensions.conf:
 ; the outgoing channel when 911 is dialed and does nothing if another number is dialed.
 [pre-dial-handler]
 exten = 911,1,NoOp(Entering PDH for Outgoing Channel)
-same = n,Set(GEOLOC\_PROFILE(format)=URI)
-same = n,Set(GEOLOC\_PROFILE(location\_info)=URI=https://my.company.com/location\_query?DID=${CALLERID(num)})
+same = n,Set(GEOLOC_PROFILE(format)=URI)
+same = n,Set(GEOLOC_PROFILE(location_info)=URI=https://my.company.com/location_query?DID=${CALLERID(num)})
 same = n,Return(0)
-exten = \_X.,1,Return(0)
+exten = _X.,1,Return(0)
 
 [default]
-exten = \_X.,1,NoOp(Outgoing call)
+exten = _X.,1,NoOp(Outgoing call)
 ; 'b' will run the pre-dial-handler on the outgoing channel.
 same = n,Dial(PJSIP/${EXTEN},5,b(pre-dial-handler))
 

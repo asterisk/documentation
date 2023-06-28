@@ -93,10 +93,10 @@ The examples illustrated below use the following channels:
 [default]
 
 exten => s,1,NoOp()
-same => n,Dial(SIP/bar,,B(default^caller\_handler^1))
+same => n,Dial(SIP/bar,,B(default^caller_handler^1))
 same => n,Hangup()
 
-exten => caller\_handler,1,NoOp()
+exten => caller_handler,1,NoOp()
 same => n,Verbose(0, In caller pre-dial handler!)
 same => n,Return()
 
@@ -115,8 +115,8 @@ Example 1 CLI Output
 
 ```
 
-<SIP/foo-123> Dial(SIP/bar,,B(default^caller\_handler^1))
-<SIP/foo-123> Executing default,caller\_handler,1
+<SIP/foo-123> Dial(SIP/bar,,B(default^caller_handler^1))
+<SIP/foo-123> Executing default,caller_handler,1
 <SIP/foo-123> In caller pre-dial handler!
 <SIP/foo-123> calling SIP/bar-124
 
@@ -140,10 +140,10 @@ Example 1 CLI Output
 [default]
 
 exten => s,1,NoOp()
-same => n,Dial(SIP/bar,,b(default^callee\_handler^1))
+same => n,Dial(SIP/bar,,b(default^callee_handler^1))
 same => n,Hangup()
 
-exten => callee\_handler,1,NoOp()
+exten => callee_handler,1,NoOp()
 same => n,Verbose(0, In callee pre-dial handler!)
 same => n,Return()
 
@@ -162,8 +162,8 @@ Example 2 CLI Output
 
 ```
 
-<SIP/foo-123> Dial(SIP/bar,,b(default^callee\_handler^1))
-<SIP/bar-124> Executing default,callee\_handler,1
+<SIP/foo-123> Dial(SIP/bar,,b(default^callee_handler^1))
+<SIP/bar-124> Executing default,callee_handler,1
 <SIP/bar-124> In callee pre-dial handler!
 <SIP/foo-123> calling SIP/bar-124
 
@@ -187,10 +187,10 @@ Example 2 CLI Output
 [default]
 
 exten => s,1,NoOp()
-same => n,Dial(SIP/bar&SIP/baz,,b(default^callee\_handler^1))
+same => n,Dial(SIP/bar&SIP/baz,,b(default^callee_handler^1))
 same => n,Hangup()
 
-exten => callee\_handler,1,NoOp()
+exten => callee_handler,1,NoOp()
 same => n,Verbose(0, In callee pre-dial handler!)
 same => n,Return()
 
@@ -209,10 +209,10 @@ Example 3 CLI Output
 
 ```
 
-<SIP/foo-123> Dial(SIP/bar&SIP/baz,,b(default^callee\_handler^1))
-<SIP/bar-124> Executing default,callee\_handler,1
+<SIP/foo-123> Dial(SIP/bar&SIP/baz,,b(default^callee_handler^1))
+<SIP/bar-124> Executing default,callee_handler,1
 <SIP/bar-124> In callee pre-dial handler!
-<SIP/baz-125> Executing default,callee\_handler,1
+<SIP/baz-125> Executing default,callee_handler,1
 <SIP/baz-125> In callee pre-dial handler!
 <SIP/foo-123> calling SIP/bar-124
 <SIP/foo-123> calling SIP/baz-125

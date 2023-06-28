@@ -9,5 +9,5 @@ Call Event Logs record the various actions that happen on a call. As such, they 
 For more information about Call Event Logging, see [Call Event Logging](/Channel-Event-Logging).
 
 
-Call event logging modules have file names that look like **cel\_xxxxx.so**, such as **cel\_custom.so** and **cel\_adaptive\_odbc.so**.
+Call event logging modules have file names that look like **cel_xxxxx.so**, such as **cel_custom.so** and **cel_adaptive_odbc.so**.
 

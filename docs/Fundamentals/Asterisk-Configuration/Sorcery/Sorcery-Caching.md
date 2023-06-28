@@ -5,7 +5,7 @@ pageid: 32375620
 
 Since Asterisk 12, Asterisk has had a generic data access/storage layer called "sorcery", with pluggable "wizards" that each create, retrieve, update, and delete data from various backends. For instance, there is a sorcery wizard that reads configuration data from .conf files. There is a sorcery wizard that uses the Asterisk Realtime Architecture to interface with databases and other alternative backends. There are also sorcery wizards that use the AstDB and a simple in-memory container.
 
-Starting in Asterisk 13.5.0, a new "memory\_cache" wizard has been created. This allows for a cached copy of an object to be stored locally in cases where retrieval from a remote backend (such as a relational database) might be expensive. Memory caching is a flexible way to provide per object type caching, meaning that you are not forced into an all-or-nothing situation if you decide to cache. Caching also provides configuration options to allow for cached entries to automatically be updated or expired.
+Starting in Asterisk 13.5.0, a new "memory_cache" wizard has been created. This allows for a cached copy of an object to be stored locally in cases where retrieval from a remote backend (such as a relational database) might be expensive. Memory caching is a flexible way to provide per object type caching, meaning that you are not forced into an all-or-nothing situation if you decide to cache. Caching also provides configuration options to allow for cached entries to automatically be updated or expired.
 
 Cachable Objects
 ================
@@ -17,10 +17,10 @@ Not all configurable objects are managed by sorcery. The following is a list of 
 * PJSIP contact
 * PJSIP identify
 * PJSIP ACL
-* PJSIP resource\_list
+* PJSIP resource_list
 * PJSIP phoneprov
 * PJSIP registration
-* PJSIP subscription\_persistence
+* PJSIP subscription_persistence
 * PJSIP inbound-publication
 * PJSIP asterisk-publication
 * PJSIP system
@@ -53,7 +53,7 @@ For the second point, it may not always be obvious which types of objects are ty
 * PJSIP registrations
 * PJSIP ACLs
 * PJSIP outbound-publishes
-* PJSIP subscription\_persistence
+* PJSIP subscription_persistence
 
 The rest of the objects listed are most typically retrieved one-at-a-time and would be good for caching in this manner.
 
@@ -75,16 +75,16 @@ sorcery.conf
 
 ```
 
-true[res\_pjsip]
-endpoint/cache=memory\_cache
-endpoint=realtime,ps\_endpoints
+true[res_pjsip]
+endpoint/cache=memory_cache
+endpoint=realtime,ps_endpoints
 
 ```
 
 
-Let's break this down line-by-line. The first line starts with "endpoint/cache". "endpoint" is the name of the object type. "/cache" is a cue to sorcery that the wizard being specified on this line is a cache. And "memory\_cache" is the name of the caching wizard that has been added in Asterisk 14.0.0. The second line is the familiar line that specifies that endpoints can be retrieved from realtime by following the "ps\_endpoints" configuration line in `extconfig.conf`.
+Let's break this down line-by-line. The first line starts with "endpoint/cache". "endpoint" is the name of the object type. "/cache" is a cue to sorcery that the wizard being specified on this line is a cache. And "memory_cache" is the name of the caching wizard that has been added in Asterisk 14.0.0. The second line is the familiar line that specifies that endpoints can be retrieved from realtime by following the "ps_endpoints" configuration line in `extconfig.conf`.
 
-The order of the lines is important. You will want to specify the memory\_cache wizard before the realtime wizard so that the memory\_cache is looked in before realtime when retrieving an item.
+The order of the lines is important. You will want to specify the memory_cache wizard before the realtime wizard so that the memory_cache is looked in before realtime when retrieving an item.
 
 How does the cache behave?
 ==========================
@@ -102,9 +102,9 @@ sorcery.conf
 
 ```
 
-true[res\_pjsip]
-endpoint/cache = memory\_cache,maximum\_objects=150,expire\_on\_reload=yes,object\_lifetime\_maximum=3600
-endpoint = realtime,ps\_endpoints
+true[res_pjsip]
+endpoint/cache = memory_cache,maximum_objects=150,expire_on_reload=yes,object_lifetime_maximum=3600
+endpoint = realtime,ps_endpoints
 
 ```
 
@@ -114,25 +114,25 @@ The following configuration options are recognized by the memory cache:
 name
 ----
 
-The name of a cache is used when referring to a specific cache when running an AMI or CLI command. If no name is provided for a cache, then the default is <configuration section>/<object type>. PJSIP endpoints, for instance, have a default cache name of "res\_pjsip/endpoint".
+The name of a cache is used when referring to a specific cache when running an AMI or CLI command. If no name is provided for a cache, then the default is <configuration section>/<object type>. PJSIP endpoints, for instance, have a default cache name of "res_pjsip/endpoint".
 
-maximum\_objects
+maximum_objects
 ----------------
 
 This option specifies the maximum number of objects that can be in the cache at a given time. If the cache is full and a new item is to be added, then the oldest item in the cache is removed to make room for the new item. If this option is not set or if its value is set to 0, then there is no limit on the number of objects in the cache.
 
-object\_lifetime\_maximum
+object_lifetime_maximum
 -------------------------
 
 This option specifies the number of seconds an object may occupy the cache before it is automatically removed. This time is measured from when the object is initially added to the cache, not the time when the object was last accessed. If this option is not set or if its value is set to 0, then objects will stay in the cache forever.
 
 
-object\_lifetime\_stale
+object_lifetime_stale
 ------------------------
 
 This option specifies the number of seconds an object may occupy the cache until it is considered stale. When a stale object is retrieved from the cache, the stale object is given to the requestor, and a background task is initiated to update the object in the cache by querying whatever backend stores are configured. If a new object is retrieved from the backend, then the stale cached object is replaced with the new object. If the backend no longer has an object with the same ID as the one that has become stale, then the stale object is removed from the cache. If this option is not set or if its value is 0, then objects in the cache will never be marked stale.
 
-expire\_on\_reload
+expire_on_reload
 ------------------
 
 This option specifies whether a reload of a module should automatically remove all of its objects from the cache. For instance, if this option is enabled, and you are caching PJSIP endpoints, then a module reload of `res_pjsip.so` would clear all PJSIP endpoints from the cache. By default this option is not enabled.
@@ -155,7 +155,7 @@ This CLI command displays all objects in the given cache. In addition to the nam
 
 This CLI command is used to remove objects from a given cache. If no object name is specified, then all objects in the cache are removed. If an object name is specified, then only the specified object is removed.
 
-### sorcery memory cache stale <cache name> [object\_name]
+### sorcery memory cache stale <cache name> [object_name]
 
 This CLI command is used to mark an item in the cache as stale. If no object name is specified, then all objects in the cache are marked stale. If an object name is specified, then only the specified object is marked stale. For information on what it means for an object to be stale, see [here](#stale)
 
@@ -308,13 +308,13 @@ sorcery.conf
 
 ```
 
-true [res\_pjsip]
-endpoint/cache = memory\_cache,object\_lifetime\_stale=600,object\_lifetime\_maximum=1800,expire\_on\_reload=yes
-endpoint = realtime,ps\_endpoints
-auth/cache=memory\_cache,expire\_on\_reload=yes
-auth = realtime,ps\_auths
-aor/cache = memory\_cache,object\_lifetime\_stale=1500,object\_lifetime\_maximum=1800,expire\_on\_reload=yes
-aor = realtime,ps\_aors
+true [res_pjsip]
+endpoint/cache = memory_cache,object_lifetime_stale=600,object_lifetime_maximum=1800,expire_on_reload=yes
+endpoint = realtime,ps_endpoints
+auth/cache=memory_cache,expire_on_reload=yes
+auth = realtime,ps_auths
+aor/cache = memory_cache,object_lifetime_stale=1500,object_lifetime_maximum=1800,expire_on_reload=yes
+aor = realtime,ps_aors
 
 ```
 
@@ -348,9 +348,9 @@ sorcery.conf
 
 ```
 
-true[res\_pjsip]
-identify/cache = memory\_cache,object\_lifetime\_stale=600,object\_lifetime\_maximum=1800,expire\_on\_reload=yes,full\_backend\_cache=yes
-identify = realtime,ps\_endpoint\_id\_ips
+true[res_pjsip]
+identify/cache = memory_cache,object_lifetime_stale=600,object_lifetime_maximum=1800,expire_on_reload=yes,full_backend_cache=yes
+identify = realtime,ps_endpoint_id_ips
 
 ```
 

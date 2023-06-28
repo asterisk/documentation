@@ -75,7 +75,7 @@ Shows a detailed listing of participants in a specified conference, e.g.:
 \*CLI> confbridge list 1111
 Channel User Profile Bridge Profile Menu
 ============================= ================ ================ ================
-SIP/mypeer-00000001 default\_user 1111 sample\_user\_menu 
+SIP/mypeer-00000001 default_user 1111 sample_user_menu 
 
 
 ```
@@ -176,7 +176,7 @@ Unmuting SIP/mypeer-00000001 from confbridge 1111
 confbridge record start <conference> <file>
 -------------------------------------------
 
-Begins recording a conference. If "file" is specified, it will be used, otherwise, the Bridge Profile record\_file will be used. If the Bridge Profile does not specify a record\_file, one will be automatically generated in Asterisk's monitor directory. Usage:
+Begins recording a conference. If "file" is specified, it will be used, otherwise, the Bridge Profile record_file will be used. If the Bridge Profile does not specify a record_file, one will be automatically generated in Asterisk's monitor directory. Usage:
 
 
 
@@ -240,8 +240,8 @@ Shows a listing of Conference Menus as defined in confbridge.conf, e.g.:
 
 \*CLI> confbridge show menus
 --------- Menus -----------
-sample\_admin\_menu
-sample\_user\_menu
+sample_admin_menu
+sample_user_menu
 
 
 ```
@@ -263,17 +263,17 @@ Shows a detailed listing of a named Conference Menu, e.g.:
 
 ```
 
-\*CLI> confbridge show menu sample\_admin\_menu
-Name: sample\_admin\_menu
-\*9=increase\_talking\_volume
-\*8=no\_op
-\*7=decrease\_talking\_volume
-\*6=increase\_listening\_volume
-\*4=decrease\_listening\_volume
-\*3=admin\_kick\_last
-\*2=admin\_toggle\_conference\_lock
-\*1=toggle\_mute
-\*=playback\_and\_continue(conf-adminmenu)
+\*CLI> confbridge show menu sample_admin_menu
+Name: sample_admin_menu
+\*9=increase_talking_volume
+\*8=no_op
+\*7=decrease_talking_volume
+\*6=increase_listening_volume
+\*4=decrease_listening_volume
+\*3=admin_kick_last
+\*2=admin_toggle_conference_lock
+\*1=toggle_mute
+\*=playback_and_continue(conf-adminmenu)
 
 
 ```
@@ -298,7 +298,7 @@ Shows a listing of Bridge Profiles as defined in confbridge.conf, e.g.:
 \*CLI> confbridge show profile bridges
 --------- Bridge Profiles -----------
 1111
-default\_bridge
+default_bridge
 
 
 ```
@@ -328,22 +328,22 @@ Mixing Interval: 10
 Record Conference: no
 Record File: Auto Generated
 Max Members: No Limit
-sound\_only\_person: conf-onlyperson
-sound\_has\_joined: conf-hasjoin
-sound\_has\_left: conf-hasleft
-sound\_kicked: conf-kicked
-sound\_muted: conf-muted
-sound\_unmuted: conf-unmuted
-sound\_there\_are: conf-thereare
-sound\_other\_in\_party: conf-otherinparty
-sound\_place\_into\_conference: conf-placeintoconf
-sound\_wait\_for\_leader: conf-waitforleader
-sound\_get\_pin: conf-getpin
-sound\_invalid\_pin: conf-invalidpin
-sound\_locked: conf-locked
-sound\_unlocked\_now: conf-unlockednow
-sound\_lockednow: conf-lockednow
-sound\_error\_menu: conf-errormenu
+sound_only_person: conf-onlyperson
+sound_has_joined: conf-hasjoin
+sound_has_left: conf-hasleft
+sound_kicked: conf-kicked
+sound_muted: conf-muted
+sound_unmuted: conf-unmuted
+sound_there_are: conf-thereare
+sound_other_in_party: conf-otherinparty
+sound_place_into_conference: conf-placeintoconf
+sound_wait_for_leader: conf-waitforleader
+sound_get_pin: conf-getpin
+sound_invalid_pin: conf-invalidpin
+sound_locked: conf-locked
+sound_unlocked_now: conf-unlockednow
+sound_lockednow: conf-lockednow
+sound_error_menu: conf-errormenu
 
 
 ```
@@ -368,7 +368,7 @@ Shows a listing of User Profiles as defined in confbridge.conf, e.g.:
 \*CLI> confbridge show profile users
 --------- User Profiles -----------
 awesomeusers
-default\_user
+default_user
 
 
 ```
@@ -390,9 +390,9 @@ Shows a detailed listing of a named Bridge Profile, e.g.:
 
 ```
 
-\*CLI> confbridge show profile user default\_user 
+\*CLI> confbridge show profile user default_user 
 --------------------------------------------
-Name: default\_user
+Name: default_user
 Admin: false
 Marked User: false
 Start Muted: false
@@ -401,7 +401,7 @@ MOH Class: default
 Quiet: disabled
 Wait Marked: disabled
 END Marked: disabled
-Drop\_silence: enabled
+Drop_silence: enabled
 Silence Threshold: 2500ms
 Talking Threshold: 160ms
 Denoise: disabled

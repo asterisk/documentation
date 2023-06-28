@@ -9,7 +9,7 @@ There are various IMAP server implementations, each supports a potentially diffe
 ##### UW IMAP-2005 or earlier
 
 
-UIDPLUS is currently NOT supported on these versions of UW-IMAP. Please note that without UID\_EXPUNGE, Asterisk voicemail will expunge ALL messages marked for deletion when a user exits the voicemail system (hangs up the phone).   
+UIDPLUS is currently NOT supported on these versions of UW-IMAP. Please note that without UID_EXPUNGE, Asterisk voicemail will expunge ALL messages marked for deletion when a user exits the voicemail system (hangs up the phone).   
 
 This version is **not recommended for Asterisk.**
 
@@ -17,7 +17,7 @@ This version is **not recommended for Asterisk.**
 ##### UW IMAP-2006
 
 
-This version supports UIDPLUS, which allows UID\_EXPUNGE capabilities. This feature allow the system to expunge ONLY pertinent messages, instead of the default behavior, which is to expunge ALL messages marked for deletion when EXPUNGE is called. The IMAP storage mechanism is this version of Asterisk will check if the UID\_EXPUNGE feature is supported by the server, and use it if possible.   
+This version supports UIDPLUS, which allows UID_EXPUNGE capabilities. This feature allow the system to expunge ONLY pertinent messages, instead of the default behavior, which is to expunge ALL messages marked for deletion when EXPUNGE is called. The IMAP storage mechanism is this version of Asterisk will check if the UID_EXPUNGE feature is supported by the server, and use it if possible.   
 
 This version is **not recommended for Asterisk.**
 

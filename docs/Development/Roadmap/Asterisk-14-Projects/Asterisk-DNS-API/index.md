@@ -50,7 +50,7 @@ Code
 ```
 
 /\*! \brief Opaque structure for a DNS query \*/
-struct ast\_dns\_query;
+struct ast_dns_query;
 /\*!
  \* \brief Get the name queried in a DNS query
  \*
@@ -58,7 +58,7 @@ struct ast\_dns\_query;
  \*
  \* \return the name queried
  \*/
-const char \*ast\_dns\_query\_get\_name(const struct ast\_dns\_query \*query);
+const char \*ast_dns_query_get_name(const struct ast_dns_query \*query);
 /\*!
  \* \brief Get the record resource type of a DNS query
  \*
@@ -66,7 +66,7 @@ const char \*ast\_dns\_query\_get\_name(const struct ast\_dns\_query \*query);
  \*
  \* \return the record resource type
  \*/
-int ast\_dns\_query\_get\_rr\_type(const struct ast\_dns\_query \*query);
+int ast_dns_query_get_rr_type(const struct ast_dns_query \*query);
 /\*!
  \* \brief Get the record resource class of a DNS query
  \*
@@ -74,7 +74,7 @@ int ast\_dns\_query\_get\_rr\_type(const struct ast\_dns\_query \*query);
  \*
  \* \return the record resource class
  \*/
-int ast\_dns\_query\_get\_rr\_class(const struct ast\_dns\_query \*query);
+int ast_dns_query_get_rr_class(const struct ast_dns_query \*query);
 /\*!
  \* \brief Get the error rcode of a DNS query
  \*
@@ -82,7 +82,7 @@ int ast\_dns\_query\_get\_rr\_class(const struct ast\_dns\_query \*query);
  \*
  \* \return the DNS rcode
  \*/
-int ast\_dns\_query\_get\_rcode(const struct ast\_dns\_query \*query);
+int ast_dns_query_get_rcode(const struct ast_dns_query \*query);
 /\*!
  \* \brief Get the user specific data of a DNS query
  \*
@@ -90,9 +90,9 @@ int ast\_dns\_query\_get\_rcode(const struct ast\_dns\_query \*query);
  \*
  \* \return the user specific data
  \*/
-void \*ast\_dns\_query\_get\_data(const struct ast\_dns\_query \*query);
+void \*ast_dns_query_get_data(const struct ast_dns_query \*query);
 /\*! \brief Opaque structure for a DNS query result \*/
-struct ast\_dns\_result;
+struct ast_dns_result;
 /\*!
  \* \brief Get the result information for a DNS query
  \*
@@ -100,7 +100,7 @@ struct ast\_dns\_result;
  \*
  \* \return the DNS result information
  \*/
-struct ast\_dns\_result \*ast\_dns\_query\_get\_result(const struct ast\_dns\_query \*query);
+struct ast_dns_result \*ast_dns_query_get_result(const struct ast_dns_query \*query);
 /\*!
  \* \brief Get whether the domain exists or not
  \*
@@ -108,7 +108,7 @@ struct ast\_dns\_result \*ast\_dns\_query\_get\_result(const struct ast\_dns\_qu
  \*
  \* \return whether the domain exists or not
  \*/
-unsigned int ast\_dns\_result\_get\_nxdomain(const struct ast\_dns\_result \*result);
+unsigned int ast_dns_result_get_nxdomain(const struct ast_dns_result \*result);
 /\*!
  \* \brief Get whether the result is secure or not
  \*
@@ -116,7 +116,7 @@ unsigned int ast\_dns\_result\_get\_nxdomain(const struct ast\_dns\_result \*res
  \*
  \* \return whether the result is secure or not
  \*/
-unsigned int ast\_dns\_result\_get\_secure(const struct ast\_dns\_result \*result);
+unsigned int ast_dns_result_get_secure(const struct ast_dns_result \*result);
 /\*!
  \* \brief Get whether the result is bogus or not
  \*
@@ -124,7 +124,7 @@ unsigned int ast\_dns\_result\_get\_secure(const struct ast\_dns\_result \*resul
  \*
  \* \return whether the result is bogus or not
  \*/
-unsigned int ast\_dns\_result\_get\_bogus(const struct ast\_dns\_result \*result);
+unsigned int ast_dns_result_get_bogus(const struct ast_dns_result \*result);
 /\*!
  \* \brief Get the canonical name of the result
  \*
@@ -132,7 +132,7 @@ unsigned int ast\_dns\_result\_get\_bogus(const struct ast\_dns\_result \*result
  \*
  \* \return the canonical name
  \*/
-const char \*ast\_dns\_result\_get\_canonical(const struct ast\_dns\_result \*result);
+const char \*ast_dns_result_get_canonical(const struct ast_dns_result \*result);
 /\*!
  \* \brief Get the first record of a DNS Result
  \*
@@ -140,21 +140,21 @@ const char \*ast\_dns\_result\_get\_canonical(const struct ast\_dns\_result \*re
  \*
  \* \return first DNS record
  \*/
-const struct ast\_dns\_record \*ast\_dns\_result\_get\_records(const struct ast\_dns\_result \*result);
+const struct ast_dns_record \*ast_dns_result_get_records(const struct ast_dns_result \*result);
 /\*!
  \* \brief Free the DNS result information
  \*
  \* \param result The DNS result
  \*/
-void ast\_dns\_result\_free(struct ast\_dns\_result \*result);
+void ast_dns_result_free(struct ast_dns_result \*result);
 /\*! \brief Opaque structure for a DNS record \*/
-struct ast\_dns\_record;
+struct ast_dns_record;
 /\*!
  \* \brief Callback invoked when a query completes
  \*
  \* \param query The DNS query that was invoked
  \*/
-typedef void (\*ast\_dns\_resolve\_callback)(const struct ast\_dns\_query \*query);
+typedef void (\*ast_dns_resolve_callback)(const struct ast_dns_query \*query);
 /\*!
  \* \brief Get the resource record type of a DNS record
  \*
@@ -162,7 +162,7 @@ typedef void (\*ast\_dns\_resolve\_callback)(const struct ast\_dns\_query \*quer
  \*
  \* \return the resource record type
  \*/
-int ast\_dns\_record\_get\_rr\_type(const struct ast\_dns\_record \*record);
+int ast_dns_record_get_rr_type(const struct ast_dns_record \*record);
 /\*!
  \* \brief Get the resource record class of a DNS record
  \*
@@ -170,7 +170,7 @@ int ast\_dns\_record\_get\_rr\_type(const struct ast\_dns\_record \*record);
  \*
  \* \return the resource record class
  \*/
-int ast\_dns\_record\_get\_rr\_class(const struct ast\_dns\_record \*record);
+int ast_dns_record_get_rr_class(const struct ast_dns_record \*record);
 /\*!
  \* \brief Get the TTL of a DNS record
  \*
@@ -178,7 +178,7 @@ int ast\_dns\_record\_get\_rr\_class(const struct ast\_dns\_record \*record);
  \*
  \* \return the TTL
  \*/
-int ast\_dns\_record\_get\_ttl(const struct ast\_dns\_record \*record);
+int ast_dns_record_get_ttl(const struct ast_dns_record \*record);
 /\*!
  \* \brief Retrieve the raw DNS record
  \*
@@ -186,7 +186,7 @@ int ast\_dns\_record\_get\_ttl(const struct ast\_dns\_record \*record);
  \*
  \* \return the raw DNS record
  \*/
-const char \*ast\_dns\_record\_get\_data(const struct ast\_dns\_record \*record);
+const char \*ast_dns_record_get_data(const struct ast_dns_record \*record);
 /\*!
  \* \brief Get the next DNS record
  \*
@@ -194,13 +194,13 @@ const char \*ast\_dns\_record\_get\_data(const struct ast\_dns\_record \*record)
  \*
  \* \return the next DNS record
  \*/
-struct ast\_dns\_record \*ast\_dns\_record\_get\_next(const struct ast\_dns\_record \*record);
+struct ast_dns_record \*ast_dns_record_get_next(const struct ast_dns_record \*record);
 /\*!
  \* \brief Asynchronously resolve a DNS query
  \*
  \* \param name The name of what to resolve
- \* \param rr\_type Resource record type
- \* \param rr\_class Resource record class
+ \* \param rr_type Resource record type
+ \* \param rr_class Resource record class
  \* \param callback The callback to invoke upon completion
  \* \param data User data to make available on the query
  \*
@@ -209,13 +209,13 @@ struct ast\_dns\_record \*ast\_dns\_record\_get\_next(const struct ast\_dns\_rec
  \*
  \* \note The result passed to the callback does not need to be freed
  \*/
-struct ast\_dns\_query \*ast\_dns\_resolve\_async(const char \*name, int rr\_type, int rr\_class, ast\_dns\_resolve\_callback callback, void \*data);
+struct ast_dns_query \*ast_dns_resolve_async(const char \*name, int rr_type, int rr_class, ast_dns_resolve_callback callback, void \*data);
 /\*!
  \* \brief Asynchronously resolve a DNS query, and continue resolving it according to the lowest TTL available
  \*
  \* \param name The name of what to resolve
- \* \param rr\_type Resource record type
- \* \param rr\_class Resource record class
+ \* \param rr_type Resource record type
+ \* \param rr_class Resource record class
  \* \param callback The callback to invoke upon completion
  \* \param data User data to make available on the query
  \*
@@ -224,34 +224,34 @@ struct ast\_dns\_query \*ast\_dns\_resolve\_async(const char \*name, int rr\_typ
  \*
  \* \note The user data passed in to this function must be ao2 allocated
  \*
- \* \note This query will continue to happen according to the lowest TTL unless cancelled using ast\_dns\_resolve\_cancel
+ \* \note This query will continue to happen according to the lowest TTL unless cancelled using ast_dns_resolve_cancel
  \*
  \* \note It is NOT possible for the callback to be invoked concurrently for the query multiple times
  \*/
-struct ast\_dns\_query \*ast\_dns\_resolve\_async\_recurring(const char \*name, int rr\_type, int rr\_class, ast\_dns\_resolve\_callback callback, void \*data);
+struct ast_dns_query \*ast_dns_resolve_async_recurring(const char \*name, int rr_type, int rr_class, ast_dns_resolve_callback callback, void \*data);
 /\*!
  \* \brief Cancel an asynchronous DNS resolution
  \*
- \* \param query The DNS query returned from ast\_dns\_resolve\_async
+ \* \param query The DNS query returned from ast_dns_resolve_async
  \*
  \* \retval 0 success
  \* \retval -1 failure
  \*
  \* \note If successfully cancelled the callback will not be invoked
  \*/
-int ast\_dns\_resolve\_cancel(struct ast\_dns\_query \*query);
+int ast_dns_resolve_cancel(struct ast_dns_query \*query);
 /\*!
  \* \brief Synchronously resolve a DNS query
  \*
  \* \param name The name of what to resolve
- \* \param rr\_type Resource record type
- \* \param rr\_class Resource record class
+ \* \param rr_type Resource record type
+ \* \param rr_class Resource record class
  \* \param result A pointer to hold the DNS result
  \*
  \* \retval 0 success - query was completed and result is available
  \* \retval -1 failure
  \*/
-int ast\_dns\_resolve(const char \*name, int rr\_type, int rr\_class, struct ast\_dns\_result \*\*result);
+int ast_dns_resolve(const char \*name, int rr_type, int rr_class, struct ast_dns_result \*\*result);
 
 ```
 
@@ -259,10 +259,10 @@ int ast\_dns\_resolve(const char \*name, int rr\_type, int rr\_class, struct ast
 On this Page
 
 
-dns\_query\_set.h
+dns_query_set.h
 =================
 
-The dns\_query\_set.h file is the public API into doing parallel queries. It provides mechanisms to group DNS queries together and receive notification when all have been completed. It mirrors the single query API in functionality.
+The dns_query_set.h file is the public API into doing parallel queries. It provides mechanisms to group DNS queries together and receive notification when all have been completed. It mirrors the single query API in functionality.
 
 Code
 ----
@@ -279,62 +279,62 @@ Code
 ```
 
 /\*! \brief Opaque structure for a set of DNS queries \*/
-struct ast\_dns\_query\_set;
+struct ast_dns_query_set;
 /\*!
  \* \brief Callback invoked when a query set completes
  \*
- \* \param query\_set The DNS query set that was invoked
+ \* \param query_set The DNS query set that was invoked
  \*/
-typedef void (\*ast\_dns\_query\_set\_callback)(const struct ast\_dns\_query\_set \*query\_set);
+typedef void (\*ast_dns_query_set_callback)(const struct ast_dns_query_set \*query_set);
 /\*!
  \* \brief Create a query set to hold queries
  \*
  \* \retval non-NULL success
  \* \retval NULL failure
  \*/
-struct ast\_dns\_query\_set \*ast\_dns\_query\_set\_create(void);
+struct ast_dns_query_set \*ast_dns_query_set_create(void);
 /\*!
  \* \brief Add a query to a query set
  \*
- \* \param query\_set A DNS query set
+ \* \param query_set A DNS query set
  \* \param name The name of what to resolve
- \* \param rr\_type Resource record type
- \* \param rr\_class Resource record class
+ \* \param rr_type Resource record type
+ \* \param rr_class Resource record class
  \*
  \* \retval 0 success
  \* \retval -1 failure
  \*/
-int ast\_dns\_query\_set\_add(struct ast\_dns\_query\_set \*query\_set, const char \*name, int rr\_type, int rr\_class);
+int ast_dns_query_set_add(struct ast_dns_query_set \*query_set, const char \*name, int rr_type, int rr_class);
 /\*!
  \* \brief Retrieve the number of queries in a query set
  \*
- \* \param query\_set A DNS query set
+ \* \param query_set A DNS query set
  \*
  \* \return the number of queries
  \*/
-size\_t ast\_dns\_query\_set\_num\_queries(const struct ast\_dns\_query\_set \*query\_set);
+size_t ast_dns_query_set_num_queries(const struct ast_dns_query_set \*query_set);
 /\*!
  \* \brief Retrieve a query from a query set
  \*
- \* \param query\_set A DNS query set
+ \* \param query_set A DNS query set
  \* \param index The index of the query to retrieve
  \*
  \* \retval non-NULL success
  \* \retval NULL failure
  \*/
-struct ast\_dns\_query \*ast\_dns\_query\_set\_get(const struct ast\_dns\_query\_set \*query\_set, unsigned int index);
+struct ast_dns_query \*ast_dns_query_set_get(const struct ast_dns_query_set \*query_set, unsigned int index);
 /\*!
  \* \brief Retrieve user specific data from a query set
  \*
- \* \param query\_set A DNS query set
+ \* \param query_set A DNS query set
  \*
  \* \return user specific data
  \*/
-void \*ast\_dns\_query\_set\_get\_data(const struct ast\_dns\_query\_set \*query\_set);
+void \*ast_dns_query_set_get_data(const struct ast_dns_query_set \*query_set);
 /\*!
  \* \brief Asynchronously resolve queries in a query set
  \*
- \* \param query\_set The query set
+ \* \param query_set The query set
  \* \param callback The callback to invoke upon completion
  \* \param data User data to make available on the query set
  \*
@@ -342,42 +342,42 @@ void \*ast\_dns\_query\_set\_get\_data(const struct ast\_dns\_query\_set \*query
  \*
  \* \note The user data passed in to this function must be ao2 allocated
  \*/
-void ast\_dns\_query\_set\_resolve\_async(struct ast\_dns\_query\_set \*query\_set, ast\_dns\_query\_set\_callback callback, void \*data);
+void ast_dns_query_set_resolve_async(struct ast_dns_query_set \*query_set, ast_dns_query_set_callback callback, void \*data);
 /\*!
  \* \brief Synchronously resolve queries in a query set
  \*
- \* \param query\_set The query set
+ \* \param query_set The query set
  \*
  \* \note This function will return when all queries have been completed
  \*/
-void ast\_query\_set\_resolve(struct ast\_dns\_query\_set \*query\_set);
+void ast_query_set_resolve(struct ast_dns_query_set \*query_set);
 /\*!
  \* \brief Cancel an asynchronous DNS query set resolution
  \*
- \* \param query\_set The DNS query set
+ \* \param query_set The DNS query set
  \*
  \* \retval 0 success
  \* \retval -1 failure
  \*
  \* \note If successfully cancelled the callback will not be invoked
  \*/
-int ast\_dns\_query\_set\_resolve\_cancel(struct ast\_dns\_query\_set \*query\_set);
+int ast_dns_query_set_resolve_cancel(struct ast_dns_query_set \*query_set);
 /\*!
  \* \brief Free a query set
  \*
- \* \param query\_set A DNS query set
+ \* \param query_set A DNS query set
  \*/
-void ast\_dns\_query\_set\_free(struct ast\_dns\_query\_set \*query\_set);
+void ast_dns_query_set_free(struct ast_dns_query_set \*query_set);
 
 ```
 
 
  
 
-dns\_naptr.h
+dns_naptr.h
 ============
 
-The dns\_naptr.h file is the public API into accessing NAPTR records. The DNS core will automatically parse and make this information available. It will also sort the records.
+The dns_naptr.h file is the public API into accessing NAPTR records. The DNS core will automatically parse and make this information available. It will also sort the records.
 
 Code
 ----
@@ -400,7 +400,7 @@ Code
  \*
  \* \return the flags
  \*/
-const char \*ast\_dns\_naptr\_get\_flags(const struct ast\_dns\_record \*record);
+const char \*ast_dns_naptr_get_flags(const struct ast_dns_record \*record);
 /\*!
  \* \brief Get the service from a NAPTR record
  \*
@@ -408,7 +408,7 @@ const char \*ast\_dns\_naptr\_get\_flags(const struct ast\_dns\_record \*record)
  \*
  \* \return the service
  \*/
-const char \*ast\_dns\_naptr\_get\_service(const struct ast\_dns\_record \*record);
+const char \*ast_dns_naptr_get_service(const struct ast_dns_record \*record);
 /\*!
  \* \brief Get the regular expression from a NAPTR record
  \*
@@ -416,7 +416,7 @@ const char \*ast\_dns\_naptr\_get\_service(const struct ast\_dns\_record \*recor
  \*
  \* \return the regular expression
  \*/
-const char \*ast\_dns\_naptr\_get\_regexp(const struct ast\_dns\_record \*record);
+const char \*ast_dns_naptr_get_regexp(const struct ast_dns_record \*record);
 /\*!
  \* \brief Get the replacement value from a NAPTR record
  \*
@@ -424,7 +424,7 @@ const char \*ast\_dns\_naptr\_get\_regexp(const struct ast\_dns\_record \*record
  \*
  \* \return the replacement value
  \*/
-const char \*ast\_dns\_naptr\_get\_replacement(const struct ast\_dns\_record \*record);
+const char \*ast_dns_naptr_get_replacement(const struct ast_dns_record \*record);
 /\*!
  \* \brief Get the order from a NAPTR record
  \*
@@ -432,7 +432,7 @@ const char \*ast\_dns\_naptr\_get\_replacement(const struct ast\_dns\_record \*r
  \*
  \* \return the order
  \*/
-unsigned short ast\_dns\_naptr\_get\_order(const struct ast\_dns\_record \*record);
+unsigned short ast_dns_naptr_get_order(const struct ast_dns_record \*record);
 /\*!
  \* \brief Get the preference from a NAPTR record
  \*
@@ -440,7 +440,7 @@ unsigned short ast\_dns\_naptr\_get\_order(const struct ast\_dns\_record \*recor
  \*
  \* \return the preference
  \*/
-unsigned short ast\_dns\_naptr\_get\_preference(const struct ast\_dns\_record \*record);
+unsigned short ast_dns_naptr_get_preference(const struct ast_dns_record \*record);
 
 
 
@@ -449,10 +449,10 @@ unsigned short ast\_dns\_naptr\_get\_preference(const struct ast\_dns\_record \*
 
  
 
-dns\_srv.h
+dns_srv.h
 ==========
 
-The dns\_srv.h file is the public API into accessing SRV records. The DNS core will automatically parse and make this information available. It will also sort the records.
+The dns_srv.h file is the public API into accessing SRV records. The DNS core will automatically parse and make this information available. It will also sort the records.
 
 Code
 ----
@@ -475,7 +475,7 @@ Code
  \*
  \* \return the hostname
  \*/
-const char \*ast\_dns\_srv\_get\_host(const struct ast\_dns\_record \*record);
+const char \*ast_dns_srv_get_host(const struct ast_dns_record \*record);
 /\*!
  \* \brief Get the priority from an SRV record
  \*
@@ -483,7 +483,7 @@ const char \*ast\_dns\_srv\_get\_host(const struct ast\_dns\_record \*record);
  \*
  \* \return the priority
  \*/
-unsigned short ast\_dns\_srv\_get\_priority(const struct ast\_dns\_record \*record);
+unsigned short ast_dns_srv_get_priority(const struct ast_dns_record \*record);
 /\*!
  \* \brief Get the weight from an SRV record
  \*
@@ -491,7 +491,7 @@ unsigned short ast\_dns\_srv\_get\_priority(const struct ast\_dns\_record \*reco
  \*
  \* \return the weight
  \*/
-unsigned short ast\_dns\_srv\_get\_weight(const struct ast\_dns\_record \*record);
+unsigned short ast_dns_srv_get_weight(const struct ast_dns_record \*record);
 /\*!
  \* \brief Get the port from an SRV record
  \*
@@ -499,17 +499,17 @@ unsigned short ast\_dns\_srv\_get\_weight(const struct ast\_dns\_record \*record
  \*
  \* \return the port
  \*/
-unsigned short ast\_dns\_srv\_get\_port(const struct ast\_dns\_record \*record);
+unsigned short ast_dns_srv_get_port(const struct ast_dns_record \*record);
 
 ```
 
 
  
 
-dns\_tlsa.h
+dns_tlsa.h
 ===========
 
-The dns\_tlsa.h file is the public API into accessing TLSA records.
+The dns_tlsa.h file is the public API into accessing TLSA records.
 
 
 
@@ -529,7 +529,7 @@ The dns\_tlsa.h file is the public API into accessing TLSA records.
  \*
  \* \return the certificate usage field
  \*/
-unsigned int ast\_dns\_tlsa\_get\_usage(const struct ast\_dns\_record \*record);
+unsigned int ast_dns_tlsa_get_usage(const struct ast_dns_record \*record);
 /\*!
  \* \brief Get the selector field from a TLSA record
  \*
@@ -537,7 +537,7 @@ unsigned int ast\_dns\_tlsa\_get\_usage(const struct ast\_dns\_record \*record);
  \*
  \* \return the selector field
  \*/
-unsigned int ast\_dns\_tlsa\_get\_selector(const struct ast\_dns\_record \*record);
+unsigned int ast_dns_tlsa_get_selector(const struct ast_dns_record \*record);
 /\*!
  \* \brief Get the matching type field from a TLSA record
  \*
@@ -545,7 +545,7 @@ unsigned int ast\_dns\_tlsa\_get\_selector(const struct ast\_dns\_record \*recor
  \*
  \* \return the matching type field
  \*/
-unsigned int ast\_dns\_tlsa\_get\_matching\_type(const struct ast\_dns\_record \*record);
+unsigned int ast_dns_tlsa_get_matching_type(const struct ast_dns_record \*record);
 /\*!
  \* \brief Get the certificate association data from a TLSA record
  \*
@@ -553,7 +553,7 @@ unsigned int ast\_dns\_tlsa\_get\_matching\_type(const struct ast\_dns\_record \
  \*
  \* \return the certificate association data
  \*/
-const char \*ast\_dns\_tlsa\_get\_association\_data(const struct ast\_dns\_record \*record);
+const char \*ast_dns_tlsa_get_association_data(const struct ast_dns_record \*record);
 
 
 
@@ -562,10 +562,10 @@ const char \*ast\_dns\_tlsa\_get\_association\_data(const struct ast\_dns\_recor
 
  
 
-dns\_resolver.h
+dns_resolver.h
 ===============
 
-The dns\_resolver.h file contains the interface as defined for resolver implementations.
+The dns_resolver.h file contains the interface as defined for resolver implementations.
 
 Code
 ----
@@ -582,15 +582,15 @@ Code
 ```
 
 /\*! \brief DNS resolver implementation \*/
-struct ast\_dns\_resolver {
+struct ast_dns_resolver {
  /\*! \brief The name of the resolver implementation \*/
  const char \*name;
  /\*! \brief Priority for this resolver if multiple exist \*/
  unsigned int priority;
  /\*! \brief Perform resolution of a DNS query \*/
- int (\*resolve)(struct ast\_dns\_query \*query);
+ int (\*resolve)(struct ast_dns_query \*query);
  /\*! \brief Cancel resolution of a DNS query \*/
- int (\*cancel)(struct ast\_dns\_query \*query);
+ int (\*cancel)(struct ast_dns_query \*query);
 };
 /\*!
  \* \brief Set resolver specific data on a query
@@ -600,7 +600,7 @@ struct ast\_dns\_resolver {
  \*
  \* \note Unlike user specific data this does not have to be ao2 allocated
  \*/
-void ast\_dns\_resolver\_set\_data(struct ast\_dns\_query \*query, void \*data);
+void ast_dns_resolver_set_data(struct ast_dns_query \*query, void \*data);
 /\*!
  \* \brief Retrieve resolver specific data
  \*
@@ -608,7 +608,7 @@ void ast\_dns\_resolver\_set\_data(struct ast\_dns\_query \*query, void \*data);
  \*
  \* \return the resolver specific data
  \*/
-void \*ast\_dns\_resolver\_get\_data(const struct ast\_dns\_query \*query);
+void \*ast_dns_resolver_get_data(const struct ast_dns_query \*query);
 /\*!
  \* \brief Set result information for a DNS query
  \*
@@ -618,14 +618,14 @@ void \*ast\_dns\_resolver\_get\_data(const struct ast\_dns\_query \*query);
  \* \param bogus Whether the result is bogus or not
  \* \param canonical The canonical name
  \*/
-void ast\_dns\_resolver\_set\_result(struct ast\_dns\_query \*query, unsigned int nxdomain, unsigned int secure, unsigned int bogus,
+void ast_dns_resolver_set_result(struct ast_dns_query \*query, unsigned int nxdomain, unsigned int secure, unsigned int bogus,
  const char \*canonical);
 /\*!
  \* \brief Add a DNS record to the result of a DNS query
  \*
  \* \param query The DNS query
- \* \param rr\_type Resource record type
- \* \param rr\_class Resource record class
+ \* \param rr_type Resource record type
+ \* \param rr_class Resource record class
  \* \param ttl TTL of the record
  \* \param data The raw DNS record
  \* \param size The size of the raw DNS record
@@ -633,7 +633,7 @@ void ast\_dns\_resolver\_set\_result(struct ast\_dns\_query \*query, unsigned in
  \* \retval 0 success
  \* \retval -1 failure
  \*/
-int ast\_dns\_resolver\_add\_record(struct ast\_dns\_query \*query, int rr\_type, int rr\_class, int ttl, char \*data, size\_t size);
+int ast_dns_resolver_add_record(struct ast_dns_query \*query, int rr_type, int rr_class, int ttl, char \*data, size_t size);
 /\*!
  \* \brief Mark a DNS query as having been completed
  \*
@@ -641,7 +641,7 @@ int ast\_dns\_resolver\_add\_record(struct ast\_dns\_query \*query, int rr\_type
  \*
  \* \note Once this is invoked the resolver data on the query will be removed
  \*/
-void ast\_dns\_resolver\_completed(const struct ast\_dns\_query \*query);
+void ast_dns_resolver_completed(const struct ast_dns_query \*query);
 /\*!
  \* \brief Register a DNS resolver
  \*
@@ -650,7 +650,7 @@ void ast\_dns\_resolver\_completed(const struct ast\_dns\_query \*query);
  \* \retval 0 success
  \* \retval -1 failure
  \*/
-int ast\_dns\_resolver\_register(const struct ast\_core\_dns\_resolver \*resolver);
+int ast_dns_resolver_register(const struct ast_core_dns_resolver \*resolver);
 /\*!
  \* \brief Unregister a DNS resolver
  \*
@@ -659,17 +659,17 @@ int ast\_dns\_resolver\_register(const struct ast\_core\_dns\_resolver \*resolve
  \* \retval 0 success
  \* \retval -1 failure
  \*/
-int ast\_dns\_resolver\_unregister(const struct ast\_core\_dns\_resolver \*resolver);
+int ast_dns_resolver_unregister(const struct ast_core_dns_resolver \*resolver);
 
 ```
 
 
  
 
-dns\_internal.h
+dns_internal.h
 ===============
 
-The dns\_internal.h file contains the internal data structures.
+The dns_internal.h file contains the internal data structures.
 
 Code
 ----
@@ -686,24 +686,24 @@ Code
 ```
 
 /\*! \brief Generic DNS record information \*/
-struct ast\_dns\_record {
+struct ast_dns_record {
  /\*! \brief Resource record type \*/
- int rr\_type;
+ int rr_type;
  /\*! \brief Resource record class \*/
- int rr\_class;
+ int rr_class;
  /\*! \brief Time-to-live of the record \*/
  int ttl;
  /\*! \brief The raw DNS record \*/
  char \*data;
  /\*! \brief The size of the raw DNS record \*/
- size\_t data\_len;
+ size_t data_len;
  /\*! \brief Linked list information \*/
- AST\_LIST\_ENTRY(ast\_dns\_record) list;
+ AST_LIST_ENTRY(ast_dns_record) list;
 };
 /\*! \brief An SRV record \*/
-struct ast\_dns\_srv\_record {
+struct ast_dns_srv_record {
  /\*! \brief Generic DNS record information \*/
- struct ast\_dns\_record generic;
+ struct ast_dns_record generic;
  /\*! \brief The hostname in the SRV record \*/
  const char \*host;
  /\*! \brief The priority of the SRV record \*/
@@ -714,9 +714,9 @@ struct ast\_dns\_srv\_record {
  unsigned short port;
 };
 /\*! \brief A NAPTR record \*/
-struct ast\_dns\_naptr\_record {
+struct ast_dns_naptr_record {
  /\*! \brief Generic DNS record information \*/
- struct ast\_dns\_record generic;
+ struct ast_dns_record generic;
  /\*! \brief The flags from the NAPTR record \*/
  const char \*flags;
  /\*! \brief The service from the NAPTR record \*/
@@ -731,7 +731,7 @@ struct ast\_dns\_naptr\_record {
  unsigned short preference;
 };
 /\*! \brief The result of a DNS query \*/
-struct ast\_dns\_result {
+struct ast_dns_result {
  /\*! \brief Whether the domain was not found \*/
  unsigned int nxdomain;
  /\*! \brief Whether the result is secure \*/
@@ -741,31 +741,31 @@ struct ast\_dns\_result {
  /\*! \brief The canonical name \*/
  const char \*canonical;
  /\*! \brief Records returned \*/
- AST\_LIST\_HEAD\_NOLOCK(, ast\_dns\_record) records;
+ AST_LIST_HEAD_NOLOCK(, ast_dns_record) records;
 };
 /\*! \brief A DNS query \*/
-struct ast\_dns\_query {
+struct ast_dns_query {
  /\*! \brief Callback to invoke upon completion \*/
- ast\_dns\_resolve\_callback callback;
+ ast_dns_resolve_callback callback;
  /\*! \brief User-specific data \*/
- void \*user\_data;
+ void \*user_data;
  /\*! \brief Resolver-specific data \*/
- void \*resolver\_data;
+ void \*resolver_data;
  /\*! \brief Result of the DNS query \*/
- struct ast\_dns\_result \*result;
+ struct ast_dns_result \*result;
  /\*! \brief Timer for recurring resolution \*/
  int timer;
 };
 /\*! \brief A set of DNS queries \*/
-struct ast\_dns\_query\_set {
+struct ast_dns_query_set {
  /\*! \brief DNS queries \*/
- AST\_VECTOR(, struct ast\_dns\_query \*) queries;
+ AST_VECTOR(, struct ast_dns_query \*) queries;
  /\*! \brief The total number of completed queries \*/
- unsigned int queries\_completed;
+ unsigned int queries_completed;
  /\*! \brief Callback to invoke upon completion \*/
- ast\_dns\_query\_set\_callback callback;
+ ast_dns_query_set_callback callback;
  /\*! \brief User-specific data \*/
- void \*user\_data;
+ void \*user_data;
  /\*! \brief Timer for recurring resolution \*/
  int timer;
 };
@@ -790,26 +790,26 @@ This example blocks the calling thread until resolution has completed. Once comp
 #include <asterisk/dns.h>
 int test(void)
 {
- RAII\_VAR(struct ast\_dns\_result \*, result, NULL, ast\_dns\_result\_unref);
+ RAII_VAR(struct ast_dns_result \*, result, NULL, ast_dns_result_unref);
  int res;
- struct ast\_dns\_record \*record;
- res = ast\_dns\_resolve("www.asterisk.org", ns\_c\_in, ns\_t\_a, &result);
+ struct ast_dns_record \*record;
+ res = ast_dns_resolve("www.asterisk.org", ns_c_in, ns_t_a, &result);
  if (res) {
- ast\_verbose(1, "Synchronous resolution of 'asterisk.org' failed\n");
+ ast_verbose(1, "Synchronous resolution of 'asterisk.org' failed\n");
  return -1;
  }
- if (ast\_dns\_result\_get\_nxdomain(result)) {
- ast\_verbose(1, "Specified domain name 'asterisk.org' does not exist\n");
+ if (ast_dns_result_get_nxdomain(result)) {
+ ast_verbose(1, "Specified domain name 'asterisk.org' does not exist\n");
  return -1;
  }
- if (ast\_dns\_result\_get\_secure(result)) {
- ast\_verbose(1, "DNS result was secured\n");
- } else if (ast\_dns\_result\_get\_bogus(result)) {
- ast\_verbose(1, "DNS result is bogus\n");
+ if (ast_dns_result_get_secure(result)) {
+ ast_verbose(1, "DNS result was secured\n");
+ } else if (ast_dns_result_get_bogus(result)) {
+ ast_verbose(1, "DNS result is bogus\n");
  return -1;
  }
- for (record = ast\_dns\_result\_get\_records(result); record; record = ast\_dns\_record\_get\_next(record)) {
- ast\_verbose(1, "Got address: %s\n", inet\_ntoa(\*(struct in\_addr\*)ast\_dns\_record\_get\_data(record)));
+ for (record = ast_dns_result_get_records(result); record; record = ast_dns_record_get_next(record)) {
+ ast_verbose(1, "Got address: %s\n", inet_ntoa(\*(struct in_addr\*)ast_dns_record_get_data(record)));
  }
  return 0;
 }
@@ -829,30 +829,30 @@ This example does not block the calling thread when resolving. A callback is inv
 
 ```bash title=" " linenums="1"
 #include <asterisk/dns.h>
-static void test\_callback(const struct ast\_dns\_query \*query)
+static void test_callback(const struct ast_dns_query \*query)
 {
- struct ast\_dns\_result \*result = ast\_dns\_query\_get\_result(query);
- struct ast\_dns\_record \*record;
- if (ast\_dns\_result\_get\_nxdomain(result)) {
- ast\_verbose(1, "Specified domain name 'asterisk.org' does not exist\n");
+ struct ast_dns_result \*result = ast_dns_query_get_result(query);
+ struct ast_dns_record \*record;
+ if (ast_dns_result_get_nxdomain(result)) {
+ ast_verbose(1, "Specified domain name 'asterisk.org' does not exist\n");
  return;
  }
- if (ast\_dns\_result\_get\_secure(result)) {
- ast\_verbose(1, "DNS result was secured\n");
- } else if (ast\_dns\_result\_get\_bogus(result)) {
- ast\_verbose(1, "DNS result is bogus\n");
+ if (ast_dns_result_get_secure(result)) {
+ ast_verbose(1, "DNS result was secured\n");
+ } else if (ast_dns_result_get_bogus(result)) {
+ ast_verbose(1, "DNS result is bogus\n");
  return;
  }
- for (record = ast\_dns\_result\_get\_records(result); record; record = ast\_dns\_record\_get\_next(record)) {
- ast\_verbose(1, "Got address: %s\n", inet\_ntoa(\*(struct in\_addr\*)ast\_dns\_record\_get\_data(record)));
+ for (record = ast_dns_result_get_records(result); record; record = ast_dns_record_get_next(record)) {
+ ast_verbose(1, "Got address: %s\n", inet_ntoa(\*(struct in_addr\*)ast_dns_record_get_data(record)));
  }
 }
 int test(void)
 {
  int res;
- res = ast\_dns\_resolve\_async("www.asterisk.org", ns\_c\_in, ns\_t\_a, test\_callback, NULL);
+ res = ast_dns_resolve_async("www.asterisk.org", ns_c_in, ns_t_a, test_callback, NULL);
  if (res) {
- ast\_verbose(1, "Asynchronous resolution of 'asterisk.org' failed\n");
+ ast_verbose(1, "Asynchronous resolution of 'asterisk.org' failed\n");
  return -1;
  }
  sleep(5);
@@ -874,41 +874,41 @@ This example uses a query set to do two queries in an asynchronous manner. Each 
 
 ```bash title=" " linenums="1"
 #include <asterisk/dns.h>
-#include <asterisk/dns\_query\_set.h>
-static void test\_callback(const struct ast\_dns\_query\_query \*query\_set)
+#include <asterisk/dns_query_set.h>
+static void test_callback(const struct ast_dns_query_query \*query_set)
 {
- struct ast\_dns\_result \*asterisk\_result = ast\_dns\_query\_get\_result(ast\_dns\_query\_set\_get(query\_set, 0));
- struct ast\_dns\_result \*digium\_result = ast\_dns\_query\_get\_result(ast\_dns\_query\_set\_get(query\_set, 1));
- struct ast\_dns\_record \*record;
- if (!ast\_dns\_result\_get\_nxdomain(asterisk\_result)) {
- ast\_verbose(1, "'asterisk.org' resolution results:\n");
- for (record = ast\_dns\_result\_get\_records(asterisk\_result); record; record = ast\_dns\_record\_get\_next(record)) {
- ast\_verbose(1, "Got address: %s\n", inet\_ntoa(\*(struct in\_addr\*)ast\_dns\_record\_get\_data(record)));
+ struct ast_dns_result \*asterisk_result = ast_dns_query_get_result(ast_dns_query_set_get(query_set, 0));
+ struct ast_dns_result \*digium_result = ast_dns_query_get_result(ast_dns_query_set_get(query_set, 1));
+ struct ast_dns_record \*record;
+ if (!ast_dns_result_get_nxdomain(asterisk_result)) {
+ ast_verbose(1, "'asterisk.org' resolution results:\n");
+ for (record = ast_dns_result_get_records(asterisk_result); record; record = ast_dns_record_get_next(record)) {
+ ast_verbose(1, "Got address: %s\n", inet_ntoa(\*(struct in_addr\*)ast_dns_record_get_data(record)));
  }
  } else {
- ast\_verbose(1, "'asterisk.org' domain does not exist\n");
+ ast_verbose(1, "'asterisk.org' domain does not exist\n");
  }
- if (!ast\_dns\_result\_get\_nxdomain(digium\_result)) {
- ast\_verbose(1, "'digium.com' resolution results:\n");
- for (record = ast\_dns\_result\_get\_records(digium\_result); record; record = ast\_dns\_record\_get\_next(record)) {
- ast\_verbose(1, "Got address: %s\n", inet\_ntoa(\*(struct in\_addr\*)ast\_dns\_record\_get\_data(record)));
+ if (!ast_dns_result_get_nxdomain(digium_result)) {
+ ast_verbose(1, "'digium.com' resolution results:\n");
+ for (record = ast_dns_result_get_records(digium_result); record; record = ast_dns_record_get_next(record)) {
+ ast_verbose(1, "Got address: %s\n", inet_ntoa(\*(struct in_addr\*)ast_dns_record_get_data(record)));
  }
  } else {
- ast\_verbose(1, "'digium.com' domain does not exist\n");
+ ast_verbose(1, "'digium.com' domain does not exist\n");
  }
 }
 int test(void)
 {
- struct ast\_dns\_query\_set \*query\_set;
- query\_set = ast\_dns\_query\_set\_create():
- if (!query\_set) {
- ast\_verbose(1, "Could not create a query set for parallel resolution");
+ struct ast_dns_query_set \*query_set;
+ query_set = ast_dns_query_set_create():
+ if (!query_set) {
+ ast_verbose(1, "Could not create a query set for parallel resolution");
  return -1;
  }
- ast\_dns\_query\_set\_add(query\_set, "www.asterisk.org", ns\_c\_in, ns\_t\_a);
- ast\_dns\_query\_set\_add(query\_set, "www.digium.com", ns\_c\_in, ns\_t\_a);
- ast\_dns\_query\_set\_resolve\_async(query\_set, test\_callback, NULL);
- ast\_dns\_query\_set\_unref(query\_set);
+ ast_dns_query_set_add(query_set, "www.asterisk.org", ns_c_in, ns_t_a);
+ ast_dns_query_set_add(query_set, "www.digium.com", ns_c_in, ns_t_a);
+ ast_dns_query_set_resolve_async(query_set, test_callback, NULL);
+ ast_dns_query_set_unref(query_set);
  sleep(5);
  return 0;
 }
@@ -928,35 +928,35 @@ This example does a fall back from an AAAA record lookup to an A record lookup i
 
 ```bash title=" " linenums="1"
 #include <asterisk/dns.h>
-static void test\_callback(const struct ast\_dns\_query \*query)
+static void test_callback(const struct ast_dns_query \*query)
 {
- struct ast\_dns\_result \*result = ast\_dns\_query\_get\_result(query);
- struct ast\_dns\_record \*record = ast\_dns\_result\_get\_records(result);
- if (ast\_dns\_result\_get\_nxdomain(result) || !record) {
- ast\_verbose(1, "Specified domain name 'asterisk.org' does not exist or has no records\n");
- if (ast\_dns\_get\_rr\_type(query) == ns\_t\_aaaa) {
+ struct ast_dns_result \*result = ast_dns_query_get_result(query);
+ struct ast_dns_record \*record = ast_dns_result_get_records(result);
+ if (ast_dns_result_get_nxdomain(result) || !record) {
+ ast_verbose(1, "Specified domain name 'asterisk.org' does not exist or has no records\n");
+ if (ast_dns_get_rr_type(query) == ns_t_aaaa) {
  /\* Fall back to an A lookup \*/
- ast\_dns\_resolve\_async("www.asterisk.org", ns\_c\_in, ns\_t\_a, test\_callback, NULL);
+ ast_dns_resolve_async("www.asterisk.org", ns_c_in, ns_t_a, test_callback, NULL);
  }
  return;
  }
- if (ast\_dns\_result\_get\_secure(result)) {
- ast\_verbose(1, "DNS result was secured\n");
- } else if (ast\_dns\_result\_get\_bogus(result)) {
- ast\_verbose(1, "DNS result is bogus\n");
+ if (ast_dns_result_get_secure(result)) {
+ ast_verbose(1, "DNS result was secured\n");
+ } else if (ast_dns_result_get_bogus(result)) {
+ ast_verbose(1, "DNS result is bogus\n");
  return;
  }
- for (; record; record = ast\_dns\_record\_get\_next(record)) {
- ast\_verbose(1, "Got a record\n");
+ for (; record; record = ast_dns_record_get_next(record)) {
+ ast_verbose(1, "Got a record\n");
  }
 }
 int test(void)
 {
  int res;
  /\* Start out doing an AAAA lookup \*/
- res = ast\_dns\_resolve\_async("www.asterisk.org", ns\_c\_in, ns\_t\_aaaa, test\_callback, NULL);
+ res = ast_dns_resolve_async("www.asterisk.org", ns_c_in, ns_t_aaaa, test_callback, NULL);
  if (res) {
- ast\_verbose(1, "Asynchronous resolution of 'asterisk.org' failed\n");
+ ast_verbose(1, "Asynchronous resolution of 'asterisk.org' failed\n");
  return -1;
  }
  sleep(5);
@@ -981,59 +981,59 @@ This example does a NAPTR lookup followed by SRV followed by AAAA and then A. Th
 /\* An alternative to this cascade approach would be using a query set to do NAPTR, SRV, AAAA, and A in parallel
  \* with NAPTR and SRV adding additional queries afterwards
  \*/
-static void a\_callback(const struct ast\_dns\_query \*query)
+static void a_callback(const struct ast_dns_query \*query)
 {
- struct ast\_dns\_result \*result = ast\_dns\_query\_get\_result(query);
- struct ast\_dns\_record \*record = ast\_dns\_result\_get\_records(result);
+ struct ast_dns_result \*result = ast_dns_query_get_result(query);
+ struct ast_dns_record \*record = ast_dns_result_get_records(result);
  if (!record) {
  /\* We have nowhere to go \*/
  return;
  }
  /\* If we got here there is an A record \*/
 }
-static void aaaa\_callback(const struct ast\_dns\_query \*query)
+static void aaaa_callback(const struct ast_dns_query \*query)
 {
- struct ast\_dns\_result \*result = ast\_dns\_query\_get\_result(query);
- struct ast\_dns\_record \*record = ast\_dns\_result\_get\_records(result);
+ struct ast_dns_result \*result = ast_dns_query_get_result(query);
+ struct ast_dns_record \*record = ast_dns_result_get_records(result);
  if (!record) {
- ast\_dns\_resolve\_async(ast\_dns\_query\_get\_name(query), ns\_c\_in, ns\_t\_a, a\_callback, NULL);
+ ast_dns_resolve_async(ast_dns_query_get_name(query), ns_c_in, ns_t_a, a_callback, NULL);
  return;
  }
  /\* If we got here there is an AAAA record \*/
 }
-static void srv\_callback(const struct ast\_dns\_query \*query)
+static void srv_callback(const struct ast_dns_query \*query)
 {
- struct ast\_dns\_result \*result = ast\_dns\_query\_get\_result(query);
- struct ast\_dns\_record \*record = ast\_dns\_result\_get\_records(result);
+ struct ast_dns_result \*result = ast_dns_query_get_result(query);
+ struct ast_dns_record \*record = ast_dns_result_get_records(result);
  if (record) {
- ast\_dns\_resolve\_async(ast\_dns\_srv\_get\_host(record), ns\_c\_in, ns\_t\_aaaa, aaaa\_callback, NULL);
+ ast_dns_resolve_async(ast_dns_srv_get_host(record), ns_c_in, ns_t_aaaa, aaaa_callback, NULL);
  return;
  }
- ast\_dns\_resolve\_async("asterisk.org", ns\_c\_in, ns\_t\_aaaa, aaaa\_callback, NULL);
+ ast_dns_resolve_async("asterisk.org", ns_c_in, ns_t_aaaa, aaaa_callback, NULL);
 }
-static void naptr\_callback(const struct ast\_dns\_query \*query)
+static void naptr_callback(const struct ast_dns_query \*query)
 {
- struct ast\_dns\_result \*result = ast\_dns\_query\_get\_result(query);
- struct ast\_dns\_record \*record;
- if (ast\_dns\_result\_get\_nxdomain(result)) {
- ast\_verbose(1, "Specified domain name 'asterisk.org' does not exist\n");
+ struct ast_dns_result \*result = ast_dns_query_get_result(query);
+ struct ast_dns_record \*record;
+ if (ast_dns_result_get_nxdomain(result)) {
+ ast_verbose(1, "Specified domain name 'asterisk.org' does not exist\n");
  return;
  }
  /\* This is a very simplistic cascade example, it grabs the first result \*/
- for (record = ast\_dns\_result\_get\_records(result); record; record = ast\_dns\_record\_get\_next(record)) {
- if (!strcmp(ast\_dns\_naptr\_get\_service(record), "SIP+D2U")) {
- ast\_dns\_resolve\_async(ast\_dns\_naptr\_get\_replacement(record), ns\_c\_in, ns\_t\_srv, srv\_callback, NULL);
+ for (record = ast_dns_result_get_records(result); record; record = ast_dns_record_get_next(record)) {
+ if (!strcmp(ast_dns_naptr_get_service(record), "SIP+D2U")) {
+ ast_dns_resolve_async(ast_dns_naptr_get_replacement(record), ns_c_in, ns_t_srv, srv_callback, NULL);
  return;
  }
  }
- ast\_dns\_resolve\_async("\_sip.\_udp.asterisk.org", ns\_c\_in, ns\_t\_srv, srv\_callback, NULL);
+ ast_dns_resolve_async("_sip._udp.asterisk.org", ns_c_in, ns_t_srv, srv_callback, NULL);
 }
 int test(void)
 {
  int res;
- res = ast\_dns\_resolve\_async("asterisk.org", ns\_c\_in, ns\_t\_naptr, naptr\_callback, NULL);
+ res = ast_dns_resolve_async("asterisk.org", ns_c_in, ns_t_naptr, naptr_callback, NULL);
  if (res) {
- ast\_verbose(1, "Asynchronous resolution of 'asterisk.org' failed\n");
+ ast_verbose(1, "Asynchronous resolution of 'asterisk.org' failed\n");
  return -1;
  }
  sleep(5);
@@ -1057,26 +1057,26 @@ The recurring example has the DNS core re-run the specified query according to t
 
 ```bash title=" " linenums="1"
 #include <asterisk/dns.h>
-static void test\_callback(const struct ast\_dns\_query \*query)
+static void test_callback(const struct ast_dns_query \*query)
 {
- struct ast\_dns\_result \*result = ast\_dns\_query\_get\_result(query);
- struct ast\_dns\_record \*record;
- if (ast\_dns\_result\_get\_nxdomain(result)) {
- ast\_verbose(1, "Specified domain name 'asterisk.org' does not exist\n");
+ struct ast_dns_result \*result = ast_dns_query_get_result(query);
+ struct ast_dns_record \*record;
+ if (ast_dns_result_get_nxdomain(result)) {
+ ast_verbose(1, "Specified domain name 'asterisk.org' does not exist\n");
  return;
  }
 
  /\* Previous information should be stored and compared against new records, if different then take action \*/
- for (record = ast\_dns\_result\_get\_records(result); record; record = ast\_dns\_record\_get\_next(record)) {
- ast\_verbose(1, "Got address: %s\n", inet\_ntoa(\*(struct in\_addr\*)ast\_dns\_record\_get\_data(record)));
+ for (record = ast_dns_result_get_records(result); record; record = ast_dns_record_get_next(record)) {
+ ast_verbose(1, "Got address: %s\n", inet_ntoa(\*(struct in_addr\*)ast_dns_record_get_data(record)));
  }
 }
 int test(void)
 {
  int res;
- res = ast\_dns\_resolve\_async\_recurring("www.asterisk.org", ns\_c\_in, ns\_t\_a, test\_callback, NULL);
+ res = ast_dns_resolve_async_recurring("www.asterisk.org", ns_c_in, ns_t_a, test_callback, NULL);
  if (res) {
- ast\_verbose(1, "Asynchronous resolution of 'asterisk.org' failed\n");
+ ast_verbose(1, "Asynchronous resolution of 'asterisk.org' failed\n");
  return -1;
  }
  sleep(5);

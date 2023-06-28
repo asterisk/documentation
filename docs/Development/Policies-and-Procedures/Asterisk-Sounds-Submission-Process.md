@@ -30,7 +30,7 @@ Every time you submit sounds, even if partial sounds, you will need to execute a
 
 1. Create your language sound file archive as a directory. Put all sound files into the directory.
 2. Determine the two-digit ISO639-1 language code (en=english, ru=russian, etc.) and replace the "xx" in other steps with this two digit code.
-3. Determine the most obvious nation in which the dialect of the artist is appropriate, if any. Select the country code from the ISO-3166-1 list. Replace "\_YY" in the other steps with this two digitcode. This two-digit code should be upper-case.
+3. Determine the most obvious nation in which the dialect of the artist is appropriate, if any. Select the country code from the ISO-3166-1 list. Replace "_YY" in the other steps with this two digitcode. This two-digit code should be upper-case.
 4. Create a file called "CREDITS" and put in this file a short free-form block of text that you wish to include for anyone who wants  
 to learn more about you or the artist who performed the sounds. Please minimally include the name and contact information for the artist as a URL and/or email address.
 
@@ -62,13 +62,13 @@ Example:
 9. Have the artist (NOT YOU, UNLESS YOU ARE THE ARTIST) print out the entire form and license listed on this page, fill in the items noted in square brackets, then:
 10. Project staff will evaluate your sounds submission and communicate with you via the issue tracker as to the progress and status of  
 inclusion. If your sound files are included, they will receive an ordinal number according to the number of other archives in this  
-language/dialect group, a gender key, a freeform text description, the codec for that file, and the version of Asterisk for which the files were released. (Format for filenames suffix is: languagecode[\_territorycode[\_gender[\_variant]]] ) So your submission may have an archive name that after processing looks like this:
+language/dialect group, a gender key, a freeform text description, the codec for that file, and the version of Asterisk for which the files were released. (Format for filenames suffix is: languagecode[_territorycode[_gender[_variant]]] ) So your submission may have an archive name that after processing looks like this:
 
-**asterisk-core-sounds-en\_US\_female\_allison-gsm-1.6.23**
+**asterisk-core-sounds-en_US_female_allison-gsm-1.6.23**
 
 or
 
-**asterisk-core-sounds-en\_AU\_male\_alex-gsm-1.6.23**
+**asterisk-core-sounds-en_AU_male_alex-gsm-1.6.23**
 
 License Form:
 -------------
@@ -105,20 +105,20 @@ Attribution/ShareAlike license, as follows.
  [include description of files submitted]
 
 
- Signed: \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+ Signed: __________________________________________________________
 
 
- Printed: \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+ Printed: __________________________________________________________
  Name
 
  Company Name (If submitting on behalf of a Company. If submitting in an
 individual capacity leave blank):
-\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+________________________________________________________________________
 
- Issue : \_[see step 9 of "Process"]\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+ Issue : _[see step 9 of "Process"]________________________________
  Number
 
- Date : \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+ Date : __________________________________________________________
 
 
 

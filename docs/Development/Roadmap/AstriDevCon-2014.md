@@ -153,7 +153,7 @@ Application Server (11:20am-1pm)
 				+ Playlists
 			* Should we use the dialplan at all?
 				+ The idea is: ARI should not use the dialplan applications at all
-				+ pbx\_stasis: catch-all for channels
+				+ pbx_stasis: catch-all for channels
 * ARI Enhancements
 	+ Play media from remote sources
 	+ TTS/ASR
@@ -217,7 +217,7 @@ Media (2:15pm - 3pm)
 
 * Codec Visibility
 	+ Codec control from dialplan
-		- PJSIP\_MEDIA\_OFFER may provide this, would be nice for chan\_sip
+		- PJSIP_MEDIA_OFFER may provide this, would be nice for chan_sip
 	+ Better control over SDP Offer/Answer
 		- Force re-INVITE for codec changes
 		- or other things (such as a new media address)
@@ -227,7 +227,7 @@ Media (2:15pm - 3pm)
 	+ During PJSIP development, the rapid pace made it hard to follow
 	+ RTP: have someone act as a sponsor, have someone do the PR
 * RTCP enhancement (Olle)
-* res\_rtp\_asterisk "crufty"
+* res_rtp_asterisk "crufty"
 * Live call failover???
 	+ Relatively hard to do
 	+ May not be the highest priority
@@ -264,13 +264,13 @@ PJSIP Enhancements (3pm - 3:30pm)
 * Simplifying routing/dialing of SIP URIs
 	+ sip: - go out specific peer
 	+ **Action**: Ben Klang - propose out on -dev list
-* Fix unloading/reloading of res\_pjsip
+* Fix unloading/reloading of res_pjsip
 
 WebRTC (3:30pm - 4pm)
 ---------------------
 
 * How is our happiness level today?
-	+ Andrew: no way to determine if can\_sip or chan\_pjsip should be used for web sockets (open bug)
+	+ Andrew: no way to determine if can_sip or chan_pjsip should be used for web sockets (open bug)
 	+ Ben: better logging.  When it doesn't work, it's really hard to figure out.
 	+ Better documentation
 	+ Opus ...
@@ -281,7 +281,7 @@ Data Capture (Phone Home) (4pm - 4:15pm)
 
 * Upload backtraces
 * Figure out what crashes are most important
-	+ Switch DONT\_OPTIMIZE off by default
+	+ Switch DONT_OPTIMIZE off by default
 		- Darren: Had a large impact in an Asterisk SCF test
 		- May want to turn off for Standard Releases, leave on for LTS
 	+ Opt-out for data?

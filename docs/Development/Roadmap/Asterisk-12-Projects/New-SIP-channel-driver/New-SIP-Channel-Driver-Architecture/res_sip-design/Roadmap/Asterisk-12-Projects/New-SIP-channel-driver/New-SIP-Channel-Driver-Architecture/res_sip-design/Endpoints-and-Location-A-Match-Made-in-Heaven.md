@@ -6,7 +6,7 @@ pageid: 22773920
 Fundamentals
 ------------
 
-Endpoints within chan\_pjsip are a representation of the configuration information for a remote device that is to be communicated with, either unidirectionally or bidirectionally. The information within an endpoint configures and changes the behavior of the SIP infrastructure for that device. For example, you may want to specify a subset of formats for a specific endpoint while others are free to use what they wish. This is accomplished by configuring the endpoint differently.
+Endpoints within chan_pjsip are a representation of the configuration information for a remote device that is to be communicated with, either unidirectionally or bidirectionally. The information within an endpoint configures and changes the behavior of the SIP infrastructure for that device. For example, you may want to specify a subset of formats for a specific endpoint while others are free to use what they wish. This is accomplished by configuring the endpoint differently.
 
 
 
@@ -83,7 +83,7 @@ When dialing an explicit SIP or SIPS URI only the provided URI is contacted.
 
 
 !!! tip 
-    For end users who want to establish sessions with all contacts for an AOR from the dialplan the PJSIP\_DIAL\_CONTACTS dialplan function can be used to construct a dial string which dials all contacts. This is done to leverage the core support for multiple outgoing sessions.
+    For end users who want to establish sessions with all contacts for an AOR from the dialplan the PJSIP_DIAL_CONTACTS dialplan function can be used to construct a dial string which dials all contacts. This is done to leverage the core support for multiple outgoing sessions.
 
       
 [//]: # (end-tip)
@@ -135,14 +135,14 @@ An example AOR configuration, with support for external manipulation, is as foll
 
 [5000]
 type=aor
-max\_contacts=10
+max_contacts=10
 
 ```
 
 
  This will allow a maximum of 10 contacts to be externally added to it. If exceeded the registrar will reject the registration attempt.
 
-An example AOR configuration, with support for external manipulation but with the same behavior as chan\_sip, is as follows:
+An example AOR configuration, with support for external manipulation but with the same behavior as chan_sip, is as follows:
 
 
 
@@ -157,8 +157,8 @@ An example AOR configuration, with support for external manipulation but with th
 
 [5000]
 type=aor
-max\_contacts=1
-remove\_existing=yes
+max_contacts=1
+remove_existing=yes
 
 ```
 

@@ -13,7 +13,7 @@ What Changed?
 
 A couple of things. You no longer need to add anything to the CHANGES and UPGRADE.txt files themselves. By removing this, there should not be any merge conflicts (at least, none relating to these files!). Instead, two new directories have been created under the doc/ directory: CHANGES-staging and UPGRADE-staging. Any code you add that is considered a new feature or an enhancement of an existing feature should be documented in the CHANGES-staging directory. Changes that would break existing behavior should be documented under the UPGRADE-staging directory. The format is similar to how things were done in the past, but you no longer need to worry about typing out dashes and asterisks to separate things. That's all done for you!
 
-The release process is what handles updating the CHANGES and UPGRADE.txt files now. Whenever a release is being made, everything in the staging directories is taken and added to the beginning of the corresponding file. Everything that has the same subject (e.g, "res\_pjsip") will be grouped under one section and separated by asterisks, exactly how it has been done in the past. The directories will then be cleaned up and the commit will be pushed in along with everything else. Easy as that!
+The release process is what handles updating the CHANGES and UPGRADE.txt files now. Whenever a release is being made, everything in the staging directories is taken and added to the beginning of the corresponding file. Everything that has the same subject (e.g, "res_pjsip") will be grouped under one section and separated by asterisks, exactly how it has been done in the past. The directories will then be cleaned up and the commit will be pushed in along with everything else. Easy as that!
 
 Here's an example of what one of these directories might look like before a release:
 
@@ -29,10 +29,10 @@ Here's an example of what one of these directories might look like before a rele
 ```
 
 someone@justanexample:/path/to/asterisk/doc/CHANGES-staging# ls
-core\_relevant\_title.txt
+core_relevant_title.txt
 README.md
-res\_pjsip\_relevant\_title.txt
-res\_rtp\_relevant\_title.txt
+res_pjsip_relevant_title.txt
+res_rtp_relevant_title.txt
 
 
 ```
@@ -61,7 +61,7 @@ Inside of one of these files (say, the first one), it should follow the format o
 
 ```
 
-Subject: res\_pjsip
+Subject: res_pjsip
 Subject: Core
 
 Obviously this is just an example and when you write a description it should be way better than this.
@@ -80,7 +80,7 @@ But you get the idea!
 
 
 !!! note 
-    The "Subject: res\_pjsip" line is considered a special header and is case sensitive. This is what the script uses to determine what goes where and what content belongs to. Other headers can be added in the future this way, following the subject header.
+    The "Subject: res_pjsip" line is considered a special header and is case sensitive. This is what the script uses to determine what goes where and what content belongs to. Other headers can be added in the future this way, following the subject header.
 
       
 [//]: # (end-note)
@@ -107,7 +107,7 @@ Changes that are master-only need a special header to denote them as such. This 
 
 ```
 
-Subject: res\_ari
+Subject: res_ari
 Master-Only: True
  
 A master only change!

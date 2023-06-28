@@ -52,7 +52,7 @@ Sorcery Functions
 
 Sorcery functions existing at the time of Asterisk 14.2.1
 
-* [AST\_SORCERY()](/Asterisk-14-Function_AST_SORCERY)
+* [AST_SORCERY()](/Asterisk-14-Function_AST_SORCERY)
 
 Sorcery Mapping Configuration
 =============================
@@ -83,8 +83,8 @@ The basic format follows:
 
 ```
 
-[module\_name] ;The brackets around the module name are literal, just as in most other Asterisk configuration files.
-object\_type[/options] = wizard\_name[,wizard\_configuration\_data] ;Bracketed items here are optional
+[module_name] ;The brackets around the module name are literal, just as in most other Asterisk configuration files.
+object_type[/options] = wizard_name[,wizard_configuration_data] ;Bracketed items here are optional
 
 ```
 
@@ -111,7 +111,7 @@ Wizards available at the time of writing:
 * config
 * memory
 * realtime
-* memory\_cache (For further details on this wizard type see the documentation [here](/Fundamentals/Asterisk-Configuration/Sorcery/Sorcery-Caching))
+* memory_cache (For further details on this wizard type see the documentation [here](/Fundamentals/Asterisk-Configuration/Sorcery/Sorcery-Caching))
 
 Example Mapping Configurations
 ------------------------------
@@ -129,9 +129,9 @@ The following object mappings are used by the unit test to test certain function
 
 ```
 
-[test\_sorcery\_section]
+[test_sorcery_section]
 test=memory
-[test\_sorcery\_cache]
+[test_sorcery_cache]
 test/cache=test
 test=memory
 
@@ -151,8 +151,8 @@ The following object mapping is the default mapping of external MWI mailbox obj
 
 ```
 
-[res\_mwi\_external]
-mailboxes=astdb,mwi\_external
+[res_mwi_external]
+mailboxes=astdb,mwi_external
 
 ```
 
@@ -170,15 +170,15 @@ The following object mappings set PJSIP objects to use realtime database mapping
 
 ```
 
-[res\_pjsip]
-endpoint=realtime,ps\_endpoints
-auth=realtime,ps\_auths
-aor=realtime,ps\_aors
-domain\_alias=realtime,ps\_domain\_aliases
-contact=realtime,ps\_contacts
+[res_pjsip]
+endpoint=realtime,ps_endpoints
+auth=realtime,ps_auths
+aor=realtime,ps_aors
+domain_alias=realtime,ps_domain_aliases
+contact=realtime,ps_contacts
  
-[res\_pjsip\_endpoint\_identifier\_ip]
-identify=realtime,ps\_endpoint\_id\_ips
+[res_pjsip_endpoint_identifier_ip]
+identify=realtime,ps_endpoint_id_ips
 
 ```
 
@@ -199,9 +199,9 @@ When configuring PJSIP sorcery mappings it can be useful to allow both the confi
 
 ```
 
-[res\_pjsip]
+[res_pjsip]
 auth=config,pjsip.conf,criteria=type=auth
-domain\_alias=config,pjsip.conf,criteria=type=domain\_alias
+domain_alias=config,pjsip.conf,criteria=type=domain_alias
 global=config,pjsip.conf,criteria=type=global
 system=config,pjsip.conf,criteria=type=system
 transport=config,pjsip.conf,criteria=type=transport
@@ -209,13 +209,13 @@ aor=config,pjsip.conf,criteria=type=aor
 endpoint=config,pjsip.conf,criteria=type=endpoint
 contact=astdb,registrator
  
-[res\_pjsip\_endpoint\_identifier\_ip]
+[res_pjsip_endpoint_identifier_ip]
 identify=config,pjsip.conf,criteria=type=identify
  
-[res\_pjsip\_outbound\_publish]
+[res_pjsip_outbound_publish]
 outbound-publish=config,pjsip.conf,criteria=type=outbound-publish
  
-[res\_pjsip\_outbound\_registration]
+[res_pjsip_outbound_registration]
 registration=config,pjsip.conf,criteria=type=registration
 
 ```

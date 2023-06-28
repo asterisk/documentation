@@ -64,14 +64,14 @@ Multiple languages support
 Added ability for translation on-screen menu to multiple languages. Tested on Russian language, next step - translate to other that use supported encondings (ISO 8859-1, ISO 8859-2, ISO 8859-4, ISO 8859-5, ISO 2022-JP). Language controlled by 'language' configuration option and on-screen menu of phone, also updated on phone after 'unistim reload' CLI executed. All text output tryed to be translated, so even callerid names can be translated (just need to put translated strings to translation file)
 
 
-Translation files store original (English) string and its translation and based on gettext .po files (but not use gettext). Also files stored in in target enconding for usage without iconv. Configuration stored in folder unistimLang in ASTLIBDIR (default: /var/lib/asterisk/unistimLang). List of languages hardcoded for now in chan\_unistim.c source file and need to be updated while new languages added.
+Translation files store original (English) string and its translation and based on gettext .po files (but not use gettext). Also files stored in in target enconding for usage without iconv. Configuration stored in folder unistimLang in ASTLIBDIR (default: /var/lib/asterisk/unistimLang). List of languages hardcoded for now in chan_unistim.c source file and need to be updated while new languages added.
 
 
 Change way of number input
 --------------------------
 
 
-Previous version of chan\_unistim have limitations on number input. Input field was limited by size, and have no scroll if enough big international number was dialed. So number input was reworked:
+Previous version of chan_unistim have limitations on number input. Input field was limited by size, and have no scroll if enough big international number was dialed. So number input was reworked:
 
 
 * Number input now have scroll, so it is easier to input an correct number
@@ -133,7 +133,7 @@ Missed functions
 ================
 
 
-There is still some desired functions missed and please do not look for it in updated chan\_unistim:
+There is still some desired functions missed and please do not look for it in updated chan_unistim:
 
 
 * 3-way call still not implemented

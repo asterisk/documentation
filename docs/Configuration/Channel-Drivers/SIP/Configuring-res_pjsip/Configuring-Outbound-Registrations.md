@@ -38,11 +38,11 @@ pjsip.conf
 
 ```
 
-true[my\_provider]
+true[my_provider]
 type = registration
-server\_uri = sip:registrar@example.com
-client\_uri = sip:client@example.com
-contact\_user = inbound-calls
+server_uri = sip:registrar@example.com
+client_uri = sip:client@example.com
+contact_user = inbound-calls
 
 ```
 
@@ -90,7 +90,7 @@ An English translation of the above REGISTER is "Tell the server at sip:registra
 
 
 !!! tip 
-    The transport type, e.g. tcp, for the registration can be specified by appending the details to the client\_uri and/or server\_uri parameters, e.g.:
+    The transport type, e.g. tcp, for the registration can be specified by appending the details to the client_uri and/or server_uri parameters, e.g.:
 [//]: # (end-tip)
 
 
@@ -100,11 +100,11 @@ An English translation of the above REGISTER is "Tell the server at sip:registra
 
 ```
 
-true[my\_provider]
+true[my_provider]
 type = registration
-server\_uri = sip:registrar@example.com\;transport=tcp
-client\_uri = sip:client@example.com\;transport=tcp
-contact\_user = inbound-calls  
+server_uri = sip:registrar@example.com\;transport=tcp
+client_uri = sip:client@example.com\;transport=tcp
+contact_user = inbound-calls  
 
 
 
@@ -133,20 +133,20 @@ pjsip.conf
 
 ```
 
-true[my\_provider\_endpoint]
+true[my_provider_endpoint]
 type = endpoint
  
-[my\_provider\_identify]
+[my_provider_identify]
 type = identify
 match = <ip address of provider>
-endpoint = my\_provider 
+endpoint = my_provider 
 
 ```
 
 
 This represents the bare minimum necessary in order to accept incoming calls from the provider. The `identify` section makes it so that incoming SIP traffic from the IP address in the `match` option will be associated with the endpoint called `my_provider_endpoint`.
 
-If you also wish to make outbound calls to the provider, then you would also need to add an AoR section so that Asterisk can know where to send calls directed to "my\_provider\_endpoint".
+If you also wish to make outbound calls to the provider, then you would also need to add an AoR section so that Asterisk can know where to send calls directed to "my_provider_endpoint".
 
 pjsip.conf
 
@@ -159,18 +159,18 @@ pjsip.conf
 
 ```
 
-true[my\_provider\_endpoint]
+true[my_provider_endpoint]
 type = endpoint
-aors = my\_provider\_aor
+aors = my_provider_aor
  
-[my\_provider\_identify]
+[my_provider_identify]
 type = identify
 match = <ip address of provider>
-endpoint = my\_provider
+endpoint = my_provider
  
-[my\_provider\_aor]
+[my_provider_aor]
 type = aor
-contact = sip:my\_provider@example.com
+contact = sip:my_provider@example.com
 
 ```
 
@@ -202,22 +202,22 @@ pjsip.conf
 
 ```
 
-true[my\_provider]
+true[my_provider]
 type = registration
-server\_uri = sip:registrar@example.com
-client\_uri = sip:client@example.com
-contact\_user = inbound-calls
-outbound\_auth = provider\_auth
+server_uri = sip:registrar@example.com
+client_uri = sip:client@example.com
+contact_user = inbound-calls
+outbound_auth = provider_auth
  
-[provider\_auth]
+[provider_auth]
 type = auth
-username = my\_username
-password = my\_password
+username = my_username
+password = my_password
 
 ```
 
 
-With this configuration, now if the registrar responds to a REGISTER by challenging for authentication, Asterisk will use the authentication credentials in the provider\_auth section in order to authenticate. Details about what options are available in auth sections can be found [here](/Asterisk-13-Configuration_res_pjsip) in the "auth" section.
+With this configuration, now if the registrar responds to a REGISTER by challenging for authentication, Asterisk will use the authentication credentials in the provider_auth section in order to authenticate. Details about what options are available in auth sections can be found [here](/Asterisk-13-Configuration_res_pjsip) in the "auth" section.
 
 Dealing with Failure
 ====================
@@ -257,16 +257,16 @@ pjsip.conf
 
 ```
 
-true[my\_provider]
+true[my_provider]
 type = registration
-server\_uri = sip:registrar@example.com
-client\_uri = sip:client@example.com
-contact\_user = inbound-calls
-outbound\_auth = provider\_auth
-auth\_rejection\_permanent = no
-retry\_interval = 30
-forbidden\_retry\_interval = 300
-max\_retries = 20
+server_uri = sip:registrar@example.com
+client_uri = sip:client@example.com
+contact_user = inbound-calls
+outbound_auth = provider_auth
+auth_rejection_permanent = no
+retry_interval = 30
+forbidden_retry_interval = 300
+max_retries = 20
 
 ```
 
@@ -294,7 +294,7 @@ You can monitor the status of your configured outbound registrations via the CLI
 
  <Registration/ServerURI..............................> <Auth..........> <Status.......>
  =========================================================================================
- my\_provider/sip:registrar@example.com provider\_auth Unregistered 
+ my_provider/sip:registrar@example.com provider_auth Unregistered 
  outreg/sip:registrar@example.com n/a Unregistered 
 
 ```
@@ -323,22 +323,22 @@ In addition, you can see the details of a particular registration by issuing the
  <Registration/ServerURI..............................> <Auth..........> <Status.......>
  =========================================================================================
 
- my\_provider/sip:registrar@example.com provider\_auth Unregistered 
+ my_provider/sip:registrar@example.com provider_auth Unregistered 
 
 
  ParameterName : ParameterValue
  ====================================================
- auth\_rejection\_permanent : false
- client\_uri : sip:client@example.com
- contact\_user : inbound-calls
+ auth_rejection_permanent : false
+ client_uri : sip:client@example.com
+ contact_user : inbound-calls
  expiration : 3600
- forbidden\_retry\_interval : 300
- max\_retries : 20
- outbound\_auth : provider\_auth
- outbound\_proxy : 
- retry\_interval : 30
- server\_uri : sip:registrar@example.com
- support\_path : false
+ forbidden_retry_interval : 300
+ max_retries : 20
+ outbound_auth : provider_auth
+ outbound_proxy : 
+ retry_interval : 30
+ server_uri : sip:registrar@example.com
+ support_path : false
  transport : 
 
 ```
@@ -369,7 +369,7 @@ Message: Following are Events for each Outbound registration
 
 Event: OutboundRegistrationDetail
 ObjectType: registration
-ObjectName: my\_provider
+ObjectName: my_provider
 SupportPath: false
 AuthRejectionPermanent: false
 ServerUri: sip:registrar@example.com
@@ -379,7 +379,7 @@ MaxRetries: 20
 OutboundProxy: 
 Transport: 
 ForbiddenRetryInterval: 300
-OutboundAuth: provider\_auth
+OutboundAuth: provider_auth
 ContactUser: inbound-calls
 Expiration: 3600
 Status: Rejected

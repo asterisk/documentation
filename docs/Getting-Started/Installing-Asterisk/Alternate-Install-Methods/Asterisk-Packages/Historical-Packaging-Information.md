@@ -36,7 +36,7 @@ Install Ubuntu 10.04 (Lucid)
 Enable Backports
 -------------```bash title="---" linenums="1"
 $ sudo apt-get install python-software-properties
-$ sudo add-apt-repository "deb http://ca.archive.ubuntu.com/ubuntu/ $(lsb\_release --short --codename)-backports main universe"
+$ sudo add-apt-repository "deb http://ca.archive.ubuntu.com/ubuntu/ $(lsb_release --short --codename)-backports main universe"
 
 
 ```
@@ -88,29 +88,29 @@ $ sudo vi /etc/pbuilder/pbuilderrc
 
 ```
 
-export CCACHE\_DIR="/var/cache/pbuilder/ccache"
+export CCACHE_DIR="/var/cache/pbuilder/ccache"
 export PATH="/usr/lib/ccache:${PATH}"
 EXTRAPACKAGES="ccache"
-BINDMOUNTS="${CCACHE\_DIR}"
+BINDMOUNTS="${CCACHE_DIR}"
 
 # Codenames for Debian suites according to their alias. Update these when
 # needed.
-UNSTABLE\_CODENAME="sid"
-TESTING\_CODENAME="wheezy"
-STABLE\_CODENAME="squeeze"
-OLDSTABLE\_CODENAME="lenny"
-STABLE\_BACKPORTS\_SUITE="$STABLE\_CODENAME-backports"
+UNSTABLE_CODENAME="sid"
+TESTING_CODENAME="wheezy"
+STABLE_CODENAME="squeeze"
+OLDSTABLE_CODENAME="lenny"
+STABLE_BACKPORTS_SUITE="$STABLE_CODENAME-backports"
  
 # List of Debian suites.
-DEBIAN\_SUITES=($UNSTABLE\_CODENAME $TESTING\_CODENAME $STABLE\_CODENAME $OLDSTABLE\_CODENAME
+DEBIAN_SUITES=($UNSTABLE_CODENAME $TESTING_CODENAME $STABLE_CODENAME $OLDSTABLE_CODENAME
  "unstable" "testing" "stable" "oldstable")
  
 # List of Ubuntu suites. Update these when needed.
-UBUNTU\_SUITES=("oneiric" "natty" "maverick" "lucid")
+UBUNTU_SUITES=("oneiric" "natty" "maverick" "lucid")
  
 # Mirrors to use. Update these to your preferred mirror.
-DEBIAN\_MIRROR="ftp.us.debian.org"
-UBUNTU\_MIRROR="mirrors.kernel.org"
+DEBIAN_MIRROR="ftp.us.debian.org"
+UBUNTU_MIRROR="mirrors.kernel.org"
  
 # Optionally use the changelog of a package to determine the suite to use if
 # none set.
@@ -118,27 +118,27 @@ if [ -z "${DIST}" ] && [ -r "debian/changelog" ]; then
  DIST=$(dpkg-parsechangelog | awk '/^Distribution: / {print $2}')
  # Use the unstable suite for certain suite values.
  if $(echo "experimental UNRELEASED" | grep -q $DIST); then
- DIST="$UNSTABLE\_CODENAME"
+ DIST="$UNSTABLE_CODENAME"
  fi
 fi
  
 # Optionally set a default distribution if none is used. Note that you can set
 # your own default (i.e. ${DIST:="unstable"}).
-: ${DIST:="$(lsb\_release --short --codename)"}
+: ${DIST:="$(lsb_release --short --codename)"}
  
 # Optionally change Debian release states in $DIST to their names.
 case "$DIST" in
  unstable)
- DIST="$UNSTABLE\_CODENAME"
+ DIST="$UNSTABLE_CODENAME"
  ;;
  testing)
- DIST="$TESTING\_CODENAME"
+ DIST="$TESTING_CODENAME"
  ;;
  stable)
- DIST="$STABLE\_CODENAME"
+ DIST="$STABLE_CODENAME"
  ;;
  oldstable)
- DIST="$OLDSTABLE\_CODENAME"
+ DIST="$OLDSTABLE_CODENAME"
  ;;
 esac
  
@@ -165,14 +165,14 @@ BUILDRESULT="/var/cache/pbuilder/$NAME/result/"
 APTCACHE="/var/cache/pbuilder/$NAME/aptcache/"
 BUILDPLACE="/var/cache/pbuilder/build/"
  
-if $(echo ${DEBIAN\_SUITES[@]} | grep -q $DIST); then
+if $(echo ${DEBIAN_SUITES[@]} | grep -q $DIST); then
  # Debian configuration
- MIRRORSITE="http://$DEBIAN\_MIRROR/debian/"
+ MIRRORSITE="http://$DEBIAN_MIRROR/debian/"
  COMPONENTS="main contrib non-free"
  DEBOOTSTRAPOPTS=("${DEBOOTSTRAPOPTS[@]}" "--keyring=/usr/share/keyrings/debian-archive-keyring.gpg")
-elif $(echo ${UBUNTU\_SUITES[@]} | grep -q $DIST); then
+elif $(echo ${UBUNTU_SUITES[@]} | grep -q $DIST); then
  # Ubuntu configuration
- MIRRORSITE="http://$UBUNTU\_MIRROR/ubuntu/"
+ MIRRORSITE="http://$UBUNTU_MIRROR/ubuntu/"
  COMPONENTS="main universe"
  DEBOOTSTRAPOPTS=("${DEBOOTSTRAPOPTS[@]}" "--keyring=/usr/share/keyrings/ubuntu-archive-keyring.gpg")
 else
@@ -251,12 +251,12 @@ $ vi ~/.quiltrc
 
 ```
 
-QUILT\_PATCHES="debian/patches"
+QUILT_PATCHES="debian/patches"
 
-QUILT\_PATCH\_OPTS="--unified-reject-files"
-QUILT\_REFRESH\_ARGS="-p ab --no-timestamps --no-index"
-QUILT\_DIFF\_OPTS="--show-c-function"
-QUILT\_DIFF\_ARGS="-p ab --no-timestamps --no-index --color=auto"
+QUILT_PATCH_OPTS="--unified-reject-files"
+QUILT_REFRESH_ARGS="-p ab --no-timestamps --no-index"
+QUILT_DIFF_OPTS="--show-c-function"
+QUILT_DIFF_ARGS="-p ab --no-timestamps --no-index --color=auto"
 
 
 ```
@@ -280,14 +280,14 @@ $ vi ~/.devscripts
 
 ```
 
-DEBCHANGE\_RELEASE\_HEURISTIC=changelog
-DEBCHANGE\_MULTIMAINT\_MERGE=yes
-DEBCHANGE\_MAINTTRAILER=no
-DEBUILD\_ROOTCMD=fakeroot
-DEBUILD\_LINTIAN=yes
-DEBUILD\_LINDA=yes
-DEFAULT\_DEBRELEASE\_DEBS\_DIR=../build-area/
-USCAN\_DESTDIR=../tarballs
+DEBCHANGE_RELEASE_HEURISTIC=changelog
+DEBCHANGE_MULTIMAINT_MERGE=yes
+DEBCHANGE_MAINTTRAILER=no
+DEBUILD_ROOTCMD=fakeroot
+DEBUILD_LINTIAN=yes
+DEBUILD_LINDA=yes
+DEFAULT_DEBRELEASE_DEBS_DIR=../build-area/
+USCAN_DESTDIR=../tarballs
 
 
 ```
@@ -509,7 +509,7 @@ Architectures: i386 amd64 source
 Components: main
 SignWith: yes
 Log: logfile
- --changes ~/bin/build\_sources
+ --changes ~/bin/build_sources
 
 
 ```
@@ -536,7 +536,7 @@ incoming
 Name: incoming
 IncomingDir: incoming
 Allow: lucid-proposed
-Cleanup: on\_deny on\_error
+Cleanup: on_deny on_error
 TempDir: tmp
 
 
@@ -575,7 +575,7 @@ Alias /debian /home/reprepro/
 
 
 ```bash title="---" linenums="1"
-$ vi ~/bin/build\_sources
+$ vi ~/bin/build_sources
 
 
 ```
@@ -589,7 +589,7 @@ action=$1
 release=$2
 package=$3
 version=$4
-changes\_file=$5
+changes_file=$5
  
 # Only care about packages being added
 if [ "$action" != "accepted" ]
@@ -598,7 +598,7 @@ then
 fi
  
 # Only care about source packages
-echo $changes\_file | grep -q \_source.changes
+echo $changes_file | grep -q _source.changes
 if [ $? = 1 ]
 then
  exit 0
@@ -650,8 +650,8 @@ $ sudo vi /etc/default/rebuildd
 
 ```
 
-START\_REBUILDD=1
-START\_REBUILDD\_HTTPD=1
+START_REBUILDD=1
+START_REBUILDD_HTTPD=1
 DISTS="lucid"
 
 
@@ -681,7 +681,7 @@ $ sudo apt-get build-dep asterisk
 
 
 ```bash title="---" linenums="1"
-$ DEB\_BUILD\_OPTIONS="debug" apt-get -b source asterisk
+$ DEB_BUILD_OPTIONS="debug" apt-get -b source asterisk
 
 
 ```

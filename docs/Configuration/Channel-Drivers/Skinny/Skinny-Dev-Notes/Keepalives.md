@@ -34,10 +34,10 @@ Other info:
 
 * Devices appear to consider themselves still registered (with no indication provided to user) until the unregister/reset conn occurs.
 * Devices generally do not respond to keepalives or reset their own timings (see below for exception)
-* After unregister (but no reset obviously) keepalives are still sent, further, the device now responds to keepalives with a keepalive\_ack, but this doesn't affect the timing of their own keepalives.
+* After unregister (but no reset obviously) keepalives are still sent, further, the device now responds to keepalives with a keepalive_ack, but this doesn't affect the timing of their own keepalives.
 
 
-chan\_skinny impact:
+chan_skinny impact:
 
 
 * need to revise keepalive timing with is currently set to unregister at 1.1 \* keepalive time

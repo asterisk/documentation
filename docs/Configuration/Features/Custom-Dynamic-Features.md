@@ -27,9 +27,9 @@ Syntax:
 ```
 
 [applicationmap]
-<FeatureName> = <DTMF\_sequence>,<ActivateOn>[/<ActivatedBy>],<Application>[,<AppArguments>[,MOH\_Class]]
-<FeatureName> = <DTMF\_sequence>,<ActivateOn>[/<ActivatedBy>],<Application>[,"<AppArguments>"[,MOH\_Class]]
-<FeatureName> = <DTMF\_sequence>,<ActivateOn>[/<ActivatedBy>],<Application>([<AppArguments>])[,MOH\_Class]
+<FeatureName> = <DTMF_sequence>,<ActivateOn>[/<ActivatedBy>],<Application>[,<AppArguments>[,MOH_Class]]
+<FeatureName> = <DTMF_sequence>,<ActivateOn>[/<ActivatedBy>],<Application>[,"<AppArguments>"[,MOH_Class]]
+<FeatureName> = <DTMF_sequence>,<ActivateOn>[/<ActivatedBy>],<Application>([<AppArguments>])[,MOH_Class]
 
 ```
 
@@ -40,13 +40,13 @@ Syntax Fields:
 
 | Field Name | Description |
 | --- | --- |
-| FeatureName | This is the name of the feature used when setting the DYNAMIC\_FEATURES variable to enable usage of this feature. |
-| DTMF\_sequence | This is the key sequence used to activate this feature. |
+| FeatureName | This is the name of the feature used when setting the DYNAMIC_FEATURES variable to enable usage of this feature. |
+| DTMF_sequence | This is the key sequence used to activate this feature. |
 | ActivateOn | This is the channel of the call that the application will be executed on. Valid values are "self" and "peer". "self" means run the application on the same channel that activated the feature. "peer" means run the application on the opposite channel from the one that has activated the feature. |
-| ActivatedBy | ActivatedBy is no longer honored. The feature is activated by which channel DYNAMIC\_FEATURES includes the feature is on. Use a pre-dial handler to set different values for DYNAMIC\_FEATURES on the channels. Historic values are: "caller", "callee", and "both". |
+| ActivatedBy | ActivatedBy is no longer honored. The feature is activated by which channel DYNAMIC_FEATURES includes the feature is on. Use a pre-dial handler to set different values for DYNAMIC_FEATURES on the channels. Historic values are: "caller", "callee", and "both". |
 | Application | This is the application to execute. |
 | AppArguments | These are the arguments to be passed into the application. If you need commas in your arguments, you should use either the second or third syntax, above. |
-| MOH\_Class | This is the music on hold class to play while the idle channel waits for the feature to complete. If left blank, no music will be played. |
+| MOH_Class | This is the music on hold class to play while the idle channel waits for the feature to complete. If left blank, no music will be played. |
 
 Application Mapping
 -------------------
@@ -73,7 +73,7 @@ features.conf
 
  [applicationmap]
 playmonkeys => #9,peer,Playback,tt-monkeys
-retrieveinfo => #8,peer,Set(ARRAY(CDR(mark),CDR(name))=${ODBC\_FOO(${CALLERID(num)})})
+retrieveinfo => #8,peer,Set(ARRAY(CDR(mark),CDR(name))=${ODBC_FOO(${CALLERID(num)})})
 pauseMonitor => #1,self/callee,Pausemonitor
 unpauseMonitor => #3,self/callee,UnPauseMonitor
 
@@ -90,9 +90,9 @@ Example feature descriptions:
 Enabling Features
 =================
 
-After you define a custom feature in features.conf you must enable it on a channel by setting the DYNAMIC\_FEATURES channel variable.
+After you define a custom feature in features.conf you must enable it on a channel by setting the DYNAMIC_FEATURES channel variable.
 
-DYNAMIC\_FEATURES accepts as an argument a list of hash-sign delimited feature names.
+DYNAMIC_FEATURES accepts as an argument a list of hash-sign delimited feature names.
 
 Example Usage:
 
@@ -107,7 +107,7 @@ extensions.conf
 
 ```
 
- Set(\_\_DYNAMIC\_FEATURES=playmonkeys#pauseMonitor#unpauseMonitor)
+ Set(__DYNAMIC_FEATURES=playmonkeys#pauseMonitor#unpauseMonitor)
 
 ```
 

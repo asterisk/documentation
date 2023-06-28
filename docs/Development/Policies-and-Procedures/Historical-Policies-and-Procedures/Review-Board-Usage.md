@@ -72,7 +72,7 @@ The easiest way to post a patch to Review Board is by using the rbt tool. Instal
 
 ```
 
- $ sudo easy\_install -U RBTools
+ $ sudo easy_install -U RBTools
 
 
 ```
@@ -152,7 +152,7 @@ Then, apply the changes from your branch:
 
 ```
 
- $ svn merge .../trunk .../team/group/my\_new\_code
+ $ svn merge .../trunk .../team/group/my_new_code
 
 
 ```
@@ -171,8 +171,8 @@ Now, the code is merged into your working copy. However, for a new file, subvers
 
 ```
 
- $ svn revert my\_new\_file.c
- $ svn add my\_new\_file.c
+ $ svn revert my_new_file.c
+ $ svn add my_new_file.c
 
 
 ```

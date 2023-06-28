@@ -74,7 +74,7 @@ Topic:
 Subscriber
 
 * id: string - A unique ID for the subscriber
-* topic\_id: string - The topic ID this subscription refers to
+* topic_id: string - The topic ID this subscription refers to
 * endpoint: Endpoint - If available, the endpoint that subscribed to this Topic
 
  
@@ -134,7 +134,7 @@ API
 * PUT is appropriate, since status updates are idempotent, and these objects are explicitly named
 * You can only PUT or DELETE /presence-state for `CustomPresence:`
 * You can only PUT or DELETE /device-state for `Custom:`
-* If you PUT or DELETE /mailboxes when app\_voicemail or app\_minivm is in use, the results are undefined
+* If you PUT or DELETE /mailboxes when app_voicemail or app_minivm is in use, the results are undefined
 * /applications/{applicationName}/subscription will be updated to handle mailbox:, presence:, and device: URI's
 	+ The implementation should be generalized so that handlers for URI schemes can be pluggable
 
@@ -144,8 +144,8 @@ Data Model
 Mailbox
 
 * name: string
-* new\_messages: int
-* old\_message: int
+* new_messages: int
+* old_message: int
 
 DeviceState
 
@@ -166,12 +166,12 @@ MailboxStateChanged
 
 DeviceStateChanged
 
-* device\_state: DeviceState
+* device_state: DeviceState
 
 PresenceStateChanged
 
-* presence\_state: PresenceState
+* presence_state: PresenceState
 
 MailboxUpdateRequested - This is an odd event. When Asterisk starts, it has no mailbox state from the external application. This event requests that the external voicemail application PUT the current mailbox state back into Asterisk.
 
-* mailbox\_name: string
+* mailbox_name: string

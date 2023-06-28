@@ -38,13 +38,13 @@ SIPp Scenario
  <send retrans="500">
  <![CDATA[
 
- REGISTER sip:v4-in@[remote\_ip]:[remote\_port] SIP/2.0
- Via: SIP/2.0/[transport] [local\_ip]:[local\_port];branch=[branch]
- From: v4-in <sip:v4-in@[local\_ip]:[local\_port]>;tag=[pid]SIPpTag00[call\_number]
- To: <sip:v4-in@[remote\_ip]:[remote\_port]>
- Call-ID: [call\_id]
+ REGISTER sip:v4-in@[remote_ip]:[remote_port] SIP/2.0
+ Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+ From: v4-in <sip:v4-in@[local_ip]:[local_port]>;tag=[pid]SIPpTag00[call_number]
+ To: <sip:v4-in@[remote_ip]:[remote_port]>
+ Call-ID: [call_id]
  CSeq: 1 REGISTER
- Contact: sip:v4-in@[local\_ip]:[local\_port]
+ Contact: sip:v4-in@[local_ip]:[local_port]
  Max-Forwards: 70
  Subject: REGISTER Test
  Expires: 3600
@@ -109,10 +109,10 @@ sys.path.append("lib/python")
 from twisted.internet import reactor
 from asterisk.sipp import SIPpTest
 
-WORKING\_DIR = "channels/SIP/sip\_register"
-TEST\_DIR = os.path.dirname(os.path.realpath(\_\_file\_\_))
+WORKING_DIR = "channels/SIP/sip_register"
+TEST_DIR = os.path.dirname(os.path.realpath(__file__))
 
-SIPP\_SCENARIOS = [
+SIPP_SCENARIOS = [
  {
  'scenario' : 'registerv4.xml'
  },
@@ -120,7 +120,7 @@ SIPP\_SCENARIOS = [
 
 
 def main():
- test = SIPpTest(WORKING\_DIR, TEST\_DIR, SIPP\_SCENARIOS)
+ test = SIPpTest(WORKING_DIR, TEST_DIR, SIPP_SCENARIOS)
  reactor.run()
  if not test.passed:
  return 1
@@ -128,7 +128,7 @@ def main():
  return 0
 
 
-if \_\_name\_\_ == "\_\_main\_\_":
+if __name__ == "__main__":
  sys.exit(main())
 
 

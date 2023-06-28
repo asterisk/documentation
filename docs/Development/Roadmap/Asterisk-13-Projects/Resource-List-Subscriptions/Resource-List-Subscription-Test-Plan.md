@@ -3,7 +3,7 @@ title: Resource List Subscription Test Plan
 pageid: 29392925
 ---
 
-For your tests, SIPp is mentioned as a tool to perform the tests; however, given the level of detail that will be necessary when checking the contents of SIP NOTIFY bodies, you will probably be better off not trying to use SIPp's built-in tools for NOTIFY checking. I have added a [pxby](http://pyxb.sourceforge.net)-generated library to the testsuite located at lib/python/rlmi.py that can parse RLMI documents into python classes. There is a demonstration of how to use the module in contrib/scripts/rlmi\_demo.py.
+For your tests, SIPp is mentioned as a tool to perform the tests; however, given the level of detail that will be necessary when checking the contents of SIP NOTIFY bodies, you will probably be better off not trying to use SIPp's built-in tools for NOTIFY checking. I have added a [pxby](http://pyxb.sourceforge.net)-generated library to the testsuite located at lib/python/rlmi.py that can parse RLMI documents into python classes. There is a demonstration of how to use the module in contrib/scripts/rlmi_demo.py.
 
 Resource List Tests
 ===================
@@ -23,17 +23,17 @@ pjsip.conf:
 
 ```
 
-[pres\_list]
-type = resource\_list
+[pres_list]
+type = resource_list
 event = presence
-list\_item = alice@default
-list\_item = bob@default
+list_item = alice@default
+list_item = bob@default
  
-[mail\_list]
-type = resource\_list
+[mail_list]
+type = resource_list
 event = message-summary
-list\_item = alice
-list\_item = bob
+list_item = alice
+list_item = bob
  
 [sipp]
 type = endpoint
@@ -62,7 +62,7 @@ exten => bob,hint,Custom:bob
 ```
 
 
-It is expected that tests that use the `mail_list` are using external MWI, not app\_voicemail.
+It is expected that tests that use the `mail_list` are using external MWI, not app_voicemail.
 
 Nominal tests
 -------------
@@ -80,7 +80,7 @@ For this test, do not worry about the content of the initial NOTIFY from Asteris
 
 #### Test 2: Initial NOTIFY content
 
-Use SIPp to establish a subscription to pres\_list. Ensure the following are true in the NOTIFY from Asterisk:
+Use SIPp to establish a subscription to pres_list. Ensure the following are true in the NOTIFY from Asterisk:
 
 * There is a Require: eventlist header
 * The Content-Type header contains "multipart/related"
@@ -114,7 +114,7 @@ Add the following line to each list in pjsip.conf:
 
 ```
 
-full\_state = yes
+full_state = yes
 
 ```
 
@@ -140,7 +140,7 @@ Add the following line to the configured list in pjsip.conf:
 
 ```
 
-full\_state = no
+full_state = no
 
 ```
 
@@ -165,7 +165,7 @@ Run a second iteration of the test with the `full_state` option set to "no" and
 
 #### Test 6: Subscription Termination
 
-Use SIPp to subscribe to pres\_list. After receiving the first NOTIFY from Asterisk, have the SIPp scenario end the subscription by sending a subscribe with Expires: 0 to unsubscribe. Like with Test 5, ensure that the NOTIFY that Asterisk sends has bumped the RLMI version number and that the cid attributes in the RLMI body match the Content-ID headers in the simple-message-summary bodies.
+Use SIPp to subscribe to pres_list. After receiving the first NOTIFY from Asterisk, have the SIPp scenario end the subscription by sending a subscribe with Expires: 0 to unsubscribe. Like with Test 5, ensure that the NOTIFY that Asterisk sends has bumped the RLMI version number and that the cid attributes in the RLMI body match the Content-ID headers in the simple-message-summary bodies.
 
 After the subscription has ended, perform a state change on the alice mailbox. Ensure that Asterisk does not send any SIP traffic as a result.
 
@@ -178,7 +178,7 @@ Unlike the nominal tests, these should not automatically be run for each support
 
 #### Test 1: Subscriber does not support resource lists
 
-Have the SIPp scenario attempt to subscribe to pres\_list, but include no "Supported: eventlist" header in the SIPp scenario. Ensure that Asterisk responds to the SUBSCRIBE with a 421 error.
+Have the SIPp scenario attempt to subscribe to pres_list, but include no "Supported: eventlist" header in the SIPp scenario. Ensure that Asterisk responds to the SUBSCRIBE with a 421 error.
 
 #### Test 2: Incorrect event specified
 
@@ -188,7 +188,7 @@ Have the SIPp scenario attempt to subscribe to `mail_list` but set the Event hea
 
 
 !!! note 
-    If the circumstances are reversed (i.e. SIPp attempts to subscribe to `pres_list` with "Event: message-summary" in the SUBSCRIBE), the SUBSCRIBE will succeed, subscribing to a single mailbox called "mail\_list".
+    If the circumstances are reversed (i.e. SIPp attempts to subscribe to `pres_list` with "Event: message-summary" in the SUBSCRIBE), the SUBSCRIBE will succeed, subscribing to a single mailbox called "mail_list".
 
       
 [//]: # (end-note)
@@ -226,11 +226,11 @@ For this test, alter the `pres_list` configuration to be the following:
 
 ```
 
-[pres\_list]
-type = resource\_list
+[pres_list]
+type = resource_list
 event = presence
-list\_item = alice@default
-list\_item = alice@default
+list_item = alice@default
+list_item = alice@default
 
 ```
 
@@ -255,27 +255,27 @@ pjsip.conf:
 
 ```
 
-[pres\_list]
-type = resource\_list
+[pres_list]
+type = resource_list
 event = presence
-list\_item = pres\_sublist
+list_item = pres_sublist
  
-[pres\_sublist]
-type = resource\_list
+[pres_sublist]
+type = resource_list
 event = presence
-list\_item = alice@default
-list\_item = bob@default
+list_item = alice@default
+list_item = bob@default
  
-[mail\_list]
-type = resource\_list
+[mail_list]
+type = resource_list
 event = message-summary
-list\_item = mail\_sublist
+list_item = mail_sublist
  
-[mail\_sublist]
-type = resource\_list
+[mail_sublist]
+type = resource_list
 event = message-summary
-list\_item = alice
-list\_item = bob
+list_item = alice
+list_item = bob
  
 [sipp]
 type = endpoint
@@ -370,29 +370,29 @@ pjsip.conf:
 
 ```
 
-[pres\_list]
-type = resource\_list
+[pres_list]
+type = resource_list
 event = presence
-list\_item = pres\_sublist
-list\_item = carol@default
+list_item = pres_sublist
+list_item = carol@default
  
-[pres\_sublist]
-type = resource\_list
+[pres_sublist]
+type = resource_list
 event = presence
-list\_item = alice@default
-list\_item = bob@default
+list_item = alice@default
+list_item = bob@default
  
-[mail\_list]
-type = resource\_list
+[mail_list]
+type = resource_list
 event = message-summary
-list\_item = mail\_sublist
-list\_item = carol
+list_item = mail_sublist
+list_item = carol
  
-[mail\_sublist]
-type = resource\_list
+[mail_sublist]
+type = resource_list
 event = message-summary
-list\_item = alice
-list\_item = bob
+list_item = alice
+list_item = bob
  
 [sipp]
 type = endpoint

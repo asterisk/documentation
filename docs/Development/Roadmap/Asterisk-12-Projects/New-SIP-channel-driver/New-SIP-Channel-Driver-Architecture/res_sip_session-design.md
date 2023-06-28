@@ -56,27 +56,27 @@ c
  \* and retrieving them when needed. Session cookies are similar to
  \* channel datastores.
  \*/
-struct ast\_sip\_session\_cookie {
+struct ast_sip_session_cookie {
  /\*! Callback used to destroy the cookie's data. Called when the cookie is removed from the session \*/
  void (\*destroy)(void \*cookie);
  /\*! Identifier for the cookie. Used when storing and retrieving a cookie \*/
  const char \*name;
  /\*! Data associated with the cookie \*/
- void \*cookie\_data;
+ void \*cookie_data;
 };
 
 /\*!
  \* \brief A structure describing a SIP session
  \*/
-struct ast\_sip\_session {
+struct ast_sip_session {
  /\* The endpoint with which Asterisk is communicating \*/
- struct ast\_sip\_endpoint \*endpoint;
+ struct ast_sip_endpoint \*endpoint;
  /\* The PJSIP details of the session, which includes the dialog \*/
- struct pjsip\_inv\_session \*inv\_session;
+ struct pjsip_inv_session \*inv_session;
  /\* The Asterisk channel associated with the session \*/
- struct ast\_channel \*channel;
+ struct ast_channel \*channel;
  /\* Cookies added to the session by supplements to the session \*/
- struct ao2\_container \*cookies;
+ struct ao2_container \*cookies;
 };
 
 /\*!
@@ -85,25 +85,25 @@ struct ast\_sip\_session {
  \* These can be registered by any module in order to add
  \* processing to incoming and outgoing SIP requests and responses
  \*/
-struct ast\_sip\_session\_supplement {
+struct ast_sip_session_supplement {
  /\*! Method on which to call the callbacks. If NULL, call on all methods \*/
  const char \*method;
  /\*! Notification that the session has begun \*/
- void (\*session\_begin)(struct ast\_sip\_session \*session);
+ void (\*session_begin)(struct ast_sip_session \*session);
  /\*! Notification that the session has ended \*/
- void (\*session\_end)(struct ast\_sip\_session \*session);
+ void (\*session_end)(struct ast_sip_session \*session);
  /\*!
  \* \brief Called on incoming SIP request
  \* This method can indicate a failure in processing in its return. If there
  \* is a failure, it is required that this method sends a response to the request.
  \*/
- int (\*incoming\_request)(struct ast\_sip\_session \*session, struct pjsip\_rx\_data \*rdata);
+ int (\*incoming_request)(struct ast_sip_session \*session, struct pjsip_rx_data \*rdata);
  /\*! Called on an incoming SIP response \*/
- void (\*incoming\_response)(struct ast\_sip\_session \*session, struct pjsip\_rx\_data \*rdata);
+ void (\*incoming_response)(struct ast_sip_session \*session, struct pjsip_rx_data \*rdata);
  /\*! Called on an outgoing SIP request \*/
- void (\*outgoing\_request)(struct ast\_sip\_session \*session, struct pjsip\_tx\_data \*tdata);
+ void (\*outgoing_request)(struct ast_sip_session \*session, struct pjsip_tx_data \*tdata);
  /\*! Called on an outgoing SIP response \*/
- void (\*outgoing\_response)(struct ast\_sip\_session \*session, struct pjsip\_tx\_data \*tdata);
+ void (\*outgoing_response)(struct ast_sip_session \*session, struct pjsip_tx_data \*tdata);
 };
 
 /\*!
@@ -112,7 +112,7 @@ struct ast\_sip\_session\_supplement {
  \* An SDP handler is registered by a module that is interested in being the
  \* responsible party for specific types of SDP streams.
  \*/
-struct ast\_sip\_session\_sdp\_handler {
+struct ast_sip_session_sdp_handler {
  /\*!
  \* \brief Set session details based on a stream in an incoming SDP offer or answer
  \* \param session The session for which the media is being negotiated
@@ -121,7 +121,7 @@ struct ast\_sip\_session\_sdp\_handler {
  \* \retval <0 There was an error encountered. No further operation will take place and the current negotiation will be abandoned.
  \* \retval >0 The stream was handled by this handler. No further handler of this stream type will be called.
  \*/
- int (\*handle\_incoming\_sdp\_stream\_offer)(struct ast\_sip\_session \*session, struct pjmedia\_sdp\_media \*stream);
+ int (\*handle_incoming_sdp_stream_offer)(struct ast_sip_session \*session, struct pjmedia_sdp_media \*stream);
  /\*!
  \* \brief Create an SDP media stream and add it to the outgoing SDP offer or answer
  \* \param session The session for which media is being added
@@ -130,7 +130,7 @@ struct ast\_sip\_session\_sdp\_handler {
  \* \retval <0 There was an error encountered. No further operation will take place and the current SDP negotiation will be abandoned.
  \* \retval >0 The handler has a stream to be added to the SDP. No further handler of this stream type will be called.
  \*/
- int (\*create\_outgoing\_sdp\_stream)(struct ast\_sip\_session \*session, struct pjmedia\_sdp\_session \*sdp);
+ int (\*create_outgoing_sdp_stream)(struct ast_sip_session \*session, struct pjmedia_sdp_session \*sdp);
 };
 
 
@@ -164,18 +164,18 @@ c
  \* stream type until one claims to have handled the stream.
  \*
  \* \param handler The SDP handler to register
- \* \param stream\_type The type of media stream for which to call the handler
+ \* \param stream_type The type of media stream for which to call the handler
  \* \retval 0 Success
  \* \retval -1 Failure
  \*/
-int ast\_sip\_session\_register\_sdp\_handler(const struct ast\_sip\_session\_sdp\_handler \*handler, const char \*stream\_type);
+int ast_sip_session_register_sdp_handler(const struct ast_sip_session_sdp_handler \*handler, const char \*stream_type);
 
 /\*!
  \* \brief Unregister an SDP handler
  \*
  \* \param handler The SDP handler to unregister
  \*/
-void ast\_sip\_session\_unregister\_sdp\_handler(const struct ast\_sip\_session\_sdp\_handler \*handler);
+void ast_sip_session_unregister_sdp_handler(const struct ast_sip_session_sdp_handler \*handler);
 
 /\*!
  \* \brief Register a supplement to SIP session processing
@@ -189,14 +189,14 @@ void ast\_sip\_session\_unregister\_sdp\_handler(const struct ast\_sip\_session\
  \* \retval 0 Success
  \* \retval -1 Failure
  \*/
-int ast\_sip\_session\_register\_supplement(struct ast\_sip\_session\_supplement \*supplement);
+int ast_sip_session_register_supplement(struct ast_sip_session_supplement \*supplement);
 
 /\*!
  \* \brief Unregister a an supplement to SIP session processing
  \*
  \* \param supplement The supplement to unregister
  \*/
-void ast\_sip\_session\_unregister\_supplement(struct ast\_sip\_session\_supplement \*supplement);
+void ast_sip_session_unregister_supplement(struct ast_sip_session_supplement \*supplement);
 
 /\*!
  \* \brief Add a cookie to a SIP session
@@ -205,7 +205,7 @@ void ast\_sip\_session\_unregister\_supplement(struct ast\_sip\_session\_supplem
  \* \retval 0 Success
  \* \retval -1 Failure
  \*/
-int ast\_sip\_session\_add\_cookie(struct ast\_sip\_session \*session, struct ast\_sip\_session\_cookie \*cookie);
+int ast_sip_session_add_cookie(struct ast_sip_session \*session, struct ast_sip_session_cookie \*cookie);
 
 /\*!
  \* \brief Retrieve a session cookie
@@ -214,7 +214,7 @@ int ast\_sip\_session\_add\_cookie(struct ast\_sip\_session \*session, struct as
  \* \retval NULL Failed to find the specified cookie
  \* \retval non-NULL The specified cookie
  \*/
-struct ast\_sip\_session\_cookie \*ast\_sip\_session\_get\_cookie(struct ast\_sip\_session \*session, const char \*name);
+struct ast_sip_session_cookie \*ast_sip_session_get_cookie(struct ast_sip_session \*session, const char \*name);
 
 /\*!
  \* \brief Remove a session cookie from the session
@@ -226,7 +226,7 @@ struct ast\_sip\_session\_cookie \*ast\_sip\_session\_get\_cookie(struct ast\_si
  \* \retval 0 Successfully removed the cookie
  \* \retval -1 Failed to remove the cookie
  \*/
-int ast\_sip\_session\_remove\_cookie(struct ast\_sip\_session \*session, const char \*name);
+int ast_sip_session_remove_cookie(struct ast_sip_session \*session, const char \*name);
 
 
 ```
@@ -259,33 +259,33 @@ c
  \* \retval 0 Successfully found identifying information
  \* \retval -1 Identifying information could not be found
  \*/
-int ast\_sip\_session\_get\_identity(struct pjsip\_rx\_data \*rdata, struct ast\_party\_id \*id);
+int ast_sip_session_get_identity(struct pjsip_rx_data \*rdata, struct ast_party_id \*id);
 
 /\*!
  \* \brief Send a reinvite on a session
  \*
  \* This method will inspect the session in order to construct an appropriate
- \* reinvite. As with any outgoing request in res\_sip\_session, this will
+ \* reinvite. As with any outgoing request in res_sip_session, this will
  \* call into registered supplements in case they wish to add anything.
  \* 
  \* \param session The session on which the reinvite will be sent
- \* \param response\_cb Optional callback that can be called when the reinvite response is received. The callback is identical in nature to the incoming\_response() callback for session supplements.
+ \* \param response_cb Optional callback that can be called when the reinvite response is received. The callback is identical in nature to the incoming_response() callback for session supplements.
  \* \retval 0 Successfully sent reinvite
  \* \retval -1 Failure to send reinvite
  \*/
-int ast\_sip\_session\_send\_reinvite(struct ast\_sip\_session \*session, int (\*response\_cb)(struct ast\_sip\_session \*session, struct pjsip\_rx\_data \*rdata));
+int ast_sip_session_send_reinvite(struct ast_sip_session \*session, int (\*response_cb)(struct ast_sip_session \*session, struct pjsip_rx_data \*rdata));
 
 /\*!
  \* \brief Send a SIP response
  \*
  \* This will send a SIP response to the request specified in rdata. This will
- \* call into any registered supplements' outgoing\_response callback.
+ \* call into any registered supplements' outgoing_response callback.
  \*
  \* \param session The session to which the current transaction belongs
- \* \param response\_code The response code to send for this response
+ \* \param response_code The response code to send for this response
  \* \param rdata The response to which the response is being sent
  \*/
-int ast\_sip\_session\_send\_response(struct ast\_sip\_session \*session, int response\_code, struct pjsip\_rx\_data \*rdata);
+int ast_sip_session_send_response(struct ast_sip_session \*session, int response_code, struct pjsip_rx_data \*rdata);
 
 
 ```

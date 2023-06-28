@@ -138,12 +138,12 @@ Once we've made our connection, our first task is to print out all existing chan
 
 ```
 
-truepy10current\_channels = client.channels.list()
-if (len(current\_channels) == 0):
+truepy10current_channels = client.channels.list()
+if (len(current_channels) == 0):
  print "No channels currently :-("
 else:
  print "Current channels:"
- for channel in current\_channels:
+ for channel in current_channels:
  print channel.json.get('name') 
 
 ```
@@ -164,8 +164,8 @@ Our next step involves a bit more - we want to print out all the information abo
 
 ```
 
-truepy32client.on\_channel\_event('StasisStart', stasis\_start\_cb)
-client.on\_channel\_event('StasisEnd', stasis\_end\_cb) 
+truepy32client.on_channel_event('StasisStart', stasis_start_cb)
+client.on_channel_event('StasisEnd', stasis_end_cb) 
 
 ```
 
@@ -183,16 +183,16 @@ We need two handler functions - `stasis_start_cb` for the `StasisStart` event an
 
 ```
 
-truepy18def stasis\_start\_cb(channel\_obj, ev):
+truepy18def stasis_start_cb(channel_obj, ev):
  """Handler for StasisStart event"""
 
- channel = channel\_obj.get('channel')
+ channel = channel_obj.get('channel')
  print "Channel %s has entered the application" % channel.json.get('name')
 
  for key, value in channel.json.items():
  print "%s: %s" % (key, value)
 
-def stasis\_end\_cb(channel, ev):
+def stasis_end_cb(channel, ev):
  """Handler for StasisEnd event"""
 
  print "%s has left the application" % channel.json.get('name')
@@ -242,30 +242,30 @@ logging.basicConfig(level=logging.ERROR)
 
 client = ari.connect('http://localhost:8088', 'asterisk', 'asterisk')
 
-current\_channels = client.channels.list()
-if (len(current\_channels) == 0):
+current_channels = client.channels.list()
+if (len(current_channels) == 0):
  print "No channels currently :-("
 else:
  print "Current channels:"
- for channel in current\_channels:
+ for channel in current_channels:
  print channel.json.get('name')
 
-def stasis\_start\_cb(channel\_obj, ev):
+def stasis_start_cb(channel_obj, ev):
  """Handler for StasisStart event"""
 
- channel = channel\_obj.get('channel')
+ channel = channel_obj.get('channel')
  print "Channel %s has entered the application" % channel.json.get('name')
 
  for key, value in channel.json.items():
  print "%s: %s" % (key, value)
 
-def stasis\_end\_cb(channel, ev):
+def stasis_end_cb(channel, ev):
  """Handler for StasisEnd event"""
 
  print "%s has left the application" % channel.json.get('name')
 
-client.on\_channel\_event('StasisStart', stasis\_start\_cb)
-client.on\_channel\_event('StasisEnd', stasis\_end\_cb)
+client.on_channel_event('StasisStart', stasis_start_cb)
+client.on_channel_event('StasisEnd', stasis_end_cb)
 
 client.run(apps='channel-dump')
 

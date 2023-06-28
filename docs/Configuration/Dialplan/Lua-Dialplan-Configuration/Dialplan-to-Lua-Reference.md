@@ -32,9 +32,9 @@ extensions.conf
 
 
 [users]
-exten => \_1XX,1,Dial(SIP/${EXTEN})
+exten => _1XX,1,Dial(SIP/${EXTEN})
 
-exten => \_2XX,1,Voicemail(${EXTEN:1})
+exten => _2XX,1,Voicemail(${EXTEN:1})
 
 
 ```
@@ -61,11 +61,11 @@ extensions.lua
 extensions = {}
 extensions.users = {}
 
-extensions.users["\_1XX"] = function(c, e)
+extensions.users["_1XX"] = function(c, e)
  app.dial("SIP/" .. e)
 end
 
-extensions.users["\_2XX"] = function(c, e)
+extensions.users["_2XX"] = function(c, e)
  app.voicemail("1" .. e:sub(2))
 end
 
@@ -237,8 +237,8 @@ extensions.conf
 ```
 
 
-exten => 100,1,Set(my\_variable=my\_value)
-exten => 100,n,Verbose(my\_variable = ${my\_variable})
+exten => 100,1,Set(my_variable=my_value)
+exten => 100,n,Verbose(my_variable = ${my_variable})
 
 
 ```
@@ -262,8 +262,8 @@ extensions.lua
 ```
 
 
-channel.my\_variable = "my\_value"
-app.verbose("my\_variable = " .. channel.my\_variable:get())
+channel.my_variable = "my_value"
+app.verbose("my_variable = " .. channel.my_variable:get())
 
 
 ```
@@ -327,7 +327,7 @@ Macros/GoSub
 ------------
 
 
-*Macros can be defined in pbx\_lua by naming a context 'macro-\*' just as in `extensions.conf`, but generally where you would use macros or gosub in `extensions.conf` you would simply use a function in lua.*
+*Macros can be defined in pbx_lua by naming a context 'macro-\*' just as in `extensions.conf`, but generally where you would use macros or gosub in `extensions.conf` you would simply use a function in lua.*
 
 
 
@@ -397,7 +397,7 @@ Goto
 ----
 
 
-*While `Goto` is an extenstions.conf staple, it should generally be avoided in pbx\_lua in favor of functions.*
+*While `Goto` is an extenstions.conf staple, it should generally be avoided in pbx_lua in favor of functions.*
 
 
 
@@ -449,13 +449,13 @@ extensions.lua
 extensions = {}
 extensions.default = {}
 
-function do\_hangup()
+function do_hangup()
  app.playback("demo-thanks")
  app.hangup()
 end
 
 extensions.default[100] = function()
- do\_hangup()
+ do_hangup()
 end
 
 
@@ -467,7 +467,7 @@ end
 
 
 !!! info ""
-    The `app.goto()` function will not work as expected in pbx\_lua in Asterisk 1.8. If you must use `app.goto()` you must manually return control back to asterisk using `return` from the dialplan extension function, otherwise execution will continue after the call to `app.goto()`. Calls to `app.goto()` should work as expected in Asterisk 10 but still should not be necessary in most cases.
+    The `app.goto()` function will not work as expected in pbx_lua in Asterisk 1.8. If you must use `app.goto()` you must manually return control back to asterisk using `return` from the dialplan extension function, otherwise execution will continue after the call to `app.goto()`. Calls to `app.goto()` should work as expected in Asterisk 10 but still should not be necessary in most cases.
 [//]: # (end-info)
 
 
@@ -478,7 +478,7 @@ In Asterisk 1.8, use return
 ```
 
 
-function extension\_function(c, e)
+function extension_function(c, e)
  return app.goto("default", "100", 1)
 
  -- without that 'return' the rest of the function would execute normally

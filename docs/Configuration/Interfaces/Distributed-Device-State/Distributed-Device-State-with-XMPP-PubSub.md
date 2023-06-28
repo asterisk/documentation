@@ -131,9 +131,9 @@ server2@asterisk.mydomain.tld/astvoip2
 
 # Installing Asterisk
 
-Install Asterisk as usual. However, you'll need to make sure you have the res\_jabber module compiled, which requires the iksemel development library. Additionally, be sure you have the OpenSSL development library installed so you can connect securly to the Tigase server.
+Install Asterisk as usual. However, you'll need to make sure you have the res_jabber module compiled, which requires the iksemel development library. Additionally, be sure you have the OpenSSL development library installed so you can connect securly to the Tigase server.
 
-Make sure you check menuselect that res\_jabber is selected so that it will compile.
+Make sure you check menuselect that res_jabber is selected so that it will compile.
 
 ```
 # cd asterisk-source
@@ -154,7 +154,7 @@ If you don't have jabber.conf in your existing configuration, because sure to co
 
 We then need to configure our servers to communicate with the Tigase server. We need to modify the jabber.conf file on the servers. The configurations below are for a 2 server setup, but could be expanded for additional servers easily.
 
-The key note here is to note that the pubsub\_node option needs to start with pubsub, so for example, pubsub.asterisk.mydomain.tld. Without the 'pubsub' your Asterisk system will not be able to distribute events.
+The key note here is to note that the pubsub_node option needs to start with pubsub, so for example, pubsub.asterisk.mydomain.tld. Without the 'pubsub' your Asterisk system will not be able to distribute events.
 
 Additionally, you will need to specify each of the servers you need to connec to using the 'buddy' option.
 
@@ -168,9 +168,9 @@ debug=no ;;Turn on debugging by default.
  ;;setup (ie, using your personal Gtalk account for a test)
  ;;you might lose your contacts list. Default is 'no'.
 autoregister=yes ;;Auto register users from buddy list.
-;collection\_nodes=yes ;;Enable support for XEP-0248 for use with
+;collection_nodes=yes ;;Enable support for XEP-0248 for use with
  ;;distributed device state. Default is 'no'.
-;pubsub\_autocreate=yes ;;Whether or not the PubSub server supports/is using
+;pubsub_autocreate=yes ;;Whether or not the PubSub server supports/is using
  ;;auto-create for nodes. If it is, we have to
  ;;explicitly pre-create nodes before publishing them.
  ;;Default is 'no'.
@@ -178,10 +178,10 @@ autoregister=yes ;;Auto register users from buddy list.
 [asterisk]
 type=client
 serverhost=asterisk.mydomain.tld
-pubsub\_node=pubsub.asterisk.mydomain.tld
+pubsub_node=pubsub.asterisk.mydomain.tld
 username=server1@asterisk.mydomain.tld/astvoip1
 secret=welcome
-distribute\_events=yes
+distribute_events=yes
 status=available
 usetls=no
 usesasl=yes
@@ -197,9 +197,9 @@ debug=yes ;;Turn on debugging by default.
  ;;setup (ie, using your personal Gtalk account for a test)
  ;;you might lose your contacts list. Default is 'no'.
 autoregister=yes ;;Auto register users from buddy list.
-;collection\_nodes=yes ;;Enable support for XEP-0248 for use with
+;collection_nodes=yes ;;Enable support for XEP-0248 for use with
  ;;distributed device state. Default is 'no'.
-;pubsub\_autocreate=yes ;;Whether or not the PubSub server supports/is using
+;pubsub_autocreate=yes ;;Whether or not the PubSub server supports/is using
  ;;auto-create for nodes. If it is, we have to
  ;;explicitly pre-create nodes before publishing them.
  ;;Default is 'no'.
@@ -207,10 +207,10 @@ autoregister=yes ;;Auto register users from buddy list.
 [asterisk]
 type=client
 serverhost=asterisk.mydomain.tld
-pubsub\_node=pubsub.asterisk.mydomain.tld
+pubsub_node=pubsub.asterisk.mydomain.tld
 username=server2@asterisk.mydomain.tld/astvoip2
 secret=welcome
-distribute\_events=yes
+distribute_events=yes
 status=available
 usetls=no
 usesasl=yes
@@ -282,27 +282,27 @@ Excellent! So we're connected to the buddy on Asterisk 1, and we could run the s
 
 # Testing Distributed Device State
 
-The easiest way to test distributed device state is to use the DEVICE\_STATE() diaplan function. For example, you could have the following piece of dialplan on every server:
+The easiest way to test distributed device state is to use the DEVICE_STATE() diaplan function. For example, you could have the following piece of dialplan on every server:
 
 ```
-[devstate\_test]
+[devstate_test]
 
 exten => 1234,hint,Custom:mystate
 
-exten => set\_inuse,1,Set(DEVICE\_STATE(Custom:mystate)=INUSE)
-exten => set\_not\_inuse,1,Set(DEVICE\_STATE(Custom:mystate)=NOT\_INUSE)
+exten => set_inuse,1,Set(DEVICE_STATE(Custom:mystate)=INUSE)
+exten => set_not_inuse,1,Set(DEVICE_STATE(Custom:mystate)=NOT_INUSE)
 
-exten => check,1,NoOp(Custom:mystate is ${DEVICE\_STATE(Custom:mystate)})
+exten => check,1,NoOp(Custom:mystate is ${DEVICE_STATE(Custom:mystate)})
 ```
 
 Now, you can test that the cluster-wide state of "Custom:mystate" is what you would expect after going to the CLI of each server and adjusting the state.
 
 ```
-server1\*CLI> console dial set\_inuse@devstate\_test
+server1\*CLI> console dial set_inuse@devstate_test
  ...
 
-server2\*CLI> console dial check@devstate\_test
- -- Executing [check@devstate\_test:1] NoOp("OSS/dsp", "Custom:mystate is INUSE") in new stack
+server2\*CLI> console dial check@devstate_test
+ -- Executing [check@devstate_test:1] NoOp("OSS/dsp", "Custom:mystate is INUSE") in new stack
 ```
 
 Various combinations of setting and checking the state on different servers can be used to verify that it works as expected. Also, you can see the status of the hint on each server, as well, to see how extension state would reflect the
@@ -311,7 +311,7 @@ state change with distributed device state:
 ```
 server2\*CLI> core show hints
  -= Registered Asterisk Dial Plan Hints =-
- 1234@devstate\_test : Custom:mystate State:InUse Watchers 0
+ 1234@devstate_test : Custom:mystate State:InUse Watchers 0
 ```
 
 One other helpful thing here during testing and debugging is to enable debug logging. To do so, enable debug on the console in /etc/asterisk/logger.conf. Also, enable debug at the Asterisk CLI.
@@ -334,7 +334,7 @@ See here for details http://xmpp.org/extensions/xep-0060.html#owner-affiliations
 
 One method for making this slightly easier is to utilize the #exec functionality in configuration files, and dynamically generate the buddies via script that pulls the information from a database, or to #include a file which is automatically generated on all the servers when you add a new node to the cluster.
 
-Unfortunately this still requires a reload of res\_jabber.so on all the servers, but this could also be solved through the use of the Asterisk Manager Interface (AMI).
+Unfortunately this still requires a reload of res_jabber.so on all the servers, but this could also be solved through the use of the Asterisk Manager Interface (AMI).
 
 So while this is not the ideal situation, it is programmatically solvable with existing technologies and features found in Asterisk today.
 

@@ -20,7 +20,7 @@ Purpose of this project
 Asterisk development has shifted from pure PBX functionality in the past two years towards being a media communications server. WebRTC and other newer technology has prompted the creation and more rapid adoption of Internet RFCs. Many of these augment media handling in ways that Asterisk would have difficulty implementing. This page will delve into a few topics:
 
 * A list of RTP standards, some of which Asterisk already supports, others of which are not yet supported.
-* A breakdown of Asterisk's RTP implementation (res\_rtp\_asterisk, and maybe res\_rtp\_multicast) to determine what is currently supported, what is currently unsupported, and what it would take to add support for the unsupported features. In addition, this section will critique non-compliance with certain parts of supported standards.
+* A breakdown of Asterisk's RTP implementation (res_rtp_asterisk, and maybe res_rtp_multicast) to determine what is currently supported, what is currently unsupported, and what it would take to add support for the unsupported features. In addition, this section will critique non-compliance with certain parts of supported standards.
 * A verdict on the path forward for implementing the missing features and fixing behavior of existing features.
 * A plan for testing RTP in Asterisk.
 

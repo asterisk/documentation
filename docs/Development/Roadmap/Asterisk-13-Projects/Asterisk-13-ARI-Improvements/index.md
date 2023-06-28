@@ -22,7 +22,7 @@ Messaging Resource
 
 Asterisk has the ability to send and receive text messages from various sources in a channel agnostic fashion. Ideally, we would also have the ability to interact with text messages via ARI. An ARI application should be able to be notified when a new message has been received (possibly after subscribing to something related to said message), and should be able to send messages to some destination.
 
-The currently supported text message formats are XMPP messages (via res\_xmpp) and SIP (via chan\_sip and res\_pjsip\_messaging). Sending a message is done through the [MessageSend](/Asterisk-12-Application_MessageSend) dialplan application or the [MessageSend](/Asterisk-12-ManagerAction_MessageSend) AMI action; the destination of the message is inferred by a prefix, e.g., 'xmpp:' for XMPP, etc. Messages are processed in the dialplan using a special channel driver implemented in the [message](http://doxygen.asterisk.org/trunk/d2/d0d/message_8h.html) core of Asterisk. When a message is received from any channel driver/technology stack, the message is enqueued to the special channel driver. All messages from all channel drivers are enqueued for a single instance of the channel drvier. This channel driver - aptly called **Message** - dispatches the message to the appropriate place in the dialplan for processing.
+The currently supported text message formats are XMPP messages (via res_xmpp) and SIP (via chan_sip and res_pjsip_messaging). Sending a message is done through the [MessageSend](/Asterisk-12-Application_MessageSend) dialplan application or the [MessageSend](/Asterisk-12-ManagerAction_MessageSend) AMI action; the destination of the message is inferred by a prefix, e.g., 'xmpp:' for XMPP, etc. Messages are processed in the dialplan using a special channel driver implemented in the [message](http://doxygen.asterisk.org/trunk/d2/d0d/message_8h.html) core of Asterisk. When a message is received from any channel driver/technology stack, the message is enqueued to the special channel driver. All messages from all channel drivers are enqueued for a single instance of the channel drvier. This channel driver - aptly called **Message** - dispatches the message to the appropriate place in the dialplan for processing.
 
 This process make sense and works well when the dialplan is the appropriate location for handling the text message. At the time it was written, it was also the only place to handle said messages. However, in ARI, this mechanism has several drawbacks.
 
@@ -166,10 +166,10 @@ A new event will be defined, *MessageReceived.*This event will occur when Asteri
 {
  "type": "MessageReceived",
  "from": "pjsip:alice",
- "to": "\"bob\" <bob@my\_asterisk\_server.org>",
+ "to": "\"bob\" <bob@my_asterisk_server.org>",
  "body": "Who's the major general now?",
  "variables": [
- {"SIP\_RECVADDR", "127.0.0.1"},
+ {"SIP_RECVADDR", "127.0.0.1"},
  ],
 }
 
@@ -196,9 +196,9 @@ First, *message.h* will need to expose a registration function that allows for a
 
 ```
 
-static int ast\_msg\_register\_observer(const char \*id, void (\*msg\_cb)(struct ast\_msg \*msg));
+static int ast_msg_register_observer(const char \*id, void (\*msg_cb)(struct ast_msg \*msg));
 
-static int ast\_msg\_unregister\_observer(const char \*id);
+static int ast_msg_unregister_observer(const char \*id);
 
 ```
 
@@ -225,19 +225,19 @@ When performing the routing (after pulling the message off the taskprocessor), m
  \* \pre The message has already been set up on the msg datastore
  \* on this channel.
  \*/
-static void msg\_route(struct ast\_channel \*chan, struct ast\_msg \*msg)
+static void msg_route(struct ast_channel \*chan, struct ast_msg \*msg)
 {
- struct ast\_pbx\_args pbx\_args;
- msg\_cb\_t \*cb;
+ struct ast_pbx_args pbx_args;
+ msg_cb_t \*cb;
 
- AST\_LIST\_TRAVERSE(&observers, cb, list) {
+ AST_LIST_TRAVERSE(&observers, cb, list) {
  cb(msg);
  }
 
- ast\_explicit\_goto(chan, ast\_str\_buffer(msg->context), AS\_OR(msg->exten, "s"), 1);
- memset(&pbx\_args, 0, sizeof(pbx\_args));
- pbx\_args.no\_hangup\_chan = 1,
- ast\_pbx\_run\_args(chan, &pbx\_args);
+ ast_explicit_goto(chan, ast_str_buffer(msg->context), AS_OR(msg->exten, "s"), 1);
+ memset(&pbx_args, 0, sizeof(pbx_args));
+ pbx_args.no_hangup_chan = 1,
+ ast_pbx_run_args(chan, &pbx_args);
 }
 
 ```
@@ -260,25 +260,25 @@ No modifications should have to be done for `res_xmpp` or `res_pjsip_messaging`.
 
 ```
 
- switch (get\_destination(p, NULL, NULL)) {
- case SIP\_GET\_DEST\_REFUSED:
+ switch (get_destination(p, NULL, NULL)) {
+ case SIP_GET_DEST_REFUSED:
  /\* Okay to send 403 since this is after auth processing \*/
- transmit\_response(p, "403 Forbidden", req);
- sip\_scheddestroy(p, DEFAULT\_TRANS\_TIMEOUT);
+ transmit_response(p, "403 Forbidden", req);
+ sip_scheddestroy(p, DEFAULT_TRANS_TIMEOUT);
  return;
- case SIP\_GET\_DEST\_INVALID\_URI:
- transmit\_response(p, "416 Unsupported URI Scheme", req);
- sip\_scheddestroy(p, DEFAULT\_TRANS\_TIMEOUT);
+ case SIP_GET_DEST_INVALID_URI:
+ transmit_response(p, "416 Unsupported URI Scheme", req);
+ sip_scheddestroy(p, DEFAULT_TRANS_TIMEOUT);
  return;
- case SIP\_GET\_DEST\_EXTEN\_NOT\_FOUND:
- case SIP\_GET\_DEST\_EXTEN\_MATCHMORE:
- if (!ast\_msg\_observers\_registered()) {
- transmit\_response(p, "404 Not Found", req);
- sip\_scheddestroy(p, DEFAULT\_TRANS\_TIMEOUT);
+ case SIP_GET_DEST_EXTEN_NOT_FOUND:
+ case SIP_GET_DEST_EXTEN_MATCHMORE:
+ if (!ast_msg_observers_registered()) {
+ transmit_response(p, "404 Not Found", req);
+ sip_scheddestroy(p, DEFAULT_TRANS_TIMEOUT);
  return;
  }
  /\* Fall through \*/
- case SIP\_GET\_DEST\_EXTEN\_FOUND:
+ case SIP_GET_DEST_EXTEN_FOUND:
  break;
  }
 
@@ -315,7 +315,7 @@ Test Plan
 | applications/subscribe-endpoint | Asterisk Test Suite | Basic subscription to an endpoint. Test should verify that a message sent from the subscribed endpoint is received; message sent to the subscribed endpoint is received; message sent to an unsubscribed endpoint is not received. Verify that an application not subscribed does not receive messages. |
 | applications/subscribe-technology | Asterisk Test Suite | Subscribe to all messages associated with a technology. Verify that any message sent to an endpoint of the technology type is received. Verify that an application not subscribed does not receive messages. |
 | message/basic | Asterisk Test Suite | Test sending a message through ARI to an endpoint, a generic URI; from an endpoint, from a sip URI. |
-| message/off\_nominal | Asterisk Test Suite | Test off nominal scenarios:* Badly formatted request body
+| message/off_nominal | Asterisk Test Suite | Test off nominal scenarios:* Badly formatted request body
 * Bad from endpoint (for a technology that requires it)
 * Bad to endpoint (for a technology that requires it)
  |

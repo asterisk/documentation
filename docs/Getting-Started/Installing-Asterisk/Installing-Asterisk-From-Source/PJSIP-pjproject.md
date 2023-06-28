@@ -6,7 +6,7 @@ pageid: 25919783
 Overview
 ========
 
-Asterisk currently contains two SIP stacks: the original **chan\_sip** SIP channel driver which is a complete standalone implementation, has been present in all previous releases of Asterisk *and no longer receives core support*, and the newer **chan\_pjsip** SIP stack that is based on Teluu's "[pjproject](http://www.pjsip.org/)" SIP stack. While the pjproject stack allows us to move a significant amount of code out of Asterisk, it *is* a separate, actively maintained, library that we integrate very tightly to.  This presents challenges in making sure that the versions of Asterisk and pjproject currently installed on a system are compatible.  For this reason, we've elected to "bundle" a stable, tested version of pjproject with the Asterisk distribution and integrate it into the Asterisk build process. This does not prevent you from using an external pjproject installation but it will not be supported by the Asterisk team.  See below for more info.
+Asterisk currently contains two SIP stacks: the original **chan_sip** SIP channel driver which is a complete standalone implementation, has been present in all previous releases of Asterisk *and no longer receives core support*, and the newer **chan_pjsip** SIP stack that is based on Teluu's "[pjproject](http://www.pjsip.org/)" SIP stack. While the pjproject stack allows us to move a significant amount of code out of Asterisk, it *is* a separate, actively maintained, library that we integrate very tightly to.  This presents challenges in making sure that the versions of Asterisk and pjproject currently installed on a system are compatible.  For this reason, we've elected to "bundle" a stable, tested version of pjproject with the Asterisk distribution and integrate it into the Asterisk build process. This does not prevent you from using an external pjproject installation but it will not be supported by the Asterisk team.  See below for more info.
 
 On this Page
 
@@ -35,7 +35,7 @@ Why use the bundled version?
 Usage
 -----
 
-First, run `./contrib/scripts/install_prereq`.  Building the bundled pjproject requires the python development libraries which install\_prereq installs.  All you have to do now is add the `--with-pjproject-bundled` option to your Asterisk `./configure` command line and remove any other `--with-pjproject` option you may have specified. 
+First, run `./contrib/scripts/install_prereq`.  Building the bundled pjproject requires the python development libraries which install_prereq installs.  All you have to do now is add the `--with-pjproject-bundled` option to your Asterisk `./configure` command line and remove any other `--with-pjproject` option you may have specified. 
 
  
 
@@ -86,7 +86,7 @@ Building and Installing pjproject from Source
 
 
 !!! warning 
-    **Installing pjproject from source or from packages is no longer a supported configuration for Asterisk versions that contain the [bundled version of pjproject](#bundled).** Reports of pjproject-related Asterisk issues may only be made against the bundled version. The bundled version inherits flags like DONT\_OPTIMIZE and MALLOC\_DEBUG from Asterisk which allows us to accurately diagnose issues across both Asterisk and pjproject.
+    **Installing pjproject from source or from packages is no longer a supported configuration for Asterisk versions that contain the [bundled version of pjproject](#bundled).** Reports of pjproject-related Asterisk issues may only be made against the bundled version. The bundled version inherits flags like DONT_OPTIMIZE and MALLOC_DEBUG from Asterisk which allows us to accurately diagnose issues across both Asterisk and pjproject.
 
       
 [//]: # (end-warning)
@@ -194,7 +194,7 @@ And that's it!
 
 ### Building and Installing pjproject
 
-The first step in building and installing pjproject is configuring it using **configure**. For Asterisk, this is arguably the **most** important step in this process. pjproject embeds a number of third party libraries which can conflict with versions of those libraries that may already be installed on your system. Asterisk **will not** use the embedded third party libraries within pjproject. As an example, if you are going to build the res\_srtp module in Asterisk, then you **must** specify "--with-external-srtp" when configuring pjproject to point to an external srtp library.
+The first step in building and installing pjproject is configuring it using **configure**. For Asterisk, this is arguably the **most** important step in this process. pjproject embeds a number of third party libraries which can conflict with versions of those libraries that may already be installed on your system. Asterisk **will not** use the embedded third party libraries within pjproject. As an example, if you are going to build the res_srtp module in Asterisk, then you **must** specify "--with-external-srtp" when configuring pjproject to point to an external srtp library.
 
 Additionally, Asterisk **REQUIRES** two or three options to be passed to **configure**:
 
@@ -232,97 +232,97 @@ With the exception of `PJ_IOQUEUE_MAX_HANDLES`, the options can be set in `CFLAG
 ---
 
   
-pjlib/include/pj/config\_site.h  
+pjlib/include/pj/config_site.h  
 
 
 ```
 
 truecpp/\*
- \* Asterisk config\_site.h
+ \* Asterisk config_site.h
  \*/
 
 #include <sys/select.h>
 
 /\*
- \* Since both pjproject and asterisk source files will include config\_site.h,
- \* we need to make sure that only pjproject source files include asterisk\_malloc\_debug.h.
+ \* Since both pjproject and asterisk source files will include config_site.h,
+ \* we need to make sure that only pjproject source files include asterisk_malloc_debug.h.
  \*/
-#if defined(MALLOC\_DEBUG) && !defined(\_ASTERISK\_ASTMM\_H)
-#include "asterisk\_malloc\_debug.h"
+#if defined(MALLOC_DEBUG) && !defined(_ASTERISK_ASTMM_H)
+#include "asterisk_malloc_debug.h"
 #endif
 
 /\*
- \* Defining PJMEDIA\_HAS\_SRTP to 0 does NOT disable Asterisk's ability to use srtp.
+ \* Defining PJMEDIA_HAS_SRTP to 0 does NOT disable Asterisk's ability to use srtp.
  \* It only disables the pjmedia srtp transport which Asterisk doesn't use.
  \* The reason for the disable is that while Asterisk works fine with older libsrtp
  \* versions, newer versions of pjproject won't compile with them.
  \*/
-#define PJMEDIA\_HAS\_SRTP 0
+#define PJMEDIA_HAS_SRTP 0
 
-#define PJ\_HAS\_IPV6 1
+#define PJ_HAS_IPV6 1
 #define NDEBUG 1
-#define PJ\_MAX\_HOSTNAME (256)
-#define PJSIP\_MAX\_URL\_SIZE (512)
-#ifdef PJ\_HAS\_LINUX\_EPOLL
-#define PJ\_IOQUEUE\_MAX\_HANDLES (5000)
+#define PJ_MAX_HOSTNAME (256)
+#define PJSIP_MAX_URL_SIZE (512)
+#ifdef PJ_HAS_LINUX_EPOLL
+#define PJ_IOQUEUE_MAX_HANDLES (5000)
 #else
-#define PJ\_IOQUEUE\_MAX\_HANDLES (FD\_SETSIZE)
+#define PJ_IOQUEUE_MAX_HANDLES (FD_SETSIZE)
 #endif
-#define PJ\_IOQUEUE\_HAS\_SAFE\_UNREG 1
-#define PJ\_IOQUEUE\_MAX\_EVENTS\_IN\_SINGLE\_POLL (16)
+#define PJ_IOQUEUE_HAS_SAFE_UNREG 1
+#define PJ_IOQUEUE_MAX_EVENTS_IN_SINGLE_POLL (16)
 
-#define PJ\_SCANNER\_USE\_BITWISE 0
-#define PJ\_OS\_HAS\_CHECK\_STACK 0
+#define PJ_SCANNER_USE_BITWISE 0
+#define PJ_OS_HAS_CHECK_STACK 0
 
-#ifndef PJ\_LOG\_MAX\_LEVEL
-#define PJ\_LOG\_MAX\_LEVEL 6
+#ifndef PJ_LOG_MAX_LEVEL
+#define PJ_LOG_MAX_LEVEL 6
 #endif
 
-#define PJ\_ENABLE\_EXTRA\_CHECK 1
-#define PJSIP\_MAX\_TSX\_COUNT ((64\*1024)-1)
-#define PJSIP\_MAX\_DIALOG\_COUNT ((64\*1024)-1)
-#define PJSIP\_UDP\_SO\_SNDBUF\_SIZE (512\*1024)
-#define PJSIP\_UDP\_SO\_RCVBUF\_SIZE (512\*1024)
-#define PJ\_DEBUG 0
-#define PJSIP\_SAFE\_MODULE 0
-#define PJ\_HAS\_STRICMP\_ALNUM 0
+#define PJ_ENABLE_EXTRA_CHECK 1
+#define PJSIP_MAX_TSX_COUNT ((64\*1024)-1)
+#define PJSIP_MAX_DIALOG_COUNT ((64\*1024)-1)
+#define PJSIP_UDP_SO_SNDBUF_SIZE (512\*1024)
+#define PJSIP_UDP_SO_RCVBUF_SIZE (512\*1024)
+#define PJ_DEBUG 0
+#define PJSIP_SAFE_MODULE 0
+#define PJ_HAS_STRICMP_ALNUM 0
 
 /\*
- \* Do not ever enable PJ\_HASH\_USE\_OWN\_TOLOWER because the algorithm is
+ \* Do not ever enable PJ_HASH_USE_OWN_TOLOWER because the algorithm is
  \* inconsistently used when calculating the hash value and doesn't
- \* convert the same characters as pj\_tolower()/tolower(). Thus you
+ \* convert the same characters as pj_tolower()/tolower(). Thus you
  \* can get different hash values if the string hashed has certain
- \* characters in it. (ASCII '@', '[', '\\', ']', '^', and '\_')
+ \* characters in it. (ASCII '@', '[', '\\', ']', '^', and '_')
  \*/
-#undef PJ\_HASH\_USE\_OWN\_TOLOWER
+#undef PJ_HASH_USE_OWN_TOLOWER
 
 /\*
- It is imperative that PJSIP\_UNESCAPE\_IN\_PLACE remain 0 or undefined.
+ It is imperative that PJSIP_UNESCAPE_IN_PLACE remain 0 or undefined.
  Enabling it will result in SEGFAULTS when URIs containing escape sequences are encountered.
 \*/
-#undef PJSIP\_UNESCAPE\_IN\_PLACE
-#define PJSIP\_MAX\_PKT\_LEN 32000
+#undef PJSIP_UNESCAPE_IN_PLACE
+#define PJSIP_MAX_PKT_LEN 32000
 
-#undef PJ\_TODO
-#define PJ\_TODO(x)
+#undef PJ_TODO
+#define PJ_TODO(x)
 
 /\* Defaults too low for WebRTC \*/
-#define PJ\_ICE\_MAX\_CAND 32
-#define PJ\_ICE\_MAX\_CHECKS (PJ\_ICE\_MAX\_CAND \* PJ\_ICE\_MAX\_CAND)
+#define PJ_ICE_MAX_CAND 32
+#define PJ_ICE_MAX_CHECKS (PJ_ICE_MAX_CAND \* PJ_ICE_MAX_CAND)
 
 /\* Increase limits to allow more formats \*/
-#define PJMEDIA\_MAX\_SDP\_FMT 64
-#define PJMEDIA\_MAX\_SDP\_BANDW 4
-#define PJMEDIA\_MAX\_SDP\_ATTR (PJMEDIA\_MAX\_SDP\_FMT\*2 + 4)
-#define PJMEDIA\_MAX\_SDP\_MEDIA 16
+#define PJMEDIA_MAX_SDP_FMT 64
+#define PJMEDIA_MAX_SDP_BANDW 4
+#define PJMEDIA_MAX_SDP_ATTR (PJMEDIA_MAX_SDP_FMT\*2 + 4)
+#define PJMEDIA_MAX_SDP_MEDIA 16
 
 /\*
  \* Turn off the periodic sending of CRLNCRLN. Default is on (90 seconds),
- \* which conflicts with the global section's keep\_alive\_interval option in
+ \* which conflicts with the global section's keep_alive_interval option in
  \* pjsip.conf.
  \*/
-#define PJSIP\_TCP\_KEEP\_ALIVE\_INTERVAL 0
-#define PJSIP\_TLS\_KEEP\_ALIVE\_INTERVAL 0
+#define PJSIP_TCP_KEEP_ALIVE_INTERVAL 0
+#define PJSIP_TLS_KEEP_ALIVE_INTERVAL 0
 
 ```
 
@@ -515,7 +515,7 @@ First, if you're using Asterisk 13.8.0 or greater, consider switching to the [Bu
 
 ### Asterisk fails to detect pjproject libraries
 
-After building and installing pjproject, Asterisk fails to detect any of the libraries - the various res\_pjsip components cannot be selected in Asterisk's menuselect
+After building and installing pjproject, Asterisk fails to detect any of the libraries - the various res_pjsip components cannot be selected in Asterisk's menuselect
 
 #### Solution
 
@@ -533,10 +533,10 @@ Verify that Asterisk's config.log shows the following:
 ```
 
 configure:23029: checking for PJPROJECT
-configure:23036: $PKG\_CONFIG --exists --print-errors "libpjproject"
+configure:23036: $PKG_CONFIG --exists --print-errors "libpjproject"
 Package libpjproject was not found in the pkg-config search path.
 Perhaps you should add the directory containing `libpjproject.pc'
-to the PKG\_CONFIG\_PATH environment variable
+to the PKG_CONFIG_PATH environment variable
 No package 'libpjproject' found
 
 ```
@@ -545,9 +545,9 @@ No package 'libpjproject' found
 1. 1. Make sure you have `pkg-config` installed on your system.
 	2. pjproject will install the package config file in  `/usr/lib/pkgconfig` . Some distributions, notably Fedora, will instead look for the library in  `/usr/lib64` . Update your  `PKG_CONFIG_PATH`  environment variable with  `/usr/lib/pkgconfig`  and re-run Asterisk's  `configure`  script.
 
-### pjproject fails to build: errors related to opencore\_amr
+### pjproject fails to build: errors related to opencore_amr
 
-When building pjproject, errors about opencore\_amr are displayed, e.g.:
+When building pjproject, errors about opencore_amr are displayed, e.g.:
 
 
 
@@ -560,14 +560,14 @@ When building pjproject, errors about opencore\_amr are displayed, e.g.:
 
 ```
 
-output/pjmedia-codec-x86\_64-unknown-linux-gnu/opencore\_amr.o:(.rodata+0x60): multiple definition of `pjmedia\_codec\_amrnb\_framelenbits'
-output/pjmedia-codec-x86\_64-unknown-linux-gnu/opencore\_amr.o:(.rodata+0x60): first defined here
-output/pjmedia-codec-x86\_64-unknown-linux-gnu/opencore\_amr.o:(.rodata+0x80): multiple definition of `pjmedia\_codec\_amrnb\_framelen'
-output/pjmedia-codec-x86\_64-unknown-linux-gnu/opencore\_amr.o:(.rodata+0x80): first defined here
-output/pjmedia-codec-x86\_64-unknown-linux-gnu/opencore\_amr.o:(.rodata+0x20): multiple definition of `pjmedia\_codec\_amrwb\_framelenbits'
-output/pjmedia-codec-x86\_64-unknown-linux-gnu/opencore\_amr.o:(.rodata+0x20): first defined here
-output/pjmedia-codec-x86\_64-unknown-linux-gnu/opencore\_amr.o:(.rodata+0x40): multiple definition of `pjmedia\_codec\_amrwb\_framelen'
-output/pjmedia-codec-x86\_64-unknown-linux-gnu/opencore\_amr.o:(.rodata+0x40): first defined here
+output/pjmedia-codec-x86_64-unknown-linux-gnu/opencore_amr.o:(.rodata+0x60): multiple definition of `pjmedia_codec_amrnb_framelenbits'
+output/pjmedia-codec-x86_64-unknown-linux-gnu/opencore_amr.o:(.rodata+0x60): first defined here
+output/pjmedia-codec-x86_64-unknown-linux-gnu/opencore_amr.o:(.rodata+0x80): multiple definition of `pjmedia_codec_amrnb_framelen'
+output/pjmedia-codec-x86_64-unknown-linux-gnu/opencore_amr.o:(.rodata+0x80): first defined here
+output/pjmedia-codec-x86_64-unknown-linux-gnu/opencore_amr.o:(.rodata+0x20): multiple definition of `pjmedia_codec_amrwb_framelenbits'
+output/pjmedia-codec-x86_64-unknown-linux-gnu/opencore_amr.o:(.rodata+0x20): first defined here
+output/pjmedia-codec-x86_64-unknown-linux-gnu/opencore_amr.o:(.rodata+0x40): multiple definition of `pjmedia_codec_amrwb_framelen'
+output/pjmedia-codec-x86_64-unknown-linux-gnu/opencore_amr.o:(.rodata+0x40): first defined here
 ...
 
 ```
@@ -592,10 +592,10 @@ output/pjmedia-codec-x86\_64-unknown-linux-gnu/opencore\_amr.o:(.rodata+0x40): f
 
 ```
 
-/home/mjordan/projects/pjproject/pjmedia/lib/libpjmedia-videodev.so: undefined reference to `pjmedia\_format\_init\_video'
-/home/mjordan/projects/pjproject/pjmedia/lib/libpjmedia.so: undefined reference to `pjmedia\_video\_format\_mgr\_instance'
-/home/mjordan/projects/pjproject/pjmedia/lib/libpjmedia-videodev.so: undefined reference to `pjmedia\_format\_get\_video\_format\_detail'
-/home/mjordan/projects/pjproject/pjmedia/lib/libpjmedia-videodev.so: undefined reference to `pjmedia\_get\_video\_format\_info'
+/home/mjordan/projects/pjproject/pjmedia/lib/libpjmedia-videodev.so: undefined reference to `pjmedia_format_init_video'
+/home/mjordan/projects/pjproject/pjmedia/lib/libpjmedia.so: undefined reference to `pjmedia_video_format_mgr_instance'
+/home/mjordan/projects/pjproject/pjmedia/lib/libpjmedia-videodev.so: undefined reference to `pjmedia_format_get_video_format_detail'
+/home/mjordan/projects/pjproject/pjmedia/lib/libpjmedia-videodev.so: undefined reference to `pjmedia_get_video_format_info'
 
 ```
 
@@ -631,12 +631,12 @@ After building pjproject, the dump provided by  `ldconfig -p`  doesn't display
 
 /usr/include/pj/config.h:243:6: error: #error Endianness must be declared for this processor
 In file included from /usr/include/pj/types.h:33:0,
- from /usr/include/pjsip/sip\_config.h:27,
- from /usr/include/pjsip/sip\_types.h:34,
+ from /usr/include/pjsip/sip_config.h:27,
+ from /usr/include/pjsip/sip_types.h:34,
  from /usr/include/pjsip.h:24,
  from conftest.c:290:
-/usr/include/pj/config.h:1161:4: error: #error "PJ\_IS\_LITTLE\_ENDIAN is not defined!"
-/usr/include/pj/config.h:1165:4: error: #error "PJ\_IS\_BIG\_ENDIAN is not defined!"
+/usr/include/pj/config.h:1161:4: error: #error "PJ_IS_LITTLE_ENDIAN is not defined!"
+/usr/include/pj/config.h:1165:4: error: #error "PJ_IS_BIG_ENDIAN is not defined!"
 
 ```
 
@@ -660,11 +660,11 @@ In file included from /usr/include/pj/types.h:33:0,
  /\*
  \* ARM, bi-endian, so raise error if endianness is not configured
  \*/
-# undef PJ\_M\_ARMV4
-# define PJ\_M\_ARMV4 1
-# define PJ\_M\_NAME "armv4"
-# define PJ\_HAS\_PENTIUM 0
-# if !PJ\_IS\_LITTLE\_ENDIAN && !PJ\_IS\_BIG\_ENDIAN
+# undef PJ_M_ARMV4
+# define PJ_M_ARMV4 1
+# define PJ_M_NAME "armv4"
+# define PJ_HAS_PENTIUM 0
+# if !PJ_IS_LITTLE_ENDIAN && !PJ_IS_BIG_ENDIAN
 # error Endianness must be declared for this processor
 # endif
 
@@ -687,12 +687,12 @@ With this:
  /\*
  \* ARM, bi-endian, so raise error if endianness is not configured
  \*/
-# undef PJ\_M\_ARMV4
-# define PJ\_M\_ARMV4 1
-# define PJ\_M\_NAME "armv4"
-# define PJ\_HAS\_PENTIUM 0
-# define PJ\_IS\_LITTLE\_ENDIAN 1
-# define PJ\_IS\_BIG\_ENDIAN 0
+# undef PJ_M_ARMV4
+# define PJ_M_ARMV4 1
+# define PJ_M_NAME "armv4"
+# define PJ_HAS_PENTIUM 0
+# define PJ_IS_LITTLE_ENDIAN 1
+# define PJ_IS_BIG_ENDIAN 0
 
 ```
 

@@ -3,7 +3,7 @@ title: Codec Modules
 pageid: 4817491
 ---
 
-CODEC modules have file names that look like **codec\_xxxxx.so**, such as **codec\_alaw.so** and **codec\_ulaw.so**.
+CODEC modules have file names that look like **codec_xxxxx.so**, such as **codec_alaw.so** and **codec_ulaw.so**.
 
 CODECs represent mathematical algorithms for encoding (compressing) and decoding (decompression) media streams. Asterisk uses CODEC modules to both send and recieve media (audio and video). Asterisk also uses CODEC modules to convert (or transcode) media streams between different formats.
 
@@ -23,13 +23,13 @@ Asterisk is provided with CODEC modules for the following media types:
 Other Formats and Modules
 =========================
 
-The Asterisk core provides capability for 16 bit Signed Linear PCM, which is what all of the CODECs are encoding from or decoding to. There is another CODEC module, **codec\_resample** which allows re-sampling of Signed Linear into different sampling rates 12,16,24,32,44,48,96 or 192 kHz to aid translation.
+The Asterisk core provides capability for 16 bit Signed Linear PCM, which is what all of the CODECs are encoding from or decoding to. There is another CODEC module, **codec_resample** which allows re-sampling of Signed Linear into different sampling rates 12,16,24,32,44,48,96 or 192 kHz to aid translation.
 
 Various other CODEC modules will be built and installed if their dependencies are detected during Asterisk compilation.
 
-* If the [DAHDI](/Getting-Started/Installing-Asterisk/Installing-Asterisk-From-Source/Building-and-Installing-DAHDI) drivers are detected then **codec\_dahdi** will installed.
-* If the Speex ([www.speex.org](http://www.speex.org)) development libraries are detected, **codec\_speex** will also be installed.
-* If the iLBC ([www.ilbcfreeware.org](http://www.ilbcfreeware.org/)) development libraries are detected, **codec\_ilbc** will also be installed.
+* If the [DAHDI](/Getting-Started/Installing-Asterisk/Installing-Asterisk-From-Source/Building-and-Installing-DAHDI) drivers are detected then **codec_dahdi** will installed.
+* If the Speex ([www.speex.org](http://www.speex.org)) development libraries are detected, **codec_speex** will also be installed.
+* If the iLBC ([www.ilbcfreeware.org](http://www.ilbcfreeware.org/)) development libraries are detected, **codec_ilbc** will also be installed.
 
 Support for the patent-encumbered G.729A or G.723.1 CODECs is provided by Digium on a commercial basis through software (G.729A) or hardware (G.729A and G.723.1) products. For more information about purchasing licenses or hardware to use the G.729A or G.723.1 CODECs with Asterisk, please see Digium's website.
 

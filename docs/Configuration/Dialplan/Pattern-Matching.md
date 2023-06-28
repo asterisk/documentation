@@ -127,7 +127,7 @@ The third example: The first digit must be a six, the second digit must be a fou
 Character Sets
 ==============
 
-If we want to be more specific about a range of numbers, we can put those numbers or number ranges in square brackets to define a character set. For example, what if we wanted the second digit to be either a three or a four? One way would be to create two patterns (**\_64XX** and **\_63XX**), but a more compact method would be to do **\_6[34]XX**. This specifies that the first digit must be a six, the second digit can be either a three or a four, and that the last two digits can be anything from zero to nine.
+If we want to be more specific about a range of numbers, we can put those numbers or number ranges in square brackets to define a character set. For example, what if we wanted the second digit to be either a three or a four? One way would be to create two patterns (**_64XX** and **_63XX**), but a more compact method would be to do **_6[34]XX**. This specifies that the first digit must be a six, the second digit can be either a three or a four, and that the last two digits can be anything from zero to nine.
 
 You can also use ranges within square brackets. For example, **[1-468]** would match a single digit from one through four or six or eight. It does not match any number from one to four hundred sixty-eight!
 
@@ -148,9 +148,9 @@ You can also use ranges within square brackets. For example, **[1-468]** would m
 Other Special Characters
 ========================
 
-Within Asterisk patterns, we can also use a couple of other characters to represent ranges of numbers. The period character (**.**) at the end of a pattern matches one or more remaining **characters**. You put it at the end of a pattern when you want to match extensions of an indeterminate length. As an example, the pattern **\_9876.** would match any number that began with **9876** and had at least one more character or digit.
+Within Asterisk patterns, we can also use a couple of other characters to represent ranges of numbers. The period character (**.**) at the end of a pattern matches one or more remaining **characters**. You put it at the end of a pattern when you want to match extensions of an indeterminate length. As an example, the pattern **_9876.** would match any number that began with **9876** and had at least one more character or digit.
 
-The exclamation mark (**!**) character is similar to the period and matches zero or more remaining characters. It is used in overlap dialing to dial through Asterisk. For example, **\_9876!** would match any number that began with **9876** including **9876**, and would respond that the number was complete as soon as there was an unambiguous match.
+The exclamation mark (**!**) character is similar to the period and matches zero or more remaining characters. It is used in overlap dialing to dial through Asterisk. For example, **_9876!** would match any number that began with **9876** including **9876**, and would respond that the number was complete as soon as there was an unambiguous match.
 
 
 
@@ -243,7 +243,7 @@ exten => _6.,1,SayAlpha(D)
 ```
 
 
-When Alice dials **6421**, Asterisk searches through its list of sorted extensions and uses the first matching extension. In this case **\_64NX** is found.
+When Alice dials **6421**, Asterisk searches through its list of sorted extensions and uses the first matching extension. In this case **_64NX** is found.
 
 To verify that Asterisk actually does sort the extensions in the manner that we've shown, add the following extensions to the **[users]** context of your own dialplan.
 

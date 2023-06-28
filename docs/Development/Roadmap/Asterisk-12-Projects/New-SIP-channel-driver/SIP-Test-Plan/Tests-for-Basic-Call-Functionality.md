@@ -16,7 +16,7 @@ The configuration for these tests will all be made from a basic template. Some t
 ---
 
   
-res\_sip.conf  
+res_sip.conf  
 
 
 ```
@@ -110,52 +110,52 @@ All Nominal path tests will be run multiple times. Each iteration of the test is
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | 1 | bind=127.0.0.1:5060 | none | none | none | SDP in INVITE | Identify by username, no auth | Yes |
 | 2 | bind=127.0.0.1:5060 | auth = alice-auth | password = swordfish | none | SDP in INVITE | Identify by username, userpass auth | Yes |
-| 3 | bind=127.0.0.1:5060 | auth = alice-auth | auth\_type=md5 | none | SDP in INVITE | Identify by username, md5 auth | Yes |
-| 4 | bind=127.0.0.1:5060protocol=udp | host = 127.0.0.1:5061 | none | noload => res\_sip\_endpoint\_identifier\_user.so | SDP in INVITE | Identify by host, no auth | Yes |
-| 5 | bind=127.0.0.1:5060protocol=udp | host = 127.0.0.1:5061auth = alice-auth | password = swordfish | noload => res\_sip\_endpoint\_identifier\_user.so | SDP in INVITE | Identify by host, userpass auth | Yes |
-| 6 | bind=127.0.0.1:5060protocol=udp | host = 127.0.0.1:5061auth = alice-auth | auth\_type=md5md5\_cred=c9b9e23e2160fd69b19f99116da19711 | noload => res\_sip\_endpoint\_identifier\_user.so | SDP in INVITE | Identify by host, md5 auth | Yes |
+| 3 | bind=127.0.0.1:5060 | auth = alice-auth | auth_type=md5 | none | SDP in INVITE | Identify by username, md5 auth | Yes |
+| 4 | bind=127.0.0.1:5060protocol=udp | host = 127.0.0.1:5061 | none | noload => res_sip_endpoint_identifier_user.so | SDP in INVITE | Identify by host, no auth | Yes |
+| 5 | bind=127.0.0.1:5060protocol=udp | host = 127.0.0.1:5061auth = alice-auth | password = swordfish | noload => res_sip_endpoint_identifier_user.so | SDP in INVITE | Identify by host, userpass auth | Yes |
+| 6 | bind=127.0.0.1:5060protocol=udp | host = 127.0.0.1:5061auth = alice-auth | auth_type=md5md5_cred=c9b9e23e2160fd69b19f99116da19711 | noload => res_sip_endpoint_identifier_user.so | SDP in INVITE | Identify by host, md5 auth | Yes |
 | 7 | bind=127.0.0.1:5060protocol=tcp | none | none | none | SDP in INVITE | Identify by username, no auth (TCP) | Yes |
 | 8 | bind=127.0.0.1:5060protocol=tcp | auth = alice-auth | password = swordfish | none | SDP in INVITE | Identify by username, userpass auth (TCP) | Yes |
-| 9 | bind=127.0.0.1:5060protocol=tcp | auth = alice-auth | auth\_type=md5md5\_cred=c9b9e23e2160fd69b19f99116da19711 | none | SDP in INVITE | Identify by username, md5 auth (TCP) | Yes |
-| 10 | bind=127.0.0.1:5060protocol=tcp | host = 127.0.0.1:5061 | none | noload => res\_sip\_endpoint\_identifier\_user.so | SDP in INVITE | Identify by host, no auth (TCP) |
-| 11 | bind=127.0.0.1:5060protocol=tcp | host = 127.0.0.1:5061auth = alice-auth | password = swordfish | noload => res\_sip\_endpoint\_identifier\_user.so | SDP in INVITE | Identify by host, userpass auth (TCP) |
-| 12 | bind=127.0.0.1:5060protocol=tcp | host = 127.0.0.1:5061auth = alice-auth | auth\_type=md5md5\_cred=c9b9e23e2160fd69b19f99116da19711 | noload => res\_sip\_endpoint\_identifier\_user.so | SDP in INVITE | Identify by host, md5 auth (TCP) |
+| 9 | bind=127.0.0.1:5060protocol=tcp | auth = alice-auth | auth_type=md5md5_cred=c9b9e23e2160fd69b19f99116da19711 | none | SDP in INVITE | Identify by username, md5 auth (TCP) | Yes |
+| 10 | bind=127.0.0.1:5060protocol=tcp | host = 127.0.0.1:5061 | none | noload => res_sip_endpoint_identifier_user.so | SDP in INVITE | Identify by host, no auth (TCP) |
+| 11 | bind=127.0.0.1:5060protocol=tcp | host = 127.0.0.1:5061auth = alice-auth | password = swordfish | noload => res_sip_endpoint_identifier_user.so | SDP in INVITE | Identify by host, userpass auth (TCP) |
+| 12 | bind=127.0.0.1:5060protocol=tcp | host = 127.0.0.1:5061auth = alice-auth | auth_type=md5md5_cred=c9b9e23e2160fd69b19f99116da19711 | noload => res_sip_endpoint_identifier_user.so | SDP in INVITE | Identify by host, md5 auth (TCP) |
 | 13 | bind=127.0.0.1:5060protocol=udp | none | none | none | No SDP in INVITE | Identify by username, no auth | Yes |
 | 14 | bind=127.0.0.1:5060protocol=udp | auth = alice-auth | password = swordfish | none | No SDP in INVITE | Identify by username, userpass auth | Yes |
-| 15 | bind=127.0.0.1:5060protocol=udp | auth = alice-auth | auth\_type=md5md5\_cred=c9b9e23e2160fd69b19f99116da19711 | none | No SDP in INVITE | Identify by username, md5 auth | Yes |
-| 16 | bind=127.0.0.1:5060protocol=udp | host = 127.0.0.1:5061 | none | noload => res\_sip\_endpoint\_identifier\_user.so | No SDP in INVITE | Identify by host, no auth | Yes |
-| 17 | bind=127.0.0.1:5060protocol=udp | host = 127.0.0.1:5061auth = alice-auth | password = swordfish | noload => res\_sip\_endpoint\_identifier\_user.so | No SDP in INVITE | Identify by host, userpass auth | Yes |
-| 18 | bind=127.0.0.1:5060protocol=udp | host = 127.0.0.1:5061auth = alice-auth | auth\_type=md5md5\_cred=c9b9e23e2160fd69b19f99116da19711 | noload => res\_sip\_endpoint\_identifier\_user.so | No SDP in INVITE | Identify by host, md5 auth | Yes |
+| 15 | bind=127.0.0.1:5060protocol=udp | auth = alice-auth | auth_type=md5md5_cred=c9b9e23e2160fd69b19f99116da19711 | none | No SDP in INVITE | Identify by username, md5 auth | Yes |
+| 16 | bind=127.0.0.1:5060protocol=udp | host = 127.0.0.1:5061 | none | noload => res_sip_endpoint_identifier_user.so | No SDP in INVITE | Identify by host, no auth | Yes |
+| 17 | bind=127.0.0.1:5060protocol=udp | host = 127.0.0.1:5061auth = alice-auth | password = swordfish | noload => res_sip_endpoint_identifier_user.so | No SDP in INVITE | Identify by host, userpass auth | Yes |
+| 18 | bind=127.0.0.1:5060protocol=udp | host = 127.0.0.1:5061auth = alice-auth | auth_type=md5md5_cred=c9b9e23e2160fd69b19f99116da19711 | noload => res_sip_endpoint_identifier_user.so | No SDP in INVITE | Identify by host, md5 auth | Yes |
 | 19 | bind=127.0.0.1:5060protocol=tcp | none | none | none | No SDP in INVITE | Identify by username, no auth (TCP) | Yes |
 | 20 | bind=127.0.0.1:5060protocol=tcp | auth = alice-auth | password = swordfish | none | No SDP in INVITE | Identify by username, userpass auth (TCP) | Yes |
-| 21 | bind=127.0.0.1:5060protocol=tcp | auth = alice-auth | auth\_type=md5md5\_cred=c9b9e23e2160fd69b19f99116da19711 | none | No SDP in INVITE | Identify by username, md5 auth (TCP) | Yes |
-| 22 | bind=127.0.0.1:5060protocol=tcp | host = 127.0.0.1:5061 | none | noload => res\_sip\_endpoint\_identifier\_user.so | No SDP in INVITE | Identify by host, no auth (TCP) |
-| 23 | bind=127.0.0.1:5060protocol=tcp | host = 127.0.0.1:5061auth = alice-auth | password = swordfish | noload => res\_sip\_endpoint\_identifier\_user.so | No SDP in INVITE | Identify by host, userpass auth (TCP) |
-| 24 | bind=127.0.0.1:5060protocol=tcp | host = 127.0.0.1:5061auth = alice-auth | auth\_type=md5md5\_cred=c9b9e23e2160fd69b19f99116da19711 | noload => res\_sip\_endpoint\_identifier\_user.so | No SDP in INVITE | Identify by host, md5 auth (TCP) |
+| 21 | bind=127.0.0.1:5060protocol=tcp | auth = alice-auth | auth_type=md5md5_cred=c9b9e23e2160fd69b19f99116da19711 | none | No SDP in INVITE | Identify by username, md5 auth (TCP) | Yes |
+| 22 | bind=127.0.0.1:5060protocol=tcp | host = 127.0.0.1:5061 | none | noload => res_sip_endpoint_identifier_user.so | No SDP in INVITE | Identify by host, no auth (TCP) |
+| 23 | bind=127.0.0.1:5060protocol=tcp | host = 127.0.0.1:5061auth = alice-auth | password = swordfish | noload => res_sip_endpoint_identifier_user.so | No SDP in INVITE | Identify by host, userpass auth (TCP) |
+| 24 | bind=127.0.0.1:5060protocol=tcp | host = 127.0.0.1:5061auth = alice-auth | auth_type=md5md5_cred=c9b9e23e2160fd69b19f99116da19711 | noload => res_sip_endpoint_identifier_user.so | No SDP in INVITE | Identify by host, md5 auth (TCP) |
 | 25 | bind=[::1]:5060protocol=udp | none | none | none | SDP in INVITE | Identify by username, no auth (IPv6) |
 | 26 | bind=[::1]:5060protocol=udp | auth = alice-auth | password = swordfish | none | SDP in INVITE | Identify by username, userpass auth (IPv6) |
-| 27 | bind=[::1]:5060protocol=udp | auth = alice-auth | auth\_type=md5md5\_cred=c9b9e23e2160fd69b19f99116da19711 | none | SDP in INVITE | Identify by username, md5 auth (IPv6) |
-| 28 | bind=[::1]:5060protocol=udp | host = [::1]:5061 | none | noload => res\_sip\_endpoint\_identifier\_user.so | SDP in INVITE | Identify by host, no auth (IPv6) |
-| 29 | bind=[::1]:5060protocol=udp | host = [::1]:5061auth = alice-auth | password = swordfish | noload => res\_sip\_endpoint\_identifier\_user.so | SDP in INVITE | Identify by host, userpass auth (IPv6) |
-| 30 | bind=[::1]:5060protocol=udp | host = [::1]:5061auth = alice-auth | auth\_type=md5md5\_cred=c9b9e23e2160fd69b19f99116da19711 | noload => res\_sip\_endpoint\_identifier\_user.so | SDP in INVITE | Identify by host, md5 auth (IPv6) |
+| 27 | bind=[::1]:5060protocol=udp | auth = alice-auth | auth_type=md5md5_cred=c9b9e23e2160fd69b19f99116da19711 | none | SDP in INVITE | Identify by username, md5 auth (IPv6) |
+| 28 | bind=[::1]:5060protocol=udp | host = [::1]:5061 | none | noload => res_sip_endpoint_identifier_user.so | SDP in INVITE | Identify by host, no auth (IPv6) |
+| 29 | bind=[::1]:5060protocol=udp | host = [::1]:5061auth = alice-auth | password = swordfish | noload => res_sip_endpoint_identifier_user.so | SDP in INVITE | Identify by host, userpass auth (IPv6) |
+| 30 | bind=[::1]:5060protocol=udp | host = [::1]:5061auth = alice-auth | auth_type=md5md5_cred=c9b9e23e2160fd69b19f99116da19711 | noload => res_sip_endpoint_identifier_user.so | SDP in INVITE | Identify by host, md5 auth (IPv6) |
 | 31 | bind=[::1]:5060protocol=tcp | none | none | none | SDP in INVITE | Identify by username, no auth (TCP) (IPv6) |
 | 32 | bind=[::1]:5060protocol=tcp | auth = alice-auth | password = swordfish | none | SDP in INVITE | Identify by username, userpass auth (TCP) (IPv6) |
-| 33 | bind=[::1]:5060protocol=tcp | auth = alice-auth | auth\_type=md5md5\_cred=c9b9e23e2160fd69b19f99116da19711 | none | SDP in INVITE | Identify by username, md5 auth (TCP) (IPv6) |
-| 34 | bind=[::1]:5060protocol=tcp | host = [::1]:5061 | none | noload => res\_sip\_endpoint\_identifier\_user.so | SDP in INVITE | Identify by host, no auth (TCP) (IPv6) |
-| 35 | bind=[::1]:5060protocol=tcp | host = [::1]:5061auth = alice-auth | password = swordfish | noload => res\_sip\_endpoint\_identifier\_user.so | SDP in INVITE | Identify by host, userpass auth (TCP) (IPv6) |
-| 36 | bind=[::1]:5060protocol=tcp | host = [::1]:5061auth = alice-auth | auth\_type=md5md5\_cred=c9b9e23e2160fd69b19f99116da19711 | noload => res\_sip\_endpoint\_identifier\_user.so | SDP in INVITE | Identify by host, md5 auth (TCP) (IPv6) |
+| 33 | bind=[::1]:5060protocol=tcp | auth = alice-auth | auth_type=md5md5_cred=c9b9e23e2160fd69b19f99116da19711 | none | SDP in INVITE | Identify by username, md5 auth (TCP) (IPv6) |
+| 34 | bind=[::1]:5060protocol=tcp | host = [::1]:5061 | none | noload => res_sip_endpoint_identifier_user.so | SDP in INVITE | Identify by host, no auth (TCP) (IPv6) |
+| 35 | bind=[::1]:5060protocol=tcp | host = [::1]:5061auth = alice-auth | password = swordfish | noload => res_sip_endpoint_identifier_user.so | SDP in INVITE | Identify by host, userpass auth (TCP) (IPv6) |
+| 36 | bind=[::1]:5060protocol=tcp | host = [::1]:5061auth = alice-auth | auth_type=md5md5_cred=c9b9e23e2160fd69b19f99116da19711 | noload => res_sip_endpoint_identifier_user.so | SDP in INVITE | Identify by host, md5 auth (TCP) (IPv6) |
 | 37 | bind=[::1]:5060protocol=udp | none | none | none | No SDP in INVITE | Identify by username, no auth (IPv6) |
 | 38 | bind=[::1]:5060protocol=udp | auth = alice-auth | password = swordfish | none | No SDP in INVITE | Identify by username, userpass auth (IPv6) |
-| 39 | bind=[::1]:5060protocol=udp | auth = alice-auth | auth\_type=md5md5\_cred=c9b9e23e2160fd69b19f99116da19711 | none | No SDP in INVITE | Identify by username, md5 auth (IPv6) |
-| 40 | bind=[::1]:5060protocol=udp | host = [::1]:5061 | none | noload => res\_sip\_endpoint\_identifier\_user.so | No SDP in INVITE | Identify by host, no auth (IPv6) |
-| 41 | bind=[::1]:5060protocol=udp | host = [::1]:5061auth = alice-auth | password = swordfish | noload => res\_sip\_endpoint\_identifier\_user.so | No SDP in INVITE | Identify by host, userpass auth (IPv6) |
-| 42 | bind=[::1]:5060protocol=udp | host = [::1]:5061auth = alice-auth | auth\_type=md5md5\_cred=c9b9e23e2160fd69b19f99116da19711 | noload => res\_sip\_endpoint\_identifier\_user.so | No SDP in INVITE | Identify by host, md5 auth (IPv6) |
+| 39 | bind=[::1]:5060protocol=udp | auth = alice-auth | auth_type=md5md5_cred=c9b9e23e2160fd69b19f99116da19711 | none | No SDP in INVITE | Identify by username, md5 auth (IPv6) |
+| 40 | bind=[::1]:5060protocol=udp | host = [::1]:5061 | none | noload => res_sip_endpoint_identifier_user.so | No SDP in INVITE | Identify by host, no auth (IPv6) |
+| 41 | bind=[::1]:5060protocol=udp | host = [::1]:5061auth = alice-auth | password = swordfish | noload => res_sip_endpoint_identifier_user.so | No SDP in INVITE | Identify by host, userpass auth (IPv6) |
+| 42 | bind=[::1]:5060protocol=udp | host = [::1]:5061auth = alice-auth | auth_type=md5md5_cred=c9b9e23e2160fd69b19f99116da19711 | noload => res_sip_endpoint_identifier_user.so | No SDP in INVITE | Identify by host, md5 auth (IPv6) |
 | 43 | bind=[::1]:5060protocol=tcp | none | none | none | No SDP in INVITE | Identify by username, no auth (TCP) (IPv6) |
 | 44 | bind=[::1]:5060protocol=tcp | auth = alice-auth | password = swordfish | none | No SDP in INVITE | Identify by username, userpass auth (TCP) (IPv6) |
-| 45 | bind=[::1]:5060protocol=tcp | auth = alice-auth | auth\_type=md5md5\_cred=c9b9e23e2160fd69b19f99116da19711 | none | No SDP in INVITE | Identify by username, md5 auth (TCP) (IPv6) |
-| 46 | bind=[::1]:5060protocol=tcp | host = [::1]:5061 | none | noload => res\_sip\_endpoint\_identifier\_user.so | No SDP in INVITE | Identify by host, no auth (TCP) (IPv6) |
-| 47 | bind=[::1]:5060protocol=tcp | host = [::1]:5061auth = alice-auth | password = swordfish | noload => res\_sip\_endpoint\_identifier\_user.so | No SDP in INVITE | Identify by host, userpass auth (TCP) (IPv6) |
-| 48 | bind=[::1]:5060protocol=tcp | host = [::1]:5061auth = alice-auth | auth\_type=md5md5\_cred=c9b9e23e2160fd69b19f99116da19711 | noload => res\_sip\_endpoint\_identifier\_user.so | No SDP in INVITE | Identify by host, md5 auth (TCP) (IPv6) |
+| 45 | bind=[::1]:5060protocol=tcp | auth = alice-auth | auth_type=md5md5_cred=c9b9e23e2160fd69b19f99116da19711 | none | No SDP in INVITE | Identify by username, md5 auth (TCP) (IPv6) |
+| 46 | bind=[::1]:5060protocol=tcp | host = [::1]:5061 | none | noload => res_sip_endpoint_identifier_user.so | No SDP in INVITE | Identify by host, no auth (TCP) (IPv6) |
+| 47 | bind=[::1]:5060protocol=tcp | host = [::1]:5061auth = alice-auth | password = swordfish | noload => res_sip_endpoint_identifier_user.so | No SDP in INVITE | Identify by host, userpass auth (TCP) (IPv6) |
+| 48 | bind=[::1]:5060protocol=tcp | host = [::1]:5061auth = alice-auth | auth_type=md5md5_cred=c9b9e23e2160fd69b19f99116da19711 | noload => res_sip_endpoint_identifier_user.so | No SDP in INVITE | Identify by host, md5 auth (TCP) (IPv6) |
 
 ##### Test 1: File Playback
 
@@ -214,9 +214,9 @@ This test requires several iterations. The differences in each iteration are det
 | 1 | auth=alice-auth | password=swordfish | realm=asterisk  username=alice  password=halibut | Userpass authentication, wrong password | Yes |
 | 2 | auth=alice-auth | password=swordfish | realm=asterisk  username=carol  password=swordfish | Userpass authentication, wrong username | Yes |
 | 3 | auth=alice-auth | password=swordfish | realm=ampersand  username=alice  password=swordfish | Userpass authentication, wrong realm | Yes |
-| 4 | auth=alice-auth | auth\_type=md5md5\_cred=c9b9e23e2160fd69b19f99116da19711 | realm=asterisk  username=alice  password=halibut | MD5 authentication, wrong password | Yes |
-| 5 | auth=alice-auth | auth\_type=md5md5\_cred=c9b9e23e2160fd69b19f99116da19711 | realm=asterisk  username=carol  password=swordfish | MD5 authentication, wrong username | Yes |
-| 6 | auth=alice-auth | auth\_type=md5md5\_cred=c9b9e23e2160fd69b19f99116da19711 | realm=ampersand  username=alice  password=swordfish | MD5 authentication, wrong realm | Yes |
+| 4 | auth=alice-auth | auth_type=md5md5_cred=c9b9e23e2160fd69b19f99116da19711 | realm=asterisk  username=alice  password=halibut | MD5 authentication, wrong password | Yes |
+| 5 | auth=alice-auth | auth_type=md5md5_cred=c9b9e23e2160fd69b19f99116da19711 | realm=asterisk  username=carol  password=swordfish | MD5 authentication, wrong username | Yes |
+| 6 | auth=alice-auth | auth_type=md5md5_cred=c9b9e23e2160fd69b19f99116da19711 | realm=ampersand  username=alice  password=swordfish | MD5 authentication, wrong realm | Yes |
 
 Procedure:  
  Alice places a call to extension playback@default

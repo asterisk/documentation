@@ -276,7 +276,7 @@ By default FreeRADIUS server will log all accounting requests into /usr/local/va
 Asterisk now generates Call Detail Records. See /include/asterisk/cel.h for all the fields which are recorded. By default, records in comma separated values will be created in /var/log/asterisk/cel-csv. 
 
 
-The configuration file for cel\_radius.so module is :   
+The configuration file for cel_radius.so module is :   
 
 
 

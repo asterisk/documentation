@@ -3,7 +3,7 @@ title: Overview
 pageid: 5243066
 ---
 
-The Asterisk Calendaring API is provided by the res\_calendar module. It aims to be a generic interface for integrating Asterisk with various calendaring technologies. The goal is to be able to support reading and writing of calendar events as well as allowing notification of pending events through the Asterisk dialplan.
+The Asterisk Calendaring API is provided by the res_calendar module. It aims to be a generic interface for integrating Asterisk with various calendaring technologies. The goal is to be able to support reading and writing of calendar events as well as allowing notification of pending events through the Asterisk dialplan.
 
 There are four calendaring modules that ship with Asterisk that provide support for the following calendaring servers.
 
@@ -11,10 +11,10 @@ There are four calendaring modules that ship with Asterisk that provide support 
 
 | Calendar Server Support | Module Name |
 | --- | --- |
-| iCalendar | res\_calendar\_icalendar.so |
-| CalDAV | res\_calender\_caldav.so |
-| Microsoft Exchange Server | res\_calendar\_exchange.so |
-| Microsoft ExchangeWeb Services  | res\_calendar\_ews.so |
+| iCalendar | res_calendar_icalendar.so |
+| CalDAV | res_calender_caldav.so |
+| Microsoft Exchange Server | res_calendar_exchange.so |
+| Microsoft ExchangeWeb Services  | res_calendar_ews.so |
 
 All four modules support event notification. Both CalDAV and Exchange support reading and writing calendars, while iCalendar is a read-only format.
 

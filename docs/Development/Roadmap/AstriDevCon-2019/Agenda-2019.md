@@ -19,21 +19,21 @@ pageid: 42566556
 		- MWI devstate allows subscribing to a voice mailbox as if i t were a device
 		- Per member wrap up time using AddQueueMember
 		- Performance improvements with internal media indexer by reducing indexing
-		- PJSIP\_PARSE\_URI dialplan function for URI parsing
+		- PJSIP_PARSE_URI dialplan function for URI parsing
 		- Ability to change strict RTP learning to only care about sequence numbers and not incorporate time
 		- Improved CDR/CEL time calcs by using message time instead of processing time
 		- AMI actions now also logged when manager debugging is on
 		- New internal MWI API improving performance and reducing memory usage
-		- All 3 app\_voicemail variants can now be built
-		- TRANSFERSTATUS from app\_transfer
+		- All 3 app_voicemail variants can now be built
+		- TRANSFERSTATUS from app_transfer
 		- Ast 13 security fix only in 2020
 		- Ast 15 is end of life
 		- Ast 16 is LTS and is security fix only in 2022
 		- Ast 17 is a standard release and goes security fix only in 2020
-		- Chan\_sip marked deprecated this time last year
+		- Chan_sip marked deprecated this time last year
 	+ **Josh Colp - PJSIP**
 		- PJSIP recommended for new installs and to migrate existing
-		- Chan\_sip will still be around for at least 4 years
+		- Chan_sip will still be around for at least 4 years
 		- PJSIP used exclusively in switchvox since Feb 2016
 		- PJSIP created and maintained by Teluu
 		
@@ -65,16 +65,16 @@ pageid: 42566556
 		- Configurable per object type
 		- Full backend caching is also possible
 		- Won’t allow invalid objects to be created as a result of invalid configuration
-		- Outbound registration is simpler compared to chan\_sip
+		- Outbound registration is simpler compared to chan_sip
 		- Creates the needed objects for you based on simple configuration
 		- Using templates can reduce the size of config files
-		- res\_pjsip binds asterisk to PJSIP
+		- res_pjsip binds asterisk to PJSIP
 		- Provides low level functionality, APIs, and helpers
-		- Chan\_sip threading
+		- Chan_sip threading
 		
 			* 1 thread for all UDP traffic and scheduled items
 			* 1 thread for each TCP/TLS/WS/WSS connection
-			* 1 thread for each channel (generally)- Res\_pjsip threading
+			* 1 thread for each channel (generally)- Res_pjsip threading
 		
 			* 1 thread for network traffic (UDP/TCP/TLS)
 			* N threads for network traffic handling (configurable and can grow)
@@ -89,34 +89,34 @@ pageid: 42566556
 		- Endpoints identifiers are pluggable
 		- Always guaranteed to have an endpoint
 		- Low level hooks for handling SIP messages of given types
-		- Res\_pjsip\_session
+		- Res_pjsip_session
 		
 			* Handles SIP sessions and lifecycle
 			* Provides session level helpers- Session supplements
 		
 			* Higher level hooks
 			* When you register one, you tell it when it should be invoked
-			* Example: res\_pjsip\_caller\_id- Chan\_pjsip
+			* Example: res_pjsip_caller_id- Chan_pjsip
 		
-			* Glue between asterisk core and res\_pjsip\_session
+			* Glue between asterisk core and res_pjsip_session
 			* Implements API defined by core for channels
-			* Implements session supplement API defined by res\_pjsip\_session- Res\_pjsip\_sdp\_rtp
+			* Implements session supplement API defined by res_pjsip_session- Res_pjsip_sdp_rtp
 		
 			* Handle SDP negotiation of RTP streams including attributes
 			* Acts as glue between RTP engine API and PJSIP sessions
-			* Manages lifecycle of RTP sessions themselves- Res\_pjsip\_registrar
+			* Manages lifecycle of RTP sessions themselves- Res_pjsip_registrar
 		
 			* Provides functionality for REGISTER SIP requests
 			* Manages AORs and contacts on them
-			* Enforces configuration of AORS- Res\_pjsip\_pubsub
+			* Enforces configuration of AORS- Res_pjsip_pubsub
 		
 			* Provides functionality for SUBSCRIBE SIP requests
 			* Uses PJSIP provided “evsub” API
 			* Provides “Subscription/Notifier Handler” API to allow pluggable even and body types
-			* Handles lifecycle of subscriptions- Res\_pjsip\_exten\_state
+			* Handles lifecycle of subscriptions- Res_pjsip_exten_state
 		
 			* Handles subs for extension state (hints)
-			* Acts as glue between asterisk core and PJSIP- PJSIP vs chan\_sip
+			* Acts as glue between asterisk core and PJSIP- PJSIP vs chan_sip
 		
 			* “Line” support in outbound registrations
 			
@@ -153,11 +153,11 @@ pageid: 42566556
 			* External DSP
 			* Machine learning
 			* Realtime fraud detection
-			* Live feedback- Chan\_alsa (or oss)
-		- App\_jack
-		- Chan\_nbs
+			* Live feedback- Chan_alsa (or oss)
+		- App_jack
+		- Chan_nbs
 		- MRCP (Media Resource COntrol Protocol)
-		- Chan\_rtp
+		- Chan_rtp
 		- AudioSocket
 		
 			* Network-first
@@ -169,7 +169,7 @@ pageid: 42566556
 			* Fully open source
 			
 				+ GPL (Asterisk side)
-				+ Apache 2.0 (Go library)- Chan\_audiosocket and app\_audiosocket
+				+ Apache 2.0 (Go library)- Chan_audiosocket and app_audiosocket
 		
 			* AudioSocket/ip:port/UUID
 			* Exten => 100,1,Answer()  
@@ -178,7 +178,7 @@ pageid: 42566556
 		- Focus on call transcription with external media
 		- Asterisk to ARI app to cloud speech recognition provider and vice versa
 		- The audio needs to be transcoded into a format that the speech recognition server can read
-		- Demo uses chan\_rtp
+		- Demo uses chan_rtp
 		- For the demo, node ARI is used to communicate with Asterisk
 		- There’s a UDP network listener that takes in RTP packets and strips off the RTP header
 		- The speech adapter just pipes the packets that come in from the UDP socket and pipe them to Google’s libraries
@@ -218,20 +218,20 @@ pageid: 42566556
 			* Channels- But it wasn’t possible to use websocket and AMQP at same time
 		- Now, additions made to use websocket or AMQP for an application
 		- Added ARI endpoint to activate the application
-		- Add support for subscribing to ARMP for res\_amqp
+		- Add support for subscribing to ARMP for res_amqp
 		- 3 modules now
 		
-			* With vision of adding for (pluggable systems)- Res\_amqp
+			* With vision of adding for (pluggable systems)- Res_amqp
 		
 			* Client for Asterisk
 			* Publish and subscribe (on a branch)
 			* Based on librabbitmq
 			* Configuration in /etc/asterisk/amqp.conf
-			* Serves solely as a client- Res\_stasis\_amqp
+			* Serves solely as a client- Res_stasis_amqp
 		
 			* Publish stasis messages to AMQP
 			* Support for stasis AMI, ARI, channel
-			* Depends on res\_aqmp- Res\_ari\_aqmp
+			* Depends on res_aqmp- Res_ari_aqmp
 		
 			* Activate application to use AMQP instead of websocket
 			* Stateless and not stateful

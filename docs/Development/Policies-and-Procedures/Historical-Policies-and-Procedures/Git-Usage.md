@@ -122,10 +122,10 @@ Useful Commands and Tips
 	
 	$ git log --graph --decorate --no-merges -E --grep="^(realtime: Add database scripts for|ChangeLog:|Release summaries:|[.])" \
 	$ --invert-grep --pretty=format:'%Cred %h %C(yellow) %d %Creset %<(60,trunc) %s %Cgreen(%cr)' 13.8..13.9
-	\* d27ee3b res\_sorcery\_astdb: Fix creation of retrieved objects. (11 days ago)
+	\* d27ee3b res_sorcery_astdb: Fix creation of retrieved objects. (11 days ago)
 	\* 15c427c Use doubles instead of floats for conversions when compari.. (11 days ago)
-	\* e702b9f pjproject\_bundled: Disable PJSIP\_UNESCAPE\_IN\_PLACE (3 weeks ago)
-	\* b470aab func\_odbc: Check connection status before executing queries. (3 weeks ago)
+	\* e702b9f pjproject_bundled: Disable PJSIP_UNESCAPE_IN_PLACE (3 weeks ago)
+	\* b470aab func_odbc: Check connection status before executing queries. (3 weeks ago)
 	<snip>
 	$
 	
@@ -199,7 +199,7 @@ Useful Commands and Tips
 	```
 	
 	$ git cdiff 13.9.0..13.9.1
-	\* d27ee3b res\_sorcery\_astdb: Fix creation of retrieved objects. (11 days ago)
+	\* d27ee3b res_sorcery_astdb: Fix creation of retrieved objects. (11 days ago)
 	\* 15c427c Use doubles instead of floats for conversions when compari.. (11 days ago)
 	<snip>
 	$
@@ -224,12 +224,12 @@ Useful Commands and Tips
 	
 	$ git cdiff --cherry-pick --right-only 13.8...certified/13.8
 	\* b9a28cc udptl: Don't eat sequence numbers until OK is received (5 days ago)
-	| \* f85c77a chan\_sip: Prevent extra Session-Expires headers from bein.. (6 days ago)
+	| \* f85c77a chan_sip: Prevent extra Session-Expires headers from bein.. (6 days ago)
 	|/ 
-	\* 8bf050b config\_transport: Tell pjproject to allow all SSL/TLS pro.. (10 days ago)
-	\* 4fc2c98 res\_pjsip\_authenticator\_digest: Don't use source port in n.. (2 weeks ago)
+	\* 8bf050b config_transport: Tell pjproject to allow all SSL/TLS pro.. (10 days ago)
+	\* 4fc2c98 res_pjsip_authenticator_digest: Don't use source port in n.. (2 weeks ago)
 	\* 4e7791d file: Ensure nativeformats remains valid for lifetime of u.. (3 weeks ago)
-	\* c4426f1 res\_pjsip: disable multi domain to improve realtime perfor.. (3 weeks ago)
+	\* c4426f1 res_pjsip: disable multi domain to improve realtime perfor.. (3 weeks ago)
 	<snip>
 	$
 	
@@ -258,9 +258,9 @@ Useful Commands and Tips
 	master 2415a14 2015-05-15 Add X.509 subject alternative name support to TLS certificate verification.
 	master 57386dc 2015-05-12 Allow command-line options to override asterisk.conf.
 	master 62e9506 2015-04-13 AMI: Fix improper handling of lines that are exactly 1025 bytes long.
-	13 1d3d20d 2015-12-21 app\_amd: Correct documentation to reflect functionality
-	master ca39416 2015-12-21 app\_amd: Correct maximum\_number\_of\_words functionality & documentation
-	master 8c14b91 2015-11-19 app\_bridgeaddchan: ability to barge into existing call
+	13 1d3d20d 2015-12-21 app_amd: Correct documentation to reflect functionality
+	master ca39416 2015-12-21 app_amd: Correct maximum_number_of_words functionality & documentation
+	master 8c14b91 2015-11-19 app_bridgeaddchan: ability to barge into existing call
 	<snip>
 	$
 	
@@ -271,6 +271,6 @@ Useful Commands and Tips
 	---
 	
 	
-	April 11 2015 was the migration from subversion to git.  Also note that the 2 app\_amd commits are probably the same but we have no way to tell.
+	April 11 2015 was the migration from subversion to git.  Also note that the 2 app_amd commits are probably the same but we have no way to tell.
 
   

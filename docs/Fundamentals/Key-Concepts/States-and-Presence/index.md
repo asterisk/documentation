@@ -5,7 +5,7 @@ pageid: 28315969
 
 Asterisk includes the concepts of [Device State](/Device-State) , [Extension State](/Extension-State-and-Hints) and [Presence State](/Fundamentals/Key-Concepts/States-and-Presence/Presence-State) which together allow Asterisk applications and interfaces to receive information about the state of devices, extensions and the users of the devices.
 
-As an example, channel drivers like chan\_sip or res\_pjsip/chan\_pjsip may both provide devices with device state, plus allow devices to [subscribe to hints](/Extension-State-and-Hints) to receive notifications of state change. Other examples would be app\_queue which takes into consideration the device state of queue members to influence queue logic or the Asterisk Manager Interface which provides actions for [querying extension state and presence state](/Fundamentals/Key-Concepts/States-and-Presence/Querying-and-Manipulating-State).
+As an example, channel drivers like chan_sip or res_pjsip/chan_pjsip may both provide devices with device state, plus allow devices to [subscribe to hints](/Extension-State-and-Hints) to receive notifications of state change. Other examples would be app_queue which takes into consideration the device state of queue members to influence queue logic or the Asterisk Manager Interface which provides actions for [querying extension state and presence state](/Fundamentals/Key-Concepts/States-and-Presence/Querying-and-Manipulating-State).
 
 In This SectionSee Also[Distributed Device State](/Configuration/Interfaces/Distributed-Device-State)
 

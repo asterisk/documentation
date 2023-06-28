@@ -51,7 +51,7 @@ Examples
 ```
 
 exten => 1,1,Answer()
-exten => 1,n,Set(CONFBRIDGE(user,announce\_join\_leave)=yes)
+exten => 1,n,Set(CONFBRIDGE(user,announce_join_leave)=yes)
 exten => 1,n,Set(CONFBRIDGE(user,startmuted)=yes)
 exten => 1,n,ConfBridge(1)
 
@@ -74,7 +74,7 @@ exten => 1,n,ConfBridge(1)
 ```
 
 exten => 1,1,Answer()
-exten => 1,n,Set(CONFBRIDGE(user,template)=default\_user)
+exten => 1,n,Set(CONFBRIDGE(user,template)=default_user)
 exten => 1,n,Set(CONFBRIDGE(user,admin)=yes)
 exten => 1,n,Set(CONFBRIDGE(user,marked)=yes)
 exten => 1,n,ConfBridge(1)
@@ -83,10 +83,10 @@ exten => 1,n,ConfBridge(1)
 ```
 
 
-Function CONFBRIDGE\_INFO
+Function CONFBRIDGE_INFO
 =========================
 
-The CONFBRIDGE\_INFO dialplan function is used to retrieve information about a conference, such as locked/unlocked status and the number of parties including admins and marked users.
+The CONFBRIDGE_INFO dialplan function is used to retrieve information about a conference, such as locked/unlocked status and the number of parties including admins and marked users.
 
 ### Syntax
 
@@ -101,7 +101,7 @@ The CONFBRIDGE\_INFO dialplan function is used to retrieve information about a c
 
 ```
 
-CONFBRIDGE\_INFO(type,conf)
+CONFBRIDGE_INFO(type,conf)
 
 
 ```
@@ -110,5 +110,5 @@ CONFBRIDGE\_INFO(type,conf)
 * type - Refers to which information type to be retrieved. Type can be either "parties," "admins," "marked," or "locked."
 * conf - Refers to the name of the conference being referenced.
 
-The CONFBRIDGE\_INFO function returns a non-negative integer for valid conference identifiers, 0 or 1 for locked, and "" for invalid conference identifiers.
+The CONFBRIDGE_INFO function returns a non-negative integer for valid conference identifiers, 0 or 1 for locked, and "" for invalid conference identifiers.
 

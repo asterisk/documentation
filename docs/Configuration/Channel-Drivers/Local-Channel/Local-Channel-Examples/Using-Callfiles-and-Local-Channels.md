@@ -268,7 +268,7 @@ At this point we now see the Local channel has been optimized out of the call pa
 ```
 
 – <SIP/0004f2040001-00000022> Playing 'tt-weasels.ulaw' (language 'en')
-[Mar 1 13:35:23] NOTICE[16814]: pbx\_spool.c:349 attempt\_thread: Call completed to Local/201@devices
+[Mar 1 13:35:23] NOTICE[16814]: pbx_spool.c:349 attempt_thread: Call completed to Local/201@devices
 
 
 ```

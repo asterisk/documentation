@@ -17,7 +17,7 @@ pageid: 28314848
 
 
 !!! note 
-    Section to hold information on configuring the SIP channel drivers, chan\_sip and chan\_pjsip
+    Section to hold information on configuring the SIP channel drivers, chan_sip and chan_pjsip
 
       
 [//]: # (end-note)

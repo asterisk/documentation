@@ -3,10 +3,10 @@ title: MSSQL CEL Backend
 pageid: 5242952
 ---
 
-Asterisk can currently store Channel Events into an MSSQL database in two different ways: cel\_odbc or cel\_tds 
+Asterisk can currently store Channel Events into an MSSQL database in two different ways: cel_odbc or cel_tds 
 
 
-Channel Event Records can be stored using unixODBC (which requires the FreeTDS package) [cel\_odbc](/cel_odbc) or directly by using just the FreeTDS package [cel\_tds](/cel_tds) 
+Channel Event Records can be stored using unixODBC (which requires the FreeTDS package) [cel_odbc](/cel_odbc) or directly by using just the FreeTDS package [cel_tds](/cel_tds) 
 
 
 The following provide some examples known to get asterisk working with mssql. 
@@ -22,7 +22,7 @@ The following provide some examples known to get asterisk working with mssql.
 
 
 
-### ODBC using cel\_odbc
+### ODBC using cel_odbc
 
 
 ##### Compile, configure, and install the latest unixODBC package:
@@ -65,7 +65,7 @@ tar -zxvf freetds-0.62.4.tar.gz && cd freetds-0.62.4 && ./configure --prefix=/us
 ```
 
 
-##### Compile, or recompile, asterisk so that it will now add support for cel\_odbc.
+##### Compile, or recompile, asterisk so that it will now add support for cel_odbc.
 
 
 
@@ -135,8 +135,8 @@ driver = FreeTDS
 server = 192.168.1.25
 port = 1433
 database = voipdb
-tds\_version = 7.0
-language = us\_english 
+tds_version = 7.0
+language = us_english 
 
 
 ```
@@ -145,7 +145,7 @@ language = us\_english
 
 
 !!! warning 
-    Only install one database connector. Do not confuse asterisk by using both ODBC (cel\_odbc) and FreeTDS (cel\_tds). This command will erase the contents of cel\_tds.conf 
+    Only install one database connector. Do not confuse asterisk by using both ODBC (cel_odbc) and FreeTDS (cel_tds). This command will erase the contents of cel_tds.conf 
 [//]: # (end-warning)
 
 
@@ -156,7 +156,7 @@ language = us\_english
 ```
 
 
-[ -f /etc/asterisk/cel\_tds.conf ] > /etc/asterisk/cel\_tds.conf 
+[ -f /etc/asterisk/cel_tds.conf ] > /etc/asterisk/cel_tds.conf 
   
 
 
@@ -178,13 +178,13 @@ language = us\_english
 
 
 
-##### Now set up cel\_odbc configuration files.
+##### Now set up cel_odbc configuration files.
 
 
 These are working samples from my system. You will need to modify for your setup. Define your usernames and passwords here, secure file as well. 
 
 
-/etc/asterisk/cel\_odbc.conf
+/etc/asterisk/cel_odbc.conf
 
 
 
@@ -249,7 +249,7 @@ CREATE TABLE cel (
 Start asterisk in verbose mode, you should see that asterisk logs a connection to the database and will now record every desired channel event at the moment it occurs.
 
 
-### FreeTDS, using cel\_tds
+### FreeTDS, using cel_tds
 
 
 ##### Compile, configure, and install the latest FreeTDS package:
@@ -272,7 +272,7 @@ tar -zxvf freetds-0.62.4.tar.gz && cd freetds-0.62.4 && ./configure --prefix=/us
 ```
 
 
-##### Compile, or recompile, asterisk so that it will now add support for cel\_tds.
+##### Compile, or recompile, asterisk so that it will now add support for cel_tds.
 
 
 
@@ -295,7 +295,7 @@ make clean && ./configure --with-tds && make update && make && make install
 
 
 !!! warning 
-    Only install one database connector. Do not confuse asterisk by using both ODBC (cel\_odbc) and FreeTDS (cel\_tds). This command will erase the contents of cel\_odbc.conf 
+    Only install one database connector. Do not confuse asterisk by using both ODBC (cel_odbc) and FreeTDS (cel_tds). This command will erase the contents of cel_odbc.conf 
 [//]: # (end-warning)
 
 
@@ -306,7 +306,7 @@ make clean && ./configure --with-tds && make update && make && make install
 ```
 
 
-[ -f /etc/asterisk/cel\_odbc.conf ] > /etc/asterisk/cel\_odbc.conf 
+[ -f /etc/asterisk/cel_odbc.conf ] > /etc/asterisk/cel_odbc.conf 
   
 
 
@@ -318,13 +318,13 @@ make clean && ./configure --with-tds && make update && make && make install
 ```
 
 
-##### Setup cel\_tds configuration files.
+##### Setup cel_tds configuration files.
 
 
 These are working samples from my system. You will need to modify for your setup. Define your usernames and passwords here, secure file as well. 
 
 
-/etc/asterisk/cel\_tds.conf
+/etc/asterisk/cel_tds.conf
 
 
 

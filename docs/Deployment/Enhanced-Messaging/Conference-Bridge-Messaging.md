@@ -48,7 +48,7 @@ When Bob joins the ConfBridge he receives the ConfbridgeWelcome event:
  "bridge": {
  "id": "75539107-a8fb-47fd-9b6a-7a9391ce011a",
  "name": "MYCONF",
- "video\_mode": "sfu"
+ "video_mode": "sfu"
  },
  "channels": [
  {
@@ -85,7 +85,7 @@ When Bob joins the ConfBridge he receives the ConfbridgeWelcome event:
 
 In the ConfbridgeWelcome event, the "channels" arrays contains all of the channels currently in the bridge, including Bob himself.  In this case, Alice was already in the conference when Bob joined.
 
-The ConfbridgeJoin event is sent to all other participants when someone joins the conference.  In this case Bob is joining the conference.  If the "echo\_events" option is enabled, Bob can also receive his join message when he joins.
+The ConfbridgeJoin event is sent to all other participants when someone joins the conference.  In this case Bob is joining the conference.  If the "echo_events" option is enabled, Bob can also receive his join message when he joins.
 
 
 
@@ -104,7 +104,7 @@ The ConfbridgeJoin event is sent to all other participants when someone joins th
  "bridge": {
  "id": "ea65ab81-179a-47eb-b55e-be716a2c7c80",
  "name": "MYCONF",
- "video\_mode": "sfu"
+ "video_mode": "sfu"
  },
  "channels": [
  {
@@ -128,7 +128,7 @@ The ConfbridgeJoin event is sent to all other participants when someone joins th
 
 Since this is an event related to a specific participant, the "channels" array just has Bob's channel in it.
 
-Most of the other ConfBridge events have the same contents.  They are ConfbridgeJoin, ConfbridgeLeave, ConfbridgeRecord, ConfbridgeStopRecord, ConfbridgeMute, ConfbridgeUnmute, ConfbridgeWelcome.  If your bridge has the "talk\_detection\_events" option set to "yes", participants will also receive ConfbridgeTalking events containing a "talking\_status" indicator in place of the "muted" parameter appearing in most of the other events.
+Most of the other ConfBridge events have the same contents.  They are ConfbridgeJoin, ConfbridgeLeave, ConfbridgeRecord, ConfbridgeStopRecord, ConfbridgeMute, ConfbridgeUnmute, ConfbridgeWelcome.  If your bridge has the "talk_detection_events" option set to "yes", participants will also receive ConfbridgeTalking events containing a "talking_status" indicator in place of the "muted" parameter appearing in most of the other events.
 
 If you are familiar with the ConfBridge AMI events, you will notice that the ConfbridgeStart and ConfbridgeEnd events are missing.  That is because they do not make much sense in this context.  At the time they are generated, there are no participants to receive them.
 
@@ -151,22 +151,22 @@ Start by adding a few parameters to your user and bridge profiles in confbridge.
 
 ```
 
-[default\_user]
+[default_user]
 type=user
-send\_events=yes ; If events are enabled for this bridge and this option is
+send_events=yes ; If events are enabled for this bridge and this option is
  ; set, users will receive events like join, leave, talking,
  ; etc. via text messages. For users accessing the bridge
- ; via chan\_pjsip, this means in-dialog MESSAGE requests.
+ ; via chan_pjsip, this means in-dialog MESSAGE requests.
  ; This is most useful for WebRTC participants where the
  ; browser application can use the messages to alter the user
  ; interface.
-echo\_events=yes ; If events are enabled for this user and this option is set,
+echo_events=yes ; If events are enabled for this user and this option is set,
  ; the user will receive events they trigger, talking, mute, etc.
  ; If not set, they will not receive their own events.
-[default\_bridge]
+[default_bridge]
 type=bridge
-enable\_events=yes ; If enabled, recipients who joined the bridge via a channel driver
- ; that supports Enhanced Messaging (currently only chan\_pjsip) will
+enable_events=yes ; If enabled, recipients who joined the bridge via a channel driver
+ ; that supports Enhanced Messaging (currently only chan_pjsip) will
  ; receive in-dialog messages containing a JSON body describing the
  ; event. The Content-Type header will be
  ; "application/x-asterisk-confbridge-event+json".

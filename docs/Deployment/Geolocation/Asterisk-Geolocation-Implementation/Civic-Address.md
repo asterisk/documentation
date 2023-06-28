@@ -89,19 +89,19 @@ In geolocation.conf, we can define a location that describes a building and prof
 [building1]
 type = location
 format = civicAddress
-location\_info = country=US, A1="New York", A3="New York",
-location\_info = HNO=1633, PRD=W, RD=46th, STS=Street, PC=10222
+location_info = country=US, A1="New York", A3="New York",
+location_info = HNO=1633, PRD=W, RD=46th, STS=Street, PC=10222
 method = Manual
 
 [alice]
 type = profile
-location\_reference = building1
-location\_refinement = FLR=4, ROOM=4B20
+location_reference = building1
+location_refinement = FLR=4, ROOM=4B20
 
 [bob]
 type = profile
-location\_reference = building1
-location\_refinement = FLR=32, ROOM=32A6
+location_reference = building1
+location_refinement = FLR=32, ROOM=32A6
 
 
 ```

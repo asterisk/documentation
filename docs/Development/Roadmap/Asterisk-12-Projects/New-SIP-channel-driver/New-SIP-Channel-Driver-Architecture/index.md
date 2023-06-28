@@ -17,7 +17,7 @@ pageid: 21464468
 A proposed architecture for the new SIP channel driver architecture is below.
 
 
-new\_chan\_sip\_design
+new_chan_sip_design
 Transport
 =========
 

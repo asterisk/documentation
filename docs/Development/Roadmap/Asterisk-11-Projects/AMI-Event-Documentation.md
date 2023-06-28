@@ -178,7 +178,7 @@ Writing AMI Event Documentation
 AMI Event documentation behaves a bit differently then other Asterisk documentation. A driving factor in the approach taken was to make documenting AMI events as simple and painless as possible, and leave the intricacies of tying instances of AMI events together to pre- and post-processing scripts. The following describes some of the differences between documenting AMI events and the normal approach for documenting items in Asterisk.
 
 
-1. Event documentation can be built directly from the macros that raise the AMI events. This includes manager\_event, ast\_manager\_event, and ast\_manager\_event\_multichan. Because of this, AMI event documentation is typically co-located with the macro call that raises the event. Note that in the example below, only the DialStatus field is explicitly defined; however, the generated AMI event documentation will include all fields found in the ast\_manager\_event call.
+1. Event documentation can be built directly from the macros that raise the AMI events. This includes manager_event, ast_manager_event, and ast_manager_event_multichan. Because of this, AMI event documentation is typically co-located with the macro call that raises the event. Note that in the example below, only the DialStatus field is explicitly defined; however, the generated AMI event documentation will include all fields found in the ast_manager_event call.
 
 
 
@@ -201,12 +201,12 @@ AMI Event documentation behaves a bit differently then other Asterisk documentat
  </syntax>
  </managerEventInstance>
  \*\*\*/
- ast\_manager\_event(src, EVENT\_FLAG\_CALL, "Dial",
+ ast_manager_event(src, EVENT_FLAG_CALL, "Dial",
  "SubEvent: End\r\n"
  "Channel: %s\r\n"
  "UniqueID: %s\r\n"
  "DialStatus: %s\r\n",
- ast\_channel\_name(src), ast\_channel\_uniqueid(src), dialstatus);
+ ast_channel_name(src), ast_channel_uniqueid(src), dialstatus);
 
 
 ```
@@ -331,7 +331,7 @@ The following are the changes to the XML DTD schema used to validate the generat
 ```
 
 
-<managerEvent language="en\_US" name="Dial"><managerEventInstance class="EVENT\_FLAG\_CALL">
+<managerEvent language="en_US" name="Dial"><managerEventInstance class="EVENT_FLAG_CALL">
  <synopsis>Raised when a dial action has started.</synopsis>
  <syntax>
  <parameter name="SubEvent">
@@ -352,7 +352,7 @@ The following are the changes to the XML DTD schema used to validate the generat
  <parameter name="Dialstring"/>
  </syntax>
  </managerEventInstance>
- <managerEventInstance class="EVENT\_FLAG\_CALL">
+ <managerEventInstance class="EVENT_FLAG_CALL">
  <synopsis>Raised when a dial action has ended.</synopsis>
  <syntax>
  <parameter name="DialStatus">
@@ -400,7 +400,7 @@ Source Comments
 ```
 * If documentation is placed at the top of the header file, the documentation **MUST** be enclosed with the <managerEvent/> tag, as well as the <managerEventInstance/> tags that describe the event instances. The documentation is not modified by the pre-processing script, but will be modified by the post-processing script in that it will be combined with other <managerEventInstance/> tags for the same event.
 * If documentation is placed within a source file co-located with AMI event call, the event documentation **MUST** be on the lines immediately preceding the AMI event call.
-	+ The AMI event call **MUST** be one of the following three methods: ami\_manager\_event, manager\_event, or ami\_manager\_event\_multichan
+	+ The AMI event call **MUST** be one of the following three methods: ami_manager_event, manager_event, or ami_manager_event_multichan
 	+ The AMI event call **MUST** contain the full manager event name with no format specifiers or ternary operations
 	+ Only fields in the AMI event call that contain no format specifiers will be documented. If a field consists of a format specifier or contains some format specifier, it must be explicitly documented.
 	+ Documentation co-located with an AMI event call may or may not contain a <syntax /> element. Parameter documentation will automatically be assumed to be children nodes of a <syntax/> element if one is not found.

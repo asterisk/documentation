@@ -82,9 +82,9 @@ exten => 6500,1,Answer(500)
  same => n,VoiceMailMain(@vm-demo)
  
 [catchall]
-exten => \_.,1,NoOp();
-exten => \_.,2,NoOp();
-exten => \_.,3,NoOp(); ; <- Priority 3 ends up being here, which is NOT what you want  
+exten => _.,1,NoOp();
+exten => _.,2,NoOp();
+exten => _.,3,NoOp(); ; <- Priority 3 ends up being here, which is NOT what you want  
 
 
 

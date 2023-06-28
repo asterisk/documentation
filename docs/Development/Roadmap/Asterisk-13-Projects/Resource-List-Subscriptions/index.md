@@ -90,9 +90,9 @@ An RLMI document can be constructed using the following structure:
 
 ```
 
-struct rlmi\_data {
- struct ast\_sip\_subscription \*list\_subscription;
- AST\_LIST\_HEAD(,ast\_list\_subscription) child\_subscriptions;
+struct rlmi_data {
+ struct ast_sip_subscription \*list_subscription;
+ AST_LIST_HEAD(,ast_list_subscription) child_subscriptions;
 }; 
 
 ```
@@ -184,7 +184,7 @@ The flip-side of this is that Asterisk could also be configured to PUBLISH the s
 
 As far as RLS is concerned, this would allow for resource lists to consist of both local and remote resources.
 
-We already have a bit of a head start on PUBLISH support since we have an API for handling incoming PUBLISH in res\_pjsip\_pubsub.c. However, there is much more work that would need to be done in order to have full multi-server support, including:
+We already have a bit of a head start on PUBLISH support since we have an API for handling incoming PUBLISH in res_pjsip_pubsub.c. However, there is much more work that would need to be done in order to have full multi-server support, including:
 
 * Modifying the core PBX code such that it is not dependent on handling only local extension states.
 * Modifying the pubsub API to know about pending subscriptions and how to indicate these properly.

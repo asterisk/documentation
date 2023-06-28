@@ -19,7 +19,7 @@ pageid: 28314858
 !!! note **  Top-level page for DAHDI **channel driver
     information
 
-    What are the software and hardware requirements for chan\_dahdi?
+    What are the software and hardware requirements for chan_dahdi?
 
     How do I configure it?
 

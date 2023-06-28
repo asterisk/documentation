@@ -13,7 +13,7 @@ Using the Dial application
 
 Here is a few ways to learn the usage of the Dial application.
 
-* Read the detailed documentation for your Asterisk version: e.g. for Asterisk 13 - [Asterisk 13 Application\_Dial](/Asterisk-13-Application_Dial)
+* Read the detailed documentation for your Asterisk version: e.g. for Asterisk 13 - [Asterisk 13 Application_Dial](/Asterisk-13-Application_Dial)
 * See how to use Dial for a specific channel driver: [Dialing PJSIP Channels](/Configuration/Channel-Drivers/SIP/Configuring-res_pjsip/Dialing-PJSIP-Channels)
 * Note how Dial is used in a simple Asterisk dialplan: [Creating Dialplan Extensions](/Deployment/Basic-PBX-Functionality/Creating-Dialplan-Extensions)
 

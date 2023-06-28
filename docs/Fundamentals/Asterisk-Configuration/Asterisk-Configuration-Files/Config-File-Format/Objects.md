@@ -17,7 +17,7 @@ Some Asterisk configuration files also create objects. The syntax for objects is
 ```
 
 [section-name]
-some\_object => settings
+some_object => settings
 
 ```
 
@@ -36,8 +36,8 @@ some\_object => settings
 ```
 
 
-some\_object => settings
-some\_object=settings
+some_object => settings
+some_object=settings
   
 
 

@@ -16,7 +16,7 @@ Transfer types supported by the Asterisk core:
 
 Transfer features provided by the Asterisk core are configured in features.conf and accessed with feature codes.
 
-Channel driver technologies such as chan\_sip and chan\_pjsip have native capability for various transfer types. That native transfer functionality is independent of this core transfer functionality. The core feature code transfer functionality is channel agnostic.
+Channel driver technologies such as chan_sip and chan_pjsip have native capability for various transfer types. That native transfer functionality is independent of this core transfer functionality. The core feature code transfer functionality is channel agnostic.
 
 On this Page
 

@@ -3,7 +3,7 @@ title: Configuring chan_sip for IPv6
 pageid: 34013478
 ---
 
-Configuring chan\_sip for IPv6
+Configuring chan_sip for IPv6
 ==============================
 
 Mostly you can use IPv6 addresses where you would have otherwise used IPv4 addresses within sip.conf. The sip.conf.sample provides several examples of how to use the various options with IPv6 addresses. We'll provide a few examples here as well.

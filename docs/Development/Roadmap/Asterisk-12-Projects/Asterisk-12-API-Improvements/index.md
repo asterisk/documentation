@@ -15,7 +15,7 @@ This page contains the original development plans and notes for Stasis and ARI. 
 
 While Asterisk has a number of interfaces one could use for building telephony applications, they suffer from several significant problems.
 
-\* Channels identifiers are not stable. Some operations (like [masquerades|AST:Asterisk 11 ManagerEvent\_Masquerade]) will change the id out from under you.
+\* Channels identifiers are not stable. Some operations (like [masquerades|AST:Asterisk 11 ManagerEvent_Masquerade]) will change the id out from under you.
 \* The protocols (AMI and AGI) are non-standard and poorly documented, making them difficult to work with.
 \* AMI's message format is restricted to simple name/value pairs. Commands that need to pass back lists or structured data are very hackish.
 \* AMI event filtering is very course grained, and established in configuration instead of at runtime. This has lead to some creative solutions to dealing with the flood of events (most of which are not of interest).
@@ -84,7 +84,7 @@ Possible use cases to consider:
 
 ## Use Cases
 
-Note that at this point this it the list of \_candidate\_ use cases. Which ones we get to, and in what priority, have not been determined yet.
+Note that at this point this it the list of _candidate_ use cases. Which ones we get to, and in what priority, have not been determined yet.
 
 h3. Summary Level
 
@@ -156,14 +156,14 @@ h4. \[general\]
 | enabled | Turns Stasis HTTP binding on or off \\
 HTTP server must be enabled in http.conf for this to take effect | Boolean | yes |
 | pretty | When set to yes, responses from stasis-http are formatted to be human readable | Boolean | no |
-| allowed\_origins | Comma separated list of allowed origins, for Cross-Origin Resource Sharing. May be set to {{\\*}} to allow all origins. | Comma separated strings | |
-| use\_manager\_auth | Share authentication with AMI over HTTP. | Boolean | no |
+| allowed_origins | Comma separated list of allowed origins, for Cross-Origin Resource Sharing. May be set to {{\\*}} to allow all origins. | Comma separated strings | |
+| use_manager_auth | Share authentication with AMI over HTTP. | Boolean | no |
 
 h4. \[username\]
 
 || Parameter || Description || Type || Default Value ||
-| read\_only | When set to yes, user is only authorized for read-only requests. | Boolean | no |
-| crypt\_password | Method of encryption used on password. | \{ crypt, plain \} | plain |
+| read_only | When set to yes, user is only authorized for read-only requests. | Boolean | no |
+| crypt_password | Method of encryption used on password. | \{ crypt, plain \} | plain |
 | password | Crypted or plaintext password for username. See [authentication|#HTTP Authentication] below | String | n/a |
 
 h3. stasis-core.conf
@@ -173,9 +173,9 @@ Configuration for the Stasis Message Bus.
 h4. \[threadpool\]
 
 || Parameter || Description || Type || Default Value ||
-| initial\_size | Initial size of the threadpool | Integer | 0 |
-| idle\_timeout | Number of seconds a thread should be idle before dying | Integer (seconds) | 20 |
-| max\_size | Maximum number of threads in the threadpool | Integer | 200 |
+| initial_size | Initial size of the threadpool | Integer | 0 |
+| idle_timeout | Number of seconds a thread should be idle before dying | Integer (seconds) | 20 |
+| max_size | Maximum number of threads in the threadpool | Integer | 200 |
 
 h3. RealTime schemas
 
@@ -193,7 +193,7 @@ The {{Stasis}} application is how a channel goes from the dialplan to a Stasis a
 
 h3. RESTful HTTP API
 
-As [detailed below|#res\_stasis\_http], Stasis will expose a RESTful HTTP API for third party call control. This API should be documented using [Swagger|http://swagger.wordnik.com/], which allows for not only the generation of usable, interactive documentation, but also allows for the generation of server stubs, reducing a lot of the tediousness required in implementing a web application in C.
+As [detailed below|#res_stasis_http], Stasis will expose a RESTful HTTP API for third party call control. This API should be documented using [Swagger|http://swagger.wordnik.com/], which allows for not only the generation of usable, interactive documentation, but also allows for the generation of server stubs, reducing a lot of the tediousness required in implementing a web application in C.
 
 See the [Asterisk 12 RESTful API] page for full descriptions of the proposed RESTful API, including URL's, supported methods, and the schema of the returned resources.
 
@@ -223,7 +223,7 @@ h4. HTTP Authentication
 
 Usernames and passwords for Stasis-HTTP are configured in stasis-http.conf ([see above|#stasis-http.conf]).
 
-If a user is configured without a password, their username is treated as an API key. They can authenticate to Stasis-HTTP by simply passing their API key along using the {{api\_key=}} request parameter.
+If a user is configured without a password, their username is treated as an API key. They can authenticate to Stasis-HTTP by simply passing their API key along using the {{api_key=}} request parameter.
 
 If the user is configured with a password, they must authenticate using HTTP Basic authentication.
 
@@ -244,42 +244,42 @@ The [Stasis Message Bus|AST:Stasis Message Bus] is how message producers and con
 
 Please see the [API docs|http://doxygen.asterisk.org/trunk/stasis.html] and the [wiki page|AST:Stasis Message Bus] for further details. 
 
-## {{res\_stasis.c}} - Stasis Application API 
+## {{res_stasis.c}} - Stasis Application API 
 
-\*Header\*: {{asterisk/stasis\_app.h}} 
+\*Header\*: {{asterisk/stasis_app.h}} 
 
 High level application API's for Asterisk. The [Message Bus|#message-bus] provides a read-only view into Asterisk. This API gives you high level manipulation. The functions in this API should correspond roughly one-to-one to the sorts of methods you would put into an external API. 
 
-Please see the [API docs|http://doxygen.asterisk.org/trunk/d8/d9c/stasis\_\_app\_8h.html] for further details.. 
+Please see the [API docs|http://doxygen.asterisk.org/trunk/d8/d9c/stasis__app_8h.html] for further details.. 
 
-## {{app\_stasis.c}} - Stasis Dialplan Application 
+## {{app_stasis.c}} - Stasis Dialplan Application 
 
 \*Application\*: Stasis 
 
-The {{app\\_stasis.so}} module simply exports the {{res\\_stasis.so}} functionality as a dialplan application. This allows you to send channels to a Stasis application from within the dialplan. 
+The {{app\_stasis.so}} module simply exports the {{res\_stasis.so}} functionality as a dialplan application. This allows you to send channels to a Stasis application from within the dialplan. 
 
 {code:none} 
 ; Send channel to the 'Queue' application, with the args 'enqueue,sales' 
 exten => 7001,1,Stasis(Queue,enqueue,sales) 
 {code} 
 
-## {{stasis\_\{channels,bridges,endpoints\}.c}} 
+## {{stasis_\{channels,bridges,endpoints\}.c}} 
 
-\*Headers\*: {{stasis\_\{channels,bridges,endpoints\}.h}} 
+\*Headers\*: {{stasis_\{channels,bridges,endpoints\}.h}} 
 
-Channels, endpoints and bridges will have their own Stasis topics and messages for publishing state and event messages about themselves. Each object also has a \_snapshot\_, which is a immutable struct representing the state of the underlying object at a particular point in time. 
+Channels, endpoints and bridges will have their own Stasis topics and messages for publishing state and event messages about themselves. Each object also has a _snapshot_, which is a immutable struct representing the state of the underlying object at a particular point in time. 
 
-Each object has its own topic, to which it posts snapshots and messages regarding events that happen to that object. These messages are all forwarded to an aggregation topic ({{ast\\_\{channel,endpoint,bridge}\\_topic\\_all}}), which is cached by a caching topic ({{ast\\_\{channel,endpoint,bridge}\\_topic\\_all\\_cached}}). 
+Each object has its own topic, to which it posts snapshots and messages regarding events that happen to that object. These messages are all forwarded to an aggregation topic ({{ast\_\{channel,endpoint,bridge}\_topic\_all}}), which is cached by a caching topic ({{ast\_\{channel,endpoint,bridge}\_topic\_all\_cached}}). 
 
 The aggregation and caching topics allow for components that need to monitor the overall state of the system (such as Manager). The caching topics allows components to query for the most recent snapshot of an object without querying the actual object itself. The reduces contention on the object itself, and reduces the opportunities for deadlock. 
 
-See the [API docs|http://doxygen.asterisk.org/trunk/df/deb/group\_\_StasisTopicsAndMessages.html] for further details. 
+See the [API docs|http://doxygen.asterisk.org/trunk/df/deb/group__StasisTopicsAndMessages.html] for further details. 
 
-## {{manager\_\{channels,bridges,endpoints\}.c}} - Existing component refactoring. 
+## {{manager_\{channels,bridges,endpoints\}.c}} - Existing component refactoring. 
 
 Existing Manager events and CLI commands can (and should) be refactored to receive events from the appropriate aggregator topics, and retrieve state from the cache topics. 
 
-The topics and messages for the main components of Asterisk are defined in {{main/stasis\\_\{channel,endpoint,bridge}.c}}. The refactored Manager code will be implemented in {{main/manager\\_\{channel,endpoint,bridge}.c}}. 
+The topics and messages for the main components of Asterisk are defined in {{main/stasis\_\{channel,endpoint,bridge}.c}}. The refactored Manager code will be implemented in {{main/manager\_\{channel,endpoint,bridge}.c}}. 
 
 ## Stasis RESTful API 
 
@@ -287,29 +287,29 @@ The topics and messages for the main components of Asterisk are defined in {{mai
 
 The RESTful Stasis HTTP implementation is broken down into several components. Much of the boiler plate code declaring routes and parsing parameters is done by code generated by the API docs. The generated code can be regenerated by running {{make stasis-stubs}}. 
 
-h3. {{res\_stasis\_http.c}} - Request handling and routing 
+h3. {{res_stasis_http.c}} - Request handling and routing 
 
-\*Header\*: {{asterisk/stasis\\_http.h}} 
+\*Header\*: {{asterisk/stasis\_http.h}} 
 
-The {{res\\_stasis\\_http.so}} module has the common code for handling and routing requests. HTTP resource modules register themselves with the RESTful API by using the {{stasis\_http\_add\_handler()}} and {{stasis\_http\_remove\_handler()}} functions. 
+The {{res\_stasis\_http.so}} module has the common code for handling and routing requests. HTTP resource modules register themselves with the RESTful API by using the {{stasis_http_add_handler()}} and {{stasis_http_remove_handler()}} functions. 
 
-h3. {{res\_stasis\_http\_\{resource\}.c}} (generated) 
+h3. {{res_stasis_http_\{resource\}.c}} (generated) 
 
 The structures declaring the routing for requests for a specific resource, and callbacks for parsing request arguments for the request. 
 
-h3. {{stasis\_http/resource\_\{resource\}.c}} 
+h3. {{stasis_http/resource_\{resource\}.c}} 
 
-\*Header\*: {{stasis\_http/resource\_\{resource\}.h}} (generated) 
+\*Header\*: {{stasis_http/resource_\{resource\}.h}} (generated) 
 
-Implementation code for RESTful HTTP requests. The bulk of this code should be in consuming the request and producing the response. The bulk of the logic to carry out the request belongs in {{res\_stasis.so}}, or in the underlying component. By keeping the HTTP modules free of business logic, we give ourselves a better shot at implementing other API bindings in a way that the different interfaces actually act consistently.
+Implementation code for RESTful HTTP requests. The bulk of this code should be in consuming the request and producing the response. The bulk of the logic to carry out the request belongs in {{res_stasis.so}}, or in the underlying component. By keeping the HTTP modules free of business logic, we give ourselves a better shot at implementing other API bindings in a way that the different interfaces actually act consistently.
 
 # Test Plan
 
 Each controller in the RESTful API should have at least one integration test validating that function. Many will have multiple tests to validate failure conditions (originate failed, etc.).
 
 || Test || Level || Description ||
-| stasis\_obj\_to\_json | Unit | Tests Stasis object to JSON codec |
-| stasis\_obj\_to\_xml | Unit | Tests Stasis object to XML codec |
+| stasis_obj_to_json | Unit | Tests Stasis object to JSON codec |
+| stasis_obj_to_xml | Unit | Tests Stasis object to XML codec |
 
 # Project Planning
 

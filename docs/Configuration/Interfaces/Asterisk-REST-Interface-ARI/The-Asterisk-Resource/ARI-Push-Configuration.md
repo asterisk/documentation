@@ -32,7 +32,7 @@ The ARI client makes a `PUT` request, where the body contains the configuration 
 
 Sorcery requires three pieces of information, at a minimum, to create an object:
 
-* The overall class of configuration types. This is usually a module or namespace that provides multiple types of objects to be created, e.g., 'res\_pjsip'.
+* The overall class of configuration types. This is usually a module or namespace that provides multiple types of objects to be created, e.g., 'res_pjsip'.
 * The type of configuration object to create, e.g., 'endpoint'.
 * A unique identifier (amongst objects of the same type) for the object, e.g., 'alice'.
 
@@ -58,19 +58,19 @@ sorcery.conf
 
 ```
 
-truetext[res\_pjsip] 
-endpoint=astdb,ps\_endpoints
-auth=astdb,ps\_auths
-aor=astdb,ps\_aors
-domain\_alias=astdb,ps\_domain\_aliases
-contact=astdb,ps\_contacts
-system=astdb,ps\_systems
+truetext[res_pjsip] 
+endpoint=astdb,ps_endpoints
+auth=astdb,ps_auths
+aor=astdb,ps_aors
+domain_alias=astdb,ps_domain_aliases
+contact=astdb,ps_contacts
+system=astdb,ps_systems
 
-[res\_pjsip\_endpoint\_identifier\_ip]
-identify=astdb,ps\_endpoint\_id\_ips
+[res_pjsip_endpoint_identifier_ip]
+identify=astdb,ps_endpoint_id_ips
 
-[res\_pjsip\_outbound\_registration]
-registration=astdb,ps\_registrations 
+[res_pjsip_outbound_registration]
+registration=astdb,ps_registrations 
 
 ```
 
@@ -121,24 +121,24 @@ bind=0.0.0.0:5060
 
 [alice]
 type=aor
-support\_path=yes
-remove\_existing=yes
-max\_contacts=1
+support_path=yes
+remove_existing=yes
+max_contacts=1
 
 [alice]
 type=auth
-auth\_type=userpass
+auth_type=userpass
 username=alice
 password=secret
 
 [alice]
 type=endpoint
-from\_user=alice
+from_user=alice
 allow=!all,g722,ulaw,alaw
-ice\_support=yes
-force\_rport=yes
-rewrite\_contact=yes
-rtp\_symmetric=yes
+ice_support=yes
+force_rport=yes
+rewrite_contact=yes
+rtp_symmetric=yes
 context=default
 auth=alice
 aors=alice
@@ -227,10 +227,10 @@ sorcery.conf
 
 ```
 
-truetext[res\_pjsip]
-endpoint=astdb,ps\_endpoints
-auth=astdb,ps\_auths
-aor=astdb,ps\_aors
+truetext[res_pjsip]
+endpoint=astdb,ps_endpoints
+auth=astdb,ps_auths
+aor=astdb,ps_aors
 
 ```
 
@@ -265,9 +265,9 @@ First, let's push in Alice's authentication:
 
 
 ```bash title=" " linenums="1"
-$ curl -X PUT -H "Content-Type: application/json" -u asterisk:secret -d '{"fields": [ { "attribute": "auth\_type", "value": "userpass"}, {"attribute": "username", "value": "alice"}, {"attribute": "password", "value": "secret" } ] }' https://localhost:8088/ari/asterisk/config/dynamic/res\_pjsip/auth/alice
+$ curl -X PUT -H "Content-Type: application/json" -u asterisk:secret -d '{"fields": [ { "attribute": "auth_type", "value": "userpass"}, {"attribute": "username", "value": "alice"}, {"attribute": "password", "value": "secret" } ] }' https://localhost:8088/ari/asterisk/config/dynamic/res_pjsip/auth/alice
 
-[{"attribute":"md5\_cred","value":""},{"attribute":"realm","value":""},{"attribute":"auth\_type","value":"userpass"},{"attribute":"password","value":"secret"},{"attribute":"nonce\_lifetime","value":"32"},{"attribute":"username","value":"alice"}]
+[{"attribute":"md5_cred","value":""},{"attribute":"realm","value":""},{"attribute":"auth_type","value":"userpass"},{"attribute":"password","value":"secret"},{"attribute":"nonce_lifetime","value":"32"},{"attribute":"username","value":"alice"}]
 
 ```
 
@@ -284,9 +284,9 @@ Next, we can push in Alice's AoRs:
 
 
 ```bash title=" " linenums="1"
-$ curl -X PUT -H "Content-Type: application/json" -u asterisk:secret -d '{"fields": [ { "attribute": "support\_path", "value": "yes"}, {"attribute": "remove\_existing", "value": "yes"}, {"attribute": "max\_contacts", "value": "1"} ] }' https://localhost:8088/ari/asterisk/config/dynamic/res\_pjsip/aor/alice
+$ curl -X PUT -H "Content-Type: application/json" -u asterisk:secret -d '{"fields": [ { "attribute": "support_path", "value": "yes"}, {"attribute": "remove_existing", "value": "yes"}, {"attribute": "max_contacts", "value": "1"} ] }' https://localhost:8088/ari/asterisk/config/dynamic/res_pjsip/aor/alice
 
-[{"attribute":"support\_path","value":"true"},{"attribute":"default\_expiration","value":"3600"},{"attribute":"qualify\_timeout","value":"3.000000"},{"attribute":"mailboxes","value":""},{"attribute":"minimum\_expiration","value":"60"},{"attribute":"outbound\_proxy","value":""},{"attribute":"maximum\_expiration","value":"7200"},{"attribute":"qualify\_frequency","value":"0"},{"attribute":"authenticate\_qualify","value":"false"},{"attribute":"contact","value":""},{"attribute":"max\_contacts","value":"1"},{"attribute":"remove\_existing","value":"true"}]
+[{"attribute":"support_path","value":"true"},{"attribute":"default_expiration","value":"3600"},{"attribute":"qualify_timeout","value":"3.000000"},{"attribute":"mailboxes","value":""},{"attribute":"minimum_expiration","value":"60"},{"attribute":"outbound_proxy","value":""},{"attribute":"maximum_expiration","value":"7200"},{"attribute":"qualify_frequency","value":"0"},{"attribute":"authenticate_qualify","value":"false"},{"attribute":"contact","value":""},{"attribute":"max_contacts","value":"1"},{"attribute":"remove_existing","value":"true"}]
 
 ```
 
@@ -297,9 +297,9 @@ Finally, we can push in Alice's endpoint:
 
 
 ```bash title=" " linenums="1"
-$ curl -X PUT -H "Content-Type: application/json" -u asterisk:secret -d '{"fields": [ { "attribute": "from\_user", "value": "alice" }, { "attribute": "allow", "value": "!all,g722,ulaw,alaw"}, {"attribute": "ice\_support", "value": "yes"}, {"attribute": "force\_rport", "value": "yes"}, {"attribute": "rewrite\_contact", "value": "yes"}, {"attribute": "rtp\_symmetric", "value": "yes"}, {"attribute": "context", "value": "default" }, {"attribute": "auth", "value": "alice" }, {"attribute": "aors", "value": "alice"} ] }' https://localhost:8088/ari/asterisk/config/dynamic/res\_pjsip/endpoint/alice
+$ curl -X PUT -H "Content-Type: application/json" -u asterisk:secret -d '{"fields": [ { "attribute": "from_user", "value": "alice" }, { "attribute": "allow", "value": "!all,g722,ulaw,alaw"}, {"attribute": "ice_support", "value": "yes"}, {"attribute": "force_rport", "value": "yes"}, {"attribute": "rewrite_contact", "value": "yes"}, {"attribute": "rtp_symmetric", "value": "yes"}, {"attribute": "context", "value": "default" }, {"attribute": "auth", "value": "alice" }, {"attribute": "aors", "value": "alice"} ] }' https://localhost:8088/ari/asterisk/config/dynamic/res_pjsip/endpoint/alice
 
-[{"attribute":"timers\_sess\_expires","value":"1800"},{"attribute":"device\_state\_busy\_at","value":"0"},{"attribute":"dtls\_cipher","value":""},{"attribute":"from\_domain","value":""},{"attribute":"dtls\_rekey","value":"0"},{"attribute":"dtls\_fingerprint","value":"SHA-256"},{"attribute":"direct\_media\_method","value":"invite"},{"attribute":"send\_rpid","value":"false"},{"attribute":"pickup\_group","value":""},{"attribute":"sdp\_session","value":"Asterisk"},{"attribute":"dtls\_verify","value":"No"},{"attribute":"message\_context","value":""},{"attribute":"mailboxes","value":""},{"attribute":"named\_pickup\_group","value":""},{"attribute":"record\_on\_feature","value":"automixmon"},{"attribute":"dtls\_private\_key","value":""},{"attribute":"named\_call\_group","value":""},{"attribute":"t38\_udptl\_maxdatagram","value":"0"},{"attribute":"media\_encryption\_optimistic","value":"false"},{"attribute":"aors","value":"alice"},{"attribute":"rpid\_immediate","value":"false"},{"attribute":"outbound\_proxy","value":""},{"attribute":"identify\_by","value":"username"},{"attribute":"inband\_progress","value":"false"},{"attribute":"rtp\_symmetric","value":"true"},{"attribute":"transport","value":""},{"attribute":"t38\_udptl\_ec","value":"none"},{"attribute":"fax\_detect","value":"false"},{"attribute":"t38\_udptl\_nat","value":"false"},{"attribute":"allow\_transfer","value":"true"},{"attribute":"tos\_video","value":"0"},{"attribute":"srtp\_tag\_32","value":"false"},{"attribute":"timers\_min\_se","value":"90"},{"attribute":"call\_group","value":""},{"attribute":"sub\_min\_expiry","value":"0"},{"attribute":"100rel","value":"yes"},{"attribute":"direct\_media","value":"true"},{"attribute":"g726\_non\_standard","value":"false"},{"attribute":"dtmf\_mode","value":"rfc4733"},{"attribute":"dtls\_cert\_file","value":""},{"attribute":"media\_encryption","value":"no"},{"attribute":"media\_use\_received\_transport","value":"false"},{"attribute":"direct\_media\_glare\_mitigation","value":"none"},{"attribute":"trust\_id\_inbound","value":"false"},{"attribute":"force\_avp","value":"false"},{"attribute":"record\_off\_feature","value":"automixmon"},{"attribute":"send\_diversion","value":"true"},{"attribute":"language","value":""},{"attribute":"mwi\_from\_user","value":""},{"attribute":"rtp\_ipv6","value":"false"},{"attribute":"ice\_support","value":"true"},{"attribute":"callerid","value":"<unknown>"},{"attribute":"aggregate\_mwi","value":"true"},{"attribute":"one\_touch\_recording","value":"false"},{"attribute":"moh\_passthrough","value":"false"},{"attribute":"cos\_video","value":"0"},{"attribute":"accountcode","value":""},{"attribute":"allow","value":"(g722|ulaw|alaw)"},{"attribute":"rewrite\_contact","value":"true"},{"attribute":"t38\_udptl\_ipv6","value":"false"},{"attribute":"tone\_zone","value":""},{"attribute":"user\_eq\_phone","value":"false"},{"attribute":"allow\_subscribe","value":"true"},{"attribute":"rtp\_engine","value":"asterisk"},{"attribute":"auth","value":"alice"},{"attribute":"from\_user","value":"alice"},{"attribute":"disable\_direct\_media\_on\_nat","value":"false"},{"attribute":"set\_var","value":""},{"attribute":"use\_ptime","value":"false"},{"attribute":"outbound\_auth","value":""},{"attribute":"media\_address","value":""},{"attribute":"tos\_audio","value":"0"},{"attribute":"dtls\_ca\_path","value":""},{"attribute":"dtls\_setup","value":"active"},{"attribute":"force\_rport","value":"true"},{"attribute":"connected\_line\_method","value":"invite"},{"attribute":"callerid\_tag","value":""},{"attribute":"timers","value":"yes"},{"attribute":"sdp\_owner","value":"-"},{"attribute":"trust\_id\_outbound","value":"false"},{"attribute":"use\_avpf","value":"false"},{"attribute":"context","value":"default"},{"attribute":"moh\_suggest","value":"default"},{"attribute":"send\_pai","value":"false"},{"attribute":"t38\_udptl","value":"false"},{"attribute":"dtls\_ca\_file","value":""},{"attribute":"callerid\_privacy","value":"allowed\_not\_screened"},{"attribute":"cos\_audio","value":"0"}]
+[{"attribute":"timers_sess_expires","value":"1800"},{"attribute":"device_state_busy_at","value":"0"},{"attribute":"dtls_cipher","value":""},{"attribute":"from_domain","value":""},{"attribute":"dtls_rekey","value":"0"},{"attribute":"dtls_fingerprint","value":"SHA-256"},{"attribute":"direct_media_method","value":"invite"},{"attribute":"send_rpid","value":"false"},{"attribute":"pickup_group","value":""},{"attribute":"sdp_session","value":"Asterisk"},{"attribute":"dtls_verify","value":"No"},{"attribute":"message_context","value":""},{"attribute":"mailboxes","value":""},{"attribute":"named_pickup_group","value":""},{"attribute":"record_on_feature","value":"automixmon"},{"attribute":"dtls_private_key","value":""},{"attribute":"named_call_group","value":""},{"attribute":"t38_udptl_maxdatagram","value":"0"},{"attribute":"media_encryption_optimistic","value":"false"},{"attribute":"aors","value":"alice"},{"attribute":"rpid_immediate","value":"false"},{"attribute":"outbound_proxy","value":""},{"attribute":"identify_by","value":"username"},{"attribute":"inband_progress","value":"false"},{"attribute":"rtp_symmetric","value":"true"},{"attribute":"transport","value":""},{"attribute":"t38_udptl_ec","value":"none"},{"attribute":"fax_detect","value":"false"},{"attribute":"t38_udptl_nat","value":"false"},{"attribute":"allow_transfer","value":"true"},{"attribute":"tos_video","value":"0"},{"attribute":"srtp_tag_32","value":"false"},{"attribute":"timers_min_se","value":"90"},{"attribute":"call_group","value":""},{"attribute":"sub_min_expiry","value":"0"},{"attribute":"100rel","value":"yes"},{"attribute":"direct_media","value":"true"},{"attribute":"g726_non_standard","value":"false"},{"attribute":"dtmf_mode","value":"rfc4733"},{"attribute":"dtls_cert_file","value":""},{"attribute":"media_encryption","value":"no"},{"attribute":"media_use_received_transport","value":"false"},{"attribute":"direct_media_glare_mitigation","value":"none"},{"attribute":"trust_id_inbound","value":"false"},{"attribute":"force_avp","value":"false"},{"attribute":"record_off_feature","value":"automixmon"},{"attribute":"send_diversion","value":"true"},{"attribute":"language","value":""},{"attribute":"mwi_from_user","value":""},{"attribute":"rtp_ipv6","value":"false"},{"attribute":"ice_support","value":"true"},{"attribute":"callerid","value":"<unknown>"},{"attribute":"aggregate_mwi","value":"true"},{"attribute":"one_touch_recording","value":"false"},{"attribute":"moh_passthrough","value":"false"},{"attribute":"cos_video","value":"0"},{"attribute":"accountcode","value":""},{"attribute":"allow","value":"(g722|ulaw|alaw)"},{"attribute":"rewrite_contact","value":"true"},{"attribute":"t38_udptl_ipv6","value":"false"},{"attribute":"tone_zone","value":""},{"attribute":"user_eq_phone","value":"false"},{"attribute":"allow_subscribe","value":"true"},{"attribute":"rtp_engine","value":"asterisk"},{"attribute":"auth","value":"alice"},{"attribute":"from_user","value":"alice"},{"attribute":"disable_direct_media_on_nat","value":"false"},{"attribute":"set_var","value":""},{"attribute":"use_ptime","value":"false"},{"attribute":"outbound_auth","value":""},{"attribute":"media_address","value":""},{"attribute":"tos_audio","value":"0"},{"attribute":"dtls_ca_path","value":""},{"attribute":"dtls_setup","value":"active"},{"attribute":"force_rport","value":"true"},{"attribute":"connected_line_method","value":"invite"},{"attribute":"callerid_tag","value":""},{"attribute":"timers","value":"yes"},{"attribute":"sdp_owner","value":"-"},{"attribute":"trust_id_outbound","value":"false"},{"attribute":"use_avpf","value":"false"},{"attribute":"context","value":"default"},{"attribute":"moh_suggest","value":"default"},{"attribute":"send_pai","value":"false"},{"attribute":"t38_udptl","value":"false"},{"attribute":"dtls_ca_file","value":""},{"attribute":"callerid_privacy","value":"allowed_not_screened"},{"attribute":"cos_audio","value":"0"}]
 
 ```
 
@@ -359,9 +359,9 @@ Asterisk CLI
 ```
 
 text\*CLI> database show
-/ps\_aors/aor/alice : {"qualify\_frequency":"0","maximum\_expiration":"7200","minimum\_expiration":"60","qualify\_timeout":"3.000000","support\_path":"true","default\_expiration":"3600","mailboxes":"","authenticate\_qualify":"false","outbound\_proxy":"","max\_contacts":"1","remove\_existing":"true"}
-/ps\_auths/auth/alice : {"realm":"","md5\_cred":"","nonce\_lifetime":"32","auth\_type":"userpass","password":"secret","username":"alice"}
-/ps\_endpoints/endpoint/alice : {"send\_diversion":"true","device\_state\_busy\_at":"0","direct\_media\_method":"invite","sdp\_owner":"-","pickup\_group":"","timers\_sess\_expires":"1800","message\_context":"","accountcode":"","dtls\_fingerprint":"SHA-256","rpid\_immediate":"false","force\_avp":"false","aors":"alice","trust\_id\_inbound":"false","ice\_support":"true","fax\_detect":"false","outbound\_proxy":"","t38\_udptl\_maxdatagram":"0","direct\_media\_glare\_mitigation":"none","dtls\_rekey":"0","context":"default","media\_encryption\_optimistic":"false","named\_pickup\_group":"","from\_domain":"","mailboxes":"","sdp\_session":"Asterisk","cos\_video":"0","identify\_by":"username","t38\_udptl":"false","send\_rpid":"false","rtp\_engine":"asterisk","t38\_udptl\_ec":"none","dtls\_verify":"No","aggregate\_mwi":"true","moh\_suggest":"default","media\_encryption":"no","callerid":"<unknown>","named\_call\_group":"","record\_on\_feature":"automixmon","dtls\_setup":"active","inband\_progress":"false","timers\_min\_se":"90","tos\_video":"0","rtp\_symmetric":"true","rtp\_ipv6":"false","transport":"","t38\_udptl\_nat":"false","connected\_line\_method":"invite","allow\_transfer":"true","allow\_subscribe":"true","srtp\_tag\_32":"false","g726\_non\_standard":"false","100rel":"yes","use\_avpf":"false","call\_group":"","moh\_passthrough":"false","user\_eq\_phone":"false","allow":"(g722|ulaw|alaw)","sub\_min\_expiry":"0","force\_rport":"true","direct\_media":"true","dtmf\_mode":"rfc4733","media\_use\_received\_transport":"false","record\_off\_feature":"automixmon","language":"","mwi\_from\_user":"","one\_touch\_recording":"false","rewrite\_contact":"true","cos\_audio":"0","t38\_udptl\_ipv6":"false","trust\_id\_outbound":"false","tone\_zone":"","auth":"alice","from\_user":"alice","disable\_direct\_media\_on\_nat":"false","tos\_audio":"0","use\_ptime":"false","media\_address":"","timers":"yes","send\_pai":"false","callerid\_privacy":"allowed\_not\_screened"}
+/ps_aors/aor/alice : {"qualify_frequency":"0","maximum_expiration":"7200","minimum_expiration":"60","qualify_timeout":"3.000000","support_path":"true","default_expiration":"3600","mailboxes":"","authenticate_qualify":"false","outbound_proxy":"","max_contacts":"1","remove_existing":"true"}
+/ps_auths/auth/alice : {"realm":"","md5_cred":"","nonce_lifetime":"32","auth_type":"userpass","password":"secret","username":"alice"}
+/ps_endpoints/endpoint/alice : {"send_diversion":"true","device_state_busy_at":"0","direct_media_method":"invite","sdp_owner":"-","pickup_group":"","timers_sess_expires":"1800","message_context":"","accountcode":"","dtls_fingerprint":"SHA-256","rpid_immediate":"false","force_avp":"false","aors":"alice","trust_id_inbound":"false","ice_support":"true","fax_detect":"false","outbound_proxy":"","t38_udptl_maxdatagram":"0","direct_media_glare_mitigation":"none","dtls_rekey":"0","context":"default","media_encryption_optimistic":"false","named_pickup_group":"","from_domain":"","mailboxes":"","sdp_session":"Asterisk","cos_video":"0","identify_by":"username","t38_udptl":"false","send_rpid":"false","rtp_engine":"asterisk","t38_udptl_ec":"none","dtls_verify":"No","aggregate_mwi":"true","moh_suggest":"default","media_encryption":"no","callerid":"<unknown>","named_call_group":"","record_on_feature":"automixmon","dtls_setup":"active","inband_progress":"false","timers_min_se":"90","tos_video":"0","rtp_symmetric":"true","rtp_ipv6":"false","transport":"","t38_udptl_nat":"false","connected_line_method":"invite","allow_transfer":"true","allow_subscribe":"true","srtp_tag_32":"false","g726_non_standard":"false","100rel":"yes","use_avpf":"false","call_group":"","moh_passthrough":"false","user_eq_phone":"false","allow":"(g722|ulaw|alaw)","sub_min_expiry":"0","force_rport":"true","direct_media":"true","dtmf_mode":"rfc4733","media_use_received_transport":"false","record_off_feature":"automixmon","language":"","mwi_from_user":"","one_touch_recording":"false","rewrite_contact":"true","cos_audio":"0","t38_udptl_ipv6":"false","trust_id_outbound":"false","tone_zone":"","auth":"alice","from_user":"alice","disable_direct_media_on_nat":"false","tos_audio":"0","use_ptime":"false","media_address":"","timers":"yes","send_pai":"false","callerid_privacy":"allowed_not_screened"}
 3 results found.
 \*CLI> 
 
@@ -377,9 +377,9 @@ If we no longer want Alice to have an endpoint, we can remove it and its related
 
 
 ```bash title=" " linenums="1"
-$ curl -X DELETE -u asterisk:secret https://localhost:8088/ari/asterisk/config/dynamic/res\_pjsip/endpoint/alice
-$ curl -X DELETE -u asterisk:secret https://localhost:8088/ari/asterisk/config/dynamic/res\_pjsip/aor/alice
-$ curl -X DELETE -u asterisk:secret https://localhost:8088/ari/asterisk/config/dynamic/res\_pjsip/auth/alice
+$ curl -X DELETE -u asterisk:secret https://localhost:8088/ari/asterisk/config/dynamic/res_pjsip/endpoint/alice
+$ curl -X DELETE -u asterisk:secret https://localhost:8088/ari/asterisk/config/dynamic/res_pjsip/aor/alice
+$ curl -X DELETE -u asterisk:secret https://localhost:8088/ari/asterisk/config/dynamic/res_pjsip/auth/alice
 
 ```
 

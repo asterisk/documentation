@@ -38,21 +38,21 @@ As always, hangup handlers like the h extension need to execute quickly because 
 Hangup handlers pass the saved handler string to the Gosub application to execute. The syntax is intentionally the same as the Gosub application. If context or exten are not supplied then the current values from the channel pushing the hangup handler are inserted before storing on the hangup handler stack.
 
 {noformat:title=Push a hangup handler onto a channel}
-same => n,Set(CHANNEL(hangup\_handler\_push)=[[context,]exten,]priority[(arg1[,...][,argN])]);
+same => n,Set(CHANNEL(hangup_handler_push)=[[context,]exten,]priority[(arg1[,...][,argN])]);
 ```
 
 {noformat:title=Pop a hangup handler off a channel and optionally push a replacement}
-same => n,Set(CHANNEL(hangup\_handler\_pop)=[[[context,]exten,]priority[(arg1[,...][,argN])]]);
+same => n,Set(CHANNEL(hangup_handler_pop)=[[[context,]exten,]priority[(arg1[,...][,argN])]]);
 ```
 
 {noformat:title=Pop all hangup handlers off a channel and optionally push a replacement}
-same => n,Set(CHANNEL(hangup\_handler\_wipe)=[[[context,]exten,]priority[(arg1[,...][,argN])]]);
+same => n,Set(CHANNEL(hangup_handler_wipe)=[[[context,]exten,]priority[(arg1[,...][,argN])]]);
 ```
 
 {noformat:title=Cascading hangup handlers}
-same => n,Set(CHANNEL(hangup\_handler\_push)=hdlr3,s,1(args));
-same => n,Set(CHANNEL(hangup\_handler\_push)=hdlr2,s,1(args));
-same => n,Set(CHANNEL(hangup\_handler\_push)=hdlr1,s,1(args));
+same => n,Set(CHANNEL(hangup_handler_push)=hdlr3,s,1(args));
+same => n,Set(CHANNEL(hangup_handler_push)=hdlr2,s,1(args));
+same => n,Set(CHANNEL(hangup_handler_push)=hdlr1,s,1(args));
 ```
 
 ## AMI events

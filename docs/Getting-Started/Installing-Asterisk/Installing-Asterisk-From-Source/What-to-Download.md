@@ -26,7 +26,7 @@ The currently supported versions of Asterisk are documented on the [Asterisk Ver
 
 Review Asterisk's [System Requirements](/Operation/System-Requirements) in order to determine what needs to be installed for the version of Asterisk you are installing. While Asterisk will look for any missing system requirements during compilation, it's often best to install these prior to configuring and compiling Asterisk.
 
-Asterisk does come with a script, **install\_prereq**, to aid in this process. If you'd like to use this script, download Asterisk first, then see [Checking Asterisk Requirements](/Getting-Started/Installing-Asterisk/Installing-Asterisk-From-Source/Checking-Asterisk-Requirements) for instructions on using this script to install prerequisites for your version of Asterisk.
+Asterisk does come with a script, **install_prereq**, to aid in this process. If you'd like to use this script, download Asterisk first, then see [Checking Asterisk Requirements](/Getting-Started/Installing-Asterisk/Installing-Asterisk-From-Source/Checking-Asterisk-Requirements) for instructions on using this script to install prerequisites for your version of Asterisk.
 
 On this PageDownloading Asterisk
 --------------------

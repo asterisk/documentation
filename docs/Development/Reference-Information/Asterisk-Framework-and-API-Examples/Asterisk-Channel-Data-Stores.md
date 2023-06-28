@@ -30,9 +30,9 @@ If the data store is not freed by said application though, a callback to a destr
 ```
 
 
-static const struct example\_datastore {
+static const struct example_datastore {
  .type = "example",
- .destroy = callback\_destroy
+ .destroy = callback_destroy
 };
 
 
@@ -45,7 +45,7 @@ This is a needed structure that contains information about a datastore, it's use
 ##### How do you create a data store?
 
 
-1. Use ast\_datastore\_alloc function to return a pre-allocated structure  
+1. Use ast_datastore_alloc function to return a pre-allocated structure  
 
 
 
@@ -56,7 +56,7 @@ This is a needed structure that contains information about a datastore, it's use
 
 3. Add datastore to the channel  
 
- Ex: ast\_channel\_datastore\_add(chan, datastore);  
+ Ex: ast_channel_datastore_add(chan, datastore);  
 
  This function takes two arguments: (pointer to channel, pointer to data store)
 
@@ -75,15 +75,15 @@ Full Example:
 ```
 
 
-void callback\_destroy(void \*data)
+void callback_destroy(void \*data)
 {
- ast\_free(data);
+ ast_free(data);
 }
 
-struct ast\_datastore \*datastore = NULL;
-datastore = ast\_datastore\_alloc(&example\_datastore, NULL);
+struct ast_datastore \*datastore = NULL;
+datastore = ast_datastore_alloc(&example_datastore, NULL);
 datastore->data = mysillydata;
-ast\_channel\_datastore\_add(chan, datastore);
+ast_channel_datastore_add(chan, datastore);
 
 
 ```
@@ -116,7 +116,7 @@ ast\_channel\_datastore\_add(chan, datastore);
 
 4. Free the data store (this will call the destroy call back)  
 
- Ex: ast\_channel\_datastore\_free(datastore);  
+ Ex: ast_channel_datastore_free(datastore);  
 
  This function takes one argument: (pointer to data store)
 
@@ -126,7 +126,7 @@ ast\_channel\_datastore\_add(chan, datastore);
 
 1. Find the data store  
 
- Ex: datastore = ast\_channel\_datastore\_find(chan, &example\_datastore, NULL);  
+ Ex: datastore = ast_channel_datastore_find(chan, &example_datastore, NULL);  
 
  This function takes three arguments: (pointer to channel, datastore info structure, uid)
 

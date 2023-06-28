@@ -62,13 +62,13 @@ The #1 cause of deadlocks in Asterisk is by not properly following the locking r
 The locking order in this situation is the following:
 
 
-1. ast\_channel
+1. ast_channel
 2. PVT
 
 
-Channel Drivers implement the ast\_channel\_tech interface to provide a channel implementation for Asterisk. Most of the channel\_tech  
+Channel Drivers implement the ast_channel_tech interface to provide a channel implementation for Asterisk. Most of the channel_tech  
 
-interface callbacks are called with the associated ast\_channel locked. When accessing technology specific data, the PVT can be locked directly because the locking order is respected.
+interface callbacks are called with the associated ast_channel locked. When accessing technology specific data, the PVT can be locked directly because the locking order is respected.
 
 
 ### Preventing lock ordering reversals.
@@ -82,7 +82,7 @@ Consider for example the following situation:
 1. A message comes in over the "network"
 2. The Channel Driver (CD) monitor thread receives the message
 3. The CD associates the message with a PVT and locks the PVT
-4. While processing the message, the CD must do something that requires locking the ast\_channel associated to the PVT
+4. While processing the message, the CD must do something that requires locking the ast_channel associated to the PVT
 
 
 This is the point that must be handled carefully.
@@ -103,7 +103,7 @@ The following psuedo-code
 
 c
 unlock(pvt);
-lock(ast\_channel);
+lock(ast_channel);
 lock(pvt);
 
 
@@ -134,7 +134,7 @@ An alternative, but still incorrect, construct is widely used in the asterisk co
 ```
 
 
-while (trylock(ast\_channel) == FAILURE) {
+while (trylock(ast_channel) == FAILURE) {
  unlock(pvt);
  usleep(1); /\* yield to other threads \*/
  lock(pvt);
@@ -144,7 +144,7 @@ while (trylock(ast\_channel) == FAILURE) {
 ```
 
 
-Here the trylock() is non blocking, so we do not deadlock if the ast\_channel is already locked by someone else: in this case, we try to unlock the PVT (which happens only if the PVT lock counter is 1), yield the CPU to give other threads a chance to run, and then acquire the lock again.
+Here the trylock() is non blocking, so we do not deadlock if the ast_channel is already locked by someone else: in this case, we try to unlock the PVT (which happens only if the PVT lock counter is 1), yield the CPU to give other threads a chance to run, and then acquire the lock again.
 
 
 This code is not correct for two reasons:
@@ -168,9 +168,9 @@ Another variant of this code is the following:
 ```
 
 c
-if (trylock(ast\_channel) == FAILURE) {
+if (trylock(ast_channel) == FAILURE) {
  unlock(pvt);
- lock(ast\_channel);
+ lock(ast_channel);
  lock(pvt);
 }
 
@@ -181,7 +181,7 @@ if (trylock(ast\_channel) == FAILURE) {
 which has the same issues as the while(trylock...) code, but just deadlocks instead of looping forever in case of lock counts > 1.
 
 
-The deadlock/livelock could be in principle spared if one had an unlock\_all() function that calls unlock as many times as needed to actually release the lock, and reports the count. Then we could do:
+The deadlock/livelock could be in principle spared if one had an unlock_all() function that calls unlock as many times as needed to actually release the lock, and reports the count. Then we could do:
 
 
 
@@ -195,9 +195,9 @@ The deadlock/livelock could be in principle spared if one had an unlock\_all() f
 ```
 
 c
-if (trylock(ast\_channel) == FAILURE) {
- n = unlock\_all(pvt);
- lock(ast\_channel);
+if (trylock(ast_channel) == FAILURE) {
+ n = unlock_all(pvt);
+ lock(ast_channel);
  while (n-- > 0) {
  lock(pvt);
  }
@@ -213,7 +213,7 @@ The issue with unexpected unlocks remains, though.
 ### Locking multiple channels.
 
 
-The next situation to consider is what to do when you need a lock on multiple ast\_channels (or multiple unrelated data structures).
+The next situation to consider is what to do when you need a lock on multiple ast_channels (or multiple unrelated data structures).
 
 
 If we are sure that we do not hold any of these locks, then the following construct is sufficient:
@@ -302,13 +302,13 @@ But as you have seen, exploiting the features of recursive locks make it a lot h
 ```
 
 c
-foo\_locked(/\* ... \*/) {
+foo_locked(/\* ... \*/) {
  /\* ... do something, assume lock held \*/
 }
 
 foo(/\* ... \*/) {
  lock(xyz);
- ret = foo\_locked(/\* ... \*/)
+ ret = foo_locked(/\* ... \*/)
  unlock(xyz);
  return ret;
 }

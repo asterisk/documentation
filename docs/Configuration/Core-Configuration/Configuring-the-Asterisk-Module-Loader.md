@@ -41,12 +41,12 @@ Let's show a few arbitrary examples below.
 
 [modules]
 ;autoload = yes
-;preload = res\_odbc.so
-;preload = res\_config\_odbc.so
-;preload-require = res\_odbc.so
-;require = res\_pjsip.so
-;noload = pbx\_gtkconsole.so
-;load = res\_musiconhold.so
+;preload = res_odbc.so
+;preload = res_config_odbc.so
+;preload-require = res_odbc.so
+;require = res_pjsip.so
+;noload = pbx_gtkconsole.so
+;load = res_musiconhold.so
 
 ```
 
@@ -103,7 +103,7 @@ Usage: module load <module name>
 
 ```
 
-Usage: module unload [-f|-h] <module\_1> [<module\_2> ... ]
+Usage: module unload [-f|-h] <module_1> [<module_2> ... ]
  Unloads the specified module from Asterisk. The -f
  option causes the module to be unloaded even if it is
  in use (may cause a crash) and the -h module causes the

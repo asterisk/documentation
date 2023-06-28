@@ -17,7 +17,7 @@ pageid: 28314864
 
 
 !!! note 
-    Top-level page for everything about configuring ODBC connectivity, res\_odbc, func\_odbc, etc
+    Top-level page for everything about configuring ODBC connectivity, res_odbc, func_odbc, etc
 
       
 [//]: # (end-note)

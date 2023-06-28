@@ -15,11 +15,11 @@ The Opus codec for Asterisk exposes a few configuration options that allow adjus
 | Option Name | Description | Default |
 | --- | --- | --- |
 | type | Must be of type "opus". | "" (empty string) |
-| packet\_loss | Encoder's packet loss percentage. Can be any number between *0* and *100*, inclusive. A higher value results in more loss resistance. | 0 |
+| packet_loss | Encoder's packet loss percentage. Can be any number between *0* and *100*, inclusive. A higher value results in more loss resistance. | 0 |
 | complexity | Encoder's computational complexity. Can be any number between *0* and *10*, inclusive. Note, 10 equals the highest complexity. | 10 |
 | signal | Encoder's signal type. Aids in mode selection on the encoder: Can be any of the following: *auto*, *voice*, *music*. | auto |
-| application | Encoder's application type. Can be any of the following: *voip*, *audio*, *low\_delay*. | voip |
-| max\_playback\_rate\* | Sets the "maxplaybackrate” format parameter on the SDP and also limits the bandwidth on the encoder. Any value between *8000* and *48000* (inclusive) is valid, however typically it should match one of the usual opus bandwidths. Below is a mapping of values to bandwidth:
+| application | Encoder's application type. Can be any of the following: *voip*, *audio*, *low_delay*. | voip |
+| max_playback_rate\* | Sets the "maxplaybackrate” format parameter on the SDP and also limits the bandwidth on the encoder. Any value between *8000* and *48000* (inclusive) is valid, however typically it should match one of the usual opus bandwidths. Below is a mapping of values to bandwidth:
 
 |  |  |
 | --- | --- |
@@ -30,7 +30,7 @@ The Opus codec for Asterisk exposes a few configuration options that allow adjus
 | 32001 – 48000 | Full Band |
 
  | 48000 |
-| max\_bandwidth | Sets an upper bandwidth bound on the encoder. Can be any of the following: narrow, medium, wide, super\_wide, full. | full |
+| max_bandwidth | Sets an upper bandwidth bound on the encoder. Can be any of the following: narrow, medium, wide, super_wide, full. | full |
 | bitrate\* | Specify the maximum average bitrate (sdp parameter "maxaveragebitrate"). Any value between 500 and 512000 is valid. The following values are also allowed: *auto*, *max*. | auto |
 | cbr\* | Sets the "cbr" (constant bit rate) format parameter on SDP. Also tells the encoder to use a constant bit rate. A value of *no (*0** or **false** also work) represents a variable bit rate whereas *yes* (*1* or *true* also work) represents a constant bit rate. | 0 |
 | fec\* | Sets the "useinbandfec" format parameter on the SDP. If set, and applicable, the encoder will add in-band forward error correction data. A value of *no (*0** or **false** also work) represents disabled whereas *yes* (*1* or *true* also work) represents enabled. | 0 |

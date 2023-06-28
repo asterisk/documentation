@@ -48,7 +48,7 @@ Note that we don't specify the full path to libhoard.so, just the directory wher
 ##### Enable Hoard in menuselect
 
 
-Run 'make menuselect' in the root of the asterisk source distribution. Under 'Compiler Flags' select the 'USE\_HOARD\_ALLOCATOR' option. If the option is not available (shows up with XXX next to it) this means that configure was not able to find libhoard.so. Check that the path you passed to the **--with-hoard** option is correct. Re-run **./configure** with the correct option and then repeat this step.
+Run 'make menuselect' in the root of the asterisk source distribution. Under 'Compiler Flags' select the 'USE_HOARD_ALLOCATOR' option. If the option is not available (shows up with XXX next to it) this means that configure was not able to find libhoard.so. Check that the path you passed to the **--with-hoard** option is correct. Re-run **./configure** with the correct option and then repeat this step.
 
 
 ##### Make and install asterisk

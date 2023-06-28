@@ -40,7 +40,7 @@ On This Page
 
 ; within acl.conf
 
-[name\_of\_acl1]
+[name_of_acl1]
 deny=0.0.0.0/0.0.0.0
 permit=127.0.0.1
 
@@ -61,7 +61,7 @@ Multiple rules can be specified in an ACL as well by chaining deny/permit specif
 
 ```
 
-[name\_of\_acl2]
+[name_of_acl2]
 deny=10.24.0.0/255.255.0.0
 deny=10.25.0.0/255.255.0.0
 permit=10.24.11.0/255.255.255.0
@@ -84,10 +84,10 @@ Named ACLs support common modifiers like templates and additions within configur
 
 ```
 
-[template\_deny\_all](!)
+[template_deny_all](!)
 deny=0.0.0.0/0.0.0.0
 
-[deny\_all\_whitelist\_these](template\_deny\_all)
+[deny_all_whitelist_these](template_deny_all)
 permit=10.24.20.1
 permit=10.24.20.2
 permit=10.24.20.3
@@ -109,11 +109,11 @@ permit=10.24.20.3
 
 ```
 
-[ipv6\_example\_1]
+[ipv6_example_1]
 deny = ::
 permit = ::1/128
 
-[ipv6\_example\_2]
+[ipv6_example_2]
 permit = fe80::21d:bad:fad:2323
 
 ```
@@ -148,7 +148,7 @@ acls => odbc,asterisk,acltable
 | Column Name | Type | Description |
 | --- | --- | --- |
 | name | varchar(80) | Name of the ACL |
-| rule\_order | integer | Order to apply the ACL rule. Rules are applied in ascending order. Rule numbers do not have to be sequential |
+| rule_order | integer | Order to apply the ACL rule. Rules are applied in ascending order. Rule numbers do not have to be sequential |
 | sense | varchar(6) | Either 'permit' or 'deny' |
 | rule | varchar(95) | The IP address/Mask pair to apply |
 
@@ -170,10 +170,10 @@ acls => odbc,asterisk,acltable
 CREATE TABLE acltable
 (
  "name" character varying(80) NOT NULL,
- rule\_order integer NOT NULL,
+ rule_order integer NOT NULL,
  sense character varying(6) NOT NULL,
  "rule" character varying(95) NOT NULL,
- CONSTRAINT aclrulekey PRIMARY KEY (name, rule\_order, rule, sense)
+ CONSTRAINT aclrulekey PRIMARY KEY (name, rule_order, rule, sense)
 )
 WITH (
  OIDS=FALSE
@@ -200,7 +200,7 @@ GRANT ALL ON TABLE acltable TO asterisk;
 ```
 
 BEGIN TRANSACTION;
-CREATE TABLE acltable (rule TEXT, sense TEXT, rule\_order NUMERIC, name TEXT);
+CREATE TABLE acltable (rule TEXT, sense TEXT, rule_order NUMERIC, name TEXT);
 COMMIT;
 
 
@@ -233,9 +233,9 @@ Named ACL Consumers
 Named ACLs are supported by the following Asterisk components:
 
 * Manager (IPv4 and IPv6)
-* chan\_sip (IPv4 and IPv6)
-* chan\_pjsip (IPv4 and IPv6)
-* chan\_iax2 (IPv4 and IPv6)
+* chan_sip (IPv4 and IPv6)
+* chan_pjsip (IPv4 and IPv6)
+* chan_iax2 (IPv4 and IPv6)
 
 ### Configuration
 
@@ -258,7 +258,7 @@ Example 1: referencing a Named ACL
 ;stuff
 ;deny=0.0.0.0/0.0.0.0
 ;permit=127.0.0.1
-acl=name\_of\_acl\_1 ; an ACL included from acl.conf that matches peer1's commented out permits/denies
+acl=name_of_acl_1 ; an ACL included from acl.conf that matches peer1's commented out permits/denies
 
 
 ```
@@ -281,7 +281,7 @@ Example 2: multiple Named ACL references
 
 [peer1]
 ;stuff
-acl=named\_acl\_1,named\_acl\_2
+acl=named_acl_1,named_acl_2
 
 
 ```
@@ -303,8 +303,8 @@ Similarly, a SIP or IAX2 peer defined in ARA can include an '*acl*' column and l
 
 ```
 
-acl=named\_acl\_1
-acl=named\_acl\_2
+acl=named_acl_1
+acl=named_acl_2
   
 
 
@@ -333,7 +333,7 @@ The Named ACL component supports module reloads, in the same way as other Asteri
 
 
 !!! warning XXXXNXING
-    This implies that reloading the Named ACL component will force a reload of manager, chan\_sip, etc. Only reload the Named ACL component if you want all consumers of that information to be reloaded as well.
+    This implies that reloading the Named ACL component will force a reload of manager, chan_sip, etc. Only reload the Named ACL component if you want all consumers of that information to be reloaded as well.
 
       
 [//]: # (end-warning)

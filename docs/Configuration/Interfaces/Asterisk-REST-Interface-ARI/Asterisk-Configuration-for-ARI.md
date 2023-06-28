@@ -88,7 +88,7 @@ ARI users and properties are configured via `ari.conf`. Note that all options ma
 |  | `enabled` | Boolean | Yes | Enable/disable ARI. |
 |  | `pretty` | Boolean | No | Format JSON responses and events in a human readable form. This makes the output easier to read, at the cost of some additional bytes. |
 |  | `allowed_origins` | String |  | A comma separated list of allowed origins for [Cross-Origin Resource Sharing](http://en.wikipedia.org/wiki/Cross-origin_resource_sharing). |
-| [user\_name] |  |  |  |  |
+| [user_name] |  |  |  |  |
 |  | `type` | String |  | Must be `user`. Specifies that this configuration section defines a user for ARI. |
 |  | `read_only` | Boolean | No | Whether or not the user can issue requests that alter the Asterisk system. If set to Yes, then only `GET` and `OPTIONS` HTTP requests will be serviced. |
 |  | `password_format` | String | plain | Can be either `plain` or `crypt`. When the password is plain, Asterisk will expect the user's password to be in plain text in the `password` field. When set to `crypt`, Asterisk will use `crypt(3)` to decrypt the password. A crypted password can be generated using `mkpasswd -m sha-512`. |
@@ -110,22 +110,22 @@ ari.conf
 truetext[general]
 enabled = yes
 pretty = yes
-allowed\_origins = localhost:8088,http://ari.asterisk.org
+allowed_origins = localhost:8088,http://ari.asterisk.org
 
 [asterisk]
 type = user
-read\_only = no
+read_only = no
 password = asterisk
 
-; password\_format may be set to plain (the default) or crypt. When set to crypt,
+; password_format may be set to plain (the default) or crypt. When set to crypt,
 ; crypt(3) is used to validate the password. A crypted password can be generated
 ; using mkpasswd -m sha-512.
 ;
 [asterisk-supersecret]
 type = user
-read\_only = no
+read_only = no
 password = $6$nqvAB8Bvs1dJ4V$8zCUygFXuXXp8EU3t2M8i.N8iCsY4WRchxe2AYgGOzHAQrmjIPif3DYrvdj5U2CilLLMChtmFyvFa3XHSxBlB/
-password\_format = crypt
+password_format = crypt
 
 ```
 

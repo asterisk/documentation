@@ -92,10 +92,10 @@ Many tests in the Asterisk Test Suite have tags that group them according to fun
 Available test tags:
  AGI AMI apps 
  bridge ccss CDR 
- chan\_local chanspy confbridge 
- connected\_line dial dialplan 
- dialplan\_lua directory DTMF 
- fax fax\_gateway fax\_passthrough
+ chan_local chanspy confbridge 
+ connected_line dial dialplan 
+ dialplan_lua directory DTMF 
+ fax fax_gateway fax_passthrough
  features gosub GoSub 
  IAX incomplete macro 
  mixmonitor page parking 
@@ -164,30 +164,30 @@ A test configuration can exclude tests from a run by using the *exclude-tests* k
 # Exclude some long-running tests
 config-quick:
  exclude-tests:
- - 'authenticate\_invalid\_password'
- - 'check\_voicemail\_callback'
- - 'check\_voicemail\_delete'
- - 'check\_voicemail\_dialout'
- - 'check\_voicemail\_envelope'
- - 'check\_voicemail\_new\_user'
- - 'check\_voicemail\_nominal'
- - 'check\_voicemail\_reply'
- - 'leave\_voicemail\_external\_notification'
- - 'leave\_voicemail\_nominal'
- - 'gateway\_g711\_t38'
- - 'gateway\_mix1'
- - 'gateway\_mix2'
- - 'gateway\_mix3'
- - 'gateway\_mix4'
- - 'gateway\_native\_t38'
- - 'gateway\_native\_t38\_ced'
- - 'gateway\_no\_t38'
- - 'gateway\_t38\_g711'
- - 'gateway\_timeout1'
- - 'gateway\_timeout2'
- - 'gateway\_timeout3'
- - 'gateway\_timeout4'
- - 'gateway\_timeout5'
+ - 'authenticate_invalid_password'
+ - 'check_voicemail_callback'
+ - 'check_voicemail_delete'
+ - 'check_voicemail_dialout'
+ - 'check_voicemail_envelope'
+ - 'check_voicemail_new_user'
+ - 'check_voicemail_nominal'
+ - 'check_voicemail_reply'
+ - 'leave_voicemail_external_notification'
+ - 'leave_voicemail_nominal'
+ - 'gateway_g711_t38'
+ - 'gateway_mix1'
+ - 'gateway_mix2'
+ - 'gateway_mix3'
+ - 'gateway_mix4'
+ - 'gateway_native_t38'
+ - 'gateway_native_t38_ced'
+ - 'gateway_no_t38'
+ - 'gateway_t38_g711'
+ - 'gateway_timeout1'
+ - 'gateway_timeout2'
+ - 'gateway_timeout3'
+ - 'gateway_timeout4'
+ - 'gateway_timeout5'
 
 
 

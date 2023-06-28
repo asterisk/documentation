@@ -61,9 +61,9 @@ We set the option "allow" to a string of values "!all,ulaw".
 * The value "**!all**" means "Disallow all" and is identical to "disallow=all". This tells Asterisk to disallow all codecs except what we further define in the allow option.
 * The value "**ulaw**" instructs Asterisk to allow ulaw audio during media negotiation for this endpoint.
 
-See the section [Configuring res\_pjsip](/Configuration/Channel-Drivers/SIP/Configuring-res_pjsip) for more information on the PJSIP channel driver.
+See the section [Configuring res_pjsip](/Configuration/Channel-Drivers/SIP/Configuring-res_pjsip) for more information on the PJSIP channel driver.
 
-### Configuring app\_voicemail file formats for recordings
+### Configuring app_voicemail file formats for recordings
 
 
 
@@ -111,32 +111,32 @@ A variety of audio capabilities are supported by Asterisk.
 
 | Name | Config Value | Capability:(P)assthrough | CODEC Module | Format Module | Distributed w/ Asterisk? | Commercial License |
 | --- | --- | --- | --- | --- | --- | --- |
-| ADPCM | adpcm | T | codec\_adpcm | format\_vox | YES | NO |
-| G.711 A-law | alaw | T | codec\_alaw | format\_pcm | YES | NO |
-| G.711 µ-law | ulaw | T | codec\_ulaw | format\_pcm | YES | NO |
-| G.719 | g719 | P | n/a | format\_g719 | YES | NO |
-| G.722 | g722 | T | codec\_g722 | format\_pcm | YES | NO |
-| G.722.1 Siren7 | siren7 | T | codec\_siren7 | format\_siren7 | Codec(NO) Format(YES) | NO |
-| G.722.1C Siren14 | siren14 | T | codec\_siren14 | format\_siren14 | Codec(NO) Format(YES) | NO |
-| G.723.1 | g723 | T | codec\_g723 | format\_g723 | Codec(NO) Format(YES) | YES(hardware required) |
-| G.726 | g726 | T | codec\_g726 | format\_g726 | YES | NO |
-| G.726 AAL2 | g726aal2 | T | codec\_g726 | format\_g726 | YES | NO |
-| G.729A | g729 | T | codec\_g729a | format\_g729 | Codec(NO) Format(YES) | YES |
-| GSM | gsm | T | codec\_gsm | format\_gsm | YES | NO |
-| ILBC | ilbc | T | codec\_ilbc | format\_ilbc | YES | NO |
-| LPC-10 | lpc10 | T | codec\_lpc10 | n/a | YES | NO |
-| SILK | silk | T | codec\_silk | n/a | Codec(NO) Format(YES) | NO |
-| Speex | speex | T | codec\_speex | n/a | YES | NO |
-| Signed Linear PCM | slin | T | codec\_resample | format\_sln | YES | NO |
-| Ogg Vorbis | n/a | n/a | n/a | format\_ogg\_vorbis | Codec(NO) Format(YES) | NO |
-| Opus | opus | T | codec\_opus | n/a | Codec(NO) Format(YES) | NO |
-| wav (SLIN) | wav | T | n/a | format\_wav | YES | NO |
-| WAV (GSM) | wav49 | T | n/a | format\_wav\_gsm | YES | NO |
+| ADPCM | adpcm | T | codec_adpcm | format_vox | YES | NO |
+| G.711 A-law | alaw | T | codec_alaw | format_pcm | YES | NO |
+| G.711 µ-law | ulaw | T | codec_ulaw | format_pcm | YES | NO |
+| G.719 | g719 | P | n/a | format_g719 | YES | NO |
+| G.722 | g722 | T | codec_g722 | format_pcm | YES | NO |
+| G.722.1 Siren7 | siren7 | T | codec_siren7 | format_siren7 | Codec(NO) Format(YES) | NO |
+| G.722.1C Siren14 | siren14 | T | codec_siren14 | format_siren14 | Codec(NO) Format(YES) | NO |
+| G.723.1 | g723 | T | codec_g723 | format_g723 | Codec(NO) Format(YES) | YES(hardware required) |
+| G.726 | g726 | T | codec_g726 | format_g726 | YES | NO |
+| G.726 AAL2 | g726aal2 | T | codec_g726 | format_g726 | YES | NO |
+| G.729A | g729 | T | codec_g729a | format_g729 | Codec(NO) Format(YES) | YES |
+| GSM | gsm | T | codec_gsm | format_gsm | YES | NO |
+| ILBC | ilbc | T | codec_ilbc | format_ilbc | YES | NO |
+| LPC-10 | lpc10 | T | codec_lpc10 | n/a | YES | NO |
+| SILK | silk | T | codec_silk | n/a | Codec(NO) Format(YES) | NO |
+| Speex | speex | T | codec_speex | n/a | YES | NO |
+| Signed Linear PCM | slin | T | codec_resample | format_sln | YES | NO |
+| Ogg Vorbis | n/a | n/a | n/a | format_ogg_vorbis | Codec(NO) Format(YES) | NO |
+| Opus | opus | T | codec_opus | n/a | Codec(NO) Format(YES) | NO |
+| wav (SLIN) | wav | T | n/a | format_wav | YES | NO |
+| WAV (GSM) | wav49 | T | n/a | format_wav_gsm | YES | NO |
 
 Speex Support
 -------------
 
-Asterisk supports 8, 16, and 32kHz Speex. Use of the 32kHz Speex mode is, like the other modes, controlled in the respective channel driver's configuration file, e.g. chan\_sip's sip.conf or PJSIP's pjsip.conf.
+Asterisk supports 8, 16, and 32kHz Speex. Use of the 32kHz Speex mode is, like the other modes, controlled in the respective channel driver's configuration file, e.g. chan_sip's sip.conf or PJSIP's pjsip.conf.
 
 Signed Linear PCM
 -----------------
@@ -196,11 +196,11 @@ You'll notice the CODEC module column is missing. Video transcoding or image tra
 
 | Name | Config Value | Capability:(P)assthrough | Format Module | Distributed w/ Asterisk |
 | --- | --- | --- | --- | --- |
-| JPEG | jpeg | P | format\_jpeg | YES |
+| JPEG | jpeg | P | format_jpeg | YES |
 | H.261 | h261 | P | n/a | YES |
-| H.263 | h263 | P | format\_h263 | YES |
-| H.263+ | h263p | P | format\_h263 | YES |
-| H.264 | h264 | P | format\_h264 | YES |
+| H.263 | h263 | P | format_h263 | YES |
+| H.263+ | h263p | P | format_h263 | YES |
+| H.264 | h264 | P | format_h264 | YES |
 | VP8 | vp8 | P | n/a | YES |
 | VP9 | vp9 | P | n/a | YES |
 

@@ -19,24 +19,24 @@ The following is a sample entry for a resource list in `pjsip.conf`:
 
 ```
 
-[sales\_team]
-type = resource\_list
+[sales_team]
+type = resource_list
 event = presence
-list\_item = bob@default
-list\_item = alice@outgoing
-list\_item = carol@default,david@default
-full\_state = yes
-notification\_batch\_interval = 2000
+list_item = bob@default
+list_item = alice@outgoing
+list_item = carol@default,david@default
+full_state = yes
+notification_batch_interval = 2000
 
 ```
 
 
 Here is a breakdown of the options:
 
-* `type`: Like with all items in `pjsip.conf`, a type must be specified to indicate what type of configuration object is being used. A "resource\_list" can be thought of as a narrowly-defined address of record. Like an AoR, it is addressable; SIP SUBSCRIBE messages are addressed to this resource.
+* `type`: Like with all items in `pjsip.conf`, a type must be specified to indicate what type of configuration object is being used. A "resource_list" can be thought of as a narrowly-defined address of record. Like an AoR, it is addressable; SIP SUBSCRIBE messages are addressed to this resource.
 * `event`: The SIP event package that this resource list supplies state for. Providing the event package name is essential for understanding how to interpret list items.
-* `list_item`: Each of these is a resource in the list. In this case, each item is a dialplan extension and context in which to look up a hint. Note that list\_items may be listed on separate lines or they may be comma-separated on a single line. The comma-separated option allows for configuration in realtime.
-* `full_state`: Indicates if notifications should contain the state of all list items. If set to "yes" then the full state of the list is sent on every state change. If set to "no" then only the resources whose states have changed will be sent in notifications. Note that RFC 4662 mandates certain times when a full state MUST be sent. Even if full\_state is set to "no" we will still send full state at those mandated times.
+* `list_item`: Each of these is a resource in the list. In this case, each item is a dialplan extension and context in which to look up a hint. Note that list_items may be listed on separate lines or they may be comma-separated on a single line. The comma-separated option allows for configuration in realtime.
+* `full_state`: Indicates if notifications should contain the state of all list items. If set to "yes" then the full state of the list is sent on every state change. If set to "no" then only the resources whose states have changed will be sent in notifications. Note that RFC 4662 mandates certain times when a full state MUST be sent. Even if full_state is set to "no" we will still send full state at those mandated times.
 * `notification_batch_interval`: Indicates how many milliseconds to wait after an initial state change to accumulate further state changes before sending out a notification. In a very busy phone system, setting a reasonable interval will allow for multiple state changes to be sent to a subscriber at the same time. Setting the batch interval too high may result in seeing state changes too late or missing transient state changes altogether. Setting this to zero will cause notifications to be pushed out immediately when a state change occurs on a resource in the list.
 
 One aspect of resource lists is that they allow for items within a list to be lists themselves. This would allow for a configuration like the following to be used:
@@ -52,33 +52,33 @@ One aspect of resource lists is that they allow for items within a list to be li
 
 ```
 
-[sales\_team]
-type = resource\_list
+[sales_team]
+type = resource_list
 event = presence
-list\_item = bob@default
-list\_item = alice@outgoing
-list\_item = carol@default,david@default
+list_item = bob@default
+list_item = alice@outgoing
+list_item = carol@default,david@default
  
-[marketing\_team]
-type = resource\_list
+[marketing_team]
+type = resource_list
 event = presence
-list\_item = zane@default
-list\_item = yancy@default
-list\_item = xerxes@default
+list_item = zane@default
+list_item = yancy@default
+list_item = xerxes@default
  
 [business]
-type = resource\_list
+type = resource_list
 event = presence
-list\_item = mallory@default
-list\_item = nadine@default
-list\_item = olaf@default
-list\_item = sales\_team
-list\_item = marketing\_team
+list_item = mallory@default
+list_item = nadine@default
+list_item = olaf@default
+list_item = sales_team
+list_item = marketing_team
 
 ```
 
 
-In this example, someone could subscribe to the "business" resource and as a result be subscribed to "sales\_team" and "marketing\_team".
+In this example, someone could subscribe to the "business" resource and as a result be subscribed to "sales_team" and "marketing_team".
 
 Supported Event Packages
 ========================
@@ -100,7 +100,7 @@ Presence is the event package that maps SIP subscriptions to dialplan hints. Pre
 
 ```
 
-list\_item = exten@context
+list_item = exten@context
 
 ```
 
@@ -123,10 +123,10 @@ Message summary is the event package that provides message waiting indication (i
 ```
 
 ;If using voicemail.conf and the VoiceMail() application for voicemail:
-list\_item = mailbox@context
+list_item = mailbox@context
  
-;If using external voicemail, then the format of the list\_item is based on a schema of your own choosing
-list\_item = my/crazy,homegrown|mailbox+hierarchy
+;If using external voicemail, then the format of the list_item is based on a schema of your own choosing
+list_item = my/crazy,homegrown|mailbox+hierarchy
 
 ```
 
@@ -156,14 +156,14 @@ Consider the following configuration:
 ```
 
 [foo]
-type = resource\_list
+type = resource_list
 event = presence
-list\_item = alice@default
+list_item = alice@default
  
 [foo]
-type = resource\_list
+type = resource_list
 event = presence
-list\_item = bob@default
+list_item = bob@default
 
 ```
 
@@ -186,14 +186,14 @@ Consider the following configuration:
 ```
 
 [foo]
-type = resource\_list
+type = resource_list
 event = presence
-list\_item = alice@default
+list_item = alice@default
  
 [foo]
-type = resource\_list
+type = resource_list
 event = message-summary
-list\_item = bob@default
+list_item = bob@default
 
 ```
 
@@ -216,20 +216,20 @@ Consider the following configuration:
 ```
 
 [foo]
-type = resource\_list
+type = resource_list
 event = presence
-list\_item = bar
+list_item = bar
  
 [bar]
-type = resource\_list
+type = resource_list
 event = presence
-list\_item = foo
-list\_item = baz
+list_item = foo
+list_item = baz
  
 [baz]
-type = resource\_list
+type = resource_list
 event = presence
-list\_item = alice@default
+list_item = alice@default
 
 ```
 
@@ -255,14 +255,14 @@ Consider the following configuration:
 
 ;pjsip.conf
 [foo]
-type = resource\_list
+type = resource_list
 event = presence
-list\_item = alice@default
+list_item = alice@default
  
 [alice@default]
-type = resource\_list
+type = resource_list
 event = presence
-list\_item = bob@default
+list_item = bob@default
  
 ;extensions.conf
 [default]
@@ -293,9 +293,9 @@ Consider the following configuration:
 
 ;pjsip.conf
 [foo]
-type = resource\_list
+type = resource_list
 event = presence
-list\_item = alice@default
+list_item = alice@default
  
 ;extensions.conf
 [default]

@@ -41,50 +41,50 @@ Let's consider what we need to do for this feature to work. All we have to do is
 
 
 
-```bash title="res\_pjsip\_auto\_answer.c  " linenums="1"
+```bash title="res_pjsip_auto_answer.c  " linenums="1"
 #include "asterisk.h"
 
 #include <pjsip.h>
-#include <pjsip\_ua.h>
+#include <pjsip_ua.h>
 #include <pjlib.h>
 
-#include "asterisk/res\_pjsip.h"
-#include "asterisk/res\_pjsip\_session.h"
+#include "asterisk/res_pjsip.h"
+#include "asterisk/res_pjsip_session.h"
 #include "asterisk/module.h"
 
 /\*\*\* MODULEINFO
  <depend>pjproject</depend>
- <depend>res\_pjsip</depend>
- <depend>res\_pjsip\_session</depend>
+ <depend>res_pjsip</depend>
+ <depend>res_pjsip_session</depend>
  \*\*\*/
-static void auto\_answer\_outgoing\_request(struct ast\_sip\_session \*session, pjsip\_tx\_data \*tdata)
+static void auto_answer_outgoing_request(struct ast_sip_session \*session, pjsip_tx_data \*tdata)
 {
  /\* STUB \*/
 }
 
-static struct ast\_sip\_session\_supplement auto\_answer\_supplement = {
+static struct ast_sip_session_supplement auto_answer_supplement = {
  .method = "INVITE",
- .outgoing\_request = auto\_answer\_outgoing\_request,
+ .outgoing_request = auto_answer_outgoing_request,
 };
 
-static int load\_module(void)
+static int load_module(void)
 {
- if (ast\_sip\_session\_register\_supplement(&auto\_answer\_supplement)) {
- return AST\_MODULE\_LOAD\_DECLINE;
+ if (ast_sip_session_register_supplement(&auto_answer_supplement)) {
+ return AST_MODULE_LOAD_DECLINE;
  }
- return AST\_MODULE\_LOAD\_SUCCESS;
+ return AST_MODULE_LOAD_SUCCESS;
 }
 
-static int unload\_module(void)
+static int unload_module(void)
 {
- ast\_sip\_session\_unregister\_supplement(&auto\_answer\_supplement);
+ ast_sip_session_unregister_supplement(&auto_answer_supplement);
  return 0;
 }
 
-AST\_MODULE\_INFO(ASTERISK\_GPL\_KEY, AST\_MODFLAG\_LOAD\_ORDER, "SIP Auto Answer Support",
- .load = load\_module,
- .unload = unload\_module,
- .load\_pri = AST\_MODPRI\_APP\_DEPEND,
+AST_MODULE_INFO(ASTERISK_GPL_KEY, AST_MODFLAG_LOAD_ORDER, "SIP Auto Answer Support",
+ .load = load_module,
+ .unload = unload_module,
+ .load_pri = AST_MODPRI_APP_DEPEND,
  );
 
 
@@ -109,17 +109,17 @@ Let's go into deeper detail about what we have just written. Let's start at the 
 c#include "asterisk.h"
 
 #include <pjsip.h>
-#include <pjsip\_ua.h>
+#include <pjsip_ua.h>
 #include <pjlib.h>
 
-#include "asterisk/res\_pjsip.h"
-#include "asterisk/res\_pjsip\_session.h"
+#include "asterisk/res_pjsip.h"
+#include "asterisk/res_pjsip_session.h"
 #include "asterisk/module.h"
 
 /\*\*\* MODULEINFO
  <depend>pjproject</depend>
- <depend>res\_pjsip</depend>
- <depend>res\_pjsip\_session</depend>
+ <depend>res_pjsip</depend>
+ <depend>res_pjsip_session</depend>
  \*\*\*/
 
 
@@ -145,24 +145,24 @@ Next let's jump down to the bottom of the file:
 
 ```
 
-cstatic int load\_module(void)
+cstatic int load_module(void)
 {
- if (ast\_sip\_session\_register\_supplement(&auto\_answer\_supplement)) {
- return AST\_MODULE\_LOAD\_DECLINE;
+ if (ast_sip_session_register_supplement(&auto_answer_supplement)) {
+ return AST_MODULE_LOAD_DECLINE;
  }
- return AST\_MODULE\_LOAD\_SUCCESS;
+ return AST_MODULE_LOAD_SUCCESS;
 }
 
-static int unload\_module(void)
+static int unload_module(void)
 {
- ast\_sip\_session\_unregister\_supplement(&auto\_answer\_supplement);
+ ast_sip_session_unregister_supplement(&auto_answer_supplement);
  return 0;
 }
 
-AST\_MODULE\_INFO(ASTERISK\_GPL\_KEY, AST\_MODFLAG\_LOAD\_ORDER, "SIP Auto Answer Support",
- .load = load\_module,
- .unload = unload\_module,
- .load\_pri = AST\_MODPRI\_APP\_DEPEND,
+AST_MODULE_INFO(ASTERISK_GPL_KEY, AST_MODFLAG_LOAD_ORDER, "SIP Auto Answer Support",
+ .load = load_module,
+ .unload = unload_module,
+ .load_pri = AST_MODPRI_APP_DEPEND,
  );
 
 
@@ -186,14 +186,14 @@ Now let's have a look at the important part of the code:
 
 ```
 
-cstatic void auto\_answer\_outgoing\_request(struct ast\_sip\_session \*session, pjsip\_tx\_data \*tdata)
+cstatic void auto_answer_outgoing_request(struct ast_sip_session \*session, pjsip_tx_data \*tdata)
 {
  /\* STUB \*/
 }
 
-static struct ast\_sip\_session\_supplement auto\_answer\_supplement = {
+static struct ast_sip_session_supplement auto_answer_supplement = {
  .method = "INVITE",
- .outgoing\_request = auto\_answer\_outgoing\_request,
+ .outgoing_request = auto_answer_outgoing_request,
 };
 
 
@@ -225,7 +225,7 @@ Let's take a look at where we are currently with our callback:
 
 ```
 
-cstatic void auto\_answer\_outgoing\_request(struct ast\_sip\_session \*session, pjsip\_tx\_data \*tdata)
+cstatic void auto_answer_outgoing_request(struct ast_sip_session \*session, pjsip_tx_data \*tdata)
 {
  /\* STUB \*/
 }
@@ -256,30 +256,30 @@ So let's add these headers:
 
 ```
 
-cstatic void auto\_answer\_outgoing\_request(struct ast\_sip\_session \*session, pjsip\_tx\_data \*tdata)
+cstatic void auto_answer_outgoing_request(struct ast_sip_session \*session, pjsip_tx_data \*tdata)
 {
- static const pj\_str\_t answer\_mode\_name = { "Answer-Mode", 11 };
- static const pj\_str\_t answer\_mode\_value = { "auto", 4 };
- static const pj\_str\_t require\_value = { "answermode", 10 };
- pjsip\_generic\_string\_hdr \*answer\_mode;
- pjsip\_require\_hdr \*require;
+ static const pj_str_t answer_mode_name = { "Answer-Mode", 11 };
+ static const pj_str_t answer_mode_value = { "auto", 4 };
+ static const pj_str_t require_value = { "answermode", 10 };
+ pjsip_generic_string_hdr \*answer_mode;
+ pjsip_require_hdr \*require;
 
  /\* Let's add the require header. There could already be a require header present in the
  \* request. If so, then we just need to add "answermode" to the list of requirements. Otherwise,
  \* we need to create a require header and add "answermode" to it.
  \*/
- require = pjsip\_msg\_find\_hdr(tdata->msg, PJSIP\_H\_REQUIRE, NULL);
+ require = pjsip_msg_find_hdr(tdata->msg, PJSIP_H_REQUIRE, NULL);
  if (!require) {
- require = pjsip\_require\_hdr\_create(tdata->pool);
- pjsip\_msg\_add\_hdr(tdata->msg, (pjsip\_hdr \*) require);
+ require = pjsip_require_hdr_create(tdata->pool);
+ pjsip_msg_add_hdr(tdata->msg, (pjsip_hdr \*) require);
  }
- pj\_strdup(tdata->pool, &require->values[require->count++], &require\_value);
+ pj_strdup(tdata->pool, &require->values[require->count++], &require_value);
 
  /\* Now we can add the Answer-Mode header. This is easier since nothing else should be adding this
  \* header to the message before we get it.
  \*/
- answer\_mode = pjsip\_generic\_string\_hdr\_create(tdata->pool, &answer\_mode\_name, &answer\_mode\_value);
- pjsip\_msg\_add\_hdr(tdata->msg, (pjsip\_hdr \*) answer\_mode);
+ answer_mode = pjsip_generic_string_hdr_create(tdata->pool, &answer_mode_name, &answer_mode_value);
+ pjsip_msg_add_hdr(tdata->msg, (pjsip_hdr \*) answer_mode);
 }
 
 
@@ -301,11 +301,11 @@ Now we have some content! Let's go into it in more detail, starting from the top
 
 ```
 
-c static const pj\_str\_t answer\_mode\_name = { "Answer-Mode", 11 };
- static const pj\_str\_t answer\_mode\_value = { "auto", 4 };
- static const pj\_str\_t require\_value = { "answermode", 10 };
- pjsip\_generic\_string\_hdr \*answer\_mode;
- pjsip\_require\_hdr \*require;
+c static const pj_str_t answer_mode_name = { "Answer-Mode", 11 };
+ static const pj_str_t answer_mode_value = { "auto", 4 };
+ static const pj_str_t require_value = { "answermode", 10 };
+ pjsip_generic_string_hdr \*answer_mode;
+ pjsip_require_hdr \*require;
 
 
 ```
@@ -328,12 +328,12 @@ Next, let's have a look at what we are doing with the Require header:
 
 ```
 
-c require = pjsip\_msg\_find\_hdr(tdata->msg, PJSIP\_H\_REQUIRE, NULL);
+c require = pjsip_msg_find_hdr(tdata->msg, PJSIP_H_REQUIRE, NULL);
  if (!require) {
- require = pjsip\_require\_hdr\_create(tdata->pool);
- pjsip\_msg\_add\_hdr(tdata->msg, (pjsip\_hdr \*) require);
+ require = pjsip_require_hdr_create(tdata->pool);
+ pjsip_msg_add_hdr(tdata->msg, (pjsip_hdr \*) require);
  }
- pj\_cstr(&require->values[require->count++], &require\_value);
+ pj_cstr(&require->values[require->count++], &require_value);
 
 
 ```
@@ -356,8 +356,8 @@ Next, let's have a look at what we are doing with the Auto-Answer header:
 
 ```
 
-c answer\_mode = pjsip\_generic\_string\_hdr\_create(tdata->pool, &answer\_mode\_name, &answer\_mode\_value);
- pjsip\_msg\_add\_hdr(tdata->msg, (pjsip\_hdr \*) answer\_mode);
+c answer_mode = pjsip_generic_string_hdr_create(tdata->pool, &answer_mode_name, &answer_mode_value);
+ pjsip_msg_add_hdr(tdata->msg, (pjsip_hdr \*) answer_mode);
 
 
 ```
@@ -370,7 +370,7 @@ Adjustments
 
 ### Using the `SIP_AUTO_ANSWER` channel variable
 
-At this point, we have a simple session supplement written, but we don't actually want to add the auto-answer information to every single outgoing INVITE. Instead, we want to do so based on the presence of the SIP\_AUTO\_ANSWER channel variable on the outbound channel. Let's modify the code to do this. We will insert the code just before our Require header handling:
+At this point, we have a simple session supplement written, but we don't actually want to add the auto-answer information to every single outgoing INVITE. Instead, we want to do so based on the presence of the SIP_AUTO_ANSWER channel variable on the outbound channel. Let's modify the code to do this. We will insert the code just before our Require header handling:
 
 
 
@@ -384,14 +384,14 @@ At this point, we have a simple session supplement written, but we don't actuall
 ```
 
 c ...
- pjsip\_require\_hdr \*require;
- int add\_auto\_answer;
+ pjsip_require_hdr \*require;
+ int add_auto_answer;
 
- ast\_channel\_lock(session->channel);
- add\_auto\_answer = ast\_true(pbx\_builtin\_getvar\_helper(session->channel, "SIP\_AUTO\_ANSWER"));
- ast\_channel\_unlock(session->channel);
+ ast_channel_lock(session->channel);
+ add_auto_answer = ast_true(pbx_builtin_getvar_helper(session->channel, "SIP_AUTO_ANSWER"));
+ ast_channel_unlock(session->channel);
 
- if (!add\_auto\_answer) {
+ if (!add_auto_answer) {
  return;
  }
  
@@ -420,13 +420,13 @@ So now we have code that will conditionally add the auto-answer headers. We only
 ```
 
 c ...
- int add\_auto\_answer;
+ int add_auto_answer;
 
- if (session->inv\_session->state >= PJSIP\_INV\_STATE\_CONFIRMED) {
+ if (session->inv_session->state >= PJSIP_INV_STATE_CONFIRMED) {
  return;
  }
 
- ast\_channel\_lock(session->channel);
+ ast_channel_lock(session->channel);
  ...
 
 
@@ -443,41 +443,41 @@ At this point, we are finished. So let's put it all together and see what we hav
 
 
 
-```bash title="res\_pjsip\_auto\_answer.c  " linenums="1"
+```bash title="res_pjsip_auto_answer.c  " linenums="1"
 #include "asterisk.h"
 
 #include <pjsip.h>
-#include <pjsip\_ua.h>
+#include <pjsip_ua.h>
 #include <pjlib.h>
 
-#include "asterisk/res\_pjsip.h"
-#include "asterisk/res\_pjsip\_session.h"
+#include "asterisk/res_pjsip.h"
+#include "asterisk/res_pjsip_session.h"
 #include "asterisk/module.h"
 #include "asterisk/pbx.h"
 
 /\*\*\* MODULEINFO
  <depend>pjproject</depend>
- <depend>res\_pjsip</depend>
- <depend>res\_pjsip\_session</depend>
+ <depend>res_pjsip</depend>
+ <depend>res_pjsip_session</depend>
  \*\*\*/
-static void auto\_answer\_outgoing\_request(struct ast\_sip\_session \*session, pjsip\_tx\_data \*tdata)
+static void auto_answer_outgoing_request(struct ast_sip_session \*session, pjsip_tx_data \*tdata)
 {
- static const pj\_str\_t answer\_mode\_name = { "Answer-Mode", 11 };
- static const pj\_str\_t answer\_mode\_value = { "auto", 4 };
- static const pj\_str\_t require\_value = { "answermode", 10 };
- pjsip\_generic\_string\_hdr \*answer\_mode;
- pjsip\_require\_hdr \*require;
- int add\_auto\_answer;
+ static const pj_str_t answer_mode_name = { "Answer-Mode", 11 };
+ static const pj_str_t answer_mode_value = { "auto", 4 };
+ static const pj_str_t require_value = { "answermode", 10 };
+ pjsip_generic_string_hdr \*answer_mode;
+ pjsip_require_hdr \*require;
+ int add_auto_answer;
  
- if (session->inv\_session->state >= PJSIP\_INV\_STATE\_CONFIRMED) {
+ if (session->inv_session->state >= PJSIP_INV_STATE_CONFIRMED) {
  return;
  }
 
- ast\_channel\_lock(session->channel);
- add\_auto\_answer = ast\_true(pbx\_builtin\_getvar\_helper(session->channel, "SIP\_AUTO\_ANSWER"));
- ast\_channel\_unlock(session->channel);
+ ast_channel_lock(session->channel);
+ add_auto_answer = ast_true(pbx_builtin_getvar_helper(session->channel, "SIP_AUTO_ANSWER"));
+ ast_channel_unlock(session->channel);
 
- if (!add\_auto\_answer) {
+ if (!add_auto_answer) {
  return;
  }
 
@@ -485,43 +485,43 @@ static void auto\_answer\_outgoing\_request(struct ast\_sip\_session \*session, 
  \* request. If so, then we just need to add "answermode" to the list of requirements. Otherwise,
  \* we need to create a require header and add "answermode" to it.
  \*/
- require = pjsip\_msg\_find\_hdr(tdata->msg, PJSIP\_H\_REQUIRE, NULL);
+ require = pjsip_msg_find_hdr(tdata->msg, PJSIP_H_REQUIRE, NULL);
  if (!require) {
- require = pjsip\_require\_hdr\_create(tdata->pool);
- pjsip\_msg\_add\_hdr(tdata->msg, (pjsip\_hdr \*) require);
+ require = pjsip_require_hdr_create(tdata->pool);
+ pjsip_msg_add_hdr(tdata->msg, (pjsip_hdr \*) require);
  }
- pj\_strdup(tdata->pool, &require->values[require->count++], &require\_value);
+ pj_strdup(tdata->pool, &require->values[require->count++], &require_value);
 
  /\* Now we can add the Answer-Mode header. This is easier since nothing else should be adding this
  \* header to the message before we get it.
  \*/
- answer\_mode = pjsip\_generic\_string\_hdr\_create(tdata->pool, &answer\_mode\_name, &answer\_mode\_value);
- pjsip\_msg\_add\_hdr(tdata->msg, (pjsip\_hdr \*) answer\_mode);
+ answer_mode = pjsip_generic_string_hdr_create(tdata->pool, &answer_mode_name, &answer_mode_value);
+ pjsip_msg_add_hdr(tdata->msg, (pjsip_hdr \*) answer_mode);
 }
 
-static struct ast\_sip\_session\_supplement auto\_answer\_supplement = {
+static struct ast_sip_session_supplement auto_answer_supplement = {
  .method = "INVITE",
- .outgoing\_request = auto\_answer\_outgoing\_request,
+ .outgoing_request = auto_answer_outgoing_request,
 };
 
-static int load\_module(void)
+static int load_module(void)
 {
- if (ast\_sip\_session\_register\_supplement(&auto\_answer\_supplement)) {
- return AST\_MODULE\_LOAD\_DECLINE;
+ if (ast_sip_session_register_supplement(&auto_answer_supplement)) {
+ return AST_MODULE_LOAD_DECLINE;
  }
- return AST\_MODULE\_LOAD\_SUCCESS;
+ return AST_MODULE_LOAD_SUCCESS;
 }
 
-static int unload\_module(void)
+static int unload_module(void)
 {
- ast\_sip\_session\_unregister\_supplement(&auto\_answer\_supplement);
+ ast_sip_session_unregister_supplement(&auto_answer_supplement);
  return 0;
 }
 
-AST\_MODULE\_INFO(ASTERISK\_GPL\_KEY, AST\_MODFLAG\_LOAD\_ORDER, "SIP Auto Answer Support",
- .load = load\_module,
- .unload = unload\_module,
- .load\_pri = AST\_MODPRI\_APP\_DEPEND,
+AST_MODULE_INFO(ASTERISK_GPL_KEY, AST_MODFLAG_LOAD_ORDER, "SIP Auto Answer Support",
+ .load = load_module,
+ .unload = unload_module,
+ .load_pri = AST_MODPRI_APP_DEPEND,
  );
 
 

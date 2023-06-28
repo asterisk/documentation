@@ -30,7 +30,7 @@ Without a qualifier:
 ---
 
   
-This will fail because default\_expiration isn't valid for an endpoint  
+This will fail because default_expiration isn't valid for an endpoint  
 
 
 ```
@@ -41,10 +41,10 @@ allow=ulaw
  
 [101]
 type=aor
-default\_expiration=3600
+default_expiration=3600
  
 [101](+)
-default\_expiration=1200
+default_expiration=1200
 
 
 
@@ -72,10 +72,10 @@ allow=ulaw
  
 [101]
 type=aor
-default\_expiration=3600
+default_expiration=3600
  
 [101](+type=aor)
-default\_expiration=1200
+default_expiration=1200
 
 [101](+type=endpoint)
 allow=g722
@@ -105,10 +105,10 @@ allow=ulaw
  
 [101]
 type=aor
-default\_expiration=3600
+default_expiration=3600
  
-[101](+default\_.\*=36[0-9][0-9])
-default\_expiration=1200
+[101](+default_.\*=36[0-9][0-9])
+default_expiration=1200
 
 [101](+type=endpoint)
 allow=g722
@@ -135,10 +135,10 @@ allow=ulaw
  
 [101]
 type=aor
-default\_expiration=3600
+default_expiration=3600
  
-[101](+type=aor&default\_.\*=36[0-9][0-9])
-default\_expiration=1200
+[101](+type=aor&default_.\*=36[0-9][0-9])
+default_expiration=1200
 
 [101](+type=endpoint)
 allow=g722
@@ -154,7 +154,7 @@ And finally, you can elect to include or restrict parameters inherited from temp
 ---
 
   
-The final weird and not so useful example. This will NOT match because default\_expiration is defined in the parent template.  
+The final weird and not so useful example. This will NOT match because default_expiration is defined in the parent template.  
 
 
 ```
@@ -163,14 +163,14 @@ The final weird and not so useful example. This will NOT match because default\_
 type=endpoint
 allow=ulaw
 
-[aor\_template](!)
+[aor_template](!)
 type=aor
-default\_expiration=3600
+default_expiration=3600
 
-[101](aor\_template)
+[101](aor_template)
  
-[101](+TEMPLATES=restrict&default\_.\*=36[0-9][0-9])
-default\_expiration=1200
+[101](+TEMPLATES=restrict&default_.\*=36[0-9][0-9])
+default_expiration=1200
 
 [101](+type=endpoint)
 allow=g722

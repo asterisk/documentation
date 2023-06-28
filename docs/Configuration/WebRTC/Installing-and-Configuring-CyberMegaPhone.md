@@ -27,7 +27,7 @@ You'll also need a working webcam and microphone on your client computer.  CMP2
 Get The Code
 ============
 
-The CyberMegaPhone (CMP2K) code is located in Asterisk's public Github repository at [https://github.com/asterisk/cyber\_mega\_phone\_2k](https://github.com/asterisk/cyber\_mega\_phone\_2k)(https://github.com/asterisk/cyber_mega_phone_2k.git).  You can either download the code as a zip file or clone the repository using git.  Which ever way you choose, download it now to the directory of your choice.  We'll use `/usr/src/asterisk/cyber_mega_phone_2k` in the instructions below.
+The CyberMegaPhone (CMP2K) code is located in Asterisk's public Github repository at [https://github.com/asterisk/cyber_mega_phone_2k](https://github.com/asterisk/cyber_mega_phone_2k)(https://github.com/asterisk/cyber_mega_phone_2k.git).  You can either download the code as a zip file or clone the repository using git.  Which ever way you choose, download it now to the directory of your choice.  We'll use `/usr/src/asterisk/cyber_mega_phone_2k` in the instructions below.
 
 From an installation perspective, that's all there is to it.  It's just configuration from now on.
 
@@ -59,15 +59,15 @@ bindaddr=0.0.0.0
 bindport=8088
 tlsenable=yes
 tlsbindaddr=0.0.0.0:8089
-tlscertfile=<your\_cert\_file>
-tlsprivatekey=<your\_key\_file>
-tlscafile=<your\_ca\_cert\_file>
+tlscertfile=<your_cert_file>
+tlsprivatekey=<your_key_file>
+tlscafile=<your_ca_cert_file>
  
 ; Add the following if not already present
 ; Allow the HTTP server to serve static content from /var/lib/asterisk/static-http
 enablestatic = yes
 ; Create an alias that will allow us to easily load the client in a web browser.
-redirect = /cmp2k /static/cyber\_mega\_phone\_2k/index.html
+redirect = /cmp2k /static/cyber_mega_phone_2k/index.html
  
 
 ```
@@ -99,8 +99,8 @@ Server Enabled and Bound to [::]:8088
 HTTPS Server Enabled and Bound to [::]:8089
 
 Enabled URI's:
-/test\_media\_cache/... => HTTP Media Cache Test URI
-/guimohdir\_rh => HTTP POST mapping
+/test_media_cache/... => HTTP Media Cache Test URI
+/guimohdir_rh => HTTP POST mapping
 /httpstatus => Asterisk HTTP General Status
 /phoneprov/... => Asterisk HTTP Phone Provisioning Tool
 /amanager => HTML Manager Event Interface w/Digest authentication
@@ -116,7 +116,7 @@ Enabled URI's:
 /ws => Asterisk HTTP WebSocket
 
 Enabled Redirects:
- /cmp2k => /static/cyber\_mega\_phone\_2k/index.html
+ /cmp2k => /static/cyber_mega_phone_2k/index.html
 
 
 
@@ -134,7 +134,7 @@ For security reasons, the HTTP server will not serve arbitrary paths so the  `/
 
 ```bash title="Shell Prompt  " linenums="1"
 # cd /var/lib/asterisk/static-http
-# ln -s /usr/src/asterisk/cyber\_mega\_phone\_2k
+# ln -s /usr/src/asterisk/cyber_mega_phone_2k
 
 ```
 
@@ -150,7 +150,7 @@ Great.  
 (Re)Configure PJSIP
 -------------------
 
-In the [Configuring Asterisk for WebRTC Clients](/Configuration/WebRTC/Configuring-Asterisk-for-WebRTC-Clients) tutorial, you created a PJSIP Endpoint named "webrtc\_client".  We need to modify that definition for our purposes.
+In the [Configuring Asterisk for WebRTC Clients](/Configuration/WebRTC/Configuring-Asterisk-for-WebRTC-Clients) tutorial, you created a PJSIP Endpoint named "webrtc_client".  We need to modify that definition for our purposes.
 
 
 
@@ -163,11 +163,11 @@ In the [Configuring Asterisk for WebRTC Clients](/Configuration/WebRTC/Configur
 
 ```
 
-[webrtc\_client]
+[webrtc_client]
 type=endpoint
-aors=webrtc\_client
-auth=webrtc\_client
-dtls\_auto\_generate\_cert=yes
+aors=webrtc_client
+auth=webrtc_client
+dtls_auto_generate_cert=yes
 webrtc=yes
 context=default
 disallow=all
@@ -177,8 +177,8 @@ disallow=all
 allow=opus,g722,ulaw,vp9,vp8,h264
 ; Since video conferencing makes use of the Streams functionality added in Asterisk 15
 ; we need to indicate the maximum number of streams allowed for audio and video.
-max\_audio\_streams = 1
-max\_video\_streams = 15
+max_audio_streams = 1
+max_video_streams = 15
  
 
 ```
@@ -188,7 +188,7 @@ You may already have some of the config from previous webrtc endpoints for certi
 
 There are two more Asterisk changes we need to make so no need to restart Asterisk just yet.
 
-Configure app\_confbridge
+Configure app_confbridge
 -------------------------
 
 The sample `confbridge.conf` file is enough to get you going with one exception.  In the `default_bridge` section, we need to set `video_mode=sfu`.
@@ -204,12 +204,12 @@ The sample `confbridge.conf` file is enough to get you going with one exception.
 
 ```
 
-[default\_bridge]
+[default_bridge]
 type=bridge
 ; other stuff
 ; SFU is Selective Forwarding Mode
 ; Basically all participant's video streams are relayed to all other participants.
-video\_mode = sfu
+video_mode = sfu
  
 
 ```
@@ -234,7 +234,7 @@ Now we need to configure an extension that, when dialed, will put us into the vi
 ```
 
 [default]
-exten = my\_video\_conference,1,Confbridge(MYCONF,default\_bridge,default\_user,sample\_user\_menu)
+exten = my_video_conference,1,Confbridge(MYCONF,default_bridge,default_user,sample_user_menu)
 
 
 ```
