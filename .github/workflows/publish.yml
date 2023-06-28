@@ -3,8 +3,12 @@ on:
   workflow_dispatch:
   push:
     branches:
-      - master 
       - main
+  schedule:
+#   Times are UTC
+#   This needs to run AFTER the Astrerisk CreateDocs job has run.
+    - cron: '0 05 * * *'
+
 permissions:
   contents: write
 jobs:
@@ -19,4 +23,19 @@ jobs:
           python-version: 3.x
           cache: 'pip'
       - run: pip install -r requirements.txt
-      - run: mkdocs gh-deploy --force
+      
+      - name: Get Token needed to push cherry-picks
+        id: get_workflow_token
+        uses: peter-murray/workflow-application-token-action@v1
+        with:
+          application_id: ${{secrets.ASTERISK_ORG_ACCESS_APP_ID}}
+          application_private_key: ${{secrets.ASTERISK_ORG_ACCESS_APP_PRIV_KEY}}
+          organization: asterisk
+
+      - name: Publish
+        env:
+          GITHUB_TOKEN:  ${{steps.get_workflow_token.outputs.token}}
+          GH_TOKEN:      ${{steps.get_workflow_token.outputs.token}}
+        run: |
+          gh auth setup-git -h github.com
+          make REMOTE=origin PUSH=yes
