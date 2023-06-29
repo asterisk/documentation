@@ -4,10 +4,13 @@ This repository contains the Asterisk Documentation project.
 
 # Static Documentation
 
-The static documentation contained in the ./docs/ directory is written directly in markdown. The directory structure is fairly straightforward so if you wish to contribute documentation, you should fork this repository and submit pull requests against files in that directory.
+The static documentation contained in the ./docs/ directory is written directly in markdown.  The publish process uses [mkdocs](https://www.mkdocs.org), [Material for MkDocs](https://squidfunk.github.io/mkdocs-material/), and [mike](https://github.com/jimporter/mike) to generate the HTML web site.  The directory structure is fairly straightforward so if you wish to contribute, you should fork this repository and submit pull requests against files in that directory.
 
 All contributions are subject to the 
 [Creative Commons Attribution-ShareAlike 3.0 United States](LICENSE.md) license.
+
+# Markdown Flavor
+The docs are written in standard markdown, not GitHub Flavored markdown.  There are lots of extensions available though.  Most of the extensions provided by [Material for MkDocs](https://squidfunk.github.io/mkdocs-material/reference/) are enabled except those only available to paying sponsors and a few that don't make sense in this environment. 
 
 # Dynamic Documentation
 
@@ -22,11 +25,6 @@ The dynamic documentation includes the pages generated from Asterisk itself and 
 
 The publish process gets this information directly from the Asterisk CreateDocs job (which runs nightly) and generates markdown.  For this reason, all changes to the dynamic documentation need to be made in the Asterisk source code itself.  With the exception of the Asterisk_REST_Interface, the documentation comes from the XML that's embedded in Asterisk modules.  The ARI documentation comes from the JSON files in rest-api/api-docs.
 
-# Markdown Flavor
-The docs are written (or converted to) standard markdown, not GitHub Flavored markdown.  There are lots of extensions available though.  See the following sites for what you can do.
-* [mkdocs](https://www.mkdocs.org)
-* [Material for MkDocs](https://squidfunk.github.io/mkdocs-material/)
-
 # Build/Test Dependencies
 
 Dependencies for documentation can be installed using the included requirements.txt file.
@@ -35,7 +33,7 @@ Dependencies for documentation can be installed using the included requirements.
 $ pip3 install -r requirements.txt
 ```
 
-If you don't want to install the requirements for the current  user or globally, you can create a virtual environment specific to this directory first...
+If you don't want to install the requirements for the current user or globally, you can create a virtual environment specific to this directory first...
 
 ```
 $ python -m venv ./.venv

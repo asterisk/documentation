@@ -48,7 +48,7 @@ plugins:
 extra:
   version:
     provider: mike
-    default: general
+    default: latest
   social:
     - icon: asterisk/favicon
       link: https://www.asterisk.org/
