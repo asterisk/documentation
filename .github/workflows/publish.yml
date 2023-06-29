@@ -35,4 +35,9 @@ jobs:
           GH_TOKEN:      ${{steps.get_workflow_token.outputs.token}}
         run: |
           gh auth setup-git -h github.com
-          make REMOTE=origin PUSH=yes
+          git config --global user.email "asteriskteam@digium.com"
+          git config --global user.name "Asterisk Development Team"
+          cat >Makefile.inc <<EOF
+          ${{vars.MAKEFILE_INC}}
+          EOF
+          make PUSH=yes
