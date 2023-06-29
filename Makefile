@@ -9,8 +9,12 @@ include Makefile.inc
 ifeq ($(BRANCH),)
 all:
 	@for branch in $(EVERYTHING) ; do \
-		$(MAKE) --no-print-directory version BRANCH=$${branch} PUSH=$(PUSH) ;\
+		$(MAKE) --no-print-directory version BRANCH=$${branch} PUSH=no ;\
 	done
+	@if [ -n "$(PUSH_OPT)" ] ; then \
+		echo "Pushing gh-pages to remote '$(REMOTE)'" ;\
+		git push $(REMOTE) gh-pages:gh-pages ;\
+	fi
 
 clean-all:
 	@for branch in $(EVERYTHING) ; do \
@@ -45,7 +49,7 @@ version-latest: version-setup download
 	@mike deploy -F $(BRANCH_DIR)/mkdocs.yml -r $(REMOTE) -u $(PUSH_OPT) \
 		-t "Asterisk Latest ($(BRANCH))" $(BRANCH) latest
 	@git fast-import --quiet --date-format=now < overrides/.git-imports/CNAME.import 
-	@echo "Setting branch $(BRANCH) as default $(if $(PUSH_OPT),and pushing to $(REMOTE),,)"
+	@echo "Setting branch $(BRANCH) as default $(if $(PUSH_OPT),and pushing to $(REMOTE),)"
 	@mike set-default -F $(BRANCH_DIR)/mkdocs.yml -r $(REMOTE) \
 		$(PUSH_OPT) $(BRANCH)
 
@@ -59,7 +63,7 @@ version-dynamic: version-setup download
 	@utils/astxml2markdown.py --file=$(BRANCH_DIR)/source/asterisk-docs.xml \
 		--xslt=utils/astxml2markdown.xslt \
 		--directory=$(BRANCH_DIR)/docs/ --branch=$(BRANCH) --version=GIT
-	@echo "Generating HTML site $(if $(PUSH_OPT),and pushing to $(REMOTE),,)"
+	@echo "Generating HTML site $(if $(PUSH_OPT),and pushing to $(REMOTE),)"
 	@mike deploy -F $(BRANCH_DIR)/mkdocs.yml -r $(REMOTE) -u $(PUSH_OPT) \
 		-t "Asterisk $(BRANCH)" $(BRANCH)
 

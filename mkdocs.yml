@@ -44,6 +44,8 @@ theme:
 
 plugins:
   - search
+  - mike:
+      alias_type: symlink
 
 extra:
   version:
