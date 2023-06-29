@@ -44,7 +44,7 @@ version-latest: version-setup download
 	@echo "Generating HTML site $(if $(PUSH_OPT),and pushing to $(REMOTE),)"
 	@mike deploy -F $(BRANCH_DIR)/mkdocs.yml -r $(REMOTE) -u $(PUSH_OPT) \
 		-t "Asterisk Latest ($(BRANCH))" $(BRANCH) latest
-	@cp docs/CNAME $(BRANCH_DIR)/site/
+	@git fast-import --quiet --date-format=now < overrides/.git-imports/CNAME.import 
 	@echo "Setting branch $(BRANCH) as default $(if $(PUSH_OPT),and pushing to $(REMOTE),,)"
 	@mike set-default -F $(BRANCH_DIR)/mkdocs.yml -r $(REMOTE) \
 		$(PUSH_OPT) $(BRANCH)
@@ -68,7 +68,7 @@ version-setup:
 		echo "You must supply 'BRANCH=<branch>' on the make command line" ;\
 		exit 1 ;\
 	fi
-	@mkdir -p $(BRANCH_DIR)/
+	@mkdir -p $(BRANCH_DIR)/docs
 	@[ ! -L $(BRANCH_DIR)/mkdocs.yml ] && ln -rs mkdocs.yml $(BRANCH_DIR)/mkdocs.yml  || :
 	@[ ! -L $(BRANCH_DIR)/overrides ] && ln -rs overrides $(BRANCH_DIR)/overrides || :
 

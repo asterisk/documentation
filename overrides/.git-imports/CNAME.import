@@ -1,0 +1,10 @@
+commit refs/heads/gh-pages
+committer Asterisk Development Team <asteriskteam@sangoma.com> now
+data <<EOT
+Add/Update CNAME
+EOT
+from refs/heads/gh-pages^0
+M 100644 inline CNAME
+data <<EOT
+docs.asterisk.org
+EOT

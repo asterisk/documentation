@@ -1,9 +1,6 @@
 name: Publish
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - main
   schedule:
 #   Times are UTC
 #   This needs to run AFTER the Astrerisk CreateDocs job has run.
@@ -24,7 +21,7 @@ jobs:
           cache: 'pip'
       - run: pip install -r requirements.txt
       
-      - name: Get Token needed to push cherry-picks
+      - name: Get Token needed to push updates
         id: get_workflow_token
         uses: peter-murray/workflow-application-token-action@v1
         with:
