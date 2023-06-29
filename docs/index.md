@@ -3,8 +3,6 @@ title: Home
 pageid: 4259930
 ---
 
-# This site is still under construction!
-
 This is the home of the official documentation for The Asterisk Project.
 
 Please find available content on the left hand menu.
