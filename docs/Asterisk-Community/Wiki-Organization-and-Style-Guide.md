@@ -10,6 +10,11 @@ pageid: 28315986
 Overview
 ========
 
+!!! warning
+# This page is now obsolete. Revisions in progress.
+
+
+
 This page should serve as a guide for creating organized, consistent, easy to consume content on the Asterisk wiki. It covers organization, content design and formatting.
 
 You can find research all over the web on why these goals are important. Here's a link to [Nielson Norman Group on How Users Read on the Web](http://www.nngroup.com/articles/how-users-read-on-the-web/)
