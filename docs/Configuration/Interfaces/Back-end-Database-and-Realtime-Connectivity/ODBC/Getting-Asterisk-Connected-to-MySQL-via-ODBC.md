@@ -307,7 +307,7 @@ If you already had Asterisk installed from source and the modules you need are a
 
 Otherwise you should follow the typical Asterisk installation process to make sure modules such as res_odbc, res_config_odbc, cdr_odbc, cdr_adaptive_odbc and func_odbc have their dependencies fulfilled and that they will be built.
 
-See [Building and Installing Asterisk](/Building-and-Installing-Asterisk) and [Using Menuselect to Select Asterisk Options](/Getting-Started/Installing-Asterisk/Installing-Asterisk-From-Source/Using-Menuselect-to-Select-Asterisk-Options).
+See [Building and Installing Asterisk](/Getting-Started/Installing-Asterisk/Installing-Asterisk-From-Source/Building-and-Installing-Asterisk) and [Using Menuselect to Select Asterisk Options](/Getting-Started/Installing-Asterisk/Installing-Asterisk-From-Source/Using-Menuselect-to-Select-Asterisk-Options).
 
 ### Configuring Asterisk's ODBC connection
 

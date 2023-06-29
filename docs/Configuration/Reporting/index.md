@@ -11,5 +11,5 @@ In This Section[Call Detail Records](/Configuration/Reporting/Call-Detail-Record
 
 If you are looking for logging, debugging or Application Programming Interfaces then you should check out the following resources:
 
-* [Asterisk Logging](/Logging) and [Asterisk Logging Configuration](/Configuration/Core-Configuration/Logging-Configuration)
+* [Asterisk Logging](/Operation/Logging) and [Asterisk Logging Configuration](/Configuration/Core-Configuration/Logging-Configuration)
 * [Asterisk Interfaces](/Configuration/Interfaces)

@@ -6,7 +6,7 @@ pageid: 28934227
 Overview
 ========
 
-This section will enumerate and briefly describe the ways in which you can query or manipulate the various Asterisk state resources. [Device State](/Device-State), [Extension State](/Fundamentals/Key-Concepts/States-and-Presence/Extension-State-and-Hints) and [Presence State](/Fundamentals/Key-Concepts/States-and-Presence/Presence-State). Where mentioned, the various functions and commands will be linked to further available documentation.
+This section will enumerate and briefly describe the ways in which you can query or manipulate the various Asterisk state resources. [Device State](/Fundamentals/Key-Concepts/States-and-Presence/Device-State), [Extension State](/Fundamentals/Key-Concepts/States-and-Presence/Extension-State-and-Hints) and [Presence State](/Fundamentals/Key-Concepts/States-and-Presence/Presence-State). Where mentioned, the various functions and commands will be linked to further available documentation.
 
 Device State
 ============

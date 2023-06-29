@@ -6,7 +6,7 @@ pageid: 32375922
 Overview
 ========
 
-Asterisk typically retrieves its configuration information by *pulling* it from some configuration source - whether that be a static configuration file or a relational database. This page describes an alternative way to provide configuration information to Asterisk using a *push* model through ARI. Note that only modules whose configuration is managed by the [Sorcery](/Sorcery) data abstraction framework in Asterisk can make use of this mechanism. Predominately, this implies configuration of the [PJSIP](/Configuration/Channel-Drivers/SIP/Configuring-res_pjsip) stack.
+Asterisk typically retrieves its configuration information by *pulling* it from some configuration source - whether that be a static configuration file or a relational database. This page describes an alternative way to provide configuration information to Asterisk using a *push* model through ARI. Note that only modules whose configuration is managed by the [Sorcery](/Fundamentals/Asterisk-Configuration/Sorcery) data abstraction framework in Asterisk can make use of this mechanism. Predominately, this implies configuration of the [PJSIP](/Configuration/Channel-Drivers/SIP/Configuring-res_pjsip) stack.
 
  
 

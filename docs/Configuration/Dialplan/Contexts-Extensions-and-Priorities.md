@@ -142,7 +142,7 @@ It may not be immediately intuitive, but the "_.!" extension with the "n" priori
 Application calls
 -----------------
 
-You'll notice that each priority is calling a dialplan application (such as NoOp, or Verbose in the example above). That is how we tell Asterisk to "do something" with the [channel](/Channels) that is executing dialplan. See the [Applications](/Configuration/Applications) section for more detail.
+You'll notice that each priority is calling a dialplan application (such as NoOp, or Verbose in the example above). That is how we tell Asterisk to "do something" with the [channel](/Fundamentals/Key-Concepts/Channels./_Dialplan_Functions/CHANNELS) that is executing dialplan. See the [Applications](/Configuration/Applications) section for more detail.
 
 ### Priority labels
 
@@ -177,7 +177,7 @@ exten => 6123,1,NoOp()
 Dialplan search order
 =====================
 
-The order of matching within a context is always exact extensions, [pattern match](/Configuration/Dialplan/Pattern-Matching) extensions,  [include statements](/Include-Statements), and [switch statements](/Configuration/Dialplan/Switch-Statements).  Includes are always processed depth-first.  So for example, if you would like a switch "A" to match before context "B", simply put switch "A" in an included context "C", where "C" is included in your original context before "B".
+The order of matching within a context is always exact extensions, [pattern match](/Configuration/Dialplan/Pattern-Matching) extensions,  [include statements](/Configuration/Dialplan/Include-Statements), and [switch statements](/Configuration/Dialplan/Switch-Statements).  Includes are always processed depth-first.  So for example, if you would like a switch "A" to match before context "B", simply put switch "A" in an included context "C", where "C" is included in your original context before "B".
 
 Search order:
 

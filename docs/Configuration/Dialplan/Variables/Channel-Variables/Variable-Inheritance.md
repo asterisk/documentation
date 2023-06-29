@@ -6,7 +6,7 @@ pageid: 4620353
 Single Inheritance
 ==================
 
-[Variable](/Channel-Variables) names which are prefixed by "_" (one underbar character) will be inherited to [channels](/Fundamentals/Key-Concepts/Channels) that are created in the process of servicing the original channel in which the variable was set. When the inheritance takes place, the prefix will be removed in the channel inheriting the variable. Meaning it will not be inherited any further than a single level, that is one child channel.
+[Variable](/Configuration/Dialplan/Variables/Channel-Variables) names which are prefixed by "_" (one underbar character) will be inherited to [channels](/Fundamentals/Key-Concepts/Channels) that are created in the process of servicing the original channel in which the variable was set. When the inheritance takes place, the prefix will be removed in the channel inheriting the variable. Meaning it will not be inherited any further than a single level, that is one child channel.
 
 
 

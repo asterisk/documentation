@@ -14,7 +14,7 @@ To give you an idea about what channels do, here are a few facts about them:
 
 * [Channel Drivers](/Configuration/Channel-Drivers) provide channels in Asterisk.
 * Channels can interface with each other through [bridges](/Fundamentals/Key-Concepts/Bridges).
-* [Applications](/Applications) and [functions](/Configuration/Functions) can affect the state or attributes of a channel or its media stream.
+* [Applications](/Configuration/Applications) and [functions](/Configuration/Functions) can affect the state or attributes of a channel or its media stream.
 * Channels are commonly passing audio between communication endpoints, but can pass other data, such as video or text messages.
 * Channels execute instructions with [dialplan](/Configuration/Dialplan), but can be controlled by other APIs (AGI,AMI,ARI) or interfaces (CLI).
 
@@ -25,7 +25,7 @@ One of the many benefits of Asterisk is the capability to interface with as many
 
 Here are a few commonly used [channel types](/Configuration/Channel-Drivers):
 
-* A SIP channel driver such as [chan_sip](/Configuring-chan_sip) or [chan_pjsip](/Configuration/Channel-Drivers/SIP/Configuring-res_pjsip).
+* A SIP channel driver such as [chan_sip](/Configuration/Channel-Drivers/SIP/Configuring-chan_sip) or [chan_pjsip](/Configuration/Channel-Drivers/SIP/Configuring-res_pjsip).
 * DAHDI channels provided by [chan_dahdi](/Configuration/Channel-Drivers/DAHDI).
 * Local channels provided by [chan_local](/Configuration/Channel-Drivers/Local-Channel). (This was moved into the core in Asterisk 12)
 
@@ -102,7 +102,7 @@ The **inbound** channel is created from Alice's phone calling Asterisk. Asterisk
 Fig 2
 -----
 
-A user runs the [originate](/Asterisk-11-Application_Originate) command from [AMI](/Asterisk-Manager-Interface--AMI-), or maybe something like "channel originate SIP/Alice application playback demo-congrats" from the [CLI](/Operation/Asterisk-Command-Line-Interface). Asterisk creates an **outbound** channel to call the device specified (SIP/Alice). When answered, Asterisk begins treating the channel like an **inbound** channel and connects it to the specified dialplan application.
+A user runs the [originate](/Asterisk-11-Application_Originate) command from [AMI](/Configuration/Interfaces/Asterisk-Manager-Interface-AMI), or maybe something like "channel originate SIP/Alice application playback demo-congrats" from the [CLI](/Operation/Asterisk-Command-Line-Interface). Asterisk creates an **outbound** channel to call the device specified (SIP/Alice). When answered, Asterisk begins treating the channel like an **inbound** channel and connects it to the specified dialplan application.
 
 Fig 3
 -----
@@ -118,7 +118,7 @@ For this example demonstrating relationships between channels and other elements
 Channel Variable Inheritance
 ============================
 
-When working with channels you'll almost certainly be touching channel variables. It is useful to note that upon setting a channel variable the level of inheritance between channels can be defined. This is discussed in the [Channel Variables](/Channel-Variables) sub-section [Variable Inheritance](/Configuration/Dialplan/Variables/Channel-Variables/Variable-Inheritance).
+When working with channels you'll almost certainly be touching channel variables. It is useful to note that upon setting a channel variable the level of inheritance between channels can be defined. This is discussed in the [Channel Variables](/Configuration/Dialplan/Variables/Channel-Variables) sub-section [Variable Inheritance](/Configuration/Dialplan/Variables/Channel-Variables/Variable-Inheritance).
 
  
 

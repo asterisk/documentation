@@ -10,7 +10,7 @@ Overview
 
 `Gosub` allows you to execute a specific block (context or section) of dialplan as well as pass and return information via arguments to/from the scope of the block. Whereas `Macro` has issues with nesting, `Gosub` does not and `Gosub` should be used wherever you would have used a `Macro`.
 
-Other dialplan applications, such as `Dial` and `Queue` make use of `Gosub` functionality from within their applications. That means they allow you to perform actions like calling `Gosub` on the called party's channel from a `Dial`, or on a `Queue` member's channel after they answer. See the [Pre-Dial Handlers](/Pre-Dial-Handlers) and [Pre-Bridge Handlers](/Configuration/Dialplan/Subroutines/Pre-Bridge-Handlers) sections for more information.
+Other dialplan applications, such as `Dial` and `Queue` make use of `Gosub` functionality from within their applications. That means they allow you to perform actions like calling `Gosub` on the called party's channel from a `Dial`, or on a `Queue` member's channel after they answer. See the [Pre-Dial Handlers](/Configuration/Dialplan/Subroutines/Pre-Dial-Handlers) and [Pre-Bridge Handlers](/Configuration/Dialplan/Subroutines/Pre-Bridge-Handlers) sections for more information.
 
 Defining a dialplan context for use with Gosub
 ==============================================

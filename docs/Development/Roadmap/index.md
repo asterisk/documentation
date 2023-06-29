@@ -12,7 +12,7 @@ The roadmap for the Asterisk project is discussed at [AstriDevCon 2019](/Develo
 * Works as a community to set priorities for the project for the next year
 * Coordinates development efforts between groups
 
-The goals for the project are subject to the constraints of the next major version to be developed. Asterisk has a [rotating release schedule](/Asterisk-Versions) between [Standard Releases and Long Term Support (LTS) Releases](/Development/Policies-and-Procedures/Software-Configuration-Management-Policies); as such, the development focus for a Standard Release will often be very different than for a LTS Release. Sub-pages off this page include past AstriDevCon notes as well as project plans for projects chosen at AstriDevCon.
+The goals for the project are subject to the constraints of the next major version to be developed. Asterisk has a [rotating release schedule](/About-the-Project/Asterisk-Versions) between [Standard Releases and Long Term Support (LTS) Releases](/Development/Policies-and-Procedures/Software-Configuration-Management-Policies); as such, the development focus for a Standard Release will often be very different than for a LTS Release. Sub-pages off this page include past AstriDevCon notes as well as project plans for projects chosen at AstriDevCon.
 
 Asterisk 14 Roadmap
 ===================

@@ -13,7 +13,7 @@ Code Reviews
 
 Code reviews are done through [Gerrit](https://gerrit.asterisk.org). Everyone who wishes to submit a patch back to the Asterisk project are encouraged to submit the patch to Gerrit for code review. Patches submitted in this fashion are typically merged much faster than patches that are simply attached to a JIRA issue.
 
-Git-specific code review policies can be found on the [Git Usage](/Git-Usage) page. Instructions for using Gerrit can be found at [Gerrit Usage](/Development/Policies-and-Procedures/Historical-Policies-and-Procedures/Code-Review/Gerrit-Usage).
+Git-specific code review policies can be found on the [Git Usage](/Development/Policies-and-Procedures/Historical-Policies-and-Procedures/Git-Usage) page. Instructions for using Gerrit can be found at [Gerrit Usage](/Development/Policies-and-Procedures/Historical-Policies-and-Procedures/Code-Review/Gerrit-Usage).
 
 
 
@@ -32,7 +32,7 @@ Review Workflow
 1. The patch author posts the patch to Gerrit. Note that your commit message is part of the review, and will be reviewed in accordance with the project guidelines on [Commit Messages](/Development/Policies-and-Procedures/Commit-Messages).
 2. The author should then cherry-picks the code change to all supported branches appropriate for the change.
 	* The cherry-picks are reviewed in addition to the original patch. All cherry-picks, plus the original patch, must be reviewed and approved.
-	* See [Software Configuration Management Policies](/Software-Configuration-Management-Policies) for instructions on which branches are appropriate for different change types, and [Gerrit Usage](/Development/Policies-and-Procedures/Historical-Policies-and-Procedures/Code-Review/Gerrit-Usage) for instructions on cherry-picking.
+	* See [Software Configuration Management Policies](/Development/Policies-and-Procedures/Software-Configuration-Management-Policies) for instructions on which branches are appropriate for different change types, and [Gerrit Usage](/Development/Policies-and-Procedures/Historical-Policies-and-Procedures/Code-Review/Gerrit-Usage) for instructions on cherry-picking.
 3. Other developers will review the patch. See the [Code Review Checklist](/Development/Policies-and-Procedures/Historical-Policies-and-Procedures/Code-Review/Code-Review-Checklist) for common items that developers will look for.
 	* If there are findings, the patch author should resolve them. Commits should be squashed to preserve the overall commit for the entire patch.
 	* When all findings are resolved, the patch author should re-submit the patch to the same review. See [Gerrit Usage](/Development/Policies-and-Procedures/Historical-Policies-and-Procedures/Code-Review/Gerrit-Usage) for instructions on updating a review.

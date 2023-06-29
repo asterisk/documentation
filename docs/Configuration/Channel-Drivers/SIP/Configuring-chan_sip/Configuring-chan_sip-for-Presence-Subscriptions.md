@@ -13,7 +13,7 @@ Requirements
 
 You should understand the basics of
 
-* [Device State](/Device-State) and [Extension State and Hints](/Fundamentals/Key-Concepts/States-and-Presence/Extension-State-and-Hints)
+* [Device State](/Fundamentals/Key-Concepts/States-and-Presence/Device-State) and [Extension State and Hints](/Fundamentals/Key-Concepts/States-and-Presence/Extension-State-and-Hints)
 * Configuring SIP peers in sip.conf
 
 General Process
@@ -77,7 +77,7 @@ This diagram is purposefully simplified to only show the relationships between t
 Configure Hints
 ---------------
 
-Hints are configured in Asterisk [dialplan](/Dialplan) (extensions.conf). This is where you map [Device State](/Device-State) identifiers or [Presence State](/Fundamentals/Key-Concepts/States-and-Presence/Presence-State) identifiers to a hint, which will then be subscribed to by one or more SIP User Agents.
+Hints are configured in Asterisk [dialplan](/Configuration/Dialplan) (extensions.conf). This is where you map [Device State](/Fundamentals/Key-Concepts/States-and-Presence/Device-State) identifiers or [Presence State](/Fundamentals/Key-Concepts/States-and-Presence/Presence-State) identifiers to a hint, which will then be subscribed to by one or more SIP User Agents.
 
 For our example we need to define a hint mapping 6001 to Bob's two devices.
 

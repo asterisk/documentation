@@ -365,7 +365,7 @@ If you are getting a backtrace for a deadlock then be sure you compiled with **D
 ```
 
 
-If unsure, simply add the [compiler flag in menuselect](/Using-Menuselect-to-Select-Asterisk-Options) and [recompile then reinstall Asterisk](/Getting-Started/Installing-Asterisk/Installing-Asterisk-From-Source/Building-and-Installing-Asterisk).
+If unsure, simply add the [compiler flag in menuselect](/Getting-Started/Installing-Asterisk/Installing-Asterisk-From-Source/Using-Menuselect-to-Select-Asterisk-Options) and [recompile then reinstall Asterisk](/Getting-Started/Installing-Asterisk/Installing-Asterisk-From-Source/Building-and-Installing-Asterisk).
 
 Identifying Potential Memory Corruption
 ---------------------------------------

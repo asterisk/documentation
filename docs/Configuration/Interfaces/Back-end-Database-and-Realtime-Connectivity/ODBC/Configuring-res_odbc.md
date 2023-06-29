@@ -6,7 +6,7 @@ pageid: 27200101
 Overview
 ========
 
-The **res_odbc** module for Asterisk can provide Asterisk with connectivity to various database backends through ODBC (a database abstraction layer). Asterisk features such as [Asterisk Realtime Architecture](/Realtime-Database-Configuration), [Call Detail Records](/Call-Detail-Records--CDR-), [Channel Event Logging](/Configuration/Reporting/Channel-Event-Logging-CEL), can connect to a database through res_odbc.
+The **res_odbc** module for Asterisk can provide Asterisk with connectivity to various database backends through ODBC (a database abstraction layer). Asterisk features such as [Asterisk Realtime Architecture](/Realtime-Database-Configuration), [Call Detail Records](/Configuration/Reporting/Call-Detail-Records-CDR), [Channel Event Logging](/Configuration/Reporting/Channel-Event-Logging-CEL), can connect to a database through res_odbc.
 
 More details on specific options within configuration are provided in the [sample configuration file](http://svnview.digium.com/svn/asterisk/branches/11/configs/res_odbc.conf.sample?view=markup) included with Asterisk source.
 

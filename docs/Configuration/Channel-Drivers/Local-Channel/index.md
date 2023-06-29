@@ -6,7 +6,7 @@ pageid: 4817170
 Overview
 ========
 
-Most [Channel Drivers](/Channel-Drivers) in Asterisk provide capability to connect Asterisk to external devices via specific protocols (e.g. [chan_pjsip](/Configuration/Channel-Drivers/SIP/Configuring-res_pjsip)), whereas Local Channels provide a channel type for calling back into Asterisk itself.
+Most [Channel Drivers](/Configuration/Channel-Drivers) in Asterisk provide capability to connect Asterisk to external devices via specific protocols (e.g. [chan_pjsip](/Configuration/Channel-Drivers/SIP/Configuring-res_pjsip)), whereas Local Channels provide a channel type for calling back into Asterisk itself.
 
 That is, when dialing a Local Channel you are dialing within Asterisk into the Asterisk [dialplan](/Configuration/Dialplan).
 

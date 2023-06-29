@@ -58,7 +58,7 @@ This issue is awaiting review or in review by bug marshals. Categorization of th
 
 ### Waiting for Feedback
 
-This issue requires feedback from the poster of the issue before any additional progress in the workflow can be made. This may include providing additional [debugging](/Collecting-Debug-Information) information, or a [backtrace](/Development/Debugging/Getting-a-Backtrace-Asterisk-versions-13.14.0-and-14.3.0) with `DONT_OPTIMIZE` enabled, for example.
+This issue requires feedback from the poster of the issue before any additional progress in the workflow can be made. This may include providing additional [debugging](/Operation/Logging/Collecting-Debug-Information) information, or a [backtrace](/Development/Debugging/Getting-a-Backtrace-Asterisk-versions-13.14.0-and-14.3.0) with `DONT_OPTIMIZE` enabled, for example.
 
 ### Open
 

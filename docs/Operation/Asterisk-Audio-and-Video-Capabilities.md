@@ -24,7 +24,7 @@ Module compilation and loading
 
 For audio or video capabilities that require a module - you should make sure that the module is built and installed on the system.
 
-See the section on [Using Menuselect to Select Asterisk Options](/Using-Menuselect-to-Select-Asterisk-Options) if you need help figuring out how to get a module built and then section on [Configuring the Asterisk Module Loader](/Configuration/Core-Configuration/Configuring-the-Asterisk-Module-Loader) to verify that a module gets loaded when Asterisk starts up.
+See the section on [Using Menuselect to Select Asterisk Options](/Getting-Started/Installing-Asterisk/Installing-Asterisk-From-Source/Using-Menuselect-to-Select-Asterisk-Options) if you need help figuring out how to get a module built and then section on [Configuring the Asterisk Module Loader](/Configuration/Core-Configuration/Configuring-the-Asterisk-Module-Loader) to verify that a module gets loaded when Asterisk starts up.
 
 Channel driver configuration
 ----------------------------

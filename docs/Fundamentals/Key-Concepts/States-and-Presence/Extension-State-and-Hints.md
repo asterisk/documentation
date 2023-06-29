@@ -6,7 +6,7 @@ pageid: 28934189
 Overview
 ========
 
-Extension state is the state of an Asterisk extension, as opposed to the direct state of a device or a user. It is the aggregate of [Device state](/Device-State) from devices mapped to the extension through a **hint** directive. See the [States and Presence](/Fundamentals/Key-Concepts/States-and-Presence) section for a diagram showing the relationship of all the various states.
+Extension state is the state of an Asterisk extension, as opposed to the direct state of a device or a user. It is the aggregate of [Device state](/Fundamentals/Key-Concepts/States-and-Presence/Device-State) from devices mapped to the extension through a **hint** directive. See the [States and Presence](/Fundamentals/Key-Concepts/States-and-Presence) section for a diagram showing the relationship of all the various states.
 
 Asterisk's SIP channel drivers provide facilities to allow SIP presence subscriptions ([RFC3856](http://www.ietf.org/rfc/rfc3856.txt)) to extensions with a defined hint. With an active subscription, devices can receive notification of state changes for the subscribed to extension. That notification will take the form of a SIP NOTIFY with PIDF content ([RFC3863](http://www.ietf.org/rfc/rfc3863.txt)) containing the presence/state information.
 

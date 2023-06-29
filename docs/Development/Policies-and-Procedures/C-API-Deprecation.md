@@ -19,7 +19,7 @@ On This Page 
 Policy
 ======
 
-Asterisk follows a 2 year C API deprecation process. A C API is initially marked as deprecated in a [standard release](/Software-Configuration-Management-Policies) which is carried over to the next [long term supported release](/Software-Configuration-Management-Policies). This provides a period of 2 releases and thus 2 years where the C API is marked as deprecated. In the next standard release the C API is then removed from the source code tree entirely which is carried over to the next long term supported release. This closely mirrors that of the [Module Deprecation](/Development/Policies-and-Procedures/Module-Deprecation) policy. An example of a C API to deprecate would be the "image" API contained in main/image.c
+Asterisk follows a 2 year C API deprecation process. A C API is initially marked as deprecated in a [standard release](/Development/Policies-and-Procedures/Software-Configuration-Management-Policies) which is carried over to the next [long term supported release](/Development/Policies-and-Procedures/Software-Configuration-Management-Policies). This provides a period of 2 releases and thus 2 years where the C API is marked as deprecated. In the next standard release the C API is then removed from the source code tree entirely which is carried over to the next long term supported release. This closely mirrors that of the [Module Deprecation](/Development/Policies-and-Procedures/Module-Deprecation) policy. An example of a C API to deprecate would be the "image" API contained in main/image.c
 
 Marking A C API As Deprecated For Standard Release
 ==================================================

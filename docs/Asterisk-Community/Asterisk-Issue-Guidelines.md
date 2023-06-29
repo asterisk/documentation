@@ -113,7 +113,7 @@ For a bug you must include the following information:
 		+ For crashes, provide a backtrace generated from an Asterisk core dump. See [Getting a Backtrace](/Development/Debugging/Getting-a-Backtrace) for more information.
 		+ For apparent deadlocks, you may need to enable the compile time option `DEBUG_THREADS`. A backtrace may also be necessary. See [Getting a Backtrace](/Development/Debugging/Getting-a-Backtrace) for more information.
 		+ For memory leaks or memory corruptions, [Valgrind](/Valgrind) may be necessary. Valgrind can detect memory leaks and memory corruptions, although it does result in a substantial performance impact.
-		+ For debugging most problems, a properly generated debug log file will be needed. See [CLI commands useful for debugging](/CLI-commands-useful-for-debugging) and [Collecting Debug Information](/Operation/Logging/Collecting-Debug-Information) for more information. Note that for issues involving SIP, IAX2, or other channel drivers, you should enable that driver's enhanced debug mode through the CLI before collecting information. A pcap demonstrating the problem may also be needed.
+		+ For debugging most problems, a properly generated debug log file will be needed. See [CLI commands useful for debugging](/Development/Debugging/CLI-commands-useful-for-debugging) and [Collecting Debug Information](/Operation/Logging/Collecting-Debug-Information) for more information. Note that for issues involving SIP, IAX2, or other channel drivers, you should enable that driver's enhanced debug mode through the CLI before collecting information. A pcap demonstrating the problem may also be needed.
 		
 		
 		

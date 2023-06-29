@@ -86,7 +86,7 @@ ExampleA bug is reported against Asterisk 13. The current supported branches are
 
 
 !!! tip 
-    See [Git Usage](/Git-Usage) and [Gerrit Usage](/Development/Policies-and-Procedures/Historical-Policies-and-Procedures/Code-Review/Gerrit-Usage) for more information on cherry-picking between Asterisk branches.
+    See [Git Usage](/Development/Policies-and-Procedures/Historical-Policies-and-Procedures/Git-Usage) and [Gerrit Usage](/Development/Policies-and-Procedures/Historical-Policies-and-Procedures/Code-Review/Gerrit-Usage) for more information on cherry-picking between Asterisk branches.
 
       
 [//]: # (end-tip)

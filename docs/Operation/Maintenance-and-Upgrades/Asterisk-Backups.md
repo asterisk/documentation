@@ -14,7 +14,7 @@ Files to consider for backup
 * [Asterisk configuration](/Fundamentals/Directory-and-File-Structure)
 * [Asterisk internal DB](/Fundamentals/Asterisk-Internal-Database)
 * [Other database used by Asterisk](/Configuration/Interfaces/Back-end-Database-and-Realtime-Connectivity)
-* Asterisk [logs](/Logging-Configuration) and [reports](/Configuration/Reporting)
+* Asterisk [logs](/Configuration/Core-Configuration/Logging-Configuration) and [reports](/Configuration/Reporting)
 
 The  [Directory and File structure](/Fundamentals/Directory-and-File-Structure) page should direct you to where most of these files reside. Otherwise check the individual wiki pages for information on the location of their output.
 
@@ -25,5 +25,5 @@ Restoring a Backup
 
 Restoring a backup, in most cases should be as simple as placing the files back in [their original locations](/Fundamentals/Directory-and-File-Structure) and [starting Asterisk](/Operation/Running-Asterisk).
 
-When restoring a backup to a new major version of Asterisk you'll need to take the same steps as if you were [upgrading Asterisk](/Updating-or-Upgrading-Asterisk). That is because a [new major version](/About-the-Project/Asterisk-Versions) may include changes to the format or syntax of configuration, required database schema, or applications and functions could be deprecated, removed or just have different behavior.
+When restoring a backup to a new major version of Asterisk you'll need to take the same steps as if you were [upgrading Asterisk](/Operation/Maintenance-and-Upgrades/Updating-or-Upgrading-Asterisk). That is because a [new major version](/About-the-Project/Asterisk-Versions) may include changes to the format or syntax of configuration, required database schema, or applications and functions could be deprecated, removed or just have different behavior.
 

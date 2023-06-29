@@ -72,7 +72,7 @@ Code Reviews
 
 * A `+2` should generally not be given unless someone has already given the review a `+1`.
 * Related to the previous, users who provide a `+2` should generally not provide it to a change that they provided the `+1` on.
-* Please read the Asterisk project [Coding Guidelines](/Coding-Guidelines) prior to submitting patches. When performing code reviews, please refer to the [Code Review Checklist](/Development/Policies-and-Procedures/Historical-Policies-and-Procedures/Code-Review/Code-Review-Checklist).
+* Please read the Asterisk project [Coding Guidelines](/Development/Policies-and-Procedures/Historical-Policies-and-Procedures/Code-Review/Coding-Guidelines) prior to submitting patches. When performing code reviews, please refer to the [Code Review Checklist](/Development/Policies-and-Procedures/Historical-Policies-and-Procedures/Code-Review/Code-Review-Checklist).
 
 Topics
 ------
@@ -93,7 +93,7 @@ This helps to tie Gerrit reviews to the JIRA issue that necessitated the change.
 Cherry-Picking
 --------------
 
-* All branches that require the change should have the change cherry-picked to that branch, and submitted for review. See [Software Configuration Management Policies](/Software-Configuration-Management-Policies) for which patch types are appropriate for what branches. See [Gerrit Usage](/Development/Policies-and-Procedures/Historical-Policies-and-Procedures/Code-Review/Gerrit-Usage) for instructions on cherry-picking.
+* All branches that require the change should have the change cherry-picked to that branch, and submitted for review. See [Software Configuration Management Policies](/Development/Policies-and-Procedures/Software-Configuration-Management-Policies) for which patch types are appropriate for what branches. See [Gerrit Usage](/Development/Policies-and-Procedures/Historical-Policies-and-Procedures/Code-Review/Gerrit-Usage) for instructions on cherry-picking.
 * The same Gerrit `Change Id` must be present in all cherry-picked commits.
 * The same topic (ASTERISK issue) must be used in all reviews.
 * Test Suite test reviews should use the same topic (ASTERISK issue) as the code change reviews.

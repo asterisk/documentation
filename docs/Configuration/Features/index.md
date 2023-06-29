@@ -34,7 +34,7 @@ The core features discussed in this section are:
 * [Call Parking](/Configuration/Features/Call-Parking)
 	+ Instructions for how to implement parking lots (with examples).
 
-The only features discussed in this section are those that have some relation to features.conf. Features in a broader sense - that is features that your application built with Asterisk may have - are implemented through usage of [Applications](/Applications), [Functions](/Functions) and [Interfaces](/Interfaces) or [Dialplan](/Configuration/Dialplan).
+The only features discussed in this section are those that have some relation to features.conf. Features in a broader sense - that is features that your application built with Asterisk may have - are implemented through usage of [Applications](/Configuration/Applications), [Functions](/Configuration/Functions) and [Interfaces](/Configuration/Interfaces) or [Dialplan](/Configuration/Dialplan).
 
  
 

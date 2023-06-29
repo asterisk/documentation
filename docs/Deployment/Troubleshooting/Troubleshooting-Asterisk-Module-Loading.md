@@ -184,7 +184,7 @@ service asterisk stop
 
 ### Enable logging channels
 
-You can read in detail about [Logging facilities](/Logging) on the wiki. In short, for this example, make sure you have the following lines uncommented in your [logger.conf](/Configuration/Core-Configuration/Logging-Configuration) file.
+You can read in detail about [Logging facilities](/Operation/Logging) on the wiki. In short, for this example, make sure you have the following lines uncommented in your [logger.conf](/Configuration/Core-Configuration/Logging-Configuration) file.
 
 
 

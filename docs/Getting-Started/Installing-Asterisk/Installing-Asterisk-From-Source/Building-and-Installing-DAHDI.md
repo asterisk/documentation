@@ -10,7 +10,7 @@ Let's install DAHDI!
 
 On Linux, we will use the **DAHDI-linux-complete** tarball, which contains the DAHDI Linux drivers, DAHDI tools, and board firmware files. Again, we're assuming that you've untarred the tarball in the `/usr/local/src` directory, and that you'll replace X and Y with the appropriate version numbers.
 
-See [What to Download?](/What-to-Download?) for more information on downloading the DAHDI tarballs.
+See [What to Download?](/Getting-Started/Installing-Asterisk/Installing-Asterisk-From-Source/What-to-Download) for more information on downloading the DAHDI tarballs.
 
 
 

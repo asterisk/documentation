@@ -6,7 +6,7 @@ pageid: 29396202
 Media Control
 =============
 
-ARI contains tools for manipulating media, such as playing sound files, playing tones, playing numbers and digits, recording media, deleting stored recordings, manipulating playbacks (e.g. rewind and fast-forward), and intercepting DTMF tones. Some channel-specific information and examples for [playing media](/ARI-and-Channels:-Simple-Media-Manipulation) and [intercepting DTMF](/Configuration/Interfaces/Asterisk-REST-Interface-ARI/Introduction-to-ARI-and-Channels/ARI-and-Channels-Handling-DTMF) have been covered on previous pages. While some information will be repeated here, the intention of this section is to delve deeper into media manipulation.
+ARI contains tools for manipulating media, such as playing sound files, playing tones, playing numbers and digits, recording media, deleting stored recordings, manipulating playbacks (e.g. rewind and fast-forward), and intercepting DTMF tones. Some channel-specific information and examples for [playing media](/Configuration/Interfaces/Asterisk-REST-Interface-ARI/Introduction-to-ARI-and-Channels/ARI-and-Channels-Simple-Media-Manipulation) and [intercepting DTMF](/Configuration/Interfaces/Asterisk-REST-Interface-ARI/Introduction-to-ARI-and-Channels/ARI-and-Channels-Handling-DTMF) have been covered on previous pages. While some information will be repeated here, the intention of this section is to delve deeper into media manipulation.
 
 To frame the discussion, we will be creating a set of applications that mimic a minimal voice mail system.
 

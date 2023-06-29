@@ -69,7 +69,7 @@ whiteVideo Capable Jitter Buffersolid50%**Feature Description**50%**Analysis**50
 Is the Feature Appropriate for the next Major Version?
 ------------------------------------------------------
 
-Each year, the Asterisk [trunk](http://svn.asterisk.org/svn/asterisk/trunk) is made into a major version branch. Periodically, releases are made from the major version branches. There are two types of major version branches, **Standard** and **Long Term Support (LTS)**. The two types differ both in their [supported lifetimes](/Asterisk-Versions) as well as their [development focus](/Development/Policies-and-Procedures/Software-Configuration-Management-Policies).
+Each year, the Asterisk [trunk](http://svn.asterisk.org/svn/asterisk/trunk) is made into a major version branch. Periodically, releases are made from the major version branches. There are two types of major version branches, **Standard** and **Long Term Support (LTS)**. The two types differ both in their [supported lifetimes](/About-the-Project/Asterisk-Versions) as well as their [development focus](/Development/Policies-and-Procedures/Software-Configuration-Management-Policies).
 
 If a new feature changes the architecture of Asterisk or has a particularly large impact on core functionality, the preference is to have that new feature released in a Standard release. LTS releases should include new features that enhance the Asterisk experience, but should avoid major internal changes that fundamentally alter behavior.
 
@@ -224,7 +224,7 @@ Implementation is left up to the developers working on the new feature. The proj
 * The Asterisk wiki contains substantial information in the [Development](/Development) section. In particular, be mindful of the [Coding Guidelines](/Development/Policies-and-Procedures/Historical-Policies-and-Procedures/Code-Review/Coding-Guidelines).
 * For developers with commit access, team branches can be used to help keep a new feature in sync with particular branches. See [Subversion Usage](/Development/Policies-and-Procedures/Historical-Policies-and-Procedures/Subversion-Usage) for more information about team branches.
 
-When implementation is complete, patches should be attached to the JIRA issues and the new feature put up for [Code Review](/Code-Review). Be sure to read the [Coding Guidelines](/Development/Policies-and-Procedures/Historical-Policies-and-Procedures/Code-Review/Coding-Guidelines), as well as the [Code Review Checklist](/Development/Policies-and-Procedures/Historical-Policies-and-Procedures/Code-Review/Code-Review-Checklist) prior to putting the patch up for review.
+When implementation is complete, patches should be attached to the JIRA issues and the new feature put up for [Code Review](/Development/Policies-and-Procedures/Historical-Policies-and-Procedures/Code-Review). Be sure to read the [Coding Guidelines](/Development/Policies-and-Procedures/Historical-Policies-and-Procedures/Code-Review/Coding-Guidelines), as well as the [Code Review Checklist](/Development/Policies-and-Procedures/Historical-Policies-and-Procedures/Code-Review/Code-Review-Checklist) prior to putting the patch up for review.
 
  
 
@@ -248,11 +248,11 @@ Development
 
 * [Issue Tracker Workflow](/Development/Policies-and-Procedures/Historical-Policies-and-Procedures/Issue-Tracker-Workflow) - how issues are moved through the public Asterisk project.
 * [Code Review](/Development/Policies-and-Procedures/Historical-Policies-and-Procedures/Code-Review) - how code reviews are performed. This contains links to lots of other useful information, including:
-	+ [Gerrit Usage](/Gerrit-Usage) [- How to use Gerrit for code reviews.](/Development/Policies-and-Procedures/Historical-Policies-and-Procedures/Review-Board-Usage)
+	+ [Gerrit Usage](/Development/Policies-and-Procedures/Historical-Policies-and-Procedures/Code-Review/Gerrit-Usage) [- How to use Gerrit for code reviews.](/Development/Policies-and-Procedures/Historical-Policies-and-Procedures/Review-Board-Usage)
 	+ [Coding Guidelines](/Development/Policies-and-Procedures/Historical-Policies-and-Procedures/Code-Review/Coding-Guidelines) - **Follow these for all C code**. For Python code, use PEP8. For other code, try to match the project you are working in.
 	+ [Code Review Checklist](/Development/Policies-and-Procedures/Historical-Policies-and-Procedures/Code-Review/Code-Review-Checklist) - useful things to keep in mind when reviewing code (and before putting your code up for review)
 * [Commit Messages](/Development/Policies-and-Procedures/Commit-Messages) - how to write proper commit messages.
-* [Git Usage](/Git-Usage) [- information on the available Git repositories.](/Development/Policies-and-Procedures/Historical-Policies-and-Procedures/Subversion-Usage)
+* [Git Usage](/Development/Policies-and-Procedures/Historical-Policies-and-Procedures/Git-Usage) [- information on the available Git repositories.](/Development/Policies-and-Procedures/Historical-Policies-and-Procedures/Subversion-Usage)
 * [Repotools](/Development/Reference-Information/Repotools) - useful tools that are needed for the Asterisk SVN repositories.
 * Debugging:
 	+ [How to collect debug information](/Operation/Logging/Collecting-Debug-Information).

@@ -26,7 +26,7 @@ astetcdir => /etc/asterisk
 ```
 
 
-This location is used to store and read Asterisk [configuration files](/Asterisk-Configuration-Files). That is generally files with a .conf extension, but other configuration types as well, for example [.lua](/Lua-Dialplan-Configuration) and [.ael](/Configuration/Dialplan/Asterisk-Extension-Language-AEL).
+This location is used to store and read Asterisk [configuration files](/Fundamentals/Asterisk-Configuration/Asterisk-Configuration-Files). That is generally files with a .conf extension, but other configuration types as well, for example [.lua](/Configuration/Dialplan/Lua-Dialplan-Configuration) and [.ael](/Configuration/Dialplan/Asterisk-Extension-Language-AEL).
 
 Asterisk Modules
 ----------------
