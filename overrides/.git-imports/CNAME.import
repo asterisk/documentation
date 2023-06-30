@@ -1,10 +1,12 @@
 commit refs/heads/gh-pages
 committer Asterisk Development Team <asteriskteam@sangoma.com> now
 data <<EOT
-Add/Update CNAME
+Add/Update CNAME and favicon.ico 
 EOT
 from refs/heads/gh-pages^0
 M 100644 inline CNAME
 data <<EOT
 docs.asterisk.org
 EOT
+# Note: Makefile will append the binary blob
+M 100644 inline favicon.ico

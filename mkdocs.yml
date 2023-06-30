@@ -1,6 +1,6 @@
 docs_dir: docs
 site_name: Asterisk Documentation
-repo_url: https://github.com/asterisk/documentation
+repo_url: https://github.com/asterisk/asterisk
 repo_name: Asterisk
 copyright: >
   Content is licensed under a Creative Commons Attribution-ShareAlike 3.0 United States License.
@@ -36,7 +36,7 @@ theme:
     - search.suggest
     - search.highlight
     - search.share
-    - content.action.edit
+#    - content.action.edit
     - content.code.copy
     - content.code.annotate
     - toc.follow

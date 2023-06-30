@@ -48,7 +48,10 @@ version-latest: version-setup download
 	@echo "Generating HTML site $(if $(PUSH_OPT),and pushing to $(REMOTE),)"
 	@mike deploy -F $(BRANCH_DIR)/mkdocs.yml -r $(REMOTE) -u $(PUSH_OPT) \
 		-t "Asterisk Latest ($(BRANCH))" $(BRANCH) latest
-	@git fast-import --quiet --date-format=now < overrides/.git-imports/CNAME.import 
+	@cp overrides/.git-imports/CNAME.import /tmp/
+	@printf "data %d\n" $$(stat --printf="%s" docs/favicon.ico) >> /tmp/CNAME.import
+	@cat docs/favicon.ico >> /tmp/CNAME.import
+	@git fast-import --quiet --date-format=now < /tmp/CNAME.import 
 	@echo "Setting branch $(BRANCH) as default $(if $(PUSH_OPT),and pushing to $(REMOTE),)"
 	@mike set-default -F $(BRANCH_DIR)/mkdocs.yml -r $(REMOTE) \
 		$(PUSH_OPT) $(BRANCH)
@@ -56,6 +59,7 @@ version-latest: version-setup download
 version-dynamic: version-setup download
 	@echo "Building branch '$(BRANCH)' (dynamic documentation only)"
 	@echo "# Asterisk $(BRANCH) Documentation" > $(BRANCH_DIR)/docs/index.md
+	@cp docs/favicon.ico $(BRANCH_DIR)/docs/
 	@echo "Adding ARI markdown"
 	@mkdir -p $(BRANCH_DIR)/docs/_Asterisk_REST_Interface
 	@rsync -aH $(BRANCH_DIR)/source/*.md $(BRANCH_DIR)/docs/_Asterisk_REST_Interface/
