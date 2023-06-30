@@ -141,7 +141,7 @@ location / {
 
 ## Build and Push
 
-Now comes the easy part.  To build the entire site and push it to your `local-docs-bare` repo, just run `make PUSH=yes`.  When that's done, you can go to your `local-docs` repo, do a `git pull` and the documentation will magically appear. Just point your browser to whatever URL you set up your web serve with and you should be good to go.
+Now comes the easy part.  To build the entire site and push it to your `local-docs-bare` repo, just run `make PUSH=yes`.  When that's done, you can go to your `local-docs` repo, do a `git pull` and the documentation will magically appear. Just point your browser to whatever URL you set up your web server with and you should be good to go.
 
 ## The Build Process
 
