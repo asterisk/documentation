@@ -185,10 +185,10 @@ At a minimum, all dialplan applications, dialplan functions, manager commands, a
 
 ##### Legacy applications
 
-* [SIPDtmfMode](/Asterisk-11-Application_SIPDtmfMode)
-* [SIPAddHeader](/Asterisk-11-Application_SIPAddHeader)
-* [SIPRemoveHeader](/Asterisk-11-Application_SIPRemoveHeader)
-* [SIPSendCustomINFO](/Asterisk-11-Application_SIPSendCustomINFO)
+* [SIPDtmfMode](/_Dialplan_Applications/SIPDtmfMode)
+* [SIPAddHeader](/_Dialplan_Applications/SIPAddHeader)
+* [SIPRemoveHeader](/_Dialplan_Applications/SIPRemoveHeader)
+* [SIPSendCustomINFO](/_Dialplan_Applications/SIPSendCustomINFO)
 
 ##### New applications
 
@@ -198,10 +198,10 @@ TBD
 
 ##### Legacy functions
 
-* [CHANNEL](/Asterisk-11-Function_CHANNEL) (The SIP-specific bits)
-* [SIP_HEADER](/Asterisk-11-Function_SIP_HEADER)
-* [SIPPEER](/Asterisk-11-Function_SIPPEER)
-* [CHECKSIPDOMAIN](/Asterisk-11-Function_CHECKSIPDOMAIN)
+* [CHANNEL](/_Dialplan_Functions/CHANNEL) (The SIP-specific bits)
+* [SIP_HEADER](/_Dialplan_Functions/SIP_HEADER)
+* [SIPPEER](/_Dialplan_Functions/SIPPEER)
+* [CHECKSIPDOMAIN](/_Dialplan_Functions/CHECKSIPDOMAIN)
 
 ##### New functions
 
@@ -243,12 +243,12 @@ TBD
 
 ##### Legacy Manager commands
 
-* [SIPPeers](/Asterisk-11-ManagerAction_SIPpeers)
-* [SIPshowpeer](/Asterisk-11-ManagerAction_SIPshowpeer)
-* [SIPqualifypeer](/Asterisk-11-ManagerAction_SIPqualifypeer)
-* [SIPshowregistry](/Asterisk-11-ManagerAction_SIPshowregistry)
-* [SIPnotify](/Asterisk-11-ManagerAction_SIPnotify)
-* [SIPpeerstatus](/Asterisk-11-ManagerAction_SIPpeerstatus)
+* [SIPPeers](/_AMI_Actions/SIPpeers)
+* [SIPshowpeer](/_AMI_Actions/SIPshowpeer)
+* [SIPqualifypeer](/_AMI_Actions/SIPqualifypeer)
+* [SIPshowregistry](/_AMI_Actions/SIPshowregistry)
+* [SIPnotify](/_AMI_Actions/SIPnotify)
+* [SIPpeerstatus](/_AMI_Actions/SIPpeerstatus)
 
 ##### New Manager commands
 

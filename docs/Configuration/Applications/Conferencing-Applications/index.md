@@ -10,7 +10,7 @@ Up until about Asterisk 1.6; app_meetme was the main application providing confe
 
 Both MeetMe and ConfBridge still exist in the latest Asterisk versions and provide different feature sets, but with plenty of overlap. Development attention is primarily given to ConfBridge these days and it is the recommended option for modern deployments when using a pre-built application.
 
-There is a detailed [description of ConfBridge functionality](/ConfBridge) on the wiki as well as [MeetMe application](/Asterisk-13-Application_MeetMe) usage notes.
+There is a detailed [description of ConfBridge functionality](/ConfBridge) on the wiki as well as [MeetMe application](/_Dialplan_Applications/MeetMe) usage notes.
 
 Building your own conferencing application
 ------------------------------------------

@@ -51,7 +51,7 @@ ARI consists of three different pieces that are - for all intents and purposes -
 
 1. A [RESTful](http://en.wikipedia.org/wiki/Representational_state_transfer) interface that a client uses to control resources in Asterisk.
 2. A WebSocket that conveys events in [JSON](http://www.json.org/) about the resources in Asterisk to the client.
-3. The [Stasis](/Asterisk-12-Application_Stasis) dialplan application that hands over control of a channel from Asterisk to the client.
+3. The [Stasis](/_Dialplan_Applications/Stasis) dialplan application that hands over control of a channel from Asterisk to the client.
 
 All three pieces work together, allowing a developer to manipulate and control the fundamental resources in Asterisk and build their own communications application.
 
@@ -88,7 +88,7 @@ In the case of ARI, a WebSocket connection is used to pass asynchronous events f
 What is Stasis?
 ---------------
 
-[Stasis](/Asterisk-12-Application_Stasis) is a dialplan application in Asterisk. It is the mechanism that Asterisk uses to hand control of a channel over from the dialplan - which is the traditional way in which channels are controlled - to ARI and the client. Generally, ARI applications manipulate channels in the Stasis dialplan application, as well as other resources in Asterisk. Channels not in a Stasis dialplan application generally cannot be manipulated by ARI - the purpose of ARI, after all, is to build your own dialplan application, not manipulate an existing one.
+[Stasis](/_Dialplan_Applications/Stasis) is a dialplan application in Asterisk. It is the mechanism that Asterisk uses to hand control of a channel over from the dialplan - which is the traditional way in which channels are controlled - to ARI and the client. Generally, ARI applications manipulate channels in the Stasis dialplan application, as well as other resources in Asterisk. Channels not in a Stasis dialplan application generally cannot be manipulated by ARI - the purpose of ARI, after all, is to build your own dialplan application, not manipulate an existing one.
 
 Diving Deeper
 =============

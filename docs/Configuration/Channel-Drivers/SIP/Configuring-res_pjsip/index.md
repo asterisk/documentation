@@ -33,9 +33,9 @@ If you like to figure out things as you go; here's a few quick steps to get you 
 * Understand that res_pjsip is configured through pjsip.conf. This is where you'll be configuring everything related to your inbound or outbound SIP accounts and endpoints.
 * Look at the [res_pjsip Configuration Examples](/Configuration/Channel-Drivers/SIP/Configuring-res_pjsip/res_pjsip-Configuration-Examples) section. Grab the example most appropriate to your goal and use that to replace your pjsip.conf.
 * Reference documentation for all configuration parameters is available on the wiki:
-	+ [Core res_pjsip configuration options](/Asterisk-12-Configuration_res_pjsip)
-	+ [Configuration options for ACLs in res_pjsip_acl](/Asterisk-12-Configuration_res_pjsip_acl)
-	+ [Configuration options for outbound registration, provided by res_pjsip_outbound_registration](/Asterisk-12-Configuration_res_pjsip_outbound_registration)
-	+ [Configuration options for endpoint identification by IP address, provided by res_pjsip_endpoint_identifier_ip](/Asterisk-12-Configuration_res_pjsip_endpoint_identifier_ip)
+	+ [Core res_pjsip configuration options](/_Module_Configuration/res_pjsip)
+	+ [Configuration options for ACLs in res_pjsip_acl](/_Module_Configuration/res_pjsip_acl)
+	+ [Configuration options for outbound registration, provided by res_pjsip_outbound_registration](/_Module_Configuration/res_pjsip_outbound_registration)
+	+ [Configuration options for endpoint identification by IP address, provided by res_pjsip_endpoint_identifier_ip](/_Module_Configuration/res_pjsip_endpoint_identifier_ip)
 * You'll need to tweak details in pjsip.conf and on your SIP device (for example IP addresses and authentication credentials) to get it working with Asterisk.  
 Refer back to [the config documentation on the wiki](/Configuration/Channel-Drivers/SIP/Configuring-res_pjsip/PJSIP-Configuration-Sections-and-Relationships) or the sample pjsip.conf if you get confused.

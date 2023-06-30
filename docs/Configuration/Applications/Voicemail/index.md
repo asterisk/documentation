@@ -7,7 +7,7 @@ The Asterisk voicemail module provides two key applications for dealing with voi
 
  
 
-The **[VoiceMail()](/Asterisk-13-Application_VoiceMail)** application takes two parameters:
+The **[VoiceMail()](/_Dialplan_Applications/VoiceMail)** application takes two parameters:
 
 1. **Mailbox**
 	* This parameter specifies the mailbox in which the voice mail message should be left. It should be a mailbox number and a voice mail context concatenated with an at-sign (**@**), like **6001@default**. (Voice mail boxes are divided out into various voice mail context, similar to the way that extensions are broken up into dialplan contexts.) If the voice mail context is omitted, it will default to the **default** voice mail context.
@@ -16,7 +16,7 @@ The **[VoiceMail()](/Asterisk-13-Application_VoiceMail)** application takes two 
 
  
 
-The **[VoiceMailMain()](/Asterisk-13-Application_VoiceMailMain)** application allows the owner of a voice mail box to retrieve their messages, as well as set mailbox options such as greetings and their PIN number. The **VoiceMailMain()** application takes two parameters:
+The **[VoiceMailMain()](/_Dialplan_Applications/VoiceMailMain)** application allows the owner of a voice mail box to retrieve their messages, as well as set mailbox options such as greetings and their PIN number. The **VoiceMailMain()** application takes two parameters:
 
 1. **Mailbox** - This parameter specifies the mailbox to log into. It should be a mailbox number and a voice mail context, concatenated with an at-sign (@), like 6001@default. If the voice mail context is omitted, it will default to the default voice mail context. If the mailbox number is omitted, the system will prompt the caller for the mailbox number.
 2. **Options** - One or more options for controlling the voicemail system. The most popular option is the s option, which skips asking for the PIN number

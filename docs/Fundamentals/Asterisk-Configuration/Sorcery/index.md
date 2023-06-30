@@ -41,18 +41,18 @@ Sorcery API Actions
 
 AMI actions existing at the time of Asterisk 14.2.1
 
-* [SorceryMemoryCacheExpire](/Asterisk-14-ManagerAction_SorceryMemoryCacheExpire)
-* [SorceryMemoryCacheExpireObject](/Asterisk-14-ManagerAction_SorceryMemoryCacheExpireObject)
-* [SorceryMemoryCachePopulate](/Asterisk-14-ManagerAction_SorceryMemoryCachePopulate)
-* [SorceryMemoryCacheStale](/Asterisk-14-ManagerAction_SorceryMemoryCacheStale)
-* [SorceryMemoryCacheStaleObject](/Asterisk-14-ManagerAction_SorceryMemoryCacheStaleObject)
+* [SorceryMemoryCacheExpire](/_AMI_Actions/SorceryMemoryCacheExpire)
+* [SorceryMemoryCacheExpireObject](/_AMI_Actions/SorceryMemoryCacheExpireObject)
+* [SorceryMemoryCachePopulate](/_AMI_Actions/SorceryMemoryCachePopulate)
+* [SorceryMemoryCacheStale](/_AMI_Actions/SorceryMemoryCacheStale)
+* [SorceryMemoryCacheStaleObject](/_AMI_Actions/SorceryMemoryCacheStaleObject)
 
 Sorcery Functions
 =================
 
 Sorcery functions existing at the time of Asterisk 14.2.1
 
-* [AST_SORCERY()](/Asterisk-14-Function_AST_SORCERY)
+* [AST_SORCERY()](/_Dialplan_Functions/AST_SORCERY)
 
 Sorcery Mapping Configuration
 =============================

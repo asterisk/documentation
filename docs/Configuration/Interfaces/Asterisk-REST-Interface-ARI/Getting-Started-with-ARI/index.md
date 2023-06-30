@@ -14,7 +14,7 @@ The first, obviously, is **the RESTful API** itself. The API is documented using
 
 Then, Asterisk needs to send asynchronous events to the application (new channel, channel left a bridge, channel hung up, etc). This is done using a **WebSocket on /ari/events**. Events are sent as JSON messages, and are documented on the [REST Data Models page](/Asterisk-12-REST-Data-Models). (See the list of subtypes for the [`Message` data model](/Asterisk-12-REST-Data-Models).)
 
-Finally, connecting the dialplan to your application is the  [`Stasis()` dialplan application](/Asterisk-12-Application_Stasis). From within the dialplan, you can send a channel to `Stasis()`, specifying the name of the external application, along with optional arguments to pass along to the application.
+Finally, connecting the dialplan to your application is the  [`Stasis()` dialplan application](/_Dialplan_Applications/Stasis). From within the dialplan, you can send a channel to `Stasis()`, specifying the name of the external application, along with optional arguments to pass along to the application.
 
 40%On This PageExample: ARI Hello World!
 =========================

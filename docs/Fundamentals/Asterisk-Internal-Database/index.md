@@ -15,10 +15,10 @@ The database really has two purposes:
 1. Asterisk uses it to store information that needs to persist between reloads/restarts. Various modules use it for this purpose automatically.
 2. Users can use it to store arbitrary data. This is done using a variety of dialplan applications and functions such as:
 	* Functions:
-		+ [DB](/Asterisk-11-Function_DB)
-		+ [DB_DELETE](/Asterisk-11-Function_DB_DELETE)
-		+ [DB_EXISTS](/Asterisk-11-Function_DB_EXISTS)
-		+ [DB_KEYS](/Asterisk-11-Function_DB_KEYS)
+		+ [DB](/_Dialplan_Functions/DB)
+		+ [DB_DELETE](/_Dialplan_Functions/DB_DELETE)
+		+ [DB_EXISTS](/_Dialplan_Functions/DB_EXISTS)
+		+ [DB_KEYS](/_Dialplan_Functions/DB_KEYS)
 	* Application: [DBdeltree](/Application_DBdeltree)
 
 The functions and applications for Asterisk 11 are linked above, but you should look at the documentation for the version you have deployed.
