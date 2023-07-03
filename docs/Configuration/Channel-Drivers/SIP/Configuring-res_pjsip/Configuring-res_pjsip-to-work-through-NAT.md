@@ -24,30 +24,12 @@ This example was based on a configuration for the ITSP [SIP.US](https://www.sip.
 
 Using [RFC5737](http://tools.ietf.org/html/rfc5737) documentation addresses
 
-
-
-| Device | IP in example |
-| --- | --- |
-| VOIP Phone(6001) | 
-```
-192.0.2.20
-```
- |
-| PC/Asterisk | 
-```
-192.0.2.10
-```
- |
-| Router | 
-```
-LAN: 192.0.2.1WAN: 198.51.100.5
-```
- |
-| ITSP SIP gateway | 
-```
-203.0.113.1(gw1.example.com)203.0.113.2(gw2.example.com)
-```
- |
+| Device           | IP in example                                                      |
+| :--------------- | :----------------------------------------------------------------- |
+| VOIP Phone(6001) | `192.0.2.20`                                                       |
+| PC/Asterisk      | `192.0.2.10`                                                       |
+| Router           | `LAN: 192.0.2.1`<br>`WAN: 198.51.100.5`                            |
+| ITSP SIP gateway | `203.0.113.1 (gw1.example.com)`<br>`203.0.113.2 (gw2.example.com)` |
 
 For the sake of a complete example and clarity, in this example we use the following fake details:
 
