@@ -78,7 +78,7 @@ If you wish to browse the documentation, you have 2 options:
 
 ## Background
 
-The Asterisk Documentation is published via GitHub Pages and the tools used are geared for that environment.  This imposes some strange requirements on th epoublish process.  The tool we use to manage the dynamic documentation on a per Asterisk branch basis and the integration of the static documentation ([mike](https://github.com/jimporter/mike)) also presents some unusual requirements.  Here's a list of things you need to know.
+The Asterisk Documentation is published via GitHub Pages and the tools used are geared for that environment.  This imposes some strange requirements on the publish process.  The tool we use to manage the dynamic documentation on a per Asterisk branch basis and the integration of the static documentation ([mike](https://github.com/jimporter/mike)) also presents some unusual requirements.  Here's a list of things you need to know.
 
 * The tooling requires that you publish your site to a `gh-pages` branch  _in the same repo as your documentation source._  On top of that, it has a completely different directory structure than the documentation `main` branch.
 
