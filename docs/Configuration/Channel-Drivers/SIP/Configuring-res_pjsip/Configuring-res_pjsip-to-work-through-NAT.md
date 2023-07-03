@@ -93,7 +93,7 @@ retry_interval=60
 [sipus_auth]
 type=auth
 auth_type=userpass
-password=\*\*\*\*\*\*\*\*\*\*\*\*
+password=************
 username=1112223333
 realm=gw1.example.com
 
@@ -132,7 +132,7 @@ direct_media=no
 [6001]
 type=auth
 auth_type=userpass
-password=\*\*\*\*\*\*\*\*\*
+password=************
 username=6001
 
 [6001]
