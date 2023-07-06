@@ -10,6 +10,11 @@ This is an Asterisk 18 proposal for the refactor of end-to-end codec negotiation
 
 [AstriDevCon 2020 Advanced Codec Negotiation Presentation](AstriDevCon-2020-Advanced-Codec-Negotiation.pdf)
 
+!!! note
+    Support for passing back negotiated codecs from an outgoing call leg to an incoming call leg HAS NOT been implemented in Asterisk.
+
+      
+[//]: # (end-note)
  
 
 Within a basic call scenario using Asterisk, where Alice calls Bob, and Bob answers, there are at least four distinct points in the process where it is advantageous to allow user control over the preferred codec order and selection:
