@@ -13,6 +13,8 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 </xsl:template>
 
 <xsl:template match="application">
+    <xsl:text>Title: </xsl:text><xsl:value-of select="@name"/><xsl:text></xsl:text>
+    <xsl:text>&#10;&#10;</xsl:text>
     <xsl:text># </xsl:text><xsl:value-of select="@name"/><xsl:text>()</xsl:text>
     <xsl:choose>
         <xsl:when test="@module">
@@ -39,6 +41,8 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 </xsl:template>
 
 <xsl:template match="function">
+    <xsl:text>Title: </xsl:text><xsl:value-of select="@name"/><xsl:text></xsl:text>
+    <xsl:text>&#10;&#10;</xsl:text>
     <xsl:text># </xsl:text><xsl:value-of select="@name"/><xsl:text>()</xsl:text>
     <xsl:choose>
         <xsl:when test="@module">
