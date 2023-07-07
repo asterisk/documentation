@@ -4,4 +4,5 @@ mkdocs-material>=9.1.9
 mkdocs-material-extensions>=1.1.1
 mkdocs-table-reader-plugin>=2.0.1
 lxml>=4.8.0
+wheel>=0.36.2
 https://github.com/jimporter/mike/archive/2d9af5c.zip
