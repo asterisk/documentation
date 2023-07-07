@@ -10,7 +10,7 @@ Sangoma employs a team of software development and technical professionals who w
 
 | Name                                                           | IRC/Forum/List name |
 | -------------------------------------------------------------- | ------------------- |
-| :material-github: [Josh Colp](https://github.com/jcolp)        | jcolp, file         |
+| :material-github: [Joshua Colp](https://github.com/jcolp)      | jcolp, file         |
 | :material-github: [George Joseph](https://github.com/gtjoseph) | gjoseph             |
 | :material-github: [Ben Ford](https://github.com/bkford)        | bford               |
 | :material-github: [Mike Bradeen](https://github.com/mbradeen)  | mbradeen            |
