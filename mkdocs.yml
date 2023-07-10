@@ -30,7 +30,8 @@ theme:
 
   features:
     - navigation.instant
-    - navigation.instant.prefetch
+    - navigation.tracking
+    - navigation.prune
     - navigation.indexes
     - navigation.top
     - search.suggest
