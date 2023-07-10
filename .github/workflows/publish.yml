@@ -40,4 +40,6 @@ jobs:
           cat >Makefile.inc <<EOF
           ${{vars.MAKEFILE_INC}}
           EOF
-          make PUSH=yes
+          make
+          make deploy
+

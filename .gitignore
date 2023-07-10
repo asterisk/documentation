@@ -1,4 +1,5 @@
 .venv
 site
 Makefile.inc
+Makefile.*.inc
 temp

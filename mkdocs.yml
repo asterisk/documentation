@@ -37,7 +37,6 @@ theme:
     - search.suggest
     - search.highlight
     - search.share
-#    - content.action.edit
     - content.code.copy
     - content.code.annotate
     - toc.follow
@@ -45,13 +44,15 @@ theme:
 
 plugins:
   - search
-  - mike:
-      alias_type: symlink
+  - awesome-pages
+#      filename: .pages
+#      collapse_single_pages: true
+#      strict: false
+#      order: asc
+#      sort_type: natural
+#      order_by: title
 
 extra:
-  version:
-    provider: mike
-    default: latest
   social:
     - icon: asterisk/favicon
       link: https://www.asterisk.org/

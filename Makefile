@@ -1,119 +1,167 @@
 SHELL := /usr/bin/bash
-REMOTE ?= local
+DEPLOY_BRANCH ?= gh-pages
 BUILD_DIR ?= ./temp
-PUSH ?= no
-PUSH_OPT := $(if $(findstring $(PUSH),yes true 1),-p,)
 
 include Makefile.inc
-
-ifeq ($(BRANCH),)
-all:
-	@for branch in $(EVERYTHING) ; do \
-		$(MAKE) --no-print-directory version BRANCH=$${branch} PUSH=no ;\
-	done
-	@if [ -n "$(PUSH_OPT)" ] ; then \
-		echo "Pushing gh-pages to remote '$(REMOTE)'" ;\
-		git push $(REMOTE) gh-pages:gh-pages ;\
-	fi
-
-clean-all:
-	@for branch in $(EVERYTHING) ; do \
-		rm -rf $(BUILD_DIR)/build-$${branch} ;\
-	done
+ifneq ($(BRANCH),)
+-include Makefile.$(BRANCH).inc
 endif
 
 JOB_DATE ?= $(shell date +%F)
-LAST_JOB := $(shell gh --repo asterisk/asterisk run list -w CreateDocs -s success --json databaseId,conclusion,updatedAt --created $(JOB_DATE) --jq '.[0].databaseId')
-BRANCH_DIR := $(BUILD_DIR)/build-${BRANCH}
 
-ifeq ($(BRANCH),$(LATEST))
-version: version-latest
-else
-version: version-dynamic
+#ifeq ($(BRANCH),)
+#all: static-setup dynamic-setup build
+#else
+#all: dynamic-branch-setup
+#endif
+all: build
+
+branch-check:
+	@if [ -z "$(BRANCH)" ] ; then \
+		echo "You must supply 'BRANCH=<branch>' on the make command line" ;\
+		exit 1 ;\
+	fi
+
+no-branch-check:
+	@if [ -n "$(BRANCH)" ] ; then \
+		echo "You can't specify a branch with the build or deploy targets" ;\
+		exit 1 ;\
+	fi
+
+$(BUILD_DIR):
+	@echo "Creating $(BUILD_DIR)"
+	@mkdir -p $(BUILD_DIR)
+
+ifneq ($(BRANCH),)
+BRANCH_DIR := $(BUILD_DIR)/build-${BRANCH}
+$(BRANCH_DIR): $(BUILD_DIR) 
+	@echo "Creating $(BRANCH_DIR)"
+	@mkdir -p $(BRANCH_DIR)
 endif
 
-version-latest: version-setup download
-	@echo "Building branch '$(BRANCH)' as default/latest"
-	@echo "Copying static documentation from ./docs"
-	@rsync -aH docs/. $(BRANCH_DIR)/docs/
-	@echo "Applying link transformations"
-	@utils/fix_build.sh $(BRANCH_DIR)/docs/ utils/build_fixes.yml
-	@echo "Adding ARI markdown"
-	@mkdir -p $(BRANCH_DIR)/docs/_Asterisk_REST_Interface
-	@rsync -aH $(BRANCH_DIR)/source/*.md $(BRANCH_DIR)/docs/_Asterisk_REST_Interface/
-	@echo "Generating markdown from Asterisk XML"
-	@utils/astxml2markdown.py --file=$(BRANCH_DIR)/source/asterisk-docs.xml \
+static-setup: $(BUILD_DIR)
+	@echo "Setting Up Static Documentation"
+	@echo "  Copying to temp build"
+	@ rm -rf $(BUILD_DIR)/docs/
+	@rsync -aH docs/. $(BUILD_DIR)/docs/
+	@echo "  Applying link transformations"
+	@utils/fix_build.sh $(BUILD_DIR)/docs utils/build_fixes.yml
+	@[ -L $(BUILD_DIR)/mkdocs.yml ] && rm $(BUILD_DIR)/mkdocs.yml || :
+	@ln -sfr mkdocs.yml $(BUILD_DIR)/mkdocs.yml
+	@[ -L $(BUILD_DIR)/overrides ] && rm $(BUILD_DIR)/overrides || :
+	@ln -sfr overrides $(BUILD_DIR)/overrides
+	@touch $(BUILD_DIR)/.site_built
+
+$(BUILD_DIR)/.site_built:
+	@$(MAKE) --no-print-directory static-setup
+
+$(BUILD_DIR)/docs: $(BUILD_DIR)/.site_built
+
+dynamic-setup:
+	@branches=$(BRANCHES) ;\
+	IFS=',' ;\
+	for branch in $${branches} ; do \
+		echo "Building branch $${branch}" ;\
+		$(MAKE) --no-print-directory BRANCH=$${branch} dynamic-branch-setup ;\
+	done
+
+dynamic-branch-setup: branch-check dynamic-core-setup dynamic-ari-setup
+
+NEEDS_DOWNLOAD := no
+
+ifeq ($(findstring $(MAKECMDGOALS),clean static-setup serve deploy),)
+ifeq ($(ASTERISK_XML_FILE),)
+NEEDS_DOWNLOAD := yes
+endif
+
+ifeq ($(ASTERISK_ARI_DIR),)
+NEEDS_DOWNLOAD := yes
+endif
+endif
+
+ifeq ($(NEEDS_DOWNLOAD),yes)
+$(info Finding last CreateDocs job)
+LAST_JOB := $(shell gh --repo asterisk/asterisk run list -w CreateDocs -s success --json databaseId,conclusion,updatedAt --created $(JOB_DATE) --jq '.[0].databaseId')
+endif
+
+ifneq ($(ASTERISK_XML_FILE),)
+XML_PREREQ := $(ASTERISK_XML_FILE)
+else
+XML_PREREQ := download-from-job
+ASTERISK_XML_FILE := $(BRANCH_DIR)/source/asterisk-docs.xml
+endif
+
+dynamic-core-setup: branch-check $(BUILD_DIR)/docs $(BRANCH_DIR) $(XML_PREREQ)
+	@echo "Setting Up Core Dynamic Documentation for branch '$(BRANCH)'"
+	@echo "  Generating markdown from Asterisk XML"
+	@utils/astxml2markdown.py --file=$(ASTERISK_XML_FILE) \
 		--xslt=utils/astxml2markdown.xslt \
 		--directory=$(BRANCH_DIR)/docs/ --branch=$(BRANCH) --version=GIT
-	@echo "Generating HTML site $(if $(PUSH_OPT),and pushing to $(REMOTE),)"
-	@mike deploy -F $(BRANCH_DIR)/mkdocs.yml -r $(REMOTE) -u $(PUSH_OPT) \
-		-t "Asterisk Latest ($(BRANCH))" $(BRANCH) latest
-	@cp overrides/.git-imports/CNAME.import /tmp/
-	@printf "data %d\n" $$(stat --printf="%s" docs/favicon.ico) >> /tmp/CNAME.import
-	@cat docs/favicon.ico >> /tmp/CNAME.import
-	@git fast-import --quiet --date-format=now < /tmp/CNAME.import 
-	@echo "Setting branch $(BRANCH) as default $(if $(PUSH_OPT),and pushing to $(REMOTE),)"
-	@mike set-default -F $(BRANCH_DIR)/mkdocs.yml -r $(REMOTE) \
-		$(PUSH_OPT) $(BRANCH)
+	@[ -L $(BUILD_DIR)/docs/Asterisk_$(BRANCH)_Documentation/API_Documentation ] && \
+		rm $(BUILD_DIR)/docs/Asterisk_$(BRANCH)_Documentation/API_Documentation || :
+	@ln -sfr $(BRANCH_DIR)/docs $(BUILD_DIR)/docs/Asterisk_$(BRANCH)_Documentation/API_Documentation 
 
-version-dynamic: version-setup download
-	@echo "Building branch '$(BRANCH)' (dynamic documentation only)"
-	@echo "# Asterisk $(BRANCH) Documentation" > $(BRANCH_DIR)/docs/index.md
-	@cp docs/favicon.ico $(BRANCH_DIR)/docs/
-	@echo "Adding ARI markdown"
-	@mkdir -p $(BRANCH_DIR)/docs/_Asterisk_REST_Interface
-	@rsync -aH $(BRANCH_DIR)/source/*.md $(BRANCH_DIR)/docs/_Asterisk_REST_Interface/
-	@echo "Generating markdown from Asterisk XML"
-	@utils/astxml2markdown.py --file=$(BRANCH_DIR)/source/asterisk-docs.xml \
-		--xslt=utils/astxml2markdown.xslt \
-		--directory=$(BRANCH_DIR)/docs/ --branch=$(BRANCH) --version=GIT
-	@echo "Generating HTML site $(if $(PUSH_OPT),and pushing to $(REMOTE),)"
-	@mike deploy -F $(BRANCH_DIR)/mkdocs.yml -r $(REMOTE) -u $(PUSH_OPT) \
-		-t "Asterisk $(BRANCH)" $(BRANCH)
+ifneq ($(ASTERISK_ARI_DIR),)
+ARI_PREREQ := $(ASTERISK_ARI_DIR)/_Asterisk_REST_Data_Models.md
+else
+ARI_PREREQ := download-from-job
+ASTERISK_ARI_DIR := $(BRANCH_DIR)/source/
+endif
 
-version-setup:
-	@if [ -z "$(BRANCH)" ] ; then \
-		echo "You must supply 'BRANCH=<branch>' on the make command line" ;\
-		exit 1 ;\
-	fi
-	@mkdir -p $(BRANCH_DIR)/docs
-	@[ ! -L $(BRANCH_DIR)/mkdocs.yml ] && ln -rs mkdocs.yml $(BRANCH_DIR)/mkdocs.yml  || :
-	@[ ! -L $(BRANCH_DIR)/overrides ] && ln -rs overrides $(BRANCH_DIR)/overrides || :
+dynamic-ari-setup: branch-check $(BUILD_DIR)/docs $(BRANCH_DIR) $(ARI_PREREQ)
+	@echo "Setting Up ARI Dynamic Documentation for branch '$(BRANCH)'"
+	@echo "  Copying ARI markdown"
+	@mkdir -p $(BRANCH_DIR)/docs/Asterisk_REST_Interface
+	@rsync -aH $(ASTERISK_ARI_DIR)/*.md $(BRANCH_DIR)/docs/Asterisk_REST_Interface/
 
-download:
-	@if [ -z "$(BRANCH)" ] ; then \
-		echo "You must supply 'BRANCH=<branch>' on the make command line" ;\
-		exit 1 ;\
-	fi
+download-from-job: $(BRANCH_DIR) branch-check 
 	@if [ -z "$(LAST_JOB)" ] ; then \
 		echo "No current docs job" ;\
 		exit 1 ;\
 	fi
-	@mkdir -p $(BRANCH_DIR)
 	@echo "Retrieving documentation from job $(LAST_JOB) for branch: $(BRANCH)"
-	@if [ -d $(BRANCH_DIR)/source ] ; then \
-		rm -rf $(BRANCH_DIR)/source.bak 2>/dev/null || : ;\
-		mv $(BRANCH_DIR)/source $(BRANCH_DIR)/source.bak ;\
-	fi
+	@[ -d $(BRANCH_DIR)/source ] && rm -rf $(BRANCH_DIR)/source || :
 	@mkdir -p $(BRANCH_DIR)/source
 	@gh run download --repo asterisk/asterisk $(LAST_JOB) \
-		-n documentation-$(BRANCH) -D $(BRANCH_DIR)/source ||\
-		{ [ -d $(BRANCH_DIR)/source.bak ] && {\
-			rm -rf $(BRANCH_DIR)/source ;\
-			mv $(BRANCH_DIR)/source.bak $(BRANCH_DIR)/source ;\
-			exit 1 ;\
-		} ; }
-	@if [ -d $(BRANCH_DIR)/source.bak ] ; then \
-		rm -rf $(BRANCH_DIR)/source.bak ;\
-	fi
+		-n documentation-$(BRANCH) -D $(BRANCH_DIR)/source
 
-FORCE:
+ifeq ($(BRANCH),)
+build: static-setup dynamic-setup
+	@echo Building to $(BUILD_DIR)/site
+	@[ ! -f $(BUILD_DIR)/mkdocs.yml ] && \
+		{ echo "Can't build. '$(BUILD_DIR)/mkdocs.yml' not found" ; exit 1 ; } || :
+	@mkdocs build -f $(BUILD_DIR)/mkdocs.yml
+else
+build: BRANCH = $(BRANCH)
+build: dynamic-branch-setup
+	@echo Building to $(BUILD_DIR)/site
+	@[ ! -f $(BUILD_DIR)/mkdocs.yml ] && \
+		{ echo "Can't build. '$(BUILD_DIR)/mkdocs.yml' not found" ; exit 1 ; } || :
+	@mkdocs build -f $(BUILD_DIR)/mkdocs.yml
+endif
 
-.PHONY: all clean-all clean version download
+deploy: no-branch-check
+	@if [ -z "$(DEPLOY_REMOTE)" ] ; then \
+		echo "No DEPLOY_REMOTE was defined in Makefile.inc" ;\
+		exit 1 ;\
+	fi 
+	@echo Deploying to remote '$(DEPLOY_REMOTE)'
+	@[ ! -f $(BUILD_DIR)/mkdocs.yml ] && \
+		{ echo "Can't deploy. '$(BUILD_DIR)/mkdocs.yml' not found" ; exit 1 ; } || :
+	@mkdocs gh-deploy -r $(DEPLOY_REMOTE) -b $(DEPLOY_BRANCH) --no-history -f $(BUILD_DIR)/mkdocs.yml
+
+serve: 
+	@mkdocs serve -f $(BUILD_DIR)/mkdocs.yml $(SERVE_OPTS)
+
 
 clean:
-	@if [ -z "$(BRANCH)" ] ; then \
-		echo "You must supply 'BRANCH=<branch>' on the make command line" ;\
-		exit 1 ;\
-	fi
-	rm -rf docs-$(BRANCH)
+ifneq ($(BRANCH_DIR),)
+	@rm -rf $(BRANCH_DIR) || :
+else
+	@rm -rf $(BUILD_DIR) || :
+endif	
+
+.PHONY: all clean-all clean branch-check no-branch-check \
+	static-setup dynamic-setup dynamic-branch-setup dynamic-core-setup dynamic-ari-setup \
+	download-from-job build deploy
+
