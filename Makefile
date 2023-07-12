@@ -1,19 +1,21 @@
+#
+# NOTE: For readability, two space characters are used to
+# indent the contents of make ifeq/ifneq statements.
+# Don;y confuse these with tabs used to indent rule
+# recipies.
+#
+
 SHELL := /usr/bin/bash
 DEPLOY_BRANCH ?= gh-pages
 BUILD_DIR ?= ./temp
+GH=gh
+JOB_DATE ?= $(shell date +%F)
 
 include Makefile.inc
 ifneq ($(BRANCH),)
--include Makefile.$(BRANCH).inc
+  -include Makefile.$(BRANCH).inc
 endif
 
-JOB_DATE ?= $(shell date +%F)
-
-#ifeq ($(BRANCH),)
-#all: static-setup dynamic-setup build
-#else
-#all: dynamic-branch-setup
-#endif
 all: build
 
 branch-check:
@@ -33,8 +35,8 @@ $(BUILD_DIR):
 	@mkdir -p $(BUILD_DIR)
 
 ifneq ($(BRANCH),)
-BRANCH_DIR := $(BUILD_DIR)/build-${BRANCH}
-$(BRANCH_DIR): $(BUILD_DIR) 
+  BRANCH_DIR := $(BUILD_DIR)/build-${BRANCH}
+  $(BRANCH_DIR): $(BUILD_DIR)
 	@echo "Creating $(BRANCH_DIR)"
 	@mkdir -p $(BRANCH_DIR)
 endif
@@ -65,30 +67,34 @@ dynamic-setup:
 		$(MAKE) --no-print-directory BRANCH=$${branch} dynamic-branch-setup ;\
 	done
 
-dynamic-branch-setup: branch-check dynamic-core-setup dynamic-ari-setup
+dynamic-branch-setup: branch-check dynamic-core-setup $(if $(SKIP_ARI),,dynamic-ari-setup)
 
 NEEDS_DOWNLOAD := no
 
-ifeq ($(findstring $(MAKECMDGOALS),clean static-setup serve deploy),)
-ifeq ($(ASTERISK_XML_FILE),)
-NEEDS_DOWNLOAD := yes
-endif
+ifneq ($(BRANCH),)
+  ifeq ($(findstring $(MAKECMDGOALS),clean static-setup serve deploy),)
+    ifeq ($(ASTERISK_XML_FILE),)
+      NEEDS_DOWNLOAD := yes
+    endif
 
-ifeq ($(ASTERISK_ARI_DIR),)
-NEEDS_DOWNLOAD := yes
-endif
+    ifeq ($(SKIP_ARI),)
+      ifeq ($(ASTERISK_ARI_DIR),)
+        NEEDS_DOWNLOAD := yes
+      endif
+    endif
+  endif
 endif
 
 ifeq ($(NEEDS_DOWNLOAD),yes)
-$(info Finding last CreateDocs job)
-LAST_JOB := $(shell gh --repo asterisk/asterisk run list -w CreateDocs -s success --json databaseId,conclusion,updatedAt --created $(JOB_DATE) --jq '.[0].databaseId')
+  $(info Finding last CreateDocs job)
+  LAST_JOB := $(shell $(GH) --repo asterisk/asterisk run list -w CreateDocs -s success --json databaseId,conclusion,updatedAt --created $(JOB_DATE) --jq '.[0].databaseId')
 endif
 
 ifneq ($(ASTERISK_XML_FILE),)
-XML_PREREQ := $(ASTERISK_XML_FILE)
+  XML_PREREQ := $(ASTERISK_XML_FILE)
 else
-XML_PREREQ := download-from-job
-ASTERISK_XML_FILE := $(BRANCH_DIR)/source/asterisk-docs.xml
+  XML_PREREQ := download-from-job
+  ASTERISK_XML_FILE := $(BRANCH_DIR)/source/asterisk-docs.xml
 endif
 
 dynamic-core-setup: branch-check $(BUILD_DIR)/docs $(BRANCH_DIR) $(XML_PREREQ)
@@ -102,10 +108,10 @@ dynamic-core-setup: branch-check $(BUILD_DIR)/docs $(BRANCH_DIR) $(XML_PREREQ)
 	@ln -sfr $(BRANCH_DIR)/docs $(BUILD_DIR)/docs/Asterisk_$(BRANCH)_Documentation/API_Documentation 
 
 ifneq ($(ASTERISK_ARI_DIR),)
-ARI_PREREQ := $(ASTERISK_ARI_DIR)/_Asterisk_REST_Data_Models.md
+  ARI_PREREQ := $(ASTERISK_ARI_DIR)/_Asterisk_REST_Data_Models.md
 else
-ARI_PREREQ := download-from-job
-ASTERISK_ARI_DIR := $(BRANCH_DIR)/source/
+  ARI_PREREQ := download-from-job
+  ASTERISK_ARI_DIR := $(BRANCH_DIR)/source/
 endif
 
 dynamic-ari-setup: branch-check $(BUILD_DIR)/docs $(BRANCH_DIR) $(ARI_PREREQ)
@@ -122,18 +128,18 @@ download-from-job: $(BRANCH_DIR) branch-check
 	@echo "Retrieving documentation from job $(LAST_JOB) for branch: $(BRANCH)"
 	@[ -d $(BRANCH_DIR)/source ] && rm -rf $(BRANCH_DIR)/source || :
 	@mkdir -p $(BRANCH_DIR)/source
-	@gh run download --repo asterisk/asterisk $(LAST_JOB) \
+	@$(GH) run download --repo asterisk/asterisk $(LAST_JOB) \
 		-n documentation-$(BRANCH) -D $(BRANCH_DIR)/source
 
 ifeq ($(BRANCH),)
-build: static-setup dynamic-setup
+  build: static-setup dynamic-setup
 	@echo Building to $(BUILD_DIR)/site
 	@[ ! -f $(BUILD_DIR)/mkdocs.yml ] && \
 		{ echo "Can't build. '$(BUILD_DIR)/mkdocs.yml' not found" ; exit 1 ; } || :
 	@mkdocs build -f $(BUILD_DIR)/mkdocs.yml
 else
-build: BRANCH = $(BRANCH)
-build: dynamic-branch-setup
+  build: BRANCH = $(BRANCH)
+  build: dynamic-branch-setup
 	@echo Building to $(BUILD_DIR)/site
 	@[ ! -f $(BUILD_DIR)/mkdocs.yml ] && \
 		{ echo "Can't build. '$(BUILD_DIR)/mkdocs.yml' not found" ; exit 1 ; } || :
@@ -161,7 +167,6 @@ else
 	@rm -rf $(BUILD_DIR) || :
 endif	
 
-.PHONY: all clean-all clean branch-check no-branch-check \
+.PHONY: all clean branch-check no-branch-check \
 	static-setup dynamic-setup dynamic-branch-setup dynamic-core-setup dynamic-ari-setup \
 	download-from-job build deploy
-
