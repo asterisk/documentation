@@ -1,0 +1,1661 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../CDR_PROP/">
+      
+      
+        <link rel="next" href="../CHANNELS/">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.2.0-b0">
+    
+    
+      
+        <title>CHANNEL - Asterisk Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.0c456da8.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.ecc896b0.min.css">
+      
+      
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#channel" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../.." title="Asterisk Documentation" class="md-header__button md-logo" aria-label="Asterisk Documentation" data-md-component="logo">
+      
+  <img src="../../../../favicon.ico" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Asterisk Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              CHANNEL
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+          
+            
+            
+            
+            <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+            
+              <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+              </label>
+            
+          
+            
+            
+            
+            <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+            
+              <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+              </label>
+            
+          
+        </form>
+      
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7 0-.24-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91 1.61 0 2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08Z"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/asterisk/asterisk" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Asterisk
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="Asterisk Documentation" class="md-nav__button md-logo" aria-label="Asterisk Documentation" data-md-component="logo">
+      
+  <img src="../../../../favicon.ico" alt="logo">
+
+    </a>
+    Asterisk Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/asterisk/asterisk" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Asterisk
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../../About-the-Project/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    About the Project
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../../Asterisk-Community/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    Asterisk Community
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../../Fundamentals/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    Fundamentals
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../../Getting-Started/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    Getting Started
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../../Configuration/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    Configuration
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../../Deployment/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    Deployment
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../../Operation/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    Operation
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../../Development/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    Development
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../../Asterisk_16_Documentation/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    Asterisk 16 Documentation
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../../Asterisk_18_Documentation/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    Asterisk 18 Documentation
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../../Asterisk_19_Documentation/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    Asterisk 19 Documentation
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../../Asterisk_20_Documentation/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    Asterisk 20 Documentation
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../../Test-Suite-Documentation/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    Test Suite Documentation
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#synopsis" class="md-nav__link">
+    Synopsis
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#description" class="md-nav__link">
+    Description
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example-standard-channel-item-examples" class="md-nav__link">
+    Example: Standard CHANNEL item examples
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example-pjsip-specific-channel-examples" class="md-nav__link">
+    Example: PJSIP specific CHANNEL examples
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#syntax" class="md-nav__link">
+    Syntax
+  </a>
+  
+    <nav class="md-nav" aria-label="Syntax">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#arguments" class="md-nav__link">
+    Arguments
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#generated-version" class="md-nav__link">
+    Generated Version
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="channel">CHANNEL()<a class="headerlink" href="#channel" title="Permanent link">&para;</a></h1>
+<h3 id="synopsis">Synopsis<a class="headerlink" href="#synopsis" title="Permanent link">&para;</a></h3>
+<p>Gets/sets various pieces of information about the channel.</p>
+<h3 id="description">Description<a class="headerlink" href="#description" title="Permanent link">&para;</a></h3>
+<p>Gets/sets various pieces of information about the channel, additional <em>item</em> may be available from the channel driver; see its documentation for details. Any <em>item</em> requested that is not available on the current channel will return an empty string.</p>
+<h3 id="example-standard-channel-item-examples">Example: Standard CHANNEL item examples<a class="headerlink" href="#example-standard-channel-item-examples" title="Permanent link">&para;</a></h3>
+<p><div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>; Push a hangup handler subroutine existing at dialplan
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>; location default,s,1 onto the current channel
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>same =&gt; n,Set(CHANNEL(hangup_handler_push)=default,s,1)
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>; Set the current tonezone to Germany (de)
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>same =&gt; n,Set(CHANNEL(tonezone)=de)
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>; Set the allowed maximum number of forwarding attempts
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>same =&gt; n,Set(CHANNEL(max_forwards)=10)
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>; If this channel is ejected from its next bridge, and if
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>; the channel is not hung up, begin executing dialplan at
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>; location default,after-bridge,1
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>same =&gt; n,Set(CHANNEL(after_bridge_goto)=default,after-bridge,1)
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>; Log the current state of the channel
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>same =&gt; n,Log(NOTICE, This channel is: ${CHANNEL(state)})
+</span></code></pre></div>
+The following channel variables are available as special built-in dialplan channel variables. These variables cannot be set or modified and are read-only.</p>
+<ul>
+<li>CALLINGPRES - Caller ID presentation for incoming calls (PRI channels)</li>
+<li>CALLINGANI2 - Caller ANI2 (PRI channels)</li>
+<li>CALLINGTON - Caller Type of Number (PRI channels)</li>
+<li>CALLINGTNS - Transit Network Selector (PRI channels)</li>
+<li>EXTEN - Current extension</li>
+<li>CONTEXT - Current context</li>
+<li>PRIORITY - Current priority</li>
+<li>CHANNEL - Current channel name</li>
+<li>UNIQUEID - Current call unique identifier</li>
+<li>HANGUPCAUSE - Asterisk cause of hangup (inbound/outbound)</li>
+</ul>
+<p><em>Technology: PJSIP</em></p>
+<h3 id="example-pjsip-specific-channel-examples">Example: PJSIP specific CHANNEL examples<a class="headerlink" href="#example-pjsip-specific-channel-examples" title="Permanent link">&para;</a></h3>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>; Log the current Call-ID
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>same =&gt; n,Log(NOTICE, ${CHANNEL(pjsip,call-id)})
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>; Log the destination address of the audio stream
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>same =&gt; n,Log(NOTICE, ${CHANNEL(rtp,dest)})
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>; Store the round-trip time associated with a
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>; video stream in the CDR field video-rtt
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>same =&gt; n,Set(CDR(video-rtt)=${CHANNEL(rtcp,rtt,video)})
+</span></code></pre></div>
+<h3 id="syntax">Syntax<a class="headerlink" href="#syntax" title="Permanent link">&para;</a></h3>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>CHANNEL(item)
+</span></code></pre></div>
+<h5 id="arguments">Arguments<a class="headerlink" href="#arguments" title="Permanent link">&para;</a></h5>
+<ul>
+<li>
+<p>item - Standard items (provided by all channel technologies) are:</p>
+<ul>
+<li>amaflags - R/W the Automatic Message Accounting (AMA) flags on the channel. When read from a channel, the integer value will always be returned. When written to a channel, both the string format or integer value is accepted.<ul>
+<li>1 - OMIT</li>
+<li>2 - BILLING</li>
+<li>3 - DOCUMENTATION</li>
+</ul>
+</li>
+<li>accountcode - R/W the channel's account code.</li>
+<li>audioreadformat - R/O format currently being read.</li>
+<li>audionativeformat - R/O format used natively for audio.</li>
+<li>audiowriteformat - R/O format currently being written.</li>
+<li>dtmf_features - R/W The channel's DTMF bridge features. May include one or more of 'T' 'K' 'H' 'W' and 'X' in a similar manner to options in the <strong>Dial</strong> application. When setting it, the features string must be all upper case.</li>
+<li>callgroup - R/W numeric call pickup groups that this channel is a member.</li>
+<li>pickupgroup - R/W numeric call pickup groups this channel can pickup.</li>
+<li>namedcallgroup - R/W named call pickup groups that this channel is a member.</li>
+<li>namedpickupgroup - R/W named call pickup groups this channel can pickup.</li>
+<li>channeltype - R/O technology used for channel.</li>
+<li>checkhangup - R/O Whether the channel is hanging up (1/0)</li>
+<li>after_bridge_goto - R/W the parseable goto string indicating where the channel is expected to return to in the PBX after exiting the next bridge it joins on the condition that it doesn't hang up. The parseable goto string uses the same syntax as the <strong>Goto</strong> application.</li>
+<li>hangup_handler_pop - W/O Replace the most recently added hangup handler with a new hangup handler on the channel if supplied. The assigned string is passed to the Gosub application when the channel is hung up. Any optionally omitted context and exten are supplied by the channel pushing the handler before it is pushed.</li>
+<li>hangup_handler_push - W/O Push a hangup handler onto the channel hangup handler stack. The assigned string is passed to the Gosub application when the channel is hung up. Any optionally omitted context and exten are supplied by the channel pushing the handler before it is pushed.</li>
+<li>hangup_handler_wipe - W/O Wipe the entire hangup handler stack and replace with a new hangup handler on the channel if supplied. The assigned string is passed to the Gosub application when the channel is hung up. Any optionally omitted context and exten are supplied by the channel pushing the handler before it is pushed.</li>
+<li>onhold - R/O Whether or not the channel is onhold. (1/0)</li>
+<li>language - R/W language for sounds played.</li>
+<li>musicclass - R/W class (from musiconhold.conf) for hold music.</li>
+<li>name - The name of the channel</li>
+<li>parkinglot - R/W parkinglot for parking.</li>
+<li>rxgain - R/W set rxgain level on channel drivers that support it.</li>
+<li>secure_bridge_signaling - Whether or not channels bridged to this channel require secure signaling (1/0)</li>
+<li>secure_bridge_media - Whether or not channels bridged to this channel require secure media (1/0)</li>
+<li>state - R/O state of the channel</li>
+<li>tonezone - R/W zone for indications played</li>
+<li>transfercapability - R/W ISDN Transfer Capability, one of:<ul>
+<li>SPEECH</li>
+<li>DIGITAL</li>
+<li>RESTRICTED_DIGITAL</li>
+<li>3K1AUDIO</li>
+<li>DIGITAL_W_TONES</li>
+<li>VIDEO</li>
+</ul>
+</li>
+<li>txgain - R/W set txgain level on channel drivers that support it.</li>
+<li>videonativeformat - R/O format used natively for video</li>
+<li>hangupsource - R/W returns the channel responsible for hangup.</li>
+<li>appname - R/O returns the internal application name.</li>
+<li>appdata - R/O returns the application data if available.</li>
+<li>exten - R/O returns the extension for an outbound channel.</li>
+<li>context - R/O returns the context for an outbound channel.</li>
+<li>lastexten - R/O returns the last unique extension for an outbound channel.</li>
+<li>lastcontext - R/O returns the last unique context for an outbound channel.</li>
+<li>channame - R/O returns the channel name for an outbound channel.</li>
+<li>uniqueid - R/O returns the channel uniqueid.</li>
+<li>linkedid - R/O returns the linkedid if available, otherwise returns the uniqueid.</li>
+<li>max_forwards - R/W The maximum number of forwards allowed.</li>
+<li>callid - R/O Call identifier log tag associated with the channel e.g., <strong>[C-00000000]</strong>.</li>
+</ul>
+<p><em>Technology: DAHDI</em>
+* dahdi_channel - R/O DAHDI channel related to this channel.
+* dahdi_span - R/O DAHDI span related to this channel.
+* dahdi_group - R/O DAHDI logical group related to this channel.
+* dahdi_type - R/O DAHDI channel type, one of:
+    * analog
+    * mfc/r2
+    * pri
+    * pseudo
+    * ss7
+* keypad_digits - R/O PRI Keypad digits that came in with the SETUP message.
+* reversecharge - R/O PRI Reverse Charging Indication, one of:
+    * -1 - None
+    *  1 - Reverse Charging Requested
+* no_media_path - R/O PRI Nonzero if the channel has no B channel. The channel is either on hold or a call waiting call.
+* buffers - W/O Change the channel's buffer policy (for the current call only)
+This option takes two arguments:
+Number of buffers,
+Buffer policy being one of:
+<strong>full</strong>
+<strong>immediate</strong>
+<strong>half</strong>
+* echocan_mode - W/O Change the configuration of the active echo canceller on the channel (if any), for the current call only.
+Possible values are:
+<strong>on</strong>Normal mode (the echo canceller is actually reinitialized)
+<strong>off</strong>Disabled
+<strong>fax</strong>FAX/data mode (NLP disabled if possible, otherwise completely disabled)
+<strong>voice</strong>Voice mode (returns from FAX mode, reverting the changes that were made)
+* dialmode - R/W Pulse and tone dialing mode of the channel.
+If set, overrides the setting in <strong>chan_dahdi.conf</strong> for that channel.
+    * both
+    * pulse
+    * dtmf
+    * tone
+    * none</p>
+<p><em>Technology: IAX</em>
+* osptoken - R/O Get the peer's osptoken.
+* peerip - R/O Get the peer's ip address.
+* peername - R/O Get the peer's username.
+* secure_signaling - R/O Get the if the IAX channel is secured.
+* secure_media - R/O Get the if the IAX channel is secured.</p>
+<p><em>Technology: OOH323</em>
+* faxdetect - R/W Fax Detect
+Returns 0 or 1
+Write yes or no
+* t38support - R/W t38support
+Returns 0 or 1
+Write yes or no
+* h323id_url - R/0 Returns caller URL
+* caller_h323id - R/0 Returns caller h323id
+* caller_dialeddigits - R/0 Returns caller dialed digits
+* caller_email - R/0 Returns caller email
+* callee_email - R/0 Returns callee email
+* callee_dialeddigits - R/0 Returns callee dialed digits
+* caller_url - R/0 Returns caller URL
+* max_forwards - R/W Get or set the maximum number of call forwards for this channel. This number describes the number of times a call may be forwarded by this channel before the call fails. "Forwards" in this case refers to redirects by phones as well as calls to local channels. Note that this has no relation to the SIP Max-Forwards header.</p>
+<p><em>Technology: PJSIP</em>
+* rtp - R/O Retrieve media related information.
+    * type - When <em>rtp</em> is specified, the <strong>type</strong> parameter must be provided. It specifies which RTP parameter to read.
+        * src - Retrieve the local address for RTP.
+        * dest - Retrieve the remote address for RTP.
+        * direct - If direct media is enabled, this address is the remote address used for RTP.
+        * secure - Whether or not the media stream is encrypted.
+            * 0 - The media stream is not encrypted.
+            * 1 - The media stream is encrypted.
+        * hold - Whether or not the media stream is currently restricted due to a call hold.
+            * 0 - The media stream is not held.
+            * 1 - The media stream is held.
+    * media_type - When <em>rtp</em> is specified, the <strong>media_type</strong> parameter may be provided. It specifies which media stream the chosen RTP parameter should be retrieved from.
+        * audio - Retrieve information from the audio media stream.
+<strong>Note</strong>
+If not specified, <strong>audio</strong> is used by default.</p>
+<div class="language-text highlight"><pre><span></span><code>    * video - Retrieve information from the video media stream.
+</code></pre></div>
+<ul>
+<li>rtcp - R/O Retrieve RTCP statistics.<ul>
+<li>statistic - When <em>rtcp</em> is specified, the <strong>statistic</strong> parameter must be provided. It specifies which RTCP statistic parameter to read.<ul>
+<li>all - Retrieve a summary of all RTCP statistics.
+The following data items are returned in a semi-colon delineated list:<ul>
+<li>ssrc - Our Synchronization Source identifier</li>
+<li>themssrc - Their Synchronization Source identifier</li>
+<li>lp - Our lost packet count</li>
+<li>rxjitter - Received packet jitter</li>
+<li>rxcount - Received packet count</li>
+<li>txjitter - Transmitted packet jitter</li>
+<li>txcount - Transmitted packet count</li>
+<li>rlp - Remote lost packet count</li>
+<li>rtt - Round trip time</li>
+<li>txmes - Transmitted Media Experience Score</li>
+<li>rxmes - Received Media Experience Score</li>
+</ul>
+</li>
+<li>all_jitter - Retrieve a summary of all RTCP Jitter statistics.
+The following data items are returned in a semi-colon delineated list:<ul>
+<li>minrxjitter - Our minimum jitter</li>
+<li>maxrxjitter - Our max jitter</li>
+<li>avgrxjitter - Our average jitter</li>
+<li>stdevrxjitter - Our jitter standard deviation</li>
+<li>reported_minjitter - Their minimum jitter</li>
+<li>reported_maxjitter - Their max jitter</li>
+<li>reported_avgjitter - Their average jitter</li>
+<li>reported_stdevjitter - Their jitter standard deviation</li>
+</ul>
+</li>
+<li>all_loss - Retrieve a summary of all RTCP packet loss statistics.
+The following data items are returned in a semi-colon delineated list:<ul>
+<li>minrxlost - Our minimum lost packets</li>
+<li>maxrxlost - Our max lost packets</li>
+<li>avgrxlost - Our average lost packets</li>
+<li>stdevrxlost - Our lost packets standard deviation</li>
+<li>reported_minlost - Their minimum lost packets</li>
+<li>reported_maxlost - Their max lost packets</li>
+<li>reported_avglost - Their average lost packets</li>
+<li>reported_stdevlost - Their lost packets standard deviation</li>
+</ul>
+</li>
+<li>all_rtt - Retrieve a summary of all RTCP round trip time information.
+The following data items are returned in a semi-colon delineated list:<ul>
+<li>minrtt - Minimum round trip time</li>
+<li>maxrtt - Maximum round trip time</li>
+<li>avgrtt - Average round trip time</li>
+<li>stdevrtt - Standard deviation round trip time</li>
+</ul>
+</li>
+<li>all_mes - Retrieve a summary of all RTCP Media Experience Score information.
+The following data items are returned in a semi-colon delineated list:<ul>
+<li>minmes - Minimum MES based on us analysing received packets.</li>
+<li>maxmes - Maximum MES based on us analysing received packets.</li>
+<li>avgmes - Average MES based on us analysing received packets.</li>
+<li>stdevmes - Standard deviation MES based on us analysing received packets.</li>
+<li>reported_minmes - Minimum MES based on data we get in Sender and Receiver Reports sent by the remote end</li>
+<li>reported_maxmes - Maximum MES based on data we get in Sender and Receiver Reports sent by the remote end</li>
+<li>reported_avgmes - Average MES based on data we get in Sender and Receiver Reports sent by the remote end</li>
+<li>reported_stdevmes - Standard deviation MES based on data we get in Sender and Receiver Reports sent by the remote end</li>
+</ul>
+</li>
+<li>txcount - Transmitted packet count</li>
+<li>rxcount - Received packet count</li>
+<li>txjitter - Transmitted packet jitter</li>
+<li>rxjitter - Received packet jitter</li>
+<li>remote_maxjitter - Their max jitter</li>
+<li>remote_minjitter - Their minimum jitter</li>
+<li>remote_normdevjitter - Their average jitter</li>
+<li>remote_stdevjitter - Their jitter standard deviation</li>
+<li>local_maxjitter - Our max jitter</li>
+<li>local_minjitter - Our minimum jitter</li>
+<li>local_normdevjitter - Our average jitter</li>
+<li>local_stdevjitter - Our jitter standard deviation</li>
+<li>txploss - Transmitted packet loss</li>
+<li>rxploss - Received packet loss</li>
+<li>remote_maxrxploss - Their max lost packets</li>
+<li>remote_minrxploss - Their minimum lost packets</li>
+<li>remote_normdevrxploss - Their average lost packets</li>
+<li>remote_stdevrxploss - Their lost packets standard deviation</li>
+<li>local_maxrxploss - Our max lost packets</li>
+<li>local_minrxploss - Our minimum lost packets</li>
+<li>local_normdevrxploss - Our average lost packets</li>
+<li>local_stdevrxploss - Our lost packets standard deviation</li>
+<li>rtt - Round trip time</li>
+<li>maxrtt - Maximum round trip time</li>
+<li>minrtt - Minimum round trip time</li>
+<li>normdevrtt - Average round trip time</li>
+<li>stdevrtt - Standard deviation round trip time</li>
+<li>local_ssrc - Our Synchronization Source identifier</li>
+<li>remote_ssrc - Their Synchronization Source identifier</li>
+<li>txmes - Current MES based on us analyzing rtt, jitter and loss in the actual received RTP stream received from the remote end. I.E. This is the MES for the incoming audio stream.</li>
+<li>rxmes - Current MES based on rtt and the jitter and loss values in RTCP sender and receiver reports we receive from the remote end. I.E. This is the MES for the outgoing audio stream.</li>
+<li>remote_maxmes - Max MES based on data we get in Sender and Receiver Reports sent by the remote end</li>
+<li>remote_minmes - Min MES based on data we get in Sender and Receiver Reports sent by the remote end</li>
+<li>remote_normdevmes - Average MES based on data we get in Sender and Receiver Reports sent by the remote end</li>
+<li>remote_stdevmes - Standard deviation MES based on data we get in Sender and Receiver Reports sent by the remote end</li>
+<li>local_maxmes - Max MES based on us analyzing the received RTP stream</li>
+<li>local_minmes - Min MES based on us analyzing the received RTP stream</li>
+<li>local_normdevmes - Average MES based on us analyzing the received RTP stream</li>
+<li>local_stdevmes - Standard deviation MES based on us analyzing the received RTP stream</li>
+</ul>
+</li>
+<li>
+<p>media_type - When <em>rtcp</em> is specified, the <strong>media_type</strong> parameter may be provided. It specifies which media stream the chosen RTCP parameter should be retrieved from.</p>
+<ul>
+<li>
+<p>audio - Retrieve information from the audio media stream.
+<strong>Note</strong>
+If not specified, <strong>audio</strong> is used by default.</p>
+</li>
+<li>
+<p>video - Retrieve information from the video media stream.</p>
+<ul>
+<li>endpoint - R/O The name of the endpoint associated with this channel. Use the <em>PJSIP_ENDPOINT</em> function to obtain further endpoint related information.</li>
+<li>contact - R/O The name of the contact associated with this channel. Use the <em>PJSIP_CONTACT</em> function to obtain further contact related information. Note this may not be present and if so is only available on outgoing legs.</li>
+<li>aor - R/O The name of the AOR associated with this channel. Use the <em>PJSIP_AOR</em> function to obtain further AOR related information. Note this may not be present and if so is only available on outgoing legs.</li>
+<li>pjsip - R/O Obtain information about the current PJSIP channel and its session.<ul>
+<li>type - When <em>pjsip</em> is specified, the <strong>type</strong> parameter must be provided. It specifies which signalling parameter to read.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>call-id - The SIP call-id.</li>
+<li>secure - Whether or not the signalling uses a secure transport.<ul>
+<li>0 - The signalling uses a non-secure transport.</li>
+<li>1 - The signalling uses a secure transport.</li>
+</ul>
+</li>
+<li>target_uri - The contact URI where requests are sent.</li>
+<li>local_uri - The local URI.</li>
+<li>local_tag - Tag in From header</li>
+<li>remote_uri - The remote URI.</li>
+<li>remote_tag - Tag in To header</li>
+<li>request_uri - The request URI of the incoming <strong>INVITE</strong> associated with the creation of this channel.</li>
+<li>t38state - The current state of any T.38 fax on this channel.<ul>
+<li>DISABLED - T.38 faxing is disabled on this channel.</li>
+<li>LOCAL_REINVITE - Asterisk has sent a <strong>re-INVITE</strong> to the remote end to initiate a T.38 fax.</li>
+<li>REMOTE_REINVITE - The remote end has sent a <strong>re-INVITE</strong> to Asterisk to initiate a T.38 fax.</li>
+<li>ENABLED - A T.38 fax session has been enabled.</li>
+<li>REJECTED - A T.38 fax session was attempted but was rejected.</li>
+</ul>
+</li>
+<li>local_addr - On inbound calls, the full IP address and port number that the <strong>INVITE</strong> request was received on. On outbound calls, the full IP address and port number that the <strong>INVITE</strong> request was transmitted from.</li>
+<li>remote_addr - On inbound calls, the full IP address and port number that the <strong>INVITE</strong> request was received from. On outbound calls, the full IP address and port number that the <strong>INVITE</strong> request was transmitted to.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><em>Technology: SIP</em>
+* peerip - R/O Get the IP address of the peer.
+* recvip - R/O Get the source IP address of the peer.
+* recvport - R/O Get the source port of the peer.
+* from - R/O Get the URI from the From: header.
+* uri - R/O Get the URI from the Contact: header.
+* ruri - R/O Get the Request-URI from the INVITE header.
+* useragent - R/O Get the useragent.
+* peername - R/O Get the name of the peer.
+* t38passthrough - R/O <strong>1</strong> if T38 is offered or enabled in this channel, otherwise <strong>0</strong>
+* rtpqos - R/O Get QOS information about the RTP stream
+This option takes two additional arguments:
+Argument 1:
+<strong>audio</strong> Get data about the audio stream
+<strong>video</strong> Get data about the video stream
+<strong>text</strong> Get data about the text stream
+Argument 2:
+<strong>local_ssrc</strong> Local SSRC (stream ID)
+<strong>local_lostpackets</strong> Local lost packets
+<strong>local_jitter</strong> Local calculated jitter
+<strong>local_maxjitter</strong> Local calculated jitter (maximum)
+<strong>local_minjitter</strong> Local calculated jitter (minimum)
+<strong>local_normdevjitter</strong>Local calculated jitter (normal deviation)
+<strong>local_stdevjitter</strong> Local calculated jitter (standard deviation)
+<strong>local_count</strong> Number of received packets
+<strong>remote_ssrc</strong> Remote SSRC (stream ID)
+<strong>remote_lostpackets</strong>Remote lost packets
+<strong>remote_jitter</strong> Remote reported jitter
+<strong>remote_maxjitter</strong> Remote calculated jitter (maximum)
+<strong>remote_minjitter</strong> Remote calculated jitter (minimum)
+<strong>remote_normdevjitter</strong>Remote calculated jitter (normal deviation)
+<strong>remote_stdevjitter</strong>Remote calculated jitter (standard deviation)
+<strong>remote_count</strong> Number of transmitted packets
+<strong>rtt</strong> Round trip time
+<strong>maxrtt</strong> Round trip time (maximum)
+<strong>minrtt</strong> Round trip time (minimum)
+<strong>normdevrtt</strong> Round trip time (normal deviation)
+<strong>stdevrtt</strong> Round trip time (standard deviation)
+<strong>all</strong> All statistics (in a form suited to logging, but not for parsing)
+* rtpdest - R/O Get remote RTP destination information.
+This option takes one additional argument:
+Argument 1:
+<strong>audio</strong> Get audio destination
+<strong>video</strong> Get video destination
+<strong>text</strong> Get text destination
+Defaults to <strong>audio</strong> if unspecified.
+* rtpsource - R/O Get source RTP destination information.
+This option takes one additional argument:
+Argument 1:
+<strong>audio</strong> Get audio destination
+<strong>video</strong> Get video destination
+<strong>text</strong> Get text destination
+Defaults to <strong>audio</strong> if unspecified.</p>
+</li>
+</ul>
+<h3 id="generated-version">Generated Version<a class="headerlink" href="#generated-version" title="Permanent link">&para;</a></h3>
+<p>This documentation was generated from Asterisk branch 20 using version GIT </p>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            Back to top
+          </button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Content is licensed under a Creative Commons Attribution-ShareAlike 3.0 United States License.
+
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://www.asterisk.org/" target="_blank" rel="noopener" title="www.asterisk.org" class="md-social__link">
+      <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   version="1.1"
+   id="svg2"
+   width="48"
+   height="48"
+   viewBox="0 0 48 48"
+   sodipodi:docname="favicon.svg"
+   inkscape:version="1.2.2 (b0a8486541, 2022-12-01)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs6" />
+  <sodipodi:namedview
+     id="namedview4"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     showgrid="false"
+     inkscape:zoom="17.291667"
+     inkscape:cx="24"
+     inkscape:cy="24.028916"
+     inkscape:current-layer="g8" />
+  <g
+     inkscape:groupmode="layer"
+     inkscape:label="Image"
+     id="g8">
+    <image
+       width="48"
+       height="48"
+       preserveAspectRatio="none"
+       xlink:href="data:image/png;base64,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
+"
+       id="image10" />
+  </g>
+</svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://www.asterisk.org/blog/" target="_blank" rel="noopener" title="www.asterisk.org" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="m61.7 169.4 101.5 278C92.2 413 43.3 340.2 43.3 256c0-30.9 6.6-60.1 18.4-86.6zm337.9 75.9c0-26.3-9.4-44.5-17.5-58.7-10.8-17.5-20.9-32.4-20.9-49.9 0-19.6 14.8-37.8 35.7-37.8.9 0 1.8.1 2.8.2-37.9-34.7-88.3-55.9-143.7-55.9-74.3 0-139.7 38.1-177.8 95.9 5 .2 9.7.3 13.7.3 22.2 0 56.7-2.7 56.7-2.7 11.5-.7 12.8 16.2 1.4 17.5 0 0-11.5 1.3-24.3 2l77.5 230.4L249.8 247l-33.1-90.8c-11.5-.7-22.3-2-22.3-2-11.5-.7-10.1-18.2 1.3-17.5 0 0 35.1 2.7 56 2.7 22.2 0 56.7-2.7 56.7-2.7 11.5-.7 12.8 16.2 1.4 17.5 0 0-11.5 1.3-24.3 2l76.9 228.7 21.2-70.9c9-29.4 16-50.5 16-68.7zm-139.9 29.3-63.8 185.5c19.1 5.6 39.2 8.7 60.1 8.7 24.8 0 48.5-4.3 70.6-12.1-.6-.9-1.1-1.9-1.5-2.9l-65.4-179.2zm183-120.7c.9 6.8 1.4 14 1.4 21.9 0 21.6-4 45.8-16.2 76.2l-65 187.9C426.2 403 468.7 334.5 468.7 256c0-37-9.4-71.8-26-102.1zM504 256c0 136.8-111.3 248-248 248C119.2 504 8 392.7 8 256 8 119.2 119.2 8 256 8c136.7 0 248 111.2 248 248zm-11.4 0c0-130.5-106.2-236.6-236.6-236.6C125.5 19.4 19.4 125.5 19.4 256S125.6 492.6 256 492.6c130.5 0 236.6-106.1 236.6-236.6z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://twitter.com/asteriskdev" target="_blank" rel="noopener" title="twitter.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/asterisk" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://community.asterisk.org" target="_blank" rel="noopener" title="community.asterisk.org" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M225.9 32C103.3 32 0 130.5 0 252.1 0 256 .1 480 .1 480l225.8-.2c122.7 0 222.1-102.3 222.1-223.9C448 134.3 348.6 32 225.9 32zM224 384c-19.4 0-37.9-4.3-54.4-12.1L88.5 392l22.9-75c-9.8-18.1-15.4-38.9-15.4-61 0-70.7 57.3-128 128-128s128 57.3 128 128-57.3 128-128 128z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../../../..", "features": ["navigation.instant", "navigation.tracking", "navigation.prune", "navigation.indexes", "navigation.top", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.code.annotate", "toc.follow"], "search": "../../../../assets/javascripts/workers/search.780af0f4.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.f11ae8b1.min.js"></script>
+      
+    
+  </body>
+</html>
