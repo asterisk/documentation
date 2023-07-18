@@ -10,7 +10,10 @@ All contributions are subject to the
 [Creative Commons Attribution-ShareAlike 3.0 United States](LICENSE.md) license.
 
 # Markdown Flavor
-The docs are written in standard markdown, not GitHub Flavored markdown.  There are lots of extensions available though.  Most of the extensions provided by [Material for MkDocs](https://squidfunk.github.io/mkdocs-material/reference/) are enabled except those only available to paying sponsors and a few that don't make sense in this environment. 
+The docs are written in standard markdown, not GitHub Flavored markdown.  There are lots of extensions available though.  Most of the extensions provided by [Material for MkDocs](https://squidfunk.github.io/mkdocs-material/reference/) are enabled except those only available to paying sponsors and a few that don't make sense in this environment.
+
+!!! note
+    The conversion process that moved the documentation from the Confluence Wiki used equals signs `=====` and dashes `----` to denote headers.  The new infrastructure renders those correctly but they do not get added to the page's table of contents.  Going forward, you should always use hash signs `#`, `##`, `###`, etc to denote headers.
 
 # Dynamic Documentation
 
