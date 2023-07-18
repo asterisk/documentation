@@ -41,16 +41,10 @@ Contributors must fork the [asterisk/asterisk](https://github.com/asterisk/aster
 1. Run `gh repo fork asterisk/asterisk` and `gh repo fork asterisk/testsuite`
 2. Run `gh repo clone <user>/asterisk` and `gh repo clone <user>/testsuite`
 
-
-
-
 !!! warning 
     The `gh repo fork` command has a `--clone` option that's supposed to do both of the above steps at the same time however it rarely works and usually creates a mess. The reason is that after a fork operation *appears* to complete, it can take a few seconds before GitHub finishes background work during which time attempts to clone will fail. The `gh` tool doesn't account for this and tries to clone immediately which fails with a "repository not found" message.
 
-      
 [//]: # (end-warning)
-
-
 
 Git Remotes will automatically be created for both your fork and the upstream repo.
 
@@ -73,29 +67,17 @@ The name of the new branch can be anything but it does show up in the GitHub UI 
 
 If your work fixes a bug in a non-master branch that doesn't exist in the higher branches, start with the highest version branch that the fix does apply to.  For instance, if the fix applies to 20 and 18 but not master, base your new branch on 20.
 
-
-
-
 !!! warning 
     You should never do work in the upstream branches like '18', '20', or 'master'.  Doing so will pollute those branches in your fork and will make updating them difficult.
 
-      
 [//]: # (end-warning)
 
-
-
 Now make your change and test locally.
-
-
-
 
 !!! note 
     You no longer have to create entries in the doc/CHANGES-staging or doc/UPGRADE-staging directories. The change logs are generated from the commit messages. See below.
 
-      
 [//]: # (end-note)
-
-
 
 Commit
 ------
@@ -110,32 +92,25 @@ Commit messages should follow the guidelines established in [Commit Messages](/
 
 The new headers create entries near the top of the ChangeLogs.
 
-
-
-
 ---
-
   
 Sample Commit Message  
 
+```text
+app_something:  Add some new capability
 
-```
-
-textapp_something:  Add some new capability 
- 
 app_something has been updated to include new feature "X". To configure,
 edit app_something.conf and add an "X = something" to the "general"
 section.
- 
+
 Resolves: #456
- 
+
 UpgradeNote: The old "X" option in app_something.conf has been renamed to
 "Z" to better reflect its true purpose.
- 
+
 UserNote: app_something has been updated to include new feature "X".
 
 ```
-
 
 Test and check for Cherry-pick-ability
 --------------------------------------
@@ -152,20 +127,19 @@ Create a Pull Request
 
 When you've finished your work and committed, you can create a new pull request by running `gh pr create --fill --base 18`.  The `--fill` option sets the pull request description to the same as the commit message and the `--base` option indicates which asterisk branch the pull request is targeted for.  This is similar to running `git review 18` to create a new Gerrit review.  When prompted where the new branch should be pushed, choose your fork, NOT the upstream repo.
 
+You  _may_  create a pull request that has more than 1 commit if the commits represent a progression of changes that can stand on their own.  For instance, a commit to add a feature to a core source file, then a commit against an application to use that new feature.  You must be prepared to do some juggling however should changes be requested to an earlier commit in the series.  For instance, if changes were requested to commit 1, you'd have to reset your working branch back to that commit, make your fixes, do a `git commit -a --amend`, reapply commit 2 on top of that ammended commit, then do a `git push --force` to update the PR.
+
+!!! warning
+    You must **never** add commits to a pull request that fix issues in earlier commits in that PR.
+
 If you want your change to be automatically cherry-picked to other branches, you'll need to add a comment to your pull request.  Head over to <https://github.com/asterisk/asterisk/pulls> and open your PR. Add a comment with a `cherry-pick-to: <branch>"` header line for each branch.  For example, if the PR is against the master branch and you want it cherry-picked down to 20 and 18...
-
-
-
 
 ---
 
-  
 PR Cherry-Pick Request comment example  
 
-
-```
-
-textcherry-pick-to: 20
+```text
+cherry-pick-to: 20
 cherry-pick-to: 18
 
 ```
@@ -173,30 +147,17 @@ cherry-pick-to: 18
 
 Each branch must be on a separate line and don't put anything else in the comment.  When all the PR tests and checks have passed, an Asterisk Core developer will trigger the cherry-pick test process which will look for that comment.  If the commit can't be cherry-picked cleanly to the branches you indicated or the tests fail, none of the commits will be merged.  This is why it's important for you to make sure your commit cherry-picks cleanly before submitting the first pull request.
 
-If you don't need your PR automatically cherry-picked, please add a comment stating "No cherry-picks required".  This saves us not having to ask if you want it cherry-picked.
-
-
-
+If you don't need your PR automatically cherry-picked, please add a comment stating `cherry-pick-to: none`.  This saves us not having to ask if you want it cherry-picked.
 
 !!! note 
     You can also add comments to a PR from the command line with `gh pr comment`. See the man page for more info.
 
-      
 [//]: # (end-note)
 
-
-
-
-
 !!! warning 
-    **If you change your mind and don't want your PR automatically cherry-picked, edit the comment and replace the "cherry-pick-to" lines with "No cherry-picks required".** Don't use formatting or other means to say "nevermind". The automation might not understand.
+    **If you change your mind and don't want your PR automatically cherry-picked, edit the comment and replace the "cherry-pick-to" lines with a single `cherry-pick-to: none` line** Don't use formatting or other means to say "nevermind". The automation might not understand.
 
-      
 [//]: # (end-warning)
-
-
-
- 
 
 Pull Request Review Process
 ===========================
@@ -234,18 +195,11 @@ These are comments you have about the code itself.  These are left by clicking 
 * Clicking on a specific line in a file to leave a single comment without a vote.  This is similar to clicking on a file in a Gerrit review, entering a comment on a specific line, but leaving your vote at "0" when clicking the "REPLY" button.  Unlike a general comment however, this type of comment creates a "conversation" which must be "resolved" before a PR can be merged.
 * Clicking on a specific line in a file to leave a comment and starting a review where you will leave a vote.  This is similar to clicking on a file in a Gerrit review, entering a comment on a specific line, then setting your vote to +1 or -1 when clicking the "REPLY" button.
 
-
-
-
 !!! note 
-    If you're not the submitter but you want to test a PR locally, you can do so easily with the gh tool:
+    If you're not the submitter but you want to test a PR locally, you can do so easily with the gh tool:  
+`gh pr checkout <pr_number>` 
 
-    `gh pr checkout <pr_number>` 
-
-      
 [//]: # (end-note)
-
-
 
 Address Review Comments and Test Failures
 -----------------------------------------
@@ -258,19 +212,16 @@ If you need to make code changes to address comments or failures, the process is
 
 This will force push the commit to your fork first, then update the PR with the new commit and restart the testing process.
 
-
-
-
 !!! warning 
-    Unlike Gerrit, GitHub allows you to have multiple commits for a pull request but it was intended to allow a PR to be broken up into multiple logical chunks, not to address review comments. Using multiple commits to address review comments will make the commit history messy and confusing. Please amend and force push for them.  
-[//]: # (end-warning)
+Unlike Gerrit, GitHub allows you to have multiple commits for a pull request but it was intended to allow a PR to be broken up into multiple logical chunks, not to address review comments. Using multiple commits to address review comments will make the commit history messy and confusing. Please amend and force push for them otherwise the PR will be rejected.
 
+[//]: # (end-warning)
 
 
 Cherry-Pick Tests
 -----------------
 
-When an Asterisk Core Team member believes the PR is ready, they'll add a `cherry-pick` label to the PR that will jobs to run that check that the cherry-pick applies cleanly to the other branches and run the same automated tests that ran for the original PR.  These tests must pass (or be deemed false alarms) for the PR to be eligible for merging.
+When an Asterisk Core Team member believes the PR is ready, they'll add a `cherry-pick-test` label to the PR that will jobs to run that check that the cherry-pick applies cleanly to the other branches and run the same automated tests that ran for the original PR.  These tests must pass (or be deemed false alarms) for the PR to be eligible for merging.
 
 Merge
 -----
