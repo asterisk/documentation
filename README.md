@@ -86,6 +86,9 @@ Create a `Makefile.inc` file with some configuration variables.  This file must 
 # specifying BRANCH=<branch>.
 BRANCHES := 16,18,19,20
 
+# If you don't want to build the static documentation at all...
+# NO_STATIC=yes
+
 # If you want to serve the resulting site with mkdocs serve,
 you can specify any additional options to pass to it here:
 # SERVE_OPTS := -a [::]:8000
@@ -131,11 +134,18 @@ $ make BRANCHES=
 
 ### To build just 2 branches
 
-Building branches does need `static-setup` to be built first so if it hasn't already been built, it will be built automatically before the branch is built.
+Building branches does need at least a skeleton static layout so `static-setup` will be built first if it hasn't already been built.
 
 ```
 $ make BRANCHES=18,20 
 ```
+
+If you only want the skeketon static documentation, you can add `NO_STATIC=yes` to that command line...
+
+```
+$ make BRANCHES=18,20 NO_STATIC=yes
+```
+
 
 ### To build just 1 branch
 
@@ -147,6 +157,7 @@ Makefile.inc:
 ASTERISK_XML_FILE := <path>/core-en_US.xml
 ASTERISK_ARI_DIR := <path>/rest-api
 BRANCHES := 20
+NO_STATIC := yes
 ```
 
 And just run `make`.

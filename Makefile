@@ -16,7 +16,7 @@ ifneq ($(BRANCH),)
   -include Makefile.$(BRANCH).inc
 endif
 
-all: build
+all:: build
 
 branch-check:
 	@if [ -z "$(BRANCH)" ] ; then \
@@ -41,13 +41,19 @@ ifneq ($(BRANCH),)
 	@mkdir -p $(BRANCH_DIR)
 endif
 
-static-setup: $(BUILD_DIR)
+static-setup:: $(BUILD_DIR)
 	@echo "Setting Up Static Documentation"
-	@echo "  Copying to temp build"
-	@ rm -rf $(BUILD_DIR)/docs/
+	@rm -rf $(BUILD_DIR)/docs/
+ifeq ($(NO_STATIC),)
+	@echo "  Copying docs/ to temp build"
 	@rsync -aH docs/. $(BUILD_DIR)/docs/
 	@echo "  Applying link transformations"
 	@utils/fix_build.sh $(BUILD_DIR)/docs utils/build_fixes.yml
+else
+	@echo "  Copying only docs/index.md and favicon.ico to temp build"
+	@mkdir -p $(BUILD_DIR)/docs
+	@cp docs/index.md docs/favicon.ico $(BUILD_DIR)/docs/
+endif	
 	@[ -L $(BUILD_DIR)/mkdocs.yml ] && rm $(BUILD_DIR)/mkdocs.yml || :
 	@ln -sfr mkdocs.yml $(BUILD_DIR)/mkdocs.yml
 	@[ -L $(BUILD_DIR)/overrides ] && rm $(BUILD_DIR)/overrides || :
@@ -55,7 +61,7 @@ static-setup: $(BUILD_DIR)
 	@touch $(BUILD_DIR)/.site_built
 
 $(BUILD_DIR)/.site_built:
-	@$(MAKE) --no-print-directory static-setup
+	@$(MAKE) --no-print-directory $(if $(NO_STATIC),NO_STATIC=yes,) static-setup
 
 $(BUILD_DIR)/docs: $(BUILD_DIR)/.site_built
 
@@ -64,7 +70,7 @@ dynamic-setup:
 	IFS=',' ;\
 	for branch in $${branches} ; do \
 		echo "Building branch $${branch}" ;\
-		$(MAKE) --no-print-directory BRANCH=$${branch} dynamic-branch-setup ;\
+		$(MAKE) --no-print-directory BRANCH=$${branch} $(if $(NO_STATIC),NO_STATIC=yes,) dynamic-branch-setup ;\
 	done
 
 dynamic-branch-setup: branch-check dynamic-core-setup $(if $(SKIP_ARI),,dynamic-ari-setup)
@@ -100,6 +106,7 @@ endif
 dynamic-core-setup: branch-check $(BUILD_DIR)/docs $(BRANCH_DIR) $(XML_PREREQ)
 	@echo "Setting Up Core Dynamic Documentation for branch '$(BRANCH)'"
 	@echo "  Generating markdown from Asterisk XML"
+	@mkdir -p $(BUILD_DIR)/docs/Asterisk_$(BRANCH)_Documentation
 	@utils/astxml2markdown.py --file=$(ASTERISK_XML_FILE) \
 		--xslt=utils/astxml2markdown.xslt \
 		--directory=$(BRANCH_DIR)/docs/ --branch=$(BRANCH) --version=GIT
@@ -132,7 +139,7 @@ download-from-job: $(BRANCH_DIR) branch-check
 		-n documentation-$(BRANCH) -D $(BRANCH_DIR)/source
 
 ifeq ($(BRANCH),)
-  build: static-setup dynamic-setup
+  build: $(BUILD_DIR)/docs dynamic-setup
 	@echo Building to $(BUILD_DIR)/site
 	@[ ! -f $(BUILD_DIR)/mkdocs.yml ] && \
 		{ echo "Can't build. '$(BUILD_DIR)/mkdocs.yml' not found" ; exit 1 ; } || :
