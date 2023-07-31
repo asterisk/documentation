@@ -3,16 +3,16 @@ title: Civic Address
 pageid: 49153336
 ---
 
-false70%Introduction
-============
+# Civic Address
 
 For static locations, using Civic Address location descriptions would be the easiest method. As stated earlier though, you and your partners must agree on which description formats are acceptable.
+
+## Data Elements
 
 The following tables list the IANA registered element names that are currently accepted. The complete list of codes is defined in:  
  <https://www.iana.org/assignments/civic-address-types-registry/civic-address-types-registry.xhtml>
 
-These codes were originally defined in [RFC4119](/Deployment/Geolocation/Geolocation-Reference-Information) and [RFC4776](/Deployment/Geolocation/Geolocation-Reference-Information)
-
+These codes were originally defined in [RFC4119](https://www.rfc-editor.org/rfc/rfc4119) and [RFC4776](https://www.rfc-editor.org/rfc/rfc4776)
 
 
 | Label | Description | Example |
@@ -35,8 +35,7 @@ These codes were originally defined in [RFC4119](/Deployment/Geolocation/Geoloca
 | NAM | Name (residence, business or office occupant) | Joe's Barbershop |
 | PC | Postal code | 10027-0401 |
 
-These codes were added in [RFC5139](/Deployment/Geolocation/Geolocation-Reference-Information)
-
+These codes were added in [RFC5139](https://www.rfc-editor.org/rfc/rfc5139)
 
 
 | Label | Description | Example |
@@ -56,8 +55,7 @@ These codes were added in [RFC5139](/Deployment/Geolocation/Geolocation-Referenc
 | PRM | Road pre-modifier | Old |
 | POM | Road post-modifier | Service |
 
-These codes were added in [RFC6848](/Deployment/Geolocation/Geolocation-Reference-Information)
-
+These codes were added in [RFC6848](https://www.rfc-editor.org/rfc/rfc6848)
 
 
 | Label | Description | Example |
@@ -67,21 +65,11 @@ These codes were added in [RFC6848](/Deployment/Geolocation/Geolocation-Referenc
 | STP | Street Type Prefix. | Boulevard |
 | HNP | House Number Prefix. | Z |
 
-Example Configurations
-======================
+## Example Configurations
 
-Simple Example 1
-----------------
+### Simple Example 1
 
 In geolocation.conf, we can define a location that describes a building and profiles for Bob and Alice that add floor and room. We're assuming here that Bob's and Alice's phones don't send any location information themselves.
-
-
-
-
----
-
-  
-  
 
 
 ```
@@ -107,18 +95,9 @@ location_refinement = FLR=32, ROOM=32A6
 ```
 
 
-PIDF-LO XML Examples
-====================
+### PIDF-LO XML Examples
 
 Here's what Alice's PIDF-LO would look like:
-
-
-
-
----
-
-  
-  
 
 
 ```
@@ -163,15 +142,6 @@ Here's what Alice's PIDF-LO would look like:
 
 Here's what Bob's PIDF-LO would look like:
 
-
-
-
----
-
-  
-  
-
-
 ```
 
 <?xml version="1.0" encoding="UTF-8"?>
@@ -214,8 +184,3 @@ Here's what Bob's PIDF-LO would look like:
 
 Note that the only civicAddress difference between the two are the `FLR` and `ROOM`.
 
-30%Table of Contents:
-
-Geolocation:
-
-[Geolocation](/Geolocation)true

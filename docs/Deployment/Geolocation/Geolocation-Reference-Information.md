@@ -3,9 +3,9 @@ title: Geolocation Reference Information
 pageid: 49153338
 ---
 
-false70%There is no single document that has the complete, current specification so please follow and read any "updated by" references in these documents.
+# Geolocation Reference Information
 
-
+There is no single document that has the complete, current specification so please follow and read any "updated by" references in these documents.
 
 | RFC | Title |
 | --- | --- |
@@ -27,9 +27,3 @@ false70%There is no single document that has the complete, current specification
 [GeoShape](https://portal.ogc.org/files/?artifact_id=21630#:~:text=This%20GML%203.1.-uses%20the%20separately%20specified%20geoshape) | GML 3.1.1 PIDF-LO Shape Application Schemafor use by the Internet Engineering Task Force (IETF) |
 | 
 [3GPP TS 23.032](https://www.3gpp.org/ftp/Specs/archive/23_series/23.032/) | 3GPP Technical Specification: Universal Geographical Area Description (GAD)Use version [23.032-h20](https://www.3gpp.org/ftp/Specs/archive/23_series/23.032/23032-h20.zip)This document is NOT specific to Geopriv so use with caution |
-
-30%Table of Contents:
-
-Geolocation:
-
-[Geolocation](/Geolocation)true
