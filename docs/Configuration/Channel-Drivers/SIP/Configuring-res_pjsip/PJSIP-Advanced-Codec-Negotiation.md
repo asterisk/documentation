@@ -161,5 +161,5 @@ The old implementation had codec negotiation was scattered though chan_pjsip, re
 
  
 
-\* Direct media \* 100rel/early media \* Re-invites \* Fax \* Multi-stream \* Deferred SDP \* ARI channel operations \* Operation with other channel technologies
+* Direct media \* 100rel/early media \* Re-invites \* Fax \* Multi-stream \* Deferred SDP \* ARI channel operations \* Operation with other channel technologies
 

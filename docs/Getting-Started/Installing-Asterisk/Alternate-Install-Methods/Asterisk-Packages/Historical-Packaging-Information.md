@@ -418,7 +418,7 @@ $ svn-buildpackage -S
 
 
 ```bash title=" " linenums="1"
-$ dput ppa:pabelanger/testing ../build-area/\*.changes
+$ dput ppa:pabelanger/testing ../build-area/*.changes
 
 
 ```
@@ -661,7 +661,7 @@ DISTS="lucid"
 Also see
 --------
 
-* [http://alioth.debian.org/scm/viewvc.php/\*checkout\*/mirrorer/docs/manual.html?revision=HEAD&root=mirrorer](http://alioth.debian.org/scm/viewvc.php/\*checkout\*/mirrorer/docs/manual.html?revision=HEAD&root=mirrorer)(http://alioth.debian.org/scm/viewvc.php/*checkout*/mirrorer/docs/manual.html?revision=HEAD&root=mirrorer)
+* [http://alioth.debian.org/scm/viewvc.php/*checkout */mirrorer/docs/manual.html?revision=HEAD&root=mirrorer](http://alioth.debian.org/scm/viewvc.php/*checkout */mirrorer/docs/manual.html?revision=HEAD&root=mirrorer)(http://alioth.debian.org/scm/viewvc.php/*checkou */mirrorer/docs/manual.html?revision=HEAD&root=mirrorer)
 * <http://inodes.org/2009/09/14/building-a-private-ppa-on-ubuntu/>
 
 Working with Source Packages

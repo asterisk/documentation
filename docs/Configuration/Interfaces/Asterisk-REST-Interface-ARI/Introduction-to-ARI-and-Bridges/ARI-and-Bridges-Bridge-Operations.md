@@ -408,7 +408,7 @@ The full source code for `bridge-move.js` is shown below:
 
 
 ```javascript title="bridge-move.js" linenums="1"
-truejs /\*jshint node:true\*/
+truejs /*jshint node:true */
 'use strict';
 
 var ari = require('ari-client');

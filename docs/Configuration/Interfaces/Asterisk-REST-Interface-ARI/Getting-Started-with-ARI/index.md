@@ -278,13 +278,13 @@ The response to our HTTP request will tell us whether or not the request succeed
 ```
 
 text\* About to connect() to localhost port 8088 (#0)
-\* Trying 127.0.0.1... connected
-\* Server auth using Basic with user 'asterisk'
+* Trying 127.0.0.1... connected
+* Server auth using Basic with user 'asterisk'
 > POST /ari/channels/1400609726.3/play?media=sound:hello-world HTTP/1.1
 > Authorization: Basic YXN0ZXJpc2s6c2VjcmV0
 > User-Agent: curl/7.22.0 (x86_64-pc-linux-gnu) libcurl/7.22.0 OpenSSL/1.0.1 zlib/1.2.3.4 libidn/1.23 librtmp/2.3
 > Host: localhost:8088
-> Accept: \*/\*
+> Accept */*
 > 
 < HTTP/1.1 201 Created
 < Server: Asterisk/SVN-branch-12-r414137M
@@ -295,7 +295,7 @@ text\* About to connect() to localhost port 8088 (#0)
 < Location: /playback/9567ea46-440f-41be-a044-6ecc8100730a
 < Content-type: application/json
 < 
-\* Closing connection #0
+* Closing connection #0
 {"id":"9567ea46-440f-41be-a044-6ecc8100730a",
  "media_uri":"sound:hello-world",
  "target_uri":"channel:1400609726.3",

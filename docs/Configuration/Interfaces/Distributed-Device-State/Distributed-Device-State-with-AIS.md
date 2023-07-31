@@ -24,10 +24,10 @@ For more information about OpenAIS, visit their web site [http://www.openais.org
 
 ### Install Dependencies
 
-\* Ubuntu
-\*\* libnss3-dev
-\* Fedora
-\*\* nss-devel
+* Ubuntu
+    * libnss3-dev
+* Fedora
+    * nss-devel
 
 ### Download
 
@@ -75,7 +75,9 @@ $ ${EDITOR:-vim} /etc/ais/openais.conf
 
 The only section that you should need to change is the totem - interface section.
 
-{code:title=/etc/ais/openais.conf}
+
+```
+
 totem {
  ...
  interface {
@@ -85,7 +87,9 @@ totem {
  mcastport: 5405
  }
 }
-{code}
+
+```
+
 
 The default mcastaddr and mcastport is probably fine. You need to change the bindnetaddr to match the address of the network interface that this node will use to communicate with other nodes in the cluster.
 
@@ -147,11 +151,15 @@ The code will attempt to generate a unique entity ID for you by reading MAC addr
 $ sudo ${EDITOR:-vim} /etc/asterisk/asterisk.conf
 ```
 
-{code:title=asterisk.conf}
+
+```
+
 [options]
 
 entity_id=01:23:45:67:89:ab
-{code}
+
+```
+
 
 Edit the Asterisk ais.conf to enable distributed events. For example, if you would like to enable distributed device state, you should add the following section to the file:
 
@@ -159,12 +167,16 @@ Edit the Asterisk ais.conf to enable distributed events. For example, if you wou
 $ sudo ${EDITOR:-vim} /etc/asterisk/ais.conf
 ```
 
-{code:title=/etc/asterisk/ais.conf}
+
+```
+
 [device_state]
 type=event_channel
 publish_event=device_state
 subscribe_event=device_state
-{code}
+
+```
+
 
 For more information on the contents and available options in this configuration file, please see the sample configuration file:
 
@@ -208,7 +220,7 @@ The first thing to test is to verify that all of the nodes that you think should
 If you're having trouble getting the nodes of the cluster to see each other, make sure you do not have firewall rules that are blocking the multicast traffic that is used to communicate amongst the nodes.
 {tip}
 
-The next thing to do is to verify that you have successfully configured some event channels in the Asterisk ais.conf file. This command is related to the event service (EVT), so like the previous command, uses the syntax: {{ais <service name> <command>}}.
+The next thing to do is to verify that you have successfully configured some event channels in the Asterisk ais.conf file. This command is related to the event service (EVT), so like the previous command, uses the syntax: `ais <service name> <command>`.
 
 ```
 \*CLI> ais evt show event channels 
@@ -231,11 +243,15 @@ The next thing to do is to verify that you have successfully configured some eve
 
 The easiest way to test distributed device state is to use the DEVICE_STATE() diaplan function. For example, you could have the following piece of dialplan on every server:
 
-{code:title=/etc/asterisk/extensions.conf}
+
+```
+
 [devstate_test]
 
 exten => 1234,hint,Custom:mystate
-{code}
+
+```
+
 
 Now, you can test that the cluster-wide state of "Custom:mystate" is what you would expect after going to the CLI of each server and adjusting the state.
 

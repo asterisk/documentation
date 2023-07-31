@@ -64,7 +64,7 @@ Other existing media parameters will be supported as follows:
 
 * `lang` - specified only once, and applies to all `sound:` resources.
 * `offsetms` - specified only once, and only applies to the first specified resource. If the first specified resource is not a `sound:` resource, the parameter has no effect.
-* `skipms` - specified only once, and applies to all {{sound:}} resources. If the process of issuing a reverse/forward takes the user past the beginning/end of a media resource, then the previous media resource/next media resource should be started at the approximate offset.
+* `skipms` - specified only once, and applies to all `sound:` resources. If the process of issuing a reverse/forward takes the user past the beginning/end of a media resource, then the previous media resource/next media resource should be started at the approximate offset.
 
 Playbacks Resource Operations
 -----------------------------
@@ -211,13 +211,13 @@ frame.h
 
 ```
 
-truecpp312  AST_CONTROL_STREAM_STOP = 1000, /\*!< Indicate to a channel in playback to stop the stream \*/
- AST_CONTROL_STREAM_SUSPEND = 1001, /\*!< Indicate to a channel in playback to suspend the stream \*/
- AST_CONTROL_STREAM_RESTART = 1002, /\*!< Indicate to a channel in playback to restart the stream \*/
- AST_CONTROL_STREAM_REVERSE = 1003, /\*!< Indicate to a channel in playback to rewind \*/
- AST_CONTROL_STREAM_FORWARD = 1004, /\*!< Indicate to a channel in playback to fast forward \*/
- AST_CONTROL_STREAM_PREV = 1005, /\*!< Indicate to a channel in playback to play the previous stream \*/
- AST_CONTROL_STREAM_NEXT = 1006, /\*!< Indicate to a channel in playback to play the next stream \*/
+truecpp312  AST_CONTROL_STREAM_STOP = 1000, /*!< Indicate to a channel in playback to stop the strea */
+ AST_CONTROL_STREAM_SUSPEND = 1001, /*!< Indicate to a channel in playback to suspend the strea */
+ AST_CONTROL_STREAM_RESTART = 1002, /*!< Indicate to a channel in playback to restart the strea */
+ AST_CONTROL_STREAM_REVERSE = 1003, /*!< Indicate to a channel in playback to rewin */
+ AST_CONTROL_STREAM_FORWARD = 1004, /*!< Indicate to a channel in playback to fast forwar */
+ AST_CONTROL_STREAM_PREV = 1005, /*!< Indicate to a channel in playback to play the previous strea */
+ AST_CONTROL_STREAM_NEXT = 1006, /*!< Indicate to a channel in playback to play the next strea */
 
 ```
 

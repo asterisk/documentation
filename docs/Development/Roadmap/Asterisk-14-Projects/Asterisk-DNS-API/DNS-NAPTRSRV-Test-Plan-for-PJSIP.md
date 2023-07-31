@@ -655,7 +655,7 @@ test.internal IN NAPTR 0 0 "s" "SIP+D2U" "" _sip._udp.test.internal
 | Port present | Lookup: NonePort: As specified | Lookup: A/AAAAPort: As specified |
 | Port not present | Lookup: NonePort: Default (5060 for UDP and TCP, 5061 for TLS) | Lookup: SRV\*Port: Determined by lookup |
 
-\* The SRV lookups are as follows:
+* The SRV lookups are as follows:
 
 * UDP: `_sip._udp.<domain>`
 * TCP: `_sip._tcp.<domain>`

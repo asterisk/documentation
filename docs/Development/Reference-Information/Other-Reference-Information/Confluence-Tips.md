@@ -11,7 +11,7 @@ pageid: 9076863
 
 ## Numbered Headings
 
-To have the section headings automatically numbered, wrap the entire page in the {{\{numberedheadings\}}} macro.
+To have the section headings automatically numbered, wrap the entire page in the `\{numberedheadings\`} macro.
 
 For more information, see the home page for the [Numbered Headings|https://studio.plugins.atlassian.com/wiki/display/NUMHEAD/Numbered+Headings] plugin.
 
@@ -19,26 +19,40 @@ The numbered headings plugins expects that the headings are used in order (h1, h
 
 ## Table of Contents
 
-Adding a table of contents to your page is easy. To do so, add the {{\{toc\}}} macro where you would like the table of contents to be inserted. This is useful in combination with numbered headings. Both are used on this page.
+Adding a table of contents to your page is easy. To do so, add the `\{toc\`} macro where you would like the table of contents to be inserted. This is useful in combination with numbered headings. Both are used on this page.
 
 # Formatting Tips
 
 ## Configuration Examples
 
-The {{\{code\}}} macro does a nice job with formatting a block for an Asterisk configuration example. Be sure to add a title, too by doing {{\{code:title=asterisk.conf\}}}. For example:
+The `\
+```
+ macro does a nice job with formatting a block for an Asterisk configuration example. Be sure to add a title, too by doing `\
+```
+. For example:
 
-{code:title=asterisk.conf}
+
+```
+
 [section]
 
 var=value
 foo=bar
-{code}
+
+```
+
 
 ## Code Examples
 
-The {{\{code\}}} macro supports a bunch of different programming languages. See the [notation guide|https://wiki.asterisk.org/wiki/renderer/notationhelp.action] for details. Tell the macro which programming language you're using ({{\{code:xml|title=example.xml\}}}) and it will do syntax highlighting for you. For a list of programming languages supported by this macro, see this page on the [newcode macro|https://studio.plugins.atlassian.com/wiki/display/NCODE/Confluence+New+Code+Macro].
+The `\
+```
+ macro supports a bunch of different programming languages. See the [notation guide|https://wiki.asterisk.org/wiki/renderer/notationhelp.action] for details. Tell the macro which programming language you're using (`\
+```
+) and it will do syntax highlighting for you. For a list of programming languages supported by this macro, see this page on the [newcode macro|https://studio.plugins.atlassian.com/wiki/display/NCODE/Confluence+New+Code+Macro].
 
-{code:xml|title=example.xml}
+
+```
+
 <?xml version="1.0"?>
 
 <menu name="Asterisk Module and Build Option Selection">
@@ -49,9 +63,13 @@ The {{\{code\}}} macro supports a bunch of different programming languages. See 
  </member>
  </category>
 </menu>
-{code}
 
-{code:java|title=example.java}
+```
+
+
+
+```
+
 class Example {
 
 public static void main(String args[])
@@ -60,9 +78,13 @@ public static void main(String args[])
 }
 
 }
-{code}
 
-{code:cpp|title=example.cpp}
+```
+
+
+
+```
+
 class Example {
 public:
  Example();
@@ -74,5 +96,7 @@ public:
 private:
  int foo;
 };
-{code}
+
+```
+
 

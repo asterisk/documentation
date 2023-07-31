@@ -52,76 +52,76 @@ A data buffer acts as a ring buffer of data. It is given a fixed number of data 
 
 ```
 
-/\*!
- \* \brief A callback function to free a data payload in a data buffer
- \*
- \* \param The data payload
- \*/
+/*!
+ * \brief A callback function to free a data payload in a data buffer
+ *
+ * \param The data payload
+ */
 typedef void (\*ast_data_buffer_free_callback)(void \*data);
  
-/\*!
- \* \brief Data buffer containing fixed number of data payloads
- \*/
+/*!
+ * \brief Data buffer containing fixed number of data payloads
+ */
 struct ast_data_buffer {
- /\*! \brief Callback function to free a data payload \*/
+ /*! \brief Callback function to free a data payloa */
  ast_data_buffer_free_callback free_fn;
- /\*! \brief Maximum number of data payloads in the buffer \*/
+ /*! \brief Maximum number of data payloads in the buffe */
  size_t max;
 };
  
-/\*!
- \* \brief Allocate a data buffer
- \*
- \* \param free_fn Callback function to free a data payload
- \* \param size The maximum number of data payloads to contain in the data buffer
- \*
- \* \retval non-NULL success
- \* \retval NULL failure
- \*/
+/*!
+ * \brief Allocate a data buffer
+ *
+ * \param free_fn Callback function to free a data payload
+ * \param size The maximum number of data payloads to contain in the data buffer
+ *
+ * \retval non-NULL success
+ * \retval NULL failure
+ */
 struct ast_data_buffer \*ast_data_buffer_alloc(ast_data_buffer_free_callback free_fn, size_t size);
  
-/\*!
- \* \brief Resize a data buffer
- \*
- \* \param buffer The data buffer
- \* \param size The new maximum size of the data buffer
- \*
- \* \note If the data buffer is shrunk any old data payloads will be freed using the configured callback
- \*/
+/*!
+ * \brief Resize a data buffer
+ *
+ * \param buffer The data buffer
+ * \param size The new maximum size of the data buffer
+ *
+ * \note If the data buffer is shrunk any old data payloads will be freed using the configured callback
+ */
 void ast_data_buffer_resize(struct ast_data_buffer \*buffer, size_t size);
  
-/\*!
- \* \brief Place a data payload at a position in the data buffer
- \*
- \* \param buffer The data buffer
- \* \param pos The position of the data payload
- \* \param payload The data payload
- \*
- \* \retval 0 success
- \* \retval -1 failure
- \*
- \* \note It is up to the consumer of this API to ensure proper memory management of data payloads
- \*/
+/*!
+ * \brief Place a data payload at a position in the data buffer
+ *
+ * \param buffer The data buffer
+ * \param pos The position of the data payload
+ * \param payload The data payload
+ *
+ * \retval 0 success
+ * \retval -1 failure
+ *
+ * \note It is up to the consumer of this API to ensure proper memory management of data payloads
+ */
 int ast_data_buffer_put(struct ast_data_buffer \*buffer, int pos, void \*payload);
  
-/\*!
- \* \brief Retrieve a data payload from the data buffer
- \*
- \* \param buffer The data buffer
- \* \param pos The position of the data payload (-1 to get the HEAD data payload)
- \*
- \* \retval non-NULL success
- \* \retval NULL failure
- \*
- \* \note This does not remove the data payload from the data buffer. It will be removed when it is displaced.
- \*/
+/*!
+ * \brief Retrieve a data payload from the data buffer
+ *
+ * \param buffer The data buffer
+ * \param pos The position of the data payload (-1 to get the HEAD data payload)
+ *
+ * \retval non-NULL success
+ * \retval NULL failure
+ *
+ * \note This does not remove the data payload from the data buffer. It will be removed when it is displaced.
+ */
 void \*ast_data_buffer_get(const struct ast_data_buffer \*buffer, int pos);
  
-/\*!
- \* \brief Free a data buffer (and all held data payloads)
- \*
- \* \param buffer The data buffer
- \*/
+/*!
+ * \brief Free a data buffer (and all held data payloads)
+ *
+ * \param buffer The data buffer
+ */
 void ast_data_buffer_free(struct ast_data_buffer \*buffer);
 
 ```
@@ -161,20 +161,20 @@ The RTP engine API also needs to have two API calls added:
 
 ```
 
-/\*!
- \* \brief Retrieve the local RTP packet retransmission (RTX) SSRC value that we will be using
- \*
- \* \param rtp The RTP instance
- \* \return The SSRC value
- \*/
+/*!
+ * \brief Retrieve the local RTP packet retransmission (RTX) SSRC value that we will be using
+ *
+ * \param rtp The RTP instance
+ * \return The SSRC value
+ */
 unsigned int ast_rtp_instance_get_rtx_ssrc(struct ast_rtp_instance \*rtp);
 
-/\*!
- \* \brief Set the remote RTP packet retransmission (RTX) SSRC for an RTP instance
- \*
- \* \param rtp The RTP instance
- \* \param ssrc The remote RTX SSRC
- \*/
+/*!
+ * \brief Set the remote RTP packet retransmission (RTX) SSRC for an RTP instance
+ *
+ * \param rtp The RTP instance
+ * \param ssrc The remote RTX SSRC
+ */
 void ast_rtp_instance_set_remote_rtx_ssrc(struct ast_rtp_instance \*rtp, unsigned int ssrc);
 
 

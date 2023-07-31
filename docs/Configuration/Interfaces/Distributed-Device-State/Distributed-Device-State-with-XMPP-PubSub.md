@@ -161,7 +161,9 @@ Additionally, you will need to specify each of the servers you need to connec to
 
 \*Asterisk Server 1
 
-{code:title=jabber.conf on server1}
+
+```
+
 [general]
 debug=no ;;Turn on debugging by default.
 ;autoprune=yes ;;Auto remove users from buddy list. Depending on your
@@ -186,11 +188,15 @@ status=available
 usetls=no
 usesasl=yes
 buddy=server2@asterisk.mydomain.tld/astvoip2
-{code}
+
+```
+
 
 \*Asterisk Server 2\*
 
-{code:title=jabber.conf on server2}
+
+```
+
 [general]
 debug=yes ;;Turn on debugging by default.
 ;autoprune=yes ;;Auto remove users from buddy list. Depending on your
@@ -215,7 +221,9 @@ status=available
 usetls=no
 usesasl=yes
 buddy=server1@asterisk.mydomain.tld/astvoip1
-{code}
+
+```
+
 
 # Basic Testing of Asterisk with XMPP PubSub
 

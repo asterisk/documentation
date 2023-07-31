@@ -218,13 +218,13 @@ When performing the routing (after pulling the message off the taskprocessor), m
 
 ```
 
-/\*!
- \* \internal
- \* \brief Run the dialplan for message processing
- \*
- \* \pre The message has already been set up on the msg datastore
- \* on this channel.
- \*/
+/*!
+ * \internal
+ * \brief Run the dialplan for message processing
+ *
+ * \pre The message has already been set up on the msg datastore
+ * on this channel.
+ */
 static void msg_route(struct ast_channel \*chan, struct ast_msg \*msg)
 {
  struct ast_pbx_args pbx_args;
@@ -262,7 +262,7 @@ No modifications should have to be done for `res_xmpp` or `res_pjsip_messaging`.
 
  switch (get_destination(p, NULL, NULL)) {
  case SIP_GET_DEST_REFUSED:
- /\* Okay to send 403 since this is after auth processing \*/
+ /* Okay to send 403 since this is after auth processin */
  transmit_response(p, "403 Forbidden", req);
  sip_scheddestroy(p, DEFAULT_TRANS_TIMEOUT);
  return;
@@ -277,7 +277,7 @@ No modifications should have to be done for `res_xmpp` or `res_pjsip_messaging`.
  sip_scheddestroy(p, DEFAULT_TRANS_TIMEOUT);
  return;
  }
- /\* Fall through \*/
+ /* Fall throug */
  case SIP_GET_DEST_EXTEN_FOUND:
  break;
  }

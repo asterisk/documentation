@@ -19,24 +19,3 @@
 - pattern: "\\[([^]]+)\\]\\(/_(Module[^)]*)\\)"
   repl: '[\1](/latest_api/\2)'
 
-- pattern: "\\{code\\}"
-  repl: '\n```\n'
-
-- pattern: '\{\{([^}]+)\}\}'
-  repl: '`\1`'
-
-- pattern: '^h1[.] '
-  repl: '# '
-
-- pattern: '^h2[.] '
-  repl: '## '
-
-- pattern: '^h3[.] '
-  repl: '### '
-
-- pattern: '^h4[.] '
-  repl: '#### '
-
-- pattern: '^h5[.] '
-  repl: '##### '
-

@@ -135,7 +135,7 @@ logger.h
 
 Eclipsecpp
 struct ast_callid {
- int call_identifier; /\* Numerical value of the call displayed in the logs \*/
+ int call_identifier; /* Numerical value of the call displayed in the log */
 };
 
 ```
@@ -156,41 +156,41 @@ Call-ID API
 ```
 
 cpp
-/\*!
- \* \brief factory function to create a new uniquely identifying callid.
- \*
- \* \retval ast_callid struct pointer containing the call id (and other information if that route is taken)
- \*
- \* \note The newly created callid will be referenced upon creation and this function should be
- \* paired with a call to ast_callid_deref()
- \*/
+/*!
+ * \brief factory function to create a new uniquely identifying callid.
+ *
+ * \retval ast_callid struct pointer containing the call id (and other information if that route is taken)
+ *
+ * \note The newly created callid will be referenced upon creation and this function should be
+ * paired with a call to ast_callid_deref()
+ */
 struct ast_callid \*ast_create_callid();
 
-/\*!
- \* \brief Increase callid reference count
- \*
- \* \param c the ast_callid
- \*
- \* \retval c always
- \*/
+/*!
+ * \brief Increase callid reference count
+ *
+ * \param c the ast_callid
+ *
+ * \retval c always
+ */
 #define ast_callid_ref(c) ({ ao2_ref(c, +1); (c); )}
 
-/\*!
- \* \brief Decrease callid reference count
- \*
- \* \param c the ast_callid
- \*
- \* \retval NULL always
- \*/
+/*!
+ * \brief Decrease callid reference count
+ *
+ * \param c the ast_callid
+ *
+ * \retval NULL always
+ */
 #define ast_callid_unref(c) ({ ao2_ref(c, -1); (struct ast_channel \*) (NULL); )}
 
-/\*!
- \* \brief Adds a known callid to thread storage of the calling thread
- \*
- \* \retval -1 - failure to allocate thread storage
- \* \retval 0 - success
- \* \retval 1 - failure due to thread already being bound to a callid
- \*/
+/*!
+ * \brief Adds a known callid to thread storage of the calling thread
+ *
+ * \retval -1 - failure to allocate thread storage
+ * \retval 0 - success
+ * \retval 1 - failure due to thread already being bound to a callid
+ */
 int ast_callid_threadassoc_add(struct ast_callid \*callid);
 
 

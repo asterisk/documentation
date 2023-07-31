@@ -38,12 +38,12 @@ A regular subscription is Stasis is created by using the [stasis_subscribe()](ht
 static void statsmaker(void \*data, struct stasis_subscription \*sub,
  struct stasis_topic \*topic, struct stasis_message \*message)
 {
- /\* ... \*/
+ /* .. */
 }
  
 static int load_module(void)
 {
- /\* ... \*/
+ /* .. */
  sub = stasis_subscribe(ast_channel_topic_all(), statsmaker, NULL);
  if (!sub) {
  return AST_MODULE_LOAD_FAILURE;
@@ -56,7 +56,7 @@ static int unload_module(void)
 {
  stasis_unsubscribe(sub);
  sub = NULL;
- /\* ... \*/
+ /* .. */
  return 0;
 }
 
@@ -93,14 +93,14 @@ static void statsmaker(void \*data, struct stasis_subscription \*sub,
 {
  RAII_VAR(struct ast_str \*, metric, NULL, ast_free);
  if (stasis_subscription_final_message(sub, message)) {
- /\* Normally, data points to an object that must be cleaned up.
- \* The final message is an unsubscribe notification that's
- \* guaranteed to be the last message this subscription receives.
- \* This would be a safe place to kick off any needed cleanup.
- \*/
+ /* Normally, data points to an object that must be cleaned up.
+ * The final message is an unsubscribe notification that's
+ * guaranteed to be the last message this subscription receives.
+ * This would be a safe place to kick off any needed cleanup.
+ */
  return;
  }
- /\* For no good reason, count message types \*/
+ /* For no good reason, count message type */
  metric = ast_str_create(80);
  if (metric) {
  ast_str_set(&metric, 0, "stasis.message.%s",
@@ -135,20 +135,20 @@ We discovered in using subscriptions that most subscription handlers were simply
 static void updates(void \*data, struct stasis_subscription \*sub,
  struct stasis_topic \*topic, struct stasis_message \*message)
 {
- /\* Since this came from a message router, we know the type of the
- \* message. We can cast the data without checking its type.
- \*/
+ /* Since this came from a message router, we know the type of the
+ * message. We can cast the data without checking its type.
+ */
  struct stasis_cache_update \*update = stasis_message_data(message);
- /\* ... \*/
+ /* .. */
 
 }
 static void default_route(void \*data, struct stasis_subscription \*sub,
  struct stasis_topic \*topic, struct stasis_message \*message)
 {
  if (stasis_subscription_final_message(sub, message)) {
- /\* subscription cleanup \*/
+ /* subscription cleanu */
  }
- /\* ... \*/
+ /* .. */
 }
 static int load_module(void)
 {
@@ -160,14 +160,14 @@ static int load_module(void)
  stasis_message_router_add(router, stasis_cache_update_type(),
  updates, NULL);
  stasis_message_router_set_default(router, default_route, NULL);
- /\* ... \*/
+ /* .. */
  return AST_MODULE_LOAD_SUCCESS;
 }
 
 
 static int unload_module(void)
 {
- /\* ... \*/
+ /* .. */
  stasis_message_router_unsubscribe(router);
  router = NULL;
  return 0;

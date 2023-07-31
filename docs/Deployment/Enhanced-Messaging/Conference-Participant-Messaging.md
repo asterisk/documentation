@@ -45,29 +45,29 @@ How you design the user interface portion is totally up to you but here is a sam
 ```
 
 CyberMegaPhone.prototype.sendMessage = function (string_msg, options = {} ) {
- /\*
- \* You could allow the user to set a nickname
- \* for themselves which JsSIP can send as the
- \* display name in the SIP From header. In the code
- \* that receives the message, you can then grab the
- \* display name from the packet.
- \*/
+ /*
+ * You could allow the user to set a nickname
+ * for themselves which JsSIP can send as the
+ * display name in the SIP From header. In the code
+ * that receives the message, you can then grab the
+ * display name from the packet.
+ */
  if (options.from) {
  from = options.from;
  this._ua.set("display_name", from);
  }
- /\*
- \* The message payload can be any UTF-8 string but you are not
- \* limited to plain text. The Content-Type must be set to one
- \* of the text/ or application/ types but as long as the sender
- \* and receiver agree on the payload format, it can contain
- \* whatever you want. In this example, we are going to send
- \* a JSON blob.
- \*
- \* If you do not want to alter the display name on the actual
- \* SIP MESSAGE From header, you could include the user's
- \* nickname in the payload.
- \*/
+ /*
+ * The message payload can be any UTF-8 string but you are not
+ * limited to plain text. The Content-Type must be set to one
+ * of the text/ or application/ types but as long as the sender
+ * and receiver agree on the payload format, it can contain
+ * whatever you want. In this example, we are going to send
+ * a JSON blob.
+ *
+ * If you do not want to alter the display name on the actual
+ * SIP MESSAGE From header, you could include the user's
+ * nickname in the payload.
+ */
  let msg = {
  'From': from,
  'Body': string_msg
@@ -80,9 +80,9 @@ CyberMegaPhone.prototype.sendMessage = function (string_msg, options = {} ) {
  eventHandlers: options.handlers
  });
 };
-/\*
- \* Now here is how you would call sendMessage
- \*/
+/*
+ * Now here is how you would call sendMessage
+ */
  phone.sendMessage("Hello!", {from: "My Name", handlers: {
  onSuccessResponse(response) {
  // You may want to show an indicator that the message was sent successfully.
@@ -119,17 +119,17 @@ Congratulations, you have just sent a text message!  Assuming the user called a
 ```
 
  this._ua.on('newMessage', function (data) {
- /\* We do not care about messages we send. \*/
+ /* We do not care about messages we send */
  if (data.originator === 'local') {
  return;
  }
- /\* Grab the Content-Type header from the packet \*/
+ /* Grab the Content-Type header from the packe */
  let ct = data.request.headers['Content-Type'][0].raw;
- /\* Make sure the message is one we care about \*/
+ /* Make sure the message is one we care abou */
  if (ct === 'application/x-myphone-confbridge-chat+json') {
- /\* Parse the body back into an object \*/
+ /* Parse the body back into an objec */
  let msg = JSON.parse(data.request.body);
- /\* Tell the UI that we got a chat message \*/
+ /* Tell the UI that we got a chat messag */
  that.raise('messageReceived', msg);
  }
  });

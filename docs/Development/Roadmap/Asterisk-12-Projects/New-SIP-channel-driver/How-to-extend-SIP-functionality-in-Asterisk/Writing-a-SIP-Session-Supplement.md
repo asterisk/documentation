@@ -52,14 +52,14 @@ Let's consider what we need to do for this feature to work. All we have to do is
 #include "asterisk/res_pjsip_session.h"
 #include "asterisk/module.h"
 
-/\*\*\* MODULEINFO
+/*\*\* MODULEINFO
  <depend>pjproject</depend>
  <depend>res_pjsip</depend>
  <depend>res_pjsip_session</depend>
- \*\*\*/
+ *\* */
 static void auto_answer_outgoing_request(struct ast_sip_session \*session, pjsip_tx_data \*tdata)
 {
- /\* STUB \*/
+ /* STU */
 }
 
 static struct ast_sip_session_supplement auto_answer_supplement = {
@@ -116,11 +116,11 @@ c#include "asterisk.h"
 #include "asterisk/res_pjsip_session.h"
 #include "asterisk/module.h"
 
-/\*\*\* MODULEINFO
+/*\*\* MODULEINFO
  <depend>pjproject</depend>
  <depend>res_pjsip</depend>
  <depend>res_pjsip_session</depend>
- \*\*\*/
+ *\* */
 
 
 ```
@@ -188,7 +188,7 @@ Now let's have a look at the important part of the code:
 
 cstatic void auto_answer_outgoing_request(struct ast_sip_session \*session, pjsip_tx_data \*tdata)
 {
- /\* STUB \*/
+ /* STU */
 }
 
 static struct ast_sip_session_supplement auto_answer_supplement = {
@@ -227,7 +227,7 @@ Let's take a look at where we are currently with our callback:
 
 cstatic void auto_answer_outgoing_request(struct ast_sip_session \*session, pjsip_tx_data \*tdata)
 {
- /\* STUB \*/
+ /* STU */
 }
 
 
@@ -264,10 +264,10 @@ cstatic void auto_answer_outgoing_request(struct ast_sip_session \*session, pjsi
  pjsip_generic_string_hdr \*answer_mode;
  pjsip_require_hdr \*require;
 
- /\* Let's add the require header. There could already be a require header present in the
- \* request. If so, then we just need to add "answermode" to the list of requirements. Otherwise,
- \* we need to create a require header and add "answermode" to it.
- \*/
+ /* Let's add the require header. There could already be a require header present in the
+ * request. If so, then we just need to add "answermode" to the list of requirements. Otherwise,
+ * we need to create a require header and add "answermode" to it.
+ */
  require = pjsip_msg_find_hdr(tdata->msg, PJSIP_H_REQUIRE, NULL);
  if (!require) {
  require = pjsip_require_hdr_create(tdata->pool);
@@ -275,9 +275,9 @@ cstatic void auto_answer_outgoing_request(struct ast_sip_session \*session, pjsi
  }
  pj_strdup(tdata->pool, &require->values[require->count++], &require_value);
 
- /\* Now we can add the Answer-Mode header. This is easier since nothing else should be adding this
- \* header to the message before we get it.
- \*/
+ /* Now we can add the Answer-Mode header. This is easier since nothing else should be adding this
+ * header to the message before we get it.
+ */
  answer_mode = pjsip_generic_string_hdr_create(tdata->pool, &answer_mode_name, &answer_mode_value);
  pjsip_msg_add_hdr(tdata->msg, (pjsip_hdr \*) answer_mode);
 }
@@ -395,7 +395,7 @@ c ...
  return;
  }
  
- /\* Let's add the require header. There could already be a require header present in the
+ /* Let's add the require header. There could already be a require header present in the
  ...
 
 
@@ -455,11 +455,11 @@ At this point, we are finished. So let's put it all together and see what we hav
 #include "asterisk/module.h"
 #include "asterisk/pbx.h"
 
-/\*\*\* MODULEINFO
+/*\*\* MODULEINFO
  <depend>pjproject</depend>
  <depend>res_pjsip</depend>
  <depend>res_pjsip_session</depend>
- \*\*\*/
+ *\* */
 static void auto_answer_outgoing_request(struct ast_sip_session \*session, pjsip_tx_data \*tdata)
 {
  static const pj_str_t answer_mode_name = { "Answer-Mode", 11 };
@@ -481,10 +481,10 @@ static void auto_answer_outgoing_request(struct ast_sip_session \*session, pjsip
  return;
  }
 
- /\* Let's add the require header. There could already be a require header present in the
- \* request. If so, then we just need to add "answermode" to the list of requirements. Otherwise,
- \* we need to create a require header and add "answermode" to it.
- \*/
+ /* Let's add the require header. There could already be a require header present in the
+ * request. If so, then we just need to add "answermode" to the list of requirements. Otherwise,
+ * we need to create a require header and add "answermode" to it.
+ */
  require = pjsip_msg_find_hdr(tdata->msg, PJSIP_H_REQUIRE, NULL);
  if (!require) {
  require = pjsip_require_hdr_create(tdata->pool);
@@ -492,9 +492,9 @@ static void auto_answer_outgoing_request(struct ast_sip_session \*session, pjsip
  }
  pj_strdup(tdata->pool, &require->values[require->count++], &require_value);
 
- /\* Now we can add the Answer-Mode header. This is easier since nothing else should be adding this
- \* header to the message before we get it.
- \*/
+ /* Now we can add the Answer-Mode header. This is easier since nothing else should be adding this
+ * header to the message before we get it.
+ */
  answer_mode = pjsip_generic_string_hdr_create(tdata->pool, &answer_mode_name, &answer_mode_value);
  pjsip_msg_add_hdr(tdata->msg, (pjsip_hdr \*) answer_mode);
 }

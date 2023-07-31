@@ -160,9 +160,9 @@ truecppvoid ast_ari_fizzbuzz(struct ast_variable \*headers,
  }
  json = ast_json_pack("{s: []}", "fizzbuzz");
  fb = ast_json_object_get(json, "fizzbuzz");
- /\* This is what one would call "business logic", and doesn't belong in
- \* the ARI layer. But this is just a silly example.
- \*/
+ /* This is what one would call "business logic", and doesn't belong in
+ * the ARI layer. But this is just a silly example.
+ */
  for (i = 1; i <= max; ++i) {
  if (i % 15 == 0) {
  ast_json_array_append(fb,

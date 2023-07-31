@@ -1134,7 +1134,7 @@ The full source for `channel-aa.js` is shown below:
 
 
 ```javascript title="channel-aa.js" linenums="1"
-truejs/\*jshint node:true\*/
+truejs/*jshint node:true */
 'use strict';
 
 var ari = require('ari-client');
@@ -1208,18 +1208,18 @@ function clientLoaded (err, client) {
  }
  }
 
- /\*\*
- \* Play our intro menu to the specified channel
- \* 
- \* Since we want to interrupt the playback of the menu when the user presses
- \* a DTMF key, we maintain the state of the menu via the MenuState object.
- \* A menu completes in one of two ways:
- \* (1) The user hits a key
- \* (2) The menu finishes to completion
- \*
- \* In the case of (2), a timer is started for the channel. If the timer pops,
- \* a prompt is played back and the menu restarted.
- \*\*/
+ /*\*
+ * Play our intro menu to the specified channel
+ * 
+ * Since we want to interrupt the playback of the menu when the user presses
+ * a DTMF key, we maintain the state of the menu via the MenuState object.
+ * A menu completes in one of two ways:
+ * (1) The user hits a key
+ * (2) The menu finishes to completion
+ *
+ * In the case of (2), a timer is started for the channel. If the timer pops,
+ * a prompt is played back and the menu restarted.
+ * */
  function playIntroMenu(channel) {
  var state = {
  currentSound: menu.sounds[0],

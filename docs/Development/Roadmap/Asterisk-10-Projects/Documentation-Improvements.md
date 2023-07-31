@@ -133,7 +133,7 @@ In addition to the structural elements of the XML documentation which can be map
 	
 	```
 	
-	{{curly braces}}
+	`curly braces`
 	
 	```
 	

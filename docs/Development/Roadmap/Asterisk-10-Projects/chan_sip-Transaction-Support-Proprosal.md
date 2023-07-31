@@ -14,13 +14,13 @@ SIP is a transactional protocol. Asterisk's chan_sip has no transaction concept 
 
 # Project Requirements
 
-\* RFC 3261-compliant transactions
-\*\* Client/Server INVITE/Non-INVITE transactions
-\*\* Connection-oriented protocols (TCP/TLS)
-\*\* Connectionless protocols (UDP)
-\*\* Handle transport layer errors
-\* Code should be as self-contained as possible to minimize bug introduction
-\* Possibly should be optional for backward compatibility
+* RFC 3261-compliant transactions
+    * Client/Server INVITE/Non-INVITE transactions
+    * Connection-oriented protocols (TCP/TLS)
+    * Connectionless protocols (UDP)
+    * Handle transport layer errors
+* Code should be as self-contained as possible to minimize bug introduction
+* Possibly should be optional for backward compatibility
 
 # What is a transaction layer?
 SIP is a transactional protocol. A transaction is basically a single request and all of the responses to that request. Essentially, the SIP transaction layer sits between the User Agent core code and the transmission layer. The purpose of the transaction layer is to handle sending retransmissions of messages that have not received a timely response (with some exceptions) and to filter out (most) retransmissions and invalid messages instead of having the UA core code handle them.

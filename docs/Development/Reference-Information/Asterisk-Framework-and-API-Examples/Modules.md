@@ -44,16 +44,16 @@ Example:
 ```
 
 
-/\*!
- \* \brief Load the module
- \*
- \* Module loading including tests for configuration or dependencies.
- \* This function can return AST_MODULE_LOAD_FAILURE, AST_MODULE_LOAD_DECLINE,
- \* or AST_MODULE_LOAD_SUCCESS. If a dependency or environment variable fails
- \* tests return AST_MODULE_LOAD_FAILURE. If the module can not load the 
- \* configuration file or other non-critical problem return 
- \* AST_MODULE_LOAD_DECLINE. On success return AST_MODULE_LOAD_SUCCESS.
- \*/
+/*!
+ * \brief Load the module
+ *
+ * Module loading including tests for configuration or dependencies.
+ * This function can return AST_MODULE_LOAD_FAILURE, AST_MODULE_LOAD_DECLINE,
+ * or AST_MODULE_LOAD_SUCCESS. If a dependency or environment variable fails
+ * tests return AST_MODULE_LOAD_FAILURE. If the module can not load the 
+ * configuration file or other non-critical problem return 
+ * AST_MODULE_LOAD_DECLINE. On success return AST_MODULE_LOAD_SUCCESS.
+ */
 static int load_module(void)
 {
 
@@ -110,9 +110,9 @@ Example:
 ```
 
 
-/\*!
- \* \brief Unload Module
- \*/
+/*!
+ * \brief Unload Module
+ */
 static int unload_module(void)
 {
 

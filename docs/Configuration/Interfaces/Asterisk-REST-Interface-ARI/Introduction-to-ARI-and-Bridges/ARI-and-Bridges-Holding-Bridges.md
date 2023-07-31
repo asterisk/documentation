@@ -561,7 +561,7 @@ The full source code for `bridge-infinite-wait.js` is shown below:
 
 
 ```javascript title="bridge-infinite-wait.js" linenums="1"
-truejs/\*jshint node:true\*/
+truejs/*jshint node:true */
 'use strict';
 
 var ari = require('ari-client');

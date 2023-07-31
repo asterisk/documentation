@@ -36,7 +36,7 @@ Other than functionality provided by the core of Asterisk, modules provide all o
 
 Modules are not only optionally built, but you can affect at load-time whether they will be loaded at all, the loading order or even unload/load them during run-time. Most modules are independently configurable and have their own [configuration](/Configuration) files. Some modules have support for configuration to be read statically or dynamically(realtime) from database backends.
 
-From a logistical standpoint, these modules are typically files with a **.so** file extension, which live in the Asterisk [modules directory](/Fundamentals/Directory-and-File-Structure) (which is typically **/usr/lib/asterisk/modules**). When [Asterisk starts up](/Operation/Running-Asterisk), it loads these files and adds their functionality to the system.
+From a logistical standpoint, these modules are typically files with a **.so** file extension, which live in the Asterisk [modules directory](/Fundamentals/Directory-and-File-Structure) (which is typically  */usr/lib/asterisk/modules**). When [Asterisk starts up](/Operation/Running-Asterisk), it loads these files and adds their functionality to the system.
 
 Asterisk modules which are part of the core have a file name that look like **pbx_xxxxx.so**. All of the modules types are discussed in the section [Types of Asterisk Modules](/Fundamentals/Asterisk-Architecture/Types-of-Asterisk-Modules).
 

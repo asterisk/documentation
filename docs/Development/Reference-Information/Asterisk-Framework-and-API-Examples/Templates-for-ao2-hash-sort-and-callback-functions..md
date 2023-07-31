@@ -54,7 +54,7 @@ int ao2_hash_fn(const void \*obj, int flags)
  key = object->key;
  break;
  default:
- /\* Hash can only work on something with a full key. \*/
+ /* Hash can only work on something with a full key */
  ast_assert(0);
  return 0;
  }
@@ -87,19 +87,19 @@ int ao2_sort_fn(const void \*obj_left, const void \*obj_right, int flags)
  switch (flags & OBJ_SEARCH_MASK) {
  case OBJ_SEARCH_OBJECT:
  right_key = object_right->username;
- /\* Fall through \*/
+ /* Fall throug */
  case OBJ_SEARCH_KEY:
  cmp = strcmp(object_left->username, right_key);
  break;
  case OBJ_SEARCH_PARTIAL_KEY:
- /\*
- \* We could also use a partial key struct containing a length
- \* so strlen() does not get called for every comparison instead.
- \*/
+ /*
+ * We could also use a partial key struct containing a length
+ * so strlen() does not get called for every comparison instead.
+ */
  cmp = strncmp(object_left->username, right_key, strlen(right_key));
  break;
  default:
- /\* Sort can only work on something with a full or partial key. \*/
+ /* Sort can only work on something with a full or partial key */
  ast_assert(0);
  cmp = 0;
  break;
@@ -131,10 +131,10 @@ This function should not return CMP_STOP unless you never want a container searc
 
 ```
 
-/\*
- \* This callback function is exactly what you get when you pass
- \* NULL as the callback function.
- \*/
+/*
+ * This callback function is exactly what you get when you pass
+ * NULL as the callback function.
+ */
 int ao2_callback_fn_sorted_cmp(void \*obj, void \*arg, int flags)
 {
  return CMP_MATCH;
@@ -168,32 +168,32 @@ int ao2_callback_fn_unsorted_cmp(void \*obj, void \*arg, int flags)
  switch (flags & OBJ_SEARCH_MASK) {
  case OBJ_SEARCH_OBJECT:
  right_key = object_right->username;
- /\* Fall through \*/
+ /* Fall throug */
  case OBJ_SEARCH_KEY:
  cmp = strcmp(object_left->username, right_key);
  break;
  case OBJ_SEARCH_PARTIAL_KEY:
- /\*
- \* We could also use a partial key struct containing a length
- \* so strlen() does not get called for every comparison instead.
- \*/
+ /*
+ * We could also use a partial key struct containing a length
+ * so strlen() does not get called for every comparison instead.
+ */
  cmp = strncmp(object_left->username, right_key, strlen(right_key));
  break;
  default:
- /\*
- \* What arg points to is specific to this traversal callback
- \* and has no special meaning to astobj2.
- \*/
+ /*
+ * What arg points to is specific to this traversal callback
+ * and has no special meaning to astobj2.
+ */
  cmp = 0;
  break;
  }
  if (cmp) {
  return 0;
  }
- /\*
- \* At this point the traversal callback is identical to a sorted
- \* container.
- \*/
+ /*
+ * At this point the traversal callback is identical to a sorted
+ * container.
+ */
  return ao2_callback_fn_sorted_cmp(obj, arg, flags);
 }
 

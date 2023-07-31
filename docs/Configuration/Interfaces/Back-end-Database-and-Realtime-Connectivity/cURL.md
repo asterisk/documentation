@@ -259,7 +259,7 @@ Asterisk sends an HTTP POST request, using the body to indicate what data it wan
 POST /mwi/single HTTP/1.1
 User-Agent: asterisk-libcurl-agent/1.0
 Host: localhost:8000
-Accept: \*/\*
+Accept */*
 Content-Length: 8
 Content-Type: application/x-www-form-urlencoded
  
@@ -315,7 +315,7 @@ Asterisk sends an HTTP POST request, using the body to indicate what data it wan
 POST /mwi/multi HTTP/1.1
 User-Agent: asterisk-libcurl-agent/1.0
 Host: localhost:8000
-Accept: \*/\*
+Accept */*
 Content-Length: 13
 Content-Type: application/x-www-form-urlencoded
  
@@ -372,7 +372,7 @@ Asterisk sends an HTTP POST request, using the body to indicate what new object 
 POST /mwi/store HTTP/1.1
 User-Agent: asterisk-libcurl-agent/1.0
 Host: localhost:8000
-Accept: \*/\*
+Accept */*
 Content-Length: 30
 Content-Type: application/x-www-form-urlencoded
  
@@ -428,7 +428,7 @@ Asterisk sends an HTTP POST request, using URL parameters to indicate what objec
 POST /mwi/update?id=Dazed HTTP/1.1
 User-Agent: asterisk-libcurl-agent/1.0
 Host: localhost:8000
-Accept: \*/\*
+Accept */*
 Content-Length: 24
 Content-Type: application/x-www-form-urlencoded
  
@@ -484,7 +484,7 @@ Asterisk sends an HTTP POST request, using the body to indicate what object to d
 POST /mwi/destroy HTTP/1.1
 User-Agent: asterisk-libcurl-agent/1.0
 Host: localhost:8000
-Accept: \*/\*
+Accept */*
 Content-Length: 9
 Content-Type: application/x-www-form-urlencoded
  
@@ -604,7 +604,7 @@ context=fabulous
 GET /astconfig/static?file=pjsip.conf HTTP/1.1
 User-Agent: asterisk-libcurl-agent/1.0
 Host: localhost:8000
-Accept: \*/\*
+Accept */*
 
 ```
 
@@ -669,7 +669,7 @@ Asterisk sends an HTTP POST with body parameters describing what type it expects
 POST /queue_members/require HTTP/1.1
 User-Agent: asterisk-libcurl-agent/1.0
 Host: localhost:8000
-Accept: \*/\*
+Accept */*
 Content-Length: 42
 Content-Type: application/x-www-form-urlencoded
 

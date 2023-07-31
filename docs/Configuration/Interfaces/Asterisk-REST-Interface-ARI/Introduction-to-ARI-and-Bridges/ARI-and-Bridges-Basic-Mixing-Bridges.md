@@ -577,7 +577,7 @@ The full source code for `bridge-dial.js` is shown below:
 
 
 ```javascript title="bridge-dial.js" linenums="1"
-truejs/\*jshint node:true\*/
+truejs/*jshint node:true */
 'use strict';
 
 var ari = require('ari-client');

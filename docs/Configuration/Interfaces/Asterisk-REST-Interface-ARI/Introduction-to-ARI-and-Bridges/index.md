@@ -331,7 +331,7 @@ For our JavaScript examples, we will rely primarily on the Node.js [ari-client](
 
 ```
 
-truejs/\*jshint node:true\*/
+truejs/*jshint node:true */
 'use strict';
 
 var ari = require('ari-client');
@@ -489,7 +489,7 @@ The full source code for `bridge-hold.js` is shown below:
 
 ```
 
-truejs/\*jshint node:true\*/
+truejs/*jshint node:true */
 'use strict';
 
 var ari = require('ari-client');
