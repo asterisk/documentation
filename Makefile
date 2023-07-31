@@ -16,6 +16,16 @@ ifneq ($(BRANCH),)
   -include Makefile.$(BRANCH).inc
 endif
 
+# 'make' has a realpath function but it only works on
+# existing files and directories.
+SITE_DIR ?= $(shell realpath $(BUILD_DIR)/site)
+
+ifeq ($(NO_MINIFY),)
+MINIFY_REGEX := /\#\s+-\s+minify:/,/^$$/ s/^\# / /g
+else
+MINIFY_REGEX := /\s+-\s+minify:/,/^$$/ s/^ /\# /g
+endif
+
 all:: build
 
 branch-check:
@@ -55,7 +65,7 @@ else
 	@cp docs/index.md docs/favicon.ico $(BUILD_DIR)/docs/
 endif	
 	@[ -L $(BUILD_DIR)/mkdocs.yml ] && rm $(BUILD_DIR)/mkdocs.yml || :
-	@ln -sfr mkdocs.yml $(BUILD_DIR)/mkdocs.yml
+	@cp mkdocs.yml $(BUILD_DIR)/mkdocs.yml
 	@[ -L $(BUILD_DIR)/overrides ] && rm $(BUILD_DIR)/overrides || :
 	@ln -sfr overrides $(BUILD_DIR)/overrides
 	@touch $(BUILD_DIR)/.site_built
@@ -140,17 +150,19 @@ download-from-job: $(BRANCH_DIR) branch-check
 
 ifeq ($(BRANCH),)
   build: $(BUILD_DIR)/docs dynamic-setup
-	@echo Building to $(BUILD_DIR)/site
+	@echo Building to $(SITE_DIR)
 	@[ ! -f $(BUILD_DIR)/mkdocs.yml ] && \
 		{ echo "Can't build. '$(BUILD_DIR)/mkdocs.yml' not found" ; exit 1 ; } || :
-	@mkdocs build -f $(BUILD_DIR)/mkdocs.yml
+	@sed -i -r -e "$(MINIFY_REGEX)" $(BUILD_DIR)/mkdocs.yml
+	@mkdocs build -f $(BUILD_DIR)/mkdocs.yml -d $(SITE_DIR)
 else
   build: BRANCH = $(BRANCH)
   build: dynamic-branch-setup
-	@echo Building to $(BUILD_DIR)/site
+	@echo Building to $(SITE_DIR)
 	@[ ! -f $(BUILD_DIR)/mkdocs.yml ] && \
 		{ echo "Can't build. '$(BUILD_DIR)/mkdocs.yml' not found" ; exit 1 ; } || :
-	@mkdocs build -f $(BUILD_DIR)/mkdocs.yml
+	@sed -i -r -e "$(MINIFY_REGEX)" $(BUILD_DIR)/mkdocs.yml
+	@mkdocs build -f $(BUILD_DIR)/mkdocs.yml -d $(SITE_DIR)
 endif
 
 deploy: no-branch-check
@@ -161,7 +173,9 @@ deploy: no-branch-check
 	@echo Deploying to remote '$(DEPLOY_REMOTE)'
 	@[ ! -f $(BUILD_DIR)/mkdocs.yml ] && \
 		{ echo "Can't deploy. '$(BUILD_DIR)/mkdocs.yml' not found" ; exit 1 ; } || :
-	@mkdocs gh-deploy -r $(DEPLOY_REMOTE) -b $(DEPLOY_BRANCH) --no-history -f $(BUILD_DIR)/mkdocs.yml
+	@sed -i -r -e "$(MINIFY_REGEX)" $(BUILD_DIR)/mkdocs.yml
+	@mkdocs gh-deploy -r $(DEPLOY_REMOTE) -b $(DEPLOY_BRANCH) \
+		-d $(SITE_DIR) --no-history -f $(BUILD_DIR)/mkdocs.yml
 
 serve: 
 	@mkdocs serve -f $(BUILD_DIR)/mkdocs.yml $(SERVE_OPTS)
@@ -174,6 +188,9 @@ else
 	@rm -rf $(BUILD_DIR) || :
 endif	
 
-.PHONY: all clean branch-check no-branch-check \
+siteclean:
+	@rm -rf $(SITE_DIR) || :
+
+.PHONY: all clean siteclean branch-check no-branch-check \
 	static-setup dynamic-setup dynamic-branch-setup dynamic-core-setup dynamic-ari-setup \
 	download-from-job build deploy

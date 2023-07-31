@@ -51,6 +51,16 @@ plugins:
 #      order: asc
 #      sort_type: natural
 #      order_by: title
+  - minify:
+      minify_html: true
+      minify_js: false
+      minify_css: false
+      htmlmin_opts:
+          remove_comments: true
+          pre_tags:
+            - pre
+            - code
+      cache_safe: false
 
 extra:
   social:

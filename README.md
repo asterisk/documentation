@@ -89,6 +89,12 @@ BRANCHES := 16,18,19,20
 # If you don't want to build the static documentation at all...
 # NO_STATIC=yes
 
+# If you don't want the resulting HTML minified, set NO_MINIFY.
+# Minification can reduce the space required to host the full
+# site by about 30% but it does take over double the time to
+# generate the site.
+# NO_MINIFY=yes
+
 # If you want to serve the resulting site with mkdocs serve,
 you can specify any additional options to pass to it here:
 # SERVE_OPTS := -a [::]:8000
@@ -149,7 +155,7 @@ $ make BRANCHES=18,20 NO_STATIC=yes
 
 ### To build just 1 branch
 
-If you're always going to build just 1 branch's dynamic documentation, you can skip the Makefile.<branch>.inc file and just place everything in the main Makefile.inc:
+If you're always going to build just 1 branch's dynamic documentation, you can skip the `Makefile.<branch>.inc` file and just place everything in the main `Makefile.inc`:
 
 Makefile.inc:
 
