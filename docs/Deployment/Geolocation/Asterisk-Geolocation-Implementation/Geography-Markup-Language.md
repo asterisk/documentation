@@ -3,27 +3,23 @@ title: Geography Markup Language
 pageid: 49153334
 ---
 
-false70%Introduction
-============
+# Geography Markup Language
 
 All compliant participants are required to support GML as the description language but it's really only suitable for mobile devices. As stated earlier though, you and your partners must agree on which description formats are acceptable.
 
 The language itself is fairly simple. There are 8 shapes that can be used to describe a location and they share a common set of attributes described below. Determining the actual values for those attributes though can be quite complex and is not covered here.
 
-References:
------------
+## References:
 
-* [Open Geospatial Consortium Geography Markup Language](/gml)
-* [GML 3.1.1 PIDF-LO Shape Application Schema](/geoshape)
-* [Universal Geographical Area Description (GAD)](/gad) (for background)
+* [Open Geospatial Consortium Geography Markup Language](https://www.ogc.org/standards/gml)
+* [GML 3.1.1 PIDF-LO Shape Application Schema (PDF)](https://portal.ogc.org/files/?artifact_id=21630#:~:text=This%20GML%203.1.-uses%20the%20separately%20specified%20geoshape)
+* [Universal Geographical Area Description (GAD)](https://www.3gpp.org/ftp/Specs/archive/23_series/23.032/) (for background)
 
-Coordinate Reference Systems
-----------------------------
+## Coordinate Reference Systems
 
 The coordinate reference system (crs) for a shape specifies whether the points that define a shape express a two dimensional or three dimensional point in space. It does NOT specify whether the shape itself is 2D or 3D. For instance, a Point is a one dimensional "shape" but it can be specified with just a latitude and longitude (2d) or latitude, longitude and altitude (3d). The `crs` is specified for each shape with the `crs` attribute whose value can be either `2d` or `3d`.
 
-Units of Measure
-----------------
+## Units of Measure
 
 ### Position
 
@@ -43,11 +39,9 @@ Distance is *always* specified in meters. `height`, `radius` and the altitude co
 
 Angle may be specified in either degrees or radians by specifying the `degrees` or `radians` suffix to the angle value. The default it `degrees` if no suffix is provided. `orientation`, `startAngle` and `openingAngle` are some of the angle attributes.
 
-Shapes
-------
+## Shapes
 
 See the references above for the exact shape definitions.
-
 
 
 | Shape | Attributes |
@@ -76,17 +70,7 @@ See the references above for the exact shape definitions.
 | outerRadius | Distance | Meters | outerRadius="350" |
 | verticalAxis | Distance | Meters | verticalAxis="20" |
 
-Examples:
----------
-
-
-
-
----
-
-  
-  
-
+## Example
 
 ```
 
@@ -101,10 +85,3 @@ location_info = shape=Prism, crs=3d, pos="39.12345 -105.98766 1890", pos="40.789
 
 
 ```
-
-
-30%Table of Contents:
-
-Geolocation:
-
-[Geolocation](/Geolocation)true
