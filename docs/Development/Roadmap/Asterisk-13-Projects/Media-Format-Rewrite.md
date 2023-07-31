@@ -29,13 +29,13 @@ The following, for the most part, assumes that the channels use RTP for media an
 
 ```
 
-/\* add_sdp: \*/
+/* add_sdp */
 
- /\* Now, start adding audio codecs. These are added in this order:
+ /* Now, start adding audio codecs. These are added in this order:
  - First what was requested by the calling channel
  - Then preferences in order from sip.conf device config for this peer/user
  - Then other codecs in capabilities, including video
- \*/  
+*/  
 
 
 
@@ -368,31 +368,31 @@ While past media work has provided us room to add codecs within the codebase the
 ```
 
 struct ast_codec {
- /\*! Unique identifier for this codec, starts at 1 \*/
+ /*! Unique identifier for this codec, starts at  */
  unsigned int id;
- /\*! Original Asterisk identifier, optional \*/
+ /*! Original Asterisk identifier, optiona */
  uint64_t original_id;
- /\*! Name for this codec \*/
+ /*! Name for this code */
  const char \*name;
- /\*! Brief description \*/
+ /*! Brief descriptio */
  const char \*description;
- /\*! Type of media this codec is for \*/
+ /*! Type of media this codec is fo */
  enum ast_format_type type;
- /\*! Number of samples carried \*/
+ /*! Number of samples carrie */
  unsigned int samples;
- /\*! \brief Minimum length of media that can be carried (in milliseconds) \*/
+ /*! \brief Minimum length of media that can be carried (in milliseconds */
  unsigned int minimum_ms;
- /\*! \brief Maximum length of media that can be carried (in milliseconds) \*/
+ /*! \brief Maximum length of media that can be carried (in milliseconds */
  unsigned int maximum_ms;
- /\*! \brief The number of milliseconds the length can be incremented by \*/
+ /*! \brief The number of milliseconds the length can be incremented b */
  unsigned int increment_ms;
- /\*! Default length of media carried (in milliseconds) \*/
+ /*! Default length of media carried (in milliseconds */
  unsigned int default_ms;
- /\*! Whether the media can be smoothed or not \*/
+ /*! Whether the media can be smoothed or no */
  unsigned int smooth;
- /\*! Callback function for getting the number of samples in a frame \*/
+ /*! Callback function for getting the number of samples in a fram */
  int (\*get_samples)(struct ast_frame \*frame);
- /\*! Callback function for getting the length of media based on number of samples \*/
+ /*! Callback function for getting the length of media based on number of sample */
  int (\*get_length)(int samples);
 };
 

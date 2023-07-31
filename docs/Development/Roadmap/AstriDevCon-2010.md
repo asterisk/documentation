@@ -11,10 +11,10 @@ pageid: 6979978
 
 AstriDevCon 2010 was held on Friday, October 29th. It was held on the day following AstriCon at the same location. A group of active development community members met and discussed a number of topics, including:
 
-\* Asterisk SCF Ideas
-\* Asterisk 10 Ideas
-\* Asterisk Test Framework Ideas
-\* Asterisk Release Policy
+* Asterisk SCF Ideas
+* Asterisk 10 Ideas
+* Asterisk Test Framework Ideas
+* Asterisk Release Policy
 
 # Asterisk SCF Ideas
 
@@ -35,34 +35,34 @@ We spent probably half of the day discussing Asterisk 10. We came up with a list
 
 P0 are committed projects that are going to get done.
 
-\* -[AST:T.38 Gateway]- (Digium)
-\* -Performance of State Change Processing (Stefan Schmidt)-
-\*\* -(work is already being done on this front)-
-\* SIP path support (Olle)
-\*\* (first generation of code exists, needs more work, simple patch, going to get it done, needs an extra field in astdb; helps when there are 2 or more load balancing proxies in front of asterisk, when you'd like the call to be able to get back to Asterisk; see https://reviewboard.asterisk.org/r/991/)
-\*\* [https://github.com/asterisk/asterisk/issues/view.php?id=18223](https://github.com/asterisk/asterisk/issues/view.php?id=18223)
-\* Group variables (Kobaz)
-\*\* (on review board, in progress)
-\* Pre-Dial (Kobaz)
-\*\* (practically done, or something)
-\* Distributed extension state using SIP (Olle)
-\*\* (resources in place, doing it, 1.4 done before Christmas, project pinana)
-\* Manager event docs (Paul Belanger)
-\* Cross-platform documentation (Ben Klang) 
-\*\* (caveats for using Asterisk on operating system xyz; pull a PDF of the Wiki documentation into the source, don't forget to include basic installation information, and do it all in .txt - Ben)
-\* Fix libs to optionally init OpenSSL (Digium)
-\*\* (or use existing tools; sort of a bug)
-\* Make ast_channel an opaque type (Digium)
+* -[AST:T.38 Gateway]- (Digium)
+* -Performance of State Change Processing (Stefan Schmidt)-
+    * -(work is already being done on this front)-
+* SIP path support (Olle)
+    * (first generation of code exists, needs more work, simple patch, going to get it done, needs an extra field in astdb; helps when there are 2 or more load balancing proxies in front of asterisk, when you'd like the call to be able to get back to Asterisk; see https://reviewboard.asterisk.org/r/991/)
+    * [https://github.com/asterisk/asterisk/issues/view.php?id=18223](https://github.com/asterisk/asterisk/issues/view.php?id=18223)
+* Group variables (Kobaz)
+    * (on review board, in progress)
+* Pre-Dial (Kobaz)
+    * (practically done, or something)
+* Distributed extension state using SIP (Olle)
+    * (resources in place, doing it, 1.4 done before Christmas, project pinana)
+* Manager event docs (Paul Belanger)
+* Cross-platform documentation (Ben Klang) 
+    * (caveats for using Asterisk on operating system xyz; pull a PDF of the Wiki documentation into the source, don't forget to include basic installation information, and do it all in .txt - Ben)
+* Fix libs to optionally init OpenSSL (Digium)
+    * (or use existing tools; sort of a bug)
+* Make ast_channel an opaque type (Digium)
 
 ## (P1)
 
 P1 is the highest priority.
 
-\* -[Codecs (SILK, OPUS), Media Negotiation|AST:Media Overhaul]- (Digium)
-\* RTCP (Olle)
-\*\* Pinefrog; Work to be done - Ported to trunk, added to CEL
-\* -Conferencing that supports a new magic media- (Digium)
-\*\* -higher sampling rates-
+* -[Codecs (SILK, OPUS), Media Negotiation|AST:Media Overhaul]- (Digium)
+* RTCP (Olle)
+    * Pinefrog; Work to be done - Ported to trunk, added to CEL
+* -Conferencing that supports a new magic media- (Digium)
+    * -higher sampling rates-
 
 
 ## (P2)
@@ -77,46 +77,46 @@ P1 is the highest priority.
 
 ## (P3)
 
-\* Who hung up? (there's a branch, shouldn't take too much time - Olle)
-\* Unique identifier for filtering log data to a call 
-\*\* (finishing what was already begun w/ Clod's project, CLI filtering; should take a look at what Stephan from Unlimitel.ca's created)
+* Who hung up? (there's a branch, shouldn't take too much time - Olle)
+* Unique identifier for filtering log data to a call 
+    * (finishing what was already begun w/ Clod's project, CLI filtering; should take a look at what Stephan from Unlimitel.ca's created)
 
 
 ## (P4, Simon's features)
 
-\* Multiple SIP Sockets 
-\*\* (Listen on multiple ports or on multiple interfaces, but not all; also set binding for RTP)...alternate idea / solution would be to make Asterisk capable of loading multiple SIP profiles, it might be easier
-\* Multiple DNS results 
-\*\* (need to be able to traverse a list of DNS results, rather than just getting back one result)
-\* ICE-lite 
-\*\* (no code, responding correctly to ICE connectivity checks (STUN multiplexed on the RTP port) and understanding the SDP); it makes NAT traversal work for clients that do ICE; also addressed lightweight NAT refresh)
+* Multiple SIP Sockets 
+    * (Listen on multiple ports or on multiple interfaces, but not all; also set binding for RTP)...alternate idea / solution would be to make Asterisk capable of loading multiple SIP profiles, it might be easier
+* Multiple DNS results 
+    * (need to be able to traverse a list of DNS results, rather than just getting back one result)
+* ICE-lite 
+    * (no code, responding correctly to ICE connectivity checks (STUN multiplexed on the RTP port) and understanding the SDP); it makes NAT traversal work for clients that do ICE; also addressed lightweight NAT refresh)
 
 ## (P5)
 
-\* -AstDB replacement- SQLite
-\*\* (realtime, there's code, nearly ready)
-\* SIP identity 
-\*\* (on reviewboard; needs to be forward ported; important for organizations w/ federated identities; a requirement for DTLS SRTP; not widely deployed)
-\* RTMP client channel driver
+* -AstDB replacement- SQLite
+    * (realtime, there's code, nearly ready)
+* SIP identity 
+    * (on reviewboard; needs to be forward ported; important for organizations w/ federated identities; a requirement for DTLS SRTP; not widely deployed)
+* RTMP client channel driver
 
 
 ## (P6)
 
-\* Structured identifiers for errors 
-\*\* (tag an error message with a unique string, specific to the error message and where it came from; should be alphanumeric to keep them short)
-\* AMI SetVar, Context limits 
-\*\* (there's code already...Olle has it)
-\* AMI filters on demand
-\* DTLS SRTP
-\*\* (not likely to be widely deployed in the next 12 months)
+* Structured identifiers for errors 
+    * (tag an error message with a unique string, specific to the error message and where it came from; should be alphanumeric to keep them short)
+* AMI SetVar, Context limits 
+    * (there's code already...Olle has it)
+* AMI filters on demand
+* DTLS SRTP
+    * (not likely to be widely deployed in the next 12 months)
 
 
 ## (P7, not kobaz)
 
-\* Asterisk register for XMPP account (Leif)
-\* Write a Specification for AMI (not kobaz)
-\* Multiple TLS server certs
-\*\* (1 socket, requires support by OpenSSL; simpler to implement than multiple SIP profiles; don't know if any clients use it yet; needs more research)
+* Asterisk register for XMPP account (Leif)
+* Write a Specification for AMI (not kobaz)
+* Multiple TLS server certs
+    * (1 socket, requires support by OpenSSL; simpler to implement than multiple SIP profiles; don't know if any clients use it yet; needs more research)
 
 ## (P8, nice to have)
 
@@ -127,19 +127,19 @@ P1 is the highest priority.
 
 ## (P?, Research Required)
 
-\* New app_queue (as if? no, seriously? talking about this scares Russell)
-\* Identify and fix all bugs in AMI
-\* Broadsoft or Dialog Info shared line appearance (SLA) support
-\*\* (Tabled for later discussion)
-\* LDAP from within the dialplan 
-\*\* (we may already have it, needs research to see if the realtime driver does what's desired - Leif)
-\* Device state normalization
-\* Anything DB over HTTP(s) with failover handling
-\* Use a channel as a MoH Source
-\* Kill Masquerades
-\* Bridging thread pool
-\* Threadify chan_sip
-\* Export ISDN ROSE information up to Asterisk channels
+* New app_queue (as if? no, seriously? talking about this scares Russell)
+* Identify and fix all bugs in AMI
+* Broadsoft or Dialog Info shared line appearance (SLA) support
+    * (Tabled for later discussion)
+* LDAP from within the dialplan 
+    * (we may already have it, needs research to see if the realtime driver does what's desired - Leif)
+* Device state normalization
+* Anything DB over HTTP(s) with failover handling
+* Use a channel as a MoH Source
+* Kill Masquerades
+* Bridging thread pool
+* Threadify chan_sip
+* Export ISDN ROSE information up to Asterisk channels
 
 
 

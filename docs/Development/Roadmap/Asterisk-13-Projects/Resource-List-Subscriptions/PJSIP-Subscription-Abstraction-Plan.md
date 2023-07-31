@@ -62,17 +62,17 @@ With the division between real and virtual subscriptions, it makes no sense for 
 }; 
  
 struct ast_sip_subscription {
- /\*! Name of the subscribed resource \*/
+ /*! Name of the subscribed resourc */
  const char \*resource;
- /\*! Indicator if subscription is real or virtual \*/
+ /*! Indicator if subscription is real or virtua */
  enum sip_subscription_type type;
  union {
- /\*! Real subscriptions point to a PJSIP subscription \*/
+ /*! Real subscriptions point to a PJSIP subscriptio */
  pjsip_evsub \*evsub;
- /\*! Virtual subscriptions point to a parent Asterisk subscription \*/
+ /*! Virtual subscriptions point to a parent Asterisk subscriptio */
  struct ast_sip_subscription \*parent;
  };
- /\*! List of child subscriptions \*/
+ /*! List of child subscription */
  AST_LIST_HEAD(,ast_sip_subscription) children;
 }; 
 
@@ -122,28 +122,28 @@ In order to satisfy previously-required functionality, new calls will be added t
 
 ```
 
-/\*! Notify a SIP subscription of a state change.
- \* This will create a SIP NOTIFY request, send the notify_data to
- \* a body generator, and then send the NOTIFY request out.
- \*/
+/*! Notify a SIP subscription of a state change.
+ * This will create a SIP NOTIFY request, send the notify_data to
+ * a body generator, and then send the NOTIFY request out.
+ */
 int ast_sip_subscription_notify(struct ast_sip_subscription \*sub, void \*notify_data);
  
-/\*! Reject an incoming SIP SUBSCRIBE request.
- \* This will send the specified response to the SUBSCRIBE. If a
- \* NULL reason is specified, then default reason text will be used.
- \*/
+/*! Reject an incoming SIP SUBSCRIBE request.
+ * This will send the specified response to the SUBSCRIBE. If a
+ * NULL reason is specified, then default reason text will be used.
+ */
 void ast_sip_subscription_reject(struct ast_sip_subscription \*sub, int response, const char \*reason);
  
-/\*! Accept an incoming SIP SUBSCRIBE request with a 200 OK. \*/
+/*! Accept an incoming SIP SUBSCRIBE request with a 200 OK */
 void ast_sip_subscription_accept(struct ast_sip_subscription \*sub);
  
-/\*! Retrieve the local URI for this subscription \*/
+/*! Retrieve the local URI for this subscriptio */
 void ast_sip_subscription_get_local_uri(struct ast_sip_subscription \*sub, char \*buf, size_t size);
  
-/\*! Retrive the remote URI for this subscription \*/
+/*! Retrive the remote URI for this subscriptio */
 void ast_sip_subscription_get_remote_uri(struct ast_sip_subscription \*sub, char \*buf, size_t size);
  
-/\*! Terminate an active SIP subscription. \*/
+/*! Terminate an active SIP subscription */
 void ast_sip_subscription_terminate(struct ast_sip_subscripiton \*sub);
  
 
@@ -197,24 +197,24 @@ All of these currently contain a `pjsip_rx_data` structure as a parameter. A not
 ```
 
 enum ast_sip_subscription_notify_reason {
- /\*! Initial NOTIFY for subscription \*/
+ /*! Initial NOTIFY for subscriptio */
  AST_SIP_SUBSCRIPTION_NOTIFY_REASON_STARTED,
- /\*! Subscription has been renewed \*/
+ /*! Subscription has been renewe */
  AST_SIP_SUBSCRIPTION_NOTIFY_REASON_RENEWED,
- /\*! Subscription is being terminated \*/
+ /*! Subscription is being terminate */
  AST_SIP_SUBSCRIPTION_NOTIFY_REASON_TERMINATED,
- /\*! Other unspecified reason \*/
+ /*! Other unspecified reaso */
  AST_SIP_SUBSCRIPTION_NOTIFY_REASON_OTHER
 };
  
 struct ast_sip_subscription_notifier {
- /\*! Return the response code for the incoming SUBSCRIBE request \*/
+ /*! Return the response code for the incoming SUBSCRIBE reques */
  int (\*new_subscribe)(struct ast_sip_endpoint \*endpoint, const char \*resource);
- /\*! Subscription is in need of a NOTIFY \*/
+ /*! Subscription is in need of a NOTIF */
  void (notify_required)(struct ast_sip_subscription \*sub, enum ast_sip_subscription_notify_reason reason);
 };
  
-/\*! Get the name of a subscribed resource \*/
+/*! Get the name of a subscribed resourc */
 const char \*ast_sip_subscription_get_resource_name(struct ast_sip_subscription \*sub);
 
 ```
@@ -268,12 +268,12 @@ Here is the revised version:
 
 ```
 
-/\*! Create a new outbound SIP subscription to the requested resource at the requested endpoint. \*/
+/*! Create a new outbound SIP subscription to the requested resource at the requested endpoint */
 struct ast_sip_subscription \*ast_sip_create_subscription(const struct ast_sip_subscriber \*subscriber,
  struct ast_sip_endpoint \*endpoint, const char \*resource);
  
 struct ast_sip_subscriber {
- /\*! A NOTIFY has been received with the attached body. \*/
+ /*! A NOTIFY has been received with the attached body */
  void (\*state_change)(struct ast_sip_subscription \*sub, const char \*body, enum pjsip_evsub_state state);
 }
 
@@ -325,18 +325,18 @@ Here is the revised edition:
 ```
 
 enum ast_sip_publish_state {
- /\*! Publication has just been initialized \*/
+ /*! Publication has just been initialize */
  AST_SIP_PUBLISH_STATE_INITIALIZED,
- /\*! Publication is currently active \*/
+ /*! Publication is currently activ */
  AST_SIP_PUBLISH_STATE_ACTIVE,
- /\*! Publication has been terminated \*/
+ /*! Publication has been terminate */
  AST_SIP_PUBLISH_STATE_TERMINATED,
 }; 
  
 struct ast_sip_publication_handler {
- /\*! New publication has arrived. Return appropriate SIP response code \*/
+ /*! New publication has arrived. Return appropriate SIP response cod */
  int (\*new_publication)(struct ast_sip_endpoint \*endpoint, const char \*resource);
- /\*! Published resource has changed states. Use the state parameter to determine if publication is terminated. \*/
+ /*! Published resource has changed states. Use the state parameter to determine if publication is terminated */
  int (\*publication_state_change)(struct ast_sip_publication \*pub, const char \*body, enum ast_sip_publish_state state);
 };
  

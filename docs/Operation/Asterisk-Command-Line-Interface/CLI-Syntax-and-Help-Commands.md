@@ -157,15 +157,15 @@ A very useful addition to Asterisk's help and documentation features is the comm
 \*CLI> help config show help
 Usage: config show help [<module> [<type> [<option>]]]
  Display detailed information about module configuration.
- \* If nothing is specified, the modules that have
+ * If nothing is specified, the modules that have
  configuration information are listed.
- \* If <module> is specified, the configuration types
+ * If <module> is specified, the configuration types
  for that module will be listed, along with brief
  information about that type.
- \* If <module> and <type> are specified, detailed
+ * If <module> and <type> are specified, detailed
  information about the type is displayed, as well
  as the available options.
- \* If <module>, <type>, and <option> are specified,
+ * If <module>, <type>, and <option> are specified,
  detailed information will be displayed about that
  option.
  NOTE: the help documentation is partially generated at run

@@ -191,7 +191,7 @@ AMI Event documentation behaves a bit differently then other Asterisk documentat
 ```
 
 
- /\*\*\* DOCUMENTATION
+ /*\*\* DOCUMENTATION
  <managerEventInstance>
  <synopsis>Raised when a dial action has ended.</synopsis>
  <syntax>
@@ -200,7 +200,7 @@ AMI Event documentation behaves a bit differently then other Asterisk documentat
  </parameter>
  </syntax>
  </managerEventInstance>
- \*\*\*/
+    * */
  ast_manager_event(src, EVENT_FLAG_CALL, "Dial",
  "SubEvent: End\r\n"
  "Channel: %s\r\n"
@@ -223,7 +223,7 @@ AMI Event documentation behaves a bit differently then other Asterisk documentat
 ```
 
 
- /\*\*\* DOCUMENTATION
+ /*\*\* DOCUMENTATION
  <managerEventInstance>
  <synopsis>Raised when a dial action has started.</synopsis>
  <syntax>
@@ -236,9 +236,9 @@ AMI Event documentation behaves a bit differently then other Asterisk documentat
  </parameter>
  </syntax>
  </managerEventInstance>
- \*\*\*/
+    * */
 ...
- /\*\*\* DOCUMENTATION
+ /*\*\* DOCUMENTATION
  <managerEventInstance>
  <synopsis>Raised when a dial action has ended.</synopsis>
  <syntax>
@@ -247,7 +247,7 @@ AMI Event documentation behaves a bit differently then other Asterisk documentat
  </parameter>
  </syntax>
  </managerEventInstance>
- \*\*\*/
+    * */
 
 
 ```
@@ -265,7 +265,7 @@ AMI Event documentation behaves a bit differently then other Asterisk documentat
 ```
 
 
- /\*\*\* DOCUMENTATION
+ /*\*\* DOCUMENTATION
  <managerEventInstance>
  <synopsis>Raised when a dial action has ended.</synopsis>
  <syntax>
@@ -274,18 +274,18 @@ AMI Event documentation behaves a bit differently then other Asterisk documentat
  </parameter>
  </syntax>
  </managerEventInstance>
- \*\*\*/
+    * */
 
 Is equivalent to:
 
- /\*\*\* DOCUMENTATION
+ /*\*\* DOCUMENTATION
  <managerEventInstance>
  <synopsis>Raised when a dial action has ended.</synopsis>
  <parameter name="DialStatus">
  <para>The value of the <variable>DIALSTATUS</variable> channel variable.</para>
  </parameter>
  </managerEventInstance>
- \*\*\*/
+    * */
 
 
 ```
@@ -392,9 +392,9 @@ Source Comments
 ```
 
 
-/\*\*\* DOCUMENTATION
+/*\*\* DOCUMENTATION
 ....
-\*\*\*/
+    * */
 
 
 ```

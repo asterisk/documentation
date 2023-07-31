@@ -83,7 +83,7 @@ client.run(apps=sys.argv[1])
 
 
 ```javascript title="vm-record.js" linenums="1"
-jstrue/\*jshint node:true\*/
+jstrue/*jshint node:true */
 'use strict';
  
 var ari = require('ari-client');

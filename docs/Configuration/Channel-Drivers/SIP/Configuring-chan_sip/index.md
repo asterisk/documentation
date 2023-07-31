@@ -43,7 +43,7 @@ There is documentation that resides in the **sip.conf.sample** file included wit
 
 \* Please be advised that limited support will be available on the mailing list, IRC, and bug tracker for issues with chan_sip
 
-\* Further development and bug fixes for chan_sip are not likely
+* Further development and bug fixes for chan_sip are not likely
 
  
 

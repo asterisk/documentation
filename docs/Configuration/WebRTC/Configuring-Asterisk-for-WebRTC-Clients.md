@@ -116,7 +116,7 @@ Asterisk Configuration
 Configure Asterisk's built-in HTTP server
 -----------------------------------------
 
-To communicate with WebSocket clients, Asterisk uses its built-in HTTP server. Configure `**/etc/asterisk/http.conf**` as follows:
+To communicate with WebSocket clients, Asterisk uses its built-in HTTP server. Configure ` */etc/asterisk/http.conf**` as follows:
 
 
 

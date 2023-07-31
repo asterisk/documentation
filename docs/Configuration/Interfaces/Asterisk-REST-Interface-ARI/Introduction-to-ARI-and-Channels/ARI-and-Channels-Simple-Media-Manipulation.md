@@ -308,7 +308,7 @@ The full source code for `channel-tones.js` is shown below:
 
 
 ```javascript title="channel-tones.js" linenums="1"
-truejs/\*jshint node: true\*/
+truejs/*jshint node: true */
 'use strict';
 
 var ari = require('ari-client');
@@ -635,7 +635,7 @@ The full source code for `channel-playback-monkeys.js` is shown below:
 
 ```
 
-truejs/\*jshint node: true\*/
+truejs/*jshint node: true */
 'use strict';
 
 var ari = require('ari-client');

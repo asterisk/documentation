@@ -297,7 +297,7 @@ The most common way to run Asterisk in a production environment is as a service.
 
 ```bash title=" " linenums="1"
 # service asterisk start
- \* Starting Asterisk PBX: asterisk [ OK ] 
+ * Starting Asterisk PBX: asterisk [ OK ] 
 
 ```
 * And stopped:
@@ -307,7 +307,7 @@ The most common way to run Asterisk in a production environment is as a service.
 
 ```bash title=" " linenums="1"
 # service asterisk stop
- \* Stopping Asterisk PBX: asterisk [ OK ] 
+ * Stopping Asterisk PBX: asterisk [ OK ] 
 
 ```
 * And restarted:
@@ -317,8 +317,8 @@ The most common way to run Asterisk in a production environment is as a service.
 
 ```bash title=" " linenums="1"
 # service asterisk restart
- \* Stopping Asterisk PBX: asterisk [ OK ] 
- \* Starting Asterisk PBX: asterisk [ OK ]
+ * Stopping Asterisk PBX: asterisk [ OK ] 
+ * Starting Asterisk PBX: asterisk [ OK ]
 
 ```
 

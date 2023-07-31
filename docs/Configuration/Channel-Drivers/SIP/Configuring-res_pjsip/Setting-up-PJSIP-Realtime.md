@@ -174,7 +174,7 @@ mysql> quit
 Configuring ODBC
 ----------------
 
-Now that we have our MySQL database created and populated, we'll need to setup ODBC and Asterisk's ODBC resource to access the database.  First, we'll tell ODBC how to connect to MySQL.  To do this, we'll edit the **/etc/odbcinst.ini** configuration file.  Your file should look something like:
+Now that we have our MySQL database created and populated, we'll need to setup ODBC and Asterisk's ODBC resource to access the database.  First, we'll tell ODBC how to connect to MySQL.  To do this, we'll edit the  */etc/odbcinst.ini** configuration file.  Your file should look something like:
 
 
 
@@ -196,7 +196,7 @@ UsageCount = 2
 ```
 
 
-Next, we'll tell ODBC **which** MySQL database to use.  To do this, we'll edit the **/etc/odbc.ini** configuration file and create a database handle called **asterisk**.  Your file should look something like:
+Next, we'll tell ODBC **which** MySQL database to use.  To do this, we'll edit the  */etc/odbc.ini** configuration file and create a database handle called **asterisk**.  Your file should look something like:
 
 
 
@@ -224,7 +224,7 @@ Socket = /var/run/mysqld/mysqld.sock
 
 Take care to use your database access UserName and Password, and not necessarily what's defined in this example.
 
-Now, we need to configure Asterisk's ODBC resource, res_odbc, to connect to the ODBC **asterisk** database handle that we just created.  res_odbc is configured using the **/etc/asterisk/res_odbc.conf** configuration file.  There, you'll want:
+Now, we need to configure Asterisk's ODBC resource, res_odbc, to connect to the ODBC **asterisk** database handle that we just created.  res_odbc is configured using the  */etc/asterisk/res_odbc.conf** configuration file.  There, you'll want:
 
 
 
@@ -285,7 +285,7 @@ PJSIP bases its configuration on types of objects.  For more information about 
 
 We'll also configure the contact object, though we don't need it for this example.
 
-Sorcery is configured using the **/etc/asterisk/sorcery.conf** configuration file.  So, we need to add the following lines to the file:
+Sorcery is configured using the  */etc/asterisk/sorcery.conf** configuration file.  So, we need to add the following lines to the file:
 
 
 
@@ -360,7 +360,7 @@ You can swap the order to control which data source is read first.
 Realtime Configuration
 ----------------------
 
-Since we've associated the PJSIP objects with database connector types, we now need to tell Asterisk to use a database backend with the object types, and not just the flat pjsip.conf file.  To do this, we modify the **/etc/asterisk/extconfig.conf** configuration file to provide these connections.
+Since we've associated the PJSIP objects with database connector types, we now need to tell Asterisk to use a database backend with the object types, and not just the flat pjsip.conf file.  To do this, we modify the  */etc/asterisk/extconfig.conf** configuration file to provide these connections.
 
 Open extconfig.conf (/etc/asterisk/extconfig.conf) and add the following lines to the 'settings' configuration section
 
@@ -417,7 +417,7 @@ Asterisk Startup Configuration
 
 Now, we need to configure Asterisk to load its ODBC driver at an early stage of startup, so that it's available when any other modules might need to take advantage of it.  Also, we're going to prevent the old chan_sip channel driver from loading, since we're only worried about PJSIP.
 
-To do this, edit the **/etc/asterisk/modules.conf** configuration file.  In the **[modules]** section, add the following lines:
+To do this, edit the  */etc/asterisk/modules.conf** configuration file.  In the **[modules]** section, add the following lines:
 
 
 
@@ -440,7 +440,7 @@ noload => chan_sip.so 
 Asterisk PJSIP configuration
 ----------------------------
 
-Next, we need to configure a transport in **/etc/asterisk/pjsip.conf**.  PJSIP transport object types are not stored in realtime as unexpected results can occur.  So, edit it and add the following lines:
+Next, we need to configure a transport in  */etc/asterisk/pjsip.conf**.  PJSIP transport object types are not stored in realtime as unexpected results can occur.  So, edit it and add the following lines:
 
 
 
@@ -509,7 +509,7 @@ Endpoints:
 A Little Dialplan
 -----------------
 
-Now that we have our PJSIP endpoints stored in our MySQL database, let's add a little dialplan so that they can call each other.  To do this, edit Asterisk's **/etc/asterisk/extensions.conf** file and add the following lines to the end:
+Now that we have our PJSIP endpoints stored in our MySQL database, let's add a little dialplan so that they can call each other.  To do this, edit Asterisk's  */etc/asterisk/extensions.conf** file and add the following lines to the end:
 
 
 

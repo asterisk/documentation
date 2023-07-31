@@ -20,48 +20,52 @@ Asterisk uses [Gerrit|https://www.gerritcodereview.com/] to manage code submissi
 
 ## General Rules
 
-\* Indent code using tabs, not spaces.
+* Indent code using tabs, not spaces.
 
-\* All code, filenames, function names and comments must be in ENGLISH.
+* All code, filenames, function names and comments must be in ENGLISH.
 
-\* Don't annotate your changes with comments like "/\\* JMG 4/20/04 \\*/"; Comments should explain what the code does, not when something was changed or who changed it. If you have done a larger contribution, make sure that you are added to the CREDITS file.
+* Don't annotate your changes with comments like "/\\* JMG 4/20/04 \ */"; Comments should explain what the code does, not when something was changed or who changed it. If you have done a larger contribution, make sure that you are added to the CREDITS file.
 
-\* Don't make unnecessary whitespace changes throughout the code if that is not the goal of the task at hand.
-\*\* If you do want to make whitespace and formatting changes, submit them to the tracker as separate patches that only include whitespace and formatting changes.
+* Don't make unnecessary whitespace changes throughout the code if that is not the goal of the task at hand.
+    * If you do want to make whitespace and formatting changes, submit them to the tracker as separate patches that only include whitespace and formatting changes.
 
-\* Don't use C+\+ type (//) comments.
+* Don't use C+\+ type (//) comments.
 
-\* Try to match the existing formatting of the file you are working on.
+* Try to match the existing formatting of the file you are working on.
 
-\* Use spaces instead of tabs when aligning in-line comments or #defines (this makes your comments aligned even if the code is viewed with another tabsize)
+* Use spaces instead of tabs when aligning in-line comments or #defines (this makes your comments aligned even if the code is viewed with another tabsize)
 
 
 ## File structure and header inclusion
 
 Every C source file should start with a proper copyright and a brief description of the content of the file. Following that, you should immediately put the following lines:
 
-{code:C}
+
+```
+
 #include "asterisk.h"
-{code}
+
+```
+
 
 "asterisk.h" resolves OS and compiler dependencies for the basic set of unix functions (data types, system calls, basic I/O libraries) and the basic Asterisk APIs.
 
 Next, you should #include extra headers according to the functionality that your file uses or implements. For each group of functions that you use there is a common header, which covers OS header dependencies and defines the 'external' API of those functions (the equivalent of 'public' members of a class). As an example:
 
-\* asterisk/module.h
-\*\* if you are implementing a module, this should be included in one of the files that are linked with the module.
+* asterisk/module.h
+    * if you are implementing a module, this should be included in one of the files that are linked with the module.
 
-\* asterisk/io.h
-\*\* access to extra file I/O functions (stat, fstat, playing with directories etc)
+* asterisk/io.h
+    * access to extra file I/O functions (stat, fstat, playing with directories etc)
 
-\* asterisk/network.h
-\*\* basic network I/O - all of the socket library, select/poll, and asterisk-specific (usually either thread-safe or reentrant or both) functions to play with socket addresses.
+* asterisk/network.h
+    * basic network I/O - all of the socket library, select/poll, and asterisk-specific (usually either thread-safe or reentrant or both) functions to play with socket addresses.
 
-\* asterisk/app.h
-\*\* parsing of application arguments
+* asterisk/app.h
+    * parsing of application arguments
 
-\* asterisk/channel.h
-\*\* struct ast_channel and functions to manipulate it
+* asterisk/channel.h
+    * struct ast_channel and functions to manipulate it
 
 For more information look at the headers in include/asterisk/. These files are usually self-sufficient, i.e. they recursively #include all the extra headers they need.
 
@@ -71,27 +75,31 @@ Keep the number of header files small by not including them unnecessarily. Don't
 
 ## Declaration of functions and variables
 
-\* Do not declare variables mid-block (e.g. like recent GNU compilers support) since it is harder to read and not portable to GCC 2.95 and others.
+* Do not declare variables mid-block (e.g. like recent GNU compilers support) since it is harder to read and not portable to GCC 2.95 and others.
 
-\* Functions and variables that are not intended to be used outside the module must be declared static. If you are compiling on a Linux platform that has the 'dwarves' package available, you can use the 'pglobal' tool from that package to check for unintended global variables or functions being exposed in your object files. Usage is very simple:
+* Functions and variables that are not intended to be used outside the module must be declared static. If you are compiling on a Linux platform that has the 'dwarves' package available, you can use the 'pglobal' tool from that package to check for unintended global variables or functions being exposed in your object files. Usage is very simple:
 
 ```
 $ pglobal \-vf <path to .o file>
 ```
 
-\* When reading integer numeric input with scanf (or variants), do _NOT_ use '%i' unless you specifically want to allow non-base-10 input; '%d' is always a better choice, since it will not silently turn numbers with leading zeros into base-8.
+* When reading integer numeric input with scanf (or variants), do _NOT_ use '%i' unless you specifically want to allow non-base-10 input; '%d' is always a better choice, since it will not silently turn numbers with leading zeros into base-8.
 
-\* Strings that are coming from input should not be used as the format argument to any printf-style function.
+* Strings that are coming from input should not be used as the format argument to any printf-style function.
 
 ## Structure alignment and padding
 
 On many platforms, structure fields (in structures that are not marked 'packed') will be laid out by the compiler with gaps (padding) between them, in order to satisfy alignment requirements. As a simple example:
-{code:C}
+
+```
+
 struct foo {
  int bar;
  void \*xyz;
 }
-{code}
+
+```
+
 
 On nearly every 64-bit platform, this will result in 4 bytes of dead space between 'bar' and 'xyz', because pointers on 64-bit platforms must be aligned on 8-byte boundaries. Once you have your code written and tested, it may be worthwhile to review your structure definitions to look for problems of this nature. If you are on a Linux platform with the 'dwarves' package available, the 'pahole' tool from that package can be used to both check for padding issues of this type and also propose reorganized structure definitions to eliminate it. Usage is quite simple; for a structure named 'foo', the command would look something like this:
 
@@ -150,24 +158,36 @@ Function calls and arguments should be spaced in a consistent way across the cod
 Don't treat keywords (if, while, do, return) as if they were functions; leave space between the keyword and the expression used (if any). For 'return', don't even put parentheses around the expression, since they are not required.
 
 There is no shortage of whitespace characters :-) Use them when they make the code easier to read. For example:
-{code:C}
+
+```
+
  for (str=foo;str;str=str->next)
-{code}
+
+```
+
 is harder to read than
-{code:C}
+
+```
+
  for (str = foo; str; str = str->next)
-{code}
+
+```
+
 Following are examples of how code should be formatted.
 
-h3. Functions:
-{code:C}
+### Functions:
+
+```
+
 int foo(int a, char \*s)
 {
  return 0;
 }
-{code}
 
-h3. If statements:
+```
+
+
+### If statements:
 {newcode:C}
 if (foo) {
  bar();
@@ -176,8 +196,10 @@ if (foo) {
 }
 {newcode}
 
-h3. Case statements:
-{code:C}
+### Case statements:
+
+```
+
 switch (foo) {
 case BAR:
  blah();
@@ -186,19 +208,27 @@ case OTHER:
  other();
  break;
 }
-{code}
 
-h3. No nested statements without braces
+```
 
-{code:C}
+
+### No nested statements without braces
+
+
+```
+
 for (x = 0; x < 5; x++)
  if (foo)
  if (bar)
  baz();
-{code}
+
+```
+
 
 Instead, do:
-{code:C}
+
+```
+
 for (x = 0; x < 5; x++) {
  if (foo) {
  if (bar) {
@@ -206,28 +236,38 @@ for (x = 0; x < 5; x++) {
  }
  }
 }
-{code}
+
+```
+
 
 Always use braces around the statements following an if/for/while construct, even if not strictly necessary, as it reduces future possible problems.
 
 Don't build code like this:
-{code:C}
+
+```
+
 if (foo) {
- /\* .... 50 lines of code ... \*/
+ /* .... 50 lines of code .. */
 } else {
  result = 0;
  return;
 }
-{code}
+
+```
+
 Instead, try to minimize the number of lines of code that need to be indented, by only indenting the shortest case of the 'if' statement, like so:
-{code:C}
+
+```
+
 if (!foo) {
  result = 0;
  return;
 }
 
 .... 50 lines of code ....
-{code}
+
+```
+
 
 When this technique is used properly, it makes functions much easier to read and follow, especially those with more than one or two 'setup' operations that must succeed for the rest of the function to be able to execute.
 
@@ -253,14 +293,14 @@ Functions with a variable amount of arguments need a 'sentinel' when called. New
 
 ## Variable naming
 
-h3. Global variables
+### Global variables
 
 Name global variables (or local variables when you have a lot of them or are in a long function) something that will make sense to aliens who
 find your code in 100 years. All variable names should be in lower case, except when following external APIs or specifications that normally
 use upper\- or mixed-case variable names; in that situation, it is preferable to follow the external API/specification for ease of understanding.
 
 Make some indication in the name of global variables which represent options that they are in fact intended to be global.
-e.g.: {{static char global_something{}}}{{\[80\]}}
+e.g.: `static char global_something{`}`\[80\]`
 
 ## Don't use unnecessary typedef's
 
@@ -272,7 +312,9 @@ In fact, don't use 'variable type' suffixes at all; it's much preferable to just
 ## Use enums instead of #define where possible
 
 Use enums rather than long lists of #define-d numeric constants when possible; this allows structure members, local variables and function arguments to be declared as using the enum's type. For example:
-{code:C}
+
+```
+
 enum option {
  OPT_FOO = 1,
  OPT_BAR = 2,
@@ -285,7 +327,9 @@ static handle_option(const enum option opt)
 {
  ...
 }
-{code}
+
+```
+
 
 Note: The compiler will _not_ force you to pass an entry from the enum as an argument to this function; this recommendation serves only to make
 the code clearer and somewhat self-documenting. In addition, when using switch/case blocks that switch on enum values, the compiler will warn you if you forget to handle one or more of the enum values, which can be handy.
@@ -309,14 +353,20 @@ When converting from strings to integers or floats, use the sscanf function in p
 For the sake of uclibc, do not use index, bcopy or bzero; use strchr(), memset(), and memmove() instead. uclibc can be configured to supply these functions, but we can save these users time and consternation if we abstain from using these functions.
 
 When making applications, always ast_strdupa(data) to a local pointer if you intend to parse the incoming data string.
-{code:C}
+
+```
+
  if (data) {
  mydata = ast_strdupa(data);
  }
-{code}
+
+```
+
 
 Use the argument parsing macros to declare arguments and parse them, i.e.:
-{code:C}
+
+```
+
  AST_DECLARE_APP_ARGS(args,
  AST_APP_ARG(arg1);
  AST_APP_ARG(arg2);
@@ -324,18 +374,20 @@ Use the argument parsing macros to declare arguments and parse them, i.e.:
  );
  parse = ast_strdupa(data);
  AST_STANDARD_APP_ARGS(args, parse);
-{code}
+
+```
+
 
 Make sure you are not duplicating any functionality already found in an API call somewhere. If you are duplicating functionality found in
 another static function, consider the value of creating a new API call which can be shared.
 
 ## Handling of pointers and allocations
 
-h3. Use const on pointer arguments if possible
+### Use const on pointer arguments if possible
 
 Use const on pointer arguments which your function will not be modifying, as this allows the compiler to make certain optimizations. In general, use 'const' on any argument that you have no direct intention of modifying, as it can catch logic/typing errors in your code when you use the argument variable in a way that you did not intend.
 
-h3. Do not create your own linked list code - reuse\!
+### Do not create your own linked list code - reuse\!
 
 As a common example of this point, make an effort to use the lockable linked-list macros found in include/asterisk/linkedlists.h. They are
 efficient, easy to use and provide every operation that should be necessary for managing a singly-linked list (if something is missing,
@@ -343,16 +395,20 @@ let us know\!). Just because you see other open-coded list implementations in th
 that code... There are also a number of common string manipulation and timeval manipulation functions in asterisk/strings.h and asterisk/time.h;
 use them when possible.
 
-h3. Allocations for structures
+### Allocations for structures
 
 When allocating/zeroing memory for a structure, use code like this:
-{code:C}
+
+```
+
 struct foo \*tmp;
 
 ...
 
 tmp = ast_calloc(1, sizeof(\*tmp));
-{code}
+
+```
+
 
 Avoid the combination of ast_malloc() and memset(). Instead, always use ast_calloc(). This will allocate and zero the memory in a single operation. In the case that uninitialized memory is acceptable, there should be a comment in the code that states why this is the case.
 
@@ -360,21 +416,29 @@ Using sizeof(\*tmp) instead of sizeof(struct foo) eliminates duplication of the 
 
 The ast_\\* family of functions for memory allocation are functionally the same. They just add an Asterisk log error message in the case that the allocation fails for some reason. This eliminates the need to generate custom messages throughout the code to log that this has occurred.
 
-h3. String Duplications
+### String Duplications
 
 The functions strdup and strndup can \*not\* accept a NULL argument. This results in having code like this:
-{code:C}
+
+```
+
  if (str) {
  newstr = strdup(str);
  } else {
  newstr = NULL;
  }
-{code}
+
+```
+
 However, the ast_strdup and ast_strdupa functions will happily accept a NULL
 argument without generating an error. The same code can be written as:
-{code:C}
+
+```
+
  newstr = ast_strdup(str);
-{code}
+
+```
+
 Furthermore, it is unnecessary to have code that malloc/calloc's for the length of a string (+1 for the terminating '\0') and then using strncpy to copy the copy the string into the resulting buffer. This is the exact same thing as using ast_strdup.
 
 ## CLI Commands
@@ -402,25 +466,29 @@ Functions are registered using 'struct ast_custom_function' structures and the a
 
 When writing Asterisk API documentation the following format should be followed. Do not use the javadoc style.
 
-{code:C}
-/\*!
- \* \brief Do interesting stuff.
- \*
- \* \param thing1 interesting parameter 1.
- \* \param thing2 interesting parameter 2.
- \*
- \* This function does some interesting stuff.
- \*
- \* \retval zero on success
- \* \retval -1 on error.
- \*/
+
+```
+
+/*!
+ * \brief Do interesting stuff.
+ *
+ * \param thing1 interesting parameter 1.
+ * \param thing2 interesting parameter 2.
+ *
+ * This function does some interesting stuff.
+ *
+ * \retval zero on success
+ * \retval -1 on error.
+ */
 int ast_interesting_stuff(int thing1, int thing2)
 {
  return 0;
 }
-{code}
 
-Notice the use of the \param, \brief, and \return constructs. These should be used to describe the corresponding pieces of the function being documented. Also notice the blank line after the last \param directive. All doxygen comments must be in one /\*\! \\*/ block. If the function or struct does not need an extended description it can be left out.
+```
+
+
+Notice the use of the \param, \brief, and \return constructs. These should be used to describe the corresponding pieces of the function being documented. Also notice the blank line after the last \param directive. All doxygen comments must be in one /*\! \ */ block. If the function or struct does not need an extended description it can be left out.
 
 Please make sure to review the doxygen manual and make liberal use of the \a, \code, \c, \b, \note, \li and \e modifiers as appropriate.
 
@@ -429,19 +497,23 @@ When documenting a 'static' function or an internal structure in a module, use t
 When adding new API you should also attach a \since note because this will indicate to developers that this API did not exist before this version. It also has the benefit of making the resulting HTML documentation to group the changes for a single version.
 
 Structures should be documented as follows.
-{code:C}
-/\*!
- \* \brief A very interesting structure.
- \*/
+
+```
+
+/*!
+ * \brief A very interesting structure.
+ */
 struct interesting_struct
 {
- /\*! \brief A data member. \*/
+ /*! \brief A data member */
  int member1;
 
- int member2; /\*!< \brief Another data member. \*/
+ int member2; /*!< \brief Another data member */
 }
-{code}
-Note that /\\*\! \\*/ blocks document the construct immediately following them unless they are written, /\\*\!< \\*/, in which case they document the construct preceding them.
+
+```
+
+Note that /\\*\! \ */ blocks document the construct immediately following them unless they are written, /\\*\!< \ */, in which case they document the construct preceding them.
 
 It is very much preferred that documentation is not done inline, as done in the previous example for member2. The first reason for this is that it tends to encourage extremely brief, and often pointless, documentation since people try to keep the comment from making the line extremely long. However, if you insist on using inline comments, please indent the documentation with spaces\! That way, all of the comments are properly aligned, regardless of what tab size is being used for viewing the code.
 

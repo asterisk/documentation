@@ -118,13 +118,13 @@ ASTERISK_FILE_VERSION(__FILE__, "$Revision: XXXXXX $")
 #include "asterisk/config.h"
 #include "asterisk/config_options.h"
 
-/\*! \brief An integer value, ranging from -32 to 32 \*/
+/*! \brief An integer value, ranging from -32 to 3 */
 static int global_foo;
 
-/\*! \brief Some string value \*/
+/*! \brief Some string valu */
 static char global_bar[64];
 
-/\*! \brief A boolean value \*/
+/*! \brief A boolean valu */
 static int global_foobar;
 
 #define DEFAULT_FOOBAR 1
@@ -133,20 +133,20 @@ static int global_foobar;
 
 #define MAX_FOO 32
 
-/\*! \internal \brief Log the current module values \*/
+/*! \internal \brief Log the current module value */
 static void log_module_values(void)
 {
- /\* Assume that something will call this function \*/
+ /* Assume that something will call this functio */
  ast_verb(0, "Module values: foo=%d; bar=%s; foobar=%d\n,
  global_foo,
  global_bar,
  global_foobar);
 }
 
-/\*! \internal \brief reload handler
- \* \retval AST_MODULE_LOAD_SUCCESS on success
- \* \retval AST_MODULE_LOAD_DECLINE on failure
- \*/
+/*! \internal \brief reload handler
+ * \retval AST_MODULE_LOAD_SUCCESS on success
+ * \retval AST_MODULE_LOAD_DECLINE on failure
+ */
 static int reload_module(void)
 {
  if (load_configuration(1)) {
@@ -155,10 +155,10 @@ static int reload_module(void)
  return AST_MODULE_LOAD_SUCCESS;
 }
 
-/\*! \internal \brief load handler
- \* \retval AST_MODULE_LOAD_SUCCESS on success
- \* \retval AST_MODULE_LOAD_DECLINE on failure
- \*/
+/*! \internal \brief load handler
+ * \retval AST_MODULE_LOAD_SUCCESS on success
+ * \retval AST_MODULE_LOAD_DECLINE on failure
+ */
 static int load_module(void)
 {
  if (load_configuration(0)) {
@@ -167,10 +167,10 @@ static int load_module(void)
  return AST_MODULE_LOAD_SUCCESS;
 }
 
-/\*! \internal \brief unload handler \*/
+/*! \internal \brief unload handle */
 static int unload_module(void)
 {
- /\* If there was memory to reclaim, we'd do it here \*/
+ /* If there was memory to reclaim, we'd do it her */
  return 0;
 }
 
@@ -209,12 +209,12 @@ So, let's see what `load_configuration` might look like.
 ```
 
 Cmy_module - load_configuration
-/\*!
- \* \internal \brief Load the configuration information
- \* \param reload If non-zero, this is a reload operation; otherwise, it is an initial module load
- \* \retval 0 on success
- \* \retval non-zero on error
- \*/
+/*!
+ * \internal \brief Load the configuration information
+ * \param reload If non-zero, this is a reload operation; otherwise, it is an initial module load
+ * \retval 0 on success
+ * \retval non-zero on error
+ */
 static int load_configuration(int reload)
 {
  struct ast_config \*cfg;
@@ -234,16 +234,16 @@ static int load_configuration(int reload)
  return 0;
  }
 
- /\* Set the default values \*/
+ /* Set the default value */
  global_foobar = DEFAULT_FOOBAR;
 
- /\* We could theoretically use ast_variable_retrieve, but since
+ /* We could theoretically use ast_variable_retrieve, but since
  that can traverse all of the variables in a category on each call,
  its often better to just traverse the variables in a context
- in a single pass. \*/
+ in a single pass */
  while ((cat = ast_category_browse(cfg, cat))) {
 
- /\* Our config file only has a general section for now \*/
+ /* Our config file only has a general section for no */
  if (strcasecmp(cat, "general")) {
  continue;
  }
@@ -386,13 +386,13 @@ We could, of course, put some locking in to help. What would that look like?
 ```
 
 Cmy_module with Locking
-/\*! \brief An integer value, ranging from -32 to 32 \*/
+/*! \brief An integer value, ranging from -32 to 3 */
 static int global_foo;
 
-/\*! \brief Some string value \*/
+/*! \brief Some string valu */
 static char global_bar[64];
 
-/\*! \brief A boolean value \*/
+/*! \brief A boolean valu */
 static int global_foobar;
 
 AST_MUTEX_DEFINE_STATIC(config_lock);
@@ -403,10 +403,10 @@ AST_MUTEX_DEFINE_STATIC(config_lock);
 
 #define MAX_FOO 32
 
-/\*! \internal \brief Log the current module values \*/
+/*! \internal \brief Log the current module value */
 static void log_module_values(void)
 {
- /\* Assume that something will call this function \*/
+ /* Assume that something will call this functio */
  ast_mutex_lock(&config_lock);
  ast_verb(0, "Module values: foo=%d; bar=%s; foobar=%d\n,
  global_foo,
@@ -415,12 +415,12 @@ static void log_module_values(void)
  ast_mutex_unlock(&config_lock);
 }
 
-/\*!
- \* \internal \brief Load the configuration information
- \* \param reload If non-zero, this is a reload operation; otherwise, it is an initial module load
- \* \retval 0 on success
- \* \retval non-zero on error
- \*/
+/*!
+ * \internal \brief Load the configuration information
+ * \param reload If non-zero, this is a reload operation; otherwise, it is an initial module load
+ * \retval 0 on success
+ * \retval non-zero on error
+ */
 static int load_configuration(int reload)
 {
  struct ast_config \*cfg;
@@ -440,19 +440,19 @@ static int load_configuration(int reload)
  return 0;
  }
 
- /\* \*\*\* LOCK ADDED \*\*\* \*/
+ /* \*\*\* LOCK ADDED \*\*\ */
  ast_config_lock(&config_lock);
 
- /\* Set the default values \*/
+ /* Set the default value */
  global_foobar = DEFAULT_FOOBAR;
 
- /\* We could theoretically use ast_variable_retrieve, but since
+ /* We could theoretically use ast_variable_retrieve, but since
  that can traverse all of the variables in a category on each call,
  its often better to just traverse the variables in a context
- in a single pass. \*/
+ in a single pass */
  while ((cat = ast_category_browse(cfg, cat))) {
 
- /\* Our config file only has a general section for now \*/
+ /* Our config file only has a general section for no */
  if (strcasecmp(cat, "general")) {
  continue;
  }
@@ -485,13 +485,13 @@ static int load_configuration(int reload)
  }
 
 cleanup:
- /\* \*\*\* UNLOCK ADDED \*\*\* \*/
+ /* \*\*\* UNLOCK ADDED \*\*\ */
  ast_config_unlock(&config_lock);
  ast_config_destroy(cfg);
  return res;
 }
 
-/\* ... module callback handlers ... \*/
+/* ... module callback handlers .. */
 
 
 ```
@@ -546,28 +546,28 @@ Cmy_module's In-Memory Configuration Object
 
 #define MAX_FOO 32
 
-/\*! \brief The global options available for this module
- \* \note This replaces the individual static variables that were previously present
- \*/
+/*! \brief The global options available for this module
+ * \note This replaces the individual static variables that were previously present
+ */
 struct global_options {
- int foo; /\*< Some integer value between -32 and 32 \*/
- char bar[64]; /\*< Some string value \*/
- int foobar; /\*< Some boolean value \*/
+ int foo; /*< Some integer value between -32 and 3 */
+ char bar[64]; /*< Some string valu */
+ int foobar; /*< Some boolean valu */
 };
 
-/\*! \brief All configuration objects for this module
- \* \note If we had more than just a single set of global options, we would have
- \* other items in this struct
- \*/
+/*! \brief All configuration objects for this module
+ * \note If we had more than just a single set of global options, we would have
+ * other items in this struct
+ */
 struct module_config {
- struct global_options \*general; /\*< Our global settings \*/
+ struct global_options \*general; /*< Our global setting */
 }
 
-/\*! \brief A container that holds our global module configuration \*/
+/*! \brief A container that holds our global module configuratio */
 static AO2_GLOBAL_OBJ_STATIC(module_configs);
 
-/\*! \brief A mapping of the module_config struct's general settings to the context
- \* in the configuration file that will populate its values \*/
+/*! \brief A mapping of the module_config struct's general settings to the context
+ * in the configuration file that will populate its value */
 static struct aco_type general_option {
  .name = "general",
  .type = ACO_GLOBAL,
@@ -613,7 +613,7 @@ Cmodule_config Constructor/Destructor
 static void \*module_config_alloc(void);
 static void module_config_destructor(void \*obj);
 
-/\*! \internal \brief Create a module_config object \*/
+/*! \internal \brief Create a module_config objec */
 static void \*module_config_alloc(void)
 {
  struct module_config \*cfg;
@@ -629,7 +629,7 @@ static void \*module_config_alloc(void)
  return cfg;
 }
 
-/\*! \internal \brief Dispose of a module_config object \*/
+/*! \internal \brief Dispose of a module_config objec */
 static void module_config_destructor(void \*obj)
 {
  struct module_config \*cfg = obj;
@@ -657,10 +657,10 @@ Now, we can associate our general configuration mapping object `general_option` 
 ```
 
 CTying the Mapping Object to a Config File
-/\*! \brief A configuration file that will be processed for the module \*/
+/*! \brief A configuration file that will be processed for the modul */
 static struct aco_file module_conf = {
- .filename = "my_module.conf", /\*!< The name of the config file \*/
- .types = ACO_TYPES(&general_option), /\*!< The mapping object types to be processed \*/
+ .filename = "my_module.conf", /*!< The name of the config fil */
+ .types = ACO_TYPES(&general_option), /*!< The mapping object types to be processe */
 };
 
 CONFIG_INFO_STANDARD(cfg_info, module_configs, module_config_alloc,
@@ -701,41 +701,41 @@ Rather than have a separate function that provides the application logic with th
 ```
 
 CLoading my_module Using the Configuration Framework
-/\*! \internal \brief load handler
- \* \retval AST_MODULE_LOAD_SUCCESS on success
- \* \retval AST_MODULE_LOAD_DECLINE on failure
- \*/
+/*! \internal \brief load handler
+ * \retval AST_MODULE_LOAD_SUCCESS on success
+ * \retval AST_MODULE_LOAD_DECLINE on failure
+ */
 static int load_module(void)
 {
  if (aco_info_init(&cfg_info)) {
  goto load_error;
  }
 
- aco_option_register(&cfg_info, "foo", /\* Extract configuration item "foo" \*/
- ACO_EXACT, /\* Match the exact configuration item name \*/
- general_options, /\* Use the general_options array to find the object to populate \*/
- NULL, /\* Don't supply a default value \*/
- OPT_INT_T, /\* Interpret the value as an integer \*/
- PARSE_IN_RANGE, /\* Accept values in a range \*/
- FLDSET(struct global_options, foo), /\* Store the value in member foo of a global_options struct \*/
- MIN_FOO, /\* Use MIN_FOO as the minimum value of the allowed range \*/
- MAX_FOO); /\* Use MAX_FOO as the maximum value of the allowed range \*/
+ aco_option_register(&cfg_info, "foo", /* Extract configuration item "foo */
+ ACO_EXACT, /* Match the exact configuration item nam */
+ general_options, /* Use the general_options array to find the object to populat */
+ NULL, /* Don't supply a default valu */
+ OPT_INT_T, /* Interpret the value as an intege */
+ PARSE_IN_RANGE, /* Accept values in a rang */
+ FLDSET(struct global_options, foo), /* Store the value in member foo of a global_options struc */
+ MIN_FOO, /* Use MIN_FOO as the minimum value of the allowed rang */
+ MAX_FOO); /* Use MAX_FOO as the maximum value of the allowed rang */
 
- aco_option_register(&cfg_info, "bar", /\* Extract configuration item "bar" \*/
- ACO_EXACT, /\* Match the exact configuration item name \*/
- general_options, /\* Use the general_options array to find the object to populate \*/
- NULL, /\* Don't supply a default value \*/
- OPT_CHAR_ARRAY_T, /\* Interpret the value as a character array \*/
- 0, /\* No interpretation flags are needed \*/
- CHARFLDSET(struct global_options, bar)); /\* Store the value in member bar of a global_options struct \*/
+ aco_option_register(&cfg_info, "bar", /* Extract configuration item "bar */
+ ACO_EXACT, /* Match the exact configuration item nam */
+ general_options, /* Use the general_options array to find the object to populat */
+ NULL, /* Don't supply a default valu */
+ OPT_CHAR_ARRAY_T, /* Interpret the value as a character arra */
+ 0, /* No interpretation flags are neede */
+ CHARFLDSET(struct global_options, bar)); /* Store the value in member bar of a global_options struc */
 
- aco_option_register(&cfg_info, "foobar", /\* Extract configuration item "foobar" \*/
- ACO_EXACT, /\* Match the exact configuration item name \*/
- general_options, /\* Use the general_options array to find the object to populate \*/
- DEFAULT_FOOBAR, /\* Supply default value DEFAULT_FOOBAR \*/
- OPT_BOOL_T, /\* Interpret the value as a boolean \*/
- 1, /\* Use ast_true to set the value of foobar \*/
- FLDSET(struct global_options, foobar)); /\* Store the value in member foobar of a global_options struct \*/
+ aco_option_register(&cfg_info, "foobar", /* Extract configuration item "foobar */
+ ACO_EXACT, /* Match the exact configuration item nam */
+ general_options, /* Use the general_options array to find the object to populat */
+ DEFAULT_FOOBAR, /* Supply default value DEFAULT_FOOBA */
+ OPT_BOOL_T, /* Interpret the value as a boolea */
+ 1, /* Use ast_true to set the value of fooba */
+ FLDSET(struct global_options, foobar)); /* Store the value in member foobar of a global_options struc */
 
  if (aco_process_config(&cfg_info, 0)) {
  goto load_error;
@@ -769,7 +769,7 @@ Now how would we use our in-memory object? And what about reloads?
 ```
 
 CReloads and Using the Configuration Information
-/\*! \internal \brief Log the current module values \*/
+/*! \internal \brief Log the current module value */
 static void log_module_values(void)
 {
  RAII_VAR(struct module_config \*, cfg, ao2_global_obj_ref(module_configs), ao2_cleanup);
@@ -779,17 +779,17 @@ static void log_module_values(void)
  return;
  }
 
- /\* Assume that something will call this function \*/
+ /* Assume that something will call this functio */
  ast_verb(0, "Module values: foo=%d; bar=%s; foobar=%d\n,
  cfg->general->foo,
  cfg->general->bar,
  cfg->general->foobar);
  }
 
-/\*! \internal \brief reload handler
- \* \retval AST_MODULE_LOAD_SUCCESS on success
- \* \retval AST_MODULE_LOAD_DECLINE on failure
- \*/
+/*! \internal \brief reload handler
+ * \retval AST_MODULE_LOAD_SUCCESS on success
+ * \retval AST_MODULE_LOAD_DECLINE on failure
+ */
 static int reload_module(void)
 {
  if (aco_process_config(&cfg_info, 1)) {
@@ -846,28 +846,28 @@ ASTERISK_FILE_VERSION(__FILE__, "$Revision: XXXXXX $")
 
 #define MAX_FOO 32
 
-/\*! \brief The global options available for this module
- \* \note This replaces the individual static variables that were previously present
- \*/
+/*! \brief The global options available for this module
+ * \note This replaces the individual static variables that were previously present
+ */
 struct global_options {
- int foo; /\*< Some integer value between -32 and 32 \*/
- char bar[64]; /\*< Some string value \*/
- int foobar; /\*< Some boolean value \*/
+ int foo; /*< Some integer value between -32 and 3 */
+ char bar[64]; /*< Some string valu */
+ int foobar; /*< Some boolean valu */
 };
 
-/\*! \brief All configuration objects for this module
- \* \note If we had more than just a single set of global options, we would have
- \* other items in this struct
- \*/
+/*! \brief All configuration objects for this module
+ * \note If we had more than just a single set of global options, we would have
+ * other items in this struct
+ */
 struct module_config {
- struct global_options \*general; /\*< Our global settings \*/
+ struct global_options \*general; /*< Our global setting */
 };
 
-/\*! \brief A container that holds our global module configuration \*/
+/*! \brief A container that holds our global module configuratio */
 static AO2_GLOBAL_OBJ_STATIC(module_configs);
 
-/\*! \brief A mapping of the module_config struct's general settings to the context
- \* in the configuration file that will populate its values \*/
+/*! \brief A mapping of the module_config struct's general settings to the context
+ * in the configuration file that will populate its value */
 static struct aco_type general_option = {
  .name = "general",
  .type = ACO_GLOBAL,
@@ -879,10 +879,10 @@ static struct aco_type general_option = {
 static void \*module_config_alloc(void);
 static void module_config_destructor(void \*obj);
 
-/\*! \brief A configuration file that will be processed for the module \*/
+/*! \brief A configuration file that will be processed for the modul */
 static struct aco_file module_conf = {
- .filename = "my_module.conf", /\*!< The name of the config file \*/
- .types = ACO_TYPES(&general_option), /\*!< The mapping object types to be processed \*/
+ .filename = "my_module.conf", /*!< The name of the config fil */
+ .types = ACO_TYPES(&general_option), /*!< The mapping object types to be processe */
 };
 
 CONFIG_INFO_STANDARD(cfg_info, module_configs, module_config_alloc,
@@ -891,7 +891,7 @@ CONFIG_INFO_STANDARD(cfg_info, module_configs, module_config_alloc,
 
 static struct aco_type \*general_options[] = ACO_TYPES(&general_option);
 
-/\*! \internal \brief Create a module_config object \*/
+/*! \internal \brief Create a module_config objec */
 static void \*module_config_alloc(void)
 {
  struct module_config \*cfg;
@@ -907,14 +907,14 @@ static void \*module_config_alloc(void)
  return cfg;
 }
 
-/\*! \internal \brief Dispose of a module_config object \*/
+/*! \internal \brief Dispose of a module_config objec */
 static void module_config_destructor(void \*obj)
 {
  struct module_config \*cfg = obj;
  ao2_cleanup(cfg->general);
 }
 
-/\*! \internal \brief Log the current module values \*/
+/*! \internal \brief Log the current module value */
 static void log_module_values(void)
 {
  RAII_VAR(struct module_config \*, cfg, ao2_global_obj_ref(module_configs), ao2_cleanup);
@@ -924,48 +924,48 @@ static void log_module_values(void)
  return;
  }
 
- /\* Assume that something will call this function \*/
+ /* Assume that something will call this functio */
  ast_verb(0, "Module values: foo=%d; bar=%s; foobar=%d\n",
  cfg->general->foo,
  cfg->general->bar,
  cfg->general->foobar);
  }
 
-/\*! \internal \brief load handler
- \* \retval AST_MODULE_LOAD_SUCCESS on success
- \* \retval AST_MODULE_LOAD_DECLINE on failure
- \*/
+/*! \internal \brief load handler
+ * \retval AST_MODULE_LOAD_SUCCESS on success
+ * \retval AST_MODULE_LOAD_DECLINE on failure
+ */
 static int load_module(void)
 {
  if (aco_info_init(&cfg_info)) {
  goto load_error;
  }
 
- aco_option_register(&cfg_info, "foo", /\* Extract configuration item "foo" \*/
- ACO_EXACT, /\* Match the exact configuration item name \*/
- general_options, /\* Use the general_options array to find the object to populate \*/
- NULL, /\* Don't supply a default value \*/
- OPT_INT_T, /\* Interpret the value as an integer \*/
- PARSE_IN_RANGE, /\* Accept values in a range \*/
- FLDSET(struct global_options, foo), /\* Store the value in member foo of a global_options struct \*/
- MIN_FOO, /\* Use MIN_FOO as the minimum value of the allowed range \*/
- MAX_FOO); /\* Use MAX_FOO as the maximum value of the allowed range \*/
+ aco_option_register(&cfg_info, "foo", /* Extract configuration item "foo */
+ ACO_EXACT, /* Match the exact configuration item nam */
+ general_options, /* Use the general_options array to find the object to populat */
+ NULL, /* Don't supply a default valu */
+ OPT_INT_T, /* Interpret the value as an intege */
+ PARSE_IN_RANGE, /* Accept values in a rang */
+ FLDSET(struct global_options, foo), /* Store the value in member foo of a global_options struc */
+ MIN_FOO, /* Use MIN_FOO as the minimum value of the allowed rang */
+ MAX_FOO); /* Use MAX_FOO as the maximum value of the allowed rang */
 
- aco_option_register(&cfg_info, "bar", /\* Extract configuration item "bar" \*/
- ACO_EXACT, /\* Match the exact configuration item name \*/
- general_options, /\* Use the general_options array to find the object to populate \*/
- NULL, /\* Don't supply a default value \*/
- OPT_CHAR_ARRAY_T, /\* Interpret the value as a character array \*/
- 0, /\* No interpretation flags are needed \*/
- CHARFLDSET(struct global_options, bar)); /\* Store the value in member bar of a global_options struct \*/
+ aco_option_register(&cfg_info, "bar", /* Extract configuration item "bar */
+ ACO_EXACT, /* Match the exact configuration item nam */
+ general_options, /* Use the general_options array to find the object to populat */
+ NULL, /* Don't supply a default valu */
+ OPT_CHAR_ARRAY_T, /* Interpret the value as a character arra */
+ 0, /* No interpretation flags are neede */
+ CHARFLDSET(struct global_options, bar)); /* Store the value in member bar of a global_options struc */
 
- aco_option_register(&cfg_info, "foobar", /\* Extract configuration item "foobar" \*/
- ACO_EXACT, /\* Match the exact configuration item name \*/
- general_options, /\* Use the general_options array to find the object to populate \*/
- DEFAULT_FOOBAR, /\* Supply default value DEFAULT_FOOBAR \*/
- OPT_BOOL_T, /\* Interpret the value as a boolean \*/
- 1, /\* Use ast_true to set the value of foobar \*/
- FLDSET(struct global_options, foobar)); /\* Store the value in member foobar of a global_options struct \*/
+ aco_option_register(&cfg_info, "foobar", /* Extract configuration item "foobar */
+ ACO_EXACT, /* Match the exact configuration item nam */
+ general_options, /* Use the general_options array to find the object to populat */
+ DEFAULT_FOOBAR, /* Supply default value DEFAULT_FOOBA */
+ OPT_BOOL_T, /* Interpret the value as a boolea */
+ 1, /* Use ast_true to set the value of fooba */
+ FLDSET(struct global_options, foobar)); /* Store the value in member foobar of a global_options struc */
 
  if (aco_process_config(&cfg_info, 0)) {
  goto load_error;
@@ -978,10 +978,10 @@ load_error:
  return AST_MODULE_LOAD_DECLINE;
 }
 
-/\*! \internal \brief reload handler
- \* \retval AST_MODULE_LOAD_SUCCESS on success
- \* \retval AST_MODULE_LOAD_DECLINE on failure
- \*/
+/*! \internal \brief reload handler
+ * \retval AST_MODULE_LOAD_SUCCESS on success
+ * \retval AST_MODULE_LOAD_DECLINE on failure
+ */
 
 static int reload_module(void)
 {
@@ -992,7 +992,7 @@ static int reload_module(void)
  return 0;
 }
 
-/\*! \internal \brief unload handler \*/
+/*! \internal \brief unload handle */
 static int unload_module(void)
 {
  aco_info_destroy(&cfg_info);

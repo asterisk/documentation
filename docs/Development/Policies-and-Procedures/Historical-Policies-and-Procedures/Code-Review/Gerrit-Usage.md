@@ -402,7 +402,7 @@ remote: New Changes:
 remote: http://gerrit.asterisk.org/r/9999 new review 
 remote: 
 To ssh://gerrit.asterisk.org:29418/asterisk
- \* [new branch] HEAD -> refs/publish/13/9999
+ * [new branch] HEAD -> refs/publish/13/9999
 
 
 

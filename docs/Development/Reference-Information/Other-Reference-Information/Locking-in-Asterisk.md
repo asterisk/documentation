@@ -136,7 +136,7 @@ An alternative, but still incorrect, construct is widely used in the asterisk co
 
 while (trylock(ast_channel) == FAILURE) {
  unlock(pvt);
- usleep(1); /\* yield to other threads \*/
+ usleep(1); /* yield to other thread */
  lock(pvt);
 }
 
@@ -302,13 +302,13 @@ But as you have seen, exploiting the features of recursive locks make it a lot h
 ```
 
 c
-foo_locked(/\* ... \*/) {
- /\* ... do something, assume lock held \*/
+foo_locked(/* .. */) {
+ /* ... do something, assume lock hel */
 }
 
-foo(/\* ... \*/) {
+foo(/* .. */) {
  lock(xyz);
- ret = foo_locked(/\* ... \*/)
+ ret = foo_locked(/* .. */)
  unlock(xyz);
  return ret;
 }

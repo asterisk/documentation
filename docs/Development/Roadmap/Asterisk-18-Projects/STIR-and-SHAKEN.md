@@ -161,23 +161,23 @@ The APIs provided by the module will expose a structure to provide payload infor
 ```
 
 struct ast_stir_shaken_payload {
- /\* This is actually a JWT (JSON Web Token) so this may need to change, but for this page it'll do \*/
+ /* This is actually a JWT (JSON Web Token) so this may need to change, but for this page it'll d */
 
- /\*! The JWT header \*/
+ /*! The JWT heade */
  struct ast_json \*header;
- /\*! The JWT payload \*/
+ /*! The JWT payloa */
  struct ast_json \*payload;
- /\*! Signature for the payload \*/
+ /*! Signature for the payloa */
  char \*signature;
- /\*! The algorithm used \*/
+ /*! The algorithm use */
  char \*algorithm;
- /\*! The URL to the public key for the certificate \*/
+ /*! The URL to the public key for the certificat */
  char \*public_key_url;
 };
 
-/\*!
- \* \brief Free a STIR/SHAKEN payload
- \*/
+/*!
+ * \brief Free a STIR/SHAKEN payload
+ */
 void ast_stir_shaken_payload_free(struct ast_stir_shaken_payload \*payload);
 
 ```
@@ -200,11 +200,11 @@ The module will expose a single API call that can be used to sign a payload.
 
 ```
 
-/\*!
- \* \brief Sign a JSON STIR/SHAKEN payload
- \*
- \* \note This function will automatically add the "attest", "iat", and "origid" fields.
- \*/
+/*!
+ * \brief Sign a JSON STIR/SHAKEN payload
+ *
+ * \note This function will automatically add the "attest", "iat", and "origid" fields.
+ */
 struct ast_stir_shaken_payload \*ast_stir_shaken_sign(struct ast_json \*json);
 
 ```
@@ -234,9 +234,9 @@ The module will expose a single API call that can be used to verify a payload.
 
 ```
 
-/\*!
- \* \brief Verify a JSON STIR/SHAKEN payload
- \*/
+/*!
+ * \brief Verify a JSON STIR/SHAKEN payload
+ */
 struct ast_stir_shaken_payload \*ast_stir_shaken_verify(const char \*header, const char \*payload, const char \*signature, const char \*algorithm, const char \*public_key_url);
 
 ```
@@ -266,19 +266,19 @@ A dialplan function will be made available to examine STIR/SHAKEN verification a
 
 ```
 
-/\*!
- \* \brief STIR/SHAKEN verification results
- \*/
+/*!
+ * \brief STIR/SHAKEN verification results
+ */
 enum ast_stir_shaken_verification_result {
- AST_STIR_SHAKEN_VERIFY_NOT_PRESENT, /\*! No STIR/SHAKEN information was available \*/
- AST_STIR_SHAKEN_VERIFY_SIGNATURE_FAILED, /\*! Signature verification failed \*/
- AST_STIR_SHAKEN_VERIFY_MISMATCH, /\*!< Contents of the signaling and the STIR/SHAKEN payload did not match \*/
- AST_STIR_SHAKEN_VERIFY_PASSED, /\*! Signature verified and contents match signaling \*/
+ AST_STIR_SHAKEN_VERIFY_NOT_PRESENT, /*! No STIR/SHAKEN information was availabl */
+ AST_STIR_SHAKEN_VERIFY_SIGNATURE_FAILED, /*! Signature verification faile */
+ AST_STIR_SHAKEN_VERIFY_MISMATCH, /*!< Contents of the signaling and the STIR/SHAKEN payload did not matc */
+ AST_STIR_SHAKEN_VERIFY_PASSED, /*! Signature verified and contents match signalin */
 };
 
-/\*!
- \* \brief Add a STIR/SHAKEN verification result to a channel
- \*/
+/*!
+ * \brief Add a STIR/SHAKEN verification result to a channel
+ */
 int ast_stir_shaken_add_verification(struct ast_channel \*chan, const char \*identity, const char \*attestation, enum ast_stir_shaken_verification_result result);
 
 ```

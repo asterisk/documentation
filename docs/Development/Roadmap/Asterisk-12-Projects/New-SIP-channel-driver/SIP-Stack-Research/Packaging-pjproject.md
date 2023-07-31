@@ -19,43 +19,43 @@ Recognizing the importance to Asterisk and the Asterisk community, Digium is end
 ## What is Going to Be Done
 
 It is reasonable that initial packaging efforts focus on a select number of targets that will:
-\* be representative of typical packaging efforts
-\* be relevant to existing activities of the developers doing the work, in this case Digium.
+* be representative of typical packaging efforts
+* be relevant to existing activities of the developers doing the work, in this case Digium.
 
 With this in consideration, the current effort will focus on runtime and developer RPMs for CentOS and a source archive with a build system that supports creating shared libraries for the relevant \*pjproject\* libraries and installation targets for runtime and developer installs. The runtime RPM and install targets include the shared libraries that make up the runtime functionality of the relevant \*pjproject\* libraries. The developer RPM and install targets install the header files and any additional resources required to build Asterisk. Installing the developer package or portions of \*pjproject\* are not required for _running_ Asterisk. In addition binary RPMs, a source RPM (SRPM) must also be created to support subsequent packaging efforts and updates to \*pjproject\* that may be necessary in the related time frame.
 
 Please note that the goal of the initial packaging effort is to focus only on the portions of \*pjproject\* that are relevant to Asterisk. Currently those are:
-\* PJSIP
-\* PJNATHelper
-\* PJLib
-\* PJSIPSIMPLE
-\* PJSIPUA
-\* PJLIBUtil
-\* PJMedia
+* PJSIP
+* PJNATHelper
+* PJLib
+* PJSIPSIMPLE
+* PJSIPUA
+* PJLIBUtil
+* PJMedia
 
-In addition to packaging \*pjproject\*, the Asterisk build system will be modified to build against an installed \*pjproject\* instead of a bundled copy as it is now. The {{install_prereq}} script will also be modified to download, build and install \*pjproject\* if necessary.
+In addition to packaging \*pjproject\*, the Asterisk build system will be modified to build against an installed \*pjproject\* instead of a bundled copy as it is now. The `install_prereq` script will also be modified to download, build and install \*pjproject\* if necessary.
 
-h3. pjproject Work Required
+### pjproject Work Required
 
-h4. The Current Build System
+#### The Current Build System
 
 The \*pjproject\* build system is a sort of autoconf/makefile hybrid. Compiler and linker flags, etc. are stored in files named according to their intended target system. The values required for generating the names for the files are calculated during the configure step. The makefiles then include an "options" file that is a hash of the option file type and one of the variables calculated when "configure" was run. The values may be overridden at build type by modifying one or more files specifically set aside for this purpose: e.g. user.mak, config_site.h.
 {note}Overriding "defines" and build time variables has seem rather hit-or-miss at times. Usually the issue ends up being that another value (or values) must also be modified.{note}
 The existing build system \*may\* be a suitable foundation for building for packages with certain modifications.
 
-h4. Library Types
+#### Library Types
 
 To satisfy LGPL and packaging requirements, the libraries need to be constructed as shared libraries and the executable images linked against them.
 
-h4. Target Names
+#### Target Names
 
 \*pjproject\* target names are constructed from the library name and details about the target. Whatever the motive, this naming scheme is not consistent with the typical library or executable naming schemes used on the target distributions. The naming makes it rather difficult to build against as a third party library as the naming algorithm must be replicated in the client build system. Installation target names typically do not include system details and also have version numbers and with major version and unversioned symbolic links to the current shared library version.
 
-h4. Third Party Libraries
+#### Third Party Libraries
 
 \*pjproject\* contains some third party contributions for codec's etc.. There may be licensing concerns if these contributions are required by Asterisk or the \*pjproject\* packages. This may mean "unbundling" third party libraries and creating packages for the ones that are required by Asterisk if they do not exist.
 
-h4. Build Hygiene
+#### Build Hygiene
 
 The pjproject build tends to be rather full of warnings, etc. Package maintainers may prefer to see this cleaned up. It certainly would not hurt. If the current build system is to be used as a foundation, then build issues need to be resolved such as bugs in dependency generation or build system corruption when builds are interrupted.
 

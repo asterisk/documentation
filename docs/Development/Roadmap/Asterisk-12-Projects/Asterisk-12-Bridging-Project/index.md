@@ -46,10 +46,10 @@ A comment from ast_do_masquerade
 ```
 
 
-/\* XXX This operation is a bit odd. We're essentially putting the guts of
- \* the clone channel into the original channel. Start by killing off the
- \* original channel's backend. While the features are nice, which is the
- \* reason we're keeping it, it's still awesomely weird. XXX \*/
+/* XXX This operation is a bit odd. We're essentially putting the guts of
+ * the clone channel into the original channel. Start by killing off the
+ * original channel's backend. While the features are nice, which is the
+ * reason we're keeping it, it's still awesomely weird. XX */
 
 
 ```

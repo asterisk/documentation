@@ -27,7 +27,7 @@ This page contains janitor (small, cleanup) projects for Asterisk that are waiti
 * There is a convenient set of macros defined in include/asterisk/linkedlists.h for handling linked lists. However, there are some open-coded lists throughout the code. Converting linked lists to use these macros will make list handling more consistent and reduce the possibility of coding errors.
 
 
-* Clean up and add [Doxygen Documentation](http://www.asterisk.org/doxygen/trunk/index.html). When generating the documentation with make progdocs, a lot of warnings are generated. All of these need to be fixed. There is also plenty of code that still needs to be documented. All public API functions should be documented. That is pretty much anything in include/asterisk/\*.h. <https://github.com/asterisk/asterisk/issues/jira/browse/ASTERISK-20259>
+* Clean up and add [Doxygen Documentation](http://www.asterisk.org/doxygen/trunk/index.html). When generating the documentation with make progdocs, a lot of warnings are generated. All of these need to be fixed. There is also plenty of code that still needs to be documented. All public API functions should be documented. That is pretty much anything in include/asterisk/*.h. <https://github.com/asterisk/asterisk/issues/jira/browse/ASTERISK-20259>
 
 
 * Check all ast_copy_string() usage to ensure that buffers are not being unnecessarily zeroed before or after calling it.
