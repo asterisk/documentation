@@ -10,35 +10,23 @@ Asterisk supports different QoS settings at the application level for various pr
 
 Asterisk running on Linux can also set 802.1p CoS marks in VLAN packets for the VoIP protocols it uses. This is useful when working in a switched environment. In fact Asterisk only set priority for Linux socket. For mapping this priority and VLAN CoS mark you need to use this command:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 vconfig set_egress_map [vlan-device] [skb-priority] [vlan-qos] 
 
-
 ```
-
 
 The table below shows all VoIP channel drivers and other Asterisk modules that support QoS settings for network traffic. It also shows the type(s) of traffic for which each module can support setting QoS settings:
 
 
 
-|   | Signaling | Audio | Video | Text |
+|   | Signaling | Audio | Video | Text |
 | --- | --- | --- | --- | --- |
 | chan_sip | + | + | + | + |
-| chan_skinny | + | + | + |   |
-| chan_mgcp | + | + |   |   |
-| chan_unistm | + | + |   |   |
-| chan_h323 |   | + |   |   |
-| chan_iax2 | + |   |   |   |
+| chan_skinny | + | + | + |   |
+| chan_mgcp | + | + |   |   |
+| chan_unistm | + | + |   |   |
+| chan_h323 |   | + |   |   |
+| chan_iax2 | + |   |   |   |
 | chan_pjsip | + | + | + |  |
 | DUNDI | + (tos setting) |  |  |  |
 | IAXProv | + (tos setting) |  |  |  |
@@ -91,13 +79,13 @@ The recommended values shown below are also included in sample configuration fil
 
 
 
-|   | tos | cos |
+|   | tos | cos |
 | --- | --- | --- |
 | Signaling | cs3 | 3 |
 | Audio | ef | 5 |
 | Video | af41 | 4 |
 | Text | af41 | 3 |
-| Other | ef |   |
+| Other | ef |   |
 
 ### IAX2
 
@@ -127,7 +115,7 @@ Similarly, there are there parameters that control the 802.1p CoS settings: a **
 
 
 
- 
+
 
 ### Other RTP channels
 

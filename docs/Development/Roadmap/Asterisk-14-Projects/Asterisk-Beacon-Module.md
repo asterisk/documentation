@@ -38,9 +38,6 @@ In order to prevent spamming with false data, the server should rate limit inbou
 Swagger Definition
 ------------------
 
-
-
-
 ```json title="resources.json" linenums="1"
 truejs{
  "apiVersion": "1.0.0",
@@ -54,12 +51,8 @@ truejs{
 }
 
 ```
-
-
-
-
 ```json title="beacon.json" linenums="1"
-truejs {
+truejs {
  "apiVersion": "1.0.0",
  "swaggerVersion": "1.2",
  "basePath": "https://beacon.asterisk.org:443"
@@ -323,7 +316,7 @@ truejs {
  "type": "string",
  "description": "A name for the server that is never displayed on the Asterisk Beacon server. It is provided via configuration for custom use."
  }
-  }
+  }
  },
  "ServerToken": {
  "id": "ServerToken",
@@ -350,7 +343,6 @@ truejs {
 
 ```
 
-
 Example Request/Responses
 -------------------------
 
@@ -360,17 +352,7 @@ In this example, a client requests a new server from the Asterisk Beacon. It is 
 
 Note that the Server object is used for this; however, as only the `id` field is mandatory, that is what is provided. A client **should** provide more information back - but a server implementation should be tolerant of missing optional fields.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 POST https://beacon.asterisk.org:443/servers
 
 Response: 200 OK
@@ -381,24 +363,13 @@ Response: 200 OK
 
 ```
 
-
 ### Client Server Update
 
 In this example, the client uses the previously obtained token/server ID to issue a new request.
 
 Note that the server hands back the same token as was provided. It is up to the server to generate a new token at the appropriate time.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 PUT https://beacon.asterisk.org:80/servers/bc5829cc-4584-43e5-8395-a9b1206d7e02?tokenId=ca74af9d-260c-4764-b452-e0628a9468a9
 {
  "id": "bc5829cc-4584-43e5-8395-a9b1206d7e02",
@@ -439,7 +410,6 @@ PUT https://beacon.asterisk.org:80/servers/bc5829cc-4584-43e5-8395-a9b1206d7e02?
 
 ```
 
-
 Client: res_beacon
 ===================
 
@@ -458,7 +428,7 @@ Asterisk shall have a new resource module, `res_beacon`. As a user of `cURL`, `r
 
 The module will be able to send data to both the Asterisk Beacon server (hard coded, can't change or remove without re-compiling) as well as any configurable number of other servers. Those other servers allow a user to set up their own instance of the publicly defined API and collect their own statistics themselves.
 
-The minimum value for reporting interval to beacon.asterisk.org should be 60 minutes.  Any user input values smaller than that should be rounded to 60.
+The minimum value for reporting interval to beacon.asterisk.org should be 60 minutes.  Any user input values smaller than that should be rounded to 60.
 
 Dev-Mode
 --------
@@ -470,7 +440,7 @@ When compiled under `-dev-mode`, `res_beacon` should disable sending to the Aste
 Persistence
 -----------
 
-`res_beacon` shall add a new family to the AstDB, "/beacon."  This family should contain:
+`res_beacon` shall add a new family to the AstDB, "/beacon."  This family should contain:
 
 * The Server ID
 * The current token ID
@@ -482,17 +452,7 @@ Logging Notification
 
 When logging is enabled, the CLI will display - as the last thing that is displayed before the "Asterisk Ready" prompt - a message that Asterisk is logging. This should be displayed on the CLI in suitably garish and annoying colors:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 [Dec 29 16:10:59] NOTICE[13489]: app_queue.c:8885 reload_queues: No call queueing config file (queues.conf), so no call queues
  Loading res_manager_devicestate.so.
  == Manager registered action DeviceStateList
@@ -506,7 +466,6 @@ Asterisk Ready.
 \*CLI>
 
 ```
-
 
 Configuration
 -------------
@@ -534,17 +493,7 @@ Configuration shall be provided by `res_beacon.conf`.
 
 ### Example
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 [general]
 enabled = True
 private_name = My awesome server
@@ -560,7 +509,6 @@ verify_cert = false
 
 ```
 
-
 CLI Commands
 ------------
 
@@ -568,17 +516,7 @@ CLI Commands
 
 Display the gathered information about the server. This should show what we would send in a server update request.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
  \*CLI> beacon show server
 
 Server ID: bc5829cc-4584-43e5-8395-a9b1206d7e02
@@ -604,7 +542,6 @@ Operating System:
 
 ```
 
-
 ### beacon show configuration
 
 Display our configuration data.
@@ -618,17 +555,7 @@ Note that the date/time format may be different than what is displayed below. Th
 
 Since multiple modules can be returned, the AMI response should increase the 'count' of the header.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 Action: BeaconShowServer
 ActionId: 12345
 
@@ -653,10 +580,7 @@ OperatingSystemRelease: 3.13.0-24-generic
 OperatingSystemVersion: #47-Ubuntu SMP Fri May 2 23:30:00 UTC 2014
 OperatingSystemMachine: x86_64
 
-
-
 ```
-
 
 ARI Resources (13+)
 -------------------
@@ -671,9 +595,7 @@ A large portion of the REST API can be re-used for Asterisk's ARI as well. Note 
   
 Swagger Definition  
 
-
 ```
-
 truejs{
  "apiVersion": "1.0.0",
  "swaggerVersion": "1.2",
@@ -704,5 +626,4 @@ truejs{
 ```
 
 
- 
 

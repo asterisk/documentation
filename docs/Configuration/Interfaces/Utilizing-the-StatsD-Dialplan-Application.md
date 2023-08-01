@@ -24,9 +24,9 @@ Installing StatsD on a machine will make the machine a StatsD server. A backend 
 
 After a StatsD server has been set up, all that is needed is to provide the IP address of the server and the port to *statsd.conf*. You will now have a StatsD server that can accept statistics and your dialplan application will send statistics directly to this server. If a backend is configured on the StatsD server, then the backend will automatically interact with StatsD when statistics are sent to the server.
 
-If you wish to set up your own StatsD server, then you can download StatsD from here: <https://github.com/etsy/statsd>.
+If you wish to set up your own StatsD server, then you can download StatsD from here: <https://github.com/etsy/statsd>.
 
-A list of available backends to be used is available here: <https://github.com/etsy/statsd/wiki/Backends>.
+A list of available backends to be used is available here: <https://github.com/etsy/statsd/wiki/Backends>.
 
 Requirements
 ------------
@@ -40,24 +40,14 @@ Only a few requirements are needed for working with the StatsD application.
 Configuration
 -------------
 
-To send statistics from the dialplan application to a StatsD server, the only options that you need from *statsd.conf* are *enabled* and *server*.
+To send statistics from the dialplan application to a StatsD server, the only options that you need from *statsd.conf* are *enabled* and *server*.
 
 * *enabled*- whether or not StatsD support is enabled in Asterisk. To use StatsD, this must be set to yes.
-* *server-* the address of the StatsD server. A port is not required, and if one is not provided, will be used 8125 as the default port.
+* *server-* the address of the StatsD server. A port is not required, and if one is not provided, will be used 8125 as the default port.
 
 #### statsd.conf
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 [general]
 enabled = yes ; When set to yes, statsd support is enabled
 server = 127.0.0.1 ; server[:port] of statsd server to use.
@@ -69,22 +59,11 @@ server = 127.0.0.1 ; server[:port] of statsd server to use.
 
 ```
 
-
 If you wish to add a port, such as 8126, to the server address, then you would add it at the end of the address with a colon, like so: *127.0.0.1:8126*.
 
 #### extension.conf
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 [default]
 
 exten => 100,1,NoOp()
@@ -94,7 +73,7 @@ exten => 100,1,NoOp()
  same => n,StatsD(g,confBridgeUsers,-1,1)
  same => n,Hangup()
 
- 
+
 exten => 200,1,NoOp()
  same => n,StatsD(g,confBridgeUsers,-1,1)
  same => n,Hangup()
@@ -102,17 +81,16 @@ exten => 200,1,NoOp()
 ```
 
 
- 
 
 Example
 -------
 
 The image below is an example of how calling into the dialplan provided above would send statistics to a StatsD server.
 
-* The number of members in the conference initially is at 0. When someone calls into the conference, the gauge *confBridgeUsers* is incremented by 1, and the graph below shows the count of *confBridgeUsers* to be 1.
+* The number of members in the conference initially is at 0. When someone calls into the conference, the gauge *confBridgeUsers* is incremented by 1, and the graph below shows the count of *confBridgeUsers* to be 1.
 * When another person calls in and joins the conference, the count is incremented to 2, and the graph displays that two people are in the conference.
 * When one person hangs up or is kicked from the conference, the count will decrement, showing that only one person remains in the conference.
-* When the final person hangs up, the count of *confBridgeUsers* is decremented again, and the value of *confBridgeUsers* is again 0.
+* When the final person hangs up, the count of *confBridgeUsers* is decremented again, and the value of *confBridgeUsers* is again 0.
 
 ![](image2015-11-24-13:57:15.png)
 

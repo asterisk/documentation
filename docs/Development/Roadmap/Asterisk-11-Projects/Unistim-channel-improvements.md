@@ -41,9 +41,7 @@ Using multiple line on Unistim phones was on of the most desired functions users
   
 Phone with two lines defined  
 
-
 ```
-
 
 [violet]
 device=006038abcdef
@@ -53,9 +51,7 @@ line => 100 ; Key #2 - blinks when second call comes to 100
 callerid = "Shared" <660000> ; Callerid uses old zaptel.conf like syntax
 line => 200 ; Key #3 - rings on Unistim/100@violet
 
-
 ```
-
 
 Multiple languages support
 --------------------------

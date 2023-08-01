@@ -20,10 +20,10 @@ Send arbitrary text to a selected log level, which must be one of the following:
 
 ##### Verbose([<level>,] <message>)
 
-Send arbitrary text to verbose output.  "Level" here is an optional integer value (defaults to 0) specifying the verbosity level at which to output the message. 
+Send arbitrary text to verbose output.  "Level" here is an optional integer value (defaults to 0) specifying the verbosity level at which to output the message.
 
 **Other Logging Resources**
 ---------------------------
 
-For information about extensive and detailed tracing of queued calls see the [queue logs](/Operation/Logging/Queue-Logs) page.  For instructions on how to help administrators and support givers to more quickly understand problems that occur during the course of calls see [call identifier logging](/Operation/Logging/Call-Identifier-Logging) page.  Also, if a problem is suspected see [collecting debug information](/Operation/Logging/Collecting-Debug-Information) for help on how to collect debugging logs from an Asterisk machine (this can greatly help support and bug marshals).  For details about logging security specific events see the [asterisk security event logger](/Deployment/Asterisk-Security-Framework/Asterisk-Security-Event-Logger) page.  Lastly, for advice on logging event data that can be grouped together to form a billing record see the [channel event logging (CEL)](/Configuration/Reporting/Channel-Event-Logging-CEL) page.
+For information about extensive and detailed tracing of queued calls see the [queue logs](/Operation/Logging/Queue-Logs) page.  For instructions on how to help administrators and support givers to more quickly understand problems that occur during the course of calls see [call identifier logging](/Operation/Logging/Call-Identifier-Logging) page.  Also, if a problem is suspected see [collecting debug information](/Operation/Logging/Collecting-Debug-Information) for help on how to collect debugging logs from an Asterisk machine (this can greatly help support and bug marshals).  For details about logging security specific events see the [asterisk security event logger](/Deployment/Asterisk-Security-Framework/Asterisk-Security-Event-Logger) page.  Lastly, for advice on logging event data that can be grouped together to form a billing record see the [channel event logging (CEL)](/Configuration/Reporting/Channel-Event-Logging-CEL) page.
 

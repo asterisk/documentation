@@ -22,15 +22,15 @@ The Asterisk Developer Conference call is held every other Thursday.
 
 Please note that this call staggers every other instance to accommodate participation from other time zones.
 
-Shared calendar URL:  <http://devcon.digium.com/calendar/AsteriskDevCall>
+Shared calendar URL:  <http://devcon.digium.com/calendar/AsteriskDevCall>
 
 The Asterisk Developer Conference Call can be accessed via the following methods:
 
 sip:100@devcon.asterisk.org  
 
 
-Bridge: Shared calendar URL:  <http://devcon.digium.com/calendar/AsteriskDevCall>  
- Pin Code: Shared calendar URL:  <http://devcon.digium.com/calendar/AsteriskDevCall>
+Bridge: Shared calendar URL:  <http://devcon.digium.com/calendar/AsteriskDevCall>  
+ Pin Code: Shared calendar URL:  <http://devcon.digium.com/calendar/AsteriskDevCall>
 
 Please join us on IRC at #asterisk-dev during the call for real time communication and file sharing.
 

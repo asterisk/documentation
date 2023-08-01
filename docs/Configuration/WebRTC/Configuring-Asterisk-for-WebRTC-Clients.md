@@ -32,15 +32,15 @@ You should have a working `chan_pjsip` based Asterisk installation to start with
 We recommend installing Asterisk from source because it's easy to make sure these modules are built and installed.Certificates
 ------------
 
-Technically, a client can use WebRTC over an insecure WebSocket to connect to Asterisk. In practice though, most browsers will require a TLS based WebSocket to be used. You can use self-signed certificates to set up the Asterisk TLS server but getting browsers to accept them is tricky so if you're able, we highly recommend getting trusted certificates from an organization such as [LetsEncrypt](https://letsencrypt.org).
+Technically, a client can use WebRTC over an insecure WebSocket to connect to Asterisk. In practice though, most browsers will require a TLS based WebSocket to be used. You can use self-signed certificates to set up the Asterisk TLS server but getting browsers to accept them is tricky so if you're able, we highly recommend getting trusted certificates from an organization such as [LetsEncrypt](https://letsencrypt.org).
 
 If you already have certificate files (certificate, key, CA certificate), whether self-signed or trusted, you can skip the rest of this section. If you need to generate a self-signed certificate, read on.
 
 ### Create Certificates
 
-Asterisk provides a utility script, `**ast_tls_cert**` in the `**contrib/scripts**` source directory. We will use it to make a self-signed certificate authority and a server certificate for Asterisk, signed by our new authority.
+Asterisk provides a utility script, `**ast_tls_cert**` in the `**contrib/scripts**` source directory. We will use it to make a self-signed certificate authority and a server certificate for Asterisk, signed by our new authority.
 
-From the Asterisk source directory run the following commands. You'll be prompted to set a a pass phrase for the CA key, then you'll be asked for that same pass phrase a few times. Use anything you can easily remember. The pass phrase is indicated below with "`********`".  Replace "`pbx.example.com`" with your PBX's hostname or IP address. Replace "`My Organization`" as appropriate.
+From the Asterisk source directory run the following commands. You'll be prompted to set a a pass phrase for the CA key, then you'll be asked for that same pass phrase a few times. Use anything you can easily remember. The pass phrase is indicated below with "`********`".  Replace "`pbx.example.com`" with your PBX's hostname or IP address. Replace "`My Organization`" as appropriate.
 
 
 
@@ -51,21 +51,10 @@ From the Asterisk source directory run the following commands. You'll be prompte
       
 [//]: # (end-note)
 
-
-
-
-
----
-
-  
-  
-
-
 ```
-
 text$ sudo mkdir /etc/asterisk/keys
 $ sudo contrib/scripts/ast_tls_cert -C pbx.example.com -O "My Organization" -b 2048 -d /etc/asterisk/keys
- 
+
 No config file specified, creating '/etc/asterisk/keys/tmp.cfg'
 You can use this config file to create additional certs without
 re-entering the information for the fields in the certificate
@@ -103,10 +92,7 @@ total 32
 -rw------- 1 root root 3311 Mar 4 2019 ca.key
 -rw------- 1 root root 123 Mar 4 2019 tmp.cfg
 
-
-
 ```
-
 
 We'll use the `asterisk.crt` and `asterisk.key` files later to configure the HTTP server.
 
@@ -116,7 +102,7 @@ Asterisk Configuration
 Configure Asterisk's built-in HTTP server
 -----------------------------------------
 
-To communicate with WebSocket clients, Asterisk uses its built-in HTTP server. Configure ` */etc/asterisk/http.conf**` as follows:
+To communicate with WebSocket clients, Asterisk uses its built-in HTTP server. Configure ` */etc/asterisk/http.conf**` as follows:
 
 
 
@@ -126,9 +112,7 @@ To communicate with WebSocket clients, Asterisk uses its built-in HTTP server. C
   
 /etc/asterisk/http.conf  
 
-
 ```
-
 text[general]
 enabled=yes
 bindaddr=0.0.0.0
@@ -142,7 +126,6 @@ tlsprivatekey=/etc/asterisk/keys/asterisk.key
 
 
 
-
 !!! note 
     If you have not used the generated self-signed certificates produced in the "[Create Certificates](#CreateCertificates)" section then you will need to set the "`tlscertfile`" and "`tlsprivatekey`" to the path of your own certificates if they differ.
 
@@ -151,7 +134,7 @@ tlsprivatekey=/etc/asterisk/keys/asterisk.key
 
 
 
- 
+
 
 Now start or restart Asterisk and make sure the TLS server is running by issuing the following CLI command:
 
@@ -163,9 +146,7 @@ Now start or restart Asterisk and make sure the TLS server is running by issuing
   
 Asterisk CLI  
 
-
 ```
-
 text\*CLI> http show status
 
 HTTP Server Status:
@@ -195,13 +176,12 @@ Enabled URI's:
 
 ```
 
-
 Note that the HTTPS Server is enabled and bound to `[::]:8089` and that the `/ws` URI is enabled.
 
 Configure PJSIP
 ---------------
 
- If you're not already familiar with configuring Asterisk's `chan_pjsip` driver, visit the [`res_pjsip` configuration page](/Configuration/Channel-Drivers/SIP/Configuring-res_pjsip).
+ If you're not already familiar with configuring Asterisk's `chan_pjsip` driver, visit the [`res_pjsip` configuration page](/Configuration/Channel-Drivers/SIP/Configuring-res_pjsip).
 
 ### PJSIP WSS Transport
 
@@ -215,19 +195,14 @@ Although the HTTP server does the heavy lifting for WebSockets, we still need to
   
 /etc/asterisk/pjsip.conf  
 
-
 ```
-
 [transport-wss]
 type=transport
 protocol=wss
 bind=0.0.0.0
 ; All other transport parameters are ignored for wss transports.
 
-
-
 ```
-
 
 ### PJSIP Endpoint, AOR and Auth
 
@@ -241,9 +216,7 @@ We now need to create the basic PJSIP objects that represent the client. In this
   
 /etc/asterisk/pjsip.conf  
 
-
 ```
-
 [webrtc_client]
 type=aor
 max_contacts=5
@@ -274,12 +247,9 @@ context=default
 disallow=all
 allow=opus,ulaw
 
-
-
 ```
 
-
-An explanation of each of these settings parameters can be found on the [Asterisk 16 Configuration for `res_pjsip`](/Asterisk-16-Configuration_res_pjsip) page. Briefly:
+An explanation of each of these settings parameters can be found on the [Asterisk 16 Configuration for `res_pjsip`](/Asterisk-16-Configuration_res_pjsip) page. Briefly:
 
 * Declare an endpoint that references our previously-made aor and auth.
 * Notify Asterisk to expect the AVPF profile (secure RTP)
@@ -288,7 +258,7 @@ An explanation of each of these settings parameters can be found on the [Asteri
 * Enable ICE support
 * Tell Asterisk to send media across the same transport that we receive it from.
 * Enable mux-ing of RTP and RTCP events onto the same socket.
-* Place received calls from this endpoint into an Asterisk [Dialplan](/Configuration/Dialplan) context called "default"
+* Place received calls from this endpoint into an Asterisk [Dialplan](/Configuration/Dialplan) context called "default"
 * And setup codecs by first disabling all and then selectively enabling Opus (presuming that you installed the Opus codec for Asterisk as mentioned at the beginning of this tutorial), then G.711 μ-law.
 
 Restart Asterisk
@@ -299,5 +269,5 @@ Restart Asterisk to pick up the changes and if you have a firewall, don't forget
 Wrap Up
 =======
 
-At this point, your WebRTC client should be able to register and make calls. If you've used self-signed certificates however, your browser may not allow the connection and because the attempt is not from a normal URI supplied by the user, the user might not even be notified that there's an issue.  You *may* be able to get the browser to accept the certificate by visiting "`https://pbx.example.com:8089/ws`" directly.  This will usually result in a warning from the browser and may give you the opportunity to accept the self-signed certificate and/or create an exception. If you generated your certificate from a pre-existing local Certificate Authority, you can also import that Certificate Authority's certificate into your trusted store but that procedure is beyond the scope of this document.
+At this point, your WebRTC client should be able to register and make calls. If you've used self-signed certificates however, your browser may not allow the connection and because the attempt is not from a normal URI supplied by the user, the user might not even be notified that there's an issue.  You *may* be able to get the browser to accept the certificate by visiting "`https://pbx.example.com:8089/ws`" directly.  This will usually result in a warning from the browser and may give you the opportunity to accept the self-signed certificate and/or create an exception. If you generated your certificate from a pre-existing local Certificate Authority, you can also import that Certificate Authority's certificate into your trusted store but that procedure is beyond the scope of this document.
 

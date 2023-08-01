@@ -29,9 +29,7 @@ A "setup" must be the first request sent. It is used to determine if further int
   
 offer request  
 
-
 ```
-
 {
  "request": "setup",
  "id": <unique id>,
@@ -52,7 +50,6 @@ offer request
 
 ```
 
-
 "request", "id", and "version" are all required fields and must be included. The version is a value that represents the current AEAP message version. As well, at least one or more "codecs" must be specified. While the codec "name" is mandatory, codec attributes are optional. However, if a codec attribute is given then both the attribute "name" and "value" must be provided. "params" is optional, but when given each parameter must be specified as a "name"/"value" pair.
 
 
@@ -63,9 +60,7 @@ offer request
   
 Example 1 offer request  
 
-
 ```
-
 true{
  "request": "setup",
  "id": "9c8d7625-d70d-4225-8b4f-53063ea8e774",
@@ -77,15 +72,12 @@ true{
 
 
 
-
 ---
 
   
 Example 2 offer request  
 
-
 ```
-
 true{
  "request": "setup",
  "id": "7180e464-c022-40e6-a49c-9d2007f008a7",
@@ -97,15 +89,12 @@ true{
 
 
 
-
 ---
 
   
 Example 3 offer request  
 
-
 ```
-
 true{
  "request": "setup",
  "id": "b3eda99f-464f-477e-b8a3-4ebafda0b482",
@@ -115,7 +104,6 @@ true{
 }
 
 ```
-
 
 A "setup" response must only be sent in response to a "setup" request, and must be formatted as follows:
 
@@ -127,9 +115,7 @@ A "setup" response must only be sent in response to a "setup" request, and must 
   
 offer response okay  
 
-
 ```
-
 {
  "response": "setup",
  "id": <unique id from request>,
@@ -144,7 +130,6 @@ offer response okay
 
 ```
 
-
 Much like the initial request, "response", "id", and "codecs" are required fields. The codec "name" is also required, and must match one of the names given in the request's codec list. "attributes" are again optional.
 
 
@@ -155,9 +140,7 @@ Much like the initial request, "response", "id", and "codecs" are required field
   
 Example 1 offer response okay  
 
-
 ```
-
 true{
  "response": "setup",
  "id": "7180e464-c022-40e6-a49c-9d2007f008a7",
@@ -165,7 +148,6 @@ true{
 }
 
 ```
-
 
 Get
 ===
@@ -180,9 +162,7 @@ A "get" request can be sent anytime after an initial "setup" is accepted, and is
   
 get request  
 
-
 ```
-
 {
  "request": "get",
  "id": <unique id>,
@@ -190,7 +170,6 @@ get request
 }
 
 ```
-
 
 All fields are required, and at least one parameter name to retrieve must be specified. Parameter names should be the name of the attribute, setting, etc... to be retrieved.
 
@@ -202,9 +181,7 @@ All fields are required, and at least one parameter name to retrieve must be spe
   
 Example 1 get request  
 
-
 ```
-
 true{
  "request": "get",
  "id": "f066e049-d4ef-4093-a05b-0effef1bc077",
@@ -212,7 +189,6 @@ true{
 }
 
 ```
-
 
 A "get" response is similar, but retrieved "params" are made available in name/value pairs:
 
@@ -224,9 +200,7 @@ A "get" response is similar, but retrieved "params" are made available in name/v
   
 get response okay  
 
-
 ```
-
 {
  "response": "get",
  "id": <unique id from request>,
@@ -234,7 +208,6 @@ get response okay
 }
 
 ```
-
 
 Be aware that the returned value's type is named parameter dependent. For instance, depending on the given "param" the returned "value" could be a string, an integer, or even an array of values.
 
@@ -246,9 +219,7 @@ Be aware that the returned value's type is named parameter dependent. For instan
   
 Example 1 get response okay  
 
-
 ```
-
 true{
  "response": "get",
  "id": "f066e049-d4ef-4093-a05b-0effef1bc077",
@@ -256,7 +227,6 @@ true{
 }
 
 ```
-
 
 Set
 ===
@@ -271,9 +241,7 @@ A "set" request can be sent anytime after an initial "setup" is accepted, and is
   
 set request  
 
-
 ```
-
 {
  "request": "set",
  "id": <unique id>,
@@ -281,7 +249,6 @@ set request
 }
 
 ```
-
 
 All fields are required. Similar to "get", a named parameter's value type varies based on the parameters themselves.
 
@@ -293,9 +260,7 @@ All fields are required. Similar to "get", a named parameter's value type varies
   
 Example 1 set request  
 
-
 ```
-
 true{
  "response": "set",
  "id": "9f424395-736b-412c-b8f4-a67a3497415b",
@@ -303,7 +268,6 @@ true{
 }
 
 ```
-
 
 A "set" response to a successful request is just a basic acknowledgment that only contains response name and id:
 
@@ -315,9 +279,7 @@ A "set" response to a successful request is just a basic acknowledgment that onl
   
 set response  
 
-
 ```
-
 {
  "response": "set",
  "id": <unique id from request>,
@@ -327,22 +289,18 @@ set response
 
 
 
-
 ---
 
   
 Example 1 set response okay  
 
-
 ```
-
-true {
+true {
  "response": "set",
  "id": "9f424395-736b-412c-b8f4-a67a3497415b",
 }
 
 ```
-
 
 Errors
 ======
@@ -357,9 +315,7 @@ When an error occurs for any given request all responses follow the same format.
   
 error response  
 
-
 ```
-
 {
  "response": <name of request being responded to>,
  "id": <unique id from request>,
@@ -370,15 +326,12 @@ error response
 
 
 
-
 ---
 
   
 Example 1 setup error  
 
-
 ```
-
 true{
  "response": "setup",
  "id": "b3eda99f-464f-477e-b8a3-4ebafda0b482",
@@ -389,15 +342,12 @@ true{
 
 
 
-
 ---
 
   
 Example 2 get error  
 
-
 ```
-
 true{
  "response": "get",
  "id": "f066e049-d4ef-4093-a05b-0effef1bc077",
@@ -408,15 +358,12 @@ true{
 
 
 
-
 ---
 
   
 Example 3 set error  
 
-
 ```
-
 true{
  "response": "set",
  "id": "9f424395-736b-412c-b8f4-a67a3497415b",
@@ -426,9 +373,8 @@ true{
 ```
 
 
- 
 
- 
 
- 
+
+
 

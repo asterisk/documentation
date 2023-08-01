@@ -31,9 +31,7 @@ The subversion server uses SSL client certificates to handle authentication of u
 
 The following should be placed in the `~/.subversion/servers` file:
 
-
 ```
-
 [groups]
 digium = \*.digium.com
 
@@ -45,19 +43,15 @@ ssl-authority-files = /home/<username>/.subversion/Digium_SVN-cacert-sha1.pem
 
 ```
 
-
 ## SVN Checkouts
 
 Checkouts that come from `http://svn.asterisk.org/` are read-only copies of the repositories. When doing a checkout that you intend to commit to, it must be from `https://origsvn.digium.com/`. For example:
 
-
 ```
-
 $ svn co https://origsvn.digium.com/svn/asterisk/trunk
 $ svn co https://origsvn.digium.com/svn/asterisk/branches/1.8
 
 ```
-
 
 # Using `svnmerge` for Cross-Branch Merging
 
@@ -65,16 +59,13 @@ $ svn co https://origsvn.digium.com/svn/asterisk/branches/1.8
 
 You must install `svnmerge` and the related wrappers from our `repotools` repository. The wrapper scripts use `expect`, so be sure to install that, too.
 
-
 ```
-
 $ svn co http://svn.asterisk.org/svn/repotools
 $ cd repotools
 $ ./configure
 $ sudo make install
 
 ```
-
 
 ## `svnmerge` Properties
 
@@ -86,7 +77,6 @@ If you do a `svn pl -v` while you are located in an svn checkout, you will see a
  branch-1.8-merged
  /branches/1.8:1-279056,279113,279227,279273,279280,...............,286457
 ```
-
 and on the 1.8 branch, you will see these sort of properties:
 
 ```
@@ -95,7 +85,6 @@ and on the 1.8 branch, you will see these sort of properties:
  branch-1.6.2-merged
  /branches/1.6.2:1-279056,279207,279501,279561,279597,279609,....................,286268
 ```
-
 These properties identify the following things:
 # The branch changes are being merged from
     * `branch-<branch>-...`
@@ -146,18 +135,15 @@ Committed revision 376262.
 /svn-asterisk-13$ cd ../svn-asterisk-trunk
 /svn-asterisk-trunk$ merge13trunk 376262
 ```
-
 Then you would proceed with committing the merged changes.
 
 {tip}
 All of these scripts create a commit message for you in the file `../merge.msg`. Run "`svn commit`" and use that commit message with the following command:
 
 ```
-
 $ svn commit -F ../merge.msg
 
 ```
-
 {tip}
 
 {tip}
@@ -171,15 +157,12 @@ Sometimes when you go to commit your changes after merging from another branch, 
 
 Sometimes a change is made in a branch and later it is decided that it should be backported to an older branch. For example, a change may have gone into the 11 branch and later needs to be backported to the 1.8 branch. To handle this, first manually make the change and commit to the 1.8 branch. Then, there is another wrapper similar to `merge811` and `block811` to record that the code from a revision already exists in the 11 branch. The wrapper is `record811`.
 
-
 ```
-
 $ cd 11
 $ record811 <revision>
 $ svn commit -F ../merge.msg
 
 ```
-
 
 # Developer Branches
 
@@ -193,9 +176,7 @@ Developer branches are stored in the `/team/<name>` directory of each project re
 
 Use the following commands to create a branch and prepare it for future merge tracking of the branch you created it from. This example creates a branch off of Asterisk trunk.
 
-
 ```
-
 $ svn copy https://origsvn.digium.com/svn/asterisk/trunk https://origsvn.digium.com/svn/asterisk/team/jdoe/my-fun-branch
 $ svn checkout https://origsvn.digium.com/svn/asterisk/team/jdoe/my-fun-branch
 $ cd my-fun-branch
@@ -204,18 +185,14 @@ $ svn commit -F svnmerge-commit-message.txt
 
 ```
 
-
 ## Deleting a Developer Branch
 
 To delete a developer branch after you are done with it use the SVN command shown below for your branch name.
 
-
 ```
-
 $ svn delete https://origsvn.digium.com/svn/asterisk/team/jdoe/my-fun-branch
 
 ```
-
 
 ## Group Branches
 
@@ -231,9 +208,7 @@ Running `svnmerge init` and committing those properties is a prerequisite for `a
 
 Use the following commands to enable automerge on a developer branch:
 
-
 ```
-
 $ cd my-fun-branch
 $ svn ps automerge '\*' .
 $ svn ps automerge-email 'me@example.com' .
@@ -241,44 +216,34 @@ $ svn commit -m "initialize automerge"
 
 ```
 
-
 ### Setting `automerge-email` on a Group Branch
 
 For a branch with multiple developers working on it, it may be useful to have automerge emails sent to more than one email address. To do so, just separate the email addresses in the property with commas. The value of this property is literally used as the content for the `To:` header of the email.
 
-
 ```
-
 $ svn ps automerge-email 'me@example.com,you@example.com,him@example.com' .
 
 ```
-
 
 ### Resolving `automerge` Conflicts
 
 If your developer branch goes into conflict with `automerge` on, and the `automerge-email` property has been set, you will receive an email notifying you of the conflict and `automerge` will be disabled. To resolve it, use the following commands:
 
-
 ```
-
 $ cd my-branch
 $ svn update
 $ svnmerge merge
 
 ```
 
-
 Running the `svnmerge` tool will merge in the changes that cause your branch to go into conflict into your local copy. Edit the files that are in conflict to resolve the problems as appropriate. Finally, tell SVN that you have resolved the problem, re-enable automerge, and commit.
 
-
 ```
-
 $ svn resolved path/to/conflicted/file
 $ svn ps automerge '\*' .
 $ svn commit -m "resolve conflict, enable automerge"
 
 ```
-
 
 ## Private Branches
 
@@ -292,9 +257,7 @@ If your branch contains new functionality, please make sure you have made the ap
 
 If a developer has a branch that is ready to be merged back into the trunk, here is the process:
 
-
 ```
-
 $ svn co https://origsvn.digium.com/svn/asterisk/trunk
 $ cd trunk
 $ svn merge --ignore-ancestry https://origsvn.digium.com/svn/asterisk/trunk https://origsvn.digium.com/svn/asterisk/team/jdoe/bug12345 .
@@ -303,18 +266,14 @@ $ svn diff | less
 
 ```
 
-
 Be sure to check the resulting diff to make sure that the merge doesn't overwrite any changes in trunk. If it does, you will have to specify the specific revisions merge needs to base its diff off of.
 
-
 ```
-
 # The last change to bug12345 was at r2500.
 # trunk r2400 was merged into bug12345@2500.
 $ svn merge --ignore-ancestry https://origsvn.digium.com/svn/asterisk/trunk@2400 https://origsvn.digium.com/svn/asterisk/team/jdoe/bug12345@2500 .
 
 ```
-
 
 {note}
 This is NOT using the svnmerge script; this is just a normal SVN merge.
@@ -322,35 +281,26 @@ This is NOT using the svnmerge script; this is just a normal SVN merge.
 
 Once this is done, the working copy will contain the trunk plus the changes from the developer branch. If you follow the above instructions for creating branches, you have probably introduced properties to the root of the branch that need to be removed.
 
-
 ```
-
 $ svn revert .
 
 ```
 
-
 If you are purposely introducing new properties, or purposely introducing new values for existing properties, then you might do the following instead, so as not to destroy your properties:
 
-
 ```
-
 $ svn pd svnmerge-integrated .
 $ svn pd automerge .
 $ svn pd automerge-email .
 
 ```
 
-
 If everything merged cleanly, you can test compile and then:
 
-
 ```
-
 $ svn commit -m "Merge branch for issue 12345"
 
 ```
-
 
 Once the contents of your branch has been merged, please use `svn remove` to remove it from the repository. It will still be accessible if needed by looking back in the repository history if needed.
 

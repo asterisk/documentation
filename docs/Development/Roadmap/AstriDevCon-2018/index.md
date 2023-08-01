@@ -8,11 +8,11 @@ AstriDevCon 2018
 
 Digium invites developers who are interested in the future of Asterisk to join us at AstriDevCon on **Tuesday, October 9th, 2018**.
 
-AstriDevCon is an annual event, held alongside [AstriCon](http://www.asterisk.org/community/astricon-user-conference) - it includes an in-depth review of progress made in the past year and an open discussion about the future direction of the project. The event is free and open for any active Asterisk community developer to apply for attendance.  It's a great opportunity to meet the core development team in person, pitch ideas for new features and functions and coordinate efforts with others.
+AstriDevCon is an annual event, held alongside [AstriCon](http://www.asterisk.org/community/astricon-user-conference) - it includes an in-depth review of progress made in the past year and an open discussion about the future direction of the project. The event is free and open for any active Asterisk community developer to apply for attendance.  It's a great opportunity to meet the core development team in person, pitch ideas for new features and functions and coordinate efforts with others.
 
 Capacity for this event is limited. Preference will be made for those who are active and participating in the Asterisk development community by contributing, reviewing, testing and so forth. Otherwise it's first come first serve, so apply for registration soon.
 
-The lunch this year will be sponsored by [E4 Strategies](https://www.e4strategies.com/).  Many thanks to them for doing it again this year!
+The lunch this year will be sponsored by [E4 Strategies](https://www.e4strategies.com/).  Many thanks to them for doing it again this year!
 
 [![](image2019-9-26-16:32:35.png)](https://www.e4strategies.com/)
 
@@ -23,13 +23,13 @@ AstriDevCon is a mix of open and focused discussion all on topics within the rea
 
 **Starting at 9AM**
 
-**Lunch will be served from 12:00 to 1:00 outside the ballroom commons (across from the International Ballrooms)**
+**Lunch will be served from 12:00 to 1:00 outside the ballroom commons (across from the International Ballrooms)**
 
-**Event ends this year at 3 PM.  (This year only, hopefully all will be back to normal next year)**
+**Event ends this year at 3 PM.  (This year only, hopefully all will be back to normal next year)**
 
 We'll build a rough agenda together in the morning.
 
- 
+
 
 Agenda:
 
@@ -54,7 +54,7 @@ Agenda:
 * Give Igor some time to talk about improvements for various applications in how you interact with multiple media streams.
 ### Location
 
-AstriDevCon will be held in the **Osceola B**room in the [Omni Orlando in Orlando, Florida](http://www.asterisk.org/community/astricon-user-conference/when-where) . This is the same location as [AstriCon](http://www.asterisk.org/community/astricon-user-conference/when-where), on the Tuesday of the main Astricon schedule.
+AstriDevCon will be held in the **Osceola B**room in the [Omni Orlando in Orlando, Florida](http://www.asterisk.org/community/astricon-user-conference/when-where) . This is the same location as [AstriCon](http://www.asterisk.org/community/astricon-user-conference/when-where), on the Tuesday of the main Astricon schedule.
 
 Details on the hotel and location of AstriCon 2018 can be found at the [Asterisk project website](http://www.asterisk.org/community/astricon-user-conference).
 
@@ -80,7 +80,7 @@ SIP URI: sip:31337@vcs.jcn-network.com
 
 Asterisk: SIP/31337@vcs.jcn-network.com
 
-Stream: Available at https://www.youtube.com/watch?v=0XU1yKngqTo
+Stream: Available at https://www.youtube.com/watch?v=0XU1yKngqTo
 
 ### IRC Channel
 

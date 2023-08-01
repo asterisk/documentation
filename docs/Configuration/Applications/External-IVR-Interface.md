@@ -12,22 +12,10 @@ There are two ways to use `ExternalIVR`; you can execute an application on the l
 
 To execute a local application use the form:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 textExternalIVR(/full/path/to/application[(arguments)],options)
 
-
 ```
-
 
 The arguments are optional, however if they exist they must be enclosed in parentheses. The external application will be executed in a child process, with its standard file handles connected to the Asterisk process as follows:
 
@@ -48,22 +36,10 @@ The arguments are optional, however if they exist they must be enclosed in paren
 
 To create a socket connection use the form:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 textExternalIVR(ivr://host[:port][(arguments)],options)
 
-
 ```
-
 
 The host can be a fully qualified domain name or an IP address (both IPv4 and IPv6 are supported). The port is optional and, if not specified, is `2949` by default. The `ExternalIVR` application will connect to the specified socket server and establish a bidirectional socket connection, where events will be sent to the TCP/IP server and commands received from it.
 
@@ -88,22 +64,10 @@ If the child process dies, or the remote server disconnects, `ExternalIVR` will 
 
 All events are newline-terminated (`\n`) strings and are sent in the following format:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 texttag,timestamp[,data]
 
-
 ```
-
 
 The tag can be one of the following characters:
 
@@ -178,41 +142,17 @@ The `P` command gets the parameters passed into `ExternalIVR` minus the options 
 
 If `ExternalIVR` is executed as:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 ExternalIVR(/usr/bin/foo(arg1,arg2),n)
 
-
 ```
-
 
 The response to the `P` command would be:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 P,TIMESTAMP,/usr/bin/foo,arg1,arg2
 
-
 ```
-
 
 
 

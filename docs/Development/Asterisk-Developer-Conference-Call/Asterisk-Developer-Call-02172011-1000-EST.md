@@ -6,19 +6,19 @@ pageid: 12550183
 **Digium Developer Conference Bridge:**
 
 
-Bridge:  26052
+Bridge:  26052
 
 
-PIN:  35806
+PIN:  35806
 
 
 **Proposed Agenda:**
 
 
-Welcome & Announcements:  Bryan Johns / Malcolm / Leif Madsen
+Welcome & Announcements:  Bryan Johns / Malcolm / Leif Madsen
 
 
-Old Business: 
+Old Business:
 
 
 * None discussed
@@ -36,7 +36,7 @@ New Business:
 Open Floor
 
 
-* Malcolm gives abbreviated update on 1.10 media handling overhaul and availability of wideband conferencing.  Encourages attendees to test it.
+* Malcolm gives abbreviated update on 1.10 media handling overhaul and availability of wideband conferencing.  Encourages attendees to test it.
 
 
 Notes:

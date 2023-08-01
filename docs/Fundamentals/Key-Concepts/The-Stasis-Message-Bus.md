@@ -3,9 +3,9 @@ title: The Stasis Message Bus
 pageid: 30277635
 ---
 
- 
 
- 
+
+
 
 Overview
 ========
@@ -21,7 +21,7 @@ Overview
 
 
 
-In Asterisk 12, a new core component was added to Asterisk: the Stasis Message Bus. As the name suggests, Stasis is an internal publish/subscribe message bus that lets the real-time core of Asterisk inform other modules or components – who subscribe for specific information topic – about events that occurred that they were interested in.
+In Asterisk 12, a new core component was added to Asterisk: the Stasis Message Bus. As the name suggests, Stasis is an internal publish/subscribe message bus that lets the real-time core of Asterisk inform other modules or components – who subscribe for specific information topic – about events that occurred that they were interested in.
 
 While the Stasis Message Bus is mostly of interest to those developing Asterisk, its existence is a useful piece of information in understanding how the Asterisk architecture works.
 
@@ -55,7 +55,7 @@ Cache
 
 Some Messages - particularly those that affect core communications primitives in Asterisk (such as channels or bridges) are stored in a special cache in Stasis. Subscribers have the option to query the cache for the last known state of those primitives.
 
- 
+
 
 Example: Channel HangupStasis Bus Copy
 

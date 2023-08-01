@@ -74,48 +74,48 @@ Project Policies (10-11:15am)
 	+ Does anyone run standard in production?
 		- Jared/Daniel: yes
 		- Aggressiveness in Standard release is warranted
-			* Should we be more aggressive?  Particularly in the initial stages?
+			* Should we be more aggressive?  Particularly in the initial stages?
 			* API versioning: when should it apply?
 		- Daniel: don't change some things in LTS
 			* Data models should not be changed
 			* Configuration schemas should not change
 			* No breaking changes in LTS release
 		- LTS can allow new features, but must be low impact. No breaking features, does not impact the user in a negative fashion
-			* Require community notice and sufficient time (1 week prior to cutting RC) to accommodate.  If new modules, merge disabled, then enable if approved.
+			* Require community notice and sufficient time (1 week prior to cutting RC) to accommodate.  If new modules, merge disabled, then enable if approved.
 		- Standard: allow more aggressiveness
 		- **Action:** Matt to draft wiki page
 * External libraries (help packagers)
-	+ pjproject: such a core part of Asterisk.  Was embedded.  General speaking, do we feel it should be external?
-		- Stability is iffy.  pjproject is not designed to be an external library.  People have to be careful when updating.
-	+ Jared: generally, yes.  RH side is appreciated.  Harder sometimes on the end user, probably things we could to to help them.
+	+ pjproject: such a core part of Asterisk.  Was embedded.  General speaking, do we feel it should be external?
+		- Stability is iffy.  pjproject is not designed to be an external library.  People have to be careful when updating.
+	+ Jared: generally, yes.  RH side is appreciated.  Harder sometimes on the end user, probably things we could to to help them.
 		- May need better documentation, particularly for end users
 	+ Asterisk:
 		- editline, iLBC
 * Infrastructure
 	+ GIT!
 		- George: really, just do it.
-		- Darren: Stash integration with JIRA is nice.
+		- Darren: Stash integration with JIRA is nice.
 			* but it doesn't bundle notifications
 		- Will we do pull requests?
-			* Only if it's the only mechanism.  Multiple mechanisms are hard.
+			* Only if it's the only mechanism.  Multiple mechanisms are hard.
 		- Can we make it easier for contributors?
 		- Do we do the Linus model for merging?
 			* Paul: is it a developer's job to merge?
 			* Sean: not a problem for merging between branches
-			* Matt F: It isn't free.  There is work involved.
+			* Matt F: It isn't free.  There is work involved.
 			* Downside of open stack approach: lots of moving parts
 				+ Leif: you can pick a subset of those parts
 		- **Action**: finish evaluation
 * Testsuite
-	+ Dependencies are the hardest part.  Debian packagers:
+	+ Dependencies are the hardest part.  Debian packagers:
 		- attest doesn't work (but do we care?)
 	+ Paul: can we name the test suite?
-	+ George: trying to get all of the tests to run usually blows up.  The documentation is lacking.
+	+ George: trying to get all of the tests to run usually blows up.  The documentation is lacking.
 	+ Torey: versioning of the test suite?
-		- Paul: I have a solution to that.  It's radical.  Remove the tests from the test suite (and put them somewhere else).
+		- Paul: I have a solution to that.  It's radical.  Remove the tests from the test suite (and put them somewhere else).
 		- Version the 'stock' test suite libraries
 		- **Action**: determine what it would take to do that as we move to git
-		- Have test suite in docker.  Community: provider docker config
+		- Have test suite in docker.  Community: provider docker config
 
 Application Server (11:20am-1pm)
 --------------------------------
@@ -128,7 +128,7 @@ Application Server (11:20am-1pm)
 			* Update static files, then do a reload
 			* Preferably preserve old mechanism in some fashion
 	+ Motivation on deprecating it
-		- There is no one API.  This makes it difficult for versioning.  A change to any one makes versioning challenging.
+		- There is no one API.  This makes it difficult for versioning.  A change to any one makes versioning challenging.
 		- If we don't remove something, ARI may make things more painful.
 		- AMI/AGI not sufficient by itself; if ARI is sufficient, that'd be nice
 		- Can we at least get to the point where ARI is the future?
@@ -138,15 +138,15 @@ Application Server (11:20am-1pm)
 				+ Would have to solve semantic issues between AMI/ARI event streams
 		- Do we want ARI to replace AMI (take its role)?
 			* Should ARI become a call control protocol?
-			* Lenz: till lots of old stuff in the field.  Doing away with all of it will not be easy.  A change to ARI will not happen tomorrow unless you control the deployment.
-			* Ben: can't just pull it.  Just don't want to keep enhancing it.
+			* Lenz: till lots of old stuff in the field.  Doing away with all of it will not be easy.  A change to ARI will not happen tomorrow unless you control the deployment.
+			* Ben: can't just pull it.  Just don't want to keep enhancing it.
 		- Example: Security events
 			* Should they be in ARI?
 			* George: we probably do need to have the distinction.
-			* Nir: vast majority of community doesn't understand ARI.  It needs to be easier in order to replace AMI.
+			* Nir: vast majority of community doesn't understand ARI.  It needs to be easier in order to replace AMI.
 			* Jared: adoption may be slow since it doesn't do everything AMI does.
 			* **Action**: -dev/-users list: what are using AMI for that we can't use ARI for?
-			* Leif: we're in a transition, moving from dialplan model to external control model.  Probably need external application to be built for us to move completely away from AMI/AGI.
+			* Leif: we're in a transition, moving from dialplan model to external control model.  Probably need external application to be built for us to move completely away from AMI/AGI.
 			* Paul: take away apps, and whatever is in the core is what we should care about
 			* Lenz: some things are harder in ARI
 				+ TTS is actually harder (I can use an AGI script for that)
@@ -191,12 +191,12 @@ Scalability (1pm-2:15pm)
 		- Problem: every scalable system looks different
 			* One way of approaching this would be to have a cookbook - defined solutions for defined problems
 			* Higher-level view of Asterisk is an ecosystem (with proxies, etc.)
-			* Daniel: scaling out is a matter of requirements.  Keep the core infrastructure simple, put the load on the client side
+			* Daniel: scaling out is a matter of requirements.  Keep the core infrastructure simple, put the load on the client side
 * Simplifying sitting behind a proxy
 	+ Different identification schemes
 	+ Registration state dictates endpoint/device state
 		- If I have a call from something, assume it exists
-		- Have the presence of a call signal that an endpoint/device state exists.  Derive from the signalling.
+		- Have the presence of a call signal that an endpoint/device state exists.  Derive from the signalling.
 		- **Action**: Daniel to provide an e-mail describing the problem
 	+ Need to know system load
 		- NEED: CPU usage (Sean Bright and Malcolm: SNMP?)
@@ -207,7 +207,7 @@ Scalability (1pm-2:15pm)
 		- Distribution of response times on requests/responses
 		- Call quality (see above, again)
 		- Darren: two scales - one for concurrent, one for calls per second
-			* Caching mechanisms in Linux can be self-defeating.  Caching at that call volume can be rough
+			* Caching mechanisms in Linux can be self-defeating.  Caching at that call volume can be rough
 				+ Look at IOStat
 * Simplifying routing/dialing of SIP URIs
 * Federation
@@ -242,7 +242,7 @@ PJSIP Enhancements (3pm - 3:30pm)
 * Dial an AoR
 	+ endpoint -> Aor -> contact1 & contact2, etc.
 	+ **Note** We need more documentation for this
-	+ Disconnect between device state and contacts.  Need to know which contacts are in use.
+	+ Disconnect between device state and contacts.  Need to know which contacts are in use.
 		- There's no guarantee that information in SIP messages maps back to a contact
 	+ **Action**: document & explain the problem
 * SIP Outbound
@@ -251,7 +251,7 @@ PJSIP Enhancements (3pm - 3:30pm)
 	+ Not much pressure from market for it
 	+ Table SIP Outbound until DNS is really good
 * DNS Resolver Woes
-	+ Are we only concerned with Asterisk's PJSIP DNS resolution? Or do we  care about the rest of Asterisk?
+	+ Are we only concerned with Asterisk's PJSIP DNS resolution? Or do we  care about the rest of Asterisk?
 		- E.164 lookups are really needed (have to shell out to do it today - Rob)
 		- XMPP
 	+ Complaints about current system:
@@ -271,7 +271,7 @@ WebRTC (3:30pm - 4pm)
 
 * How is our happiness level today?
 	+ Andrew: no way to determine if can_sip or chan_pjsip should be used for web sockets (open bug)
-	+ Ben: better logging.  When it doesn't work, it's really hard to figure out.
+	+ Ben: better logging.  When it doesn't work, it's really hard to figure out.
 	+ Better documentation
 	+ Opus ...
 	+ ORTC
@@ -291,7 +291,7 @@ Data Capture (Phone Home) (4pm - 4:15pm)
 	+ Philippe: this is two projects, stats and debugging), keep them separate
 	+ Define where the data goes to
 
- 
+
 
 Conclusions
 ===========
@@ -300,9 +300,9 @@ GIT needs to happen. Need to improve our infrastructure and make it clearer how 
 
 Document features better, including scenarios. Make it easier to configure/deploy Asterisk.
 
-Pushing Asterisk into acting more as a media applications server is very important.  It feeds into scalability, into making it do more than what it can do today, and affects more pointedly the features in ARI.
+Pushing Asterisk into acting more as a media applications server is very important.  It feeds into scalability, into making it do more than what it can do today, and affects more pointedly the features in ARI.
 
- 
 
- 
+
+
 

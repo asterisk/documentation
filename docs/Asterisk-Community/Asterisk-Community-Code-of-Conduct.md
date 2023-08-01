@@ -3,7 +3,7 @@ title: Asterisk Community Code of Conduct
 pageid: 27199698
 ---
 
-The Asterisk community is a large group of individuals, representing many nations, ethnicities, ages, technical professions and specialities.  Working together on Asterisk can be a challenge with so many differing perspectives and backgrounds. Therefore to ensure the community is healthy, happy, and stress-free, participants in the Asterisk project agree to adhere to the following Community Code of Conduct.
+The Asterisk community is a large group of individuals, representing many nations, ethnicities, ages, technical professions and specialities.  Working together on Asterisk can be a challenge with so many differing perspectives and backgrounds. Therefore to ensure the community is healthy, happy, and stress-free, participants in the Asterisk project agree to adhere to the following Community Code of Conduct.
 
 Note that by joining and/or participating in the Asterisk community, you are agreeing that you accept and will adhere to the rules listed below, even if you do not explicitly state so.
 

@@ -36,5 +36,5 @@ The core features discussed in this section are:
 
 The only features discussed in this section are those that have some relation to features.conf. Features in a broader sense - that is features that your application built with Asterisk may have - are implemented through usage of [Applications](/Configuration/Applications), [Functions](/Configuration/Functions) and [Interfaces](/Configuration/Interfaces) or [Dialplan](/Configuration/Dialplan).
 
- 
+
 

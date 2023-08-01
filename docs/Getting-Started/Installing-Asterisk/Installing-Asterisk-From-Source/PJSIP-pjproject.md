@@ -6,7 +6,7 @@ pageid: 25919783
 Overview
 ========
 
-Asterisk currently contains two SIP stacks: the original **chan_sip** SIP channel driver which is a complete standalone implementation, has been present in all previous releases of Asterisk *and no longer receives core support*, and the newer **chan_pjsip** SIP stack that is based on Teluu's "[pjproject](http://www.pjsip.org/)" SIP stack. While the pjproject stack allows us to move a significant amount of code out of Asterisk, it *is* a separate, actively maintained, library that we integrate very tightly to.  This presents challenges in making sure that the versions of Asterisk and pjproject currently installed on a system are compatible.  For this reason, we've elected to "bundle" a stable, tested version of pjproject with the Asterisk distribution and integrate it into the Asterisk build process. This does not prevent you from using an external pjproject installation but it will not be supported by the Asterisk team.  See below for more info.
+Asterisk currently contains two SIP stacks: the original **chan_sip** SIP channel driver which is a complete standalone implementation, has been present in all previous releases of Asterisk *and no longer receives core support*, and the newer **chan_pjsip** SIP stack that is based on Teluu's "[pjproject](http://www.pjsip.org/)" SIP stack. While the pjproject stack allows us to move a significant amount of code out of Asterisk, it *is* a separate, actively maintained, library that we integrate very tightly to.  This presents challenges in making sure that the versions of Asterisk and pjproject currently installed on a system are compatible.  For this reason, we've elected to "bundle" a stable, tested version of pjproject with the Asterisk distribution and integrate it into the Asterisk build process. This does not prevent you from using an external pjproject installation but it will not be supported by the Asterisk team.  See below for more info.
 
 On this Page
 
@@ -15,32 +15,27 @@ On this Page
 Using the Bundled Version of pjproject
 =======================================
 
-Beginning with Asterisk 13.8.0, a stable version of pjproject is included in Asterisk's ./third-party directory and is enabled with the `--with-pjproject-bundled` option to `./configure`.  Beginning with Asterisk 15.0.0, it is enabled by default but can be disabled with the `--without-pjproject-bundled` option to `./configure`.
+Beginning with Asterisk 13.8.0, a stable version of pjproject is included in Asterisk's ./third-party directory and is enabled with the `--with-pjproject-bundled` option to `./configure`.  Beginning with Asterisk 15.0.0, it is enabled by default but can be disabled with the `--without-pjproject-bundled` option to `./configure`.
 
-The actual pjproject source code is NOT distributed with Asterisk.  Instead the Asterisk build process downloads the official pjproject tarball then patches, configures and builds pjproject when you build Asterisk. 
+The actual pjproject source code is NOT distributed with Asterisk.  Instead the Asterisk build process downloads the official pjproject tarball then patches, configures and builds pjproject when you build Asterisk.
 
 Why use the bundled version?
 ----------------------------
 
-* **Predictability**:  When built with the bundled pjproject, you're always certain of the version you're running against, no matter where it's installed.
-* **Scalability**:  The default pjproject configuration is optimized for client applications. The bundled version's configuration is optimized for server use.
-* **Usability**:  Several feature patches, which have been submitted upstream to pjproject but not yet released, are usually included in the bundled version.
-* **Safety**:  If a security or critical issue is identified in pjproject, it can be patched and made available with a new release of Asterisk instead of having to waiting for a new release of pjproject.
-* **Maintainability**:  You don't need to build and install separate packages.
-* **Supportability**:  When asking others for help, there's no question about which version of pjproject you're using and what options it was compiled with.
-* **Debugability**: The Asterisk `DONT_OPTIMIZE` and `MALLOC_DEBUG` compile flags,  which are essential for troubleshooting crashes and deadlocks, are automatically passed to the pjproject build process.
-* **Compatibility**:  This is especially important from a development perspective because it means we can be sure that new pjproject APIs that have been introduced or old ones that have been deprecated, are handled and tested appropriately in Asterisk.
-* **Reliability**:  You can be sure that Asterisk was tested against the bundled version.
+* **Predictability**:  When built with the bundled pjproject, you're always certain of the version you're running against, no matter where it's installed.
+* **Scalability**:  The default pjproject configuration is optimized for client applications. The bundled version's configuration is optimized for server use.
+* **Usability**:  Several feature patches, which have been submitted upstream to pjproject but not yet released, are usually included in the bundled version.
+* **Safety**:  If a security or critical issue is identified in pjproject, it can be patched and made available with a new release of Asterisk instead of having to waiting for a new release of pjproject.
+* **Maintainability**:  You don't need to build and install separate packages.
+* **Supportability**:  When asking others for help, there's no question about which version of pjproject you're using and what options it was compiled with.
+* **Debugability**: The Asterisk `DONT_OPTIMIZE` and `MALLOC_DEBUG` compile flags,  which are essential for troubleshooting crashes and deadlocks, are automatically passed to the pjproject build process.
+* **Compatibility**:  This is especially important from a development perspective because it means we can be sure that new pjproject APIs that have been introduced or old ones that have been deprecated, are handled and tested appropriately in Asterisk.
+* **Reliability**:  You can be sure that Asterisk was tested against the bundled version.
 
 Usage
 -----
 
-First, run `./contrib/scripts/install_prereq`.  Building the bundled pjproject requires the python development libraries which install_prereq installs.  All you have to do now is add the `--with-pjproject-bundled` option to your Asterisk `./configure` command line and remove any other `--with-pjproject` option you may have specified. 
-
- 
-
-
-
+First, run `./contrib/scripts/install_prereq`.  Building the bundled pjproject requires the python development libraries which install_prereq installs.  All you have to do now is add the `--with-pjproject-bundled` option to your Asterisk `./configure` command line and remove any other `--with-pjproject` option you may have specified.
 
 ```bash title=" " linenums="1"
 $ cd /path/asterisk-source-dir
@@ -52,15 +47,9 @@ $ make && make install
 
 ```
 
+The configure and make processes will download the correct version of pjproject, patch it, configure it, build it, and finally link Asterisk to it statically.  No changes in runtime configuration are required.  You can leave your system-installed version of pjproject in place if needed.  Once compiled with the `--with-pjproject-bundled` option, Asterisk will ignore any other installed versions of pjproject.
 
-The configure and make processes will download the correct version of pjproject, patch it, configure it, build it, and finally link Asterisk to it statically.  No changes in runtime configuration are required.  You can leave your system-installed version of pjproject in place if needed.  Once compiled with the `--with-pjproject-bundled` option, Asterisk will ignore any other installed versions of pjproject. 
-
-Using the bundled version of pjproject doesn't necessarily mean you need internet access to download the pjproject tarball every time you build. There are 2 ways to specify an alternate location from which to retrieve it.  First, assuming version 2.6 of pjproject is needed and `/tmp/downloads` is the directory you're going to save to, download the following files to the local directory:
-
- 
-
-
-
+Using the bundled version of pjproject doesn't necessarily mean you need internet access to download the pjproject tarball every time you build. There are 2 ways to specify an alternate location from which to retrieve it.  First, assuming version 2.6 of pjproject is needed and `/tmp/downloads` is the directory you're going to save to, download the following files to the local directory:
 
 ```bash title=" " linenums="1"
 $ mkdir /tmp/downloads
@@ -69,17 +58,16 @@ $ wget -O /tmp/downloads/pjproject-2.6.md5 http://www.pjsip.org/release/2.6/MD5S
 
 ```
 
-
 It's important that both files be named `pjproject-<version>.tar.bz2` and `pjproject-<version>.md5` respectively.
 
 Now perform either of the following 2 steps:
 
-1. 1. Run ./configure with the `--with-externals-cache=/tmp/downloads` option.  ./configure will check there first and only download if the files aren't already there or the tarball checksum doesn't match what's in the md5 file.  This is similar to the `--with-sounds-cache` option.  BTW, the `--with-externals-cache` mechanism works for the precompiled codecs and the Digium Phone Module for Asterisk as well.  As of Asterisk 13.18, 14.7 and 15.0, the `--with-download-cache`  option can be used to specify both the externals and sounds cache directory.
-	2. Set the `PJPROJECT_URL` environment variable to any valid URL (including file:// URLs) where `./configure` can find the tarball and checksum files.  The variable can be set in your environment and exported or specified directly on the `./configure` command line.  As of Asterisk 13.18, 14.7 and 15.0, the `AST_DOWNLOAD_CACHE` environment variable can be used to specify both the externals and sounds cache directory.
- 
+1. 1. Run ./configure with the `--with-externals-cache=/tmp/downloads` option.  ./configure will check there first and only download if the files aren't already there or the tarball checksum doesn't match what's in the md5 file.  This is similar to the `--with-sounds-cache` option.  BTW, the `--with-externals-cache` mechanism works for the precompiled codecs and the Digium Phone Module for Asterisk as well.  As of Asterisk 13.18, 14.7 and 15.0, the `--with-download-cache`  option can be used to specify both the externals and sounds cache directory.
+	2. Set the `PJPROJECT_URL` environment variable to any valid URL (including file:// URLs) where `./configure` can find the tarball and checksum files.  The variable can be set in your environment and exported or specified directly on the `./configure` command line.  As of Asterisk 13.18, 14.7 and 15.0, the `AST_DOWNLOAD_CACHE` environment variable can be used to specify both the externals and sounds cache directory.
 
 
-Building and Installing pjproject from Source
+
+Building and Installing pjproject from Source
 ==============================================
 
 
@@ -93,9 +81,9 @@ Building and Installing pjproject from Source
 
 
 
-Despite efforts to maintain backwards compatibility, some changes to Asterisk require a particular version of pjproject (or above) to be installed. For instance, earlier releases of pjproject cannot build shared object libraries, so some changes were required in order to use it with Asterisk 12. As such, Asterisk requires a pjproject version that is the same version of pjproject that is bundled with Asterisk, or **no more than 4 versions behind**. Alternatively, you may be able to find an Asterisk compatible version of pjproject available on [github](https://github.com/asterisk/pjproject) , or - depending on your Linux distribution - available as a package.
+Despite efforts to maintain backwards compatibility, some changes to Asterisk require a particular version of pjproject (or above) to be installed. For instance, earlier releases of pjproject cannot build shared object libraries, so some changes were required in order to use it with Asterisk 12. As such, Asterisk requires a pjproject version that is the same version of pjproject that is bundled with Asterisk, or **no more than 4 versions behind**. Alternatively, you may be able to find an Asterisk compatible version of pjproject available on [github](https://github.com/asterisk/pjproject) , or - depending on your Linux distribution - available as a package.
 
-Earlier versions of pjproject downloaded from [www.pjsip.org](http://www.pjsip.org/) will **not** work with Asterisk 12 or greater. 
+Earlier versions of pjproject downloaded from [www.pjsip.org](http://www.pjsip.org/) will **not** work with Asterisk 12 or greater.
 
 
 
@@ -108,15 +96,12 @@ Earlier versions of pjproject downloaded from [www.pjsip.org](http://www.pjsip.o
 
 
 
-Downloading pjproject
+Downloading pjproject
 ---------------------
 
 ### Obtaining pjproject from Teluu:
 
 Use `wget` to pull the latest version (currently 2.6) from `www.pjsip.org`. Note that the instructions assume that this is 2.6; for the latest version, refer to `www.pjsip.org`:
-
-
-
 
 ```bash title=" " linenums="1"
 # wget http://www.pjsip.org/release/2.6/pjproject-2.6.tar.bz2
@@ -125,15 +110,9 @@ Use `wget` to pull the latest version (currently 2.6) from `www.pjsip.org`. Note
 
 ```
 
-
 ### Obtaining the latest pjproject from the svn repo:
 
-Use  `svn` to install the latest version from  [www.pjsip.org](http://www.pjsip.org).
-
- 
-
-
-
+Use  `svn` to install the latest version from  [www.pjsip.org](http://www.pjsip.org).
 
 ```bash title=" " linenums="1"
 # svn co http://svn.pjsip.org/repos/pjproject/trunk/ pjproject-trunk
@@ -141,11 +120,10 @@ Use  `svn` to install the latest version from  [www.pjsip.org](http://www.pjs
 ```
 
 
- 
 
 ### Obtaining (old asterisk) pjproject from the github repo:
 
-If you do not have [git](http://git-scm.com/), install git on your local machine.
+If you do not have [git](http://git-scm.com/), install git on your local machine.
 
 
 
@@ -158,9 +136,7 @@ If you do not have [git](http://git-scm.com/), install git on your local machin
   
   
 
-
 ```
-
 apt-get install git  
 
 
@@ -175,20 +151,13 @@ yum install git
 ```
 
 
- 
 
-Checkout the Asterisk 12-compatible pjproject from the Asterisk [github repo](https://github.com/asterisk/pjproject):
-
- 
-
-
-
+Checkout the Asterisk 12-compatible pjproject from the Asterisk [github repo](https://github.com/asterisk/pjproject):
 
 ```bash title=" " linenums="1"
 # git clone https://github.com/asterisk/pjproject pjproject
 
 ```
-
 
 And that's it!
 
@@ -200,9 +169,9 @@ Additionally, Asterisk **REQUIRES** two or three options to be passed to **confi
 
 * + `--enable-shared` - Instruct pjproject to build shared object libraries. Asterisk will only use shared objects from pjproject.
 	+ `--prefix` - Specify root install directory for pjproject. This will be dependent on your distribution of Linux; typically this is `/usr`for most systems. The default is `/usr/local`
-	+ `--libdir` - Specify the installation location for object code libraries. This may need to be set to `/usr/lib64` for some 64-bit systems such as CentOS.
+	+ `--libdir` - Specify the installation location for object code libraries. This may need to be set to `/usr/lib64` for some 64-bit systems such as CentOS.
 
- 
+
 
 
 
@@ -222,9 +191,9 @@ Additionally, Asterisk **REQUIRES** two or three options to be passed to **confi
 	+ The default configuration of pjproject enables "assert" functions which can cause Asterisk to crash unexpectedly. To disable the asserts, set `NDEBUG` to `1`.
 	+ The default number of TCP/TLS incoming connections allowed is 64. If you plan on having more than that you'll need to set `PJ_IOQUEUE_MAX_HANDLES` to the new limit.
 
-With the exception of `PJ_IOQUEUE_MAX_HANDLES`, the options can be set in `CFLAGS` and passed to configure as follows: '.`/configure CFLAGS="-DNDEBUG=1 -DPJ_HAS_IPV6=1`"', etc. A better way is to create or edit the `pjlib/include/pj/config_site.h` file and set them all there. You should use the bundled version of the `config_site.h` file in `third-party/pjproject/patches` as a starting point.  Below is a copy of the file at the time of this writing.
+With the exception of `PJ_IOQUEUE_MAX_HANDLES`, the options can be set in `CFLAGS` and passed to configure as follows: '.`/configure CFLAGS="-DNDEBUG=1 -DPJ_HAS_IPV6=1`"', etc. A better way is to create or edit the `pjlib/include/pj/config_site.h` file and set them all there. You should use the bundled version of the `config_site.h` file in `third-party/pjproject/patches` as a starting point.  Below is a copy of the file at the time of this writing.
 
- 
+
 
 
 
@@ -234,9 +203,7 @@ With the exception of `PJ_IOQUEUE_MAX_HANDLES`, the options can be set in `CFLAG
   
 pjlib/include/pj/config_site.h  
 
-
 ```
-
 truecpp/*
  * Asterisk config_site.h
  */
@@ -327,7 +294,6 @@ truecpp/*
 ```
 
 
- 
 
 Other common **configure** options needed for pjproject are listed below:
 
@@ -343,7 +309,7 @@ Other common **configure** options needed for pjproject are listed below:
 | Disable video | `--disable-video` | Disable video support in pjproject's media libraries. This is not used by Asterisk. |
 | Disable AMR | --disable-opencore-amr | Disable AMR codec support. This is not used by Asterisk |
 
-These are some of the more common options used to disable third party libraries in pjproject. However, other options may be needed depending on your system - see  **``configure --help``**  for a full list of configure options you can pass to pjproject.
+These are some of the more common options used to disable third party libraries in pjproject. However, other options may be needed depending on your system - see  **``configure --help``**  for a full list of configure options you can pass to pjproject.
 
 1. 1. ---
 	
@@ -360,7 +326,7 @@ These are some of the more common options used to disable third party libraries 
 	
 	
 	---
-	2. In the pjproject source directory, run the configure script with the options needed for your system:
+	2. In the pjproject source directory, run the configure script with the options needed for your system:
 	
 	
 	
@@ -383,7 +349,7 @@ These are some of the more common options used to disable third party libraries 
 	
 	
 	A few recommended options are shown. That includes setting a couple important CFLAGS, -O2 for common optimizations and -DNDEBUG to disable debugging code and assertions.
-	3. Build pjproject:
+	3. Build pjproject:
 	
 	
 	
@@ -405,7 +371,7 @@ These are some of the more common options used to disable third party libraries 
 	
 	
 	---
-	4. Install pjproject
+	4. Install pjproject
 	
 	
 	
@@ -476,7 +442,7 @@ These are some of the more common options used to disable third party libraries 
 	
 	
 	---
-	7. Finally, verify that Asterisk detects the pjproject libraries. In your Asterisk source directory:
+	7. Finally, verify that Asterisk detects the pjproject libraries. In your Asterisk source directory:
 	
 	
 	
@@ -498,7 +464,7 @@ These are some of the more common options used to disable third party libraries 
 	
 	---
 	8. Browse to the **Resource Modules** category and verify that the `res_pjsip` modules are enabled:
-	9. You're all done!  Now, build and install Asterisk as your normally would.
+	9. You're all done!  Now, build and install Asterisk as your normally would.
 
 
 
@@ -521,17 +487,7 @@ After building and installing pjproject, Asterisk fails to detect any of the lib
 
 Verify that Asterisk's config.log shows the following:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 configure:23029: checking for PJPROJECT
 configure:23036: $PKG_CONFIG --exists --print-errors "libpjproject"
 Package libpjproject was not found in the pkg-config search path.
@@ -541,7 +497,6 @@ No package 'libpjproject' found
 
 ```
 
-
 1. 1. Make sure you have `pkg-config` installed on your system.
 	2. pjproject will install the package config file in  `/usr/lib/pkgconfig` . Some distributions, notably Fedora, will instead look for the library in  `/usr/lib64` . Update your  `PKG_CONFIG_PATH`  environment variable with  `/usr/lib/pkgconfig`  and re-run Asterisk's  `configure`  script.
 
@@ -549,17 +504,7 @@ No package 'libpjproject' found
 
 When building pjproject, errors about opencore_amr are displayed, e.g.:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 output/pjmedia-codec-x86_64-unknown-linux-gnu/opencore_amr.o:(.rodata+0x60): multiple definition of `pjmedia_codec_amrnb_framelenbits'
 output/pjmedia-codec-x86_64-unknown-linux-gnu/opencore_amr.o:(.rodata+0x60): first defined here
 output/pjmedia-codec-x86_64-unknown-linux-gnu/opencore_amr.o:(.rodata+0x80): multiple definition of `pjmedia_codec_amrnb_framelen'
@@ -572,26 +517,15 @@ output/pjmedia-codec-x86_64-unknown-linux-gnu/opencore_amr.o:(.rodata+0x40): fir
 
 ```
 
-
 #### Solution
 
- You already have the AMR codec installed. Run  `configure`  with the  `--disable-opencore-amr`  option specified. 
+ You already have the AMR codec installed. Run  `configure`  with the  `--disable-opencore-amr`  option specified. 
 
 ###  pjproject fails to build: video linker errors
 
   When building pjproject, linker errors referring to various video methods are displayed, e.g.:  
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 /home/mjordan/projects/pjproject/pjmedia/lib/libpjmedia-videodev.so: undefined reference to `pjmedia_format_init_video'
 /home/mjordan/projects/pjproject/pjmedia/lib/libpjmedia.so: undefined reference to `pjmedia_video_format_mgr_instance'
 /home/mjordan/projects/pjproject/pjmedia/lib/libpjmedia-videodev.so: undefined reference to `pjmedia_format_get_video_format_detail'
@@ -599,18 +533,17 @@ output/pjmedia-codec-x86_64-unknown-linux-gnu/opencore_amr.o:(.rodata+0x40): fir
 
 ```
 
-
 #### Solution
 
-Run  `configure`  with either or both  `--disable-video`  or  `--disable-v4l2`
+Run  `configure`  with either or both  `--disable-video`  or  `--disable-v4l2`
 
 ### ldconfig fails to display pjproject libraries
 
-After building pjproject, the dump provided by  `ldconfig -p`  doesn't display any libraries.
+After building pjproject, the dump provided by  `ldconfig -p`  doesn't display any libraries.
 
 #### Solution
 
- Run  `ldconfig`  to re-configure dynamic linker run-time bindings. This will need to be run with super user permissions.  
+ Run  `ldconfig`  to re-configure dynamic linker run-time bindings. This will need to be run with super user permissions.  
  
 
 ###  pjproject fails to build on Raspberry Pi
@@ -618,17 +551,7 @@ After building pjproject, the dump provided by  `ldconfig -p`  doesn't display
  pjproject/Asterisk fails to compile on your Raspberry Pi (raspbian) due to pjproject configure scripts not detecting endianness:  
  
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 /usr/include/pj/config.h:243:6: error: #error Endianness must be declared for this processor
 In file included from /usr/include/pj/types.h:33:0,
  from /usr/include/pjsip/sip_config.h:27,
@@ -640,23 +563,12 @@ In file included from /usr/include/pj/types.h:33:0,
 
 ```
 
-
 ####  Solution
 
 1. 1. Edit `/usr/include/pj/config.h` (using the editor of your choice)
 	2. Replace this code:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
  /*
  * ARM, bi-endian, so raise error if endianness is not configured
  */
@@ -670,20 +582,9 @@ In file included from /usr/include/pj/types.h:33:0,
 
 ```
 
-
 With this:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
  /*
  * ARM, bi-endian, so raise error if endianness is not configured
  */
@@ -696,10 +597,9 @@ With this:
 
 ```
 
-
 Then recompile. This workaround was taken from issue [ASTERISK-23315](https://github.com/asterisk/asterisk/issues/jira/browse/ASTERISK-23315).
 
- 
+
 
 
 
@@ -711,61 +611,45 @@ Typically, other versions of pjproject will be installed as static libraries. Th
 
 pjproject provides an `uninstall` make target that will remove previous installations. It can be called from the pjproject source directory like:
 
-
-
-
 ```bash title=" " linenums="1"
 # make uninstall
 
 ```
 
-
 If you don't have an "uninstall" make target, you may need to fetch and merge the latest pjproject from <https://github.com/asterisk/pjproject>
 
 Alternatively, the following should also remove all previously installed static libraries:
-
-
-
 
 ```bash title=" " linenums="1"
 # rm -f /usr/lib/libpj\*.a /usr/lib/libmilenage\*.a /usr/lib/pkgconfig/libpjproject.pc
 
 ```
 
-
 Finally, you will need to update shared library links:
-
-
-
 
 ```bash title=" " linenums="1"
 # ldconfig
 
 ```
 
-
 If you want to run a sanity check, you can verify that pjproject has been uninstalled by ensuring no pjproject modules remain on the system:
-
-
-
 
 ```bash title=" " linenums="1"
 # ldconfig -p | grep pj
 
 ```
 
+If running the above command yields no results, that's it! You have successfully uninstalled pjproject from your system. If there are results, you may need to remove other pjproject-related items from /usr/lib as well.
 
-If running the above command yields no results, that's it! You have successfully uninstalled pjproject from your system. If there are results, you may need to remove other pjproject-related items from /usr/lib as well.
 
- 
 
- 
 
- 
 
- 
 
- 
 
- 
+
+
+
+
+
 

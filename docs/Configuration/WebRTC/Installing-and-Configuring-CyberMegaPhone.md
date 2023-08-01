@@ -6,13 +6,13 @@ pageid: 40818102
 Introduction
 ============
 
-At [AstriDevCon 2017](/Development/Roadmap/AstriDevCon-2017), Digium introduced a sample WebRTC Video Conference Web Application called CyberMegaPhone (CMP2K).  This document will walk you through installing the application and configuring it and Asterisk as a simple video conference server.
+At [AstriDevCon 2017](/Development/Roadmap/AstriDevCon-2017), Digium introduced a sample WebRTC Video Conference Web Application called CyberMegaPhone (CMP2K).  This document will walk you through installing the application and configuring it and Asterisk as a simple video conference server.
 
- 
 
- 
 
- 
+
+
+
 
 
 
@@ -20,16 +20,16 @@ At [AstriDevCon 2017](/Development/Roadmap/AstriDevCon-2017), Digium introduced 
 Prerequisites
 =============
 
-Before proceeding, follow the instructions for [Configuring Asterisk for WebRTC Clients](/Configuration/WebRTC/Configuring-Asterisk-for-WebRTC-Clients) and then use SIPML5 to test your connectivity by following the instructions at [WebRTC tutorial using SIPML5](/Configuration/WebRTC/WebRTC-tutorial-using-SIPML5).  The instructions below assume you've completed those steps.  Don't forget, Asterisk 15.5 or better is required.
+Before proceeding, follow the instructions for [Configuring Asterisk for WebRTC Clients](/Configuration/WebRTC/Configuring-Asterisk-for-WebRTC-Clients) and then use SIPML5 to test your connectivity by following the instructions at [WebRTC tutorial using SIPML5](/Configuration/WebRTC/WebRTC-tutorial-using-SIPML5).  The instructions below assume you've completed those steps.  Don't forget, Asterisk 15.5 or better is required.
 
-You'll also need a working webcam and microphone on your client computer.  CMP2K will not connect unless both are available.
+You'll also need a working webcam and microphone on your client computer.  CMP2K will not connect unless both are available.
 
 Get The Code
 ============
 
-The CyberMegaPhone (CMP2K) code is located in Asterisk's public Github repository at [https://github.com/asterisk/cyber_mega_phone_2k](https://github.com/asterisk/cyber_mega_phone_2k)(https://github.com/asterisk/cyber_mega_phone_2k.git).  You can either download the code as a zip file or clone the repository using git.  Which ever way you choose, download it now to the directory of your choice.  We'll use `/usr/src/asterisk/cyber_mega_phone_2k` in the instructions below.
+The CyberMegaPhone (CMP2K) code is located in Asterisk's public Github repository at [https://github.com/asterisk/cyber_mega_phone_2k](https://github.com/asterisk/cyber_mega_phone_2k)(https://github.com/asterisk/cyber_mega_phone_2k.git).  You can either download the code as a zip file or clone the repository using git.  Which ever way you choose, download it now to the directory of your choice.  We'll use `/usr/src/asterisk/cyber_mega_phone_2k` in the instructions below.
 
-From an installation perspective, that's all there is to it.  It's just configuration from now on.
+From an installation perspective, that's all there is to it.  It's just configuration from now on.
 
 As a reminder, we'll be using `pbx.example.com` as our hostname so substitute it with your own hostname or ip address.
 
@@ -39,7 +39,7 @@ Configure Asterisk
 (Re)Configure the Asterisk HTTP Server
 --------------------------------------
 
-The CMP2K software needs to be served by a TLS capable web server.  The easiest way to do this by far is to simply use Asterisk's built-in HTTP server.  Here's what we need to add...
+The CMP2K software needs to be served by a TLS capable web server.  The easiest way to do this by far is to simply use Asterisk's built-in HTTP server.  Here's what we need to add...
 
 
 
@@ -49,9 +49,7 @@ The CMP2K software needs to be served by a TLS capable web server.  The easiest
   
 /etc/asterisk/http.conf  
 
-
 ```
-
 ; Existing definition
 [general]
 enabled=yes
@@ -62,20 +60,18 @@ tlsbindaddr=0.0.0.0:8089
 tlscertfile=<your_cert_file>
 tlsprivatekey=<your_key_file>
 tlscafile=<your_ca_cert_file>
- 
+
 ; Add the following if not already present
 ; Allow the HTTP server to serve static content from /var/lib/asterisk/static-http
 enablestatic = yes
 ; Create an alias that will allow us to easily load the client in a web browser.
 redirect = /cmp2k /static/cyber_mega_phone_2k/index.html
- 
 
 ```
 
-
 Restart Asterisk or issue the CLI command "`config reload /etc/asterisk/http.conf`"
 
-Now check that the configuration was applied.  From the Asterisk CLI...
+Now check that the configuration was applied.  From the Asterisk CLI...
 
 
 
@@ -85,10 +81,8 @@ Now check that the configuration was applied.  From the Asterisk CLI...
   
 Asterisk CLI  
 
-
 ```
 
- 
 \*CLI> http show status
 HTTP Server Status:
 Prefix: 
@@ -118,19 +112,13 @@ Enabled URI's:
 Enabled Redirects:
  /cmp2k => /static/cyber_mega_phone_2k/index.html
 
-
-
 ```
 
 
- 
 
-Notice that there's a new Redirect entry.  
+Notice that there's a new Redirect entry. 
 
-For security reasons, the HTTP server will not serve arbitrary paths so the  `/static/cyber_mega_phone_2k/index.html` path will actually resolve to is `/var/lib/asterisk/static-http/cyber_mega_phone_2k/index.html`.  You can either move the CMP2K directory that you downloaded to `/var/lib/asterisk/static-http` or you can simply create a symlink to it as follows:
-
-
-
+For security reasons, the HTTP server will not serve arbitrary paths so the  `/static/cyber_mega_phone_2k/index.html` path will actually resolve to is `/var/lib/asterisk/static-http/cyber_mega_phone_2k/index.html`.  You can either move the CMP2K directory that you downloaded to `/var/lib/asterisk/static-http` or you can simply create a symlink to it as follows:
 
 ```bash title="Shell Prompt  " linenums="1"
 # cd /var/lib/asterisk/static-http
@@ -138,19 +126,18 @@ For security reasons, the HTTP server will not serve arbitrary paths so the  `/
 
 ```
 
-
-OK, let's test.  From your web browser, visit `https://pbx.example.com:8089/cmp2k` remembering to substitute your hostname or ip address as appropriate.
+OK, let's test.  From your web browser, visit `https://pbx.example.com:8089/cmp2k` remembering to substitute your hostname or ip address as appropriate.
 
 Did you get?...
 
 ![](Screenshot_2018-09-07_12-03-18.png)
 
-Great.  
+Great. 
 
 (Re)Configure PJSIP
 -------------------
 
-In the [Configuring Asterisk for WebRTC Clients](/Configuration/WebRTC/Configuring-Asterisk-for-WebRTC-Clients) tutorial, you created a PJSIP Endpoint named "webrtc_client".  We need to modify that definition for our purposes.
+In the [Configuring Asterisk for WebRTC Clients](/Configuration/WebRTC/Configuring-Asterisk-for-WebRTC-Clients) tutorial, you created a PJSIP Endpoint named "webrtc_client".  We need to modify that definition for our purposes.
 
 
 
@@ -160,9 +147,7 @@ In the [Configuring Asterisk for WebRTC Clients](/Configuration/WebRTC/Configur
   
 /etc/asterisk/pjsip.conf  
 
-
 ```
-
 [webrtc_client]
 type=endpoint
 aors=webrtc_client
@@ -179,10 +164,8 @@ allow=opus,g722,ulaw,vp9,vp8,h264
 ; we need to indicate the maximum number of streams allowed for audio and video.
 max_audio_streams = 1
 max_video_streams = 15
- 
 
 ```
-
 
 You may already have some of the config from previous webrtc endpoints for certificates, keys, encryption, ice support etc and think you don't need to add the magical `webrtc=yes` but you do! The `webrtc=yes` flag does more than just shortcut already existing flags which are needed for proper SFU support.
 
@@ -191,7 +174,7 @@ There are two more Asterisk changes we need to make so no need to restart Asteri
 Configure app_confbridge
 -------------------------
 
-The sample `confbridge.conf` file is enough to get you going with one exception.  In the `default_bridge` section, we need to set `video_mode=sfu`.
+The sample `confbridge.conf` file is enough to get you going with one exception.  In the `default_bridge` section, we need to set `video_mode=sfu`.
 
 
 
@@ -201,19 +184,15 @@ The sample `confbridge.conf` file is enough to get you going with one exception.
   
 /etc/asterisk/confbridge.conf  
 
-
 ```
-
 [default_bridge]
 type=bridge
 ; other stuff
 ; SFU is Selective Forwarding Mode
 ; Basically all participant's video streams are relayed to all other participants.
 video_mode = sfu
- 
 
 ```
-
 
 One more change...
 
@@ -230,24 +209,20 @@ Now we need to configure an extension that, when dialed, will put us into the vi
   
 /etc/asterisk/extensions.conf  
 
-
 ```
-
 [default]
 exten = my_video_conference,1,Confbridge(MYCONF,default_bridge,default_user,sample_user_menu)
 
-
 ```
-
 
 NOW, restart Asterisk!
 
 Join the Conference Bridge!
 ===========================
 
-Open a browser window and visit `<https://pbx.example.com:8089/cmp2k>` remembering to substitute your hostname or ip address as appropriate.
+Open a browser window and visit `<https://pbx.example.com:8089/cmp2k>` remembering to substitute your hostname or ip address as appropriate.
 
-You should be back at the page you  got when you tested earlier...
+You should be back at the page you  got when you tested earlier...
 
 ![](Screenshot_2018-09-07_12-03-18.png)
 
@@ -265,9 +240,9 @@ You should have also seen an `== Endpoint webrtc_client is now Reachable` messag
 
 Finally, click `Call`...
 
-You may be prompted to allow access to your microphone and camera.  If so, allow them both.
+You may be prompted to allow access to your microphone and camera.  If so, allow them both.
 
-Now, did you hear the `You are the only person in this conference` prompt?  Do you see yourself in the video preview window?
+Now, did you hear the `You are the only person in this conference` prompt?  Do you see yourself in the video preview window?
 
 ![](Screenshot_2018-09-07_12-40-16.png)
 
@@ -276,12 +251,12 @@ That's it!
 Bonus Points
 ============
 
-Have a friend or co-worker join the bridge.  They can use the same `webrtc_client` credentials.
+Have a friend or co-worker join the bridge.  They can use the same `webrtc_client` credentials.
 
 Recommendations
 ===============
 
 If you experience audio issues, it may be a good idea to turn on the jitterbuffer. This can cause the audio to be slightly delayed, but will also eliminate problems such as bursty audio packets causing disruptions. You can enable this option in confbridge.conf for a user, or you can do it through the dialplan before placing the user in the conference by using the JITTERBUFFER dialplan function for a more fine tuned experience.
 
- 
+
 

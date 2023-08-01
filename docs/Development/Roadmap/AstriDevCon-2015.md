@@ -52,7 +52,7 @@ Participants
 | Rob Thomas | Sangoma |
 | Lorenzo Emilitri | Loway |
 | Marco Signorini | Loway |
-|  Sylvain Boily | Xivo |
+|  Sylvain Boily | Xivo |
 | Clod Patry | TelcoBridges |
 | Daniel Collins | USAN |
 | Steve Sokol | Digium |
@@ -111,14 +111,14 @@ Recap of 2015
 * Asterisk as a media application server
 	+ New events:
 		- [ChannelConnectedLine](/Asterisk+13+REST+Data+Models#Asterisk13RESTDataModels-ChannelConnectedLine)
-		- [`ChannelHold`](/Asterisk+13+REST+Data+Models#Asterisk13RESTDataModels-ChannelHold) and [`ChannelUnhold`](/Asterisk+13+REST+Data+Models#Asterisk13RESTDataModels-ChannelUnhold)
-		- [`ContactStatusChange`](/Asterisk+13+REST+Data+Models#Asterisk13RESTDataModels-ContactStatusChange) and [`PeerStatusChange`](/Asterisk+13+REST+Data+Models#Asterisk13RESTDataModels-PeerStatusChange)
+		- [`ChannelHold`](/Asterisk+13+REST+Data+Models#Asterisk13RESTDataModels-ChannelHold) and [`ChannelUnhold`](/Asterisk+13+REST+Data+Models#Asterisk13RESTDataModels-ChannelUnhold)
+		- [`ContactStatusChange`](/Asterisk+13+REST+Data+Models#Asterisk13RESTDataModels-ContactStatusChange) and [`PeerStatusChange`](/Asterisk+13+REST+Data+Models#Asterisk13RESTDataModels-PeerStatusChange)
 	+ [`channels`](/Asterisk+13+Channels+REST+API) resource additions:  
 	
-		- The [`originate`](/Asterisk+13+Channels+REST+API#Asterisk13ChannelsRESTAPI-originate) operation now lets you specify an `originator` for `linkedid` propagation
-		- The [`channel`](/Asterisk+13+REST+Data+Models#Asterisk13RESTDataModels-Channel) data model now includes the `language` field for the Asterisk channel it represents
-		- The [`originate`](/Asterisk+13+Channels+REST+API#Asterisk13ChannelsRESTAPI-originate) operation and [`continue`](/Asterisk+13+Channels+REST+API#Asterisk13ChannelsRESTAPI-continueInDialplan) operation now let you specify a priority label
-		- The [`redirect`](/Asterisk+13+Channels+REST+API#Asterisk13ChannelsRESTAPI-redirect) operation was added, allowing channels to be transferred or forwarded to external systems
+		- The [`originate`](/Asterisk+13+Channels+REST+API#Asterisk13ChannelsRESTAPI-originate) operation now lets you specify an `originator` for `linkedid` propagation
+		- The [`channel`](/Asterisk+13+REST+Data+Models#Asterisk13RESTDataModels-Channel) data model now includes the `language` field for the Asterisk channel it represents
+		- The [`originate`](/Asterisk+13+Channels+REST+API#Asterisk13ChannelsRESTAPI-originate) operation and [`continue`](/Asterisk+13+Channels+REST+API#Asterisk13ChannelsRESTAPI-continueInDialplan) operation now let you specify a priority label
+		- The [`redirect`](/Asterisk+13+Channels+REST+API#Asterisk13ChannelsRESTAPI-redirect) operation was added, allowing channels to be transferred or forwarded to external systems
 	+ [`asterisk`](/Asterisk+13+Asterisk+REST+API) resource additions:
 		- Module manipulation can now be done via `/asterisk/modules`:
 			* [`listModules`](/Asterisk+13+Asterisk+REST+API#Asterisk13AsteriskRESTAPI-listModules) - retrieve all modules in the system
@@ -132,7 +132,7 @@ Recap of 2015
 			* [`rotateLog`](/Asterisk+13+Asterisk+REST+API#Asterisk13AsteriskRESTAPI-rotateLog) - rotate the log channels
 		- [Push configuration](/Configuration/Interfaces/Asterisk-REST-Interface-ARI/The-Asterisk-Resource/ARI-Push-Configuration) for [Sorcery](/Fundamentals/Asterisk-Configuration/Sorcery) backed modules. This was designed specifically for use with the PJSIP stack. Using ARI, PJSIP objects can be pushed into Asterisk and backed by one of the pluggable sorcery backends. See [ARI Push Configuration](/Configuration/Interfaces/Asterisk-REST-Interface-ARI/The-Asterisk-Resource/ARI-Push-Configuration) for an example of using this.
 	+ `events` resource additions:
-		- When establishing a WebSocket connection, you can now subscribe to all events happening in Asterisk using the [`subscribeAll`](/Asterisk+13+Events+REST+API#Asterisk13EventsRESTAPI-eventWebsocket) query option.
+		- When establishing a WebSocket connection, you can now subscribe to all events happening in Asterisk using the [`subscribeAll`](/Asterisk+13+Events+REST+API#Asterisk13EventsRESTAPI-eventWebsocket) query option.
 	+ `applications` resource additions:
 		- When [subscribing](/Asterisk+13+Applications+REST+API#Asterisk13ApplicationsRESTAPI-subscribe) to an event resource, not providing any specific resource name will now subscribe you to all events for that resource type. Note that the specific resource names are now optional for all resource types.
 Presentations
@@ -277,5 +277,5 @@ Open Discussion
 Conclusions
 ===========
 
- 
+
 

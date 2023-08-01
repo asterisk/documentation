@@ -14,7 +14,7 @@ pageid: 19005573
 
 
 
- Every effort has been made to make this transition as automatic and painless for users as possible. This page will describe the upgrade process, any potential problems, and the appropriate solutions to those problems.
+ Every effort has been made to make this transition as automatic and painless for users as possible. This page will describe the upgrade process, any potential problems, and the appropriate solutions to those problems.
 
 The upgrade process
 -------------------

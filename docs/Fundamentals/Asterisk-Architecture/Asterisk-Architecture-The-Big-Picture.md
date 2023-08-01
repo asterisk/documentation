@@ -14,7 +14,7 @@ AsteriskArchitecture800
 
 Remember this is not an exhaustive diagram. It covers only a few of the common relationships between certain components.
 
-On this Page 
+On this Page
 
 
 Asterisk Architecture
@@ -84,5 +84,5 @@ Dialplan is the one main method of directing Asterisk behavior. Dialplan exists 
 Dialplan can also call out through other interfaces such as [AGI](/Asterisk-11-Application_AGI) to receive call control instruction from external scripts and programs. The [Dialplan](/Configuration/Dialplan) section of the wiki goes into detail on the usage of dialplan.  
 
 
- 
+
 

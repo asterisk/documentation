@@ -27,7 +27,6 @@ Some of the parameters in each object are actually lists of comma-separated name
 ```
 location_info = shape=Circle, pos="39.12345 -105.98766", radius=100
 ```
-
 Spaces around the equals signs and commas are ignored so you must double quote sub-parameter values with spaces or commas in them.
 For readability, parameters that use sub-parameters can be split over more than one line. For example:
 ```
@@ -117,7 +116,6 @@ method = Manual
 location_info = country=US, A1="New York", A3="New York",
 location_info = HNO=1633, PRD=W, RD=46th, STS=Street, PC=10222
 ```
-
 ### Profile
 The Profile object defines how a location is used and is referenced by channel drivers.
 
@@ -243,7 +241,6 @@ type = endpoint
 geoloc_incoming_call_profile = <discard_incoming>
 geoloc_outgoing_call_profile = myendpoint_profile
 ```
-
 # Dialplan Function
 A new dialplan function has been added to allow a dialplan author to manipulate geolocation information.
 
@@ -271,7 +268,6 @@ type = profile
 location_reference = building1
 location_refinement = FLR=32, ROOM=32A6
 ```
-
 In pjsip.conf, we can now associate those profiles to endpoints.
 
 ```
@@ -282,7 +278,6 @@ geoloc_incoming_call_profile = bob
 type = endpoint
 geoloc_incoming_call_profile = alice
 ```
-
 You'll notice that neither bob nor alice set `geoloc_outgoing_call_profile` because we never want to send location information _to_ them.
 Now when Alice makes a call, Asterisk will construct an effective profile (including any defaults and variable substitutions) that looks like this...
 
@@ -296,6 +291,5 @@ usage_rules = retention-expires="${STRFTIME($[${EPOCH}+86400],UTC,%FT%TZ)}"
 allow_routing = no
 pidf_element = device
 ```
-
 Bob's effective profile would be exactly the same except for `FLR` and `ROOM`
 This effective profile will then be forwarded to the dialplan. The dialplan application can then use GEOLOC_PROFILE to make changes before the effective profile is forwarded to the outgoing channel. It can also use GeolocProfileDelete to just delete the effective profile and pass nothing.

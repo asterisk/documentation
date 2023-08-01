@@ -14,7 +14,7 @@ Each section has one or more **configuration options** that can be assigned a va
 
 Every section will have a **type** option that defines what kind of section is being configured. You'll see that in every example config section below.
 
-Syntax for res_sip config objects **[**  SectionName  **]**    
+Syntax for res_sip config objects **[**  SectionName  **]**    
  ConfigOption  **=**  Value   
  ConfigOption  **=**  Value
 
@@ -58,7 +58,7 @@ Below is a brief description of each section type and an example showing configu
 
 There are dozens of config options for some of the sections, but the examples below are very minimal for the sake of simplicity.
 
- 
+
 
 ### ENDPOINT
 
@@ -68,15 +68,7 @@ Endpoint configuration provides numerous options relating to core SIP functional
 
 EXAMPLE BASIC CONFIGURATION
 
-
----
-
-  
-  
-
-
 ```
-
 [6001]
 type=endpoint
 context=default
@@ -88,25 +80,13 @@ aors=6001
 
 ```
 
-
 If you want to define the Caller Id this endpoint should use, then add something like the following:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 trust_id_outbound=yes
 callerid=Spaceman Spiff <6001>
 
 ```
-
 
 ### **TRANSPORT**
 
@@ -132,40 +112,17 @@ You can setup multiple transport sections and other sections (such as endpoints)
 
 EXAMPLE BASIC CONFIGURATIONA basic UDP transport bound to all interfaces
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 [simpletrans]
 type=transport
 protocol=udp
 bind=0.0.0.0
 
-
-
 ```
-
 
 Or a TLS transport, with many possible options and parameters:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 [simpletrans]
 type=transport
 protocol=tls
@@ -179,7 +136,6 @@ method=
 
 ```
 
-
 ### **AUTH**
 
 (provided by module: res_pjsip)
@@ -188,41 +144,18 @@ Authentication sections hold the options and credentials related to inbound or o
 
 EXAMPLE BASIC CONFIGURATIONAn example with username and password authentication
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 [auth6001]
 type=auth
 auth_type=userpass
 password=6001
 username=6001
 
-
-
 ```
-
 
 And then an example with MD5 authentication
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 [auth6001]
 type=auth
 auth_type=md5
@@ -230,7 +163,6 @@ md5_cred=51e63a3da6425a39aecc045ec45f1ae8
 username=6001 
 
 ```
-
 
 ### **AOR**
 
@@ -244,63 +176,30 @@ When Asterisk receives an inbound registration, it'll look to match against avai
 
 EXAMPLE BASIC CONFIGURATIONFirst, we have a configuration where you are expecting the SIP User Agent (likely a phone) to register against the AOR. In this case, the contact objects will be created automatically. We limit the maximum contact creation to 1. We could do 10 if we wanted up to 10 SIP User Agents to be able to register against it.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 [6001]
 type=aor
 max_contacts=1
 
 ```
 
-
 Second, we have a configuration where you are **not** expecting the SIP User Agent to register against the AOR. In this case, you can assign contacts manually as follows. We don't have to worry about max_contacts since that option only affects the maximum allowed contacts to be created through external interaction, like registration.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 [6001]
 type=aor
 contact=sip:6001@192.0.2.1:5060
 
 ```
 
-
-Third, it's useful to note that you could define only the domain and omit the user portion of the SIP URI if you wanted. Then you could define the **user** portion dynamically in your dialplan when calling the Dial application. You'll likely do this when building an AOR/Endpoint combo to use for dialing out to an ITSP.  For example: "Dial(PJSIP/${EXTEN}@mytrunk)"
-
-
-
-
----
-
-  
-  
-
+Third, it's useful to note that you could define only the domain and omit the user portion of the SIP URI if you wanted. Then you could define the **user** portion dynamically in your dialplan when calling the Dial application. You'll likely do this when building an AOR/Endpoint combo to use for dialing out to an ITSP.  For example: "Dial(PJSIP/${EXTEN}@mytrunk)"
 
 ```
-
 [mytrunk]
 type=aor
 contact=sip:203.0.113.1:5060
 
 ```
-
 
 ### **REGISTRATION**
 
@@ -312,17 +211,7 @@ EXAMPLE BASIC CONFIGURATIONThis example shows you how you might configure regist
 
 This example is just the registration itself. You'll of course need the associated transport and auth sections. Plus, if you want to receive calls from the far end (who now knows where to send calls, thanks to your registration!) then you'll need endpoint, AOR and possibly identify sections setup to match inbound calls to a context in your dialplan.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 [mytrunk]
 type=registration
 transport=simpletrans
@@ -331,23 +220,11 @@ server_uri=sip:myaccountname@203.0.113.1:5060
 client_uri=sip:myaccountname@192.0.2.1:5060
 retry_interval=60
 
-
 ```
-
 
 And an example that may work with a SIP trunking provider
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 [mytrunk]
 type=registration
 transport=simpletrans
@@ -358,32 +235,22 @@ retry_interval=60
 
 ```
 
-
 What if you don't need to authenticate? You can simply omit the **outbound_auth** option.
 
 ### **DOMAIN_ALIAS**
 
 (provided by module: res_pjsip)
 
-Allows you to specify an alias for a domain. If the domain on a session is not found to match an AoR then this object is used to see if we have an alias for the AoR to which the endpoint is binding. This sections name as defined in configuration should be the domain alias and a config option (domain=) is provided to specify the domain to be aliased. 
+Allows you to specify an alias for a domain. If the domain on a session is not found to match an AoR then this object is used to see if we have an alias for the AoR to which the endpoint is binding. This sections name as defined in configuration should be the domain alias and a config option (domain=) is provided to specify the domain to be aliased.
 
 EXAMPLE BASIC CONFIGURATION
 
-
----
-
-  
-  
-
-
 ```
-
 [example2.com]
 type=domain_alias
 domain=example.com
 
 ```
-
 
 ### **ACL**
 
@@ -393,37 +260,16 @@ The ACL module used by 'res_pjsip'. This module is independent of 'endpoints' an
 
 EXAMPLE BASIC CONFIGURATIONA configuration pulling from the acl.conf file:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 [acl]
 type=acl
 acl=example_named_acl1
 
 ```
 
-
 A configuration defined in the object itself:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 [acl]
 type=acl
 deny=0.0.0.0/0.0.0.0
@@ -432,20 +278,9 @@ permit=209.16.236.1
 
 ```
 
-
 A configuration where we are restricting based on contact headers instead of IP addresses.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 [acl]
 type=acl
 contactdeny=0.0.0.0/0.0.0.0
@@ -454,35 +289,23 @@ contactpermit=209.16.236.1
 
 ```
 
-
 All of these configurations can be combined.
 
 ### **IDENTIFY**
 
 (provided by module: res_pjsip_endpoint_identifier_ip)
 
-Controls how the res_pjsip_endpoint_identifier_ip module determines what endpoint an incoming packet is from. If you don't have an identify section defined, or else you have res_pjsip_endpoint_**identifier_ip** loading **after** res_pjsip_endpoint_**identifier_user**, then res_pjsip_endpoint_**identifier_user** will identify inbound traffic by pulling the user from the "From:" SIP header in the packet. Basically the module load order, and your configuration will both determine whether you identify by IP or by user.
+Controls how the res_pjsip_endpoint_identifier_ip module determines what endpoint an incoming packet is from. If you don't have an identify section defined, or else you have res_pjsip_endpoint_**identifier_ip** loading **after** res_pjsip_endpoint_**identifier_user**, then res_pjsip_endpoint_**identifier_user** will identify inbound traffic by pulling the user from the "From:" SIP header in the packet. Basically the module load order, and your configuration will both determine whether you identify by IP or by user.
 
-EXAMPLE BASIC CONFIGURATIONIts use is quite straightforward. With this configuration if Asterisk sees inbound traffic from 203.0.113.1 then it will match that to Endpoint 6001.
-
-
-
-
----
-
-  
-  
-
+EXAMPLE BASIC CONFIGURATIONIts use is quite straightforward. With this configuration if Asterisk sees inbound traffic from 203.0.113.1 then it will match that to Endpoint 6001.
 
 ```
-
 [6001]
 type=identify
 endpoint=6001
 match=203.0.113.1
 
 ```
-
 
 ### **CONTACT**
 
@@ -523,7 +346,7 @@ ACL, DOMAIN_ALIAS* These objects don't have a direct configuration relationship 
 
 Unfamiliar with ERD? Click here to see a key...![](ERD_key.PNG)
 
- 
 
- 
+
+
 

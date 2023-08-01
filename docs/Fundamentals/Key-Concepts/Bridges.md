@@ -24,7 +24,7 @@ Generally, a bridge is created when Asterisk knows that two or more channels wan
 * [Page](/Asterisk-11-Application_Page) - a conferencing bridge (similar to MeetMe/ConfBridge) is used to direct the audio from the announcer to the many dialed channels.
 * [Parking](/Asterisk-13-Application_Park) (Asterisk 12+) - a special holding bridge is used for Parking, which entertains the waiting channel with hold music.
 
- 
+
 
 
 
@@ -47,7 +47,7 @@ Types
 
 There are many types of bridges in Asterisk, each of which determine how the media is mixed between the participants of the bridge. In general, there are two categories of bridge types within Asterisk: two party and multiparty. Two party bridge variants include core bridges, local native bridges, and remote native bridges. Multiparty bridge variants include mixing and holding.
 
- 
+
 
 
 
@@ -118,7 +118,7 @@ Multiparty bridges interact with one or more channels and may route media among 
 There are several ways to access mixing multiparty bridges:
 
 * [MeetMe](/Application_MeetMe) - This is a legacy conference bridge application and relies on DAHDI. This type of conference is limited to narrow band audio.
-* [ConfBridge](/Asterisk-11-Application_ConfBridge) (Asterisk 11+) - This is a conference bridge application based that supports wide band mixing.
+* [ConfBridge](/Asterisk-11-Application_ConfBridge) (Asterisk 11+) - This is a conference bridge application based that supports wide band mixing.
 * Ad-hoc Multiparty Bridges (Asterisk 12+) - Some DTMF features like 3-way attended transfers can create multiparty bridges as necessary.
 
 ### Holding

@@ -28,17 +28,7 @@ There are several directives that can be used.
 
 Let's show a few arbitrary examples below.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 [modules]
 ;autoload = yes
 ;preload = res_odbc.so
@@ -50,7 +40,6 @@ Let's show a few arbitrary examples below.
 
 ```
 
-
 CLI Commands
 ============
 
@@ -58,51 +47,21 @@ Asterisk provides a few commands for managing modules at run-time. Be sure to ch
 
 * module show
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 Usage: module show [like keyword]
  Shows Asterisk modules currently in use, and usage statistics.
 
 ```
 * module load
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 Usage: module load <module name>
  Loads the specified module into Asterisk.
 
 ```
 * module unload
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 Usage: module unload [-f|-h] <module_1> [<module_2> ... ]
  Unloads the specified module from Asterisk. The -f
  option causes the module to be unloaded even if it is
@@ -113,22 +72,11 @@ Usage: module unload [-f|-h] <module_1> [<module_2> ... ]
 ```
 * module reload
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 Usage: module reload [module ...]
  Reloads configuration files for all listed modules which support
  reloading, or for all supported modules if none are listed.
 
 ```
 
- 
 

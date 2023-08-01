@@ -3,9 +3,9 @@ title: ARI Feature Wish-list
 pageid: 32375021
 ---
 
- 
 
- 
+
+
 
 70%Overview
 ========
@@ -25,7 +25,7 @@ Non-JIRA Feature Requests
 
 Don't see your Wish-List request below? Ask in #asterisk-ari on freenode.
 
- 
+
 
 
 
@@ -52,6 +52,6 @@ Don't see your Wish-List request below? Ask in #asterisk-ari on freenode.
 | Bridged DTMF Pass-through | Expose ability to set pass-through behavior of DTMF on bridges at bridge creation or when a channel is added to a bridge | 05/08/2016 |  |  |
 | Connection without user | Allow ARI requests to be initiated without requiring authentication or a user | 15/08/2016 |  |  |
 | Set Presence State | The ability to set presencestate information via ARI would be immensely helpful for those developing custom apps that need to integrate Asterisk media functionality with external chat apps, etc. | 15/09/2016 |  |  |
-| Multi-Channel Recording | Recorded to multi-channel wav with a channel for each leg of a bridge. WAV format spec supports up to 18 channels. It would be greatly useful for audio analysis | 15/09/2016 |  |   |
+| Multi-Channel Recording | Recorded to multi-channel wav with a channel for each leg of a bridge. WAV format spec supports up to 18 channels. It would be greatly useful for audio analysis | 15/09/2016 |  |   |
 | On Connection End | When a call is active and the ARI connection dies, add an option to be able to send the call to a dialplan location or be able to set it within the ARI connection JSON |  |  |  |
 

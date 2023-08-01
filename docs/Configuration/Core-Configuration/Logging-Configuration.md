@@ -6,22 +6,12 @@ pageid: 28315599
 Asterisk Log File Configuration
 ===============================
 
-General purpose [logging facilities](/Operation/Logging) in Asterisk can be configured in the *[logger.conf](http://svnview.digium.com/svn/asterisk/trunk/configs/logger.conf.sample?view=markup)* file. Within this file one is able to configure Asterisk to log messages to files and/or a syslog and even to the Asterisk console.  Note, the sections and descriptions listed below are meant to be informational and act as a guide (a "how to") when configuring logging in Asterisk.  Options with stated defaults don't have to be explicitly set as they will simply default to a designated value.
+General purpose [logging facilities](/Operation/Logging) in Asterisk can be configured in the *[logger.conf](http://svnview.digium.com/svn/asterisk/trunk/configs/logger.conf.sample?view=markup)* file. Within this file one is able to configure Asterisk to log messages to files and/or a syslog and even to the Asterisk console.  Note, the sections and descriptions listed below are meant to be informational and act as a guide (a "how to") when configuring logging in Asterisk.  Options with stated defaults don't have to be explicitly set as they will simply default to a designated value.
 
 General Section:
 ----------------
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 [general]
 ; Customize the display of debug message time stamps
 ; this example is the ISO 8601 date format (yyyy-mm-dd HH:MM:SS)
@@ -76,25 +66,12 @@ rotatestrategy = rotate
 ; they are compressed on disk.
 exec_after_rotate=gzip -9 ${filename}.2
 
-
-
 ```
-
 
 Log Files Section:
 ------------------
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 [logfiles]
 ; File names can either be relative to the standard Asterisk log directory (see "astlogdir" in
 ; asterisk.conf), or absolute paths that begin with '/'.
@@ -154,8 +131,5 @@ full => notice,warning,error,verbose,dtmf,fax
 ; output notices, warning, and errors to the syslog facility
 syslog.local0 => notice,warning,error
 
-
-
 ```
-
 

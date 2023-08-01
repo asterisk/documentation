@@ -12,15 +12,7 @@ An endpoint with a single SIP phone with inbound registration to Asterisk
 
 EXAMPLE CONFIGURATION
 
-
----
-
-  
-  
-
-
 ```
-
 ;===============TRANSPORT
 
 [simpletrans]
@@ -50,33 +42,22 @@ max_contacts=1
 
 ```
 
-
 * auth= is used for the endpoint as opposed to outbound_auth= since we want to allow inbound registration for this endpoint
 * max_contacts= is set to something non-zero as we want to allow contacts to be created through registration
 
- 
+
 
 On this Page
 
 
- 
+
 
 A SIP trunk to your service provider, including outbound registration
 ---------------------------------------------------------------------
 
 EXAMPLE CONFIGURATIONTrunks are a little tricky since many providers have unique requirements. Your final configuration may differ from what you see here.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 ;==============TRANSPORTS
 
 [simpletrans]
@@ -116,9 +97,7 @@ type=identify
 endpoint=mytrunk
 match=sip.example.com
 
-
 ```
-
 
 * "contact=sip:203.0.113.1:5060", we don't define the user portion statically since we'll set that dynamically in dialplan when we call the Dial application.
 * "outbound_auth=mytrunk", we use "outbound_auth" instead of "auth" since the provider isn't typically going to authenticate with us when calling, but we will probably
@@ -136,9 +115,7 @@ match=sip.example.com
   
   
 
-
 ```
-
 [mytrunk]
 type=registration
 outbound_auth=mytrunk
@@ -150,28 +127,15 @@ retry_interval=60
 
 ---
 
-
-
 ```
-
 
 Multiple endpoints with phones registering to Asterisk, using templates
 -----------------------------------------------------------------------
 
 EXAMPLE CONFIGURATIONWe want to show here that generally, with a large configuration you'll end up using templates to make configuration easier to handle when scaling. This avoids having redundant code in every similar section that you create.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
- ;===============TRANSPORT
+ ;===============TRANSPORT
 
 [simpletrans]
 type=transport
@@ -228,10 +192,9 @@ aors=6003
 password=6003
 username=6003
 
-[6003](aor-single-reg) 
+[6003](aor-single-reg)
 
 ```
-
 
 Obviously the larger your configuration is, the more templates will benefit you. Here we just break apart the endpoints with templates, but you could do that with any config section that needs instances with variation, but where each may share common settings with their peers.
 

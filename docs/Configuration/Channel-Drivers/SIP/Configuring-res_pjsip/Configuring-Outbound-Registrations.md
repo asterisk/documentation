@@ -29,15 +29,7 @@ On this Page
 
 pjsip.conf
 
-
----
-
-  
-  
-
-
 ```
-
 true[my_provider]
 type = registration
 server_uri = sip:registrar@example.com
@@ -46,20 +38,9 @@ contact_user = inbound-calls
 
 ```
 
-
 This results in the following outbound REGISTER request being sent by Asterisk:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 <--- Transmitting SIP request (557 bytes) to UDP:93.184.216.119:5060 --->
 REGISTER sip:registrar@example.com SIP/2.0
 Via: SIP/2.0/UDP 10.24.20.249:5060;rport;branch=z9hG4bKPjd1a32b43-82ed-4f98-ae24-20149cdf0749
@@ -73,10 +54,7 @@ Allow: OPTIONS, SUBSCRIBE, NOTIFY, PUBLISH, INVITE, ACK, BYE, CANCEL, UPDATE, PR
 Max-Forwards: 70
 Content-Length: 0
 
-
-
 ```
-
 
 Let's go over how the options were applied to this REGISTER:
 
@@ -97,9 +75,7 @@ An English translation of the above REGISTER is "Tell the server at sip:registra
   
   
 
-
 ```
-
 true[my_provider]
 type = registration
 server_uri = sip:registrar@example.com\;transport=tcp
@@ -110,12 +86,9 @@ contact_user = inbound-calls
 
 ---
 
-
-
 ```
 
 
- 
 
 Outbound registrations and endpoints
 ====================================
@@ -124,18 +97,10 @@ If you examine the configuration options linked in the previous section, you wil
 
 pjsip.conf
 
-
----
-
-  
-  
-
-
 ```
-
 true[my_provider_endpoint]
 type = endpoint
- 
+
 [my_provider_identify]
 type = identify
 match = <ip address of provider>
@@ -143,22 +108,13 @@ endpoint = my_provider
 
 ```
 
-
 This represents the bare minimum necessary in order to accept incoming calls from the provider. The `identify` section makes it so that incoming SIP traffic from the IP address in the `match` option will be associated with the endpoint called `my_provider_endpoint`.
 
 If you also wish to make outbound calls to the provider, then you would also need to add an AoR section so that Asterisk can know where to send calls directed to "my_provider_endpoint".
 
 pjsip.conf
 
-
----
-
-  
-  
-
-
 ```
-
 true[my_provider_endpoint]
 type = endpoint
 aors = my_provider_aor
@@ -167,13 +123,12 @@ aors = my_provider_aor
 type = identify
 match = <ip address of provider>
 endpoint = my_provider
- 
+
 [my_provider_aor]
 type = aor
 contact = sip:my_provider@example.com
 
 ```
-
 
 
 
@@ -193,29 +148,20 @@ It is likely that if you are registering to a provider, you will need to provide
 
 pjsip.conf
 
-
----
-
-  
-  
-
-
 ```
-
 true[my_provider]
 type = registration
 server_uri = sip:registrar@example.com
 client_uri = sip:client@example.com
 contact_user = inbound-calls
 outbound_auth = provider_auth
- 
+
 [provider_auth]
 type = auth
 username = my_username
 password = my_password
 
 ```
-
 
 With this configuration, now if the registrar responds to a REGISTER by challenging for authentication, Asterisk will use the authentication credentials in the provider_auth section in order to authenticate. Details about what options are available in auth sections can be found [here](/Asterisk-13-Configuration_res_pjsip) in the "auth" section.
 
@@ -248,15 +194,7 @@ Let's modify our outbound registration to set these options to custom values:
 
 pjsip.conf
 
-
----
-
-  
-  
-
-
 ```
-
 true[my_provider]
 type = registration
 server_uri = sip:registrar@example.com
@@ -270,7 +208,6 @@ max_retries = 20
 
 ```
 
-
 In general, this configuration is more lenient than the default. We will retry registration more times, we will retry after authentication requests and forbidden responses, and we will retry more often.
 
 CLI and AMI
@@ -279,26 +216,15 @@ CLI and AMI
 Monitoring Status
 -----------------
 
-You can monitor the status of your configured outbound registrations via the CLI and the Asterisk Manager Interface. From the CLI, you can issue the command `pjsip show registrations` to list all outbound registrations. Here is an example of what you might see:
-
-
-
-
----
-
-  
-  
-
+You can monitor the status of your configured outbound registrations via the CLI and the Asterisk Manager Interface. From the CLI, you can issue the command `pjsip show registrations` to list all outbound registrations. Here is an example of what you might see:
 
 ```
-
  <Registration/ServerURI..............................> <Auth..........> <Status.......>
  =========================================================================================
  my_provider/sip:registrar@example.com provider_auth Unregistered 
  outreg/sip:registrar@example.com n/a Unregistered 
 
 ```
-
 
 On this particular Asterisk instance, there are two outbound registrations configured. The headers at the top explain what is in each column. The "Status" can be one of the following values:
 
@@ -309,17 +235,7 @@ On this particular Asterisk instance, there are two outbound registrations confi
 
 In addition, you can see the details of a particular registration by issuing the `pjsip show registration <registration name>` command. If I issue `pjsip show registration my_provider`, I see the following:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
  <Registration/ServerURI..............................> <Auth..........> <Status.......>
  =========================================================================================
 
@@ -343,22 +259,11 @@ In addition, you can see the details of a particular registration by issuing the
 
 ```
 
-
 This provides the same status line as before and also provides the configured values for the outbound registration.
 
 AMI provides the `PJSIPShowRegistrationsOutbound` command that provides the same information as the CLI commands. Here is an example of executing the command in an AMI session:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 action: PJSIPShowRegistrationsOutbound
 
 
@@ -410,10 +315,7 @@ EventList: Complete
 Registered: 0
 NotRegistered: 2
 
-
-
 ```
-
 
 The command sends `OutboundRegistrationDetail` events for each configured outbound registration. Most information is the same as the CLI displays, but there is one additional piece of data displayed: NextReg. This is the number of seconds until Asterisk will send a new REGISTER request to the registrar. In this particular scenario, that number is 0 because the two outbound registrations have reached their maximum number of retries.
 
@@ -433,7 +335,7 @@ The AMI and CLI provide ways for you to manually unregister if you want. The CLI
 
 
 
- 
+
 
 Realtime
 ========

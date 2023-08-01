@@ -28,15 +28,7 @@ Examples: (both a lock during a feature code attended transfer)
 
 Example output with DEBUG_THREADS only
 
-
----
-
-  
-  
-
-
 ```
-
 ubuntu\*CLI> core show locks
 
 =======================================================================
@@ -66,21 +58,11 @@ ubuntu\*CLI> core show locks
 ===
 =======================================================================
 
-
 ```
-
 
 Example output with DEBUG_THREADS and BETTER_BACKTRACES
 
-
----
-
-  
-  
-
-
 ```
-
 ubuntu\*CLI> core show locks
 
 =======================================================================
@@ -110,9 +92,7 @@ ubuntu\*CLI> core show locks
 ===
 =======================================================================
 
-
 ```
-
 
 ### core show taskprocessors
 
@@ -120,15 +100,7 @@ List instantiated task processors and statistics
 
 Example command output
 
-
----
-
-  
-  
-
-
 ```
-
 ubuntu\*CLI> core show taskprocessors
 
  +----- Processor -----+--- Processed ---+- In Queue -+- Max Depth -+
@@ -142,21 +114,11 @@ ubuntu\*CLI> core show taskprocessors
  +---------------------+-----------------+------------+-------------+
  7 taskprocessors
 
-
 ```
-
 
 Example command output (Asterisk 13)
 
-
----
-
-  
-  
-
-
 ```
-
 \*CLI> core show taskprocessors
 Processor Processed In Queue Max Depth Low water High water
 app_voicemail 0 0 0 450 500
@@ -187,22 +149,13 @@ subp:PJSIP/weblooper-00000024 6 0 1 450 500
 
 ```
 
-
 ### core show threads
 
-Shows running threads!  Doesn't require any compilation flags to be set.
+Shows running threads!  Doesn't require any compilation flags to be set.
 
 Example command output
 
-
----
-
-  
-  
-
-
 ```
-
 ubuntu\*CLI> core show threads
 0x7f869a7fb700 25102 netconsole started at [ 1442] asterisk.c listener()
 0x7f869a877700 25100 tps_processing_function started at [ 471] taskprocessor.c ast_taskprocessor_get()
@@ -216,9 +169,7 @@ ubuntu\*CLI> core show threads
 
 ... <snip>
 
-
 ```
-
 
 ### core show fd
 
@@ -226,17 +177,7 @@ This command is not available until you compile Asterisk with [DEBUG_FD_LEAKS](/
 
 Shows file descriptors open by Asterisk.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 newtonr-laptop\*CLI> core show fd
 Current maxfiles: unlimited
  3 utils.c:2310 (ast_utils_init ): open("/dev/urandom",0)
@@ -255,7 +196,6 @@ Current maxfiles: unlimited
 ```
 
 
- 
 
- 
+
 

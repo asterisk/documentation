@@ -7,22 +7,10 @@ Now that you've learned a bit about variables, let's look at a few of the variab
 
 Asterisk creates channel variables named **CONTEXT**, **EXTEN**, and **PRIORITY** which contain the current context, extension, and priority. We'll use them in pattern matching (below), as well as when we talk about macros in [Section 308.10. Macros](/308.10.-Macros). Until then, let's show a trivial example of using **${EXTEN}** to read back the current extension number.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 exten=>6123,1,SayNumber(${EXTEN})
 
-
 ```
-
 
 If you were to add this extension to the **[users]** context of your dialplan and reload the dialplan, you could call extension **6123** and hear Asterisk read back the extension number to you.
 

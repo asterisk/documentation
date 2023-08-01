@@ -24,7 +24,7 @@ Git-specific code review policies can be found on the [Git Usage](/Development/P
 
 
 
-On This PageAdditional Information 
+On This PageAdditional Information
 
 Review Workflow
 ---------------
@@ -35,7 +35,7 @@ Review Workflow
 	* See [Software Configuration Management Policies](/Development/Policies-and-Procedures/Software-Configuration-Management-Policies) for instructions on which branches are appropriate for different change types, and [Gerrit Usage](/Development/Policies-and-Procedures/Historical-Policies-and-Procedures/Code-Review/Gerrit-Usage) for instructions on cherry-picking.
 3. Other developers will review the patch. See the [Code Review Checklist](/Development/Policies-and-Procedures/Historical-Policies-and-Procedures/Code-Review/Code-Review-Checklist) for common items that developers will look for.
 	* If there are findings, the patch author should resolve them. Commits should be squashed to preserve the overall commit for the entire patch.
-	* When all findings are resolved, the patch author should re-submit the patch to the same review. See [Gerrit Usage](/Development/Policies-and-Procedures/Historical-Policies-and-Procedures/Code-Review/Gerrit-Usage) for instructions on updating a review.
+	* When all findings are resolved, the patch author should re-submit the patch to the same review. See [Gerrit Usage](/Development/Policies-and-Procedures/Historical-Policies-and-Procedures/Code-Review/Gerrit-Usage) for instructions on updating a review.
 4. When at least developer gives the review a `+1`, and no developers have given the review a `-1` or `-2`, a submitter will give the patch a `+2` and submit the patch.
 
 Watching Code Reviews

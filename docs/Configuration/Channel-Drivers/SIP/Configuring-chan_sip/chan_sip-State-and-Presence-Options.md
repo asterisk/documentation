@@ -17,22 +17,11 @@ The option can be set in the general context, or on a per-peer basis.
 
 Default: no
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 [general]
 callcounter=yes
 
 ```
-
 
 busylevel
 ---------
@@ -41,23 +30,12 @@ The **busylevel** option only works if call counters are enabled via the above o
 
 Default: 0
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 [6001]
 type=friend
 busylevel=2
 
 ```
-
 
 notifyhold
 ----------
@@ -68,24 +46,13 @@ This option can only be set in the general section.
 
 Default: yes
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 [general]
 notifyhold=no
 
 ```
 
 
- 
 
 Extension State, Hints, Subscriptions
 =====================================
@@ -99,23 +66,12 @@ The **allowsubscribe** option enables or disables support for any kind of subscr
 
 Default: yes
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 [6001]
 type=friend
 allowsubscribe=no
 
 ```
-
 
 subscribecontext
 ----------------
@@ -126,24 +82,13 @@ This option can be set per-peer or in the general section.
 
 Default: null (by default Asterisk will use the context specified with the "context" option)
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 [6001]
 type=friend
 context=internal
 subscribecontext=myhints
 
 ```
-
 
 notifyringing
 -------------
@@ -152,22 +97,11 @@ notifyringing
 
 Default: yes
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 [general]
 notifyringing=no
 
 ```
-
 
 notifycid
 ---------
@@ -176,17 +110,7 @@ notifycid
 
 Default: no
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 ;notifycid = yes ; Control whether caller ID information is sent along with
  ; dialog-info+xml notifications (supported by snom phones).
  ; Note that this feature will only work properly when the
@@ -206,9 +130,8 @@ Default: no
 ```
 
 
- 
 
- 
 
- 
+
+
 

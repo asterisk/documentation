@@ -20,8 +20,8 @@ Asterisk supports the following video codecs and file formats. There's no video 
 
 | Codec | Format | Notes |
 | --- | --- | --- |
-| H.263 | read/write |   |
-| H.264 | read/write |   |
+| H.263 | read/write |   |
+| H.264 | read/write |   |
 | H.261 | - | Passthrough only |
 
 

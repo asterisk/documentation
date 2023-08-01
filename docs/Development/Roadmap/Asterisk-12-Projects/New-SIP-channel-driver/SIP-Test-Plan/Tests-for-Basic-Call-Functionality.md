@@ -18,9 +18,7 @@ The configuration for these tests will all be made from a basic template. Some t
   
 res_sip.conf  
 
-
 ```
-
 [local-transport-template](!)
 type=transport
 
@@ -57,9 +55,7 @@ username=bob
 ; auth options because we do not respond properly
 ; to auth challenges.
 
-
 ```
-
 
 
 
@@ -68,9 +64,7 @@ username=bob
   
 extensions.conf  
 
-
 ```
-
 exten => echo,1,Answer()
 same => n,Echo()
 same => n,Hangup()
@@ -90,10 +84,7 @@ same => n,Hangup()
 exten => bobv6,1,Dial(PJSIP/sip:bob@[::1]:5062,10)
 same => n,Hangup()
 
-
-
 ```
-
 
 Incoming Call tests
 ===================

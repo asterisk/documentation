@@ -27,7 +27,7 @@ All of that said, even when a single implementation language is chosen, there is
 
 
 
- 
+
 
 An Example - Two Traditional Tests Using SIPp
 =============================================
@@ -35,9 +35,6 @@ An Example - Two Traditional Tests Using SIPp
 As an example, consider two tests written in Python that run SIPp scenarios - **message_auth** and **message_disabled**.
 
 ##### message_auth
-
-
-
 
 ```bash title=" " linenums="1"
 #!/usr/bin/env python
@@ -84,15 +81,9 @@ def main():
 if __name__ == "__main__":
  sys.exit(main())
 
-
-
 ```
 
-
 ##### message_disabled
-
-
-
 
 ```bash title=" " linenums="1"
 #!/usr/bin/env python
@@ -135,9 +126,7 @@ def main():
 if __name__ == "__main__":
  sys.exit(main())
 
-
 ```
-
 
 Both of these are very straight-forward tests that simply execute their SIPp scenarios and base their pass/fail status on the result of those scenarios. Even still, there is repeated code:
 
@@ -166,17 +155,7 @@ Looking again at the two tests using SIPp, we could discard both of their *run-t
 
 ##### message_auth
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 testinfo:
  summary: 'Test response to MESSAGE when out-of-call MESSAGE is disabled (or not supported)'
  description: |
@@ -197,23 +176,11 @@ test-object-config:
  scenario: 'message.xml'
  -p: '5061'
 
-
 ```
-
 
 ##### message_disabled
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 testinfo:
  summary: 'Test response to MESSAGE when out-of-call MESSAGE is disabled (or not supported)'
  description: |
@@ -237,9 +204,7 @@ properties:
  tags:
  - SIP
 
-
 ```
-
 
 All of this, hopefully, gives the following benefits:
 

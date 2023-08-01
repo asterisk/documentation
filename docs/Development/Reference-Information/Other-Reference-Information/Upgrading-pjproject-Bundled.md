@@ -7,7 +7,7 @@ This page explains how to upgrade the bundled version of a software with example
 
 Update Third Party Mirror
 
-Currently we keep a copy of any third party "bundled" software on github for use and inclusion during our build process: [Asterisk third party mirror](https://github.com/asterisk/third-party)
+Currently we keep a copy of any third party "bundled" software on github for use and inclusion during our build process: [Asterisk third party mirror](https://github.com/asterisk/third-party)
 
 Either fork and clone a copy of that repository, or clone it directly and check out a new branch for the new files you are about to add. Create a new directory beneath the appropriate project directory named for the version number being upgraded to. Next download the new version of the software you are upgrading to as a tarball into this directory.
 
@@ -35,9 +35,7 @@ The build process for bundled software currently expects tarballs compressed usi
   
   
 
-
 ```
-
 :set ff?  
 
 
@@ -47,11 +45,9 @@ The build process for bundled software currently expects tarballs compressed usi
 
 If you don't see fileformat=unix, you will need to convert formats.
 
-
 ```
 
-
- Lastly add the \*.tar.bz2 tarball and checksum file to your repository, push the changes, and then create a pull request on github.
+ Lastly add the \*.tar.bz2 tarball and checksum file to your repository, push the changes, and then create a pull request on github.
 
 Asterisk Changes
 ----------------
@@ -66,13 +62,10 @@ Since the Asterisk build process uses the checksum to verify the bundled tarball
   
 pjproject example  
 
-
 ```
-
 true$ cp MD5SUM.TXT ~/src/asterisk/third-party/pjproject/pjproject-2.10.tar.bz2.md5
 
 ```
-
 
 Be sure to also remove the previous version of that file from the source tree:
 
@@ -84,14 +77,10 @@ Be sure to also remove the previous version of that file from the source tree:
   
 pjproject example  
 
-
 ```
-
 true$ git rm ~/src/asterisk/third-party/pjproject/pjproject-2.9.tar.bz2.md5
 
-
 ```
-
 
 Next modify the *versions.mak* file, which can be found in the third-party directory of your Asterisk directory, to the version number being upgraded to:
 
@@ -103,14 +92,10 @@ Next modify the *versions.mak* file, which can be found in the third-party direc
   
 pjproject example  
 
-
 ```
-
 truePJPROJECT_VERSION = 2.10
 
-
 ```
-
 
 Now remove any patches found beneath the ./third-party/{project}/patches directory that have been added since the last version, **and** are now included in this new version. Again, only remove those patches that are currently included in the new version of the released software being upgraded to.
 
@@ -134,5 +119,5 @@ Testing
 
 At this point you should be able to configure, and build Asterisk. Ensure the correct bundled version of the software is now being downloaded and compiled against. Run a few tests locally to make sure Asterisk is generally "fine". If you are able then also execute the testsuite against the new changes. Once everything seems to be okay, then create a patch with all the Asterisk changes, and push it up for review on [gerrit](/Development/Policies-and-Procedures/Historical-Policies-and-Procedures/Code-Review/Gerrit-Usage). Once uploaded you can also add a "regate" comment to the review to initiate a testsuite run via continuous integration. Don't worry if everything does pass it will not auto-merge the changes.
 
- 
+
 

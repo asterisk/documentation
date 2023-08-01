@@ -3,7 +3,7 @@ title: Overview
 pageid: 31752496
 ---
 
- 
+
 
 Overview
 ========
@@ -38,17 +38,7 @@ A record is a DNS record.
 Code
 ----
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 /*! \brief Opaque structure for a DNS quer */
 struct ast_dns_query;
 /*!
@@ -255,7 +245,6 @@ int ast_dns_resolve(const char \*name, int rr_type, int rr_class, struct ast_dns
 
 ```
 
-
 On this Page
 
 
@@ -267,17 +256,7 @@ The dns_query_set.h file is the public API into doing parallel queries. It provi
 Code
 ----
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 /*! \brief Opaque structure for a set of DNS querie */
 struct ast_dns_query_set;
 /*!
@@ -372,7 +351,6 @@ void ast_dns_query_set_free(struct ast_dns_query_set \*query_set);
 ```
 
 
- 
 
 dns_naptr.h
 ============
@@ -382,17 +360,7 @@ The dns_naptr.h file is the public API into accessing NAPTR records. The DNS cor
 Code
 ----
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 /*!
  * \brief Get the flags from a NAPTR record
  *
@@ -442,32 +410,19 @@ unsigned short ast_dns_naptr_get_order(const struct ast_dns_record \*record);
  */
 unsigned short ast_dns_naptr_get_preference(const struct ast_dns_record \*record);
 
-
-
 ```
 
 
- 
 
 dns_srv.h
 ==========
 
-The dns_srv.h file is the public API into accessing SRV records. The DNS core will automatically parse and make this information available. It will also sort the records.
+The dns_srv.h file is the public API into accessing SRV records. The DNS core will automatically parse and make this information available. It will also sort the records.
 
 Code
 ----
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 /*!
  * \brief Get the hostname from an SRV record
  *
@@ -504,24 +459,13 @@ unsigned short ast_dns_srv_get_port(const struct ast_dns_record \*record);
 ```
 
 
- 
 
 dns_tlsa.h
 ===========
 
 The dns_tlsa.h file is the public API into accessing TLSA records.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 /*!
  * \brief Get the certificate usage field from a TLSA record
  *
@@ -555,12 +499,9 @@ unsigned int ast_dns_tlsa_get_matching_type(const struct ast_dns_record \*record
  */
 const char \*ast_dns_tlsa_get_association_data(const struct ast_dns_record \*record);
 
-
-
 ```
 
 
- 
 
 dns_resolver.h
 ===============
@@ -570,17 +511,7 @@ The dns_resolver.h file contains the interface as defined for resolver implement
 Code
 ----
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 /*! \brief DNS resolver implementatio */
 struct ast_dns_resolver {
  /*! \brief The name of the resolver implementatio */
@@ -664,7 +595,6 @@ int ast_dns_resolver_unregister(const struct ast_core_dns_resolver \*resolver);
 ```
 
 
- 
 
 dns_internal.h
 ===============
@@ -674,17 +604,7 @@ The dns_internal.h file contains the internal data structures.
 Code
 ----
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 /*! \brief Generic DNS record informatio */
 struct ast_dns_record {
  /*! \brief Resource record typ */
@@ -773,7 +693,6 @@ struct ast_dns_query_set {
 ```
 
 
- 
 
 Examples
 ========
@@ -782,9 +701,6 @@ Synchronous Resolution
 ----------------------
 
 This example blocks the calling thread until resolution has completed. Once completed result information is returned.
-
-
-
 
 ```bash title=" " linenums="1"
 #include <asterisk/dns.h>
@@ -817,15 +733,11 @@ int test(void)
 ```
 
 
- 
 
 Asynchronous Resolution
 -----------------------
 
 This example does not block the calling thread when resolving. A callback is invoked upon query completion instead. The result information can then be retrieved from the query.
-
-
-
 
 ```bash title=" " linenums="1"
 #include <asterisk/dns.h>
@@ -837,7 +749,7 @@ static void test_callback(const struct ast_dns_query \*query)
  ast_verbose(1, "Specified domain name 'asterisk.org' does not exist\n");
  return;
  }
- if (ast_dns_result_get_secure(result)) {
+ if (ast_dns_result_get_secure(result)) {
  ast_verbose(1, "DNS result was secured\n");
  } else if (ast_dns_result_get_bogus(result)) {
  ast_verbose(1, "DNS result is bogus\n");
@@ -862,15 +774,11 @@ int test(void)
 ```
 
 
- 
 
 Parallel Queries
 ----------------
 
 This example uses a query set to do two queries in an asynchronous manner. Each query is done on a different domain. Once both queries have completed the callback is invoked and each query result can be examined.
-
-
-
 
 ```bash title=" " linenums="1"
 #include <asterisk/dns.h>
@@ -916,15 +824,11 @@ int test(void)
 ```
 
 
- 
 
 Fallback
 --------
 
 This example does a fall back from an AAAA record lookup to an A record lookup if no results were available for the AAAA record lookup. This also uses the asynchronous function and the same callback is used for both queries.
-
-
-
 
 ```bash title=" " linenums="1"
 #include <asterisk/dns.h>
@@ -966,15 +870,11 @@ int test(void)
 ```
 
 
- 
 
 NAPTR
 -----
 
 This example does a NAPTR lookup followed by SRV followed by AAAA and then A. The results of the NAPTR and SRV lookups are taken into account when deciding the next step to take.
-
-
-
 
 ```bash title=" " linenums="1"
 #include <asterisk/dns.h>
@@ -1040,20 +940,14 @@ int test(void)
  return 0;
 }
 
-
-
 ```
 
 
- 
 
 Recurring
 ---------
 
 The recurring example has the DNS core re-run the specified query according to the lowest TTL of the result records. It is up to the user to store the previous results and determine whether action should be taken or not.
-
-
-
 
 ```bash title=" " linenums="1"
 #include <asterisk/dns.h>
@@ -1084,5 +978,4 @@ int test(void)
 }
 
 ```
-
 

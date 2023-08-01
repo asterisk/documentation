@@ -14,17 +14,7 @@ Here is a sample:
 
 /etc/asterisk/cel_pgsql.conf
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 
 ; Sample Asterisk config file for CEL logging to PostgresSQL 
 [global] 
@@ -35,23 +25,11 @@ password=password
 user=postgres 
 table=cel 
 
-
 ```
-
 
 Now create a table in postgresql for your cels 
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 
 CREATE TABLE cel (
  id serial , 
@@ -77,7 +55,5 @@ CREATE TABLE cel (
  peer varchar (80) NOT NULL 
 );
 
-
 ```
-
 

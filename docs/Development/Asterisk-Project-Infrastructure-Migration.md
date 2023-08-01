@@ -25,7 +25,7 @@ pageid: 52069711
 
 [Asterisk Community Services](/Asterisk-Community/Asterisk-Community-Services)
 
-     
+    
 
     Migration of this Wiki is still pending.
 
@@ -44,19 +44,19 @@ The [Asterisk Community Forums](https://community.asterisk.org) are already host
 Schedule
 ========
 
-Over the weekend of April 29-30 2023, GitHub will become the official and sole platform for issue tracking and code management.  IT IS NOT POSSIBLE FOR US TO MIGRATE EITHER ISSUES OR CODE REVIEWS TO THE NEW PLATFORMS but the existing Jira issue tracker and Gerrit code management systems will be placed in read-only mode for historical reference.  At some point in the future, the historical issues in Jira will be exported to a searchable format and the system deactivated.  The Gerrit system will be deactivated at the same time but since the most important historical data is already captured as part of the commit history, there's no need to create a searchable archive.  
+Over the weekend of April 29-30 2023, GitHub will become the official and sole platform for issue tracking and code management.  IT IS NOT POSSIBLE FOR US TO MIGRATE EITHER ISSUES OR CODE REVIEWS TO THE NEW PLATFORMS but the existing Jira issue tracker and Gerrit code management systems will be placed in read-only mode for historical reference.  At some point in the future, the historical issues in Jira will be exported to a searchable format and the system deactivated.  The Gerrit system will be deactivated at the same time but since the most important historical data is already captured as part of the commit history, there's no need to create a searchable archive. 
 
 Authentication and Email
 ========================
 
-If you don't already have one, you must create a GitHub account if you plan on reporting issues or contributing code.  If you've contributed code in the past, you should make sure that any email addresses you used in your commits is added in Settings/Emails.  You can now also use your GitHub account to log into the [Discourse hosted Asterisk Community Forums](https://community.asterisk.org).  Make sure the email you use for the forums is also listed under Settings/Emails in GitHub.
+If you don't already have one, you must create a GitHub account if you plan on reporting issues or contributing code.  If you've contributed code in the past, you should make sure that any email addresses you used in your commits is added in Settings/Emails.  You can now also use your GitHub account to log into the [Discourse hosted Asterisk Community Forums](https://community.asterisk.org).  Make sure the email you use for the forums is also listed under Settings/Emails in GitHub.
 
 Detailed Information:
 =====================
 
- 
 
- 
 
- 
+
+
+
 

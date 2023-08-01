@@ -15,10 +15,10 @@ The database really has two purposes:
 1. Asterisk uses it to store information that needs to persist between reloads/restarts. Various modules use it for this purpose automatically.
 2. Users can use it to store arbitrary data. This is done using a variety of dialplan applications and functions such as:
 	* Functions:
-		+ [DB](/_Dialplan_Functions/DB)
-		+ [DB_DELETE](/_Dialplan_Functions/DB_DELETE)
-		+ [DB_EXISTS](/_Dialplan_Functions/DB_EXISTS)
-		+ [DB_KEYS](/_Dialplan_Functions/DB_KEYS)
+		+ [DB](/latest_api/Dialplan_Functions/DB)
+		+ [DB_DELETE](/latest_api/Dialplan_Functions/DB_DELETE)
+		+ [DB_EXISTS](/latest_api/Dialplan_Functions/DB_EXISTS)
+		+ [DB_KEYS](/latest_api/Dialplan_Functions/DB_KEYS)
 	* Application: [DBdeltree](/Application_DBdeltree)
 
 The functions and applications for Asterisk 11 are linked above, but you should look at the documentation for the version you have deployed.
@@ -28,17 +28,7 @@ Database commands on the CLI
 
 Sub-commands under the command "database" allow a variety of functions to be performed on or with the database.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 \*CLI> core show help database
 database del -- Removes database key/value
 database deltree -- Removes database keytree/values
@@ -49,5 +39,4 @@ database show -- Shows database contents
 database showkey -- Shows database contents
 
 ```
-
 

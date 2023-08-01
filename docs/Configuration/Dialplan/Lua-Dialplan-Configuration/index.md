@@ -31,9 +31,7 @@ Each extension is a lua function that is executed when a channel lands on that e
   
 extensions.lua  
 
-
 ```
-
 extensions = {
  default = {
  ["100"] = function(context, extension)
@@ -46,28 +44,14 @@ extensions = {
  end;
 }
 
-
 ```
-
 
 The `extensions.lua` file can be reloaded by reloading the pbx_lua module.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 \*CLI> module reload pbx_lua
 
-
 ```
-
 
 If there are errors in the file, the errors will be reported and the existing extensions.lua file will remain in use. Channels that existed before the reload command was issued will also continue to use the existing extensions.lua file.
 

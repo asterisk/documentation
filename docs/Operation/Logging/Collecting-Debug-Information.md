@@ -8,7 +8,7 @@ Collecting Debug Information for the Asterisk Issue Tracker
 
 This document will provide instructions on how to collect debugging logs from an Asterisk machine, for the purpose of helping bug marshals troubleshoot an issue on <https://github.com/asterisk/asterisk/issues>
 
-If Asterisk has crashed or deadlocked, see [Getting a Backtrace](/Development/Debugging/Getting-a-Backtrace).
+If Asterisk has crashed or deadlocked, see [Getting a Backtrace](/Development/Debugging/Getting-a-Backtrace).
 
 STEPS
 =====
@@ -28,15 +28,11 @@ Modify the file name "debug_log_123456" to reflect your [github.com/asterisk/ast
   
 logger.conf  
 
-
 ```
-
 [logfiles]
 debug_log_123456 => notice,warning,error,debug,verbose,dtmf
 
-
 ```
-
 
 
 
@@ -48,13 +44,10 @@ debug_log_123456 => notice,warning,error,debug,verbose,dtmf
   
   
 
-
 ```
-
 logger add channel debug_log_123456 notice,warning,error,debug,verbose,dtmf
 
 ```
-
 
 The new log channel persists until Asterisk is restarted, the logger module is reloaded, or the log files are rotated. If using this CLI command, do **not** reload/restart/rotate the log files in Step 2.
 
@@ -68,43 +61,19 @@ Configure verbosity levels and rotate logs
 
 **2.** From the Asterisk CLI, set the verbose and debug levels for logging (this affects CLI and log output) and then restart the logger module:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 *CLI> core set verbose 5
 *CLI> core set debug 5
 *CLI> module reload logger
 
-
 ```
-
 
 Optionally, if you've used this file to record data previously, then rotate the logs:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 *CLI> logger rotate
 
-
 ```
-
 
 Enable channel tech or feature specific debug
 ---------------------------------------------
@@ -129,63 +98,27 @@ Issue reproduction and clean up
 
 **4.** Once finished, be sure to disable the extra debugging:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 *CLI> core set verbose 0
 *CLI> core set debug 0
 
-
 ```
-
 
 **4.1.** Again, remember to disable any extra logging for channel drivers or features.
 
 SIP (1.4 or higher)
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 *CLI> sip set debug off
 
-
 ```
-
 
 IAX2 (1.4 or higher)
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 *CLI> iax2 set debug off
 
-
 ```
-
 
 **5.** Disable logging to the filesystem. Edit the logger.conf file and comment out or delete the line you added in step 1. Using a semi-colon as the first character on the line will comment out the line.
 
@@ -197,34 +130,18 @@ IAX2 (1.4 or higher)
   
 logger.conf  
 
-
 ```
-
 [logfiles]
 ;debug_log_123456 => notice,warning,error,debug,verbose,dtmf
 
-
 ```
-
 
 Then reload the logger module (or restart Asterisk) as you did in step 2:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 *CLI> module reload logger
 
-
 ```
-
 
 Provide debug to the developers
 -------------------------------

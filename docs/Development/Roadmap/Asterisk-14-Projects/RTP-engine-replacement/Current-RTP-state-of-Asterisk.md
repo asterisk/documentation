@@ -16,7 +16,7 @@ All RTP engines are hidden from users of the RTP API behind public methods that 
 
 In the reverse direction, there is an RTP "glue" structure that is used as a go-between between an RTP engine and a channel driver. This can basically be seen as a channel-agnostic way of allowing for an RTP engine to call into a channel driver to get/set information.
 
-Outside of `rtp_engine.h`, there  is also SRTP support within its own module. However, this module registers itself with the RTP engine upon module loading. The SRTP engine is similar to the DTLS and ICE engines in that they provide feature-specific callbacks for SRTP operations. There is also a core SRTP file, `main/sdp_srtp.c` that is responsible for parsing crypto SDP attributes and for getting certain relevant pieces of information (such as the RTP profile to use)
+Outside of `rtp_engine.h`, there  is also SRTP support within its own module. However, this module registers itself with the RTP engine upon module loading. The SRTP engine is similar to the DTLS and ICE engines in that they provide feature-specific callbacks for SRTP operations. There is also a core SRTP file, `main/sdp_srtp.c` that is responsible for parsing crypto SDP attributes and for getting certain relevant pieces of information (such as the RTP profile to use)
 
 ##### Criticisms
 
@@ -27,7 +27,7 @@ I'll touch on this a bit more in the offer/answer section, but the RTP implement
 Handling incoming RTP/RTCP traffic
 ----------------------------------
 
-Channels that use RTP can ask for the file descriptors for the incoming RTP and RTCP traffic and set those on the channel. This way, when one of the `ast_waitfor()` family of functions is called, if there is data to be read on one of those file descriptors, it can be read. Both RTP and RTCP traffic are read by having a channel's read callback call into the RTP engine's read callback. If RTCP is being read, then an `ast_null_frame` is returned instead of a voice, video, or DTMF frame.
+Channels that use RTP can ask for the file descriptors for the incoming RTP and RTCP traffic and set those on the channel. This way, when one of the `ast_waitfor()` family of functions is called, if there is data to be read on one of those file descriptors, it can be read. Both RTP and RTCP traffic are read by having a channel's read callback call into the RTP engine's read callback. If RTCP is being read, then an `ast_null_frame` is returned instead of a voice, video, or DTMF frame.
 
 While it is not formally specified, reading RTP pretty much goes through three phases
 
@@ -39,9 +39,9 @@ While it is not formally specified, reading RTP pretty much goes through three p
 
 Most of the RTP payloads get converted into an Asterisk frame and returned by the read operation. An interesting optimization is when a native RTP local bridge is in effect. Instead of returning a frame, the RTP engine instead writes the RTP frame over to the bridged RTP instance directly and returns an `ast_null_frame`.
 
-RTCP first goes through the same demultiplexing routine that RTP does. Then the compound RTCP packet is examined and each part is used to perform specific tasks. The packet types that do the most processing are the SR and RR packets, which update local stats and generate Stasis messages. The PSFB (VP8-specific) packet type will generate an `AST_CONTROL_VIDUPDATE` frame, but the rest of the RTCP packet types have no effect.
+RTCP first goes through the same demultiplexing routine that RTP does. Then the compound RTCP packet is examined and each part is used to perform specific tasks. The packet types that do the most processing are the SR and RR packets, which update local stats and generate Stasis messages. The PSFB (VP8-specific) packet type will generate an `AST_CONTROL_VIDUPDATE` frame, but the rest of the RTCP packet types have no effect.
 
-Incoming traffic that is not RTP or RTCP is typically passed off to a separate entity (such as PJNATH for ICE-related traffic or OpenSSL for DTLS traffic) and results in an `ast_null_frame` being returned.
+Incoming traffic that is not RTP or RTCP is typically passed off to a separate entity (such as PJNATH for ICE-related traffic or OpenSSL for DTLS traffic) and results in an `ast_null_frame` being returned.
 
 ##### Criticisms
 
@@ -54,9 +54,9 @@ There is no buffering of RTP data at the RTP layer. There may be a jitterbuffer 
 Sending outbound RTP/RTCP traffic
 ---------------------------------
 
-When a channel is told to write data (most commonly due to a bridge or file playback), it calls down into the RTP engine to do so. The voice, video, or DTMF frame's payload  has an RTP header enveloped over it. From there, it gets sent to a lower level function to send the data out, protecting the data with SRTP if required. As was mentioned in the previous section, RTP may also be written to a channel at the time that RTP is read from a bridged channel if using a native local RTP bridge.
+When a channel is told to write data (most commonly due to a bridge or file playback), it calls down into the RTP engine to do so. The voice, video, or DTMF frame's payload  has an RTP header enveloped over it. From there, it gets sent to a lower level function to send the data out, protecting the data with SRTP if required. As was mentioned in the previous section, RTP may also be written to a channel at the time that RTP is read from a bridged channel if using a native local RTP bridge.
 
-RTCP, on the other hand has its writes scheduled based on a calculation performed when sending and receiving RTP traffic. The scheduler used for RTCP is passed into the RTP instance creation function and therefore, the threading is managed by the creator of the RTP instance. In the case of `chan_sip` and `res_pjsip_sdp_rtp`, they have all RTCP writes handled by a single thread. In `chan_sip`'s case, it is the monitor thread that also manages incoming SIP traffic, SIP reloads, and other scheduled tasks (such as outgoing registrations and OPTIONS requests).
+RTCP, on the other hand has its writes scheduled based on a calculation performed when sending and receiving RTP traffic. The scheduler used for RTCP is passed into the RTP instance creation function and therefore, the threading is managed by the creator of the RTP instance. In the case of `chan_sip` and `res_pjsip_sdp_rtp`, they have all RTCP writes handled by a single thread. In `chan_sip`'s case, it is the monitor thread that also manages incoming SIP traffic, SIP reloads, and other scheduled tasks (such as outgoing registrations and OPTIONS requests).
 
 ##### Criticisms
 
@@ -67,9 +67,9 @@ There are also some "hidden" writes throughout the RTP code. For instance, when 
 Offer/Answer negotiation
 ------------------------
 
-The RTP API does not involve itself in offer/answer negotiation directly. Instead, this is taken care of at a higher level, such as in `chan_sip` or `res_pjsip_sdp_rtp`. These modules will allocate an RTP instance, perform offer/answer negotiation, and set properties on the RTP instance based on the result of that offer/answer negotiation.
+The RTP API does not involve itself in offer/answer negotiation directly. Instead, this is taken care of at a higher level, such as in `chan_sip` or `res_pjsip_sdp_rtp`. These modules will allocate an RTP instance, perform offer/answer negotiation, and set properties on the RTP instance based on the result of that offer/answer negotiation.
 
-As was mentioned earlier in the API section, there are some helper methods in certain places to be able to parse specific types of SDP lines. For instance, the `sdp_srtp.h` API allows for parsing and adding of crypto attributes to streams.
+As was mentioned earlier in the API section, there are some helper methods in certain places to be able to parse specific types of SDP lines. For instance, the `sdp_srtp.h` API allows for parsing and adding of crypto attributes to streams.
 
 When it comes to ICE, the RTP engine maintains data about the ICE session, including gathering local candidates. However, as far as the content of SDP is concerned, it is up to higher levels to add ICE candidates to outgoing SDPs.
 

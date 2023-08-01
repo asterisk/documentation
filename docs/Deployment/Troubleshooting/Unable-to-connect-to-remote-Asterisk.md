@@ -10,21 +10,10 @@ When first learning Asterisk some users will find they are unable to connect to 
 
 You may see the below message after running some variation of `asterisk -r`
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 Unable to connect to remote asterisk (does /var/run/asterisk/asterisk.ctl exist?)
 
 ```
-
 
 First, let's break down the message.
 
@@ -41,19 +30,19 @@ Now let's find out what asterisk.ctl is and investigate potential causes of this
 The asterisk.ctl file
 =====================
 
-asterisk.ctl is a UNIX Domain Socket file. It is used to pass commands to an Asterisk process and it is how the Asterisk console ("asterisk r" or any variation) communicates with the back-end Asterisk process.
+asterisk.ctl is a UNIX Domain Socket file. It is used to pass commands to an Asterisk process and it is how the Asterisk console ("asterisk r" or any variation) communicates with the back-end Asterisk process.
 
 The /var/run/asterisk/ directory
 ================================
 
-This directory is the default Asterisk run directory. Asterisk will create it the first time it is run. This location is defined in the [Asterisk Main Configuration File](/Configuration/Core-Configuration/Asterisk-Main-Configuration-File). As is explained in the [Directory and File Structure](/Fundamentals/Directory-and-File-Structure) section; when Asterisk is [running](/Operation/Running-Asterisk), you'll see two files here, **asterisk.ctl** and **asterisk.pid**. These are the control socket and the PID(Process ID) files for Asterisk.
+This directory is the default Asterisk run directory. Asterisk will create it the first time it is run. This location is defined in the [Asterisk Main Configuration File](/Configuration/Core-Configuration/Asterisk-Main-Configuration-File). As is explained in the [Directory and File Structure](/Fundamentals/Directory-and-File-Structure) section; when Asterisk is [running](/Operation/Running-Asterisk), you'll see two files here, **asterisk.ctl** and **asterisk.pid**. These are the control socket and the PID(Process ID) files for Asterisk.
 
 Potential Causes and Solutions
 ==============================
 
 ### Cause 1: asterisk.ctl does exist. Your user does not have write permission for this file.
 
-Solution: 
+Solution:
 
 1. To verify, check the permissions of the asterisk.ctl file and also check what user you are currently running as.
 2. Switch to the correct user that has access to the /var/run/asterisk/ directory and asterisk.ctl file, or provide your current user with the correct permissions.
@@ -90,7 +79,7 @@ You need to find out what error is causing Asterisk to halt and resolve it.
 	
 	
 	This will start Asterisk in console mode with level 5 verbosity. That should give you plenty to look at.
-* Another way is to setup Asterisk [Logging](/Operation/Logging) to log what you want to see to a file. You'll need to read up on Asterisk's [Logging Configuration](/Configuration/Core-Configuration/Logging-Configuration)
+* Another way is to setup Asterisk [Logging](/Operation/Logging) to log what you want to see to a file. You'll need to read up on Asterisk's [Logging Configuration](/Configuration/Core-Configuration/Logging-Configuration)
 * Asterisk could halt for a variety of reasons. The last messages you see before Asterisk halts will give you a clue. Then you can Google from there or ask the user community.
 
 ### Cause 4: SELinux enabled and not properly configured for Asterisk. SELinux not allowing asterisk.ctl to be created.

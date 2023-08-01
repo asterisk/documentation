@@ -20,7 +20,7 @@ Note that bridge provides several options to tweak behavior and upon completion 
 Using the Bridge application
 ----------------------------
 
-Read the Bridge documentation for your version of Asterisk (e.g. Asterisk 13 - [Asterisk 13 Application_Bridge](/Asterisk-13-Application_Bridge)) and the [Key Concepts](/Fundamentals/Key-Concepts) section on [Bridges](/Fundamentals/Key-Concepts/Bridges) to get a good start.
+Read the Bridge documentation for your version of Asterisk (e.g. Asterisk 13 - [Asterisk 13 Application_Bridge](/Asterisk-13-Application_Bridge)) and the [Key Concepts](/Fundamentals/Key-Concepts) section on [Bridges](/Fundamentals/Key-Concepts/Bridges) to get a good start.
 
 See Also
 ========
@@ -31,9 +31,9 @@ See Also
 * [Asterisk 13 Application_BridgeWait](/Asterisk-13-Application_BridgeWait)
 * [Conferencing Applications](/Configuration/Applications/Conferencing-Applications)
 
- 
 
- 
 
- 
+
+
+
 

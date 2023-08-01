@@ -8,17 +8,7 @@ Long Running Operations (Autoservcie)
 
 Before starting long running operations, an autoservice should be started using the `autoservice_start()` function. An autoservice will ensure that the user hears a continuous stream of audio while your lua code works in the background. This autoservice will automatically be stopped before executing applications and dialplan functions and will be restarted afterwards. The autoservice can be stopped using autoservice_stop() and the autoservice_status() function will return `true` if an autoservice is currently running.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 app.startmusiconhold()
 
 autoservice_start()
@@ -27,9 +17,7 @@ autoservice_stop()
 
 app.stopmusiconhold()
 
-
 ```
-
 
 
 
@@ -54,9 +42,7 @@ Since extensions are functions in pbx_lua, any function can be used, including c
   
 extensions.lua  
 
-
 ```
-
 extensions = {}
 extensions.default = {}
 
@@ -69,10 +55,7 @@ end
 extensions.default[100] = sip_exten(100)
 extensions.default[101] = sip_exten(101)
 
-
-
 ```
-
 
 Creating Custom Aliases for Built-in Constructs
 -----------------------------------------------
@@ -87,9 +70,7 @@ If you don't like the `app` table being named 'app' or if you think typing 'chan
   
 I prefer less typing  
 
-
 ```
-
 function my_exten(context, extensions)
  c = channel
  a = app
@@ -98,26 +79,14 @@ function my_exten(context, extensions)
  a.dial("SIP/100")
 end
 
-
 ```
-
 
 Re-purposing The `print` Function
 ---------------------------------
 
 Lua has a built in "print" function that outputs things to stdout, but for Asterisk, we would rather have the output go in the verbose log. To do so, we could rewrite the `print` function as follows.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 function print(...)
  local msg = ""
  for i=1,select('#', ...) do
@@ -131,14 +100,12 @@ function print(...)
  app.verbose(msg)
 end
 
-
 ```
-
 
 Splitting Configuration into Multiple Files
 -------------------------------------------
 
-The `require` method can be used to load lua modules located in LUA_PATH.  The `dofile` method can be used to include any file by path name.
+The `require` method can be used to load lua modules located in LUA_PATH.  The `dofile` method can be used to include any file by path name.
 
 Using External Modules
 ----------------------
@@ -158,14 +125,10 @@ The `luac` program can be used to compile your `extensions.lua` file into lua by
   
 Assume you name your extensions.lua file extensions.lua.lua  
 
-
 ```
-
 luac -o extensions.lua extensions.lua.lua
 
-
 ```
-
 
 The pbx_lua module automatically knows the difference between a lua text file and a lua bytecode file.
 

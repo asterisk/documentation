@@ -13,4 +13,4 @@ There are several services provided for the development of Asterisk.
 
 The Asterisk development team directly maintain a subset of community services, specifically the legacy Atlassian services and the downloads server. If downtime is expected a notice will be sent to the [asterisk-announce](http://lists.digium.com/mailman/listinfo/asterisk-announce) mailing list.
 
-If community services are unavailable for a prolonged period of time, please notify [the Asterisk development team.](mailto:asteriskteam@digium.com?subject=Community-Service-Interruption)
+If community services are unavailable for a prolonged period of time, please notify [the Asterisk development team.](mailto:asteriskteam@digium.com?subject=Community-Service-Interruption)

@@ -40,13 +40,10 @@ Asterisk uses [Gerrit|https://www.gerritcodereview.com/] to manage code submissi
 
 Every C source file should start with a proper copyright and a brief description of the content of the file. Following that, you should immediately put the following lines:
 
-
 ```
-
 #include "asterisk.h"
 
 ```
-
 
 "asterisk.h" resolves OS and compiler dependencies for the basic set of unix functions (data types, system calls, basic I/O libraries) and the basic Asterisk APIs.
 
@@ -82,7 +79,6 @@ Keep the number of header files small by not including them unnecessarily. Don't
 ```
 $ pglobal \-vf <path to .o file>
 ```
-
 * When reading integer numeric input with scanf (or variants), do _NOT_ use '%i' unless you specifically want to allow non-base-10 input; '%d' is always a better choice, since it will not silently turn numbers with leading zeros into base-8.
 
 * Strings that are coming from input should not be used as the format argument to any printf-style function.
@@ -92,7 +88,6 @@ $ pglobal \-vf <path to .o file>
 On many platforms, structure fields (in structures that are not marked 'packed') will be laid out by the compiler with gaps (padding) between them, in order to satisfy alignment requirements. As a simple example:
 
 ```
-
 struct foo {
  int bar;
  void \*xyz;
@@ -100,13 +95,11 @@ struct foo {
 
 ```
 
-
 On nearly every 64-bit platform, this will result in 4 bytes of dead space between 'bar' and 'xyz', because pointers on 64-bit platforms must be aligned on 8-byte boundaries. Once you have your code written and tested, it may be worthwhile to review your structure definitions to look for problems of this nature. If you are on a Linux platform with the 'dwarves' package available, the 'pahole' tool from that package can be used to both check for padding issues of this type and also propose reorganized structure definitions to eliminate it. Usage is quite simple; for a structure named 'foo', the command would look something like this:
 
 ```
 $ pahole \--reorganize \--show_reorg_steps \-C foo <path to module>
 ```
-
 The 'pahole' tool has many other modes available, including some that will list all the structures declared in the module and the amount of padding in each one that could possibly be recovered.
 
 ## Use the internal API
@@ -118,13 +111,12 @@ If you need to create a detached thread, use the ast_pthread_create_detached() n
 ## Code formatting
 
 Roughly, Asterisk code formatting guidelines are generally equivalent to the following:
- 
+
 {warning}Running the indent command on an existing module may result in drastic alterations to it or indentation that is actually incorrect. It is recommended that if you are making changes to existing code that you manually indent. If you would like to fix the indentation of an existing module this should be done as a separate review.{warning}
 
 ```
 # indent -i4 -ts4 -br -brs -cdw -lp -ce -nbfda -npcs -nprs -npsl -nbbo -saf -sai -saw -cs -l90 foo.c
 ```
-
 this means in verbose:
 ```
  -i4: indent level 4
@@ -145,7 +137,6 @@ this means in verbose:
  -cs: space after cast
  -l90: line length 90 columns
 ```
- 
 Function calls and arguments should be spaced in a consistent way across the codebase.
 ```
  GOOD: foo(arg1, arg2);
@@ -154,38 +145,31 @@ Function calls and arguments should be spaced in a consistent way across the cod
  BAD: foo( arg1, arg2 );
  BAD: foo(arg1, arg2,arg3);
 ```
-
 Don't treat keywords (if, while, do, return) as if they were functions; leave space between the keyword and the expression used (if any). For 'return', don't even put parentheses around the expression, since they are not required.
 
 There is no shortage of whitespace characters :-) Use them when they make the code easier to read. For example:
 
 ```
-
  for (str=foo;str;str=str->next)
 
 ```
-
 is harder to read than
 
 ```
-
  for (str = foo; str; str = str->next)
 
 ```
-
 Following are examples of how code should be formatted.
 
 ### Functions:
 
 ```
-
 int foo(int a, char \*s)
 {
  return 0;
 }
 
 ```
-
 
 ### If statements:
 {newcode:C}
@@ -199,7 +183,6 @@ if (foo) {
 ### Case statements:
 
 ```
-
 switch (foo) {
 case BAR:
  blah();
@@ -211,12 +194,9 @@ case OTHER:
 
 ```
 
-
 ### No nested statements without braces
 
-
 ```
-
 for (x = 0; x < 5; x++)
  if (foo)
  if (bar)
@@ -224,11 +204,9 @@ for (x = 0; x < 5; x++)
 
 ```
 
-
 Instead, do:
 
 ```
-
 for (x = 0; x < 5; x++) {
  if (foo) {
  if (bar) {
@@ -239,13 +217,11 @@ for (x = 0; x < 5; x++) {
 
 ```
 
-
 Always use braces around the statements following an if/for/while construct, even if not strictly necessary, as it reduces future possible problems.
 
 Don't build code like this:
 
 ```
-
 if (foo) {
  /* .... 50 lines of code .. */
 } else {
@@ -254,11 +230,9 @@ if (foo) {
 }
 
 ```
-
 Instead, try to minimize the number of lines of code that need to be indented, by only indenting the shortest case of the 'if' statement, like so:
 
 ```
-
 if (!foo) {
  result = 0;
  return;
@@ -267,7 +241,6 @@ if (!foo) {
 .... 50 lines of code ....
 
 ```
-
 
 When this technique is used properly, it makes functions much easier to read and follow, especially those with more than one or two 'setup' operations that must succeed for the rest of the function to be able to execute.
 
@@ -314,7 +287,6 @@ In fact, don't use 'variable type' suffixes at all; it's much preferable to just
 Use enums rather than long lists of #define-d numeric constants when possible; this allows structure members, local variables and function arguments to be declared as using the enum's type. For example:
 
 ```
-
 enum option {
  OPT_FOO = 1,
  OPT_BAR = 2,
@@ -329,7 +301,6 @@ static handle_option(const enum option opt)
 }
 
 ```
-
 
 Note: The compiler will _not_ force you to pass an entry from the enum as an argument to this function; this recommendation serves only to make
 the code clearer and somewhat self-documenting. In addition, when using switch/case blocks that switch on enum values, the compiler will warn you if you forget to handle one or more of the enum values, which can be handy.
@@ -355,18 +326,15 @@ For the sake of uclibc, do not use index, bcopy or bzero; use strchr(), memset()
 When making applications, always ast_strdupa(data) to a local pointer if you intend to parse the incoming data string.
 
 ```
-
  if (data) {
  mydata = ast_strdupa(data);
  }
 
 ```
 
-
 Use the argument parsing macros to declare arguments and parse them, i.e.:
 
 ```
-
  AST_DECLARE_APP_ARGS(args,
  AST_APP_ARG(arg1);
  AST_APP_ARG(arg2);
@@ -376,7 +344,6 @@ Use the argument parsing macros to declare arguments and parse them, i.e.:
  AST_STANDARD_APP_ARGS(args, parse);
 
 ```
-
 
 Make sure you are not duplicating any functionality already found in an API call somewhere. If you are duplicating functionality found in
 another static function, consider the value of creating a new API call which can be shared.
@@ -400,7 +367,6 @@ use them when possible.
 When allocating/zeroing memory for a structure, use code like this:
 
 ```
-
 struct foo \*tmp;
 
 ...
@@ -408,7 +374,6 @@ struct foo \*tmp;
 tmp = ast_calloc(1, sizeof(\*tmp));
 
 ```
-
 
 Avoid the combination of ast_malloc() and memset(). Instead, always use ast_calloc(). This will allocate and zero the memory in a single operation. In the case that uninitialized memory is acceptable, there should be a comment in the code that states why this is the case.
 
@@ -421,7 +386,6 @@ The ast_\\* family of functions for memory allocation are functionally the same.
 The functions strdup and strndup can \*not\* accept a NULL argument. This results in having code like this:
 
 ```
-
  if (str) {
  newstr = strdup(str);
  } else {
@@ -429,16 +393,13 @@ The functions strdup and strndup can \*not\* accept a NULL argument. This result
  }
 
 ```
-
 However, the ast_strdup and ast_strdupa functions will happily accept a NULL
 argument without generating an error. The same code can be written as:
 
 ```
-
  newstr = ast_strdup(str);
 
 ```
-
 Furthermore, it is unnecessary to have code that malloc/calloc's for the length of a string (+1 for the terminating '\0') and then using strncpy to copy the copy the string into the resulting buffer. This is the exact same thing as using ast_strdup.
 
 ## CLI Commands
@@ -451,7 +412,6 @@ not
 ```
 \*CLI> show iax2 peer <peername>
 ```
-
 ## New dialplan applications/functions
 
 There are two methods of adding functionality to the Asterisk dialplan: applications and functions. Applications (found generally in
@@ -466,9 +426,7 @@ Functions are registered using 'struct ast_custom_function' structures and the a
 
 When writing Asterisk API documentation the following format should be followed. Do not use the javadoc style.
 
-
 ```
-
 /*!
  * \brief Do interesting stuff.
  *
@@ -487,7 +445,6 @@ int ast_interesting_stuff(int thing1, int thing2)
 
 ```
 
-
 Notice the use of the \param, \brief, and \return constructs. These should be used to describe the corresponding pieces of the function being documented. Also notice the blank line after the last \param directive. All doxygen comments must be in one /*\! \ */ block. If the function or struct does not need an extended description it can be left out.
 
 Please make sure to review the doxygen manual and make liberal use of the \a, \code, \c, \b, \note, \li and \e modifiers as appropriate.
@@ -499,7 +456,6 @@ When adding new API you should also attach a \since note because this will indic
 Structures should be documented as follows.
 
 ```
-
 /*!
  * \brief A very interesting structure.
  */
@@ -512,7 +468,6 @@ struct interesting_struct
 }
 
 ```
-
 Note that /\\*\! \ */ blocks document the construct immediately following them unless they are written, /\\*\!< \ */, in which case they document the construct preceding them.
 
 It is very much preferred that documentation is not done inline, as done in the previous example for member2. The first reason for this is that it tends to encourage extremely brief, and often pointless, documentation since people try to keep the comment from making the line extremely long. However, if you insist on using inline comments, please indent the documentation with spaces\! That way, all of the comments are properly aligned, regardless of what tab size is being used for viewing the code.

@@ -335,7 +335,7 @@ We discussed prior proposed projects, what was done for Asterisk 11, and what mi
 	+ **Review 2011**: Additional work was updated and put into Asterisk 10. Only reported manager authentication events prior to Asterisk 10.
 		- Prior to Asterisk 10 relaxed policy a bit and added chan_sip security events (only for inbound registration).
 		- Additional work needed throughout Asterisk to add more events.
-		- Added to Asterisk 10. Reference: <https://github.com/asterisk/asterisk/issues/jira/browse/ASTERISK-18264>
+		- Added to Asterisk 10. Reference: <https://github.com/asterisk/asterisk/issues/jira/browse/ASTERISK-18264>
 * Light weight means of holding NAT open in SIP (less complex than current qualify, Consider it done)
 	+ **Review 2011**: No change.
 * IPv6 for the restivus (IAX, Jabber/XMPP/Gtalk, Manager, etc.)

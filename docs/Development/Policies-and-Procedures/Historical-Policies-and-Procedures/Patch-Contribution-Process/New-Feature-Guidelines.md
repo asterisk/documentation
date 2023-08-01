@@ -34,7 +34,7 @@ Some questions you should ask yourself when thinking about whether or not your f
 * Can the new feature be implemented using Asterisk interfaces and without modifying the Asterisk source?
 * Does the new feature change long standing Asterisk conventions?
 
-If the answer is **No** to all of the above questions, then the feature may be appropriate for Asterisk. A **Yes** to any of the above questions does not invalidate the new feature, but it may mean that discussion on the [asterisk-dev mailing list](http://lists.digium.com/mailman/listinfo/asterisk-dev) is appropriate before submitting the patch to the issue tracker. If in peer review, you may be asked to change the feature to make it more suitable.
+If the answer is **No** to all of the above questions, then the feature may be appropriate for Asterisk. A **Yes** to any of the above questions does not invalidate the new feature, but it may mean that discussion on the [asterisk-dev mailing list](http://lists.digium.com/mailman/listinfo/asterisk-dev) is appropriate before submitting the patch to the issue tracker. If in peer review, you may be asked to change the feature to make it more suitable.
 
 
 
@@ -47,7 +47,7 @@ If the answer is **No** to all of the above questions, then the feature may be a
 
 
 
- 
+
 
 Some case studies illustrating features that could be considered for inclusion in Asterisk and why or why not they are appropriate are below.
 
@@ -107,7 +107,7 @@ Testing your new feature is **extremely** beneficial to those who have to review
 
 
 
- 
+
 
 
 
@@ -157,7 +157,7 @@ Note that you must sign a [Digium License Agreement](/Development/Policies-and-P
 
 ### Wiki Pages
 
-It is generally recommended that developers for major new features create a page on the wiki using the [Project Planning Template](/Development/Policies-and-Procedures/Project-Planning-Template) under the [Roadmap](/Development/Roadmap./Development/Roadmap/Asterisk-12-Projects/New-SIP-channel-driver/New-SIP-Channel-Driver-Architecture/res_sip-design/Roadmap) section's page for the next major Asterisk version. Even before implementation of a new feature begins, basic requirements and design can be documented and discussed.
+It is generally recommended that developers for major new features create a page on the wiki using the [Project Planning Template](/Development/Policies-and-Procedures/Project-Planning-Template) under the [Roadmap](/Development/Roadmap./Development/Roadmap/Asterisk-12-Projects/New-SIP-channel-driver/New-SIP-Channel-Driver-Architecture/res_sip-design/Roadmap) section's page for the next major Asterisk version. Even before implementation of a new feature begins, basic requirements and design can be documented and discussed.
 
 
 
@@ -178,7 +178,7 @@ It is generally recommended that developers for major new features create a page
 
 
 
-When starting a major new feature, an e-mail **should** be sent to the [Asterisk Developer's Mailing List](http://lists.digium.com/mailman/listinfo/asterisk-dev) announcing the development of the feature. This announcement can also be used to discuss whether or not the feature is appropriate for inclusion in Asterisk. If you feature impacts an Asterisk interface, you may also consider announcing the development of the feature on the [Asterisk Application Development mailing list](http://lists.digium.com/pipermail/asterisk-app-dev/).
+When starting a major new feature, an e-mail **should** be sent to the [Asterisk Developer's Mailing List](http://lists.digium.com/mailman/listinfo/asterisk-dev) announcing the development of the feature. This announcement can also be used to discuss whether or not the feature is appropriate for inclusion in Asterisk. If you feature impacts an Asterisk interface, you may also consider announcing the development of the feature on the [Asterisk Application Development mailing list](http://lists.digium.com/pipermail/asterisk-app-dev/).
 
 Periodically, it is recommended that the primary developer for a new feature send updates to the Asterisk Developer Mailing List updating the community with the status of the project.
 
@@ -226,7 +226,7 @@ Implementation is left up to the developers working on the new feature. The proj
 
 When implementation is complete, patches should be attached to the JIRA issues and the new feature put up for [Code Review](/Development/Policies-and-Procedures/Historical-Policies-and-Procedures/Code-Review). Be sure to read the [Coding Guidelines](/Development/Policies-and-Procedures/Historical-Policies-and-Procedures/Code-Review/Coding-Guidelines), as well as the [Code Review Checklist](/Development/Policies-and-Procedures/Historical-Policies-and-Procedures/Code-Review/Code-Review-Checklist) prior to putting the patch up for review.
 
- 
+
 
 
 

@@ -10,17 +10,7 @@ The problem
 
 RLS support in Asterisk has the potential to generate very large messages. RFC 4662 mandates that when sending a NOTIFY due to the reception of a SUBSCRIBE request, the notification must convey the full state of the resource list. A sample NOTIFY that reports the state of 15 resources for PIDF presence (with Digium presence enabled) is 11585 bytes and looks like the following:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 NOTIFY sip:sipp@127.0.0.1:5061 SIP/2.0
 Via: SIP/2.0/ ;rport;branch=z9hG4bKPj76511715-2855-416d-9383-a77aa05d8fd2
 From: "sut" <sip:service@127.0.0.1>;tag=d1970eb0-8526-4e54-bc2a-2caf3486b605
@@ -450,12 +440,11 @@ Content-Length: 415
 
 ```
 
-
-On subsequent NOTIFYs that are caused by a single resource's state change, a partial state notification can be sent that is much smaller. 
+On subsequent NOTIFYs that are caused by a single resource's state change, a partial state notification can be sent that is much smaller.
 
 ### In PJSIP
 
-When working with PJSIP, we manipulate a structure called `pjsip_tx_data` which contains data relating to the request or response that we intend to send. When the time comes to send the request, we use a high-level method to send a request within the subscription's dialog. Several layers down, PJSIP calls a (public) function called `pjsip_tx_data_encode()` which takes the `pjsip_tx_data` structure and creates a SIP request/response based on its data. This function allocates a buffer on the `pjsip_tx_data` that is sized at `PJSIP_MAX_PKT_LEN`, a constant that is defined at PJSIP's compilation time. By default, `PJSIP_MAX_PKT_LEN` is 4000, but it can be overridden by defining a different value in pjlib/include/pj/config_site.h. After allocating the buffer, the `pjsip_msg_print()` is used to attempt to write the request/response to the buffer. If the buffer is too small, then the encoding operation fails, causing the higher-level operation of sending the request/response to fail as well. As can be seen based on the NOTIFY above, 11585 > 4000, so we are unable to send a full state RLS NOTIFY.
+When working with PJSIP, we manipulate a structure called `pjsip_tx_data` which contains data relating to the request or response that we intend to send. When the time comes to send the request, we use a high-level method to send a request within the subscription's dialog. Several layers down, PJSIP calls a (public) function called `pjsip_tx_data_encode()` which takes the `pjsip_tx_data` structure and creates a SIP request/response based on its data. This function allocates a buffer on the `pjsip_tx_data` that is sized at `PJSIP_MAX_PKT_LEN`, a constant that is defined at PJSIP's compilation time. By default, `PJSIP_MAX_PKT_LEN` is 4000, but it can be overridden by defining a different value in pjlib/include/pj/config_site.h. After allocating the buffer, the `pjsip_msg_print()` is used to attempt to write the request/response to the buffer. If the buffer is too small, then the encoding operation fails, causing the higher-level operation of sending the request/response to fail as well. As can be seen based on the NOTIFY above, 11585 > 4000, so we are unable to send a full state RLS NOTIFY.
 
 Possible Solutions
 ==================
@@ -470,7 +459,7 @@ Analysis:
 
 This option is the least invasive option for PJSIP. Even though it involves a change to PJSIP, the majority of the work is actually left to Asterisk to perform. This option is backwards-compatible with the current behavior of PJSIP as well, so we don't have to worry about breaking others with this idea.
 
-This opens Asterisk up to do some interesting things as well: 
+This opens Asterisk up to do some interesting things as well:
 
 1. Asterisk could perform its own backoff algorithm to determine the necessary size for the message buffer.
 2. Asterisk could cache the required size of the message buffer on the subscription structure so that subsequent notifications will likely not require multiple attempts to reach the correct size.
@@ -490,7 +479,7 @@ Overall, I think this would be easy to implement, but it would be lacking compar
 
 ##### Ignore `PJSIP_MAX_PKT_LEN` for streaming protocols
 
-As mentioned in the previous section, RFC 3261 specifies that the maximum packet size for UDP is 65535 bytes. However, no such upper limit is mandated for streaming protocols such as TCP. A solution to this issue may be to use a different buffer allocation strategy for each transport. Transports could provide a callback to encode the `pjsip_tx_data` rather than having a single universal algorithm to do it. This way, the transports that have RFC-mandated limits on packet size can enforce them, while other transports can grow as needed to accommodate the message.
+As mentioned in the previous section, RFC 3261 specifies that the maximum packet size for UDP is 65535 bytes. However, no such upper limit is mandated for streaming protocols such as TCP. A solution to this issue may be to use a different buffer allocation strategy for each transport. Transports could provide a callback to encode the `pjsip_tx_data` rather than having a single universal algorithm to do it. This way, the transports that have RFC-mandated limits on packet size can enforce them, while other transports can grow as needed to accommodate the message.
 
 Analysis:
 
@@ -547,10 +536,10 @@ Conclusion
 
 My suggestion is to move forward with the first idea from the "In PJSIP" section. This is minimally invasive to PJSIP, and I suspect that the Teluu would be more willing to accept such a change over the other proposed changes to PJSIP. It also gives Asterisk and other users of PJSIP lots of flexibility to react to errors due to large messages. The other ideas from the "In PJSIP" section would be better than any of the other ideas on this page. After that, the top idea from the "In Asterisk" section would be the next best idea, but it ranks **way** below any of the "In PJSIP" ideas. After that, none of the other ideas are actually workable, but I felt the need to list them simply because they exist as possibilities.
 
- 
+
 
 Edit September 4, 2014
 ======================
 
-I actually have devised a new strategy that requires no PJSIP change and that I have borne out in tests to work properly. I figured out that I can pre-allocate the `pjsip_tx_data` buffer to be whatever size I want, thereby bypassing the restriction of `PJSIP_MAX_PKT_LEN`. What I can do is to perform a backoff algorithm of memory allocations and once I have a suitably-sized buffer, I set the `pjsip_tx_data` to use that buffer. In experiments, I have found that I can send very large PJSIP messages with no issue, and with no changes to PJSIP. I now have revised my recommendation to go with this method, as it requires no PJSIP changes, and isn't nearly as ugly as the rest of the Asterisk-only changes.
+I actually have devised a new strategy that requires no PJSIP change and that I have borne out in tests to work properly. I figured out that I can pre-allocate the `pjsip_tx_data` buffer to be whatever size I want, thereby bypassing the restriction of `PJSIP_MAX_PKT_LEN`. What I can do is to perform a backoff algorithm of memory allocations and once I have a suitably-sized buffer, I set the `pjsip_tx_data` to use that buffer. In experiments, I have found that I can send very large PJSIP messages with no issue, and with no changes to PJSIP. I now have revised my recommendation to go with this method, as it requires no PJSIP changes, and isn't nearly as ugly as the rest of the Asterisk-only changes.
 

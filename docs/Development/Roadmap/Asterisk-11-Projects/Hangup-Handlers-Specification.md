@@ -40,21 +40,17 @@ Hangup handlers pass the saved handler string to the Gosub application to execut
 {noformat:title=Push a hangup handler onto a channel}
 same => n,Set(CHANNEL(hangup_handler_push)=[[context,]exten,]priority[(arg1[,...][,argN])]);
 ```
-
 {noformat:title=Pop a hangup handler off a channel and optionally push a replacement}
 same => n,Set(CHANNEL(hangup_handler_pop)=[[[context,]exten,]priority[(arg1[,...][,argN])]]);
 ```
-
 {noformat:title=Pop all hangup handlers off a channel and optionally push a replacement}
 same => n,Set(CHANNEL(hangup_handler_wipe)=[[[context,]exten,]priority[(arg1[,...][,argN])]]);
 ```
-
 {noformat:title=Cascading hangup handlers}
 same => n,Set(CHANNEL(hangup_handler_push)=hdlr3,s,1(args));
 same => n,Set(CHANNEL(hangup_handler_push)=hdlr2,s,1(args));
 same => n,Set(CHANNEL(hangup_handler_push)=hdlr1,s,1(args));
 ```
-
 ## AMI events
 
 The hangup handler AMI events are output as part of the AMI dialplan permission class.
@@ -68,18 +64,15 @@ The AMI event HangupHandlerRun is generated as a hangup handler is about to be e
 {noformat:title=Single channel}
 core show hanguphandlers <chan>
 ```
-
 {noformat:title=Output}
 Channel Handler
 <chan-name> <first handler to execute>
  <second handler to execute>
  <third handler to execute>
 ```
-
 {noformat:title=All channels}
 core show hanguphandlers all
 ```
-
 {noformat:title=Output}
 Channel Handler
 <chan1-name> <first handler to execute>
@@ -89,4 +82,3 @@ Channel Handler
 <chan3-name> <first handler to execute>
  <second handler to execute>
 ```
-

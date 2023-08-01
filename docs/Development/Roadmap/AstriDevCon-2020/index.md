@@ -21,7 +21,7 @@ AstriDevCon is a mix of open and focused discussion all on topics within the rea
 
 We'll build a rough agenda together in the morning.
 
- 
+
 
 ### Location
 
@@ -43,7 +43,7 @@ We'll be using IRC during the AstriDevCon for out of band discussion. Since this
 
 irc.freenode.net, #astridevcon
 
- 
+
 
 ### Attendees
 

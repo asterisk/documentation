@@ -8,23 +8,12 @@ Project Overview
 
 Media playback in ARI today queues multiple play operations to a resource, such as a `bridge` or `channel`. That is, performing the following will result in three different `Playback` objects:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 POST /channels/12345/play?media=sound:tt-monkeys
 POST /channels/12345/play?media=sound:tt-weasels
 POST /channels/12345/play?media=number:555
 
 ```
-
 
 This works well enough when you know that a user needs to listen to all of the prompts, and you don't need to cancel them. If, however, you need to let the prompts be interruptible or allow a user to manipulate the playback, you have to keep a reference to the current `Playback` object for the resource, as well as any 'future' `Playback` objects (so you can `delete` them). Alternatively, of course, you don't have to initiate all of the media operations at once - you can ostensibly play each when the previous has finished. However, that negates the benefit of the media queueing, and entails writing a state machine.
 
@@ -42,21 +31,10 @@ ARI will allow a user to specify multiple media resources to play on a supported
 
 ### Example
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 POST /channels/12345/play?media=sound:tt-monkeys&media=sound:tt-weasels&media=number:555
 
 ```
-
 
 ### Other Media Parameters
 
@@ -76,38 +54,27 @@ A `Playback` resource will support two new operations:
 
 An attempt to move past the end of the last media resource will return a 2xx response and will result in a `PlaybackFinished` event. An attempt to move prior to the beginning of the first media resource will return a 2xx response and will result in a `PlaybackStarted` event.
 
- 
 
- 
 
- 
+
+
+
 
 On this Page
 
 
- 
 
- 
 
- 
+
+
+
 
 ### Example
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 POST /playbacks/1283791327846/control?operation=next
 
 ```
-
 
 ### Existing Operations
 
@@ -143,10 +110,8 @@ The `channels` and `bridges` resources will have their respective `play` operati
   
 \[channels|bridges\]/play  
 
-
 ```
-
-js  {
+js  {
  "name": "media",
  "description": "Media URIs to play.",
  "paramType": "query",
@@ -156,7 +121,6 @@ js  {
  },
 
 ```
-
 
 The `playbacks` resource will have its `control` operation updated with new options for the `operation` query parameter.
 
@@ -168,10 +132,8 @@ The `playbacks` resource will have its `control` operation updated with new opti
   
 playbacks/control  
 
-
 ```
-
-js  {
+js  {
  "name": "operation",
  "description": "Operation to perform on the playback.",
  "paramType": "query",
@@ -194,7 +156,6 @@ js  {
 
 ```
 
-
 Core updates
 ------------
 
@@ -208,10 +169,8 @@ Core updates
   
 frame.h  
 
-
 ```
-
-truecpp312  AST_CONTROL_STREAM_STOP = 1000, /*!< Indicate to a channel in playback to stop the strea */
+truecpp312  AST_CONTROL_STREAM_STOP = 1000, /*!< Indicate to a channel in playback to stop the strea */
  AST_CONTROL_STREAM_SUSPEND = 1001, /*!< Indicate to a channel in playback to suspend the strea */
  AST_CONTROL_STREAM_RESTART = 1002, /*!< Indicate to a channel in playback to restart the strea */
  AST_CONTROL_STREAM_REVERSE = 1003, /*!< Indicate to a channel in playback to rewin */
@@ -220,7 +179,6 @@ truecpp312  AST_CONTROL_STREAM_STOP = 1000, /*!< Indicate to a channel in playb
  AST_CONTROL_STREAM_NEXT = 1006, /*!< Indicate to a channel in playback to play the next strea */
 
 ```
-
 
 * Update `channel.c` to consume and ignore the two new frame types
 * Have `file.c` `waitstream_core` handle the two new frame types. These should break out of the control loop and return the frame value.

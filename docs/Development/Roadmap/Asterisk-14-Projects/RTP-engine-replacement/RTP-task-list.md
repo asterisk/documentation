@@ -14,7 +14,7 @@ pageid: 31752472
 
 
 
- 
+
 
 This page contains a list of necessary tasks in order to write a new RTP engine. The tasks start out with incredibly specific detail and eventually move into much more general terms. The reason for this is to help remain agile in the process. Undoubtedly, requirements will change, or mistakes in the design early will change the nature of later tasks.
 
@@ -53,22 +53,22 @@ For the time being, this will allocate an RTP session and an RTP stream. The RTP
 Construct the media outflow
 ---------------------------
 
-The first task is to be able to play audio over an RTP stream. In order to reach this, the media outflow will need to be implemented. Media outflow means implementing the `write()` method on the RTP engine to completion. According to the planned outflow, a media write should go through an encoder, a router, and a transport.
+The first task is to be able to play audio over an RTP stream. In order to reach this, the media outflow will need to be implemented. Media outflow means implementing the `write()` method on the RTP engine to completion. According to the planned outflow, a media write should go through an encoder, a router, and a transport.
 
 #### Create an RTP encoder
 
-Create an RTP encoder structure. Write an `encode()` method that will accept an `ast_frame` and return an encoded RTP header with an appropriate payload. For the time being, the encoder can work only on `AST_FRAME_VOICE` frames. Since this is the bare-bones phase, the RTP encoder can cheat in some respects, such as always using the same SSRC and never setting the marker bit. However, it must properly indicate sequence numbers and timestamps. The payload type number for the payload to transmit can be learned with `ast_rtp_codecs_payload_code()`.
+Create an RTP encoder structure. Write an `encode()` method that will accept an `ast_frame` and return an encoded RTP header with an appropriate payload. For the time being, the encoder can work only on `AST_FRAME_VOICE` frames. Since this is the bare-bones phase, the RTP encoder can cheat in some respects, such as always using the same SSRC and never setting the marker bit. However, it must properly indicate sequence numbers and timestamps. The payload type number for the payload to transmit can be learned with `ast_rtp_codecs_payload_code()`.
 
 #### Create a default packet router.
 
-Create a default packet router structure. Add this structure to the RTP stream structure. Write a `route()` method that will pass an encoded RTP packet to the stream's transport's `write()` method. The main job of the default packet router is to provide an address for the packet to be routed to. The default packet router can call `ast_rtp_instance_get_remote_address()` to get the address to route the packet to. 
+Create a default packet router structure. Add this structure to the RTP stream structure. Write a `route()` method that will pass an encoded RTP packet to the stream's transport's `write()` method. The main job of the default packet router is to provide an address for the packet to be routed to. The default packet router can call `ast_rtp_instance_get_remote_address()` to get the address to route the packet to.
 
 #### Create an RTP transport
 
 Create a UDP RTP transport structure. Add this structure to the RTP stream structure.
 
 * Write an `init()` method and call it from the RTP engine's `new()` callback. The `init()` method should create a UDP socket and set any socket level flags required (e.g. nonblocking I/O). For this first phase, this can bind to a hard-coded IP address and port.
-* Write a `write()` method that accepts an encoded RTP packet (a sequence of bytes), its size, and a destination address (an `ast_sockaddr`), and have that method call `ast_sockaddr_sendto()` when invoked.
+* Write a `write()` method that accepts an encoded RTP packet (a sequence of bytes), its size, and a destination address (an `ast_sockaddr`), and have that method call `ast_sockaddr_sendto()` when invoked.
 
 #### Write the RTP engine write() function
 
@@ -77,7 +77,7 @@ In order to actually transmit media, the RTP engine's write function will need t
 * Accept `AST_FRAME_VOICE` frames and pass the payloads down to the RTP encoder's `encode()` method.
 * Pass the encoded data to the default packet router's `route()` method.
 
-Frame types other than `AST_FRAME_VOICE` can be ignored for now.
+Frame types other than `AST_FRAME_VOICE` can be ignored for now.
 
 Construct the media inflow
 --------------------------
@@ -88,7 +88,7 @@ The next logical task is to be able to create the media inflow. With this task c
 
 The UDP RTP transport that was created previously needs to be modified to be able to receive packets.
 
-* Write a `read()` callback that will call `ast_recvfrom()` on the UDP socket. The `read()` callback should take a buffer and size as its arguments and return the number of bytes read.
+* Write a `read()` callback that will call `ast_recvfrom()` on the UDP socket. The `read()` callback should take a buffer and size as its arguments and return the number of bytes read.
 
 #### Create an RTP transport monitor thread
 
@@ -158,7 +158,7 @@ Modify the RTP encoder to use proper values for these.
 
 * SSRC
 	+ An initial SSRC can be created at random when the encoder is allocated. RFC 3550 [Appendix A.6](http://tools.ietf.org/html/rfc3550#appendix-A.6) has a suggeseted algorithm for generating random 32-bit values. Feel free to use this or something else if desired.
-	+ Implement a `change_source()` RTP engine callback that will change our SSRC to a different random value when called. One of the reasons for us creating a new RTP engine was due to "mangling SSRC". It may be wise to keep in consideration that the `change_source()` method on Steel Zebra should be a bit smarter about when to actually change SSRC. For this particular task, though, we're going to leave this method stupid.
+	+ Implement a `change_source()` RTP engine callback that will change our SSRC to a different random value when called. One of the reasons for us creating a new RTP engine was due to "mangling SSRC". It may be wise to keep in consideration that the `change_source()` method on Steel Zebra should be a bit smarter about when to actually change SSRC. For this particular task, though, we're going to leave this method stupid.
 * Marker bit
 
 
@@ -187,7 +187,7 @@ All code currently is assuming 20 ms packetization for audio, but it shouldn't!
 Audio presented to Steel Zebra's `write()` method may not be of the same packetization as requested by the remote receiver. The goal is to ensure that we only send media of the requested packetization.
 
 * Create an RTP playout structure. For the time being, the structure should only have an `ast_smoother` on it.
-* Add a `write()` method to the playout structure that takes an `AST_FRAME_VOICE` as a parameter. The first time that a frame of a particular audio type is received, the smoother should have `ast_smoother_reset()` called on it, with the size of the smoother being  calculated from the format on the frame. The audio data should be fed into the smoother. Then we should read from the smoother in order to get the correct number of samples to send. After these samples have been retrieved, these are passed down to the encoder.
+* Add a `write()` method to the playout structure that takes an `AST_FRAME_VOICE` as a parameter. The first time that a frame of a particular audio type is received, the smoother should have `ast_smoother_reset()` called on it, with the size of the smoother being  calculated from the format on the frame. The audio data should be fed into the smoother. Then we should read from the smoother in order to get the correct number of samples to send. After these samples have been retrieved, these are passed down to the encoder.
 * Modify the `write()` method on Steel Zebra not to call the encoder's `encode()` method. Instead, this should be replaced by calling the playout's `write()` method.
 
 No change is required for the inflow since code at the channel or bridge layer can provide buffering and smoothing of media. The RTP inflow should remain packaging received media in `ast_frames` based on the amount of media received.
@@ -262,7 +262,7 @@ Now that RTP has reached a state where it works generally well, we can start to 
 Create structures for different RTCP packet types
 -------------------------------------------------
 
-RFC 3550 defines  5 RTCP packet types: SR, RR, SDES, BYE, and APP. Create structures that can represent decoded packets of these types. Some suggested structures appear in Appendix A of RFC 3550; however, I do not suggest using these directly because the union approach they use does not allow for easy addition of new RTCP packet types. We already know that we will require additional packet types for RTP/AVPF, so don't box yourself in too early!
+RFC 3550 defines  5 RTCP packet types: SR, RR, SDES, BYE, and APP. Create structures that can represent decoded packets of these types. Some suggested structures appear in Appendix A of RFC 3550; however, I do not suggest using these directly because the union approach they use does not allow for easy addition of new RTCP packet types. We already know that we will require additional packet types for RTP/AVPF, so don't box yourself in too early!
 
 Add RTCP creation
 -----------------
@@ -305,7 +305,7 @@ RTP transmission and reception need to be augmented to gather statistics that ca
 Advanced RTP features
 =====================
 
-These RTP features go beyond the humble 
+These RTP features go beyond the humble
 
 Strict RTP
 ----------
@@ -431,7 +431,7 @@ Steel zebra needs an RTP ICE engine. Many of the calls to the ICE engine will re
 RTP/AVPF (?)
 ============
 
-RTP/AVPF adds new kinds of RTCP packets and redefines the rules about the intervals between sending RTCP packets. `res_rtp_asterisk` currently supports RTP/AVPF in name only. There is nothing that attempts to modify the RTCP transmission interval, and there is no code to parse the new RTCP packe types defined by RFC 4585. Any work done in this section will be breaking new ground in Asterisk's support of RTP/AVPF.
+RTP/AVPF adds new kinds of RTCP packets and redefines the rules about the intervals between sending RTCP packets. `res_rtp_asterisk` currently supports RTP/AVPF in name only. There is nothing that attempts to modify the RTCP transmission interval, and there is no code to parse the new RTCP packe types defined by RFC 4585. Any work done in this section will be breaking new ground in Asterisk's support of RTP/AVPF.
 
 Create RTP/AVPF RTCP packet decoders.
 -------------------------------------
@@ -477,7 +477,7 @@ The channel driver calls this function in order to add an RTP instance to a bund
 
 #### Add RTP engine callback for setting a BUNDLE address
 
-This is called on the RTP instance whose local address has been chosen as the BUNDLE address for the session. The RTP stream will need to communicate to the RTP session that it has been selected. The RTP session can then point the other streams in the BUNDLE group to the chosen stream's transport and packet router so they all use the same one. 
+This is called on the RTP instance whose local address has been chosen as the BUNDLE address for the session. The RTP stream will need to communicate to the RTP session that it has been selected. The RTP session can then point the other streams in the BUNDLE group to the chosen stream's transport and packet router so they all use the same one.
 
 Also at this point, the RTP session will need to add a stream selection plugin to the chosen stream's decoder so that after the RTP header can be decoded and then sent to the appropriate stream for further processing. This can be a bit complicated since different streams may have different decoding steps required (e.g. an audio stream uses RTP/AVP and a video stream uses RTP/SAVPF). This means that the initial part of a decode may be performed by one decoder, but a subsequent decode step may be performed by a separate decoder. Getting this to work will sure be fun!
 

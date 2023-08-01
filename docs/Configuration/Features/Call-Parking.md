@@ -6,14 +6,14 @@ pageid: 32376513
 Overview
 ========
 
-Some organizations have the need to facilitate calls to employees who move around the office a lot or who don't necessarily sit at a desk all day. In Asterisk, it is possible to allow a call to be put on hold at one location and then picked up from a different location such that the conversation can be continued from a device other than the one from which call was originally answered. This concept is known as call parking.
+Some organizations have the need to facilitate calls to employees who move around the office a lot or who don't necessarily sit at a desk all day. In Asterisk, it is possible to allow a call to be put on hold at one location and then picked up from a different location such that the conversation can be continued from a device other than the one from which call was originally answered. This concept is known as call parking.
 
 Call parking is a feature that allows a participant in a call to put the other participants on hold while they themselves hang up. When parking, the party that initiates the park will be told a parking space, which under standard configuration doubles as an extension. This extension, or parking space, serves as the conduit for accessing the parked call. At this point, as long as the parking space is known, the parked call can be retrieved from a different location/device from where it was originally answered.
 
 Call Parking Configuration Files and Module
 ===========================================
 
-In versions of Asterisk prior to Asterisk 12, call parking was considered an Asterisk core feature and was configured using `features.conf`. However, Asterisk 12 underwent vast architectural changes, several of which were directed at call parking support. Because the amount of changes introduced in Asterisk 12 was quite extensive, they have been omitted from this document. For reference, you can find a comprehensive list of these changes here:  [New in 12](/New-in-12) .
+In versions of Asterisk prior to Asterisk 12, call parking was considered an Asterisk core feature and was configured using `features.conf`. However, Asterisk 12 underwent vast architectural changes, several of which were directed at call parking support. Because the amount of changes introduced in Asterisk 12 was quite extensive, they have been omitted from this document. For reference, you can find a comprehensive list of these changes here:  [New in 12](/New-in-12) .
 
 In a nutshell, Asterisk 12 relocated its support for call parking from the Asterisk core into a separate, loadable module, `res_parking`. As a result, configuration for call parking was also moved to `[res_parking.conf](/Asterisk+12+Configuration_res_parking)`. Configuration for call parking through `[features.conf](/Asterisk+12+Configuration_features)` for versions of Asterisk 12 and beyond, is no longer supported. Additionally, support for the `[ParkAndAnnounce](/Asterisk+12+Application_ParkAndAnnounce)` application was relocated to the `res_parking` module and the `app_parkandannounce` module was removed.
 
@@ -23,7 +23,7 @@ Before we move any further, there is one more rather important detail to address
 
 
 !!! note 
-    `res_parking` uses the configuration framework. If an invalid configuration is  supplied, `res_parking` will fail to load or fail to reload. Previously,  invalid configurations would generally be accepted, with certain errors  resulting in individually disabled parking lots.
+    `res_parking` uses the configuration framework. If an invalid configuration is  supplied, `res_parking` will fail to load or fail to reload. Previously,  invalid configurations would generally be accepted, with certain errors  resulting in individually disabled parking lots.
 
       
 [//]: # (end-note)
@@ -33,9 +33,9 @@ Before we move any further, there is one more rather important detail to address
 Now that we've covered all of that, let's look at some examples of how all this works.
 
 On This Page
- 
 
- 
+
+
 
 Example Configurations
 ======================
@@ -65,9 +65,7 @@ In summary:
   
 res_parking.conf  
 
-
 ```
-
 truetext1[general]
 parkext => 700 ; Sets the default extension used to park calls. Note: This option
  ; can take any alphanumeric string.
@@ -90,9 +88,7 @@ parkingtime => 300 ; Specifies the number of seconds a call will wait in the par
 findslot => next ; Configures the parking slot selection behavior. For this example,
  ; the next free slot will be selected when a call is parked.
 
-
 ```
-
 
 
 
@@ -101,9 +97,7 @@ findslot => next ; Configures the parking slot selection behavior. For this exam
   
 features.conf  
 
-
 ```
-
 truetext1[featuremap]
 parkcall => #72 ; Parks the call (one-step parking). For this example, a call will be
  ; automatically parked when an allowed party presses the DTMF digits,
@@ -113,9 +107,7 @@ parkcall => #72 ; Parks the call (one-step parking). For this example, a call wi
  ; K - Allow the calling party to enable parking of the call.
  ; k - Allow the called party to enable parking of the call.
 
-
 ```
-
 
 
 
@@ -124,9 +116,7 @@ parkcall => #72 ; Parks the call (one-step parking). For this example, a call wi
   
 extensions.conf  
 
-
 ```
-
 truetext1[globals]
 ; Extension Maps
 5001=alice ; Maps 5001 to a local extension that will emulate
@@ -156,9 +146,7 @@ exten => 5555001,1,NoOp(Route to a local extension.)
  same => n,Dial(PJSIP/alice)
  same => n,Hangup()
 
-
 ```
-
 
 Basic Handling for Call Parking Timeouts
 ----------------------------------------
@@ -192,9 +180,7 @@ In summary:
   
 res_parking.conf  
 
-
 ```
-
 truetext1[general]
 parkext => 700 ; Sets the default extension used to park calls. Note: This option
  ; can take any alphanumeric string.
@@ -235,9 +221,7 @@ comebacktoorigin=yes ; Determines what should be done with a parked call if it i
  ; an extension it will automatically create in the 'park-dial'
  ; context.
 
-
 ```
-
 
 
 
@@ -246,9 +230,7 @@ comebacktoorigin=yes ; Determines what should be done with a parked call if it i
   
 features.conf  
 
-
 ```
-
 truetext1[featuremap]
 parkcall => #72 ; Parks the call (one-step parking). For this example, a call will be
  ; automatically parked when an allowed party presses the DTMF digits,
@@ -258,9 +240,7 @@ parkcall => #72 ; Parks the call (one-step parking). For this example, a call wi
  ; K - Allow the calling party to enable parking of the call.
  ; k - Allow the called party to enable parking of the call.
 
-
 ```
-
 
 
 
@@ -269,9 +249,7 @@ parkcall => #72 ; Parks the call (one-step parking). For this example, a call wi
   
 extensions.conf  
 
-
 ```
-
 truetext1[globals]
 ; Extension Maps
 5001=alice ; Maps 5001 to a local extension that will emulate
@@ -307,9 +285,7 @@ exten => t,1,NoOp(End of the line for a timed-out parked call.)
  same => n,Playback(vm-goodbye)
  same => n,Hangup()
 
-
 ```
-
 
 Custom Handling for Call Parking Timeouts
 -----------------------------------------
@@ -339,9 +315,7 @@ In summary:
   
 res_parking.conf  
 
-
 ```
-
 truetext1[general]
 
 [default]
@@ -383,9 +357,7 @@ comebackcontext=parkedcallstimeout ; The context that a parked call will be rout
  ; value, Asterisk will route the call to the 's' extension in the
  ; default context.
 
-
 ```
-
 
 
 
@@ -394,9 +366,7 @@ comebackcontext=parkedcallstimeout ; The context that a parked call will be rout
   
 features.conf  
 
-
 ```
-
 truetext1[featuremap]
 parkcall => #72 ; Parks the call (one-step parking). For this example, a call will be
  ; automatically parked when an allowed party presses the DTMF digits,
@@ -406,9 +376,7 @@ parkcall => #72 ; Parks the call (one-step parking). For this example, a call wi
  ; K - Allow the calling party to enable parking of the call.
  ; k - Allow the called party to enable parking of the call.
 
-
 ```
-
 
 
 
@@ -417,9 +385,7 @@ parkcall => #72 ; Parks the call (one-step parking). For this example, a call wi
   
 extensions.conf  
 
-
 ```
-
 truetext1[globals]
 ; Extension Maps
 5001=alice ; Maps 5001 to a local extension that will emulate
@@ -453,7 +419,5 @@ exten => s,1,NoOp(This is all that happens to parked calls if they time out.)
  same => n,Playback(vm-goodbye)
  same => n,Hangup()
 
-
 ```
-
 

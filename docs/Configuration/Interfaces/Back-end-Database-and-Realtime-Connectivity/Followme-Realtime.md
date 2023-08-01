@@ -8,17 +8,7 @@ Followme is now realtime-enabled.
 
 To use, you must define two backend data structures, with the following fields:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 
 followme:
  name Name of this followme entry. Specified when invoking the FollowMe
@@ -40,20 +30,8 @@ followme:
  status_prompt Normally, "Party is not at their desk".
  sorry_prompt Normally, "Unable to locate party".
 
-
 ```
-
-
-
-
----
-
-  
-  
-
-
 ```
-
 
 followme_numbers:
  name Name of this followme entry. Must match the name above.
@@ -63,7 +41,5 @@ followme_numbers:
  timeout Timeout associated with this step. See the followme documentation
  for more information on how this value is handled.
 
-
 ```
-
 

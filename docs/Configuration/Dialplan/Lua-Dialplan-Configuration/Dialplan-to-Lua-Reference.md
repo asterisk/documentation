@@ -19,26 +19,14 @@ Extension pattern matching syntax on logic works the same for `extensions.conf` 
 extensions.conf
 ---------------
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 
 [users]
 exten => _1XX,1,Dial(SIP/${EXTEN})
 
 exten => _2XX,1,Voicemail(${EXTEN:1})
 
-
 ```
-
 
 
 50%
@@ -46,17 +34,7 @@ exten => _2XX,1,Voicemail(${EXTEN:1})
 extensions.lua
 --------------
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 
 extensions = {}
 extensions.users = {}
@@ -69,10 +47,7 @@ extensions.users["_2XX"] = function(c, e)
  app.voicemail("1" .. e:sub(2))
 end
 
-
-
 ```
-
 
 
 Context Includes
@@ -85,17 +60,7 @@ Context Includes
 extensions.conf
 ---------------
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 
 [users]
 exten => 100,1,Noop
@@ -109,10 +74,7 @@ exten => s,n,Playback(demo-congrats)
 include => demo
 include => users
 
-
-
 ```
-
 
 
 50%
@@ -120,17 +82,7 @@ include => users
 extensions.lua
 --------------
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 
 extensions = {
  users = {
@@ -150,9 +102,7 @@ extensions = {
  };
 }
 
-
 ```
-
 
 
 Loops
@@ -165,17 +115,7 @@ Loops
 extensions.conf
 ---------------
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 
 exten => 100,1,Noop
 exten => 100,n,Set(i=0)
@@ -183,9 +123,7 @@ exten => 100,n,While($[i < 10])
 exten => 100,n,Verbose(i = ${i})
 exten => 100,n,EndWhile
 
-
 ```
-
 
 
 50%
@@ -193,26 +131,14 @@ exten => 100,n,EndWhile
 extensions.lua
 --------------
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 
 i = 0
 while i < 10 do
  app.verbose("i = " .. i)
 end
 
-
 ```
-
 
 
 Variables
@@ -225,24 +151,12 @@ Variables
 extensions.conf
 ---------------
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 
 exten => 100,1,Set(my_variable=my_value)
 exten => 100,n,Verbose(my_variable = ${my_variable})
 
-
 ```
-
 
 
 50%
@@ -250,24 +164,12 @@ exten => 100,n,Verbose(my_variable = ${my_variable})
 extensions.lua
 --------------
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 
 channel.my_variable = "my_value"
 app.verbose("my_variable = " .. channel.my_variable:get())
 
-
 ```
-
 
 
 Applications
@@ -280,23 +182,11 @@ Applications
 extensions.conf
 ---------------
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 
 exten => 100,1,Dial("SIP/100",,m)
 
-
 ```
-
 
 
 50%
@@ -304,23 +194,11 @@ exten => 100,1,Dial("SIP/100",,m)
 extensions.lua
 --------------
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 
 app.dial("SIP/100", nil, "m")
 
-
 ```
-
 
 
 Macros/GoSub
@@ -336,17 +214,7 @@ Macros/GoSub
 extensions.conf
 ---------------
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 
 [macro-dial]
 exten => s,1,Noop
@@ -355,9 +223,7 @@ exten => s,n,Dial(${ARG1})
 [default]
 exten => 100,1,Macro(dial,SIP/100)
 
-
 ```
-
 
 
 50%
@@ -365,17 +231,7 @@ exten => 100,1,Macro(dial,SIP/100)
 extensions.lua
 --------------
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 
 extensions = {}
 extensions.default = {}
@@ -388,9 +244,7 @@ extensions.default[100] = function()
  dial("SIP/100")
 end
 
-
 ```
-
 
 
 Goto
@@ -406,17 +260,7 @@ Goto
 extensions.conf
 ---------------
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 
 [default]
 exten => 100,1,Goto(102,1)
@@ -424,9 +268,7 @@ exten => 100,1,Goto(102,1)
 exten => 102,1,Playback("demo-thanks")
 exten => 102,n,Hangup
 
-
 ```
-
 
 
 50%
@@ -434,17 +276,7 @@ exten => 102,n,Hangup
 extensions.lua
 --------------
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 
 extensions = {}
 extensions.default = {}
@@ -458,10 +290,7 @@ extensions.default[100] = function()
  do_hangup()
 end
 
-
-
 ```
-
 
 
 
@@ -474,9 +303,7 @@ end
   
 In Asterisk 1.8, use return  
 
-
 ```
-
 
 function extension_function(c, e)
  return app.goto("default", "100", 1)
@@ -490,8 +317,5 @@ end
 
 ---
 
-
-
 ```
-
 

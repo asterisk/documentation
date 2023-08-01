@@ -8,9 +8,6 @@ Running Asterisk from the Command Line
 
 * By default, starting Asterisk will run it in the background:
 
-
-
-
 ```bash title=" " linenums="1"
 # asterisk
 
@@ -19,9 +16,6 @@ my_user 26246 2.0 4.1 2011992 165520 ? Ssl 16:35 0:16 asterisk
 
 ```
 * In order to connect to a running Asterisk process, you can attach a **remote console** using the `-r` option:
-
-
-
 
 ```bash title=" " linenums="1"
 # asterisk -r
@@ -40,7 +34,6 @@ asterisk-server\*CLI>
 
 
 
-
 !!! tip 
     The `-R` option will also attach a remote console - however, it will attempt to automatically reconnect to Asterisk if for some reason the connection is broken. This is particularly useful if your remote console restarts Asterisk.
 
@@ -49,17 +42,7 @@ asterisk-server\*CLI>
 
 On this Page* To disconnect from a connected remote console, simply hit **Ctrl+C**:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 asterisk-server\*CLI> 
 Disconnected from Asterisk server
 Asterisk cleanly ending (0).
@@ -68,24 +51,13 @@ Executing last minute cleanups
 ```
 * To shut down Asterisk, issue `core stop gracefully`:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 asterisk-server\*CLI> core stop gracefully
 Disconnected from Asterisk server
 Asterisk cleanly ending (0).
 Executing last minute cleanups
 
 ```
-
 
 
 
@@ -96,9 +68,6 @@ Executing last minute cleanups
 [//]: # (end-tip)
 
 * You can start Asterisk in the foreground, with an attached **root console**, using the `-c` option:
-
-
-
 
 ```bash title=" " linenums="1"
 # asterisk -c
@@ -116,31 +85,22 @@ Asterisk Ready.
 \*CLI> 
 
 ```
-
 Adding Verbosity
 ----------------
 
 Asterisk provides a number of mechanisms to control the verbosity of its logging. One way in which this can be controlled is through the command line parameter `-v`. For each `-v` specified, Asterisk will increase the level of `VERBOSE` messages by 1. The following will create a console and set the `VERBOSE` message level to 2:
-
-
-
 
 ```bash title=" " linenums="1"
 # asterisk -c -v -v
 
 ```
 
-
 Command line parameters can be combined. The previous command can also be invoked in the following way:
-
-
-
 
 ```bash title=" " linenums="1"
 # asterisk -cvv
 
 ```
-
 
 
 
@@ -168,35 +128,24 @@ Command line parameters can be combined. The previous command can also be invoke
   
   
 
-
 ```
-
 # asterisk -c
 
 ```
 
-
 While a remote console can be attached to that Asterisk process with a different verbosity:
-
-
-
 
 ```bash title=" " linenums="1"
 # asterisk -rvvv
 
 ```
 
-
 Multiple remote consoles can be attached, each with their own verbosity:
-
-
-
 
 ```bash title=" " linenums="1"
 # asterisk -rv
 
 ```
-
 
 Executing as another User
 -------------------------
@@ -216,30 +165,19 @@ Executing as another User
 
 Asterisk can be run as another user using the `-U` option:
 
-
-
-
 ```bash title=" " linenums="1"
 # asterisk -U asteriskuser
 
 ```
 
-
 Often, this option is specified in conjunction with the `-G` option, which specifies the group to run under:
-
-
-
 
 ```bash title=" " linenums="1"
 # asterisk -U asteriskuser -G asteriskuser
 
 ```
 
-
 When running Asterisk as another user, make sure that user owns the various directories that Asterisk will access:
-
-
-
 
 ```bash title=" " linenums="1"
 # sudo chown -R asteriskuser:asteriskuser /usr/lib/asterisk
@@ -251,14 +189,10 @@ When running Asterisk as another user, make sure that user owns the various dire
 
 ```
 
-
 More Options
 ------------
 
 There are many more command line options available. For more information, use the `-h` option:
-
-
-
 
 ```bash title=" " linenums="1"
 # asterisk -h
@@ -268,16 +202,12 @@ Usage: asterisk [OPTIONS]
 
 ```
 
-
 Running Asterisk as a Service
 =============================
 
 The most common way to run Asterisk in a production environment is as a service. Asterisk includes both a `make` target for installing Asterisk as a service, as well as a script - `live_asterisk` - that will manage the service and automatically restart Asterisk in case of errors.
 
 * Asterisk can be installed as a service using the `make config` target:
-
-
-
 
 ```bash title=" " linenums="1"
 # make config
@@ -292,18 +222,12 @@ The most common way to run Asterisk in a production environment is as a service.
 ```
 * Asterisk can now be started as a service:
 
-
-
-
 ```bash title=" " linenums="1"
 # service asterisk start
  * Starting Asterisk PBX: asterisk [ OK ] 
 
 ```
 * And stopped:
-
-
-
 
 ```bash title=" " linenums="1"
 # service asterisk stop
@@ -312,16 +236,12 @@ The most common way to run Asterisk in a production environment is as a service.
 ```
 * And restarted:
 
-
-
-
 ```bash title=" " linenums="1"
 # service asterisk restart
  * Stopping Asterisk PBX: asterisk [ OK ] 
  * Starting Asterisk PBX: asterisk [ OK ]
 
 ```
-
 Supported Distributions
 -----------------------
 
@@ -333,5 +253,5 @@ Not all distributions of Linux/Unix are supported by the `make config` target. T
 * Mandrake/Mandriva
 * SuSE/Novell
 
- 
+
 

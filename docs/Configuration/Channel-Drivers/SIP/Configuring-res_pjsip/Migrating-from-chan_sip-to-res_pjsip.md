@@ -17,9 +17,6 @@ To insure that the script can read any [#include'd](/Fundamentals/Asterisk-Confi
 
 ### Command line usage
 
-
-
-
 ```bash title=" " linenums="1"
 # /path/to/asterisk/source/contrib/scripts/sip_to_pjsip/sip_to_pjsip.py --help
 Usage: sip_to_pjsip.py [options] [input-file [output-file]]
@@ -29,15 +26,10 @@ Options:
  -h, --help show this help message and exit
  -p PREFIX, --prefix=PREFIX
  output prefix for include files
- 
 
 ```
 
-
 ### Example of Use
-
-
-
 
 ```bash title=" " linenums="1"
 # cd /etc/asterisk
@@ -47,7 +39,6 @@ Converting to PJSIP...
 Writing pjsip.conf
 
 ```
-
 
 On this Page
 
@@ -86,10 +77,7 @@ This examples shows the configuration required for:
 
 ---
 
-
-
 ```
-
 [general]
 udpbindaddr=0.0.0.0
 
@@ -111,15 +99,11 @@ secret=1234
 
 ```
 
-
-   | 
+   | 
 
 ---
 
-
-
 ```
-
 [simpletrans]
 type=transport
 protocol=udp
@@ -162,7 +146,6 @@ password=1234
 username=6001
 
 ```
-
  |
 
 Example SIP Trunk Configuration
@@ -183,10 +166,7 @@ This shows configuration for a SIP trunk as would typically be provided by an IT
 
 ---
 
-
-
 ```
-
 [general]
 udpbindaddr=0.0.0.0
 
@@ -202,15 +182,11 @@ allow=ulaw
 context=from-external
 
 ```
-
  | 
 
 ---
 
-
-
 ```
-
 [simpletrans]
 type=transport
 protocol=udp
@@ -246,10 +222,9 @@ endpoint=mytrunk
 match=203.0.113.1
 
 ```
-
  |
 
- 
+
 
 Disabling res_pjsip and chan_pjsip
 ====================================
@@ -262,17 +237,7 @@ If you have built Asterisk with the PJSIP modules, but don't intend to use them 
 
 1. Edit the file **modules.conf** in your Asterisk configuration directory. (typically /etc/asterisk/)
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 noload => res_pjsip.so
 noload => res_pjsip_pubsub.so
 noload => res_pjsip_session.so
@@ -281,7 +246,6 @@ noload => res_pjsip_exten_state.so
 noload => res_pjsip_log_forwarder.so
 
 ```
-
 
 Having a noload for the above modules should (at the moment of writing this) prevent any PJSIP related modules from loading.
 2. Restart Asterisk!
@@ -296,7 +260,7 @@ Other possibilities would be:
 Network Address Translation (NAT)
 =================================
 
-When configured with **chan_sip**, peers that are, relative to Asterisk, located behind a NAT are configured using the **nat** parameter.  In versions 1.8 and greater of Asterisk, the following nat parameter options are available:
+When configured with **chan_sip**, peers that are, relative to Asterisk, located behind a NAT are configured using the **nat** parameter.  In versions 1.8 and greater of Asterisk, the following nat parameter options are available:
 
 
 
@@ -335,79 +299,67 @@ Thus, the following are equivalent:
 
 ---
 
-
-
 ```
-
 [mypeer1]
 type=peer
 nat=yes
 ;...
- 
- 
- 
+
+
+
 [mypeer2]
 type=peer
 nat=no
 ;...
- 
- 
- 
+
+
+
 [mypeer3]
 type=peer
 nat=never
 ;...
- 
- 
- 
+
+
+
 [mypeer4]
 type=peer
 nat=route
 ;...
- 
- 
- 
 
 ```
-
  | 
 
 ---
 
-
-
 ```
-
 [mypeer1]
 type=endpoint
 rtp_symmetric=yes
 force_rport=yes
 rewrite_contact=yes
 ;...
- 
+
 [mypeer2]
 type=endpoint
 rtp_symmetric=no
 force_rport=no
 rewrite_contact=no
 ;...
- 
+
 [mypeer3]
 type=endpoint
 rtp_symmetric=no
 force_rport=no
 rewrite_contact=no
 ;...
- 
+
 [mypeer4]
 type=endpoint
 rtp_symmetric=no
 force_rport=yes
 rewrite_contact=yes
 ;...
- 
 
 ```
-
  |
 

@@ -31,14 +31,14 @@ Please head to the asterisk-biz mailing list at <http://lists.digium.com>. If wh
 
 
 !!! warning 
-    Security vulnerability issues must NEVER be reported as regular bugs in the issue tracker. Instead they must be reported at [Security Vulnerabilities](https://github.com/asterisk/asterisk/security/advisories/new). You can reach this page by navigating to <https://github.com/asterisk/asterisk> and clicking the "Security" tab at the top of the page.
+    Security vulnerability issues must NEVER be reported as regular bugs in the issue tracker. Instead they must be reported at [Security Vulnerabilities](https://github.com/asterisk/asterisk/security/advisories/new). You can reach this page by navigating to <https://github.com/asterisk/asterisk> and clicking the "Security" tab at the top of the page.
 
       
 [//]: # (end-warning)
 
 
 
- 
+
 
 #### Why should you read this?
 
@@ -83,7 +83,7 @@ You'll report the issue through the tracker (<https://github.com/asterisk/asteri
 1. **Sign up for an GitHub account**  
 If you don't already have a GitHub account, sign up for one now at <https://github.com>.
 2. **Create a new issue in the tracker**  
-Navigate to <https://github.com/asterisk/asterisk/issues> and click on the 'New Issue" button at the top right, then choose an appropriate issue type. The following are the supported issue types:
+Navigate to <https://github.com/asterisk/asterisk/issues> and click on the 'New Issue" button at the top right, then choose an appropriate issue type. The following are the supported issue types:
 
 
 	* Bug
@@ -183,5 +183,5 @@ There are some key qualities to keep in mind. These should be reflected in your 
 1. Follow the guidelines on this patch! Having good, accurate information that helps bug marshals reproduce the issue typically leads to much faster issue resolution.
 2. Provide a patch! Issues with patches are also generally resolved much faster. If you can't write a patch, there are many smart, talented developers in the Asterisk community who may be worth helping you. You can contract with them on the [asterisk-biz](http://lists.digium.com) mailing list, or offer a [bug bounty](/Development/Asterisk-Bug-Bounties).
 
- 
+
 

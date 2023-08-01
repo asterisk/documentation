@@ -16,9 +16,9 @@ Discussion items
 | 10:15-11 | State of Asterisk Talk | Matthew Fredrickson | Link to presentation: [AstriDevCon Asterisk Update - 2020.pdf](AstriDevCon-Asterisk-Update-2020.pdf) |
 | 11-11:45 | Asterisk 18 - Codec Work | George Joseph | Link to presentation: [AstriDevCon 2020 Advanced Codec Negotiation.pdf](AstriDevCon-2020-Advanced-Codec-Negotiation.pdf) |
 | 11:45-1:15 | Lunch |  |  |
-| 1:15 | Start building detailed agenda |  |   |
+| 1:15 | Start building detailed agenda |  |   |
 
- 
+
 
 Afternoon topics:
 
@@ -43,13 +43,13 @@ Afternoon topics:
 * Improved RTCP stats logging
 	+ Ability to disable RTCP messages in AMI
 	+ Would be nice to get RTCP stats in stasisend event (due to not having access in ARI after stasis end)
-	+ Ability to add to CDR log or CEL event log would be neat.  Perhaps using custom CDR log.
+	+ Ability to add to CDR log or CEL event log would be neat.  Perhaps using custom CDR log.
 	+ Better documentation and easier to find
 	+ Do access to things work in hangup handlers?
-* Are there challenges that people have with provisioning fleets of Asterisk instances in the cloud?  (missing provisioning APIs, logging interfaces, ...)?
+* Are there challenges that people have with provisioning fleets of Asterisk instances in the cloud?  (missing provisioning APIs, logging interfaces, ...)?
 	+ Nice to have a solid ARI version of app_voicemail that works well across multiple instances (all playing together well with recordings, metadata, etc)
 	+ Challenges with the way files are stored with app_voicemail across multiple instances of Asterisk and shared file stores.
-	+ It would be nice to record files and send them to another server directly from Asterisk (maybe using remote FTP/HTTP storage or something of that nature).  We can already playback remotely, why not recording as well?
+	+ It would be nice to record files and send them to another server directly from Asterisk (maybe using remote FTP/HTTP storage or something of that nature).  We can already playback remotely, why not recording as well?
 * What would be interesting to see next?
 	+ Blind transfer across Asterisk instances
 	+ Media failover (between Asterisk instances when one fails or for draining of calls from one misbehaving instance to another).
@@ -57,5 +57,5 @@ Afternoon topics:
 	+ Better handling of RTP header extensions in Asterisk. (passthrough or processing of radio related header, potentially also for webrtc and other header extensions)
 	+ Optimistic encryption support when using DTLS with chan_pjsip
 
- 
+
 

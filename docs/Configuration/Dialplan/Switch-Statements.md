@@ -24,66 +24,33 @@ Basic switch statement
 
 As an example, with remote IAX switching you get transparent access to the remote Asterisk PBX.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 [iaxprovider]
 switch => IAX2/user:password@myserver/mycontext
 
 ```
-
 
 The lswitch statement
 ---------------------
 
 An "lswitch" is like a switch but is literal, in that variable substitution is not performed at load time but is passed to the switch directly (presumably to be substituted in the switch routine itself)
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 lswitch => Loopback/12${EXTEN}@othercontext
 
 ```
-
 
 The eswitch statement
 ---------------------
 
 An "eswitch" is like a switch but the evaluation of variable substitution is performed at runtime before being passed to the switch routine.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 eswitch => IAX2/context@${CURSERVER}
 
 ```
 
 
- 
 
- 
+
 

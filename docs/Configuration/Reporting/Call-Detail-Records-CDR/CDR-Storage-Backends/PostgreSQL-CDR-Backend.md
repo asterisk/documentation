@@ -13,17 +13,7 @@ Here is a sample:
 
 /etc/asterisk/cdr_pgsql.conf
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 
 ; Sample Asterisk config file for CDR logging to PostgresSQL
 [global]
@@ -34,23 +24,11 @@ password=password
 user=postgres 
 table=cdr
 
-
 ```
-
 
 Now create a table in postgresql for your cdrs
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 
 CREATE TABLE cdr ( 
  calldate timestamp NOT NULL , 
@@ -71,32 +49,18 @@ CREATE TABLE cdr (
  userfield varchar (255) NOT NULL 
 );
 
-
 ```
-
 
 ##### In 1.8 and later
 
 
 The following columns can also be defined:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 
  peeraccount varchar(20) NOT NULL
  linkedid varchar(150) NOT NULL
  sequence int NOT NULL
 
-
 ```
-
 

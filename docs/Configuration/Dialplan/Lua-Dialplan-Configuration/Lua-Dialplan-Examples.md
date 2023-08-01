@@ -20,9 +20,7 @@ Instead of defining every extension inline, you can use this method to create a 
   
 extensions.lua  
 
-
 ```
-
 
 -- this function serves as an extension function directly
 function call_user(c, user)
@@ -51,9 +49,7 @@ e.sales["6000"] = call_sales_queue("sales2")
 
 extensions = e
 
-
 ```
-
 
 Less Clutter v2
 ---------------
@@ -69,9 +65,7 @@ In this example, we use a fancy function to register extensions.
   
 extensions.lua  
 
-
 ```
-
 
 function register(context, extension, func)
  if not extensions then
@@ -125,8 +119,5 @@ register("sales", "7000", function()
  app.queue("sales3")
 end)
 
-
-
 ```
-
 

@@ -17,7 +17,7 @@ This example ARI application will do the following:
 2. When that channel enters into the Stasis application, the original channel will be removed from the holding bridge, a mixing bridge will be created, and the two channels will be put in it.
 3. If either channel hangs up, the other channel will also be hung up.
 4. Once the dialed channel exists the Stasis application, the mixing bridge will be destroyed.
-On This Page 
+On This Page
 
 Dialplan
 --------
@@ -32,32 +32,19 @@ For this example, we need to just drop the channel into Stasis, specifying our a
   
 extensions.conf  
 
-
 ```
-
 trueexten => 1000,1,NoOp()
  same => n,Stasis(bridge-move,inbound,PJSIP/bob)
  same => n,Hangup()
 
 ```
 
-
 Python
 ------
 
-A large part of the implementation of this particular example is similar to the [`bridge-dial.py`](/ARI+and+Bridges%3A+Basic+Mixing+Bridges) example. However, instead of ringing the inbound channel, we'll instead create a holding bridge and place the channel in said holding bridge. Since a holding bridge can hold a number of channels, we'll reuse the same holding bridge for all of the channels that use the application. The method to obtain the holding bridge is `find_or_create_holding_bridge`, shown below:
-
-
-
-
----
-
-  
-  
-
+A large part of the implementation of this particular example is similar to the [`bridge-dial.py`](/ARI+and+Bridges%3A+Basic+Mixing+Bridges) example. However, instead of ringing the inbound channel, we'll instead create a holding bridge and place the channel in said holding bridge. Since a holding bridge can hold a number of channels, we'll reuse the same holding bridge for all of the channels that use the application. The method to obtain the holding bridge is `find_or_create_holding_bridge`, shown below:
 
 ```
-
 truepy11# Our one and only holding bridge
 holding_bridge = None
 
@@ -84,43 +71,21 @@ def find_or_create_holding_bridge():
  print "Created bridge {}".format(bridge.id)
 
  holding_bridge = bridge
- return holding_bridge 
+ return holding_bridge
 
 ```
-
 
 When the inbound channel enters the application, we'll place it into our waiting bridge:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 truepy79 wait_bridge = find_or_create_holding_bridge()
  wait_bridge.addChannel(channel=channel.id)
 
 ```
 
-
 When the dialed channel answers, we can remove the inbound channel from the waiting bridge - since there is only one waiting bridge being used, we can use `find_or_create_holding_bridge` to obtain it. We then place it into a newly created mixing bridge along with the dialed channel, in the same fashion as the `bridge-dial.py` example.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 truepy97 print "{} answered; bridging with {}".format(outgoing.json.get('name'),
  channel.json.get('name'))
 
@@ -130,26 +95,13 @@ truepy97 print "{} answered; bridging with {}".format(outgoing.json.get('name'),
  bridge = client.bridges.create(type='mixing')
  bridge.addChannel(channel=[channel.id, outgoing.id])
 
-
-
 ```
-
 
 ### bridge-move.py
 
 The full source code for `bridge-move.py` is shown below:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 truepy#!/usr/bin/env python
 
 import logging
@@ -268,26 +220,13 @@ client.on_channel_event('StasisStart', stasis_start_cb)
 
 client.run(apps='bridge-move')
 
-
-
 ```
-
 
 ### bridge-move.py in action
 
 The following shows the output of the `bridge-move.py` script when a `PJSIP` channel for `alice` enters the application and dials a PJSIP channel for bob:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 PJSIP/Alice-00000001 entered our application
 Dialing PJSIP/Bob
 PJSIP/Bob-00000002 answered; bridging with PJSIP/Alice-00000001
@@ -295,23 +234,12 @@ Hung up PJSIP/Bob-00000002
 
 ```
 
-
 JavaScript (Node.js)
 --------------------
 
 This example is very similar to bridge-dial.js with one main difference: the original Stasis channel is put in a holding bridge while the an originate operation is used to dial another channel. Once the dialed channel enters into the Stasis application, the original channel will be removed from the holding bridge, and both channels will finally be put into a mixing bridge. Once a channel enters into our Stasis application, we either find an existing holding bridge or create one:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 truejs39function findOrCreateHoldingBridge(channel) {
  client.bridges.list(function(err, bridges) {
  var holdingBridge = bridges.filter(function(candidate) {
@@ -338,20 +266,9 @@ truejs39function findOrCreateHoldingBridge(channel) {
 
 ```
 
-
 We then add the channel to the holding bridge and start music on hold before continuing with dialing we we did in the bridge-dial.js example:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 truejs64holdingBridge.addChannel({channel: channel.id}, function(err) {
  if (err) {
  throw err;
@@ -363,20 +280,9 @@ truejs64holdingBridge.addChannel({channel: channel.id}, function(err) {
 
 ```
 
-
 Once the endpoint has answered and a mixing bridge has been created, we proceed by first removing the original channel from the holding bridge and then adding both channels to the mixing bridge as before:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 truejs145function moveToMixingBridge(channel, dialed, mixingBridge, holdingBridge) {
  console.log('Adding channel %s and dialed channel %s to bridge %s',
  channel.name, dialed.name, mixingBridge.id);
@@ -397,18 +303,14 @@ truejs145function moveToMixingBridge(channel, dialed, mixingBridge, holdingBridg
 
 ```
 
-
 Note that we need to keep track of one more variable as we go down the application flow to ensure we have a reference to both the holding and mixing bridge. Again we use anonymous functions to pass extra arguments to callback handlers to keep the nested callbacks to a minimum.
 
 ### bridge-move.js
 
 The full source code for `bridge-move.js` is shown below:
 
-
-
-
 ```javascript title="bridge-move.js" linenums="1"
-truejs /*jshint node:true */
+truejs /*jshint node:true */
 'use strict';
 
 var ari = require('ari-client');
@@ -577,22 +479,11 @@ function clientLoaded (err, client) {
 
 ```
 
-
 ### bridge-move.js in action
 
 The following shows the output of the `bridge-move.js` script when a `PJSIP` channel for `alice` enters the application and dials a PJSIP channel for bob:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 Channel PJSIP/alice-00000001 has entered our application
 Created new holding bridge e58641af-2006-4c3d-bf9e-8817baa27381
 Created mixing bridge 5ae49fee-e353-4ad9-bfa7-f8306d9dfd1e
@@ -602,5 +493,4 @@ Hanging up channel PJSIP/alice-00000001
 Hanging up channel undefined
 
 ```
-
 

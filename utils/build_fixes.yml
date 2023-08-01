@@ -1,7 +1,14 @@
 ---
 # Replace all the \xA0 non-breaking spaces with regular spaces
+- pattern: '^\xA0$'
+  repl: ''
+
+- pattern: '\xA0$'
+  repl: ''
+
 - pattern: '\xA0'
   repl: ' '
+
 # Prefix all internal links in the static docs with '/latest'
 # so they resolve correctly when re-homed under the latest branch.
 - pattern: "\\[([^]]+)\\]\\(/_(AGI_Commands[^)]*)\\)"
@@ -18,4 +25,13 @@
 
 - pattern: "\\[([^]]+)\\]\\(/_(Module[^)]*)\\)"
   repl: '[\1](/latest_api/\2)'
+
+- pattern: "^---\\n\\s*\\n\\s*\\n\\s*\\n\\s*\\n```"
+  repl: '\n```'
+
+- pattern: "\\n(\\n)+```"
+  repl: '\n\n```'
+
+- pattern: "^```\n\n"
+  repl: '```\n'
 

@@ -50,11 +50,11 @@ The EMPTY state is the starting state of the conference. EMPTY is defined as no 
 | Event | Guard | Target state | Notes |
 | --- | --- | --- | --- |
 | JOIN:unmarked | \* | SINGLE | Play the "only person" prompt unless configured not to. |
-| JOIN:waitmarked | \* | INACTIVE |   |
+| JOIN:waitmarked | \* | INACTIVE |   |
 | JOIN:marked | \* | SINGLE_MARKED | Play the "placed into the conference" prompt unless configured not to. |
 | LEAVE:unmarked | \* | INVALID | You can't have someone leave an empty conference. |
-| LEAVE:waitmarked | \* | INVALID |   |
-| LEAVE:marked | \* | INVALID |   |
+| LEAVE:waitmarked | \* | INVALID |   |
+| LEAVE:marked | \* | INVALID |   |
 
 ### INACTIVE
 
@@ -69,7 +69,7 @@ The INACTIVE state is defined as having *only* inactive/WAITMARKED users.
 | Event | Guard | Target state | Notes |
 | --- | --- | --- | --- |
 | JOIN:unamrked | \* | SINGLE | Play the "only person" prompt unless configured not to. |
-| JOIN:waitmarked | \* | INACTIVE |   |
+| JOIN:waitmarked | \* | INACTIVE |   |
 | JOIN:marked | \* | MULTI_MARKED | Since there is at least one waitmarked user being made active by the joining marked user, stop MOH/unmute first user if necessary and transition to MULTI_MARKED |
 | LEAVE:unmarked | \* | INVALID | There can't be a non-waitmarked user in the conference in this state. |
 | LEAVE:waitmarked | waiting == 0 | EMPTY | Since only waitmarked users exist, the last user has left. |
@@ -154,7 +154,7 @@ The MULTI_MARKED state is defined of having at least one marked user in addition
 | LEAVE:unmarked | active > 1 | MULTI_MARKED | There are still multiple users and at least one marked user. No change. |
 | LEAVE:waitmarked | active == 1 | SINGLE_MARKED | Waitmarked users behave as unmarked users in the presence of a marked user. |
 | LEAVE:waitmarked | active > 1 | MULTI_MARKED | Waitmarked users behave as unmarked users in the presence of a marked user. |
-| LEAVE:marked |   |   | Note that if the last marked user leaves, then the "leader has left" sound plays, all waitmarked users are moved back to waiting, and users set to be kicked when the leader leaves will be kicked. This all happens before a transition decision is made. |
+| LEAVE:marked |   |   | Note that if the last marked user leaves, then the "leader has left" sound plays, all waitmarked users are moved back to waiting, and users set to be kicked when the leader leaves will be kicked. This all happens before a transition decision is made. |
 | LEAVE:marked | active == 0 && waiting == 0 | EMPTY | There are no users left, transition to EMPTY. |
 | LEAVE:marked | active == 0 && waiting > 0 | INACTIVE | There are only waiting users left, transition to INACTIVE. |
 | LEAVE:marked | active == 1 && marked == 0 | SINGLE | There is only one unmarked user left, transition to SINGLE. |

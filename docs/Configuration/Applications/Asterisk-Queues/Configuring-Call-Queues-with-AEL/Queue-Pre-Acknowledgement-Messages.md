@@ -5,17 +5,7 @@ pageid: 5243040
 
 If you would like to have a pre acknowledge message with option to reject the message you can use the following dialplan Macro as a base with the 'M' dial argument.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 
 [macro-screen]
 exten=>s,1,Wait(.25)
@@ -34,7 +24,5 @@ exten=>s,50,Playback(after-the-tone)
 exten=>s,51,Playback(connected) 
 exten=>s,52,Playback(beep)
 
-
 ```
-
 

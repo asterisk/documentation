@@ -3,7 +3,7 @@ title: SIP use cases
 pageid: 21464262
 ---
 
- 
+
 
 The following are use cases for a new SIP channel driver. These are written at a very high level, so details such as what transport is used, what codecs are used, how endpoints are configured, whether NAT is involved do not factor in. These details will be important when translating the use cases into test scenarios, however.
 

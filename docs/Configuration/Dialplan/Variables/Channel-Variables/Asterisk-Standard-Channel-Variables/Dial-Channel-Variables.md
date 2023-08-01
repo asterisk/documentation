@@ -3,12 +3,12 @@ title: Dial Channel Variables
 pageid: 4620432
 ---
 
-* ${DIALEDPEERNAME}  - Dialed peer name
-* ${DIALEDPEERNUMBER}  - Dialed peer number
-* ${DIALEDTIME}  - Time for the call (seconds). Is only set if call was answered.
-* ${ANSWEREDTIME}  - Time from answer to hangup (seconds)
-* ${DIALSTATUS}  - Status of the call, one of: (CHANUNAVAIL | CONGESTION | BUSY | NOANSWER | ANSWER | CANCEL | DONTCALL | TORTURE)
-* ${DYNAMIC_FEATURES}  - The list of features (from the [applicationmap](/applicationmap) section of features.conf) to activate during the call, with feature names separated by '#' characters
+* ${DIALEDPEERNAME}  - Dialed peer name
+* ${DIALEDPEERNUMBER}  - Dialed peer number
+* ${DIALEDTIME}  - Time for the call (seconds). Is only set if call was answered.
+* ${ANSWEREDTIME}  - Time from answer to hangup (seconds)
+* ${DIALSTATUS}  - Status of the call, one of: (CHANUNAVAIL | CONGESTION | BUSY | NOANSWER | ANSWER | CANCEL | DONTCALL | TORTURE)
+* ${DYNAMIC_FEATURES}  - The list of features (from the [applicationmap](/applicationmap) section of features.conf) to activate during the call, with feature names separated by '#' characters
 * ${LIMIT_PLAYAUDIO_CALLER} - Soundfile for call limits
 * ${LIMIT_PLAYAUDIO_CALLEE} - Soundfile for call limits
 * ${LIMIT_WARNING_FILE} - Soundfile for call limits

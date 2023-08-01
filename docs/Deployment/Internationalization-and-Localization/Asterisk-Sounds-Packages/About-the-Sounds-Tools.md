@@ -17,23 +17,11 @@ The audiofilter application is used to "tune" the sound files in such a way that
 
 The audiofilter application is used by the 'converter' script located in the scripts subdirectory of repotools/sound_tools. The values being passed to the audiofilter application is as follows:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 
 audiofilter -n 0.86916 -1.73829 0.86916 -d 1.00000 -1.74152 0.77536
 
-
 ```
-
 
 The two options -n and -d are 'numerator' and 'denominator'. Per the author, Jean-Marc Valin, "These values are filter coefficients (-n means numerator, -d is denominator) expressed in the z-transform domain. There represent an elliptic filter that I designed with Octave such that 'the result sounds good'."
 

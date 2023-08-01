@@ -40,110 +40,50 @@ This is best illustrated through the following examples
 
 In this example, the user retrieves a value from the AstDB and then uses it as the destination for a `Dial` command.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 
 [default]
 exten => 1000,1,Set(DEST=${DB(egg/salad)})
  same => n,Dial(${DEST},15)
 
-
 ```
-
 
 Since the `DEST` variable is set and evaluated in the dialplan, its evaluation is case-insensitive. Thus the following would be equivalent:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 
 exten => 1000,1,Set(DEST=${DB(egg/salad)})
  same => n,Dial(${dest},15)
 
-
 ```
-
 
 As would this:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 
 exten => 1000,1,Set(DeSt=${DB(egg/salad)})
  same => n,Dial(${dEsT},15)
 
-
 ```
-
 
 ### Example 2: Using a built-in variable
 
 
 In this example, the user wishes to use a built-in variable in order to determine the destination for a call.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 
 exten => _X.,1,Dial(SIP/${EXTEN})
 
-
 ```
-
 
 Since the variable `EXTEN` is a built-in variable, the following would **not** be equivalent:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 
 exten => _X.,1,Dial(SIP/${exten})
 
-
 ```
-
 
 The lowercase `exten` variable would evaluate to an empty string since no previous value was set for `exten`.
 
@@ -153,88 +93,40 @@ The lowercase `exten` variable would evaluate to an empty string since no previo
 
 In this example, the user wishes to suggest to the SIP channel driver what codec to use on the call.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 
 exten => 1000,Set(SIP_CODEC=g729)
 same => n,Dial(SIP/1000,15)
 
-
 ```
-
 
 `SIP_CODEC` is set in the dialplan, but it gets evaluated inside of Asterisk, so the evaluation is case-sensitive. Thus the following dialplan would not be equivalent:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 
 exten => 1000,Set(sip_codec=g729)
  same => n,Dial(SIP/1000,15)
 
-
 ```
-
 
 This can lead to some rather confusing situations. Consider that a user wrote the following dialplan. He intended to set the variable `SIP_CODEC` but instead made a typo:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 
 exten => 1000,Set(SIP_CODEc=g729)
  same => n,Dial(SIP/1000,15)
 
-
 ```
-
 
 As has already been discussed, this is not equivalent to using `SIP_CODEC`. The user looks over his dialplan and does not notice the typo. As a way of debugging, he decides to place a `NoOp` in the dialplan:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 
 exten => 1000,Set(SIP_CODEc=g729)
  same => n,NoOp(${SIP_CODEC})
  same => n,Dial(SIP/1000,15)
 
-
 ```
-
 
 When the user checks the verbose logs, he sees that the second priority has evaluated `SIP_CODEC` to be "g729". This is because the evaluation in the dialplan was done case-insensitively.
 

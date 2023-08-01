@@ -26,7 +26,7 @@ See [Asterisk Versions](/About-the-Project/Asterisk-Versions) for the approximat
 
 
 
-On This Page 
+On This Page
 
 Major Version Branch Types
 --------------------------
@@ -74,13 +74,13 @@ Feature Policy
 
 ### Bug Fixes
 
-Bug fixes are merged into all supported release branches that contain that particular bug. When dealing with multiple branches, it's hard to keep track of where comments are made so comments will always be made in the gerrit review for the lowest branch. The patch should therefore be submitted to gerrit against the *lowest* applicable branch, and cherry-picked to the other branches, including master. With controversial or large patches, it's highly recommended to submit *only* against the lowest applicable branch and wait for feedback before cherry-picking. This will save you the time and aggravation of re-cherry-picking your review after every comment. An Asterisk team member will usually give you the "OK to cherry-pick" comment when it's safe for you to do so.  Note that in some very rare cases, a bug fix may be deemed too intrusive in a particular branch. Such cases are discussed when the patches are proposed.
+Bug fixes are merged into all supported release branches that contain that particular bug. When dealing with multiple branches, it's hard to keep track of where comments are made so comments will always be made in the gerrit review for the lowest branch. The patch should therefore be submitted to gerrit against the *lowest* applicable branch, and cherry-picked to the other branches, including master. With controversial or large patches, it's highly recommended to submit *only* against the lowest applicable branch and wait for feedback before cherry-picking. This will save you the time and aggravation of re-cherry-picking your review after every comment. An Asterisk team member will usually give you the "OK to cherry-pick" comment when it's safe for you to do so.  Note that in some very rare cases, a bug fix may be deemed too intrusive in a particular branch. Such cases are discussed when the patches are proposed.
 
- 
+
 
 ExampleA bug is reported against Asterisk 13. The current supported branches are 13, 16, 18 and 19. You should submit your patch to gerrit for the 13 branch. To avoid having to re-cherry-pick to the other branches, you stop there and wait for feedback. If you get negative feedback, you address it and re-submit the review. When an Asterisk team member sees that you have enough "+1" votes on your review, they'll add an "OK to cherry-pick to the other branches" comment which you can then do. Usually a "+2" to start the test and merge process will follow shortly.
 
- 
+
 
 
 
@@ -93,13 +93,13 @@ ExampleA bug is reported against Asterisk 13. The current supported branches are
 
 
 
- 
 
- 
 
- 
 
- 
+
+
+
+
 
 
 

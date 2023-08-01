@@ -15,14 +15,14 @@ Tests are discovered by the *runtests.py* script during run time of the Asterisk
 
 Test directories specified in a *tests.yaml* file are processed in the following way:
 
-1. If a test directory contains an executable *run-test* script, that script is opened as a separate process. This script can be written in any language. If the process returns a value of 0, the test passes; any other value is considered a test failure.  NOTE: This method of running tests is deprecated.
+1. If a test directory contains an executable *run-test* script, that script is opened as a separate process. This script can be written in any language. If the process returns a value of 0, the test passes; any other value is considered a test failure.  NOTE: This method of running tests is deprecated.
 2. If no *run-test* script is in the test directory, an instance of *test_runner.TestRunner* is spawned instead. The test directory is passed to *TestRunner* as the test to execute.
 
- 
+
 
 Rather than list all supported configuration parameters (which would quickly be out of date), test developers are encouraged to consult the sample YAML included with the Test Suite:
 
 <https://github.com/asterisk/testsuite/tree/master/sample-yaml>
 
- 
+
 

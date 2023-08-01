@@ -3,17 +3,7 @@ title: Digium General Peering Agreement
 pageid: 4259957
 ---
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 
  DIGIUM GENERAL PEERING AGREEMENT (TM)
  Version 1.0.0, September 2004
@@ -516,5 +506,4 @@ accordance with this GPA.
 DUNDi, IAX, Asterisk and GPA are trademarks of Digium, Inc.
 
 ```
-
 

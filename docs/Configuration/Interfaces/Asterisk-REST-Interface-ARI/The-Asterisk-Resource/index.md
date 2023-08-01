@@ -20,9 +20,6 @@ The `asterisk` resource provides the ability to retrieve basic information about
 
 An example of this is shown below:
 
-
-
-
 ```bash title=" " linenums="1"
 $ curl -X GET -u asterisk:SECRET https://localhost:8088/ari/asterisk/info
 
@@ -59,5 +56,4 @@ $ curl -X GET -u asterisk:SECRET https://localhost:8088/ari/asterisk/info
 }
 
 ```
-
 

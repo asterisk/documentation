@@ -20,20 +20,10 @@ No configuration is needed to take advantage of this feature. Asterisk 11 will s
 * Asterisk receives a request for a non existent extension from SIP/gold
 * The following log message is displayed:
 
-
-
----
-
-  
-  
-
-
 ```
-
 [Oct 18 10:26:11] NOTICE[27538][C-00000000]: chan_sip.c:25107 handle_request_invite: Call from 'gold' (10.24.22.201:5060) to extension '645613' rejected because extension not found in context 'default'.
 
 ```
-
 
 C-00000000 is the call identifier associated with this attempted call. All call identifiers are represented as C-XXXXXXXX where XXXXXXXX is an 8 digit hexadecimal value much like what you will see with SIP and local channel names.
 

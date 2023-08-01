@@ -3,7 +3,7 @@ title: Getting a Backtrace
 pageid: 36803756
 ---
 
-This document is intended to provide information on how to obtain the backtraces required on the asterisk bug tracker, available at [https://github.com/asterisk/asterisk/issues](https://github.com/asterisk/asterisk/issues)(https://github.com/asterisk/asterisk/issues/).
+This document is intended to provide information on how to obtain the backtraces required on the asterisk bug tracker, available at [https://github.com/asterisk/asterisk/issues](https://github.com/asterisk/asterisk/issues)(https://github.com/asterisk/asterisk/issues/).
 
 BLOCKOverview
 --------
@@ -19,33 +19,28 @@ If you start Asterisk with the safe_asterisk script, it automatically starts usi
 
 If you're not sure if Asterisk is running with the -g option, type the following command in your shell:
 
-
-
-
 ```bash title=" " linenums="1"
 # ps -C asterisk u
 USER PID %CPU %MEM VSZ RSS TTY STAT START TIME COMMAND
 root 3018 1.1 2.7 636212 27768 pts/1 Sl+ 08:06 0:00 asterisk -vvvvvg -c
 [...]
 
-
 ```
-
 
 The interesting information is located in the last column.
 
-Second, your copy of Asterisk must have been built without optimization or the backtrace will be (nearly) unusable. This can be done by selecting the 'DONT_OPTIMIZE' option in the Compiler Flags submenu in the 'make menuselect' tree before building Asterisk.  Running a production server with DONT_OPTIMIZE is generally safe. You'll notice the binary files may be a bit larger, but in terms of Asterisk performance, impact should be negligible.
+Second, your copy of Asterisk must have been built without optimization or the backtrace will be (nearly) unusable. This can be done by selecting the 'DONT_OPTIMIZE' option in the Compiler Flags submenu in the 'make menuselect' tree before building Asterisk.  Running a production server with DONT_OPTIMIZE is generally safe. You'll notice the binary files may be a bit larger, but in terms of Asterisk performance, impact should be negligible.
 
-Third, your copy of Asterisk must have the debug symbols still included in the binaries.   This is the default unless you, or the package maintainer if installing from packages, strips the binaries.  Normally a package maintainer will strip the binaries and then provide separate "debug" packages that contain just the symbols.  If so, make sure those debug packages are installed.
+Third, your copy of Asterisk must have the debug symbols still included in the binaries.   This is the default unless you, or the package maintainer if installing from packages, strips the binaries.  Normally a package maintainer will strip the binaries and then provide separate "debug" packages that contain just the symbols.  If so, make sure those debug packages are installed.
 
 After Asterisk crashes, a file named "core" will be dumped in the present working directory of the Linux shell from which Asterisk was started or in the location specified by the `kernel.core_pattern` sysctl setting. In the event that there are multiple core files present, it is important to look at the file timestamps in order to determine which one you really intend to look at.
 
- 
+
 
 Getting Preliminary Information After A Crash
 ---------------------------------------------
 
-Before you go further, you must have the GNU Debugger (gdb) installed on the machine that experienced the crash.  Use your package manager to install it if it isn't already.
+Before you go further, you must have the GNU Debugger (gdb) installed on the machine that experienced the crash.  Use your package manager to install it if it isn't already.
 
 
 
@@ -60,7 +55,7 @@ Before you go further, you must have the GNU Debugger (gdb) installed on the mac
 
 ### ast_coredumper
 
-Asterisk versions 13.14.0, 14.3.0, and later release branches added a few tools to make debugging easier.  One of these is `ast_coredumper`.   By default, it's installed in `/var/lib/asterisk/scripts` and it takes in a core file and produces backtraces and lock dumps in a format for uploading to Jira.  
+Asterisk versions 13.14.0, 14.3.0, and later release branches added a few tools to make debugging easier.  One of these is `ast_coredumper`.   By default, it's installed in `/var/lib/asterisk/scripts` and it takes in a core file and produces backtraces and lock dumps in a format for uploading to Jira. 
 
 
 
@@ -70,9 +65,7 @@ Asterisk versions 13.14.0, 14.3.0, and later release branches added a few tools 
   
 /var/lib/asterisk/scripts/ast_coredumper --help  
 
-
 ```
-
 trueNAME
  ast_coredumper - Dump and/or format asterisk coredump files
 SYNOPSIS
@@ -211,17 +204,11 @@ FILES
  # Readable Local time
  DATEFORMAT='date +%FT%H-%M-%S%z'
 
-
-
 ```
-
 
 ### Running ast_coredumper for crashes
 
 As you can see, there are lots of options but if the core file is simply named `core` in your current directory, running `/var/lib/asterisk/scripts/ast_coredumper core` will usually be sufficient.
-
-
-
 
 ```bash title=" " linenums="1"
 $ sudo /var/lib/asterisk/scripts/ast_coredumper core
@@ -235,13 +222,9 @@ $
 
 ```
 
-
 Unless you've compiled Asterisk with the `DEBUG_THREADS` compiler flag (see below), the locks.txt file will be empty.
 
 Many system administrators use the sysctl `kernel.core_pattern` parameter to control where core files are dumped and what they are named.
-
-
-
 
 ```bash title=" " linenums="1"
 $ sysctl -n kernel.core_pattern
@@ -255,17 +238,12 @@ Creating /tmp/core-asterisk-1497620664.32259-brief.txt
 Creating /tmp/core-asterisk-1497620664.32259-info.txt
 Creating /tmp/core-asterisk-1497620664.32259-full.txt
 Creating /tmp/core-asterisk-1497620664.32259-locks.txt
- 
 
 ```
-
 
 You'll notice that the output file names include the full core file name.
 
 If the `/etc/asterisk/ast_debug_tools.conf` file contained a `COREDUMPS` entry that would have matched the core file name in /tmp, then you don't even have to supply a path.
-
-
-
 
 ```bash title=" " linenums="1"
 $ sudo /var/lib/asterisk/scripts/ast_coredumper
@@ -279,12 +257,8 @@ Creating /tmp/core-asterisk-1497620664.32259-locks.txt
 ```
 
 
- 
 
-By default, ast_coredumper also processes existing core files it detects.  You can suppress that using the `--no-default-search` option and supplying a path directly to a coredump. 
-
-
-
+By default, ast_coredumper also processes existing core files it detects.  You can suppress that using the `--no-default-search` option and supplying a path directly to a coredump.
 
 ```bash title=" " linenums="1"
 $ sudo /var/lib/asterisk/scripts/ast_coredumper --no-default-search /tmp/core-asterisk-1497620664.32259
@@ -295,19 +269,15 @@ Creating /tmp/core-asterisk-1497620664.32259-info.txt
 Creating /tmp/core-asterisk-1497620664.32259-full.txt
 Creating /tmp/core-asterisk-1497620664.32259-locks.txt
 
-
-
 ```
-
 
 ### Running ast_coredumper for deadlocks, taskprocessor backups, etc.
 
 When collecting information about a deadlock or taskprocessor backups, it is useful to have additional information about the threads involved. We can generate this information by attaching to a running Asterisk process and gathering that information. Follow the steps below to collect debug that will be useful to Asterisk developers.
 
-If you can easily reproduce the deadlock, in the Compiler Flags menu of menuselect you should enable **DEBUG_THREADS**, **MALLOC_DEBUG**, **DONT_OPTIMIZE**. Then, you need to recompile, re-install, and restart Asterisk before following the steps below.  **DEBUG_THREADS** is very resource intensive and can seriously impact performance so you should only use it if you can reproduce the issue quickly.  Otherwise, **DONT_OPTIMIZE** is the only option you really need. 
+If you can easily reproduce the deadlock, in the Compiler Flags menu of menuselect you should enable **DEBUG_THREADS**, **MALLOC_DEBUG**, **DONT_OPTIMIZE**. Then, you need to recompile, re-install, and restart Asterisk before following the steps below.  **DEBUG_THREADS** is very resource intensive and can seriously impact performance so you should only use it if you can reproduce the issue quickly.  Otherwise, **DONT_OPTIMIZE** is the only option you really need.
 
-When you suspect asterisk is deadlocked or you start seeing "task processor queue reached..." messages, you can use ast_coredumper to dump the currently running asterisk instance.
-
+When you suspect asterisk is deadlocked or you start seeing "task processor queue reached..." messages, you can use ast_coredumper to dump the currently running asterisk instance.
 
 ```bash title=" " linenums="1"
 $ sudo /var/lib/asterisk/scripts/ast_coredumper --running --no-default-search
@@ -320,10 +290,7 @@ Creating /tmp/core-asterisk-running-2017-06-16T09-56-53-0600-info.txt
 Creating /tmp/core-asterisk-running-2017-06-16T09-56-53-0600-full.txt
 Creating /tmp/core-asterisk-running-2017-06-16T09-56-53-0600-locks.txt
 
-
-
 ```
-
 
 You can suppress the "continue" prompt by specifying `--RUNNING` instead of `--running`.
 
@@ -332,7 +299,7 @@ If Asterisk is truly deadlocked and you compiled with `DEBUG_THREADS`, the locks
 Reporting crashes and deadlocks
 -------------------------------
 
- 
+
 
 
 
@@ -345,9 +312,9 @@ Reporting crashes and deadlocks
 
 
 
- 
 
-Subject to the warning above, you can attach the text files directly to an Asterisk issue.  Occasionally, we'll ask you to run `ast_coredumper` again with additional options that will create a tarball that includes the Asterisk binaries and the the raw coredump.  The command for that is `/var/lib/asterisk/scripts/ast_coredumper --tarball-coredumps --no-default-search <path_to_coredump>`.  We'll give you instructions on how to get the file to us securely.
 
- 
+Subject to the warning above, you can attach the text files directly to an Asterisk issue.  Occasionally, we'll ask you to run `ast_coredumper` again with additional options that will create a tarball that includes the Asterisk binaries and the the raw coredump.  The command for that is `/var/lib/asterisk/scripts/ast_coredumper --tarball-coredumps --no-default-search <path_to_coredump>`.  We'll give you instructions on how to get the file to us securely.
+
+
 

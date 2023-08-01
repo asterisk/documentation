@@ -43,5 +43,5 @@ Asterisk
 --------
 
 
-Every test will require the extconfig.conf configuration file to contain the appropriate family mapping to the sqlite3 config engine with database. 
+Every test will require the extconfig.conf configuration file to contain the appropriate family mapping to the sqlite3 config engine with database.
 

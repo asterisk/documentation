@@ -314,8 +314,8 @@ example:
 ...
 
 
-When evaluating an ast_acl structure, each individual ACL within the list will be evaluated separately against the provided address.  The application will return with AST_SENSE_PERMIT if and only if all of the applications of that individual ACLs return AST_SENSE_PERMIT. If any of the rules return AST_SENSE_DENY, the whole ACL will return AST_SENSE_DENY.
+When evaluating an ast_acl structure, each individual ACL within the list will be evaluated separately against the provided address.  The application will return with AST_SENSE_PERMIT if and only if all of the applications of that individual ACLs return AST_SENSE_PERMIT. If any of the rules return AST_SENSE_DENY, the whole ACL will return AST_SENSE_DENY.
 
 
-This approach is useful because it makes updating ACL containers easy.  If we want to update a whole container, we can simply iterate through the named elements of the ast_acl and ast_free_ha the head of each list and attach a fresh duplicate retrieved from the named ACL subsystem.
+This approach is useful because it makes updating ACL containers easy.  If we want to update a whole container, we can simply iterate through the named elements of the ast_acl and ast_free_ha the head of each list and attach a fresh duplicate retrieved from the named ACL subsystem.
 

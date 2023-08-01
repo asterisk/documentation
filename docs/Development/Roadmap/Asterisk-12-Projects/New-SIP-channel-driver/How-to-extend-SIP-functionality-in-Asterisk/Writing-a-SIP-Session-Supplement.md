@@ -38,9 +38,6 @@ Base module code
 
 Let's consider what we need to do for this feature to work. All we have to do is conditionally add headers to outbound INVITE requests. We don't need to do anything with inbound requests or responses and we don't need to do anything with outbound responses. Given that, let's go ahead and define the session supplement we're going to use:
 
-
-
-
 ```bash title="res_pjsip_auto_answer.c  " linenums="1"
 #include "asterisk.h"
 
@@ -87,25 +84,13 @@ AST_MODULE_INFO(ASTERISK_GPL_KEY, AST_MODFLAG_LOAD_ORDER, "SIP Auto Answer Suppo
  .load_pri = AST_MODPRI_APP_DEPEND,
  );
 
-
 ```
-
 
 ### Initial directives
 
 Let's go into deeper detail about what we have just written. Let's start at the top:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 c#include "asterisk.h"
 
 #include <pjsip.h>
@@ -122,11 +107,9 @@ c#include "asterisk.h"
  <depend>res_pjsip_session</depend>
  *\* */
 
-
 ```
 
-
-The `#includes` here grab the necessary headers we will need. All code in Asterisk starts by including `asterisk.h`. After that, we will need the `pjsip.h, `pjsip_ua.h`,` and `pjlib.h` files in order to make use of PJSIP functions. We will use these later in the tutorial. The inclusion of `asterisk/res_pjsip.h` and `asterisk/res_pjsip_session.h` is what allows us to be able to create a session supplement. Finally, the inclusion of `asterisk/module.h` is necessary since our file is going to be a loadable module in Asterisk.
+The `#includes` here grab the necessary headers we will need. All code in Asterisk starts by including `asterisk.h`. After that, we will need the `pjsip.h, `pjsip_ua.h`,` and `pjlib.h` files in order to make use of PJSIP functions. We will use these later in the tutorial. The inclusion of `asterisk/res_pjsip.h` and `asterisk/res_pjsip_session.h` is what allows us to be able to create a session supplement. Finally, the inclusion of `asterisk/module.h` is necessary since our file is going to be a loadable module in Asterisk.
 
 The `MODULEINFO` block is used by the menuselect system in Asterisk in order to allow for the module to only be selectable if the necessary dependencies are met. In our case, we need the PJPROJECT library to be present, and we need `res_pjsip` and `res_pjsip_session` to be built as well, since they supply the APIs for using session supplements.
 
@@ -134,17 +117,7 @@ The `MODULEINFO` block is used by the menuselect system in Asterisk in order to 
 
 Next let's jump down to the bottom of the file:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 cstatic int load_module(void)
 {
  if (ast_sip_session_register_supplement(&auto_answer_supplement)) {
@@ -165,9 +138,7 @@ AST_MODULE_INFO(ASTERISK_GPL_KEY, AST_MODFLAG_LOAD_ORDER, "SIP Auto Answer Suppo
  .load_pri = AST_MODPRI_APP_DEPEND,
  );
 
-
 ```
-
 
 We will not go into a lot of detail about the module-specific code here since it is covered in a tutorial [here](/Development/Reference-Information/Asterisk-Framework-and-API-Examples/Modules). However, notice that when the module loads, it registers the `auto_answer_supplement` with `res_pjsip_session` and when the module unloads, it unregisters the `auto_answer_supplement`.
 
@@ -175,17 +146,7 @@ We will not go into a lot of detail about the module-specific code here since it
 
 Now let's have a look at the important part of the code:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 cstatic void auto_answer_outgoing_request(struct ast_sip_session \*session, pjsip_tx_data \*tdata)
 {
  /* STU */
@@ -196,9 +157,7 @@ static struct ast_sip_session_supplement auto_answer_supplement = {
  .outgoing_request = auto_answer_outgoing_request,
 };
 
-
 ```
-
 
 Let's start with the bottom struct declaration. It defines a session supplement called `auto_answer_supplement`. For this supplement, the important fields to fill out are the `method` and the `outgoing_request` fields. By setting `.method = "INVITE"` it tells `res_pjsip_session` only to call into this supplement on INVITEs and not for other methods. If the method had been left empty, then the supplement would be called into for all SIP method types. We also set `.outgoing_request`. This makes it so that on outgoing SIP requests, our method will be called. Combined with the earlier `method` setting, it means that our session will only be called into for outgoing INVITE requests. Other session supplement fields are as follows:
 
@@ -214,25 +173,13 @@ Filling in the supplement callback
 
 Let's take a look at where we are currently with our callback:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 cstatic void auto_answer_outgoing_request(struct ast_sip_session \*session, pjsip_tx_data \*tdata)
 {
  /* STU */
 }
 
-
 ```
-
 
 Let's go over the function in a little more detail. The first parameter to this callback is our SIP session. This contains information such as the associated `ast_channel` structure as well as other session-specific details. The `tdata` parameter is a PJSIP outgoing SIP message structure. In this case, we know the `tdata` is an outbound INVITE request due to the constraints of our supplement.
 
@@ -245,17 +192,7 @@ The top one requires that the UAS supports the "answermode" option. A UAS that d
 
 So let's add these headers:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 cstatic void auto_answer_outgoing_request(struct ast_sip_session \*session, pjsip_tx_data \*tdata)
 {
  static const pj_str_t answer_mode_name = { "Answer-Mode", 11 };
@@ -282,34 +219,20 @@ cstatic void auto_answer_outgoing_request(struct ast_sip_session \*session, pjsi
  pjsip_msg_add_hdr(tdata->msg, (pjsip_hdr \*) answer_mode);
 }
 
-
 ```
-
 
 ### Variable Declarations
 
 Now we have some content! Let's go into it in more detail, starting from the top:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 c static const pj_str_t answer_mode_name = { "Answer-Mode", 11 };
  static const pj_str_t answer_mode_value = { "auto", 4 };
  static const pj_str_t require_value = { "answermode", 10 };
  pjsip_generic_string_hdr \*answer_mode;
  pjsip_require_hdr \*require;
 
-
 ```
-
 
 First is to declare the parameters we will need. The names should be self-evident here, but in case it's not clear, we have created the name and value of the Answer-Mode header, as well as the header itself. Since PJSIP does not know about the Answer-Mode header, we just use a generic string header for it. We also have defined the value we need to place in the Require header and the Require header itself.
 
@@ -317,17 +240,7 @@ First is to declare the parameters we will need. The names should be self-eviden
 
 Next, let's have a look at what we are doing with the Require header:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 c require = pjsip_msg_find_hdr(tdata->msg, PJSIP_H_REQUIRE, NULL);
  if (!require) {
  require = pjsip_require_hdr_create(tdata->pool);
@@ -335,9 +248,7 @@ c require = pjsip_msg_find_hdr(tdata->msg, PJSIP_H_REQUIRE, NULL);
  }
  pj_cstr(&require->values[require->count++], &require_value);
 
-
 ```
-
 
 First we try to see if a Require header already exists in the INVITE request. If it does not, then we create a new Require header and add it to the INVITE. Finally, we modify the header by adding the `require_value` to the last spot in the array of values for the header and incrementing the number of members in the array.
 
@@ -345,23 +256,11 @@ First we try to see if a Require header already exists in the INVITE request. If
 
 Next, let's have a look at what we are doing with the Auto-Answer header:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 c answer_mode = pjsip_generic_string_hdr_create(tdata->pool, &answer_mode_name, &answer_mode_value);
  pjsip_msg_add_hdr(tdata->msg, (pjsip_hdr \*) answer_mode);
 
-
 ```
-
 
 Since we don't expect anyone else to be adding an Auto-Answer header to the outbound request, we simply create a new generic string header with the appropriate name and value and then add it to the outgoing message.
 
@@ -372,17 +271,7 @@ Adjustments
 
 At this point, we have a simple session supplement written, but we don't actually want to add the auto-answer information to every single outgoing INVITE. Instead, we want to do so based on the presence of the SIP_AUTO_ANSWER channel variable on the outbound channel. Let's modify the code to do this. We will insert the code just before our Require header handling:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 c ...
  pjsip_require_hdr \*require;
  int add_auto_answer;
@@ -398,9 +287,7 @@ c ...
  /* Let's add the require header. There could already be a require header present in the
  ...
 
-
 ```
-
 
 With this new code, we'll check the `SIP_AUTO_ANSWER` channel variable to see if it tells us we should add auto-answer headers. The `ast_true` function checks that the header checks a string's value for words like "yes", "on", or "1" in order to be sure that it is intentional for the auto-answer feature to be invoked. The `pbx_builtin_getvar_helper` function requires that the channel is locked while it is called and the value returned by it is used. In order to use `pbx_builtin_getvar_helper` we will need to include `asterisk/pbx.h`.
 
@@ -408,17 +295,7 @@ With this new code, we'll check the `SIP_AUTO_ANSWER` channel variable to see if
 
 So now we have code that will conditionally add the auto-answer headers. We only have one final change to make. Think about when this callback is called. It's called on outbound INVITE requests. The thing is, that means it will be called both for the initial outbound INVITE for a session and it will be called on reinvites as well. Auto-answer does not pertain to reinvites, so we should add code to ensure that we only attempt to add the headers for initial outbound INVITEs.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 c ...
  int add_auto_answer;
 
@@ -429,9 +306,7 @@ c ...
  ast_channel_lock(session->channel);
  ...
 
-
 ```
-
 
 The `session->inv_session` is a PJSIP structure that keeps up with details of the underlying INVITE dialog. The `PJSIP_INV_STATE_CONFIRMED` state indicates that the initial INVITE transaction has completed. Therefore, if the state is here or beyond, then this outbound request must be a reinvite.
 
@@ -439,9 +314,6 @@ Finished Supplement
 ===================
 
 At this point, we are finished. So let's put it all together and see what we have:
-
-
-
 
 ```bash title="res_pjsip_auto_answer.c  " linenums="1"
 #include "asterisk.h"
@@ -524,9 +396,7 @@ AST_MODULE_INFO(ASTERISK_GPL_KEY, AST_MODFLAG_LOAD_ORDER, "SIP Auto Answer Suppo
  .load_pri = AST_MODPRI_APP_DEPEND,
  );
 
-
 ```
-
 
 And there you have it. In approximately 80 lines of code, you've added an Asterisk module that can modify outgoing INVITE requests!
 

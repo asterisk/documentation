@@ -11,26 +11,14 @@ Asterisk is a heavily multithreaded application. It makes extensive use of locki
 
 When more that one lock is involved in a given code path, there is the potential for deadlocks. A deadlock occurs when a thread is stuck waiting for a resource that it will never acquire. Here is a classic example of a deadlock:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 
  Thread 1 Thread 2
  ------------ ------------
  Holds Lock A Holds Lock B
  Waiting for Lock B Waiting for Lock A
 
-
 ```
-
 
 In this case, there is a deadlock between threads 1 and 2. This deadlock would have been avoided if both threads had agreed that one must acquire Lock A before Lock B.
 
@@ -90,25 +78,13 @@ This is the point that must be handled carefully.
 
 The following psuedo-code
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 c
 unlock(pvt);
 lock(ast_channel);
 lock(pvt);
 
-
 ```
-
 
 is *not* correct for two reasons:
 
@@ -122,17 +98,7 @@ For this reason, just calling unlock() once does not guarantee that the lock is 
 
 An alternative, but still incorrect, construct is widely used in the asterisk code to try and improve the situation:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 
 while (trylock(ast_channel) == FAILURE) {
  unlock(pvt);
@@ -140,9 +106,7 @@ while (trylock(ast_channel) == FAILURE) {
  lock(pvt);
 }
 
-
 ```
-
 
 Here the trylock() is non blocking, so we do not deadlock if the ast_channel is already locked by someone else: in this case, we try to unlock the PVT (which happens only if the PVT lock counter is 1), yield the CPU to give other threads a chance to run, and then acquire the lock again.
 
@@ -156,17 +120,7 @@ This code is not correct for two reasons:
 
 Another variant of this code is the following:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 c
 if (trylock(ast_channel) == FAILURE) {
  unlock(pvt);
@@ -174,26 +128,14 @@ if (trylock(ast_channel) == FAILURE) {
  lock(pvt);
 }
 
-
 ```
-
 
 which has the same issues as the while(trylock...) code, but just deadlocks instead of looping forever in case of lock counts > 1.
 
 
 The deadlock/livelock could be in principle spared if one had an unlock_all() function that calls unlock as many times as needed to actually release the lock, and reports the count. Then we could do:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 c
 if (trylock(ast_channel) == FAILURE) {
  n = unlock_all(pvt);
@@ -203,9 +145,7 @@ if (trylock(ast_channel) == FAILURE) {
  }
 }
 
-
 ```
-
 
 The issue with unexpected unlocks remains, though.
 
@@ -218,24 +158,12 @@ The next situation to consider is what to do when you need a lock on multiple as
 
 If we are sure that we do not hold any of these locks, then the following construct is sufficient:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 c
 lock(MIN(chan1, chan2));
 lock(MAX(chan1, chan2));
 
-
 ```
-
 
 That type of code would follow an established locking order of always locking the channel that has a lower address first. Also keep in mind  
 
@@ -290,17 +218,7 @@ Recursive locks are very convenient when coding, as you don't have to worry, whe
 
 But as you have seen, exploiting the features of recursive locks make it a lot harder to implement proper deadlock avoidance strategies. So please try to analyse your code and determine statically whether you already hold a lock when entering a section of code. If you need to call some function foo() with and without a lock held, you could define two function as below:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 c
 foo_locked(/* .. */) {
  /* ... do something, assume lock hel */
@@ -313,9 +231,7 @@ foo(/* .. */) {
  return ret;
 }
 
-
 ```
-
 
 and call them according to the needs.
 

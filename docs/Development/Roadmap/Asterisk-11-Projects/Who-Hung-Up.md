@@ -20,17 +20,7 @@ HANGUPCAUSE may be used in any situation that calls for SIP_CAUSE as a drop-in r
 Example
 =======
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 
 [foo]
 exten => s,1,Dial(SIP/bar)
@@ -59,9 +49,7 @@ exten => h,n,set(HANGUPCAUSE_STRING=${HANGUPCAUSE_STRING:1})
 exten => h,n,goto(hu_begin)
 exten => h,n(hu_exit),noop(All HANGUPCAUSE entries processed)
 
-
 ```
-
 
 Additional Usage
 ================

@@ -8,7 +8,7 @@ Overview
 
 Asterisk typically retrieves its configuration information by *pulling* it from some configuration source - whether that be a static configuration file or a relational database. This page describes an alternative way to provide configuration information to Asterisk using a *push* model through ARI. Note that only modules whose configuration is managed by the [Sorcery](/Fundamentals/Asterisk-Configuration/Sorcery) data abstraction framework in Asterisk can make use of this mechanism. Predominately, this implies configuration of the [PJSIP](/Configuration/Channel-Drivers/SIP/Configuring-res_pjsip) stack.
 
- 
+
 
 On This PageVersion Information
 
@@ -55,9 +55,7 @@ To make use of push configuration, you **must** configure Sorcery to persist the
   
 sorcery.conf  
 
-
 ```
-
 truetext[res_pjsip] 
 endpoint=astdb,ps_endpoints
 auth=astdb,ps_auths
@@ -73,7 +71,6 @@ identify=astdb,ps_endpoint_id_ips
 registration=astdb,ps_registrations 
 
 ```
-
 
 
 
@@ -106,9 +103,7 @@ Assume we have the following static PJSIP configuration file that defines an end
   
 pjsip.conf  
 
-
 ```
-
 truetext[transport-udp]
 type=transport
 protocol=udp
@@ -145,7 +140,6 @@ aors=alice
 
 ```
 
-
 If we then ask Asterisk what endpoints we have, it will show us something like the following:
 
 
@@ -156,9 +150,7 @@ If we then ask Asterisk what endpoints we have, it will show us something like t
   
 Asterisk CLI  
 
-
 ```
-
 \*CLI> pjsip show endpoints
  Endpoint: <Endpoint/CID.....................................> <State.....> <Channels.>
  I/OAuth: <AuthId/UserName...........................................................>
@@ -177,7 +169,6 @@ Asterisk CLI
 
 ```
 
-
 **Our goal is to recreate alice, using ARI.**
 
 New Configuration
@@ -195,9 +186,7 @@ Remove Alice from `pjsip.conf`:
   
 pjsip.conf  
 
-
 ```
-
 truetext[transport-udp]
 type=transport
 protocol=udp
@@ -208,9 +197,7 @@ type=transport
 protocol=tcp
 bind=0.0.0.0:5060
 
-
 ```
-
 
 ### Sorcery
 
@@ -224,16 +211,13 @@ Tell the Sorcery data abstraction framework to pull *endpoint*, *aor*, and *auth
   
 sorcery.conf  
 
-
 ```
-
 truetext[res_pjsip]
 endpoint=astdb,ps_endpoints
 auth=astdb,ps_auths
 aor=astdb,ps_aors
 
 ```
-
 
 ### Asterisk CLI
 
@@ -247,22 +231,16 @@ Now, if we ask Asterisk for the PJSIP endpoints, it will tell us none are define
   
 Asterisk CLI  
 
-
 ```
-
 text\*CLI> pjsip show endpoints
 No objects found.
 
 ```
 
-
 Pushing Configuration
 ---------------------
 
 First, let's push in Alice's authentication:
-
-
-
 
 ```bash title=" " linenums="1"
 $ curl -X PUT -H "Content-Type: application/json" -u asterisk:secret -d '{"fields": [ { "attribute": "auth_type", "value": "userpass"}, {"attribute": "username", "value": "alice"}, {"attribute": "password", "value": "secret" } ] }' https://localhost:8088/ari/asterisk/config/dynamic/res_pjsip/auth/alice
@@ -270,7 +248,6 @@ $ curl -X PUT -H "Content-Type: application/json" -u asterisk:secret -d '{"field
 [{"attribute":"md5_cred","value":""},{"attribute":"realm","value":""},{"attribute":"auth_type","value":"userpass"},{"attribute":"password","value":"secret"},{"attribute":"nonce_lifetime","value":"32"},{"attribute":"username","value":"alice"}]
 
 ```
-
 
 We can note a few things from this:
 
@@ -280,9 +257,6 @@ We can note a few things from this:
 
 Next, we can push in Alice's AoRs:
 
-
-
-
 ```bash title=" " linenums="1"
 $ curl -X PUT -H "Content-Type: application/json" -u asterisk:secret -d '{"fields": [ { "attribute": "support_path", "value": "yes"}, {"attribute": "remove_existing", "value": "yes"}, {"attribute": "max_contacts", "value": "1"} ] }' https://localhost:8088/ari/asterisk/config/dynamic/res_pjsip/aor/alice
 
@@ -290,11 +264,7 @@ $ curl -X PUT -H "Content-Type: application/json" -u asterisk:secret -d '{"field
 
 ```
 
-
 Finally, we can push in Alice's endpoint:
-
-
-
 
 ```bash title=" " linenums="1"
 $ curl -X PUT -H "Content-Type: application/json" -u asterisk:secret -d '{"fields": [ { "attribute": "from_user", "value": "alice" }, { "attribute": "allow", "value": "!all,g722,ulaw,alaw"}, {"attribute": "ice_support", "value": "yes"}, {"attribute": "force_rport", "value": "yes"}, {"attribute": "rewrite_contact", "value": "yes"}, {"attribute": "rtp_symmetric", "value": "yes"}, {"attribute": "context", "value": "default" }, {"attribute": "auth", "value": "alice" }, {"attribute": "aors", "value": "alice"} ] }' https://localhost:8088/ari/asterisk/config/dynamic/res_pjsip/endpoint/alice
@@ -302,7 +272,6 @@ $ curl -X PUT -H "Content-Type: application/json" -u asterisk:secret -d '{"field
 [{"attribute":"timers_sess_expires","value":"1800"},{"attribute":"device_state_busy_at","value":"0"},{"attribute":"dtls_cipher","value":""},{"attribute":"from_domain","value":""},{"attribute":"dtls_rekey","value":"0"},{"attribute":"dtls_fingerprint","value":"SHA-256"},{"attribute":"direct_media_method","value":"invite"},{"attribute":"send_rpid","value":"false"},{"attribute":"pickup_group","value":""},{"attribute":"sdp_session","value":"Asterisk"},{"attribute":"dtls_verify","value":"No"},{"attribute":"message_context","value":""},{"attribute":"mailboxes","value":""},{"attribute":"named_pickup_group","value":""},{"attribute":"record_on_feature","value":"automixmon"},{"attribute":"dtls_private_key","value":""},{"attribute":"named_call_group","value":""},{"attribute":"t38_udptl_maxdatagram","value":"0"},{"attribute":"media_encryption_optimistic","value":"false"},{"attribute":"aors","value":"alice"},{"attribute":"rpid_immediate","value":"false"},{"attribute":"outbound_proxy","value":""},{"attribute":"identify_by","value":"username"},{"attribute":"inband_progress","value":"false"},{"attribute":"rtp_symmetric","value":"true"},{"attribute":"transport","value":""},{"attribute":"t38_udptl_ec","value":"none"},{"attribute":"fax_detect","value":"false"},{"attribute":"t38_udptl_nat","value":"false"},{"attribute":"allow_transfer","value":"true"},{"attribute":"tos_video","value":"0"},{"attribute":"srtp_tag_32","value":"false"},{"attribute":"timers_min_se","value":"90"},{"attribute":"call_group","value":""},{"attribute":"sub_min_expiry","value":"0"},{"attribute":"100rel","value":"yes"},{"attribute":"direct_media","value":"true"},{"attribute":"g726_non_standard","value":"false"},{"attribute":"dtmf_mode","value":"rfc4733"},{"attribute":"dtls_cert_file","value":""},{"attribute":"media_encryption","value":"no"},{"attribute":"media_use_received_transport","value":"false"},{"attribute":"direct_media_glare_mitigation","value":"none"},{"attribute":"trust_id_inbound","value":"false"},{"attribute":"force_avp","value":"false"},{"attribute":"record_off_feature","value":"automixmon"},{"attribute":"send_diversion","value":"true"},{"attribute":"language","value":""},{"attribute":"mwi_from_user","value":""},{"attribute":"rtp_ipv6","value":"false"},{"attribute":"ice_support","value":"true"},{"attribute":"callerid","value":"<unknown>"},{"attribute":"aggregate_mwi","value":"true"},{"attribute":"one_touch_recording","value":"false"},{"attribute":"moh_passthrough","value":"false"},{"attribute":"cos_video","value":"0"},{"attribute":"accountcode","value":""},{"attribute":"allow","value":"(g722|ulaw|alaw)"},{"attribute":"rewrite_contact","value":"true"},{"attribute":"t38_udptl_ipv6","value":"false"},{"attribute":"tone_zone","value":""},{"attribute":"user_eq_phone","value":"false"},{"attribute":"allow_subscribe","value":"true"},{"attribute":"rtp_engine","value":"asterisk"},{"attribute":"auth","value":"alice"},{"attribute":"from_user","value":"alice"},{"attribute":"disable_direct_media_on_nat","value":"false"},{"attribute":"set_var","value":""},{"attribute":"use_ptime","value":"false"},{"attribute":"outbound_auth","value":""},{"attribute":"media_address","value":""},{"attribute":"tos_audio","value":"0"},{"attribute":"dtls_ca_path","value":""},{"attribute":"dtls_setup","value":"active"},{"attribute":"force_rport","value":"true"},{"attribute":"connected_line_method","value":"invite"},{"attribute":"callerid_tag","value":""},{"attribute":"timers","value":"yes"},{"attribute":"sdp_owner","value":"-"},{"attribute":"trust_id_outbound","value":"false"},{"attribute":"use_avpf","value":"false"},{"attribute":"context","value":"default"},{"attribute":"moh_suggest","value":"default"},{"attribute":"send_pai","value":"false"},{"attribute":"t38_udptl","value":"false"},{"attribute":"dtls_ca_file","value":""},{"attribute":"callerid_privacy","value":"allowed_not_screened"},{"attribute":"cos_audio","value":"0"}]
 
 ```
-
 
 We can now verify that Alice's endpoint exists:
 
@@ -314,9 +283,7 @@ We can now verify that Alice's endpoint exists:
   
 Asterisk CLI  
 
-
 ```
-
 text\*CLI> pjsip show endpoints
  Endpoint: <Endpoint/CID.....................................> <State.....> <Channels.>
  I/OAuth: <AuthId/UserName...........................................................>
@@ -333,7 +300,6 @@ text\*CLI> pjsip show endpoints
  Aor: alice 1
 
 ```
-
 
 
 
@@ -355,9 +321,7 @@ We can also verify that Alice exists in the AstDB:
   
 Asterisk CLI  
 
-
 ```
-
 text\*CLI> database show
 /ps_aors/aor/alice : {"qualify_frequency":"0","maximum_expiration":"7200","minimum_expiration":"60","qualify_timeout":"3.000000","support_path":"true","default_expiration":"3600","mailboxes":"","authenticate_qualify":"false","outbound_proxy":"","max_contacts":"1","remove_existing":"true"}
 /ps_auths/auth/alice : {"realm":"","md5_cred":"","nonce_lifetime":"32","auth_type":"userpass","password":"secret","username":"alice"}
@@ -367,14 +331,10 @@ text\*CLI> database show
 
 ```
 
-
 Deleting Configuration
 ----------------------
 
 If we no longer want Alice to have an endpoint, we can remove it and its related objects using the `DELETE` operation:
-
-
-
 
 ```bash title=" " linenums="1"
 $ curl -X DELETE -u asterisk:secret https://localhost:8088/ari/asterisk/config/dynamic/res_pjsip/endpoint/alice
@@ -382,7 +342,6 @@ $ curl -X DELETE -u asterisk:secret https://localhost:8088/ari/asterisk/config/d
 $ curl -X DELETE -u asterisk:secret https://localhost:8088/ari/asterisk/config/dynamic/res_pjsip/auth/alice
 
 ```
-
 
 And we can confirm that Alice no longer exists:
 
@@ -394,17 +353,14 @@ And we can confirm that Alice no longer exists:
   
 Asterisk CLI  
 
-
 ```
-
 text\*CLI> pjsip show endpoints
 No objects found.
 \*CLI> database show
 0 results found.
-\*CLI>  
+\*CLI> 
 
 ```
-
 
 
 
@@ -416,7 +372,7 @@ No objects found.
 
 
 
- 
 
- 
+
+
 

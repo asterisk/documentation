@@ -18,7 +18,7 @@ Not long into the project, two application programming interfaces (APIs) were ad
 1. AGI is analogous to CGI in Apache. AGI provides an interface between the Asterisk dialplan and an external program that wants to manipulate a channel in the dialplan. In general, the interface is synchronous - actions taken on a channel from an AGI block and do not return until the action is completed.
 2. AMI provides a mechanism to control where channels execute in the dialplan. Unlike AGI, AMI is an asynchronous, event driven interface. For the most part, AMI does not provide mechanisms to control channel execution - rather, it provides information about the state of the channels and controls about where the channels are executing.
 
-Both of these interfaces are powerful and opened up a wide range of integration possibilities. Using AGI, remote dialplan execution could be enabled, which allowed developers to integrate Asterisk with PHP, Python, Java, and other applications. Using AMI, the state of Asterisk could be displayed, calls initiated, and the location of channels controlled. Using both APIs together, complex applications using Asterisk as the engine *could* be developed.
+Both of these interfaces are powerful and opened up a wide range of integration possibilities. Using AGI, remote dialplan execution could be enabled, which allowed developers to integrate Asterisk with PHP, Python, Java, and other applications. Using AMI, the state of Asterisk could be displayed, calls initiated, and the location of channels controlled. Using both APIs together, complex applications using Asterisk as the engine *could* be developed.
 
 40%On This PageARI In More DetailHowever, there are some drawbacks to using AMI and AGI to create custom communication applications:
 
@@ -31,7 +31,7 @@ And so, before Asterisk 12, if you wanted your own custom communication applicat
 * Write an Asterisk module in C, **or**
 * Write a custom application using both AGI and AMI, performing some herculean effort to marry the two APIs together (as well as some dialplan trickery)
 
- 
+
 
 ARI: An Interface for Communications Applications
 -------------------------------------------------
@@ -44,14 +44,14 @@ These resources were traditionally the purview of Asterisk's C modules. By handi
 
 ***It is about letting you build your own VoiceMail application.***
 
- ![](AMI-ARI-AGI.png)ARI Fundamentals
+ ![](AMI-ARI-AGI.png)ARI Fundamentals
 ================
 
 ARI consists of three different pieces that are - for all intents and purposes - interrelated and used together. They are:
 
 1. A [RESTful](http://en.wikipedia.org/wiki/Representational_state_transfer) interface that a client uses to control resources in Asterisk.
 2. A WebSocket that conveys events in [JSON](http://www.json.org/) about the resources in Asterisk to the client.
-3. The [Stasis](/_Dialplan_Applications/Stasis) dialplan application that hands over control of a channel from Asterisk to the client.
+3. The [Stasis](/latest_api/Dialplan_Applications/Stasis) dialplan application that hands over control of a channel from Asterisk to the client.
 
 All three pieces work together, allowing a developer to manipulate and control the fundamental resources in Asterisk and build their own communications application.
 
@@ -88,7 +88,7 @@ In the case of ARI, a WebSocket connection is used to pass asynchronous events f
 What is Stasis?
 ---------------
 
-[Stasis](/_Dialplan_Applications/Stasis) is a dialplan application in Asterisk. It is the mechanism that Asterisk uses to hand control of a channel over from the dialplan - which is the traditional way in which channels are controlled - to ARI and the client. Generally, ARI applications manipulate channels in the Stasis dialplan application, as well as other resources in Asterisk. Channels not in a Stasis dialplan application generally cannot be manipulated by ARI - the purpose of ARI, after all, is to build your own dialplan application, not manipulate an existing one.
+[Stasis](/latest_api/Dialplan_Applications/Stasis) is a dialplan application in Asterisk. It is the mechanism that Asterisk uses to hand control of a channel over from the dialplan - which is the traditional way in which channels are controlled - to ARI and the client. Generally, ARI applications manipulate channels in the Stasis dialplan application, as well as other resources in Asterisk. Channels not in a Stasis dialplan application generally cannot be manipulated by ARI - the purpose of ARI, after all, is to build your own dialplan application, not manipulate an existing one.
 
 Diving Deeper
 =============
@@ -109,7 +109,7 @@ All of the examples on the pages below this one are available on [github](https:
 ARI Libraries
 -------------
 
-See the [ARI Libraries](/Configuration/Interfaces/Asterisk-REST-Interface-ARI/ARI-Libraries) page for a list of Asterisk Rest Interface libraries and frameworks.
+See the [ARI Libraries](/Configuration/Interfaces/Asterisk-REST-Interface-ARI/ARI-Libraries) page for a list of Asterisk Rest Interface libraries and frameworks.
 
 Recommended Practices
 =====================
@@ -117,7 +117,7 @@ Recommended Practices
 Don't access ARI directly from a web page
 -----------------------------------------
 
-It's very convenient to use ARI directly from a web page for development, such as using Swagger-UI, or even abusing the [WebSocket echo demo](http://www.websocket.org/echo.html) to get at the ARI WebSocket.
+It's very convenient to use ARI directly from a web page for development, such as using Swagger-UI, or even abusing the [WebSocket echo demo](http://www.websocket.org/echo.html) to get at the ARI WebSocket.
 
 But, *please*, do not do this in your production applications. This would be akin to accessing your database directly from a web page. You need to hide Asterisk behind your own application server, where you can handle security, logging, multi-tenancy and other concerns that really don't belong in a communications engine.
 
@@ -130,19 +130,9 @@ Please don't spread lots of direct HTTP calls throughout your application. There
 
 Note that the abstraction layer doesn't (and shouldn't) be complicated. Your client side API can even be something as simple wrapper around GET, POST and DELETE that addresses the cross-cutting concerns. The Asterisk TestSuite has a very simple abstraction library that can be used like this:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 pyari = ARI('localhost', ('username', 'password'))
- 
+
 # Hang up all channels
 channels = ari.get('channels')
 for channel in channels:
@@ -150,8 +140,7 @@ for channel in channels:
 
 ```
 
-
 In other words: **use one of the aforementioned libraries or write your own!**
 
- 
+
 

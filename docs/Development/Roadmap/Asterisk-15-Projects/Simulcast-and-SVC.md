@@ -27,14 +27,14 @@ The Firefox implementation follows the [RFC](https://tools.ietf.org/html/draft-i
 SVC
 ===
 
- SVC is a bit of an uncharted territory right now. Support is not widespread. Chrome when simulcast is enabled will also enable SVC, but only for VP8 right now. I think SVC should be left to bake some more and improve first before tackling it.
+ SVC is a bit of an uncharted territory right now. Support is not widespread. Chrome when simulcast is enabled will also enable SVC, but only for VP8 right now. I think SVC should be left to bake some more and improve first before tackling it.
 
 Asterisk
 ========
 
 ### RTCP
 
-RTCP is critically important for simulcast usage. Extensions like [REMB](https://datatracker.ietf.org/doc/draft-alvestrand-rmcat-remb/), [TMMBR (and PLI)](https://tools.ietf.org/html/rfc5104), and [transport-cc](https://tools.ietf.org/html/draft-holmer-rmcat-transport-wide-cc-extensions-01) allow bandwidth estimation to occur so that remote parties know the conditions and can adjust the video encoding accordingly. They are also important to Asterisk so it can know what streams (when simulcast is in use) to forward depending on the conditions to the remote participant. While simulcast is a huge part of this it is not useful at all without the proper RTCP support.
+RTCP is critically important for simulcast usage. Extensions like [REMB](https://datatracker.ietf.org/doc/draft-alvestrand-rmcat-remb/), [TMMBR (and PLI)](https://tools.ietf.org/html/rfc5104), and [transport-cc](https://tools.ietf.org/html/draft-holmer-rmcat-transport-wide-cc-extensions-01) allow bandwidth estimation to occur so that remote parties know the conditions and can adjust the video encoding accordingly. They are also important to Asterisk so it can know what streams (when simulcast is in use) to forward depending on the conditions to the remote participant. While simulcast is a huge part of this it is not useful at all without the proper RTCP support.
 
 The data provided by the improved RTCP support will need to be propagated up so higher level implementations can use the information accordingly, for example bridge_softmix to know what simulcast stream to use. This should be done by either providing a new control frame that includes the information, or the existing RTCP frame.
 

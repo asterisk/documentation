@@ -14,7 +14,7 @@ pageid: 27199498
 
 
 
- 
+
 
 Prerequisites
 =============
@@ -38,9 +38,7 @@ Enable Backports
 $ sudo apt-get install python-software-properties
 $ sudo add-apt-repository "deb http://ca.archive.ubuntu.com/ubuntu/ $(lsb_release --short --codename)-backports main universe"
 
-
 ```
-
 
 Upgrade Lucid to the latest release:
 ---------------------------------```bash title="---" linenums="1"
@@ -49,34 +47,24 @@ $ sudo apt-get dist-upgrade
 $ sudo apt-get autoremove
 $ sudo reboot
 
-
 ```
-
 
 Install required software
 ----------------------```bash title="---" linenums="1"
 $ sudo apt-get install build-essential pbuilder debian-archive-keyring ccache
 
-
 ```
-
 
 pbuilder
 -----```bash title="---" linenums="1"
 $ sudo mkdir -p /var/cache/pbuilder/ccache
 $ sudo mkdir -p /var/cache/pbuilder/hook.d
 
-
 ```
-
-
-
 ```bash title="---" linenums="1"
 $ sudo vi /etc/pbuilder/pbuilderrc
 
-
 ```
-
 
 
 
@@ -85,9 +73,7 @@ $ sudo vi /etc/pbuilder/pbuilderrc
   
 /etc/pbuilder/pbuilderrc  
 
-
 ```
-
 export CCACHE_DIR="/var/cache/pbuilder/ccache"
 export PATH="/usr/lib/ccache:${PATH}"
 EXTRAPACKAGES="ccache"
@@ -180,77 +166,39 @@ else
  exit 1
 fi
 
-
 ```
 
-
 ### Debian
-
-
-
 
 ```bash title=" " linenums="1"
 $ for x in unstable testing stable; do for y in i386 amd64; do sudo DIST=${x} ARCH=${y} pbuilder create; done; done
 
-
 ```
 
-
 ### Ubuntu
-
-
-
 
 ```bash title=" " linenums="1"
 $ for x in lucid maverick natty; do for y in i386 amd64; do sudo DIST=${x} ARCH=${y} pbuilder create; done; done
 
-
 ```
-
 
 svn-buildpackage
 -------------```bash title="---" linenums="1"
 $ vi ~/.svn-buildpackage.conf
 
-
 ```
-
-
-
-
----
-
-  
-  
-
-
 ```
-
 svn-builder=debuild
 svn-noautodch
 
-
 ```
-
 
 quilt
 --```bash title="---" linenums="1"
 $ vi ~/.quiltrc
 
-
 ```
-
-
-
-
----
-
-  
-  
-
-
 ```
-
 QUILT_PATCHES="debian/patches"
 
 QUILT_PATCH_OPTS="--unified-reject-files"
@@ -258,28 +206,14 @@ QUILT_REFRESH_ARGS="-p ab --no-timestamps --no-index"
 QUILT_DIFF_OPTS="--show-c-function"
 QUILT_DIFF_ARGS="-p ab --no-timestamps --no-index --color=auto"
 
-
 ```
-
 
 devscripts
 -------```bash title="---" linenums="1"
 $ vi ~/.devscripts
 
-
 ```
-
-
-
-
----
-
-  
-  
-
-
 ```
-
 DEBCHANGE_RELEASE_HEURISTIC=changelog
 DEBCHANGE_MULTIMAINT_MERGE=yes
 DEBCHANGE_MAINTTRAILER=no
@@ -289,43 +223,24 @@ DEBUILD_LINDA=yes
 DEFAULT_DEBRELEASE_DEBS_DIR=../build-area/
 USCAN_DESTDIR=../tarballs
 
-
 ```
-
 
 Create a GPG Key
 ----------------
 
 <https://help.ubuntu.com/community/GnuPrivacyGuardHowto>
 
-
-
-
 ```bash title=" " linenums="1"
 $ vi ~/.bashrc
 
-
 ```
-
-
-
-
----
-
-  
-  
-
-
 ```
-
 export DEBFULLNAME='Paul Belanger'
 export DEBEMAIL='pabelanger@digium.com'
 export GPGKEY=8C3B0FA6
 export EDITOR=vi
 
-
 ```
-
 
 See also
 --------
@@ -340,89 +255,54 @@ New upstream release
 
 ### Checkout source
 
-
-
-
 ```bash title=" " linenums="1"
 $ mkdir -p ~/digium
 $ cd ~/digium
 $ svn http://blah.org/svn/blah
 
-
 ```
 
-
 ### Upstream tarball
-
-
-
 
 ```bash title=" " linenums="1"
 $ uscan --verbose
 
-
 ```
 
-
 ### Update the changelog file
-
-
-
 
 ```bash title=" " linenums="1"
 $ dch -e
 
-
 ```
 
-
 ### Update patches
-
-
-
 
 ```bash title=" " linenums="1"
 $ while quilt push; do quilt refresh; done
 
-
 ```
 
-
 ### Release package
-
-
-
 
 ```bash title=" " linenums="1"
 $ dch -r
 
-
 ```
 
-
 ### Build package source
-
-
-
 
 ```bash title=" " linenums="1"
 $ svn-buildpackage -S
 
-
 ```
 
-
 ### Compile package
-
-
-
 
 ```bash title=" " linenums="1"
 $ dput ppa:pabelanger/testing ../build-area/*.changes
 
-
 ```
-
 
 rebuildd
 ========
@@ -438,59 +318,30 @@ Prerequisites
 Getting started
 ---------------
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 sudo apt-get install rebuildd reprepro apache2
 
-
 ```
 
-
 ### reprepro
-
-
-
 
 ```bash title=" " linenums="1"
 $ sudo adduser --system --shell /bin/bash --gecos 'Reprepro Daemon' --group --disabled-password reprepro
 
-
 ```
-
-
-
 ```bash title="---" linenums="1"
 $ sudo su reprepro
 
-
 ```
-
-
-
 ```bash title="---" linenums="1"
 $ cd ~
 $ mkdir bin conf incoming
 
-
 ```
-
-
-
 ```bash title="---" linenums="1"
 $ vi ~/conf/distributions
 
-
 ```
-
 
 
 
@@ -499,9 +350,7 @@ $ vi ~/conf/distributions
   
 distributions  
 
-
 ```
-
 Suite: lucid-proposed
 Version: 10.04
 Codename: lucid-proposed
@@ -511,17 +360,11 @@ SignWith: yes
 Log: logfile
  --changes ~/bin/build_sources
 
-
 ```
-
-
-
 ```bash title="---" linenums="1"
 $ vi ~/conf/incoming
 
-
 ```
-
 
 
 
@@ -530,26 +373,18 @@ $ vi ~/conf/incoming
   
 incoming  
 
-
 ```
-
 Name: incoming
 IncomingDir: incoming
 Allow: lucid-proposed
 Cleanup: on_deny on_error
 TempDir: tmp
 
-
 ```
-
-
-
 ```bash title="---" linenums="1"
 $ vi ~/conf/apache.conf
 
-
 ```
-
 
 
 
@@ -558,9 +393,7 @@ $ vi ~/conf/apache.conf
   
 apache.conf  
 
-
 ```
-
 Alias /debian /home/reprepro/
 <Directory /home/reprepro>
  Options +Indexes
@@ -569,19 +402,11 @@ Alias /debian /home/reprepro/
  allow from all
 </Directory>
 
-
 ```
-
-
-
 ```bash title="---" linenums="1"
 $ vi ~/bin/build_sources
 
-
 ```
-
-
-
 ```bash title="---" linenums="1"
 #!/bin/bash
  
@@ -607,56 +432,29 @@ fi
 # Kick off the job
 echo "$package $version 1 $release" | sudo rebuildd-job add
 
-
 ```
-
-
-
 ```bash title="---" linenums="1"
 $ reprepro -V -b . createsymlinks
 $ reprepro -V -b . processincoming incoming
 
-
 ```
-
-
-
 ```bash title="---" linenums="1"
 $ exit
 
-
 ```
 
-
 ### rebuildd
-
-
-
 
 ```bash title=" " linenums="1"
 $ sudo vi /etc/default/rebuildd
 
-
 ```
-
-
-
-
----
-
-  
-  
-
-
 ```
-
 START_REBUILDD=1
 START_REBUILDD_HTTPD=1
 DISTS="lucid"
 
-
 ```
-
 
 Also see
 --------
@@ -667,31 +465,20 @@ Also see
 Working with Source Packages
 ============================
 
- 
-
-
-
-
 ```bash title=" " linenums="1"
 $ sudo apt-get build-dep asterisk
 
-
 ```
-
-
-
 ```bash title="---" linenums="1"
 $ DEB_BUILD_OPTIONS="debug" apt-get -b source asterisk
 
-
 ```
 
 
- 
 
- 
 
- 
 
- 
+
+
+
 

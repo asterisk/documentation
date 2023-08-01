@@ -44,24 +44,19 @@ As part of this work, pjproject has been pulled out of the Asterisk source tree 
   
   
 
-
 ```
-
 rm -f /usr/lib/libpj\*.a /usr/lib/libmilenage\*.a /usr/lib/pkgconfig/libpjproject.pc  
 
 
 
 ---
 
-
-
 ```
 
 
 
-
 !!! note 
-    Alternatively, packages for CentOS 6 are available at <http://packages.asterisk.org/centos/6/current/>.
+    Alternatively, packages for CentOS 6 are available at <http://packages.asterisk.org/centos/6/current/>.
 
       
 [//]: # (end-note)
@@ -72,17 +67,11 @@ rm -f /usr/lib/libpj\*.a /usr/lib/libmilenage\*.a /usr/lib/pkgconfig/libpjprojec
 
 1. Check-out pjproject from the github repository
 
-
-
-
 ```bash title=" " linenums="1"
 # git clone http://github.com/asterisk/pjproject pjproject
 
 ```
 2. Configure pjproject to produce shared objects in the /usr directory (or in an appropriate folder in which your system expects shared objects to reside)
-
-
-
 
 ```bash title=" " linenums="1"
 # cd pjproject
@@ -92,19 +81,15 @@ rm -f /usr/lib/libpj\*.a /usr/lib/libmilenage\*.a /usr/lib/pkgconfig/libpjprojec
 
 
 
-
 !!! note 
     You may need additional configure options depending on your local system and what is already installed.
 
-    Commonly used options are: --with-external-speex --with-external-gsm --with-external-srtp --disable-sound --disable-resample
+    Commonly used options are: --with-external-speex --with-external-gsm --with-external-srtp --disable-sound --disable-resample
 
       
 [//]: # (end-note)
 
 3. Compile pjproject and install
-
-
-
 
 ```bash title=" " linenums="1"
 # make
@@ -112,7 +97,6 @@ rm -f /usr/lib/libpj\*.a /usr/lib/libmilenage\*.a /usr/lib/pkgconfig/libpjprojec
 
 ```
 
- 
 
 Configuration
 
@@ -185,10 +169,10 @@ At a minimum, all dialplan applications, dialplan functions, manager commands, a
 
 ##### Legacy applications
 
-* [SIPDtmfMode](/_Dialplan_Applications/SIPDtmfMode)
-* [SIPAddHeader](/_Dialplan_Applications/SIPAddHeader)
-* [SIPRemoveHeader](/_Dialplan_Applications/SIPRemoveHeader)
-* [SIPSendCustomINFO](/_Dialplan_Applications/SIPSendCustomINFO)
+* [SIPDtmfMode](/latest_api/Dialplan_Applications/SIPDtmfMode)
+* [SIPAddHeader](/latest_api/Dialplan_Applications/SIPAddHeader)
+* [SIPRemoveHeader](/latest_api/Dialplan_Applications/SIPRemoveHeader)
+* [SIPSendCustomINFO](/latest_api/Dialplan_Applications/SIPSendCustomINFO)
 
 ##### New applications
 
@@ -198,10 +182,10 @@ TBD
 
 ##### Legacy functions
 
-* [CHANNEL](/_Dialplan_Functions/CHANNEL) (The SIP-specific bits)
-* [SIP_HEADER](/_Dialplan_Functions/SIP_HEADER)
-* [SIPPEER](/_Dialplan_Functions/SIPPEER)
-* [CHECKSIPDOMAIN](/_Dialplan_Functions/CHECKSIPDOMAIN)
+* [CHANNEL](/latest_api/Dialplan_Functions/CHANNEL) (The SIP-specific bits)
+* [SIP_HEADER](/latest_api/Dialplan_Functions/SIP_HEADER)
+* [SIPPEER](/latest_api/Dialplan_Functions/SIPPEER)
+* [CHECKSIPDOMAIN](/latest_api/Dialplan_Functions/CHECKSIPDOMAIN)
 
 ##### New functions
 
@@ -243,12 +227,12 @@ TBD
 
 ##### Legacy Manager commands
 
-* [SIPPeers](/_AMI_Actions/SIPpeers)
-* [SIPshowpeer](/_AMI_Actions/SIPshowpeer)
-* [SIPqualifypeer](/_AMI_Actions/SIPqualifypeer)
-* [SIPshowregistry](/_AMI_Actions/SIPshowregistry)
-* [SIPnotify](/_AMI_Actions/SIPnotify)
-* [SIPpeerstatus](/_AMI_Actions/SIPpeerstatus)
+* [SIPPeers](/latest_api/AMI_Actions/SIPpeers)
+* [SIPshowpeer](/latest_api/AMI_Actions/SIPshowpeer)
+* [SIPqualifypeer](/latest_api/AMI_Actions/SIPqualifypeer)
+* [SIPshowregistry](/latest_api/AMI_Actions/SIPshowregistry)
+* [SIPnotify](/latest_api/AMI_Actions/SIPnotify)
+* [SIPpeerstatus](/latest_api/AMI_Actions/SIPpeerstatus)
 
 ##### New Manager commands
 

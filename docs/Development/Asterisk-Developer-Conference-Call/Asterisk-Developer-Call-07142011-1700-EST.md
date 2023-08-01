@@ -6,16 +6,16 @@ pageid: 17203294
 **Digium Developer Conference Bridge:**
 
 
-Bridge:  15071
+Bridge:  15071
 
 
-PIN:  35806
+PIN:  35806
 
 
 **Proposed Agenda:**
 
 
-Welcome & Announcements:  Bryan Johns / Russell Bryant
+Welcome & Announcements:  Bryan Johns / Russell Bryant
 
 
 * Introduction of Digium participants

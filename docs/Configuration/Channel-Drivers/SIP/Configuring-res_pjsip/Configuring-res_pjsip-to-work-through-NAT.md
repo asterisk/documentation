@@ -33,9 +33,9 @@ Using [RFC5737](http://tools.ietf.org/html/rfc5737) documentation addresses
 
 For the sake of a complete example and clarity, in this example we use the following fake details:
 
-ITSP Account number:  1112223333
+ITSP Account number:  1112223333
 
-DID number provided by ITSP:  19998887777
+DID number provided by ITSP:  19998887777
 
 ### pjsip.conf Configuration
 
@@ -57,21 +57,11 @@ This is much like the external_media_address setting, but for SIP signaling inst
 
 Determines whether media may flow directly between endpoints
 
- 
+
 
 Together these options make sure the far end knows where to send back SIP and RTP packets, and direct_media ensures Asterisk stays in the media path. This is important, because our Asterisk system has a private IP address that the ITSP cannot route to. We want to make sure the SIP and RTP traffic comes back to the WAN/Public internet address of our router. The sections prefixed with "sipus" are all configuration needed for inbound and outbound connectivity of the SIP trunk, and the sections named 6001 are all for the VOIP phone.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 [transport-udp-nat]
 type=transport
 protocol=udp
@@ -140,7 +130,6 @@ type=aor
 max_contacts=2
 
 ```
-
 
 ### For Remote Phones Behind NAT
 

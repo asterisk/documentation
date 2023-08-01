@@ -258,7 +258,6 @@ Please see the [API docs|http://doxygen.asterisk.org/trunk/d8/d9c/stasis__app_8h
 
 The `app\_stasis.so` module simply exports the `res\_stasis.so` functionality as a dialplan application. This allows you to send channels to a Stasis application from within the dialplan. 
 
-
 ```
  
 ; Send channel to the 'Queue' application, with the args 'enqueue,sales' 

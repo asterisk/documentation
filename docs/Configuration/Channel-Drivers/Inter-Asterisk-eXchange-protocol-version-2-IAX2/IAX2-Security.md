@@ -46,17 +46,7 @@ User Guide
 
 We strongly recommend that administrators leave the IAX2 security enhancements in place where possible. However, to bypass the security enhancements completely and have Asterisk work exactly as it did before, the following options can be specified in the `[general]` section of `iax.conf`:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 noneiax.conf
 [general]
 ...
@@ -64,9 +54,7 @@ calltokenoptional = 0.0.0.0/0.0.0.0
 maxcallnumbers = 16382
 ...
 
-
 ```
-
 
 #### Controlled Networks
 
@@ -97,17 +85,7 @@ This section discusses the use of the IAX2 security functionality on public netw
 
 If all IAX2 endpoints have been upgraded to support call token validation, then no changes need to be made. However, for enhanced security, the administrator may adjust call number limits to further reduce the potential impact of malicious call number consumption. The following configuration will allow known peers to consume more call numbers than unknown source IP addresses:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 noneiax.conf
 [general]
 ; By default, restrict call number usage to a low number.
@@ -131,35 +109,20 @@ host = dynamic
 maxcallnumbers = 1024
 ...
 
-
 ```
-
 
 ##### Partial Upgrade
 
 
 If only some IAX2 endpoints have been upgraded, or the status of an IAX2 endpoint is unknown, then call token validation must be disabled to ensure interoperability. To reduce the potential impact of disabling call token validation, it should only be disabled for a specific peer or user as needed. By using the auto option, call token validation will be changed to  
 
-
-
-
-
----
-
-  
-  
-
-
 ```
-
 noneiax.conf
 [friendA]
 requirecalltoken = auto
 ...
 
-
 ```
-
 
 Note that there are some cases where auto should not be used. For example, if multiple peers use the same authentication details, and they have not all upgraded to support call token validation, then the ones that do not support it will get locked out. Once an upgraded client successfully completes an authenticated call setup using call token validation,  
 
@@ -170,17 +133,7 @@ Note that there are some cases where auto should not be used. For example, if mu
 
 Guest access via IAX2 requires special attention. Given the number of existing IAX2 endpoints that do not support call token validation, most systems that allow guest access should do so without requiring call token validation.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 noneiax.conf
 [guest]
 ; Note that the name "guest" is special here. When the code
@@ -193,31 +146,17 @@ type = user
 requirecalltoken = no
 ...
 
-
 ```
-
 
 Since disabling call token validation for the guest account allows a huge hole for malicious call number consumption, an option has been provided to segregate the call numbers consumed by connections not using call token validation from those that do. That way, there are resources dedicated to the more secure connections to ensure that service is not interrupted for them.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 noneiax.conf
 [general]
 maxcallnumbers_nonvalidated = 2048
 ...
 
-
 ```
-
 
 ### CLI Commands
 

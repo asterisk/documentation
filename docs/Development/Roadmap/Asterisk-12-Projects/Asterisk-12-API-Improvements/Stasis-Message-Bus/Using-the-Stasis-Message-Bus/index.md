@@ -10,37 +10,25 @@ At the lowest level is the [Stasis Message Bus](http://doxygen.asterisk.org/trun
 Background Information
 ======================
 
-There is already a fair amount of documentation about the Stasis Message Bus already available. The API's themselves are documented using Doxygen. There's also a [design document](/Development/Roadmap/Asterisk-12-Projects/Asterisk-12-API-Improvements/Stasis-Message-Bus) on wiki.asterisk.org describing the overall design of the Stasis Message Bus. These provide some good in-depth information on the different pieces of the Stasis Message Bus.
+There is already a fair amount of documentation about the Stasis Message Bus already available. The API's themselves are documented using Doxygen. There's also a [design document](/Development/Roadmap/Asterisk-12-Projects/Asterisk-12-API-Improvements/Stasis-Message-Bus) on wiki.asterisk.org describing the overall design of the Stasis Message Bus. These provide some good in-depth information on the different pieces of the Stasis Message Bus.
 
 Walking Through an Example
 ==========================
 
-Sometimes, though, it's best to see something in action. Probably the best example of a simply usage of the message bus can be found in [res_chan_stats.so](https://code.asterisk.org/code/browse/asterisk/trunk/res/res_chan_stats.c?hb=true). This is a module that subscribes to the [ast_channel_topic_all()](http://doxygen.asterisk.org/trunk/df/deb/group__StasisTopicsAndMessages.html#g34a3ac59fb8d0c49cbc2cb9b87261d31) and posts some interesting statistics using [a simple Statsd API](http://doxygen.asterisk.org/trunk/d4/d67/statsd_8h.html).
+Sometimes, though, it's best to see something in action. Probably the best example of a simply usage of the message bus can be found in [res_chan_stats.so](https://code.asterisk.org/code/browse/asterisk/trunk/res/res_chan_stats.c?hb=true). This is a module that subscribes to the [ast_channel_topic_all()](http://doxygen.asterisk.org/trunk/df/deb/group__StasisTopicsAndMessages.html#g34a3ac59fb8d0c49cbc2cb9b87261d31) and posts some interesting statistics using [a simple Statsd API](http://doxygen.asterisk.org/trunk/d4/d67/statsd_8h.html).
 
 Plain subscriptions
 -------------------
 
 A regular subscription is Stasis is created by using the [stasis_subscribe()](http://doxygen.asterisk.org/trunk/dd/d79/stasis_8h.html#0f22205d00ef47310681da71d082017b) function. You provide the topic, a callback function, and a piece of data you wish to come along with the callback, and the message bus does the rest.
 
- 
-
-
-
-
----
-
-  
-  
-
-
 ```
-
 static void statsmaker(void \*data, struct stasis_subscription \*sub,
  struct stasis_topic \*topic, struct stasis_message \*message)
 {
  /* .. */
 }
- 
+
 static int load_module(void)
 {
  /* .. */
@@ -62,32 +50,21 @@ static int unload_module(void)
 
 ```
 
-
 For every message that's published to the `ast_channel_topic_all()` topic, the `statsmake()` callback will be invoked with the data pointer given in the subscription, the subscription being dispatched, the topic the message was originally published to (useful when messages are forwarded between topics), and, finally, the message itself.
 
-You have some really strong guarantees about how the messages get dispatched to your callback.
+You have some really strong guarantees about how the messages get dispatched to your callback.
 
 * **Messages have a type** - the [stasis_message_type()](http://doxygen.asterisk.org/trunk/d2/db9/stasis__message_8c.html#9356e8a29344ca4eac93088198ccff89) function gives you the type of the message you've received.
 * **Messages are ordered** - Messages are dispatched to your callback in the same order in which they were published.
 * **Dispatches are serialized** - The next message dispatch won't occur until after the current message dispatch completes. In many situations this greatly simplifies threading concerns, and can eliminate deadlocks, or even the need for locking, altogether.
-* **Messages are immutable** - Actually, this is more of a rule of the system than a guarantee by it. Messages should be treated as immutable. If you feel the temptation to modify a message you receive, you should instead copy the message and modify the copy.
-* **Messages are ref-counted** - Because messages are immutable and ref-counted, you can very cheaply keep references to a message for later use. When you're done with the message, simply call [ao2_cleanup()](http://doxygen.asterisk.org/trunk/d5/da5/astobj2_8h.html#6321ee982370c55ab3c24c72c562cbdd). The object will be destroyed and memory will be freed when all referrers are done with it.
+* **Messages are immutable** - Actually, this is more of a rule of the system than a guarantee by it. Messages should be treated as immutable. If you feel the temptation to modify a message you receive, you should instead copy the message and modify the copy.
+* **Messages are ref-counted** - Because messages are immutable and ref-counted, you can very cheaply keep references to a message for later use. When you're done with the message, simply call [ao2_cleanup()](http://doxygen.asterisk.org/trunk/d5/da5/astobj2_8h.html#6321ee982370c55ab3c24c72c562cbdd). The object will be destroyed and memory will be freed when all referrers are done with it.
 
 ### What a subscription handler looks like
 
 The bulk of the subscription callback will be whatever logic you need to process the incoming messages. But there is one caveat: [handling the final message](/Development/Roadmap/Asterisk-12-Projects/Asterisk-12-API-Improvements/Stasis-Message-Bus/Using-the-Stasis-Message-Bus/Stasis-Subscriber-Shutdown-Problem).
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 static void statsmaker(void \*data, struct stasis_subscription \*sub,
  struct stasis_topic \*topic, struct stasis_message \*message)
 {
@@ -111,27 +88,16 @@ static void statsmaker(void \*data, struct stasis_subscription \*sub,
 
 ```
 
+When you unsubscribe from a topic, messages are still being dispatched to the callback. You need to wait until the final message has been processed before you can dispose of the data pointer given to the subscription.
 
-When you unsubscribe from a topic, messages are still being dispatched to the callback. You need to wait until the final message has been processed before you can dispose of the data pointer given to the subscription.
-
-Fortunately, the message bus offers a simple way to handle this. The unsubscribe message for your subscription is guaranteed to be the last message received. The [stasis_subscription_final_message()](http://doxygen.asterisk.org/trunk/d0/df4/stasis_8c.html#839350445aaa51cedf31f6daec933ee0) function will determine if a message is indeed your last message, and allow you to kick off any necessary cleanup. Usually this involves `ao2_cleanup(data)`, but many times there's simply nothing to do.
+Fortunately, the message bus offers a simple way to handle this. The unsubscribe message for your subscription is guaranteed to be the last message received. The [stasis_subscription_final_message()](http://doxygen.asterisk.org/trunk/d0/df4/stasis_8c.html#839350445aaa51cedf31f6daec933ee0) function will determine if a message is indeed your last message, and allow you to kick off any necessary cleanup. Usually this involves `ao2_cleanup(data)`, but many times there's simply nothing to do.
 
 Message Routing
 ---------------
 
 We discovered in using subscriptions that most subscription handlers were simply chains of `if/else` clauses dispatching messages based on type. Rather than encourage that sort of ugly boilerplate, we introduced the [stasis_message_router](http://doxygen.asterisk.org/trunk/d4/d25/stasis__message__router_8h.html).
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 static void updates(void \*data, struct stasis_subscription \*sub,
  struct stasis_topic \*topic, struct stasis_message \*message)
 {
@@ -175,6 +141,5 @@ static int unload_module(void)
 
 ```
 
-
-Messages are dispatched to the router with the same guarantees as a regular subscription. The difference is that you can provide a different callback for every message type that you're interested in. You can also add a default route, which is useful for handling miscellaneous messages, such as the final message.
+Messages are dispatched to the router with the same guarantees as a regular subscription. The difference is that you can provide a different callback for every message type that you're interested in. You can also add a default route, which is useful for handling miscellaneous messages, such as the final message.
 

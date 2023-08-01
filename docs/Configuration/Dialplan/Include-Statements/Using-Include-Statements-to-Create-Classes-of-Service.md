@@ -31,17 +31,7 @@ Now that we've shown the basic syntax of include statements, let's put some incl
 
 First, let's create a new context for local calls.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 [local]
 ; seven-digit local numbers
 exten => _NXXXXXX,1,Dial(SIP/provider/${EXTEN})
@@ -55,16 +45,11 @@ exten => NXX,1,Dial(SIP/provider/${EXTEN})
 ; if you don't find a match in this context, look in [users]
 include => users
 
-
 ```
-
 
 Remember that the variable **${EXTEN}** will get replaced with the dialed extension. For example, if Bob dials **5551212** in the **local** context, Asterisk will execute the Dial application with **SIP/provider/5551212** as the first parameter. (This syntax means "Dial out to the account named provider using the SIP channel driver, and dial the number **5551212**.)
 
 Next, we'll build a long-distance context, and link it back to the **local** context with an include statement. This way, if you dial a local number and your phone's channel driver sends the call to the **longdistance** context, Asterisk will search the **local** context if it doesn't find a matching pattern in the **longdistance** context.
-
-
-
 
 ```javascript title=" " linenums="1"
 [longdistance]
@@ -76,11 +61,7 @@ include => local
 
 ```
 
-
 Last but not least, let's add an **international** context. In North America, you dial 011 to signify that you're going to dial an international number.
-
-
-
 
 ```javascript title=" " linenums="1"
 [international]
@@ -91,7 +72,6 @@ exten => _011.,1,Dial(SIP/provider/${EXTEN})
 include => longdistance
 
 ```
-
 
 And there we have it -- a simple chain of contexts going from most privileged (international calls) down to lease privileged (local calling).
 

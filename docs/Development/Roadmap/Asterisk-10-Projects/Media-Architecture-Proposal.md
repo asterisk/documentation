@@ -41,7 +41,6 @@ The ast_format structure on an ast_frame has a slightly different behavior than 
 
 ```
 
-
 /*! \brief This structure contains the buffer used for format attribute */
 struct ast_format_attr {
  uint8_t format_attr[AST_FORMATNEW_ATTR_SIZE];
@@ -141,10 +140,7 @@ uint64_t ast_format_to_iax2(struct ast_format \*format);
  */
 struct ast_format \*ast_format_from_iax2(uint64_t src, struct ast_format \*dst);
 
-
-
 ```
-
 
 ## Introducing the Format Attribute Structure
 
@@ -155,7 +151,6 @@ The size of the buffer in the attribute structure was determined by researching 
 ## The Ast Format Attribute API
 
 ```
-
 #define AST_FORMAT_ATTR_SIZE 128
 
 struct ast_format_attr {
@@ -202,7 +197,6 @@ int ast_format_attr_unreg_interface(struct ast_format_attr_interface \*interface
 
 ```
 
-
 ## The New Format Unique Identifier
 
 Media formats in Asterisk are currently defined using a bit field, format_t, where every format is uniquely identified by a single bit. While this makes comparing media format capabilities extremely simple using bitwise operations, this representation limits the number of media formats that can be represented due to the limited size of the bit field in use. Even if a bit field could represent an infinite number of bits, this representation has no concept of how to compare format capability attributes.
@@ -218,9 +212,7 @@ Since the number of formats that can be represented will likely never be exhaust
 
 ## New Format Unique Id Changes to frame.h
 
-
 ```
-
 /*OLD */
 #define AST_FORMAT_AUDIO_MASK 0xFFFF0000FFFFULL
 #define AST_FORMAT_G723_1 (1ULL << 0)
@@ -233,10 +225,7 @@ Since the number of formats that can be represented will likely never be exhaust
 #define AST_FORMAT_MP4_VIDEO (1ULL << 22)
 
 ```
-
-
 ```
-
 /*NEW */
 #define AST_FORMAT_INC 100000
 
@@ -263,7 +252,6 @@ enum ast_format_id {
 #define AST_FORMAT_GET_TYPE(format) (((unsigned int) (format->uid / AST_FORMAT_INC)) \* AST_FORMAT_INC)
 
 ```
-
 ## New Format Representation Code Examples and Use cases.
 
 This section shows example usage of the ast_format structure and how it replaces existing functionality in Asterisk. It also outlines other highlevel use cases that can not easilly be represented by a code example.
@@ -271,27 +259,21 @@ This section shows example usage of the ast_format structure and how it replaces
 Example 1: One to one mapping of old format_t usage with ast_format structure and its API.
 
 ```
-
  /* OLD: Media formats are represented by a bit in the format_t bit field */
  format_t read_format;
  read_format = AST_FORMAT_ULAW;
 
 ```
-
-
 ```
-
  /* NEW: Media formats are represented using the ast_format struct and are stored in an ast_cap object */
  struct ast_format read_format;
  ast_format_set(&read, AST_FORMAT_ULAW);
 
 ```
 
-
 Example 2: Set an optional format attribute structure for a SILK ast_format structure capable of a dynamic sample rate.
 
 ```
-
 struct ast_format read_format;
 ast_format_set(&read, AST_FORMAT_SILK,
  AST_FORMAT_SILK_RATE, 24000,
@@ -302,11 +284,9 @@ ast_format_set(&read, AST_FORMAT_SILK,
 
 ```
 
-
 Example 3: Set the sample rate of SILK ast_frame representing the sample rate of the frame's payload. Then compare the format of the ast_frame with a read format determine if translation is required.
 
 ```
-
 struct ast_format read_format;
 /* The read format is of format type SILK and can be of sample rates 8khz and 12kh */
 ast_format_set(&read, AST_FORMAT_SILK,
@@ -331,11 +311,9 @@ if ((ast_format_cmp(&read_format, frame->subclass.format) < 0)) {
 
 ```
 
-
 Example 4. Determine if a format is of type audio.
 
 ```
-
 /*OLD */
 format_t format = AST_FORMAT_ULAW;
 if (format & AST_FORMAT_AUDO_MASK) {
@@ -343,10 +321,7 @@ if (format & AST_FORMAT_AUDO_MASK) {
 }
 
 ```
-
-
 ```
-
 /*NEW */
 struct ast_format format;
 ast_format_set(&format, AST_FORMAT_ULAW);
@@ -355,7 +330,6 @@ if (AST_FORMAT_GET_TYPE(&format) == AST_FORMAT_TYPE_AUDIO) {
 }
 
 ```
-
 
 Example 5: Media format seamlessly changes parameters midstream.
 
@@ -382,7 +356,6 @@ The Format Capability API introduces a new container type, struct ast_cap, which
 Example 1: Add format capabilities to a peer.
 
 ```
-
 /* ---OLD: Media formats are represented by a bit in a bit field */
 format_t capabilities = 0;
 capabilities |= AST_FORMAT_ULAW;
@@ -393,11 +366,7 @@ capabilities |= AST_FORMAT_GSM;
  */
 
 ```
-
-
-
 ```
-
 /* ---NEW: Media formats are represented using the ast_format struct and are stored in an ast_cap object. */
 struct ast_format tmp = { 0, };
 
@@ -415,11 +384,9 @@ ast_cap_add(capabilties, &tmp);
 
 ```
 
-
 Example 2: Find joint capabilities between a peer and remote endpoint.
 
 ```
-
 /*---OLD: Peer and remote capabilities are bit fields, no capability attributes can be used. */
 format_t jointcapabilties = 0;
 
@@ -436,11 +403,7 @@ peer->capability |= (AST_FORMAT_ULAW | AST_FORMAT_GSM);
 jointcapabilties = peer->capability & remote_capability
 
 ```
-
-
-
 ```
-
 /*---NEW: Peer and remote capabilities are ast_cap objects. */
 struct ast_cap \*jointcapabilities;
 
@@ -484,32 +447,25 @@ jointcapabilities = ast_cap_joint(peer->capability, remote_capability);
 
 ```
 
-
 Example 3: Separate audio, video, and text capabilities.
 
 ```
-
 /*---OLD: Separate media types are separated by a bit mask. */
 format_t video_capabilities = capabilities & AST_FORMAT_VIDEO_MASK;
 format_t audio_capabilities = capabilities & AST_FORMAT_AUDIO_MASK;
 format_t text_capabilities = capabilities & AST_FORMAT_TEXT_MASK;
 
 ```
-
-
 ```
-
 /*---NEW: Separate media types are returned on a new capabilities structure using ast_cap_get_type() */
 struct ast_cap \*video = ast_cap_get_type(capabilities, AST_FORMAT_TYPE_AUDIO);
 struct ast_cap \*voice = ast_cap_get_type(capabilities, AST_FORMAT_TYPE_VIDEO);
 struct ast_cap \*text = ast_cap_get_type(capabilities, AST_FORMAT_TYPE_TEXT);
 
 ```
-
 ## Ast Format Capability API Defined
 
 ```
-
 /*! Capabilities are represented by an opaque structure statically defined in format_capability. */
 struct ast_cap;
 
@@ -625,7 +581,6 @@ void ast_cap_from_iax2(uint64_t src, struct ast_cap \*dst);
 
 ```
 
-
 # IAX2 Ast Format API Compatibility
 
 IAX2 represents media formats the same way Asterisk currently does using a bit field. This allows Asterisk to communicate format capabilities over IAX2 using the exact same representation Asterisk uses internally. This relationship between Asterisk and IAX2 breaks with the introduction of the ast_format and ast_cap structures though. In order for Asterisk to maintain compatiblity with IAX2 a conversion layer must exist between the previous format representation and the new format representation. This conversion layer will be limited to the formats defined at the moment the media format representation in Asterisk changes to use the ast_format structure. As new media formats are introduced, they must be added to this conversion layer in order to be transported over IAX2. Any media formats requiring the use of media attributes may have to be excluded from this conversion depending on their complexity. Eventually the number of media formats that can be represented in IAX2 will be exhasted. At that point it must be decided to either accept that limitation or alter the protocol in a way that will expand it to take advantage of Asterisk's new format capabilities. This proposal is not defining a change any changes to the IAX2 protocol.
@@ -658,9 +613,7 @@ Table Terms
 
 \*Original Sampling:\* The original format is translated to a format of similar quality with little to no loss of information. Examples of this term would be an audio codec being translated to a format equivalent in quality of the original one, a video codec being translated to a format which preserves all the original information present, and an image being translated to another format preserving the same resolution and color depth.
 
-
 ```
-
 --- Lossless Source Translation Costs
 400 [lossless -> lossless] original sampling
 600 [lossless -> lossy] original sampling
@@ -681,54 +634,44 @@ Table Terms
 
 ```
 
-
 ### Translation Path Examples
 \*Example 1:\* Downsampling g722 to ulaw using signed linear as an intermediary step. Notice that using two lossless conversions is more expensive than downsampling g722 directly to 8khz slin.
 
 ```
-
 [g722->slin16->slin->ulaw] 900+850+600 = 2350
 [g722->slin->ulaw] 960+600 = 1560 wins
 
 ```
 
-
 \*Example 2:\* Direct lossy to loss translation using ulaw to alaw. Notice how the direct path between uLaw and aLaw beats using the intermediary slin step.
 
 ```
-
 [ulaw->slin->alaw] 900+600 = 1500
 [ulaw->alaw] 945 = 945 wins
 
 ```
 
-
 \*Example 3:\* Complex resampling of siren14 to siren7 using g722 as an intermediary step. Notice how downsamping all the way to 8khz signed linear loses to the path that only requires downsampling to 16khz signed linear.
 
 ```
-
 [siren14->slin->g722->slin16->siren7] 960+825+900+600 = 3285
 [siren14->slin16->g722->slin16->siren7] 960+600+900+600 = 3060 wins
 
 ```
 
-
 \*Example 4:\* Complex resampling using siren14 to a fake 32khz lossy codec. Notice how siren14->slin16 has a 830 cost while siren14-slin8 has 831. This allows translations within the same category to be weighted against each other to produce the best quality.
 
 ```
-
 [siren14->slin->Fake 32khz lossy Codec] 961+825 = 1786
 [siren14->slin16->Fake 32khz lossy Codec] 960+825 = 1785 wins
 
 ```
-
 
 ### Translator Costs Defined. 
 
 Note that the table costs actually defined in the code are larger than the ones discussed so far by a factor of 1000.
 
 ```
-
 /*!
  * \brief Translator Cost Table definition.
  *
@@ -799,7 +742,6 @@ enum ast_trans_cost_table {
 
 ```
 
-
 ### Creation of Translation Path Matrix
 
 Most least cost algorithms take a matrix as input. The current code's translation path matrix is represented by a 2 dimensional array of translation path structures. The current matrix will not change structurally, but there are some complications involved. The current code accesses translation paths from the matrix using index values which represent individual formats. The index values are computed by converting the format's bit representation to a numeric value. Since the numeric representation of a format bit has to be between 1 and 64, the maximum size of the bit field in use, the numeric representation works as an index for the current two dimensional matrix. With the introduction of the ast_format structure, this conversion between a format's unique id and the a matrix index value is not clean. To account for this complication a hash table mapping every format id to a matrix index value will be used.
@@ -808,9 +750,7 @@ Most least cost algorithms take a matrix as input. The current code's translatio
 
 The Floyd-Warshall algorithm will be the least cost algorithm in use. At its core, the current translation path building code uses this algorithm but has a few layers of complexity added on top of the base algorithm to deal with translation paths between audio codecs of differing sample rates. With the introduction of the new translation cost table, this additional complexity is completely stripped away from the algorithm. Now the translation costs are computed with translation quality and efficiency in mind, which abstracts these concepts away from least cost algorithm in use.
 
-
 ```
-
 FloydWarshall ()
  for k := 1 to n
  for i := 1 to n
@@ -818,7 +758,6 @@ FloydWarshall ()
  path[i][j] = min (path[i][j], path[i][k]+path[k][j]);
 
 ```
-
 
 ## Translator Redundancy and Failover
 
@@ -830,9 +769,7 @@ In order to prioritize redundant translators, computational cost will be used. F
 
 Translators are currently defined by a simple set of functions (constructor, destructor, framein, frameout) coupled with a source and destination media format to translate between. There is not much that needs to be changed about this interface except that the source and destination formats must be converted to be ast_format structures in all the existing code, and each translator must provide a cost value. There will be a table available to guide exactly what cost value to use. In order to make any future changes to the cost table effortless, defined values will be used when assigning cost to a translator. Otherwise this interface is in great shape for the changes ahead.
 
-
 ```
-
 /* each format must be declared statically no */
 static struct ast_format slin16;
 static struct ast_format g722;
@@ -870,7 +807,6 @@ static int load_module(void)
 }
 
 ```
-
 
 # Handling Multiple Media Streams
 ## Problem Overview
@@ -921,7 +857,6 @@ If a channel driver is capable of negotiating more streams than can be represent
 
 Since Asterisk supports multiple protocols with various capabilities, all the auxiliary streams that can be used anywhere in Asterisk must be defined at compile time. This means when a channel driver is extended to make use of a new type of auxiliary stream, that stream must be defined with a stream id that uniquely represents it across the entire code base. This is the only way to keep the different types of auxiliary streams and what they are used for consistent across all modules.
 
-
 ```
  
 
@@ -943,9 +878,7 @@ enum ast_channel_stream_id {
 
 As chan_sip receives individual stream payloads and creates ast_frames to pass into the core, each frame's stream id is marked with the ast_channel_stream_id it belongs to. Any channel driver or applications that gets passed an audio or video frame belonging to one of these newly defined auxiliary streams that does not support it will ignore it.
 
-
 ```
-
 
 ### Dynamic Streams
 
@@ -954,9 +887,7 @@ It is possible that Asterisk will need the ability to pass through streams conta
 
 ## Ast Channel Stream API Defined
 
-
 ```
-
 /*! \brief Definition of opaque channel stream structur */
 struct ast_channel_stream {
  /*! represents the stream typ */
@@ -974,11 +905,7 @@ struct ast_channel_stream {
 };
 
 ```
-
-
-
 ```
-
 
 /*! \brief stream identifier structure. Present on both ast_frame
  * and ast_channel_stream structure.
@@ -1012,9 +939,7 @@ int ast_channel_get_write_format(struct ast_channel \*chan, enum ast_channel_str
 
 int ast_channel_get_read_format(struct ast_channel \*chan, enum ast_channel_stream_id id, struct ast_format \*result)
 
-
 ```
-
 
 ## Code Change Examples
 
@@ -1023,7 +948,6 @@ This sections shows how the Ast Channel Stream API replaces existing usage in As
 Example 1: A channel driver creating a new channel and initializing the default audio stream's formats and capabilities.
 
 ```
-
 chan->nativeformats = capabilty;
 chan->readformat = best_format;
 chan->rawreadformat = best_format;
@@ -1031,34 +955,23 @@ chan->writeformat = best_format;
 chan->rawwriteformat = best_format;
 
 ```
-
-
-
 ```
-
 ast_channel_set_native_cap(chan, AST_STREAM_DEFAULT_AUDIO, capability);
 ast_channel_init_write_format(chan, AST_STREAM_DEFAULT_AUDIO, best_format);
 ast_channel_init_read_format(chan, AST_STREAM_DEFAULT_AUDIO, best_format);
 
 ```
 
-
 Example 2: Setting the read format on a channel.
 
 ```
-
 ast_set_read_format(chan, format);
 
 ```
-
-
-
 ```
-
 ast_set_read_format(chan, AST_STREAM_DEFAULT_AUDIO, format);
 
 ```
-
 
 # Media Format with Attributes User Configuration
 
@@ -1066,9 +979,7 @@ With the addtion of media formats with attributes, users will need a way to repr
 
 \*Example 1\*. SILK is capable of several different sample rates. If a peer wants to negotiate only using SILK in a narrow band format, a custom format must be created to represent this.
 
-
 ```
-
 /* Limit negotiation of SILK to only 8khz and 12khz */
 [silk_nb]
 type=silk
@@ -1084,13 +995,8 @@ samplerates=16000,24000
 type=silk
 samplerates=8000,12000,16000,24000
 
-
 ```
-
-
-
 ```
-
 
 /* Define a peer using only the narrow band custom SILK format definitio */
 [sip_peer]
@@ -1101,24 +1007,17 @@ allow=silk_nb
 
 ```
 
-
 \*Example 2\*. H.264 is capable of negotiating a wide range of attributes. If specific attributes are to be negotiated, a custom format must be created to represent this.
 
-
 ```
-
 /* H.264 at vga or svga resolutions, 30 frames per second */
 [h264_custom1]
 type=h264
 res=vga,svga
 framerate=30
 
-
 ```
-
-
 ```
-
 
 /* Define a peer using the new h264_custom1 custom format type */
 [sip_peer]
@@ -1129,7 +1028,6 @@ allow_ulaw
 allow=h264_custom1
 
 ```
-
 
 Notice from these examples that both the SILK and H264 custom formats are defined using fields specific to their format. Each format will define what fields are applicable to them. If there are common fields used for several different media formats, those fields should be named in a consistent way across all the media formats that use them. Every format allowing custom media formats to be defined must be documented in codecs.conf along with all the available fields.
 

@@ -27,21 +27,21 @@ N
 
 The letter **N** or **n** matches any digit from 2-9.
 
- 
+
 
 Ranges used in Pattern Matching
 ===============================
 
 A numeric range can be used to match against a dialed number. This is also called a Character Set
 
- 
+
 
 [1237-9]
 --------
 
 This pattern matches any digit or letter in the brackets. In this example, the pattern will match: 1,2,3,7,8,9
 
- 
+
 
 Wilcards used in Pattern Matching
 =================================
@@ -51,40 +51,28 @@ The following special characters are considered wildcards
 * . The '.' character matches one or more characters
 * ! The '!' character matches zero or more characters immediately
 
- 
 
-The exclamation mark wildcard (!), behaves specially and will be further explained below in 'Other Special Characters' below.
+
+The exclamation mark wildcard (!), behaves specially and will be further explained below in 'Other Special Characters' below.
 
 Please make sure to read 'Be Careful With Wildcards in Pattern Matches' below.
 
 
 
 
- 
+
 
 Basic Example
 =============
 
 Now let's look at a sample pattern. If you wanted to match all four-digit numbers that had the first two digits as six and four, you would create an extension that looks like:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 exten => _64XX,1,SayDigits(${EXTEN})
 
-
 ```
 
-
-In this example, each **X** represents a single digit, with any value from zero to nine. 
+In this example, each **X** represents a single digit, with any value from zero to nine.
 
 The above pattern will match the following examples:
 
@@ -100,23 +88,12 @@ Complex Examples
 
 Lets use some Character Sets and Wildcards
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 exten => _64X[4-9],1,SayDigits(${EXTEN})
 exten => _[6-4]4[4-9],1,SayDigits(${EXTEN})
 exten => _64.,1,SayDigits(${EXTEN})
 
 ```
-
 
 The first example: The first must be a six, the second digit must be a four, the third digit can be anything from zero to nine, and the fourth digit must be between four and nine
 
@@ -137,7 +114,7 @@ You can also use ranges within square brackets. For example, **[1-468]** would m
 !!! note 
     The X, N, and Z convenience notations mentioned earlier have no special meaning within a set.
 
-    The only characters with special meaning within a set are the '-' character, to define a range between two characters, the  '\' character to escape a special character available within a set, and  
+    The only characters with special meaning within a set are the '-' character, to define a range between two characters, the  '\' character to escape a special character available within a set, and  
 
 
       
@@ -192,17 +169,7 @@ Asterisk uses a simple set of rules to sort the extensions and patterns so that 
 
 Let's look at an example to better understand how this works. Let's assume Alice dials extension **6421**, and she has the following patterns in her dialplan:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 exten => _6XX1,1,SayAlpha(A)
 exten => _64XX,1,SayAlpha(B)
 exten => _640X,1,SayAlpha(C)
@@ -211,9 +178,7 @@ exten => _64NX,1,SayAlpha(E)
 exten => _6[45]NX,1,SayAlpha(F)
 exten => _6[34]NX,1,SayAlpha(G)
 
-
 ```
-
 
 Can you tell (without reading ahead) which one would match?
 
@@ -228,9 +193,7 @@ Using the sorting rules explained above, the extensions sort as follows:
   
 Sorted extensions  
 
-
 ```
-
 exten => _640X,1,SayAlpha(C)
 exten => _64NX,1,SayAlpha(E)
 exten => _64XX,1,SayAlpha(B)
@@ -239,25 +202,13 @@ exten => _6[45]NX,1,SayAlpha(F)
 exten => _6XX1,1,SayAlpha(A)
 exten => _6.,1,SayAlpha(D)
 
-
 ```
-
 
 When Alice dials **6421**, Asterisk searches through its list of sorted extensions and uses the first matching extension. In this case **_64NX** is found.
 
 To verify that Asterisk actually does sort the extensions in the manner that we've shown, add the following extensions to the **[users]** context of your own dialplan.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 exten => _6XX1,1,SayAlpha(A)
 exten => _64XX,1,SayAlpha(B)
 exten => _640X,1,SayAlpha(C)
@@ -266,23 +217,11 @@ exten => _64NX,1,SayAlpha(E)
 exten => _6[45]NX,1,SayAlpha(F)
 exten => _6[34]NX,1,SayAlpha(G)
 
-
 ```
-
 
 Reload the dialplan, and then type **dialplan show 6421@users** at the Asterisk CLI. Asterisk will show you all extensions that match in the **[users]** context. If you were to dial extension **6421** in the **[users]** context the first found extension will execute.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 server*CLI> dialplan show 6421@users
 [ Context 'users' created by 'pbxp_config' ]
  '_64NX' => 1. SayAlpha(E) [pbx_config]
@@ -294,20 +233,8 @@ server*CLI> dialplan show 6421@users
 
 -= 6 extensions (6 priorities) in 1 context. =-
 
-
 ```
-
-
-
-
----
-
-  
-  
-
-
 ```
-
 server*CLI> dialplan show users
 [ Context 'users' created by 'pbx_config' ]
  '_640X' => 1. SayAlpha(C) [pbx_config]
@@ -320,9 +247,7 @@ server*CLI> dialplan show users
 
 -= 7 extensions (7 priorities) in 1 context. =-
 
-
 ```
-
 
 You can dial extension **6421** to try it out on your own.
 
@@ -337,15 +262,12 @@ You can dial extension **6421** to try it out on your own.
   
   
 
-
 ```
-
 exten => 6410,1,SayDigits(987)
 exten => _641X,1,SayDigits(12345)
 exten => _641X,n,SayDigits(54321)
   
 ```
-
 
 ---
 
@@ -354,42 +276,29 @@ If you were to dial extension **6410**, you'd hear "nine eight seven five four t
 
 We strongly recommend you make the **Hangup()** application be the last priority of any extension to avoid this behaviour, unless you purposely want to fall through to a less specific match.
 
-
 ```
-
 
 Matching on Caller ID
 =====================
 
 Within an extension handler, it is also possible to match based upon the Caller ID of the incoming channel by appending a forward slash to the dialed extension or pattern, followed by a Caller ID pattern to be matched. Consider the following example, featuring phones with Caller IDs of 101, 102 and 103.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 exten => 306,1,NoOp()
 same => n,Background(goodbye)
 same => n,Hangup()
- 
+
 exten => 306/_101,1,NoOp()
 same => n,Background(year)
 same => n,Hangup()
- 
+
 exten => 306/_102,1,NoOp()
 same => n,Background(beep)
 same => n,Hangup()
 
 ```
 
-
-The phone with Caller ID 101, when dialing 306, will hear the prompt "year" and will be hung up.  The phone with Caller ID 102, when dialing 306, will hear the "beep" sound and will be hung up.  The phone with Caller ID 103, or any other caller, when dialing 306, will hear the "goodbye" prompt and will be hung up.
+The phone with Caller ID 101, when dialing 306, will hear the prompt "year" and will be hung up.  The phone with Caller ID 102, when dialing 306, will hear the "beep" sound and will be hung up.  The phone with Caller ID 103, or any other caller, when dialing 306, will hear the "goodbye" prompt and will be hung up.
 
 
 
@@ -402,9 +311,7 @@ The phone with Caller ID 101, when dialing 306, will hear the prompt "year" and 
   
   
 
-
 ```
-
 [unexpected-jump-test]
 
 exten => s/_1XX,1,Set(CALLERID(num)=200) ; <- Example call starts here
@@ -422,8 +329,5 @@ same => 4,SayDigits(4)
 
 You'd expect the call with Caller ID 100 to hang up, but instead you'd hear Asterisk saying "two, three, four".  
 
-
-
 ```
-
 

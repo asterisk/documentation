@@ -76,18 +76,14 @@ Our configuration file `my_module.conf` may look something like this:
   
 my_module.conf  
 
-
 ```
-
 
 [general]
 foobar = True
 foo = 1
 bar = Some string value
 
-
 ```
-
 
 So that's fairly straight forward. How would we consume it in a module in Asterisk?
 
@@ -98,17 +94,7 @@ my_module Resource Management
 
 A `my_module` that uses these values may look something like the following. We'll start with the basic structure, and then explore the actual loading and parsing of the configuration.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 Cmy_module
 #include "asterisk.h"
 
@@ -181,9 +167,7 @@ AST_MODULE_INFO(ASTERISK_GPL_KEY, AST_MODFLAG_LOAD_ORDER, "my_module",
  .load_pri = AST_MODPRI_DEFAULT,
 );
 
-
 ```
-
 
 That's fairly simple. So, what do we have?
 
@@ -197,17 +181,7 @@ That's fairly simple. So, what do we have?
 
 So, let's see what `load_configuration` might look like.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 Cmy_module - load_configuration
 /*!
  * \internal \brief Load the configuration information
@@ -280,9 +254,7 @@ cleanup:
  return res;
 }
 
-
 ```
-
 
 The function `load_configuration` boils down to two operations:
 
@@ -308,18 +280,14 @@ First, let's assume that our module is loaded and running with the configuration
   
 A Bad my_module.conf  
 
-
 ```
-
 
 [general]
 foobar = False
 foo = Oh snap I'm not an integer
 bar = I'm a new string value
 
-
 ```
-
 
 Since `foo` is a string and not an integer, the `load_configuration` function will fail and cause the module reload operation to be declined. Ideally, if that happens, none of the values in the module should change - we don't want operations currently using the module to start having weird behavior just because an administrator entered some invalid data. What would the actual state of the module be?
 
@@ -334,17 +302,13 @@ Well, since the variables will most likely be parsed in the order that they appe
   
 Resulting Values in the Module after the Failed Load  
 
-
 ```
-
 
 foobar = False
 foo = 1
 bar = Some string value
 
-
 ```
-
 
 Yikes.
 
@@ -352,7 +316,7 @@ Yikes.
 There are of course some things we could do to alleviate this.
 
 
-1. We could decide to try and restore the state of the variables in `my_module` if an error is detected.
+1. We could decide to try and restore the state of the variables in `my_module` if an error is detected.
 2. We could parse the configuration values into a temporary object, and only set the values of the module once all of the application level logic has been passed.
 
 
@@ -374,17 +338,7 @@ In more complex modules where the configuration information is stored on the hea
 
 We could, of course, put some locking in to help. What would that look like?
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 Cmy_module with Locking
 /*! \brief An integer value, ranging from -32 to 3 */
 static int global_foo;
@@ -493,9 +447,7 @@ cleanup:
 
 /* ... module callback handlers .. */
 
-
 ```
-
 
 So, that's a little bit better, and now we can guarantee that a reload won't mess with `log_module_values`. That's nice, but now we have to put a lock around every access to `foo`, `bar`, and `foobar`. That can get tricky - and expensive - very quickly. And it doesn't solve the previous problem of inconsistent module state when an off nominal reload occurs.
 
@@ -519,7 +471,7 @@ So, we set off with the following goals:
 4. Allow operations currently 'in-flight' to finish with the configuration information they started with.
 
 
-The Configuration Framework in Asterisk 11 provides meets these goals, although things are going to appear a little different.  The module developer has to do a little more work initially in setting up the in-memory objects and providing mappings for those values back to an Asterisk configuration file. The very flexible nature of Asterisk configuration files - and how modules interpret those files - also meant that the Configuration Framework had to be flexible. So we'll take this slow.
+The Configuration Framework in Asterisk 11 provides meets these goals, although things are going to appear a little different.  The module developer has to do a little more work initially in setting up the in-memory objects and providing mappings for those values back to an Asterisk configuration file. The very flexible nature of Asterisk configuration files - and how modules interpret those files - also meant that the Configuration Framework had to be flexible. So we'll take this slow.
 
 
 my_module using the Configuration Framework
@@ -528,17 +480,7 @@ my_module using the Configuration Framework
 
 All configuration information is stored in a reference counted object using Asterisk's `astobj2` API. That object can be replaced in a thread-safe manner with a new configuration information object, as we'll see later. Since the object is reference counted, as long as a consumer of the configuration information holds a reference to that object, it will continue to use the configuration information it started with, even if the configuration information is reloaded.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 Cmy_module's In-Memory Configuration Object
 #define DEFAULT_FOOBAR "True"
 
@@ -576,9 +518,7 @@ static struct aco_type general_option {
  .category_match = ACO_WHITELIST,
 };
 
-
 ```
-
 
 So, that looks different! Let's run down what we have.
 
@@ -598,17 +538,7 @@ So now we have a mapping of our module configuration, and the in-memory represen
 
 Well, as we mentioned previously, the configuration objects are going to be `ao2` objects, using the `astobj2` API. Let's define the constructor and destructor functions for the `module_config` `ao2` object.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 Cmodule_config Constructor/Destructor
 static void \*module_config_alloc(void);
 static void module_config_destructor(void \*obj);
@@ -636,26 +566,14 @@ static void module_config_destructor(void \*obj)
  ao2_cleanup(cfg->general);
 }
 
-
 ```
-
 
 Note that as part of creating the `module_config` object, we also create the general settings object. Because we want the lifetime of the general settings to be tied to the lifetime of the `module_config` object, we explicitly handle its destruction in `module_config_destructor`, rather than pass a destructor function to `ao2_alloc` when we create it.
 
 
 Now, we can associate our general configuration mapping object `general_option` with a configuration file that will provide the data.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 CTying the Mapping Object to a Config File
 /*! \brief A configuration file that will be processed for the modul */
 static struct aco_file module_conf = {
@@ -669,9 +587,7 @@ CONFIG_INFO_STANDARD(cfg_info, module_configs, module_config_alloc,
 
 static struct aco_type \*general_options[] = ACO_TYPES(&general_option);
 
-
 ```
-
 
 That isn't a lot of code, but what is there does a lot of powerful stuff. Let's go down the list:
 
@@ -689,17 +605,7 @@ We're finally ready to start doing some loading! But wait... where's the applica
 
 Rather than have a separate function that provides the application logic with the parsing, we instead tell the Configuration Framework how to extract each configuration value out of the configuration file, and what logic we want applied to it. We do all of this when we first load the module, as shown below.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 CLoading my_module Using the Configuration Framework
 /*! \internal \brief load handler
  * \retval AST_MODULE_LOAD_SUCCESS on success
@@ -748,26 +654,14 @@ load_error:
  return AST_MODULE_LOAD_DECLINE;
 }
 
-
 ```
-
 
 Recall that `foo` has to be an integer between `-32` and `32`, and that `foobar` should be a boolean value with a default value of `1`. Using the Configuration Framework, we've specified how we want those parameters to be extracted in `aco_option_register`. Once we've registered the configuration items to be extracted, all of the configuration parsing and loading into the in-memory objects is handled by `aco_process_config`. Once `aco_process_config` is finished, the `module_configs` `ao2` container will have an instance of `module_config` inside of it populated with the configuration information from the configuration file `my_module.conf`.
 
 
 Now how would we use our in-memory object? And what about reloads?
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 CReloads and Using the Configuration Information
 /*! \internal \brief Log the current module value */
 static void log_module_values(void)
@@ -799,9 +693,7 @@ static int reload_module(void)
  return 0;
 }
 
-
 ```
-
 
 Let's take those in reverse order.
 
@@ -819,17 +711,7 @@ The `unload` handler is shown below with the complete `my_module` source code.
 Complete my_module
 -------------------
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 Cmy_module.c
 
 #include "asterisk.h"
@@ -1006,10 +888,7 @@ AST_MODULE_INFO(ASTERISK_GPL_KEY, AST_MODFLAG_LOAD_ORDER, "my_module",
  .load_pri = AST_MODPRI_DEFAULT,
 );
 
-
-
 ```
-
 
 Conclusions
 ===========

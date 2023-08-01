@@ -22,7 +22,6 @@ Let's say that every extension in your organization has a public DID associated 
 In geolocation.conf, you'd create Location and Profile objects as follows:
 
 ```
-
 [did-xref]
 type = location
 format = URI
@@ -32,33 +31,24 @@ location = URI='https://my.company.com/location_query?DID=${CALLERID(num)}'
 type = profile
 location_reference = did-xref
 
-
 ```
-
 
 In pjsip.conf, you'd add a `geoloc_outgoing_call_profile` parameter to your *outgoing* endpoint definition:
 
-
 ```
-
 [my-provider]
 type = endpoint
 ...
 geoloc_outgoing_call_profile = employees-outbound
 
-
 ```
-
 
 Now let's say that Bob has DID `12125551212` assigned to him and he makes an outgoing call which is routed to "my-provider". Asterisk would automatically add the following header to the INVITE:
 
 ```
-
 Geolocation: <https://my.company.com/location_query?DID=12125551212>
 
-
 ```
-
 
 The recipient could then make a simply query using that URI and get Bob's location in whatever format was agreed upon with you and them.
 
@@ -71,7 +61,6 @@ In this example, we'll use the dialplan apps and functions to decide if we want 
 In extensions.conf:
 
 ```
-
 ; The pre dial handler adds a new profile with a URI location to
 ; the outgoing channel when 911 is dialed and does nothing if another number is dialed.
 [pre-dial-handler]
@@ -87,4 +76,3 @@ exten = _X.,1,NoOp(Outgoing call)
 same = n,Dial(PJSIP/${EXTEN},5,b(pre-dial-handler))
 
 ```
-

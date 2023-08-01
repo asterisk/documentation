@@ -17,25 +17,14 @@ Project Overview
 
 
 
- 
+
 
 Text to Speech is nice. If nothing else, it let's you get a demo off the ground much faster. Doing something like this in ARI:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 POST http://localhost:8088/ari/channels/12345/play/p1?media=tts:dude%20where%20is%20my%20car
 
 ```
-
 
 Is much more preferable than having to record the sound, put it on the file system, and playback the new sound file. Sure, there's no beating Allison for professional sound, but if the goal is just to make a funny noise in a demo, TTS is great.
 
@@ -51,7 +40,7 @@ The goal of this project is two-fold:
 1. Provide a generic TTS engine implementation engine in Asterisk with at least one reference implementation.
 2. Add support to ARI for `/play` operations on a `tts` scheme.
 
- 
+
 
 
 
@@ -59,7 +48,7 @@ The goal of this project is two-fold:
 Requirements and Specification
 ==============================
 
- 
+
 
 Configuration
 -------------
@@ -73,7 +62,7 @@ Configuration
 | Parameter | Description | Type | Default Value |
 | --- | --- | --- | --- |
 | foo | Turns feature foo on or off | Boolean | True |
-| bar | A comma delineated list of bar items (pun intended?) | String |   |
+| bar | A comma delineated list of bar items (pun intended?) | String |   |
 
 ### RealTime schemas
 

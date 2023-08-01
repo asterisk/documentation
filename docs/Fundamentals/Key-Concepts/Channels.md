@@ -76,15 +76,15 @@ Inbound and Outbound Channels
 
 Often in our documentation, troubleshooting and development discussions you'll see mention of inbound or outbound channels. It'll be helpful to define what that means here.
 
-**Inbound channels** are channels created when things outside of Asterisk call **into** Asterisk. This is typically the channel executing [Dialplan](/Configuration/Dialplan).
+**Inbound channels** are channels created when things outside of Asterisk call **into** Asterisk. This is typically the channel executing [Dialplan](/Configuration/Dialplan).
 
 **Outbound channels** are channels created when Asterisk is calling **out** to something outside Asterisk.
 
-The primary exception is with [Local Channels](/Configuration/Channel-Drivers/Local-Channel). In the case of local channels, you'll typically have two local channel legs, one that is treated as outbound and the other as inbound. In this case both are really inside Asterisk, but one is executing dialplan and the other is not. The leg executing dialplan is the one treated as inbound.
+The primary exception is with [Local Channels](/Configuration/Channel-Drivers/Local-Channel). In the case of local channels, you'll typically have two local channel legs, one that is treated as outbound and the other as inbound. In this case both are really inside Asterisk, but one is executing dialplan and the other is not. The leg executing dialplan is the one treated as inbound.
 
 Below we'll diagram a few examples for clarity.
 
- 
+
 
 ![](InboundOutboundChannels.png)
 
@@ -107,7 +107,7 @@ A user runs the [originate](/Asterisk-11-Application_Originate) command from [AM
 Fig 3
 -----
 
-Perhaps a user runs originate again - but this time "channel originate SIP/Alice extension dialbob@internal" from the [CLI](/Operation/Asterisk-Command-Line-Interface). Where dialbob@internal contains dialplan telling Asterisk to dial outbound to SIP/Bob. At first, the created **outbound** channel would look like Fig 2 where it begins to be treated as **inbound** after the device answers the call. At that point, a number of things happen:
+Perhaps a user runs originate again - but this time "channel originate SIP/Alice extension dialbob@internal" from the [CLI](/Operation/Asterisk-Command-Line-Interface). Where dialbob@internal contains dialplan telling Asterisk to dial outbound to SIP/Bob. At first, the created **outbound** channel would look like Fig 2 where it begins to be treated as **inbound** after the device answers the call. At that point, a number of things happen:
 
 * Asterisk creates an outbound local channel into Asterisk and bridges it with the now inbound channel to Alice.
 * Asterisk creates another leg of local channel as "inbound" into Asterisk to execute the dialplan at the extension specified with the originate. This local channel is essentially bridged with some magic to the other local channel.
@@ -118,7 +118,7 @@ For this example demonstrating relationships between channels and other elements
 Channel Variable Inheritance
 ============================
 
-When working with channels you'll almost certainly be touching channel variables. It is useful to note that upon setting a channel variable the level of inheritance between channels can be defined. This is discussed in the [Channel Variables](/Configuration/Dialplan/Variables/Channel-Variables) sub-section [Variable Inheritance](/Configuration/Dialplan/Variables/Channel-Variables/Variable-Inheritance).
+When working with channels you'll almost certainly be touching channel variables. It is useful to note that upon setting a channel variable the level of inheritance between channels can be defined. This is discussed in the [Channel Variables](/Configuration/Dialplan/Variables/Channel-Variables) sub-section [Variable Inheritance](/Configuration/Dialplan/Variables/Channel-Variables/Variable-Inheritance).
 
- 
+
 

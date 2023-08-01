@@ -18,9 +18,7 @@ There are many different types of modules, each providing their own functionalit
   
   
 
-
 ```
-
 mypbx\*CLI> module show 
 Module Description Use Count Status Support Level
 app_adsiprog.so Asterisk ADSI Programming Application 0 Running extended
@@ -33,10 +31,7 @@ app_authenticate.so Authentication Application 0 Running core
 
 ---
 
-
-
 ```
-
 
 Various Module Types
 ====================
@@ -77,7 +72,7 @@ Call event logs are similar to call detail records, but record more detail about
 
 Bridge drivers are used by the bridging architecture in Asterisk, and provide various methods of bridging call media between participants in a call.
 
- 
+
 
 The next sub-sections will include detail on each of the module types.
 

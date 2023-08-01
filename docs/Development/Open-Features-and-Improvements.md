@@ -7,17 +7,7 @@ This is a list pulled on page load from the [issue tracker](https://github.com/a
 
 JIRA filter used for this list:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 project = ASTERISK AND 
 issuetype in (Improvement, "New Feature") AND status in (Open, Reopened,
  Triage) AND NOT reporter in (membersOf("digium")) ORDER BY created DESC
@@ -25,7 +15,6 @@ issuetype in (Improvement, "New Feature") AND status in (Open, Reopened,
 ```
 
 
- 
 
 Community Reported Features and Improvements in Open Status
 

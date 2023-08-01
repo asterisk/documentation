@@ -13,9 +13,9 @@ In our voice mail application we have been creating, we have learned the ins and
 40%On this Page
 
 
-To make the new "greeting" state more interesting, we are going to add some safety to this state by ensuring that the sound we want to play is installed on the system. The [`/sounds`](/Asterisk-13-Sounds-REST-API) resource in ARI provides methods to list the sounds installed on the system, as well as the ability to get specific sound files.
+To make the new "greeting" state more interesting, we are going to add some safety to this state by ensuring that the sound we want to play is installed on the system. The [`/sounds`](/Asterisk-13-Sounds-REST-API) resource in ARI provides methods to list the sounds installed on the system, as well as the ability to get specific sound files.
 
-Asterisk searches for sounds in the `/sounds/` subdirectory of the configured `astdatadir` option in `asterisk.conf`. By default, Asterisk will search for sounds in `/var/lib/asterisk/sounds`. When Asterisk starts up, it indexes the installed sounds and keeps an in-data representation of those sound files. When an ARI application asks Asterisk for details about a specific sound or for a list of sounds on the system, Asterisk consults its in-memory index instead of searching the file system directly. This has some trade-offs. When querying for sound information, this in-memory indexing makes the operations much faster. On the other hand, it also means that Asterisk has to be "poked" to re-index the sounds if new sounds are added to the file system after Asterisk is running.  The Asterisk CLI command "module reload sounds" provides a means of having Asterisk re-index the sounds on the system so that they are available to ARI.
+Asterisk searches for sounds in the `/sounds/` subdirectory of the configured `astdatadir` option in `asterisk.conf`. By default, Asterisk will search for sounds in `/var/lib/asterisk/sounds`. When Asterisk starts up, it indexes the installed sounds and keeps an in-data representation of those sound files. When an ARI application asks Asterisk for details about a specific sound or for a list of sounds on the system, Asterisk consults its in-memory index instead of searching the file system directly. This has some trade-offs. When querying for sound information, this in-memory indexing makes the operations much faster. On the other hand, it also means that Asterisk has to be "poked" to re-index the sounds if new sounds are added to the file system after Asterisk is running.  The Asterisk CLI command "module reload sounds" provides a means of having Asterisk re-index the sounds on the system so that they are available to ARI.
 
 For our greeting, we will play the built-in sound "vm-intro". Here is the code for our new state:
 
@@ -27,9 +27,7 @@ For our greeting, we will play the built-in sound "vm-intro". Here is the code f
   
 greeting_state.py  
 
-
 ```
-
 pytruefrom event import Event
 
 def sounds_installed(client):
@@ -83,10 +81,6 @@ class GreetingState(object):
  self.playback.stop()
 
 ```
-
-
-
-
 ```javascript title="greeting_state.js" linenums="1"
 jstruevar Event = require('./event');
 
@@ -143,10 +137,9 @@ function GreetingState(call) {
  }
  }
 }
- module.exports = GreetingState;
+ module.exports = GreetingState;
 
 ```
-
 
 The `sounds.get()` method employed here allows for a single sound to be retrieved based on input parameters. Here, we simply specify the name of the recording we want to ensure that it exists in some form on the system. By checking for the sound's existence in the initialization of `GreetingState`, we can abort the call early if the sound is not installed.
 
@@ -160,9 +153,7 @@ And here is our updated state machine:
   
 vm-call.py  
 
-
 ```
-
 pytrue#At the top of the file
 from greeting_state import GreetingState
 
@@ -194,10 +185,6 @@ from greeting_state import GreetingState
  self.state_machine.start(greeting_state)
 
 ```
-
-
-
-
 ```javascript title="vm-call.js" linenums="1"
 jstrue//At the top of the file
 var GreetingState = require('./greeting_state');
@@ -223,20 +210,9 @@ this.setup_state_machine = function() {
 
 ```
 
-
 Here is a sample run where the user cuts off the greeting by pressing the '#' key, records a greeting and presses the '#' key, and after listening to the recording presses the '#' key once more.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 Channel PJSIP/200-0000000b recording voicemail for 305
 Entering greeting state
 Cutting off greeting on DTMF #
@@ -249,7 +225,6 @@ Accepted recording voicemail/305/1411503204.75 on DTMF #
 Ending voice mail call from PJSIP/200-0000000b
 
 ```
-
 
 silverseagreenReader Exercise 1solidblackOur current implementation of `GreetingState` does not take language into consideration. The `sounds_installed` method checks for the existence of the sound file, but it does not ensure that we have the sound file in the language of the channel that is in our application.
 
@@ -289,9 +264,7 @@ Here is the implementation of the application.
   
 vm-playback.py  
 
-
 ```
-
 pytrue#!/usr/bin/env python
 
 import ari
@@ -400,10 +373,6 @@ client.on_channel_event('StasisStart', stasis_start_cb)
 client.run(apps=sys.argv[1])
 
 ```
-
-
-
-
 ```javascript title="vm-playback.js" linenums="1"
 jstrue/*jshint node:true */
 'use strict';
@@ -513,7 +482,6 @@ function clientLoaded(err, client) {
 
 ```
 
-
 Quite a bit of this is similar to what we were using for our voice mail recording application. The biggest difference here is that the call has many more methods defined since playing back voice mails is more complicated than recording a single one.
 
 Now that we have the state machine defined and the application written, let's actually write the required new states. First of the new states is the "preamble" state.
@@ -526,9 +494,7 @@ Now that we have the state machine defined and the application written, let's ac
   
 preamble_state.py  
 
-
 ```
-
 pytruefrom event import Event
 import uuid
 
@@ -616,10 +582,6 @@ class PreambleState(object):
  self.call.state_machine.change_state(Event.DTMF_OCTOTHORPE)
 
 ```
-
-
-
-
 ```javascript title="preamble_state.js" linenums="1"
 jstruevar Event = require('./event');
 
@@ -714,7 +676,6 @@ module.exports = PreambleState;
 
 ```
 
-
 `PreambleState` should look similar to the `GreetingState` introduced previously on this page. The biggest difference is that the code is structured to play multiple sound files instead of just a single one. Note that it is acceptable to call `channel.play()` while a playback is playing on a channel in order to queue a second playback. For our application though, we have elected to play the second sound only after the first has completed. The reason for this is that if there is only a single active playback at any given time, then it becomes easier to clean up the current state when an event occurs that causes a state change.
 
 Next, here is the "empty" state code:
@@ -727,9 +688,7 @@ Next, here is the "empty" state code:
   
 empty_state.py  
 
-
 ```
-
 pytruefrom event import Event
 import uuid
 
@@ -782,10 +741,6 @@ class EmptyState(object):
  self.call.state_machine.change_state(Event.PLAYBACK_COMPLETE)
 
 ```
-
-
-
-
 ```javascript title="empty_state.js" linenums="1"
 jstruevar Event = require('./event');
 
@@ -836,7 +791,6 @@ module.exports = EmptyState;
 
 ```
 
-
 This state does not introduce anything we haven't seen already, so let's move on to the "listening" state code:
 
 
@@ -847,9 +801,7 @@ This state does not introduce anything we haven't seen already, so let's move on
   
 listening_state.py  
 
-
 ```
-
 pytruefrom event import Event
 import uuid
 
@@ -934,10 +886,6 @@ class ListeningState(object):
  self.call.state_machine.change_state(Event.DTMF_STAR)
 
 ```
-
-
-
-
 ```javascript title="listening_state.js" linenums="1"
 jstruevar Event = require('./event');
 
@@ -1041,7 +989,6 @@ function ListeningState(call) {
 module.exports = ListeningState;
 
 ```
-
 
 `ListeningState` is where we introduce new playback control concepts. Playbacks have their controlling operations wrapped in a single method, `control()`, rather than having lots of separate operations. All control operations (reverse, pause, unpause, forward, and restart) are demonstrated by this state.
 

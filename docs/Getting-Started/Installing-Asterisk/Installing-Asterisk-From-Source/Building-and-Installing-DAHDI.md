@@ -33,21 +33,11 @@ See [What to Download?](/Getting-Started/Installing-Asterisk/Installing-Asterisk
 
 
 
-On This Page 
+On This Page
 
 Starting with DAHDI-Linux-complete version 2.8.0+2.8.0, all files necessary to install DAHDI are available in the complete tarball. Therefore, all you need to do to install DAHDI is:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 [root@server src]# cd dahdi-linux-complete-2.X.Y+2.X.Y
 
 [root@server dahdi-linux-complete-2.X.Y+2.X.Y]# make
@@ -59,7 +49,6 @@ Starting with DAHDI-Linux-complete version 2.8.0+2.8.0, all files necessary to i
 ```
 
 
- 
 
- 
+
 

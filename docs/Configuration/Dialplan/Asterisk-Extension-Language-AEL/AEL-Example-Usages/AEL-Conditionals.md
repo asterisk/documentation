@@ -5,17 +5,7 @@ pageid: 4816897
 
 AEL supports if and switch statements, like AEL, but adds ifTime, and random. Unlike the original AEL, though, you do NOT need to put curly braces around a single statement in the "true" branch of an if(), the random(), or an ifTime() statement. The if(), ifTime(), and random() statements allow optional else clause.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 context conditional {
  _8XXX => {
  Dial(SIP/${EXTEN});
@@ -68,9 +58,7 @@ context conditional {
  }
 }
 
-
 ```
-
 
 
 

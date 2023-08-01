@@ -19,18 +19,13 @@ If you start Asterisk with the safe_asterisk script, it automatically starts usi
 
 If you're not sure if Asterisk is running with the -g option, type the following command in your shell:
 
-
-
-
 ```bash title=" " linenums="1"
 # ps -C asterisk u
 USER PID %CPU %MEM VSZ RSS TTY STAT START TIME COMMAND
 root 3018 1.1 2.7 636212 27768 pts/1 Sl+ 08:06 0:00 asterisk -vvvvvg -c
 [...]
 
-
 ```
-
 
 The interesting information is located in the last column.
 
@@ -85,9 +80,6 @@ Now that we've verified the core file has been written to disk, the final part i
 
 For extraction, we use a really nice tool, called gdb. To verify that you have gdb installed on your system:
 
-
-
-
 ```bash title=" " linenums="1"
 # gdb -v
 GNU gdb 6.8-debian
@@ -98,11 +90,9 @@ There is NO WARRANTY, to the extent permitted by law. Type "show copying"
 and "show warranty" for details.
 This GDB was configured as "i486-linux-gnu"...
 
-
 ```
 
-
-If you don't have gdb installed, go install gdb. You should be able to install using something like: apt-get install gdb **or** yum install gdb
+If you don't have gdb installed, go install gdb. You should be able to install using something like: apt-get install gdb **or** yum install gdb
 
 
 
@@ -113,21 +103,12 @@ If you don't have gdb installed, go install gdb. You should be able to install u
       
 [//]: # (end-tip)
 
-
-
-
-
 ```bash title=" " linenums="1"
 # gdb -se "asterisk" -ex "bt full" -ex "thread apply all bt" --batch -c core > /tmp/backtrace.txt
 
-
 ```
 
-
 Now load the core file in gdb with the following command. This will also save the output of gdb to the /tmp/backtract.txt file.
-
-
-
 
 ```bash title=" " linenums="1"
 # gdb -se "asterisk" -c core | tee /tmp/backtrace.txt
@@ -139,25 +120,13 @@ Loaded symbols for /usr/lib/asterisk/modules/app_externalivr.so
 #0 0x29b45d7e in ?? ()
 (gdb)
 
-
 ```
-
 
 In order to make extracting the gdb output easier, you may wish to turn on logging using "set logging on". This command will save all output to the default file of gdb.txt, which in the end can be uploaded as an attachment to the bug tracker.
 
 Now at the gdb prompt, type: bt You would see output similar to:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 (gdb) bt
 #0 0x29b45d7e in ?? ()
 #1 0x08180bf8 in ?? ()
@@ -179,25 +148,13 @@ Now at the gdb prompt, type: bt You would see output similar to:
 #17 0x401ec92a in clone () from /lib/libc.so.6
 (gdb)
 
-
 ```
-
 
 The bt's output is the information that we need on the bug tracker.
 
 Now do a bt full as follows:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 (gdb) bt full
 #0 0x29b45d7e in ?? ()
 No symbol table info available.
@@ -238,25 +195,13 @@ No symbol table info available.
 No symbol table info available.
 (gdb)
 
-
 ```
-
 
 The final "extraction" would be to know all traces by all threads. Even if Asterisk runs on the same thread for each call, it could have created some new threads.
 
 To make sure we have the correct information, just do:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 (gdb) thread apply all bt
 
 Thread 1 (process 26252):
@@ -280,9 +225,7 @@ Thread 1 (process 26252):
 #17 0x401ec92a in clone () from /lib/libc.so.6
 (gdb)
 
-
 ```
-
 
 That output tells us crucial information about each thread.
 
@@ -302,28 +245,19 @@ Whenever collecting information about a deadlock it is useful to have additional
 
 
 
-**Use GDB to collect a backtrace:** You can easily attach to a running Asterisk process, gather the output required and then detach from the process all in a single step. Since this gathers information from the running Asterisk process,  you want to make sure you run this command immediately before or after gathering the output of '[core show locks](/Development/Debugging/CLI-commands-useful-for-debugging)'. Execute the following command and upload the resulting backtrace-threads.txt file to the Asterisk issue tracker:
-
-
-
+**Use GDB to collect a backtrace:** You can easily attach to a running Asterisk process, gather the output required and then detach from the process all in a single step. Since this gathers information from the running Asterisk process,  you want to make sure you run this command immediately before or after gathering the output of '[core show locks](/Development/Debugging/CLI-commands-useful-for-debugging)'. Execute the following command and upload the resulting backtrace-threads.txt file to the Asterisk issue tracker:
 
 ```bash title=" " linenums="1"
 # gdb -ex "thread apply all bt" --batch /usr/sbin/asterisk `pidof asterisk` > /tmp/backtrace-threads.txt
 
-
 ```
 
-
 **Collecting output from the "core show locks" CLI command :** After getting the backtrace with GDB, immediately run the following command from your Linux shell:
-
-
-
 
 ```bash title=" " linenums="1"
 # asterisk -rx "core show locks" > /tmp/core-show-locks.txt
 
 ```
-
 
 For more info on: [Locking in Asterisk](/Development/Reference-Information/Other-Reference-Information/Locking-in-Asterisk)
 
@@ -334,36 +268,20 @@ Before uploading your backtraces to the issue tracker, you should double check t
 
 Check your backtrace files to make sure you compiled with **DONT_OPTIMIZE**:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 <value optimized out>
 
-
 ```
-
 
 If you are seeing the above text in your backtrace, then you likely haven't compiled with DONT_OPTIMIZE. The impact of DONT_OPTIMIZE is negligible on most systems, so go ahead and enable it as with optimizations the backtraces are often not useful to the developers. Be sure you've enabled the DONT_OPTIMIZE flag within the Compiler Flags section of menuselect. After doing so, be sure to run 'make && make install' and restart Asterisk.
 
 If you are getting a backtrace for a deadlock then be sure you compiled with **DEBUG_THREADS**. One way to verify this is by checking your backtrace for a thread calling **ast_rentrancy_lock**. For example:
-
-
-
 
 ```bash title=" " linenums="1"
 #2 0x0813c6c7 in ast_reentrancy_lock (lt=0x6b736972) at /usr/local/src/asterisk-11.14/asterisk-11.14.0-rc1/include/asterisk/lock.h:420
  res = 135518668
 
 ```
-
 
 If unsure, simply add the [compiler flag in menuselect](/Getting-Started/Installing-Asterisk/Installing-Asterisk-From-Source/Using-Menuselect-to-Select-Asterisk-Options) and [recompile then reinstall Asterisk](/Getting-Started/Installing-Asterisk/Installing-Asterisk-From-Source/Building-and-Installing-Asterisk).
 

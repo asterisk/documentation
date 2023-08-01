@@ -17,7 +17,7 @@ pageid: 30279846
 Overview
 ========
 
-The following set of wiki pages are meant to serve as an idea discussion pad, to bring up various issues and possibilities relating to the idea of creating a federated Asterisk installation. While Asterisk SCF as a wonderful idea as to what federated Asterisk installation should accomplish, its overall installation and integration path eluded from most Asterisk users and platform developers. The general construct should take into consideration the following: 
+The following set of wiki pages are meant to serve as an idea discussion pad, to bring up various issues and possibilities relating to the idea of creating a federated Asterisk installation. While Asterisk SCF as a wonderful idea as to what federated Asterisk installation should accomplish, its overall installation and integration path eluded from most Asterisk users and platform developers. The general construct should take into consideration the following:
 
 * Rely on existing Asterisk Standard/LTS distribution for the construct.
 * Avoid paradigm changes as much as possible. Introduction of new ones is ok, as long as they don't clash with the old.
@@ -66,7 +66,7 @@ This approach dictates the following paradigm:
 * **Cool factor: low and boring!**
  |
 
- 
+
 
 Partial Data Distribution with Full Service Distribution
 --------------------------------------------------------

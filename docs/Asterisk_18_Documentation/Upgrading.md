@@ -57,7 +57,7 @@ title: Upgrading to Asterisk 18
 	This aligns more with how variables are specified when sending a message, as  
 	 well as other variable lists in ARI.
 
- 
+
 
 For a complete list of upgrade notes please see the included [UPGRADE.txt document](https://raw.githubusercontent.com/asterisk/asterisk/18/UPGRADE.txt).
 

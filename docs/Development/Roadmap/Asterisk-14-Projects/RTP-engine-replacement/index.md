@@ -47,7 +47,7 @@ In addition to notes on current RTP standards, I also have some rambling notes o
 An Ideal RTP stack for Asterisk
 ===============================
 
-There's a difference between an "ideal RTP stack" and an "ideal RTP stack for Asterisk". An ideal RTP implementation would be one that has a minimal interface between channel driver and media. A channel driver would gather a media description into some format understood by the RTP layer, and the RTP layer would use that information to set itself up as required (in other words, "smart media layer, dumb channel driver"). Unfortunately, the model of using RTP in Asterisk is to have channel drivers each parse their media descriptions and communicate individual settings to the RTP layer, sometimes hiding the reason for specific actions being taken (in other words, "smart channel driver, dumb media layer"). Asterisk is already hugely dependent on the high-level RTP engine API provided in `include/asterisk/rtp_engine.h.` Moving to a separate API would require major overhauls in all channel technologies that use RTP for their media. This makes a new media API not an option for the time being. So making an ideal RTP stack for Asterisk means the following:
+There's a difference between an "ideal RTP stack" and an "ideal RTP stack for Asterisk". An ideal RTP implementation would be one that has a minimal interface between channel driver and media. A channel driver would gather a media description into some format understood by the RTP layer, and the RTP layer would use that information to set itself up as required (in other words, "smart media layer, dumb channel driver"). Unfortunately, the model of using RTP in Asterisk is to have channel drivers each parse their media descriptions and communicate individual settings to the RTP layer, sometimes hiding the reason for specific actions being taken (in other words, "smart channel driver, dumb media layer"). Asterisk is already hugely dependent on the high-level RTP engine API provided in `include/asterisk/rtp_engine.h.` Moving to a separate API would require major overhauls in all channel technologies that use RTP for their media. This makes a new media API not an option for the time being. So making an ideal RTP stack for Asterisk means the following:
 
 * A new RTP engine to replace `res_rtp_asterisk` is fine.
 * Augmentations to the current RTP engine API are fine.
@@ -70,7 +70,7 @@ You'll see some Asterisk-specific terminology used on this page. Here are defini
 Media Flow: Incoming Media
 --------------------------
 
-Media flow refers to the regular incoming and outgoing RTP and RTCP packets that occur after an RTP session has been set up. This is the easier of the two parts to rewrite in Asterisk because it mostly involves replacing `res_rtp_asterisk` with Steel Zebra. For this, we'll focus on requirements for incoming and outgoing media.
+Media flow refers to the regular incoming and outgoing RTP and RTCP packets that occur after an RTP session has been set up. This is the easier of the two parts to rewrite in Asterisk because it mostly involves replacing `res_rtp_asterisk` with Steel Zebra. For this, we'll focus on requirements for incoming and outgoing media.
 
 In general when processing inbound RTP, components will be concerned with either transport information, packet information, or payload information (or some combination). Incoming RTP and RTCP will go through the following phases:
 
@@ -203,7 +203,7 @@ A LATER EDIT: After discussing native RTP bridging some, the verdict is that alt
 
 #### ICE
 
-ICE deserves its own special section because it's so different from everything else that goes on, plus there is a desire for the RTP engine to be trickle ICE capable. `res_rtp_asterisk` has a few flaws with regards to ICE. To name a few:
+ICE deserves its own special section because it's so different from everything else that goes on, plus there is a desire for the RTP engine to be trickle ICE capable. `res_rtp_asterisk` has a few flaws with regards to ICE. To name a few:
 
 * ICE candidates are gathered for every RTP instance no matter whether ICE is actually going to be used or not. This is wasteful since it can delay call setup considerably when communicating with STUN and TURN servers.
 * ICE relies on PJNATH directly.
@@ -213,7 +213,7 @@ ICE deserves its own special section because it's so different from everything e
 
 We should do our best to ensure that none of these flaws are duplicated in the new RTP engine.
 
-As was mentioned in the bulleted list above, `res_rtp_asterisk`'s ICE implementation relies heavily on direct usage of PJNATH.  This is fine, except for the fact that PJNATH does not currently support trickle ICE. At some point we will want to add trickle ICE support to our RTP implementation. That may mean adding trickle ICE support into PJNATH and pushing the change to PJProject. Then again, if PJNATH appears to be fundamentally incapable of the necessary changes to implement trickle ICE, then writing our own ICE implementation may be the path forward. In the meantime, wrapping the necessary parts of PJNATH insde a higher-level set of ICE functions is a sensible idea. This way, the underlying implementation can be changed out without the need for huge rewrites by the higher-level components. Note that when I mention an intermediary layer, I don't necessarily mean a formal API with pluggable backends, though that may end up being the way we go.
+As was mentioned in the bulleted list above, `res_rtp_asterisk`'s ICE implementation relies heavily on direct usage of PJNATH.  This is fine, except for the fact that PJNATH does not currently support trickle ICE. At some point we will want to add trickle ICE support to our RTP implementation. That may mean adding trickle ICE support into PJNATH and pushing the change to PJProject. Then again, if PJNATH appears to be fundamentally incapable of the necessary changes to implement trickle ICE, then writing our own ICE implementation may be the path forward. In the meantime, wrapping the necessary parts of PJNATH insde a higher-level set of ICE functions is a sensible idea. This way, the underlying implementation can be changed out without the need for huge rewrites by the higher-level components. Note that when I mention an intermediary layer, I don't necessarily mean a formal API with pluggable backends, though that may end up being the way we go.
 
 Trickle ICE has been mentioned a few times, and the current RTP design allows for trickle ICE to be integrated without too much trouble. The main changes for trickle ICE are in the internal ICE state machine rather than for users of ICE. The other changes are at the signaling level to indicate new trickled candidates and to indicate support for trickle ICE. The biggest change required at the RTP level is to be able to call a glue callback of some sort whenever it is time to trickle a new local ICE candidate to the far end.
 

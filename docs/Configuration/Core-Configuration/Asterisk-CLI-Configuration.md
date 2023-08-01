@@ -30,7 +30,7 @@ There are a few commands relevant to the CLI configuration itself.
 * **cli show permissions** - shows configured CLI permissions
 * **cli show aliases** - shows configured CLI command aliases
 
- 
+
 
 Changing the CLI Prompt
 =======================
