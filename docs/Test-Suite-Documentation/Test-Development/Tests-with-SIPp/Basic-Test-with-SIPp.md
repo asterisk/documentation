@@ -20,17 +20,7 @@ Lets assume we would like to test a nominal SIP REGISTER request. A very simple 
 SIPp Scenario
 -------------
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <scenario name="UAC Register">
@@ -56,9 +46,7 @@ SIPp Scenario
  <recv response="200" rtd="true" />
 </scenario>
 
-
 ```
-
 
 Asterisk Configuration
 ----------------------
@@ -66,17 +54,7 @@ Asterisk Configuration
 
 Since the SIPp scenario is attempting a REGISTER request for v4-in, we must have a corresponding sip.conf configuration file defining the peer.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 
 [general]
 bindaddr=[::]:5060
@@ -85,18 +63,13 @@ bindaddr=[::]:5060
 type=friend
 host=dynamic
 
-
 ```
-
 
 Asterisk Test Suite run-test
 ----------------------------
 
 
 The Asterisk Test Suite provides a class, SIPpTest, that inherits from TestCase and will automatically run a set of SIPp scenarios. The class looks for the scenarios in the 'sipp' folder and will execute the scenarios in parallel on a single instance of Asterisk. The results of the test are directly related to the success/failure of the SIPp scenario - if all scenarios pass, the test passes; if any scenario fails, the test fails. Creating a *run-test* script that executes a SIPp scenario is thus exceedingly simple.
-
-
-
 
 ```bash title=" " linenums="1"
 #!/usr/bin/env python
@@ -131,9 +104,7 @@ def main():
 if __name__ == "__main__":
  sys.exit(main())
 
-
 ```
-
 
 
 

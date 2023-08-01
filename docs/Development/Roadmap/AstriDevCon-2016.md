@@ -10,7 +10,7 @@ AstriDevCon was held on  at the Renaissance Phoenix Glendale Hotel and Spa in Gl
 
 ![](Devcon3-1.jpg)
 
-Link to [panoramic view of the room](http://sphereshare.net/#!/s/d07e8e3ef0332ab8737854fd0ec4cd74) at the time.
+Link to [panoramic view of the room](http://sphereshare.net/#!/s/d07e8e3ef0332ab8737854fd0ec4cd74) at the time.
 
 Attendees
 ---------
@@ -19,8 +19,8 @@ Attendees
 * David Duffett - UK - DIgium
 * Sean Pimental - US - Digium
 * Alex Goodman - Axia Technology partners
-* John Harden - Axia Technology partners
-* Brad Watkins - Axia Technology partners
+* John Harden - Axia Technology partners
+* Brad Watkins - Axia Technology partners
 * David Al-khadhairi - USAN
 * Daniel Collins - USAN
 * Hideyuki Yamashita - NTT Japan
@@ -107,7 +107,7 @@ Attendees gave some reasons why they or their customers haven't moved from chan_
 Digium has released codec_opus! Digium implemented a codec_opus as a binary with anonymous stats reporting as a conservative measure for legal protection. Digium didn't write the opus code from scratch, the SDK was used. If community members are aware of specific pitfalls from their own interop testing with opus, they should report the issues and Digium can address it.
 
 Q: What's the deal with the anonymous channel usage reporting in codec_opus?  
-A: <http://blogs.digium.com/2016/09/30/opus-in-asterisk/>
+A: <http://blogs.digium.com/2016/09/30/opus-in-asterisk/>
 
 10:15AM (BREAK)
 
@@ -152,11 +152,11 @@ Then, topics we'll try to get to:
 
 Note that the demo system for STEAK will be shut down by the end of the year.
 
-STEAK project home: <http://steakconferencing.de/> 
+STEAK project home: <http://steakconferencing.de/>
 
 Pages from the project site were used as slides during the presentation. It covers most of the information presented.
 
-Code: <https://github.com/steakconferencing>
+Code: <https://github.com/steakconferencing>
 
 Links to relevant Asterisk patches:
 
@@ -187,7 +187,7 @@ Afternoon Session
 
 ### Sylvain and Sebastien - XiVO and ARI
 
-Slides: <http://fr.slideshare.net/SylvainBoily2/ari-xivo-astricon2016>
+Slides: <http://fr.slideshare.net/SylvainBoily2/ari-xivo-astricon2016>
 
 Wants to see in ARI:
 
@@ -223,26 +223,26 @@ Sean McCord - ARI playbacks fail silently (if file doesn't exist), Josh had a co
 
 ### Nicolas Bouliane - Scaling Asterisk Horizontally
 
-Slides: <NicoAstriDevCon.pdf>
+Slides: <NicoAstriDevCon.pdf>
 
 Q: Torrey Searle - What is the motivation to move from Cassandra to ISPD?  
 A: Timing/delay with endpoint registration between machines and lack of control over cache in Asterisk.
 
 Q: Sean McCord - Why are you having registrations go directly to Asterisk?  
-A:  They don't. Registrations go through BGW first. (kamailio, etc)
+A:  They don't. Registrations go through BGW first. (kamailio, etc)
 
 Q: Matt Jordan - How many people in the room have had to tackle a similar problem?  
- A: ~4-5 people. (show of hands)
+ A: ~4-5 people. (show of hands)
 
 Sean McCord - Says res_pjsip makes this so much easier by utilizing AORs.
 
 Q: Is ISPD like RabbitMQ ?  
-A: No, and not open source yet
+A: No, and not open source yet
 
 Q: What is the gain on efficiency?  
 A:They didn't have a big focus on efficiency; mainly on destroy the association between endpoint and Asterisk system. Abstracting out to dealing with pools of resources.
 
- 
+
 
 1:45PM
 
@@ -273,7 +273,7 @@ Swagger version and ARI
 * Jared suggests moving to [newer OAI](https://openapis.org/specification).
 * Probably wait for Ast 15 to make any big breaking changes
 
- Can we record to a remote destination?
+ Can we record to a remote destination?
 
 * Maybe?
 * Show of hands , how many doing speech recognition in core business? About ~8 hands out of attending.
@@ -307,7 +307,7 @@ Should we enforce a requirement for tests on all relevant contributions?
 
 * No consensus, but leaning towards no. We don't want to scare away too many people. Perhaps we should be more lenient up front to help people come into the community and then enforce more as people participate regularly.
 
- 
+
 
 #### SIP issues:
 

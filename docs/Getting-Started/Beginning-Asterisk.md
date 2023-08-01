@@ -11,10 +11,10 @@ Asterisk is…
 * running on   [Linux](http://en.wikipedia.org/wiki/Linux)   (or other types of   [Unix](http://en.wikipedia.org/wiki/Unix)  )
 * powering   [Business Telephone Systems](http://en.wikipedia.org/wiki/Business_telephone_system)
 * connecting many different   [Telephony](http://en.wikipedia.org/wiki/Telephony)   protocols
-* a toolkit for building many things: 
+* a toolkit for building many things:
 
 
-	+ an [IP PBX](https://www.asterisk.org/get-started/applications/what-is-an-ip-pbx/)   with many powerful features and  [applications](http://www.asterisk.org/get-started/applications)
+	+ an [IP PBX](https://www.asterisk.org/get-started/applications/what-is-an-ip-pbx/)   with many powerful features and  [applications](http://www.asterisk.org/get-started/applications)
 	+ [VoIP Gateways](http://www.asterisk.org/get-started/applications/gateway)
 	+ [Conferencing systems](http://www.asterisk.org/get-started/applications/conference)
 	+ and much, much more
@@ -24,7 +24,7 @@ Asterisk is…
 YouTube Videos
 ==============
 
-* [Systm 5 Episode on Asterisk](http://www.youtube.com/watch?v=UP9b_FEZuUE)  (from 2006 - see Asterisk Wiki for current installation instructions)
+* [Systm 5 Episode on Asterisk](http://www.youtube.com/watch?v=UP9b_FEZuUE)  (from 2006 - see Asterisk Wiki for current installation instructions)
 * [Official Asterisk Channel](http://www.youtube.com/user/asteriskvideos)
 * [Asterisk 123: Intro to Asterisk](http://www.youtube.com/watch?v=PfSL-kekuDE)   from [Astricon 10](http://www.asterisk.org/community/astricon-user-conference)
 * [Asterisk 12 Overview](http://www.youtube.com/watch?v=3shZC3myQyo)   from [Astricon 10](http://www.asterisk.org/community/astricon-user-conference)
@@ -73,12 +73,12 @@ Avoiding obsolete or incorrect information
 
 When reading about Asterisk on the web, you may come across old or incorrect information.
 
-* Check which version of Asterisk is mentioned.  There are significant changes in every version.
+* Check which version of Asterisk is mentioned.  There are significant changes in every version.
 * Check the published date of the article if the Asterisk version isn’t provided.
 * Take things with a grain of salt until checked with another resource or proven correct through your own testing.
 * Refer to the   [Asterisk Wiki](//)   and the   [Official Asterisk Youtube Channel](http://www.youtube.com/user/asteriskvideos)   for the most accurate and up to date details on the specific version of Asterisk you are using.
 
- Please note that it is always possible that even the official documentation does not match what is written into the source code itself.  If you find something lacking or incorrect in the Asterisk documentation, please communicate it through comments on the   [Asterisk Wiki](//)   or by filing an issue through the   [Asterisk Issues Tracker](https://github.com/asterisk/asterisk/issues)  . 
+ Please note that it is always possible that even the official documentation does not match what is written into the source code itself.  If you find something lacking or incorrect in the Asterisk documentation, please communicate it through comments on the   [Asterisk Wiki](//)   or by filing an issue through the   [Asterisk Issues Tracker](https://github.com/asterisk/asterisk/issues)  . 
 
     
   

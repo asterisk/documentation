@@ -45,23 +45,12 @@ Enabling blind or attended transfers
 
 In features.conf you must configure the blindxfer or atxfer options in the featuremap section. The options are configured with the DTMF character string you want to use for accessing the feature.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 [featuremap]
 blindxfer = #1
 atxfer = \*2
 
 ```
-
 
 Now that you have the feature enabled you need to configure the dialplan such that a particular channel will be allowed to use the feature.
 
@@ -72,21 +61,10 @@ As an example if you want to allow transfers via the [Dial](/Asterisk-13-Applica
 
 Setting these options for Dial in extensions.conf would look similar to the following:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 exten = 102,1,Dial(PJSIP/BOB,30,T)
 
 ```
-
 
 Asterisk should be restarted or relevant modules should be reloaded for changes to take effect.
 
@@ -124,17 +102,7 @@ Dialing the **atxferswap** code swaps you between bridges with either party befo
 
 ### Example configuration
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 [general]
 atxferabort = \*3
 atxfercomplete = \*4
@@ -142,7 +110,6 @@ atxferthreeway = \*5
 atxferswap = \*6
 
 ```
-
 
 Configuring attended transfer callbacks
 ---------------------------------------
@@ -167,17 +134,7 @@ By default Asterisk will call back the initiator of the transfer if they hang up
 
 ### Example Configuration
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 [general]
 atxfernoanswertimeout = 15 
 atxferdropcall = no 
@@ -186,7 +143,6 @@ atxfercallbackretries = 2
 
 ```
 
-
 Behavior Options
 ================
 
@@ -194,36 +150,15 @@ These options are configured in the "[general]" section of features.conf
 
 ### General transfer options
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 ;transferdigittimeout = 3 ; Number of seconds to wait between digits when transferring a call
 ; (default is 3 seconds)
 
 ```
 
-
 ### Attended transfer options
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 ;xfersound = beep ; to indicate an attended transfer is complete
 ;xferfailsound = beeperr ; to indicate a failed transfer
 ;transferdialattempts = 3 ; Number of times that a transferer may attempt to dial an extension before
@@ -231,9 +166,7 @@ These options are configured in the "[general]" section of features.conf
 ;transferretrysound = "beep" ; Sound to play when a transferer fails to dial a valid extension.
 ;transferinvalidsound = "beeperr" ; Sound to play when a transferer fails to dial a valid extension and is out of retries.
 
-
 ```
-
 
 Basic Transfer Examples
 =======================

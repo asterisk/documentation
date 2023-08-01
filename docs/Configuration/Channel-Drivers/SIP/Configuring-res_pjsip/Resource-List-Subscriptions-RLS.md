@@ -26,15 +26,7 @@ RLS is configured in `pjsip.conf` using a special configuration section type cal
 
 pjsip.conf
 
-
----
-
-  
-  
-
-
 ```
-
 true[sales]
 type = resource_list
 event = presence
@@ -43,7 +35,6 @@ list_item = bob
 list_item = carol
 
 ```
-
 
 It should be simple to glean the intent of this list. We have created a list called "sales" that provides the presence of the sales team of alice, bob, and carol. Let's go over each of the options in more detail.
 
@@ -68,15 +59,7 @@ Let's modify the previous configuration to use a batching interval:
 
 pjsip.conf
 
-
----
-
-  
-  
-
-
 ```
-
 true[sales]
 type = resource_list
 event = presence
@@ -86,7 +69,6 @@ list_item = carol
 notification_batch_interval = 2000
 
 ```
-
 
 The units for the `notification_batch_interval` are milliseconds. With this configuration, Asterisk will collect resource state changes for 2000 milliseconds before sending notifications on this resource list.
 
@@ -104,15 +86,7 @@ Let's say you have the following list configured in pjsip.conf:
 
 pjsip.conf
 
-
----
-
-  
-  
-
-
 ```
-
 true[sales]
 type = resource_list
 event = presence
@@ -122,26 +96,16 @@ list_item = carol
 
 ```
 
-
 And you have the following in `extensions.conf`
 
 extensions.conf
 
-
----
-
-  
-  
-
-
 ```
-
 true[default]
 exten => alice,hint,PJSIP/alice
 exten => bob,hint,PJSIP/bob
 
 ```
-
 
 Notice that there is no "carol" extension in `extensions.conf`. What happens when a user attempts to subscribe to the sales list?
 
@@ -156,27 +120,18 @@ Let's say you have the following pjsip.conf file:
 
 pjsip.conf
 
-
----
-
-  
-  
-
-
 ```
-
 true[sales]
 type = resource_list
 event = presence
 list_item = tech_support
- 
+
 [tech_support]
 type = resource_list
 event = presence
 list_item = sales
 
 ```
-
 
 Notice that the sales list contains the tech_support list, and the tech_support list contains the sales list. We have a loop here. How is that handled?
 
@@ -193,15 +148,7 @@ What if the configured lists were modified slightly:
 
 pjsip.conf
 
-
----
-
-  
-  
-
-
 ```
-
 true[sales]
 type = resource_list
 event = presence
@@ -215,7 +162,6 @@ list_item = sales
 list_item = alice
 
 ```
-
 
 Notice that the tech_support list now also has alice as a list_item. How does the process change on a subscription attempt to sales?
 
@@ -245,15 +191,7 @@ One flaw that RLS has is that there is no way to know whether a subscription is 
 
 pjsip.conf
 
-
----
-
-  
-  
-
-
 ```
-
 true[sales]
 type = resource_list
 event = presence
@@ -263,25 +201,15 @@ list_item = carol
 
 ```
 
-
 And let's say you have the following `extensions.conf`:
 
 extensions.conf
 
-
----
-
-  
-  
-
-
 ```
-
 true[default]
 exten => sales,hint,Custom:sales
 
 ```
-
 
 What happens if someone attempts to subscribe to the "sales" presence resource?
 
@@ -295,15 +223,7 @@ But if the subscriber does support RLS, then Asterisk's policy is to always assu
 
 pjsip.conf
 
-
----
-
-  
-  
-
-
 ```
-
 true[sales]
 type = resource_list
 event = presence
@@ -311,7 +231,7 @@ list_item = sales_b
 list_item = carol
 list_item = david
 notification_batch_interval = 3000
- 
+
 [sales_b]
 type = resource_list
 event = presence
@@ -320,7 +240,6 @@ list_item = bob
 notification_batch_interval = 10000
 
 ```
-
 
 What is the batch interval when a user subscribes to the sales list?
 

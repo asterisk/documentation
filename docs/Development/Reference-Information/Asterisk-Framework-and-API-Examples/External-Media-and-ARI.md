@@ -6,23 +6,23 @@ pageid: 42012050
 Introduction
 ============
 
-Asterisk 16.6 introduces a new method to allow interaction with an external media server.  Using the new "/channels/externalMedia" ARI resource, an application developer can direct media to a proxy service of their own development that in turn can, for instance, forward the media to a cloud speech recognition provider for analysis.  
+Asterisk 16.6 introduces a new method to allow interaction with an external media server.  Using the new "/channels/externalMedia" ARI resource, an application developer can direct media to a proxy service of their own development that in turn can, for instance, forward the media to a cloud speech recognition provider for analysis. 
 
 Simple Speech Recognition Scenario:
 -----------------------------------
 
 ![](Simple-Scenario.png)
 
- 
 
-In this scenario, your ARI application creates a new External Media channel supplying some basic parameters like media destination and format, then adds that channel to an existing bridge.  The channel driver then forwards all media from the bridge to the destination you specified.  Your application takes the media and re-encapsulates it to match the requirements of your chosen speech recognition provider.  What you do with the result is up to you.  You could store it offline for later retrieval or you could send it to a browser application for real-time display as subtitles, etc.
+
+In this scenario, your ARI application creates a new External Media channel supplying some basic parameters like media destination and format, then adds that channel to an existing bridge.  The channel driver then forwards all media from the bridge to the destination you specified.  Your application takes the media and re-encapsulates it to match the requirements of your chosen speech recognition provider.  What you do with the result is up to you.  You could store it offline for later retrieval or you could send it to a browser application for real-time display as subtitles, etc.
 
 The External Media channel can also inject media into a bridge it's a member of so you can play progress messages, music, IVR menus, etc.
 
 Implementation
 ==============
 
-To create an External Media channel, you make an ARI `POST` request to `/channels/externalMedia`.  Asterisk will then return a standard ARI Channel object to you.
+To create an External Media channel, you make an ARI `POST` request to `/channels/externalMedia`.  Asterisk will then return a standard ARI Channel object to you.
 
 Parameters:
 
@@ -40,34 +40,23 @@ Parameters:
 | format | (required) The format/codec you wish the media to be encoded in.Any standard format/codec supported by Asterisk is supported here. For example: `ulaw`, `g722`, etc.There is no negotiation. The format you specify is the format you'll get. The channel driver will automatically transcode the bridge's native media into this format. |
 | direction | (optional) The media direction (in/out/both) desired.With the first release of this capability, only `both` is supported and that is the default if not supplied.In this mode, media can flow in both direction on the External Media channel. |
 
-All parameters except `variables` can be supplied as part of the POST's query string.  Because it's a JSON object, `variables` MUST be supplied on the request body.  This is similar to other channel creation calls.
+All parameters except `variables` can be supplied as part of the POST's query string.  Because it's a JSON object, `variables` MUST be supplied on the request body.  This is similar to other channel creation calls.
 
 An example request:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 POST /channels/externalMedia?app=MyApp&external_host=127.0.0.1%3A60000&format=ulaw
 # The %3A is the encoding for the ':' host/port separator.
 
 ```
 
-
-The returned object will be an ExternalMedia object that contains a standard Channel object that can be operated on like any other channel.  The most common scenario will be to add it to a bridge.  Once you're done with the channel, simply DELETE it to hang it up.
+The returned object will be an ExternalMedia object that contains a standard Channel object that can be operated on like any other channel.  The most common scenario will be to add it to a bridge.  Once you're done with the channel, simply DELETE it to hang it up.
 
 You will automatically be subscribed to events for this channel so you'll see events like StasisStart, Dial(ANSWER), ChannelEnteredBridge, ChannelVarset etc.
 
 The underlying channel technology for the `rtp/udp` encapsulation and transport is the existing UnicastRTP (chan_rtp) channel driver. The chan_rtp channel driver sets the UNICASTRTP_LOCAL_ADDRESS and UNICASTRTP_LOCAL_PORT channel variables with the local IP address and port that media can be sent to. If you want to use this to inject media into the bridge the Extecrnal Media channel is a member of you can retrieve these channel variables using the normal ARI mechanism to get their values.
 
- 
 
- 
+
+
 

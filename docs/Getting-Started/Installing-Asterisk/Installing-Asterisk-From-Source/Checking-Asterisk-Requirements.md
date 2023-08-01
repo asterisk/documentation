@@ -8,41 +8,17 @@ Configuring Asterisk
 
 Now it's time to compile and install Asterisk. Let's change to the directory which contains the Asterisk source code.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 [root@server]# cd /usr/local/src/asterisk-14.X.Y
 
-
 ```
-
 
 Next, we'll run a command called **./configure**, which will perform a number of checks on the operating system, and get the Asterisk code ready to compile on this particular server.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 [root@server asterisk-14.X.Y]# ./configure
 
-
 ```
-
 
 This will run for a couple of minutes, and warn you of any missing system libraries or other dependencies. Unless you've installed all of the [System Requirements](/Operation/System-Requirements) for your version of Asterisk, the **configure** script is likely to fail. If that happens, resolve the missing dependency manually, or use the [install_prereq](#install_prereq) script to resolve all of the dependencies on your system.
 
@@ -61,19 +37,9 @@ Once a dependency is resolved, run **configure** again to make sure the missing 
 
 On this PageUpon successful completion of **./configure**, you should see a message that looks similar to the one shown below. (Obviously, your host CPU type may be different than the below.)
 
-
-
-
----
-
-  
-  
-
-
 ```
-
-              .$$$$$$$$$$$$$$$=..      
-            .$7$7..        .7$$7:.    
+              .$$$$$$$$$$$$$$$=..     
+            .$7$7..        .7$$7:.   
  .$7$7.. .7$$7:.
  .$$:. ,$7.7
  .$7. 7$$$$ .$$77
@@ -101,9 +67,7 @@ configure: Host CPU : x86_64
 configure: build-cpu:vendor:os: x86_64 : unknown : linux-gnu :
 configure: host-cpu:vendor:os: x86_64 : unknown : linux-gnu :
 
-
 ```
-
 
 
 
@@ -115,9 +79,7 @@ configure: host-cpu:vendor:os: x86_64 : unknown : linux-gnu :
   
   
 
-
 ```
-
 [root@server asterisk-14.X.Y]# make distclean
   
 
@@ -128,9 +90,7 @@ configure: host-cpu:vendor:os: x86_64 : unknown : linux-gnu :
 
 You can then re-run **./configure**.
 
-
 ```
-
 
 
 
@@ -153,18 +113,7 @@ The **install_prereq** script is included with every release of Asterisk in the 
       
 [//]: # (end-warning)
 
-
-
-
-
----
-
-  
-  
-
-
 ```
-
 [root@server asterisk-14.X.Y]# cd contrib/scripts
 
 [root@server asterisk-14.X.Y/contrib/scripts]# ./install_prereq install
@@ -172,5 +121,4 @@ The **install_prereq** script is included with every release of Asterisk in the 
 [root@server asterisk-14.X.Y/contrib/scripts]# ./install_prereq install-unpackaged
 
 ```
-
 

@@ -3,9 +3,9 @@ title: Wiki Organization and Style Guide
 pageid: 28315986
 ---
 
- 
 
- 
+
+
 
 Overview
 ========
@@ -137,7 +137,7 @@ The best way to link to a Confluence page from outside Confluence, for example o
 To access the permanent URL for a page:
 
 1. View the page you wish to link to.
-2. Choose **Tools** > **Link to this page**.
+2. Choose **Tools** > **Link to this page**.
 3. Copy the **Tiny Link**.
 4. Use the tiny link in your website or email message.
 

@@ -91,17 +91,7 @@ The following examples show several common scenarios in which you may need to ma
 
 ### Simple recording playback
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 exten => 1000,1,NoOp
 ; The CONNECTEDLINE information is sent when the call is answered.
 exten => 1000,n,Set(CONNECTEDLINE(name,i)=Company Name)
@@ -112,23 +102,11 @@ exten => 1000,n,Answer
 exten => 1000,n,Playback(tt-weasels)
 exten => 1000,n,Hangup
 
-
 ```
-
 
 ### Straightforward dial through
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 exten => 1000,1,NoOp
 ; The CONNECTEDLINE information is sent when the call is answered.
 exten => 1000,n,Set(CONNECTEDLINE(name,i)=Company Name)
@@ -140,23 +118,11 @@ exten => 1000,n,Set(CONNECTEDLINE(num-pres)=allowed)
 exten => 1000,n,Dial(SIP/1000,20,I)
 exten => 1000,n,Hangup
 
-
 ```
-
 
 ### Use of interception macro
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 [macro-add_pfx]
 ; ARG1 is the prefix to add.
 ; ARG2 is the number of digits at the end to add the prefix to.
@@ -173,23 +139,11 @@ exten => 1000,n,Set(__CONNECTED_LINE_CALLER_SEND_MACRO_ARGS=45,4)
 exten => 1000,n,Dial(SIP/1000,20)
 exten => 1000,n,Hangup
 
-
 ```
-
 
 ### Simple redirection
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 exten => 1000,1,NoOp
 ; For Q.SIG or ISDN point-to-point we should determine the COLR for this
 ; extension and send it if the call was redirected here.
@@ -212,34 +166,20 @@ exten => 1000,n,Set(REDIRECTING(reason,i)=cfu)
 exten => 1000,n,Dial(DAHDI/g1/2000,20)
 exten => 1000,n,Hangup
 
-
 ```
-
 
 Party ID propagation
 ====================
 
 For normal operations where Party A calls Party B this is what the relationship between CALLERID/CONNECTEDLINE information looks like:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
  Channel A Channel B
  Incoming channel --- bridge --- Outgoing channel
 Party A ___ CALLERID() -------------------> CONNECTEDLINE() ___ Party B
  CONNECTEDLINE() <-------------- CALLERID()
 
-
 ```
-
 
 The CALLERID() information is the party identification of the remote party. For Channel A that is Party A. For Channel B that is Party B.
 
@@ -247,95 +187,45 @@ The CONNECTEDLINE() information is the party identification of the party connect
 
 Local channels behave in a similar way because there is an implicit two party bridge between the channels. For normal call setups, Local;1 is an outgoing channel and Local;2 is an incoming channel.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 Local;1 Local;2
 Outgoing channel --- Incoming channel
 CONNECTEDLINE() ---> CALLERID()
 CALLERID() <-------- CONNECTEDLINE()
 
-
 ```
-
 
 A normal call where Party A calls Party B with a local channel in the chain.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
  Channel A Local;1 Local;2 Channel B
  Incoming channel --- bridge --- Outgoing channel --- Incoming channel --- bridge --- Outgoing channel
 Party A ___ CALLERID() -------------------> CONNECTEDLINE() ---> CALLERID() -------------------> CONNECTEDLINE() ___ Party B
  CONNECTEDLINE() <-------------- CALLERID() <-------- CONNECTEDLINE() <-------------- CALLERID()
 
-
 ```
-
 
 Originated calls make the incoming and outgoing labels a bit confusing because both channels start off as outgoing. Once the originated channel answers it becomes an "incoming" channel to run dialplan. A better way is to just distinguish which channel is running dialplan. For consistency, I'll continue using the incoming and outgoing labels.
 
 An example of originating a normal channel (Channel A) to a dialplan exten.  
 
-
-
-
-
----
-
-  
-  
-
-
 ```
-
  Channel A Channel B
  Incoming channel --- bridge --- Outgoing channel
 Party A ___ CALLERID() -------------------> CONNECTEDLINE() ___ Party B
  CONNECTEDLINE() <-------------- CALLERID()
 
-
 ```
-
 
 An example of originating a local channel (which will always be a Local;1) to a dialplan exten.  
 
-
-
-
-
----
-
-  
-  
-
-
 ```
-
  Channel A Local;2 Local;1 Channel B
  Outgoing channel --- bridge --- Incoming channel --- Incoming channel --- bridge --- Outgoing channel
 Party A ___ CALLERID() -------------------> CONNECTEDLINE() ---> CALLERID() -------------------> CONNECTEDLINE() ___ Party B
  CONNECTEDLINE() <-------------- CALLERID() <-------- CONNECTEDLINE() <-------------- CALLERID()
 
-
 ```
-
 
 Ideas for usage
 ===============

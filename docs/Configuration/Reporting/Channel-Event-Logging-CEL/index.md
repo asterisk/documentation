@@ -29,7 +29,7 @@ Historical Information and Changes
 
 CEL underwent significant rework and improvement in Asterisk 12. Please see the specific changes as mentioned under the CEL section of the [New in 12](/New-in-12) wiki page.
 
- 
 
- 
+
+
 

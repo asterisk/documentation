@@ -16,15 +16,15 @@ pageid: 50463027
 
 
 
- 
 
-The current Asterisk code base, and community services have been mostly self hosted and managed using various tool sets (Gerrit, Jenkins, Atlassian, etc...). While this has been fine we're always looking for ways to improve the project, and its workflows. As such the Asterisk project, and a number of its services will be moving to an internet hosted software development platform (e.g. [Github](https://github.com/) or [Gitlab](https://gitlab.com/)). Doing so offers several advantages:
+
+The current Asterisk code base, and community services have been mostly self hosted and managed using various tool sets (Gerrit, Jenkins, Atlassian, etc...). While this has been fine we're always looking for ways to improve the project, and its workflows. As such the Asterisk project, and a number of its services will be moving to an internet hosted software development platform (e.g. [Github](https://github.com/) or [Gitlab](https://gitlab.com/)). Doing so offers several advantages:
 
 * Consolidates the code base and most services beneath one management application, which will make automation of processes between services much easier.
 * Cloud hosts version control and other services removing the huge burden of having to self manage such things.
 * Utilize an interface that is broadly used and hopefully more familiar to developers and other members of the community.
 
-Moving will not be without effort though, and it's import to assess eligible products to ensure they can support the Asterisk project now, and in the future. Both [Github](https://github.com/) and [Gitlab](https://gitlab.com/) offer similar services, and functionality[1](https://github.com/features) ,[2](https://about.gitlab.com/features/) (by tier[1](https://docs.github.com/en/get-started/learning-about-github/githubs-products),[2](https://about.gitlab.com/features/by-paid-tier/)) that should suffice for what's needed. The following is a list of items that may be relevant to the hosting of the Asterisk project at one of the sites:
+Moving will not be without effort though, and it's import to assess eligible products to ensure they can support the Asterisk project now, and in the future. Both [Github](https://github.com/) and [Gitlab](https://gitlab.com/) offer similar services, and functionality[1](https://github.com/features) ,[2](https://about.gitlab.com/features/) (by tier[1](https://docs.github.com/en/get-started/learning-about-github/githubs-products),[2](https://about.gitlab.com/features/by-paid-tier/)) that should suffice for what's needed. The following is a list of items that may be relevant to the hosting of the Asterisk project at one of the sites:
 
 
 
@@ -93,7 +93,7 @@ Winner: Github
 
 There are a few reasons why [Github](https://github.com/) was chosen over [Gitlab](https://gitlab.com/). One minor difference is that currently [Github](https://github.com/) actions and workflows appear to be able to trigger off a greater number of built-in events vs. [Gitlab](https://gitlab.com/) automations. The latter seeming to require more custom tooling, and writing and maintaining our own scripts in order to achieve similar functionality.
 
-There are probably a few other minor distinctions that swayed the decision, but there is at least one notable complication with [Gitlab](https://gitlab.com/) that made the choice easier. In order to use [Gitlab's](https://gitlab.com/) Ultimate tier the Asterisk project would need to [qualify annually](https://about.gitlab.com/solutions/open-source/join/) as an open source project. Note, the values listed in the table above assume such qualification. Otherwise we'd fall under their [free tier](https://about.gitlab.com/pricing/), which only allows 5 users per namespace. In [Gitlab](https://gitlab.com/) a "User means each individual end-user (person or machine) of Customer and/or its Affiliates (including, without limitation, employees, agents, and consultants thereof) with access to the Licensed Materials hereunder" (see [FAQ](https://about.gitlab.com/pricing/)).  Based on the current requirements it's "iffy" if Asterisk would qualify. Even if it did it's very possible Asterisk may not next time. The project just can't take the risk.
+There are probably a few other minor distinctions that swayed the decision, but there is at least one notable complication with [Gitlab](https://gitlab.com/) that made the choice easier. In order to use [Gitlab's](https://gitlab.com/) Ultimate tier the Asterisk project would need to [qualify annually](https://about.gitlab.com/solutions/open-source/join/) as an open source project. Note, the values listed in the table above assume such qualification. Otherwise we'd fall under their [free tier](https://about.gitlab.com/pricing/), which only allows 5 users per namespace. In [Gitlab](https://gitlab.com/) a "User means each individual end-user (person or machine) of Customer and/or its Affiliates (including, without limitation, employees, agents, and consultants thereof) with access to the Licensed Materials hereunder" (see [FAQ](https://about.gitlab.com/pricing/)).  Based on the current requirements it's "iffy" if Asterisk would qualify. Even if it did it's very possible Asterisk may not next time. The project just can't take the risk.
 
   
 

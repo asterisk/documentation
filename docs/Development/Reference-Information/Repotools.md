@@ -13,19 +13,12 @@ Installation requires that you have repotools checked out (or otherwise availabl
 
 installed trivially with apt-get (usually with default repositories)
 
-
-
-
 ```bash title=" " linenums="1"
 $ sudo apt-get install expect
 
 ```
 
-
 Once expect is installed, the mergetools can be installed with the following steps:
-
-
-
 
 ```bash title=" " linenums="1"
 $ svn co http://svn.asterisk.org/svn/repotools
@@ -34,7 +27,6 @@ $ ./configure
 $ sudo make install
 
 ```
-
 
 Other Requirements
 ==================
@@ -50,26 +42,17 @@ jira-python
 
 Scripts that retrieve issue information from JIRA now require the jira-python module. This is most easily obtained by using pip, which is  
 
-
-
-
-
 ```bash title=" " linenums="1"
 $ sudo apt-get install python-pip
 
 ```
 
-
 Once pip is installed, installing jira-python is simple (and similar)
-
-
-
 
 ```bash title=" " linenums="1"
 $ sudo pip install jira-python
 
 ```
-
 
 pysvn, diffstat, and links2
 ---------------------------
@@ -77,13 +60,8 @@ pysvn, diffstat, and links2
 
 If you want to run the release summary building script, these tools are necessary. Like with most tools mentioned here, getting them with  
 
-
-
-
-
 ```bash title=" " linenums="1"
 $ sudo apt-get install python-svn diffstat links2
 
 ```
-
 

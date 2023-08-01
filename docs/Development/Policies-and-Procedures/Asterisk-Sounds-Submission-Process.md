@@ -34,17 +34,7 @@ Every time you submit sounds, even if partial sounds, you will need to execute a
 4. Create a file called "CREDITS" and put in this file a short free-form block of text that you wish to include for anyone who wants  
 to learn more about you or the artist who performed the sounds. Please minimally include the name and contact information for the artist as a URL and/or email address.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 Example:
  bash-3.2# more CREDITS
  Recorded by:
@@ -52,7 +42,6 @@ Example:
  
  Financial Contributions by: Digium, Inc. (http://www.digium.com)
  bash-3.2#
-
 
 ```
 5. Create a file called "LICENSE" and include the license text (listed below these instructions) which are the Creative Commons Attribution-ShareAlike v3 license terms.
@@ -73,17 +62,7 @@ or
 License Form:
 -------------
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 LICENSE FOR VOICE PROMPT FILES ------------------------------
 
 
@@ -446,7 +425,5 @@ Creative Commons Notice
 
  -- end printout --
 
-
 ```
-
 

@@ -73,17 +73,7 @@ The following are examples of use within the UK using BT Text SMS/landline servi
 
 This is a context to use with a manager script.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 [smsdial]
 ; create and send a text message, expects number+message and
 ; connect to 17094009
@@ -91,23 +81,11 @@ exten => _X.,1,SMS(${CALLERIDNUM},,${EXTEN},${CALLERIDNAME})
 exten => _X.,n,SMS(${CALLERIDNUM})
 exten => _X.,n,Hangup
 
-
 ```
-
 
 The script sends
 
-
-
-
----
-
-  
-  
-
-
 ```
-
  action: originate
  callerid: message <from>
  exten: to
@@ -115,9 +93,7 @@ The script sends
  context: smsdial
  priority: 1
 
-
 ```
-
 
 You put the message as the name of the caller ID (messy, I know), the originating number and hence queue name as the number of the caller ID and the exten as the number to which the sms is to be sent. The context uses SMS to create the message in the queue and then SMS to communicate with 17094009 to actually send the message.
 
@@ -125,17 +101,7 @@ Note that the 9 on the end of 17094009 is the sub address 9 meaning no sub addre
 
 For incoming calls you can use a context like this :-
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 [incoming]
 exten => _XXXXXX_8005875290,1,SMS(${EXTEN:3},a)
 exten => _XXXXXX_8005875290,n,System(/usr/lib/asterisk/smsin ${EXTEN:3})
@@ -143,9 +109,7 @@ exten => _XXXXXX_80058752[0-8]0,1,SMS(${EXTEN:3}${CALLERIDNUM:8:1},a)
 exten => _XXXXXX_80058752[0-8]0,n,System(/usr/lib/asterisk/smsin ${EXTEN>:3}${CALLERIDNUM:8:1})
 exten => _XXXXXX_80058752[0-8]0,n,Hangup
 
-
 ```
-
 
 In this case the called number we get from BT is 6 digits (XXXXXX) and we are using the last 3 digits as the queue name.
 

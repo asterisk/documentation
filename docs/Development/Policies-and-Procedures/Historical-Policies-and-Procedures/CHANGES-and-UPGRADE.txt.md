@@ -17,26 +17,14 @@ The release process is what handles updating the CHANGES and UPGRADE.txt files n
 
 Here's an example of what one of these directories might look like before a release:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 someone@justanexample:/path/to/asterisk/doc/CHANGES-staging# ls
 core_relevant_title.txt
 README.md
 res_pjsip_relevant_title.txt
 res_rtp_relevant_title.txt
 
-
 ```
-
 
 
 
@@ -50,17 +38,7 @@ res_rtp_relevant_title.txt
 
 Inside of one of these files (say, the first one), it should follow the format of subject lines, headers, blank line, then a description of the change. It could look something like this:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 Subject: res_pjsip
 Subject: Core
 
@@ -68,13 +46,11 @@ Obviously this is just an example and when you write a description it should be 
 
 But you get the idea!
 
-
 ```
 
 
- 
 
- 
+
 
 
 
@@ -96,24 +72,13 @@ Releases from mainline branches (16.2.0 -> 16.3.0) work as expected following th
 
 Changes that are master-only need a special header to denote them as such. This won't cause any weird issues with cherry-picking either, since the changes will only be going into the master branch. You will need to add "Master-Only" under the "Subject:" header, like so:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 Subject: res_ari
 Master-Only: True
- 
+
 A master only change!
 
 ```
-
 
 
 

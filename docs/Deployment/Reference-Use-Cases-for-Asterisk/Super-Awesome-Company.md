@@ -68,7 +68,7 @@ Outside Connectivity and Networking
 
 SAC, located in the ghost town of Waldo, Alabama, is fortunate to have access to any type of telecommunications. In spite of Waldo’s sole telecom company, WaldoCom, having turned off the lights and locked the doors on their way out, gigabit Internet connectivity over Metro Ethernet is available and operational. It is rumored that WaldoCom left behind a skeleton crew to maintain equipment on an ongoing basis.
 
-WaldoCom, as a traditional communications provider will allow SAC to purchase telephone service.  But, because the calling plans across the WaldoCom telephone network must be paid in Confederate dollars, SAC has instead decided to contract with Digium, Inc. for voice services.  Digium provides inbound and outbound calling over the Internet as a "SIP Trunk" using SAC's existing Internet connectivity.
+WaldoCom, as a traditional communications provider will allow SAC to purchase telephone service.  But, because the calling plans across the WaldoCom telephone network must be paid in Confederate dollars, SAC has instead decided to contract with Digium, Inc. for voice services.  Digium provides inbound and outbound calling over the Internet as a "SIP Trunk" using SAC's existing Internet connectivity.
 
 
 
@@ -81,7 +81,7 @@ WaldoCom, as a traditional communications provider will allow SAC to purchase te
 
 
 
-SAC has purchased a well-loved Linksys WRT54G, aka "Old Unreliable," from the now defunct Waldo Happy Hands Club.  They intend to use it to terminate the Ethernet connectivity from WaldoCom.  WaldoCom provides a single IPv4 address across the link - 203.0.113.1.  The Linksys will provide NAT translation from the Internet to the internal SAC campus network.  Within the SAC network, the 10.0.0.0/8 address space will be used.
+SAC has purchased a well-loved Linksys WRT54G, aka "Old Unreliable," from the now defunct Waldo Happy Hands Club.  They intend to use it to terminate the Ethernet connectivity from WaldoCom.  WaldoCom provides a single IPv4 address across the link - 203.0.113.1.  The Linksys will provide NAT translation from the Internet to the internal SAC campus network.  Within the SAC network, the 10.0.0.0/8 address space will be used.
 
 ### DIDs / Telephone Numbers
 
@@ -178,7 +178,7 @@ Each SAC employee is provided with a Digium D70 model telephone.
 Outbound calls
 --------------
 
-Because WaldoCom never upgraded their switches beyond 5-digit dialing, which now covers the entire metropolis of Waldo, SAC employees are not used to dialing 10-digit numbers.  Since most calls to potential customers will be made inside the local Waldo area, SAC has managed, through extensive training, to convince their employees to dial 7-digits for local Waldo numbers dialed over their Digium trunk.  Because Freddie believes there may be a market for the Broomshakalaka and other products outside of Waldo, perhaps even as far away as Montgomery or Mobile, she has also insisted that 10-digit dialing and 1+10-digit dialing be possible.
+Because WaldoCom never upgraded their switches beyond 5-digit dialing, which now covers the entire metropolis of Waldo, SAC employees are not used to dialing 10-digit numbers.  Since most calls to potential customers will be made inside the local Waldo area, SAC has managed, through extensive training, to convince their employees to dial 7-digits for local Waldo numbers dialed over their Digium trunk.  Because Freddie believes there may be a market for the Broomshakalaka and other products outside of Waldo, perhaps even as far away as Montgomery or Mobile, she has also insisted that 10-digit dialing and 1+10-digit dialing be possible.
 
- 
+
 

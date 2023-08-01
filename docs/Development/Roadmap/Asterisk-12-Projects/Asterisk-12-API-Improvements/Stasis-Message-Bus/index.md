@@ -82,9 +82,7 @@ This is a caching topic wrapping `ast_channel_topic_all()`, which caches `ast_ch
 
 ## Publishing messages
 
-
 ```
-
 #include "asterisk/stasis.h"
 
 /*! \brief Some structure containing the content of your message */
@@ -101,11 +99,7 @@ struct stasis_message_type \*ast_foo_type(void);
 struct stasis_topic \*ast_foo_topic(void);
 
 ```
-
-
-
 ```
-
 #include "asterisk.h"
 
 ASTERISK_FILE_VERSION(__FILE__, "$Revision$")
@@ -181,12 +175,9 @@ AST_MODULE_INFO(ASTERISK_GPL_KEY, 0, "The wonders of foo",
 
 ```
 
-
 ## Subscribing (no message router)
 
-
 ```
-
 #include "asterisk/astobj2.h"
 #include "asterisk/stasis.h"
 #include "foo.h"
@@ -259,12 +250,9 @@ void ast_bar_shutdown(struct ast_bar \*bar)
 
 ```
 
-
 ## Subscribing (with message router)
 
-
 ```
-
 #include "asterisk/astobj2.h"
 #include "asterisk/stasis.h"
 #include "asterisk/stasis_message_router.h"
@@ -369,7 +357,6 @@ void ast_bar_shutdown(struct ast_bar \*bar)
 }
 
 ```
-
 
 
 

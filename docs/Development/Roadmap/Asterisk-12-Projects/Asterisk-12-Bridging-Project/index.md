@@ -42,18 +42,14 @@ A channel masquerade is a fundamental yet incredibly confusing concept in Asteri
   
 A comment from ast_do_masquerade  
 
-
 ```
-
 
 /* XXX This operation is a bit odd. We're essentially putting the guts of
  * the clone channel into the original channel. Start by killing off the
  * original channel's backend. While the features are nice, which is the
  * reason we're keeping it, it's still awesomely weird. XX */
 
-
 ```
-
 
 The way the operation works is to take two channels and 'swap' portions of them. In the diagram below, assume that Thread A has a channel that Thread B wants to take over. Thread B creates a new channel ("Original") and starts a Masquerade operation on the channel owned by Thread A ("Clone"). Both channels are locked, and the state of the Clone channel is moved into the Original channel, while the Clone channel obtains the Original channel's state. In order to denote that the channel is about to die, a special ZOMBIE flag is put on the channel and the name renamed to Clone<ZOMBIE>. The lock is released, and the Original channel - which now has the state associated with Clone channel - executes in Thread B, while the Clone channel (which is now quite dead) see's that its dead and goes off to silently contemplate its demise in an `h` extension.
 
@@ -524,23 +520,11 @@ Bridge channel hooks can move the bridge channel between bridges. This would be 
 
 A way to implement the toggle between A and C parties is to have an atxfer bridge subclass. Setup the links this way:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 
  A -- B1 --Local@special/b -- Batxfer1 -- B -- Batxfer2 -- Local@special/b -- B2 -- C
 
-
 ```
-
 
 The atxfer bridges grant B the transfer menu because it has the TransferrerRoll defined on the channel. When the transfer is completed, the TransferrerRoll is removed.
 
@@ -705,17 +689,7 @@ Bridge technologies are an embedded object of the abstract bridge class.
 
 Park, Queue, ConfBridge could be derivative classes of the abstract bridge class.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 
 class ast_bridge {
  join(struct ast_channel \*chan);
@@ -751,23 +725,11 @@ class ast_bridge_channel {
  Mark channel as unsuspended and poke the bridge to recognize it.
 };
 
-
 ```
-
 
 #### Locking precedence order:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 
  bridges ao2_container
  |
@@ -779,9 +741,7 @@ class ast_bridge_channel {
  /
 channel private
 
-
 ```
-
 
 #### New Bridge Techs
 
@@ -960,17 +920,7 @@ channel private
 
 #### CLI commands:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 
 bridge show all
  List all current bridges by bridge-id and number of channels in the bridge.
@@ -1001,9 +951,7 @@ bridge suspend <tech>
 bridge unsuspend <tech>
  Unsuspend the bridge technology from use by bridges.
 
-
 ```
-
 
 Corresponding AMI actions should also be created.
 

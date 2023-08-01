@@ -32,16 +32,12 @@ There's nothing special about the name **from-internal** for this context. It co
 
 Underneath that context name, we'll create an extesion numbered **6001** which attempts to ring Alice's phone for twenty seconds, and an extension **6002** which attempts to rings Bob's phone for twenty seconds.
 
-
-
-
 ```javascript title=" " linenums="1"
 [from-internal]
 exten=>6001,1,Dial(SIP/demo-alice,20)
 exten=>6002,1,Dial(SIP/demo-bob,20)
 
 ```
-
 
 
 
@@ -53,31 +49,19 @@ exten=>6002,1,Dial(SIP/demo-bob,20)
 
 
 
- 
+
 
 After adding that section to **extensions.conf**, go to the Asterisk command-line interface and tell Asterisk to reload the dialplan by typing the command **dialplan reload**. You can verify that Asterisk successfully read the configuration file by typing **dialplan show from-internal** at the CLI.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 server\*CLI> dialplan show from-internal
 [ Context 'from-internal' created by 'pbx_config' ]
  '6001' => 1. Dial(SIP/demo-alice,20) [pbx_config]
  '6002' => 1. Dial(SIP/demo-bob,20) [pbx_config]
 
--= 2 extensions (2 priorities) in 1 context. =-  
-
+-= 2 extensions (2 priorities) in 1 context. =- 
 
 ```
-
 
 Now we're ready to make a test call!
 

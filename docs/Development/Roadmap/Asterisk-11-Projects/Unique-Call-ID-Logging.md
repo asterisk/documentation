@@ -29,9 +29,7 @@ A <call-id> is a unique identifier that is associated with a complete call and t
   
 log  
 
-
 ```
-
 css[Mar 7 00:00:00] VERBOSE[6165] netsock2.c: == Using SIP RTP CoS mark 5
 ﻿[Mar 7 00:00:00] DEBUG[6165] call_identifier.c: <function stuff>: CALL_ID [C000001] created by thread.
 [Mar 7 00:00:00] DEBUG[6167][C00000001] call_identifier.c: <function stuff>: CALL_ID [C000001] bound to thread.
@@ -45,63 +43,29 @@ css[Mar 7 00:00:00] VERBOSE[6165] netsock2.c: == Using SIP RTP CoS mark 5
 
 ```
 
-
 This case represents a simple scenario where a a SIP packet is received which starts a new call. Before a channel can be created, The SIP channel driver anticipates a new call will be started and creates a <call-id> related to that call. The call id is referenced by the pbx thread created for that channel. [000001].
 
 
 Many users use Asterisk from the perspective of the CLI. By default, verbose messages in CLI don't display the call-id file. In order to accommodate these users without forcing them to look at log files, a cli command to enable the <call-id> to be displayed with the verbose message will need to be added (which could be placed in startup_commands).
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 nonecore set verbose_callids on = yes
 
 ```
 
-
 This would effectively change the display of a verbose message on CLI from:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 css-- Executing [023@sipphones:2] NoOp("SIP/123-00000000", "Oh wait, that isn't a thing.") in new stack
 
 ```
 
-
 to:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 css-- [C00000001] Executing [023@sipphones:2] NoOp("SIP/123-00000000", "Oh wait, that isn't a thing.") in new stack
 
 ```
-
 
 Having call identifiers in log messages like this could greatly help users to visually parse what is happening with their calls and could also be helpful in identifying problems from the perspective of support or development.
 
@@ -120,7 +84,7 @@ Call-ID struct
 --------------
 
 
-The <call-id> struct should be stored in an ao2 container for reference counting. All channel threads should reference one and only one call-id in thread storage and for the lifetime of the thread, they will hold one reference. Since the call-id is stored in thread storage for the channel thread, it should persist through masquerades. The channel tech itself might need to reference the <call-id> so that it can be linked to the call if it becomes a zombie.  Any applications that produce monitor threads (like audio hooks) that attach to a call will also need to add a reference to the call-id in thread storage belonging to the newly created thread. Theads that hold call-id's will need to give up those references when they die.
+The <call-id> struct should be stored in an ao2 container for reference counting. All channel threads should reference one and only one call-id in thread storage and for the lifetime of the thread, they will hold one reference. Since the call-id is stored in thread storage for the channel thread, it should persist through masquerades. The channel tech itself might need to reference the <call-id> so that it can be linked to the call if it becomes a zombie.  Any applications that produce monitor threads (like audio hooks) that attach to a call will also need to add a reference to the call-id in thread storage belonging to the newly created thread. Theads that hold call-id's will need to give up those references when they die.
 
 
 
@@ -130,9 +94,7 @@ The <call-id> struct should be stored in an ao2 container for reference counting
   
 logger.h  
 
-
 ```
-
 Eclipsecpp
 struct ast_callid {
  int call_identifier; /* Numerical value of the call displayed in the log */
@@ -140,21 +102,10 @@ struct ast_callid {
 
 ```
 
-
 Call-ID API
 -----------
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 cpp
 /*!
  * \brief factory function to create a new uniquely identifying callid.
@@ -193,9 +144,7 @@ struct ast_callid \*ast_create_callid();
  */
 int ast_callid_threadassoc_add(struct ast_callid \*callid);
 
-
 ```
-
 
 Logging - Thread storage and ast_log_callid
 ---------------------------------------------
@@ -207,11 +156,11 @@ In order to avoid having to modify every log call in Asterisk, Clod's patch used
 This alone may not be enough to handle all logs related to specific calls though. Some threads that get involved with specific calls change which call they are working on frequently (notably channel drivers) and in these cases, the proper solution might be to introduce a secondary ast_log function which includes either a reference to the <call-id> being worked with or else just the value of the <call-id>
 
 
-**ast_log_callid(struct call_id \*id,** ***args from ast_log*****) -** Acts as ast_log currently does, except if call_id is not NULL, then [CALL_ID] will be attached after the thread ID as shown above for written log statements.  For verbose logs in CLI, it will not be displayed  
+**ast_log_callid(struct call_id \*id,** ***args from ast_log*****) -** Acts as ast_log currently does, except if call_id is not NULL, then [CALL_ID] will be attached after the thread ID as shown above for written log statements.  For verbose logs in CLI, it will not be displayed  
 
 
 
-    **ast_log(*****args from ast_log*****)** **-** Acts as ast_log currently does, except it checks thread storage to see if the thread calling ast_log is bound to a callid. If it is, then the callid is passed to ast_log_callid.  If not, a NULL value is passed for call_id instead.
+    **ast_log(*****args from ast_log*****)** **-** Acts as ast_log currently does, except it checks thread storage to see if the thread calling ast_log is bound to a callid. If it is, then the callid is passed to ast_log_callid.  If not, a NULL value is passed for call_id instead.
 
 
 ast_log will become a helper function to ast_log_callid.
@@ -234,22 +183,13 @@ Running through a simple example call with an audiohook
 -------------------------------------------------------
 
 
-1. An invite request comes in through the SIP channel driver.  The driver handles the request in the handle_request_invite function and determines that the dialog is going to create a new channel.
+1. An invite request comes in through the SIP channel driver.  The driver handles the request in the handle_request_invite function and determines that the dialog is going to create a new channel.
 2. handle_request_invite determines the call to be a 'first invitation' and creates a new ast_callid with ast_create_callid() which it will store in a local variable. Some log messages
 3. handle_reqeust_invite creates a new SIP channel with a reference to the ast_callid. As part of the channel thread creation process, the call-id is put into thread storage and the ao2 object support it gets a ref bump (2).
 4. As handle_request_invite is finishing, the channel driver's network monitor thread derefs the ast_callid. (1)
 5. The new channel starts going through pbx on the following extension:
 
-
-
----
-
-  
-  
-
-
 ```
-
 exten => s,1,NoOp(example no op message)
 exten => s,2,MixMonitor(mixfile.wav)
 exten => s,3,Dial(SIP/examplepeer)
@@ -274,16 +214,7 @@ Running through a simple example call with transfers
 1. Steps 1-4 from the above occur. For the sake of the example, the user that started the call will be called SIP/examplecaller.
 2. The new channel starts going through pbx on the following extension:
 
-
-
----
-
-  
-  
-
-
 ```
-
 exten => s,1,Dial(SIP/examplepeer)
 
 ```

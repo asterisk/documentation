@@ -31,16 +31,13 @@ The `\
 ```
 . For example:
 
-
 ```
-
 [section]
 
 var=value
 foo=bar
 
 ```
-
 
 ## Code Examples
 
@@ -50,9 +47,7 @@ The `\
 ```
 ) and it will do syntax highlighting for you. For a list of programming languages supported by this macro, see this page on the [newcode macro|https://studio.plugins.atlassian.com/wiki/display/NCODE/Confluence+New+Code+Macro].
 
-
 ```
-
 <?xml version="1.0"?>
 
 <menu name="Asterisk Module and Build Option Selection">
@@ -65,11 +60,7 @@ The `\
 </menu>
 
 ```
-
-
-
 ```
-
 class Example {
 
 public static void main(String args[])
@@ -80,11 +71,7 @@ public static void main(String args[])
 }
 
 ```
-
-
-
 ```
-
 class Example {
 public:
  Example();
@@ -98,5 +85,4 @@ private:
 };
 
 ```
-
 

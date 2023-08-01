@@ -8,7 +8,7 @@ Streams! We've got streams!
 
 Stream support has been merged into Asterisk as of 15. This has been done in a backwards compatible manner, allowing existing applications/APIs/components to remain untouched. Core APIs which interact with media have become a facade over the multistream support, presenting only the first media stream of each type which mirrors pre-15 behavior. Now that we have support it is time to discuss how existing functionality should be updated to take advantage of multiple streams and provide a better experience. This can thankfully be done over time. Items below are listed in order of difficulty (from least difficult to most) and also based on dependencies.
 
- 
+
 
 
 
@@ -31,7 +31,7 @@ Stream support has been merged into Asterisk as of 15. This has been done in a b
 
 
 
- 
+
 
 AMI Events
 ==========
@@ -41,7 +41,7 @@ When a channel is output into AMI the event should also contain information abou
 ARI Output
 ==========
 
-When a channel is output into ARI the output should also contain information about the streams on the channel. This should include the name, type, formats, and state.
+When a channel is output into ARI the output should also contain information about the streams on the channel. This should include the name, type, formats, and state.
 
 func_channel
 =============
@@ -79,7 +79,7 @@ This module should be updated to allow specifying what stream to enact DENOISE o
 Audiohooks
 ==========
 
-As they exist now audiohooks hook themselves into every audio frame of the first audio stream that is passing through a channel. The API should be extended to allow hooking into a specific stream (based on stream number). If a user of audiohooks wants to hook into multiple streams they should create an audiohook for each stream. A new API call, ast_audiohook_attach_stream, should be added that adds a stream position parameter which attaches the audiohook strictly to that stream.
+As they exist now audiohooks hook themselves into every audio frame of the first audio stream that is passing through a channel. The API should be extended to allow hooking into a specific stream (based on stream number). If a user of audiohooks wants to hook into multiple streams they should create an audiohook for each stream. A new API call, ast_audiohook_attach_stream, should be added that adds a stream position parameter which attaches the audiohook strictly to that stream.
 
 func_periodic_hook
 ====================
@@ -94,7 +94,7 @@ This module should be updated to allow specifying what stream to act on. This in
 Channel Translation
 ===================
 
-Translation currently only reliably creates a translation path for the audio portion of a channel. Since a channel may have multiple streams on it it should be possible for each stream on a channel to have a read and write format set on it, allowing translation of that specific stream. Translation paths should be stored based on stream number on a channel with the existing API calls using the default audio type stream. New API calls should be added (ast_set_stream_read_format, ast_set_stream_write_format, etc) which control the translation for each individual stream. When a topology is set on the channel the translation paths should be reconciled such that any existing requested formats are maintained if possible. Streams may need to be extended to also have a format capabilities which are the active formats (not just the negotiated ones). This would allow more intelligent translation path choice. The ast_channel_make_compatible_helper function also needs to be updated to be aware of individual streams and set up translation paths on them accordingly.
+Translation currently only reliably creates a translation path for the audio portion of a channel. Since a channel may have multiple streams on it it should be possible for each stream on a channel to have a read and write format set on it, allowing translation of that specific stream. Translation paths should be stored based on stream number on a channel with the existing API calls using the default audio type stream. New API calls should be added (ast_set_stream_read_format, ast_set_stream_write_format, etc) which control the translation for each individual stream. When a topology is set on the channel the translation paths should be reconciled such that any existing requested formats are maintained if possible. Streams may need to be extended to also have a format capabilities which are the active formats (not just the negotiated ones). This would allow more intelligent translation path choice. The ast_channel_make_compatible_helper function also needs to be updated to be aware of individual streams and set up translation paths on them accordingly.
 
 RTP Native Bridging
 ===================

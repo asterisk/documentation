@@ -19,7 +19,7 @@ pageid: 19008058
 Overview
 ========
 
-While the Asterisk Test Suite can execute a test written in any scripting language, [Python](http://www.python.org) has become the de facto language of choice. The Asterisk Test Suite contains a number of modules written in Python to help with writing tests; as such, we strongly encourage people to make use of the existing infrastructure - and, of course - add to it as necessary!
+While the Asterisk Test Suite can execute a test written in any scripting language, [Python](http://www.python.org) has become the de facto language of choice. The Asterisk Test Suite contains a number of modules written in Python to help with writing tests; as such, we strongly encourage people to make use of the existing infrastructure - and, of course - add to it as necessary!
 
 The following walkthrough produces a test similar to the *tests/skeleton_test*, which is included in the Asterisk Test Suite and provides a template for a Python test. You can use that test as a starting point for tests that you write.
 
@@ -57,25 +57,13 @@ Test Layout and Asterisk Configuration
 	---
 3. Edit your *extensions.conf* to perform some test in Asterisk. For our test, we'll simply check that we can dial into Asterisk and play back a sound file.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 truetrue[default]
 exten => s,1,NoOp()
 same => n,Playback(tt-monkeys)
 same => n,UserEvent(TestResult,result:pass)
 
-
 ```
-
 At the end of this, you should have:
 
 * A folder in *tests* named *sample*
@@ -113,17 +101,7 @@ Each test has a corresponding [yaml](http://yaml.org/) file that defines informa
 
 The *test-config.yaml* file for our *sample* test is below.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 truetruetestinfo:
  summary: 'A sample test'
  description: |
@@ -135,23 +113,11 @@ properties:
  - python : 'twisted'
  - python : 'starpy'
 
-
 ```
-
 
 While we've created our test description, we haven't yet told the Test Suite of its existence. Upon startup, *runtests.py* checks *tests/tests.yaml* for the tests that exist. That file defines the folders that contain tests, where each folder contains another *tests.yaml* file that further defines tests and folders. In order for the Test Suite to find our sample test, open the *tests/tests.yaml* file and insert our test:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 truetruetests:
  - test: 'example'
 # We're inserting our sample test here:
@@ -160,26 +126,14 @@ truetruetests:
  - dir: 'manager'
 # And so on...
 
-
 ```
-
 
 Writing run-test
 ================
 
 Now we start to actually write the meat of our test. Each test in the Test Suite is spawned as a separate process, and so each test needs an entry point. First, lets import a few libraries and write our main.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 truepythontrue#!/usr/bin/env python
 # vim: sw=3 et:
 import sys
@@ -213,9 +167,7 @@ def main():
 if __name__ == "__main__":
  sys.exit(main() or 0)
 
-
 ```
-
 
 There are a few things to note from this:
 
@@ -230,17 +182,7 @@ Defining the Test Class
 
 We'll need a test the inherits from TestCase. For now, we'll assume that the basic class provides our start_asterisk and stop_asterisk methods and that we don't need to override them (which is a safe assumption in most cases). We'll fill in some of these methods a bit more later.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 truepythontrueclass SampleTest(TestCase):
  """
  A class that executes a very simple test, using TestCase to do most of the
@@ -289,9 +231,7 @@ truepythontrueclass SampleTest(TestCase):
  ami - The StarPY manager object that connected
  """
 
-
 ```
-
 
 At the end of this, we have the following:
 
@@ -310,17 +250,7 @@ Making the Test do something
 
 So, we have a test that will start up, spawn an instance of Asterisk, and connect to it over AMI. That's interesting, but doesn't really test anything. Based on our *extensions.conf*, we want to call the *s* extension in *default*, hopefully have monkeys possess our channel, and then check that the *UserEvent* fired off to determine if we passed. If we don't see the UserEvent, we should eventually fail. Lets start off by adding some code to *ami_connect*.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 truepythontruedef ami_connect(self, ami):
  """
  This method is called by the StarPY manager class when AMI connects to Asterisk.
@@ -333,25 +263,13 @@ truepythontruedef ami_connect(self, ami):
  application="Echo")
  deferred.addErrback(self.handle_originate_failure)
 
-
 ```
-
 
 What we've now instructed the test to do is, upon an AMI connection, originate a call to the *s* extension in context *default*, using a Local channel. starpy's *originate* method returns a deferred object, which lets us assign a callback handler in case of an error. We've used the TestCase class's *handleOriginateFailure* method for this, which will automagically fail our test for us if the originate fails.
 
 Now we need something to handle the UserEvent when monkeys inevitably enslave our phone system. Let's add that to our *ami_connect* method as well.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 truepythontruedef ami_connect(self, ami):
  """
  This method is called by the StarPY manager class when AMI connects to Asterisk.
@@ -384,9 +302,7 @@ truepythontruedef ami_connect(self, ami):
  LOGGER.error("No monkeys found :-(")
  self.stop_reactor()
 
-
 ```
-
 
 Now we've registered for the UserEvent that should be raised from the dialplan after monkeys are played back. We make the assumption in the handler that we could have other UserEvents that return failure results - in our case, we don't have failure scenarios, but many tests do. Regardless, once we receive a user event we stop the twisted reactor, which will cause our test to be stopped and the results evaluated.
 
@@ -397,36 +313,14 @@ Running the test
 
 From a console window, browse to the base directory of the Test Suite and type the following:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 ./runtests.py --test=tests/sample/
 
-
 ```
-
 
 You should see something similar to the following:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 Making sure Asterisk isn't running ...
 Running ['tests/sample/run-test'] ...
 Resetting translation matrix
@@ -438,23 +332,11 @@ Parsing /tmp/asterisk-testsuite/sample/ast1/etc/asterisk/logger.logfiles.conf.in
  <testcase name="tests/sample" time="18.83"/>
 </testsuite>
 
-
 ```
-
 
 We can inspect the log files created by the Test Suite for more information. The Test Suite makes two log files - full.txt and messages.txt - by default, DEBUG and higher are sent to full.txt, while INFO and higher are sent to mssages.txt. The following is a snippet from messages.txt - yours should look similar.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 [Feb 07 17:04:51] INFO[6991]: asterisk.TestCase:86 __init__: Executing tests/sample
 [Feb 07 17:04:51] INFO[6991]: asterisk.TestCase:135 create_asterisk: Creating Asterisk instance 1
 [Feb 07 17:04:52] INFO[6991]: asterisk.TestCase:208 start_asterisk: Starting Asterisk instance 1
@@ -467,9 +349,7 @@ We can inspect the log files created by the Test Suite for more information. The
 [Feb 07 17:05:09] INFO[6991]: asterisk.TestCase:256 stop_reactor: Stopping Reactor
 [Feb 07 17:05:09] INFO[6991]: asterisk.TestCase:223 stop_asterisk: Stopping Asterisk instance 1
 
-
 ```
-
 
 Sample Test
 ===========
@@ -477,40 +357,18 @@ Sample Test
 extensions.conf
 ---------------
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 truetrue[default]
 exten => s,1,NoOp()
 same => n,Playback(tt-monkeys)
 same => n,UserEvent(TestResult,result:pass)
 
-
 ```
-
 
 test-config.yaml
 ----------------
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 truetruetestinfo:
  summary: 'A sample test'
  description: |
@@ -522,24 +380,12 @@ properties:
  - python : 'twisted'
  - python : 'starpy'
 
-
 ```
-
 
 run-test
 --------
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 truepythontrue#!/usr/bin/env python
 # vim: sw=3 et:
 '''Asterisk Test Suite Sample Test
@@ -654,7 +500,5 @@ def main():
 if __name__ == "__main__":
  sys.exit(main() or 0)
 
-
 ```
-
 

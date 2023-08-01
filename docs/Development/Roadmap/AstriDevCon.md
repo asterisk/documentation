@@ -34,7 +34,7 @@ AstriDevCon will be held virtually with participation details to be sent by emai
 Registering for AstriDevCon
 ---------------------------
 
-**[Fill out the registration form!](https://forms.gle/uk8NtkBpmJQuNFqh7) (Now closed)**
+**[Fill out the registration form!](https://forms.gle/uk8NtkBpmJQuNFqh7) (Now closed)**
 
 Registration will be required for participation. If you don't register you will not be able to receive the participation details.
 
@@ -49,7 +49,7 @@ irc.libera.chat, #asterisk-dev (Unlike previous years where #astridevcon was use
 
 ### Attendees
 
- 
+
 
 ### Group Photo
 

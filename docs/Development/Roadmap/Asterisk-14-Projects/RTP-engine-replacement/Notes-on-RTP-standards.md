@@ -10,7 +10,7 @@ RTP (RFC 3550)
 
 RTP is an interesting protocol in how lightweight and purposely underspecified it is. From section 1:
 
- 
+
 
 
 > RTP is a protocol framework that is deliberately not complete
@@ -29,7 +29,7 @@ and
 > If a particular class of applications needs additional functionality independent of payload format, the profile under which those applications operate SHOULD define additional fixed fields to follow immediately after the SSRC field of the existing fixed header
 
   
-So in other words, it's difficult to impossible to define a universal profile-independent RTP recorder since profiles have the ability to change the meanings of bits in the RTP header and to lengthen the header beyond what is described in RFC 3550.
+So in other words, it's difficult to impossible to define a universal profile-independent RTP recorder since profiles have the ability to change the meanings of bits in the RTP header and to lengthen the header beyond what is described in RFC 3550.
 
 RTP defines a means of extending the header, as well. This is not to be confused with profile-dependent additions to the fixed RTP header. Section 5.3.1 states
 
@@ -50,16 +50,16 @@ RTP/AVP (RFC 3551)
 
 This starts out pretty innocuous, mostly just saying "all the defaults from RFC 3550 stand", and then they go and pull this:
 
- 
+
 
 
 > `While CNAME information MUST be sent every reporting interval, other items SHOULD only``be sent every third reporting interval, with NAME sent seven out of eight times within``that slot and the remaining SDES items cyclically taking up the eighth slot, as defined``in Section 6.2.2 of the RTP specification. In other words, NAME is sent in RTCP packets``1, 4, 7, 10, 13, 16, 19, while, say, EMAIL is used in RTCP packet 22.`
 
- 
+
 
 OH COME ON, WHAT? RFC 3550 section 6.2.2 doesn't exist!
 
-This profile goes into detail to define its payload space as a set of statically-defined payloads for known audio and video codecs, some unassigned values, and a dynamic range of codecs. 
+This profile goes into detail to define its payload space as a set of statically-defined payloads for known audio and video codecs, some unassigned values, and a dynamic range of codecs.
 
 The specification defines some payload codes for common audio and video codecs. Each defined payload type is then talked about in detail, with frame-based codecs getting much more in-depth explanation than octet-based (streamed) codecs. Interestingly, the RFC states that no new static payload types can be defined beyond what is already in this RFC (though there is an RFC that seeks to remove DVI4 from the supported static payload types). All payload types not referenced in this RFC (as well as some within the RFC such as H.263-1998) have to use payload numbers from the dynamic range.
 

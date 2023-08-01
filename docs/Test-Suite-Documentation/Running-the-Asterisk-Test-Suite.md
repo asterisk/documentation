@@ -21,9 +21,6 @@ Executing all tests
 
 The simplest way of executing tests, all tests in the Test Suite can be run by simply calling the *runtests.py* script with no arguments.
 
-
-
-
 ```bash title=" " linenums="1"
 # ./runtests.py
 
@@ -35,9 +32,7 @@ Running tests for Asterisk SVN-trunk-r366462M
 Making sure Asterisk isn't running ...
 Running ['tests/example/run-test'] ...
 
-
 ```
-
 
 
 
@@ -58,15 +53,10 @@ Executing a single test
 
 A single test can be executed using the *-t* command line option.
 
-
-
-
 ```bash title=" " linenums="1"
 # ./runtests.py -t tests/dialplan
 
-
 ```
-
 
 
 
@@ -84,9 +74,6 @@ Executing a set of tests by tag
 
 Many tests in the Asterisk Test Suite have tags that group them according to functionality that they test. The tags currently in use by all executable tests in the Test Suite can be determined using the *-L* command line option:
 
-
-
-
 ```bash title=" " linenums="1"
 # ./runtests.py -L
 Available test tags:
@@ -103,42 +90,27 @@ Available test tags:
  SIP subroutine transfer
  voicemail 
 
-
 ```
 
-
 All tests that have a tag can be executed using the *-g* command line option:
-
-
-
 
 ```bash title=" " linenums="1"
 # ./runtests.py -g SIP
 
-
 ```
 
-
 Multiple tags can be specified as well, using multiple invocations of the *-g* command line option. A test must satisfy each tag specified in order to be executed.
-
-
-
 
 ```bash title=" " linenums="1"
 # ./runtests.py -g SIP -g CDR
 
-
 ```
-
 
 Executing pre-defined sets of tests
 -----------------------------------
 
 
 Pre-defined sets of tests can be set up in the top level *test-config.yaml* configuration file. When the *runtests.py* script starts, it looks for the key in *global-settings/test-configuration*. The value specified for that key is used to look up test run specific settings. An example is shown below, where the *test-configuration* is set to *config-quick*.
-
-
-
 
 ```bash title=" " linenums="1"
 # Global settings
@@ -150,15 +122,9 @@ global-settings:
 
 config-quick:
 
-
-
 ```
 
-
 A test configuration can exclude tests from a run by using the *exclude-tests* key. Each value under that key is a test that will **not** be run when the *runtests.py* script executes.
-
-
-
 
 ```bash title=" " linenums="1"
 # Exclude some long-running tests
@@ -189,8 +155,5 @@ config-quick:
  - 'gateway_timeout4'
  - 'gateway_timeout5'
 
-
-
 ```
-
 

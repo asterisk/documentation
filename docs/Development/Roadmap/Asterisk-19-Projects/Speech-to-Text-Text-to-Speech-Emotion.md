@@ -54,17 +54,7 @@ The Protocol
 
 As mentioned above, JSON will be used for the protocol. There are requests:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 text{
  "version": "1.0",
  "request": "text_to_speech" | "speech_to_text",
@@ -86,20 +76,9 @@ text{
 
 ```
 
-
 And responses:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 text{
  "version": "1.0",
  "response": "success",
@@ -113,18 +92,7 @@ text{
 }
 
 ```
-
-
-
-
----
-
-  
-  
-
-
 ```
-
 text{
  "version": "1.0",
  "response": "complete",
@@ -132,36 +100,14 @@ text{
 }
 
 ```
-
-
-
-
----
-
-  
-  
-
-
 ```
-
 text{
  "version": "1.0",
  "response": "talk_detect"
 }
 
 ```
-
-
-
-
----
-
-  
-  
-
-
 ```
-
 text{
  "version": "1.0",
  "response": "error",
@@ -169,7 +115,6 @@ text{
 }
 
 ```
-
 
 The app_config section contains arbitrary configuration options and are not defined by this protocol. They will be able to be set by the user, and then consumed by the external application.
 
@@ -181,17 +126,7 @@ Here are some examples of what speech to text would look like.
 
 **Scenario 1 (success)**
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 text{
  "version": "1.0",
  "request": "speech_to_text",
@@ -207,20 +142,9 @@ text{
 
 ```
 
-
 The first response lets us know that everything is good to go for translation.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 text{
  "version": "1.0",
  "response": "success",
@@ -231,20 +155,9 @@ text{
 
 ```
 
-
-The second response lets us know that translation is complete, with our result in the JSON under *data.*
-
-
-
-
----
-
-  
-  
-
+The second response lets us know that translation is complete, with our result in the JSON under *data.*
 
 ```
-
 text{
  "version": "1.0",
  "response": "complete",
@@ -253,20 +166,9 @@ text{
 
 ```
 
-
 **Scenario 2 (failure)**
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 text{
  "version": "1.0",
  "request": "speech_to_text",
@@ -281,18 +183,7 @@ text{
 }
 
 ```
-
-
-
-
----
-
-  
-  
-
-
 ```
-
 text{
  "version": "1.0",
  "response": "error",
@@ -301,20 +192,9 @@ text{
 
 ```
 
-
 ****Scenario 3 (language not supported)****
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 text{
  "version": "1.0",
  "request": "speech_to_text",
@@ -329,18 +209,7 @@ text{
 }
 
 ```
-
-
-
-
----
-
-  
-  
-
-
 ```
-
 text{
  "version": "1.0",
  "response": "error",
@@ -348,7 +217,6 @@ text{
 }
 
 ```
-
 
   
 
@@ -359,17 +227,7 @@ Here are some examples of what text to speech would look like.
 
 **Scenario 1 (success)**
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 text{
  "version": "1.0",
  "request": "text_to_speech",
@@ -394,20 +252,9 @@ text{
 
 ```
 
-
 Unlike speech to text, we only need to know if setup was successful. Then we know that media will flow over the websocket.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 text{
  "version": "1.0",
  "response": "success",
@@ -422,21 +269,10 @@ text{
 ```
 
 
- 
 
 **Scenario 2 (failure)**
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 text{
  "version": "1.0",
  "request": "text_to_speech",
@@ -454,18 +290,7 @@ text{
 }
 
 ```
-
-
-
-
----
-
-  
-  
-
-
 ```
-
 text{
  "version": "1.0",
  "response": "error",
@@ -474,20 +299,9 @@ text{
 
 ```
 
-
 ****Scenario 3 (codec not supported)****
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 text{
  "version": "1.0",
  "request": "text_to_speech",
@@ -505,18 +319,7 @@ text{
 }
 
 ```
-
-
-
-
----
-
-  
-  
-
-
 ```
-
 text{
  "version": "1.0",
  "response": "error",
@@ -524,5 +327,4 @@ text{
 }
 
 ```
-
 

@@ -18,7 +18,7 @@ If Asterisk developers suspect that you have a memory leak then you will be aske
 
 
 
- 
+
 
 1. Verify the Description field of your issue report contains details about the environment in which the issue occurs.
 	1. Basic information - Linux environment, Asterisk version, modifications in use, third-party modules, etc.

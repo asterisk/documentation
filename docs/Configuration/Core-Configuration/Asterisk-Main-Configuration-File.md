@@ -20,17 +20,7 @@ A Note on Includes
 Directories Context
 -------------------
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 [directories](!)
 astetcdir => /etc/asterisk
 astmoddir => /usr/lib/asterisk/modules
@@ -44,9 +34,7 @@ astrundir => /var/run/asterisk
 astlogdir => /var/log/asterisk
 astsbindir => /usr/sbin
 
-
 ```
-
 
 The directories listed above are explained in detail in the [Directory and File Structure](/Fundamentals/Directory-and-File-Structure) page.
 
@@ -64,19 +52,8 @@ Some additional annotation for each configuration option is included inline.
       
 [//]: # (end-note)
 
-
-
-
-
----
-
-  
-  
-
-
 ```
-
- [options] 
+ [options] 
 ;Under "options" you can enter configuration options 
 ;that you also can set with command line options 
 ; Verbosity level for logging (-v) verbose = 0 
@@ -183,5 +160,4 @@ lockmode = lockfile | flock
 ;astctl = asterisk.ctl
 
 ```
-
 

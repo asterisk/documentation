@@ -5,9 +5,6 @@ pageid: 4817379
 
 For creating your own auto-attendant or IVR menus, you're probably going to want to record your own custom prompts. An easy way to do this is with the **Record()** application. The **Record()** application plays a beep, and then begins recording audio until you press the hash key (**#**) on your keypad. It then saves the audio to the filename specified as the first parameter to the application and continues on to the next priority in the extension. If you hang up the call before pressing the hash key, the audio will not be recorded. For example, the following extension records a sound prompt called **custom-menu** in the **gsm** format in the **en/** sub-directory, and then plays it back to you.
 
-
-
-
 ```javascript title=" " linenums="1"
 exten => 6597,1,Answer(500)
  same => n,Record(en/custom-menu.gsm)
@@ -16,7 +13,6 @@ exten => 6597,1,Answer(500)
  same => n,Hangup()
 
 ```
-
 
 
 
@@ -31,7 +27,7 @@ exten => 6597,1,Answer(500)
 You've now learned the basics of how to create a simple auto-attendant menu. Now let's build a more practical menu for callers to be able to reach Alice or Bob or the dial-by-name directory.
 
 
-####  Procedure 216.1. Building a Practical Auto-Attendant Menu
+####  Procedure 216.1. Building a Practical Auto-Attendant Menu
 
 
 1. Add an extension 6599 to the [docs:users] context which sends the calls to a new context we'll build called [docs:day-menu]. Your extension should look something like:

@@ -8,17 +8,7 @@ Then in extensions.ael, you can do these things:
 The Main Menu  
  At Digium, incoming callers are sent to the "mainmenu" context, where they are greeted, and directed to the numbers they choose...
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 context mainmenu {
  includes {
  digium;
@@ -63,23 +53,11 @@ context mainmenu {
  } 
 }
 
-
 ```
-
 
 The Contexts referenced from the queues.conf file
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 context sales {
  0 => goto dispatch,s,1;
  8 => Voicemail(${SALESVM});
@@ -100,23 +78,11 @@ context sales {
  } 
 }
 
-
 ```
-
 
 Please note that there is only one attempt to queue a call in the sales queue. All sales agents that are logged in will be rung.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 context customerservice { 
  0 => {
  Set(CALLERID(name)=CSVTrans); 
@@ -146,23 +112,11 @@ context customerservice {
  } 
 }
 
-
 ```
-
 
 Note that calls coming into customerservice will first be try to queue calls to those agents with a QUEUE_MAX_PENALTY of 10, and if none are available, then all agents are rung.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 context dispatch {
  s => {
  Ringing();
@@ -185,9 +139,7 @@ context dispatch {
  }
 }
 
-
 ```
-
 
 And in the dispatch context, first agents of priority 10 are tried, then 20, and if none are available, all agents are tried.
 

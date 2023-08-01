@@ -36,7 +36,7 @@ A **Conference Menu** is a named set of options that are provided to a user when
 ConfBridge Application Syntax
 =============================
 
-The ConfBridge application syntax and usage can be found at [Asterisk 13 Application_ConfBridge](/_Dialplan_Applications/ConfBridge)
+The ConfBridge application syntax and usage can be found at [Asterisk 13 Application_ConfBridge](/latest_api/Dialplan_Applications/ConfBridge)
 
 ConfBridge Application Examples
 ===============================
@@ -44,44 +44,19 @@ ConfBridge Application Examples
 **Example 1**  
  In this example, callers will be joined to conference number 1234, using the default Bridge Profile, the default User Profile, and no Conference Menu.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 exten => 1,1,Answer()
 exten => 1,n,ConfBridge(1234)
 
-
 ```
-
 
 **Example 2**  
 
-
-
-
-
----
-
-  
-  
-
-
 ```
-
 exten => 1,1,Answer()
 exten => 1,n,ConfBridge(1234,,1234_participants,1234_menu)
 
-
 ```
-
 
 Usage Notes, FAQ and Other
 ==========================

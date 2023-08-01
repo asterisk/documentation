@@ -20,7 +20,7 @@ Publishing extension state allows the SUBSCRIBE and NOTIFY functionality to be h
 What Can Be Published?
 ----------------------
 
-PJSIP has a pluggable body type system.  Any type that can be subscribed to for extension state can be published. As of this writing the available body types are:
+PJSIP has a pluggable body type system.  Any type that can be subscribed to for extension state can be published. As of this writing the available body types are:
 
 * application/dialog-info+xml
 * application/pidf+xml
@@ -34,7 +34,7 @@ Configuration
 
 The publishing of extension state is configured by specifying an **outbound publish** in the pjsip.conf configuration file. This tells PJSIP how to publish to another entity and gives it information about what to publish. The outbound publishing of extension state has some additional arguments, though, which allow more control.
 
- 
+
 
 The **@body** option specifies what body type to publish. This is a required option.
 
@@ -49,17 +49,7 @@ Example Configuration
 
 #### This configuration would limit outbound publish to only extension state changes as a result of a hint named "1000" in the context "users".
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 [test-esc]
 type=outbound-publish
 server_uri=sip:172.16.0.100
@@ -72,20 +62,9 @@ multi_user=yes
 
 ```
 
-
 #### This configuration would limit outbound publish to all extension state changes a result of hints in the context "users".
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 [test-esc]
 type=outbound-publish
 server_uri=sip:172.16.0.100
@@ -97,7 +76,6 @@ multi_user=yes
 
 ```
 
-
 You are also not limited to a single configured outbound publish. You can have as many as you want, provided they have different names. Each one can go to the same server with a different body type, or to different servers.
 
 What About Making It More Dynamic?
@@ -105,41 +83,18 @@ What About Making It More Dynamic?
 
 As part of the work to implement the publishing of extension state, the concept of **autohints** were also created. Autohints are created automatically as a result of a device state change. The extension name used is the name of the device, without the technology. They can be enabled by setting "autohints=yes" in a context in extensions.conf like so:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 [users]
 autohints=yes
 
-
 ```
-
 
 For example, once enabled, if a device state change occurs for "PJSIP/alice" and no hint named "alice" exists, then one will be automatically created in lieu of explicit definition of the following:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 exten => alice,hint,PJSIP/alice
 
 ```
-
 
 Despite being added after startup, this hint will still be given to the extension state publishing for publishing.
 

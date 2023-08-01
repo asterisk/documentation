@@ -3,20 +3,20 @@ title: Overview
 pageid: 46760069
 ---
 
- 
+
 
 When one thinks of measuring call quality a [Mean Opinion Score](https://en.wikipedia.org/wiki/Mean_opinion_score) (MOS) is usually the first thing that comes to mind. However, calculating a true MOS inherently involves, and relies upon human perception and judgement. Thus when it comes to determining the call quality in Asterisk only an approximation can be achieved since it can only depend upon relevant statistics. And for that reason we'll call it a "Media Experience Score" instead.
 
 Relevant Statistics
 -------------------
 
-What are these relevant statistics? To start, and in order to keep things simple there are three obvious choices all computed by Asterisk and defined in RFC: [RTP: A Transport Protocol for Real-Time Applications](https://www.rfc-editor.org/rfc/rfc3550#section-6.4.1)
+What are these relevant statistics? To start, and in order to keep things simple there are three obvious choices all computed by Asterisk and defined in RFC: [RTP: A Transport Protocol for Real-Time Applications](https://www.rfc-editor.org/rfc/rfc3550#section-6.4.1)
 
 * Round Trip Time (RTT)
 * Jitter
 * Packets Lost
 
-As one may note, these statistics all relate to network conditions, and connectivity. They do not give any indication as to the state of the actual media within a packet. That level of inspection, and analysis is currently outside our current scope. However, media via RTP can be greatly affected by the network state. Things like packet loss, or a delay in delivery translate to degraded media quality for the end user. In fact by combining the mentioned statistics into an appropriate calculation one can claim a confident opinion about the quality of an end user’s media experience.
+As one may note, these statistics all relate to network conditions, and connectivity. They do not give any indication as to the state of the actual media within a packet. That level of inspection, and analysis is currently outside our current scope. However, media via RTP can be greatly affected by the network state. Things like packet loss, or a delay in delivery translate to degraded media quality for the end user. In fact by combining the mentioned statistics into an appropriate calculation one can claim a confident opinion about the quality of an end user’s media experience.
 
 Forming an Opinion
 ------------------
@@ -29,24 +29,12 @@ Let’s start with latency. Depending on the situation the media itself may or m
 
   
 
-
-
-
-
----
-
-  
-  
-
-
 ```
-
 textEffective Latency = Average Round Trip Time + Average Jitter \* 2 \* (Jitter Standard Deviation / 3) + Codec Delay
 If Effective Latency < 160: R = 93.2 - (Effective Latency / 40)
 Else: R = 93.2 - (Effective Latency - 120) / 10
 
 ```
-
 
   
 
@@ -55,23 +43,10 @@ Multiplying the jitter, and factoring in its standard deviation adds to its “w
 
 Next up is packet loss. If anything is going to have a known effect on media quality it’s packet loss. Again we can further reduce the ‘R’ value according to average number of packets lost since the last report:
 
- 
-
-
-
-
----
-
-  
-  
-
-
 ```
-
 textR = R - Packets Lost \* 2.5
 
 ```
-
 
 
 
@@ -90,24 +65,12 @@ All that is needed to do now is convert the ‘R’ value into an “opinion sco
 
   
 
-
-
-
-
----
-
-  
-  
-
-
 ```
-
 textIf R < 0: Opinion = 1
 Else if R > 100: Opinion = 4.5
 Else: Opinion = 1 + (0.035 \* R) + (R \* (R - 60) \* (100 - R) \* 0.0000007);
 
 ```
-
 
 In Asterisk
 -----------
@@ -134,11 +97,11 @@ true
 
 
   
- 
 
- 
 
- 
 
- 
+
+
+
+
 

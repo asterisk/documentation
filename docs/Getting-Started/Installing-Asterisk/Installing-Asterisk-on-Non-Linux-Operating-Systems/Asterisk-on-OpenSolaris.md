@@ -60,22 +60,11 @@ Despite the above two possibilities, there is a workaround to make Asterisk comp
 	+ At the time of this writing there are only 4 instances. This alone will make configure properly detect LDAP availability. But it will not compile.
 * When running make, specify the use of the OpenLDAP headers like this:
 
-
-
----
-
-  
-  
-
-
 ```
-
 
 "make LDAP_INCLUDE=-I/usr/include/openldap"
 
-
 ```
-
 
 #### Makefile layouts
 
@@ -87,9 +76,6 @@ In Asterisk 1.6 the Makefile overrides any usage of --prefix. I suspect the assu
 
 
 If you want to alter the install locations you will need to hand-edit the Makefile. Search for the string "SunOS" to find the following section:
-
-
-
 
 ```bash title=" " linenums="1"
 # Define standard directories for various platforms
@@ -109,9 +95,7 @@ ifeq ($(OSARCH),SunOS)
  ASTMANDIR=/opt/asterisk/man
 else
 
-
 ```
-
 
 Note that, despite the comment, these definitions have build-time and run-time implications. Make sure you make these changes BEFORE you build!
 

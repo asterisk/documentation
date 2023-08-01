@@ -6,7 +6,7 @@ pageid: 29395612
 Handling DTMF events
 ====================
 
-DTMF events are conveyed via the [`ChannelDtmfReceived`](/Asterisk+12+REST+Data+Models#Asterisk12RESTDataModels-ChannelDtmfReceived) event. The event contains the channel that pressed the DTMF key, the digit that was pressed, and the duration of the digit.
+DTMF events are conveyed via the [`ChannelDtmfReceived`](/Asterisk+12+REST+Data+Models#Asterisk12RESTDataModels-ChannelDtmfReceived) event. The event contains the channel that pressed the DTMF key, the digit that was pressed, and the duration of the digit.
 
 While this concept is relatively straight forward, handling DTMF is quite common in applications, as it is the primary mechanism that phones have to inform a server to perform some action. This includes manipulating media, initiating call features, performing transfers, dialling, and just about every thing in between. As such, the examples on this page focus less on simply handling the event and more on using the DTMF in a relatively realistic fashion.
 
@@ -20,7 +20,7 @@ This example mimics the [automated attendant/IVR dialplan example](/Deployment/B
 * If the user presses an invalid digit, a prompt informing the user that the digit was invalid is played to the user and the menu restarted.
 * If the user fails to press anything within some period of time, a prompt asking the user if they are still present is played to the user and the menu restarted.
 
- 
+
 
 
 
@@ -49,15 +49,12 @@ As usual, a very simple dialplan is sufficient for this example. The dialplan ta
   
 extensions.conf  
 
-
 ```
-
 trueexten => 1000,1,NoOp()
  same => n,Stasis(channel-aa)
  same => n,Hangup()
 
 ```
-
 
 Python
 ------
@@ -82,21 +79,10 @@ The second requirement makes this a bit more challenging: when the user presses 
 
 To start, we'll define in a list at the top of our script the sounds that make up the initial menu prompt:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 truepy12sounds = ['press-1', 'or', 'press-2']
 
 ```
-
 
 Since we'll want to maintain some state, we'll create a small object to do that for us. In Python, tuples are immutable - and we'll want to mutate the state in callbacks when certain operations happen. As such, it makes sense to use a small class for this with two properties:
 
@@ -105,17 +91,7 @@ Since we'll want to maintain some state, we'll create a small object to do that 
 
 It's useful to have both pieces of data, as we may cancel the menu half-way through and want to take one set of actions, or we may complete the menu and all the sounds and start a different set of actions.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 truepy16class MenuState(object):
  """A small tracking object for the channel in the menu"""
 
@@ -125,20 +101,9 @@ truepy16class MenuState(object):
 
 ```
 
-
 To start, we'll write a function, `play_intro_menu`, that starts the menu on a channel. It will simply initialize the state of the menu, and get the ball rolling on the channel by calling `queue_up_sound`.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 truepy24def play_intro_menu(channel):
  """Play our intro menu to the specified channel
  Since we want to interrupt the playback of the menu when the user presses
@@ -160,20 +125,9 @@ truepy24def play_intro_menu(channel):
 
 ```
 
-
 `queue_up_sound` will be responsible for starting the next sound file on the channel and handling the manipulation of that sound file. Since there's a fair amount of checking that goes into this, we'll put the actual act of starting the sound in `play_next_sound`, which will return the `Playback` object from ARI. We'll prep the `menu_state` object for the next sound file playback, and pass it to the `PlaybackFinished` handler for the current sound being played back to the channel.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 truepy70 def queue_up_sound(channel, menu_state):
  """Start up the next sound and handle whatever happens
 
@@ -190,26 +144,14 @@ truepy70 def queue_up_sound(channel, menu_state):
  current_playback.on_event('PlaybackFinished', on_playback_finished,
  callback_args=[menu_state])
 
-
 ```
-
 
 `play_next_sound` will do two things:
 
 1. If we shouldn't play another sound - either because we've run out of sounds to play or because the menu is now "complete", we bail and return None.
 2. If we should play back a sound, start it up on the channel and return the `Playback` object.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 truepy42 def play_next_sound(menu_state):
  """Play the next sound, if we should
 
@@ -230,20 +172,9 @@ truepy42 def play_next_sound(menu_state):
 
 ```
 
-
 Our playback finished handler is very simple: since we've already incremented the state of the menu, we just call `queue_up_sound` again:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 truepy60 def on_playback_finished(playback, ev, menu_state):
  """Callback handler for when a playback is finished
  Keyword Arguments:
@@ -254,7 +185,6 @@ truepy60 def on_playback_finished(playback, ev, menu_state):
  queue_up_sound(channel, menu_state)
 
 ```
-
 
 To recap, our `play_intro_menu` function has three nested functions:
 
@@ -270,17 +200,7 @@ When the user presses a DTMF key, we want to stop the current playback and end t
 
 We should also stop the menu when the channel is hung up. Since the `cancel_menu` , so we'll subscribe to the `StasisEnd` event here and call `cancel_menu` from it as well:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 truepy70 def queue_up_sound(channel, menu_state):
  """Start up the next sound and handle whatever happens
 
@@ -314,22 +234,11 @@ truepy70 def queue_up_sound(channel, menu_state):
 
 ```
 
-
 #### Timing out
 
 Now we can cancel the menu, but we also need to restart it if the user doesn't do anything. We can use a Python timer to start a timer if we're finished playing sounds *and* we got to the end of the sound prompt list. We don't want to start the timer if the user pressed a DTMF key - in that case, we would have stopped the menu early and we should be off handling their DTMF key press. The timer will call `menu_timeout`, which will play back a "are you still there?" prompt, then restart the menu.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 truepy70 def queue_up_sound(channel, menu_state):
  """Start up the next sound and handle whatever happens
  Keywords Arguments:
@@ -340,7 +249,7 @@ truepy70 def queue_up_sound(channel, menu_state):
  def menu_timeout(channel):
  """Callback called by a timer when the menu times out"""
  print 'Channel %s stopped paying attention...' % channel.json.get('name')
-  channel.play(media='sound:are-you-still-there')
+  channel.play(media='sound:are-you-still-there')
  play_intro_menu(channel)
 
  def cancel_menu(channel, ev, current_playback, menu_state):
@@ -373,24 +282,12 @@ truepy70 def queue_up_sound(channel, menu_state):
 
 ```
 
-
 Now that we've introduced timers, we know we're going to need to stop them if the user does something. We'll store the timers in a dictionary indexed by channel ID, so we can get them from various parts of the script:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 truepy14channel_timers = {}
 
 ```
-
 
 ### Handling the DTMF options
 
@@ -402,17 +299,7 @@ While we now have code that plays back the menu to the user, we actually have to
 
 The following implements these three items, deferring processing of the valid options to separate functions.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 truepy150def on_dtmf_received(channel, ev):
  """Our main DTMF handler for a channel in the IVR
 
@@ -432,7 +319,7 @@ truepy150def on_dtmf_received(channel, ev):
  handle_extension_two(channel)
  else:
  print 'Channel %s entered an invalid option!' % channel.json.get('name')
-  channel.play(media='sound:option-is-invalid')
+  channel.play(media='sound:option-is-invalid')
  play_intro_menu(channel)
 
 
@@ -447,20 +334,9 @@ def stasis_start_cb(channel_obj, ev):
 
 ```
 
-
 Cancelling the timer is done in a fashion similar to other examples. If the channel has a Python timer associated with it, we cancel the timer and remove it from the dictionary.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 truepy138def cancel_timeout(channel):
  """Cancel the timeout timer for the channel
 
@@ -474,20 +350,9 @@ truepy138def cancel_timeout(channel):
 
 ```
 
-
 Finally, we need to actually do *something* when the user presses a `1` or a `2`. We could do anything here - but in our case, we're merely going to play back the number that they pressed and restart the menu.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 truepy114def handle_extension_one(channel):
  """Handler for a channel pressing '1'
 
@@ -511,7 +376,6 @@ def handle_extension_two(channel):
 
 ```
 
-
 ### channel-aa.py
 
 The full source for `channel-aa.py` is shown below:
@@ -524,9 +388,7 @@ The full source for `channel-aa.py` is shown below:
   
 channel-aa.py  
 
-
 ```
-
 truepy#!/usr/bin/env python
 
 import ari
@@ -607,7 +469,7 @@ def play_intro_menu(channel):
  def menu_timeout(channel):
  """Callback called by a timer when the menu times out"""
  print 'Channel %s stopped paying attention...' % channel.json.get('name')
-  channel.play(media='sound:are-you-still-there')
+  channel.play(media='sound:are-you-still-there')
  play_intro_menu(channel)
 
  def cancel_menu(channel, ev, current_playback, menu_state):
@@ -694,7 +556,7 @@ def on_dtmf_received(channel, ev):
  handle_extension_two(channel)
  else:
  print 'Channel %s entered an invalid option!' % channel.json.get('name')
-  channel.play(media='sound:option-is-invalid')
+  channel.play(media='sound:option-is-invalid')
  play_intro_menu(channel)
 
 
@@ -720,26 +582,13 @@ client.on_channel_event('StasisEnd', stasis_end_cb)
 
 client.run(apps='channel-aa')
 
-
-
 ```
-
 
 ### channel-aa.py in action
 
 The following shows the output of `channel-aa.py` when a PJSIP channel presses `1`, `2`, `8`, then times out. Finally they hang up.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 Channel PJSIP/alice-00000001 has entered the application
 Channel PJSIP/alice-00000001 entered 1
 Channel PJSIP/alice-00000001 entered 2
@@ -751,7 +600,6 @@ PJSIP/alice-00000001 has left the application
 ```
 
 
- 
 
 JavaScript (Node.js)
 --------------------
@@ -776,17 +624,7 @@ The second requirement makes this a bit more challenging: when the user presses 
 
 To start, we'll define an object to represent the menu at the top of our script that defines sounds that make up the initial menu prompt as well as valid DTMF options for the menu:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 truejs9var menu = {
  // valid menu options
  options: [1, 2],
@@ -796,20 +634,9 @@ truejs9var menu = {
 
 ```
 
-
 To start with, well register a callback to handle a StasisStart and StasisEnd event on any channel that enters into our application:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 truejs28function stasisStart(event, channel) {
  console.log('Channel %s has entered the application', channel.name);
 
@@ -834,7 +661,6 @@ function stasisEnd(event, channel) {
 
 ```
 
-
 Note that we register a callback to handle ChannelDtmfReceived events on a channel entering our application in StasisStart and then unregister that callback on StasisEnd. For long running, non-trivial applications, this allows the JavaScript garbage collector to clean up our callback. This is important since every channel entering into our application will register its own copy of the callback which is not be garbage collected until it is unregistered.
 
 We'll cover the DTMF callback handler shortly, but first we'll cover writting functions to handle playing the menu prompt
@@ -849,17 +675,7 @@ Since we'll want to maintain some state, we'll create a small object to do that 
 
 It's useful to have this data, as we may cancel the menu half-way through and want to take one set of actions, or we may play all the sounds that make up the menu prompt and start a different set of actions.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 truejs88var state = {
  currentSound: menu.sounds[0],
  currentPlayback: undefined,
@@ -868,20 +684,9 @@ truejs88var state = {
 
 ```
 
-
 `playIntroMenu will` start the menu on a channel. It will simply initialize the state of the menu, and get the ball rolling on the channel by calling `queueUpSound` which is a nested function within playIntroMenu.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 truejs87function playIntroMenu(channel) {
  var state = {
  currentSound: menu.sounds[0],
@@ -889,27 +694,16 @@ truejs87function playIntroMenu(channel) {
  done: false
  };
 
-  channel.on('ChannelDtmfReceived', cancelMenu);
+  channel.on('ChannelDtmfReceived', cancelMenu);
  channel.on('StasisEnd', cancelMenu);
  queueUpSound();
  ...
 
 ```
 
-
 We'll cover cancelMenu shortly, but first let's discuss queueUpSound. `queueUpSound` will be responsible for starting the next sound file on the channel and handling the manipulation of that sound file. queueUpSound is also responsible for starting a timeout once all sounds for the menu prompt have completed to handle reminding the user that they must choose a menu option. We'll cover that part shortly but first, we'll cover handling progerssing through the sounds that make up the menu prompt. We first initiate playback on the current sound in the sequence. We then register a callback to handle that playback finishing, which will trigger queueUpSound to be called again, moving on to the next sound in the sequence. Finally, we update the state object to reflect the next sound to be played in the menu prompt sequence.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 truejs113function queueUpSound() {
  if (!state.done) {
  // have we played all sounds in the menu?
@@ -920,22 +714,20 @@ truejs113function queueUpSound() {
  var playback = client.Playback();
  state.currentPlayback = playback;
 
-  channel.play({media: state.currentSound}, playback, function(err) {
+  channel.play({media: state.currentSound}, playback, function(err) {
  // ignore errors
  });
  playback.once('PlaybackFinished', function(event, playback) {
  queueUpSound();
  });
 
-  var nextSoundIndex = menu.sounds.indexOf(state.currentSound) + 1;
+  var nextSoundIndex = menu.sounds.indexOf(state.currentSound) + 1;
  state.currentSound = menu.sounds[nextSoundIndex];
  }
  }
 }
 
-
 ```
-
 
 Notice that when registering our PlaybackFinished callback handler, we use the once method on the resource instance instead of on. This ensures that the callback will be invoked once and then automatically be unregistered. Since a PlaybackFinished event will only be invoked once for a given Playback instance, it makes sense to use this method which will also enable the callback to be garbage collected once it has been invoked.
 
@@ -947,17 +739,7 @@ When the user presses a DTMF key, we want to stop the current playback and end t
 
 We should also stop the menu when the channel is hung up. To do this we'll subscribe to the `StasisEnd` event as well and register cancelMenu as its callback handler:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 truejs99function cancelMenu() {
  state.done = true;
  if (state.currentPlayback) {
@@ -966,13 +748,12 @@ truejs99function cancelMenu() {
  });
  }
 
-  // remove listeners as future calls to playIntroMenu will create new ones
+  // remove listeners as future calls to playIntroMenu will create new ones
  channel.removeListener('ChannelDtmfReceived', cancelMenu);
  channel.removeListener('StasisEnd', cancelMenu);
 }
 
 ```
-
 
 Note that once the cancelMenu callback is invoked, we unregister both the ChannelDtmfReceived and StasisEnd events. This is performed so that once this particular menu instance stops, we do not leave registered callbacks behind that will never be garbage collected.
 
@@ -980,17 +761,7 @@ Note that once the cancelMenu callback is invoked, we unregister both the Channe
 
 Now we can cancel the menu, but we also need to restart it if the user doesn't do anything. We can use a JavaScript timeout to start a timer if we're finished playing sounds *and* we got to the end of the sound prompt sequence. We don't want to start the timer if the user pressed a DTMF key - in that case, we would have stopped the menu early and we should be off handling their DTMF key press. The timer will call `stillThere`, which will play back a "are you still there?" prompt, then restart the menu.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 truejs137function stillThere() {
  console.log('Channel %s stopped paying attention...', channel.name);
 
@@ -1005,24 +776,12 @@ truejs137function stillThere() {
 
 ```
 
-
 Now that we've introduced timers, we know we're going to need to stop them if the user does something. We'll store the timers in an object indexed by channel ID, so we can get them from various parts of the script:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 truejs16var timers = {};
 
 ```
-
 
 ### Handling the DTMF options
 
@@ -1034,17 +793,7 @@ While we now have code that plays back the menu to the user, we actually have to
 
 The following implements these three items, deferring processing of the valid options to a separate function.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 truejs52function dtmfReceived(event, channel) {
  cancelTimeout(channel);
  var digit = parseInt(event.digit);
@@ -1070,24 +819,13 @@ truejs52function dtmfReceived(event, channel) {
 
 ```
 
-
 Cancelling the timer is done in a fashion similar to other examples. If the channel has a JavaScript timeout associated with it, we cancel the timer and remove it from the object.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 truejs151function cancelTimeout(channel) {
  var timer = timers[channel.id];
 
-  if (timer) {
+  if (timer) {
  clearTimeout(timer);
  delete timers[channel.id];
  }
@@ -1095,20 +833,9 @@ truejs151function cancelTimeout(channel) {
 
 ```
 
-
 Finally, we need to actually do *something* when the user presses a `1` or a `2`. We could do anything here - but in our case, we're merely going to play back the number that they pressed and restart the menu.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 truejs161function handleDtmf(channel, digit) {
  var parts = ['sound:you-entered', util.format('digits:%s', digit)];
  var done = 0;
@@ -1125,13 +852,9 @@ truejs161function handleDtmf(channel, digit) {
 
 ```
 
-
 ### channel-aa.js
 
 The full source for `channel-aa.js` is shown below:
-
-
-
 
 ```javascript title="channel-aa.js" linenums="1"
 truejs/*jshint node:true */
@@ -1313,22 +1036,11 @@ function clientLoaded (err, client) {
 
 ```
 
-
 ### channel-aa.js in action
 
 The following shows the output of `channel-aa.js` when a PJSIP channel presses `1`, `2`, `8`, then times out. Finally they hang up.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 Channel PJSIP/alice-00000001 has entered the application
 Channel PJSIP/alice-00000001 entered 1
 Channel PJSIP/alice-00000001 entered 2
@@ -1340,7 +1052,6 @@ PJSIP/alice-00000001 has left the application
 ```
 
 
- 
 
- 
+
 

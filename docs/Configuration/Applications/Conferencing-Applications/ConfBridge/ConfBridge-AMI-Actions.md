@@ -10,17 +10,7 @@ Lists all users in a particular ConfBridge conference. ConfbridgeList will follo
 
 **Example**
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 Action: ConfbridgeList
 Conference: 1111
 
@@ -40,9 +30,7 @@ Event: ConfbridgeListComplete
 EventList: Complete
 ListItems: 1
 
-
 ```
-
 
 On This PageConfbridgeListRooms
 -------------------
@@ -51,17 +39,7 @@ Lists data about all active conferences. ConfbridgeListRooms will follow as sepa
 
 **Example**
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 Action: ConfbridgeListRooms
 
 Response: Success
@@ -78,9 +56,7 @@ Event: ConfbridgeListRoomsComplete
 EventList: Complete
 ListItems: 1
 
-
 ```
-
 
 ConfbridgeMute
 --------------
@@ -89,17 +65,7 @@ Mutes a specified user in a specified conference.
 
 **Example**
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 Action: ConfbridgeMute
 Conference: 1111
 Channel: SIP/mypeer-00000001
@@ -107,9 +73,7 @@ Channel: SIP/mypeer-00000001
 Response: Success
 Message: User muted
 
-
 ```
-
 
 ConfbridgeUnmute
 ----------------
@@ -118,17 +82,7 @@ Unmutes a specified user in a specified conference.
 
 **Example**
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 Action: ConfbridgeUnmute
 Conference: 1111
 Channel: SIP/mypeer-00000001
@@ -136,9 +90,7 @@ Channel: SIP/mypeer-00000001
 Response: Success
 Message: User unmuted
 
-
 ```
-
 
 ConfbridgeKick
 --------------
@@ -147,17 +99,7 @@ Removes a specified user from a specified conference.
 
 **Example**
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 Action: ConfbridgeKick
 Conference: 1111
 Channel: SIP/mypeer-00000001
@@ -165,9 +107,7 @@ Channel: SIP/mypeer-00000001
 Response: Success
 Message: User kicked
 
-
 ```
-
 
 ConfbridgeLock
 --------------
@@ -176,26 +116,14 @@ Locks a specified conference.
 
 **Example**
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 Action: ConfbridgeLock
 Conference: 1111
 
 Response: Success
 Message: Conference locked
 
-
 ```
-
 
 ConfbridgeUnlock
 ----------------
@@ -204,26 +132,14 @@ Unlocks a specified conference.
 
 **Example**
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 Action: ConfbridgeUnlock
 Conference: 1111
 
 Response: Success
 Message: Conference unlocked
 
-
 ```
-
 
 ConfbridgeStartRecord
 ---------------------
@@ -232,17 +148,7 @@ Starts recording a specified conference, with an optional filename. If recording
 
 **Example**
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 Action: ConfbridgeStartRecord
 Conference: 1111
 
@@ -256,9 +162,7 @@ Variable: MIXMONITOR_FILENAME
 Value: /var/spool/asterisk/monitor/confbridge-1111-1303309869.wav
 Uniqueid: 1303309869.6
 
-
 ```
-
 
 ConfbridgeStopRecord
 --------------------
@@ -267,17 +171,7 @@ Stops recording a specified conference.
 
 **Example**
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 Action: ConfbridgeStopRecord
 Conference: 1111
 
@@ -293,9 +187,7 @@ CallerIDName: <unknown>
 Cause: 0
 Cause-txt: Unknown
 
-
 ```
-
 
 ConfbridgeSetSingleVideoSrc
 ---------------------------
@@ -304,17 +196,7 @@ This action sets a conference user as the single video source distributed to all
 
 **Example**
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 Action: ConfbridgeSetSingleVideoSrc
 Conference: 1111
 Channel: SIP/mypeer-00000001
@@ -322,7 +204,5 @@ Channel: SIP/mypeer-00000001
 Response: Success
 Message: Conference single video source set.
 
-
 ```
-
 

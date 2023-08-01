@@ -14,7 +14,7 @@ pageid: 32375195
 
 
 
- 
+
 
 At this stage in development, a resolver has been implemented, and backend support for NAPTR and SRV have been added. However, there are no users of NAPTR or (the new) SRV in Asterisk. The first user of them will be res_pjsip.so. In writing tests for res_pjsip, RFC 3263 will be the model for how SIP servers are to be located.
 
@@ -40,17 +40,7 @@ Procedure:
 
 * Set `_sip._udp.test.internal` to have the following records
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 ;; Priority Weight Port Target
 IN SRV 0 1 5060 main.test.internal.
 IN SRV 1 1 5060 backup.test.internal.
@@ -81,20 +71,10 @@ Procedure:
 
 * Set up the following DNS records
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 fast.test.internal IN A 127.0.0.1
 slow.test.internal IN A 127.0.0.1
- 
+
 ;; Priority Weight Port Target
 _sip._udp.test.internal IN SRV 0 3 5061 fast.test.internal.
  IN SRV 0 1 5062 slow.test.internal.
@@ -136,17 +116,7 @@ Procedure:
 
 * Set up the following DNS record:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 test.internal IN A 127.0.0.1
 
 ```
@@ -191,17 +161,7 @@ Procedure:
 
 * Set up the following DNS records for `test.internal`:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 ; order pref flags service regexp replacement
 IN NAPTR 50 50 "s" "SIP+D2T" "" _sip._tcp.test.internal.
 IN NAPTR 90 40 "s" "SIP+D2U" "" _sip._udp.test.internal.
@@ -220,17 +180,7 @@ Procedure:
 
 * Set up the following DNS records for `test.internal`:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 ; order pref flags service regexp replacement
 IN NAPTR 50 50 "s" "SIP+D2T" "" _sip._tcp.test.internal.
 IN NAPTR 50 90 "s" "SIP+D2U" "" _sip._udp.test.internal.
@@ -261,17 +211,7 @@ Procedure:
 
 * Set up the following DNS records for `test.internal`:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 ; order pref flags service regexp replacement
 IN NAPTR 50 50 "s" "SIP+D2T" "" _sip._tcp.test.internal.
 IN NAPTR 60 50 "s" "SIP+D2U" "" _sip._udp.test.internal.
@@ -290,20 +230,10 @@ Procedure:
 
 * Set up the following DNS records for `test.internal`:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 test.internal IN NAPTR 50 50 "s" "SIP+D2T" "" _sip._tcp.test.internal.
  IN NAPTR 50 60 "s" "SIP+D2U" "" _sip._udp.test.internal.
- 
+
 _sip._udp.test.internal IN SRV 1 1 5060 sip.test.internal
 
 ```
@@ -352,17 +282,7 @@ Procedure:
 
 * Set up the following DNS records for `test.internal` (taken from RFC 3403):
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 ;; order pref flags service regexp replacement
 IN NAPTR 100 50 "a" "z3950+N2L+N2C" "" cidserver.test.internal.
 IN NAPTR 100 50 "a" "rcds+N2C" "" cidserver.test.internal.
@@ -382,17 +302,7 @@ Procedure:
 
 * Set up the following DNS records for `test.internal`:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 ; order pref flags service regexp replacement
 IN NAPTR 50 50 "s" "SIPS+D2T" "" _sips._tcp.test.internal.
 IN NAPTR 60 50 "s" "SIP+D2T" "" _sip._tcp.test.internal.
@@ -426,17 +336,7 @@ Procedure:
 
 * Set up the following DNS records for `test.internal`:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 ; order pref flags service regexp replacement
 IN NAPTR 50 50 "a" "SIP+D2T" "" sip.tcp.test.internal.
 IN NAPTR 60 50 "s" "SIP+D2T" "" _sip._tcp.test.internal.
@@ -469,17 +369,7 @@ Procedure:
 
 * Set up the following DNS records for `test.internal`:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 ; order pref flags service regexp replacement
 IN NAPTR 50 50 "s" "SIP+D2T" "!.\*!_sip._tcp.test.internal!" .
 IN NAPTR 60 50 "s" "SIP+D2U" "" _sip._udp.test.internal.
@@ -497,17 +387,7 @@ Procedure:
 
 * Set up the following DNS records:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 test.internal IN NAPTR 50 50 "s" "SIP+D2T" "" _sip._tcp.test.internal.
  IN NAPTR 60 50 "s" "SIP+D2U" "" _sip._udp.test.internal.
  
@@ -515,14 +395,13 @@ _sip._udp.test.internal IN SRV 1 1 5060 sip.test.internal
 
 ```
 
-
 Note that there is no SRV record for `_sip._tcp.test.internal`
 * Enable NAPTR lookups for outbound SIP calls. Enable UDP and TCP transports to be used.
 * Place an outbound call to `sip:test.internal`
 * Ensure that an SRV lookup is performed for `_sip._tcp.test.internal`.
 * When the SRV lookup fails, ensure that no other SRV lookups are attempted.
 
- 
+
 
 Other RFC 3263-related Tests
 ============================
@@ -533,41 +412,30 @@ The majority of these tests rely on using the proper lookup method based on the 
 
 This is a mega-test that will require many sub-tests. The following DNS entries will be needed for the test:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 ; NAPTR records
 test.internal IN NAPTR 50 50 "s" "SIPS+D2T" "" _sips._tcp.test.internal.
  IN NAPTR 60 50 "s" "SIP+D2T" "" _sip._tcp.test.internal.
  IN NAPTR 90 50 "s" "SIP+D2U" "" _sip._udp.test.internal.
- 
+
 ; SRV records
 _sips._tcp.test.internal IN SRV 0 100 5061 tls.test.internal.
 _sip._tcp.test.internal IN SRV 0 100 5060 tcp.test.internal.
 _sip._udp.test.internal IN SRV 0 100 5060 udp.test.internal.
- 
+
 ; A/AAAA records
 tls.test.internal IN A 127.0.0.1
  IN AAAA ::1
- 
+
 tcp.test.internal IN A 127.0.0.1
  IN AAAA ::1
- 
+
 udp.test.internal IN A 127.0.0.1
  IN AAAA ::1
 
 ```
 
 
- 
 
 The parts of a SIP URI can be used to determine what transport should be used and/or what type of lookup should be used. Consult the following table
 
@@ -581,7 +449,7 @@ The parts of a SIP URI can be used to determine what transport should be used an
 | No transport | Transport: UDPLookup: nonePort: 5060 | Transport: UDPLookup: nonePort: As specified | Transport: Determined by lookupLookup: NAPTRPort: Determined by lookup | Transport: UDPLookup: A/AAAAPort: As specified |
 | SIPS URI | Transport: TLSLookup: nonePort: 5061 | Transport: TLSLookup: nonePort: As specified | Transport: TLSLookup: NAPTRPort: Determined by lookup | Transport: TLSLookup: A/AAAAPort: As specified |
 
- 
+
 
 Goal: Ensure that SIP URIs of different construction result in proper lookups being carried out.
 
@@ -619,31 +487,21 @@ Procedure:
 
 * Set up the following records for `test.internal`
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 main.test.internal IN A 127.0.0.1
  IN AAAA ::1
  
 ;; Priority Weight Port Target
 _sip._udp.test.internal IN SRV 0 100 5060 main.test.internal.
  IN SRV 1 100 5060 backup.test.internal.
- 
+
 test.internal IN NAPTR 0 0 "s" "SIP+D2U" "" _sip._udp.test.internal
 
 ```
 * Place a call to `sip:test.internal`
 * Ensure that a NAPTR lookup is performed for `test.internal`
 * Ensure that an SRV lookup is performed for `_sip._udp.test.internal`
-* Ensure that an A and AAAA lookup is performed for `main.test.internal`. It is unknown which of the two records for `main.test.internal` will be returned first. However, since neither actually has anything running on them, either should work fine.
+* Ensure that an A and AAAA lookup is performed for `main.test.internal`. It is unknown which of the two records for `main.test.internal` will be returned first. However, since neither actually has anything running on them, either should work fine.
 * Ensure that when the SIP request to the first returned record from `main.test.internal` fails (due to transaction timeout due to no response), that the second record from `main.test.internal` is attempted before performing any lookup on `backup.test.internal`
 
 ### Response Via header extravaganza
@@ -672,5 +530,5 @@ Procedure:
 * Ensure that the initial attempt to send the response fails.
 * Ensure that after the failure, the appropriate lookup is performed, and that the response is tried again using the data retrieved from the lookup.
 
- 
+
 

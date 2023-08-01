@@ -19,37 +19,16 @@ No special syntax is needed when defining the dialplan code that you want to cal
 
 Here is an example of dialplan we could call with `Gosub` when we don't wish to return.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 [my-gosub]
 exten => s,1,Verbose("Here we are in a subroutine! Let's listen to some weasels")
  same => n,Playback(tt-weasels)
 
 ```
 
-
 Here is an example where we do wish to return.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 [my-gosub]
 exten => s,1,Verbose("Here we are in a subroutine! Let's listen to some weasels")
  same => n,Playback(tt-weasels)
@@ -57,48 +36,25 @@ exten => s,1,Verbose("Here we are in a subroutine! Let's listen to some weasels"
 
 ```
 
-
 Calling Gosub
 =============
 
 `Gosub` syntax is simple, you only need to specify the priority, and then optionally the context and extension plus any arguments you wish to use.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 Gosub([[context,]exten,]priority[(arg1[,...][,argN])])
 
 ```
 
-
 Here is an example within Asterisk dialplan.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 [somecontext]
 exten => 7000,1,Verbose("We are going to run a Gosub before Dialing!")
  same => n,Gosub(my-gosub,s,1)
  same => n,Dial(PJSIP/ALICE)
 
 ```
-
 
 Here we are calling the `my-gosub` context at extension `s` , priority `1`.
 
@@ -109,17 +65,7 @@ If you want to pass information into your `Gosub` routine then you need to use a
 
 Here is how we call `Gosub` with an argument. We are substituting the `EXTEN` channel variable for the first argument field (`ARG1`).
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 [somecontext]
 exten => 7000,1,Verbose("We are going to run a Gosub before Dialing!")
  same => n,Gosub(my-gosub,s,1(${EXTEN}))
@@ -127,20 +73,9 @@ exten => 7000,1,Verbose("We are going to run a Gosub before Dialing!")
 
 ```
 
-
 Below we make use of `ARG1` in the `Verbose` message we print during the subroutine execution.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 [my-gosub]
 exten => s,1,Verbose("Here we are in a subroutine! This subroutine was called from extension ${ARG1}")
  same => n,Playback(tt-weasels)
@@ -148,8 +83,7 @@ exten => s,1,Verbose("Here we are in a subroutine! This subroutine was called fr
 
 ```
 
-
 To use multiple arguments, simply separate them via commas when defining them in the `Gosub` call. Then within the `Gosub` reference them as `ARG1`, `ARG2`, `ARG3`, etc.
 
- 
+
 

@@ -12,57 +12,35 @@ The following is a base configuration to use for pjsip.conf for the tests on thi
 
 pjsip.conf:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 [pres_list]
 type = resource_list
 event = presence
 list_item = alice@default
 list_item = bob@default
- 
+
 [mail_list]
 type = resource_list
 event = message-summary
 list_item = alice
 list_item = bob
- 
+
 [sipp]
 type = endpoint
 context = default
 
 ```
 
-
 extensions.conf:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 [default]
 exten => alice,hint,Custom:alice
 exten => bob,hint,Custom:bob
 
 ```
 
-
-It is expected that tests that use the `mail_list` are using external MWI, not app_voicemail.
+It is expected that tests that use the `mail_list` are using external MWI, not app_voicemail.
 
 Nominal tests
 -------------
@@ -103,21 +81,10 @@ Use SIPp to establish a subscription to pres_list. Ensure the following are true
 
 Add the following line to each list in pjsip.conf:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 full_state = yes
 
 ```
-
 
 Use SIPp to subscribe to a list. After Asterisk sends the initial notification, change the state of alice. Ensure that Asterisk sends a NOTIFY and that the following changes from the first NOTIFY are present:
 
@@ -129,21 +96,10 @@ Use SIPp to subscribe to a list. After Asterisk sends the initial notification, 
 
 Add the following line to the configured list in pjsip.conf:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 full_state = no
 
 ```
-
 
 Repeat Test 3. This time, the NOTIFY sent on the state change should have the following changes from the first NOTIFY sent:
 
@@ -161,7 +117,7 @@ Use SIPp to subscribe to a list. After receiving the first NOTIFY from Asterisk,
 * The RLMI version is "1" instead of "0".
 * The Content-ID headers may be different from what they were in the first NOTIFY, but the RLMI body should still have the correct matching cid attributes for each resource.
 
-Run a second iteration of the test with the `full_state` option set to "no" and ensure that the behavior is the same (i.e. the NOTIFY sent from Asterisk does not have partial state).
+Run a second iteration of the test with the `full_state` option set to "no" and ensure that the behavior is the same (i.e. the NOTIFY sent from Asterisk does not have partial state).
 
 #### Test 6: Subscription Termination
 
@@ -215,17 +171,7 @@ Have SIPp attempt to subscribe to `pres_list`. Ensure that Asterisk responds to 
 
 For this test, alter the `pres_list` configuration to be the following:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 [pres_list]
 type = resource_list
 event = presence
@@ -233,7 +179,6 @@ list_item = alice@default
 list_item = alice@default
 
 ```
-
 
 Have SIPp subscribe to `pres_list`. Ensure that Asterisk responds to the SUBSCRIBE with a 200 OK. Ensure that the NOTIFY Asterisk sends contains an RLMI body part with only a single resource (for alice) and only one application/pidf+xml body part.
 
@@ -244,65 +189,43 @@ The following are base configurations to use for these tests. Individual tests m
 
 pjsip.conf:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 [pres_list]
 type = resource_list
 event = presence
 list_item = pres_sublist
- 
+
 [pres_sublist]
 type = resource_list
 event = presence
 list_item = alice@default
 list_item = bob@default
- 
+
 [mail_list]
 type = resource_list
 event = message-summary
 list_item = mail_sublist
- 
+
 [mail_sublist]
 type = resource_list
 event = message-summary
 list_item = alice
 list_item = bob
- 
+
 [sipp]
 type = endpoint
 context = default
 
 ```
 
-
 extensions.conf:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 [default]
 exten => alice,hint,Custom:alice
 exten => bob,hint,Custom:bob
 
 ```
-
 
 Nominal Tests
 -------------
@@ -351,7 +274,7 @@ Have SIPp subscribe to a list. After the first NOTIFY, have SIPp resubscribe to 
 
 Have SIPp subscribe to a list. After the first NOTIFY, have SIPp terminate its subscription to the list. Ensure that the NOTIFY sent by Asterisk contains the same information as the initial NOTIFY, with only appropriate changes made (i.e. RLMI version number and Content-IDs).
 
-Change the state of alice, and ensure that Asterisk does not send 
+Change the state of alice, and ensure that Asterisk does not send
 
 ### Category 2: List of resources and Lists
 
@@ -359,68 +282,46 @@ The following tests involve subscribing to a list that is composed of a sublist 
 
 pjsip.conf:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 [pres_list]
 type = resource_list
 event = presence
 list_item = pres_sublist
 list_item = carol@default
- 
+
 [pres_sublist]
 type = resource_list
 event = presence
 list_item = alice@default
 list_item = bob@default
- 
+
 [mail_list]
 type = resource_list
 event = message-summary
 list_item = mail_sublist
 list_item = carol
- 
+
 [mail_sublist]
 type = resource_list
 event = message-summary
 list_item = alice
 list_item = bob
- 
+
 [sipp]
 type = endpoint
 context = default
 
 ```
 
-
 extensions.conf
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 [default]
 exten => alice,hint,Custom:alice
 exten => bob,hint,Custom:bob
 exten => carol,hint,Custom:carol
 
 ```
-
 
 #### Test 1: Subscription establishment
 

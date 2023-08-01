@@ -26,9 +26,7 @@ The following, for the most part, assumes that the channels use RTP for media an
   
   
 
-
 ```
-
 /* add_sdp */
 
  /* Now, start adding audio codecs. These are added in this order:
@@ -42,13 +40,11 @@ The following, for the most part, assumes that the channels use RTP for media an
 ---
 
 
- 
+
 
 Changing `chan_sip` is fraught with peril. As such, we're going to try and give the power/flexibility of how things are offered/answered to where we can better maintain/control the behaviour, which means `chan_pjsip`.
 
-
 ```
-
 
 General Rules
 -------------
@@ -306,7 +302,7 @@ Multiple Channels
 * Prior to being answered, the CHANNEL function changes what media formats are accepted. Note that this must be a subset of what Alice's endpoint accepts.
 * Asterisk responds with the formats the CHANNEL function specified
 
- 
+
 
 ### Modified codecs (chan_sip)
 
@@ -321,7 +317,7 @@ Multiple Channels
 
 
 
- 
+
 
 Design
 ======
@@ -356,17 +352,7 @@ The Future
 
 While past media work has provided us room to add codecs within the codebase there is no dynamic manner available of doing so. For efficient storage of media formats this will need to change. The ability to add codecs to the core will be made available, with the core adding the common codecs that Asterisk is already aware of. The RTP engine API will also be extended to allow SDP specific information to be added. This will provide a truly dynamic and flexible way of adding codecs, with the added benefit that the numerical values for codecs can be used as indexes into arrays.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 struct ast_codec {
  /*! Unique identifier for this codec, starts at  */
  unsigned int id;
@@ -397,11 +383,10 @@ struct ast_codec {
 };
 
 int ast_codec_register(struct ast_codec \*codec);
- 
+
 struct ast_codec \*ast_codec_get(const char \*name, enum ast_format_type type, unsigned int samples);
 
 ```
-
 
 Codec structures will be immutable once registered and created only once. If a user of the API wants to retrieve a codec they will use ast_codec_get with the provided information.
 
@@ -409,17 +394,7 @@ Codec structures will be immutable once registered and created only once. If a u
 
 The ast_format structure will become an astobj2 allocated object as follows:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 struct ast_format {
  struct ast_codec \*codec;
  void \*attribute_data;
@@ -427,7 +402,6 @@ struct ast_format {
 };
 
 ```
-
 
 Because it is astobj2 allocated additional information can be stored within it, such as a pointer to attribute information and a pointer to the attribute interface to use with it. This reduces the size of the structure by quite a lot and removes the need for container lookups on comparison.
 
@@ -441,17 +415,7 @@ Attribute information storage will be left up to the attribute interface impleme
 
 The ast_format_cap structure currently internally uses an ao2 hash table to store formats. Leveraging the fact that codecs have a unique identifier we can turn this into a vector with the codec identifier as the index.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 struct ast_format_cap {
  AST_VECTOR(, struct ast_format \*) formats;
  AST_VECTOR(, int) framing;
@@ -459,7 +423,6 @@ struct ast_format_cap {
 };
 
 ```
-
 
 This presents an easy mechanism to see if a format is present in the structure.
 
@@ -506,37 +469,16 @@ For mapping from format to payload a vector with the format codec id as the inde
 
 For cases where a format has to be created a new API call, ast_format_create, which takes in a codec will be made available.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 struct ast_format \*ast_format_create(struct ast_codec \*codec);
 
 ```
 
 
- 
 
 Example:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 static void example(void)
 {
  struct ast_codec \*codec = ast_codec_get("ulaw", AST_FORMAT_TYPE_AUDIO, 8000);
@@ -545,58 +487,36 @@ static void example(void)
  if (!codec) {
  return;
  }
- 
+
  format = ast_format_create(codec);
  ao2_ref(codec, -1);
- 
+
  ao2_cleanup(format);
 }
 
 ```
 
 
- 
 
 #### Setting attributes
 
 Attribute information can be set on a format by using the ast_format_attribute_set function. To keep things dynamic it takes in both a string for attribute name and value.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 int ast_format_attribute_set(struct ast_format \*format, const char \*attribute, const char \*value); 
 
 ```
 
 
- 
 
 Example:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 static void test_example(void)
 {
  struct ast_codec \*codec = ast_codec_get("silk", AST_FORMAT_TYPE_AUDIO, 8000);
  struct ast_format \*format;
- 
+
  if (!codec) {
  return;
  }
@@ -606,7 +526,7 @@ static void test_example(void)
 
  if (!format) {
  return;
- } 
+ }
 
  ast_format_attribute_set(format, "rate", "24000");
  ast_format_attribute_set(format, "rate", "16000");
@@ -616,7 +536,6 @@ static void test_example(void)
 }
 
 ```
-
 
 
 
@@ -634,114 +553,69 @@ static void test_example(void)
 
 The function to allocate a capabilities structure is unchanged but the format capabilities structure is now a reference counted object to reduce copying. As a result there is no explicit function to destroy a structure.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 struct ast_format_cap \*ast_format_cap_alloc(enum ast_format_cap_flags flags);
 
 ```
 
 
- 
 
 Example:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 static void example(void)
 {
  struct ast_format_cap \*caps = ast_format_cap_alloc(AST_FORMAT_CAP_FLAG_NOLOCK);
- 
+
  ao2_ref(caps, -1);
 }
 
 ```
-
 
 #### Adding a format to the capabilities structure
 
 This is slightly changed from the existing API in that the format passed in is not const. The implementation also increments the reference count of the format instead of copying it.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 void ast_format_cap_add(struct ast_format_cap \*cap, struct ast_format \*format);
 
 ```
 
 
- 
 
 Example:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 static void example(void)
 {
  struct ast_codec \*codec = ast_codec_get("ulaw", AST_FORMAT_TYPE_AUDIO, 8000);
  struct ast_format \*format;
  struct ast_format_cap \*caps;
- 
+
  if (!codec) {
  return;
  }
- 
+
  format = ast_format_create(codec);
  ao2_ref(codec, -1);
- 
+
  if (!format) {
  return;
  }
- 
+
  caps = ast_format_cap_alloc(AST_FORMAT_CAP_FLAG_NOLOCK);
  if (!caps) {
  ao2_ref(format, -1);
  return;
  }
- 
+
  ast_format_cap_add(caps, format);
- 
+
  ao2_ref(format, -1);
  ao2_ref(caps, -1);
 }
- 
 
 ```
-
 
 
 
@@ -757,17 +631,7 @@ static void example(void)
 
 Numerous functions manipulate the capabilities structure itself. These are used to copy formats between structures, duplicate them, etc. These will go unchanged except internally they will no longer duplicate the format. Instead they will increment the reference count.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 void ast_format_cap_add_all_by_type(struct ast_format_cap \*cap, enum ast_format_type type);
 void ast_format_cap_add_all(struct ast_format_cap \*cap);
 void ast_format_cap_append(struct ast_format_cap \*dst, const struct ast_format_cap \*src);
@@ -780,101 +644,57 @@ void ast_format_cap_remove_all(struct ast_format_cap \*cap);
 
 ```
 
-
 #### Capabilities structure iteration
 
 As the capabilities structure is now stored using an array iteration will involve two functions, ast_format_cap_count and ast_format_cap_get, which returns the number of formats in the structure and gets a specific one based on index.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 size_t ast_format_cap_count(const struct ast_format_cap \*cap);
 struct ast_format \*ast_format_cap_get(const struct ast_format_cap \*cap, int index);
 
 ```
 
 
- 
 
 Example:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 static void example(void)
 {
  struct ast_format_cap \*caps = ast_format_cap_alloc(AST_FORMAT_CAP_FLAG_NOLOCK);
  size_t count;
  int index;
- 
+
  if (!caps) {
  return;
  }
- 
+
  for (count = ast_format_cap_count(caps), index = 0; index < count; index++) {
  struct ast_format \*format = ast_format_cap_get(caps, index);
- 
+
  ao2_ref(format, -1);
  }
- 
+
  ao2_ref(caps, -1);
 }
 
 ```
 
-
 #### Framing size
 
 The framing size controls the length of media frames (in milliseconds). Previously this was stored in a separate structure but has now been rolled into ast_format_cap. To allow control two API calls will be added.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 void ast_format_cap_framing_set(struct ast_format_cap \*cap, const struct ast_format \*format, unsigned int framing);
 unsigned int ast_format_cap_framing_get(const struct ast_format_cap \*cap, const struct ast_format \*format);
 
 ```
 
 
- 
 
 Example:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 static void example(void)
 {
  struct ast_codec \*codec = ast_codec_get("ulaw", AST_FORMAT_TYPE_AUDIO, 8000);
@@ -909,22 +729,11 @@ static void example(void)
 
 ```
 
-
 #### Getting joint capabilities
 
 Joint capabilities are the common compatible formats between two capabilities structure. These will be done using the existing API functions but will now take preference order into consideration. This will be done by using the order of the first capabilities structure passed in.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 struct ast_format_cap \*ast_format_cap_joint(const struct ast_format_cap \*cap_preferred, const struct ast_format_cap \*cap_secondary);
 int ast_format_cap_joint_copy(const struct ast_format_cap \*cap1, const struct ast_format_cap \*cap2, struct ast_format_cap \*result);
 int ast_format_cap_joint_append(const struct ast_format_cap \*cap1, const struct ast_format_cap \*cap2, struct ast_format_cap \*result);
@@ -932,21 +741,10 @@ int ast_format_cap_joint_append(const struct ast_format_cap \*cap1, const struct
 ```
 
 
- 
 
 Example:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 static void example(void)
 {
  struct ast_codec \*codec = ast_codec_get("ulaw", AST_FORMAT_TYPE_AUDIO, 8000);
@@ -972,22 +770,21 @@ static void example(void)
  
  ast_format_cap_add(caps0, format);
  ao2_ref(format, -1);
- 
+
  caps1 = ast_format_cap_alloc(AST_FORMAT_CAP_FLAG_NOLOCK);
  if (!caps1) {
  ao2_ref(caps0, -1);
  return;
  }
- 
+
  ast_format_cap_copy(caps1, caps0);
- 
+
  joint = ast_format_cap_joint(caps0, caps1);
- 
+
  ao2_cleanup(joint);
  ao2_ref(caps0, -1);
  ao2_ref(caps1, -1);
 }
 
 ```
-
 

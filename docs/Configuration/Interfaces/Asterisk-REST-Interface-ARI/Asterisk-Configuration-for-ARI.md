@@ -54,16 +54,13 @@ On This Page
   
 http.conf  
 
-
 ```
-
 truetext[general]
 enabled = yes
 bindaddr = 0.0.0.0
 bindport = 8088
 
 ```
-
 
 
 
@@ -87,7 +84,7 @@ ARI users and properties are configured via `ari.conf`. Note that all options ma
 | `general` |  |  |  |  |
 |  | `enabled` | Boolean | Yes | Enable/disable ARI. |
 |  | `pretty` | Boolean | No | Format JSON responses and events in a human readable form. This makes the output easier to read, at the cost of some additional bytes. |
-|  | `allowed_origins` | String |  | A comma separated list of allowed origins for [Cross-Origin Resource Sharing](http://en.wikipedia.org/wiki/Cross-origin_resource_sharing). |
+|  | `allowed_origins` | String |  | A comma separated list of allowed origins for [Cross-Origin Resource Sharing](http://en.wikipedia.org/wiki/Cross-origin_resource_sharing). |
 | [user_name] |  |  |  |  |
 |  | `type` | String |  | Must be `user`. Specifies that this configuration section defines a user for ARI. |
 |  | `read_only` | Boolean | No | Whether or not the user can issue requests that alter the Asterisk system. If set to Yes, then only `GET` and `OPTIONS` HTTP requests will be serviced. |
@@ -104,9 +101,7 @@ ARI users and properties are configured via `ari.conf`. Note that all options ma
   
 ari.conf  
 
-
 ```
-
 truetext[general]
 enabled = yes
 pretty = yes
@@ -130,7 +125,6 @@ password_format = crypt
 ```
 
 
- 
 
 Configuring the Dialplan for ARI
 ================================
@@ -154,9 +148,7 @@ This snippet of dialplan, taken from `extensions.conf`, illustrates two ARI appl
   
 extensions.conf  
 
-
 ```
-
 true[default]
 
 exten => ivr,1,NoOp()
@@ -167,12 +159,9 @@ exten => conference,1,NoOp()
  same => n,Stasis(Super-Conference,100)
  same => n,Hangup()
 
-
-
 ```
 
 
- 
 
 When a channel enters into a Stasis application, Asterisk will check to see if a WebSocket connection has been established for that application. If so, the channel is handed over to ARI for control, a subscription for the channel is made for the WebSocket, and a [StasisStart](/Asterisk+12+REST+Data+Models#Asterisk12RESTDataModels-StasisStart) event is sent to the WebSocket notifying it that a channel has entered into its application.
 

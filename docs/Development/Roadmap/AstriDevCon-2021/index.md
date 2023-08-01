@@ -40,7 +40,7 @@ We'll build a rough agenda together in the morning.
 		- CLAs - making sure that we can handle them properly.
 		- Do we port tickets over? Can we create a static-ish website that allows legacy ticket lookup?
 		- Should we port over open tickets or leave them as is?
-		- Is this just JIRA or is it also community, gerrit, crowd, etc?
+		- Is this just JIRA or is it also community, gerrit, crowd, etc?
 	+ Being a better participant in a cloud environment - Josh
 		- Provisioning?
 		- Monitoring?  
@@ -80,9 +80,9 @@ We'll build a rough agenda together in the morning.
 	+ Pre-join warning to conference participants prior to adding a new channel (confbridge) - Michael Cargile
 	+ Adding a custom MIME body to PJSIP separate from SDP - Torrey
 
- 
 
- 
+
+
 
 ### Location
 
@@ -160,7 +160,7 @@ Walter Moon
 
 Yitzchak Pachtman
 
- 
+
 
 ![](DevCon2021.png)
 

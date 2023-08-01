@@ -51,14 +51,14 @@ The Zuul merger lives on `zuul.asterisk.org`, and handles all merge check jobs i
 Jenkins
 -------
 
- Jenkins lives on `jenkins.asterisk.org` and manages the CI test plans and handles all testing tasks issued by the Zuul server via Gearman. The Jenkins server issues new tasks to an available build agent via SSH. All Jenkins build agents retrieve the specified patchset from the Zuul merger server's Git repositories. The result of an executed task is communicated back to the Zuul server via Gearman, such that the Zuul server can provide verification back to the Gerrit review.
+ Jenkins lives on `jenkins.asterisk.org` and manages the CI test plans and handles all testing tasks issued by the Zuul server via Gearman. The Jenkins server issues new tasks to an available build agent via SSH. All Jenkins build agents retrieve the specified patchset from the Zuul merger server's Git repositories. The result of an executed task is communicated back to the Zuul server via Gearman, such that the Zuul server can provide verification back to the Gerrit review.
 
 Automated Testing
 =================
 
 Any project hosted by Gerrit may have automated testing; however, since you're probably here to read about how the Asterisk project is tested, this page will show what is tested for that project.
 
-Tests run against the Asterisk project occur in **pipelines**: *check*, *gate*, and *periodic*. Each pipeline executes specific jobs at different times during the lifetime of a patch, and test the patch in various ways.
+Tests run against the Asterisk project occur in **pipelines**: *check*, *gate*, and *periodic*. Each pipeline executes specific jobs at different times during the lifetime of a patch, and test the patch in various ways.
 
 Check Pipeline
 --------------

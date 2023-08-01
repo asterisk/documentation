@@ -18,26 +18,14 @@ If the data store is not freed by said application though, a callback to a destr
 
 ##### A datastore info structure
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 
 static const struct example_datastore {
  .type = "example",
  .destroy = callback_destroy
 };
 
-
 ```
-
 
 This is a needed structure that contains information about a datastore, it's used by many API calls.
 
@@ -63,17 +51,7 @@ This is a needed structure that contains information about a datastore, it's use
 
 Full Example:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 
 void callback_destroy(void \*data)
 {
@@ -85,9 +63,7 @@ datastore = ast_datastore_alloc(&example_datastore, NULL);
 datastore->data = mysillydata;
 ast_channel_datastore_add(chan, datastore);
 
-
 ```
-
 
 
 

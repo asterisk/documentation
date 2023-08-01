@@ -37,6 +37,6 @@ Reloads the logger subsystem state. Use after restarting syslogd(8) if using sys
 
 ##### core show settings
 
-Show miscellaneous core system settings.  Along with showing other various settings, issuing this command will show the current debug level as well as the root and current console verbosity levels.  These log settings can be found under the "PBX Core Settings" section after executing the command.
+Show miscellaneous core system settings.  Along with showing other various settings, issuing this command will show the current debug level as well as the root and current console verbosity levels.  These log settings can be found under the "PBX Core Settings" section after executing the command.
 
 `Usage: core show settings`

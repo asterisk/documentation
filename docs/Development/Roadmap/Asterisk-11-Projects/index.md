@@ -28,7 +28,7 @@ SIP Path Support
 ================
 
 
-This project implements RFC 3327 - Path Extension Header Field for SIP in Asterisk.  This allows discovery for intermediate proxies during SIP registration and in subsequent requests.  A patch (against 1.8) by Klaus Darilion (with assistance from Olle) currently exists at <https://reviewboard.asterisk.org/r/991/>, and may be used as a starting point for this work. If this patch is used as a basis for this project, it will need to be brought up to the current state of Asterisk.
+This project implements RFC 3327 - Path Extension Header Field for SIP in Asterisk.  This allows discovery for intermediate proxies during SIP registration and in subsequent requests.  A patch (against 1.8) by Klaus Darilion (with assistance from Olle) currently exists at <https://reviewboard.asterisk.org/r/991/>, and may be used as a starting point for this work. If this patch is used as a basis for this project, it will need to be brought up to the current state of Asterisk.
 
 
 Note that RFC 3327 recommends that the registrar support S/MIME, and attach a signed S/MIME of the response, which Asterisk does not currently support. This project does not include the work that would be necessary to make Asterisk support S/MIME.
@@ -61,8 +61,8 @@ Documentation improvements
 This project covers a number of improvements to the documentation that is extracted from the Asterisk source:
 
 
-* AMI events - this includes some subset of the current AMI events.  What is documented includes not only attributes of the event, but also the scenarios in which they are raised.
-* Technology specific information - currently, there is no way to document information that pertains to a particular technology, but exists outside of that technology specific module.  For example, the MessageSend application has technology specific behaviour that is determined in res_jingle and chan_sip, but should be documented with the res_jingle/chan_sip specific documentation.  New tags are provided that allow for documentation to be written with the module that defines that behaviour (for example, in res_jingle) - but referenced by the application that uses it and displayed with that application, e.g., in MessageSend.
+* AMI events - this includes some subset of the current AMI events.  What is documented includes not only attributes of the event, but also the scenarios in which they are raised.
+* Technology specific information - currently, there is no way to document information that pertains to a particular technology, but exists outside of that technology specific module.  For example, the MessageSend application has technology specific behaviour that is determined in res_jingle and chan_sip, but should be documented with the res_jingle/chan_sip specific documentation.  New tags are provided that allow for documentation to be written with the module that defines that behaviour (for example, in res_jingle) - but referenced by the application that uses it and displayed with that application, e.g., in MessageSend.
 * Config file schemas - up until now, the config files were not a recommended configuration so much as a source of configuration documentation. In Asterisk 11, the configuration schema for each configuration file is instead defined in the source files that use that configuration information, including valid values for a configuration item, required items, optional, etc.
 
 
@@ -146,7 +146,7 @@ IPv6 for everything
 ===================
 
 
-IPv6 support already exists in some modules in Asterisk.  This expands on that, making all modules in Asterisk that use IP-based communication IPv6 compatible.  This includes all channel drivers, manager, http, database drivers, FastAGI, etc.
+IPv6 support already exists in some modules in Asterisk.  This expands on that, making all modules in Asterisk that use IP-based communication IPv6 compatible.  This includes all channel drivers, manager, http, database drivers, FastAGI, etc.
 
 
 * FastAGI - Done
@@ -166,7 +166,7 @@ Unique identifier for filtering log data for a call
 ===================================================
 
 
-Each call now has a unique identifier associated with it.  This unique identifier is associated with every log statement associated with a call.  This allows people viewing a lot to easily associate all statements that relate to a particular call, even when other log statements from other calls are interleaved with those they care about.
+Each call now has a unique identifier associated with it.  This unique identifier is associated with every log statement associated with a call.  This allows people viewing a lot to easily associate all statements that relate to a particular call, even when other log statements from other calls are interleaved with those they care about.
 
 
 From an implementation standpoint, there are a number of technical challenges that need to be addressed for this project:

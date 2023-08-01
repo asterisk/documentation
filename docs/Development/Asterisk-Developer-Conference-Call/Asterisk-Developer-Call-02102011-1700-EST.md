@@ -6,23 +6,23 @@ pageid: 11829262
 **Digium Developer Conference Bridge:**
 
 
-Bridge:  15071
+Bridge:  15071
 
 
-PIN:  35806
+PIN:  35806
 
 
 **Proposed Agenda:**
 
 
-Welcome & Announcements:  Bryan Johns / Russell Bryant / Leif Madsen
+Welcome & Announcements:  Bryan Johns / Russell Bryant / Leif Madsen
 
 
 * Introduction of Digium participants
 * Overview of developer call format and future sessions
 
 
-Old Business: 
+Old Business:
 
 
 * Media handling revision update

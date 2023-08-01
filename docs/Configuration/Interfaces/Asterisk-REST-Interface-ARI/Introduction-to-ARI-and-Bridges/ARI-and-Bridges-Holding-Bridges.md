@@ -16,43 +16,21 @@ Adding a channel as a participant
 
 To add a channel as a participant to a holding bridge, you can either not specify a `role` (as the `participant` role is the default role for holding bridges), or you can specify the `participant` role directly:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 POST /bridges/{bridge_id}/addChannel?channel=12345
 POST /bridges/{bridge_id}/addChannel?channel=12345&role=participant
 
 ```
-
 
 On This PageAdding a channel as an announcer
 --------------------------------
 
 To add a channel as an announcer to a holding bridge, you must specify a role of `announcer`:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 POST /bridges/{bridge_id}/addChannel?channel=56789&role=announcer
 
 ```
-
 
 
 
@@ -102,32 +80,19 @@ For this example, we need to just drop the channel into Stasis, specifying our a
   
 extensions.conf  
 
-
 ```
-
 exten => 1000,1,NoOp()
  same => n,Stasis(bridge-infinite-wait)
  same => n,Hangup()
 
 ```
 
-
 Python
 ------
 
 When a channel enters our Stasis application, we first look for an existing holding bridge or create one if none is found. When we create a new bridge, we start music on hold in the bridge and create a timer that will call a callback after 30 seconds. That callback temporarily stops the music on hold, and starts a play operation on the bridge that thanks everyone for their patience. When the play operation finishes, it resumes music on hold.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 truepy11# find or create a holding bridge
 holding_bridge = None
 
@@ -185,20 +150,9 @@ def find_or_create_bridge():
 
 ```
 
-
 The function that does this work, `find_or_create_bridge`, is called from our `StasisStart` event handler. The bridge that it returns will have the new channel added to it.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 truepy87def stasis_start_cb(channel_obj, ev):
  """Handler for StasisStart event"""
  
@@ -214,20 +168,9 @@ truepy87def stasis_start_cb(channel_obj, ev):
 
 ```
 
-
 In the `find_or_create_bridge` function, we also subscribed for the `ChannelLeftBridge` event. We'll add a callback handler for this in that function as well. When the channel leaves the bridge, we'll check to see if there are no more channels in the bridge and - if so - destroy the bridge.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 truepy59 def on_channel_left_bridge(bridge, ev):
  """Handler for ChannelLeftBridge event"""
  global holding_bridge
@@ -246,10 +189,7 @@ truepy59 def on_channel_left_bridge(bridge, ev):
  holding_bridge.destroy()
  holding_bridge = None
 
-
-
 ```
-
 
 ### bridge-infinite-wait.py
 
@@ -263,9 +203,7 @@ The full source code for `bridge-infinite-wait.py` is shown below:
   
 bridge-infinite-wait.py  
 
-
 ```
-
 truepy#!/usr/bin/env python
 
 import ari
@@ -374,25 +312,13 @@ client.on_channel_event('StasisEnd', stasis_end_cb)
  
 client.run(apps='bridge-infinite-wait')
 
-
 ```
 
 
- 
 
 ### bridge-infinite-wait.py in action
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 Created bridge 950c4805-c33c-4895-ad9a-2798055e4939
 Channel PJSIP/alice-00000000 just entered our application, adding it to bridge 950c4805-c33c-4895-ad9a-2798055e4939
 Letting the everyone know we care...
@@ -402,7 +328,6 @@ Channel PJSIP/alice-00000000 just left our application
 
 ```
 
-
 JavaScript (Node.js)
 --------------------
 
@@ -410,17 +335,7 @@ When a channel enters our Stasis application, we first look for an existing hold
 
 In all cases, we add the channel to the bridge via the `joinBridge` function.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 truejs18 console.log('Channel %s just entered our application', channel.name);
 
  // find or create a holding bridge
@@ -481,20 +396,9 @@ truejs18 console.log('Channel %s just entered our application', channel.name);
 
 ```
 
-
 The joinBridge function involves registered a callback for the ChannelLeftBridge event and adds the channel to the bridge.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 truejs77 function joinBridge(bridge) {
  channel.once('ChannelLeftBridge', function(event, instances) {
  channelLeftBridge(event, instances, bridge);
@@ -514,20 +418,9 @@ truejs77 function joinBridge(bridge) {
 
 ```
 
-
 Notice that we use an anonymous function to pass the bridge as an extra parameter to the ChannelLeftBridge callback so we can keep the handler at the same level as joinBridge and avoid another indentation level of callbacks. Finally, we can handle destroying the bridge when the last channel contained in it has left:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 truejs95 // Handler for ChannelLeftBridge event
  function channelLeftBridge(event, instances, bridge) {
  var holdingBridge = instances.bridge;
@@ -552,13 +445,9 @@ truejs95 // Handler for ChannelLeftBridge event
 
 ```
 
-
 ### bridge-infinite-wait.js
 
 The full source code for `bridge-infinite-wait.js` is shown below:
-
-
-
 
 ```javascript title="bridge-infinite-wait.js" linenums="1"
 truejs/*jshint node:true */
@@ -691,22 +580,11 @@ function clientLoaded (err, client) {
 
 ```
 
-
 ### bridge-infinite-wait.js in action
 
 The following shows the output of the `bridge-infinite-wait.js` script when a `PJSIP` channel for `alice` enters the application:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 Channel PJSIP/alice-00000001 just entered our application
 Created bridge 31a4a193-36a7-412b-854b-cf2cf5f90bbd
 Letting everyone know we care...
@@ -714,5 +592,4 @@ Channel PJSIP/alice-00000001 left bridge 31a4a193-36a7-412b-854b-cf2cf5f90bbd
 Channel PJSIP/alice-00000001 just left our application
 
 ```
-
 

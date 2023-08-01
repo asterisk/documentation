@@ -53,18 +53,18 @@ Attendees
 * Jared Smith, US
 * Corey McFadden, Voneto, US
 
- 
+
 
 Presentation Slides
 ===================
 
-[AstriDevCon 2019 - State of the Asterisk (Asterisk 15)](StateOfTheAsteriskDevCon2017.pdf) - Matthew Fredrickson
+[AstriDevCon 2019 - State of the Asterisk (Asterisk 15)](StateOfTheAsteriskDevCon2017.pdf) - Matthew Fredrickson
 
-[AstriDevCon 2019 - Asterisk and Video](Asterisk-and-Video.pdf) - Joshua Colp, Kevin Harwell
+[AstriDevCon 2019 - Asterisk and Video](Asterisk-and-Video.pdf) - Joshua Colp, Kevin Harwell
 
-[AstriDevCon 2019 - AMQP](Astridevcon-2017-AMQP-2.pdf) - Sylvain Boily
+[AstriDevCon 2019 - AMQP](Astridevcon-2017-AMQP-2.pdf) - Sylvain Boily
 
-[AstriDevCon 2019 - Asterisk Calendars](Asterisk-calendars.pdf) - Ludovic Gasc
+[AstriDevCon 2019 - Asterisk Calendars](Asterisk-calendars.pdf) - Ludovic Gasc
 
 Notes and highlights
 ====================
@@ -78,7 +78,7 @@ Matt F introduces his background and why he's in the front of the room.
 
 Current releases of 13 and 14 and now 15.0.0.
 
-Asterisk 15 contribution stats:  924 commits, 82 individual contributors, almost 2400 merged code reviews acros all branches on Gerrit in the past 12 months.
+Asterisk 15 contribution stats:  924 commits, 82 individual contributors, almost 2400 merged code reviews acros all branches on Gerrit in the past 12 months.
 
   
 
@@ -203,7 +203,7 @@ Asterisk 14 was released Monday, Sep 26 of 2016
 
 Asterisk 15 was released Tuesday, October 3rd of 2017
 
-Asterisk 16 is the next LTS target.  There is a lot of additional work that needs to go into the video capabilities of Asterisk 15 before we want to support it as an LTS.  The video work in Asterisk 15 is a great MVP, but it needs more functionality to be useful for years to come.  So, many changes will occur in 15 towards the goal of 16 as the next LTS.
+Asterisk 16 is the next LTS target.  There is a lot of additional work that needs to go into the video capabilities of Asterisk 15 before we want to support it as an LTS.  The video work in Asterisk 15 is a great MVP, but it needs more functionality to be useful for years to come.  So, many changes will occur in 15 towards the goal of 16 as the next LTS.
 
   
 
@@ -222,7 +222,7 @@ Chrome is supposed to completely remove support for RTCP-MUX at sometime around 
 
 ### Reminder
 
-11 was already in security-fix only mode and is going to be completely dead in October.  Get off that branch! (particularly if you run WebRTC)
+11 was already in security-fix only mode and is going to be completely dead in October.  Get off that branch! (particularly if you run WebRTC)
 
   
 Now, Joshua Colp and Kevin Harwell to talk about video SFU in Asterisk.  
@@ -395,7 +395,7 @@ Best option for rich ConfBridge SFU experience
 
 ### BUNDLE
 
- 
+
 
 Required for Google Chrome to support multiple streams due to Plan B usage
 
@@ -423,7 +423,7 @@ Firefox and Chrome supported on desktop
 
 Adding/removing video mid-call
 
-Better video recording (into containers)  and playback (with multiple streams)
+Better video recording (into containers)  and playback (with multiple streams)
 
 Feedback allowing video quality to change due to bandwidth change
 
@@ -449,7 +449,7 @@ Now, it’s time for planning the Agenda.
 Agenda:
 -------
 
- 
+
 
 * Prepared Presentations:
 	+ Talk by Wazo
@@ -468,15 +468,15 @@ Agenda:
 	+ `Documentation for the Dial app would be simpler if the Macro option were excluded.`
 	+ `Macro adds some code/complexity to the pbx core and a few apps.`
 * Proposed deprecation of `chan_sip`
-	+ Feature Parity - What features are available in `chan_sip` that are not available in `chan_pjsip` and what is the level of effort to get us there
+	+ Feature Parity - What features are available in `chan_sip` that are not available in `chan_pjsip` and what is the level of effort to get us there
 		- CCSS is missing
 		- AOC is missing
 		- Outbound SUBSCRIBE is missing
-	+ Configuration - `sip.conf` vs. `pjsip.conf` vs. `pjsip_wizard.conf` vs. `contrib/scripts/sip_to_pjsip`
+	+ Configuration - `sip.conf` vs. `pjsip.conf` vs. `pjsip_wizard.conf` vs. `contrib/scripts/sip_to_pjsip`
 		- `Can we make chan_pjsip read sip.conf directly?`
 	+ Stability - Both actual and perceived
 	+ Performance - Both actual and perceived
-	+ Outside Forces - Is there a business case for keeping `chan_sip` around?
+	+ Outside Forces - Is there a business case for keeping `chan_sip` around?
 	+ Leaving it around misrepresents its support status to people within the community (no current maintainer for chan_sip)
 	+ Proposed deprecation plan:
 		- Gain feature parity (16 ?)
@@ -544,11 +544,11 @@ Based on patch from <https://reviewboard.asterisk.org/r/4365>
 
 Extracted version to have a first asterisk patch
 
- <https://github.com/wazo-pbx/wazo-res-amqp>
+ <https://github.com/wazo-pbx/wazo-res-amqp>
 
 Based on librabbitmq
 
- We only test with rabbitmq
+ We only test with rabbitmq
 
 Configuration is on /etc/asterisk/amqp.conf
 
@@ -556,7 +556,7 @@ It doesn’t nothing, only an AMQP connection
 
 To install
 
- Git clone; make; make install
+ Git clone; make; make install
 
   
 
@@ -565,15 +565,15 @@ To install
 
 Publish stasis message to AMQP
 
- <https://github.com/wazo-pbx/wazo-res-stasis-amqp>
+ <https://github.com/wazo-pbx/wazo-res-stasis-amqp>
 
 Support
 
- Stasis AMI
+ Stasis AMI
 
- Stasis ARI
+ Stasis ARI
 
- Stasis Channel
+ Stasis Channel
 
 Depends on res_amqp
 
@@ -581,13 +581,13 @@ Configuration /etc/asterisk/res_stasis_amqp.conf
 
 To install:
 
- Git clone; make; make install
+ Git clone; make; make install
 
 To test on your Asterisk and get messages
 
- <https://github.com/wazo-pbx/xivo-tools/blog/master/scripts/recv-bus-event>
+ <https://github.com/wazo-pbx/xivo-tools/blog/master/scripts/recv-bus-event>
 
- Adapt the exchange on the script
+ Adapt the exchange on the script
 
   
 
@@ -603,19 +603,19 @@ Integration in Asterisk
 
 Proposal
 
- Submit to gerrit the res_amqp support
+ Submit to gerrit the res_amqp support
 
- Submit to gerrit the res-stasis-amqp support
+ Submit to gerrit the res-stasis-amqp support
 
 Roadmap
 
- Functional test
+ Functional test
 
- CEL? 
+ CEL?
 
- CDR?
+ CDR?
 
- Your feedback is welcome!
+ Your feedback is welcome!
 
   
 
@@ -696,7 +696,7 @@ Step 2, put the calendar in the callflow
   
 
 
-#### What now?  Icalendar is the most obvious format.
+#### What now?  Icalendar is the most obvious format.
 
 It’s used in a lot of products.
 
@@ -728,7 +728,7 @@ And, crashes.
 
 (they’re not C-developers)
 
-First client?  Crashed immediately.
+First client?  Crashed immediately.
 
   
 
@@ -803,64 +803,64 @@ There are things that aren’t yet possible, but we worry about how to make thin
 
 #### Integrate:
 
- We could integrate log formatting, and have a common prefix for easy correlation, callid, cseq, etc.
+ We could integrate log formatting, and have a common prefix for easy correlation, callid, cseq, etc.
 
- It would improve troubleshooting and unit testing.
+ It would improve troubleshooting and unit testing.
 
   
 
 
- We could integrate user profile and database structure
+ We could integrate user profile and database structure
 
- That’d give us unified user authentication, user location, and presence.
+ That’d give us unified user authentication, user location, and presence.
 
   
 
 
 #### Interconnect:
 
- We need ad-hoc and realtime propogation of information (by headers) so that we don’t have to always worry about having replicated state across nodes.
+ We need ad-hoc and realtime propogation of information (by headers) so that we don’t have to always worry about having replicated state across nodes.
 
-  This would be done in the forwarded/generated request/response.
+  This would be done in the forwarded/generated request/response.
 
- Examples:
+ Examples:
 
-  Retransmission timeouts
+  Retransmission timeouts
 
-  Next hop address (route)
+  Next hop address (route)
 
-  Location/presence states
+  Location/presence states
 
- ...so that we can make configuration easier on people.  People can forget to make changes in two places and have negative results today.
+ ...so that we can make configuration easier on people.  People can forget to make changes in two places and have negative results today.
 
- Could be done via templates that respect special headers that are sent in the signaling.  Templates indicate what sorts of parameters to apply to the call/endpoint.
+ Could be done via templates that respect special headers that are sent in the signaling.  Templates indicate what sorts of parameters to apply to the call/endpoint.
 
   
 
 
 #### Innovate
 
- Don’t always wait for specifications between all parties - IETF, ITU, ETSI, etc.
+ Don’t always wait for specifications between all parties - IETF, ITU, ETSI, etc.
 
- Collaborate with others to define new features and services, like the XMPP model
+ Collaborate with others to define new features and services, like the XMPP model
 
- Amend, or go around existing specs
+ Amend, or go around existing specs
 
-  Avoid useless roundtrips
+  Avoid useless roundtrips
 
-  Why not allow dynamic new server nodes, because you can’t predict their IPs always (Amazon, for example) that are authenticated via an API key that’s a shared secret between server apps?  It’s better than IP and digest-based authentication.
+  Why not allow dynamic new server nodes, because you can’t predict their IPs always (Amazon, for example) that are authenticated via an API key that’s a shared secret between server apps?  It’s better than IP and digest-based authentication.
 
- Optimize for mobile and IoT
+ Optimize for mobile and IoT
 
-  Get rid of “not needed” headers
+  Get rid of “not needed” headers
 
-  Use a server-side app to fetch data, like for hard phones.
+  Use a server-side app to fetch data, like for hard phones.
 
- Security and Privacy
+ Security and Privacy
 
- Auto-provisioning of end points/cpe
+ Auto-provisioning of end points/cpe
 
- Federation and open peering.  There’s a lot of FUD out there that suggests SIP isn’t designed for federation.  But, if we don’t have a trust model that people will use, then they won’t interconnect, because they’re afraid of bad calls.
+ Federation and open peering.  There’s a lot of FUD out there that suggests SIP isn’t designed for federation.  But, if we don’t have a trust model that people will use, then they won’t interconnect, because they’re afraid of bad calls.
 
   
 
@@ -880,7 +880,7 @@ There are things that aren’t yet possible, but we worry about how to make thin
   
 
 
-What about knowing what pool of servers is available?  DNS is currently used, for round-robin environments. What’s the right way in Kamailio though to make it intelligently aware there has been an expansion or contraction of a pool of available media (Asterisk) servers?
+What about knowing what pool of servers is available?  DNS is currently used, for round-robin environments. What’s the right way in Kamailio though to make it intelligently aware there has been an expansion or contraction of a pool of available media (Asterisk) servers?
 
   
 
@@ -903,13 +903,13 @@ Kamailio has a module called RTJSON that allows pushing JSON into Kamailio to te
 
 #### Make our community greater.
 
-Wanted to talk about deployments and containers, but that shouldn’t be the topic.  Instead, we need to talk about our community.
+Wanted to talk about deployments and containers, but that shouldn’t be the topic.  Instead, we need to talk about our community.
 
 We write good code (or phenomenal bugs)
 
 We write good tests (or at least we want to believe it)
 
-But, we suck at...providing proper documentation.  Most of it isn’t updated.
+But, we suck at...providing proper documentation.  Most of it isn’t updated.
 
 We also suck at providing best practices; people are still making the same, old stupid mistakes.
 
@@ -919,16 +919,16 @@ Training has actually gotten better in the latest syllabus, so that’s good.
 
 Concrete examples of doing things don’t exist.
 
-Who’s willing to sit for a documentation hackathon?  Dialplan, for example, is documented to death, but it’s not documented well enough.
+Who’s willing to sit for a documentation hackathon?  Dialplan, for example, is documented to death, but it’s not documented well enough.
 
-Why aren’t people using it enough?  It’s probably documentation.
+Why aren’t people using it enough?  It’s probably documentation.
 
 How do we change the state?
 
   
 
 
-Kamailio has moved to accepting markdown.  ARI in Asterisk is Swagger, so there’s no markdown.  The docs in Asterisk are in the code in XML and aren’t in a good position to include lots of formatting.
+Kamailio has moved to accepting markdown.  ARI in Asterisk is Swagger, so there’s no markdown.  The docs in Asterisk are in the code in XML and aren’t in a good position to include lots of formatting.
 
 Kamailio, like Asterisk, isn’t missing reference documentation, just examples.
 
@@ -938,7 +938,7 @@ Finding information in the Wiki is challenging.
 
 There’s no formal way to make a pull request into the Asterisk repo on Github.
 
-Sometimes, while people are happy to contribute code, because it’s a burden to maintain it, they’re not happy to contribute extensive documentation.  How do you get people to contribute, where you’re not paying full-time documentors?
+Sometimes, while people are happy to contribute code, because it’s a burden to maintain it, they’re not happy to contribute extensive documentation.  How do you get people to contribute, where you’re not paying full-time documentors?
 
 Post-DevCon discussion to be had at the Wine event.
 
@@ -952,81 +952,81 @@ Post-DevCon discussion to be had at the Wine event.
 
 #### Proposed deprecation of app_macro
 
- Gosub has existed for 12 years now and is a suitable replacement, but not 100% compatible.
+ Gosub has existed for 12 years now and is a suitable replacement, but not 100% compatible.
 
- You exit a Macro by using Goto to any different context
+ You exit a Macro by using Goto to any different context
 
- You normally exit a Gosub using the REturn app which sends control bck to the n+1 priority that originally called Gosub.
+ You normally exit a Gosub using the REturn app which sends control bck to the n+1 priority that originally called Gosub.
 
- A Gosub return address can be thrown out using “StackPop,” then you can use Goto with any context.
+ A Gosub return address can be thrown out using “StackPop,” then you can use Goto with any context.
 
- Documentation for the DIal app would be simpler if the Macro option were excluded.
+ Documentation for the DIal app would be simpler if the Macro option were excluded.
 
- Macro adds some code/complexity to the pbx core and a few apps.
+ Macro adds some code/complexity to the pbx core and a few apps.
 
   
 
 
- (Room is in general consensus that it should be proposed.)
+ (Room is in general consensus that it should be proposed.)
 
   
 
 
 #### Proposed deprecation of chan_sip
 
- Feature Parity - What features are available in chan_sip that are not available in chan_pjsip and what is the level of effort to get us there?
+ Feature Parity - What features are available in chan_sip that are not available in chan_pjsip and what is the level of effort to get us there?
 
- Configuration - sip.conf vs. pjsip.conf vs. pjsip_wizard.conf vs. contrib/scripts/sip_to_pjsip
+ Configuration - sip.conf vs. pjsip.conf vs. pjsip_wizard.conf vs. contrib/scripts/sip_to_pjsip
 
- Stability - Both actual and perceived
+ Stability - Both actual and perceived
 
- Performance- Both actual and perceived
+ Performance- Both actual and perceived
 
- Outside Forces - Is there a business case for keeping chan_sip around?
-
-  
-
-
-What 3 features are missing?  CCSS, AOC and outbound Subscriptions.  The only one that still gets used is CCSS.  Asterisk maintains support for CCSS in the core, and pjproject has the necessary bits to handle it; someone just has to tie them together.
+ Outside Forces - Is there a business case for keeping chan_sip around?
 
   
 
 
-What about stability?  The FreePBX community has a large thread with users indicating issues with PJSIP that they don’t experience with chan_sip, but no one is filing bugs or presenting actual issues - it appears to be primarily anecdotal.
+What 3 features are missing?  CCSS, AOC and outbound Subscriptions.  The only one that still gets used is CCSS.  Asterisk maintains support for CCSS in the core, and pjproject has the necessary bits to handle it; someone just has to tie them together.
 
   
 
 
-Is it already defacto deprecated since it’s in extended support and there is no community maintainer?  And, are we being setup for something bad by not making it more clear.
+What about stability?  The FreePBX community has a large thread with users indicating issues with PJSIP that they don’t experience with chan_sip, but no one is filing bugs or presenting actual issues - it appears to be primarily anecdotal.
 
   
 
 
-What about configuration?  The converter isn’t necessarily feature complete; but is written in Python (hint, non-C developers)  There’s built-in help in Asterisk’s CLI (config show help [res_pjsip_endpoint.so](http://res_pjsip_endpoint.so), for example).  Is it worthwhile to make PJSIP read sip.conf?  (There are problems here as a friend and a peer are different and if you move that to PJSIP under the hood you can end up with weird configuration or vulnerability issues)
+Is it already defacto deprecated since it’s in extended support and there is no community maintainer?  And, are we being setup for something bad by not making it more clear.
 
   
 
 
-We need a plan of attack.  Something in 15 (warning on startup, something else in 16 (noload it and unselect it in menuconfig), and deprecate it in 18.  All deprecated modules should probably have a warning on startup.  When fully booted list all modules that are deprecated.
+What about configuration?  The converter isn’t necessarily feature complete; but is written in Python (hint, non-C developers)  There’s built-in help in Asterisk’s CLI (config show help [res_pjsip_endpoint.so](http://res_pjsip_endpoint.so), for example).  Is it worthwhile to make PJSIP read sip.conf?  (There are problems here as a friend and a peer are different and if you move that to PJSIP under the hood you can end up with weird configuration or vulnerability issues)
+
+  
+
+
+We need a plan of attack.  Something in 15 (warning on startup, something else in 16 (noload it and unselect it in menuconfig), and deprecate it in 18.  All deprecated modules should probably have a warning on startup.  When fully booted list all modules that are deprecated.
 
   
 
 
 #### How do we get to an all ARI solution?
 
- Pbx_ari?
+ Pbx_ari?
 
- Worry that users could get themselves into trouble here, because their ARI apps could get into trouble.
+ Worry that users could get themselves into trouble here, because their ARI apps could get into trouble.
 
- Counterpoint against this request is that this can be accomplished with just 3 lines of dialplan - use this Stasis app, vs. pre-setting the ARI app in ari.conf.
+ Counterpoint against this request is that this can be accomplished with just 3 lines of dialplan - use this Stasis app, vs. pre-setting the ARI app in ari.conf.
 
- Proposal to set stasis=xyz on an endpoint so that an incoming call to an endpoint goes straight to a Stasis app.  The room really likes this proposal.
+ Proposal to set stasis=xyz on an endpoint so that an incoming call to an endpoint goes straight to a Stasis app.  The room really likes this proposal.
 
- But with a pbx_ari you can just map a dialplan context to a Stasis app.
+ But with a pbx_ari you can just map a dialplan context to a Stasis app.
 
- How can an ARI app know more than just what’s in its own app?  “Subscribe all” when connecting the web socket.
+ How can an ARI app know more than just what’s in its own app?  “Subscribe all” when connecting the web socket.
 
- 
+
 
 #### Getting features from 14 into an LTS.
 
@@ -1037,26 +1037,26 @@ Discussion about the implications of 15 as a Standard release instead of an LTS.
 
 #### What’s the next revolution of Asterisk?
 
- There’s going to be a continued focus on video.
+ There’s going to be a continued focus on video.
 
- There’s going to be less of a focus on Asterisk as a PBX, and a continued focus on Asterisk as a general purpose media application server, which might be a PBX by the time a developer delivers it to an end user, but might be more like a call center, but could be something else entirely.
+ There’s going to be less of a focus on Asterisk as a PBX, and a continued focus on Asterisk as a general purpose media application server, which might be a PBX by the time a developer delivers it to an end user, but might be more like a call center, but could be something else entirely.
 
   
 
 
 #### How to improve functions in ARI to make it more of a first class citizen?
 
- Setting variables on a bridge
+ Setting variables on a bridge
 
- Set or get multiple variables on a channel
+ Set or get multiple variables on a channel
 
- List global variables
+ List global variables
 
- No variables when a channel is hungup
+ No variables when a channel is hungup
 
- Easily redirect a channel into Stasis
+ Easily redirect a channel into Stasis
 
- 
+
 
   
 

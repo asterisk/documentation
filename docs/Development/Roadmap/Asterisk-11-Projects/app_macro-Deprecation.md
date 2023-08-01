@@ -28,17 +28,7 @@ In channel configurations, 'cc_callback_sub' should be used instead of 'cc_callb
 
 Assuming a SIP configuration of the following:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 
 [general]
 limitonpeers=yes
@@ -67,23 +57,11 @@ cc_monitor_policy=generic
 cc_callback_sub=cc_test,s,1
 callcounter=yes
 
-
 ```
-
 
 And dialplan:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 
 [to-bob]
 exten => 1234,1,NoOp
@@ -96,9 +74,7 @@ exten => 1235,n,CallCompletionRequest()
 exten => s,1,NoOp(CCSS callback run for CCBS)
 exten => s,n,Return
 
-
 ```
-
 
 #### Events
 
@@ -124,17 +100,7 @@ The primary difference between the app_macro-based callbacks and the new app_sta
 
 Starting dialplan execution at 'test,100,1', the following is a working example of the app_stack-based CLI callback using local channels.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 
 [test]
 exten => 100,1,NoOp
@@ -163,9 +129,7 @@ exten => s,n,Set(NOPREFIX=${CONNECTEDLINE(number):-${ARG2}})
 exten => s,n,Set(CONNECTEDLINE(num,i)=${ARG1}${NOPREFIX})
 exten => s,(end),Return
 
-
 ```
-
 
 Redirecting Information
 -----------------------
@@ -185,17 +149,7 @@ The primary difference between the app_macro-based callbacks and the new app_sta
 
 Starting dialplan execution at 'test,100,1', the following is a working example of the app_stack-based RI callback using local channels.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 
 [test]
 exten => 100,1,NoOp
@@ -226,7 +180,5 @@ exten => s,n,Set(NOPREFIX=${REDIRECTING(to-num):-${ARG2}})
 exten => s,n,Set(REDIRECTING(to-num,i)=${ARG1}${NOPREFIX})
 exten => s,(end),Return
 
-
 ```
-
 

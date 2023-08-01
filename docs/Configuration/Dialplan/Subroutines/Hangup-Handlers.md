@@ -50,64 +50,28 @@ All manipulation of a channel's hangup handlers are done using the [CHANNEL](/As
 
 Used to push a hangup handler onto a channel.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 same => n,Set(CHANNEL(hangup_handler_push)=[[context,]exten,]priority[(arg1[,...][,argN])]);
 
-
 ```
-
 
 ### hangup_handler_pop
 
 Used to pop a hangup handler off a channel. Optionally, a replacement hangup handler can be added to the channel.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 same => n,Set(CHANNEL(hangup_handler_pop)=[[[context,]exten,]priority[(arg1[,...][,argN])]]);
 
-
 ```
-
 
 ### hangup_handler_wipe
 
 Remove all hangup handlers on the channel. Optionally, a new hangup handler can be pushed onto the channel.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 same => n,Set(CHANNEL(hangup_handler_wipe)=[[[context,]exten,]priority[(arg1[,...][,argN])]]);
 
-
 ```
-
 
 ### Examples
 
@@ -115,17 +79,7 @@ same => n,Set(CHANNEL(hangup_handler_wipe)=[[[context,]exten,]priority[(arg1[,..
 
 In this example, three hangup handlers are added to a channel: hdlr3, hdlr2, and hdlr1. When the channel is hung up, they will be executed in the order of most recently added first - so hdlr1 will execute first, followed by hdlr2, then hdlr3.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 ; Some dialplan extension
 same => n,Set(CHANNEL(hangup_handler_push)=hdlr3,s,1(args));
 same => n,Set(CHANNEL(hangup_handler_push)=hdlr2,s,1(args));
@@ -147,26 +101,13 @@ same => n,Return()
 exten => s,1,Verbose(0, Executed Third)
 same => n,Return()
 
-
-
 ```
-
 
 ##### Removing and replacing hangup handlers
 
 In this example, three hangup handlers are added to a channel: hdlr3, hdlr2, and hdlr1. Using the [CHANNEL](/Asterisk-11-Function_CHANNEL) function's **hangup_handler_pop** value, hdlr1 is removed from the stack of hangup handlers. Then, using the **hangup_handler_pop** value again, hdlr2 is replaced with hdlr4. When the channel is hung up, hdlr4 will be executed, followed by hdlr3.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 ; Some dialplan extension
 same => n,Set(CHANNEL(hangup_handler_push)=hdlr3,s,1(args));
 same => n,Set(CHANNEL(hangup_handler_push)=hdlr2,s,1(args));
@@ -198,10 +139,7 @@ same => n,Return()
 exten => s,1,Verbose(0, Executed First)
 same => n,Return()
 
-
-
 ```
-
 
 CLI Commands
 ------------
@@ -214,14 +152,10 @@ CLI Commands
   
 Single channel  
 
-
 ```
-
 core show hanguphandlers <chan>
 
-
 ```
-
 
 
 
@@ -230,17 +164,13 @@ core show hanguphandlers <chan>
   
 Output  
 
-
 ```
-
 Channel Handler
 <chan-name> <first handler to execute>
  <second handler to execute>
  <third handler to execute>
 
-
 ```
-
 
 
 
@@ -249,14 +179,10 @@ Channel Handler
   
 All channels  
 
-
 ```
-
 core show hanguphandlers all
 
-
 ```
-
 
 
 
@@ -265,9 +191,7 @@ core show hanguphandlers all
   
 Output  
 
-
 ```
-
 Channel Handler
 <chan1-name> <first handler to execute>
  <second handler to execute>
@@ -276,7 +200,5 @@ Channel Handler
 <chan3-name> <first handler to execute>
  <second handler to execute>
 
-
 ```
-
 

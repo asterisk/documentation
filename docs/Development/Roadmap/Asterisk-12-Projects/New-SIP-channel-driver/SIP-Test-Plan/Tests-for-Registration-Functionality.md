@@ -55,8 +55,8 @@ Pass Conditions:
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | 1 | aors=alice | none | max_contacts=2minimum_expiration=5default_expiration=30 | none | Contact: <sip:alice-office@127.0.0.2:5061>Contact: <sip:alice-home@127.0.0.3:5062>Expires: 10 | Identify by username,no auth,two contacts, one AOR,*Expires* header | yes |
 | 2 | auth=alice-authaors=alice | username=alicepassword=swordfish | max_contacts=2minimum_expiration=5default_expiration=30 | realm=asteriskusername=alicepassword=swordfish | Contact: <sip:alice-office@127.0.0.2:5061>Contact: <sip:alice-home@127.0.0.3:5062>Expires: 10 | Identify by username,userpass auth,two contacts, one AOR,*Expires* header | yes |
-| 3 | aors=alice | none | max_contacts=2minimum_expiration=5default_expiration=30 | none | Contact: <sip:alice-office@127.0.0.2:5061>;expires=15Contact: <sip:alice-home@127.0.0.3:5062>;expires=20Expires: 10 | Identify by username,no auth,two contacts, one AOR,*Expires* header,*expires* Contact param |  yes |
-| 4 | auth=alice-authaors=alice  | username=alicepassword=swordfish  | max_contacts=2minimum_expiration=5default_expiration=30 | realm=asteriskusername=alicepassword=swordfish | Contact: <sip:alice-office@127.0.0.2:5061>;expires=15Contact: <sip:alice-home@127.0.0.3:5062>;expires=20 | Identify by username,userpass auth,two contacts, one AOR,*expires* Contact param |  yes |
+| 3 | aors=alice | none | max_contacts=2minimum_expiration=5default_expiration=30 | none | Contact: <sip:alice-office@127.0.0.2:5061>;expires=15Contact: <sip:alice-home@127.0.0.3:5062>;expires=20Expires: 10 | Identify by username,no auth,two contacts, one AOR,*Expires* header,*expires* Contact param |  yes |
+| 4 | auth=alice-authaors=alice  | username=alicepassword=swordfish  | max_contacts=2minimum_expiration=5default_expiration=30 | realm=asteriskusername=alicepassword=swordfish | Contact: <sip:alice-office@127.0.0.2:5061>;expires=15Contact: <sip:alice-home@127.0.0.3:5062>;expires=20 | Identify by username,userpass auth,two contacts, one AOR,*expires* Contact param |  yes |
 | 5 | auth=alice-authaors=alice | username=alicepassword=swordfish | max_contacts=2minimum_expiration=5default_expiration=30 | realm=asteriskusername=alicepassword=swordfish | Contact: <sip:alice-office@127.0.0.2:5061>;expires=15Contact: <sip:alice-home@127.0.0.3:5062>Expires: 10 | Identify by username,userpass auth,two contacts, one AOR,*Expires* header,one *expires* Contactparam | yes |
 | 6 | auth=alice-authaors=alice | username=alicepassword=swordfish | max_contacts=2minimum_expiration=5default_expiration=30 | realm=asteriskusername=alicepassword=swordfish | Contact: <sip:alice-office@127.0.0.2:5061>;expires=15Contact: <sip:alice-home@127.0.0.3:5062> | Identify by username,userpass auth,two contacts, one AOR,one *expires* Contactparam | yes |
 
@@ -88,7 +88,7 @@ Pass Conditions:
 
 | Iteration | Alice-specific Data | Alice-auth-specific Data | Alice-aor-specific Data | Supplied Credentials | Supplied SIP Headers | Comment | Written? |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| 1 | aors=alice | none | max_contacts=2minimum_expiration=5default_expiration=30 | none | Contact: <sip:alice-office@127.0.0.2:5061>;expires=0Contact: <sip:alice-home@127.0.0.3:5062>;expires=20Expires: 10 | Identify by username,no auth,two contacts, one AOR,*Expires* header,*expires* Contact param,Un-register one contact& register another |  yes |
+| 1 | aors=alice | none | max_contacts=2minimum_expiration=5default_expiration=30 | none | Contact: <sip:alice-office@127.0.0.2:5061>;expires=0Contact: <sip:alice-home@127.0.0.3:5062>;expires=20Expires: 10 | Identify by username,no auth,two contacts, one AOR,*Expires* header,*expires* Contact param,Un-register one contact& register another |  yes |
 
 Procedure:
 
@@ -96,13 +96,13 @@ Procedure:
 2. Asterisk properly adds the contact to the configured AOR
 3. Asterisk responds with a 200 OK
 4. The UA sends a REGISTER request containing multiple contacts to Asterisk for an endpoint & AOR defined in pjsip.conf. The contact that is already registered has an *expires* parameter of *0*. The other contact that is not registered has an *expires* value as defined in the above table.
-5. Asterisk removes the contact that had an expiration of 0 set from the AOR (un-registers) and adds the contact that had an expiration of 20 set to the AOR (registers).
+5. Asterisk removes the contact that had an expiration of 0 set from the AOR (un-registers) and adds the contact that had an expiration of 20 set to the AOR (registers).
 6. Asterisk responds with a 200 OK
 
 Pass Conditions:
 
-* Asterisk removes the contact that had an expiration of 0 set from the AOR (un-registers) and adds the contact that had an expiration of 20 set to the AOR (registers).
-* Asterisk responds with a 200 OK with listing only the contact that was registered (that had an expiration of 20 set)
+* Asterisk removes the contact that had an expiration of 0 set from the AOR (un-registers) and adds the contact that had an expiration of 20 set to the AOR (registers).
+* Asterisk responds with a 200 OK with listing only the contact that was registered (that had an expiration of 20 set)
 
 ### Test 4: Configuration Option *maximum_expiration*
 
@@ -110,7 +110,7 @@ Pass Conditions:
 
 | Iteration | Alice-specific Data | Alice-auth-specific Data | Alice-aor-specific Data | Supplied Credentials | Supplied SIP Headers | Comment | Written? |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| 1 | aors=alice | none | default_expiration=30maximum_expiration=60 | none | Contact: <sip:alice-office@127.0.0.2:5061>;expires=120Expires: 300 | Identify by username,no auth,one contacts, one AOR,*Expires* header,*expires* Contact param |  yes |
+| 1 | aors=alice | none | default_expiration=30maximum_expiration=60 | none | Contact: <sip:alice-office@127.0.0.2:5061>;expires=120Expires: 300 | Identify by username,no auth,one contacts, one AOR,*Expires* header,*expires* Contact param |  yes |
 
 Procedure:
 
@@ -131,7 +131,7 @@ Pass Conditions:
 
 | Iteration | Alice-specific Data | Alice-auth-specific Data | Alice-aor-specific Data | Supplied Credentials | Supplied SIP Headers | Comment | Written? |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| 1 | aors=alice | none | default_expiration=60minimum_expiration=30 | none | Contact: <sip:alice-office@127.0.0.2:5061>;expires=15Expires: 20 | Identify by username,no auth,one contacts, one AOR,*Expires* header,*expires* Contact param |  yes |
+| 1 | aors=alice | none | default_expiration=60minimum_expiration=30 | none | Contact: <sip:alice-office@127.0.0.2:5061>;expires=15Expires: 20 | Identify by username,no auth,one contacts, one AOR,*Expires* header,*expires* Contact param |  yes |
 
 Procedure:
 
@@ -152,7 +152,7 @@ Pass Conditions:
 
 | Iteration | Alice-specific Data | Alice-auth-specific Data | Alice-aor-specific Data | Supplied Credentials | Supplied SIP Headers | Comment | Written? |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| 1 | aors=alice | none | max_contacts=3remove_existing=yes | none | Contact: <sip:alice-office@127.0.0.2:5061>Contact: <sip:alice-home@127.0.0.3:5062>Expires: 20 | Identify by username,no auth,two contacts, one AOR,*Expires* header |  yes |
+| 1 | aors=alice | none | max_contacts=3remove_existing=yes | none | Contact: <sip:alice-office@127.0.0.2:5061>Contact: <sip:alice-home@127.0.0.3:5062>Expires: 20 | Identify by username,no auth,two contacts, one AOR,*Expires* header |  yes |
 | 2 | aors=alice | none | max_contacts=3remove_existing=yes | none | Contact: <sip:alice-mobile@127.0.0.2:5061>Contact: <sip:alice-pc@127.0.0.3:5062>Expires: 20 | Identify by username,no auth,two contacts, one AOR,*Expires* header | yes |
 
 Procedure:

@@ -74,17 +74,7 @@ The tool should also take the following options:
 
 This is the general operation of the tool, expressed in psuedo code.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 
 for each application/function/AGI command/AMI action {
  if page does not exist {
@@ -96,9 +86,7 @@ for each application/function/AGI command/AMI action {
  update page with new content
 }
 
-
 ```
-
 
 ##### Wiki Syntax
 

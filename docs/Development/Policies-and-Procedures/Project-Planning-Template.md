@@ -118,7 +118,7 @@ Configuration
 |  Parameter  |  Description  |  Type  |  Default Value  |
 | --- | --- | --- | --- |
 |  foo  |  Turns feature foo on or off  |  Boolean  |  True  |
-|  bar  |  A comma delineated list of bar items (pun intended?)  |  String  |   |
+|  bar  |  A comma delineated list of bar items (pun intended?)  |  String  |   |
 
 
 ### RealTime schemas

@@ -71,9 +71,7 @@ These codes were added in [RFC6848](https://www.rfc-editor.org/rfc/rfc6848)
 
 In geolocation.conf, we can define a location that describes a building and profiles for Bob and Alice that add floor and room. We're assuming here that Bob's and Alice's phones don't send any location information themselves.
 
-
 ```
-
 [building1]
 type = location
 format = civicAddress
@@ -91,17 +89,13 @@ type = profile
 location_reference = building1
 location_refinement = FLR=32, ROOM=32A6
 
-
 ```
-
 
 ### PIDF-LO XML Examples
 
 Here's what Alice's PIDF-LO would look like:
 
-
 ```
-
 <?xml version="1.0" encoding="UTF-8"?>
 <presence entity="pres:alice@example.com"
  xmlns="urn:ietf:params:xml:ns:pidf"
@@ -136,14 +130,11 @@ Here's what Alice's PIDF-LO would look like:
  </dm:device>
 </presence>
 
-
 ```
-
 
 Here's what Bob's PIDF-LO would look like:
 
 ```
-
 <?xml version="1.0" encoding="UTF-8"?>
 <presence entity="pres:bob@example.com"
  xmlns="urn:ietf:params:xml:ns:pidf"
@@ -178,9 +169,7 @@ Here's what Bob's PIDF-LO would look like:
  </dm:device>
 </presence>
 
-
 ```
-
 
 Note that the only civicAddress difference between the two are the `FLR` and `ROOM`.
 

@@ -43,7 +43,7 @@ This was discussed on the dev list in Jan 2013: <http://lists.digium.com/piperma
 
 ### Finding bug bounties
 
-The archives of the Asterisk Development mailing list located at <http://lists.digium.com/pipermail/asterisk-dev/> can be used to locate bug bounties. For bounties which are also present on the Asterisk issue tracker they will be displayed below:
+The archives of the Asterisk Development mailing list located at <http://lists.digium.com/pipermail/asterisk-dev/> can be used to locate bug bounties. For bounties which are also present on the Asterisk issue tracker they will be displayed below:
 
- Digium/Asterisk JIRAee634d14-2067-31b4-9ca3-00e0845ec070labels = bounty and status != closed
+ Digium/Asterisk JIRAee634d14-2067-31b4-9ca3-00e0845ec070labels = bounty and status != closed
 

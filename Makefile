@@ -57,8 +57,10 @@ static-setup:: $(BUILD_DIR)
 ifeq ($(NO_STATIC),)
 	@echo "  Copying docs/ to temp build"
 	@rsync -aH docs/. $(BUILD_DIR)/docs/
-	@echo "  Applying link transformations"
-	@utils/fix_build.sh $(BUILD_DIR)/docs utils/build_fixes.yml
+#	fix_build is no longer needed but kept in case
+#	it's needed again.
+#	@echo "  Applying link transformations"
+#	@utils/fix_build.sh $(BUILD_DIR)/docs utils/build_fixes.yml
 else
 	@echo "  Copying only docs/index.md and favicon.ico to temp build"
 	@mkdir -p $(BUILD_DIR)/docs

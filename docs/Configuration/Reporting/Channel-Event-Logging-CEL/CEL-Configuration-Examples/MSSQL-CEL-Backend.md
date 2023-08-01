@@ -27,63 +27,27 @@ The following provide some examples known to get asterisk working with mssql.
 
 ##### Compile, configure, and install the latest unixODBC package:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 
 tar -zxvf unixODBC-2.2.9.tar.gz && cd unixODBC-2.2.9 && ./configure --sysconfdir=/etc --prefix=/usr --disable-gui && make && make install 
 
-
 ```
-
 
 ##### Compile, configure, and install the latest FreeTDS package:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 
 tar -zxvf freetds-0.62.4.tar.gz && cd freetds-0.62.4 && ./configure --prefix=/usr --with-tdsver=7.0 \ --with-unixodbc=/usr/lib && make && make install 
 
-
 ```
-
 
 ##### Compile, or recompile, asterisk so that it will now add support for cel_odbc.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 
 make clean && ./configure --with-odbc && make update && make && make install 
 
-
 ```
-
 
 ##### Setup odbc configuration files.
 
@@ -93,17 +57,7 @@ These are working examples from my system. You will need to modify for your setu
 
 /etc/odbcinst.ini
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 
 [FreeTDS]
 Description = FreeTDS ODBC driver for MSSQL
@@ -111,23 +65,11 @@ Driver = /usr/lib/libtdsodbc.so
 Setup = /usr/lib/libtdsS.so
 FileUsage = 1
 
-
 ```
-
 
 /etc/odbc.ini
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 
 [MSSQL-asterisk]
 description = Asterisk ODBC for MSSQL
@@ -138,9 +80,7 @@ database = voipdb
 tds_version = 7.0
 language = us_english 
 
-
 ```
-
 
 
 
@@ -152,9 +92,7 @@ language = us_english
   
   
 
-
 ```
-
 
 [ -f /etc/asterisk/cel_tds.conf ] > /etc/asterisk/cel_tds.conf 
   
@@ -163,10 +101,7 @@ language = us_english
 
 ---
 
-
-
 ```
-
 
 
 
@@ -186,17 +121,7 @@ These are working samples from my system. You will need to modify for your setup
 
 /etc/asterisk/cel_odbc.conf
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 
 [global]
 dsn=MSSQL-asterisk
@@ -204,23 +129,11 @@ username=voipdbuser
 password=voipdbpass
 loguniqueid=yes 
 
-
 ```
-
 
 ##### And finally, create the 'cel' table in your mssql database.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 
 CREATE TABLE cel (
  [eventtype] [varchar] (30) NOT NULL , 
@@ -242,9 +155,7 @@ CREATE TABLE cel (
  [userfield] [varchar] (255) NOT NULL 
 ) ;
 
-
 ```
-
 
 Start asterisk in verbose mode, you should see that asterisk logs a connection to the database and will now record every desired channel event at the moment it occurs.
 
@@ -254,43 +165,19 @@ Start asterisk in verbose mode, you should see that asterisk logs a connection t
 
 ##### Compile, configure, and install the latest FreeTDS package:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 
 tar -zxvf freetds-0.62.4.tar.gz && cd freetds-0.62.4 && ./configure --prefix=/usr --with-tdsver=7.0 make && make install 
 
-
 ```
-
 
 ##### Compile, or recompile, asterisk so that it will now add support for cel_tds.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 
 make clean && ./configure --with-tds && make update && make && make install 
 
-
 ```
-
 
 
 
@@ -302,9 +189,7 @@ make clean && ./configure --with-tds && make update && make && make install
   
   
 
-
 ```
-
 
 [ -f /etc/asterisk/cel_odbc.conf ] > /etc/asterisk/cel_odbc.conf 
   
@@ -313,10 +198,7 @@ make clean && ./configure --with-tds && make update && make && make install
 
 ---
 
-
-
 ```
-
 
 ##### Setup cel_tds configuration files.
 
@@ -326,17 +208,7 @@ These are working samples from my system. You will need to modify for your setup
 
 /etc/asterisk/cel_tds.conf
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 
 [global]
 hostname=192.168.1.25
@@ -346,23 +218,11 @@ user=voipdbuser
 password=voipdpass 
 charset=BIG5
 
-
 ```
-
 
 ##### And finally, create the 'cel' table in your mssql database.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 
 CREATE TABLE cel ( 
  [eventtype] [varchar] (30) NULL ,
@@ -384,9 +244,7 @@ CREATE TABLE cel (
  [peer] [varchar] (80) NULL 
 ) ;
 
-
 ```
-
 
 Start asterisk in verbose mode, you should see that asterisk logs a connection to the database and will now record every call to the database when it's complete.
 

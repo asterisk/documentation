@@ -11,21 +11,10 @@ Symptoms
 
 Example`:`
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 No such command 'sip show peers'
 
 ```
-
 
 We can presume that something is wrong with **chan_sip** module since we know it provides the 'sip' commands and sub-commands.
 
@@ -42,7 +31,7 @@ On this Page
 Solution
 ========
 
-Identify the state of the module. If the module is loaded but not running, or not loaded at all, then resolve file format, configuration syntax issues or unwanted modules.conf configuration  for the specific module. Restart Asterisk.
+Identify the state of the module. If the module is loaded but not running, or not loaded at all, then resolve file format, configuration syntax issues or unwanted modules.conf configuration  for the specific module. Restart Asterisk.
 
 Troubleshooting
 ===============
@@ -54,17 +43,7 @@ From the [Asterisk CLI](/Operation/Asterisk-Command-Line-Interface) you can use 
 
 Previous to Asterisk 12, you could only see if the module is loaded. However it may not actually be running (usable).
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 \*CLI> module show like chan_sip.so 
 Module Description Use Count 
 chan_sip.so Session Initiation Protocol (SIP) 0 
@@ -72,27 +51,15 @@ chan_sip.so Session Initiation Protocol (SIP) 0
 
 ```
 
-
 In Asterisk 12 and beyond you can quickly see if a module is loaded and whether it is running or not.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 \*CLI> module show like chan_sip.so 
 Module Description Use Count Status
 chan_sip.so Session Initiation Protocol (SIP) 0 Not Running
 1 modules loaded
 
 ```
-
 
 Make sure Asterisk is configured to load the module
 ---------------------------------------------------
@@ -103,41 +70,19 @@ Verify that **autoload=yes** is enabled if you are intending to load modules fro
 
 Verify that there is **not** a '**noload'** line for the module that is failing to load. That is, if we had a line as follows:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 noload => chan_sip.so
 
 ```
-
 
 That would tell Asterisk to not load chan_sip.so.
 
 If you are not using **autoload**, then be sure you have a **load** line for the module you desire to load.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 load => chan_sip.so
 
 ```
-
 
 Check For Module Loading Issues on Asterisk Startup
 ---------------------------------------------------
@@ -148,60 +93,27 @@ Now that we know the suspect module should be loading, we can look at some logs 
 
 Be sure Asterisk is stopped to avoid issues with making the logs confusing.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 asterisk -rx "core stop now"
 
 ```
 
-
 or
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 service asterisk stop
 
 ```
-
 
 ### Enable logging channels
 
 You can read in detail about [Logging facilities](/Operation/Logging) on the wiki. In short, for this example, make sure you have the following lines uncommented in your [logger.conf](/Configuration/Core-Configuration/Logging-Configuration) file.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 [logfiles]
 full => notice,warning,error,debug,verbose
 
 ```
-
 
 ### Clear out old logs
 
@@ -209,27 +121,19 @@ You don't want to mistakenly look at an older log where Asterisk was loading app
 
 Remove the most recent log file, or else move it somewhere you want to keep it.
 
-
-
-
 ```bash title=" " linenums="1"
 # rm /var/log/asterisk/full
 
 ```
 
-
 ### Start Asterisk with appropriate log levels
 
 It is important to start Asterisk with [log levels](/Operation/Logging/Basic-Logging-Commands) that will provide us enough information.
-
-
-
 
 ```bash title=" " linenums="1"
 # asterisk -cvvvvvddd
 
 ```
-
 
 You'll see a lot of information output in the terminal as Asterisk loads.
 
@@ -237,37 +141,16 @@ You'll see a lot of information output in the terminal as Asterisk loads.
 
 After the output calms down and Asterisk has finished loading, go ahead and stop Asterisk. The logs should have already been recorded.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 \*CLI> core stop now
 
 ```
-
 
 ### Search logs for lines related to suspect module
 
 Search the [log file](/Fundamentals/Directory-and-File-Structure) using keywords based on the specific module that appeared to be failing to load or run.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 /var/log/asterisk# grep -i chan_sip full
 [Oct 9 14:54:43] VERBOSE[21809] chan_sip.c: SIP channel loading...
 [Oct 9 14:54:43] ERROR[21809] chan_sip.c: Contents of sip.conf are invalid and cannot be parsed
@@ -283,20 +166,9 @@ Search the [log file](/Fundamentals/Directory-and-File-Structure) using keywords
 
 ```
 
-
 Based on the lines found, you can then use an editor like VIM to view the full log and jump to where the relevant messages are.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 [Oct 9 14:54:43] VERBOSE[21809] chan_sip.c: SIP channel loading...
 [Oct 9 14:54:43] DEBUG[21809] config.c: Parsing /etc/asterisk/sip.conf
 [Oct 9 14:54:43] VERBOSE[21809] config.c: == Parsing '/etc/asterisk/sip.conf': Found
@@ -305,46 +177,23 @@ Based on the lines found, you can then use an editor like VIM to view the full l
 
 ```
 
-
 In this case, not much more is revealed past what we saw with grep. You can see that Asterisk tries to load and run chan_sip, it fails because the contents of sip.conf are invalid and cannot be parsed. The most specific clue is the WARNING:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 WARNING[21809] config.c: parse error: No category context for line 1 of /etc/asterisk/sip.conf
 
 ```
-
 
 ### Edit the related config file to resolve the issue
 
 If we look at line 1 of sip.conf we'll spot the root problem.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 general]
 context=public
 allowoverlap=no
 
 ```
-
 
 For our example, a square bracket is missing from the context definition! Fix this issue, restart Asterisk and things should work assuming I don't have any other syntax errors.
 

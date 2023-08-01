@@ -13,9 +13,9 @@ In This SectionSee Also[Distributed Device State](/Configuration/Interfaces/Dist
 
 [Exchanging Device and Mailbox State Using PJSIP](/Configuration/Channel-Drivers/SIP/Configuring-res_pjsip/Exchanging-Device-and-Mailbox-State-Using-PJSIP)
 
-Additionally, modules exist for [Corosync](/Configuration/Interfaces/Distributed-Device-State/Corosync) and [XMPP PubSub](/Configuration/Interfaces/Distributed-Device-State/Distributed-Device-State-with-XMPP-PubSub) support to allow device state to be [shared and distributed](/Configuration/Interfaces/Distributed-Device-State) across multiple systems.
+Additionally, modules exist for [Corosync](/Configuration/Interfaces/Distributed-Device-State/Corosync) and [XMPP PubSub](/Configuration/Interfaces/Distributed-Device-State/Distributed-Device-State-with-XMPP-PubSub) support to allow device state to be [shared and distributed](/Configuration/Interfaces/Distributed-Device-State) across multiple systems.
 
-The sub-sections here describe these concepts, point to related module specific configuration sections and discuss [Querying and Manipulating State](/Fundamentals/Key-Concepts/States-and-Presence/Querying-and-Manipulating-State) information.
+The sub-sections here describe these concepts, point to related module specific configuration sections and discuss [Querying and Manipulating State](/Fundamentals/Key-Concepts/States-and-Presence/Querying-and-Manipulating-State) information.
 
 The figure below may help you get an idea of the overall use of states and presence with the Asterisk system. It has been simplified to focus on the flow and usage of state and presence. In reality, the architecture can be a bit more confusing. For example a module could both provide subscription functionality for a subscriber and be the same module providing the devices and device state on the other end.
 

@@ -23,20 +23,11 @@ On this Page
 
 extensions.conf
 
-
----
-
-  
-  
-
-
 ```
-
 true[default]
 exten => 1000,hint,PJSIP/alice
 
 ```
-
 
 The line shown here is similar to any normal line in a dialplan, except that instead of a priority number or label, the word "hint" is specified. The hint is used to associate the state of individual devices with the state of a dialplan extension. An English translation of the dialplan line would be "Use the state of device PJSIP/alice as the basis for the state of extension 1000". When PJSIP endpoints subscribe to presence, they are subscribing to the state of an extension in the dialplan. By providing the dialplan hint, you are creating the necessary association in order to know which device (or devices) are relevant. For the example given above, this means that if someone subscribes to the state of extension 1000, then they will be told the state of PJSIP/alice. For more information about device state, see [this page](/Fundamentals/Key-Concepts/States-and-Presence/Device-State).
 
@@ -63,20 +54,11 @@ Digium phones are outfitted with a custom supplement to the base PIDF+XML presen
 
 extensions.conf
 
-
----
-
-  
-  
-
-
 ```
-
 true[default]
 exten => 1000,hint,PJSIP/alice,CustomPresence:alice
 
 ```
-
 
 This means that updates to the presence state of CustomPresence:alice will also be conveyed to subscribers to extension 1000. For more information on presence state in Asterisk, see [this page](/Fundamentals/Key-Concepts/States-and-Presence/Presence-State).
 

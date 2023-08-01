@@ -37,17 +37,7 @@ You can also get the latest releases from the downloads page on [asterisk.org](h
 
 Alternatively, you can us`e [wget](https://www.gnu.org/software/wget/)` to retrieve the latest release:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 [root@server:/usr/local/src]# wget https://downloads.asterisk.org/pub/telephony/asterisk/asterisk-14-current.tar.gz
 --2017-04-28 15:45:36-- https://downloads.asterisk.org/pub/telephony/asterisk/asterisk-14-current.tar.gz
 Resolving downloads.asterisk.org (downloads.asterisk.org)... 76.164.171.238
@@ -61,7 +51,6 @@ asterisk-14-current.tar.gz 100%[================================================
 2017-04-28 15:45:47 (3.37 MB/s) - ‘asterisk-14-current.tar.gz’ saved [40692588/40692588]
 
 ```
-
 
 Other Projects
 ==============
@@ -106,7 +95,7 @@ Download Locations
 | dahdi-tools | <https://downloads.asterisk.org/pub/telephony/dahdi-tools/dahdi-tools-current.tar.gz> |
 | dahdi-complete | <https://downloads.asterisk.org/pub/telephony/dahdi-linux-complete/dahdi-linux-complete-current.tar.gz> |
 
- 
 
- 
+
+
 

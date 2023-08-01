@@ -6,15 +6,15 @@ pageid: 26478450
 Overview
 ========
 
-Asterisk 12 introduces the [Asterisk REST Interface](/Asterisk-12-RESTful-API), a set of RESTful APIs for building Asterisk based applications. This article will walk you though getting ARI up and running.
+Asterisk 12 introduces the [Asterisk REST Interface](/Asterisk-12-RESTful-API), a set of RESTful APIs for building Asterisk based applications. This article will walk you though getting ARI up and running.
 
 There are three main components to building an ARI application.
 
-The first, obviously, is **the RESTful API** itself. The API is documented using [Swagger](https://developers.helloreverb.com/swagger/), a lightweight specification for documenting RESTful APIs. The Swagger API docs are used to generate validations and boilerplate in Asterisk itself, along with [static wiki documentation](/Asterisk-12-ARI), and interactive documentation using [Swagger-UI](https://github.com/wordnik/swagger-ui).
+The first, obviously, is **the RESTful API** itself. The API is documented using [Swagger](https://developers.helloreverb.com/swagger/), a lightweight specification for documenting RESTful APIs. The Swagger API docs are used to generate validations and boilerplate in Asterisk itself, along with [static wiki documentation](/Asterisk-12-ARI), and interactive documentation using [Swagger-UI](https://github.com/wordnik/swagger-ui).
 
-Then, Asterisk needs to send asynchronous events to the application (new channel, channel left a bridge, channel hung up, etc). This is done using a **WebSocket on /ari/events**. Events are sent as JSON messages, and are documented on the [REST Data Models page](/Asterisk-12-REST-Data-Models). (See the list of subtypes for the [`Message` data model](/Asterisk-12-REST-Data-Models).)
+Then, Asterisk needs to send asynchronous events to the application (new channel, channel left a bridge, channel hung up, etc). This is done using a **WebSocket on /ari/events**. Events are sent as JSON messages, and are documented on the [REST Data Models page](/Asterisk-12-REST-Data-Models). (See the list of subtypes for the [`Message` data model](/Asterisk-12-REST-Data-Models).)
 
-Finally, connecting the dialplan to your application is the  [`Stasis()` dialplan application](/_Dialplan_Applications/Stasis). From within the dialplan, you can send a channel to `Stasis()`, specifying the name of the external application, along with optional arguments to pass along to the application.
+Finally, connecting the dialplan to your application is the  [`Stasis()` dialplan application](/latest_api/Dialplan_Applications/Stasis). From within the dialplan, you can send a channel to `Stasis()`, specifying the name of the external application, along with optional arguments to pass along to the application.
 
 40%On This PageExample: ARI Hello World!
 =========================
@@ -37,23 +37,16 @@ ARI needs a WebSocket connection to receive events. For the sake of this example
 
 1. If you don't have it already, **install** npm
 
-
-
-
 ```bash title=" " linenums="1"
 $ apt-get install npm
 
 ```
 2. **Install** the `ws` node package:
 
-
-
-
 ```bash title=" " linenums="1"
 $ npm install -g wscat
 
 ```
-
 
 
 
@@ -69,21 +62,17 @@ $ npm install -g wscat
 
 
 
- 
+
 
 Getting curl
 ------------
 
 In order to control a channel in the Stasis dialplan application through ARI, we also need an HTTP client. For the sake of this example, we'll use [curl](http://linux.about.com/od/commands/l/blcmdl1_curl.htm):
 
-
-
-
 ```bash title=" " linenums="1"
 $ apt-get install curl
 
 ```
-
 
 Configuring Asterisk
 --------------------
@@ -98,9 +87,7 @@ Configuring Asterisk
   
 http.conf  
 
-
 ```
-
 truetext[general]
 enabled = yes
 bindaddr = 0.0.0.0
@@ -116,9 +103,7 @@ bindaddr = 0.0.0.0
   
 ari.conf  
 
-
 ```
-
 truetext[general]
 enabled = yes 
 pretty = yes 
@@ -129,7 +114,6 @@ read_only = no
 password = asterisk
 
 ```
-
 
 
 
@@ -149,9 +133,7 @@ password = asterisk
   
 extensions.conf  
 
-
 ```
-
 truetext[default]
 
 exten => 1000,1,NoOp()
@@ -160,14 +142,10 @@ exten => 1000,1,NoOp()
  same => n,Hangup()
 
 ```
-
 Hello World!
 ------------
 
 1. Connect to Asterisk using `wscat`:
-
-
-
 
 ```bash title=" " linenums="1"
 $ wscat -c "ws://localhost:8088/ari/events?api_key=asterisk:asterisk&app=hello-world"
@@ -176,58 +154,26 @@ connected (press CTRL+C to quit)
 
 ```
 
-
 In Asterisk, we should see a new WebSocket connection and a message telling us that our Stasis application has been created:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 text == WebSocket connection from '127.0.0.1:37872' for protocol '' accepted using version '13'
  Creating Stasis app 'hello-world'
 
 ```
 2. From your SIP device, dial extension 1000:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
-text  -- Executing [1000@default:1] NoOp("PJSIP/1000-00000001", "") in new stack
+text  -- Executing [1000@default:1] NoOp("PJSIP/1000-00000001", "") in new stack
  -- Executing [1000@default:2] Answer("PJSIP/1000-00000001", "") in new stack
  -- PJSIP/1000-00000001 answered
  -- Executing [1000@default:3] Stasis("PJSIP/1000-00000001", "hello-world") in new stack
 
 ```
 
-
 In wscat, we should see the `StasisStart` event, indicating that a channel has entered into our Stasis application:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 js< {
  "application":"hello-world",
  "type":"StasisStart",
@@ -250,33 +196,19 @@ js< {
  "priority":3},
  "creationtime":"2014-05-20T13:15:26.628-0500"}
  }
->  
+> 
 
 ```
 3. Using `curl`, tell Asterisk to playback `hello-world`. Note that the identifier of the channel in the `channels` resource **must** match the channel `id` passed back in the `StasisStart` event:
-
-
-
 
 ```bash title=" " linenums="1"
 $ curl -v -u asterisk:asterisk -X POST "http://localhost:8088/ari/channels/1400609726.3/play?media=sound:hello-world"
 
 ```
 
-
 The response to our HTTP request will tell us whether or not the request succeeded or failed (in our case, a success will queue the playback onto the channel), as well as return in JSON the Playback resource that was created for the operation:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 text\* About to connect() to localhost port 8088 (#0)
 * Trying 127.0.0.1... connected
 * Server auth using Basic with user 'asterisk'
@@ -306,38 +238,16 @@ $
 
 ```
 
-
 In Asterisk, the sound file will be played back to the channel:
 
-
-
-
----
-
-  
-  
-
+```
+text -- <PJSIP/1000-00000001> Playing 'hello-world.gsm' (language 'en')
 
 ```
-
-text -- <PJSIP/1000-00000001> Playing 'hello-world.gsm' (language 'en') 
-
-```
-
 
 And in our `wscat` WebSocket connection, we'll be informed of the start of the playback, as well as it finishing:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 js< {"application":"hello-world",
  "type":"PlaybackStarted",
  "playback":{
@@ -361,18 +271,8 @@ js< {"application":"hello-world",
 ```
 4. Hang up the phone! This will cause the channel in Asterisk to be hung up, and the channel will leave the Stasis application, notifying the client via a `StasisEnd` event:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
-js < {"application":"hello-world",
+js < {"application":"hello-world",
  "type":"StasisEnd",
  "timestamp":"2014-05-20T13:30:01.852-0500",
  "channel":{
@@ -395,7 +295,6 @@ js < {"application":"hello-world",
 
 ```
 
- 
 
- 
+
 

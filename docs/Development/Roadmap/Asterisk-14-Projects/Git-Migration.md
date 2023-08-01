@@ -28,9 +28,9 @@ This page serves as a place to put thoughts and findings on moving to Git, docum
 
 
 
- 
 
- 
+
+
 
 [Underpants Gnomes](http://en.wikipedia.org/wiki/Gnomes_%28South_Park%29) Project Plan for Moving to Git
 ========================================================================================================
@@ -55,7 +55,7 @@ Below is a comparison of four platforms, subjected to a variety of criteria:
 * Git Hooks/Web Hooks - given the amount of infrastructure the project already has, it is certain we'll need to integrate Git with existing tools.
 * Performance - this is a big one, given the amount of history the Asterisk project has. A good management tool will need to be able to handle the nearly half a million commits the Asterisk project currently has.
 
- 
+
 
 
 

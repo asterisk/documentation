@@ -17,7 +17,7 @@ Mailboxes/MWI
 2. App can publish a new state for a mailbox  
 
 	1. Are there any common attributes for mailbox state (unplayed message count, last message timestamp, etc.)
-		1. `ast_mwi_state` is defined as new message count, old message count
+		1. `ast_mwi_state` is defined as new message count, old message count
 
 Presence
 --------
@@ -49,15 +49,15 @@ DELETE /topics/{topidId} - destroy a topic. This should implicitly unsubscribe a
 
 POST /topics Topic - create a new topic. When you create a topic, you are implicitly subscribed to that topic.
 
-    type: The type of topic to create. Valid types initially would be 'mailbox', 'device', 'presence'
+    type: The type of topic to create. Valid types initially would be 'mailbox', 'device', 'presence'
 
-    uri: The URI subscribers will use to subscribe to the topic
+    uri: The URI subscribers will use to subscribe to the topic
 
-POST /topics/{topicId}/publish - publish an event to a topic. Events are passed as JSON, and are opaque from the perspective of ARI. It would be up to the specific topic types to understand the  event packages.
+POST /topics/{topicId}/publish - publish an event to a topic. Events are passed as JSON, and are opaque from the perspective of ARI. It would be up to the specific topic types to understand the  event packages.
 
- 
 
-/applications/{applicationName}/subscription will be updated to allow for an ARI client to subscribe to any topic in Asterisk.
+
+/applications/{applicationName}/subscription will be updated to allow for an ARI client to subscribe to any topic in Asterisk.
 
 Data model
 ----------
@@ -69,7 +69,7 @@ Topic:
 * subscribers: List[Subscriber] - A list of active subscriptions
 * id: string - A unique ID for the topic
 
- 
+
 
 Subscriber
 
@@ -77,34 +77,34 @@ Subscriber
 * topic_id: string - The topic ID this subscription refers to
 * endpoint: Endpoint - If available, the endpoint that subscribed to this Topic
 
- 
+
 
 TopicSubscriptionCreated : Event - Event raised when a new subscription is created for a topic
 
 * subscriber : Subscriber
 * topic: Topic
 
- 
+
 
 TopicSubscriptionDestroyed : Event - Event raised when a subscription is destroyed for a topic
 
 * subscriber : Subscriber
 * topic : Topic
 
- 
+
 
 TopicEvent : Event - Event raised in relation to a topic
 
 * topic : Topic
 * body : JSON
 
- 
+
 
 TopicCreated : Event - Event raised when a new topic is created
 
 * topic : Topic
 
- 
+
 
 TopicDestroyed : Event - Event raised when a topic is destroyed
 
@@ -150,7 +150,7 @@ Mailbox
 DeviceState
 
 * name: string
-* state: string {}
+* state: string {}
 
 PresenceState
 

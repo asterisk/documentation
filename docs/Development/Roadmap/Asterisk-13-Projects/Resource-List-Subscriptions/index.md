@@ -19,7 +19,7 @@ These limitations can drastically limit the number of devices a PBX administrato
 Resource List Subscriptions
 ---------------------------
 
-A proposed solution to this problem is to implement [RFC 4662 Resource List Subscriptions](http://www.rfc-editor.org/rfc/rfc4662.txt) (abbreviated RLS from here on). This RFC describes a method for SIP servers to map a single requested resource to a list of resources. In the example 20-person office from before, a list could be configured that contained all 20 users' phones. Each phone could then establish a single subscription to that list rather than having to establish 20 different subscriptions to each individual user's phone. In addition, notifications can list multiple resources in a single message, allowing for Asterisk to send fewer notifications.
+A proposed solution to this problem is to implement [RFC 4662 Resource List Subscriptions](http://www.rfc-editor.org/rfc/rfc4662.txt) (abbreviated RLS from here on). This RFC describes a method for SIP servers to map a single requested resource to a list of resources. In the example 20-person office from before, a list could be configured that contained all 20 users' phones. Each phone could then establish a single subscription to that list rather than having to establish 20 different subscriptions to each individual user's phone. In addition, notifications can list multiple resources in a single message, allowing for Asterisk to send fewer notifications.
 
 In addition to resolving the N-squared problem, configurable lists also allows for more intuitive creation of useful sub-lists of users. In an office, you could have a "Sales" list, an "Engineering" list, a "Tech Support" list, etc. Lists are not restricted to being composed of individual devices; lists can be made of other lists. This makes it possible to have an "All" list, composed of the Sales, Engineering, and Tech Support lists, for instance.
 
@@ -37,7 +37,7 @@ Task 1: Abstraction of SIP Subscriptions
 
 This first part is a behind-the-scenes improvement. Currently, the layer between Asterisk's SIP subscription handlers and the underlying dialog maintained by PJSIP is thin. Asterisk subscription handlers directly call into PJSIP in order to create NOTIFY requests to send or to accept incoming subscriptions. When using RLS, a single RLS subscription can result in multiple virtual subscriptions for the subscription handlers. Each of these virtual subscriptions should behave the same as a real subscription, but under the hood, the pubsub core in Asterisk should be capable of doing the right thing if the subscription is actually virtual. This requires improvements to the pubsub API in order to abstract operations.
 
-Since the changes are large and deal with behind-the-scenes content, the have been relegated to their own [sub-page](/Development/Roadmap/Asterisk-13-Projects/Resource-List-Subscriptions/PJSIP-Subscription-Abstraction-Plan).
+Since the changes are large and deal with behind-the-scenes content, the have been relegated to their own [sub-page](/Development/Roadmap/Asterisk-13-Projects/Resource-List-Subscriptions/PJSIP-Subscription-Abstraction-Plan).
 
 Task 2: Implementation of inbound RLS
 =====================================
@@ -54,12 +54,12 @@ RFC 4662 is purposefully vague about how a SIP server sets up its resource lists
 * Whether notifications are batched
 * Whether we send partial or full updates when resource states change.
 
-Configuration of RLS is defined on [this page](/Development/Roadmap/Asterisk-13-Projects/Resource-List-Subscriptions/Resource-List-Configuration).
+Configuration of RLS is defined on [this page](/Development/Roadmap/Asterisk-13-Projects/Resource-List-Subscriptions/Resource-List-Configuration).
 
 Write test cases (nominal and off-nominal)
 ------------------------------------------
 
-If a configuration scheme has been decided, testsuite tests can be written for RLS. A test plan for RLS can be found [here](/Development/Roadmap/Asterisk-13-Projects/Resource-List-Subscriptions/Resource-List-Subscription-Test-Plan).
+If a configuration scheme has been decided, testsuite tests can be written for RLS. A test plan for RLS can be found [here](/Development/Roadmap/Asterisk-13-Projects/Resource-List-Subscriptions/Resource-List-Subscription-Test-Plan).
 
 Write an application/rlmi+xml body generator
 --------------------------------------------
@@ -79,24 +79,13 @@ RLMI stands for "Resource List Meta-Information". It is an XML document used by 
 
 An RLMI document can be constructed using the following structure:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 struct rlmi_data {
  struct ast_sip_subscription \*list_subscription;
  AST_LIST_HEAD(,ast_list_subscription) child_subscriptions;
-}; 
+};
 
 ```
-
 
 This seems a bit minimalistic, but it should be enough.
 
@@ -127,7 +116,7 @@ When the pubsub API is asked to send a notification, it needs to determine if th
 #### Virtual subscription NOTIFY algorithm:
 
 1. Create a NOTIFY body indicating the state of the resource being monitored.
-2. Save the body on the subscription (possibly using a datastore, though we may end up adding a field to `ast_sip_subscription` to hold the body instead).
+2. Save the body on the subscription (possibly using a datastore, though we may end up adding a field to `ast_sip_subscription` to hold the body instead).
 3. Set a flag on the subscription (possibly using the same datastore the body is stored in indicating that this subscription has had a state change).
 4. Determine how to finish.
 
@@ -135,7 +124,7 @@ From here, the duty to create the NOTIFY has been passed up the chain to the lis
 
 #### List subscription NOTIFY algorithm:
 
-1. Check the configured `full_state` value for the subscription
+1. Check the configured `full_state` value for the subscription
 	1. If set to "yes" then iterate over all child subscriptions and gather the saved NOTIFY bodies on each.
 	2. If set to "no" then iterate over the child subscriptions and gather the saved NOTIFY bodies on the ones that indicate they have had a state change. As each body is gathered, clear the flag indicating that the state had changed.
 2. Create an application/rlmi+xml body that properly identifies the gathered bodies.

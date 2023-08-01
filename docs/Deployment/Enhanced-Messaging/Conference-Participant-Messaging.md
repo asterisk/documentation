@@ -6,7 +6,7 @@ pageid: 40818222
 Overview
 ========
 
-Since Asterisk 13.22.0 and 15.5.0, in-dialog SIP MESSAGE support in the chan_pjsip channel driver is enhanced and conference bridges added support for relaying messages.  The chan_pjsip channel driver now allows exchanging enhanced messages with Asterisk's core that have additional metadata indicating the sender and the mime-type of the message contents.  The conference bridges now allow relaying text and enhanced messages from one participant to all other participants.
+Since Asterisk 13.22.0 and 15.5.0, in-dialog SIP MESSAGE support in the chan_pjsip channel driver is enhanced and conference bridges added support for relaying messages.  The chan_pjsip channel driver now allows exchanging enhanced messages with Asterisk's core that have additional metadata indicating the sender and the mime-type of the message contents.  The conference bridges now allow relaying text and enhanced messages from one participant to all other participants.
 
 How it works
 ============
@@ -15,35 +15,25 @@ It sounds simple enough but this required some restructuring of the bridging cor
 
 * The participant creates a SIP MESSAGE request with a specific content type, message body, and optionally a "From" display name.
 * The participant then sends that message in-dialog to the conference bridge.
-* Normally when a channel driver receives a text message, it passes only the text body to the bridging core, but this causes the sender and content type to be lost.  Now, when the chan_pjsip res_pjsip_messaging module receives an in-dialog SIP MESSAGE, it captures the From header's display name, the content type, and the body to pass on to the bridging core.  Other than the From display name, no other sender information is exposed.
+* Normally when a channel driver receives a text message, it passes only the text body to the bridging core, but this causes the sender and content type to be lost.  Now, when the chan_pjsip res_pjsip_messaging module receives an in-dialog SIP MESSAGE, it captures the From header's display name, the content type, and the body to pass on to the bridging core.  Other than the From display name, no other sender information is exposed.
 * When bridge_softmix (the bridging module used by ConfBridge) sees the message, it relays it to all other bridge participants.
-* Any other participants connected via chan_pjsip will get the From display name, content-type, and body.  Those not connected via chan_pjsip will get whatever the channel driver supports.
+* Any other participants connected via chan_pjsip will get the From display name, content-type, and body.  Those not connected via chan_pjsip will get whatever the channel driver supports.
 Using Enhanced Messaging
 ========================
 
-While Enhanced Messaging is interesting for Asterisk 13, it is very interesting for Asterisk 15 and later.  Imagine a video conference using Asterisk 15's Selective Forwarding Unit (SFU) capability in ConfBridge.  Enhanced Messaging allows the conference participants to chat while participating in the conference.  [CyberMegaPhone](/Configuration/WebRTC/Installing-and-Configuring-CyberMegaPhone) is an example for such a video conference application.
+While Enhanced Messaging is interesting for Asterisk 13, it is very interesting for Asterisk 15 and later.  Imagine a video conference using Asterisk 15's Selective Forwarding Unit (SFU) capability in ConfBridge.  Enhanced Messaging allows the conference participants to chat while participating in the conference.  [CyberMegaPhone](/Configuration/WebRTC/Installing-and-Configuring-CyberMegaPhone) is an example for such a video conference application.
 
 Configuring Asterisk
 --------------------
 
-There is no additional configuration needed.  Enhanced Messaging is built-in and always available.
+There is no additional configuration needed.  Enhanced Messaging is built-in and always available.
 
 In the browser...
 -----------------
 
-How you design the user interface portion is totally up to you but here is a sample of how [CyberMegaPhone](/Configuration/WebRTC/Installing-and-Configuring-CyberMegaPhone) could be extended to send a message using [JsSIP](http://jssip.net).  In this example, this._ua is a JsSIP.UA instance and this.rtc is a JsSIP.RTCSession instance.  Refer to the [CyberMegaPhone](/Configuration/WebRTC/Installing-and-Configuring-CyberMegaPhone) code to see where this might fit.
-
-
-
-
----
-
-  
-  
-
+How you design the user interface portion is totally up to you but here is a sample of how [CyberMegaPhone](/Configuration/WebRTC/Installing-and-Configuring-CyberMegaPhone) could be extended to send a message using [JsSIP](http://jssip.net).  In this example, this._ua is a JsSIP.UA instance and this.rtc is a JsSIP.RTCSession instance.  Refer to the [CyberMegaPhone](/Configuration/WebRTC/Installing-and-Configuring-CyberMegaPhone) code to see where this might fit.
 
 ```
-
 CyberMegaPhone.prototype.sendMessage = function (string_msg, options = {} ) {
  /*
  * You could allow the user to set a nickname
@@ -104,20 +94,9 @@ CyberMegaPhone.prototype.sendMessage = function (string_msg, options = {} ) {
 
 ```
 
-
-Congratulations, you have just sent a text message!  Assuming the user called a conference bridge in the first place, all the other participants should receive it.  The code to retrieve the message is even simpler than the code to send it.  Once again, in this CyberMegaPhone example, this._ua is the JsSIP.UA instance.
-
-
-
-
----
-
-  
-  
-
+Congratulations, you have just sent a text message!  Assuming the user called a conference bridge in the first place, all the other participants should receive it.  The code to retrieve the message is even simpler than the code to send it.  Once again, in this CyberMegaPhone example, this._ua is the JsSIP.UA instance.
 
 ```
-
  this._ua.on('newMessage', function (data) {
  /* We do not care about messages we send */
  if (data.originator === 'local') {
@@ -135,5 +114,4 @@ Congratulations, you have just sent a text message!  Assuming the user called a
  });
 
 ```
-
 

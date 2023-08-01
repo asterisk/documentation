@@ -30,7 +30,7 @@ The **#exec**, **#include**, and #**tryinclude** constructs do not work in the f
 * asterisk.conf
 * modules.conf
 
- 
+
 
 
 
@@ -50,9 +50,6 @@ Examples
 
 Let's look at example of both constructs in action. This is a generic example meant to illustrate the syntax usage inside a configuration file.
 
-
-
-
 ```javascript title=" " linenums="1"
 [section-name]
 setting=true
@@ -62,18 +59,13 @@ setting=true
 
 ```
 
-
 You can use #tryinclude if there is any chance the target file may not exist and you still want Asterisk to load the configuration for the module.
 
 Here is a more realistic example of how #exec might be used with real-world commands.
-
-
-
 
 ```bash title=" " linenums="1"
 #exec /usr/bin/curl -s http://example.com/mystuff > /etc/asterisk/mystuff
 #include mystuff
 
 ```
-
 

@@ -17,7 +17,7 @@ Overview
 
 
 
-Macro is a dialplan application that facilitates code-reuse within the dialplan. That is, a macro, once defined can be called from almost anywhere else within the dialplan using the Macro application or else via flags and arguments for other applications that allow calling macros. 
+Macro is a dialplan application that facilitates code-reuse within the dialplan. That is, a macro, once defined can be called from almost anywhere else within the dialplan using the Macro application or else via flags and arguments for other applications that allow calling macros.
 
 Other dialplan applications, such as [Dial](/Asterisk-13-Application_Dial) and [Queue](/Asterisk-13-Application_Dial) make use of Macro functionality from within their applications. That means, they allow you to perform actions like calling Macro (or Gosub) on the called party's channel from a Dial, or on a Queue member's channel after they answer. See the [Pre-Dial Handlers](/Configuration/Dialplan/Subroutines/Pre-Dial-Handlers) and [Pre-Bridge Handlers](/Configuration/Dialplan/Subroutines/Pre-Bridge-Handlers) sections for more information.
 
@@ -34,65 +34,32 @@ Macros look like a typical dialplan context, except for two factors:
 * Macros must be named with the 'macro-' prefix.
 * Macros must use the ['s' extension](/Configuration/Dialplan/Special-Dialplan-Extensions).
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 [macro-announcement]
 exten = s,1,NoOp()
  same = n,Playback(tt-weasels)
 
 ```
 
-
 Calling a Macro
 ===============
 
 Macro syntax is simple, you only need to specify the priority, and then optionally the context and extension plus any arguments you wish to use.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 Macro(name,[arg1],[argN])
 
 ```
 
-
 Here is an example within Asterisk dialplan.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 [somecontext]
 exten = 7000,1,Verbose("We are going to run a Macro before Dialing!")
 same = n,Macro(announcement)
 same = n,Dial(PJSIP/ALICE)
 
 ```
-
 
 As you can see we are calling the 'announcement' macro at context 'macro-announcement', extension 's' , priority '1'.
 
@@ -103,17 +70,7 @@ Other than the predefined variables mentioned earlier on this page, if you want 
 
 Here is how we call Macro with an argument. We are substituting the EXTEN channel variable for the first argument field (ARG1).
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 [somecontext]
 exten = 7000,1,Verbose("We are going to run a Macro before Dialing!")
 same = n,Macro(announcement,${EXTEN})
@@ -121,27 +78,15 @@ same = n,Dial(PJSIP/ALICE)
 
 ```
 
-
 Below notice that make use of ARG1 in the Verbose message we print during the subroutine execution.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 [macro-announcement]
 exten = s,1,Verbose("Here we are in a subroutine! This subroutine was called from extension ${ARG1}")
 same = s,n,Playback(tt-weasels)
 same = s,n,Return()
 
 ```
-
 
 To use multiple arguments, simply separate them via commas when defining them in the Macro call. Then within the Macro reference them as ARG1, ARG2, ARG3, etc.
 

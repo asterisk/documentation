@@ -30,7 +30,7 @@ Gathering output
 
 
 
- 
+
 
 1. Run [menuselect](/Getting-Started/Installing-Asterisk/Installing-Asterisk-From-Source/Using-Menuselect-to-Select-Asterisk-Options) and in the Compiler Options, enable MALLOC_DEBUG. A bug marshal may also ask you to enable additional compiler flags depending upon the nature of the issue.
 2. Rebuild and install Asterisk
@@ -47,15 +47,7 @@ Compiling with this flag results in several commands being made available for me
 
 Click to show usage...
 
-
----
-
-  
-  
-
-
 ```
-
 Usage: memory show summary [<file>]
  Summarizes heap memory allocations by file, or optionally
  by line, if a file is specified.
@@ -65,15 +57,7 @@ Usage: memory show summary [<file>]
 
 Click to show usage...
 
-
----
-
-  
-  
-
-
 ```
-
 Usage: memory show allocations [<file>|anomalies]
  Dumps a list of segments of allocated memory.
  Defaults to listing all memory allocations.
@@ -85,15 +69,7 @@ Usage: memory show allocations [<file>|anomalies]
 
 Click to show usage...
 
-
----
-
-  
-  
-
-
 ```
-
 Usage: memory atexit list {on|off}
  Enable dumping a list of still allocated memory segments at exit.
 
@@ -102,15 +78,7 @@ Usage: memory atexit list {on|off}
 
 Click to show usage...
 
-
----
-
-  
-  
-
-
 ```
-
 Usage: memory atexit summary {off|byline|byfunc|byfile}
  Summary of still allocated memory segments at exit options.
  off - Disable at exit summary.
@@ -124,15 +92,7 @@ Usage: memory atexit summary {off|byline|byfunc|byfile}
 
 Click to show usage...
 
-
----
-
-  
-  
-
-
 ```
-
 Usage: memory backtrace {on|off}
  Enable dumping an allocation backtrace with memory diagnostics.
  Note that saving the backtrace data for each allocation

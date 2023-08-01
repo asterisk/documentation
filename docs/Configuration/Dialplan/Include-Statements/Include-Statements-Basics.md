@@ -3,23 +3,13 @@ title: Include Statements Basics
 pageid: 4817357
 ---
 
- 
+
 
 To set the stage for our explanation of include statements, let's say that we want to organize our dialplan and create a new context called **features**. We'll leave our extensions **6001** and **6002** for Alice and Bob in the **users** context, and place extensions such as **6500** in the new **features** context. When calls come into the users context and doesn't find a matching extension, the include statement tells Asterisk to also look in the new **features** context.
 
 The syntax for an include statement is very simple. You simply write **include =>** and then the name of the context you'd like to include from the existing context. If we reorganize our dialplan to add a **features** context, it might look something like this:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 [users]
 include => features
 
@@ -38,7 +28,6 @@ exten => 6500,1,Answer(500)
  same => n,VoiceMailMain(@vm-demo)
 
 ```
-
 
 
 
@@ -61,9 +50,7 @@ exten => 6500,1,Answer(500)
   
 How calling 6001 may go wrong  
 
-
 ```
-
 [users]
 include => features
 include => catchall
@@ -90,8 +77,5 @@ exten => _.,3,NoOp(); ; <- Priority 3 ends up being here, which is NOT what you 
 
 ---
 
-
-
 ```
-
 

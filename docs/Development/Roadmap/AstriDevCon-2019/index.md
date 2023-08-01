@@ -8,11 +8,11 @@ AstriDevCon 2019
 
 Digium invites developers who are interested in the future of Asterisk to join us at AstriDevCon on **Monday, October 28th, 2019**.
 
-AstriDevCon is an annual event, held alongside [AstriCon](http://www.asterisk.org/community/astricon-user-conference) - it includes an in-depth review of progress made in the past year and an open discussion about the future direction of the project. The event is free and open for any active Asterisk community developer to apply for attendance.  It's a great opportunity to meet the core development team in person, pitch ideas for new features and functions and coordinate efforts with others.
+AstriDevCon is an annual event, held alongside [AstriCon](http://www.asterisk.org/community/astricon-user-conference) - it includes an in-depth review of progress made in the past year and an open discussion about the future direction of the project. The event is free and open for any active Asterisk community developer to apply for attendance.  It's a great opportunity to meet the core development team in person, pitch ideas for new features and functions and coordinate efforts with others.
 
 Capacity for this event is limited. Preference will be made for those who are active and participating in the Asterisk development community by contributing, reviewing, testing and so forth. Otherwise it's first come first serve, so apply for registration soon.
 
-The lunch this year will be sponsored by [E4 Strategies](https://www.e4strategies.com/).  Many thanks to them for doing it again this year!
+The lunch this year will be sponsored by [E4 Strategies](https://www.e4strategies.com/).  Many thanks to them for doing it again this year!
 
 [![AstriDevCon 2018](image2019-9-26-16:32:35.png)](https://www.e4strategies.com/)
 
@@ -23,15 +23,15 @@ AstriDevCon is a mix of open and focused discussion all on topics within the rea
 
 **Starting at 9AM**
 
-****Lunch will be served from 12:00 to 1:00****
+****Lunch will be served from 12:00 to 1:00****
 
 **Event ends at 5PM.**
 
 We'll build a rough agenda together in the morning.
 
- 
 
-LocationAstriDevCon will be held in the **Battery Ballroom A** room in the [The Omni at The Battery in Atlanta, Georgia](http://www.asterisk.org/community/astricon-user-conference/when-where) . This is the same location as [AstriCon](http://www.asterisk.org/community/astricon-user-conference/when-where), on the Monday before the main Astricon schedule.
+
+LocationAstriDevCon will be held in the **Battery Ballroom A** room in the [The Omni at The Battery in Atlanta, Georgia](http://www.asterisk.org/community/astricon-user-conference/when-where) . This is the same location as [AstriCon](http://www.asterisk.org/community/astricon-user-conference/when-where), on the Monday before the main Astricon schedule.
 
 Details on the hotel and location of AstriCon 2019 can be found at the [Asterisk project website](http://www.asterisk.org/community/astricon-user-conference).
 
@@ -55,7 +55,7 @@ Additional Information
 
 SIP URI: sip:31337@astricon.jcn-labs.net
 
-chan_sip: [SIP/31337@astricon.jcn-labs.net](mailto:SIP/31337@astricon.jcn-labs.net)
+chan_sip: [SIP/31337@astricon.jcn-labs.net](mailto:SIP/31337@astricon.jcn-labs.net)
 
 Audio Only WebRTC: <https://astricon.jcn-labs.net/astridevcon-audio>
 
@@ -67,7 +67,7 @@ We'll be using IRC during the AstriDevCon for out of band discussion, and may be
 
 irc.freenode.net, #astridevcon
 
- 
+
 
 ### Attendees:
 

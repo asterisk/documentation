@@ -58,9 +58,7 @@ You must then do a `make; make install` in each of the directories that you inst
   
   
 
-
 ```
-
 `svn co http://svn.digium.com/svn/dahdi/linux/trunk dahdi-trunk`
 `cd dahdi-trunk`
 `make; make install`
@@ -85,9 +83,7 @@ You must then do a `make; make install` in each of the directories that you inst
 
 This should build DAHDI, libss7, and Asterisk with SS7 support.
 
-
 ```
-
 
 In the past, there was a special asterisk-ss7 branch to use which contained the SS7 code. That code has been merged back into the trunk version of Asterisk, and the old asterisk-ss7 branch has been deprecated and removed. If you are still using the asterisk-ss7 branch, it will not work against the current version of libss7, and you should switch to asterisk-trunk instead.
 
@@ -99,17 +95,7 @@ The sample chan_dahdi.conf contains sample configuration for setting up an E1 li
 
 In brief, here is a simple ss7 linkset setup:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 signalling = ss7
 ss7type = itu ; or ansi if you are using an ANSI link
 
@@ -149,9 +135,7 @@ sigchan = 48 ; This would put two signalling channels in our linkset, one at
 
 ; End of chan_dahdi.conf
 
-
 ```
-
 
 This is how a basic linkset is setup. For more detailed chan_dahdi.conf SS7 config information as well as other options available for that file, see the default chan_dahdi.conf that comes with the samples in asterisk. If you would like, you can do a `make samples` in your asterisk-trunk directory and it will install a sample chan_dahdi.conf for you that contains  
 

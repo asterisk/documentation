@@ -19,35 +19,14 @@ When Asterisk loads the configuration file it will create hints in memory for ea
 
 The full syntax for a hint is
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 exten = <extension>,hint,<device state id>[& <more dev state id],<presence state id>
 
 ```
 
-
 Here is what you might see for a few configured hints.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 [internal]
 
 exten = 6001,hint,SIP/Alice&SIP/Alice-mobile
@@ -57,7 +36,6 @@ exten = 6004,hint,SIP/Diane,CustomPresence:Diane
 exten = 6005,hint,,CustomPresence:Ellen
 
 ```
-
 
 Things of note:
 
@@ -73,17 +51,7 @@ The [Querying and Manipulating State](/Fundamentals/Key-Concepts/States-and-Pres
 
 For a quick CLI example, once you have defined some hints, you can easily check from the CLI to verify they get loaded correctly.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 \*CLI> core show hints
  -= Registered Asterisk Dial Plan Hints =-
  6003@internal : SIP/Charlie&DAHDI/3 State:Unavailable Watchers 0
@@ -96,7 +64,6 @@ For a quick CLI example, once you have defined some hints, you can easily check 
 
 ```
 
-
 In this example I was lazy, so they don't have real providers mapped otherwise you would see various states represented.
 
 SIP Subscription to Asterisk hints
@@ -108,5 +75,5 @@ Configuration for **chan_sip** is discussed in [Configuring chan_sip for Presenc
 
 Configuration for **res_pjsip** is discussed in [Configuring res_pjsip for Presence Subscriptions](/Configuration/Channel-Drivers/SIP/Configuring-res_pjsip/Configuring-res_pjsip-for-Presence-Subscriptions)
 
- 
+
 

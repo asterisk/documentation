@@ -29,36 +29,36 @@ Schedule
 | --- | --- | --- |
 |  09:00  |  Welcome to the Open Source Telephony Devroom  |  Russell Bryant  |
 |  09:15  |  Introduction to Asterisk Development  |  Russell Bryant  |
-|  09:45  |  Session Q&A  |   |
-|  09:55  |  Break  |   |
+|  09:45  |  Session Q&A  |   |
+|  09:55  |  Break  |   |
 |  10:00  |  Digital PSTN Connectivity with Asterisk  |  Jakub Klausa  |
-|  10:30  |  Session Q&A  |   |
-|  10:40  |  Break  |   |
+|  10:30  |  Session Q&A  |   |
+|  10:40  |  Break  |   |
 |  10:45  |  Mobicents 2.0, The Open Source Java Communication Platform  |  Jean Deruelle  |
-|  11:15  |  Session Q&A  |   |
-|  11:25  |  Break  |   |
+|  11:15  |  Session Q&A  |   |
+|  11:25  |  Break  |   |
 |  11:30  |  Scaling Location Services in Large SIP Networks with Kamailio  |  Henning Westerholt, Marius Zbihlei  |
-|  12:00  |  Session Q&A  |   |
-|  12:10  |  Break  |   |
+|  12:00  |  Session Q&A  |   |
+|  12:10  |  Break  |   |
 |  12:15  |  Unifying SIP and Web Worlds with Lua  |  Daniel-Constantin Meirla  |
-|  12:45  |  Session Q&A  |   |
-|  12:55  |  Break  |   |
+|  12:45  |  Session Q&A  |   |
+|  12:55  |  Break  |   |
 |  13:00  |  XiVO IPPBX OpenHardware  |  Xavier Carcelle  |
-|  13:30  |  Session Q&A  |   |
-|  13:40  |  Break  |   |
+|  13:30  |  Session Q&A  |   |
+|  13:40  |  Break  |   |
 |  13:45  |  SIP Communicator: Building a Multi-Protocol Multi-OS Communications Client  |  Emil Ivov  |
-|  14:15  |  Session Q&A  |   |
-|  14:25  |  Break  |   |
+|  14:15  |  Session Q&A  |   |
+|  14:25  |  Break  |   |
 |  14:30  |  Asterisk SCF Development Interfaces  |  Kevin P. Fleming  |
-|  15:00  |  Session Q&A  |   |
-|  15:10  |  Break  |   |
+|  15:00  |  Session Q&A  |   |
+|  15:10  |  Break  |   |
 |  15:15  |  Developing rich VoIP Applications with SIPSIMPLE SDK  |  Saúl Ibarra Corretgé  |
-|  15:45  |  Session Q&A  |   |
-|  15:55  |  Break  |   |
+|  15:45  |  Session Q&A  |   |
+|  15:55  |  Break  |   |
 |  16:00  |  Unified Communications - Future (Yate and YateClient)  |  Diana Cionoiu  |
-|  16:30  |  Session Q&A  |   |
-|  16:40  |  Concluding Remarks  |   |
-|  17:00  |  End  |   |
+|  16:30  |  Session Q&A  |   |
+|  16:40  |  Concluding Remarks  |   |
+|  17:00  |  End  |   |
 
 
 Location

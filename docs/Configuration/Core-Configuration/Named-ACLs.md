@@ -27,63 +27,29 @@ On This Page
 
 #### Examples
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 ; within acl.conf
 
 [name_of_acl1]
 deny=0.0.0.0/0.0.0.0
 permit=127.0.0.1
 
-
 ```
-
 
 Multiple rules can be specified in an ACL as well by chaining deny/permit specifiers.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 [name_of_acl2]
 deny=10.24.0.0/255.255.0.0
 deny=10.25.0.0/255.255.0.0
 permit=10.24.11.0/255.255.255.0
 permit=10.24.12.0/255.255.255.0
 
-
 ```
-
 
 Named ACLs support common modifiers like templates and additions within configuration as well.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 [template_deny_all](!)
 deny=0.0.0.0/0.0.0.0
 
@@ -92,23 +58,13 @@ permit=10.24.20.1
 permit=10.24.20.2
 permit=10.24.20.3
 
-
 ```
-
 
 ### Configuring for IPv6
 
 `Named ACLs can use ipv6 addresses just like normal ACLs.`
 
-
----
-
-  
-  
-
-
 ```
-
 [ipv6_example_1]
 deny = ::
 permit = ::1/128
@@ -117,7 +73,6 @@ permit = ::1/128
 permit = fe80::21d:bad:fad:2323
 
 ```
-
 
 ### ARA Configuration
 
@@ -131,15 +86,11 @@ The ARA supports Named ACLs using the '**acls**' keyword in *extconfig.conf*.
   
 Example Configuration  
 
-
 ```
-
 ;in extconfig.conf
 acls => odbc,asterisk,acltable
 
-
 ```
-
 
 #### Schema
 
@@ -156,17 +107,7 @@ acls => odbc,asterisk,acltable
 
 ##### Table Creation Script (PostgreSQL)
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 CREATE TABLE acltable
 (
  "name" character varying(80) NOT NULL,
@@ -182,30 +123,16 @@ ALTER TABLE acltable OWNER TO asterisk;
 GRANT ALL ON TABLE acltable TO asterisk;
 )
 
-
 ```
-
 
 ##### Table Creation Script (SQLite3)
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 BEGIN TRANSACTION;
 CREATE TABLE acltable (rule TEXT, sense TEXT, rule_order NUMERIC, name TEXT);
 COMMIT;
 
-
 ```
-
 
 
 
@@ -249,9 +176,7 @@ A consumer of Named ACLs can be configured to use a named ACL using the *acl* op
   
 Example 1: referencing a Named ACL  
 
-
 ```
-
 ; within sip.conf
 
 [peer1]
@@ -260,9 +185,7 @@ Example 1: referencing a Named ACL
 ;permit=127.0.0.1
 acl=name_of_acl_1 ; an ACL included from acl.conf that matches peer1's commented out permits/denies
 
-
 ```
-
 
 Multiple named ACLs can be referenced as well by specifying a comma delineated list of Named ACLs to apply.
 
@@ -274,18 +197,14 @@ Multiple named ACLs can be referenced as well by specifying a comma delineated l
   
 Example 2: multiple Named ACL references  
 
-
 ```
-
 ; within sip.conf
 
 [peer1]
 ;stuff
 acl=named_acl_1,named_acl_2
 
-
 ```
-
 
 Similarly, a SIP or IAX2 peer defined in ARA can include an '*acl*' column and list the Named ACLs to apply in that column.
 
@@ -300,9 +219,7 @@ Similarly, a SIP or IAX2 peer defined in ARA can include an '*acl*' column and l
   
   
 
-
 ```
-
 acl=named_acl_1
 acl=named_acl_2
   
@@ -311,12 +228,9 @@ acl=named_acl_2
 
 ---
 
-
-
 ```
 
 
- 
 
 ### ACL Rule Application
 

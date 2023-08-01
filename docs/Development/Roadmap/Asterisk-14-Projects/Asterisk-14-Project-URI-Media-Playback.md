@@ -6,7 +6,7 @@ pageid: 30279111
 Project Overview
 ================
 
-One of the features that was discussed for the [Asterisk 13 Projects](/Asterisk-13-Projects) was the ability to playback media from a URI to a channel or bridge. See <http://lists.digium.com/pipermail/asterisk-app-dev/2014-April/000425.html> for more information.
+One of the features that was discussed for the [Asterisk 13 Projects](/Asterisk-13-Projects) was the ability to playback media from a URI to a channel or bridge. See <http://lists.digium.com/pipermail/asterisk-app-dev/2014-April/000425.html> for more information.
 
 
 
@@ -70,21 +70,10 @@ CLI commands and an ARI resource should be provided to view the local cached fil
 
 Video is particularly difficult, as it typically requires multiple files (one video, one audio) to be useful. Container formats are beyond the scope of this project. To support video, remote playback of URIs should support a parallel form of extraction using the pipe `|` character:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 same => n,Playback(http://myserver.com/monkeys.h264|http://myserver.com/monkeys.wav)
 
 ```
-
 
 The behaviour of the files retrieved in such a fashion are as follows:
 
@@ -102,39 +91,17 @@ Playback of a URI can be done via any of the supported playback operations, thro
 
 ##### Dialplan
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 same => n,Playback(http://myserver.com/monkeys.wav)
 
 ```
 
-
 Note that this can be combined with multiple URIs or sounds to form a playlist:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 same => n,Playback(http://myserver.com/monkeys.wav&http://myserver.com/weasels.wav)
 
 ```
-
 
 Since an `&` is valid for a URI but is also used as a separator in dialplan, ampersands in a resource cannot be supported. If an ampersand is used in a URI (say, as part of a query), then the entire URI must be URI encoded.
 
@@ -155,37 +122,16 @@ Since an `&` is valid for a URI but is also used as a separator in dialplan, amp
 
 ##### AGI
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 CONTROL STREAM FILE http://myserver.com/monkeys.wav "" 3000
 
 ```
 
-
 ##### ARI
 
-Playback can be done on either a channel or a bridge. Since the resource being requested is a URI, it should be presented in the body of the request encoded using `text/uri-list` (see [RFC 2483](https://www.ietf.org/rfc/rfc2483.txt)). Note that we still need to provide a media query parameter that specifies the resource type to play - the actual 'entity' being played back is simply specified in the body of the request.
-
-
-
-
----
-
-  
-  
-
+Playback can be done on either a channel or a bridge. Since the resource being requested is a URI, it should be presented in the body of the request encoded using `text/uri-list` (see [RFC 2483](https://www.ietf.org/rfc/rfc2483.txt)). Note that we still need to provide a media query parameter that specifies the resource type to play - the actual 'entity' being played back is simply specified in the body of the request.
 
 ```
-
 http://localhost:8088/ari/channels/12345/play/p1?media=uri:list
 
 Content-Type: text/uri-list
@@ -193,20 +139,9 @@ http://myserver.com/monkeys.wav
 
 ```
 
-
 This format works nicely with simple playlists, as it can specify multiple files to retrieve. Note that these files should be played back sequentially as a playlist (which is not yet supported, but will need to be by the time we get here!)
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 http://localhost:8088/ari/channels/12345/play/p2?media=uri:list
 
 Content-Type: text/uri-list
@@ -217,22 +152,11 @@ http://myserver.com/awesome-sound.wave
 
 ```
 
-
 Note that when the `Content-Type` is `text/uri-list`, the resource specified by the `uri` media scheme is simply tossed away, as we can only have a single list of URIs. Note that this approach is somewhat limiting in that supporting multiples
 
 Another option is to provide the URIs in JSON. This would allow parallel playback of files for video support. Note that the JSON must follow the following schema:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 http://localhost:8088/ari/channels/12345/play/p3
 
 {
@@ -252,7 +176,7 @@ http://localhost:8088/ari/channels/12345/play/p3
  { "media_group": [
  { "scheme": "uri",
  "resource": "http://myserver.com/awesome-sound.wav",
-  }
+  }
  ]
  }
  ]
@@ -260,7 +184,6 @@ http://localhost:8088/ari/channels/12345/play/p3
  
 
 ```
-
 
 There's some obvious differences here:
 
@@ -289,17 +212,7 @@ Implementations of a cache should implement the `bucket` API for a particular sc
 
 ### API
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 cpp/*
  * \brief Return whether or not a URI is currently stored in the cache
  *
@@ -346,9 +259,7 @@ int ast_media_cache_create_or_update(const char \*uri, const char \*file_path, s
  */
 int ast_media_cache_delete(const char \*uri);
 
-
 ```
-
 
 ### CLI Commands
 
@@ -356,17 +267,7 @@ int ast_media_cache_delete(const char \*uri);
 
 Just for fun! It'd be good to see what is in the cache, the timestamps, etc.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 \*CLI>core show media-cache
 
 URI Last update Local file
@@ -378,24 +279,13 @@ http://myserver.com/monkeys.h264 2014-09-14 10:10:00 UTC /var/spool/asterisk/med
 
 ```
 
-
 Note that the last two files would have been created using a preferred file prefix. This allow the `file` and `app` core to "find" both the audio and the video file when opening up the stream returned by the `file_path` by the `media_cache`.
 
 #### core clear media-cache
 
 This is really a handy way for a system administrator to force files to be pulled down.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 \*CLI>core clear media-cache
 
 3 items purged.
@@ -406,7 +296,6 @@ URI Last update Local file
 0 items found.
 
 ```
-
 
 res_http_media_cache
 -----------------------
@@ -431,7 +320,7 @@ Prior to call `ast_openstream`, users who want to support URI playback should fi
 
 
 !!! note 
-    There are other callers of `ast_openstream`, but it's probably not worth updating `ExternalIVR` (sorry )
+    There are other callers of `ast_openstream`, but it's probably not worth updating `ExternalIVR` (sorry )
 
       
 [//]: # (end-note)
@@ -453,17 +342,7 @@ Support for a new Content-Type, `text/uri-list`, needs to be added to the HTTP s
 
 ### http.h
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 /*!
  * \brief Get the text/uri-list body of a request
  *
@@ -477,20 +356,9 @@ struct ast_uri_list \*ast_http_get_uri_list(struct ast_tcptls_session_instance \
 
 ```
 
-
 ### uri.h
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 /*!
  * \brief Get the string representation of a URI
  *
@@ -547,7 +415,6 @@ struct ast_uri \*ast_uri_list_iterator_next(struct ast_uri_list_iterator \*itera
 
 ```
 
-
 ARI
 ---
 
@@ -558,9 +425,6 @@ Providing a 'type' for the `media` parameter is a bit tricky. We have the follow
 * If the `media` parameter does not specify a resource type of `uri`, treat it as a string.
 * If the `media` parameter does specify a resource type of `uri`, look to the body as a URI list.
 * If the `media` parameter is in the body, however, it must be of type `string`. Hence, we cannot specify the URIs directly in the `media` parameter. Thus, to specify URIs, a body parameter of `playlist` must be provided and the URIs provided in a `Playlist` model object.
-
-
-
 
 ```json title="playbacks.json" linenums="1"
 js "models": {
@@ -651,15 +515,11 @@ js "models": {
  }
  }
  }
- } 
+ }
 
 ```
 
-
 Note that the following for `channels.json` would be repeated for `bridges.json`:
-
-
-
 
 ```json title="channels.json" linenums="1"
 js {
@@ -695,12 +555,11 @@ js {
  ]
  }
  ]
- }, 
+ },
 
 ```
 
 
- 
 
 ### Mustache Templates
 

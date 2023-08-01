@@ -24,7 +24,7 @@ Module compilation and loading
 
 For audio or video capabilities that require a module - you should make sure that the module is built and installed on the system.
 
-See the section on [Using Menuselect to Select Asterisk Options](/Getting-Started/Installing-Asterisk/Installing-Asterisk-From-Source/Using-Menuselect-to-Select-Asterisk-Options) if you need help figuring out how to get a module built and then section on [Configuring the Asterisk Module Loader](/Configuration/Core-Configuration/Configuring-the-Asterisk-Module-Loader) to verify that a module gets loaded when Asterisk starts up.
+See the section on [Using Menuselect to Select Asterisk Options](/Getting-Started/Installing-Asterisk/Installing-Asterisk-From-Source/Using-Menuselect-to-Select-Asterisk-Options) if you need help figuring out how to get a module built and then section on [Configuring the Asterisk Module Loader](/Configuration/Core-Configuration/Configuring-the-Asterisk-Module-Loader) to verify that a module gets loaded when Asterisk starts up.
 
 Channel driver configuration
 ----------------------------
@@ -43,9 +43,7 @@ We'll provide two examples, but you should look at the documentation for the cha
   
 pjsip.conf  
 
-
 ```
-
 [CATHY]
 type=endpoint
 context=from-internal
@@ -55,13 +53,12 @@ aors=CATHY
 
 ```
 
-
 We set the option "allow" to a string of values "!all,ulaw".
 
 * The value "**!all**" means "Disallow all" and is identical to "disallow=all". This tells Asterisk to disallow all codecs except what we further define in the allow option.
 * The value "**ulaw**" instructs Asterisk to allow ulaw audio during media negotiation for this endpoint.
 
-See the section [Configuring res_pjsip](/Configuration/Channel-Drivers/SIP/Configuring-res_pjsip) for more information on the PJSIP channel driver.
+See the section [Configuring res_pjsip](/Configuration/Channel-Drivers/SIP/Configuring-res_pjsip) for more information on the PJSIP channel driver.
 
 ### Configuring app_voicemail file formats for recordings
 
@@ -73,16 +70,13 @@ See the section [Configuring res_pjsip](/Configuration/Channel-Drivers/SIP/Conf
   
 voicemail.conf  
 
-
 ```
-
- [general]
+ [general]
 format=wav49,wav,gsm
 
 ```
 
-
-In the general section of voicemail.conf you can set the formats used when writing [voicemail](/Configuration/Applications/Voicemail)to the file-system. We set the option "format" to a string of file format names.
+In the general section of voicemail.conf you can set the formats used when writing [voicemail](/Configuration/Applications/Voicemail)to the file-system. We set the option "format" to a string of file format names.
 
 * The value "wav49" represents GSM in a WAV|wav49 container.
 * The value "wav" represents SLIN in a wav container.
@@ -105,7 +99,7 @@ Audio Support
 
 A variety of audio capabilities are supported by Asterisk.
 
- 
+
 
 
 
@@ -168,9 +162,7 @@ Asterisk can resample between several different sampling rates and can read/writ
   
   
 
-
 ```
-
 sox input.wav -t raw -b 16 -r 32000 output.sln
 mv output.sln output.sln32  
 
@@ -181,11 +173,9 @@ mv output.sln output.sln32
 
 In this example, an input WAV file has been converted to Signed Linear at a depth of 16-bits and at a rate of 32kHz. The resulting output.sln file is then renamed output.sln32 so that it can be processed correctly by Asterisk.
 
-
 ```
 
 
- 
 
 Video and Image Support
 =======================
@@ -204,7 +194,7 @@ You'll notice the CODEC module column is missing. Video transcoding or image tra
 | VP8 | vp8 | P | n/a | YES |
 | VP9 | vp9 | P | n/a | YES |
 
- 
 
- 
+
+
 

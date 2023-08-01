@@ -25,9 +25,7 @@ The first time we wrote subscription code, it looked like this:
   
 Bad code we all wrote at first  
 
-
 ```
-
 struct ast_foo {
  /* foo's stuff */
  /*! Very important subscriptio */
@@ -117,7 +115,7 @@ static void foo_dtor(void \*obj) {
 
     This has a decided advantage over the earlier code: it no longer segfaults. But it's still not correct. What's wrong with it?
 
-    It has a memory leak. The subscription properly increases the ref count on the data object. But the data object has a reference to the subscription. This is a cyclic reference, and until C introduces a garbage collector, isn't going away. The subscription isn't going to release its reference to `foo` until the last message has been received. But it's not going to be unsubscribed until `foo` has been destroyed, which won't happen until all references to it go away.
+    It has a memory leak. The subscription properly increases the ref count on the data object. But the data object has a reference to the subscription. This is a cyclic reference, and until C introduces a garbage collector, isn't going away. The subscription isn't going to release its reference to `foo` until the last message has been received. But it's not going to be unsubscribed until `foo` has been destroyed, which won't happen until all references to it go away.
 
     The Shrewd Subscriber
     =====================
@@ -181,16 +179,16 @@ static void foo_dtor(void \*obj) {
 
     The object returned by `ast_foo_create()` must be explicitly shut down with the `ast_foo_shutdown()` function. It is still AO2 managed, so you can `ao2_ref()` it all you want. But the of `foo` object has an explicit lifetime, and must be shutdown before it can be disposed of.
 
-    Epilogue: Too clever by half
+    Epilogue: Too clever by half
     ============================
 
     If you're like me, you aren't terribly happy with explicit shutdown functions. These things really ought to be able to clean up after themselves when their refcount goes to zero.
 
-    Well, there *is* a way to do that. But it involves a change to the way unsubscribes work that has a good chance of breaking all sorts of other things. It's not worth it.
+    Well, there *is* a way to do that. But it involves a change to the way unsubscribes work that has a good chance of breaking all sorts of other things. It's not worth it.
 
     What would happen if `stasis_unsubscribe()` blocked until the last message was received? Answer: one good thing, and lots of bad things.
 
-    On the good side, a blocking unsubscribe would allow for the [the code we wrote at first](#The-naïve-subscriber) to work as expected. The `foo` object owns the subscription, disposes of it when it's done with it, and doesn't receive any messages after it's destructor. So long as you unsubscribe first thing in the destructor, it works fine. Except…
+    On the good side, a blocking unsubscribe would allow for the [the code we wrote at first](#The-naïve-subscriber) to work as expected. The `foo` object owns the subscription, disposes of it when it's done with it, and doesn't receive any messages after it's destructor. So long as you unsubscribe first thing in the destructor, it works fine. Except…
 
     There's a general assumption that destruction is a straightforward process of freeing up resources. Having it block waiting on messages to be processed breaks that expectation. Someone will need to dig around in the internals of `astobj2.c` to make sure this is safe, and fix it up if it isn't.
 

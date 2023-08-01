@@ -8,7 +8,7 @@ Applications
 
 The [CELGenUserEvent](/Asterisk-13-Application_CELGenUserEvent) application allows you to instruct Asterisk to generate a user defined event with custom type name.
 
-The event triggered is the **`USER_DEFINED`** event as listed in the [Asterisk 12 CEL Specification](/Asterisk-12-CEL-Specification). The **`eventtype`** and **`userdeftype`** fields will be populated with data passed through the respective arguments provided to the CELGenUserEvent application.
+The event triggered is the **`USER_DEFINED`** event as listed in the [Asterisk 12 CEL Specification](/Asterisk-12-CEL-Specification). The **`eventtype`** and **`userdeftype`** fields will be populated with data passed through the respective arguments provided to the CELGenUserEvent application.
 
 
 
@@ -21,7 +21,7 @@ The event triggered is the **`USER_DEFINED`** event as listed in the [Asterisk
 
 
 
- 
+
 
 Functions
 =========
@@ -30,5 +30,5 @@ Most CEL fields are populated by common channel data, so a unique function is no
 
 Older versions of Asterisk had a unique CEL function. You can run "core show function CEL" to see if you have this function and display the help text.
 
- 
+
 

@@ -15,22 +15,11 @@ The [**DEVICE_STATE**](/Asterisk-11-Function_DEVICE_STATE) **function** will ret
 
 On the command line, the **devstate** command will allow you to list or modify Custom device states specifically.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 devstate change -- Change a custom device state
 devstate list -- List currently known custom device states
 
 ```
-
 
 On this Page
 
@@ -42,17 +31,7 @@ The **[EXTENSION_STATE](/Asterisk-11-Function_EXTENSION_STATE)** **function** wi
 
 The CLI command **core show hints** will show extension state for all defined hints, as well as display a truncated list of the mapped Device State or Presence State identifiers.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 myserver\*CLI> core show hints
  -= Registered Asterisk Dial Plan Hints =-
  6002@from-internal : SIP/6002 State:Unavailable Watchers 0
@@ -62,7 +41,6 @@ myserver\*CLI> core show hints
 
 ```
 
-
 Presence State
 ==============
 
@@ -70,17 +48,7 @@ Added in Asterisk 11, the **[PRESENCE_STATE](/Asterisk-11-Function_PRESENCE_STAT
 
 The **presencestate** CLI command will list or modify any currently defined Presence State resources provided by the CustomPresence provider.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 myserver\*CLI> core show help presencestate 
 presencestate change -- Change a custom presence state
 presencestate list -- List currently know custom presence states
@@ -88,7 +56,6 @@ presencestate list -- List currently know custom presence states
 ```
 
 
- 
 
 Asterisk Manager Interface actions
 ==================================

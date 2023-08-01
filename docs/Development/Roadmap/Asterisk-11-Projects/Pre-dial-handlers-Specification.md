@@ -28,13 +28,11 @@ SIP/baz is another callee,
 <SIP/foo-123> Executing context,exten,priority
 <SIP/foo-123> calling SIP/bar-124
 ```
-
 {noformat:title=Example 2}
 <SIP/foo-123> Dial(SIP/bar,,b(context^exten^priority))
 <SIP/bar-124> Executing context,exten,priority
 <SIP/foo-123> calling SIP/bar-124
 ```
-
 {noformat:title=Example 3}
 <SIP/foo-123> Dial(SIP/bar&SIP/baz,,b(context^exten^priority))
 <SIP/bar-124> Executing context,exten,priority
@@ -42,14 +40,12 @@ SIP/baz is another callee,
 <SIP/foo-123> calling SIP/bar-124
 <SIP/foo-123> calling SIP/baz-125
 ```
-
 # Syntax
 
 ```
 b([[context^]exten^]priority[(arg1[^...][^argN])])
 B([[context^]exten^]priority[(arg1[^...][^argN])])
 ```
-
 The syntax is intentionally similar to the Gosub application. If context or exten are not supplied then the current values from the caller channel are used.
 
 # Use cases
@@ -63,7 +59,6 @@ You can use a pickup macro: M or U options to Dial(), but you have to wait till 
 {noformat:title=New way}
 Dial(SIP/def,,b(context^exten^priority))
 ```
-
 Dialplan will run on SIP/def-123234 and allow you to know right away what channel will be used, and you can set specific variables on that channel.
 
 ## Pre-dial caller channels (Option 'B')
@@ -77,7 +72,6 @@ exten => _X.,n,Set(Is_Unlocked=${UNLOCK(foo)})
 exten => _X.,n,Dial(SIP/abc)
 exten => _X.,n(failed),Hangup()
 ```
-
 With this above example, say SIP/123 and SIP/234 are running this dialplan.
 
 # SIP/123 locks foo
@@ -103,6 +97,5 @@ exten => _X.,n(failed),Hangup()
 [unlock]
 exten => s,1,Set(Is_Unlocked=${UNLOCK(foo)})
 ```
-
 Now, under no circumstances can this dialplan be run through and execute the Dial unless lock 'foo' is released. Obviously this doesn't ensure that you're not calling SIP/abc more than once (you would need more dialplan logic for that), but it will allow a dialplan coder to also put the Dial in the locked section to ensure tighter control.
 

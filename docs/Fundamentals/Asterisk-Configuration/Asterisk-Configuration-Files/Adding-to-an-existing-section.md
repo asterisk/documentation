@@ -5,9 +5,6 @@ pageid: 4817461
 
 If you want to add settings to an existing section of a configuration file (either later in the file, or when using the **#include** and **#exec** constructs), add a plus sign in parentheses after the section heading, as shown below:
 
-
-
-
 ```javascript title=" " linenums="1"
 [section-name]
 setting1=value1
@@ -16,7 +13,6 @@ setting1=value1
 setting2=value2
 
 ```
-
 
 This example shows that the **setting2** setting was added to the existing section of the configuration file.
 
@@ -32,26 +28,21 @@ Without a qualifier:
   
 This will fail because default_expiration isn't valid for an endpoint  
 
-
 ```
-
 [101]
 type=endpoint
 allow=ulaw
- 
+
 [101]
 type=aor
 default_expiration=3600
- 
+
 [101](+)
 default_expiration=1200
-
-
 
 ```
 
 
- 
 
 With qualifiers:
 
@@ -63,9 +54,7 @@ With qualifiers:
   
 This works because the filters ensure that the additions are to the correct objects.  
 
-
 ```
-
 [101]
 type=endpoint
 allow=ulaw
@@ -80,11 +69,9 @@ default_expiration=1200
 [101](+type=endpoint)
 allow=g722
 
-
 ```
 
 
- 
 
 You're not limited to filtering by the type parameter and you can even use regular expressions in the name or value.
 
@@ -96,9 +83,7 @@ You're not limited to filtering by the type parameter and you can even use regul
   
 A weird and not so useful example  
 
-
 ```
-
 [101]
 type=endpoint
 allow=ulaw
@@ -115,7 +100,6 @@ allow=g722
 
 ```
 
-
 You can also include multiple filters.
 
 
@@ -126,9 +110,7 @@ You can also include multiple filters.
   
 Another weird and not so useful example  
 
-
 ```
-
 [101]
 type=endpoint
 allow=ulaw
@@ -145,7 +127,6 @@ allow=g722
 
 ```
 
-
 And finally, you can elect to include or restrict parameters inherited from templates in the search.
 
 
@@ -156,9 +137,7 @@ And finally, you can elect to include or restrict parameters inherited from temp
   
 The final weird and not so useful example. This will NOT match because default_expiration is defined in the parent template.  
 
-
 ```
-
 [101]
 type=endpoint
 allow=ulaw
@@ -178,11 +157,10 @@ allow=g722
 ```
 
 
- 
 
- 
 
- 
 
- 
+
+
+
 

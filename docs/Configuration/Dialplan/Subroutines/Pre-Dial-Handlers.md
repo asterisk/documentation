@@ -39,23 +39,11 @@ Syntax
 
 For [Dial](/Asterisk-11-Application_Dial) or [FollowMe](/Asterisk-11-Application_FollowMe), handlers are invoked using similar nomenclature as other options (such as **M** or **U** in Dial) that cause some portion of the dialplan to execute.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 b([[context^]exten^]priority[(arg1[^...][^argN])])
 B([[context^]exten^]priority[(arg1[^...][^argN])])
 
-
 ```
-
 
 
 
@@ -79,17 +67,7 @@ The examples illustrated below use the following channels:
 
 #### Example 1 - Executing a pre-dial handler on the caller channel
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 [default]
 
 exten => s,1,NoOp()
@@ -100,10 +78,7 @@ exten => caller_handler,1,NoOp()
 same => n,Verbose(0, In caller pre-dial handler!)
 same => n,Return()
 
-
-
 ```
-
 
 
 
@@ -112,31 +87,17 @@ same => n,Return()
   
 Example 1 CLI Output  
 
-
 ```
-
 <SIP/foo-123> Dial(SIP/bar,,B(default^caller_handler^1))
 <SIP/foo-123> Executing default,caller_handler,1
 <SIP/foo-123> In caller pre-dial handler!
 <SIP/foo-123> calling SIP/bar-124
 
-
 ```
-
 
 #### Example 2 - Executing a pre-dial handler on a callee channel
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 [default]
 
 exten => s,1,NoOp()
@@ -147,10 +108,7 @@ exten => callee_handler,1,NoOp()
 same => n,Verbose(0, In callee pre-dial handler!)
 same => n,Return()
 
-
-
 ```
-
 
 
 
@@ -159,31 +117,17 @@ same => n,Return()
   
 Example 2 CLI Output  
 
-
 ```
-
 <SIP/foo-123> Dial(SIP/bar,,b(default^callee_handler^1))
 <SIP/bar-124> Executing default,callee_handler,1
 <SIP/bar-124> In callee pre-dial handler!
 <SIP/foo-123> calling SIP/bar-124
 
-
 ```
-
 
 #### Example 3 - Executing a pre-dial handler on multiple callee channels
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 [default]
 
 exten => s,1,NoOp()
@@ -194,10 +138,7 @@ exten => callee_handler,1,NoOp()
 same => n,Verbose(0, In callee pre-dial handler!)
 same => n,Return()
 
-
-
 ```
-
 
 
 
@@ -206,9 +147,7 @@ same => n,Return()
   
 Example 3 CLI Output  
 
-
 ```
-
 <SIP/foo-123> Dial(SIP/bar&SIP/baz,,b(default^callee_handler^1))
 <SIP/bar-124> Executing default,callee_handler,1
 <SIP/bar-124> In callee pre-dial handler!
@@ -217,7 +156,5 @@ Example 3 CLI Output
 <SIP/foo-123> calling SIP/bar-124
 <SIP/foo-123> calling SIP/baz-125
 
-
 ```
-
 

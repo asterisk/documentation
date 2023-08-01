@@ -10,10 +10,7 @@ Create the API declaration
 
 In the Asterisk source tree, the Swagger API declarations are stored in `./rest-api/api-docs/`. For this example, we are creating a new resource named "fizzbuzz".
 
-These API declarations are documented using [Swagger](https://developers.helloreverb.com/swagger/). Details on documenting the API declarations can be found [on the Swagger wiki](https://github.com/wordnik/swagger-core/wiki/API-Declaration).
-
-
-
+These API declarations are documented using [Swagger](https://developers.helloreverb.com/swagger/). Details on documenting the API declarations can be found [on the Swagger wiki](https://github.com/wordnik/swagger-core/wiki/API-Declaration).
 
 ```json title="fizzbuzz.json" linenums="1"
 truejstrue{
@@ -62,7 +59,6 @@ truejstrue{
 
 ```
 
-
 Add it to `resources.json`
 ==========================
 
@@ -76,9 +72,7 @@ The master list of resources served by Asterisk is kept in `rest-api/resources.j
   
 resources.json.diff  
 
-
 ```
-
 diffIndex: rest-api/resources.json
 ===================================================================
 --- rest-api/resources.json (revision 401118)
@@ -97,7 +91,6 @@ diffIndex: rest-api/resources.json
 
 ```
 
-
 Generate the code
 =================
 
@@ -112,10 +105,6 @@ The API declarations are used to generate much of the boilerplate code in Asteri
       
 [//]: # (end-note)
 
-
-
-
-
 ```bash title=" " linenums="1"
 $ make ari-stubs
 /usr/bin/python rest-api-templates/make_ari_stubs.py \
@@ -127,7 +116,6 @@ Writing ./res/ari/resource_fizzbuzz.c
 Writing ./res/ari.make
 
 ```
-
 
 Implement the API
 =================
@@ -144,9 +132,7 @@ The parameters described in your API declaration are parsed into an `args` struc
   
 resource_fizzbuzz.c  
 
-
 ```
-
 truecppvoid ast_ari_fizzbuzz(struct ast_variable \*headers,
  struct ast_fizzbuzz_args \*args,
  struct ast_ari_response \*response)
@@ -182,7 +168,6 @@ truecppvoid ast_ari_fizzbuzz(struct ast_variable \*headers,
 
 ```
 
-
 Recommended practices
 =====================
 
@@ -191,7 +176,7 @@ Use HTTP error codes
 
 The HTTP error codes do a surprisingly good job describing error conditions you are likely to encounter. Do your best to stay true to the original intention of the error code; it will help keep the API understandable.
 
-The use of extensions can also be useful. For example, we use `422 Unprocessable Entity` to indicate that a request was syntactically correct, but semantically invalid. This helps to keep `400 Bad Request` from being a  catch all for all sort of errors.
+The use of extensions can also be useful. For example, we use `422 Unprocessable Entity` to indicate that a request was syntactically correct, but semantically invalid. This helps to keep `400 Bad Request` from being a  catch all for all sort of errors.
 
 Validate your inputs
 --------------------

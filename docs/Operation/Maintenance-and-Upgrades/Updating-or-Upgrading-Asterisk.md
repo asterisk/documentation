@@ -59,13 +59,13 @@ When updating or upgrading Asterisk you should also check for updates to any thi
 Update and Upgrade Tips
 -----------------------
 
- 
+
 
 
 
 
 !!! tip 
-    Updates and upgrades could include changes to configuration samples.  Sample files will not be updated unless you run "make samples" again or copy the new sample files from the source directory. Be careful not to overwrite your current configuration.
+    Updates and upgrades could include changes to configuration samples.  Sample files will not be updated unless you run "make samples" again or copy the new sample files from the source directory. Be careful not to overwrite your current configuration.
 
       
 [//]: # (end-tip)

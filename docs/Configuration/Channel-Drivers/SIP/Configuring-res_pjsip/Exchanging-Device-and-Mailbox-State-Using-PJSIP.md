@@ -25,17 +25,7 @@ The below configuration is for two Asterisk instances sharing all device and mai
 
 #### Instance #1 (IP Address: 172.16.10.1):
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 [instance2]
 type=endpoint
 
@@ -48,7 +38,7 @@ event=asterisk-devicestate
 type=outbound-publish
 server_uri=sip:instance1@172.16.10.2
 event=asterisk-mwi
- 
+
 [instance2]
 type=inbound-publication
 event_asterisk-devicestate=instance2
@@ -63,22 +53,11 @@ mailbox_state=yes
 
 ```
 
-
 This configures the first instance to publish device and mailbox state to 'instance 2' located at 172.16.10.2 using a resource name of 'instance1' without authentication. As no filters exist all state will be published. It also configures the first instance to accept all device and mailbox state messages published to a resource named 'instance2' from 'instance2'.
 
 #### Instance #2 (IP Address: 172.16.10.2):
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 [instance1]
 type=endpoint
 
@@ -86,12 +65,12 @@ type=endpoint
 type=outbound-publish
 server_uri=sip:instance2@172.16.10.1
 event=asterisk-devicestate
- 
+
 [instance1-mwi]
 type=outbound-publish
 server_uri=sip:instance2@172.16.10.1
 event=asterisk-mwi
- 
+
 [instance1]
 type=inbound-publication
 event_asterisk-devicestate=instance1
@@ -106,7 +85,6 @@ mailbox_state=yes
 
 ```
 
-
 This configures the second instance to publish device and mailbox state to 'instance 1' located at 172.16.10.1 using a resource name of 'instance2' without authentication. As no filters exist all state will be published. It also configures the second instance to accept all device and mailbox state messages published to a resource named 'instance1' from 'instance1'.
 
 Filtering
@@ -116,17 +94,7 @@ As previously mentioned state events can be filtered by the device or mailbox th
 
 #### Example
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 [instance1]
 type=endpoint
 
@@ -139,7 +107,7 @@ event=asterisk-devicestate
 type=outbound-publish
 server_uri=sip:instance2@172.16.10.1
 event=asterisk-mwi
- 
+
 [instance1]
 type=inbound-publication
 event_asterisk-devicestate=instance1
@@ -153,10 +121,8 @@ device_state=yes
 device_state_filter=^PJSIP/
 mailbox_state=yes
 mailbox_state_filter=^1000
- 
 
 ```
-
 
 This builds upon the initial configuration for instance #2 but adds filtering of received events. Only device state events relating to PJSIP endpoints will be accepted. As well only mailbox state events for mailboxes starting with 1000 will be accepted.
 

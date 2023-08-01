@@ -14,18 +14,7 @@ Let's go ahead and apply what we've learned about the various dialplan applicati
       
 [//]: # (end-info)
 
-
-
-
-
----
-
-  
-  
-
-
 ```
-
 [demo-menu]
 exten => s,1,Answer(500)
  same => n(loop),Background(press-1&or&press-2)
@@ -41,25 +30,12 @@ exten => 2,1,Playback(you-entered)
 
 ```
 
-
 Before we can use the demo menu above, we need to add an extension to the **[docs:users]** context to redirect the caller to our menu. Add this line to the **[docs:users]** context in your dialplan:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 exten => 6598,1,Goto(demo-menu,s,1)
 
-
 ```
-
 
 Reload your dialplan, and then try dialing extension **6598** to test your auto-attendant menu.
 

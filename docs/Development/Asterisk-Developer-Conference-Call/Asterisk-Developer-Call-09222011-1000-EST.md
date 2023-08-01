@@ -6,19 +6,19 @@ pageid: 18415960
 **Digium Developer Conference Bridge:**
 
 
-Bridge:  26052
+Bridge:  26052
 
 
-PIN:  35806
+PIN:  35806
 
 
 **Proposed Agenda:**
 
 
-Welcome & Announcements:  Bryan Johns
+Welcome & Announcements:  Bryan Johns
 
 
-Old Business: 
+Old Business:
 
 
 * None discussed

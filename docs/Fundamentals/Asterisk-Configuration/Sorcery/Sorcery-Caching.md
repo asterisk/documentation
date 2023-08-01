@@ -35,7 +35,7 @@ On this Page
 When Should I Use Caching?
 ==========================
 
-First, if you are using default sorcery backends for objects (i.e. you have not altered `sorcery.conf` at all), then caching will likely not have any positive effect on your configuration. However, if you are using the "realtime" sorcery wizard or any other that retrieves data from outside the Asterisk process, then caching could be a good fit for certain object types.
+First, if you are using default sorcery backends for objects (i.e. you have not altered `sorcery.conf` at all), then caching will likely not have any positive effect on your configuration. However, if you are using the "realtime" sorcery wizard or any other that retrieves data from outside the Asterisk process, then caching could be a good fit for certain object types.
 
 There are two overall flavors of caching. The first type is a method that caches individually retrieved objects. In other words, when an object is retrieved from the backend, that object is also placed in the cache. That object can then be retrieved individually from the cache the next time it is needed. This type of caching works well for values that are
 
@@ -66,21 +66,12 @@ If you are familiar with enabling realtime for a sorcery object, then enabling c
 
 sorcery.conf
 
-
----
-
-  
-  
-
-
 ```
-
 true[res_pjsip]
 endpoint/cache=memory_cache
 endpoint=realtime,ps_endpoints
 
 ```
-
 
 Let's break this down line-by-line. The first line starts with "endpoint/cache". "endpoint" is the name of the object type. "/cache" is a cue to sorcery that the wizard being specified on this line is a cache. And "memory_cache" is the name of the caching wizard that has been added in Asterisk 14.0.0. The second line is the familiar line that specifies that endpoints can be retrieved from realtime by following the "ps_endpoints" configuration line in `extconfig.conf`.
 
@@ -89,25 +80,16 @@ The order of the lines is important. You will want to specify the memory_cache w
 How does the cache behave?
 ==========================
 
-By default, the cache will simply store objects in memory. There will be no limits to the number of objects stored in the cache, and the items in the cache will never be updated or expire, no matter whether the backend has been updated to have new configuration values. The cache entry in `sorcery.conf` is configurable, though, so you can modify the behavior to suit your setup. Options for the memory cache are comma-separated on the line in `sorcery.conf` that defines the cache. For instance, you might have something like the following:
+By default, the cache will simply store objects in memory. There will be no limits to the number of objects stored in the cache, and the items in the cache will never be updated or expire, no matter whether the backend has been updated to have new configuration values. The cache entry in `sorcery.conf` is configurable, though, so you can modify the behavior to suit your setup. Options for the memory cache are comma-separated on the line in `sorcery.conf` that defines the cache. For instance, you might have something like the following:
 
 sorcery.conf
 
-
----
-
-  
-  
-
-
 ```
-
 true[res_pjsip]
 endpoint/cache = memory_cache,maximum_objects=150,expire_on_reload=yes,object_lifetime_maximum=3600
 endpoint = realtime,ps_endpoints
 
 ```
-
 
 The following configuration options are recognized by the memory cache:
 
@@ -149,15 +131,15 @@ This CLI command displays the configuration for the given cache and tells the nu
 
 ### sorcery memory cache dump <cache name>
 
-This CLI command displays all objects in the given cache. In addition to the name of the object, the command also displays the number of seconds until the object becomes stale and the number of seconds until the object will be removed from the cache. 
+This CLI command displays all objects in the given cache. In addition to the name of the object, the command also displays the number of seconds until the object becomes stale and the number of seconds until the object will be removed from the cache.
 
-### sorcery memory cache expire <cache name> [object name]
+### sorcery memory cache expire <cache name> [object name]
 
 This CLI command is used to remove objects from a given cache. If no object name is specified, then all objects in the cache are removed. If an object name is specified, then only the specified object is removed.
 
-### sorcery memory cache stale <cache name> [object_name]
+### sorcery memory cache stale <cache name> [object_name]
 
-This CLI command is used to mark an item in the cache as stale. If no object name is specified, then all objects in the cache are marked stale. If an object name is specified, then only the specified object is marked stale. For information on what it means for an object to be stale, see [here](#stale)
+This CLI command is used to mark an item in the cache as stale. If no object name is specified, then all objects in the cache are marked stale. If an object name is specified, then only the specified object is marked stale. For information on what it means for an object to be stale, see [here](#stale)
 
 AMI
 ---
@@ -177,23 +159,12 @@ AMI
 
 This command has the following syntax:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 Action: SorceryMemoryCacheExpireObject
 Cache: <cache name>
 Object: <object name>
 
 ```
-
 
 Issuing this command will cause the specified object in the specified cache to be removed. Like all AMI commands, an optional ActionID may be specified.
 
@@ -201,71 +172,38 @@ Issuing this command will cause the specified object in the specified cache to b
 
 This command has the following syntax:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 Action: SorceryMemoryCacheExpire
 Cache: <cache name>
 
 ```
 
-
-Issuing this command will cause all objects in the specified cache to be removed. Like all AMI commands, an optional ActionID may be specified.
+Issuing this command will cause all objects in the specified cache to be removed. Like all AMI commands, an optional ActionID may be specified.
 
 ### SorceryMemoryCacheStaleObject
 
 This command has the following syntax:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 Action: SorceryMemoryCacheStaleObject
 Cache: <cache name>
 Object: <object name>
 
 ```
 
-
-Issuing this command will cause the specified object in the specified cache to be marked as stale. For more information on what it means for an object to be stale, see [here](#stale).  Like all AMI commands, an optional ActionID may be specified.
+Issuing this command will cause the specified object in the specified cache to be marked as stale. For more information on what it means for an object to be stale, see [here](#stale).  Like all AMI commands, an optional ActionID may be specified.
 
 ### SorceryMemoryCacheStale
 
 This command has the following syntax:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 Action: SorceryMemoryCacheStale
 Cache: <cache name>
 
 ```
 
-
-Issuing this command will cause all objects in the specified cache to be marked as stale. For more information on what it means for an object to be stale, see [here](#stale).  Like all AMI commands, an optional ActionID may be specified.
+Issuing this command will cause all objects in the specified cache to be marked as stale. For more information on what it means for an object to be stale, see [here](#stale).  Like all AMI commands, an optional ActionID may be specified.
 
 What are some caching strategies?
 =================================
@@ -299,16 +237,8 @@ Below is a sample sorcery.conf file that uses realtime as the backend store for 
 
 sorcery.conf
 
-
----
-
-  
-  
-
-
 ```
-
-true [res_pjsip]
+true [res_pjsip]
 endpoint/cache = memory_cache,object_lifetime_stale=600,object_lifetime_maximum=1800,expire_on_reload=yes
 endpoint = realtime,ps_endpoints
 auth/cache=memory_cache,expire_on_reload=yes
@@ -317,7 +247,6 @@ aor/cache = memory_cache,object_lifetime_stale=1500,object_lifetime_maximum=1800
 aor = realtime,ps_aors
 
 ```
-
 
 In this particular setup, the administrator has set different options for different object caches.
 
@@ -339,21 +268,12 @@ However, Asterisk can be told to pre-load all objects of a certain type and cach
 
 sorcery.conf
 
-
----
-
-  
-  
-
-
 ```
-
 true[res_pjsip]
 identify/cache = memory_cache,object_lifetime_stale=600,object_lifetime_maximum=1800,expire_on_reload=yes,full_backend_cache=yes
 identify = realtime,ps_endpoint_id_ips
 
 ```
-
 
 Just like with the previous section's configuration, we have configured an object to be retrieved from realtime and cached in memory. Notice, though, that we have added `full_backend_cache=yes` to the end of the line. This is what causes Asterisk to pre-cache the objects. Normally, PJSIP "identify" objects would be a bad fit for caching since we tend to retrieve them all at once rather than one-at-a-time. By pre-caching all objects though, Asterisk can now retrieve all of them directly from the cache. Also notice that the other caching options are still relevant here. Rather than having the options apply to individual objects, they now apply to all of the retrieved objects. So if Asterisk retrieved 10 identifys during pre-cache, when the stale lifetime rolls around, all 10 will be marked stale and Asterisk will once again retrieve all of the objects from the backend.
 
@@ -371,22 +291,11 @@ AMI
 
 This command has the following syntax:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 Action: SorceryMemoryCachePopulate
 Cache: <cache name>
 
 ```
-
 
 Issuing this command has the same effect as the CLI "sorcery memory cache populate" command. It will invalidate all cached entries from the particular cache and then repopulate it with all objects from the backend.
 

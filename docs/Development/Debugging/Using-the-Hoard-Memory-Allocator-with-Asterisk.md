@@ -24,23 +24,11 @@ Run ./configure in the root of the asterisk source directory, passing the **--wi
 
 For example:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 
 ./configure --with-hoard=/usr/src/hoard-371/src/
 
-
 ```
-
 
 Note that we don't specify the full path to libhoard.so, just the directory where it resides.
 
@@ -56,14 +44,9 @@ Run 'make menuselect' in the root of the asterisk source distribution. Under 'Co
 
 Run the standard build commands:
 
-
-
-
 ```bash title=" " linenums="1"
 # make
 # make install
 
-
 ```
-
 

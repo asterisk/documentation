@@ -20,9 +20,7 @@ The `extensions.lua` file is loaded into memory once when the pbx_lua module is 
   
 This is probably a bad idea.  
 
-
 ```
-
 
 -- my fancy extensions.lua
 
@@ -38,9 +36,7 @@ for _, e in ipairs(data) do
  end
 end
 
-
 ```
-
 
 The `extensions` Table
 ----------------------
@@ -48,17 +44,7 @@ The `extensions` Table
 
 The `extensions` table is a standard lua table and can be defined however you like. The pbx_lua module loads and sorts the table when it is needed. The keys in the table are context names and each value is another lua table containing extensions. Each key in the context table is an extension name and each value is an extension function.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 
 extensions = {
  context_table = {
@@ -69,9 +55,7 @@ extensions = {
  };
 }
 
-
 ```
-
 
 Where did the priorities go?
 ----------------------------
@@ -79,21 +63,10 @@ Where did the priorities go?
 
 There are no priorities. Asterisk uses priorities to define the order in which dialplan operations occur. The pbx_lua module uses functions to define extensions and execution occurs within the lua interpreter, priorities don't make sense in this context. To Asterisk, each pbx_lua extension appears as an extension with one priority. Lua extensions can be referenced using the context name, extension, and priority 1, e.g. `Goto(default,1234,1)`. You would only reference extensions this way from outside of pbx_lua (i.e. from `extensions.conf` or `extensions.ael`). From with in pbx_lua you can just execute that extension's function. 
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 extensions.default["1234"]("default", "1234")
 
 ```
-
 
 Lua Script Lifetime
 -------------------
@@ -119,17 +92,13 @@ Apps, Functions, and Variables
   
 channel variable: var is the placeholder object  
 
-
 ```
-
 
 var = channel.my_variable
 var:set("my value")
 value = var:get("my value")
 
-
 ```
-
 
 
 
@@ -138,9 +107,7 @@ value = var:get("my value")
   
 dialplan function: fax_modems is the placeholder object  
 
-
 ```
-
 
 fax_modems = channel.FAXOPT("module")
 
@@ -149,9 +116,7 @@ fax_modems = channel.FAXOPT("module")
 fax_modems:set("v17")
 value = fax_modems:get()
 
-
 ```
-
 
 
 
@@ -160,18 +125,14 @@ value = fax_modems:get()
   
 dialplan application: dial is the placeholder object  
 
-
 ```
-
 
 dial = app.dial
 
 -- the only thing we can do with it is execute it
 dial("SIP/100")
 
-
 ```
-
 
 There is a small cost in creating the placeholder objects so storing frequently used placeholder objects can be used as a micro optimization. This should never be necessary though and only provides benefits if you are running micro benchmarks.
 

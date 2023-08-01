@@ -29,7 +29,7 @@ On This PageAdditional InformationSubmitting a Patch
 5. Create a new Git branch for your change, and implement your change.
 6. Before submitting the patch, make sure your patch conforms to the Asterisk project [Coding Guidelines](/Development/Policies-and-Procedures/Historical-Policies-and-Procedures/Code-Review/Coding-Guidelines).
 7. Submit the patch back to the project. There are two options:
-	1. **Highly Preferred**: Submit the patch for code review to Gerrit, referencing the created issue in the `topic` field. Please follow the instructions on the [Code Review](/Development/Policies-and-Procedures/Historical-Policies-and-Procedures/Code-Review) and [Gerrit Usage](/Development/Policies-and-Procedures/Historical-Policies-and-Procedures/Code-Review/Gerrit-Usage) pages for submitting the patch to Gerrit.
+	1. **Highly Preferred**: Submit the patch for code review to Gerrit, referencing the created issue in the `topic` field. Please follow the instructions on the [Code Review](/Development/Policies-and-Procedures/Historical-Policies-and-Procedures/Code-Review) and [Gerrit Usage](/Development/Policies-and-Procedures/Historical-Policies-and-Procedures/Code-Review/Gerrit-Usage) pages for submitting the patch to Gerrit.
 	2. **Not Preferred**: attach the patch to the issue in unified diff format, marking the patch as a code contribution.
 
 Code Review
@@ -54,5 +54,5 @@ Finally, get involved! Contributors who participate in other reviews and show a 
   
 When all else fails, ask for a review on the #asterisk-dev IRC channel or the [asterisk-dev](http://lists.digium.com/) mailing list. Sometimes, we all just need a gentle nudge.
 
- 
+
 

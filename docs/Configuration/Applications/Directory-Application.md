@@ -5,15 +5,10 @@ pageid: 4817389
 
 The next application we'll cover is named **Directory()**, because it presents the callers with a dial-by-name directory. It asks the caller to enter the first few digits of the person's name, and then attempts to find matching names in the specified voice mail context in **voicemail.conf**. If the matching mailboxes have a recorded name greeting, Asterisk will play that greeting. Otherwise, Asterisk will spell out the person's name letter by letter.
 
-
-
-
 ```javascript title=" " linenums="1"
 Directory([voicemail_context,[dialplan_context,[options]]])
 
-
 ```
-
 
 The **Directory()** application takes three parameters:
 
@@ -49,15 +44,10 @@ A set of options for controlling the dial-by-name directory. Common options incl
 
 Let's add a dial-by-name directory to our dialplan. Simply add this line to your **users** context in **extensions.conf**:
 
-
-
-
 ```javascript title=" " linenums="1"
 exten => 6501,1,Directory(vm-demo,users,ef)
 
-
 ```
-
 
 Now you should be able to dial extension **6501** to test your dial-by-name directory.
 

@@ -65,15 +65,12 @@ Add `LIBNAME_LIB` and `LIBNAME_INCLUDE` lines into this file. The configure scri
 
 Modules that have a dependency must have a special comment block in them that is used by the build system.
 
-
 ```
-
 /*\*\* MODULEINFO
  <depend>libname</depend>
     * */
 
 ```
-
 
 
 

@@ -3,9 +3,9 @@ title: Overview
 pageid: 28315259
 ---
 
- 
 
- 
+
+
 
 
 
@@ -22,7 +22,7 @@ Messaging Resource
 
 Asterisk has the ability to send and receive text messages from various sources in a channel agnostic fashion. Ideally, we would also have the ability to interact with text messages via ARI. An ARI application should be able to be notified when a new message has been received (possibly after subscribing to something related to said message), and should be able to send messages to some destination.
 
-The currently supported text message formats are XMPP messages (via res_xmpp) and SIP (via chan_sip and res_pjsip_messaging). Sending a message is done through the [MessageSend](/Asterisk-12-Application_MessageSend) dialplan application or the [MessageSend](/_AMI_Actions/MessageSend) AMI action; the destination of the message is inferred by a prefix, e.g., 'xmpp:' for XMPP, etc. Messages are processed in the dialplan using a special channel driver implemented in the [message](http://doxygen.asterisk.org/trunk/d2/d0d/message_8h.html) core of Asterisk. When a message is received from any channel driver/technology stack, the message is enqueued to the special channel driver. All messages from all channel drivers are enqueued for a single instance of the channel drvier. This channel driver - aptly called **Message** - dispatches the message to the appropriate place in the dialplan for processing.
+The currently supported text message formats are XMPP messages (via res_xmpp) and SIP (via chan_sip and res_pjsip_messaging). Sending a message is done through the [MessageSend](/Asterisk-12-Application_MessageSend) dialplan application or the [MessageSend](/latest_api/AMI_Actions/MessageSend) AMI action; the destination of the message is inferred by a prefix, e.g., 'xmpp:' for XMPP, etc. Messages are processed in the dialplan using a special channel driver implemented in the [message](http://doxygen.asterisk.org/trunk/d2/d0d/message_8h.html) core of Asterisk. When a message is received from any channel driver/technology stack, the message is enqueued to the special channel driver. All messages from all channel drivers are enqueued for a single instance of the channel drvier. This channel driver - aptly called **Message** - dispatches the message to the appropriate place in the dialplan for processing.
 
 This process make sense and works well when the dialplan is the appropriate location for handling the text message. At the time it was written, it was also the only place to handle said messages. However, in ARI, this mechanism has several drawbacks.
 
@@ -32,17 +32,7 @@ This process make sense and works well when the dialplan is the appropriate loca
 
 Instead of having a channel process the received text messages, ideally we would simply notify the ARI clients of the received message via a JSON event:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 {
  type: 'MessageReceived'
  from: 'sip:bob'
@@ -54,7 +44,6 @@ Instead of having a channel process the received text messages, ideally we would
 ```
 
 
- 
 
 An ARI application - if they subscribed to some endpoint that matches the From: or To: header - can choose to act on the message in any way they see fit. Message processing in the dialplan can still take place as well, if the dialplan needs to handle the message.
 
@@ -77,17 +66,7 @@ APIs
 
 A new operation supporting sending a message to a technology will be added to the *endpoint* resource. To send a message to a specific endpoint, the technology/resource should be specified:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 POST /endpoints/PJSIP/alice/message
 {
  "from": "pjsip:bob",
@@ -100,24 +79,13 @@ POST /endpoints/PJSIP/alice/message
 
 ```
 
-
 Note that the content of the **from** key is dependent on the channel technology being chosen. SIP message technologies allow for arbitrary URIs to be specified as the initiator of the message; XMPP does not.
 
- 
+
 
 Messages can be sent to a technology specific URI that is not associated with an endpoint. This can be done by omitting the resource to send the message to and providing a **to** key in the request:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 POST /endpoints/PJSIP/message
 {
  "from": "xmpp:bob@jabber.org",
@@ -126,7 +94,6 @@ POST /endpoints/PJSIP/message
 }
 
 ```
-
 
 
 
@@ -152,17 +119,7 @@ The *applications* resource will be updated such that subscribing to an endpoint
 
 A new event will be defined, *MessageReceived.*This event will occur when Asterisk receives a message sent from some entity to an endpoint defined by Asterisk.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 {
  "type": "MessageReceived",
  "from": "pjsip:alice",
@@ -175,7 +132,6 @@ A new event will be defined, *MessageReceived.*This event will occur when Asteri
 
 ```
 
-
 Note that the **to** key in the JSON *MessageReceived* event specifies the URI the message was sent to. It is up to the ARI application to handle or route that appropriately.
 
 Design
@@ -185,17 +141,7 @@ There's a few pieces to the message core in Asterisk that will need to be change
 
 First, *message.h* will need to expose a registration function that allows for an external participant to handle the message routing:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 static int ast_msg_register_observer(const char \*id, void (\*msg_cb)(struct ast_msg \*msg));
 
 static int ast_msg_unregister_observer(const char \*id);
@@ -203,21 +149,10 @@ static int ast_msg_unregister_observer(const char \*id);
 ```
 
 
- 
 
 When performing the routing (after pulling the message off the taskprocessor), message should deliver the message to the observers:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 /*!
  * \internal
  * \brief Run the dialplan for message processing
@@ -242,24 +177,13 @@ static void msg_route(struct ast_channel \*chan, struct ast_msg \*msg)
 
 ```
 
-
 Note that we aren't going to do any filtering of the messages at this level; instead, we'll rely on the filtering to be done in Stasis. The Stasis application can decide whether or not the message is something it wants to forward along.
 
- 
+
 
 No modifications should have to be done for `res_xmpp` or `res_pjsip_messaging`. `chan_sip`, on the other hand, first checks the dialplan to see if an extension exists before it passes the message to the messaging core. As such, `chan_sip` will have to be modified to dispatch the message if an observer has been registered, even if no extension matches. This would entail a function in *message* that would return whether or not any observers existed.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
  switch (get_destination(p, NULL, NULL)) {
  case SIP_GET_DEST_REFUSED:
  /* Okay to send 403 since this is after auth processin */
@@ -285,7 +209,6 @@ No modifications should have to be done for `res_xmpp` or `res_pjsip_messaging`.
 ```
 
 
- 
 
 Stasis (as in the application for ARI, not the message bus) can filter out the messages accordingly. Normally, a subscription entails a particular stasis subscription for a channel, bridge, endpoint, etc. While some subscriptions for messages are endpoint based, some are based on technology (such as, give me all of the messages associated with PJSIP endpoints/technology). This is because messages don't have to be associated with an endpoint - they can be sent to an arbitrary URI, and they can be sent to "asterisk" - not to some endpoint managed by Asterisk. As such, we can't just use a Stasis topic for this (or at least, we can't use the endpoint topic - more on that later).
 
@@ -341,5 +264,5 @@ Contributors
 Reference Information
 =====================
 
- 
+
 

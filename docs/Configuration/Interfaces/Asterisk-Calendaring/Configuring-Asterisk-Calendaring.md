@@ -10,17 +10,7 @@ All asterisk calendaring modules are configured through calendar.conf. Each cale
 
 An example calendar.conf might look like:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 [calendar_joe]
 type = ical 
 url = https://example.com/home/jdoe/Calendar 
@@ -34,9 +24,7 @@ context = calendar_event_notify
 extension = s 
 waittime = 30
 
-
 ```
-
 
 
 
@@ -98,17 +86,7 @@ Go to the **Calendar Details** tab and find the button for getting the public **
 
 This specific configuration isn't too different than the generic example. Your calendar address goes in the **url** field.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 [gcal1]
 type = ical
 url = https://calendar.google.com/calendar/ical/example%40gmail.com/public/basic.ics
@@ -119,38 +97,16 @@ timeframe = 60
 
 ```
 
-
 Once you have a configuration you can startup Asterisk or else reload the modules. After this you can check to see if the calendar is being read. Use the commands **"calendar show calendars"** and **"calendar show calendar <calendar name>"**
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 CentOSLab\*CLI> calendar show calendars
 Calendar Type Status
 -------- ---- ------
 gcal1 ical busy
 
 ```
-
-
-
-
----
-
-  
-  
-
-
 ```
-
 CentOSLab\*CLI> calendar show calendar gcal1
 Name : gcal1
 Notify channel :
@@ -175,7 +131,6 @@ End : 2015-11-25 06:10:00 PM -0600
 Alarm :
 
 ```
-
 
 The output should reflect your calendar settings and if it is reading from the calendar server you should see events that are present (on your calendar) within the configured Timeframe. If you don't see any events then go to your Google calendar and create an event within the timeframe. Save that event, then wait at least the Refresh time before checking the commands again to see if the event shows up.
 

@@ -15,24 +15,13 @@ Custom features are defined in the **applicationmap** section of the features.co
 
 Syntax:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 [applicationmap]
 <FeatureName> = <DTMF_sequence>,<ActivateOn>[/<ActivatedBy>],<Application>[,<AppArguments>[,MOH_Class]]
 <FeatureName> = <DTMF_sequence>,<ActivateOn>[/<ActivatedBy>],<Application>[,"<AppArguments>"[,MOH_Class]]
 <FeatureName> = <DTMF_sequence>,<ActivateOn>[/<ActivatedBy>],<Application>([<AppArguments>])[,MOH_Class]
 
 ```
-
 
 Syntax Fields:
 
@@ -51,7 +40,7 @@ Syntax Fields:
 Application Mapping
 -------------------
 
-The applicationmap is not intended to be used for all Asterisk applications. When applications are used in extensions.conf, they are executed by the PBX core. In this case, these applications are executed outside of the PBX core, so it does \*not\* make sense to use any application which has any concept of dialplan flow. Examples of this would be things like Goto, Background, WaitExten, and many more.  The exceptions to this are Gosub and Macro routines which must complete for the call to continue.
+The applicationmap is not intended to be used for all Asterisk applications. When applications are used in extensions.conf, they are executed by the PBX core. In this case, these applications are executed outside of the PBX core, so it does \*not\* make sense to use any application which has any concept of dialplan flow. Examples of this would be things like Goto, Background, WaitExten, and many more.  The exceptions to this are Gosub and Macro routines which must complete for the call to continue.
 
 Enabling these features means that the PBX needs to stay in the media flow and media will not be re-directed if DTMF is sent in the media stream.
 
@@ -68,17 +57,14 @@ Here we have defined a few custom features to give you an idea of how the config
   
 features.conf  
 
-
 ```
-
- [applicationmap]
+ [applicationmap]
 playmonkeys => #9,peer,Playback,tt-monkeys
 retrieveinfo => #8,peer,Set(ARRAY(CDR(mark),CDR(name))=${ODBC_FOO(${CALLERID(num)})})
 pauseMonitor => #1,self/callee,Pausemonitor
 unpauseMonitor => #3,self/callee,UnPauseMonitor
 
 ```
-
 
 Example feature descriptions:
 
@@ -104,18 +90,15 @@ Example Usage:
   
 extensions.conf  
 
+```
+ Set(__DYNAMIC_FEATURES=playmonkeys#pauseMonitor#unpauseMonitor)
 
 ```
-
- Set(__DYNAMIC_FEATURES=playmonkeys#pauseMonitor#unpauseMonitor)
-
-```
-
 
 
 
 !!! tip Tip: Variable Inheritance
-    The [two leading underscores](/Configuration/Dialplan/Variables/Channel-Variables/Variable-Inheritance) allow these feature settings to be set on the outbound channels, as well.  Otherwise, only the original channel will have access to these features.
+    The [two leading underscores](/Configuration/Dialplan/Variables/Channel-Variables/Variable-Inheritance) allow these feature settings to be set on the outbound channels, as well.  Otherwise, only the original channel will have access to these features.
 
       
 [//]: # (end-tip)

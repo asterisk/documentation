@@ -32,7 +32,7 @@ Locations are broken up into AORs and contacts. An AOR is a local identifying na
 
 
 
- 
+
 
 Endpoint Identifiers
 --------------------
@@ -71,7 +71,7 @@ By placing the endpoint into the request the number of endpoint identifier invoc
 Outgoing Requests
 -----------------
 
- Each outgoing request has to have a specific destination. A destination is comprised of an explicit endpoint and an explicit SIP or SIPS URI, or AOR name.
+ Each outgoing request has to have a specific destination. A destination is comprised of an explicit endpoint and an explicit SIP or SIPS URI, or AOR name.
 
 When dialing only an endpoint the list of AORs configured on it is examined. Each AOR is queried for the available contacts. The first contact returned ends the search process and \*only\* that contact is contacted.
 
@@ -95,17 +95,7 @@ Configuration Examples
 
 An example endpoint configuration is as follows:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 [5000]
 type=endpoint
 context=default
@@ -114,47 +104,24 @@ allow=g722
 allow=ulaw
 aors=5000
 
-
 ```
 
-
- If explicitly dialed without specifying a URI or AOR the configured AOR of "5000" will be used.
+ If explicitly dialed without specifying a URI or AOR the configured AOR of "5000" will be used.
 
 An example AOR configuration, with support for external manipulation, is as follows:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 [5000]
 type=aor
 max_contacts=10
 
 ```
 
-
- This will allow a maximum of 10 contacts to be externally added to it. If exceeded the registrar will reject the registration attempt.
+ This will allow a maximum of 10 contacts to be externally added to it. If exceeded the registrar will reject the registration attempt.
 
 An example AOR configuration, with support for external manipulation but with the same behavior as chan_sip, is as follows:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 [5000]
 type=aor
 max_contacts=1
@@ -162,30 +129,18 @@ remove_existing=yes
 
 ```
 
-
 This will cause only a single contact to be registered. Any subsequent registration attempts will cause the existing contact to be removed.
 
 An example AOR configuration, with no support for external manipulation, is as follows:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 [5000]
 type=aor
 static=sip:5000@internal.mypbx
 
 ```
 
-
- Since a static contact has been specified it will be used if this AOR is queried.
+ Since a static contact has been specified it will be used if this AOR is queried.
 
 
 
@@ -200,55 +155,22 @@ static=sip:5000@internal.mypbx
 
 Dialing an endpoint can be accomplished using the following:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 Dial(PJSIP/5000)
 
 ```
 
-
 Dialing an explicit AOR using an endpoint can be accomplished using the following:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 Dial(PJSIP/5000/5000)
 
 ```
 
-
 Dialing an explicit SIP URI using an endpoint can be accomplished using the following:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 Dial(PJSIP/5000/sip:1234@test.com)
 
 ```
-
 

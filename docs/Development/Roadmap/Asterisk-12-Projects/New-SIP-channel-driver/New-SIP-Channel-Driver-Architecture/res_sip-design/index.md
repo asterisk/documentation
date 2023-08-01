@@ -48,17 +48,7 @@ Public methods
 Structures
 ----------
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 c
 /*!
  * \brief Opaque structure representing related SIP tasks
@@ -156,24 +146,12 @@ struct ast_sip_endpoint_identifier {
  struct ast_sip_endpoint \*(\*identify_endpoint)(struct pjsip_rx_data \*data);
 };
 
-
 ```
-
 
 Service registration
 --------------------
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 c
 /*!
  * \brief Register a SIP service in Asterisk.
@@ -258,24 +236,12 @@ int ast_sip_register_endpoint_identifier(struct ast_sip_endpoint_identifier \*id
  */
 void ast_sip_unregister_endpoint_identifier(struct ast_sip_endpoint_identifier \*identifier);
 
-
 ```
-
 
 Threadpool usage
 ----------------
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 c
 /*!
  * \brief Create a new SIP work structure
@@ -312,24 +278,12 @@ void ast_sip_destroy_work(struct ast_sip_work \*work);
  */
 int ast_sip_push_task(struct ast_sip_work \*work, int (\*sip_task)(void \*), void \*task_data);
 
-
 ```
-
 
 Common SIP methods
 ------------------
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 c
 /*!
  * \brief General purpose method for sending a SIP request
@@ -498,7 +452,5 @@ int ast_sip_add_body(struct pjsip_tx_data \*tdata, const char \*bodies[]);
  */
 int ast_sip_append_body(struct pjsip_tx_data \*tdata, const char \*body);
 
-
 ```
-
 

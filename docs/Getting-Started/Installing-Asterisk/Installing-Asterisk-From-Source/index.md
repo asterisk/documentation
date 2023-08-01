@@ -7,9 +7,9 @@ One popular option for installing Asterisk is to download the source code and co
 
 In this section, you'll learn how to download and compile the Asterisk source code, and get Asterisk installed.
 
- 
 
- 
 
- 
+
+
+
 

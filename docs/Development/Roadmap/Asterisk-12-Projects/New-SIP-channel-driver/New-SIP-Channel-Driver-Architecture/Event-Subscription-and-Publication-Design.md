@@ -47,17 +47,7 @@ Base subscription structure
 
 The pubsub framework is based around an opaque structure called `ast_sip_subscription`. This structure is the basis for all subscriptions and is used in the majority of functions in the API. The following are functions involving the `ast_sip_subscription`.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 c
 /*!
  * \brief Opaque structure representing an RFC 3265 SIP subscription
@@ -189,9 +179,7 @@ struct ast_datastore \*ast_sip_subscription_get_datastore(struct ast_sip_subscri
  */
 void ast_sip_subscription_remove_datastore(struct ast_sip_subscription \*subscription, const char \*name);
 
-
 ```
-
 
 Subscription handlers
 ---------------------
@@ -199,17 +187,7 @@ Subscription handlers
 
 Subscription handlers are what are responsible for handling specific event packages. Subscription handlers act as the barrier between Asterisk and PJSIP in that they take Asterisk data and make appropriate SIP requests. Subscription handlers also are called into by the pubsub core when changes in subscription state occur.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 c
 
 /*!
@@ -369,9 +347,7 @@ int ast_sip_register_subscription_handler(const struct ast_sip_subscription_hand
  */
 void ast_sip_unregister_subscription_handler(const struct ast_sip_subscription_handler \*handler);
 
-
 ```
-
 
 Event publication
 =================
@@ -389,17 +365,7 @@ When acting as an event state compositor, there will be a core set of Asterisk A
 PUBLISH API
 ===========
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 c
 /*!
  * \brief Opaque structure representing a publication
@@ -535,7 +501,5 @@ struct ast_datastore \*ast_sip_subscription_get_datastore(struct ast_sip_subscri
  */
 void ast_sip_subscription_remove_datastore(struct ast_sip_subscription \*subscription, const char \*name);
 
-
 ```
-
 

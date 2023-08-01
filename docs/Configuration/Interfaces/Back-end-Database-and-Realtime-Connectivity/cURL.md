@@ -14,9 +14,9 @@ pageid: 28314908
 
 
 
- 
 
-Asterisk's ability to retrieve and store data to realtime backends is most commonly associated with relational databases. One of the lesser-known realtime backends available in Asterisk is [cURL](http://curl.haxx.se/). Using this realtime backend makes Asterisk use HTTP GET and POST requests in order to retrieve data from and store data to an HTTP server.
+
+Asterisk's ability to retrieve and store data to realtime backends is most commonly associated with relational databases. One of the lesser-known realtime backends available in Asterisk is [cURL](http://curl.haxx.se/). Using this realtime backend makes Asterisk use HTTP GET and POST requests in order to retrieve data from and store data to an HTTP server.
 
 Justification
 =============
@@ -30,116 +30,65 @@ If Asterisk is capable of using a relational database as a store for realtime da
 Dependencies and Installation
 =============================
 
-Asterisk's realtime cURL backend is provided by the module `res_config_curl.so`. In order to build this module, you will first need to have the libcurl development library installed on your machine. If you wish to install the library from source, you can find it [here](http://curl.haxx.se/download.html). If you would rather use your Linux distribution's package management, then you should be able to download the development libraries that way instead.
+Asterisk's realtime cURL backend is provided by the module `res_config_curl.so`. In order to build this module, you will first need to have the libcurl development library installed on your machine. If you wish to install the library from source, you can find it [here](http://curl.haxx.se/download.html). If you would rather use your Linux distribution's package management, then you should be able to download the development libraries that way instead.
 
 If you use a distribution with aptitude-based packaging (Debian, Ubuntu, Mint, et al), then use this command to install:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 apt-get install libcurl4-openssl-dev
 
 ```
 
 
- 
 
 If you use a distribution with yum-based packaging (CentOS, RHEL, Fedora, et al), then use this command to install:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 yum -y install libcurl-devel
 
 ```
 
-
 Both of the above commands assume that you have permission to install the packages. You may need to prepend the command with "sudo" in order to be able to install the packages.
 
 Once you have the libcurl development libraries installed, you need to run Asterisk's configure script in order for Asterisk to detect the installed library:
-
-
-
 
 ```bash title=" " linenums="1"
 $ ./configure
 
 ```
 
-
 In addition to the libcurl development library, `res_config_curl.so` relies on two other modules within Asterisk: `res_curl.so` and `func_curl.so`. `res_curl.so` initializes the cURL library within Asterisk. `func_curl.so` provides dialplan functions ( `CURL` and `CURLOPT`) that are used directly by `res_config_curl.so`.
 
 After running the configure script, run
-
-
-
 
 ```bash title=" " linenums="1"
 $ make menuselect
 
 ```
 
-
 to select which modules to build. Ensure that you can select `res_curl` and `res_config_curl` from the "Resource Modules" menu and that you can select `func_curl` from the "Dialplan Functions" menu. Once you have ensured that these have been selected, save your changes ('x' key if using curses-based menuselect or select the "Save & Exit" option if using newt-based or gtk-based menuselect). After, you just need to run
-
-
-
 
 ```bash title=" " linenums="1"
 $ make && make install
 
 ```
 
-
 in order to build Asterisk and install it on the system. You may need to prepend "sudo" to the "make install" command if there are permission problems when attempting to install. Once you have installed Asterisk, you can test that `res_config_curl.so` has been installed properly by starting Asterisk:
-
-
-
 
 ```bash title=" " linenums="1"
 $ asterisk -c
 
 ```
 
-
 Once Asterisk has started, type the following on the CLI:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 \*CLI> module show like res_config_curl
 Module Description Use Count Status
 res_config_curl.so Realtime Curl configuration 0 Running
 1 modules loaded
 
-
-
 ```
-
 
 The output when you run the command should look like what is shown above. If it does, then Asterisk is capable of using cURL for realtime.
 
@@ -155,17 +104,7 @@ Configuration
 
 Unlike other realtime backends, Asterisk does not have a specific configuration file for the realtime cURL backend. Instead, Asterisk gets the information it needs by reading the `extconfig.conf` file that it typically uses for general static and dynamic realtime configuration. The name of the realtime engine that Asterisk uses for cURL is called "curl" in `extconfig.conf`. Here is a sample:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 [settings]
 voicemail = curl,http://myserver.com:8000/voicemail
 sippeers = curl,http://myserver.com:8000/sippeers
@@ -173,31 +112,19 @@ queues = curl,http://myserver.com:8000/my_queues
 
 ```
 
-
 The basic syntax when using cURL is:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 realtime_data = curl,<HTTP URL>
 
 ```
-
 
 There are no hard-and-fast rules on what URL you place here. In the above sample, each of the various realtime stores correspond to resources on the same HTTP server. However, it would be perfectly valid to specify completely different servers for different realtime stores. Notice also that there is no requirement for the name of the realtime store to appear in the HTTP URL. In the above example the "queues" realtime store maps to the resource "my_queues" on the HTTP server.
 
 Operations
 ==========
 
-The way Asterisk performs operations on your data is to send HTTP requests to different resources on your HTTP server. For instance, let's say that, based on your `extconfig.conf` file, you have mapped the "queues" realtime store to http://myserver.com:8000/queues. Asterisk will append whatever realtime operation it wishes to perform as a resource onto the end of the URL that you have provided. If Asterisk wanted to perform the "single" realtime operation, then Asterisk would send an HTTP request to <http://myserver.com:8000/queues/single.>
+The way Asterisk performs operations on your data is to send HTTP requests to different resources on your HTTP server. For instance, let's say that, based on your `extconfig.conf` file, you have mapped the "queues" realtime store to http://myserver.com:8000/queues. Asterisk will append whatever realtime operation it wishes to perform as a resource onto the end of the URL that you have provided. If Asterisk wanted to perform the "single" realtime operation, then Asterisk would send an HTTP request to <http://myserver.com:8000/queues/single.>
 
 If your server is able to provide a response, then your server should return that response as the body of a 200-class HTTP response. If the request is unservable, then an appropriate HTTP error code should be sent.
 
@@ -222,22 +149,11 @@ We will operate with the assumption that the following two objects exist in the 
 
 Our `extconfig.conf` file looks like this:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 [settings]
 mailboxes => curl,http://myserver.com:8000/mwi
 
 ```
-
 
 ### single
 
@@ -245,55 +161,33 @@ The "single" resource is used for Asterisk to retrieve a single object from real
 
 Asterisk sends an HTTP POST request, using the body to indicate what data it wants. Here is an example of such a request:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 POST /mwi/single HTTP/1.1
 User-Agent: asterisk-libcurl-agent/1.0
 Host: localhost:8000
 Accept */*
 Content-Length: 8
 Content-Type: application/x-www-form-urlencoded
- 
+
 id=Dazed
 
 ```
 
-
-  In this case, the request from Asterisk wants a single object whose id is "Dazed". Given the data we have stored, we would respond like so:
-
-
-
-
----
-
-  
-  
-
+  In this case, the request from Asterisk wants a single object whose id is "Dazed". Given the data we have stored, we would respond like so:
 
 ```
-
 HTTP/1.1 200 OK
 Date: Sat, 15 Mar 2014 18:23:21 GMT
 Content-Length: 30
 Content-Type: text/html
- 
+
 msgs_new=5&msgs_old=4&id=Dazed
 
 ```
 
-
 The parameters describing the requested mailbox are returned on a single line in the HTTP response body. The order that the parameters are listed in is irrelevant.
 
-If a "single" query from Asterisk matches more than one entity, you may choose to either respond with an HTTP error or simply return one of the matching records. 
+If a "single" query from Asterisk matches more than one entity, you may choose to either respond with an HTTP error or simply return one of the matching records.
 
 ### multi
 
@@ -301,54 +195,32 @@ The "multi" resource is used to retrieve multiple objects from the realtime stor
 
 Asterisk sends an HTTP POST request, using the body to indicate what data it wants. Here is an example of such a request:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 POST /mwi/multi HTTP/1.1
 User-Agent: asterisk-libcurl-agent/1.0
 Host: localhost:8000
 Accept */*
 Content-Length: 13
 Content-Type: application/x-www-form-urlencoded
- 
+
 id%20LIKE=%25
 
 ```
-
 
 The "multi" resource is one where Asterisk shows a weakness when not dealing with a relational database as its realtime backend. In this case, Asterisk has requested multiple rows with "id LIKE=%". What this means is that Asterisk wants to retrieve every object from the particular realtime store with an id equal to anything. Other queries Asterisk may send may be more like "foo LIKE=%bar%". In this case, Asterisk would be requesting all objects with a foo parameter that has "bar" as part of its value (so something with foo=barbara would match the query).
 
 For this particular request, we would respond with the following:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 HTTP/1.1 200 OK
 Date: Sat, 15 Mar 2014 18:40:58 GMT
 Content-Length: 65
 Content-Type: text/html
- 
+
 msgs_new=5&msgs_old=4&id=Dazed
 msgs_new=6&msgs_old=8&id=Confused
 
 ```
-
 
 Each returned object is on its own line of the response.
 
@@ -358,51 +230,29 @@ The "store" resource is used to save an object into the realtime store.
 
 Asterisk sends an HTTP POST request, using the body to indicate what new object to store. Here is an example of such a request:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 POST /mwi/store HTTP/1.1
 User-Agent: asterisk-libcurl-agent/1.0
 Host: localhost:8000
 Accept */*
 Content-Length: 30
 Content-Type: application/x-www-form-urlencoded
- 
+
 id=Shocked&msgs_old=5&msgs_new=7
 
 ```
 
-
 In this case, Asterisk is attempting to store a new object with id "Shocked", 5 old messages and 7 new messages. Our realtime backend should reply with the number of objects stored.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 HTTP/1.1 200 OK
 Date: Sat, 15 Mar 2014 18:46:54 GMT
 Content-Length: 1
 Content-Type: text/html
- 
+
 1
 
 ```
-
 
 Since we have stored one new object, we return "1" as our response.
 
@@ -414,44 +264,23 @@ The "update" resource is used to change the values of parameters of objects in t
 
 Asterisk sends an HTTP POST request, using URL parameters to indicate what objects to update and using the body to indicate what values within those objects to update. Here is an example of such a request:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 POST /mwi/update?id=Dazed HTTP/1.1
 User-Agent: asterisk-libcurl-agent/1.0
 Host: localhost:8000
 Accept */*
 Content-Length: 24
 Content-Type: application/x-www-form-urlencoded
- 
+
 msgs_old=25&msgs_new=300
 
 ```
-
 
 In this case, the URL parameter "id=Dazed" tells us that Asterisk wants us to update all objects whose id is "Dazed". For any objects that match the criteria, we should update the number of old messages to 25 and the number of new messages to 300.
 
 Our response indicates how many objects we updated. In this case, since we have updated one object, we respond with "1".
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 HTTP/1.1 200 OK
 Date: Sat, 15 Mar 2014 18:52:26 GMT
 Content-Length: 1
@@ -461,7 +290,6 @@ Content-Type: text/html
 
 ```
 
-
 If there are no items that match the criteria, you may either respond with a "0" response body or return an HTTP error.
 
 ### destroy
@@ -470,44 +298,23 @@ The "destroy" resource is used to delete objects in the realtime store.
 
 Asterisk sends an HTTP POST request, using the body to indicate what object to delete. Here is an example of such a request:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 POST /mwi/destroy HTTP/1.1
 User-Agent: asterisk-libcurl-agent/1.0
 Host: localhost:8000
 Accept */*
 Content-Length: 9
 Content-Type: application/x-www-form-urlencoded
- 
+
 id=Dazed
 
 ```
-
 
 In this case, Asterisk has requested that we delete the object with the id of "Dazed".
 
 The body of our response indicates the number of items we deleted. Since we have deleted one object, we put "1" in our response body:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 HTTP/1.1 200 OK
 Date: Sat, 15 Mar 2014 18:57:23 GMT
 Content-Length: 1
@@ -516,7 +323,6 @@ Content-Type: text/html
 1
 
 ```
-
 
 If asked to delete an object that does not exist, you may either respond with a "0" body or with an HTTP error.
 
@@ -569,17 +375,7 @@ For our example, we will have the following objects stored in our static realtim
 
 This schema is identical to the `pjsip.conf` configuration file:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 [alice]
 type=endpoint
 allow=ulaw
@@ -587,20 +383,9 @@ context=fabulous
 
 ```
 
-
- Asterisk uses an HTTP GET to request static realtime data, using a URL parameter to indicate which filename it cares about. Here is an example of such a request:
-
-
-
-
----
-
-  
-  
-
+ Asterisk uses an HTTP GET to request static realtime data, using a URL parameter to indicate which filename it cares about. Here is an example of such a request:
 
 ```
-
 GET /astconfig/static?file=pjsip.conf HTTP/1.1
 User-Agent: asterisk-libcurl-agent/1.0
 Host: localhost:8000
@@ -608,22 +393,11 @@ Accept */*
 
 ```
 
-
 In this case, Asterisk wants all static realtime objects whose filename is "pjsip.conf". Note that the HTTP request calls the parameter "file", whereas the actual name of the parameter returned from the realtime store is called "filename".
 
 Our response contains all matching static realtime objects:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 HTTP/1.1 200 OK
 Date: Sat, 15 Mar 2014 19:13:41 GMT
 Content-Length: 328
@@ -634,7 +408,6 @@ category=alice&commented=0&var_metric=1&var_name=allow&var_val=ulaw&id=1&filenam
 category=alice&commented=0&var_metric=2&var_name=context&var_val=fabulous&id=2&filename=pjsip.conf&cat_metric=0
 
 ```
-
 
 Unlike other realtime responses, the static realtime response needs to present the data in a particular order:
 
@@ -655,17 +428,7 @@ The "require" resource is used by Asterisk to test that a particular parameter f
 
 Asterisk sends an HTTP POST with body parameters describing what type it expects for a specific parameter. Here is an example of such a request:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 POST /queue_members/require HTTP/1.1
 User-Agent: asterisk-libcurl-agent/1.0
 Host: localhost:8000
@@ -676,7 +439,6 @@ Content-Type: application/x-www-form-urlencoded
 paused=integer1%3A1&uniqueid=uinteger2%3A5
 
 ```
-
 
 Decoded, the body is "paused=integer1:1&uniqueid=uinteger2:5". The types that Asterisk can ask for are the following:
 
@@ -703,21 +465,11 @@ The number after the colon for each parameter represents the minimum width, in d
 
 In the example above, Asterisk is requiring that queue members' "paused" parameter be an integer type that can hold at least 1 digit and their "uniqueid" parameter be an unsigned integer type that can hold at least 5 digits.
 
- Note that the purpose of Asterisk requesting the "require" resource is because Asterisk is going to attempt to **send** data of the type indicated to the realtime store. When receiving such a request, it is completely up to how you are storing your data to determine how to respond. If you are using a schema-less store for your data, then trying to test for width and type for each parameter is pointless, so you may as well just return successfully. If you are using something that has a schema you can check, then you should be sure that your realtime store can accommodate the data Asterisk will send. If your schema cannot accommodate the data, then this is an ideal time to modify the data schema if it is possible.
+ Note that the purpose of Asterisk requesting the "require" resource is because Asterisk is going to attempt to **send** data of the type indicated to the realtime store. When receiving such a request, it is completely up to how you are storing your data to determine how to respond. If you are using a schema-less store for your data, then trying to test for width and type for each parameter is pointless, so you may as well just return successfully. If you are using something that has a schema you can check, then you should be sure that your realtime store can accommodate the data Asterisk will send. If your schema cannot accommodate the data, then this is an ideal time to modify the data schema if it is possible.
 
 Respond with a "0" body to indicate success or a "-1" body to indicate failure. Here is an example response:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 HTTP/1.1 200 OK
 Date: Sat, 15 Mar 2014 18:57:23 GMT
 Content-Length: 1
@@ -726,7 +478,6 @@ Content-Type: text/html
 0
 
 ```
-
 
 Other Information
 =================

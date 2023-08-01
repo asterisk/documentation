@@ -29,5 +29,5 @@ The Asterisk Test Suite
 =======================
 
 
-The Asterisk Test Suite is an open source project that manages functional testing of Asterisk. It orchestrates instances of Asterisk along with various third party protocol injection applications, allowing a developer to write tests that exercise a wide variety of the functionality within Asterisk.  While the Asterisk Test Suite is language agnostic, a set of libraries have been developed in Python and Lua to aid in test development.  Currently, the Python libraries receive the majority of development attention, and most tests are written in Python.
+The Asterisk Test Suite is an open source project that manages functional testing of Asterisk. It orchestrates instances of Asterisk along with various third party protocol injection applications, allowing a developer to write tests that exercise a wide variety of the functionality within Asterisk.  While the Asterisk Test Suite is language agnostic, a set of libraries have been developed in Python and Lua to aid in test development.  Currently, the Python libraries receive the majority of development attention, and most tests are written in Python.
 

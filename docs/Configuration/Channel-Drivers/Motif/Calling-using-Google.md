@@ -36,42 +36,18 @@ RTP configuration
 
 ICE support is required for chan_motif to operate. It is disabled by default and must be explicitly enabled in the RTP configuration file rtp.conf as follows.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 [general]
 icesupport=yes
 
-
 ```
-
 
 If this option is not enabled you will receive the following error message.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 Unable to add Google ICE candidates as ICE support not available or no candidates available
 
-
 ```
-
 
 Motif configuration
 -------------------
@@ -80,26 +56,14 @@ The Motif channel driver is configured with the motif.conf configuration file, t
 
 ### Example Motif Configuration
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 [google]
 context=incoming-motif
 disallow=all
 allow=ulaw
 connection=google
 
-
 ```
-
 
 This general section of this configuration specifies several items.
 
@@ -137,17 +101,7 @@ The res_xmpp Resource is configured with the xmpp.conf configuration file, typic
 
 ### Example XMPP Configuration
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 [general]
 [google]
 type=client
@@ -162,9 +116,7 @@ status=available
 statusmessage="I am available"
 timeout=5
 
-
 ```
-
 
 The default general section does not need any modification.
 
@@ -194,26 +146,14 @@ Phone configuration
 
 Now, let's create a phone. The configuration of a SIP device for this purpose would, in sip.conf, typically located in /etc/asterisk, look something like:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 [malcolm]
 type=peer
 secret=my_secure_password
 host=dynamic
 context=local
 
-
 ```
-
 
 Dialplan configuration
 ----------------------
@@ -222,17 +162,7 @@ Dialplan configuration
 
 Next, let's configure our dialplan to receive an incoming call from Google and route it to the SIP phone we created. To do this, our dialplan, extensions.conf, typically located in /etc/asterisk, would look like:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 [incoming-motif]
 exten => s,1,NoOp()
  same => n,Wait(1)
@@ -240,9 +170,7 @@ exten => s,1,NoOp()
  same => n,SendDTMF(1)
  same => n,Dial(SIP/malcolm,20)
 
-
 ```
-
 
 
 
@@ -272,9 +200,7 @@ In this example, we're Waiting 1 second, answering the call, sending the DTMF "1
   
   
 
-
 ```
-
 exten => s,1,Dial(SIP/malcolm,20,D(:1))
   
 
@@ -282,10 +208,7 @@ exten => s,1,Dial(SIP/malcolm,20,D(:1))
 
 ---
 
-
-
 ```
-
 
 
 
@@ -297,9 +220,7 @@ exten => s,1,Dial(SIP/malcolm,20,D(:1))
   
   
 
-
 ```
-
 +15555551212@voice.google.com/srvres-MTAuMjE4LjIuMTk3Ojk4MzM=
   
 
@@ -316,9 +237,7 @@ exten => s,1,NoOp()
  same => n,Set(CALLERID(all)=${stripcrazysuffix})
  same => n,Dial(SIP/malcolm,20,D(:1))
 
-
 ```
-
 
 First, we set a variable called **crazygooglecid** to be equal to the name field of the CALLERID function. Next, we use the CUT function to grab everything that's before the @ symbol, and save it in a new variable called **stripcrazysuffix.** We'll set this new variable to the CALLERID that we're going to use for our Dial. Finally, we'll actually Dial our internal destination.
 
@@ -326,22 +245,10 @@ First, we set a variable called **crazygooglecid** to be equal to the name field
 
 Outgoing calls to Google Talk users take the form of:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 exten => 100,1,Dial(Motif/google/mybuddy@gmail.com,,r)
 
-
 ```
-
 
 Where the technology is "Motif," the dialing peer is "google" as defined in xmpp.conf, and the dial string is the Google account name.
 
@@ -349,22 +256,10 @@ We use the Dial option "r" because Google doesn't provide ringing indications.
 
 Outgoing calls made to Google Voice take the form of:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 exten => _1XXXXXXXXXX,1,Dial(Motif/google/${EXTEN}@voice.google.com,,r)
 
-
 ```
-
 
 Where the technology is "Motif," the dialing peer is "google" as defined in motif.conf, and the dial string is a full E.164 number, sans the plus character.
 

@@ -18,7 +18,7 @@ Git Repositories
 Gerrit: <https://gerrit.asterisk.org>
 -------------------------------------
 
-Asterisk uses [Gerrit](http://code.google.com/p/gerrit/) as its primary repository and for for code review. Users who are looking to clone or contribute patches back to Asterisk should work the repositories on Gerrit. Please see the [Gerrit Usage](/Development/Policies-and-Procedures/Historical-Policies-and-Procedures/Code-Review/Gerrit-Usage) documentation for more information.
+Asterisk uses [Gerrit](http://code.google.com/p/gerrit/) as its primary repository and for for code review. Users who are looking to clone or contribute patches back to Asterisk should work the repositories on Gerrit. Please see the [Gerrit Usage](/Development/Policies-and-Procedures/Historical-Policies-and-Procedures/Code-Review/Gerrit-Usage) documentation for more information.
 
 Gitolite: <https://git.asterisk.org>
 ------------------------------------
@@ -79,21 +79,17 @@ Topics
 
 * Please use the `-t` option with `git review`, specifying the ASTERISK issue the change should be associated with:
 
-
-
-
 ```bash title=" " linenums="1"
 $ git review -t ASTERISK-12345
 
 ```
-
 
 This helps to tie Gerrit reviews to the JIRA issue that necessitated the change.
 
 Cherry-Picking
 --------------
 
-* All branches that require the change should have the change cherry-picked to that branch, and submitted for review. See [Software Configuration Management Policies](/Development/Policies-and-Procedures/Software-Configuration-Management-Policies) for which patch types are appropriate for what branches. See [Gerrit Usage](/Development/Policies-and-Procedures/Historical-Policies-and-Procedures/Code-Review/Gerrit-Usage) for instructions on cherry-picking.
+* All branches that require the change should have the change cherry-picked to that branch, and submitted for review. See [Software Configuration Management Policies](/Development/Policies-and-Procedures/Software-Configuration-Management-Policies) for which patch types are appropriate for what branches. See [Gerrit Usage](/Development/Policies-and-Procedures/Historical-Policies-and-Procedures/Code-Review/Gerrit-Usage) for instructions on cherry-picking.
 * The same Gerrit `Change Id` must be present in all cherry-picked commits.
 * The same topic (ASTERISK issue) must be used in all reviews.
 * Test Suite test reviews should use the same topic (ASTERISK issue) as the code change reviews.
@@ -101,9 +97,9 @@ Cherry-Picking
 Useful Commands and Tips
 ========================
 
-* `git clean`: When switching between major release branches there are often whole directories that are in one branch but not another.  '`git clean -fd`' will clean out the working directory.  Just make sure any files you want to keep are either checked in or ignored.
+* `git clean`: When switching between major release branches there are often whole directories that are in one branch but not another.  '`git clean -fd`' will clean out the working directory.  Just make sure any files you want to keep are either checked in or ignored.
 * If you use an IDE or other tools that need configuration files in the working directory but their names don't match an entry in .gitignore, you can add them to git/info/exclude to ignore them locally without updating the checked-in .gitignore.
-* `git log`:  This is one of the more useful tools there is.  Here are some examples:Show the commit difference between 13.8 and 13.9
+* `git log`:  This is one of the more useful tools there is.  Here are some examples:Show the commit difference between 13.8 and 13.9
 
 
 	+ Show the difference between the 13.8 and 13.9 branches:  
@@ -136,7 +132,7 @@ Useful Commands and Tips
 	---
 	
 	
-	 Both are branches so you'll see the diff between their current states with the merge and housekeeping commits excluded.
+	 Both are branches so you'll see the diff between their current states with the merge and housekeeping commits excluded.
 	+ That's a lot to type so add an alias:  
 	
 	
@@ -185,7 +181,7 @@ Useful Commands and Tips
 	---
 	
 	
-	 Wait, that didn't show anything!  That's because 13.9.1 is a tag on 13.9 and nothing's been added to 13.9 since then so they're equal. What you probably want is:
+	 Wait, that didn't show anything!  That's because 13.9.1 is a tag on 13.9 and nothing's been added to 13.9 since then so they're equal. What you probably want is:
 	
 	
 	
@@ -209,7 +205,7 @@ Useful Commands and Tips
 	
 	
 	---
-	+ Now things get a little complicated. Let's say 13.8 is closed but certified/13.8 is still open. So, what's in certified/13.8 but not 13.8? You might be tempted to use the `'..'` operator between the 2 branches as before but because `'..'` is a range operator it doesn't work well when the 2 branches overlap, especially when we're cherry-picking; you'll wind up showing commits that are in both branches. Instead, you need to use the `'...'` operator and the `--cherry-pick` flag.
+	+ Now things get a little complicated. Let's say 13.8 is closed but certified/13.8 is still open. So, what's in certified/13.8 but not 13.8? You might be tempted to use the `'..'` operator between the 2 branches as before but because `'..'` is a range operator it doesn't work well when the 2 branches overlap, especially when we're cherry-picking; you'll wind up showing commits that are in both branches. Instead, you need to use the `'...'` operator and the `--cherry-pick` flag.
 	
 	
 	
@@ -238,7 +234,7 @@ Useful Commands and Tips
 	
 	
 	---
-	+ Finally, things get even more complicated when trying to compare 13 and master.  Because of the cherry-picking and the fact that these 2 branches started in subversion, there is no single git command that will show the differences reliably. The only way to do this is to pick a point in time as a starting reference, list the log from both branches, sort them, then compare them.  It would be nice if git could do the matching on the gerrit change id but it can't so we're left with matching on subject
+	+ Finally, things get even more complicated when trying to compare 13 and master.  Because of the cherry-picking and the fact that these 2 branches started in subversion, there is no single git command that will show the differences reliably. The only way to do this is to pick a point in time as a starting reference, list the log from both branches, sort them, then compare them.  It would be nice if git could do the matching on the gerrit change id but it can't so we're left with matching on subject
 	
 	
 	
@@ -271,6 +267,6 @@ Useful Commands and Tips
 	---
 	
 	
-	April 11 2015 was the migration from subversion to git.  Also note that the 2 app_amd commits are probably the same but we have no way to tell.
+	April 11 2015 was the migration from subversion to git.  Also note that the 2 app_amd commits are probably the same but we have no way to tell.
 
   

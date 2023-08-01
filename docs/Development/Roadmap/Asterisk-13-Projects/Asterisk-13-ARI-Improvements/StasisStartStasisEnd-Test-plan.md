@@ -82,7 +82,7 @@ Stasis should emit a StasisEnd for Carol's channel.
 
 Destroy the Stasis bridge.
 
- 
+
 
 Attended: Non-Stasis Bridge to Stasis Application
 -------------------------------------------------
@@ -211,7 +211,7 @@ Alice2 completes the transfer.
 
 (Expected scenario: A local channel is created to link the two bridges)
 
- Stasis should emit a StasisStart for each half of the local channel, and StasisEnd events for Alice1 and Alice2. The StasisStart on the Local channels should indicate they are replacing the Alice channels.  
+ Stasis should emit a StasisStart for each half of the local channel, and StasisEnd events for Alice1 and Alice2. The StasisStart on the Local channels should indicate they are replacing the Alice channels.  
 
 
 Bob hangs up
@@ -243,7 +243,7 @@ The Stasis application adds Bob to the same bridge as Alice1.
 
 Alice1 initiates an attended transfer.
 
-Alice2 dials  Stasis application B.
+Alice2 dials  Stasis application B.
 
 Stasis should emit a StasisStart event for Alice2's channel, application B.
 

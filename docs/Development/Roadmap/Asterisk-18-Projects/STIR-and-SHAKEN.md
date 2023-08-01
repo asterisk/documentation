@@ -57,7 +57,7 @@ Implementation
 
 
 
- 
+
 
 res_stir_shaken
 -----------------
@@ -68,21 +68,11 @@ The res_stir_shaken module is responsible for certificate management, signing, v
 
 Configuration is done using a stir_shaken.conf configuration file. Due to the amount of state required it is implemented using ACO. If we truly feel we need realtime in some way we could use sorcery but it doesn't seem reasonable to allow what most people would consider realtime (looking up at use time). This module will support reload so if things change on disk or in configuration, it can be reloaded by using a reload command.
 
- 
+
 
 As STIR/SHAKEN requires retrieving and using a public key it is advantageous to keep a cache of public keys to minimize call handling time. This is configured in the "general" section. The certificate authority information is also configured here.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 [general]
 ca_file=/etc/stir/theca.crt
 ca_path=/etc/stir/ca
@@ -91,21 +81,10 @@ cache_max_size=1000
 ```
 
 
- 
 
 Individual certificates can be configured using the "certificate" type.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 [jcolp]
 type=certificate
 path=/etc/stir/jcolp.crt
@@ -114,21 +93,10 @@ public_key_url=http://joshua-colp.com/jcolp.crt
 ```
 
 
- 
 
 A group of certificates can be configured using the "store" type.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 [certificates]
 type=store
 path=/etc/stir
@@ -136,10 +104,9 @@ public_key_url=http://joshua-colp.com/${CERTIFICATE}.crt
 
 ```
 
-
 If the "store" type is used then all certificates in the directory will be examined and loaded. The public key URL is generated based on the filename and variable substitution.
 
- 
+
 
 In both cases the certificate is examined to determine what phone numbers or SIP URIs it is applicable to and this is then stored away in state information. Note that a certificate may not have any phone numbers or SIP URIs associated with it, but can still be used for signing. This merely conveys where the call came from - not that there is permission to use the phone number for callerid.
 
@@ -149,17 +116,7 @@ The use of "type" is deliberate so that this could be extended to allow other me
 
 The APIs provided by the module will expose a structure to provide payload information.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 struct ast_stir_shaken_payload {
  /* This is actually a JWT (JSON Web Token) so this may need to change, but for this page it'll d */
 
@@ -182,24 +139,13 @@ void ast_stir_shaken_payload_free(struct ast_stir_shaken_payload \*payload);
 
 ```
 
-
 The structure could be made opaque with accessors if we desired.
 
 ### Signing
 
 The module will expose a single API call that can be used to sign a payload.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 /*!
  * \brief Sign a JSON STIR/SHAKEN payload
  *
@@ -208,7 +154,6 @@ The module will expose a single API call that can be used to sign a payload.
 struct ast_stir_shaken_payload \*ast_stir_shaken_sign(struct ast_json \*json);
 
 ```
-
 
 The API call will:
 
@@ -223,24 +168,13 @@ The API call will:
 
 The module will expose a single API call that can be used to verify a payload.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 /*!
  * \brief Verify a JSON STIR/SHAKEN payload
  */
 struct ast_stir_shaken_payload \*ast_stir_shaken_verify(const char \*header, const char \*payload, const char \*signature, const char \*algorithm, const char \*public_key_url);
 
 ```
-
 
 The API call will:
 
@@ -255,17 +189,7 @@ The API call will:
 
 A dialplan function will be made available to examine STIR/SHAKEN verification and attestation results.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 /*!
  * \brief STIR/SHAKEN verification results
  */
@@ -283,27 +207,15 @@ int ast_stir_shaken_add_verification(struct ast_channel \*chan, const char \*ide
 
 ```
 
-
 The API call will use a datastore to place STIR/SHAKEN verify results on the channel for usage in the dialplan.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 exten => s,1,NoOp(Number of STIR/SHAKEN identities: ${STIR_SHAKEN(count)})
 exten => s,n,NoOp(First STIR/SHAKEN identity: ${STIR_SHAKEN(0,identity)})
 exten => s,n,NoOp(First STIR/SHAKEN attestation: ${STIR_SHAKEN(0,attestation)})
 exten => s,n,NoOp(First STIR/SHAKEN verify result: ${STIR_SHAKEN(0,verify_result)})
 
 ```
-
 
 In the dialplan the STIR/SHAKEN identities can then be iterated or examine and based on that the user can choose what to do.
 

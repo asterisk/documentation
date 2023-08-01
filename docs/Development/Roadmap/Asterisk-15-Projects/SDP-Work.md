@@ -60,7 +60,7 @@ Next, it calls create_local_sdp() This does the following:
 
 Nothing happens again until we answer the call. At that point, we get the on_media_update() callback from PJSIP, which will end up calling apply_negotiated_sdp_stream() for each stream on the sdp. That does:
 
-* Validation (Make sure we have a channel. Make sure that ports have been specified in both the local and remote SDP)
+* Validation (Make sure we have a channel. Make sure that ports have been specified in both the local and remote SDP)
 * Set up encryption
 * Ensure remote stream has a connection address, and be sure we can resolve it
 * set_caps() (yes, again)
@@ -112,19 +112,7 @@ The majority of the heavy lifting will be taken care of in the internals of the 
 
 The SDP layer needs to provide similar functionality that res_pjsip_sdp_rtp already provides, but with generic structures rather than ones specific to the chan_pjsip channel driver.
 
- 
-
-
-
-
----
-
-  
-  
-
-
 ```
-
 /*!
  * \brief Forward declaration of an SDP options structure.
  *
@@ -135,32 +123,32 @@ The SDP layer needs to provide similar functionality that res_pjsip_sdp_rtp alre
  * Telephone events: Are they enabled?
  * In what format should SDPs be in when interacting with the SDP API user?
  */
-struct ast_sdp_options; 
+struct ast_sdp_options;
 
 /*!
  * Simple allocation for SDP options.
  * Initializes with sane defaults
  */
 struct ast_sdp_options \*ast_sdp_options_alloc(void);
- 
+
 /*!
  * \brief Free SDP options.
- * 
+ *
  * You'll only ever have to call this if an error occurs
  * between allocating options and allocating the SDP state
  * that uses these options. Otherwise, freeing the SDP state
  * will free the SDP options it inherited.
  */
 void ast_sdp_options_free(struct ast_sdp_options \*options);
- 
+
 /*!
  * \brief General template for setting SDP options
- * 
+ *
  * The types are going to differ for each individual option, hence
  * the "whatever" second parameter.
  */
 int ast_sdp_options_set_<whatever>(struct ast_sdp_options \*sdp_options, <whatever>);
- 
+
 /*!
  *\brief General template for retrieving SDP options
  *
@@ -168,24 +156,24 @@ int ast_sdp_options_set_<whatever>(struct ast_sdp_options \*sdp_options, <whatev
  * thus the return type of "whatever" here.
  */
 <whatever> ast_sdp_options_get_<whatever>(struct ast_sdp_options \*sdp_options);
- 
+
 /*!
  * \brief Allocate a new SDP state
- * 
+ *
  * SDP state keeps tabs on everything SDP-related for a media session.
  * Most SDP operations will require the state to be provided.
  * Ownership of the SDP options is taken on by the SDP state.
  * A good strategy is to call this during session creation.
  */
 struct ast_sdp_state\* ast_sdp_state_alloc(struct ast_stream_topology \*streams, const struct ast_sdp_options \*options);
- 
+
 /*!
  * \brief Free the SDP state.
  *
  * A good strategy is to call this during session destruction
  */
 void ast_sdp_state_free(struct ast_sdp_state \*sdp_state);
- 
+
 /*!
  * \brief Get the local SDP.
  *
@@ -201,7 +189,7 @@ void ast_sdp_state_free(struct ast_sdp_state \*sdp_state);
  * the API.
  */
 const void \*ast_sdp_state_get_local(const struct ast_sdp_state \*sdp_state);
- 
+
 /*!
  * \brief Set the remote SDP.
  *
@@ -214,7 +202,7 @@ const void \*ast_sdp_state_get_local(const struct ast_sdp_state \*sdp_state);
  * been allocated for the streams.
  */
 int ast_sdp_state_set_remote(struct ast_sdp_state \*sdp, void \*remote);
- 
+
 /*!
  * \brief Reset the SDP state and stream capabilities as if the SDP state had just been allocated.
  *
@@ -223,7 +211,7 @@ int ast_sdp_state_set_remote(struct ast_sdp_state \*sdp, void \*remote);
  * joint capabilities.
  */
 int ast_sdp_state_reset(struct ast_sdp_state \*sdp);
- 
+
 /*!
  * \brief Get the associated RTP instance for a particular stream on the SDP state.
  *
@@ -258,7 +246,6 @@ int ast_sdp_state_set_connection_address(struct ast_sdp_state \*state, struct as
 
 ```
 
-
 Let's talk about the API a bit. The API introduces two new structures: `ast_sdp_state`, and `ast_sdp_options`.
 
 `ast_sdp_options`
@@ -282,12 +269,12 @@ The first to talk about is `ast_sdp_options`. This is vaguely defined in the API
 
 This structure is 100% opaque to callers, and basically is used as a way for the SDP API to understand the situation and respond appropriately to requests. Internally, this will keep track of things such as our role in SDP negotiation, progress of SDP negotiation, formats, and options. It's recommended that SDP-using channel drivers allocate this early during session allocation and free it when the session is freed.
 
-A note from the API: notice that `ast_sdp_state_alloc()` gains ownership of the `ast_sdp_options` passed in. Also notice that there is no method of accessing the options from the state. This is on purpose, because SDP options become set in stone once they have been passed to the SDP state and cannot be changed. This is done for a few reasons:
+A note from the API: notice that `ast_sdp_state_alloc()` gains ownership of the `ast_sdp_options` passed in. Also notice that there is no method of accessing the options from the state. This is on purpose, because SDP options become set in stone once they have been passed to the SDP state and cannot be changed. This is done for a few reasons:
 
 * Declaring ownership this way prevents data races due to outside threads potentially trying to change options out from under the SDP state.
 * SDP options are intended to be derived from endpoint configuration and not be based on dynamic changes that happen during a session. Anything that can change during a session should not be an SDP option.
 
-Another note from the API: Notice that there is a function for retrieving the RTP instance. This is because the `ast_sdp_state` is responsible for allocating the RTP instance. Users of the SDP API should not allocate their own RTP instances, but rather retrieve them from the SDP state. This way, users can set RTP options directly, like RTP timeout, RTP keepalive, etc. RTP properties that are derived from the SDP should not be addressed by users of the SDP API. That's taken care of automatically.
+Another note from the API: Notice that there is a function for retrieving the RTP instance. This is because the `ast_sdp_state` is responsible for allocating the RTP instance. Users of the SDP API should not allocate their own RTP instances, but rather retrieve them from the SDP state. This way, users can set RTP options directly, like RTP timeout, RTP keepalive, etc. RTP properties that are derived from the SDP should not be addressed by users of the SDP API. That's taken care of automatically.
 
 ICE
 ---
@@ -300,17 +287,7 @@ Being that we need to support such a thing, it may be beneficial to move towards
 
 The callback would look something like the following:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 /*!
  * \brief Callback type for discovery of new ICE candidates
  *
@@ -318,14 +295,13 @@ The callback would look something like the following:
  * The opaque pointer is the same data that was passed in when registering the callback.
  */
 typedef int (\*new_candidate_fn)(struct ast_rtp_instance \*rtp, struct ast_rtp_engine_ice_candidate \*candidate, void \*data);
- 
+
 /*
  * Indicate interest in being told of new ICE candidates.
  * 
 int ast_rtp_instance_register_ice_new_candidate_cb(struct ast_rtp_instance \*rtp, new_candidate_fn cb, void \*data);
 
 ```
-
 
 This way, an RTP instance can be told by interested parties to be alerted whenever a new ICE candidate is learned. The data parameter is a way to quickly associate the RTP instance with another piece of data the callback cares about (like an SDP state or a PJSIP session).
 
@@ -338,17 +314,7 @@ Code samples
 
 Here is a hypothetical allocation of an `ast_sdp_state`.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 int init_session(struct my_channel_driver_session \*session)
 {
  struct ast_sdp_options \*sdp_options;
@@ -390,22 +356,11 @@ fail:
 
 ```
 
-
 In this example, we enable several SDP options and then use those to allocate the SDP state. The SDP state is saved onto the session for future use.
 
 Now let's make a call.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 int make_a_call(struct my_channel_driver_session \*session, char \*dest)
 {
  struct my_channel_driver_message \*message;
@@ -419,22 +374,11 @@ int make_a_call(struct my_channel_driver_session \*session, char \*dest)
 
 ```
 
-
 When it comes time to make a call, all we have to do is request our local SDP, translate it into the appropriate representation, and then send our message out. The SDP that we retrieve in this case is based on the formats and options that we passed into SDP state creation.
 
 Now what about receiving an incoming call.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 int incoming_call(struct my_channel_driver_session \*session, struct my_channel_driver_message \*message)
 { 
  struct my_channel_driver_message \*response;
@@ -445,13 +389,13 @@ int incoming_call(struct my_channel_driver_session \*session, struct my_channel_
  struct ast_stream_topology \*channel_topology;
  ast_sdp_state_set_remote(session->sdp_state, message->sdp);
  joint_topology = ast_stream_topology_copy(ast_sdp_state_get_joint_topology(session->sdp_state));
-  
+ 
  /* Since we're receiving an initial offer, we can just modify the channel stream topology directly */
  ast_channel_lock(session->channel);
  old_channel_topology = channel_topology = ast_channel_stream_topology_get(session->channel));
  channel_topology = joint_topology;
  ast_channel_unlock(session->channel);
- 
+
  ast_stream_topology_destroy(old_channel_topology);
  }
 
@@ -465,22 +409,11 @@ int incoming_call(struct my_channel_driver_session \*session, struct my_channel_
 
 ```
 
-
-This is very similar to what we did when creating an outgoing call. The interesting difference here is that we now potentially call `ast_sdp_state_set_remote()` if the incoming message has an SDP. This causes the subsequent call to `ast_sdp_state_get_local()` to behave differently. If the incoming message had an SDP, then `ast_sdp_state_get_local()` will return the negotiated SDP that we should use as an answer. If the incoming message had no SDP, then `ast_sdp_state_get_local()` will return the exact same SDP offer we use when making an outgoing call.
+This is very similar to what we did when creating an outgoing call. The interesting difference here is that we now potentially call `ast_sdp_state_set_remote()` if the incoming message has an SDP. This causes the subsequent call to `ast_sdp_state_get_local()` to behave differently. If the incoming message had an SDP, then `ast_sdp_state_get_local()` will return the negotiated SDP that we should use as an answer. If the incoming message had no SDP, then `ast_sdp_state_get_local()` will return the exact same SDP offer we use when making an outgoing call.
 
 Now let's look at a hypothetical switchover to direct media.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 int direct_media_enabled(struct my_channel_driver_session \*session, struct ast_stream_topology \*peer_topology, struct ast_sockaddr \*peer_addr)
 {
  struct my_channel_driver_message \*message;
@@ -489,7 +422,7 @@ int direct_media_enabled(struct my_channel_driver_session \*session, struct ast_
  ast_sdp_state_update_local_topology(session->sdp_state, peer_topology);
  joint_topology = ast_sdp_state_get_joint_topology(session->sdp_state);
  ast_channel_stream_topology_request_change(session->channel, join_topology);
- 
+
  ast_sdp_state_set_connection_address(session->sdp_state, peer_addr);
 
  message = make_media_update_message(session);
@@ -501,7 +434,6 @@ int direct_media_enabled(struct my_channel_driver_session \*session, struct ast_
 
 ```
 
-
 It may be a bit confusing what's going on with the format_cap structures here. If we assume that Alice and Bob are going to be doing direct media, then let's pretend that this is the session with Alice. The peer_topology is Bob's topology. By making Bob's topology our local topology, it results in the joint topology being that of Bob and Alice. We update the SDP state to use this joint topology. We then also update the connection address so we place the correct address in it place. The subsequent call to get the local SDP now will properly reflect the updated capabilities and peer address.
 
 Lingering questions:
@@ -511,4 +443,4 @@ Lingering questions:
 2. Similarly, is there anything defined in the API that we won't need? I was having trouble coming up with code snippets to get RTP options, for instance, but I didn't want to remove them.
 3. Is the current idea for SDP representation a good one? Or should the API settle on a specific representation of SDPs for getting/setting, leaving conversion to channel drivers?
 4. The API is ambiguous about when it allocates an RTP instance. My current thought is that this is on purpose since new features may require us to allocate the RTP session at a different time than we currently do. Should we be more explicit, though?
-5. The ownership model of `ast_sdp_options` may be wasteful. Currently, you allocate the options each time you create a new SDP state, and the SDP state inherits ownership of the options. It may be more prudent to allocate SDP options at endpoint creation time. Then just pass the same SDP options structure into each allocation of an SDP state. Each SDP state would just gain a reference to the (immutable) SDP options.
+5. The ownership model of `ast_sdp_options` may be wasteful. Currently, you allocate the options each time you create a new SDP state, and the SDP state inherits ownership of the options. It may be more prudent to allocate SDP options at endpoint creation time. Then just pass the same SDP options structure into each allocation of an SDP state. Each SDP state would just gain a reference to the (immutable) SDP options.

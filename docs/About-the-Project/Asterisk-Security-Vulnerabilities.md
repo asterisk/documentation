@@ -9,7 +9,7 @@ The Asterisk project takes the issue of its users security seriously. If you bel
 
 
 !!! note 
-    The Asterisk project does not produce or work on the underlying tools the project uses, such as Github. For security vulnerabilities found in these the report should be directed to the company or project that creates it. We *will* however accept reports related to the configuration of those tools.
+    The Asterisk project does not produce or work on the underlying tools the project uses, such as Github. For security vulnerabilities found in these the report should be directed to the company or project that creates it. We *will* however accept reports related to the configuration of those tools.
 
       
 [//]: # (end-note)
@@ -30,7 +30,7 @@ The Asterisk project takes the issue of its users security seriously. If you bel
 
 
 
- 
+
 
 What Can Be Reported?
 =====================
@@ -38,7 +38,7 @@ What Can Be Reported?
 1. Issues relating to the Asterisk source code or usage.
 2. Issues in the configuration of a tool the Asterisk project uses.
 
- 
+
 
 Reporting a Security Vulnerability
 ==================================
@@ -51,7 +51,7 @@ Reporting a Security Vulnerability
 
 Security vulnerabilities are treated seriously by the developer community, and the Asterisk Development Team always attempts to address vulnerabilities in a timely fashion. Sometimes, external influences may impact when a security release can be made; feel free to e-mail the developer assigned to the issue or [security@asterisk.org](mailto:security@asterisk.org) to discuss the schedule for a security release for your issue.
 
- 
+
 
 Past Security Vulnerabilities
 =============================

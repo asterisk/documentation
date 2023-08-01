@@ -8,13 +8,13 @@ AstriDevCon 2021 Minutes
 
 ### Attendance
 
-Ben Ford - Alabama, Sangoma Ast Dev, Stir Shaken!   
+Ben Ford - Alabama, Sangoma Ast Dev, Stir Shaken!   
 BJ Weschke - New Jersey, Wonders Corp, 16&18 w/AMI  
 Daniel Collins - East Tennessee, USAM   
 Florian Floimair - Austria, Commend, now on 18, wants to know direction  
 Franck Danard - France, Sangoma FreePBX Dev, PMS  
 George Joseph - Colorado, Sangoma Ast Dev (wants to know who is using unsupported asterisk!)  
-Igor Goncharovsky -   
+Igor Goncharovsky -   
 James Finstrom - (joined PM)  
 Jared Smith - (joined PM)  
 Joran Vinzens - Germany, SIPGate UK - 11&18 w/AMI ARI AGI  
@@ -209,7 +209,7 @@ Yitzchak Pachtman - Israel, NY Based IT MSP, Ast & FreePBX for 5 years (Pitzkey)
       
 
 
-    2:20 - J Colp, Atlassian move 
+    2:20 - J Colp, Atlassian move
 
     * Force of move to cloud, not possible with asterisk community
     * Trouble tickets and wiki in particular
@@ -288,7 +288,7 @@ Yitzchak Pachtman - Israel, NY Based IT MSP, Ast & FreePBX for 5 years (Pitzkey)
       
 
 
-    4:05 - Yitzchak, Dynamic features in holding bridges (parked call) 
+    4:05 - Yitzchak, Dynamic features in holding bridges (parked call)
 
     * Allow a caller to exit park to go to an operator, VM, etc.
     * Allow dynamic features, such as changing MoH
@@ -331,7 +331,7 @@ Yitzchak Pachtman - Israel, NY Based IT MSP, Ast & FreePBX for 5 years (Pitzkey)
     * Planning to come soon after Astricon
     * Wish list
     + Making ARI more robust?
-    + AMR-WB?  Other codecs?
+    + AMR-WB?  Other codecs?
     + MS teams?
 
       
@@ -359,7 +359,7 @@ Yitzchak Pachtman - Israel, NY Based IT MSP, Ast & FreePBX for 5 years (Pitzkey)
       
 
 
-    5:35 - Pitzkey final question, 
+    5:35 - Pitzkey final question,
 
     * GoSUB loops to validate user
     * Place outgoing call to user getting variables from previous call

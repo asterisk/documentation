@@ -18,5 +18,5 @@ There are several [mailing lists](http://lists.digium.com/) where community memb
 
 ### Development List Note
 
-The asterisk-dev list is geared toward the development of Asterisk itself. For discussions about developing applications that *use* Asterisk, please see the [asterisk-app-dev](http://lists.digium.com/mailman/listinfo/asterisk-app-dev) list. For discussions about deploying or using Asterisk, please see the [asterisk-users](http://lists.digium.com/mailman/listinfo/asterisk-users) mailing list.
+The asterisk-dev list is geared toward the development of Asterisk itself. For discussions about developing applications that *use* Asterisk, please see the [asterisk-app-dev](http://lists.digium.com/mailman/listinfo/asterisk-app-dev) list. For discussions about deploying or using Asterisk, please see the [asterisk-users](http://lists.digium.com/mailman/listinfo/asterisk-users) mailing list.
 

@@ -29,17 +29,7 @@ Configure res_odbc.conf to connect to your ODBC installation
 
 Find the configuration file, which should typically be located at /etc/asterisk/res_odbc.conf and provide a basic configuration such as:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 [asterisk]
 enabled => yes
 dsn => your-configured-dsn-name
@@ -49,20 +39,9 @@ pre-connect => yes
 
 ```
 
-
 Then start up Asterisk and assuming res_odbc loads properly on the CLI you can use odbc show to verify a DSN is configured and shows up:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 rnewton-office-lab\*CLI> odbc show
 ODBC DSN Settings
 -----------------
@@ -71,7 +50,6 @@ ODBC DSN Settings
  Last connection attempt: 1969-12-31 18:00:00
 
 ```
-
 
 To verify the connection works you should use func_odbc or something similar to query the data source from Asterisk.
 

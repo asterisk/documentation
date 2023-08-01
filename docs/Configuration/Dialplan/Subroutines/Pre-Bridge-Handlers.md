@@ -21,21 +21,10 @@ There are two flags for the Dial application, **M** and **U**.
 
 The M flag allows a [macro](/Configuration/Dialplan/Subroutines/Macros) and arguments to be specified. You must specify the macro name, leaving off the 'macro-' prefix.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 M(macro[^arg[^...]])
 
 ```
-
 
 The variable MACRO_RESULT can be set with certain options inside the specified macro to determine behavior when the macro finishes. The options are documented in the [Dial application documentation](/Asterisk-13-Application_Dial).
 
@@ -46,21 +35,10 @@ The variable MACRO_RESULT can be set with certain options inside the specified m
 
 The U flag allows a [gosub](/Configuration/Dialplan/Subroutines/Gosub) and arguments to be specified. You must remember to call Return inside the gosub.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 U(x[^arg[^...]])
 
 ```
-
 
 The variable GOSUB_RESULT can be set within certain options inside the specified gosub to determine behavior when the gosub returns. The options are documented in the [Dial application documentation](/Asterisk-13-Application_Dial).
 
@@ -69,21 +47,10 @@ Queue application
 
 The Queue application, similar to Dial, has two options for handling pre-bridge subroutines. For Queue, both arguments have the same syntax.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 Queue(queuename[,options[,URL[,announceoverride[,timeout[,AGI[,macro[,gosub[,rule[,position]]]]]]]]])
 
 ```
-
 
 **macro** and **gosub** can both be populated with the name of a macro or gosub routine to execute on the called party channel as described in the overview.
 
@@ -96,17 +63,7 @@ BOB(6002) dials ALICE(6001) and Playback is executed from within the subroutine 
 
 Dialplan
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 [from-internal]
 exten = 6001,1,Dial(PJSIP/ALICE,30,M(announcement))
 
@@ -117,20 +74,9 @@ exten = s,1,NoOp()
 
 ```
 
-
 CLI output
 
-
-
-
----
-
-  
-  
-
-
 ```
-
  -- Executing [6001@from-internal:1] Dial("PJSIP/BOB-00000014", "PJSIP/ALICE,30,M(announcement)") in new stack
  -- Called PJSIP/ALICE
  -- PJSIP/ALICE-00000015 is ringing
@@ -147,7 +93,6 @@ CLI output
 ```
 
 
- 
 
 ### Example 2 - Executing a pre-bridge gosub handler from Dial
 
@@ -155,17 +100,7 @@ ALICE(6001) dials BOB(6002) and Playback is executed from within the subroutine 
 
 Dialplan
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 [from-internal]
 exten = 6002,1,Dial(PJSIP/BOB,30,U(sub-announcement))
 
@@ -176,20 +111,9 @@ exten = s,1,NoOp()
 
 ```
 
-
 CLI output
 
-
-
-
----
-
-  
-  
-
-
 ```
-
  -- Executing [6002@from-internal:1] Dial("PJSIP/ALICE-00000016", "PJSIP/BOB,30,U(sub-announcement)") in new stack
  -- Called PJSIP/BOB
  -- PJSIP/BOB-00000017 is ringing
@@ -209,24 +133,13 @@ CLI output
 
 ```
 
-
 ### Example 3 - Executing a pre-bridge gosub handler from Queue
 
 ALICE(6001) dials Queue 'sales' where BOB(6002) is a member. Once BOB answers the queue call, the Playback is executed from within the gosub.
 
 Dialplan
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 [sub-announcement]
 exten = s,1,NoOp()
  same = n,Playback(tt-weasels)
@@ -239,20 +152,9 @@ same => n,Hangup()
 
 ```
 
-
 CLI output
 
-
-
-
----
-
-  
-  
-
-
 ```
-
  -- Executing [7002@from-internal:1] Verbose("PJSIP/ALICE-00000009", "2,"Alice" <ALICE> entering the sales queue") in new stack
  == "Alice" <ALICE> entering the sales queue
  -- Executing [7002@from-internal:2] Queue("PJSIP/ALICE-00000009", "sales,,,,,,,sub-announcement") in new stack
@@ -281,24 +183,13 @@ CLI output
 
 ```
 
-
 ### Example 4 - Executing a pre-bridge macro handler from Queue
 
 BOB(6002) calls the queue 'support' where ALICE(6001) is a member. Once ALICE answers the queue call, the Playback is executed from within the macro.
 
 Dialplan
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 [macro-announcement]
 exten = s,1,NoOp()
  same = n,Playback(tt-weasels)
@@ -310,20 +201,9 @@ same => n,Hangup()
 
 ```
 
-
 CLI output
 
-
-
-
----
-
-  
-  
-
-
 ```
-
  -- Executing [7001@from-internal:1] Verbose("PJSIP/BOB-00000004", "2,"Bob" <BOB> entering the support queue") in new stack
  == "Bob" <BOB> entering the support queue
  -- Executing [7001@from-internal:2] Queue("PJSIP/BOB-00000004", "support,,,,,,announcement") in new stack
@@ -347,5 +227,4 @@ CLI output
  == Spawn extension (from-internal, 7001, 2) exited non-zero on 'PJSIP/BOB-00000004'
 
 ```
-
 

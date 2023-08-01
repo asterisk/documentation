@@ -39,9 +39,7 @@ To start our state machine, we will define what events might cause state transit
   
 event.py  
 
-
 ```
-
 pytrueclass Event(object):
  # DTMF digits
  DTMF_1 = "1"
@@ -66,10 +64,6 @@ pytrueclass Event(object):
  MAILBOX_EMPTY = "empty"
 
 ```
-
-
-
-
 ```javascript title="event.js" linenums="1"
 jstruevar Event = {
  // DTMF digits
@@ -98,7 +92,6 @@ module.exports = Event;
 
 ```
 
-
 There is no hard requirement for our application that we define events as named constants, but doing so makes it easier for tools like pylint and jslint to find potential mistakes.
 
 After we have defined our events, we need to create a state machine itself. The state machine keeps track of what the current state is, and which events cause state changes. Here is a simple implementation of a state machine
@@ -111,9 +104,7 @@ After we have defined our events, we need to create a state machine itself. The 
   
 state_machine.py  
 
-
 ```
-
 pytrueclass StateMachine(object):
  def __init__(self):
  self.transitions = {}
@@ -134,10 +125,6 @@ pytrueclass StateMachine(object):
  self.current_state.enter()
 
 ```
-
-
-
-
 ```javascript title="state_machine.js" linenums="1"
 jstruefunction StateMachine() {
  var transitions = {};
@@ -164,7 +151,6 @@ jstruefunction StateMachine() {
 module.exports = StateMachine;
 
 ```
-
 
 The state machine code is pretty straightforward. The state machine has transitions added to it with the `add_transition()` method and can be started with the `start()` method. Our use of the state machine will always be to define all transitions, and then to start the state machine.
 

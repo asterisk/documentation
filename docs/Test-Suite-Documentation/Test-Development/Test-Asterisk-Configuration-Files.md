@@ -12,28 +12,18 @@ Asterisk instances started by the Testsuite get their configuration files from 3
 2. The Testsuite's common config files located in <TESTSUITE_DIR>/configs
 3. The test's own configs and files directories.
 
-Most of the files are handled simply where a file in the test's configs/astX directory replaces one found in the Testsuite's directory and one in the Testsuite's directory replaces one in /etc/asterisk.  Some have another level of processing though. 
+Most of the files are handled simply where a file in the test's configs/astX directory replaces one found in the Testsuite's directory and one in the Testsuite's directory replaces one in /etc/asterisk.  Some have another level of processing though.
 
-* logger.conf:  Your test can specify additional options for the "general" and "logfiles" categories by placing them in files named "logger.general.conf.inc" and "logger.logfiles.conf.inc" respectively.
-* manager.conf: Your test can specify additional options for the "general" and "user" categories by placing them in files named "manager.general.conf.inc" and "manager.user.conf.inc" respectively.
-* modules.conf: Your test can specify additional modules to load or disable by placing "load", "preload" or "noload" directives in "modules.conf.inc".  NOTE:  The default behavior is "autoload" so you generally don't have to (and shouldn't) load them yourself this way.
+* logger.conf:  Your test can specify additional options for the "general" and "logfiles" categories by placing them in files named "logger.general.conf.inc" and "logger.logfiles.conf.inc" respectively.
+* manager.conf: Your test can specify additional options for the "general" and "user" categories by placing them in files named "manager.general.conf.inc" and "manager.user.conf.inc" respectively.
+* modules.conf: Your test can specify additional modules to load or disable by placing "load", "preload" or "noload" directives in "modules.conf.inc".  NOTE:  The default behavior is "autoload" so you generally don't have to (and shouldn't) load them yourself this way.
 
 Test Directory Layout
 =====================
 
 Most test directories will have the following structure:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 <test_name>/
  configs/ Contains configuration files to go in each Asterisk instance's virtual /etc/asterisk directory.
  ast1/ All tests have at least 1 Asterisk instance.
@@ -58,26 +48,13 @@ Most test directories will have the following structure:
  sipp/ (only if sipp is being used)
  test-config.yaml (required)
 
-
-
 ```
 
 
- 
 
-Files placed in any of the "ast\*dir" directories can be referenced by configuration files in the "configs" tree using their symbolic directory location. For example, let's say that you're testing TLS transports between two asterisk instances.  Your test directory structure might look like this:
-
-
-
-
----
-
-  
-  
-
+Files placed in any of the "ast\*dir" directories can be referenced by configuration files in the "configs" tree using their symbolic directory location. For example, let's say that you're testing TLS transports between two asterisk instances.  Your test directory structure might look like this:
 
 ```
-
 <test_name>/
  configs/
  ast1/
@@ -103,25 +80,13 @@ Files placed in any of the "ast\*dir" directories can be referenced by configura
  ast2-key.pem
  test-config.yaml (required)
 
-
 ```
-
 
 The ca-cert.pem file would be copied to both instance's /var/lib/asterisk/keys directories while ast1-cert.pem and ast1-key.pem would only be copied to the first Asterisk instance's and ast2-cert.pem and ast2-key.pem would only be copied to the second Asterisk instance's.
 
 Your config files would then look line this:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 ; First Asterisk instance's pjsip.conf
 [transport-tls]
 type=transport
@@ -131,7 +96,6 @@ cert_file = <astvarlibdir>>/keys/ast1-cert.pem
 priv_key_file = <astvarlibdir>>/keys/ast1-key.pem
 
 ```
-
 
 The second Asterisk instance's pjsip.conf file would look similar except that "ast1" would be changed to "ast2".
 
@@ -146,7 +110,7 @@ The second Asterisk instance's pjsip.conf file would look similar except that "a
 
 
 
- 
 
- 
+
+
 

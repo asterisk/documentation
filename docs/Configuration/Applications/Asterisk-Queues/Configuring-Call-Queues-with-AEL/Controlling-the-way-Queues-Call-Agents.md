@@ -5,17 +5,7 @@ pageid: 5243037
 
 Notice in the above, that the commands to manipulate agents in queues have "@agents" in their arguments. This is a reference to the agents context:
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 
 context agents { 
  // General sales queue 
@@ -53,9 +43,7 @@ context agents {
  6070 => &callagent(${SALINE},${EXTEN}); 
 }
 
-
 ```
-
 
 In the above, the variables ${RAQUEL}, etc stand for actual devices to ring that person's phone (like DAHDI/37). 
 
@@ -65,17 +53,7 @@ The 8010, 8011, and 8013 extensions are purely for transferring incoming callers
 
 Here is the callagent macro, note that if a person in the queue is called, but does not answer, then they are automatically removed from the queue.
 
-
-
-
----
-
-  
-  
-
-
 ```
-
 
 macro callagent(device,exten) {
  if( ${GROUP_COUNT(${exten}@agents)}=0 ) { 
@@ -98,9 +76,7 @@ macro callagent(device,exten) {
  } 
 }
 
-
 ```
-
 
 In the callagent macro above, the ${exten} will be 6121, or 6165, etc, which is the extension of the agent. 
 
