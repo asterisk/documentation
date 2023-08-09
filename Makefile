@@ -57,25 +57,21 @@ static-setup:: $(BUILD_DIR)
 ifeq ($(NO_STATIC),)
 	@echo "  Copying docs/ to temp build"
 	@rsync -aH docs/. $(BUILD_DIR)/docs/
-#	fix_build is no longer needed but kept in case
-#	it's needed again.
-#	@echo "  Applying link transformations"
-#	@utils/fix_build.sh $(BUILD_DIR)/docs utils/build_fixes.yml
 else
 	@echo "  Copying only docs/index.md and favicon.ico to temp build"
 	@mkdir -p $(BUILD_DIR)/docs
-	@cp docs/index.md docs/favicon.ico $(BUILD_DIR)/docs/
+	@cp docs/CNAME docs/index.md docs/favicon.ico docs/*.css $(BUILD_DIR)/docs/
 endif	
 	@[ -L $(BUILD_DIR)/mkdocs.yml ] && rm $(BUILD_DIR)/mkdocs.yml || :
 	@cp mkdocs.yml $(BUILD_DIR)/mkdocs.yml
 	@[ -L $(BUILD_DIR)/overrides ] && rm $(BUILD_DIR)/overrides || :
 	@ln -sfr overrides $(BUILD_DIR)/overrides
-	@touch $(BUILD_DIR)/.site_built
 
-$(BUILD_DIR)/.site_built:
+#$(BUILD_DIR)/.site_built:
+#	@$(MAKE) --no-print-directory $(if $(NO_STATIC),NO_STATIC=yes,) static-setup
+
+$(BUILD_DIR)/docs: ### $(BUILD_DIR)/.site_built
 	@$(MAKE) --no-print-directory $(if $(NO_STATIC),NO_STATIC=yes,) static-setup
-
-$(BUILD_DIR)/docs: $(BUILD_DIR)/.site_built
 
 dynamic-setup:
 	@branches=$(BRANCHES) ;\
@@ -195,4 +191,4 @@ siteclean:
 
 .PHONY: all clean siteclean branch-check no-branch-check \
 	static-setup dynamic-setup dynamic-branch-setup dynamic-core-setup dynamic-ari-setup \
-	download-from-job build deploy
+	download-from-job build deploy $(BUILD_DIR)/docs

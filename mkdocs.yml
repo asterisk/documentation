@@ -41,6 +41,8 @@ theme:
     - content.code.annotate
     - toc.follow
 
+extra_css:
+  - material-override.css
 
 plugins:
   - search
