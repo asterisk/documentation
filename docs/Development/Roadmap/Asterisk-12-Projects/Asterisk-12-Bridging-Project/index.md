@@ -18,7 +18,7 @@ Project Overview
 ================
 
 
-At [AstriDevCon 2012](/AstriDevCon-2012), one of the focus points of development was determined to be the [Asterisk APIs](/Asterisk-12-API-Improvements). In particular, some common complaints were:
+At [AstriDevCon 2012](/Development/Roadmap/AstriDevCon-2012), one of the focus points of development was determined to be the [Asterisk APIs](../Asterisk-12-API-Improvements). In particular, some common complaints were:
 
 
 * Asterisk changes the name of a channel during masquerades. As the name is used as the handle to the channel, this requires a lot of state replication by consumers of the APIs.
@@ -156,7 +156,7 @@ The following will require specifications for Asterisk 12:
 * AMI (see ﻿[AMI v2 Specification](/AMI-v2-Specification))
 
 
-For Use Cases, see [Bridging Use Cases](/Asterisk-12-Bridging-Use-Cases).
+For Use Cases, see [Bridging Use Cases](Asterisk-12-Bridging-Use-Cases).
 
 
 Design
@@ -201,7 +201,7 @@ The `ast_bridge_technology` provides the callbacks that specific bridging implem
 The `ast_bridge_features` object provides hooks that can be passed to `ast_bridge_channel` objects when they join that bridge. The feature hooks implement specific interception callbacks that occur on DTMF key presses, after some period of time has passed, or given some other criteria. These callbacks can affect the channels in a bridge but may also affect the entire bridge.
 
 
-Detailed information about the Bridging Framework APIs can be seen in [Asterisk 12 Bridging API](/Asterisk-12-Bridging-API).
+Detailed information about the Bridging Framework APIs can be seen in [Asterisk 12 Bridging API](Asterisk-12-Bridging-API).
 
 
 Richard's Ramblings on Bridging
@@ -966,7 +966,7 @@ Bridging has wide-ranging affects on a call. While each bridging test will have 
 Tests need to be crafted not only to test the nominal path for features. For instance, it is not enough to write a transfer test wherein all parties behave as expected. There should be tests where a transfer is made to a non-existent extension, or a test where a transfer is started but an extension is not typed in within the appropriate time limit.
 
 
-See [Asterisk 12 Bridging Test Plan](/Asterisk-12-Bridging-Test-Plan) for mappings between the Asterisk tests and the defined Use Cases.
+See [Asterisk 12 Bridging Test Plan](Asterisk-12-Bridging-Test-Plan) for mappings between the Asterisk tests and the defined Use Cases.
 
 
 Features Not to Test
@@ -1036,7 +1036,7 @@ The table below lists the items that should be checked in each test.
 |  CallerID  |  Check that the Caller ID for each channel involved in the bridge is what it is expected to be  |
 |  Connected Line  |  Check that connected line for each channel involved is what is expected  |
 |  Common Channel variables  |  BRIDGEPEER, BRIDGEPVTCALLID should be set appropriately  |
-|  [Bridge](/Asterisk-11-ManagerEvent_Bridge)  |  Check that the AMI Bridge event occurs when expected  |
+|  [Bridge](/latest_api/API_Documentation/AMI_Events/Bridge)  |  Check that the AMI Bridge event occurs when expected  |
 
 
 Project Planning

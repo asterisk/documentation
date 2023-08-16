@@ -7,7 +7,7 @@ Asterisk Client Library Generator
 =================================
 
 
-Generator for client libraries for [Asterisk's REST API](/Asterisk-12-API-Improvements) which is provided by res_http_stasis.
+Generator for client libraries for [Asterisk's REST API](../) which is provided by res_http_stasis.
 
 
 Languages

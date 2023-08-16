@@ -167,7 +167,7 @@ Some questions and comments that came up during the discussion:
 
 
 !!! info ""
-    chan_agent is dead in Asterisk 12, replaced by [Asterisk 12 Application_AgentRequest](/Asterisk-12-Application_AgentRequest) and [Asterisk 12 Application_AgentLogin](/Asterisk-12-Application_AgentLogin). No one seemed to mind.
+    chan_agent is dead in Asterisk 12, replaced by [Asterisk 12 Application_AgentRequest](/latest_api/API_Documentation/Dialplan_Applications/AgentRequest) and [Asterisk 12 Application_AgentLogin](/latest_api/API_Documentation/Dialplan_Applications/AgentLogin). No one seemed to mind.
 
       
 [//]: # (end-info)

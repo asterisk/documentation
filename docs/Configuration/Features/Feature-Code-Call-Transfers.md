@@ -54,7 +54,7 @@ atxfer = \*2
 
 Now that you have the feature enabled you need to configure the dialplan such that a particular channel will be allowed to use the feature.
 
-As an example if you want to allow transfers via the [Dial](/Asterisk-13-Application_Dial) application you can use two options, "t" or "T".
+As an example if you want to allow transfers via the [Dial](/latest_api/API_Documentation/Dialplan_Applications/Dial) application you can use two options, "t" or "T".
 
 * t - Allow the called party to transfer the calling party by sending the DTMF sequence defined in features.conf. This setting does not perform policy enforcement on transfers initiated by other methods
 * T - Allow the calling party to transfer the called party by sending the DTMF sequence defined in features.conf. This setting does not perform policy enforcement on transfers initiated by other methods.
@@ -72,7 +72,7 @@ Asterisk should be restarted or relevant modules should be reloaded for changes 
 
 
 !!! tip 
-    The same arguments ("t" and "T") work for the [Queue](/Asterisk-13-Application_Queue) and [Dial](/Asterisk-13-Application_Dial) applications!
+    The same arguments ("t" and "T") work for the [Queue](/latest_api/API_Documentation/Dialplan_Applications/Queue) and [Dial](/latest_api/API_Documentation/Dialplan_Applications/Dial) applications!
 
       
 [//]: # (end-tip)

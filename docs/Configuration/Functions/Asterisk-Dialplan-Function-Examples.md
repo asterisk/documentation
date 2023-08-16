@@ -26,7 +26,7 @@ CHANNEL and CHANNELS
 
 CHANNEL Gets or sets various pieces of information about the channel. Additional arguments may be available from the channel driver; see its documentation for details. Any item requested that is not available on the current channel will return an empty string. CHANNELS on the other hand, gets the list of channels while optionally filtering by a regular expression (provided via argument). If no argument is provided, all known channels are returned. The regular_expression must correspond to the POSIX.2 specification, as shown in regex(7). The list returned will be space-delimited.
 
-See the [CHANNEL function](/Asterisk-14-Function_CHANNEL) reference documentation for an extensive list of arguments.
+See the [CHANNEL function](/latest_api/API_Documentation/Dialplan_Functions/CHANNEL) reference documentation for an extensive list of arguments.
 
 **Examples:**
 

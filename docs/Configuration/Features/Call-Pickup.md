@@ -32,17 +32,17 @@ Dialplan Applications and Functions
 Pickup Application
 ------------------
 
-The [Pickup application](/Asterisk-13-Application_Pickup) has three ways to select calls for pickup.
+The [Pickup application](/latest_api/API_Documentation/Dialplan_Applications/Pickup) has three ways to select calls for pickup.
 
 PickupChan Application
 ----------------------
 
-The [PickupChan application](/Asterisk-13-Application_PickupChan) tries to pickup the specified channels given to it.
+The [PickupChan application](/latest_api/API_Documentation/Dialplan_Applications/PickupChan) tries to pickup the specified channels given to it.
 
 CHANNEL Function
 ----------------
 
-The [CHANNEL function](/Asterisk-13-Function_CHANNEL) allows the pickup groups set on a channel to be changed from the defaults set by the channel driver when the channel was created.
+The [CHANNEL function](/latest_api/API_Documentation/Dialplan_Functions/CHANNEL) allows the pickup groups set on a channel to be changed from the defaults set by the channel driver when the channel was created.
 
 ### callgroup/namedcallgroup
 

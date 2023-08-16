@@ -30,7 +30,7 @@ What Can Happen in a Mixing Bridge
 Example: Implementing a basic dial
 ==================================
 
-Dialing can be implemented by using the [`POST - /channels`](/Asterisk+12+Channels+REST+API#Asterisk12ChannelsRESTAPI-originate) operation and putting both the resulting channel and the original Stasis channel in a mixing bridge to allow media to flow between them. An endpoint should be specified along with the originate operation as well as a Stasis application name. This will cause the dialed channel to enter Stasis, where it can be added to a mixing bridge. It's also a good idea to use Stasis application arguments to flag that the dialed channel was dialed using originate in order to handle it differently from the original channel once it enters into the Stasis application.
+Dialing can be implemented by using the [`POST - /channels`](/latest_api/API_Documentation/Asterisk_REST_Interface/Channels_REST_API/#originate) operation and putting both the resulting channel and the original Stasis channel in a mixing bridge to allow media to flow between them. An endpoint should be specified along with the originate operation as well as a Stasis application name. This will cause the dialed channel to enter Stasis, where it can be added to a mixing bridge. It's also a good idea to use Stasis application arguments to flag that the dialed channel was dialed using originate in order to handle it differently from the original channel once it enters into the Stasis application.
 
 This example ARI application will do the following:
 

@@ -3,21 +3,19 @@ title: Overview
 pageid: 26478450
 ---
 
-Overview
-========
+## Overview
 
-Asterisk 12 introduces the [Asterisk REST Interface](/Asterisk-12-RESTful-API), a set of RESTful APIs for building Asterisk based applications. This article will walk you though getting ARI up and running.
+Asterisk 12 introduces the [Asterisk REST Interface](/latest_api/API_Documentation/Asterisk_REST_Interface), a set of RESTful APIs for building Asterisk based applications. This article will walk you though getting ARI up and running.
 
 There are three main components to building an ARI application.
 
-The first, obviously, is **the RESTful API** itself. The API is documented using [Swagger](https://developers.helloreverb.com/swagger/), a lightweight specification for documenting RESTful APIs. The Swagger API docs are used to generate validations and boilerplate in Asterisk itself, along with [static wiki documentation](/Asterisk-12-ARI), and interactive documentation using [Swagger-UI](https://github.com/wordnik/swagger-ui).
+The first, obviously, is **the RESTful API** itself. The API is documented using [Swagger](https://developers.helloreverb.com/swagger/), a lightweight specification for documenting RESTful APIs. The Swagger API docs are used to generate validations and boilerplate in Asterisk itself and interactive documentation using [Swagger-UI](https://github.com/wordnik/swagger-ui).
 
-Then, Asterisk needs to send asynchronous events to the application (new channel, channel left a bridge, channel hung up, etc). This is done using a **WebSocket on /ari/events**. Events are sent as JSON messages, and are documented on the [REST Data Models page](/Asterisk-12-REST-Data-Models). (See the list of subtypes for the [`Message` data model](/Asterisk-12-REST-Data-Models).)
+Then, Asterisk needs to send asynchronous events to the application (new channel, channel left a bridge, channel hung up, etc). This is done using a **WebSocket on /ari/events**. Events are sent as JSON messages, and are documented on the [REST Data Models page](/latest_api/Asterisk_REST_Interface/_Asterisk_REST_Data_Models). (See the list of subtypes for the [`Message` data model](/latest_api/Asterisk_REST_Interface/_Asterisk_REST_Data_Models/#message).)
 
 Finally, connecting the dialplan to your application is the  [`Stasis()` dialplan application](/latest_api/Dialplan_Applications/Stasis). From within the dialplan, you can send a channel to `Stasis()`, specifying the name of the external application, along with optional arguments to pass along to the application.
 
-40%On This PageExample: ARI Hello World!
-=========================
+## Example: ARI Hello World!
 
 In this example, we will:
 
@@ -30,8 +28,7 @@ This example will **not** cover:
 1. Installing Asterisk. We'll assume you have Asterisk 12 or later installed and running.
 2. Configuring a SIP device in Asterisk. For the purposes of this example, we are going to assume you have a SIP softphone or hardphone registered to Asterisk, using either `chan_sip` or `chan_pjsip`.
 
-Getting wscat
--------------
+### Getting wscat
 
 ARI needs a WebSocket connection to receive events. For the sake of this example, we're going to use [wscat](http://einaros.github.io/ws/), an incredibly handy command line utility similar to netcat but based on a node.js websocket library. If you don't have wscat:
 
@@ -61,11 +58,7 @@ $ npm install -g wscat
 [//]: # (end-tip)
 
 
-
-
-
-Getting curl
-------------
+### Getting curl
 
 In order to control a channel in the Stasis dialplan application through ARI, we also need an HTTP client. For the sake of this example, we'll use [curl](http://linux.about.com/od/commands/l/blcmdl1_curl.htm):
 
@@ -74,17 +67,11 @@ $ apt-get install curl
 
 ```
 
-Configuring Asterisk
---------------------
+### Configuring Asterisk
 
 1. Enable the Asterisk HTTP service in `http.conf`:
 
-
-
-
 ---
-
-  
 http.conf  
 
 ```
@@ -95,12 +82,7 @@ bindaddr = 0.0.0.0
 ```
 2. Configure an ARI user in `ari.conf`:
 
-
-
-
 ---
-
-  
 ari.conf  
 
 ```
@@ -117,16 +99,14 @@ password = asterisk
 
 
 
-!!! warning This is just a demo
+!!! warning "This is just a demo"
+
     Please use a more secure account user and password for production applications. Outside of examples and demos, asterisk/asterisk is a terrible, horrible, no-good choice...
 
       
 [//]: # (end-warning)
 
 3. Create a dialplan extension for your Stasis application. Here, we're choosing extension `1000` in context `default` - if your SIP phone is configured for a different context, adjust accordingly.
-
-
-
 
 ---
 
@@ -142,8 +122,8 @@ exten => 1000,1,NoOp()
  same => n,Hangup()
 
 ```
-Hello World!
-------------
+
+### Hello World!
 
 1. Connect to Asterisk using `wscat`:
 

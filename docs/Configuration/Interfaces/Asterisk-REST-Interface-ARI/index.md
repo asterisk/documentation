@@ -55,17 +55,6 @@ ARI consists of three different pieces that are - for all intents and purposes -
 
 All three pieces work together, allowing a developer to manipulate and control the fundamental resources in Asterisk and build their own communications application.
 
-
-
-
-!!! tip Developer Documentation
-    You can find some historical documents [on the wiki](/Asterisk-12-API-Improvements) about the development and architecture of ARI.
-
-      
-[//]: # (end-tip)
-
-
-
 What is REST?
 -------------
 

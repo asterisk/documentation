@@ -22,9 +22,9 @@ Providing MWI to a chan_pjsip endpoint requires configuring the "**mailboxes**" 
 
 See the descriptions linked below which explain when to use the option in each section.
 
-[Description of "mailboxes" option for the Endpoint section](/Asterisk+12+Configuration_res_pjsip#Asterisk12Configuration_res_pjsip-endpoint_mailboxes)
+[Description of "mailboxes" option for the Endpoint section](/latest_api/API_Documentation/Module_Configuration/res_pjsip#Asterisk12Configuration_res_pjsip-endpoint_mailboxes)
 
-[Description of "mailboxes" option for the AOR section](/Asterisk+12+Configuration_res_pjsip#Asterisk12Configuration_res_pjsip-aor_mailboxes).
+[Description of "mailboxes" option for the AOR section](/latest_api/API_Documentation/Module_Configuration/res_pjsip#Asterisk12Configuration_res_pjsip-aor_mailboxes).
 
 Configuring External MWI
 ========================
@@ -89,7 +89,7 @@ External sources can use the API provided by res_external_mwi to communicate MWI
 
 **Documentation Under Construction**
 
-[Asterisk 12 Configuration_res_mwi_external](/Asterisk-12-Configuration_res_mwi_external)
+[Asterisk 12 Configuration_res_mwi_external](/latest_api/API_Documentation/Module_Configuration/res_mwi_external)
 
 
 

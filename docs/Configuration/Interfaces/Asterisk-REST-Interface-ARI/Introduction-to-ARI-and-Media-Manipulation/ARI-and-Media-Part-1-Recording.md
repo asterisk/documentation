@@ -6,11 +6,11 @@ pageid: 30277826
 The Recording API
 =================
 
-Recordings in ARI are divided into two main categories: live and stored. Live recordings are those that are currently being recorded on a channel or bridge, and stored recordings are recordings that have been completed and saved to the file system. The API for the `/recordings` resource can be found [here](/Asterisk-13-Recordings-REST-API).
+Recordings in ARI are divided into two main categories: live and stored. Live recordings are those that are currently being recorded on a channel or bridge, and stored recordings are recordings that have been completed and saved to the file system. The API for the `/recordings` resource can be found [here](/latest_api/API_Documentation/Asterisk_REST_Interface/Recordings_REST_API).
 
 Live recordings can be manipulated as they are being made, with options to manipulate the flow of audio such as muting, pausing, stopping, or canceling the recording. Stored recordings are simply files on the file system on which Asterisk is installed. The location of stored recordings is in the `/recording` subdirectory of the configured `astspooldir` in `asterisk.conf`. By default, this places recordings in `/var/spool/asterisk/recording`.
 
-Channels can have their audio recorded using the [`/channels/{channelId}/record`](/Asterisk+13+Channels+REST+API#Asterisk13ChannelsRESTAPI-record) resource, and Bridges can have their audio recorded using the `[/bridges/{bridgeId}/record](/Asterisk+13+Bridges+REST+API#Asterisk13BridgesRESTAPI-record)` resource.
+Channels can have their audio recorded using the [`/channels/{channelId}/record`](/latest_api/API_Documentation/Asterisk_REST_Interface/Channels_REST_API/#record) resource, and Bridges can have their audio recorded using the `[/bridges/{bridgeId}/record](/latest_api/API_Documentation/Asterisk_REST_Interface/Bridges_REST_API/#record)` resource.
 
 Voice Mail Application Skeleton
 ===============================
@@ -649,7 +649,7 @@ module.exports = ReviewingState;
 
 ```
 
-The code for this state is similar to the code from `RecordingState`. The big difference is that instead of recording a message, it is playing back a stored recording. Stored recordings can be played using the channel's [`play()`](/Asterisk+13+Channels+REST+API#Asterisk13ChannelsRESTAPI-play) method (or as we have used in the python code, `playWithId()`). If the URI of the media to be played is prefixed with the "recording:" scheme, then Asterisk knows to search for the specified file where recordings are stored. More information on playing back files on channels, as well as a detailed list of media URI schemes can be found [here](/Configuration/Interfaces/Asterisk-REST-Interface-ARI/Introduction-to-ARI-and-Channels/ARI-and-Channels-Simple-Media-Manipulation). Note the method that is called when a DTMF '\*' is received. The `deleteStored()` method can be used on the `/recordings` resource of the ARI client to delete a stored recording from the file system on which Asterisk is running.
+The code for this state is similar to the code from `RecordingState`. The big difference is that instead of recording a message, it is playing back a stored recording. Stored recordings can be played using the channel's [`play()`](/latest_api/API_Documentation/Asterisk_REST_Interface/Channels_REST_API/#play) method (or as we have used in the python code, `playWithId()`). If the URI of the media to be played is prefixed with the "recording:" scheme, then Asterisk knows to search for the specified file where recordings are stored. More information on playing back files on channels, as well as a detailed list of media URI schemes can be found [here](/Configuration/Interfaces/Asterisk-REST-Interface-ARI/Introduction-to-ARI-and-Channels/ARI-and-Channels-Simple-Media-Manipulation). Note the method that is called when a DTMF '\*' is received. The `deleteStored()` method can be used on the `/recordings` resource of the ARI client to delete a stored recording from the file system on which Asterisk is running.
 
 One more thing to point out is the code that runs in `on_playback_finished()`. When reviewing a voicemail recording, the message may finish playing back before the user decides what to do with it. If this happens, we detect that the playback has finished so that we do not attempt to stop an already-finished playback once the user decides how to proceed.
 
@@ -732,7 +732,7 @@ Ending voice mail call from PJSIP/200-00000009
 
 ```
 
-silverseagreenReader Exercise 5solidblackIn the previous section we introduced the ability to delete a stored recording. Stored recordings have a second operation available to them: [copying](/Asterisk+13+Recordings+REST+API#Asterisk13RecordingsRESTAPI-copyStored). The `copy()` method of a stored recording can be used to copy the stored recording from one location to another.
+silverseagreenReader Exercise 5solidblackIn the previous section we introduced the ability to delete a stored recording. Stored recordings have a second operation available to them: [copying](/latest_api/API_Documentation/Asterisk_REST_Interface/Recordings_REST_API/#copyStored). The `copy()` method of a stored recording can be used to copy the stored recording from one location to another.
 
 For this exercise modify `ReviewingState` to let a DTMF key of your choice copy the message to a different mailbox on the system. When a user presses this DTMF key, the state machine should transition into a new state called "copying." The "copying" state should gather DTMF from the user to determine which mailbox the message should be copied to. If '#' is entered, then the message is sent to the mailbox the user has typed in. If '\*' is entered, then the copying operation is cancelled. Both a '#' and a '\*' should cause the state machine to transition back into `ReviewingState`.
 

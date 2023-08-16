@@ -22,7 +22,7 @@ Like with `chan_sip`, Asterisk's PJSIP implementation allows for configuration o
 Configuration options
 =====================
 
-A list of outbound registration configuration options can be found on [this page](/Asterisk-13-Configuration_res_pjsip_outbound_registration). Here is a simple example configuration for an outbound registration to a provider:
+A list of outbound registration configuration options can be found on [this page](/latest_api/API_Documentation/Module_Configuration/res_pjsip_outbound_registration). Here is a simple example configuration for an outbound registration to a provider:
 
 On this Page
 
@@ -163,7 +163,7 @@ password = my_password
 
 ```
 
-With this configuration, now if the registrar responds to a REGISTER by challenging for authentication, Asterisk will use the authentication credentials in the provider_auth section in order to authenticate. Details about what options are available in auth sections can be found [here](/Asterisk-13-Configuration_res_pjsip) in the "auth" section.
+With this configuration, now if the registrar responds to a REGISTER by challenging for authentication, Asterisk will use the authentication credentials in the provider_auth section in order to authenticate. Details about what options are available in auth sections can be found [here](/latest_api/API_Documentation/Module_Configuration/res_pjsip) in the "auth" section.
 
 Dealing with Failure
 ====================

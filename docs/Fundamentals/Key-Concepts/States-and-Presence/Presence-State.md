@@ -41,7 +41,7 @@ The message is a longer explanation of the current presence state. Using the sam
 `func_presencestate` And The `CustomPresence` Provider
 ======================================================
 
-The only provider of presence state in Asterisk 11 is the `CustomPresence` provider. This provider is supplied by the `func_presencestate.so` module, which grants access to the `PRESENCE_STATE` dialplan function. The documentation for `PRESENCE_STATE` can be found [here](/Asterisk-11-Function_PRESENCE_STATE). `CustomPresence` is device-agnostic within the core and can be a handy way to set and query presence from [dialplan](/Asterisk-11-Function_PRESENCE_STATE), or APIs such as the [AMI](/Asterisk-11-ManagerAction_PresenceState).
+The only provider of presence state in Asterisk 11 is the `CustomPresence` provider. This provider is supplied by the `func_presencestate.so` module, which grants access to the `PRESENCE_STATE` dialplan function. The documentation for `PRESENCE_STATE` can be found [here](/latest_api/API_Documentation/Dialplan_Functions/PRESENCE_STATE). `CustomPresence` is device-agnostic within the core and can be a handy way to set and query presence from [dialplan](/latest_api/API_Documentation/Dialplan_Functions/PRESENCE_STATE), or APIs such as the [AMI](/latest_api/API_Documentation/AMI_Actions/PresenceState).
 
 A simple use case for `CustomPresence` in dialplan is demonstrated below.
 
@@ -103,7 +103,7 @@ The **second** example would allow for the subscriber to receive notification of
 
 The `CustomPresence` presence state provider will be discussed further on this page.
 
-Also like with device state, there is an [Asterisk Manager Interface](/Asterisk-Manager-Interface--AMI-) command for querying presence state. Documentation for the AMI `PresenceState` command can be found [here](/Asterisk-11-ManagerAction_PresenceState).
+Also like with device state, there is an [Asterisk Manager Interface](/Asterisk-Manager-Interface--AMI-) command for querying presence state. Documentation for the AMI `PresenceState` command can be found [here](/latest_api/API_Documentation/AMI_Actions/PresenceState).
 
 ### Example Presence Notification
 

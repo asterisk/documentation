@@ -804,7 +804,7 @@ exten => start,n(end),Return() ; return from were we came
 
 ##### Queue Variables
 
-Sometimes you may want to retrieve information about a particular queue's state. You can do this by using [Queue Variables](/Asterisk-16-Function_QUEUE_VARIABLES), and its associated functions. For instance here is a contrived example of how to print a couple variables for the "thisQueue":
+Sometimes you may want to retrieve information about a particular queue's state. You can do this by using [Queue Variables](/latest_api/API_Documentation/Dialplan_Functions/QUEUE_VARIABLES), and its associated functions. For instance here is a contrived example of how to print a couple variables for the "thisQueue":
 
 ```
 exten => show_variables,1,NoOp()

@@ -77,7 +77,7 @@ astagidir => /var/lib/asterisk/agi-bin
 
 ```
 
-When using various AGI [applications](/Asterisk-11-Application_AGI), Asterisk looks here for the AGI scripts by default.
+When using various AGI [applications](/latest_api/API_Documentation/Dialplan_Applications/AGI), Asterisk looks here for the AGI scripts by default.
 
 Spool Directories
 -----------------

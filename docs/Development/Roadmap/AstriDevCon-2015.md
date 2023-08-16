@@ -110,31 +110,31 @@ Recap of 2015
 	+ **Note:** this is an ongoing process
 * Asterisk as a media application server
 	+ New events:
-		- [ChannelConnectedLine](/Asterisk+13+REST+Data+Models#Asterisk13RESTDataModels-ChannelConnectedLine)
-		- [`ChannelHold`](/Asterisk+13+REST+Data+Models#Asterisk13RESTDataModels-ChannelHold) and [`ChannelUnhold`](/Asterisk+13+REST+Data+Models#Asterisk13RESTDataModels-ChannelUnhold)
-		- [`ContactStatusChange`](/Asterisk+13+REST+Data+Models#Asterisk13RESTDataModels-ContactStatusChange) and [`PeerStatusChange`](/Asterisk+13+REST+Data+Models#Asterisk13RESTDataModels-PeerStatusChange)
-	+ [`channels`](/Asterisk+13+Channels+REST+API) resource additions:  
+		- [ChannelConnectedLine](/latest_api/API_Documentation/Asterisk_REST_Interface/_Asterisk_REST_Data_Models/#ChannelConnectedLine)
+		- [`ChannelHold`](/latest_api/API_Documentation/Asterisk_REST_Interface/_Asterisk_REST_Data_Models/#ChannelHold) and [`ChannelUnhold`](/latest_api/API_Documentation/Asterisk_REST_Interface/_Asterisk_REST_Data_Models/#ChannelUnhold)
+		- [`ContactStatusChange`](/latest_api/API_Documentation/Asterisk_REST_Interface/_Asterisk_REST_Data_Models/#ContactStatusChange) and [`PeerStatusChange`](/latest_api/API_Documentation/Asterisk_REST_Interface/_Asterisk_REST_Data_Models/#PeerStatusChange)
+	+ [`channels`](/latest_api/API_Documentation/Asterisk_REST_Interface/Channels_REST_API) resource additions:  
 	
-		- The [`originate`](/Asterisk+13+Channels+REST+API#Asterisk13ChannelsRESTAPI-originate) operation now lets you specify an `originator` for `linkedid` propagation
-		- The [`channel`](/Asterisk+13+REST+Data+Models#Asterisk13RESTDataModels-Channel) data model now includes the `language` field for the Asterisk channel it represents
-		- The [`originate`](/Asterisk+13+Channels+REST+API#Asterisk13ChannelsRESTAPI-originate) operation and [`continue`](/Asterisk+13+Channels+REST+API#Asterisk13ChannelsRESTAPI-continueInDialplan) operation now let you specify a priority label
-		- The [`redirect`](/Asterisk+13+Channels+REST+API#Asterisk13ChannelsRESTAPI-redirect) operation was added, allowing channels to be transferred or forwarded to external systems
-	+ [`asterisk`](/Asterisk+13+Asterisk+REST+API) resource additions:
+		- The [`originate`](/latest_api/API_Documentation/Asterisk_REST_Interface/Channels_REST_API/#originate) operation now lets you specify an `originator` for `linkedid` propagation
+		- The [`channel`](/latest_api/API_Documentation/Asterisk_REST_Interface/_Asterisk_REST_Data_Models/#Channel) data model now includes the `language` field for the Asterisk channel it represents
+		- The [`originate`](/latest_api/API_Documentation/Asterisk_REST_Interface/Channels_REST_API/#originate) operation and [`continue`](/latest_api/API_Documentation/Asterisk_REST_Interface/Channels_REST_API/#continueInDialplan) operation now let you specify a priority label
+		- The [`redirect`](/latest_api/API_Documentation/Asterisk_REST_Interface/Channels_REST_API/#redirect) operation was added, allowing channels to be transferred or forwarded to external systems
+	+ [`asterisk`](/latest_api/API_Documentation/Asterisk_REST_Interface/Asterisk_REST_API) resource additions:
 		- Module manipulation can now be done via `/asterisk/modules`:
-			* [`listModules`](/Asterisk+13+Asterisk+REST+API#Asterisk13AsteriskRESTAPI-listModules) - retrieve all modules in the system
-			* [`getModule`](/Asterisk+13+Asterisk+REST+API#Asterisk13AsteriskRESTAPI-getModule) - retrieve a specific module
-			* [`loadModule`](/Asterisk+13+Asterisk+REST+API#Asterisk13AsteriskRESTAPI-loadModule) - load a specific module
-			* [`unloadModule`](/Asterisk+13+Asterisk+REST+API#Asterisk13AsteriskRESTAPI-unloadModule) - unload a specific module
+			* [`listModules`](/latest_api/API_Documentation/Asterisk_REST_Interface/Asterisk_REST_API/#listModules) - retrieve all modules in the system
+			* [`getModule`](/latest_api/API_Documentation/Asterisk_REST_Interface/Asterisk_REST_API/#getModule) - retrieve a specific module
+			* [`loadModule`](/latest_api/API_Documentation/Asterisk_REST_Interface/Asterisk_REST_API/#loadModule) - load a specific module
+			* [`unloadModule`](/latest_api/API_Documentation/Asterisk_REST_Interface/Asterisk_REST_API/#unloadModule) - unload a specific module
 		- Log channel manipulation can now be done via `/asterisk/logging`:
-			* [`listLogChannels`](/Asterisk+13+Asterisk+REST+API#Asterisk13AsteriskRESTAPI-listLogChannels) - retrieve the current log channels
-			* [`addLog`](/Asterisk+13+Asterisk+REST+API#Asterisk13AsteriskRESTAPI-addLog) - add a new log channel
-			* [`deleteLog`](/Asterisk+13+Asterisk+REST+API#Asterisk13AsteriskRESTAPI-deleteLog) - remove a log channel
-			* [`rotateLog`](/Asterisk+13+Asterisk+REST+API#Asterisk13AsteriskRESTAPI-rotateLog) - rotate the log channels
+			* [`listLogChannels`](/latest_api/API_Documentation/Asterisk_REST_Interface/Asterisk_REST_API/#listLogChannels) - retrieve the current log channels
+			* [`addLog`](/latest_api/API_Documentation/Asterisk_REST_Interface/Asterisk_REST_API/#addLog) - add a new log channel
+			* [`deleteLog`](/latest_api/API_Documentation/Asterisk_REST_Interface/Asterisk_REST_API/#deleteLog) - remove a log channel
+			* [`rotateLog`](/latest_api/API_Documentation/Asterisk_REST_Interface/Asterisk_REST_API/#rotateLog) - rotate the log channels
 		- [Push configuration](/Configuration/Interfaces/Asterisk-REST-Interface-ARI/The-Asterisk-Resource/ARI-Push-Configuration) for [Sorcery](/Fundamentals/Asterisk-Configuration/Sorcery) backed modules. This was designed specifically for use with the PJSIP stack. Using ARI, PJSIP objects can be pushed into Asterisk and backed by one of the pluggable sorcery backends. See [ARI Push Configuration](/Configuration/Interfaces/Asterisk-REST-Interface-ARI/The-Asterisk-Resource/ARI-Push-Configuration) for an example of using this.
 	+ `events` resource additions:
-		- When establishing a WebSocket connection, you can now subscribe to all events happening in Asterisk using the [`subscribeAll`](/Asterisk+13+Events+REST+API#Asterisk13EventsRESTAPI-eventWebsocket) query option.
+		- When establishing a WebSocket connection, you can now subscribe to all events happening in Asterisk using the [`subscribeAll`](/latest_api/API_Documentation/Asterisk_REST_Interface/Events_REST_API/#eventWebsocket) query option.
 	+ `applications` resource additions:
-		- When [subscribing](/Asterisk+13+Applications+REST+API#Asterisk13ApplicationsRESTAPI-subscribe) to an event resource, not providing any specific resource name will now subscribe you to all events for that resource type. Note that the specific resource names are now optional for all resource types.
+		- When [subscribing](/latest_api/API_Documentation/Asterisk_REST_Interface/Applications_REST_API/#subscribe) to an event resource, not providing any specific resource name will now subscribe you to all events for that resource type. Note that the specific resource names are now optional for all resource types.
 Presentations
 -------------
 
