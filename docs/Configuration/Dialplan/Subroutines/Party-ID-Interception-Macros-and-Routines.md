@@ -13,7 +13,7 @@ Interception routines
 
 
 !!! note 
-    As Interception routines are implemented internally using the [Gosub](/Asterisk-11-Application_Gosub) application, all routines should end with an explicit call to the [Return](/Asterisk-11-Application_Return) application.
+    As Interception routines are implemented internally using the [Gosub](/latest_api/API_Documentation/Dialplan_Applications/Gosub) application, all routines should end with an explicit call to the [Return](/latest_api/API_Documentation/Dialplan_Applications/Return) application.
 
       
 [//]: # (end-note)
@@ -51,7 +51,7 @@ Interception macros
 
 
 !!! warning WARNING
-    Interception macros have been deprecated in Asterisk 11 due to deprecation of [Macro](/Asterisk-11-Application_Macro). Users of the interception functionality should plan to migrate to [Interception routines](#interception_routines).
+    Interception macros have been deprecated in Asterisk 11 due to deprecation of [Macro](/latest_api/API_Documentation/Dialplan_Applications/Macro). Users of the interception functionality should plan to migrate to [Interception routines](#interception_routines).
 
       
 [//]: # (end-warning)

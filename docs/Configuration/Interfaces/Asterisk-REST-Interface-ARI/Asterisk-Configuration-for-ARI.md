@@ -75,7 +75,7 @@ bindport = 8088
 ARI Configuration
 -----------------
 
-ARI users and properties are configured via `ari.conf`. Note that all options may not be listed here; this listing includes the most useful ones for configuring users in ARI. For a full description, see the [ARI configuration](/Asterisk-12-Configuration_res_ari) documentation.
+ARI users and properties are configured via `ari.conf`. Note that all options may not be listed here; this listing includes the most useful ones for configuring users in ARI. For a full description, see the [ARI configuration](/latest_api/API_Documentation/Module_Configuration/res_ari) documentation.
 
 
 
@@ -131,7 +131,7 @@ Configuring the Dialplan for ARI
 
 By default, ARI cannot just manipulate any arbitrary channel in Asterisk. That channel may be in a long running dialplan application; it may be controlled by an AGI; it may be hung up! Many operations that ARI exposes would be fundamentally unsafe if Asterisk did not hand control of the channel over to ARI in a safe fashion.
 
-To hand a channel over to ARI, Asterisk uses a dialplan application called [Stasis](/Asterisk-12-Application_Stasis). Stasis acts as any other dialplan application in Asterisk, except that it does not do anything to the channel other than safely pass control over to an ARI application. The Stasis dialplan application takes in two parameters:
+To hand a channel over to ARI, Asterisk uses a dialplan application called [Stasis](/latest_api/API_Documentation/Dialplan_Applications/Stasis). Stasis acts as any other dialplan application in Asterisk, except that it does not do anything to the channel other than safely pass control over to an ARI application. The Stasis dialplan application takes in two parameters:
 
 1. The name of the ARI application to hand the channel over to. Multiple ARI applications can exist with a single instance of Asterisk, and each ARI application will only be able to manipulate the channels that it controls.
 2. Optionally, arguments to pass to the ARI application when the channel is handed over.
@@ -163,7 +163,7 @@ exten => conference,1,NoOp()
 
 
 
-When a channel enters into a Stasis application, Asterisk will check to see if a WebSocket connection has been established for that application. If so, the channel is handed over to ARI for control, a subscription for the channel is made for the WebSocket, and a [StasisStart](/Asterisk+12+REST+Data+Models#Asterisk12RESTDataModels-StasisStart) event is sent to the WebSocket notifying it that a channel has entered into its application.
+When a channel enters into a Stasis application, Asterisk will check to see if a WebSocket connection has been established for that application. If so, the channel is handed over to ARI for control, a subscription for the channel is made for the WebSocket, and a [StasisStart](/latest_api/API_Documentation/Asterisk_REST_Interface/_Asterisk_REST_Data_Models/#StasisStart) event is sent to the WebSocket notifying it that a channel has entered into its application.
 
 
 

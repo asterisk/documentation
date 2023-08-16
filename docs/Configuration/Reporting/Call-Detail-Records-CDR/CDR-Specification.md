@@ -186,7 +186,7 @@ Note that dialed channels automatically receive the `linkedid` of the calling ch
 | peeraccount | String (80) | The account code of the Party B channel | r/w |
 | sequence | Integer | A numeric value that, combined with uniqueid and linkedid, can be used to uniquely identify a single CDR record | r |
 
-Any of the values may be accessed using the [CDR function](/Asterisk-11-Function_CDR). Any value that is read/write may be modified using this same function. CDR field values cannot be modified once the CDR is finalized.
+Any of the values may be accessed using the [CDR function](/latest_api/API_Documentation/Dialplan_Functions/CDR). Any value that is read/write may be modified using this same function. CDR field values cannot be modified once the CDR is finalized.
 
 #### Dispositions
 
@@ -215,7 +215,7 @@ Any CDR record may have user defined fields associated with it. Fields can be ad
 
 If a Party A channel and a Party B channel both contain a field with the same key, only the Party A channel's field will be written to the CDR.
 
-User defined CDR fields are created using the [CDR function](/Asterisk-11-Function_CDR), and read using the same function.
+User defined CDR fields are created using the [CDR function](/latest_api/API_Documentation/Dialplan_Functions/CDR), and read using the same function.
 
 ## Scenarios
 
@@ -404,7 +404,7 @@ Each situation and how it appears in CDRs is explored further below.
 
 ##### Local channel to an application
 
-An external application [Originates](/Asterisk-11-ManagerAction_Originate) a Local channel. The first half of the Local channel Dials Alice over a SIP channel. The second half of the Local channel is placed into her VoiceMail account. Alice listens to her VoiceMail through the Local channel, then hangs up.
+An external application [Originates](/latest_api/API_Documentation/AMI_Actions/Originate) a Local channel. The first half of the Local channel Dials Alice over a SIP channel. The second half of the Local channel is placed into her VoiceMail account. Alice listens to her VoiceMail through the Local channel, then hangs up.
 
 | clid | src | dst | dcontext | channel | dstchannel | lastapp | lastdata | start | answer | end | duration | billsec | disposition | amaflags | accountcode | peeraccount | uniqueid | userfield | sequence | linkedid |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -413,7 +413,7 @@ An external application [Originates](/Asterisk-11-ManagerAction_Originate) a Loc
 
 ##### Local channel between bridges
 
-An external application [Originates](/Asterisk-11-ManagerAction_Originate) a Local channel. The first half of the Local channel Dials Alice over a SIP channel; Alice answers. This triggers the second half of the Local channel, which Dials Bob. Bob Answers, and Alice and Bob talk. Alice hangs up, the Local channels are hung up, and Bob is hung up on.
+An external application [Originates](/latest_api/API_Documentation/AMI_Actions/Originate) a Local channel. The first half of the Local channel Dials Alice over a SIP channel; Alice answers. This triggers the second half of the Local channel, which Dials Bob. Bob Answers, and Alice and Bob talk. Alice hangs up, the Local channels are hung up, and Bob is hung up on.
 
 | clid | src | dst | dcontext | channel | dstchannel | lastapp | lastdata | start | answer | end | duration | billsec | disposition | amaflags | accountcode | peeraccount | uniqueid | userfield | sequence | linkedid |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -450,7 +450,7 @@ Alice calls into Asterisk and Bob answers. Alice says she wants to talk to Charl
 
 #### Call Queue - Example 1
 
-Alice calls into Asterisk and enters [Queue](/Asterisk-11-Application_Queue) without being Answered. She waits in the queue for a period of time. At some point in time, she enters into the head of the queue and the queue performs a ring-all on the members of the queue. There are two queue members - Bob and Charlie. Bob is out to lunch, so his queue member is paused and it returns a Busy indication. Charlie, on the other hand, is not busy and answers. Alice and Charlie talk for awhile, and eventually Alice hangs up.
+Alice calls into Asterisk and enters [Queue](/latest_api/API_Documentation/Dialplan_Applications/Queue) without being Answered. She waits in the queue for a period of time. At some point in time, she enters into the head of the queue and the queue performs a ring-all on the members of the queue. There are two queue members - Bob and Charlie. Bob is out to lunch, so his queue member is paused and it returns a Busy indication. Charlie, on the other hand, is not busy and answers. Alice and Charlie talk for awhile, and eventually Alice hangs up.
 
 | clid | src | dst | dcontext | channel | dstchannel | lastapp | lastdata | start | answer | end | duration | billsec | disposition | amaflags | accountcode | peeraccount | uniqueid | userfield | sequence | linkedid |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |

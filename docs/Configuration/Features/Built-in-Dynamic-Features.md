@@ -3,7 +3,7 @@ title: Built-in Dynamic Features
 pageid: 21463260
 ---
 
-The [FEATURE](/Asterisk-11-Function_FEATURE) and [FEATUREMAP](/Asterisk-11-Function_FEATUREMAP) dialplan functions allow you to set some features.conf options on a per channel basis.
+The [FEATURE](/latest_api/API_Documentation/Dialplan_Functions/FEATURE) and [FEATUREMAP](/latest_api/API_Documentation/Dialplan_Functions/FEATUREMAP) dialplan functions allow you to set some features.conf options on a per channel basis.
 
 
 

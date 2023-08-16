@@ -20,12 +20,12 @@ pageid: 20189344
     * The '**B**' option in an application executes a dialplan subroutine on the caller channel before any callee channels are created.
     * The '**b**' option in an application executes a dialplan subroutine on each callee channel after it is created but before the call is placed to the end-device.
 
-    Pre-dial handlers are supported in the [Dial](/Asterisk-11-Application_Dial) application and the [FollowMe](/Asterisk-11-Application_FollowMe) application.
+    Pre-dial handlers are supported in the [Dial](/latest_api/API_Documentation/Dialplan_Applications/Dial) application and the [FollowMe](/latest_api/API_Documentation/Dialplan_Applications/FollowMe) application.
 [//]: # (end-info)
 
 
 **WARNING!: WARNINGS**  
-* As pre-dial handlers are implemented using [Gosub](/Asterisk-11-Application_Gosub) subroutines, they must be terminated with a call to [Return](/Asterisk-11-Application_Return).
+* As pre-dial handlers are implemented using [Gosub](/latest_api/API_Documentation/Dialplan_Applications/Gosub) subroutines, they must be terminated with a call to [Return](/latest_api/API_Documentation/Dialplan_Applications/Return).
 * Taking actions in pre-dial handlers that would put the caller/callee channels into other applications will result in undefined behaviour. Pre-dial handlers should be short routines that do not impact the state that the dialing application assumes the channel will be in.
   
 
@@ -37,7 +37,7 @@ pageid: 20189344
 Syntax
 ------
 
-For [Dial](/Asterisk-11-Application_Dial) or [FollowMe](/Asterisk-11-Application_FollowMe), handlers are invoked using similar nomenclature as other options (such as **M** or **U** in Dial) that cause some portion of the dialplan to execute.
+For [Dial](/latest_api/API_Documentation/Dialplan_Applications/Dial) or [FollowMe](/latest_api/API_Documentation/Dialplan_Applications/FollowMe), handlers are invoked using similar nomenclature as other options (such as **M** or **U** in Dial) that cause some portion of the dialplan to execute.
 
 ```
 b([[context^]exten^]priority[(arg1[^...][^argN])])

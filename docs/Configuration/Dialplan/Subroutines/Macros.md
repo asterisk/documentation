@@ -19,7 +19,7 @@ Overview
 
 Macro is a dialplan application that facilitates code-reuse within the dialplan. That is, a macro, once defined can be called from almost anywhere else within the dialplan using the Macro application or else via flags and arguments for other applications that allow calling macros.
 
-Other dialplan applications, such as [Dial](/Asterisk-13-Application_Dial) and [Queue](/Asterisk-13-Application_Dial) make use of Macro functionality from within their applications. That means, they allow you to perform actions like calling Macro (or Gosub) on the called party's channel from a Dial, or on a Queue member's channel after they answer. See the [Pre-Dial Handlers](/Configuration/Dialplan/Subroutines/Pre-Dial-Handlers) and [Pre-Bridge Handlers](/Configuration/Dialplan/Subroutines/Pre-Bridge-Handlers) sections for more information.
+Other dialplan applications, such as [Dial](/latest_api/API_Documentation/Dialplan_Applications/Dial) and [Queue](/latest_api/API_Documentation/Dialplan_Applications/Dial) make use of Macro functionality from within their applications. That means, they allow you to perform actions like calling Macro (or Gosub) on the called party's channel from a Dial, or on a Queue member's channel after they answer. See the [Pre-Dial Handlers](/Configuration/Dialplan/Subroutines/Pre-Dial-Handlers) and [Pre-Bridge Handlers](/Configuration/Dialplan/Subroutines/Pre-Bridge-Handlers) sections for more information.
 
 Variables and arguments available within a Macro
 ================================================

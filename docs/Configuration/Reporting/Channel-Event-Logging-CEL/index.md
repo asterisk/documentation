@@ -22,7 +22,7 @@ The child pages in this section discuss the configuration of Channel Event Loggi
 Events
 ======
 
-While CEL, CDR and AMI are all basically event tracking mechanisms, the events tracked by CEL are focused on a use case for generating billing data. The specific events and fields are covered in the **[Asterisk 12 CEL Specification](/Asterisk-12-CEL-Specification).**
+While CEL, CDR and AMI are all basically event tracking mechanisms, the events tracked by CEL are focused on a use case for generating billing data. The specific events and fields are covered in the **[Asterisk CEL Specification](CEL-Specification).**
 
 Historical Information and Changes
 ==================================
