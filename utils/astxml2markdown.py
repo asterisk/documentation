@@ -19,6 +19,11 @@ import lxml.etree as etree
 import string
 import copy
 from optparse import OptionParser
+import re
+import pprint
+from copy import deepcopy
+
+pp = pprint.PrettyPrinter(indent=2)
 
 usage = "Usage: ./astxml2markdown.py " \
     "--branch=\"master\" " \
@@ -27,6 +32,16 @@ usage = "Usage: ./astxml2markdown.py " \
     "--version=master " \
     "--revision=551bb8a8cf807fbdb3d2c3c017ee362bdb9934a9 "
 
+
+class FormatExample(etree.XSLTExtension):
+    def __init__(self):
+        self.replre = re.compile(r'^\s+')
+
+    def execute(self, context, self_node, input_node, output_parent):
+        newtext = re.sub(self.replre, '', input_node.text)
+        newnode = deepcopy(input_node)
+        newnode.text = newtext
+        output_parent.append( newnode )
 
 def escape(string):
     return re.sub(r'([\{\}\[\]^_])', r'\\\1', string)
@@ -38,7 +53,7 @@ class AstXML2Markdown:
             'directory': ('*','*'),
             'emphasis': ('*','*'),
             'variable': ('**','**'),
-            'literal': ('**','**'),
+            'literal': ('\'','\''),
             'replaceable': ('_','_'),
             'astcli': ('`','`')}
 
@@ -188,7 +203,9 @@ class AstXML2Markdown:
     def generate(self):
         ''' generate the markdown files according to formatting '''
 
-        xslt = etree.XSLT(etree.parse(self.args['xslt']))
+        format_ext = FormatExample()
+        extensions = { ('ast', 'strip') : format_ext }
+        xslt = etree.XSLT(etree.parse(self.args['xslt']), extensions = extensions)
 
         markdown_path = self.args['directory']
 

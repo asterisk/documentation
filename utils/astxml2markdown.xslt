@@ -1,10 +1,15 @@
 <?xml version="1.0"?>
 <xsl:stylesheet version="1.0"
-xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+xmlns:ast="ast" extension-element-prefixes="ast"
+>
 <xsl:output method="text" omit-xml-declaration="yes" indent="no"/>
 
 <xsl:variable name="smallcase" select="'abcdefghijklmnopqrstuvwxyz'" />
 <xsl:variable name="uppercase" select="'ABCDEFGHIJKLMNOPQRSTUVWXYZ'" />
+
+<xsl:variable name="bulletchar" select="'*'" />
+<xsl:variable name="bulletindent" select="'                        '" />
 
 <xsl:template match="text()"/>
 
@@ -175,6 +180,7 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
 <xsl:template match="configFile">
     <xsl:text>## </xsl:text>
+    <xsl:text>Configuration File: </xsl:text>
     <xsl:value-of select="@name"/>
     <xsl:text>&#10;&#10;</xsl:text>
     <xsl:apply-templates select="configObject"/>
@@ -182,29 +188,37 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
 <xsl:template match="configObject">
     <xsl:text>### </xsl:text>
+    <xsl:text>[</xsl:text>
     <xsl:value-of select="@name"/>
-    <xsl:text>&#10;&#10;</xsl:text>
+    <xsl:text>]: </xsl:text>
     <xsl:apply-templates select="synopsis"/>
     <xsl:text>&#10;&#10;</xsl:text>
+    <xsl:apply-templates select="description"/>
     <xsl:if test="count(configOption) &gt; 0">
         <xsl:text>#### Configuration Option Reference</xsl:text>
         <xsl:text>&#10;&#10;</xsl:text>
         <xsl:text>| Option Name | Type | Default Value | Regular Expression | Description |&#10;</xsl:text>
         <xsl:text>|:---|:---|:---|:---|:---| &#10;</xsl:text>
     </xsl:if>
-    <xsl:apply-templates select="configOption">
-        <xsl:with-param name="object_name" select="@name"/>
-        <xsl:with-param name="summary" select="'true'"/>
-    </xsl:apply-templates>
+    <xsl:for-each select="configOption">
+        <xsl:sort select="@name"/>
+        <xsl:apply-templates select=".">
+            <xsl:with-param name="object_name" select="@name"/>
+            <xsl:with-param name="summary" select="'true'"/>
+        </xsl:apply-templates>
+    </xsl:for-each>
     <xsl:text>&#10;&#10;</xsl:text>
     <xsl:choose>
         <xsl:when test="configOption/description">
             <xsl:text>#### Configuration Option Descriptions</xsl:text>
             <xsl:text>&#10;&#10;</xsl:text>
-            <xsl:apply-templates select="configOption">
-                <xsl:with-param name="object_name" select="@name"/>
-                <xsl:with-param name="summary" select="'false'"/>
-            </xsl:apply-templates>
+            <xsl:for-each select="configOption">
+                <xsl:sort select="@name"/>
+                <xsl:apply-templates select=".">
+                    <xsl:with-param name="object_name" select="@name"/>
+                    <xsl:with-param name="summary" select="'false'"/>
+                </xsl:apply-templates>
+            </xsl:for-each>
         </xsl:when>
     </xsl:choose>
             
@@ -213,8 +227,8 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 <xsl:template match="configOption/@*">
     <xsl:param name="description"/>
     <xsl:param name="object_name"/>
-    <xsl:if test="string-length(.) &gt; 0">
     <xsl:text>| </xsl:text>
+    <xsl:if test="string-length(.) &gt; 0">
         <xsl:if test="$description">
             <xsl:text>[</xsl:text>
         </xsl:if>
@@ -225,7 +239,6 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
             <xsl:text>)</xsl:text>
         </xsl:if>
     </xsl:if>
-    <xsl:text> | </xsl:text>
 </xsl:template>
 
 <xsl:template match="configOption">
@@ -236,18 +249,22 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
             <xsl:with-param name="description" select="description"/>
             <xsl:with-param name="object_name" select="$object_name"/>
         </xsl:apply-templates>
-        <xsl:apply-templates select="@type"/>
         <xsl:if test="not(@type)">
             <xsl:text>| </xsl:text>
         </xsl:if>
-        <xsl:apply-templates select="@default"/>
+        <xsl:apply-templates select="@type"/>
+
         <xsl:if test="not(@default)">
             <xsl:text>| </xsl:text>
         </xsl:if>
-        <xsl:apply-templates select="@regex"/>
+        <xsl:apply-templates select="@default"/>
+
         <xsl:if test="not(@regex)">
             <xsl:text>| </xsl:text>
         </xsl:if>
+        <xsl:apply-templates select="@regex"/>
+
+        <xsl:text>| </xsl:text>
         <xsl:apply-templates select="synopsis"/>
         <xsl:text>|&#10;</xsl:text>
     </xsl:if>
@@ -299,6 +316,8 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 </xsl:template>
 
 <xsl:template match="description">
+    <xsl:param name="bulletlevel">0</xsl:param>
+
     <!--
     Note: we do a for-each to preserve the order of the nodes.
     If we simply did an apply-template, paragraphs would get mixed up with
@@ -306,7 +325,7 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
      -->
     <for-each select="./*">
         <xsl:apply-templates select="./*">
-            <xsl:with-param name="bullet" select="''"/>
+	        <xsl:with-param name="bulletlevel" select="$bulletlevel"/>
             <xsl:with-param name="returntype" select="single"/>
         </xsl:apply-templates>
         <!--
@@ -613,7 +632,7 @@ the XML again with the full descriptions, and forms bulleted lists.
     <xsl:choose>
         <xsl:when test="parameter">
             <xsl:apply-templates select="parameter">
-                <xsl:with-param name="bullet" select="''"/>
+                <xsl:with-param name="bulletlevel" select="0"/>
             </xsl:apply-templates>
             <xsl:text>&#10;</xsl:text>
         </xsl:when>
@@ -624,7 +643,7 @@ the XML again with the full descriptions, and forms bulleted lists.
     <xsl:if test="ref">
     <xsl:text>### See Also&#10;</xsl:text>
     <xsl:text>&#10;</xsl:text>
-    <xsl:apply-templates match="ref"/>
+    <xsl:apply-templates select="ref"/>
     </xsl:if>
     <xsl:text>&#10;</xsl:text>
 </xsl:template>
@@ -640,22 +659,25 @@ the XML again with the full descriptions, and forms bulleted lists.
 </xsl:template>
 
 <xsl:template match="info">
-    <xsl:param name="bullet"/>
+    <xsl:param name="bulletlevel"/>
     <xsl:param name="returntype"/>
-    <!-- <xsl:value-of select="$bullet"/><xsl:text> </xsl:text> -->
+    <xsl:value-of select="concat(substring($bulletindent, 0, $bulletlevel * 4 + 1), $bulletchar)"/>
+    <xsl:text> *Technology: </xsl:text>
+    <xsl:value-of select="@tech"/>
+    <xsl:text>*&lt;br&gt;</xsl:text>
     <xsl:text>&#10;</xsl:text>
-    <xsl:variable name="bulletlength" select="string-length($bullet)" />
-    <xsl:if test="$bulletlength != 0">
-        <xsl:value-of select="substring($bullet,0,($bulletlength))"/><xsl:text> </xsl:text>
-    </xsl:if>
-    <xsl:text>*Technology: </xsl:text><xsl:value-of select="@tech"/><xsl:text>*</xsl:text>
-    <xsl:text>&#10;</xsl:text>
-    <xsl:if test="para">
-        <xsl:apply-templates match="para">
+    <xsl:apply-templates>
+        <xsl:with-param name="returntype">single</xsl:with-param>
+        <xsl:with-param name="bulletlevel" select="$bulletlevel + 1"/>
+    </xsl:apply-templates>
+    
+    
+    <!-- xsl:if test="para">
+        <xsl:apply-templates select="para">
             <xsl:with-param name="returntype">single</xsl:with-param>
         </xsl:apply-templates>
     </xsl:if>
-    <xsl:apply-templates select="example" />
+    <xsl:apply-templates select="example"/>
     <xsl:apply-templates select="note">
         <xsl:with-param name="returntype">single</xsl:with-param>
     </xsl:apply-templates>
@@ -668,12 +690,12 @@ the XML again with the full descriptions, and forms bulleted lists.
     <xsl:apply-templates select="enumlist">
         <xsl:with-param name="bullet" select="$bullet"/>
     </xsl:apply-templates>
+    -->
 </xsl:template>
 
 <xsl:template match="parameter">
-    <xsl:param name="bullet"/>
-    <xsl:value-of select="concat($bullet, '*')"/>
-    <xsl:text> </xsl:text>
+    <xsl:param name="bulletlevel"/>
+    <xsl:value-of select="concat(substring($bulletindent, 0, $bulletlevel * 4 + 1), $bulletchar, ' ')"/>
     <xsl:value-of select="@name"/>
     <xsl:choose>
         <xsl:when test="para">
@@ -686,24 +708,22 @@ the XML again with the full descriptions, and forms bulleted lists.
     <!-- Note: we do a for-each to preserve the order of the nodes -->
     <for-each select="./*">
         <xsl:apply-templates select="./*">
-            <xsl:with-param name="bullet" select="concat($bullet,'    ')"/>
+            <xsl:with-param name="bulletlevel" select="$bulletlevel + 1"/>
             <xsl:with-param name="returntype">single</xsl:with-param>
         </xsl:apply-templates>
     </for-each>
 </xsl:template>
 
 <xsl:template match="argument">
-    <xsl:param name="bullet"/>
+    <xsl:param name="bulletlevel"/>
     <xsl:param name="separator">,</xsl:param>
-    <xsl:value-of select="concat($bullet, '*')"/>
-    <xsl:text> </xsl:text>
-    <xsl:text>* </xsl:text>
+    <xsl:value-of select="concat(substring($bulletindent, 0, $bulletlevel * 4 + 1), $bulletchar, ' ')"/>
     <xsl:if test="@required='true' or @required='yes'">
-        <xsl:text>*</xsl:text>
+        <xsl:text>**</xsl:text>
     </xsl:if>
     <xsl:value-of select="@name"/>
     <xsl:if test="@required='true' or @required='yes'">
-        <xsl:text>*</xsl:text>
+        <xsl:text>**</xsl:text>
     </xsl:if>
     <xsl:if test="@multiple='true' or @multiple='yes'">
         <xsl:text>\[</xsl:text>
@@ -712,6 +732,7 @@ the XML again with the full descriptions, and forms bulleted lists.
         <xsl:text>...\]</xsl:text>
     </xsl:if>
     <xsl:if test="@hasparams='yes' or @hasparams='true' or @hasparams='optional'">
+        <xsl:text> `(</xsl:text>
         <xsl:if test="@hasparams='yes' or @hasparams='true'">
             <xsl:text>*</xsl:text>
         </xsl:if>
@@ -719,7 +740,7 @@ the XML again with the full descriptions, and forms bulleted lists.
         <xsl:if test="@hasparams='yes' or @hasparams='true'">
             <xsl:text>*</xsl:text>
         </xsl:if>
-        <xsl:text> )}}</xsl:text>
+        <xsl:text> )`</xsl:text>
     </xsl:if>
     <xsl:choose>
         <xsl:when test="para">
@@ -731,7 +752,7 @@ the XML again with the full descriptions, and forms bulleted lists.
     </xsl:choose>
     <for-each select="./*">
         <xsl:apply-templates select="./*">
-            <xsl:with-param name="bullet" select="concat($bullet,'    ')"/>
+            <xsl:with-param name="bulletlevel" select="$bulletlevel + 1"/>
             <xsl:with-param name="separator" select="@argsep"/>
             <xsl:with-param name="returntype">single</xsl:with-param>
         </xsl:apply-templates>
@@ -745,38 +766,45 @@ be displayed.
 -->
 <xsl:template match="para">
     <xsl:param name="returntype"/>
+<!-- 
+    <xsl:for-each select="*">
+    <xsl:choose>
+        <xsl:when test="literal">
+            <xsl:apply-templates select="literal"/>
+        </xsl:when>
+        <xsl:otherwise>
+            <xsl:value-of select="normalize-space(.)"/>
+        </xsl:otherwise>
+    </xsl:choose>
+    </xsl:for-each>
+ -->    
     <xsl:value-of select="normalize-space(.)"/>
     <xsl:choose>
         <xsl:when test="$returntype='none'">
+            <xsl:text>&#10;</xsl:text>
         </xsl:when>
         <xsl:when test="$returntype='single'">
-            <xsl:text>&#10;</xsl:text>
+            <xsl:text>&lt;br&gt;&#10;</xsl:text>
         </xsl:when>
         <xsl:otherwise>
-            <xsl:text>&#10;</xsl:text>
-            <xsl:text>&#10;</xsl:text>
+            <xsl:text>&lt;br&gt;&#10;&#10;</xsl:text>
         </xsl:otherwise>
     </xsl:choose>
 </xsl:template>
 
 <xsl:template match="example">
-    <xsl:choose>
-        <xsl:when test="@title">
-            <xsl:text>### </xsl:text>
-            <xsl:text>Example: </xsl:text>
-            <xsl:value-of select="@title"/>
-        </xsl:when>
-        <xsl:otherwise />
-    </xsl:choose>
-    <xsl:text>&#10;```</xsl:text>
-    <xsl:value-of select="."/>
+    <xsl:text>``` title="Example: </xsl:text>
+    <xsl:value-of select="@title"/>
+    <xsl:text>"&#10;</xsl:text>
+    <ast:strip>
+        <xsl:value-of select="."/>
+    </ast:strip>
     <xsl:text>&#10;```&#10;</xsl:text>
 </xsl:template>
 
 <xsl:template match="note">
     <xsl:param name="returntype"/>
-    <xsl:text>**Note**</xsl:text>
-    <xsl:text>&#10;</xsl:text>
+    <xsl:text>!!! note&#10;    </xsl:text>
     <xsl:apply-templates select="para">
         <xsl:with-param name="returntype" select="$returntype"/>
     </xsl:apply-templates>
@@ -785,8 +813,7 @@ be displayed.
 
 <xsl:template match="warning">
     <xsl:param name="returntype"/>
-    <xsl:text>**Warning**</xsl:text>
-    <xsl:text>&#10;</xsl:text>
+    <xsl:text>!!! warning&#10;    </xsl:text>
     <xsl:apply-templates select="para">
         <xsl:with-param name="returntype" select="$returntype"/>
     </xsl:apply-templates>
@@ -794,15 +821,15 @@ be displayed.
 </xsl:template>
 
 <xsl:template match="variablelist">
-    <xsl:param name="bullet"/>
+    <xsl:param name="bulletlevel"/>
     <xsl:apply-templates select="variable">
-        <xsl:with-param name="bullet" select="$bullet"/>
+        <xsl:with-param name="bulletlevel" select="$bulletlevel"/>
     </xsl:apply-templates>
 </xsl:template>
 
 <xsl:template match="variable">
-    <xsl:param name="bullet"/>
-    <xsl:value-of select="concat($bullet, '*')"/><xsl:text> </xsl:text>
+    <xsl:param name="bulletlevel"/>
+    <xsl:value-of select="concat(substring($bulletindent, 0, $bulletlevel * 4 + 1), $bulletchar, ' ')"/>
     <xsl:value-of select="translate(@name, $smallcase, $uppercase)"/>
     <xsl:choose>
         <xsl:when test="para">
@@ -818,7 +845,7 @@ be displayed.
     <xsl:choose>
         <xsl:when test="value">
             <xsl:for-each select="value">
-                <xsl:value-of select="concat($bullet, '*')"/><xsl:text> </xsl:text>
+                <xsl:value-of select="concat(substring($bulletindent, 0, ($bulletlevel + 1) * 4 + 1), $bulletchar, ' ')"/>
                 <xsl:value-of select="translate(@name, $smallcase, $uppercase)"/>
                 <xsl:choose>
                     <xsl:when test="string-length(@default) &gt; 0">
@@ -836,15 +863,15 @@ be displayed.
 </xsl:template>
 
 <xsl:template match="enumlist">
-    <xsl:param name="bullet"/>
+    <xsl:param name="bulletlevel"/>
     <xsl:apply-templates select="enum">
-        <xsl:with-param name="bullet" select="$bullet"/>
+        <xsl:with-param name="bulletlevel" select="$bulletlevel"/>
     </xsl:apply-templates>
 </xsl:template>
 
 <xsl:template match="enum">
-    <xsl:param name="bullet"/>
-    <xsl:value-of select="concat($bullet, '*')"/><xsl:text> </xsl:text>
+    <xsl:param name="bulletlevel"/>
+    <xsl:value-of select="concat(substring($bulletindent, 0, $bulletlevel * 4 + 1), $bulletchar, ' ')"/>
     <xsl:value-of select="@name"/>
     <xsl:choose>
         <xsl:when test="para">
@@ -857,11 +884,17 @@ be displayed.
             <xsl:text>&#10;</xsl:text>
         </xsl:otherwise>
     </xsl:choose>
-    <xsl:apply-templates select="parameter">
-        <xsl:with-param name="bullet" select="concat($bullet,'    ')"/>
+<!-- 
+    <xsl:apply-templates select="./*">
+        <xsl:with-param name="bulletlevel" select="$bulletlevel + 1"/>
+        <xsl:with-param name="returntype">single</xsl:with-param>
     </xsl:apply-templates>
+ -->    
     <xsl:apply-templates select="enumlist">
-        <xsl:with-param name="bullet" select="concat($bullet,'    ')"/>
+        <xsl:with-param name="bulletlevel" select="$bulletlevel + 1"/>
+    </xsl:apply-templates>
+    <xsl:apply-templates select="parameter">
+        <xsl:with-param name="bulletlevel" select="$bulletlevel + 1"/>
     </xsl:apply-templates>
     <xsl:apply-templates select="note">
         <xsl:with-param name="returntype">single</xsl:with-param>
@@ -872,27 +905,27 @@ be displayed.
 </xsl:template>
 
 <xsl:template match="optionlist">
-    <xsl:param name="bullet"/>
+    <xsl:param name="bulletlevel"/>
     <xsl:apply-templates select="option">
-        <xsl:with-param name="bullet" select="$bullet"/>
+        <xsl:with-param name="bulletlevel" select="$bulletlevel"/>
     </xsl:apply-templates>
 </xsl:template>
 
 <xsl:template match="option">
-    <xsl:param name="bullet"/>
-    <xsl:value-of select="concat($bullet, '*')"/><xsl:text> </xsl:text>
+    <xsl:param name="bulletlevel"/>
+    <xsl:value-of select="concat(substring($bulletindent, 0, $bulletlevel * 4 + 1), $bulletchar, ' ')"/>
     <xsl:value-of select="@name"/>
     <xsl:if test="argument">
-        <xsl:text>{{( </xsl:text>
+        <xsl:text>`( </xsl:text>
     </xsl:if>
     <xsl:for-each select="argument">
-        <xsl:if test="@required='true' or @required='yes'">
+        <!-- xsl:if test="@required='true' or @required='yes'">
             <xsl:text>*</xsl:text>
-        </xsl:if>
+        </xsl:if-->
         <xsl:value-of select="@name"/>
-        <xsl:if test="@required='true' or @required='yes'">
+        <!-- xsl:if test="@required='true' or @required='yes'">
             <xsl:text>*</xsl:text>
-        </xsl:if>
+        </xsl:if-->
         <xsl:if test="position() != last()">
             <xsl:choose>
                 <xsl:when test="../@argsep">
@@ -905,7 +938,7 @@ be displayed.
          </xsl:if>
     </xsl:for-each>
     <xsl:if test="argument">
-        <xsl:text> )}}</xsl:text>
+        <xsl:text> )`</xsl:text>
     </xsl:if>
     <xsl:choose>
         <xsl:when test="para">
@@ -919,15 +952,16 @@ be displayed.
         </xsl:otherwise>
     </xsl:choose>
     <xsl:apply-templates select="variablelist">
-        <xsl:with-param name="bullet" select="concat($bullet,'    ')"/>
+        <xsl:with-param name="bulletlevel" select="$bulletlevel + 1"/>
     </xsl:apply-templates>
     <xsl:apply-templates select="argument">
-        <xsl:with-param name="bullet" select="concat($bullet,'    ')"/>
+        <xsl:with-param name="bulletlevel" select="$bulletlevel + 1"/>
         <xsl:with-param name="separator" select="@argsep"/>
     </xsl:apply-templates>
     <xsl:apply-templates select="enumlist">
-        <xsl:with-param name="bullet" select="concat($bullet,'    ')"/>
+        <xsl:with-param name="bulletlevel" select="$bulletlevel + 1"/>
     </xsl:apply-templates>
+    <xsl:text>&#10;</xsl:text>
 </xsl:template>
 
 </xsl:stylesheet> 

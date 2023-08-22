@@ -51,7 +51,10 @@ ifneq ($(BRANCH),)
 	@mkdir -p $(BRANCH_DIR)
 endif
 
-static-setup:: $(BUILD_DIR)
+$(BUILD_DIR)/mkdocs.yml: mkdocs.yml
+	@cp mkdocs.yml $(BUILD_DIR)/mkdocs.yml
+
+static-setup:: $(BUILD_DIR) $(BUILD_DIR)/mkdocs.yml
 	@echo "Setting Up Static Documentation"
 	@rm -rf $(BUILD_DIR)/docs/
 ifeq ($(NO_STATIC),)

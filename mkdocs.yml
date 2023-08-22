@@ -110,6 +110,8 @@ markdown_extensions:
   - pymdownx.details
   - pymdownx.betterem
   - pymdownx.smartsymbols
+  - pymdownx.tabbed:
+      alternate_style: true
   - toc:
       permalink: true
 
