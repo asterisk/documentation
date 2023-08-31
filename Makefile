@@ -45,10 +45,15 @@ $(BUILD_DIR):
 	@mkdir -p $(BUILD_DIR)
 
 ifneq ($(BRANCH),)
-  BRANCH_DIR := $(BUILD_DIR)/build-${BRANCH}
+  BRANCH_DIR := $(BUILD_DIR)/build-$(subst /,-,$(BRANCH))
   $(BRANCH_DIR): $(BUILD_DIR)
 	@echo "Creating $(BRANCH_DIR)"
 	@mkdir -p $(BRANCH_DIR)
+  ifeq ($(findstring certified,$(BRANCH)),certified)
+    BRANCH_DOC_DIR := Certified-Asterisk_$(subst certified/,,$(BRANCH))_Documentation
+  else
+    BRANCH_DOC_DIR := Asterisk_$(BRANCH)_Documentation
+  endif
 endif
 
 $(BUILD_DIR)/mkdocs.yml: mkdocs.yml
@@ -121,13 +126,13 @@ endif
 dynamic-core-setup: branch-check $(BUILD_DIR)/docs $(BRANCH_DIR) $(XML_PREREQ)
 	@echo "Setting Up Core Dynamic Documentation for branch '$(BRANCH)'"
 	@echo "  Generating markdown from Asterisk XML"
-	@mkdir -p $(BUILD_DIR)/docs/Asterisk_$(BRANCH)_Documentation
+	@mkdir -p $(BUILD_DIR)/docs/$(BRANCH_DOC_DIR)
 	@utils/astxml2markdown.py --file=$(ASTERISK_XML_FILE) \
 		--xslt=utils/astxml2markdown.xslt \
 		--directory=$(BRANCH_DIR)/docs/ --branch=$(BRANCH) --version=GIT
-	@[ -L $(BUILD_DIR)/docs/Asterisk_$(BRANCH)_Documentation/API_Documentation ] && \
-		rm $(BUILD_DIR)/docs/Asterisk_$(BRANCH)_Documentation/API_Documentation || :
-	@ln -sfr $(BRANCH_DIR)/docs $(BUILD_DIR)/docs/Asterisk_$(BRANCH)_Documentation/API_Documentation 
+	@[ -L $(BUILD_DIR)/docs/$(BRANCH_DOC_DIR)/API_Documentation ] && \
+		rm $(BUILD_DIR)/docs/$(BRANCH_DOC_DIR)/API_Documentation || :
+	@ln -sfr $(BRANCH_DIR)/docs $(BUILD_DIR)/docs/$(BRANCH_DOC_DIR)/API_Documentation 
 
 ifneq ($(ASTERISK_ARI_DIR),)
   ARI_PREREQ := $(ASTERISK_ARI_DIR)/_Asterisk_REST_Data_Models.md
@@ -151,7 +156,7 @@ download-from-job: $(BRANCH_DIR) branch-check
 	@[ -d $(BRANCH_DIR)/source ] && rm -rf $(BRANCH_DIR)/source || :
 	@mkdir -p $(BRANCH_DIR)/source
 	@$(GH) run download --repo asterisk/asterisk $(LAST_JOB) \
-		-n documentation-$(BRANCH) -D $(BRANCH_DIR)/source
+		-n documentation-$(subst /,-,$(BRANCH)) -D $(BRANCH_DIR)/source
 
 ifeq ($(BRANCH),)
   build: $(BUILD_DIR)/docs dynamic-setup
