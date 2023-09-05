@@ -146,7 +146,8 @@ dynamic-ari-setup: branch-check $(BUILD_DIR)/docs $(BRANCH_DIR) $(ARI_PREREQ)
 	@echo "  Copying ARI markdown"
 	@mkdir -p $(BRANCH_DIR)/docs/Asterisk_REST_Interface
 	@rsync -aH $(ASTERISK_ARI_DIR)/*.md $(BRANCH_DIR)/docs/Asterisk_REST_Interface/
-
+	@cp overrides/ari.pages $(BRANCH_DIR)/docs/Asterisk_REST_Interface/.pages
+	
 download-from-job: $(BRANCH_DIR) branch-check 
 	@if [ -z "$(LAST_JOB)" ] ; then \
 		echo "No current docs job" ;\
