@@ -24,7 +24,7 @@ Open **extensions.conf**, and take a quick look at the file. Near the top of the
 
 We cover the concept of contexts more in [Dialplan](/Configuration/Dialplan), but for now you should know that each phone or outside connection in Asterisk points at a single context. If the dialed extension does not exist in the specified context, Asterisk will reject the call. That means it is important to understand that the **context** option in your sip.conf or pjsip.conf configuration is what tells Asterisk to direct the call from the endpoint to the context we build in the next step.
 
-Go to the bottom of your **extensions.conf** file, and add a new context named **[from-internal]** since from-internal is what we configured for the context option in the [Creating SIP Accounts](/Creating-SIP-Accounts) page.
+Go to the bottom of your **extensions.conf** file, and add a new context named **[from-internal]**.
 
 ##### Naming Your Dialplan Contexts
 

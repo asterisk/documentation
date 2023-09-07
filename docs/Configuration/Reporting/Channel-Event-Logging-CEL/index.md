@@ -3,8 +3,7 @@ title: Overview
 pageid: 5242932
 ---
 
-Overview
-========
+## Overview
 
 Asterisk's Channel Event Logging provides a mechanism for tracking many channel related events. CEL is granular and fine-grained, having been designed with billing information in mind. It supports many storage back-ends and is a great alternative to Call Detail Records for administrators that need extremely detailed event logs. The extensive detail will allow building of accurate billing or call-flow data.
 
@@ -19,17 +18,7 @@ Features:
 
 The child pages in this section discuss the configuration of Channel Event Logging.
 
-Events
-======
+## Events
 
 While CEL, CDR and AMI are all basically event tracking mechanisms, the events tracked by CEL are focused on a use case for generating billing data. The specific events and fields are covered in the **[Asterisk CEL Specification](CEL-Specification).**
-
-Historical Information and Changes
-==================================
-
-CEL underwent significant rework and improvement in Asterisk 12. Please see the specific changes as mentioned under the CEL section of the [New in 12](/New-in-12) wiki page.
-
-
-
-
 

@@ -732,7 +732,7 @@ Ending voice mail call from PJSIP/200-00000009
 
 ```
 
-silverseagreenReader Exercise 5solidblackIn the previous section we introduced the ability to delete a stored recording. Stored recordings have a second operation available to them: [copying](/latest_api/API_Documentation/Asterisk_REST_Interface/Recordings_REST_API/#copyStored). The `copy()` method of a stored recording can be used to copy the stored recording from one location to another.
+silverseagreenReader Exercise 5solidblackIn the previous section we introduced the ability to delete a stored recording. Stored recordings have a second operation available to them: [copying](/latest_api/API_Documentation/Asterisk_REST_Interface/Recordings_REST_API/#copystored). The `copy()` method of a stored recording can be used to copy the stored recording from one location to another.
 
 For this exercise modify `ReviewingState` to let a DTMF key of your choice copy the message to a different mailbox on the system. When a user presses this DTMF key, the state machine should transition into a new state called "copying." The "copying" state should gather DTMF from the user to determine which mailbox the message should be copied to. If '#' is entered, then the message is sent to the mailbox the user has typed in. If '\*' is entered, then the copying operation is cancelled. Both a '#' and a '\*' should cause the state machine to transition back into `ReviewingState`.
 

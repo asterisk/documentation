@@ -169,10 +169,10 @@ At a minimum, all dialplan applications, dialplan functions, manager commands, a
 
 ##### Legacy applications
 
-* [SIPDtmfMode](/latest_api/Dialplan_Applications/SIPDtmfMode)
-* [SIPAddHeader](/latest_api/Dialplan_Applications/SIPAddHeader)
-* [SIPRemoveHeader](/latest_api/Dialplan_Applications/SIPRemoveHeader)
-* [SIPSendCustomINFO](/latest_api/Dialplan_Applications/SIPSendCustomINFO)
+* [SIPDtmfMode](/latest_api/API_Documentation/Dialplan_Applications/SIPDtmfMode)
+* [SIPAddHeader](/latest_api/API_Documentation/Dialplan_Applications/SIPAddHeader)
+* [SIPRemoveHeader](/latest_api/API_Documentation/Dialplan_Applications/SIPRemoveHeader)
+* [SIPSendCustomINFO](/latest_api/API_Documentation/Dialplan_Applications/SIPSendCustomINFO)
 
 ##### New applications
 
@@ -182,10 +182,10 @@ TBD
 
 ##### Legacy functions
 
-* [CHANNEL](/latest_api/Dialplan_Functions/CHANNEL) (The SIP-specific bits)
-* [SIP_HEADER](/latest_api/Dialplan_Functions/SIP_HEADER)
-* [SIPPEER](/latest_api/Dialplan_Functions/SIPPEER)
-* [CHECKSIPDOMAIN](/latest_api/Dialplan_Functions/CHECKSIPDOMAIN)
+* [CHANNEL](/latest_api/API_Documentation/Dialplan_Functions/CHANNEL) (The SIP-specific bits)
+* [SIP_HEADER](/latest_api/API_Documentation/Dialplan_Functions/SIP_HEADER)
+* [SIPPEER](/latest_api/API_Documentation/Dialplan_Functions/SIPPEER)
+* [CHECKSIPDOMAIN](/latest_api/API_Documentation/Dialplan_Functions/CHECKSIPDOMAIN)
 
 ##### New functions
 
@@ -227,12 +227,12 @@ TBD
 
 ##### Legacy Manager commands
 
-* [SIPPeers](/latest_api/AMI_Actions/SIPpeers)
-* [SIPshowpeer](/latest_api/AMI_Actions/SIPshowpeer)
-* [SIPqualifypeer](/latest_api/AMI_Actions/SIPqualifypeer)
-* [SIPshowregistry](/latest_api/AMI_Actions/SIPshowregistry)
-* [SIPnotify](/latest_api/AMI_Actions/SIPnotify)
-* [SIPpeerstatus](/latest_api/AMI_Actions/SIPpeerstatus)
+* [SIPPeers](/latest_api/API_Documentation/AMI_Actions/SIPpeers)
+* [SIPshowpeer](/latest_api/API_Documentation/AMI_Actions/SIPshowpeer)
+* [SIPqualifypeer](/latest_api/API_Documentation/AMI_Actions/SIPqualifypeer)
+* [SIPshowregistry](/latest_api/API_Documentation/AMI_Actions/SIPshowregistry)
+* [SIPnotify](/latest_api/API_Documentation/AMI_Actions/SIPnotify)
+* [SIPpeerstatus](/latest_api/API_Documentation/AMI_Actions/SIPpeerstatus)
 
 ##### New Manager commands
 

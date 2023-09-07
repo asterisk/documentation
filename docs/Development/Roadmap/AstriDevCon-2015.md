@@ -110,29 +110,29 @@ Recap of 2015
 	+ **Note:** this is an ongoing process
 * Asterisk as a media application server
 	+ New events:
-		- [ChannelConnectedLine](/latest_api/API_Documentation/Asterisk_REST_Interface/_Asterisk_REST_Data_Models/#ChannelConnectedLine)
-		- [`ChannelHold`](/latest_api/API_Documentation/Asterisk_REST_Interface/_Asterisk_REST_Data_Models/#ChannelHold) and [`ChannelUnhold`](/latest_api/API_Documentation/Asterisk_REST_Interface/_Asterisk_REST_Data_Models/#ChannelUnhold)
-		- [`ContactStatusChange`](/latest_api/API_Documentation/Asterisk_REST_Interface/_Asterisk_REST_Data_Models/#ContactStatusChange) and [`PeerStatusChange`](/latest_api/API_Documentation/Asterisk_REST_Interface/_Asterisk_REST_Data_Models/#PeerStatusChange)
+		- [ChannelConnectedLine](/latest_api/API_Documentation/Asterisk_REST_Interface/Asterisk_REST_Data_Models/#channelconnectedline)
+		- [`ChannelHold`](/latest_api/API_Documentation/Asterisk_REST_Interface/Asterisk_REST_Data_Models/#channelhold) and [`ChannelUnhold`](/latest_api/API_Documentation/Asterisk_REST_Interface/Asterisk_REST_Data_Models/#channelunhold)
+		- [`ContactStatusChange`](/latest_api/API_Documentation/Asterisk_REST_Interface/Asterisk_REST_Data_Models/#contactstatuschange) and [`PeerStatusChange`](/latest_api/API_Documentation/Asterisk_REST_Interface/Asterisk_REST_Data_Models/#peerstatuschange)
 	+ [`channels`](/latest_api/API_Documentation/Asterisk_REST_Interface/Channels_REST_API) resource additions:  
 	
 		- The [`originate`](/latest_api/API_Documentation/Asterisk_REST_Interface/Channels_REST_API/#originate) operation now lets you specify an `originator` for `linkedid` propagation
-		- The [`channel`](/latest_api/API_Documentation/Asterisk_REST_Interface/_Asterisk_REST_Data_Models/#Channel) data model now includes the `language` field for the Asterisk channel it represents
-		- The [`originate`](/latest_api/API_Documentation/Asterisk_REST_Interface/Channels_REST_API/#originate) operation and [`continue`](/latest_api/API_Documentation/Asterisk_REST_Interface/Channels_REST_API/#continueInDialplan) operation now let you specify a priority label
+		- The [`channel`](/latest_api/API_Documentation/Asterisk_REST_Interface/Asterisk_REST_Data_Models/#channel) data model now includes the `language` field for the Asterisk channel it represents
+		- The [`originate`](/latest_api/API_Documentation/Asterisk_REST_Interface/Channels_REST_API/#originate) operation and [`continue`](/latest_api/API_Documentation/Asterisk_REST_Interface/Channels_REST_API/#continueindialplan) operation now let you specify a priority label
 		- The [`redirect`](/latest_api/API_Documentation/Asterisk_REST_Interface/Channels_REST_API/#redirect) operation was added, allowing channels to be transferred or forwarded to external systems
 	+ [`asterisk`](/latest_api/API_Documentation/Asterisk_REST_Interface/Asterisk_REST_API) resource additions:
 		- Module manipulation can now be done via `/asterisk/modules`:
-			* [`listModules`](/latest_api/API_Documentation/Asterisk_REST_Interface/Asterisk_REST_API/#listModules) - retrieve all modules in the system
-			* [`getModule`](/latest_api/API_Documentation/Asterisk_REST_Interface/Asterisk_REST_API/#getModule) - retrieve a specific module
-			* [`loadModule`](/latest_api/API_Documentation/Asterisk_REST_Interface/Asterisk_REST_API/#loadModule) - load a specific module
-			* [`unloadModule`](/latest_api/API_Documentation/Asterisk_REST_Interface/Asterisk_REST_API/#unloadModule) - unload a specific module
+			* [`listModules`](/latest_api/API_Documentation/Asterisk_REST_Interface/Asterisk_REST_API/#listmodules) - retrieve all modules in the system
+			* [`getModule`](/latest_api/API_Documentation/Asterisk_REST_Interface/Asterisk_REST_API/#getmodule) - retrieve a specific module
+			* [`loadModule`](/latest_api/API_Documentation/Asterisk_REST_Interface/Asterisk_REST_API/#loadmodule) - load a specific module
+			* [`unloadModule`](/latest_api/API_Documentation/Asterisk_REST_Interface/Asterisk_REST_API/#unloadmodule) - unload a specific module
 		- Log channel manipulation can now be done via `/asterisk/logging`:
-			* [`listLogChannels`](/latest_api/API_Documentation/Asterisk_REST_Interface/Asterisk_REST_API/#listLogChannels) - retrieve the current log channels
-			* [`addLog`](/latest_api/API_Documentation/Asterisk_REST_Interface/Asterisk_REST_API/#addLog) - add a new log channel
-			* [`deleteLog`](/latest_api/API_Documentation/Asterisk_REST_Interface/Asterisk_REST_API/#deleteLog) - remove a log channel
-			* [`rotateLog`](/latest_api/API_Documentation/Asterisk_REST_Interface/Asterisk_REST_API/#rotateLog) - rotate the log channels
+			* [`listLogChannels`](/latest_api/API_Documentation/Asterisk_REST_Interface/Asterisk_REST_API/#listlogchannels) - retrieve the current log channels
+			* [`addLog`](/latest_api/API_Documentation/Asterisk_REST_Interface/Asterisk_REST_API/#addlog) - add a new log channel
+			* [`deletelog`](/latest_api/API_Documentation/Asterisk_REST_Interface/Asterisk_REST_API/#deletelog) - remove a log channel
+			* [`rotateLog`](/latest_api/API_Documentation/Asterisk_REST_Interface/Asterisk_REST_API/#rotatelog) - rotate the log channels
 		- [Push configuration](/Configuration/Interfaces/Asterisk-REST-Interface-ARI/The-Asterisk-Resource/ARI-Push-Configuration) for [Sorcery](/Fundamentals/Asterisk-Configuration/Sorcery) backed modules. This was designed specifically for use with the PJSIP stack. Using ARI, PJSIP objects can be pushed into Asterisk and backed by one of the pluggable sorcery backends. See [ARI Push Configuration](/Configuration/Interfaces/Asterisk-REST-Interface-ARI/The-Asterisk-Resource/ARI-Push-Configuration) for an example of using this.
 	+ `events` resource additions:
-		- When establishing a WebSocket connection, you can now subscribe to all events happening in Asterisk using the [`subscribeAll`](/latest_api/API_Documentation/Asterisk_REST_Interface/Events_REST_API/#eventWebsocket) query option.
+		- When establishing a WebSocket connection, you can now subscribe to all events happening in Asterisk using the [`subscribeAll`](/latest_api/API_Documentation/Asterisk_REST_Interface/Events_REST_API/#eventwebsocket) query option.
 	+ `applications` resource additions:
 		- When [subscribing](/latest_api/API_Documentation/Asterisk_REST_Interface/Applications_REST_API/#subscribe) to an event resource, not providing any specific resource name will now subscribe you to all events for that resource type. Note that the specific resource names are now optional for all resource types.
 Presentations
@@ -162,14 +162,12 @@ Presentations
 	+ When a WebSocket connection is broken, channels 'hang around' in the Stasis dialplan application, and new channels can enter - albeit with a warning. Some way to more gracefully handle this scenario would be good.
 	+ Arbitrary tone detection is desirable. DTMF is great, but getting an event when a particular DSP specific frequency is triggered would be neat.
 * Docker
-
-
-	+ Docker has lots of benefits when used with Asterisk (see [open discussion notes](#docker) below). However, there are some issues.
+	+ Docker has lots of benefits when used with Asterisk (see open discussion notes below). However, there are some issues.
 	+ Docker networking sucks. Asterisk uses a lot of ports; having to open up large ranges is never fun.
 	+ Lots of third party docker files, most suck (but that's okay). Maybe we can improve upon this by adding a docker file to the source tree as a basis?
-* Asterisk logging options could be improved upon (see [open discussion notes](#logging) below).
+* Asterisk logging options could be improved upon (see open discussion notes below).
 
-As a result of Sean's presentation, a large number of discussions occurred on a variety of topics. Since these ranged across a broad spectrum and were added to as the day progressed, those topics are documented in the [open discussion](#open_discussion) section below.
+As a result of Sean's presentation, a large number of discussions occurred on a variety of topics. Since these ranged across a broad spectrum and were added to as the day progressed, those topics are documented in the [open discussion](#open-discussion) section below.
 
 ### Lorenzo Emilitri
 

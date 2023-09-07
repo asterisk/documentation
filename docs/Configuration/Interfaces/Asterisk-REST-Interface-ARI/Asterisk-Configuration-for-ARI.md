@@ -163,7 +163,7 @@ exten => conference,1,NoOp()
 
 
 
-When a channel enters into a Stasis application, Asterisk will check to see if a WebSocket connection has been established for that application. If so, the channel is handed over to ARI for control, a subscription for the channel is made for the WebSocket, and a [StasisStart](/latest_api/API_Documentation/Asterisk_REST_Interface/_Asterisk_REST_Data_Models/#StasisStart) event is sent to the WebSocket notifying it that a channel has entered into its application.
+When a channel enters into a Stasis application, Asterisk will check to see if a WebSocket connection has been established for that application. If so, the channel is handed over to ARI for control, a subscription for the channel is made for the WebSocket, and a [StasisStart](/latest_api/API_Documentation/Asterisk_REST_Interface/Asterisk_REST_Data_Models/#stasisstart) event is sent to the WebSocket notifying it that a channel has entered into its application.
 
 
 

@@ -6,7 +6,7 @@ pageid: 30279111
 Project Overview
 ================
 
-One of the features that was discussed for the [Asterisk 13 Projects](/Asterisk-13-Projects) was the ability to playback media from a URI to a channel or bridge. See <http://lists.digium.com/pipermail/asterisk-app-dev/2014-April/000425.html> for more information.
+One of the features that was discussed for the [Asterisk 13 Projects](/Development/Roadmap/Asterisk-13-Projects) was the ability to playback media from a URI to a channel or bridge. See <http://lists.digium.com/pipermail/asterisk-app-dev/2014-April/000425.html> for more information.
 
 
 
@@ -640,12 +640,6 @@ The various phases are meant to be implemented as separately as possible to ease
 
 Phase One - Core Media Cache
 ----------------------------
-
-See peer reviews:
-
-* <https://gerrit.asterisk.org/#/c/487/>
-* <https://gerrit.asterisk.org/#/c/488/>
-
 
 
 | Task | Description | Status |

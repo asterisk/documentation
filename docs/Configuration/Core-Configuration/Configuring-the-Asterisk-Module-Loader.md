@@ -13,14 +13,14 @@ Asterisk provides capability to automatically and manually load modules. Module 
 Configuration
 =============
 
-The configuration file for Asterisk's module loader is **modules.conf**. It is read from the typical [Asterisk configuration directory](/Fundamentals/Directory-and-File-Structure). You can also view the sample of modules.conf file in your source directory at configs/modules.conf.sample or on [SVN at this link](http://svnview.digium.com/svn/asterisk/trunk/configs/samples/modules.conf.sample?view=markup).
+The configuration file for Asterisk's module loader is **modules.conf**. It is read from the typical [Asterisk configuration directory](/Fundamentals/Directory-and-File-Structure). You can also view the sample of modules.conf file in your source directory at configs/modules.conf.sample or on [GitHub at this link](https://github.com/asterisk/asterisk/blob/master/configs/samples/modules.conf.sample).
 
 The configuration consist of one large section called "modules" with possible directives configured within.
 
 There are several directives that can be used.
 
 * autoload - When enabled, Asterisk will automatically load any modules found in the [Asterisk modules directory](/Fundamentals/Directory-and-File-Structure).
-* preload - Used to specify individual modules to load before the Asterisk core has been initialized. Often used for [realtime](/Realtime-Database-Configuration) modules so that config files can be pushed to a backend before the dependent modules are loaded.
+* preload - Used to specify individual modules to load before the Asterisk core has been initialized. Often used for [realtime](/Fundamentals/Asterisk-Configuration/Database-Support-Configuration/Realtime-Database-Configuration) modules so that config files can be pushed to a backend before the dependent modules are loaded.
 * require - Set a required module. If a required module does not load, then Asterisk exits with status code 2.
 * preload-require - A combination of preload and require.
 * noload - Do not load the specified module.

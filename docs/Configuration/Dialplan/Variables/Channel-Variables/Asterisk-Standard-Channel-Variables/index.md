@@ -3,11 +3,13 @@ title: Overview
 pageid: 4620398
 ---
 
+# Asterisk Standard Channel Variables
+
 There are a number of variables that are defined or read by Asterisk. Here is a listing of them. More information is available in each application's help text. All these variables are in UPPER CASE only.
 
 Variables marked with a \* are builtin functions and can't be set, only read in the dialplan. Writes to such variables are silently ignored.
 
-### Variables present in Asterisk 1.8 and forward:
+## Variables present in Asterisk 1.8 and forward:
 
 * ${CDR(accountcode)} \* - Account code (if specified)
 * ${BLINDTRANSFER} - The name of the channel on the other side of a blind transfer
@@ -50,9 +52,9 @@ Variables marked with a \* are builtin functions and can't be set, only read in 
 * ${SYSTEMNAME} \* - value of the systemname option of asterisk.conf
 * ${ENTITYID} \* - Global Entity ID set automatically, or from asterisk.conf
 
-### Variables present in Asterisk 11 and forward:
+## Variables present in Asterisk 11 and forward:
 
 * ${AGIEXITONHANGUP} - set to `1` to force the behavior of a call to AGI to behave as it did in 1.4, where the AGI script would exit immediately on detecting a channel hangup
-* ${CALENDAR_SUCCESS} \* - Status of the [CALENDAR_WRITE](/latest_api/Dialplan_Functions/CALENDAR_WRITE) function. Set to `1` if the function completed successfully; `0` otherwise.
+* ${CALENDAR_SUCCESS} \* - Status of the [CALENDAR_WRITE](/latest_api/API_Documentation/Dialplan_Functions/CALENDAR_WRITE) function. Set to `1` if the function completed successfully; `0` otherwise.
 * ${SIP_RECVADDR} \* - the address a SIP MESSAGE request was received from
-* ${VOICEMAIL_PLAYBACKSTATUS} \* - Status of the [VoiceMailPlayMsg](/latest_api/Dialplan_Applications/VoiceMailPlayMsg) application. `SUCCESS` if the voicemail was played back successfully, {{FAILED} otherwise
+* ${VOICEMAIL_PLAYBACKSTATUS} \* - Status of the [VoiceMailPlayMsg](/latest_api/API_Documentation/Dialplan_Applications/VoiceMailPlayMsg) application. `SUCCESS` if the voicemail was played back successfully, {{FAILED} otherwise

@@ -59,7 +59,7 @@ Asterisk modules which are part of the core have a file name that look like **pb
 Calls and Channels
 ------------------
 
-As was mentioned in the [Asterisk as a Swiss Army Knife of Telephony](/Asterisk-as-a-Swiss-Army-Knife-of-Telephony) section, the primary purpose of Asterisk is being an engine for building Real Time Communication systems and applications.
+The primary purpose of Asterisk is being an engine for building Real Time Communication systems and applications.
 
 In most but not all cases this means you'll deal with the concept of "calls". Calls in telephony terminology typically refer to one phone communicating with (calling) another phone over a medium, such as a [PSTN](http://en.wikipedia.org/wiki/Public_switched_telephone_network) line. However in the case of Asterisk a call typically references one or more [**channels**](/Fundamentals/Key-Concepts/Channels) existing in Asterisk.
 

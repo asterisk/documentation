@@ -19,8 +19,6 @@ pageid: 52069711
 
 [Asterisk Issue Guidelines](/Asterisk-Community/Asterisk-Issue-Guidelines)
 
-[Issue Tracker Workflow](/Development/Policies-and-Procedures/Historical-Policies-and-Procedures/Issue-Tracker-Workflow)
-
 [Release Management](/Development/Policies-and-Procedures/Release-Management)
 
 [Asterisk Community Services](/Asterisk-Community/Asterisk-Community-Services)

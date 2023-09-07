@@ -11,8 +11,8 @@ There are several [mailing lists](http://lists.digium.com/) where community memb
 | --- | --- |
 | [asterisk-announce](http://lists.digium.com/mailman/listinfo/asterisk-announce) | Asterisk releases and community service announcements |
 | [asterisk-biz](http://lists.digium.com/mailman/listinfo/asterisk-biz) | Commercial and Business-Oriented Asterisk Discussion |
-| [asterisk-dev](http://lists.digium.com/mailman/listinfo/asterisk-dev) | Discussions about the development of Asterisk. [#Development List Note](#Development-List-Note) |
-| [asterisk-app-dev](http://lists.digium.com/cgi-bin/mailman/listinfo/asterisk-app-dev) | Discussions about the development of applications that use Asterisk. [#Development List Note](#Development-List-Note) |
+| [asterisk-dev](http://lists.digium.com/mailman/listinfo/asterisk-dev) | Discussions about the development of Asterisk. [#Development List Note](#development-list-note) |
+| [asterisk-app-dev](http://lists.digium.com/cgi-bin/mailman/listinfo/asterisk-app-dev) | Discussions about the development of applications that use Asterisk. [#Development List Note](#development-list-note) |
 | [asterisk-security](http://lists.digium.com/mailman/listinfo/asterisk-security) | Asterisk Security Discussion |
 | [asterisk-users](http://lists.digium.com/mailman/listinfo/asterisk-users) | Discussions about the use and configuration of Asterisk. |
 

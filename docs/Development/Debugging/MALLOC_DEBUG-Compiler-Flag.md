@@ -3,7 +3,7 @@ title: MALLOC_DEBUG Compiler Flag
 pageid: 28315432
 ---
 
-MALLOC_DEBUG enhancements can be used as a poor-man's [Valgrind](/Valgrind) if Valgrind performance makes the PC unusable due to resource consumption.
+MALLOC_DEBUG enhancements can be used as a poor-man's Valgrind if Valgrind performance makes the PC unusable due to resource consumption.
 
 
 

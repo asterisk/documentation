@@ -85,12 +85,12 @@ What's new with Asterisk 14? (will post Matt F's slides and link to CHANGES on w
 
 SIPit testing results and observations
 
-* Video testing found a regression in payload negotiation which has now been [fixed](https://gerrit.asterisk.org/3895).
-* Video testing also determined our lack of timestamp passthrough for video frames was problematic, it has also now been [fixed](https://gerrit.asterisk.org/#/c/3897/).
-* DNS testing confirmed that our new DNS implementation conforms to the standard and works as it should. A minor bug was found and [fixed](https://gerrit.asterisk.org/#/c/3888/).
+* Video testing found a regression in payload negotiation which has now been [fixed].
+* Video testing also determined our lack of timestamp passthrough for video frames was problematic, it has also now been [fixed].
+* DNS testing confirmed that our new DNS implementation conforms to the standard and works as it should. A minor bug was found and [fixed].
 * Opportunistic SDES-SRTP support was tested and confirms to the new draft RFC for doing it. We do not yet support it for DTLS-SRTP, though.
-* Dual stack and TLS testing found an issue where the Contact port was being rewritten when it should not. It has now been [fixed](https://gerrit.asterisk.org/#/c/3900/).
-* Dual stack support is lacking and a change to substantially improve it (by making it automatic) is up for [review](https://gerrit.asterisk.org/#/c/3976/). This change was tested substantially at SIPit.
+* Dual stack and TLS testing found an issue where the Contact port was being rewritten when it should not. It has now been [fixed].
+* Dual stack support is lacking and a change to substantially improve it (by making it automatic) is up for [review]. This change was tested substantially at SIPit.
 * Over all core functionality did not see any regressions, but did uncover problems with other implementations.
 * Fuzz testing also showed how tolerant PJSIP is to invalid data. Throughout the event traffic was received and did not result in any crashes or incorrect behavior.
 * [STIR](https://tools.ietf.org/html/draft-ietf-stir-rfc4474bis-13) was an RFC that was heavily discussed at SIPit. It is worth watching.
@@ -145,7 +145,7 @@ Then, topics we'll try to get to:
 | 45 min | Binaural Audio Changes | Dennis Guse |  |
 | 1 hr | Lunch | Everyone! |  |
 | 45 min | XiVO and ARI | Sylvain and Sebastien |  |
-| 30 min | [Scaling Asterisk Horizontally](https://wiki.asterisk.org/wiki/download/attachments/36215118/NicoAstriDevCon.pdf?version=1&modificationDate=1475006057656&api=v2) | Nicolas Bouliane |  |
+| 30 min | [Scaling Asterisk Horizontally](NicoAstriDevCon.pdf) | Nicolas Bouliane |  |
 | Until | Open discussion items | Everyone! |  |
 
 ### Dennis Guse - Binaural Audio (STEAK)
@@ -158,13 +158,6 @@ Pages from the project site were used as slides during the presentation. It cove
 
 Code: <https://github.com/steakconferencing>
 
-Links to relevant Asterisk patches:
-
-* <https://gerrit.asterisk.org/#/c/3521/>
-* <https://gerrit.asterisk.org/#/c/3522/>
-* <https://gerrit.asterisk.org/#/c/3523/>
-* <https://gerrit.asterisk.org/#/c/3524/>
-* <https://gerrit.asterisk.org/#/c/3525/>
 
 Some Q&A with Dennis:
 

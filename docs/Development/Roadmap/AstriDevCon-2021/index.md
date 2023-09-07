@@ -3,10 +3,9 @@ title: Overview
 pageid: 44797356
 ---
 
-AstriDevCon 2021
-----------------
+## AstriDevCon 2021
 
-Sangoma invites developers who are interested in the future of Asterisk to join us at AstriDevCon. The AstriDevCon event will occur virtually on November 2nd. Details for participation will be sent by email to registered participants. [Meeting Minutes](/Astricon+2021+Minutes).
+Sangoma invites developers who are interested in the future of Asterisk to join us at AstriDevCon. The AstriDevCon event will occur virtually on November 2nd. Details for participation will be sent by email to registered participants. [Meeting Minutes](AstriDevcon-2021-Minutes).
 
 ### Event day schedule
 
@@ -79,9 +78,6 @@ We'll build a rough agenda together in the morning.
 	+ Asterisk 20: What could it look like? - Sylvain
 	+ Pre-join warning to conference participants prior to adding a new channel (confbridge) - Michael Cargile
 	+ Adding a custom MIME body to PJSIP separate from SDP - Torrey
-
-
-
 
 
 ### Location

@@ -3,22 +3,22 @@ title: IAX2 Jitterbuffer
 pageid: 4817145
 ---
 
-##### The new jitterbuffer
+## The new jitterbuffer
 
 
 You must add `jitterbuffer=yes` to either the `[general]` part of `iax.conf`, or to a peer or a user. (just like the old jitterbuffer). Also, you can set `maxjitterbuffer=n`, which puts a hard-limit on the size of the jitterbuffer of "`n` milliseconds". It is not necessary to have the new jitterbuffer on both sides of a call; it works on the receive side only.
 
 
-##### PLC
+## PLC
 
 
 The new jitterbuffer detects packet loss. PLC is done to try to recreate these lost packets in the codec decoding stage, as the encoded audio is translated to slinear. PLC is also used to mask jitterbuffer growth. 
 
 
-This facility is enabled by default in iLBC and speex, as it has no additional cost. This facility can be enabled in adpcm, alaw, g726, gsm, lpc10, and ulaw by setting genericplc = true in the [plc](/plc) section of codecs.conf.
+This facility is enabled by default in iLBC and speex, as it has no additional cost. This facility can be enabled in adpcm, alaw, g726, gsm, lpc10, and ulaw by setting genericplc = true in the [plc] section of codecs.conf.
 
 
-##### Trunk Timestamps
+## Trunk Timestamps
 
 
 To use this, both sides must be using Asterisk v1.2 or later. Setting `trunktimestamps=yes` in `iax.conf` will cause your box to send 16-bit timestamps for each trunked frame inside of a trunk frame. This will enable you to use jitterbuffer for an IAX2 trunk, something that was not possible in the old architecture. 
@@ -27,7 +27,7 @@ To use this, both sides must be using Asterisk v1.2 or later. Setting `trunktime
 The other side must also support this functionality, or else, well, bad things will happen. If you don't use trunk timestamps, there's lots of ways the jitterbuffer can get confused because timestamps aren't necessarily sent through the trunk correctly.
 
 
-##### Communication with Asterisk v1.0.x systems
+## Communication with Asterisk v1.0.x systems
 
 
 You can set up communication with v1.0.x systems with the new jitterbuffer, but you can't use trunks with trunktimestamps in this communication.
@@ -39,7 +39,7 @@ If you are connecting to an Asterisk server with earlier versions of the softwar
 You may also compile `chan_iax2.c` without the new jitterbuffer, enabling the old backwards compatible architecture. Look in the source code for instructions.
 
 
-##### Testing and monitoring
+## Testing and monitoring
 
 
 You can test the effectiveness of PLC and the new jitterbuffer's detection of loss by using the new CLI command `iax2 test losspct n`. This will simulate `n` percent packet loss coming in to `chan_iax2`. You should find that with PLC and the new JB, 10 percent packet loss should lead to just a tiny amount of distortion, while without PLC, it would lead to silent gaps in your audio. 
@@ -60,7 +60,7 @@ The stats shown are:
 * Kpkts: The number of packets we've received / 1000.
 
 
-##### Reporting problems
+## Reporting problems
 
 
 There's a couple of things that can make calls sound bad using the jitterbuffer:

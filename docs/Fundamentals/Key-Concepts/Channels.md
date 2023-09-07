@@ -3,8 +3,7 @@ title: Channels
 pageid: 28314836
 ---
 
-Asterisk Channels
-=================
+# Asterisk Channels
 
 Almost nothing happens in Asterisk without a channel being involved. A channel is an entity inside Asterisk that acts as a channel of communication between Asterisk and another device. That is, a phone, a PBX, another Asterisk system, or even Asterisk itself (in the case of a [local channel](/Configuration/Channel-Drivers/Local-Channel)).
 
@@ -18,8 +17,7 @@ To give you an idea about what channels do, here are a few facts about them:
 * Channels are commonly passing audio between communication endpoints, but can pass other data, such as video or text messages.
 * Channels execute instructions with [dialplan](/Configuration/Dialplan), but can be controlled by other APIs (AGI,AMI,ARI) or interfaces (CLI).
 
-Common Asterisk Channels
-------------------------
+## Common Asterisk Channels
 
 One of the many benefits of Asterisk is the capability to interface with as many different technologies as you have channel drivers! However, most administrators will only make use of a few types at a time.
 
@@ -35,26 +33,19 @@ Here are a few commonly used [channel types](/Configuration/Channel-Drivers):
 
 **Local channels** are used for dialing inward to the system itself, allowing any Asterisk component that can dial to call directly into dialplan. This provides a sort of "fake" call that still executes real instructions.
 
+## Configuring Channels
 
-
-
-Configuring Channels
-====================
-
-Text File Configuration
------------------------
+### Text File Configuration
 
 Most channel drivers have an associated configuration file. Some channels may require the configuration of dependent resources for optimal operation. For example, SIP channels, configured in sip.conf or pjsip.conf use RTP resources which can be configured in rtp.conf.
 
 The [Channel Drivers](/Configuration/Channel-Drivers) configuration section contains information on configuring documented channel drivers. In other cases the configuration file itself contains configuration documentation.
 
-Database Configuration
-----------------------
+### Database Configuration
 
 Flat text configuration isn't the only option. A few channel drivers provide support for the ARA ([Asterisk Realtime Architecture](/Fundamentals/Asterisk-Configuration/Database-Support-Configuration)) and can therefore pull configuration from a local or remote database. Use of the ARA requires configuration of additional resources and dependencies outside the channel drivers themselves.
 
-Using, Controlling and Routing Channels
-=======================================
+## Using, Controlling and Routing Channels
 
 Once you have a channel driver configured, how does it get used? When do channels get created?
 
@@ -71,8 +62,7 @@ When Asterisk has established a channel, Asterisk will use a combination of chan
 
 Once channels are established and communicating between devices and Asterisk; where that data flows to depends on the channel type itself, its overall configuration, device specific configuration, signaling sent by the originating mechanism (a device, a command, an API call) and associated [bridges](/Fundamentals/Key-Concepts/Bridges). One or more channels could be talking to one or more channels over various bridges. What specifically Asterisk talks to on each channel is limited only by the technology implemented by the channel driver.
 
-Inbound and Outbound Channels
-=============================
+## Inbound and Outbound Channels
 
 Often in our documentation, troubleshooting and development discussions you'll see mention of inbound or outbound channels. It'll be helpful to define what that means here.
 
@@ -92,20 +82,17 @@ The figures have been kept somewhat generic and should apply to most channel typ
 
 Below are explanations of the various figures.
 
-Fig 1
------
+### Fig 1
 
 One phone dials another phone; about as simple as it gets.
 
 The **inbound** channel is created from Alice's phone calling Asterisk. Asterisk then calls the extension dialed by Alice by creating an **outbound** channel to talk to Bob. Once the call is established the two channels are put into a bridge[Bridges](/Fundamentals/Key-Concepts/Bridges).
 
-Fig 2
------
+### Fig 2
 
 A user runs the [originate](/latest_api/API_Documentation/Dialplan_Applications/Originate) command from [AMI](/Configuration/Interfaces/Asterisk-Manager-Interface-AMI), or maybe something like "channel originate SIP/Alice application playback demo-congrats" from the [CLI](/Operation/Asterisk-Command-Line-Interface). Asterisk creates an **outbound** channel to call the device specified (SIP/Alice). When answered, Asterisk begins treating the channel like an **inbound** channel and connects it to the specified dialplan application.
 
-Fig 3
------
+### Fig 3
 
 Perhaps a user runs originate again - but this time "channel originate SIP/Alice extension dialbob@internal" from the [CLI](/Operation/Asterisk-Command-Line-Interface). Where dialbob@internal contains dialplan telling Asterisk to dial outbound to SIP/Bob. At first, the created **outbound** channel would look like Fig 2 where it begins to be treated as **inbound** after the device answers the call. At that point, a number of things happen:
 
@@ -115,10 +102,7 @@ Perhaps a user runs originate again - but this time "channel originate SIP/Alice
 
 For this example demonstrating relationships between channels and other elements we used non-optimized local channels. If the local channels are optimized, then they will optimize themselves out of this mix and Alice and Bob's channels would be bridged together directly.
 
-Channel Variable Inheritance
-============================
+## Channel Variable Inheritance
 
 When working with channels you'll almost certainly be touching channel variables. It is useful to note that upon setting a channel variable the level of inheritance between channels can be defined. This is discussed in the [Channel Variables](/Configuration/Dialplan/Variables/Channel-Variables) sub-section [Variable Inheritance](/Configuration/Dialplan/Variables/Channel-Variables/Variable-Inheritance).
-
-
 

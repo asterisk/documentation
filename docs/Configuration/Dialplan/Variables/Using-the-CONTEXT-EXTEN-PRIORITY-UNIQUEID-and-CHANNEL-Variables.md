@@ -5,7 +5,7 @@ pageid: 4817393
 
 Now that you've learned a bit about variables, let's look at a few of the variables that Asterisk automatically creates.
 
-Asterisk creates channel variables named **CONTEXT**, **EXTEN**, and **PRIORITY** which contain the current context, extension, and priority. We'll use them in pattern matching (below), as well as when we talk about macros in [Section 308.10. Macros](/308.10.-Macros). Until then, let's show a trivial example of using **${EXTEN}** to read back the current extension number.
+Asterisk creates channel variables named **CONTEXT**, **EXTEN**, and **PRIORITY** which contain the current context, extension, and priority. We'll use them in pattern matching (below). Until then, let's show a trivial example of using **${EXTEN}** to read back the current extension number.
 
 ```
 exten=>6123,1,SayNumber(${EXTEN})

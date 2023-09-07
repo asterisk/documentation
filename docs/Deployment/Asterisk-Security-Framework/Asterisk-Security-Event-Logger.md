@@ -9,6 +9,3 @@ In addition to the infrastructure for generating the security events, an event l
 security_log => security
 
 ```
-
-The content of the log file is well defined and is in an easily interpretable [format](/Security-Log-File-Format) allowing for external scripts to read and act upon.
-

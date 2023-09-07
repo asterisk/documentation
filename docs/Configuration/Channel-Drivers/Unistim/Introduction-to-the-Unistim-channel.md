@@ -115,7 +115,7 @@ exten => 2100,1,Dial(USTM/102@violet/r43)
 ##### Autoprovisioning
 
 * This feature must only be used on a trusted network. It's very insecure : all unistim phones will be able to use your asterisk pbx.
-* You must add an entry called [template](/template). Each new phones will be based on this profile.
+* You must add an entry called [template]. Each new phones will be based on this profile.
 * You must set a least line=>. This value will be incremented when a new phone is registered. device= must not be specified. By default, the phone will asks for a number. It will be added into the dialplan. Add extension=line for using the generated line number instead.
 
 Example :
@@ -181,10 +181,10 @@ You can use the following entries in unistim.conf
 
 ##### Issues
 
-* As always, NAT can be tricky. If a phone is behind a NAT, you should port forward UDP 5000 (or change [general](/general) port= in unistim.conf) and UDP 10000 (or change [yourphone](/yourphone) rtp_port=)
+* As always, NAT can be tricky. If a phone is behind a NAT, you should port forward UDP 5000 (or change [general] port= in unistim.conf) and UDP 10000 (or change [yourphone] rtp_port=)
 * Only one phone per public IP (multiple phones behind the same NAT don't work). You can either :
 	+ Setup a VPN
 	+ Install asterisk inside your NAT. You can use IAX2 trunking if you're master asterisk is outside.
-	+ If asterisk is behind a NAT, you must set [general](/general) public_ip= with your public IP. If you don't do that or the bindaddr is invalid (or no longer valid, eg dynamic IP), phones should be able to display messages but will be unable to send/receive RTP packets (no sound)
-* Don't forget : this work is based entirely on a reverse engineering, so you may encounter compatibility issues. At this time, I know three ways to establish a RTP session. You can modify [yourphone](/yourphone) rtp_method= with 0, 1, 2 or 3. 0 is the default method, should work. 1 can be used on new firmware (black i2004) and 2 on old violet i2004. 3 can be used on black i2004 with chrome.
+	+ If asterisk is behind a NAT, you must set [general] public_ip= with your public IP. If you don't do that or the bindaddr is invalid (or no longer valid, eg dynamic IP), phones should be able to display messages but will be unable to send/receive RTP packets (no sound)
+* Don't forget : this work is based entirely on a reverse engineering, so you may encounter compatibility issues. At this time, I know three ways to establish a RTP session. You can modify [yourphone] rtp_method= with 0, 1, 2 or 3. 0 is the default method, should work. 1 can be used on new firmware (black i2004) and 2 on old violet i2004. 3 can be used on black i2004 with chrome.
 * If you have difficulties, try unistim debug and set verbose 3 on the asterisk CLI. For extra debug, uncomment #define DUMP_PACKET 1 and recompile chan_unistim.

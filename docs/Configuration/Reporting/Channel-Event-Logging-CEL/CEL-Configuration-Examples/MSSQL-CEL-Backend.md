@@ -3,16 +3,14 @@ title: MSSQL CEL Backend
 pageid: 5242952
 ---
 
+## Overview 
+
 Asterisk can currently store Channel Events into an MSSQL database in two different ways: cel_odbc or cel_tds 
 
 
-Channel Event Records can be stored using unixODBC (which requires the FreeTDS package) [cel_odbc](/cel_odbc) or directly by using just the FreeTDS package [cel_tds](/cel_tds) 
-
+Channel Event Records can be stored using unixODBC (which requires the FreeTDS package) cel_odbc or directly by using just the FreeTDS package cel_tds.
 
 The following provide some examples known to get asterisk working with mssql. 
-
-
-
 
 !!! note 
     Only choose one db connector.
@@ -21,11 +19,10 @@ The following provide some examples known to get asterisk working with mssql.
 [//]: # (end-note)
 
 
+## ODBC using cel_odbc
 
-### ODBC using cel_odbc
 
-
-##### Compile, configure, and install the latest unixODBC package:
+### Compile, configure, and install the latest unixODBC package:
 
 ```
 
@@ -33,7 +30,7 @@ tar -zxvf unixODBC-2.2.9.tar.gz && cd unixODBC-2.2.9 && ./configure --sysconfdir
 
 ```
 
-##### Compile, configure, and install the latest FreeTDS package:
+### Compile, configure, and install the latest FreeTDS package:
 
 ```
 
@@ -41,7 +38,7 @@ tar -zxvf freetds-0.62.4.tar.gz && cd freetds-0.62.4 && ./configure --prefix=/us
 
 ```
 
-##### Compile, or recompile, asterisk so that it will now add support for cel_odbc.
+### Compile, or recompile, asterisk so that it will now add support for cel_odbc.
 
 ```
 
@@ -49,7 +46,7 @@ make clean && ./configure --with-odbc && make update && make && make install
 
 ```
 
-##### Setup odbc configuration files.
+### Setup odbc configuration files.
 
 
 These are working examples from my system. You will need to modify for your setup. You are not required to store usernames or passwords here. 
@@ -88,22 +85,9 @@ language = us_english
     Only install one database connector. Do not confuse asterisk by using both ODBC (cel_odbc) and FreeTDS (cel_tds). This command will erase the contents of cel_tds.conf 
 [//]: # (end-warning)
 
-
-  
-  
-
 ```
-
 [ -f /etc/asterisk/cel_tds.conf ] > /etc/asterisk/cel_tds.conf 
-  
-
-
-
----
-
 ```
-
-
 
 !!! note 
     unixODBC requires the freeTDS package, but asterisk does not call freeTDS directly. 
@@ -111,10 +95,7 @@ language = us_english
       
 [//]: # (end-note)
 
-
-
-##### Now set up cel_odbc configuration files.
-
+### Now set up cel_odbc configuration files.
 
 These are working samples from my system. You will need to modify for your setup. Define your usernames and passwords here, secure file as well. 
 
@@ -131,7 +112,7 @@ loguniqueid=yes
 
 ```
 
-##### And finally, create the 'cel' table in your mssql database.
+### And finally, create the 'cel' table in your mssql database.
 
 ```
 
@@ -159,11 +140,10 @@ CREATE TABLE cel (
 
 Start asterisk in verbose mode, you should see that asterisk logs a connection to the database and will now record every desired channel event at the moment it occurs.
 
+## FreeTDS, using cel_tds
 
-### FreeTDS, using cel_tds
 
-
-##### Compile, configure, and install the latest FreeTDS package:
+### Compile, configure, and install the latest FreeTDS package:
 
 ```
 
@@ -171,7 +151,7 @@ tar -zxvf freetds-0.62.4.tar.gz && cd freetds-0.62.4 && ./configure --prefix=/us
 
 ```
 
-##### Compile, or recompile, asterisk so that it will now add support for cel_tds.
+### Compile, or recompile, asterisk so that it will now add support for cel_tds.
 
 ```
 
@@ -186,21 +166,11 @@ make clean && ./configure --with-tds && make update && make && make install
 [//]: # (end-warning)
 
 
-  
-  
-
 ```
-
 [ -f /etc/asterisk/cel_odbc.conf ] > /etc/asterisk/cel_odbc.conf 
-  
-
-
-
----
-
 ```
 
-##### Setup cel_tds configuration files.
+### Setup cel_tds configuration files.
 
 
 These are working samples from my system. You will need to modify for your setup. Define your usernames and passwords here, secure file as well. 
@@ -220,7 +190,7 @@ charset=BIG5
 
 ```
 
-##### And finally, create the 'cel' table in your mssql database.
+### And finally, create the 'cel' table in your mssql database.
 
 ```
 

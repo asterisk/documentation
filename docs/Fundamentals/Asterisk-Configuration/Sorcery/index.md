@@ -14,8 +14,7 @@ pageid: 27200342
 
 
 
-Sorcery Overview
-================
+# Sorcery Overview
 
 Added in Asterisk 12, Asterisk has a data abstraction and object persistence CRUD API called Sorcery. Sorcery provides Asterisk modules with a useful abstraction on top of the many storage mechanisms in Asterisk. Such as the:
 
@@ -31,31 +30,27 @@ On This Page
 
 In This Section
 
-Modules Supporting Sorcery
-==========================
+## Modules Supporting Sorcery
 
 The PJSIP modules and resources were the first to use the Sorcery DAL. All future modules which utilize Sorcery for object persistence must have a column named id within their schema when using the Sorcery realtime module. This column must be able to contain a string of up to 128 characters in length.
 
-Sorcery API Actions
-===================
+## Sorcery API Actions
 
 AMI actions existing at the time of Asterisk 14.2.1
 
-* [SorceryMemoryCacheExpire](/latest_api/AMI_Actions/SorceryMemoryCacheExpire)
-* [SorceryMemoryCacheExpireObject](/latest_api/AMI_Actions/SorceryMemoryCacheExpireObject)
-* [SorceryMemoryCachePopulate](/latest_api/AMI_Actions/SorceryMemoryCachePopulate)
-* [SorceryMemoryCacheStale](/latest_api/AMI_Actions/SorceryMemoryCacheStale)
-* [SorceryMemoryCacheStaleObject](/latest_api/AMI_Actions/SorceryMemoryCacheStaleObject)
+* [SorceryMemoryCacheExpire](/latest_api/API_Documentation/AMI_Actions/SorceryMemoryCacheExpire)
+* [SorceryMemoryCacheExpireObject](/latest_api/API_Documentation/AMI_Actions/SorceryMemoryCacheExpireObject)
+* [SorceryMemoryCachePopulate](/latest_api/API_Documentation/AMI_Actions/SorceryMemoryCachePopulate)
+* [SorceryMemoryCacheStale](/latest_api/API_Documentation/AMI_Actions/SorceryMemoryCacheStale)
+* [SorceryMemoryCacheStaleObject](/latest_api/API_Documentation/AMI_Actions/SorceryMemoryCacheStaleObject)
 
-Sorcery Functions
-=================
+## Sorcery Functions
 
 Sorcery functions existing at the time of Asterisk 14.2.1
 
-* [AST_SORCERY()](/latest_api/Dialplan_Functions/AST_SORCERY)
+* [AST_SORCERY()](/latest_api/API_Documentation/Dialplan_Functions/AST_SORCERY)
 
-Sorcery Mapping Configuration
-=============================
+## Sorcery Mapping Configuration
 
 Users can configure a hierarchy of data storage layers for specific modules in sorcery.conf.
 
@@ -63,12 +58,11 @@ You can view the sorcery.conf sample in your configs/samples/ Asterisk source su
 
 We've included roughly the same instructions below while taking advantage of wiki formatting.
 
-Constructing a Mapping
-----------------------
+### Constructing a Mapping
 
 To allow configuration of where and how an object is persisted, object mappings can be defined within sorcery.conf on a per-module basis. The mapping consists of the **object type**, **options**, **wizard name**, and **wizard configuration data**.
 
-### Format
+#### Format
 
 The basic format follows:
 
@@ -78,17 +72,17 @@ object_type[/options] = wizard_name[,wizard_configuration_data] ;Bracketed items
 
 ```
 
-### Module name
+#### Module name
 
 Object/Wizard mappings are defined within sections denoted by the module name in brackets. The section name must match the module.
 
-### Object types
+#### Object types
 
 Note that an object type can have multiple mappings defined. Each mapping will be consulted in the order in which it appears within the configuration file. This means that if you are configuring a wizard as a cache it should appear as the first mapping so the cache is consulted before all other mappings.
 
 Object types available depend on the modules loaded and what objects they provide. There are PJSIP types for all the configuration objects in PJSIP, such as endpoint, auth,aor, etc. You can find a more exhaustive list of PJSIP objects in the [Sorcery Caching](/Fundamentals/Asterisk-Configuration/Sorcery/Sorcery-Caching) page.
 
-### Wizards
+#### Wizards
 
 Wizards are the persistence mechanism for objects. They are loaded as Asterisk modules and register themselves with the sorcery core. All implementation specific details of how objects are persisted is isolated within wizards.
 
@@ -102,8 +96,7 @@ Wizards available at the time of writing:
 * realtime
 * memory_cache (For further details on this wizard type see the documentation [here](/Fundamentals/Asterisk-Configuration/Sorcery/Sorcery-Caching))
 
-Example Mapping Configurations
-------------------------------
+### Example Mapping Configurations
 
 The following object mappings are used by the unit test to test certain functionality of sorcery.
 
@@ -139,8 +132,7 @@ identify=realtime,ps_endpoint_id_ips
 
 ```
 
-PJSIP Default Wizard Configurations
------------------------------------
+## PJSIP Default Wizard Configurations
 
 When configuring PJSIP sorcery mappings it can be useful to allow both the configuration file and other wizards to be used. The below configuration matches the default configuration for the PJSIP sorcery usage.
 
@@ -165,9 +157,3 @@ outbound-publish=config,pjsip.conf,criteria=type=outbound-publish
 registration=config,pjsip.conf,criteria=type=registration
 
 ```
-
-
-
-  
-
-

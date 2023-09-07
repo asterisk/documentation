@@ -79,7 +79,7 @@ Moving will not be without effort though, and it's import to assess eligible pro
 | Link to issues | [Yes](https://docs.github.com/en/repositories/releasing-projects-on-github/linking-to-releases) | [Not yet](https://gitlab.com/gitlab-org/gitlab/-/issues/199087) |
 | Release notes | [Automatic](https://docs.github.com/en/repositories/releasing-projects-on-github/automatically-generated-release-notes) | [Nothing automatic yet](https://gitlab.com/gitlab-org/gitlab/-/issues/15563). Use the [issue API](https://docs.gitlab.com/ee/api/milestones.html#get-all-issues-assigned-to-a-single-milestone) and get issues assigned to a milestone |
 | Additional files | Yes can attach | Links available through UI, and [API](https://docs.gitlab.com/ee/api/releases/links.html). |
-| Pre-release option | [Yes](tps://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository) | Naming only |
+| Pre-release option | [Yes](https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository) | Naming only |
 | Forms | [Yes](https://docs.github.com/en/repositories/releasing-projects-on-github/automation-for-release-forms-with-query-parameters) | [Yes](https://about.gitlab.com/blog/2020/05/07/how-gitlab-automates-releases/) |
 | Automation | Yes through [actions](https://github.com/features/actions), custom scripts or [3rd party tools](https://github.com/release-it/release-it) | Yes through [dev ops](https://docs.gitlab.com/ee/ci/introduction/#continuous-deployment), custom scripts or [3rd party tools](https://github.com/release-it/release-it) |
 | Documentation |  |  |

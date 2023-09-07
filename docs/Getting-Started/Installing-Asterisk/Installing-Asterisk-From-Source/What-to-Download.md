@@ -3,15 +3,11 @@ title: What to Download?
 pageid: 4817506
 ---
 
-Asterisk
-========
+## Asterisk
 
 Downloads of Asterisk are available at <https://downloads.asterisk.org/pub/telephony/asterisk/>. The currently supported versions of Asterisk will each have a symbolic link to their related release on this server, named **asterisk-{version}-current****.tar.gz**. All releases ever made for the Asterisk project are available at <https://downloads.asterisk.org/pub/telephony/asterisk/releases/>.
 
 The currently supported versions of Asterisk are documented on the [Asterisk Versions](/About-the-Project/Asterisk-Versions) page. It is highly recommended that you install one of the currently supported versions, as these versions continue to receive bug and security fixes.
-
-
-
 
 !!! tip Which version should I install?** * If you want a rock solid communications framework, choose the latest **Long Term Support (LTS)
     release.
@@ -28,8 +24,7 @@ Review Asterisk's [System Requirements](/Operation/System-Requirements) in order
 
 Asterisk does come with a script, **install_prereq**, to aid in this process. If you'd like to use this script, download Asterisk first, then see [Checking Asterisk Requirements](/Getting-Started/Installing-Asterisk/Installing-Asterisk-From-Source/Checking-Asterisk-Requirements) for instructions on using this script to install prerequisites for your version of Asterisk.
 
-On this PageDownloading Asterisk
---------------------
+### Downloading Asterisk
 
 Browse to <https://downloads.asterisk.org/pub/telephony/asterisk>, select [asterisk-14-current.tar.gz](https://downloads.asterisk.org/pub/telephony/asterisk/asterisk-14-current.tar.gz), and save the file on your file system.
 
@@ -52,16 +47,13 @@ asterisk-14-current.tar.gz 100%[================================================
 
 ```
 
-Other Projects
-==============
+## Other Projects
 
-libpri
-------
+### libpri
 
 The **libpri** library allows Asterisk to communicate with ISDN connections.You'll only need this if you are going to use DAHDI with ISDN interface hardware (such as T1/E1/J1/BRI cards).
 
-DAHDI
------
+### DAHDI
 
 The **DAHDI** library allows Asterisk to communicate with analog and digital telephones and telephone lines, including connections to the Public Switched Telephone Network, or PSTN.
 
@@ -82,10 +74,7 @@ You will only need to install DAHDI if you are going to utilize DAHDI compatible
 
 
 
-Download Locations
-==================
-
-
+## Download Locations
 
 | Project | Location |
 | --- | --- |

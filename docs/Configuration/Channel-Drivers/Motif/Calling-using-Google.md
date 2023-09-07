@@ -3,19 +3,7 @@ title: Calling using Google
 pageid: 5996698
 ---
 
-
-
-
-!!! warning 
-    This new page replaces the [old page](/Old-Calling-using-Google). The old page documents behavior that is not functional or supported going forward. This new page documents behavior as of Asterisk 11. For more information, please see the blog posting <http://blogs.digium.com/2012/07/24/asterisk-11-development-the-motive-for-motif/>
-
-      
-[//]: # (end-warning)
-
-
-
-Prerequisites
-=============
+## Prerequisites
 
 Asterisk communicates with Google Voice and Google Talk using the chan_motif Channel Driver and the res_xmpp Resource module. Before proceeding, please ensure that both are compiled and part of your installation. Compilation of res_xmpp and chan_motif for use with Google Talk / Voice are dependant on the iksemel library files as well as the OpenSSL development libraries presence on your system.
 
@@ -31,8 +19,7 @@ IPv6 is currently not supported. Use of IPv4 is required.
 
 Google Voice can now be used with Google Apps accounts.
 
-RTP configuration
------------------
+## RTP configuration
 
 ICE support is required for chan_motif to operate. It is disabled by default and must be explicitly enabled in the RTP configuration file rtp.conf as follows.
 
@@ -49,8 +36,7 @@ Unable to add Google ICE candidates as ICE support not available or no candidate
 
 ```
 
-Motif configuration
--------------------
+## Motif configuration
 
 The Motif channel driver is configured with the motif.conf configuration file, typically located in /etc/asterisk. What follows is an example configuration for successful operation.
 
@@ -94,8 +80,7 @@ Our experience shows this not to be the case. Rather, the codecs, supported by A
 
 It should be noted that calling using Google Voice requires the G.711 ulaw codec. So, if you want to make sure Google Voice calls work, allow G.711 ulaw, at a minimum.
 
-XMPP Configuration
-------------------
+## XMPP Configuration
 
 The res_xmpp Resource is configured with the xmpp.conf configuration file, typically located in /etc/asterisk. What follows is an example configuration for successful operation.
 
@@ -141,8 +126,7 @@ With priorities, the higher the setting value, the more any client using that va
 
 Outbound calls are unaffected by the priority setting.
 
-Phone configuration
--------------------
+## Phone configuration
 
 Now, let's create a phone. The configuration of a SIP device for this purpose would, in sip.conf, typically located in /etc/asterisk, look something like:
 
@@ -155,8 +139,7 @@ context=local
 
 ```
 
-Dialplan configuration
-----------------------
+## Dialplan configuration
 
 ### Incoming calls
 

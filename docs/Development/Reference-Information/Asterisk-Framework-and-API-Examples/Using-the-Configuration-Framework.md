@@ -3,11 +3,10 @@ title: Using the Configuration Framework
 pageid: 21463337
 ---
 
-Overview
-========
+## Overview
 
 
-This wiki page describes using parts of the new Configuration Framework introduced in [Asterisk 11](/Asterisk-11-Documentation), and the motivation behind its creation.
+This wiki page describes using parts of the new Configuration Framework introduced in Asterisk 11, and the motivation behind its creation.
 
 
 
@@ -21,11 +20,10 @@ This wiki page describes using parts of the new Configuration Framework introduc
 
 
 
-Configuration Loading Overview
-==============================
+## Configuration Loading Overview
 
 
-[Modules](/Types-of-Asterisk-Modules) in Asterisk - be they applications, functions, channel drivers, supplementary resources, etc. - are responsible for managing their own resources and responding to operations initiated by the Asterisk core. During module load and reload operations, a large part of this responsibility consists of loading and parsing the module's configuration information from an Asterisk compatible configuration file or, optionally, an [Asterisk Realtime Architecture (ARA) backend](/Realtime-Database-Configuration).
+Modules in Asterisk - be they applications, functions, channel drivers, supplementary resources, etc. - are responsible for managing their own resources and responding to operations initiated by the Asterisk core. During module load and reload operations, a large part of this responsibility consists of loading and parsing the module's configuration information from an Asterisk compatible configuration file or, optionally, an [Asterisk Realtime Architecture (ARA) backend](/Fundamentals/Asterisk-Configuration/Database-Support-Configuration/Realtime-Database-Configuration).
 
 
 The act of loading and parsing configuration information from either source typically involves doing the following operations:

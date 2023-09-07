@@ -14,7 +14,7 @@ setting=false
 setting2=true
 ```
 
-Additionally here is closer to real-life example from the [pjsip.conf](/Configuring-res_pjsip).sample file:
+Additionally here is closer to real-life example from the [pjsip.conf](/Configuration/Channel-Drivers/SIP/Configuring-res_pjsip).sample file:
 
 ```
 [transport-udp-nat]

@@ -772,7 +772,7 @@ So, they had to import it manually from libical master branch.
 
 One more bug remains...editing of a recurring event, recurrence-id.
 
-A fix was submitted on Gerrit: ASTERISK-27296 / <https://gerrit.asterisk.org/#/c/6625/>
+A fix was submitted on Gerrit: ASTERISK-27296 / 
 
   
 

@@ -3,15 +3,13 @@ title: Contexts, Extensions, and Priorities
 pageid: 4817410
 ---
 
-Dialplan Format
-===============
+# Contexts, Extensions, and Priorities
 
 The dialplan in extensions.conf is organized into sections, called contexts. Contexts are the basic organizational unit within the dialplan, and as such, they keep different sections of the dialplan independent from each other. You can use contexts to separate out functionality and features, enforce security boundaries between the various parts of our dialplan, as well as to provide different classes of service to groups of users.
 
-Dialplan contexts
------------------
+## Dialplan contexts
 
-The syntax for a context is exactly the same as any other section heading in the configuration files, as explained in [Sections and Settings](/Sections-and-Settings). Simply place the context name in square brackets. For example, here we define an example context called 'users'.
+The syntax for a context is exactly the same as any other section heading in the configuration files, as explained in [Sections and Settings](/Fundamentals/Asterisk-Configuration/Asterisk-Configuration-Files/Config-File-Format/Sections-and-Settings). Simply place the context name in square brackets. For example, here we define an example context called 'users'.
 
 ```javascript title=" " linenums="1"
 [users]
@@ -23,8 +21,7 @@ The syntax for a context is exactly the same as any other section heading in the
 
 
 
-Dialplan extensions
--------------------
+## Dialplan extensions
 
 Within each context, we can define one or more **extensions**. An extension is simply a named set of actions. Asterisk will perform each action, in sequence, when that extension number is dialed. The syntax for an extension is:
 
@@ -42,8 +39,7 @@ exten => 6001,1,Dial(PJSIP/demo-alice,20)
 
 In this case, the extension number is **6001**, the priority number is **1**, the [application](/Configuration/Applications) is **Dial()**, and the two parameters to the application are **PJSIP/demo-alice** and **20**.
 
-Dialplan priorities
--------------------
+## Dialplan priorities
 
 Within each extension, there must be one or more *priorities*. A priority is simply a sequence number. The first priority on an extension is executed first. When it finishes, the second priority is executed, and so forth.
 
@@ -106,10 +102,9 @@ exten => _.!,n,Verbose("Surprise - executed for all numbers!")
 
 It may not be immediately intuitive, but the "_.!" extension with the "n" priority will be executed after any of the preceding lines are executed.
 
-Application calls
------------------
+### Application calls
 
-You'll notice that each priority is calling a dialplan application (such as NoOp, or Verbose in the example above). That is how we tell Asterisk to "do something" with the [channel](/Fundamentals/Key-Concepts/Channels./_Dialplan_Functions/CHANNELS) that is executing dialplan. See the [Applications](/Configuration/Applications) section for more detail.
+You'll notice that each priority is calling a dialplan application (such as NoOp, or Verbose in the example above). That is how we tell Asterisk to "do something" with the channel that is executing dialplan. See the [Applications](/Configuration/Applications) section for more detail.
 
 ### Priority labels
 
@@ -133,8 +128,7 @@ exten => 6123,1,NoOp()
 
 ```
 
-Dialplan search order
-=====================
+## Dialplan search order
 
 The order of matching within a context is always exact extensions, [pattern match](/Configuration/Dialplan/Pattern-Matching) extensions,  [include statements](/Configuration/Dialplan/Include-Statements), and [switch statements](/Configuration/Dialplan/Switch-Statements).  Includes are always processed depth-first.  So for example, if you would like a switch "A" to match before context "B", simply put switch "A" in an included context "C", where "C" is included in your original context before "B".
 

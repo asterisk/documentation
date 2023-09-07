@@ -22,7 +22,7 @@ See the forums, mailing lists, IRC channels, or this wiki. For even more informa
 * **Support requests**: (My phone doesn't register! My database connectivity doesn't work! How do I get it to work?)  
 Search and ask on the forums, mailing lists, and IRC. Again, see <http://www.asterisk.org/community> for more information.
 * **Random wishes and feature requests with no patch:** (I want Asterisk to support <insert obscure protocol or gadget>, but I don't know how to code!)  
-See the [How to request a feature section](#feature_request) for more information on requesting a feature.
+See the [How to request a feature section](#how-to-request-a-feature-or-improvement) for more information on requesting a feature.
 * **Business development requests** (I will pay you to make Asterisk support fancy unicorn protocol!)  
 Please head to the asterisk-biz mailing list at <http://lists.digium.com>. If what you want is a specific feature or bug fixed, you may want to consider [requesting a bug bounty](/Development/Asterisk-Bug-Bounties).
 * and...
@@ -112,7 +112,7 @@ For a bug you must include the following information:
 	
 		+ For crashes, provide a backtrace generated from an Asterisk core dump. See [Getting a Backtrace](/Development/Debugging/Getting-a-Backtrace) for more information.
 		+ For apparent deadlocks, you may need to enable the compile time option `DEBUG_THREADS`. A backtrace may also be necessary. See [Getting a Backtrace](/Development/Debugging/Getting-a-Backtrace) for more information.
-		+ For memory leaks or memory corruptions, [Valgrind](/Valgrind) may be necessary. Valgrind can detect memory leaks and memory corruptions, although it does result in a substantial performance impact.
+		+ For memory leaks or memory corruptions, Valgrind may be necessary. Valgrind can detect memory leaks and memory corruptions, although it does result in a substantial performance impact.
 		+ For debugging most problems, a properly generated debug log file will be needed. See [CLI commands useful for debugging](/Development/Debugging/CLI-commands-useful-for-debugging) and [Collecting Debug Information](/Operation/Logging/Collecting-Debug-Information) for more information. Note that for issues involving SIP, IAX2, or other channel drivers, you should enable that driver's enhanced debug mode through the CLI before collecting information. A pcap demonstrating the problem may also be needed.
 		
 		
@@ -131,7 +131,7 @@ For a bug you must include the following information:
 
 #### How you can speed up bug resolution
 
-Follow the [checklist](#bug_report_checklist) and include all information that bug marshals require. Watch for emails where a bug marshal may ask for additional data and help the developers by testing any patches or possible fixes for the issue. A developer **cannot** fix your issue until they have sufficient data to reproduce - or at the very least understand - the problem.
+Follow the [checklist](#bug-reporting-check-list) and include all information that bug marshals require. Watch for emails where a bug marshal may ask for additional data and help the developers by testing any patches or possible fixes for the issue. A developer **cannot** fix your issue until they have sufficient data to reproduce - or at the very least understand - the problem.
 
 #### Reasons your report may be closed without resolution
 

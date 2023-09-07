@@ -153,7 +153,7 @@ The following will require specifications for Asterisk 12:
 * CDRs
 * CEL
 * Queue Log
-* AMI (see ﻿[AMI v2 Specification](/AMI-v2-Specification))
+* AMI (see ﻿[AMI v2 Specification](/Configuration/Interfaces/Asterisk-Manager-Interface-AMI/AMI-v2-Specification))
 
 
 For Use Cases, see [Bridging Use Cases](Asterisk-12-Bridging-Use-Cases).
@@ -364,7 +364,7 @@ Play a file to the specified bridge.
 #### int ast_channel_transfer_blind(struct ast_channel \*target, const char \*transferrer_chan_name, const char \*ctx_exten_pri);
 
 
-* The ctx_exten_pri is a parseable string: "[[context,](/context-)exten,]priority". The optional values are filled in by the target channel. transferrer_chan_name can be NULL if done anonymously.
+* The ctx_exten_pri is a parseable string: "[[context,]exten,]priority". The optional values are filled in by the target channel. transferrer_chan_name can be NULL if done anonymously.
 
 
 * Set BLINDTRANSFER on target channel with transferer channel name. I don't see why it has historically been put on both channels since the Park app is who needs the variable set so it can announce the parking slot.
@@ -1036,7 +1036,7 @@ The table below lists the items that should be checked in each test.
 |  CallerID  |  Check that the Caller ID for each channel involved in the bridge is what it is expected to be  |
 |  Connected Line  |  Check that connected line for each channel involved is what is expected  |
 |  Common Channel variables  |  BRIDGEPEER, BRIDGEPVTCALLID should be set appropriately  |
-|  [Bridge](/latest_api/API_Documentation/AMI_Events/Bridge)  |  Check that the AMI Bridge event occurs when expected  |
+|  Bridge*|  Check that the AMI Bridge event occurs when expected  |
 
 
 Project Planning

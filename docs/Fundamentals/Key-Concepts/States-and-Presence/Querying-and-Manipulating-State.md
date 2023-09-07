@@ -60,7 +60,7 @@ presencestate list -- List currently know custom presence states
 Asterisk Manager Interface actions
 ==================================
 
-Any of the previously mentioned functions could be called via [AMI](/Asterisk-Manager-Interface--AMI-) with the [Setvar](/latest_api/API_Documentation/AMI_Actions/Setvar) and [Getvar](/latest_api/API_Documentation/AMI_Actions/Getvar) actions.
+Any of the previously mentioned functions could be called via [AMI](/Configuration/Interfaces/Asterisk-Manager-Interface-AMI) with the [Setvar](/latest_api/API_Documentation/AMI_Actions/Setvar) and [Getvar](/latest_api/API_Documentation/AMI_Actions/Getvar) actions.
 
 Then there are two more specific actions called [ExtensionState](/latest_api/API_Documentation/AMI_Actions/ExtensionState) and [PresenceState](/latest_api/API_Documentation/AMI_Actions/PresenceState). See the linked documentation for more info.
 

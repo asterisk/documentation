@@ -178,8 +178,8 @@ Note that dialed channels automatically receive the `linkedid` of the calling ch
 | end | Date/time | The time when the CDR was finished. This occurs when either party hangs up, or when the bridge between the parties is broken | r |
 | duration | Integer | The time in seconds from start until end | r |
 | billsec | Integer | The time in seconds from answer until end | r |
-| disposition | Enum | The final known disposition of the CDR record. See [CDR dispositions](/CDR-dispositions) for possible values | r |
-| amaflags | Enum | A flag specified on the Party A channel. See [AMA records](/AMA-records) for possible values | r/w |
+| disposition | Enum | The final known disposition of the CDR record. See [CDR dispositions](#dispositions) for possible values | r |
+| amaflags | Enum | A flag specified on the Party A channel. See AMA records for possible values | r/w |
 | userfield | String (255) | A user defined field set on the channels. If set on both the Party A and Party B channel, the userfields of both are concatenated and separated by a `;` | r/w |
 | uniqueid | String (32) | A unique identifier for the Party A channel | r |
 | linkedid | String (32) | A unique identifier that unites multiple CDR records. See [linkedid propagation](#linkedid-propagation) for more details | r |
@@ -192,7 +192,7 @@ Any of the values may be accessed using the [CDR function](/latest_api/API_Docum
 
 Dispositions represent the final state of the call from the perspective of Party A.
 
-| Value | Description | [Hangup Cause Mapping](/Hangup-Cause-Mappings) | Dial Status Mapping |
+| Value | Description | [Hangup Cause Mapping](/Configuration/Miscellaneous/Hangup-Cause-Mappings) | Dial Status Mapping |
 | --- | --- | --- | --- |
 | NO ANSWER | The channel was never answered. This is the default disposition for an unanswered channel. | Any not explicitly listed | CANCEL<br/>NOANSWER |
 | CONGESTION | The channel dialed something that was congested. | `AST_CAUSE_CONGESTION` | CONGESTION |
@@ -427,8 +427,7 @@ When a Local channel optimization occurs, the CDR records associated with the Lo
 
 !!! warning
     CDR properties set on optimized Local channels are **not** propagated to other channels. Setting CDR information on optimizing Local channels will cause that information to be lost.
-    
-    In prior versions of Asterisk it was sometimes necessary to set CDR information on Local channels - with the addition of [Pre-Dial handlers](/Pre-Dial-Handlers), it is always possible to set CDR information on the appropriate channel at the time of creation.
+    In prior versions of Asterisk it was sometimes necessary to set CDR information on Local channels - with the addition of [Pre-Dial handlers](/Configuration/Dialplan/Subroutines/Pre-Dial-Handlers), it is always possible to set CDR information on the appropriate channel at the time of creation.
 
 ### Call Hold
 
@@ -541,18 +540,18 @@ The following details high level APIs that Asterisk provides for manipulating CD
 
 ### Applications
 
-#### [NoCDR](/latest_api/Asterisk_20_Documentation/API_Documentation/Dialplan_Applications/NoCDR)
+#### [NoCDR](/latest_api/API_Documentation/Dialplan_Applications/NoCDR)
 
 When this application is executed on a channel, the channel is no longer considered for CDRs. Any previous CDRs involving the channel will continue to be updated.
 
 !!! warning
     This application is deprecated. It is now recommended to use the [CDR_PROP](/latest_api/API_Documentation/Dialplan_Functions/CDR_PROP) function instead.
 
-#### [ForkCDR](/latest_api/Asterisk_20_Documentation/API_Documentation/Dialplan_Applications/ForkCDR)
+#### [ForkCDR](/latest_api/API_Documentation/Dialplan_Applications/ForkCDR)
 
 ForkCDR now does significantly less than it used to. The application will finalize the current CDR and create a new CDR for the party A channel. The new CDR record may or may not inherit properties of the previously finalized CDR, based on parameters passed to the application.
 
-#### [ResetCDR](/latest_api/Asterisk_20_Documentation/API_Documentation/Dialplan_Applications/ResetCDR)
+#### [ResetCDR](/latest_api/API_Documentation/Dialplan_Applications/ResetCDR)
 
 ResetCDR has two purposes:
 

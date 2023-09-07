@@ -36,7 +36,7 @@ Within the Asterisk space there are many top-level parent pages available. We've
 * [Configuration](/Configuration) - How everything is configured. Where are the files? How do I use them? How do I program dialplan? How do I use the APIs?
 * [Deployment](/Deployment) - Examples, tutorials, how-tos and recommendations for specific use-cases or scenarios of deployment. How do I deal with Asterisk in a NATed environment? How do I build a simple PBX?
 * [Development](/Development) - All information regarding the development of Asterisk itself.
-* [Asterisk Test Suite Documentation](/Test-Suite-Documentation/Test-Development/Home/Asterisk-Test-Suite-Documentation) - Documentation for the test suite! Primarily for developers.
+* [Asterisk Test Suite Documentation](/Test-Suite-Documentation) - Documentation for the test suite! Primarily for developers.
 * [Asterisk Security Vulnerabilities](/About-the-Project/Asterisk-Security-Vulnerabilities) - How the project handles security vulnerabilities.
 * [Asterisk Community](/Asterisk-Community) - Anything falling under community. The places we meet, our code of conduct, community services.
 

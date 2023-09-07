@@ -96,7 +96,7 @@ Day one consisted of an in depth discussion of the features in Asterisk 12, as w
 
 
 !!! note 
-    It's probably worth noting that the slides were used only to help discussion and don't contain a lot of explanation. For more information on the features discussed on those slides, please see the relevant sections under [Asterisk 12 Projects](/Asterisk-12-Projects).
+    It's probably worth noting that the slides were used only to help discussion and don't contain a lot of explanation. For more information on the features discussed on those slides, please see the relevant sections under [Asterisk 12 Projects](../Asterisk-12-Projects).
 
       
 [//]: # (end-note)
@@ -147,7 +147,7 @@ Some questions and comments that came up during the discussion:
 	+ CCSS: no one in audience
 	+ AoC:  one person
 	+ SNOM ext state additions: no one in audience
-* Asterisk 12 allows for new features to be added after release, subject to some constraints. See [Software Configuration Management Policies](/Development/Policies-and-Procedures/Development/Policies-and-Procedures/Software-Configuration-Management-Policies) for more information.
+* Asterisk 12 allows for new features to be added after release, subject to some constraints. See [Software Configuration Management Policies](/Development/Policies-and-Procedures/Software-Configuration-Management-Policies) for more information.
 * Is Bridge information and other aspects of its configuration exposed through Sorcery?
 	+ At this point in time, information about bridges is not exposed through Sorcery. In general, a bridge is created and configured through other interfaces, and state conveyed through events. Since this is a cached object in Stasis, there are possible ways in which its state could be conveyed out to Sorcery.
 * How does bridging key into the DSP subsystem?
@@ -231,7 +231,7 @@ Agenda
     --------------
 
     * Asterisk 12 release policy will be different than other releases
-    	+ New features will be included after release, subject to the constraints in [Software Configuration Management Policies](/Development/Policies-and-Procedures/Development/Policies-and-Procedures/Software-Configuration-Management-Policies)
+    	+ New features will be included after release, subject to the constraints in [Software Configuration Management Policies](/Development/Policies-and-Procedures/Software-Configuration-Management-Policies)
     * Release policy: do we allow new feature changes in Asterisk 13?
     	+ First, as it is with Asterisk 11, standalone modules are always okay. If they are included in a release branch, they can be disabled by default, which means existing installations are insulated from the changes. There should not be changes in core.
     	+ Do we need an approval policy for new features? For example, there are often very minor features (new device states, new AMI events, new ARI events, etc.) that would benefit the larger asterisk community, but are currently automatically rejected. These features have a very low risk of causing an issue.
@@ -246,7 +246,7 @@ Agenda
 
     * Version numbering of API needs to be handled
     	+ Current is 0.0.1. David Lee is currently working on a versioning scheme.
-    	+ **Action: propose a versioning scheme.** David Lee [did reply in an e-mail to the -dev list](http://lists.digium.com/pipermail/asterisk-dev/2013-October/063003.html) with a draft proposal linked here: <https://wiki.asterisk.org/wiki/x/WwCUAQ>
+    	+ **Action: propose a versioning scheme.** David Lee [did reply in an e-mail to the -dev list](http://lists.digium.com/pipermail/asterisk-dev/2013-October/063003.html)
     * Suggestion: Client can indicate "expected version" and server will adapt WITHIN REASON
     	+ There was a long discussion about this proposal. The idea is that if an event is added and the version number incremented, then a client connecting supporting an earlier version number won't receive those events. Due to how messages on the Stasis bus are constructed for consumers, this is not out of the realm of possibility in both AMI and ARI, but careful thought would have to be applied - and expectations set on how far the scope of this can be extended.
     * Implementation notes to client developers may need to be published:

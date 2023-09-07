@@ -1,10 +1,9 @@
----
+ ---
 title: Checking Asterisk Requirements
 pageid: 4817512
 ---
 
-Configuring Asterisk
-====================
+## Configuring Asterisk
 
 Now it's time to compile and install Asterisk. Let's change to the directory which contains the Asterisk source code.
 
@@ -20,11 +19,9 @@ Next, we'll run a command called **./configure**, which will perform a number of
 
 ```
 
-This will run for a couple of minutes, and warn you of any missing system libraries or other dependencies. Unless you've installed all of the [System Requirements](/Operation/System-Requirements) for your version of Asterisk, the **configure** script is likely to fail. If that happens, resolve the missing dependency manually, or use the [install_prereq](#install_prereq) script to resolve all of the dependencies on your system.
+This will run for a couple of minutes, and warn you of any missing system libraries or other dependencies. Unless you've installed all of the [System Requirements](/Operation/System-Requirements) for your version of Asterisk, the **configure** script is likely to fail. If that happens, resolve the missing dependency manually, or use the [install_prereq](#using-install_prereq) script to resolve all of the dependencies on your system.
 
 Once a dependency is resolved, run **configure** again to make sure the missing dependency is fixed.
-
-
 
 
 !!! tip **  If you have many missing dependencies, you may find yourself running **configure
@@ -32,7 +29,6 @@ Once a dependency is resolved, run **configure** again to make sure the missing 
 
       
 [//]: # (end-tip)
-
 
 
 On this PageUpon successful completion of **./configure**, you should see a message that looks similar to the one shown below. (Obviously, your host CPU type may be different than the below.)
@@ -93,10 +89,7 @@ You can then re-run **./configure**.
 ```
 
 
-
-
-Using install_prereq
-=====================
+## Using install_prereq
 
 The **install_prereq** script is included with every release of Asterisk in the `contrib/scripts` subdirectory. The script has the following options:
 

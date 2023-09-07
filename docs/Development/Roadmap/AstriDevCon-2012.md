@@ -3,20 +3,13 @@ title: AstriDevCon 2012
 pageid: 21463921
 ---
 
-
-
-
-Introduction
-============
+## Introduction
 
 AstriDevCon 2012 was held on Monday, October 22nd. It was held on the day prior to AstriCon at the same location. A group of active development community members met and discussed a number of topics.
 
 Much thanks to Jared Smith and BlueHost for sponsoring the event!
 
-Participants
-============
-
-
+## Participants
 
 
 !!! note 
@@ -26,9 +19,7 @@ Participants
 [//]: # (end-note)
 
 
-
-Developers/Contributors Present
--------------------------------
+### Developers/Contributors Present
 
 * David Duffett: Digium
 * Rusty Newton: Digium
@@ -63,15 +54,13 @@ Developers/Contributors Present
 * Tim Panton: Voxeo Labs
 * James Body: Truphone
 
-Developers Participating via #astridevcon
------------------------------------------
+### Developers Participating via #astridevcon
 
 * Tzafrir Cohen: Xorcom
 * Ben Klang: Mojo Lingo/Adhearsion
 * Ben Langfeld: Adhearsion
 
-Agenda
-======
+## Agenda
 
 After introductions, an agenda, consisting of topic areas and specific items, was developed and agreed upon. In order to ensure that all topics had some discussion, each of the major topics was limited to an agreed upon amount of time. The following broad areas were discussed:
 
@@ -81,13 +70,11 @@ After introductions, an agenda, consisting of topic areas and specific items, wa
 * APIs (1 hour)
 * Review of past work and existing work (1 hour)
 
-Notes
-=====
+## Notes
 
 Please remember that these notes merely represent the items that were discussed, and, by themselves, do not constitute policies or project proposals.
 
-Policies
---------
+### Policies
 
 * Release Branches - what is an allowed patch in a release branch. Historically, we've had the policy that no new features should be allowed in release branches - should we revisit that decision? Pros and cons were discussed. The general consensus reached was that this should not be changed.
 	+ We discovered that this policy was never written down in a clear, concise way. ~~**Action to take: We need to craft a written policy for no new features in Release Branches and make it available on the Asterisk wiki.**~~
@@ -150,8 +137,7 @@ Policies
 	+ Counter-argument: the configuration would most likely need need tweaks for duplicate messages, and allowing conversations to CC a mailing list might mean that conversations fall off of the list easier (or never get put on it in the first place)
 	+ **We didn't seem to come to a conclusion on this issue. If anyone feels like this needs more discussion, please start a policy discussion on the asterisk-dev list.**
 
-Channel Drivers
----------------
+### Channel Drivers
 
 * SIP Channel driver. It has issues. As of October of 2012, ~25% of the open issues in JIRA are against `chan_sip`. While that can be attributed to its usage, it can also be attributed to its design. A poll was taken of the attendees if anyone liked to maintain `chan_sip`; no one raised their hand.
 	+ The current SIP channel driver has huge tracts of code (31000 in 1.8; 34000 lines in trunk (which means we aren't actively making it better))
@@ -195,8 +181,7 @@ Channel Drivers
 	+ On that same note, can we replace app_queue with tiny pieces?
 	+ We noted that we could have further discussion on this within APIs
 
-Core
-----
+### Core
 
 * Console logging, specifically, a defined formatting - kobaz has done some work on this and may be getting closer to being able to have it reviewed
 * Scalability
@@ -213,8 +198,7 @@ Core
 * CDRs (cannot kill with fire)
 	+ Core problem with CDRs: what is a call? How do you define a call when there are multiple endpoints involved in a call? Currently, Asterisk does not defined this behavior and this makes CDRs in transfers (and other situations) difficult. CEL helps, but requires consumers to developer their own notion, which is a lot of work. One thing that came up here was the idea that a channel should have a UUID that survives masquerades; this at least would make the entire channel lifetime known. Deferred to API discussion, as modifying CDR behavior needs to reflect core changes.
 
-APIs
-----
+### APIs
 
 * Manager
 	+ Several known problems:
@@ -246,8 +230,7 @@ APIs
 * Compliance/Regression tests with API consumers (such as Adhearsion) - this would be great to have automated in the Test Suite.
 * SLA - Need to explore SLA using ConfBridge. This would remove the last set of functionality dependent on MeetMe/DAHDI.
 
-Review
-------
+### Review
 
 We discussed prior proposed projects, what was done for Asterisk 11, and what might make sense in Asterisk 12. The listing below is pulled from the AstriDevCon 2011 Projects; items committed are crossed out.
 
@@ -261,10 +244,9 @@ We discussed prior proposed projects, what was done for Asterisk 11, and what mi
 [//]: # (end-note)
 
 
+## [AstriDevCon 2011 Projects](/Development/Roadmap/AstriDevCon-2011)
 
-### [AstriDevCon 2011 Projects](/Development/Roadmap/AstriDevCon-2011)
-
-##### (P0)
+### (P0)
 
 * SIP path support (Olle)
 	+ (first generation of code exists, needs more work, simple patch, going to get it done, needs an extra field in astdb; helps when there are 2 or more load balancing proxies in front of asterisk, when you'd like the call to be able to get back to Asterisk; see <https://reviewboard.asterisk.org/r/991/>)
@@ -276,13 +258,13 @@ We discussed prior proposed projects, what was done for Asterisk 11, and what mi
 		- Goal to commit for Asterisk 11
 		- <http://reviewboard.asterisk.org/r/464>
 		- <https://github.com/asterisk/asterisk/issues/jira/browse/ASTERISK-15439>
-* Pre-Dial (Kobaz) [Finished, Committed](/Finished--Committed)
+* Pre-Dial (Kobaz) [Finished, Committed]
 	+ (I think it's done. Been in production for 12+months with no hiccups. Needs review!)
 	+ **Review 2011**: Very happy with the way it is. Uploaded latest diff against trunk.
 		- Goal to commit for Asterisk 11
 		- <https://reviewboard.asterisk.org/r/1229/>
 		- <https://github.com/asterisk/asterisk/issues/jira/browse/ASTERISK-19548>
-* Hangup Handlers (Kobaz) [Finished, Committed](/Finished--Committed)
+* Hangup Handlers (Kobaz) [Finished, Committed]
 	+ (Needs to be updated to use the same gosub parse/exec as PreDial uses)
 	+ **Review 2011**:
 		- Goal to commit for Asterisk 11
@@ -304,7 +286,7 @@ We discussed prior proposed projects, what was done for Asterisk 11, and what mi
 * Make ast_channel an opaque type (Digium)
 	+ **Review 2011**: Large project and has not been started. Should not be on P0.
 
-##### (P1)
+### (P1)
 
 * Who hung up? (there's a branch, shouldn't take too much time - Olle)
 	+ **Review 2011**: Jason Parker thinks something like that may have been committed a few months ago by Jeffrey C. Ollie. Will need to review to see if anything has actually been done there.
@@ -325,13 +307,13 @@ We discussed prior proposed projects, what was done for Asterisk 11, and what mi
 	+ higher sampling rates
 	+ **Review 2011**: Part of the codec negotiation framworks.
 
-##### (P2)
+### (P2)
 
 * Async DNS (TCP DNS and use a good resolver)
 	+ **Review 2011**: No change known.
 * Named ACLs (deluxepine)
 	+ **Review 2011**: Idle
-* [SIP Security Events](/SIP-Security-Events)
+* SIP Security Events
 	+ **Review 2011**: Additional work was updated and put into Asterisk 10. Only reported manager authentication events prior to Asterisk 10.
 		- Prior to Asterisk 10 relaxed policy a bit and added chan_sip security events (only for inbound registration).
 		- Additional work needed throughout Asterisk to add more events.
@@ -348,7 +330,7 @@ We discussed prior proposed projects, what was done for Asterisk 11, and what mi
 * RTMP client channel driver
 	+ **Review 2011**: No change.
 
-##### (P3)
+### (P3)
 
 * Unique identifier for filtering log data to a call
 	+ (finishing what was already begun w/ Clod's project, CLI filtering; should take a look at what Stephan from Unlimitel.ca's created)
@@ -357,7 +339,7 @@ We discussed prior proposed projects, what was done for Asterisk 11, and what mi
 		- Configuration could be under a header, and then create your own filters for channels, and what verbosity,debug,etc. is output to a log file and console per file
 		- **Take Away**: Need to have a discussion of what people would want and need (requirements gathering), and then we can investigate how difficult it would be to implement, and what the order of implementation.
 
-##### (P4, Simon's features)
+### (P4, Simon's features)
 
 * Multiple SIP Sockets
 	+ (Listen on multiple ports or on multiple interfaces, but not all; also set binding for RTP)...alternate idea / solution would be to make Asterisk capable of loading multiple SIP profiles, it might be easier
@@ -369,7 +351,7 @@ We discussed prior proposed projects, what was done for Asterisk 11, and what mi
 	+ (no code, responding correctly to ICE connectivity checks (STUN multiplexed on the RTP port) and understanding the SDP); it makes NAT traversal work for clients that do ICE; also addressed lightweight NAT refresh)
 	+ **Review 2011**: No change or progress. No one has tried to work on it. Appears to be very little deployment.
 
-##### (P5)
+### (P5)
 
 * AstDB replacement SQLite
 	+ **Review 2011**: Have initial support implemented for Asterisk 10. Backend is being used. Terry is continuing to work on additional functionality in trunk.
@@ -377,7 +359,7 @@ We discussed prior proposed projects, what was done for Asterisk 11, and what mi
 	+ (on reviewboard; needs to be forward ported; important for organizations w/ federated identities; a requirement for DTLS SRTP; not widely deployed)
 	+ **Review 2011**: No change.\
 
-##### (P6)
+### (P6)
 
 * Structured identifiers for errors
 	+ (tag an error message with a unique string, specific to the error message and where it came from; should be alphanumeric to keep them short)
@@ -391,7 +373,7 @@ We discussed prior proposed projects, what was done for Asterisk 11, and what mi
 	+ (not likely to be widely deployed in the next 12 months)
 	+ **Review 2011**: No progress has been made. Only one library has it, and is not very mature. Not really up to the Asterisk project to solve the problem. Future consideration.
 
-##### (P7, not kobaz)
+### (P7, not kobaz)
 
 * Write a Specification for AMI (not kobaz)
 	+ **Review 2011**: Goes hand-in-hand with the event documentation. Make it so that we do no break AMI versions – no changes within the same version. We can do this since we do have the ability to version the AMI commands.
@@ -399,7 +381,7 @@ We discussed prior proposed projects, what was done for Asterisk 11, and what mi
 	+ (1 socket, requires support by OpenSSL; simpler to implement than multiple SIP profiles; don't know if any clients use it yet; needs more research)
 	+ **Review 2011**: Currently no SIP end points that support the mechanism, and some discussion on SIP lists say that an RFC should be written. Not very difficult to do on the server side of things. Could be done between Asterisk to Asterisk since we'd implement both the client and the server.
 
-##### (P8, nice to have)
+### (P8, nice to have)
 
 * Make resource modules that talk to DBs attempt reconnects
 	+ **Review 2011**: Added reconnect support to res_config_postgres by Kobaz. Already part of res_odbc. Other native drivers should have it added. Could abstract the reconnection support so that we don't duplicate code. Some work done, more work still possible.
@@ -409,7 +391,7 @@ We discussed prior proposed projects, what was done for Asterisk 11, and what mi
 	+ **Review 2011**: Done in Asterisk 10 (per David Vossel)
 		- Some discussion should be done to move res_monitor to 'extended' or 'deprecated' support level. MixMonitor() likely is now feature complete for Monitor(), especially since MixMonitor() has been implemented in a more friendly manner (in terms of I/O and threading).
 
-##### (P?, Research Required)
+### (P?, Research Required)
 
 * New app_queue (as if? no, seriously? talking about this scares Russell)
 	+ **Review 2011**: Suggested by Kevin that we could have a single box that handles no media, and just does the signalling. Since the agents can be distributed with distributed device state, all registrations would be remote from the queue server. There needs to be an atomic server that would handle the decision making.
@@ -437,7 +419,7 @@ We discussed prior proposed projects, what was done for Asterisk 11, and what mi
 * Export ISDN ROSE information up to Asterisk channels
 	+ **Review 2011**: Not much was really discussed on this as there has not been much requirement for it.
 
-### Projects Discussed
+## Projects Discussed
 
 * Group variables (Kobaz)
 	+ (on review board, in progress)
@@ -457,8 +439,7 @@ We discussed prior proposed projects, what was done for Asterisk 11, and what mi
 * Call-ID Logging Filtering
 	+ Make use of the call-id that is tagged with channels through other mechanisms (CLI filtering, etc.)
 
-Agreed Upon Goals
-=================
+## Agreed Upon Goals
 
 After much discussion, the attendees agreed that two broad areas needed to be addressed for Asterisk 12. While many other projects should also receive attention, these two goals should be the focus of the Asterisk developer community. These are:
 

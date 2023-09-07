@@ -8,7 +8,7 @@ pageid: 29395606
 
 Almost all media is played to a channel using the `POST /channels/{channel_id}/play` operation. This will do the following:
 
-1. Create a new [`Playback`](/latest_api/API_Documentation/Asterisk_REST_Interface/_Asterisk_REST_Data_Models/#Playback) object for the channel. If a media operation is currently in progress on the channel, the new `Playback` object will be queued up for the channel.
+1. Create a new [`Playback`](/latest_api/API_Documentation/Asterisk_REST_Interface/Asterisk_REST_Data_Models/#playback) object for the channel. If a media operation is currently in progress on the channel, the new `Playback` object will be queued up for the channel.
 2. The `media` URI passed to the `play` operation will be inspected, and Asterisk will attempt to find the media requested. Currently, the following media schemes are supported:
 
 
@@ -16,7 +16,7 @@ Almost all media is played to a channel using the `POST /channels/{channel_id}/p
 | URI Scheme | Description |
 | --- | --- |
 | `sound` | A sound file located on the Asterisk system. You can use the `[/sounds](/latest_api/API_Documentation/Asterisk_REST_Interface/Sounds_REST_API)` resource to query for available sounds on the system. You can also use specify a media file which is consumed via HTTP (e.g sound:http://foo.com/sound.wav) |
-| `recording` | A [`StoredRecording`](/latest_api/API_Documentation/Asterisk_REST_Interface/_Asterisk_REST_Data_Models/#StoredRecording) stored on the Asterisk system. You can use the [`/recordings/stored`](/latest_api/API_Documentation/Asterisk_REST_Interface/Recordings_REST_API) resource to query for available `StoredRecording`s on the system. |
+| `recording` | A [`StoredRecording`](/latest_api/API_Documentation/Asterisk_REST_Interface/Asterisk_REST_Data_Models/#storedrecording) stored on the Asterisk system. You can use the [`/recordings/stored`](/latest_api/API_Documentation/Asterisk_REST_Interface/Recordings_REST_API) resource to query for available `StoredRecording`s on the system. |
 | `number` | Play back the specified number. This uses the same mechanism as Asterisk's `[Say](/SayDigits-+SayNumber-+SayAlpha-+and+SayPhonetic+Applications?src=search)` family of applications. |
 | `digits` | Play back the specified digits. This uses the same mechanism as Asterisk's `[Say](/SayDigits-+SayNumber-+SayAlpha-+and+SayPhonetic+Applications?src=search)` family of applications. |
 | `characters` | Play back the specified characters. This uses the same mechanism as Asterisk's `[Say](/SayDigits-+SayNumber-+SayAlpha-+and+SayPhonetic+Applications?src=search)` family of applications. |
@@ -79,7 +79,7 @@ truetextexten => 1000,1,NoOp()
 Python
 ------
 
-This example will use a very similar structure as the [`channel-state.py`](https://wiki.asterisk.org/wiki/display/%7Emjordan/Draft%3A+ARI+Channels%3A+Channel+State#Draft:ARIChannels:ChannelState-channel-state.py) example. Instead of performing a `ring` operation in our `StasisStart` handler, we'll instead initiate a playback using the `playWithId` operation on the channel. Note that our URI uses the `tone` scheme, which supports an optional `tonezone` parameter. We specify our `tonezone` as `fr`, so that we get an elegant French ringing tone. Much like the `channel-state.py` example, we then use a Python timer to schedule a callback that will answer the channel. Since we care about both the `channel` and the `playback` initiated on it, we pass both parameters as `*args` parameters to the callback function.
+Instead of performing a `ring` operation in our `StasisStart` handler, we'll instead initiate a playback using the `playWithId` operation on the channel. Note that our URI uses the `tone` scheme, which supports an optional `tonezone` parameter. We specify our `tonezone` as `fr`, so that we get an elegant French ringing tone. Much like the `channel-state.py` example, we then use a Python timer to schedule a callback that will answer the channel. Since we care about both the `channel` and the `playback` initiated on it, we pass both parameters as `*args` parameters to the callback function.
 
 ```
 truepy46 playback_id = str(uuid.uuid4())
@@ -192,7 +192,7 @@ Channel PJSIP/alice-00000000 just left our application
 JavaScript (Node.js)
 --------------------
 
-This example will use a very similar structure as the `[channel-state.js](https://wiki.asterisk.org/wiki/display/%7Emjordan/Draft%3A+ARI+Channels%3A+Channel+State#Draft:ARIChannels:ChannelState-channel-state.js)` example. Instead of performing a `ring` operation in our `StasisStart` handler, we'll instead initiate a playback using the `play` operation on the channel. Note that our URI uses the `tone` scheme, which supports an optional `tonezone` parameter. We specify our `tonezone` as `fr`, so that we get an elegant French ringing tone. Much like the `channel-state.js` example, we then use a JavaScript timeout to schedule a callback that will answer the channel.
+Instead of performing a `ring` operation in our `StasisStart` handler, we'll instead initiate a playback using the `play` operation on the channel. Note that our URI uses the `tone` scheme, which supports an optional `tonezone` parameter. We specify our `tonezone` as `fr`, so that we get an elegant French ringing tone. Much like the `channel-state.js` example, we then use a JavaScript timeout to schedule a callback that will answer the channel.
 
 ```
 truejs21var playback = client.Playback();
@@ -332,7 +332,7 @@ Channel PJSIP/alice-00000000 just left our application`Example: Playing back a s
 This example ARI application will do the following:
 
 1. When a channel enters the Stasis application, initiate a playback of howler monkeys on the channel. Fly my pretties, FLY!
-2. If the user has not hung up their phone in panic, it will hang up the channel when the howler monkeys return victorious - or rather, when ARI notifies the application that the playback has finished via the [`PlaybackFinished`](/latest_api/API_Documentation/Asterisk_REST_Interface/_Asterisk_REST_Data_Models/#PlaybackFinished) event.
+2. If the user has not hung up their phone in panic, it will hang up the channel when the howler monkeys return victorious - or rather, when ARI notifies the application that the playback has finished via the [`PlaybackFinished`](/latest_api/API_Documentation/Asterisk_REST_Interface/Asterisk_REST_Data_Models/#playbackfinished) event.
 
 Dialplan
 --------
@@ -357,7 +357,7 @@ truetextexten => 1000,1,NoOp()
 Python
 ------
 
-Much like the `[channel-tones.py](https://wiki.asterisk.org/wiki/display/%7Emjordan/Draft%3A+ARI+Channels%3A+Performing+a+simple+playback+of+media#Draft:ARIChannels:Performingasimpleplaybackofmedia-channel-tones.py)` example, we'll start off by initiating a playback on the channel. Instead of specifying a `tone` scheme, however, we'll specify a scheme of `sound` with a resource of `tt-monkeys`. Unlike the tones, this media *does* have a well defined ending - the end of the sound file! So we'll subscribe for the `PlaybackFinished` event and tell `ari-py` to call `playback_finished` when our monkeys are done attacking.
+We'll start off by initiating a playback on the channel. Instead of specifying a `tone` scheme, however, we'll specify a scheme of `sound` with a resource of `tt-monkeys`. Unlike the tones, this media *does* have a well defined ending - the end of the sound file! So we'll subscribe for the `PlaybackFinished` event and tell `ari-py` to call `playback_finished` when our monkeys are done attacking.
 
 ```
 truepy32  playback_id = str(uuid.uuid4())

@@ -3,9 +3,6 @@ title: Writing a Python Test
 pageid: 19008058
 ---
 
-
-
-
 !!! warning 
     ### This method of creating tests is deprecated.
 
@@ -14,10 +11,8 @@ pageid: 19008058
       
 [//]: # (end-warning)
 
+## Overview
 
-
-Overview
-========
 
 While the Asterisk Test Suite can execute a test written in any scripting language, [Python](http://www.python.org) has become the de facto language of choice. The Asterisk Test Suite contains a number of modules written in Python to help with writing tests; as such, we strongly encourage people to make use of the existing infrastructure - and, of course - add to it as necessary!
 
@@ -25,40 +20,31 @@ The following walkthrough produces a test similar to the *tests/skeleton_test*, 
 
 Developing a test can be broken down into the following steps:
 
-1. Define the [#Test Layout and Asterisk Configuration](#Test-Layout-and-Asterisk-Configuration)
-2. Describe the test in [Test-Config.yaml](#Describing-the-test-in-Test-Config.yaml)
-3. Write the [run-test](#Writing-run-test) script
-4. [Execute](#Running-the-test) the test
+1. Define the [#Test Layout and Asterisk Configuration](#test-layout-and-asterisk-configuration)
+2. Describe the test in [Test-Config.yaml](#describing-the-test-in-test-configyaml)
+3. Write the [run-test](#writing-run-test) script
+4. [Execute](#running-the-test) the test
 
 This walkthrough will create a test (*sample*) that makes Asterisk playback tt-monkeys.
 
-Test Layout and Asterisk Configuration
-======================================
+## Test Layout and Asterisk Configuration
 
 1. Create a new folder for the test in the appropriate location. In general, this will be a folder in the */tests* directory. You may want to provide a similar structure to Asterisk by grouping related tests together, e.g., application tests should have folder(s) under the */tests/apps* directory. For now, we'll assume that we're creating a test called *sample*, located in *tests/sample*.
+
 2. In the *sample* folder, create the following:
-	* A *run-test* file, which will contain the python script to execute. The file should have execute permissions, and should not have the ".py" extension. The Test Suite looks for files named run-test and executes them; the fact that we are choosing Python as our language is an implementation decision that the Test Suite does not care about.
-	* *test-config.yaml*, which will contain the test information and its dependency properties
-	* A *configs* directory. The *configs* directory should contain subfolder(s) for each instance of Asterisk that will be instantiated by the test, named *ast#*, where # is the 1-based index of the Asterisk instance. For now, create a single folder named *ast1*.
-	* In each *ast#* subfolder, the Asterisk config files needed for the test. At a minimum, this will be *extensions.conf*.
+
+* A *run-test* file, which will contain the python script to execute. The file should have execute permissions, and should not have the ".py" extension. The Test Suite looks for files named run-test and executes them; the fact that we are choosing Python as our language is an implementation decision that the Test Suite does not care about.
+* *test-config.yaml*, which will contain the test information and its dependency properties
+* A *configs* directory. The *configs* directory should contain subfolder(s) for each instance of Asterisk that will be instantiated by the test, named *ast#*, where # is the 1-based index of the Asterisk instance. For now, create a single folder named *ast1*.
+* In each *ast#* subfolder, the Asterisk config files needed for the test. At a minimum, this will be *extensions.conf*.
 	
+!!! info
+    NoteThe asterisk class automatically creates an *asterisk.conf* file, and installs it along with other basic Asterisk configuration files (see the *configs* directory). You can override their behavior by providing your own *.conf.inc* files. Any configuration files not provided in the *configs* directory are installed from the subfolders for each test.
 	
-	
-	
-	---
-	
-	
-	**Information:**  NoteThe asterisk class automatically creates an *asterisk.conf* file, and installs it along with other basic Asterisk configuration files (see the *configs* directory). You can override their behavior by providing your own *.conf.inc* files. Any configuration files not provided in the *configs* directory are installed from the subfolders for each test.
-	
-	  
-	
-	
-	
-	---
 3. Edit your *extensions.conf* to perform some test in Asterisk. For our test, we'll simply check that we can dial into Asterisk and play back a sound file.
 
 ```
-truetrue[default]
+[default]
 exten => s,1,NoOp()
 same => n,Playback(tt-monkeys)
 same => n,UserEvent(TestResult,result:pass)
@@ -73,8 +59,7 @@ At the end of this, you should have:
 * A subfolder in *sample/configs* named *ast1*
 * A populated *extensions.conf* in *sample/configs/ast1*
 
-Describing the test in Test-Config.yaml
-=======================================
+## Describing the test in Test-Config.yaml
 
 Each test has a corresponding [yaml](http://yaml.org/) file that defines information about the test, the dependencies the test has, and other optional configuration information. The fields that should be filled out, at a minimum, are:
 
@@ -89,8 +74,6 @@ Each test has a corresponding [yaml](http://yaml.org/) file that defines informa
 		- app: External applications that are needed, i.e., 'pjsua'
 
 
-
-
 !!! info ""
     NoteSee the Test Suite's README.txt for all of the possible fields in a test configuration file
 
@@ -98,11 +81,10 @@ Each test has a corresponding [yaml](http://yaml.org/) file that defines informa
 [//]: # (end-info)
 
 
-
 The *test-config.yaml* file for our *sample* test is below.
 
-```
-truetruetestinfo:
+```yaml
+testinfo:
  summary: 'A sample test'
  description: |
  This test verifies that monkeys have taken over the phone system.
@@ -117,8 +99,8 @@ properties:
 
 While we've created our test description, we haven't yet told the Test Suite of its existence. Upon startup, *runtests.py* checks *tests/tests.yaml* for the tests that exist. That file defines the folders that contain tests, where each folder contains another *tests.yaml* file that further defines tests and folders. In order for the Test Suite to find our sample test, open the *tests/tests.yaml* file and insert our test:
 
-```
-truetruetests:
+```yaml
+tests:
  - test: 'example'
 # We're inserting our sample test here:
  - test: 'sample'
@@ -128,13 +110,12 @@ truetruetests:
 
 ```
 
-Writing run-test
-================
+## Writing run-test
 
 Now we start to actually write the meat of our test. Each test in the Test Suite is spawned as a separate process, and so each test needs an entry point. First, lets import a few libraries and write our main.
 
-```
-truepythontrue#!/usr/bin/env python
+```python
+#!/usr/bin/env python
 # vim: sw=3 et:
 import sys
 import os
@@ -177,13 +158,12 @@ There are a few things to note from this:
 
 Moving on!
 
-Defining the Test Class
------------------------
+### Defining the Test Class
 
 We'll need a test the inherits from TestCase. For now, we'll assume that the basic class provides our start_asterisk and stop_asterisk methods and that we don't need to override them (which is a safe assumption in most cases). We'll fill in some of these methods a bit more later.
 
-```
-truepythontrueclass SampleTest(TestCase):
+```python
+class SampleTest(TestCase):
  """
  A class that executes a very simple test, using TestCase to do most of the
  heavy lifting.
@@ -217,7 +197,6 @@ truepythontrueclass SampleTest(TestCase):
  """
  super(SampleTest, self).run()
 
-
  # Create a connection over AMI to the created Asterisk instance. If you need to communicate with
  # all of the instances of Asterisk that were created, specify the number of AMI connections to make.
  # When the AMI connection succeeds, ami_connect will be called.
@@ -245,13 +224,12 @@ At the end of this, we have the following:
 * An entry point for the twisted reactor called *run()*. This calls the base class's implementation of the method, then spawns an AMI connection. Note that in our *main* method, we start up the created Asterisk instances prior to starting the twisted reactor - so when *run()* is called by twisted, Asterisk should already be started and ready for an AMI connection.
 * A method, *ami_connect*, that is called when an AMI connection succeeds. This same method is used for all AMI connections - so to tell which AMI connection you are receiving, we can check the *ami.id* property. Each AMI connection corresponds exactly to the instance of Asterisk in the *ast* list - so *ast[ami.id]* will reference the Asterisk instance associated with the *ami* object.
 
-Making the Test do something
-----------------------------
+### Making the Test do something
 
 So, we have a test that will start up, spawn an instance of Asterisk, and connect to it over AMI. That's interesting, but doesn't really test anything. Based on our *extensions.conf*, we want to call the *s* extension in *default*, hopefully have monkeys possess our channel, and then check that the *UserEvent* fired off to determine if we passed. If we don't see the UserEvent, we should eventually fail. Lets start off by adding some code to *ami_connect*.
 
-```
-truepythontruedef ami_connect(self, ami):
+```python
+def ami_connect(self, ami):
  """
  This method is called by the StarPY manager class when AMI connects to Asterisk.
 
@@ -269,8 +247,8 @@ What we've now instructed the test to do is, upon an AMI connection, originate a
 
 Now we need something to handle the UserEvent when monkeys inevitably enslave our phone system. Let's add that to our *ami_connect* method as well.
 
-```
-truepythontruedef ami_connect(self, ami):
+```python
+def ami_connect(self, ami):
  """
  This method is called by the StarPY manager class when AMI connects to Asterisk.
 
@@ -308,8 +286,7 @@ Now we've registered for the UserEvent that should be raised from the dialplan a
 
 We should now be ready to run our test.
 
-Running the test
-================
+## Running the test
 
 From a console window, browse to the base directory of the Test Suite and type the following:
 
@@ -351,25 +328,22 @@ We can inspect the log files created by the Test Suite for more information. The
 
 ```
 
-Sample Test
-===========
+## Sample Test
 
-extensions.conf
----------------
+### extensions.conf
 
 ```
-truetrue[default]
+[default]
 exten => s,1,NoOp()
 same => n,Playback(tt-monkeys)
 same => n,UserEvent(TestResult,result:pass)
 
 ```
 
-test-config.yaml
-----------------
+### test-config.yaml
 
 ```
-truetruetestinfo:
+testinfo:
  summary: 'A sample test'
  description: |
  This test verifies that monkeys have taken over the phone system.
@@ -382,11 +356,10 @@ properties:
 
 ```
 
-run-test
---------
+### run-test
 
-```
-truepythontrue#!/usr/bin/env python
+```python
+#!/usr/bin/env python
 # vim: sw=3 et:
 '''Asterisk Test Suite Sample Test
 

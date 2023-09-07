@@ -17,7 +17,7 @@ A commit message serves to notify others of the changes made to the Asterisk sou
 
 
 
-This page describes the expected format for commit messages used when submitting code to the Asterisk project. See [Gerrit Usage](/Development/Policies-and-Procedures/Historical-Policies-and-Procedures/Code-Review/Gerrit-Usage) for more information about pushing your commit for review.
+This page describes the expected format for commit messages used when submitting code to the Asterisk project. See [Gerrit Usage](/Development/Policies-and-Procedures/Code-Contribution) for more information about pushing your commit for review.
 
 On This Page
 

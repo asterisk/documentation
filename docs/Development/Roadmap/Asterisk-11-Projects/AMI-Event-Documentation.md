@@ -60,7 +60,7 @@ Two new CLI commands have been added:
 
 
 * manager show events - list all documented AMI events
-* manager show event [event name](/event-name) - provide detailed documentation on a single AMI event
+* manager show event [event name] - provide detailed documentation on a single AMI event
 
 
 Example output of both commands is shown below.

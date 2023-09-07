@@ -208,6 +208,8 @@ class AstXML2Markdown:
         xslt = etree.XSLT(etree.parse(self.args['xslt']), extensions = extensions)
 
         markdown_path = self.args['directory']
+        with open(markdown_path + "/index.md", "w") as ix:
+            ix.write("# API Documentation\n")
 
         # The over all layout of this is main documentation -> prefix/version documentation -> parents -> reference documentation
 
@@ -217,6 +219,8 @@ class AstXML2Markdown:
         # Go through the parents creating their directories and pages
         for parent in self.parent:
             os.makedirs(markdown_path + "/" + self.parent[parent].replace(' ', '_'), exist_ok=True)
+            with open(markdown_path + "/" + self.parent[parent].replace(' ', '_') + "/index.md", "w") as ix:
+                ix.write("# %s\n" % self.parent[parent])
 
         for node in self.elements:
             name = node.attrib.get('name')

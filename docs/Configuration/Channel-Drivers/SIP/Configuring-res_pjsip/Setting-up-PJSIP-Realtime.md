@@ -50,7 +50,7 @@ This will prompt you for your MySQL database password and then create a database
 Installing and Using Alembic
 ----------------------------
 
-Alembic is a full database migration tool, with support for upgrading the schemas of existing databases, versioning of schemas, creation of new tables and databases, and a whole lot more.  A good guide on using Alembic with Asterisk can be found on the [Managing Realtime Databases with Alembic](/Managing-Realtime-Databases-with-Alembic) wiki page.  A shorter discussion of the steps necessary to prep your database will follow.
+Alembic is a full database migration tool, with support for upgrading the schemas of existing databases, versioning of schemas, creation of new tables and databases, and a whole lot more.  A good guide on using Alembic with Asterisk can be found on the [Managing Realtime Databases with Alembic](/Configuration/Interfaces/Back-end-Database-and-Realtime-Connectivity/Managing-Realtime-Databases-with-Alembic) wiki page.  A shorter discussion of the steps necessary to prep your database will follow.
 
 First, install Alembic:
 

@@ -470,8 +470,7 @@ macro is long-deprecated.
 * Opportunistic DTLS
 
 Torrey uses Kamailio.  Kamailio is one endpoint.  He'd like to have one endpoint configuration that'd work for both.  Most things work except for use_received_transport.  The outbound leg doesn't work, but may not be as necessary.  
-A patch had been submitted but was rejected. <https://gerrit.asterisk.org/#/c/asterisk/+/10245/>  
-Discussion will resume on the mailing list.
+A patch had been submitted but was rejected. Discussion will resume on the mailing list.
 
 * Making it easier to send audio to/from Amazon, Google, IBM (especially in context of speech recognition)
 

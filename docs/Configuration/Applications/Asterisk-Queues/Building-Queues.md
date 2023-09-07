@@ -403,7 +403,7 @@ exten => invalid_queue,n,Hangup()
 
 ```
 
-The [globals](/globals) section contains the following two global variables.
+The [globals] section contains the following two global variables.
 
 ```
 [globals]

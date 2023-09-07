@@ -3,13 +3,11 @@ title: Getting Asterisk Connected to MySQL via ODBC
 pageid: 34636864
 ---
 
-Connect Asterisk to a MySQL back-end through ODBC
-=================================================
+## Overview
 
 This is a short tutorial on how to quickly setup Asterisk to use MySQL, the ODBC MariaDB connector and ODBC. We'll use CentOS 6 as the OS in this tutorial. However, the same essential steps apply for any popular Linux distro.
 
-Installing and Configuring MySQL
---------------------------------
+## Installing and Configuring MySQL
 
 There are three basic steps to install and configure MySQL for Asterisk.* Install MySQL server package and start the DB service.
 * Secure the installation if appropriate.
@@ -61,11 +59,7 @@ After each of the CREATE and GRANT commands you should see output indicating tha
 ```
 
 
-
-Install ODBC and the MariaDB ODBC connector
--------------------------------------------
-
-
+## Install ODBC and the MariaDB ODBC connector
 
 
 !!! warning 
@@ -73,10 +67,6 @@ Install ODBC and the MariaDB ODBC connector
 
       
 [//]: # (end-warning)
-
-
-
-
 
 Be sure you have followed the previous sections as we presume you already have MySQL installed on your CentOS server along with a database and user for Asterisk configured. The database name should be 'asterisk' and the username should be 'asterisk'.
 
@@ -96,10 +86,7 @@ The development packages are necessary as well, since later Asterisk will need t
 
 ```
 
-
-
-Configure ODBC and the MariaDB ODBC connector
----------------------------------------------
+## Configure ODBC and the MariaDB ODBC connector
 
 ### Configure odbcinst.ini for ODBC
 
@@ -159,8 +146,7 @@ Socket = /var/lib/mysql/mysql.sock
 
 
 
-Test the ODBC Data Source Name connection
------------------------------------------
+## Test the ODBC Data Source Name connection
 
 Now is a good time to test your database by connecting to it and performing a query. The unixODBC package provides **`isql`**; a command line utility that allows you to connect to the Data Source, send SQL commands to it and receive results back. The syntax used is:
 
@@ -210,8 +196,7 @@ SQL> quit
 
 
 
-Configuring Asterisk to Use the New ODBC and MySQL Install
-----------------------------------------------------------
+## Configuring Asterisk to Use the New ODBC and MySQL Install
 
 Now you have a MySQL database, ODBC and an ODBC MariaDB connector installed and basically configured. The next step is to recompile Asterisk so that the ODBC modules which required the previously mentioned items can now be built. Once those modules exist, then you can configure the proper configuration files in Asterisk depending on what information you want to write to or read from MySQL.
 
@@ -234,9 +219,5 @@ See [Building and Installing Asterisk](/Getting-Started/Installing-Asterisk/Inst
 
 The basic configuration for an Asterisk ODBC connection is handled in res_odbc.conf. You should check out the [Configuring res_odbc](/Configuration/Interfaces/Back-end-Database-and-Realtime-Connectivity/ODBC/Configuring-res_odbc) page and follow it using the DSN and database username and password you setup earlier.
 
-After you have the connection set up in Asterisk you are ready to then configure your database tables with the proper schema depending on what exactly you want to do with them. Asterisk comes with some helpful tools to do this, such as Alembic. See the [Managing Realtime Databases with Alembic](/Managing-Realtime-Databases-with-Alembic) section to get started with Alembic if you are working towards an Asterisk Realtime setup.
-
-
-
-
+After you have the connection set up in Asterisk you are ready to then configure your database tables with the proper schema depending on what exactly you want to do with them. Asterisk comes with some helpful tools to do this, such as Alembic. See the [Managing Realtime Databases with Alembic](../../Managing-Realtime-Databases-with-Alembic) section to get started with Alembic if you are working towards an Asterisk Realtime setup.
 

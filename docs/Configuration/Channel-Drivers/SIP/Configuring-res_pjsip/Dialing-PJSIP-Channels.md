@@ -6,7 +6,7 @@ pageid: 30278070
 Dialing from dialplan
 =====================
 
-We are assuming you already know a little bit about the Dial application here. To see the full help for it, see "core show application Dial" on the Asterisk CLI, or see [Dial](/Application_Dial).
+We are assuming you already know a little bit about the Dial application here. To see the full help for it, see "core show application Dial" on the Asterisk CLI, or see [Dial](/latest_api/API_Documentation/Dialplan_Applications/Dial).
 
 Below we'll simply dial an endpoint using the chan_pjsip channel driver. This is really going to look at the AOR of the same name as the endpoint and start dialing the first contact associated.
 

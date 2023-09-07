@@ -59,7 +59,7 @@ endif
 $(BUILD_DIR)/mkdocs.yml: mkdocs.yml
 	@cp mkdocs.yml $(BUILD_DIR)/mkdocs.yml
 
-static-setup:: $(BUILD_DIR) $(BUILD_DIR)/mkdocs.yml
+static-setup:: |$(BUILD_DIR) $(BUILD_DIR)/mkdocs.yml
 	@echo "Setting Up Static Documentation"
 	@rm -rf $(BUILD_DIR)/docs/
 ifeq ($(NO_STATIC),)
@@ -146,7 +146,8 @@ dynamic-ari-setup: branch-check $(BUILD_DIR)/docs $(BRANCH_DIR) $(ARI_PREREQ)
 	@echo "  Copying ARI markdown"
 	@mkdir -p $(BRANCH_DIR)/docs/Asterisk_REST_Interface
 	@rsync -aH $(ASTERISK_ARI_DIR)/*.md $(BRANCH_DIR)/docs/Asterisk_REST_Interface/
-	@cp overrides/copy-in/ari.pages $(BRANCH_DIR)/docs/Asterisk_REST_Interface/.pages
+	@cp overrides/.copy-in/ari.pages $(BRANCH_DIR)/docs/Asterisk_REST_Interface/.pages
+	@echo "# Asterisk REST Interface" > $(BRANCH_DIR)/docs/Asterisk_REST_Interface/index.md
 	
 download-from-job: $(BRANCH_DIR) branch-check 
 	@if [ -z "$(LAST_JOB)" ] ; then \

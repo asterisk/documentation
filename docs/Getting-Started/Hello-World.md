@@ -22,7 +22,7 @@ Configuration files needed
 
 You should have already run "make samples" if you installed from source, otherwise you may have the sample config files if you installed from packages.
 
-If you have no configuration files in  */etc/asterisk/** then grab the sample config files from the [source directory](/Untarring-the-Source) by navigating to it and running "make samples".
+If you have no configuration files in  */etc/asterisk/** then grab the sample config files from the source directory by navigating to it and running "make samples".
 
 Files needed for this example:
 

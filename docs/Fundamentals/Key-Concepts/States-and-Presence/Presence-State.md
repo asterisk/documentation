@@ -103,7 +103,7 @@ The **second** example would allow for the subscriber to receive notification of
 
 The `CustomPresence` presence state provider will be discussed further on this page.
 
-Also like with device state, there is an [Asterisk Manager Interface](/Asterisk-Manager-Interface--AMI-) command for querying presence state. Documentation for the AMI `PresenceState` command can be found [here](/latest_api/API_Documentation/AMI_Actions/PresenceState).
+Also like with device state, there is an [Asterisk Manager Interface](/Configuration/Interfaces/Asterisk-Manager-Interface-AMI) command for querying presence state. Documentation for the AMI `PresenceState` command can be found [here](/latest_api/API_Documentation/AMI_Actions/PresenceState).
 
 ### Example Presence Notification
 

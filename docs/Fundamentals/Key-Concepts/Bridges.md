@@ -20,8 +20,8 @@ Generally, a bridge is created when Asterisk knows that two or more channels wan
 	+ DTMF feature invocations available from Dial() can create, modify, or destroy bridges.
 * [Bridge](/latest_api/API_Documentation/Dialplan_Applications/Bridge) - this directly creates a new bridge and places two channels into the bridge. Unlike Dial, both channels have to already exist.
 * [BridgeWait](/latest_api/API_Documentation/Dialplan_Applications/BridgeWait) (Asterisk 12+) - creates a special holding bridge and places a channel into it. Any number of channels may join the holding bridge, which can entertain them in a variety of ways.
-* [MeetMe](/Application_MeetMe)/[ConfBridge](/latest_api/API_Documentation/Dialplan_Applications/ConfBridge) - both of these applications are used for conferencing, and can support multiple channels together in the same bridge.
-* [Page](/latest_api/API_Documentation/Dialplan_Applications/Page) - a conferencing bridge (similar to MeetMe/ConfBridge) is used to direct the audio from the announcer to the many dialed channels.
+* [ConfBridge](/latest_api/API_Documentation/Dialplan_Applications/ConfBridge) - both of these applications are used for conferencing, and can support multiple channels together in the same bridge.
+* [Page](/latest_api/API_Documentation/Dialplan_Applications/Page) - a conferencing bridge (similar to ConfBridge) is used to direct the audio from the announcer to the many dialed channels.
 * [Parking](/latest_api/API_Documentation/Dialplan_Applications/Park) (Asterisk 12+) - a special holding bridge is used for Parking, which entertains the waiting channel with hold music.
 
 
@@ -117,13 +117,12 @@ Multiparty bridges interact with one or more channels and may route media among 
 
 There are several ways to access mixing multiparty bridges:
 
-* [MeetMe](/Application_MeetMe) - This is a legacy conference bridge application and relies on DAHDI. This type of conference is limited to narrow band audio.
 * [ConfBridge](/latest_api/API_Documentation/Dialplan_Applications/ConfBridge) (Asterisk 11+) - This is a conference bridge application based that supports wide band mixing.
 * Ad-hoc Multiparty Bridges (Asterisk 12+) - Some DTMF features like 3-way attended transfers can create multiparty bridges as necessary.
 
 ### Holding
 
-Holding bridges are only available in Asterisk 12+ and provide a waiting area for channels which you may not yet be prepared to process or connect to other channels. This type of bridge prevents participants from exchanging media, can provide entertainment for all participants, and provides the ability for an announcer to interrupt entertainment with special messages as necessary. Entertainment for waiting channels can be MoH, silence, ringing, hold, etc.. Holding bridges can be accessed via [BridgeWait](/latest_api/API_Documentation/Dialplan_Applications/BridgeWait) or [Introduction to ARI and Channels - ARI](ARI-Asterisk-channel-to-endpoint).
+Holding bridges are only available in Asterisk 12+ and provide a waiting area for channels which you may not yet be prepared to process or connect to other channels. This type of bridge prevents participants from exchanging media, can provide entertainment for all participants, and provides the ability for an announcer to interrupt entertainment with special messages as necessary. Entertainment for waiting channels can be MoH, silence, ringing, hold, etc.. Holding bridges can be accessed via [BridgeWait](/latest_api/API_Documentation/Dialplan_Applications/BridgeWait) or [Introduction to ARI and Channels - ARI](/Configuration/Interfaces/Asterisk-REST-Interface-ARI/Introduction-to-ARI-and-Channels#channels-to-endpoints).
 
 multi-party300
 

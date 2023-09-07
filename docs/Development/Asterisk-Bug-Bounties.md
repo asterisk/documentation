@@ -14,9 +14,9 @@ Bounty offers may be made for both new features and bug fixes.
 
 The lower limit of $500 is to discourage pointless offers. "I'll offer $20 for 50 hours of work on this super complex bug!"
 
-It would be helpful if those posting a bounty add "[[BOUNTY](/BOUNTY)]" to the subject line of the post, thus allowing subscribers to the list to filter.
+It would be helpful if those posting a bounty add "[BOUNTY]" to the subject line of the post, thus allowing subscribers to the list to filter.
 
-If an Asterisk issue is present for the new feature or bug fix on the [Asterisk issue tracker](https://github.com/asterisk/asterisk/issues/jira) the "bounty" label can be added to it to allow easy searching. A comment should also be added stating the details and offer.
+If an Asterisk issue is present for the new feature or bug fix on the [Asterisk issue tracker](https://github.com/asterisk/asterisk/issues) the "bounty" label can be added to it to allow easy searching. A comment should also be added stating the details and offer.
 
 ### What is a bug bounty?
 

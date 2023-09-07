@@ -12,8 +12,6 @@ Currently we keep a copy of any third party "bundled" software on github for use
 Either fork and clone a copy of that repository, or clone it directly and check out a new branch for the new files you are about to add. Create a new directory beneath the appropriate project directory named for the version number being upgraded to. Next download the new version of the software you are upgrading to as a tarball into this directory.
 
 
-
-
 !!! info "pjproject"
     The latest release for pjproject can be found either on their websites [downloads page](https://www.pjsip.org/download.htm), or directly from their [github repository](https://github.com/pjsip/pjproject/releases).
 
@@ -117,7 +115,7 @@ Next, read the change log for the new version being upgraded to, and make sure t
 Testing
 -------
 
-At this point you should be able to configure, and build Asterisk. Ensure the correct bundled version of the software is now being downloaded and compiled against. Run a few tests locally to make sure Asterisk is generally "fine". If you are able then also execute the testsuite against the new changes. Once everything seems to be okay, then create a patch with all the Asterisk changes, and push it up for review on [gerrit](/Development/Policies-and-Procedures/Historical-Policies-and-Procedures/Code-Review/Gerrit-Usage). Once uploaded you can also add a "regate" comment to the review to initiate a testsuite run via continuous integration. Don't worry if everything does pass it will not auto-merge the changes.
+At this point you should be able to configure, and build Asterisk. Ensure the correct bundled version of the software is now being downloaded and compiled against. Run a few tests locally to make sure Asterisk is generally "fine". If you are able then also execute the testsuite against the new changes. Once everything seems to be okay, then create a patch with all the Asterisk changes, and push it up for review on [GitHub](/Development/Policies-and-Procedures/Code-Contribution). Once uploaded you can also add a "regate" comment to the review to initiate a testsuite run via continuous integration. Don't worry if everything does pass it will not auto-merge the changes.
 
 
 

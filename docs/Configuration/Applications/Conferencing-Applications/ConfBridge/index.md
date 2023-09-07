@@ -36,7 +36,7 @@ A **Conference Menu** is a named set of options that are provided to a user when
 ConfBridge Application Syntax
 =============================
 
-The ConfBridge application syntax and usage can be found at [Asterisk 13 Application_ConfBridge](/latest_api/Dialplan_Applications/ConfBridge)
+The ConfBridge application syntax and usage can be found at [Asterisk 13 Application_ConfBridge](/latest_api/API_Documentation/Dialplan_Applications/ConfBridge)
 
 ConfBridge Application Examples
 ===============================

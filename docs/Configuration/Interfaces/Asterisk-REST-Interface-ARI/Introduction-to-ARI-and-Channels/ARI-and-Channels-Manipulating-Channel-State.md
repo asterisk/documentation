@@ -18,7 +18,7 @@ While there are many states a channel can be in, the following are the most comm
 
 
 !!! note More Channel States
-    Certain channel technologies, such as DAHDI analog channels, may have additional channel states (such as "Pre-ring" or "Dialing Offhook"). When handling channel state, consult the [Channel data model](/latest_api/API_Documentation/Asterisk_REST_Interface/_Asterisk_REST_Data_Models/#Channel) for all possible values.
+    Certain channel technologies, such as DAHDI analog channels, may have additional channel states (such as "Pre-ring" or "Dialing Offhook"). When handling channel state, consult the [Channel data model](/latest_api/API_Documentation/Asterisk_REST_Interface/Asterisk_REST_Data_Models/#channel) for all possible values.
 
       
 [//]: # (end-note)
@@ -30,7 +30,7 @@ While there are many states a channel can be in, the following are the most comm
 Indicating Ringing
 ------------------
 
-Asterisk can inform a device that it should start playing a ringing tone back to the caller using the [`POST /channels/{channel_id}/ring`](/latest_api/API_Documentation/Asterisk_REST_Interface/Channels_REST_API/#ring) operation. Likewise, ringing can be stopped using the [`DELETE /channels/{channel_id}/ring`](/latest_api/API_Documentation/Asterisk_REST_Interface/Channels_REST_API/#ringStop) operation. Note that indicating ringing typically does not actually transmit media from Asterisk to the device in question - Asterisk merely signals the device to ring. It is up to the device itself to actually play something back for the user.
+Asterisk can inform a device that it should start playing a ringing tone back to the caller using the [`POST /channels/{channel_id}/ring`](/latest_api/API_Documentation/Asterisk_REST_Interface/Channels_REST_API/#ring) operation. Likewise, ringing can be stopped using the [`DELETE /channels/{channel_id}/ring`](/latest_api/API_Documentation/Asterisk_REST_Interface/Channels_REST_API/#ringstop) operation. Note that indicating ringing typically does not actually transmit media from Asterisk to the device in question - Asterisk merely signals the device to ring. It is up to the device itself to actually play something back for the user.
 
 Answering a Channel
 -------------------
@@ -42,11 +42,11 @@ You can answer a channel using the [`POST /channels/{channel_id}/answer`](/lates
 Hanging up a channel
 --------------------
 
-You can hang up a channel using the [`DELETE /channels/{channel_id}`](/latest_api/API_Documentation/Asterisk_REST_Interface/Channels_REST_API/#hangup) operation. When this occurs, the path of communication between Asterisk and the device is terminated, and the channel will leave the Stasis application. Your application will be notified of this via a [StasisEnd](/latest_api/API_Documentation/Asterisk_REST_Interface/_Asterisk_REST_Data_Models/#StasisEnd) event.
+You can hang up a channel using the [`DELETE /channels/{channel_id}`](/latest_api/API_Documentation/Asterisk_REST_Interface/Channels_REST_API/#hangup) operation. When this occurs, the path of communication between Asterisk and the device is terminated, and the channel will leave the Stasis application. Your application will be notified of this via a [StasisEnd](/latest_api/API_Documentation/Asterisk_REST_Interface/Asterisk_REST_Data_Models/#stasisend) event.
 
-The same is true if the device initiates the hang up. In the same fashion, the path of communication between Asterisk and the device is terminated, the channel is hung up, and your application is informed that the channel is leaving your application via a [StasisEnd](/latest_api/API_Documentation/Asterisk_REST_Interface/_Asterisk_REST_Data_Models/#StasisEnd) event.
+The same is true if the device initiates the hang up. In the same fashion, the path of communication between Asterisk and the device is terminated, the channel is hung up, and your application is informed that the channel is leaving your application via a [StasisEnd](/latest_api/API_Documentation/Asterisk_REST_Interface/Asterisk_REST_Data_Models/#stasisend) event.
 
-Generally, once a channel leaves your application, you won't receive any more events about the channel. There are times, however, when you may be subscribed to all events coming from a channel - regardless if that channel is in your application or not. In that case, a [ChannelDestroyed](/latest_api/API_Documentation/Asterisk_REST_Interface/_Asterisk_REST_Data_Models/#ChannelDestroyed) event will inform you when the channel is well and truly dead.
+Generally, once a channel leaves your application, you won't receive any more events about the channel. There are times, however, when you may be subscribed to all events coming from a channel - regardless if that channel is in your application or not. In that case, a [ChannelDestroyed](/latest_api/API_Documentation/Asterisk_REST_Interface/Asterisk_REST_Data_Models/#channeldestroyed) event will inform you when the channel is well and truly dead.
 
 Example: Manipulating Channel State
 ===================================
@@ -267,7 +267,7 @@ Channel PJSIP/alice-00000001 just left our application
 JavaScript (Node.js)
 --------------------
 
-This example will use the [ari-client](https://github.com/asterisk/node-ari-client) library. The basic structure is very similar to the [channel-dump JavaScript example](https://wiki.asterisk.org/wiki/display/%7Emjordan/Draft%3A+ARI+Channels+Introduction#Draft:ARIChannelsIntroduction-JavaScript%28Node.js%29) - see that example for more information on the basics of setting up an ARI connection using this library.
+This example will use the [ari-client](https://github.com/asterisk/node-ari-client) library.
 
 To start, once our ARI client has been set up, we will want to register callbakcs for three different events - `StasisStart`, `ChannelStateChange`, and `StasisEnd`.
 

@@ -294,7 +294,7 @@ When you look at a backtrace, you'll usually see one of two things that indicate
 
 2. An abort or seg fault in free. That's pretty much always a memory corruption.
 
-If you think there is a memory corruption issue then you'll want to run [valgrind](/Valgrind) to investigate further.
+If you think there is a memory corruption issue then you'll want to run valgrind to investigate further.
 
 Uploading Your Information To The Issue Tracker
 -----------------------------------------------

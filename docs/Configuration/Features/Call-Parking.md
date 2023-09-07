@@ -3,24 +3,19 @@ title: Call Parking
 pageid: 32376513
 ---
 
-Overview
-========
+# Call Parking
 
 Some organizations have the need to facilitate calls to employees who move around the office a lot or who don't necessarily sit at a desk all day. In Asterisk, it is possible to allow a call to be put on hold at one location and then picked up from a different location such that the conversation can be continued from a device other than the one from which call was originally answered. This concept is known as call parking.
 
 Call parking is a feature that allows a participant in a call to put the other participants on hold while they themselves hang up. When parking, the party that initiates the park will be told a parking space, which under standard configuration doubles as an extension. This extension, or parking space, serves as the conduit for accessing the parked call. At this point, as long as the parking space is known, the parked call can be retrieved from a different location/device from where it was originally answered.
 
-Call Parking Configuration Files and Module
-===========================================
+## Call Parking Configuration Files and Module
 
-In versions of Asterisk prior to Asterisk 12, call parking was considered an Asterisk core feature and was configured using `features.conf`. However, Asterisk 12 underwent vast architectural changes, several of which were directed at call parking support. Because the amount of changes introduced in Asterisk 12 was quite extensive, they have been omitted from this document. For reference, you can find a comprehensive list of these changes here:  [New in 12](/New-in-12) .
+In versions of Asterisk prior to Asterisk 12, call parking was considered an Asterisk core feature and was configured using `features.conf`. However, Asterisk 12 underwent vast architectural changes, several of which were directed at call parking support. Because the amount of changes introduced in Asterisk 12 was quite extensive, they have been omitted from this document.
 
-In a nutshell, Asterisk 12 relocated its support for call parking from the Asterisk core into a separate, loadable module, `res_parking`. As a result, configuration for call parking was also moved to `[res_parking.conf](/latest_api/API_Documentation/Module_Configuration/res_parking)`. Configuration for call parking through `[features.conf](/latest_api/API_Documentation/Module_Configuration/features)` for versions of Asterisk 12 and beyond, is no longer supported. Additionally, support for the `[ParkAndAnnounce](/latest_api/API_Documentation/Dialplan_Applications/ParkAndAnnounce)` application was relocated to the `res_parking` module and the `app_parkandannounce` module was removed.
+In a nutshell, Asterisk 12 relocated its support for call parking from the Asterisk core into a separate, loadable module, `res_parking`. As a result, configuration for call parking was also moved to [`res_parking.conf`](/latest_api/API_Documentation/Module_Configuration/res_parking). Configuration for call parking through `features.conf`for versions of Asterisk 12 and beyond is no longer supported. Additionally, support for the [`ParkAndAnnounce`](/latest_api/API_Documentation/Dialplan_Applications/ParkAndAnnounce) application was relocated to the `res_parking` module and the `app_parkandannounce` module was removed.
 
 Before we move any further, there is one more rather important detail to address regarding configuration for `res_parking`:
-
-
-
 
 !!! note 
     `res_parking` uses the configuration framework. If an invalid configuration is  supplied, `res_parking` will fail to load or fail to reload. Previously,  invalid configurations would generally be accepted, with certain errors  resulting in individually disabled parking lots.
@@ -28,20 +23,11 @@ Before we move any further, there is one more rather important detail to address
       
 [//]: # (end-note)
 
-
-
 Now that we've covered all of that, let's look at some examples of how all this works.
 
-On This Page
+## Example Configurations
 
-
-
-
-Example Configurations
-======================
-
-Basic Call Parking/Retrieval Scenario
--------------------------------------
+### Basic Call Parking/Retrieval Scenario
 
 This is a basic scenario that only requires minimal adjustments to the following configuration files: `res_parking.conf`, `features.conf`, and `extensions.conf`.
 
@@ -57,16 +43,12 @@ In summary:
 * Alice then dials the extension that the call was parked to (`701`) to retrieve the call
 * Alice says, "Goodbye", and disconnects the caller
 
-
-
-
 ---
 
-  
 res_parking.conf  
 
 ```
-truetext1[general]
+[general]
 parkext => 700 ; Sets the default extension used to park calls. Note: This option
  ; can take any alphanumeric string.
 
@@ -98,7 +80,7 @@ findslot => next ; Configures the parking slot selection behavior. For this exam
 features.conf  
 
 ```
-truetext1[featuremap]
+[featuremap]
 parkcall => #72 ; Parks the call (one-step parking). For this example, a call will be
  ; automatically parked when an allowed party presses the DTMF digits,
  ; #·7·2. A party is able to make use of this when the the K/k options
@@ -108,16 +90,11 @@ parkcall => #72 ; Parks the call (one-step parking). For this example, a call wi
  ; k - Allow the called party to enable parking of the call.
 
 ```
-
-
-
 ---
-
-  
 extensions.conf  
 
 ```
-truetext1[globals]
+[globals]
 ; Extension Maps
 5001=alice ; Maps 5001 to a local extension that will emulate
  ; a party pressing DTMF digits from a device.
@@ -148,8 +125,7 @@ exten => 5555001,1,NoOp(Route to a local extension.)
 
 ```
 
-Basic Handling for Call Parking Timeouts
-----------------------------------------
+### Basic Handling for Call Parking Timeouts
 
 Next we will move on to explain how to handle situations where a call is parked but is not retrieved before the value specified as the `parkingtime` option elapses. Just like the scenario above, this is a basic scenario that only requires minimal adjustments to the following configuration files: `res_parking.conf`, `features.conf`, and `extensions.conf`.
 
@@ -287,8 +263,7 @@ exten => t,1,NoOp(End of the line for a timed-out parked call.)
 
 ```
 
-Custom Handling for Call Parking Timeouts
------------------------------------------
+### Custom Handling for Call Parking Timeouts
 
 Finally, we will move on to explain how to handle situations where upon a parked call session timing out, it is not desired to return to the parked call to the device from where the call was originally parked. (This might be handy for situations where you have a dedicated receptionist or service desk extension to handle incoming call traffic.) Just like the previous two examples, this is a basic scenario that only requires minimal adjustments to the following configuration files: `res_parking.conf`, `features.conf`, and `extensions.conf`.
 

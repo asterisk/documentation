@@ -202,7 +202,7 @@ local ast-build
 
 ```
 
-A sample <Dockerfile> can be found [here](Dockerfile).  The git pull for the testsuite should be updated to the latest branch / review.
+A sample <Dockerfile> can be found [here](../Dockerfile).  The git pull for the testsuite should be updated to the latest branch / review.
 
 Docker by default does not enable ipv6.  If you want to run any ipv6 tests, please add the following to */etc/docker/daemon.json* then reload the docker service.
 

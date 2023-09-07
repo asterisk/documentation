@@ -4,8 +4,7 @@ pageid: 19006492
 ---
 
 
-Introduction
-============
+## Introduction
 
 
 AstriDevCon 2011 was held on Monday, October 24th. It was held on the day prior to AstriCon at the same location. A group of active development community members met and discussed a number of topics, including:
@@ -14,9 +13,7 @@ AstriDevCon 2011 was held on Monday, October 24th. It was held on the day prior 
 * Review of AstriDevCon 2011 (Asterisk)
 
 
-Developers Present
-==================
-
+## Developers Present
 
 * Eric Klein: Humbug Telecom
 * Dunling Li: BTS
@@ -48,21 +45,19 @@ Developers Present
 * Klaus Darilion: ipcom.at
 
 
-AstriDevCon 2010 Results
-========================
+## AstriDevCon 2010 Results
 
 
 The following sections are a list of ideas that have been discussed at AstriDevCon. They are listed in a priority order where a lower number is a higher weight. P0 priority are for projects that are near completion and need the original developer to push through to the end. Other priority issues from P1 and higher are ranked by the participants at AstriDevCon.
 
 
-(P0)
-----
+### (P0)
 
 
 P0 are committed projects that are going to get done.
 
 
-* [T.38 Gateway](/T.38-Gateway) (Digium)
+* T.38 Gateway (Digium)
 * Performance of State Change Processing (Stefan Schmidt)
 	+ (work is already being done on this front)
 * SIP path support (Olle)
@@ -73,15 +68,14 @@ P0 are committed projects that are going to get done.
 	+ (on review board, in progress)
 	+ **Review 2011**: Code written and then re-written this year, tested in production for a year. Feels good code wise. Some suggestions on reviewboard and should be converted to ao2.
 		- Goal to commit for Asterisk 11
-		- <http://reviewboard.asterisk.org/r/464>
-		- <https://github.com/asterisk/asterisk/issues/jira/browse/ASTERISK-15439>
-* Pre-Dial (Kobaz) [Finished, Committed](/Finished--Committed)
+
+* Pre-Dial (Kobaz) [Finished, Committed]
 	+ (I think it's done. Been in production for 12+months with no hiccups. Needs review!)
 	+ **Review 2011**: Very happy with the way it is. Uploaded latest diff against trunk.
 		- Goal to commit for Asterisk 11
 		- <https://reviewboard.asterisk.org/r/1229/>
 		- <https://github.com/asterisk/asterisk/issues/jira/browse/ASTERISK-19548>
-* Hangup Handlers (Kobaz) [Finished, Committed](/Finished--Committed)
+* Hangup Handlers (Kobaz) [Finished, Committed]
 	+ (Needs to be updated to use the same gosub parse/exec as PreDial uses)
 	+ **Review 2011**:
 		- Goal to commit for Asterisk 11
@@ -104,8 +98,7 @@ P0 are committed projects that are going to get done.
 	+ **Review 2011**: Large project and has not been started. Should not be on P0.
 
 
-(P1)
-----
+### (P1)
 
 
 P1 is the highest priority.
@@ -131,15 +124,13 @@ P1 is the highest priority.
 	+ **Review 2011**: Part of the codec negotiation framworks.
 
 
-(P2)
-----
-
+### (P2)
 
 * Async DNS (TCP DNS and use a good resolver)
 	+ **Review 2011**: No change known.
 * Named ACLs (deluxepine)
 	+ **Review 2011**: Idle
-* [SIP Security Events](/SIP-Security-Events)
+* SIP Security Events
 	+ **Review 2011**: Additional work was updated and put into Asterisk 10. Only reported manager authentication events prior to Asterisk 10.
 		- Prior to Asterisk 10 relaxed policy a bit and added chan_sip security events (only for inbound registration).
 		- Additional work needed throughout Asterisk to add more events.
@@ -157,8 +148,7 @@ P1 is the highest priority.
 	+ **Review 2011**: No change.
 
 
-(P3)
-----
+### (P3)
 
 
 * Unique identifier for filtering log data to a call
@@ -169,9 +159,7 @@ P1 is the highest priority.
 		- **Take Away**: Need to have a discussion of what people would want and need (requirements gathering), and then we can investigate how difficult it would be to implement, and what the order of implementation.
 
 
-(P4, Simon's features)
-----------------------
-
+### (P4, Simon's features)
 
 * Multiple SIP Sockets
 	+ (Listen on multiple ports or on multiple interfaces, but not all; also set binding for RTP)...alternate idea / solution would be to make Asterisk capable of loading multiple SIP profiles, it might be easier
@@ -184,9 +172,7 @@ P1 is the highest priority.
 	+ **Review 2011**: No change or progress. No one has tried to work on it. Appears to be very little deployment.
 
 
-(P5)
-----
-
+### (P5)
 
 * AstDB replacement SQLite
 	+ **Review 2011**: Have initial support implemented for Asterisk 10. Backend is being used. Terry is continuing to work on additional functionality in trunk.
@@ -195,9 +181,7 @@ P1 is the highest priority.
 	+ **Review 2011**: No change.\
 
 
-(P6)
-----
-
+### (P6)
 
 * Structured identifiers for errors
 	+ (tag an error message with a unique string, specific to the error message and where it came from; should be alphanumeric to keep them short)
@@ -212,8 +196,7 @@ P1 is the highest priority.
 	+ **Review 2011**: No progress has been made. Only one library has it, and is not very mature. Not really up to the Asterisk project to solve the problem. Future consideration.
 
 
-(P7, not kobaz)
----------------
+### (P7, not kobaz)
 
 
 * Write a Specification for AMI (not kobaz)
@@ -223,9 +206,7 @@ P1 is the highest priority.
 	+ **Review 2011**: Currently no SIP end points that support the mechanism, and some discussion on SIP lists say that an RFC should be written. Not very difficult to do on the server side of things. Could be done between Asterisk to Asterisk since we'd implement both the client and the server.
 
 
-(P8, nice to have)
-------------------
-
+### (P8, nice to have)
 
 * Make resource modules that talk to DBs attempt reconnects
 	+ **Review 2011**: Added reconnect support to res_config_postgres by Kobaz. Already part of res_odbc. Other native drivers should have it added. Could abstract the reconnection support so that we don't duplicate code. Some work done, more work still possible.
@@ -236,9 +217,7 @@ P1 is the highest priority.
 		- Some discussion should be done to move res_monitor to 'extended' or 'deprecated' support level. MixMonitor() likely is now feature complete for Monitor(), especially since MixMonitor() has been implemented in a more friendly manner (in terms of I/O and threading).
 
 
-(P?, Research Required)
------------------------
-
+### (P?, Research Required)
 
 * New app_queue (as if? no, seriously? talking about this scares Russell)
 	+ **Review 2011**: Suggested by Kevin that we could have a single box that handles no media, and just does the signalling. Since the agents can be distributed with distributed device state, all registrations would be remote from the queue server. There needs to be an atomic server that would handle the decision making.
@@ -267,13 +246,9 @@ P1 is the highest priority.
 	+ **Review 2011**: Not much was really discussed on this as there has not been much requirement for it.
 
 
-AstriDevCon 2011 Ideas
-======================
+## AstriDevCon 2011 Ideas
 
-
-Brainstorm (will move after)
-----------------------------
-
+### Brainstorm (will move after)
 
 * SIP path support
 	+ Brought up again this year and there are several developers interested in implementing this.
@@ -299,55 +274,34 @@ Brainstorm (will move after)
 * Update modules that require app_macro to not require it; prefer app_stack (GoSub)
 
 
-(P0)
-----
+### (P0)
 
 
 P0 are issues that are near completion.
 
 
-(P1)
-----
-
+### (P1)
 
 P1 is the highest priority.
 
 
-(P2)
-----
+### (P2)
 
+### (P3)
 
-(P3)
-----
+### (P4)
 
+### (P5)
 
-(P4)
-----
+### (P6)
 
+### (P7)
 
-(P5)
-----
+### (P8, Nice To Have)
 
+### (P?, Research Required)
 
-(P6)
-----
-
-
-(P7)
-----
-
-
-(P8, Nice To Have)
-------------------
-
-
-(P?, Research Required)
------------------------
-
-
-Testing Framework Ideas
-=======================
-
+## Testing Framework Ideas
 
 We discussed the automated testing that has been built for Asterisk and discussed ideas for future improvements.
 
@@ -389,40 +343,30 @@ We discussed the automated testing that has been built for Asterisk and discusse
 * Language tests
 
 
-Release Policy Discussion
-=========================
+## Release Policy Discussion
 
-
-2010
-----
-
+### 2010
 
 We discussed Asterisk release policy. Specifically, we were considering the current policy that excludes features from a release branch. After a bit of discussion, it was decided that no changes to policy would be made. We did agree that a new self contained module that was not compiled by default would be fine, but that it would be rare that it would provide benefit, since most projects are modifications of existing code.
 
 
-2011
-----
+### 2011
 
 
 No change in policy.
 
 
-Photos of attendees
-===================
-
+## Photos of attendees
 
 We rock.
 
 
-2010
-----
-
+### 2010
 
 ![](IMG_4162.JPG)  ![](IMG_4164.JPG)  ![](IMG_4165.JPG)  ![](IMG_4166.JPG)
 
 
-2011
-----
+### 2011
 
 
 ![](IMG_5579.jpg)  ![](IMG_5581.jpg) ![](IMG_5583.jpg) ![](IMG_5590.jpg)  ![](IMG_5588.jpg)  ![](IMG_5584.jpg)

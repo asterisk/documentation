@@ -11,9 +11,9 @@ There are three main components to building an ARI application.
 
 The first, obviously, is **the RESTful API** itself. The API is documented using [Swagger](https://developers.helloreverb.com/swagger/), a lightweight specification for documenting RESTful APIs. The Swagger API docs are used to generate validations and boilerplate in Asterisk itself and interactive documentation using [Swagger-UI](https://github.com/wordnik/swagger-ui).
 
-Then, Asterisk needs to send asynchronous events to the application (new channel, channel left a bridge, channel hung up, etc). This is done using a **WebSocket on /ari/events**. Events are sent as JSON messages, and are documented on the [REST Data Models page](/latest_api/Asterisk_REST_Interface/_Asterisk_REST_Data_Models). (See the list of subtypes for the [`Message` data model](/latest_api/Asterisk_REST_Interface/_Asterisk_REST_Data_Models/#message).)
+Then, Asterisk needs to send asynchronous events to the application (new channel, channel left a bridge, channel hung up, etc). This is done using a **WebSocket on /ari/events**. Events are sent as JSON messages, and are documented on the [REST Data Models page](/latest_api/API_Documentation/Asterisk_REST_Interface/Asterisk_REST_Data_Models). (See the list of subtypes for the [`Message` data model](/latest_api/API_Documentation/Asterisk_REST_Interface/Asterisk_REST_Data_Models/#message).)
 
-Finally, connecting the dialplan to your application is the  [`Stasis()` dialplan application](/latest_api/Dialplan_Applications/Stasis). From within the dialplan, you can send a channel to `Stasis()`, specifying the name of the external application, along with optional arguments to pass along to the application.
+Finally, connecting the dialplan to your application is the  [`Stasis()` dialplan application](/latest_api/API_Documentation/Dialplan_Applications/Stasis). From within the dialplan, you can send a channel to `Stasis()`, specifying the name of the external application, along with optional arguments to pass along to the application.
 
 ## Example: ARI Hello World!
 

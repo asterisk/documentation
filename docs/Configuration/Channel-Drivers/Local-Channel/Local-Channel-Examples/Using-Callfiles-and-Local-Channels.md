@@ -36,7 +36,7 @@ We can then verify our entry in the database using the 'database show' CLI comma
 
 ```
 
-Now lets create the dialplan that will allow us to call SIP/0004f2040001 when we request extension 201 from the [extensions](/extensions) context via our Local channel.
+Now lets create the dialplan that will allow us to call SIP/0004f2040001 when we request extension 201 from the [extensions] context via our Local channel.
 
 ```
 [devices]

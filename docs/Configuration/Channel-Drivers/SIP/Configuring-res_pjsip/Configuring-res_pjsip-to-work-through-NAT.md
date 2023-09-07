@@ -3,12 +3,13 @@ title: Configuring res_pjsip to work through NAT
 pageid: 27198672
 ---
 
+## Overview 
+
 Here we can show some examples of working configuration for Asterisk's SIP channel driver when Asterisk is behind NAT (Network Address Translation).
 
 If you are migrating from chan_sip to chan_pjsip, then also read the NAT section in [Migrating from chan_sip to res_pjsip](/Configuration/Channel-Drivers/SIP/Configuring-res_pjsip/Migrating-from-chan_sip-to-res_pjsip) for helpful tips.
 
-Asterisk and Phones Connecting Through NAT to an ITSP
-=====================================================
+## Asterisk and Phones Connecting Through NAT to an ITSP
 
 This example should apply for most simple NAT scenarios that meet the following criteria:
 
@@ -41,23 +42,21 @@ DID number provided by ITSP:  19998887777
 
 We are assuming you have already read the Configuring res_pjsip page and have a basic understanding of Asterisk. For this NAT example, the important config options to note are **local_net**, **external_media_address** and **external_signaling_address** in the transport type section and **direct_media** in the endpoint section. The rest of the options may depend on your particular configuration, phone model, network settings, ITSP, etc. The key is to make sure you have those three options set appropriately.
 
-##### local_net
+#### local_net
 
 This is the IP network that we want to consider our local network. For communication to addresses within this range, we won't apply any NAT-related settings, such as the external\* options below.
 
-##### external_media_address
+#### external_media_address
 
 This is the external IP address to use in RTP handling. When a request or response is sent out from Asterisk, if the destination of the message is outside the IP network defined in the option 'local_net', and the media address in the SDP is within the localnet network, then the media address in the SDP will be rewritten to the value defined for 'external_media_address'.
 
-##### external_signaling_address
+#### external_signaling_address
 
 This is much like the external_media_address setting, but for SIP signaling instead of RTP media. The two external\* options mentioned here should be set to the same address unless you separate your signaling and media to different addresses or servers.
 
-##### direct_media
+#### direct_media
 
 Determines whether media may flow directly between endpoints
-
-
 
 Together these options make sure the far end knows where to send back SIP and RTP packets, and direct_media ensures Asterisk stays in the media path. This is important, because our Asterisk system has a private IP address that the ITSP cannot route to. We want to make sure the SIP and RTP traffic comes back to the WAN/Public internet address of our router. The sections prefixed with "sipus" are all configuration needed for inbound and outbound connectivity of the SIP trunk, and the sections named 6001 are all for the VOIP phone.
 
@@ -137,31 +136,30 @@ In the above example we assumed the phone was on the same local network as Aster
 
 In these cases you will want to consider the below settings for the remote endpoints.
 
-##### media_address
+#### media_address
 
 IP address used in SDP for media handling
 
 At the time of SDP creation, the IP address defined here will be used as  
 
 
-##### rtp_symmetric
+#### rtp_symmetric
 
 Enforce that RTP must be symmetric. Send RTP back to the same address/port we received it from.
 
-##### force_rport
+#### force_rport
 
 Force RFC3581 compliant behavior even when no rport parameter exists. Basically always send SIP responses back to the same port we received SIP requests from.
 
-##### direct_media
+#### direct_media
 
 Determines whether media may flow directly between endpoints.
 
-##### rewrite_contact
+#### rewrite_contact
 
 Determine whether SIP requests will be sent to the source IP address and port, instead of the address provided by the endpoint.
 
-Clients Supporting ICE,STUN,TURN
---------------------------------
+## Clients Supporting ICE,STUN,TURN
 
-This is really relevant to media, so look to the [section here](/Interactive-Connectivity-Establishment--ICE--in-Asterisk) for basic information on enabling this support and we'll add relevant examples later.
+This is really relevant to media, so look to the [section here](/Configuration/Miscellaneous/Interactive-Connectivity-Establishment-ICE-in-Asterisk) for basic information on enabling this support and we'll add relevant examples later.
 
