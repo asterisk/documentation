@@ -23,7 +23,7 @@ All of Ubuntu's Code, Translations, Packages, Bugs, access control lists, team i
 
 * Create an [account](https://help.launchpad.net/YourAccount/NewAccount) on launchpad.
 * Create a [GPG key](https://help.launchpad.net/YourAccount/ImportingYourPGPKey) and import it.
-* Create a[SSH key](https://help.launchpad.net/YourAccount/CreatingAnSSHKeyPair) and import it.
+* Create a [SSH key](https://help.launchpad.net/YourAccount/CreatingAnSSHKeyPair) and import it.
 
 Create a Build Environment
 ==========================
@@ -34,14 +34,16 @@ Install Ubuntu 10.04 (Lucid)
 [Installing Ubuntu 10.04 (Lucid)](/Installing-Ubuntu-10.04--Lucid-)
 
 Enable Backports
--------------```bash title="---" linenums="1"
+-------------
+```bash title="---" linenums="1"
 $ sudo apt-get install python-software-properties
 $ sudo add-apt-repository "deb http://ca.archive.ubuntu.com/ubuntu/ $(lsb_release --short --codename)-backports main universe"
 
 ```
 
 Upgrade Lucid to the latest release:
----------------------------------```bash title="---" linenums="1"
+---------------------------------
+```bash title="---" linenums="1"
 $ sudo apt-get update
 $ sudo apt-get dist-upgrade
 $ sudo apt-get autoremove
@@ -50,13 +52,15 @@ $ sudo reboot
 ```
 
 Install required software
-----------------------```bash title="---" linenums="1"
+----------------------
+```bash title="---" linenums="1"
 $ sudo apt-get install build-essential pbuilder debian-archive-keyring ccache
 
 ```
 
 pbuilder
------```bash title="---" linenums="1"
+-----
+```bash title="---" linenums="1"
 $ sudo mkdir -p /var/cache/pbuilder/ccache
 $ sudo mkdir -p /var/cache/pbuilder/hook.d
 
@@ -183,7 +187,8 @@ $ for x in lucid maverick natty; do for y in i386 amd64; do sudo DIST=${x} ARCH=
 ```
 
 svn-buildpackage
--------------```bash title="---" linenums="1"
+-------------
+```bash title="---" linenums="1"
 $ vi ~/.svn-buildpackage.conf
 
 ```
@@ -194,7 +199,8 @@ svn-noautodch
 ```
 
 quilt
---```bash title="---" linenums="1"
+----
+```bash title="---" linenums="1"
 $ vi ~/.quiltrc
 
 ```
@@ -209,7 +215,8 @@ QUILT_DIFF_ARGS="-p ab --no-timestamps --no-index --color=auto"
 ```
 
 devscripts
--------```bash title="---" linenums="1"
+-------
+```bash title="---" linenums="1"
 $ vi ~/.devscripts
 
 ```
@@ -459,7 +466,7 @@ DISTS="lucid"
 Also see
 --------
 
-* [http://alioth.debian.org/scm/viewvc.php/*checkout */mirrorer/docs/manual.html?revision=HEAD&root=mirrorer](http://alioth.debian.org/scm/viewvc.php/*checkout */mirrorer/docs/manual.html?revision=HEAD&root=mirrorer)(http://alioth.debian.org/scm/viewvc.php/*checkou */mirrorer/docs/manual.html?revision=HEAD&root=mirrorer)
+* <http://alioth.debian.org/scm/viewvc.php/checkout/mirrorer/docs/manual.html?revision=HEAD&root=mirrorer>
 * <http://inodes.org/2009/09/14/building-a-private-ppa-on-ubuntu/>
 
 Working with Source Packages
