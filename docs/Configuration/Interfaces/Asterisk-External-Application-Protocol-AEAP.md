@@ -61,7 +61,7 @@ offer request
 Example 1 offer request  
 
 ```
-true{
+{
  "request": "setup",
  "id": "9c8d7625-d70d-4225-8b4f-53063ea8e774",
  "version": "0.1.0",
@@ -78,7 +78,7 @@ true{
 Example 2 offer request  
 
 ```
-true{
+{
  "request": "setup",
  "id": "7180e464-c022-40e6-a49c-9d2007f008a7",
  "version": "0.1.0",
@@ -95,7 +95,7 @@ true{
 Example 3 offer request  
 
 ```
-true{
+{
  "request": "setup",
  "id": "b3eda99f-464f-477e-b8a3-4ebafda0b482",
  "version": "0.1.0",
@@ -141,7 +141,7 @@ Much like the initial request, "response", "id", and "codecs" are required field
 Example 1 offer response okay  
 
 ```
-true{
+{
  "response": "setup",
  "id": "7180e464-c022-40e6-a49c-9d2007f008a7",
  "codecs": [{ "name": "ulaw" }],
@@ -182,7 +182,7 @@ All fields are required, and at least one parameter name to retrieve must be spe
 Example 1 get request  
 
 ```
-true{
+{
  "request": "get",
  "id": "f066e049-d4ef-4093-a05b-0effef1bc077",
  "params": ["language"],
@@ -220,7 +220,7 @@ Be aware that the returned value's type is named parameter dependent. For instan
 Example 1 get response okay  
 
 ```
-true{
+{
  "response": "get",
  "id": "f066e049-d4ef-4093-a05b-0effef1bc077",
  "params": { "language" : "en" },
@@ -261,7 +261,7 @@ All fields are required. Similar to "get", a named parameter's value type varies
 Example 1 set request  
 
 ```
-true{
+{
  "response": "set",
  "id": "9f424395-736b-412c-b8f4-a67a3497415b",
  "params": { "language" : "en" },
@@ -295,7 +295,7 @@ set response
 Example 1 set response okay  
 
 ```
-true {
+ {
  "response": "set",
  "id": "9f424395-736b-412c-b8f4-a67a3497415b",
 }
@@ -332,7 +332,7 @@ error response
 Example 1 setup error  
 
 ```
-true{
+{
  "response": "setup",
  "id": "b3eda99f-464f-477e-b8a3-4ebafda0b482",
  "error_msg": "No supported codec(s)"
@@ -348,7 +348,7 @@ true{
 Example 2 get error  
 
 ```
-true{
+{
  "response": "get",
  "id": "f066e049-d4ef-4093-a05b-0effef1bc077",
  "error_msg": "No language parameter available"
@@ -364,7 +364,7 @@ true{
 Example 3 set error  
 
 ```
-true{
+{
  "response": "set",
  "id": "9f424395-736b-412c-b8f4-a67a3497415b",
  "error_msg": "Unable to set language to 'en-US'"

@@ -30,7 +30,7 @@ On this Page
 pjsip.conf
 
 ```
-true[my_provider]
+[my_provider]
 type = registration
 server_uri = sip:registrar@example.com
 client_uri = sip:client@example.com
@@ -76,7 +76,7 @@ An English translation of the above REGISTER is "Tell the server at sip:registra
   
 
 ```
-true[my_provider]
+[my_provider]
 type = registration
 server_uri = sip:registrar@example.com\;transport=tcp
 client_uri = sip:client@example.com\;transport=tcp
@@ -98,7 +98,7 @@ If you examine the configuration options linked in the previous section, you wil
 pjsip.conf
 
 ```
-true[my_provider_endpoint]
+[my_provider_endpoint]
 type = endpoint
 
 [my_provider_identify]
@@ -115,7 +115,7 @@ If you also wish to make outbound calls to the provider, then you would also nee
 pjsip.conf
 
 ```
-true[my_provider_endpoint]
+[my_provider_endpoint]
 type = endpoint
 aors = my_provider_aor
  
@@ -149,7 +149,7 @@ It is likely that if you are registering to a provider, you will need to provide
 pjsip.conf
 
 ```
-true[my_provider]
+[my_provider]
 type = registration
 server_uri = sip:registrar@example.com
 client_uri = sip:client@example.com
@@ -195,7 +195,7 @@ Let's modify our outbound registration to set these options to custom values:
 pjsip.conf
 
 ```
-true[my_provider]
+[my_provider]
 type = registration
 server_uri = sip:registrar@example.com
 client_uri = sip:client@example.com

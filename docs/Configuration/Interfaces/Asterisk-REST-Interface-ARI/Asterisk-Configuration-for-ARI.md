@@ -54,8 +54,8 @@ On This Page
   
 http.conf  
 
-```
-truetext[general]
+```text
+[general]
 enabled = yes
 bindaddr = 0.0.0.0
 bindport = 8088
@@ -101,8 +101,8 @@ ARI users and properties are configured via `ari.conf`. Note that all options ma
   
 ari.conf  
 
-```
-truetext[general]
+```text
+[general]
 enabled = yes
 pretty = yes
 allowed_origins = localhost:8088,http://ari.asterisk.org
@@ -149,7 +149,7 @@ This snippet of dialplan, taken from `extensions.conf`, illustrates two ARI appl
 extensions.conf  
 
 ```
-true[default]
+[default]
 
 exten => ivr,1,NoOp()
  same => n,Stasis(Intro-IVR)

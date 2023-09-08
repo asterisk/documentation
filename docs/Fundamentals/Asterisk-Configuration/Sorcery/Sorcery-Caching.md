@@ -66,7 +66,7 @@ If you are familiar with enabling realtime for a sorcery object, then enabling c
 sorcery.conf
 
 ```
-true[res_pjsip]
+[res_pjsip]
 endpoint/cache=memory_cache
 endpoint=realtime,ps_endpoints
 
@@ -83,7 +83,7 @@ By default, the cache will simply store objects in memory. There will be no limi
 sorcery.conf
 
 ```
-true[res_pjsip]
+[res_pjsip]
 endpoint/cache = memory_cache,maximum_objects=150,expire_on_reload=yes,object_lifetime_maximum=3600
 endpoint = realtime,ps_endpoints
 
@@ -218,7 +218,7 @@ Below is a sample sorcery.conf file that uses realtime as the backend store for 
 sorcery.conf
 
 ```
-true [res_pjsip]
+ [res_pjsip]
 endpoint/cache = memory_cache,object_lifetime_stale=600,object_lifetime_maximum=1800,expire_on_reload=yes
 endpoint = realtime,ps_endpoints
 auth/cache=memory_cache,expire_on_reload=yes
@@ -248,7 +248,7 @@ However, Asterisk can be told to pre-load all objects of a certain type and cach
 sorcery.conf
 
 ```
-true[res_pjsip]
+[res_pjsip]
 identify/cache = memory_cache,object_lifetime_stale=600,object_lifetime_maximum=1800,expire_on_reload=yes,full_backend_cache=yes
 identify = realtime,ps_endpoint_id_ips
 

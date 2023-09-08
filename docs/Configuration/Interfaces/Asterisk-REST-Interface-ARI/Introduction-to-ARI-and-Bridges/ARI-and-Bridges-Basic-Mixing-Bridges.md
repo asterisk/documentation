@@ -88,8 +88,8 @@ The following code shows the `StasisStart` callback handler for the `inbound` ch
       
 [//]: # (end-tip)
 
-```
-truepy31def stasis_start_cb(channel_obj, ev):
+```python
+def stasis_start_cb(channel_obj, ev):
  """Handler for StasisStart"""
 
  channel = channel_obj.get('channel')
@@ -129,8 +129,8 @@ truepy31def stasis_start_cb(channel_obj, ev):
 
 The `safe_hangup` function referenced above simply does a "safe" hangup on the channel provided. This is because it is entirely possible for both parties to hang up nearly simultaneously. Since our Python code is running in a separate process from Asterisk, we may be processing the hang up of the first party and instruct Asterisk to hang up the second party when they are already technically hung up! Again, it is always a good idea to view the processing of a communications application in an asynchronous fashion: we live in an asynchronous world, and a user can take an action at any moment in time.
 
-```
-truepy12def safe_hangup(channel):
+```python
+def safe_hangup(channel):
  """Safely hang up the specified channel"""
  try:
  channel.hangup()
@@ -152,8 +152,8 @@ When the outbound channel is answered, we need to do the following:
 
 This is shown in the following code:
 
-```
-truepy67 def outgoing_start_cb(channel_obj, ev):
+```python
+def outgoing_start_cb(channel_obj, ev):
  """StasisStart handler for our dialed channel"""
 
  print "{} answered; bridging with {}".format(outgoing.json.get('name'),
@@ -190,8 +190,8 @@ The full source code for `bridge-dial.py` is shown below:
   
 basic-dial.py  
 
-```
-truepy#!/usr/bin/env python
+```python
+#!/usr/bin/env python
 
 import logging
 import requests
@@ -301,8 +301,8 @@ JavaScript (Node.js)
 
 This example shows how to use anonymous functions to call functions with extra parameters that would otherwise require a closer. This can be done to reduce the number of nested callbacks required to implement the flow of an application. First, we look for an application argument in our `StasisStart` event callback to ensure that we will only originate a call if the channel entering Stasis is a channel that dialed our application extension we defined in the extensions.conf file above. We then play a sound on the channel asking the caller to wait while they are being connected and call the originate() function to process down the application flow:
 
-```
-truejs22function stasisStart(event, channel) {
+```javascript
+function stasisStart(event, channel) {
  // ensure the channel is not a dialed channel
  var dialed = event.args[0] === 'dialed';
 
@@ -331,8 +331,8 @@ truejs22function stasisStart(event, channel) {
 
 We then prepare an object with a locally generate Id for the dialed channel and register event callbacks either channels hanging up and the dialed channel entering into the Stasis application. We then originate a call to the endpoint specified by the first command line argument to the script passing in a Stasis application argument of dialed so we can skip the dialed channel when the original StasisStart event callback fires for it:
 
-```
-truejs47function originate(channel) {
+```javascript
+function originate(channel) {
  var dialed = client.Channel();
 
  channel.on('StasisEnd', function(event, channel) {
@@ -360,8 +360,8 @@ truejs47function originate(channel) {
 
 We then handle either channel hanging up by hanging up the other channel. Note that we skip any errors that occur on hangup since it is possible that the channel we are attempting to hang up is the one that has already left and would result in an HTTP error as it is no longer a Statis channel:
 
-```
-truejs73function hangupDialed(channel, dialed) {
+```javascript
+function hangupDialed(channel, dialed) {
  console.log(
  'Channel %s left our application, hanging up dialed channel %s',
  channel.name, dialed.name);
@@ -390,8 +390,8 @@ function hangupOriginal(channel, dialed) {
 
 We then handle the StasisStart event for the dialed channel by registered an event callback for the StasisEnd event on the dialed channel, answer that answer, creating a new mixing bridge, and finally calling a function to add the two channels to the new bridge:
 
-```
-truejs99function joinMixingBridge(channel, dialed) {
+```javascript
+function joinMixingBridge(channel, dialed) {
  var bridge = client.Bridge();
 
  dialed.on('StasisEnd', function(event, dialed) {
@@ -419,8 +419,8 @@ truejs99function joinMixingBridge(channel, dialed) {
 
 We then handle the dialed channel exiting the Stasis application by destroying the mixing bridge:
 
-```
-truejs124function dialedExit(dialed, bridge) {
+```javascript
+function dialedExit(dialed, bridge) {
  console.log(
  'Dialed channel %s has left our application, destroying bridge %s',
  dialed.name, bridge.id);
@@ -436,8 +436,8 @@ truejs124function dialedExit(dialed, bridge) {
 
 Finally, the function that was called earlier by the callback handling the StasisStart event for the dialed channel adds the two channels to the mixing bridge which allows media to flow between the two channels:
 
-```
-truejs137function addChannelsToBridge(channel, dialed, bridge) {
+```javascript
+function addChannelsToBridge(channel, dialed, bridge) {
  console.log('Adding channel %s and dialed channel %s to bridge %s',
  channel.name, dialed.name, bridge.id);
 
@@ -455,7 +455,7 @@ truejs137function addChannelsToBridge(channel, dialed, bridge) {
 The full source code for `bridge-dial.js` is shown below:
 
 ```javascript title="bridge-dial.js" linenums="1"
-truejs/*jshint node:true */
+/*jshint node:true */
 'use strict';
 
 var ari = require('ari-client');

@@ -92,8 +92,8 @@ Python
 
 When a channel enters our Stasis application, we first look for an existing holding bridge or create one if none is found. When we create a new bridge, we start music on hold in the bridge and create a timer that will call a callback after 30 seconds. That callback temporarily stops the music on hold, and starts a play operation on the bridge that thanks everyone for their patience. When the play operation finishes, it resumes music on hold.
 
-```
-truepy11# find or create a holding bridge
+```python
+# find or create a holding bridge
 holding_bridge = None
 
 # Announcer timer
@@ -152,8 +152,8 @@ def find_or_create_bridge():
 
 The function that does this work, `find_or_create_bridge`, is called from our `StasisStart` event handler. The bridge that it returns will have the new channel added to it.
 
-```
-truepy87def stasis_start_cb(channel_obj, ev):
+```python
+def stasis_start_cb(channel_obj, ev):
  """Handler for StasisStart event"""
  
  bridge = find_or_create_bridge()
@@ -170,8 +170,8 @@ truepy87def stasis_start_cb(channel_obj, ev):
 
 In the `find_or_create_bridge` function, we also subscribed for the `ChannelLeftBridge` event. We'll add a callback handler for this in that function as well. When the channel leaves the bridge, we'll check to see if there are no more channels in the bridge and - if so - destroy the bridge.
 
-```
-truepy59 def on_channel_left_bridge(bridge, ev):
+```python
+def on_channel_left_bridge(bridge, ev):
  """Handler for ChannelLeftBridge event"""
  global holding_bridge
  global announcer_timer
@@ -203,8 +203,8 @@ The full source code for `bridge-infinite-wait.py` is shown below:
   
 bridge-infinite-wait.py  
 
-```
-truepy#!/usr/bin/env python
+```python
+#!/usr/bin/env python
 
 import ari
 import logging
@@ -335,8 +335,8 @@ When a channel enters our Stasis application, we first look for an existing hold
 
 In all cases, we add the channel to the bridge via the `joinBridge` function.
 
-```
-truejs18 console.log('Channel %s just entered our application', channel.name);
+```javascript
+console.log('Channel %s just entered our application', channel.name);
 
  // find or create a holding bridge
  client.bridges.list(function(err, bridges) {
@@ -398,8 +398,8 @@ truejs18 console.log('Channel %s just entered our application', channel.name);
 
 The joinBridge function involves registered a callback for the ChannelLeftBridge event and adds the channel to the bridge.
 
-```
-truejs77 function joinBridge(bridge) {
+```javascript
+function joinBridge(bridge) {
  channel.once('ChannelLeftBridge', function(event, instances) {
  channelLeftBridge(event, instances, bridge);
  });
@@ -420,8 +420,8 @@ truejs77 function joinBridge(bridge) {
 
 Notice that we use an anonymous function to pass the bridge as an extra parameter to the ChannelLeftBridge callback so we can keep the handler at the same level as joinBridge and avoid another indentation level of callbacks. Finally, we can handle destroying the bridge when the last channel contained in it has left:
 
-```
-truejs95 // Handler for ChannelLeftBridge event
+```javascript
+// Handler for ChannelLeftBridge event
  function channelLeftBridge(event, instances, bridge) {
  var holdingBridge = instances.bridge;
  var channel = instances.channel;
@@ -450,7 +450,7 @@ truejs95 // Handler for ChannelLeftBridge event
 The full source code for `bridge-infinite-wait.js` is shown below:
 
 ```javascript title="bridge-infinite-wait.js" linenums="1"
-truejs/*jshint node:true */
+/*jshint node:true */
 'use strict';
 
 var ari = require('ari-client');

@@ -9,5 +9,5 @@ USAGE="Usage: ${0} <directory> <regex yml>"
 
 dirs=$(find $1 -type d )
 for d in $dirs ; do
-	${PROGDIR}/reprocess.py --quiet --docs $d --no-recurse --md-fixes $2
+	${PROGDIR}/reprocess.py --docs $d --no-recurse --md-fixes $2
 done

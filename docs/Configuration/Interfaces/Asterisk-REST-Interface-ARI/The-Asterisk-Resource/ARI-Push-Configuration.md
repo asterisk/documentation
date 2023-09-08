@@ -55,8 +55,8 @@ To make use of push configuration, you **must** configure Sorcery to persist the
   
 sorcery.conf  
 
-```
-truetext[res_pjsip] 
+```text
+[res_pjsip] 
 endpoint=astdb,ps_endpoints
 auth=astdb,ps_auths
 aor=astdb,ps_aors
@@ -103,8 +103,8 @@ Assume we have the following static PJSIP configuration file that defines an end
   
 pjsip.conf  
 
-```
-truetext[transport-udp]
+```text
+[transport-udp]
 type=transport
 protocol=udp
 bind=0.0.0.0:5060
@@ -186,8 +186,8 @@ Remove Alice from `pjsip.conf`:
   
 pjsip.conf  
 
-```
-truetext[transport-udp]
+```text
+[transport-udp]
 type=transport
 protocol=udp
 bind=0.0.0.0:5060
@@ -211,8 +211,8 @@ Tell the Sorcery data abstraction framework to pull *endpoint*, *aor*, and *auth
   
 sorcery.conf  
 
-```
-truetext[res_pjsip]
+```text
+[res_pjsip]
 endpoint=astdb,ps_endpoints
 auth=astdb,ps_auths
 aor=astdb,ps_aors

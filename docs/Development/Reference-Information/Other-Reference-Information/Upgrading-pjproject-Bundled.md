@@ -61,7 +61,7 @@ Since the Asterisk build process uses the checksum to verify the bundled tarball
 pjproject example  
 
 ```
-true$ cp MD5SUM.TXT ~/src/asterisk/third-party/pjproject/pjproject-2.10.tar.bz2.md5
+$ cp MD5SUM.TXT ~/src/asterisk/third-party/pjproject/pjproject-2.10.tar.bz2.md5
 
 ```
 
@@ -76,7 +76,7 @@ Be sure to also remove the previous version of that file from the source tree:
 pjproject example  
 
 ```
-true$ git rm ~/src/asterisk/third-party/pjproject/pjproject-2.9.tar.bz2.md5
+$ git rm ~/src/asterisk/third-party/pjproject/pjproject-2.9.tar.bz2.md5
 
 ```
 
@@ -91,7 +91,7 @@ Next modify the *versions.mak* file, which can be found in the third-party direc
 pjproject example  
 
 ```
-truePJPROJECT_VERSION = 2.10
+PJPROJECT_VERSION = 2.10
 
 ```
 

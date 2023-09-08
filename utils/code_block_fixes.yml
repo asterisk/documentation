@@ -1,0 +1,26 @@
+---
+
+- pattern: "^```\ntruepy([0-9]+)?[ ]?"
+  repl: '```python\n'
+
+- pattern: "^```\ntruejs([0-9]+)?[ ]?"
+  repl: '```javascript\n'
+
+- pattern: "^```(javascript.*)\ntruejs([0-9]+)?[ ]?"
+  repl: '```\1\n'
+
+- pattern: "^```(json.*)\ntruejs([0-9]+)?[ ]?"
+  repl: '```\1\n'
+
+- pattern: "^```\ntruetext([0-9]+)?[ ]?"
+  repl: '```text\n'
+
+- pattern: "^```\ntruecpp([0-9]+)?[ ]?"
+  repl: '```cpp\n'
+
+- pattern: "^```\ntruebash([0-9]+)?[ ]?"
+  repl: '```bash\n'
+
+# THIS MUST BE LAST
+- pattern: "^```\ntrue"
+  repl: '```\n'

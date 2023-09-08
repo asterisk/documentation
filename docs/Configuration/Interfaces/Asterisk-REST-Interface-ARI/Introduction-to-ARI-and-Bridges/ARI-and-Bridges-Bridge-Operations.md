@@ -33,7 +33,7 @@ For this example, we need to just drop the channel into Stasis, specifying our a
 extensions.conf  
 
 ```
-trueexten => 1000,1,NoOp()
+exten => 1000,1,NoOp()
  same => n,Stasis(bridge-move,inbound,PJSIP/bob)
  same => n,Hangup()
 
@@ -44,8 +44,8 @@ Python
 
 A large part of the implementation of this particular example is similar to the [`bridge-dial.py`](../ARI-and-Bridges-Basic-Mixing-Bridges) example. However, instead of ringing the inbound channel, we'll instead create a holding bridge and place the channel in said holding bridge. Since a holding bridge can hold a number of channels, we'll reuse the same holding bridge for all of the channels that use the application. The method to obtain the holding bridge is `find_or_create_holding_bridge`, shown below:
 
-```
-truepy11# Our one and only holding bridge
+```python
+# Our one and only holding bridge
 holding_bridge = None
 
 
@@ -77,16 +77,16 @@ def find_or_create_holding_bridge():
 
 When the inbound channel enters the application, we'll place it into our waiting bridge:
 
-```
-truepy79 wait_bridge = find_or_create_holding_bridge()
+```python
+wait_bridge = find_or_create_holding_bridge()
  wait_bridge.addChannel(channel=channel.id)
 
 ```
 
 When the dialed channel answers, we can remove the inbound channel from the waiting bridge - since there is only one waiting bridge being used, we can use `find_or_create_holding_bridge` to obtain it. We then place it into a newly created mixing bridge along with the dialed channel, in the same fashion as the `bridge-dial.py` example.
 
-```
-truepy97 print "{} answered; bridging with {}".format(outgoing.json.get('name'),
+```python
+print "{} answered; bridging with {}".format(outgoing.json.get('name'),
  channel.json.get('name'))
 
  wait_bridge = find_or_create_holding_bridge()
@@ -101,8 +101,8 @@ truepy97 print "{} answered; bridging with {}".format(outgoing.json.get('name'),
 
 The full source code for `bridge-move.py` is shown below:
 
-```
-truepy#!/usr/bin/env python
+```python
+#!/usr/bin/env python
 
 import logging
 import requests
@@ -239,8 +239,8 @@ JavaScript (Node.js)
 
 This example is very similar to bridge-dial.js with one main difference: the original Stasis channel is put in a holding bridge while the an originate operation is used to dial another channel. Once the dialed channel enters into the Stasis application, the original channel will be removed from the holding bridge, and both channels will finally be put into a mixing bridge. Once a channel enters into our Stasis application, we either find an existing holding bridge or create one:
 
-```
-truejs39function findOrCreateHoldingBridge(channel) {
+```javascript
+function findOrCreateHoldingBridge(channel) {
  client.bridges.list(function(err, bridges) {
  var holdingBridge = bridges.filter(function(candidate) {
  return candidate.bridge_type === 'holding';
@@ -268,8 +268,8 @@ truejs39function findOrCreateHoldingBridge(channel) {
 
 We then add the channel to the holding bridge and start music on hold before continuing with dialing we we did in the bridge-dial.js example:
 
-```
-truejs64holdingBridge.addChannel({channel: channel.id}, function(err) {
+```javascript
+holdingBridge.addChannel({channel: channel.id}, function(err) {
  if (err) {
  throw err;
  }
@@ -282,8 +282,8 @@ truejs64holdingBridge.addChannel({channel: channel.id}, function(err) {
 
 Once the endpoint has answered and a mixing bridge has been created, we proceed by first removing the original channel from the holding bridge and then adding both channels to the mixing bridge as before:
 
-```
-truejs145function moveToMixingBridge(channel, dialed, mixingBridge, holdingBridge) {
+```javascript
+function moveToMixingBridge(channel, dialed, mixingBridge, holdingBridge) {
  console.log('Adding channel %s and dialed channel %s to bridge %s',
  channel.name, dialed.name, mixingBridge.id);
 
@@ -310,7 +310,7 @@ Note that we need to keep track of one more variable as we go down the applicati
 The full source code for `bridge-move.js` is shown below:
 
 ```javascript title="bridge-move.js" linenums="1"
-truejs /*jshint node:true */
+/*jshint node:true */
 'use strict';
 
 var ari = require('ari-client');

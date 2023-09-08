@@ -154,7 +154,7 @@ If you run `pjsip show endpoint <endpoint name>` and do not see an "Identify" li
 sorcery.conf
 
 ```
-true[res_pjsip_endpoint_identifier_ip]
+[res_pjsip_endpoint_identifier_ip]
 identify = realtime,ps_endpoint_id_ips
 
 ```
@@ -164,7 +164,7 @@ And then you would need the corresponding config in `extconfig.conf`:
 extconfig.conf
 
 ```
-true[settings]
+[settings]
 ps_endpoint_id_ips => odbc
 
 ```

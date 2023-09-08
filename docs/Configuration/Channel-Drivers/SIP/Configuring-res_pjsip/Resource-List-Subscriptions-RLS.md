@@ -27,7 +27,7 @@ RLS is configured in `pjsip.conf` using a special configuration section type cal
 pjsip.conf
 
 ```
-true[sales]
+[sales]
 type = resource_list
 event = presence
 list_item = alice
@@ -60,7 +60,7 @@ Let's modify the previous configuration to use a batching interval:
 pjsip.conf
 
 ```
-true[sales]
+[sales]
 type = resource_list
 event = presence
 list_item = alice
@@ -87,7 +87,7 @@ Let's say you have the following list configured in pjsip.conf:
 pjsip.conf
 
 ```
-true[sales]
+[sales]
 type = resource_list
 event = presence
 list_item = alice
@@ -101,7 +101,7 @@ And you have the following in `extensions.conf`
 extensions.conf
 
 ```
-true[default]
+[default]
 exten => alice,hint,PJSIP/alice
 exten => bob,hint,PJSIP/bob
 
@@ -121,7 +121,7 @@ Let's say you have the following pjsip.conf file:
 pjsip.conf
 
 ```
-true[sales]
+[sales]
 type = resource_list
 event = presence
 list_item = tech_support
@@ -149,7 +149,7 @@ What if the configured lists were modified slightly:
 pjsip.conf
 
 ```
-true[sales]
+[sales]
 type = resource_list
 event = presence
 list_item = tech_support
@@ -192,7 +192,7 @@ One flaw that RLS has is that there is no way to know whether a subscription is 
 pjsip.conf
 
 ```
-true[sales]
+[sales]
 type = resource_list
 event = presence
 list_item = alice
@@ -206,7 +206,7 @@ And let's say you have the following `extensions.conf`:
 extensions.conf
 
 ```
-true[default]
+[default]
 exten => sales,hint,Custom:sales
 
 ```
@@ -224,7 +224,7 @@ But if the subscriber does support RLS, then Asterisk's policy is to always assu
 pjsip.conf
 
 ```
-true[sales]
+[sales]
 type = resource_list
 event = presence
 list_item = sales_b

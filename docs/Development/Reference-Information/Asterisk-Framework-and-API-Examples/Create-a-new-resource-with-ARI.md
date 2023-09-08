@@ -13,7 +13,7 @@ In the Asterisk source tree, the Swagger API declarations are stored in `./rest-
 These API declarations are documented using [Swagger](https://developers.helloreverb.com/swagger/). Details on documenting the API declarations can be found [on the Swagger wiki](https://github.com/wordnik/swagger-core/wiki/API-Declaration).
 
 ```json title="fizzbuzz.json" linenums="1"
-truejstrue{
+true{
  "_copyright": "Copyright (C) 2013, Digium, Inc.",
  "_author": "David M. Lee, II <dlee@digium.com>",
  "_svn_revision": "$Revision$",
@@ -132,8 +132,8 @@ The parameters described in your API declaration are parsed into an `args` struc
   
 resource_fizzbuzz.c  
 
-```
-truecppvoid ast_ari_fizzbuzz(struct ast_variable \*headers,
+```cpp
+void ast_ari_fizzbuzz(struct ast_variable \*headers,
  struct ast_fizzbuzz_args \*args,
  struct ast_ari_response \*response)
 {

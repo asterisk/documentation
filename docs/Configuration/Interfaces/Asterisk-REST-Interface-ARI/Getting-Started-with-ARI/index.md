@@ -74,8 +74,8 @@ $ apt-get install curl
 ---
 http.conf  
 
-```
-truetext[general]
+```text
+[general]
 enabled = yes
 bindaddr = 0.0.0.0
 
@@ -85,8 +85,8 @@ bindaddr = 0.0.0.0
 ---
 ari.conf  
 
-```
-truetext[general]
+```text
+[general]
 enabled = yes 
 pretty = yes 
 
@@ -113,8 +113,8 @@ password = asterisk
   
 extensions.conf  
 
-```
-truetext[default]
+```text
+[default]
 
 exten => 1000,1,NoOp()
  same => n,Answer()

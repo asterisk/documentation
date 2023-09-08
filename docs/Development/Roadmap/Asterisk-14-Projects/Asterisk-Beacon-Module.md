@@ -39,7 +39,7 @@ Swagger Definition
 ------------------
 
 ```json title="resources.json" linenums="1"
-truejs{
+{
  "apiVersion": "1.0.0",
  "swaggerVersion": "1.2",
  "apis": [
@@ -52,7 +52,7 @@ truejs{
 
 ```
 ```json title="beacon.json" linenums="1"
-truejs {
+{
  "apiVersion": "1.0.0",
  "swaggerVersion": "1.2",
  "basePath": "https://beacon.asterisk.org:443"
@@ -595,8 +595,8 @@ A large portion of the REST API can be re-used for Asterisk's ARI as well. Note 
   
 Swagger Definition  
 
-```
-truejs{
+```javascript
+{
  "apiVersion": "1.0.0",
  "swaggerVersion": "1.2",
  "basePath": "https://localhost:8088/ari"

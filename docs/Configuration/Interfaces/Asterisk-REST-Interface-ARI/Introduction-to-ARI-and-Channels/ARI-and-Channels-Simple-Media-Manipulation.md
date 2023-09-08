@@ -69,8 +69,8 @@ For this example, we need to just drop the channel into Stasis, specifying our a
   
 extensions.conf  
 
-```
-truetextexten => 1000,1,NoOp()
+```text
+exten => 1000,1,NoOp()
  same => n,Stasis(channel-tones)
  same => n,Hangup() 
 
@@ -81,8 +81,8 @@ Python
 
 Instead of performing a `ring` operation in our `StasisStart` handler, we'll instead initiate a playback using the `playWithId` operation on the channel. Note that our URI uses the `tone` scheme, which supports an optional `tonezone` parameter. We specify our `tonezone` as `fr`, so that we get an elegant French ringing tone. Much like the `channel-state.py` example, we then use a Python timer to schedule a callback that will answer the channel. Since we care about both the `channel` and the `playback` initiated on it, we pass both parameters as `*args` parameters to the callback function.
 
-```
-truepy46 playback_id = str(uuid.uuid4())
+```python
+playback_id = str(uuid.uuid4())
  playback = channel.playWithId(playbackId=playback_id,
  media='tone:ring;tonezone=fr')
  timer = threading.Timer(8, answer_channel, [channel, playback])
@@ -91,8 +91,8 @@ truepy46 playback_id = str(uuid.uuid4())
 
 Since this is a media operation and not *technically* a ringing indication, when we `answer` the channel, the tone playback will not stop! To stop playing back our French ringing tone, we issue a `stop` operation on the `playback` object. This actually maps to a [`DELETE /playbacks/{playback_id}`](/latest_api/API_Documentation/Asterisk_REST_Interface/Playbacks_REST_API/#stop) operation.
 
-```
-truepy26 def answer_channel(channel, playback):
+```python
+def answer_channel(channel, playback):
  """Callback that will actually answer the channel"""
 
  print "Answering channel %s" % channel.json.get('name')
@@ -115,8 +115,8 @@ The full source code for `channel-tones.py` is shown below:
   
 channel-tones.py  
 
-```
-truepy#!/usr/bin/env python
+```python
+#!/usr/bin/env python
 
 import ari
 import logging
@@ -194,8 +194,8 @@ JavaScript (Node.js)
 
 Instead of performing a `ring` operation in our `StasisStart` handler, we'll instead initiate a playback using the `play` operation on the channel. Note that our URI uses the `tone` scheme, which supports an optional `tonezone` parameter. We specify our `tonezone` as `fr`, so that we get an elegant French ringing tone. Much like the `channel-state.js` example, we then use a JavaScript timeout to schedule a callback that will answer the channel.
 
-```
-truejs21var playback = client.Playback();
+```javascript
+var playback = client.Playback();
 channel.play({media: 'tone:ring;tonezone=fr'},
  playback, function(err, newPlayback) {
  if (err) {
@@ -210,8 +210,8 @@ timers[channel.id] = timer;
 
 Since this is a media operation and not *technically* a ringing indication, when we `answer` the channel, the tone playback will not stop! To stop playing back our French ringing tone, we issue a `stop` operation on the `playback` object. This actually maps to a [`DELETE /playbacks/{playback_id}`](/latest_api/API_Documentation/Asterisk_REST_Interface/Playbacks_REST_API/#stop) operation. Notice that we use the fact that the answer callback closes on the original channel and playback variables to access them from the callback.
 
-```
-truejs33function answer() {
+```javascript
+function answer() {
  console.log(util.format('Answering channel %s', channel.name));
  playback.stop(function(err) {
  if (err) {
@@ -240,7 +240,7 @@ Once answered, we'll schedule another timeout that will do the actual hanging up
 The full source code for `channel-tones.js` is shown below:
 
 ```javascript title="channel-tones.js" linenums="1"
-truejs/*jshint node: true */
+/*jshint node: true */
 'use strict';
 
 var ari = require('ari-client');
@@ -347,8 +347,8 @@ For this example, we need to just drop the channel into Stasis, specifying our a
   
 extensions.conf  
 
-```
-truetextexten => 1000,1,NoOp()
+```text
+exten => 1000,1,NoOp()
  same => n,Stasis(channel-playback-monkeys)
  same => n,Hangup() 
 
@@ -359,8 +359,8 @@ Python
 
 We'll start off by initiating a playback on the channel. Instead of specifying a `tone` scheme, however, we'll specify a scheme of `sound` with a resource of `tt-monkeys`. Unlike the tones, this media *does* have a well defined ending - the end of the sound file! So we'll subscribe for the `PlaybackFinished` event and tell `ari-py` to call `playback_finished` when our monkeys are done attacking.
 
-```
-truepy32  playback_id = str(uuid.uuid4())
+```python
+ playback_id = str(uuid.uuid4())
  playback = channel.playWithId(playbackId=playback_id,
  media='sound:tt-monkeys')
  playback.on_event('PlaybackFinished', playback_finished)
@@ -369,8 +369,8 @@ truepy32  playback_id = str(uuid.uuid4())
 
 Unfortunately, `ari-py` doesn't let us pass arbitrary data to a callback function in the same fashion as a Python timer. Nuts. Luckily, the `Playback` object has a property, `target_uri`, that tells us which object it just finished playing to. Using that, we can get the `channel` object back from Asterisk so we can hang it up.
 
-```
-truepy19 def playback_finished(playback, ev):
+```python
+def playback_finished(playback, ev):
  """Callback when the monkeys have finished howling"""
 
  target_uri = playback.json.get('target_uri')
@@ -388,8 +388,8 @@ Note that unlike the `channel-tones.py` example, this application eschews the us
 
 The full source code for `channel-playback-monkeys.py` is shown below:
 
-```
-truepy #!/usr/bin/env python
+```python
+#!/usr/bin/env python
 
 import ari
 import logging
@@ -450,8 +450,8 @@ JavaScript (Node.js)
 
 Much like the `[channel-tones.js](#channel-tones.js)` example, we'll start off by initiating a playback on the channel. Instead of specifying a `tone` scheme, however, we'll specify a scheme of `sound` with a resource of `tt-monkeys`. Unlike the tones, this media *does* have a well defined ending - the end of the sound file! So we'll subscribe for the `PlaybackFinished` event and tell `ari-client` to call `playbackFinished` when our monkeys are done attacking. Notice that we use `client.Playback()` to generate a playback object with a pre-existing Id so we can scope the PlaybackFinished event to the playback we just created.
 
-```
-truejs20var playback = client.Playback();
+```javascript
+var playback = client.Playback();
 channel.play({media: 'sound:tt-monkeys'},
  playback, function(err, newPlayback) {
  if (err) {
@@ -464,8 +464,8 @@ playback.on('PlaybackFinished', playbackFinished);
 
 Notice that we use the fact that the playbackFinished callback closes over the original channel variable to perform a hangup operation using that object directly.
 
-```
-truejs29function playbackFinished(event, completedPlayback) {
+```javascript
+function playbackFinished(event, completedPlayback) {
  console.log(util.format(
  'Monkeys successfully vanquished %s; hanging them up',
  channel.name));
@@ -484,8 +484,8 @@ Note that unlike the `channel-tones.js` example, this application eschews the us
 
 The full source code for `channel-playback-monkeys.js` is shown below:
 
-```
-truejs/*jshint node: true */
+```javascript
+/*jshint node: true */
 'use strict';
 
 var ari = require('ari-client');

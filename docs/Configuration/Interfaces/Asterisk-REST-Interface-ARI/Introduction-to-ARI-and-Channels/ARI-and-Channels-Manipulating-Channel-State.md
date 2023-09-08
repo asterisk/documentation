@@ -73,7 +73,7 @@ For this example, we need to just drop the channel into Stasis, specifying our a
 extensions.conf  
 
 ```
-trueexten => 1000,1,NoOp()
+exten => 1000,1,NoOp()
  same => n,Stasis(channel-state)
  same => n,Hangup() 
 
@@ -92,15 +92,15 @@ To start, once our ARI client has been set up, we will want to register handlers
 
 We can store the timers that we've set up for a channel using a dictionary of channel IDs to timer instances:
 
-```
-truepy11channel_timers = {}
+```python
+channel_timers = {}
 
 ```
 
 And we can register for our three events:
 
-```
-truepy58client.on_channel_event('StasisStart', stasis_start_cb)
+```python
+client.on_channel_event('StasisStart', stasis_start_cb)
 client.on_channel_event('ChannelStateChange', channel_state_change_cb)
 client.on_channel_event('StasisEnd', stasis_end_cb)
 
@@ -112,8 +112,8 @@ The `StasisStart` event is the most interesting part.
 
 1. First, we tell the channel to ring, and after two seconds, to answer the channel:
 
-```
-truepy47 channel.ring()
+```python
+channel.ring()
  # Answer the channel after 2 seconds
  timer = threading.Timer(2, answer_channel, [channel])
  channel_timers[channel.id] = timer
@@ -124,8 +124,8 @@ truepy47 channel.ring()
 If we didn't have that there, then the caller would probably just have dead space to listen to! Not very enjoyable. We store the timer in the `channel_timers` dictionary so that our `StasisEnd` event can cancel it for us if the user hangs up the phone.
 2. Once we're in the `answer_channel` handler, we answer the channel and start silence on the channel. That (hopefully) gives them a slightly more ambient silence noise. Note that we'll go ahead and declare `answer_channel` as a nested function inside our `StasisStart` handler, `stasis_start_cb`:
 
-```
-truepy24def stasis_start_cb(channel_obj, ev):
+```python
+def stasis_start_cb(channel_obj, ev):
  """Handler for StasisStart event"""
 
  def answer_channel(channel):
@@ -137,8 +137,8 @@ truepy24def stasis_start_cb(channel_obj, ev):
 ```
 3. After we've answered the channel, we kick off another Python timer to hang up the channel in 4 seconds. When that timer fires, it will call `hangup_channel`. This does the final action on the channel by hanging it up. Again, we'll declare `hangup_channel` as a nested function inside our `StasisStart` handler:
 
-```
-truepy38 def hangup_channel(channel):
+```python
+def hangup_channel(channel):
  """Callback that will actually hangup the channel"""
 
  print "Hanging up channel %s" % channel.json.get('name')
@@ -147,8 +147,8 @@ truepy38 def hangup_channel(channel):
 ```
 When we create a timer - such as when we started ringing on the channel - we stored it in our `channel_timers` dictionary. In our `StasisEnd` event handler, we'll want to cancel any pending timers. Otherwise, our timers may fire and try to perform an action on channel that has already left our Stasis application, which is a good way to get an HTTP error response code.
 
-```
-truepy13 def stasis_end_cb(channel, ev):
+```python
+def stasis_end_cb(channel, ev):
  """Handler for StasisEnd event"""
 
  print "Channel %s just left our application" % channel.json.get('name')
@@ -165,8 +165,8 @@ truepy13 def stasis_end_cb(channel, ev):
 
 Finally, we want to print out the state of the channel in the `ChannelStateChanged` handler. This will tell us exactly when our channel has been answered:
 
-```
-truepy53 def channel_state_change_cb(channel, ev):
+```python
+def channel_state_change_cb(channel, ev):
  """Handler for changes in a channel's state"""
  print "Channel %s is now: %s" % (channel.json.get('name'),
  channel.json.get('state'))
@@ -185,8 +185,8 @@ The full source code for `channel-state.py` is shown below:
   
 channel-state.py  
 
-```
-truepy#!/usr/bin/env python
+```python
+#!/usr/bin/env python
 
 import ari
 import logging
@@ -277,15 +277,15 @@ To start, once our ARI client has been set up, we will want to register callbakc
 
 We can store the timeouts that we've set up for a channel using an object of channel IDs to timer instances:
 
-```
-truejs7timers = {}
+```javascript
+timers = {}
 
 ```
 
 And we can register for our three events:
 
-```
-truejs76client.on_channel_event('StasisStart', stasis_start_cb)
+```javascript
+client.on_channel_event('StasisStart', stasis_start_cb)
 client.on_channel_event('ChannelStateChange', channel_state_change_cb)
 client.on_channel_event('StasisEnd', stasis_end_cb)
 
@@ -297,8 +297,8 @@ The `StasisStart` event is the most interesting part.
 
 1. First, we tell the channel to ring, and after two seconds, to answer the channel:
 
-```
-truejs21channel.ring(function(err) {
+```javascript
+channel.ring(function(err) {
  if (err) {
  throw err;
  }
@@ -312,8 +312,8 @@ timers[channel.id] = timer;
 If we didn't have that there, then the caller would probably just have dead space to listen to! Not very enjoyable. We store the timer in the `timers` object so that our `StasisEnd` event can cancel it for us if the user hangs up the phone.
 2. Once we're in the `answer` callback, we answer the channel and start silence on the channel. That (hopefully) gives them a slightly more ambient silence noise:
 
-```
-truejs30// callback that will answer the channel
+```javascript
+// callback that will answer the channel
 function answer() {
  console.log(util.format('Answering channel %s', channel.name));
  channel.answer(function(err) {
@@ -334,8 +334,8 @@ function answer() {
 ```
 3. After we've answered the channel, we kick off another timer to hang up the channel in 4 seconds. When that timer fires, it will call `the hangup callback`. This does the final action on the channel by hanging it up:
 
-```
-truejs48// callback that will hangup the channel
+```javascript
+// callback that will hangup the channel
 function hangup() {
  console.log(util.format('Hanging up channel %s', channel.name));
  channel.hangup(function(err) {
@@ -348,8 +348,8 @@ function hangup() {
 ```
 When we create a timer - such as when we started ringing on the channel - we stored it in our `timers` object. In our `StasisEnd` event handler, we'll want to cancel any pending timers. Otherwise, our timers may fire and try to perform an action on channel that has already left our Stasis application, which is a good way to get an HTTP error response code.
 
-```
-truejs59// handler for StasisEnd event
+```javascript
+// handler for StasisEnd event
 function stasisEnd(event, channel) {
  console.log(util.format(
  'Channel %s just left our application', channel.name));
@@ -366,8 +366,8 @@ function stasisEnd(event, channel) {
 
 Finally, we want to print out the state of the channel in the `ChannelStateChanged` callback. This will tell us exactly when our channel has been answered:
 
-```
-truejs70// handler for ChannelStateChange event
+```javascript
+// handler for ChannelStateChange event
 function channelStateChange(event, channel) {
  console.log(util.format(
  'Channel %s is now: %s', channel.name, channel.state));
@@ -383,7 +383,7 @@ function channelStateChange(event, channel) {
 The full source code for `channel-state.js` is shown below:
 
 ```javascript title="channel-state.js" linenums="1"
-truejs/*jshint node: true */
+/*jshint node: true */
 'use strict';
 
 var ari = require('ari-client');

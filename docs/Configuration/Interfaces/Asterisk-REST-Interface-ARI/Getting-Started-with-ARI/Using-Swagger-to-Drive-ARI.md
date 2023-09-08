@@ -20,8 +20,8 @@ In order to access ARI, you have to populate the `api_key` field with a `[userna
   
 ari.conf  
 
-```
-truetext[general]
+```text
+[general]
 enabled=yes
 ;pretty=yes ; we don't need pretty-printing of the JSON responses in this
  ; example, but you might if you use curl a lot.

@@ -47,6 +47,8 @@ def parse_args():
     parser.add_argument('--md-fixes', type=str, help="YAML file with markdown regex fixes", required=True)
     parser.add_argument('--quiet', dest="quiet", default=False,
                         action='store_const', const=True)
+    parser.add_argument('--dry-run', dest="dry_run", default=False,
+                        action='store_const', const=True)
     parser.add_argument('--no-recurse', dest="no_recurse", default=False,
                         action='store_const', const=True)
 
@@ -61,20 +63,24 @@ def fix_document(page_num, path, md_fixes, args):
     with open(path, "r") as f:
         md_body = f.read()
 
+    fixes = 0
     for fix in md_fixes:
         if fix.get("repeat", False):
             count = 1
             print("repeat")
             while count > 0:
                 (md_body, count) = fix['re'].subn(fix['repl'], md_body)
+                fixes += count
         else:
-            md_body = fix['re'].sub(fix['repl'], md_body)
+            (md_body, count) = fix['re'].subn(fix['repl'], md_body)
+            fixes += count
 
-    with open(path, "w") as f:
-        f.write(md_body)
-
-    if not args.quiet:
-        print("%5d - %s" % (page_num, path))
+    if not args.dry_run:
+        with open(path, "w") as f:
+            f.write(md_body)
+        
+    if not args.quiet and fixes > 0:
+        print("%5d - %s  fixes: %d" % (page_num, path, fixes))
 
 def reprocess():
     """Export all pages from a given Confluence space to markdown in local files"""
@@ -108,9 +114,6 @@ def reprocess():
                     fn=os.path.join(root, name)
                     fix_document(page_num, fn, md_fixes, args)
                     page_num += 1
-
-    if not args.quiet:
-        print("Processed %d files" % page_num)
 
 if __name__ == '__main__':
     start_time = time.time()

@@ -66,7 +66,7 @@ Asterisk versions 13.14.0, 14.3.0, and later release branches added a few tools 
 /var/lib/asterisk/scripts/ast_coredumper --help  
 
 ```
-trueNAME
+NAME
  ast_coredumper - Dump and/or format asterisk coredump files
 SYNOPSIS
  ast_coredumper [ --help ] [ --running | --RUNNING ] [ --latest ]

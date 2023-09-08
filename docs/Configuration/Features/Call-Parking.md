@@ -156,8 +156,8 @@ In summary:
   
 res_parking.conf  
 
-```
-truetext1[general]
+```text
+[general]
 parkext => 700 ; Sets the default extension used to park calls. Note: This option
  ; can take any alphanumeric string.
 
@@ -206,8 +206,8 @@ comebacktoorigin=yes ; Determines what should be done with a parked call if it i
   
 features.conf  
 
-```
-truetext1[featuremap]
+```text
+[featuremap]
 parkcall => #72 ; Parks the call (one-step parking). For this example, a call will be
  ; automatically parked when an allowed party presses the DTMF digits,
  ; #·7·2. A party is able to make use of this when the the K/k options
@@ -225,8 +225,8 @@ parkcall => #72 ; Parks the call (one-step parking). For this example, a call wi
   
 extensions.conf  
 
-```
-truetext1[globals]
+```text
+[globals]
 ; Extension Maps
 5001=alice ; Maps 5001 to a local extension that will emulate
  ; a party pressing DTMF digits from a device.
@@ -290,8 +290,8 @@ In summary:
   
 res_parking.conf  
 
-```
-truetext1[general]
+```text
+[general]
 
 [default]
 parkext => 700 ; Sets the default extension used to park calls. Note: This option
@@ -341,8 +341,8 @@ comebackcontext=parkedcallstimeout ; The context that a parked call will be rout
   
 features.conf  
 
-```
-truetext1[featuremap]
+```text
+[featuremap]
 parkcall => #72 ; Parks the call (one-step parking). For this example, a call will be
  ; automatically parked when an allowed party presses the DTMF digits,
  ; #·7·2. A party is able to make use of this when the the K/k options
@@ -360,8 +360,8 @@ parkcall => #72 ; Parks the call (one-step parking). For this example, a call wi
   
 extensions.conf  
 
-```
-truetext1[globals]
+```text
+[globals]
 ; Extension Maps
 5001=alice ; Maps 5001 to a local extension that will emulate
  ; a party pressing DTMF digits from a device.

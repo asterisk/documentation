@@ -24,7 +24,7 @@ On this Page
 extensions.conf
 
 ```
-true[default]
+[default]
 exten => 1000,hint,PJSIP/alice
 
 ```
@@ -55,7 +55,7 @@ Digium phones are outfitted with a custom supplement to the base PIDF+XML presen
 extensions.conf
 
 ```
-true[default]
+[default]
 exten => 1000,hint,PJSIP/alice,CustomPresence:alice
 
 ```
