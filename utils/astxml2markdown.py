@@ -208,6 +208,7 @@ class AstXML2Markdown:
         xslt = etree.XSLT(etree.parse(self.args['xslt']), extensions = extensions)
 
         markdown_path = self.args['directory']
+        os.makedirs(markdown_path, exist_ok=True)
         with open(markdown_path + "/index.md", "w") as ix:
             ix.write("# API Documentation\n")
 
