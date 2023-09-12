@@ -3,33 +3,21 @@ title: Asterisk Security Webinars
 pageid: 21463708
 ---
 
-Asterisk VoIP Security - Part 1 of 3
-====================================
+# Asterisk Security Webinars
 
-
-VoIP Fraud: Current Threats From A Law Enforcement Perspective  
-
+## VoIP Fraud: Current Threats From A Law Enforcement Perspective
 Special Agent Michael McAndrews, FBI
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/ZO1xon4P-rg?si=mnDpGrvsTdM90nPX" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
-315420
-Asterisk VoIP Security - Part 2 of 3
-====================================
-
-
-VoIP Security Best Practices  
+## VoIP Security Best Practices
 
 Dan York, Chairman, Best Practices Group, VoIP Security Alliance
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/6_WjMq3842o?si=84recPhwztlO6GQk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
-315420
-Asterisk VoIP Security - Part 3 of 3
-====================================
-
-
-Securing Asterisk Systems  
+## Securing Asterisk Systems
 
 Jared Smith, Training Manager, Digium
 
-
-315420
+<iframe width="560" height="315" src="https://www.youtube.com/embed/B-t-B1pdx5I?si=Z-iPrWs3cWnItCcT" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
