@@ -96,7 +96,7 @@ BRANCHES := 16,18,19,20
 # NO_MINIFY=yes
 
 # If you want to serve the resulting site with mkdocs serve,
-you can specify any additional options to pass to it here:
+# you can specify any additional options to pass to it here:
 # SERVE_OPTS := -a [::]:8000
 ```
 
