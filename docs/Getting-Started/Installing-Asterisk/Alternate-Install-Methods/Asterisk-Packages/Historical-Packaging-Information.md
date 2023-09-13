@@ -23,7 +23,7 @@ All of Ubuntu's Code, Translations, Packages, Bugs, access control lists, team i
 
 * Create an [account](https://help.launchpad.net/YourAccount/NewAccount) on launchpad.
 * Create a [GPG key](https://help.launchpad.net/YourAccount/ImportingYourPGPKey) and import it.
-* Create a [SSH key](https://help.launchpad.net/YourAccount/CreatingAnSSHKeyPair) and import it.
+* Create an [SSH key](https://help.launchpad.net/YourAccount/CreatingAnSSHKeyPair) and import it.
 
 Create a Build Environment
 ==========================
