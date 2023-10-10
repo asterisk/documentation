@@ -95,7 +95,7 @@ The **install_prereq** script is included with every release of Asterisk in the 
 
 * **test** - print only the libraries to be installed.
 * **install** - install package dependencies only. Depending on your distribution of Linux, version of Asterisk, and capabilities you wish to use, this may be sufficient.
-* **install-unpacakged** - install dependencies that don't have packages but only have tarballs. You may need these dependencies for certain capabilities in Asterisk.
+* **install-unpackaged** - install dependencies that don't have packages but only have tarballs. You may need these dependencies for certain capabilities in Asterisk.
 
 
 
