@@ -59,16 +59,11 @@ endif
 $(BUILD_DIR)/mkdocs.yml: mkdocs.yml
 	@cp mkdocs.yml $(BUILD_DIR)/mkdocs.yml
 
-static-setup:: |$(BUILD_DIR) $(BUILD_DIR)/mkdocs.yml
+static-setup:: $(BUILD_DIR) $(BUILD_DIR)/mkdocs.yml
 	@echo "Setting Up Static Documentation"
-	@rm -rf $(BUILD_DIR)/docs/
 ifeq ($(NO_STATIC),)
 	@echo "  Copying docs/ to temp build"
-	@rsync -aH docs/. $(BUILD_DIR)/docs/
-#	fix_build is no longer needed but kept in case
-#	it's needed again.
-#	@echo "  Applying link transformations"
-#	@utils/fix_build.sh $(BUILD_DIR)/docs utils/build_fixes.yml
+	@rsync -vaH --delete-after docs/. $(BUILD_DIR)/docs/
 else
 	@echo "  Copying only docs/index.md and favicon.ico to temp build"
 	@mkdir -p $(BUILD_DIR)/docs
