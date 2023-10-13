@@ -10,15 +10,14 @@ Asterisk a big program with many components, with complex relationships. To be a
 An Asterisk System
 ==================
 
-AsteriskArchitecture800
+![](AsteriskArchitecture.png)
 
 Remember this is not an exhaustive diagram. It covers only a few of the common relationships between certain components.
 
-On this Page
-
-
 Asterisk Architecture
 =====================
+
+![](bigpicture.png)
 
 Asterisk has a **core** that can interact with many **modules**. Modules called channel drivers provide **channels** that follow Asterisk **dialplan** to execute programmed behavior and facilitate communication between devices or programs outside Asterisk. Channels often use **bridging** infrastructure to interact with other channels. We'll describe some of these concepts in brief below.
 
@@ -82,7 +81,4 @@ Dialplan
 Dialplan is the one main method of directing Asterisk behavior. Dialplan exists as text files (for example extensions.conf) either in the built-in dialplan scripting language, AEL or LUA formats. Alternatively dialplan could be read from a [database](/Fundamentals/Asterisk-Configuration/Database-Support-Configuration), along with other module configuration. When writing dialplan, you will make heavy use of **applications** and **functions**to affect channels, configuration and features.
 
 Dialplan can also call out through other interfaces such as [AGI](/latest_api/API_Documentation/Dialplan_Applications/AGI) to receive call control instruction from external scripts and programs. The [Dialplan](/Configuration/Dialplan) section of the wiki goes into detail on the usage of dialplan.  
-
-
-
 

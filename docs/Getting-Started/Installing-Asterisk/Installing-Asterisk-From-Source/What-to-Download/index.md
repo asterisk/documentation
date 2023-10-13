@@ -9,16 +9,13 @@ Downloads of Asterisk are available at <https://downloads.asterisk.org/pub/telep
 
 The currently supported versions of Asterisk are documented on the [Asterisk Versions](/About-the-Project/Asterisk-Versions) page. It is highly recommended that you install one of the currently supported versions, as these versions continue to receive bug and security fixes.
 
-!!! tip Which version should I install?** * If you want a rock solid communications framework, choose the latest **Long Term Support (LTS)
+!!! tip Which version should I install?
+    If you want a rock solid communications framework, choose the latest **Long Term Support (LTS)
     release.
     * If you want the latest cool features and capabilities, choose the latest release of Asterisk. If that is a **Standard** release, note that these releases may have larger changes made in them than LTS releases.
-
     Unless otherwise noted, for the purposes of this section we will assume that Asterisk 14 is being installed.
 
-      
 [//]: # (end-tip)
-
-
 
 Review Asterisk's [System Requirements](/Operation/System-Requirements) in order to determine what needs to be installed for the version of Asterisk you are installing. While Asterisk will look for any missing system requirements during compilation, it's often best to install these prior to configuring and compiling Asterisk.
 
