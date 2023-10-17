@@ -156,7 +156,7 @@ download-from-job: $(BRANCH_DIR) branch-check
 		-n documentation-$(subst /,-,$(BRANCH)) -D $(BRANCH_DIR)/source
 
 ifeq ($(BRANCH),)
-  build: $(BUILD_DIR)/docs dynamic-setup
+  build: static-setup dynamic-setup
 	@echo Building to $(SITE_DIR)
 	@[ ! -f $(BUILD_DIR)/mkdocs.yml ] && \
 		{ echo "Can't build. '$(BUILD_DIR)/mkdocs.yml' not found" ; exit 1 ; } || :
