@@ -130,7 +130,7 @@ If you're planning on using local sources for the dynamic Asterisk documentation
 $ make
 ```
 
-This will build the static pages and the dynamic pages for all branches listed in the `BRANCHES` variable.  The fully functioning site will be created at `$(BUILD_DIR)/site`.  You can serve that directory with `make serve`, which runs `mkdocs serve` or a web server of your own choosing. `mkdocs serve` rebuilds the entire site when it starts so you may want to use a standard web server if you plan on doing this a lot.  If you do use `make serve`, you cna use the `SERVE_OPTS` variable in Makefile.inc to add additional options to the `mkdocs serve` command line.
+This will build the static pages and the dynamic pages for all branches listed in the `BRANCHES` variable.  The fully functioning site will be created at `$(BUILD_DIR)/site`.  You can serve that directory with `make serve`, which runs `mkdocs serve` or a web server of your own choosing. `mkdocs serve` rebuilds the entire site when it starts so you may want to use a standard web server if you plan on doing this a lot.  If you do use `make serve`, you can use the `SERVE_OPTS` variable in Makefile.inc to add additional options to the `mkdocs serve` command line.
 
 ### To build just the static pages
 
