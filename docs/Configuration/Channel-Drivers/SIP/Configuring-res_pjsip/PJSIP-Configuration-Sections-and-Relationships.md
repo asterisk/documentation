@@ -311,7 +311,7 @@ match=203.0.113.1
 
 (provided by module: res_pjsip)
 
-The contact config object effectively acts as an alias for a SIP URIs and holds information about an inbound registrations. Contact objects can be associated with an individual SIP User Agent and contain a few config options related to the connection. Contacts are created automatically upon registration to an AOR, or can be created manually by using the "contact=" config option in an AOR section. Manually configuring a CONTACT config object itself is outside the scope of this "getting started" style document.
+The contact config object effectively acts as an alias for a SIP URIs and holds information about an inbound registrations. Contact objects can be associated with an individual SIP User Agent and contain a few config options related to the connection. Contacts are created automatically upon registration to an AOR, or can be created manually by using the "contact=" config option in an AOR section. Manually configuring a CONTACT config object should not be needed, however. AORs with fixed remote hosts will create contacts upon AOR creation, and AORs that accept registrations will create contacts upon each accepted registration.
 
 Relationships of Configuration Objects in pjsip.conf
 ----------------------------------------------------
