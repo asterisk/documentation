@@ -28,7 +28,7 @@ The following table shows the release time lines for all releases of Asterisk, i
 | 16.x | LTS | [2018-10-09](http://lists.digium.com/pipermail/asterisk-announce/2018-October/000727.html) | 2022-10-09 | 2023-10-09 | EOL |
 | 17.x | Standard | [2019-10-28](http://lists.digium.com/pipermail/asterisk-announce/2019-October/000757.html) | 2020-10-28 | 2021-10-28 | EOL |
 | 18.x | LTS | [2020-10-20](http://lists.digium.com/pipermail/asterisk-announce/2020-October/000791.html) | 2024-10-20 | 2025-10-20 | Fully Supported |
-| 19.x | Standard | 2021-11-02 | 2022-11-02 | 2023-11-02 | Security Fix Only |
+| 19.x | Standard | 2021-11-02 | 2022-11-02 | 2023-11-02 | EOL |
 | 20.x | LTS | 2022-10-19 | 2026-10-19 | 2027-10-19 | Fully Supported |
 | 21.x | Standard | 2023-10-18 | 2025-10-18 | 2026-10-18 | Not Yet Released |
 
