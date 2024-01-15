@@ -47,7 +47,7 @@ Marking A Module As Deprecated For Standard Release
 
 #### The following instructions are for the master branch in which the module is to be deprecated.
 
-1. Before a module can be marked as deprecated a discussion needs to occur on the [asterisk-dev mailing list](http://lists.digium.com/pipermail/asterisk-dev/). Depending on the result of this it would also be wise to reach out the [asterisk-users mailing list](http://lists.digium.com/pipermail/asterisk-users/) and [community forums](https://community.asterisk.org/) to ensure that the module is not seeing widespread usage. If you feel uncomfortable doing so reach out to unknown user and he can assist in doing so.
+1. Before a module can be marked as deprecated a discussion needs to occur on the [asterisk-dev mailing list](https://groups.io/g/asterisk-dev/). Depending on the result of this it would also be wise to reach out the [community forums](https://community.asterisk.org/) to ensure that the module is not seeing widespread usage. If you feel uncomfortable doing so reach out to unknown user and he can assist in doing so.
 2. Create a new issue in the [Asterisk project issue tracker](https://github.com/asterisk/asterisk/issues/) using the "Deprecation" issue type. Ensure the issue summary is descriptive as it will go into release notes.
 3. Obtain the Asterisk source code from [GitHub](https://github.com/asterisk/asterisk). Since you'll need to put your patch up for review, make an account in GitHub as well, following the instructions on [Code Contribution](/Development/Policies-and-Procedures/Code-Contribution).
 4. Create a new Git branch for your deprecation change.

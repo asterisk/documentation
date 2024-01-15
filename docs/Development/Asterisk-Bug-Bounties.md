@@ -6,7 +6,7 @@ pageid: 22087953
 I want to offer a bounty for a particular bug! Where can I do that?
 -------------------------------------------------------------------
 
-Bug bounties for Asterisk may be posted on the Asterisk Development mailing list at <http://lists.digium.com/mailman/listinfo/asterisk-dev>
+Bug bounties for Asterisk may be posted on the Asterisk Development mailing list at <https://groups.io/g/asterisk-dev>
 
 **Minimum offer:** $500
 
@@ -43,7 +43,6 @@ This was discussed on the dev list in Jan 2013: <http://lists.digium.com/piperma
 
 ### Finding bug bounties
 
-The archives of the Asterisk Development mailing list located at <http://lists.digium.com/pipermail/asterisk-dev/> can be used to locate bug bounties. For bounties which are also present on the Asterisk issue tracker they will be displayed below:
+The legacy archives of the Asterisk Development mailing list located at <http://lists.digium.com/pipermail/asterisk-dev/> can be used to locate old bug bounties.
 
- Digium/Asterisk JIRAee634d14-2067-31b4-9ca3-00e0845ec070labels = bounty and status != closed
-
+Current Asterisk Development mailing list archives are located at <https://groups.io/g/asterisk-dev/>.

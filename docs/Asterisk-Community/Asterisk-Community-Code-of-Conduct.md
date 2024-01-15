@@ -26,7 +26,7 @@ Ask for help
 ------------
 
 * If you don't know how to proceed with an aspect of development or documentation, ask for help! Always read the documentation, but don't be afraid to ask "silly" questions.
-* When asking for help, take advantage of the resources that are available to you, including the [Documentation](https://docs.asterisk.org), [mailing list archives](http://lists.digium.com/mailman/listinfo/), and [Asterisk: The Definitive Guide](http://asteriskdocs.org/).
+* When asking for help, take advantage of the resources that are available to you, including the [Documentation](https://docs.asterisk.org), [community forums](https://community.asterisk.org/), [mailing list archives](http://lists.digium.com/mailman/listinfo/), and [Asterisk: The Definitive Guide](http://asteriskdocs.org/).
 
 Take responsibility
 -------------------
@@ -67,5 +67,5 @@ The role of project leadership is handled by the founders of the Asterisk projec
 
 In addition to providing development resources for Asterisk itself, Sangoma provides community resources including the bug tracker, mailing lists, wiki, version control, continuous integration services, and other necessary project infrastructure. 
 
-Development discussions take place on the public [asterisk-dev mailing list](http://lists.digium.com/mailman/listinfo/asterisk-dev) and the [#asterisk-dev](https://libera.chat/) IRC channel. More information on the development of Asterisk can be found on the Asterisk wiki.
+Development discussions take place on the public [asterisk-dev mailing list](https://groups.io/g/asterisk-dev) and the [#asterisk-dev](https://libera.chat/) IRC channel. More information on the development of Asterisk can be found on the Asterisk wiki.
 

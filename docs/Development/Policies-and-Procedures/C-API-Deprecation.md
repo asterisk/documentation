@@ -39,7 +39,7 @@ Marking A C API As Deprecated For Standard Release
 
 #### The following instructions are for the master branch in which the C API is to be deprecated.
 
-1. Before a C API can be marked as deprecated a discussion needs to occur on the [asterisk-dev mailing list](http://lists.digium.com/pipermail/asterisk-dev/) and its use has to be confirmed as non-critical.
+1. Before a C API can be marked as deprecated a discussion needs to occur on the [asterisk-dev mailing list](https://groups.io/g/asterisk-dev/) and its use has to be confirmed as non-critical.
 2. Create a new issue in the [Asterisk project issue tracker](https://github.com/asterisk/asterisk/issues/) using the "Deprecation" issue type. Ensure the issue summary is descriptive as it will go into release notes.
 3. Obtain the Asterisk source code from [GitHub](https://github.org/asterisk/asterisk). Since you'll need to put your patch up for review, make an account in GitHub as well, following the instructions in [Code Contribution](/Development/Policies-and-Procedures/Code-Contribution).
 4. Create a new Git branch for your deprecation change.

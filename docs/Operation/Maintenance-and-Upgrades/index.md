@@ -29,8 +29,8 @@ It is in the interest of every Asterisk administrator to perform due diligence f
 * Be aware of [security vulnerability announcements](/About-the-Project/Asterisk-Security-Vulnerabilities). There are a few places these are announced:  
 
 	+ <http://www.asterisk.org/downloads/security-advisories>
-	+ [Asterisk-security mailing list](http://lists.digium.com/mailman/listinfo/asterisk-security)
-	+ [Asterisk-announce mailing list](http://lists.digium.com/mailman/listinfo/asterisk-announce)
+	+ [community forums](https://community.asterisk.org/)
+	+ [GitHub](https://github.com/asterisk/asterisk)
 Interfaces for Monitoring Asterisk Status
 -----------------------------------------
 

@@ -5,7 +5,7 @@ pageid: 40141419
 
 This page serves as a place to collect development information and notes for Asterisk 16.
 
-If you have any questions about the content here, please talk with developers on the [asterisk-dev](http://lists.digium.com/mailman/listinfo/asterisk-dev) mailing list or #asterisk-dev.
+If you have any questions about the content here, please talk with developers on the [asterisk-dev](https://groups.io/g/asterisk-dev) mailing list or #asterisk-dev.
 
 
 

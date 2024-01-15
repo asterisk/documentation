@@ -48,7 +48,7 @@ If a new feature or improvement causes a regression the project may choose to re
 Large Number Of Commits
 =======================
 
-If an overall change consists of a large number of commits (such as across the tree spelling fixes or doxygen fixes) please reach out to the [asterisk-dev mailing list](http://lists.digium.com/mailman/listinfo/asterisk-dev) for guidance on the best way to put the change up for review before doing so. Depending on the number of commits you may be asked to squash them into a single commit for a review, instead.
+If an overall change consists of a large number of commits (such as across the tree spelling fixes or doxygen fixes) please reach out to the [asterisk-dev mailing list](https://groups.io/g/asterisk-dev) for guidance on the best way to put the change up for review before doing so. Depending on the number of commits you may be asked to squash them into a single commit for a review, instead.
 
 Changes In Review When Branch Goes Security Fix Only
 ====================================================

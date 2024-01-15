@@ -24,7 +24,7 @@ Search and ask on the forums, mailing lists, and IRC. Again, see <http://www.ast
 * **Random wishes and feature requests with no patch:** (I want Asterisk to support <insert obscure protocol or gadget>, but I don't know how to code!)  
 See the [How to request a feature section](#how-to-request-a-feature-or-improvement) for more information on requesting a feature.
 * **Business development requests** (I will pay you to make Asterisk support fancy unicorn protocol!)  
-Please head to the asterisk-biz mailing list at <http://lists.digium.com>. If what you want is a specific feature or bug fixed, you may want to consider [requesting a bug bounty](/Development/Asterisk-Bug-Bounties).
+Please head to the Commercial category at <https://community.asterisk.org/>. If what you want is a specific feature or bug fixed, you may want to consider [requesting a bug bounty](/Development/Asterisk-Bug-Bounties).
 * and...
 
 
@@ -160,7 +160,7 @@ Feature or improvement requests without patches are not kept on the primary issu
 
 New features and major architecture changes are often discussed at the [AstriDevCon](/Development/Roadmap/AstriDevCon) event held before Astricon.
 
-If you really need the feature, but are not a programmer, you'll need to find someone else to write the code for you. Luckily, there are many talented Asterisk developers out there that can be contacted on the [asterisk-biz](http://lists.digium.com) mailing list. You can also offer a bounty for a bug or new feature - see [Asterisk Bug Bounties](/Development/Asterisk-Bug-Bounties) for more information.
+If you really need the feature, but are not a programmer, you'll need to find someone else to write the code for you. Luckily, there are many talented Asterisk developers out there that can be contacted on the [community forums](https://community.asterisk.org/). You can also offer a bounty for a bug or new feature - see [Asterisk Bug Bounties](/Development/Asterisk-Bug-Bounties) for more information.
 
 Patch and Code Submission
 -------------------------
@@ -181,7 +181,7 @@ There are some key qualities to keep in mind. These should be reflected in your 
 #### How can I speed up my issue resolution?
 
 1. Follow the guidelines on this patch! Having good, accurate information that helps bug marshals reproduce the issue typically leads to much faster issue resolution.
-2. Provide a patch! Issues with patches are also generally resolved much faster. If you can't write a patch, there are many smart, talented developers in the Asterisk community who may be worth helping you. You can contract with them on the [asterisk-biz](http://lists.digium.com) mailing list, or offer a [bug bounty](/Development/Asterisk-Bug-Bounties).
+2. Provide a patch! Issues with patches are also generally resolved much faster. If you can't write a patch, there are many smart, talented developers in the Asterisk community who may be worth helping you. You can contract with them on the [community forums](https://community.asterisk.org/), or offer a [bug bounty](/Development/Asterisk-Bug-Bounties).
 
 
 

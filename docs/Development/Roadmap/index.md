@@ -17,7 +17,7 @@ The goals for the project are subject to the constraints of the next major versi
 Asterisk 14 Roadmap
 ===================
 
-While the planning for Asterisk 14 will take place on the development mailing lists ([asterisk-dev](http://lists.digium.com/mailman/listinfo/asterisk-dev) and [asterisk-app-dev](http://lists.digium.com/cgi-bin/mailman/listinfo/asterisk-app-dev)), at [AstriDevCon 2014](AstriDevCon-2014), the community decided to focus on the following items:
+While the planning for Asterisk 14 will take place on the development mailing lists ([asterisk-dev](https://groups.io/g/asterisk-dev), at [AstriDevCon 2014](AstriDevCon-2014), the community decided to focus on the following items:
 
 1. Move the project to Git, improve the project infrastructure, and provide clearer instructions and/or processes to make it easier for developers to submit patches and participate.
 2. Document features better and make it easier to install, configure, and deploy Asterisk.
