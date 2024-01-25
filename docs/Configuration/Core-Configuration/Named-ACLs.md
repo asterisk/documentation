@@ -66,7 +66,7 @@ permit=10.24.20.3
 
 ```
 [ipv6_example_1]
-deny = ::
+deny = ::/0
 permit = ::1/128
 
 [ipv6_example_2]
