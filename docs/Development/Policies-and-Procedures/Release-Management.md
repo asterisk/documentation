@@ -6,7 +6,7 @@ pageid: 52069717
 Overview
 ========
 
-For the most part, the user-visible Asterisk release process will not change.  All release tarballs, signatures, patches and change logs will continue to be available at <https://downloads.asterisk.org/pub/telephony/asterisk/>.   The releases will also be available via GitHub at [https://github.com/asterisk/asterisk/releases](https://github.com/asterisk/asterisk/releases)  Specific artifacts can be retrieved with URLs like https://github.com/asterisk/asterisk/releases/download/<version>/asterisk-<version>.tar.gz.  You are encouraged to use the GitHub links to benefit from their CDN.
+For the most part, the user-visible Asterisk release process will not change.  All release tarballs, signatures, patches and change logs will continue to be available at <https://downloads.asterisk.org/pub/telephony/asterisk/>.   The releases will also be available via GitHub at [https://github.com/asterisk/asterisk/releases](https://github.com/asterisk/asterisk/releases). Specific artifacts can be retrieved with URLs like https://github.com/asterisk/asterisk/releases/download/<version>/asterisk-<version>.tar.gz.  You are encouraged to use the GitHub links to benefit from their CDN.
 
 New Change Log Artifacts
 ========================
