@@ -49,7 +49,7 @@ Resources for understanding
 
 * Installing and Configuring Asterisk
 + [Asterisk: The Definitive Guide](http://www.asteriskdocs.org/)   3rd Edition
-+ [The official documentation for Asterisk](/)
++ [The Asterisk Wiki](/)
 
 * C Programming
 + [C Programming Tutorial](http://www.cprogramming.com/tutorial/c-tutorial.html)
