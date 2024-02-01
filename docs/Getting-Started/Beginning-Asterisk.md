@@ -35,7 +35,7 @@ Resources for understanding
 * Acronyms and Terminology
 + [Telephony Terminology](http://en.wikipedia.org/wiki/List_of_telephony_terminology)
 + [Asterisk Terms Glossary](http://www.asterisk.org/get-started/glossary)
-+ [Telecom Acronyms](http://www.mob1le.com/acronyms.html)   (very comprehensive)
++ [Telecom Acronyms](http://web.archive.org/web/20210924114023/http://www.mob1le.com/acronyms.html)   (via Internet Archive)   (very comprehensive)
 
 * Telephony Protocols
 + [IP Telephony Protocols Overview](http://www.cisco.com/en/US/docs/voice_ip_comm/cucm/admin/4_0_1/ccmsys/a08procl.html)
@@ -49,7 +49,7 @@ Resources for understanding
 
 * Installing and Configuring Asterisk
 + [Asterisk: The Definitive Guide](http://www.asteriskdocs.org/)   3rd Edition
-+ [The Asterisk Wiki](//)
++ [The official documentation for Asterisk](/)
 
 * C Programming
 + [C Programming Tutorial](http://www.cprogramming.com/tutorial/c-tutorial.html)
@@ -66,7 +66,7 @@ Where to get help
 + [Asterisk Community Forums](https://community.asterisk.org)
 
 * Online Community
-+ [Voip Users Conference](http://vuc.me)   main site and on   [Google+](https://plus.google.com/communities/114149566116254233716)
++ [Voip Users Conference](http://vuc.me)   main site
 
 Avoiding obsolete or incorrect information
 ==========================================
@@ -76,7 +76,7 @@ When reading about Asterisk on the web, you may come across old or incorrect inf
 * Check which version of Asterisk is mentioned.  There are significant changes in every version.
 * Check the published date of the article if the Asterisk version isn’t provided.
 * Take things with a grain of salt until checked with another resource or proven correct through your own testing.
-* Refer to the   [Asterisk Wiki](//)   and the   [Official Asterisk Youtube Channel](http://www.youtube.com/user/asteriskvideos)   for the most accurate and up to date details on the specific version of Asterisk you are using.
+* Refer to the   [Asterisk Wiki](/)   and the   [Official Asterisk Youtube Channel](http://www.youtube.com/user/asteriskvideos)   for the most accurate and up to date details on the specific version of Asterisk you are using.
 
  Please note that it is always possible that even the official documentation does not match what is written into the source code itself.  If you find something lacking or incorrect in the Asterisk documentation, please communicate it through comments on the   [Asterisk Wiki](//)   or by filing an issue through the   [Asterisk Issues Tracker](https://github.com/asterisk/asterisk/issues)  . 
 
