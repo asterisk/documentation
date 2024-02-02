@@ -1,16 +1,9 @@
 # STIR-SHAKEN
 
-## Background
+**DRAFT**
 
-The best places to become familiar with STIR/SHAKEN itself are:
-
-* [RFC7340 Secure Telephone Identity Problem Statement and Requirements](https://www.rfc-editor.org/rfc/rfc7340.html)
-* [RFC7375 Secure Telephone Identity Threat Model](https://www.rfc-editor.org/rfc/rfc7375.html)
-* [RFC8224 Authenticated Identity Management in the Session Initiation Protocol (SIP)](https://www.rfc-editor.org/rfc/rfc8224.html)
-* [RFC 9060 Secure Telephone Identity Revisited (STIR) Certificate Delegation](https://www.rfc-editor.org/rfc/rfc9060.html)
-* [ATIS-1000074v003: Signature-based Handling of Asserted information using toKENs (SHAKEN)](https://access.atis.org/higherlogic/ws/public/download/67436/ATIS-1000074.v003.pdf)
-
-A more detailed list can be found in the [References](#references) section below.
+This document refers to the Stir/Shaken Refactor of 1Q2024.
+The earlier version was only partially functional and not interoperable with other implementations.
 
 ## STIR-SHAKEN Services
 
@@ -31,6 +24,7 @@ On an outbound call, attestation is basically you swearing in court what level o
     * You're clueless.  You're just passing the call along.
 
 Attestation is accomplished by adding a SIP "Identity" header to the outgoing INVITE whose contents are signed with a specific private key/certificate which can be traced back to the actual caller id's owning service provider. For most Asterisk installation scenarios, you'd receive such a key/certificate from your upstream service provider when they issue you DID telephone numbers.  Parameters that must be placed in the header include...
+
 * The caller-id, even though it's probably already in the P-Asserted-Identity or From SIP headers.
 * The attestation level.
 * The date.
@@ -41,6 +35,7 @@ Attestation is accomplished by adding a SIP "Identity" header to the outgoing IN
 ### Verify
 This is the hard part...  When you receive an incoming INVITE containing an Identity header, you can't just automatically trust it.  There are a very specific set of tests that must be executed to determine if the information in that Identity header is valid.  Most of these tests are described in [ATIS-1000074v003](https://access.atis.org/higherlogic/ws/public/download/67436/ATIS-1000074.v003.pdf)
 * The certificate URL included in the Identity header must use the https scheme, must not have any query parameters, user/password components, or path parameters. The hostname part of the URL must also NOT resolve to any of the Special-Purpose IP Addresses described in [RFC-6890](https://datatracker.ietf.org/doc/html/rfc6890) which includes the local interface 127.0.0.x and the private networks like 10.0.0.0/8, 172.16.0.0/12 and 192.168.0.0/16.  Don't worry, for testing purposes you can relax these restrictions. :)
+
 * The verifier must retrieve the certificate using the URL referenced in the Identity header.
 * The certificate's valid times must encompass the current time.
 * The certificate must be traceable back to a certificate authority that is trusted to issue certificates for the telephone number in question.
@@ -51,6 +46,7 @@ This is the hard part...  When you receive an incoming INVITE containing an Iden
 * The caller-id in the Identity header must match the caller-id in the P-Asserted-Identity or From SIP headers.
 
 If any of the checks fail, the specifications say you MUST... *do absolutely nothing*.  You *may* however do one of the following:
+
 * Accept the call and continue as if nothing happened.
 * Accept the call but return some data back to the sender with some error information that may be useful to them.  What they do with it is their business.
 * Reject the call with very specific 4XX response codes.
@@ -337,6 +333,7 @@ Default: 15
 ##### failure_action 
 Indicates what will happen to requests that have failed verification.
 Must be one of:
+
 - **continue**:
   Continue processing the request.  You can use the STIR_SHAKEN
   dialplan function to determine whether the request passed or failed
@@ -458,6 +455,7 @@ Default: none
 ##### endpoint_behhavior
 Actions to be performed for endpoints referencing this profile.
 Must be one of:
+
 - **off**:
   Don't do any STIR/SHAKEN processing.
 - **attest**:
@@ -524,7 +522,7 @@ From now on, the action taken on failure is controlled by the `failure_action` p
 1. Check the local cache to see if we have the certificate already and it's cache expiration isn't in the past.  If we have a good one, skip to the next step.  Otherwise...
     * Retrieve the certificate from the URL.
     * Parse the certificate and public key.
-    * Validate the certificate using the CA certificates and certificate revocation lists provided by the `ca_file, ``ca_path`, `crl_file` and `crl_path` parametersprovided in the [profile](#profile) or [verification](#verification) objects and against the other rules mentioned in [Verify](#verify).
+    * Validate the certificate using the CA certificates and certificate revocation lists provided by the `ca_file`, `ca_path`, `crl_file` and `crl_path` parameters provided in the [profile](#profile) or [verification](#verification) objects and against the other rules mentioned in [Verify](#verify).
 1. Decode the Identity header using the public key from the certificate.
 ication).
 1. Retrieve the rest of the parameters from the decoded Identity header.
@@ -545,9 +543,18 @@ Compared to verification, attestation is simple.
 1. If there's no caller-id present, skip attestation and continue the call.
 1. If the endpoint sending the call doesn't have `stir_shaken_profile` set, skip attestation and continue the call.
 1. If the profile name set in `stir_shaken_profile` doesn't exist, skip attestation and continue the call.
-1. If the [attestation](#attestation) `global_disable` flag is true, skip verification and continue the call.
-1. If the [profile](#profile) `endpoint_behavior` parameter isn't `attest` or `on`, skip verification and continue the call.
+1. If the [attestation](#attestation) `global_disable` flag is true, skip attestation and continue the call.
+1. If the [profile](#profile) `endpoint_behavior` parameter isn't `attest` or `on`, skip attestation and continue the call.
 1. If there's no "tn" object matching the caller-id, skip attestation and continue the call.
 1. Finally create and sign the Identity header using the `private_key_file`, `public_cert_url`, `attest_level` and `send_mky` parameters from [tn](#tn), [profile](#profile) or [attestation](#attestation).  If this fails, the call will be terminated.
 
 ## References
+
+The best places to become familiar with STIR/SHAKEN itself are:
+
+* [RFC7340 Secure Telephone Identity Problem Statement and Requirements](https://www.rfc-editor.org/rfc/rfc7340.html)
+* [RFC7375 Secure Telephone Identity Threat Model](https://www.rfc-editor.org/rfc/rfc7375.html)
+* [RFC8224 Authenticated Identity Management in the Session Initiation Protocol (SIP)](https://www.rfc-editor.org/rfc/rfc8224.html)
+* [RFC 9060 Secure Telephone Identity Revisited (STIR) Certificate Delegation](https://www.rfc-editor.org/rfc/rfc9060.html)
+* [ATIS-1000074v003: Signature-based Handling of Asserted information using toKENs (SHAKEN)](https://access.atis.org/higherlogic/ws/public/download/67436/ATIS-1000074.v003.pdf)
+
