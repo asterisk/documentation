@@ -2,6 +2,10 @@
 
 This repository contains the Asterisk Documentation project.
 
+# Recent Changes
+
+The packages used to create the documentation were upgraded on February 2 2024.  While there are no breaking changes, some new capabilities were added that, if used going forward, won't render correctly with the older versions.  So, if you build documentation locally, you should delete your local virtualenv and re-create it using the new requirements.txt file.  The new features will be documented separately.
+
 # Static Documentation
 
 The static documentation contained in the ./docs/ directory is written directly in markdown.  The publish process uses [mkdocs](https://www.mkdocs.org) and [Material for MkDocs](https://squidfunk.github.io/mkdocs-material/) to generate the HTML web site.  The directory structure is fairly straightforward so if you wish to contribute, you should fork this repository and submit pull requests against files in that directory.

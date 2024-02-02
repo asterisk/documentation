@@ -5,6 +5,11 @@ repo_name: Asterisk
 copyright: >
   Content is licensed under a Creative Commons Attribution-ShareAlike 3.0 United States License.
 
+validation:
+  absolute_links: ignore
+  unrecognized_links: ignore
+
+
 theme:
   name: material
   favicon: favicon.ico
@@ -85,34 +90,34 @@ markdown_extensions:
   - def_list
   - footnotes
   - md_in_html
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.betterem
+  - pymdownx.blocks.admonition
+  - pymdownx.caret
+  - pymdownx.critic
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
   - pymdownx.highlight:
       anchor_linenums: true
       line_spans: __span
       pygments_lang_class: true
   - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.saneheaders
+  - pymdownx.smartsymbols
   - pymdownx.snippets
   - pymdownx.superfences:
       custom_fences:
         - name: mermaid
           class: mermaid
           format: !!python/name:pymdownx.superfences.fence_code_format
-  - footnotes
-  - tables
-  - pymdownx.critic
-  - pymdownx.caret
-  - pymdownx.keys
-  - pymdownx.mark
-  - pymdownx.tilde
-  - pymdownx.emoji:
-      emoji_index: !!python/name:materialx.emoji.twemoji
-      emoji_generator: !!python/name:materialx.emoji.to_svg
-  - pymdownx.snippets
-  - pymdownx.details
-  - pymdownx.betterem
-  - pymdownx.smartsymbols
   - pymdownx.tabbed:
       alternate_style: true
-  - toc:
-      permalink: true
+  - pymdownx.tilde
 
 
