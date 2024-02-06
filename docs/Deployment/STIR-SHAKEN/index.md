@@ -9,7 +9,7 @@ The earlier version was only partially functional and not interoperable with oth
 
 There are 2 services associated with STIR-SHAKEN call processing implementations...
 
-### Attest
+### Attestation
 On an outbound call, attestation is basically you swearing in court what level of responsibility you have over the accuracy of the caller id you're presenting in the outgoing INVITE message, where the level can be one of the following:
 
 * **A**: Full Attestation
@@ -32,7 +32,7 @@ Attestation is accomplished by adding a SIP "Identity" header to the outgoing IN
 * A URL to the certificate whose private key was used to sign this header.
 * The signature that resulted from signing the header with the associated private key.
 
-### Verify
+### Verification
 This is the hard part...  When you receive an incoming INVITE containing an Identity header, you can't just automatically trust it.  There are a very specific set of tests that must be executed to determine if the information in that Identity header is valid.  Most of these tests are described in [ATIS-1000074v003](https://access.atis.org/higherlogic/ws/public/download/67436/ATIS-1000074.v003.pdf)
 * The certificate URL included in the Identity header must use the https scheme, must not have any query parameters, user/password components, or path parameters. The hostname part of the URL must also NOT resolve to any of the Special-Purpose IP Addresses described in [RFC-6890](https://datatracker.ietf.org/doc/html/rfc6890) which includes the local interface 127.0.0.x and the private networks like 10.0.0.0/8, 172.16.0.0/12 and 192.168.0.0/16.  Don't worry, for testing purposes you can relax these restrictions. :)
 
@@ -51,6 +51,13 @@ If any of the checks fail, the specifications say you MUST... *do absolutely not
 * Accept the call but return some data back to the sender with some error information that may be useful to them.  What they do with it is their business.
 * Reject the call with very specific 4XX response codes.
 
+/// warning | Deviations from Specifications
+* At the present time, Asterisk does not validate the destination TN in the SIP "To:" and the "dest" TN in the Identity header.  The rules for doing so are fairly complex with regard to emergency services numbers and call diversion (forwarding, transfer, etc).
+* Although [RFC-8225 section 7](https://www.rfc-editor.org/rfc/rfc8225#section-7) allows the use of the compact form of the PASSporT, [ATIS-1000074](https://access.atis.org/higherlogic/ws/public/download/67436/ATIS-1000074.v003.pdf/latest) section 5.3.3 states that only the full form shall be used.  Asterisk therefore supports only the full form of the PASSporT.
+* Asterisk currently performs only basic validation of certificates retrieved during the verification process.  Certificate authority, certificate revocation, validity date and TNAuthList extension presence are validated but neither validation of the TNAuthList content nor validation of the Common Name content are performed.  At the present time, we could find no examples of certificates with either of those extensions that could be tested with.  This means that there's effectively no verification that the certificate retrieved actually has the authority over the originating TN.
+
+
+///
 ## Asterisk Implementation
 
 ### Configuration
@@ -95,7 +102,7 @@ will create the table.  Since there can be only one "verification"
 or "attestation" object, and will probably be only a few "profile"
 objects, those objects aren't realtime enabled.
 
-#### Attestation
+#### Attestation Object
 
 The "attestation" object sets the parameters for creating an Identity
 header which attests to the ownership of the caller id on outgoing
@@ -171,7 +178,7 @@ attest_level = C
 ```
 
 
-#### TN
+#### TN Object
 
 Each "tn" object contains the parameters needed to create the Identity
 header used to attest to the ownership of the caller-id on outgoing
@@ -188,7 +195,7 @@ The "id" of this object MUST be a canonicalized telephone nmumber which
 starts with a country code.  The only valid characters are the numbers
 0-9, '#' and '*'.
 
-The default values for all of the "tn" parameters come from the "[attestation](#attestation)" and "[profile](#profile)" objects.
+The default values for all of the "tn" parameters come from the "[attestation](#attestation-object)" and "[profile](#profile-object)" objects.
 
 Parameters:
 
@@ -199,15 +206,15 @@ Default: none
 
 ##### private_key_file
 
-See the description under [attestation](#attestation)
+See the description under [attestation](#attestation-object)
 
 ##### public_cert_url
 
-See the description and WARNING under [attestation](#attestation)
+See the description and WARNING under [attestation](#attestation-object)
 
 ##### attest_level
 
-See the description under [attestation](#attestation)
+See the description under [attestation](#attestation-object)
 
 ##### Example "tn" object:
 
@@ -225,7 +232,7 @@ Using all the attestation and profile defaults:
 type = tn
 ```
 
-#### Verification
+#### Verification Object
 
 The "verification" object sets the parameters for verification
 of the Identity header on incoming INVITE requests.
@@ -434,7 +441,7 @@ relax_x5u_port_scheme_restrictions = yes
 relax_x5u_path_restrictions = yes
 ```
 
-#### Profile
+#### Profile Object
 
 A "profile" object can be associated to channel driver endpoint
 (currently only chan_pjsip) and can set verification and attestation
@@ -510,19 +517,19 @@ We perform verification on incoming calls.
 1. If the endpoint receiving the call doesn't have `stir_shaken_profile` set, skip verification and continue the call.
 1. If the profile name set in `stir_shaken_profile` doesn't exist, return an error and terminate the call.
 1. If the [verification](#verification) `global_disable` flag is true, skip verification and continue the call.
-1. If the [profile](#profile) `endpoint_behavior` parameter isn't `verify` or `on`, skip verification and continue the call.
+1. If the [profile](#profile-object) `endpoint_behavior` parameter isn't `verify` or `on`, skip verification and continue the call.
 
-From now on, the action taken on failure is controlled by the `failure_action` parameter in the [profile](#profile) or [verification](#verification) objects. 
+From now on, the action taken on failure is controlled by the `failure_action` parameter in the [profile](#profile-object) or [verification](#verification-object) objects. 
 
 1. If there's no Identity header in the SIP request, fail per `failure_action`
 1. Parse the Identity header.
-1. Check the URL in the "x5u" header parameter against the rules described in [Verify](#verify).
-1. Check the "iat" header is within `max_iat_age` from the [profile](#profile) or [verification](#verification).
-1. Check the SIP "Date" header is within the `max_date_header_age` from the [profile](#profile) or [verification](#verif
+1. Check the URL in the "x5u" header parameter against the rules described in [Verification](#verification).
+1. Check the "iat" header is within `max_iat_age` from the [profile](#profile-object) or [verification](#verification).
+1. Check the SIP "Date" header is within the `max_date_header_age` from the [profile](#profile-object) or [verification](#verif
 1. Check the local cache to see if we have the certificate already and it's cache expiration isn't in the past.  If we have a good one, skip to the next step.  Otherwise...
     * Retrieve the certificate from the URL.
     * Parse the certificate and public key.
-    * Validate the certificate using the CA certificates and certificate revocation lists provided by the `ca_file`, `ca_path`, `crl_file` and `crl_path` parameters provided in the [profile](#profile) or [verification](#verification) objects and against the other rules mentioned in [Verify](#verify).
+    * Validate the certificate using the CA certificates and certificate revocation lists provided by the `ca_file`, `ca_path`, `crl_file` and `crl_path` parameters provided in the [profile](#profile-object) or [verification](#verification-object) objects and against the other rules mentioned in [Verification](#verification).
 1. Decode the Identity header using the public key from the certificate.
 ication).
 1. Retrieve the rest of the parameters from the decoded Identity header.
@@ -544,9 +551,9 @@ Compared to verification, attestation is simple.
 1. If the endpoint sending the call doesn't have `stir_shaken_profile` set, skip attestation and continue the call.
 1. If the profile name set in `stir_shaken_profile` doesn't exist, skip attestation and continue the call.
 1. If the [attestation](#attestation) `global_disable` flag is true, skip attestation and continue the call.
-1. If the [profile](#profile) `endpoint_behavior` parameter isn't `attest` or `on`, skip attestation and continue the call.
+1. If the [profile](#profile-object) `endpoint_behavior` parameter isn't `attest` or `on`, skip attestation and continue the call.
 1. If there's no "tn" object matching the caller-id, skip attestation and continue the call.
-1. Finally create and sign the Identity header using the `private_key_file`, `public_cert_url`, `attest_level` and `send_mky` parameters from [tn](#tn), [profile](#profile) or [attestation](#attestation).  If this fails, the call will be terminated.
+1. Finally create and sign the Identity header using the `private_key_file`, `public_cert_url`, `attest_level` and `send_mky` parameters from [tn](#tn-object), [profile](#profile-object) or [attestation](#attestation-object).  If this fails, the call will be terminated.
 
 ## References
 
