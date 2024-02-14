@@ -13,15 +13,15 @@ Sangoma invites developers who are interested in the future of Asterisk to join 
   
 AstriDevCon is a mix of open and focused discussion all on topics within the realm of Asterisk development, primarily regarding current concerns that Asterisk faces and how to improve Asterisk for the future.
 
-**Starting at [10AM EDT](https://www.timeanddate.com/worldclock/fixedtime.html?msg=AstriDevCon+2024&iso=20240214T10&p1=820&ah=6).**
+**Starting at [10AM EST](https://www.timeanddate.com/worldclock/fixedtime.html?msg=AstriDevCon+2024&iso=20240214T10&p1=820&ah=6).**
 
-Break 11:30 EDT
+Break 11:30 EST
 
-Lunch 12:10 EDT
+Lunch 12:10 EST
 
-Break 2:30 EDT
+Break 2:30 EST
 
-**Event ends at 4PM EDT or until completion.**
+**Event ends at 4PM EST or until completion.**
 
 We'll build a rough agenda together in the morning.
 
