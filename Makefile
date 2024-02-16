@@ -130,7 +130,7 @@ dynamic-core-setup: branch-check $(BUILD_DIR)/docs $(BRANCH_DIR) $(XML_PREREQ)
 	@ln -sfr $(BRANCH_DIR)/docs $(BUILD_DIR)/docs/$(BRANCH_DOC_DIR)/API_Documentation 
 
 ifneq ($(ASTERISK_ARI_DIR),)
-  ARI_PREREQ := $(ASTERISK_ARI_DIR)/_Asterisk_REST_Data_Models.md
+  ARI_PREREQ := $(ASTERISK_ARI_DIR)/Asterisk_REST_Data_Models.md
 else
   ARI_PREREQ := download-from-job
   ASTERISK_ARI_DIR := $(BRANCH_DIR)/source/
