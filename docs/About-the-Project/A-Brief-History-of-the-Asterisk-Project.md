@@ -31,8 +31,7 @@ Asterisk is constantly evolving to meet the needs of the project's user-base. It
 
 * [Asterisk Versions](/About-the-Project/Asterisk-Versions): Shows release time lines, support and EOL schedules.
 * [Roadmap](/Development/Roadmap): Information from developer conferences and planning sessions.
-* [CHANGES](https://github.com/asterisk/asterisk/blob/master/CHANGES): A document in Asterisk trunk, shows functionality changes between major versions.
-* [UPGRADE](https://github.com/asterisk/asterisk/blob/master/UPGRADE.txt): A document in Asterisk trunk, shows breaking changes, deprecation of specific features and important info on upgrading.
+* [ChangeLogs](/latest_api/Whats_New): The Change Logs for the latest version of Asterisk.
 * [Mailing Lists](https://www.asterisk.org/community/discuss): The dev list is a great list to see what hot topics the developers are discussing in real-time.
 * [Forums](https://community.asterisk.org): The community forums are a great place to receive help with issues.
 

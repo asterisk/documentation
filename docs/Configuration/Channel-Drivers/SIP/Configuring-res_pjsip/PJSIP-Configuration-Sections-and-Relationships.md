@@ -1,10 +1,6 @@
----
-title: PJSIP Configuration Sections and Relationships
-pageid: 30278064
----
+# PJSIP Configuration Sections and Relationships
 
-Configuration Section Format
-----------------------------
+## Configuration Section Format
 
 pjsip.conf is a flat text file composed of **sections** like most configuration files used with Asterisk. Each **section** defines configuration for a **configuration object** within res_pjsip or an associated module.
 
@@ -14,17 +10,19 @@ Each section has one or more **configuration options** that can be assigned a va
 
 Every section will have a **type** option that defines what kind of section is being configured. You'll see that in every example config section below.
 
-Syntax for res_sip config objects **[**  SectionName  **]**    
- ConfigOption  **=**  Value   
- ConfigOption  **=**  Value
+Syntax for res_pjsip config objects:
 
-On this Page
+```
+[object name]
+type = <object type>
+<option> = <value>
+<option> = <value>
+```
 
 
-Config Section Help and Defaults
---------------------------------
+## Config Section Help and Defaults
 
-Reference documentation for all configuration parameters is available on the wiki:
+Reference documentation for all configuration parameters:
 
 * [Core res_pjsip configuration options](/latest_api/API_Documentation/Module_Configuration/res_pjsip)
 * [Configuration options for ACLs in res_pjsip_acl](/latest_api/API_Documentation/Module_Configuration/res_pjsip_acl)
@@ -34,30 +32,21 @@ Reference documentation for all configuration parameters is available on the wik
 The same documentation is available at the Asterisk CLI as well. You can use "config show help <res_pjsip module name> <configobject> <configoption>" to get help on a particular option. That help will typically describe the default value for an option as well.
 
 
+/// tip|Defaults
+For many config options, it's very helpful to understand their default behavior. For example, for the endpoint section "transport=" option, if no value is assigned then Asterisk will \*DEFAULT\* to the first configured transport in pjsip.conf which is valid for the URI we are trying to contact.
+///
 
+## Object Names
 
-!!! tip **   ****Defaults**:
-    For many config options, it's very helpful to understand their default behavior. For example, for the endpoint section "transport=" option, if no value is assigned then Asterisk will \*DEFAULT\* to the first configured transport in pjsip.conf which is valid for the URI we are trying to contact.
-
-      
-[//]: # (end-tip)
-
-
-
-Section Names
--------------
-
-In most cases, you can name a section whatever makes sense to you. For example you might name a transport [transport-udp-nat] to help you remember how that section is being used.
+In most cases, you can name a section whatever makes sense to you. For example you might name a transport `[transport-udp-nat]` to help you remember how that section is being used.
 
 However, in some cases, (endpoint and aor types) the section name has a relationship to its function. In the case of endpoint and aor their names must match the user portion of the SIP URI in the "From" header for inbound SIP requests. The exception to that rule is if you have an identify section configured for that endpoint. In that case the inbound request would be matched by IP instead of against the user in the "From" header.
 
-Section Types
--------------
+## Object Types
 
 Below is a brief description of each section type and an example showing configuration of that section only. The module providing the configuration object related to the section is listed in parentheses next to each section name.
 
 There are dozens of config options for some of the sections, but the examples below are very minimal for the sake of simplicity.
-
 
 
 ### ENDPOINT
@@ -88,7 +77,7 @@ callerid=Spaceman Spiff <6001>
 
 ```
 
-### **TRANSPORT**
+### TRANSPORT
 
 (provided by module: res_pjsip)
 
@@ -100,17 +89,14 @@ You can setup multiple transport sections and other sections (such as endpoints)
 * PJSIP does not allow multiple TCP or TLS transports of the same IP version (IPv4 or IPv6).
 
 
+/// info|Reloading Config
+Configuration for transport type sections can't be reloaded during run-time unless their `allow_reload` option is set to `yes` 
+///
 
 
-!!! info "**  **Reloading Config:"
-    Configuration for transport type sections can't be reloaded during run-time without a full module unload and load. You'll effectively need to restart Asterisk completely for your transport changes to take effect.
+EXAMPLE BASIC CONFIGURATION
 
-      
-[//]: # (end-info)
-
-
-
-EXAMPLE BASIC CONFIGURATIONA basic UDP transport bound to all interfaces
+A basic UDP transport bound to all interfaces
 
 ```
 [simpletrans]
@@ -136,13 +122,15 @@ method=
 
 ```
 
-### **AUTH**
+### AUTH
 
 (provided by module: res_pjsip)
 
 Authentication sections hold the options and credentials related to inbound or outbound authentication. You'll associate other sections such as endpoints or registrations to this one. Multiple endpoints or registrations can use a single auth config if needed.
 
-EXAMPLE BASIC CONFIGURATIONAn example with username and password authentication
+EXAMPLE BASIC CONFIGURATION
+
+An example with username and password authentication
 
 ```
 [auth6001]
@@ -164,17 +152,25 @@ username=6001
 
 ```
 
-### **AOR**
+### AOR
 
 (provided by module: res_pjsip)
 
-A primary feature of AOR objects (Address of Record) is to tell Asterisk where an endpoint can be contacted. Without an associated AOR section, an endpoint cannot be contacted. AOR objects also store associations to mailboxes for MWI requests and other data that might relate to the whole group of contacts such as expiration and qualify settings.
+A primary feature of AOR objects (Address of Record) is to tell Asterisk where an endpoint can be contacted. Without an associated AOR section, an endpoint cannot be contacted. AOR objects also store associations to mailboxes for MWI requests and other data that might relate to the whole group of contacts such as expiration and qualify settings.  Contact information can be provided one of two ways:
 
-When Asterisk receives an inbound registration, it'll look to match against available AORs.
+/// define
+Statically
 
-**Registrations:** The name of the AOR section must match the user portion of the SIP URI in the "To:" header of the inbound SIP registration. That will usually be the "user name" set in your hard or soft phones configuration.
+- A `contact` parameter that contains a SIP URI can be added to an AOR.
 
-EXAMPLE BASIC CONFIGURATIONFirst, we have a configuration where you are expecting the SIP User Agent (likely a phone) to register against the AOR. In this case, the contact objects will be created automatically. We limit the maximum contact creation to 1. We could do 10 if we wanted up to 10 SIP User Agents to be able to register against it.
+Dynamically
+
+- A remote user agent can send a SIP REGISTER request to Asterisk that contains a Contact URI.  In this case, the name of the AOR section must match the user portion of the SIP URI in the "To:" header of the inbound SIP registration. That will usually be the "user name" set in your hard or soft phones configuration.
+
+
+EXAMPLE BASIC CONFIGURATION
+
+First, we have a configuration where you are expecting the SIP User Agent (likely a phone) to register against the AOR. In this case, the contact objects will be created automatically. We limit the maximum contact creation to 1. We could do 10 if we wanted up to 10 SIP User Agents to be able to register against it.
 
 ```
 [6001]
@@ -201,13 +197,15 @@ contact=sip:203.0.113.1:5060
 
 ```
 
-### **REGISTRATION**
+### REGISTRATION
 
 (provided by module: res_pjsip_outbound_registration)
 
 The registration section contains information about an outbound registration. You'll use this when setting up a registration to another system whether it's local or a trunk from your ITSP.
 
-EXAMPLE BASIC CONFIGURATIONThis example shows you how you might configure registration and outbound authentication against another Asterisk system, where the other system is using the older chan_sip peer setup.
+EXAMPLE BASIC CONFIGURATION
+
+This example shows you how you might configure registration and outbound authentication against another Asterisk system, where the other system is using the older chan_sip peer setup.
 
 This example is just the registration itself. You'll of course need the associated transport and auth sections. Plus, if you want to receive calls from the far end (who now knows where to send calls, thanks to your registration!) then you'll need endpoint, AOR and possibly identify sections setup to match inbound calls to a context in your dialplan.
 
@@ -219,7 +217,6 @@ outbound_auth=mytrunk
 server_uri=sip:myaccountname@203.0.113.1:5060
 client_uri=sip:myaccountname@192.0.2.1:5060
 retry_interval=60
-
 ```
 
 And an example that may work with a SIP trunking provider
@@ -237,7 +234,7 @@ retry_interval=60
 
 What if you don't need to authenticate? You can simply omit the **outbound_auth** option.
 
-### **DOMAIN_ALIAS**
+### DOMAIN_ALIAS
 
 (provided by module: res_pjsip)
 
@@ -252,13 +249,15 @@ domain=example.com
 
 ```
 
-### **ACL**
+### ACL
 
 (provided by module: res_pjsip_acl)
 
 The ACL module used by 'res_pjsip'. This module is independent of 'endpoints' and operates on all inbound SIP communication using res_pjsip. Features such as an Access Control List, as defined in the configuration section itself, or as defined in **acl.conf**. ACL's can be defined specifically for source IP addresses, or IP addresses within the contact header of SIP traffic.
 
-EXAMPLE BASIC CONFIGURATIONA configuration pulling from the acl.conf file:
+EXAMPLE BASIC CONFIGURATION
+
+A configuration pulling from the acl.conf file:
 
 ```
 [acl]
@@ -291,13 +290,15 @@ contactpermit=209.16.236.1
 
 All of these configurations can be combined.
 
-### **IDENTIFY**
+### IDENTIFY
 
 (provided by module: res_pjsip_endpoint_identifier_ip)
 
 Controls how the res_pjsip_endpoint_identifier_ip module determines what endpoint an incoming packet is from. If you don't have an identify section defined, or else you have res_pjsip_endpoint_**identifier_ip** loading **after** res_pjsip_endpoint_**identifier_user**, then res_pjsip_endpoint_**identifier_user** will identify inbound traffic by pulling the user from the "From:" SIP header in the packet. Basically the module load order, and your configuration will both determine whether you identify by IP or by user.
 
-EXAMPLE BASIC CONFIGURATIONIts use is quite straightforward. With this configuration if Asterisk sees inbound traffic from 203.0.113.1 then it will match that to Endpoint 6001.
+EXAMPLE BASIC CONFIGURATION
+
+Its use is quite straightforward. With this configuration if Asterisk sees inbound traffic from 203.0.113.1 then it will match that to Endpoint 6001.
 
 ```
 [6001]
@@ -307,14 +308,13 @@ match=203.0.113.1
 
 ```
 
-### **CONTACT**
+### CONTACT
 
 (provided by module: res_pjsip)
 
 The contact config object effectively acts as an alias for a SIP URIs and holds information about an inbound registrations. Contact objects can be associated with an individual SIP User Agent and contain a few config options related to the connection. Contacts are created automatically upon registration to an AOR, or can be created manually by using the "contact=" config option in an AOR section. Manually configuring a CONTACT config object should not be needed, however. AORs with fixed remote hosts will create contacts upon AOR creation, and AORs that accept registrations will create contacts upon each accepted registration.
 
-Relationships of Configuration Objects in pjsip.conf
-----------------------------------------------------
+## Relationships of Configuration Objects in pjsip.conf
 
 Now that you understand the various configuration sections related to each config object, lets look at how they interrelate.
 
@@ -322,31 +322,18 @@ You'll see that the new SIP implementation within Asterisk is extremely flexible
 
 **Configuration Flow**: This lets you know which direction the objects are associated to other objects. e.g. The identify config section has an option "endpoint=" which allows you to associate it with an endpoint object.
 
-
+![](res_sip_configrelationships.png)
 
 | Entity Relationships | Relationship Descriptions |
 | --- | --- |
-| res_sip_configrelationships25919621 | ENDPOINT* Many ENDPOINTs can be associated with many AORs
-* Zero to many ENDPOINTs can be associated with zero to one AUTHs
-* Zero to many ENDPOINTs can be associated with at least one TRANSPORT
-* Zero to one ENDPOINTs can be associated with an IDENTIFY
-
-REGISTRATION* Zero to many REGISTRATIONs can be associated with zero to one AUTHs
-* Zero to many REGISTRATIONs can be associated with at least one TRANSPORT
-
-AOR* Many ENDPOINTs can be associated with many AORs
-* Many AORs can be associated with many CONTACTs
-
-CONTACT* Many CONTACTs can be associated with many AORs
-
-IDENTIFY* Zero to One ENDPOINTs can be associated with an IDENTIFY object
-
-ACL, DOMAIN_ALIAS* These objects don't have a direct configuration relationship to the other objects.
- |
-
-Unfamiliar with ERD? Click here to see a key...![](ERD_key.PNG)
+| ENDPOINT|<ul><li>Many ENDPOINTs can be associated with many AORs<li>Zero to many ENDPOINTs can be associated with zero to one AUTHs<li>Zero to many ENDPOINTs can be associated with at least one TRANSPORT<li>Zero to one ENDPOINTs can be associated with an IDENTIFY</ul>|
+| REGISTRATION|<ul><li>Zero to many REGISTRATIONs can be associated with zero to one AUTHs<li>Zero to many REGISTRATIONs can be associated with at least one TRANSPORT</ul>|
+|AOR|<ul><li>Many ENDPOINTs can be associated with many AORs <li>Many AORs can be associated with many CONTACTs</ul>|
+|CONTACT|<ul><li>Many CONTACTs can be associated with many AORs</ul>|
+|IDENTIFY|<ul><li>Zero to One ENDPOINTs can be associated with an IDENTIFY object</ul>|
+|ACL, DOMAIN_ALIAS|<ul><li>These objects don't have a direct configuration relationship to the other objects.</ul>|
 
 
-
+Unfamiliar with ERD notation? Click [here](https://www.google.com/search?q=entity+relationship+diagram+symbols) for more info courtesy of Google Search.
 
 
