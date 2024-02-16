@@ -34,4 +34,4 @@ Asterisk 21 saw fewer new additions than previous versions. Many of the changes 
 9. res_monitor: This module was deprecated in Asterisk 16 and is now being removed in accordance with the Asterisk Module Deprecation policy. This also removes the 'w' and 'W' options for app_queue. MixMonitor should be default and only option for all settings that previously used either Monitor or MixMonitor.
 
 
-For a complete list of changes and new things in Asterisk 21 please see the [CHANGES document](https://raw.githubusercontent.com/asterisk/asterisk/21/CHANGES) included with Asterisk 21.
+For a complete list of changes and new things in Asterisk 21 please see the [ChangeLogs](https://github.com/asterisk/asterisk/tree/releases/21/ChangeLogs) included with Asterisk 21.
