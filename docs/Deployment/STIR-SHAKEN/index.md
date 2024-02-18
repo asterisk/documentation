@@ -39,7 +39,12 @@ This is the hard part...  When you receive an incoming INVITE containing an Iden
 * The verifier must retrieve the certificate using the URL referenced in the Identity header.
 * The certificate's valid times must encompass the current time.
 * The certificate must be traceable back to a certificate authority that is trusted to issue certificates for the telephone number in question.
-* The certificate must have a special tnAuthList extension.
+* The certificate must contain an X509v3 CRL Distribution Points extension with a URI to the issuer's certificate revocation list.
+* The certificate must not be in the CRL.
+* The certificate must have a special TNAuthList extension.
+* The TNAuthList extension must contain a Service Provider Code(SPC)
+* The certificate's Subject commonName(CN) must be in the format "SHAKEN <SPC>".
+* The SPC in the TNAuthList extension must match the SPC in the CN.
 * The public key attached to the retrieved certificate must be able to decrypt the signature on the Identity header.  This ensures that that certificate's private key was the one that created the signature.
 * The "iat" date parameter in the header must be within a few seconds of "now".
 * The SIP Date header must be present and also within a few seconds of "now".
@@ -54,8 +59,14 @@ If any of the checks fail, the specifications say you MUST... *do absolutely not
 /// warning | Deviations from Specifications
 * At the present time, Asterisk does not validate the destination TN in the SIP "To:" and the "dest" TN in the Identity header.  The rules for doing so are fairly complex with regard to emergency services numbers and call diversion (forwarding, transfer, etc).
 * Although [RFC-8225 section 7](https://www.rfc-editor.org/rfc/rfc8225#section-7) allows the use of the compact form of the PASSporT, [ATIS-1000074](https://access.atis.org/higherlogic/ws/public/download/67436/ATIS-1000074.v003.pdf/latest) section 5.3.3 states that only the full form shall be used.  Asterisk therefore supports only the full form of the PASSporT.
-* Asterisk currently performs only basic validation of certificates retrieved during the verification process.  Certificate authority, certificate revocation, validity date and TNAuthList extension presence are validated but neither validation of the TNAuthList content nor validation of the Common Name content are performed.  At the present time, we could find no examples of certificates with either of those extensions that could be tested with.  This means that there's effectively no verification that the certificate retrieved actually has the authority over the originating TN.
+* Asterisk currently performs only basic validation of certificates retrieved during the verification process.  Certificate authority, validity date and TNAuthList extension presence are validated but validation of the Common Name content is not performed.  Also, the certificate is only checked against CRLs previously downloaded and configured in stir_shaken.conf.  No attempt to retrieve or use the CRL indicated in the certificate's X509v3 CRL Distribution Points extension because the only real-world certificate we could find to test with has a bad URI.
+///
 
+/// warning | Telephone Number to Service Provider validation is not possible! 
+Although [RFC-8226 section 9](https://www.rfc-editor.org/rfc/rfc8226#section-9) states that the TNAuthList extension can contain a service provider code, a telephone number, or a range of telephone numbers, [ATIS-1000080](https://access.atis.org/higherlogic/ws/public/download/69428/ATIS-1000080.v005.pdf/latest) section 6.4.1.2 states "The TNAuthList
+shall contain a single SPC value.".  Asterisk therefore will fail to verify a certificate whose TNAuthList extension contains something other than an SPC code.
+
+It was apparently envisioned that a facility would be made available to verify that a particular SPC has the authority over a particular telephone number.  To our knowledge, that facility doesn't yet exist.  This means that there is currently no way for Asterisk to verify that the SPC in the certificate has the authority over the TN in the Identity header.
 
 ///
 ## Asterisk Implementation
@@ -111,7 +122,7 @@ INVITE requests.
 All parameters except 'global_disable" may be overridden in a "profile"
 or "tn" object.
 
-Only one "attestation" object may exist.
+Only one "attestation" object may exist.  If it doesn't exist at all, the attestation service is globally disabled.
 
 Parameters:
 
@@ -240,7 +251,7 @@ of the Identity header on incoming INVITE requests.
 All parameters except 'global_disable" may be overridden in a "profile"
 object.
 
-Only one "verification" object may exist.
+Only one "verification" object may exist. If it doesn't exist at all, the verification service is globally disabled.
 
 Parameters:
 
