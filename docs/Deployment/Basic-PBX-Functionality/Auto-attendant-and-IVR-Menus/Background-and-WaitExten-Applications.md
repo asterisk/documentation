@@ -19,17 +19,13 @@ The Background() application takes the name of the sound prompt as the first par
   
   
 
+```javascript title=" " linenums="1"
+exten => 6123,1,Background(prompt1&prompt2&prompt3)
 ```
-javascriptexten => 6123,1,Background(prompt1&prompt2&prompt3)
-  
-
-
 
 ---
 
-```
-
-One problems you may encounter with the **Background()** application is that you may want Asterisk to wait a few more seconds after playing the sound prompt. In order to do this, you can call the **WaitExten()** application. You'll usually see the **WaitExten()** application called immediately after the **Background()** application. The first parameter to the **WaitExten()** application is the number of seconds to wait for the caller to enter an extension. If you don't supply the first parameter, Asterisk will use the built-in response timeout (which can be modified with the **TIMEOUT()** dialplan function).
+One problem you may encounter with the **Background()** application is that you may want Asterisk to wait a few more seconds after playing the sound prompt. In order to do this, you can call the **WaitExten()** application. You'll usually see the **WaitExten()** application called immediately after the **Background()** application. The first parameter to the **WaitExten()** application is the number of seconds to wait for the caller to enter an extension. If you don't supply the first parameter, Asterisk will use the built-in response timeout (which can be modified with the **TIMEOUT()** dialplan function).
 
 ```javascript title=" " linenums="1"
 [auto_attendant]
