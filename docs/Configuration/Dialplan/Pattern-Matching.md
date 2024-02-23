@@ -7,7 +7,7 @@ The next concept we'll cover is called *pattern matching*. Pattern matching allo
 
 When Alice dials a number on her phone, Asterisk first looks for an extension (in the context specified by the channel driver configuration) that matches exactly what Alice dialed. If there's no exact match, Asterisk then looks for a pattern that matches. After we show the syntax and some basic examples of pattern matching, we'll explain how Asterisk finds the best match if there are two or more patterns which match the dialed number.
 
-**Pattern matches always begin with an underscore**. This is how Asterisk recognizes that the extension is a pattern and not just an extension with a funny name. Within the pattern, we use various letters and characters to represent a *family* of dial numbers.
+**Pattern matches always begin with an underscore**. This is how Asterisk recognizes that the extension is a pattern and not just an extension with a funny name. Within the pattern, we use various letters and characters to represent a collection of dial numbers.
 
 
 Character Set
@@ -17,7 +17,7 @@ Place the characters you want to match between square brackets. If you want to m
 
 **Examples**:
 * `_gr[ae]y`: Matches `gray`, `grey`
-* `_[1-468]`: Matches `1`, `2`, `3`, `4`, `6`, `8`. It does not match any number from one to four hundred sixty-eight!
+* `_[1-468]`: Matches `1`, `2`, `3`, `4`, `6`, `8`. Note that it does **NOT** match numbers from one to four hundred sixty-eight!
 * `_a[c-e]`: Matches `ac`, `ad`, `ae`
 * `_[127-9ac-e]`: Matches `1`, `2`, `7`, `8`, `9`, `a`, `c`, `d`, `e`
 
@@ -45,22 +45,16 @@ Wilcards
 
 Within Asterisk patterns, we can also use other characters to represent a *family* of dial numbers. The following special characters are considered wildcards:
 
-* `!`: Matches zero or more characters *immediately*. Equivalent to RegEx's `*` quantifier. The behaviour of this wildcard is 
+* `!`: Matches zero or more characters *immediately*. Equivalent to RegEx's `*` quantifier. This wildcard behaves specially. It is used in overlap dialing to dial through Asterisk. For example, `_9876!` would match any number that began with `9876` including `9876`, and would respond that the number was complete as soon as there was an unambiguous match.
 * `.`: Matches one or more characters. Equivalent to RegEx's `+` quantifier.
 
-
 **Examples**:
+* `_9876!`: Matches any number that began with `9876` and has zero or more character or digit, *e.g* `9876`, `98760`, `9876a`, `9876xxx`...
 * `_9876.`: Matches any number that began with `9876` and has at least one more character or digit, *e.g* `98760`, `9876a`, `9876xxx`...
-
-The exclamation mark wildcard (!), behaves specially and will be further explained below in 'Other Special Characters' below.
-
-Please make sure to read 'Be Careful With Wildcards in Pattern Matches' below.
 
 !!! tip
     Asterisk treats a period or exclamation mark as the end of a pattern. If you want a period or exclamation mark in your pattern as a plain character you should put it into a character set, as in `[.]` and `[!]`.
 [//]: # (end-tip)
-
-The exclamation mark (`!`) character is similar to the period and matches zero or more remaining characters. It is used in overlap dialing to dial through Asterisk. For example, `_9876!` would match any number that began with `9876` including `9876`, and would respond that the number was complete as soon as there was an unambiguous match.
 
 !!! warning Be Careful With Wildcards in Pattern Matches
     Please be extremely cautious when using the period and exclamation mark characters in your pattern matches. They match more than just digits. They match on characters. If you're not careful to filter the input from your callers, a malicious caller might try to use these wildcards to bypass security boundaries on your system.
