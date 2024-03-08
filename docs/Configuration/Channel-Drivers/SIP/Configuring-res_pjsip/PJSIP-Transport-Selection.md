@@ -44,16 +44,17 @@ The provided transport is instructed to establish a new connection to the resolv
 !!! info ""
     If an existing connection exists to the IP address and port using the specific transport type then it is reused and a new one is not established.
 
-
 [//]: # (end-info)
 
-###
+### 4. Multihomed Transport Selection (Connection-less protocols)
 
 Before the message is sent out the transport the routing table is queried to determine what interface it will be going out on.
 
 #### Local source interface IP address matches source IP address in message
 
-The message is left untouched and passed to the transport.#### Local source interface IP address differs from source IP address in message
+The message is left untouched and passed to the transport.
+
+#### Local source interface IP address differs from source IP address in message
 
 The message contents are updated with the different source address information. If a transport is bound to the new source address the outgoing transport for the message is changed to it.
 
@@ -69,13 +70,21 @@ SIP Response Handling
 #### Connection-oriented protocols (such as TCP or TLS)
 
 If the connection the request was received on is still open it is used to send the response.
- If no connection exists or the connection is no longer open the first configured transport in pjsip.conf matching the transport type and address family is selected. It is instructed to establish a new connection to the destination IP address and port.#### Connection-less protocol with maddr in URI of the topmost Via header
+ If no connection exists or the connection is no longer open the first configured transport in pjsip.conf matching the transport type and address family is selected. It is instructed to establish a new connection to the destination IP address and port.
 
-A transport, decided upon by a hashing mechanism, matching the transport type and address family is selected. The transport type and address family of the transport the request was received on is used.#### Connection-less protocol with rport in URI of the topmost Via header
+#### Connection-less protocol with maddr in URI of the topmost Via header
 
-The transport the request is received on is used as the transport for the response.#### Connection-less protocol without rport in URI of the topmost Via header
+A transport, decided upon by a hashing mechanism, matching the transport type and address family is selected. The transport type and address family of the transport the request was received on is used.
 
-A transport, decided upon by a hashing mechanism, matching the transport type and address family is selected. The transport type and address family of the transport the request was received on is used.### 2. Message is sent
+#### Connection-less protocol with rport in URI of the topmost Via header
+
+The transport the request is received on is used as the transport for the response.
+
+#### Connection-less protocol without rport in URI of the topmost Via header
+
+A transport, decided upon by a hashing mechanism, matching the transport type and address family is selected. The transport type and address family of the transport the request was received on is used.
+
+### 2. Message is sent
 
 The message is provided to the selected transport and it is instructed to send it.
 
