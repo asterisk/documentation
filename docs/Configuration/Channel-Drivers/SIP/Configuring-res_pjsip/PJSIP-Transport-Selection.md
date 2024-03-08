@@ -17,7 +17,9 @@ The process by which an underlying transport is chosen for sending of a message 
 
 ### 2. DNS SRV Resolution (If host portion is not an IP address and no port is present in the URI)
 
-The transport type from above is used to determine which SRV record to look up. This means that the original URI **must** include the transport type for TCP and TLS types UNLESS the "sips" URI scheme is used which automatically switches to TLS.### 3a. Transport Selection (No explicit transport provided)
+The transport type from above is used to determine which SRV record to look up. This means that the original URI **must** include the transport type for TCP and TLS types UNLESS the "sips" URI scheme is used which automatically switches to TLS.
+
+### 3a. Transport Selection (No explicit transport provided)
 
 Now that the underlying type of transport is known and the resolved target exists the transport selection process can begin.
 
@@ -29,9 +31,6 @@ A transport, decided upon by a hashing mechanism, matching the transport type an
 
 An already open connection to the resolved IP address and port is searched for. If the connection exists it is reused for the request. If no connection exists the first transport matching the transport type and address family as configured in pjsip.conf is chosen. It is instructed to establish a new connection to the resolved IP address and port.
 
-On this Page
-
-
 ### 3b. Transport Selection (Explicit transport provided)
 
 #### Connection-less protocols (such as UDP)
@@ -42,27 +41,26 @@ The provided transport is used.
 
 The provided transport is instructed to establish a new connection to the resolved IP address and port.
 
-
-
-
 !!! info ""
     If an existing connection exists to the IP address and port using the specific transport type then it is reused and a new one is not established.
 
-      
 [//]: # (end-info)
 
+### 4. Multihomed Transport Selection (Connection-less protocols)
 
+Before the message is sent out the transport the routing table is queried to determine what interface it will be going out on.
 
-### 
+#### Local source interface IP address matches source IP address in message
 
-Before the message is sent out the transport the routing table is queried to determine what interface it will be going out on.#### Local source interface IP address matches source IP address in message
+The message is left untouched and passed to the transport.
 
-The message is left untouched and passed to the transport.#### Local source interface IP address differs from source IP address in message
+#### Local source interface IP address differs from source IP address in message
 
-The message contents are updated with the different source address information. If a transport is bound to the new source address the outgoing transport for the message is changed to it.### 5. Message is sent
+The message contents are updated with the different source address information. If a transport is bound to the new source address the outgoing transport for the message is changed to it.
 
-  
- The message is provided to the transport and it is instructed to send it.
+### 5. Message is sent
+
+The message is provided to the transport and it is instructed to send it.
 
 SIP Response Handling
 ---------------------
@@ -71,14 +69,22 @@ SIP Response Handling
 
 #### Connection-oriented protocols (such as TCP or TLS)
 
-If the connection the request was received on is still open it is used to send the response.  
- If no connection exists or the connection is no longer open the first configured transport in pjsip.conf matching the transport type and address family is selected. It is instructed to establish a new connection to the destination IP address and port.#### Connection-less protocol with maddr in URI of the topmost Via header
+If the connection the request was received on is still open it is used to send the response.
+ If no connection exists or the connection is no longer open the first configured transport in pjsip.conf matching the transport type and address family is selected. It is instructed to establish a new connection to the destination IP address and port.
 
-A transport, decided upon by a hashing mechanism, matching the transport type and address family is selected. The transport type and address family of the transport the request was received on is used.#### Connection-less protocol with rport in URI of the topmost Via header
+#### Connection-less protocol with maddr in URI of the topmost Via header
 
-The transport the request is received on is used as the transport for the response.#### Connection-less protocol without rport in URI of the topmost Via header
+A transport, decided upon by a hashing mechanism, matching the transport type and address family is selected. The transport type and address family of the transport the request was received on is used.
 
-A transport, decided upon by a hashing mechanism, matching the transport type and address family is selected. The transport type and address family of the transport the request was received on is used.### 2. Message is sent
+#### Connection-less protocol with rport in URI of the topmost Via header
+
+The transport the request is received on is used as the transport for the response.
+
+#### Connection-less protocol without rport in URI of the topmost Via header
+
+A transport, decided upon by a hashing mechanism, matching the transport type and address family is selected. The transport type and address family of the transport the request was received on is used.
+
+### 2. Message is sent
 
 The message is provided to the selected transport and it is instructed to send it.
 
@@ -234,10 +240,10 @@ bind=[2001:470:e20f:42::42]
 
 
 
-!!! warning 
+!!! warning
     It might be tempting to use a wildcard IPv6 address to bind a single transport to allow both IPv6 and IPv4. In this configuration IPv6 mapped IPv4 addresses will be used which is unsupported by PJSIP. This will cause a SIP message parsing failure.
 
-      
+
 [//]: # (end-warning)
 
 
