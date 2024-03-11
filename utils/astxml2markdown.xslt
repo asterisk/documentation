@@ -1,15 +1,18 @@
 <?xml version="1.0"?>
 <xsl:stylesheet version="1.0"
 xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-xmlns:ast="ast" extension-element-prefixes="ast"
+xmlns:ast="ast"
+xmlns:str="http://exslt.org/strings"
+extension-element-prefixes="ast str"
 >
+
 <xsl:output method="text" omit-xml-declaration="yes" indent="no"/>
 
 <xsl:variable name="smallcase" select="'abcdefghijklmnopqrstuvwxyz'" />
 <xsl:variable name="uppercase" select="'ABCDEFGHIJKLMNOPQRSTUVWXYZ'" />
 
+<xsl:variable name="tabsize" select="'4'" />
 <xsl:variable name="bulletchar" select="'*'" />
-<xsl:variable name="bulletindent" select="'                        '" />
 
 <xsl:template match="text()"/>
 
@@ -661,11 +664,10 @@ the XML again with the full descriptions, and forms bulleted lists.
 <xsl:template match="info">
     <xsl:param name="bulletlevel"/>
     <xsl:param name="returntype"/>
-    <xsl:value-of select="concat(substring($bulletindent, 0, $bulletlevel * 4 + 1), $bulletchar)"/>
-    <xsl:text> *Technology: </xsl:text>
-    <xsl:value-of select="@tech"/>
-    <xsl:text>*&lt;br&gt;</xsl:text>
-    <xsl:text>&#10;</xsl:text>
+    <xsl:text>
+</xsl:text>
+    <xsl:value-of select="str:padding($bulletlevel * $tabsize, ' ')"/>
+    <xsl:value-of select="concat('* __Technology: ', @tech, '__&#10;')"/>
     <xsl:apply-templates>
         <xsl:with-param name="returntype">single</xsl:with-param>
         <xsl:with-param name="bulletlevel" select="$bulletlevel + 1"/>
@@ -695,8 +697,10 @@ the XML again with the full descriptions, and forms bulleted lists.
 
 <xsl:template match="parameter">
     <xsl:param name="bulletlevel"/>
-    <xsl:value-of select="concat(substring($bulletindent, 0, $bulletlevel * 4 + 1), $bulletchar, ' ')"/>
-    <xsl:value-of select="@name"/>
+    <xsl:text>
+</xsl:text>
+    <xsl:value-of select="str:padding($bulletlevel * $tabsize, ' ')"/>
+    <xsl:text>* `</xsl:text><xsl:value-of select="@name"/><xsl:text>`</xsl:text>
     <xsl:choose>
         <xsl:when test="para">
             <xsl:text> - </xsl:text>
@@ -717,7 +721,10 @@ the XML again with the full descriptions, and forms bulleted lists.
 <xsl:template match="argument">
     <xsl:param name="bulletlevel"/>
     <xsl:param name="separator">,</xsl:param>
-    <xsl:value-of select="concat(substring($bulletindent, 0, $bulletlevel * 4 + 1), $bulletchar, ' ')"/>
+    <xsl:text>
+</xsl:text>
+    <xsl:value-of select="str:padding($bulletlevel * $tabsize, ' ')"/>
+    <xsl:text>* </xsl:text>
     <xsl:if test="@required='true' or @required='yes'">
         <xsl:text>**</xsl:text>
     </xsl:if>
@@ -804,20 +811,32 @@ be displayed.
 
 <xsl:template match="note">
     <xsl:param name="returntype"/>
-    <xsl:text>!!! note&#10;    </xsl:text>
-    <xsl:apply-templates select="para">
-        <xsl:with-param name="returntype" select="$returntype"/>
-    </xsl:apply-templates>
-    <xsl:text>&#10;</xsl:text>
+    <xsl:param name="bulletlevel"/>
+    <xsl:text>
+</xsl:text>
+    <xsl:value-of select="str:padding($bulletlevel * $tabsize, ' ')"/>
+    <xsl:text>/// note
+</xsl:text>
+    <xsl:value-of select="normalize-space(.)"/>
+    <xsl:text>
+///
+
+</xsl:text>
 </xsl:template>
 
 <xsl:template match="warning">
     <xsl:param name="returntype"/>
-    <xsl:text>!!! warning&#10;    </xsl:text>
-    <xsl:apply-templates select="para">
-        <xsl:with-param name="returntype" select="$returntype"/>
-    </xsl:apply-templates>
-    <xsl:text>&#10;</xsl:text>
+    <xsl:param name="bulletlevel"/>
+    <xsl:text>
+</xsl:text>
+    <xsl:value-of select="str:padding($bulletlevel * $tabsize, ' ')"/>
+    <xsl:text>/// warning
+</xsl:text>
+    <xsl:value-of select="normalize-space(.)"/>
+    <xsl:text>
+///
+
+</xsl:text>
 </xsl:template>
 
 <xsl:template match="variablelist">
@@ -829,7 +848,10 @@ be displayed.
 
 <xsl:template match="variable">
     <xsl:param name="bulletlevel"/>
-    <xsl:value-of select="concat(substring($bulletindent, 0, $bulletlevel * 4 + 1), $bulletchar, ' ')"/>
+    <xsl:text>
+</xsl:text>
+    <xsl:value-of select="str:padding($bulletlevel * $tabsize, ' ')"/>
+    <xsl:text>* </xsl:text>
     <xsl:value-of select="translate(@name, $smallcase, $uppercase)"/>
     <xsl:choose>
         <xsl:when test="para">
@@ -845,7 +867,10 @@ be displayed.
     <xsl:choose>
         <xsl:when test="value">
             <xsl:for-each select="value">
-                <xsl:value-of select="concat(substring($bulletindent, 0, ($bulletlevel + 1) * 4 + 1), $bulletchar, ' ')"/>
+    <xsl:text>
+</xsl:text>
+                <xsl:value-of select="str:padding(($bulletlevel + 1) * $tabsize, ' ')"/>
+                <xsl:text>* </xsl:text>
                 <xsl:value-of select="translate(@name, $smallcase, $uppercase)"/>
                 <xsl:choose>
                     <xsl:when test="string-length(@default) &gt; 0">
@@ -871,8 +896,10 @@ be displayed.
 
 <xsl:template match="enum">
     <xsl:param name="bulletlevel"/>
-    <xsl:value-of select="concat(substring($bulletindent, 0, $bulletlevel * 4 + 1), $bulletchar, ' ')"/>
-    <xsl:value-of select="@name"/>
+    <xsl:text>
+</xsl:text>
+    <xsl:value-of select="str:padding($bulletlevel * $tabsize, ' ')"/>
+    <xsl:text>* `</xsl:text><xsl:value-of select="@name"/><xsl:text>`</xsl:text>
     <xsl:choose>
         <xsl:when test="para">
             <xsl:text> - </xsl:text>
@@ -881,7 +908,8 @@ be displayed.
             </xsl:apply-templates>
         </xsl:when>
         <xsl:otherwise>
-            <xsl:text>&#10;</xsl:text>
+            <xsl:text>
+</xsl:text>
         </xsl:otherwise>
     </xsl:choose>
 <!-- 
@@ -897,9 +925,11 @@ be displayed.
         <xsl:with-param name="bulletlevel" select="$bulletlevel + 1"/>
     </xsl:apply-templates>
     <xsl:apply-templates select="note">
+        <xsl:with-param name="bulletlevel" select="$bulletlevel + 1"/>
         <xsl:with-param name="returntype">single</xsl:with-param>
     </xsl:apply-templates>
     <xsl:apply-templates select="warning">
+        <xsl:with-param name="bulletlevel" select="$bulletlevel + 1"/>
         <xsl:with-param name="returntype">single</xsl:with-param>
     </xsl:apply-templates>
 </xsl:template>
@@ -913,7 +943,10 @@ be displayed.
 
 <xsl:template match="option">
     <xsl:param name="bulletlevel"/>
-    <xsl:value-of select="concat(substring($bulletindent, 0, $bulletlevel * 4 + 1), $bulletchar, ' ')"/>
+    <xsl:text>
+</xsl:text>
+    <xsl:value-of select="str:padding($bulletlevel * $tabsize, ' ')"/>
+    <xsl:text>* </xsl:text>
     <xsl:value-of select="@name"/>
     <xsl:if test="argument">
         <xsl:text>`( </xsl:text>
