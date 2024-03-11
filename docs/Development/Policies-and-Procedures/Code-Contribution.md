@@ -33,10 +33,9 @@ Contributors must fork the [asterisk/asterisk](https://github.com/asterisk/aster
 1. Run `gh repo fork asterisk/asterisk` and `gh repo fork asterisk/testsuite`
 2. Run `gh repo clone <user>/asterisk` and `gh repo clone <user>/testsuite`
 
-!!! warning 
-    The `gh repo fork` command has a `--clone` option that's supposed to do both of the above steps at the same time however it rarely works and usually creates a mess. The reason is that after a fork operation *appears* to complete, it can take a few seconds before GitHub finishes background work during which time attempts to clone will fail. The `gh` tool doesn't account for this and tries to clone immediately which fails with a "repository not found" message.
-
-[//]: # (end-warning)
+/// warning 
+The `gh repo fork` command has a `--clone` option that's supposed to do both of the above steps at the same time however it rarely works and usually creates a mess. The reason is that after a fork operation *appears* to complete, it can take a few seconds before GitHub finishes background work during which time attempts to clone will fail. The `gh` tool doesn't account for this and tries to clone immediately which fails with a "repository not found" message.
+///
 
 Git Remotes will automatically be created for both your fork and the upstream repo.
 
@@ -58,25 +57,21 @@ The name of the new branch can be anything but it does show up in the GitHub UI 
 
 If your work fixes a bug in a non-master branch that doesn't exist in the higher branches, start with the highest version branch that the fix does apply to.  For instance, if the fix applies to 20 and 18 but not master, base your new branch on 20.
 
-!!! warning 
-    You should never do work in the upstream branches like '18', '20', or 'master'.  Doing so will pollute those branches in your fork and will make updating them difficult.
-
-[//]: # (end-warning)
+/// warning 
+You should never do work in the upstream branches like '18', '20', or 'master'.  Doing so will pollute those branches in your fork and will make updating them difficult.
+///
 
 Now make your change and test locally.
 
-!!! note 
-    You no longer have to create entries in the doc/CHANGES-staging or doc/UPGRADE-staging directories. The change logs are generated from the commit messages. See below.
-
-[//]: # (end-note)
+/// note 
+You MUST not create entries in the doc/CHANGES-staging or doc/UPGRADE-staging directories as was done in the past. The change logs are now generated from the commit messages. See below.
+///
 
 ### Commit
 
 Commit messages should follow the guidelines established in [Commit Messages](/Development/Policies-and-Procedures/Commit-Messages). 
 
----
-  
-Sample Commit Message  
+Sample Commit Message
 
 ```
 app_foo.c: Add new 'x' argument to the Foo application
@@ -99,7 +94,6 @@ UserNote: The Foo dialplan application now takes an additional argument
 
 UpgradeNote: The X argument to the OldFoo application has been removed
 and will cause an error if supplied.
-
 ```
 
 ### Test and check for Cherry-pick-ability
@@ -115,11 +109,33 @@ You should always use option 1 when possible.  Unlike Gerrit, GitHub was never d
 
 When you've finished your work and committed, you can create a new pull request by running `gh pr create --fill --base 18`.  The `--fill` option sets the pull request description to the same as the commit message and the `--base` option indicates which asterisk branch the pull request is targeted for.  This is similar to running `git review 18` to create a new Gerrit review.  When prompted where the new branch should be pushed, choose your fork, NOT the upstream repo.
 
-You  _may_  create a pull request that has more than 1 commit if the commits represent a progression of changes that can stand on their own.  For instance, a commit to add a feature to a core source file, then a commit against an application to use that new feature.  You must be prepared to do some juggling however should changes be requested to an earlier commit in the series.  For instance, if changes were requested to commit 1, you'd have to reset your working branch back to that commit, make your fixes, do a `git commit -a --amend`, reapply commit 2 on top of that ammended commit, then do a `git push --force` to update the PR.
+#### Multiple Commits
+There are only two situations where you may have multiple commits in a single pull request:
 
-!!! warning
-    You must **never** add commits to a pull request that fix issues in earlier commits in that PR.
+##### Multiple commits that stand on their own
+You may have multiple commits in a single PR if the the commits represent a progression of changes that can stand on their own.  For instance, a commit to add a feature to a core source file, then a commit against an application to use that new feature.  In this case, each commit will be merged as is, without squashing.  You must be prepared to do some juggling however should changes be requested to an earlier commit in the series.  For instance, if changes were requested to commit 1, you'd have to reset your working branch back to that commit, make your fixes, do a `git commit -a --amend`, reapply commit 2 on top of that amended commit, then do a `git push --force` to update the PR.
 
+/// warning
+You MUST add a comment with the exact content below to your PR otherwise the automation will flag your PR with a reminder that multiple commits are not normally allowed and will prevent it from being merged.
+```
+multiple-commits: standalone
+```
+///
+
+##### Interim commits to facilitate code review
+You may also have multiple commits in your PR if your PR is complex and you've been asked to make changes that might be hard for a reviewer to re-review.  For instance, if your initial commit contained multiple changes to multiple files and you've been requested to make a change like correcting indentation, it might be hard for a reviewer to figure out what changed if you made your changes and just did an amend and force push on your original commit because the changes might be buried in what was a large diff originally.
+
+In this case, the multiple commits will NOT be allowed into the codebase as is.  You MUST ultimately squash your interim commits down to one commit before it will be approved for merging.
+
+/// warning
+You MUST add a comment with the exact content below to your PR otherwise the automation will flag your PR with a reminder that multiple commits are not normally allowed.
+
+```
+multiple-commits: interim
+```
+///
+
+#### Cherry picking
 If you want your change to be automatically cherry-picked to other branches, you'll need to add a comment to your pull request.  Head over to <https://github.com/asterisk/asterisk/pulls> and open your PR. Add a comment with a `cherry-pick-to: <branch>"` header line for each branch.  For example, if the PR is against the master branch and you want it cherry-picked down to 20 and 18, add a comment with the following:
 
 ```text
@@ -131,18 +147,18 @@ Each branch must be on a separate line and don't put anything else in the commen
 
 If you don't need your PR automatically cherry-picked, please add a comment stating `cherry-pick-to: none`.  This saves us not having to ask if you want it cherry-picked.
 
-!!! note 
-    You can also add comments to a PR from the command line with `gh pr comment`. See the man page for more info.
+/// note 
+You can also add comments to a PR from the command line with `gh pr comment`. See the man page for more info.
+///
 
-[//]: # (end-note)
 
-!!! warning
-    Don't add the cherry-pick-to lines to the commit message or the PR description.  They're only searched for in PR comments.
+/// warning
+Don't add the cherry-pick-to lines to the commit message or the PR description.  They're only searched for in PR comments.
+///
 
-!!! warning 
-    **If you change your mind and don't want your PR automatically cherry-picked, edit the comment and replace the "cherry-pick-to" lines with a single `cherry-pick-to: none` line** Don't use formatting or other means to say "nevermind". The automation might not understand.
-
-[//]: # (end-warning)
+/// warning 
+**If you change your mind and don't want your PR automatically cherry-picked, edit the comment and replace the "cherry-pick-to" lines with a single `cherry-pick-to: none` line** Don't use formatting or other means to say "nevermind". The automation might not understand.
+///
 
 ## Pull Request Review Process
 
@@ -152,7 +168,7 @@ As with Gerrit reviews, a new PR triggers a set of tests and checks.  If you bro
 
 Every contributor will be required to sign a new Contributor License Agreement before their first PR can be merged.  One of the PR checks will be "license/cla" which looks like this...
 
-![](image2023-4-17-14:4:2.png)
+![](image2023-4-17-1442.png)
 
 which indicates that you haven't signed it yet.  Click the "Details" link to be taken to the page that allows you to fill out the form and sign.  Acceptance is automatic so there should be no delay and you only have to do this once.  YOUR PR CANNOT BE MERGED UNTIL THIS CHECK IS COMPLETED.
 
@@ -176,11 +192,11 @@ These are comments you have about the code itself.  These are left by clicking o
 * Clicking on a specific line in a file to leave a single comment without a vote.  This is similar to clicking on a file in a Gerrit review, entering a comment on a specific line, but leaving your vote at "0" when clicking the "REPLY" button.  Unlike a general comment however, this type of comment creates a "conversation" which must be "resolved" before a PR can be merged.
 * Clicking on a specific line in a file to leave a comment and starting a review where you will leave a vote.  This is similar to clicking on a file in a Gerrit review, entering a comment on a specific line, then setting your vote to +1 or -1 when clicking the "REPLY" button.
 
-!!! note 
-    If you're not the submitter but you want to test a PR locally, you can do so easily with the gh tool:  
+/// note
+If you're not the submitter but you want to test a PR locally, you can do so easily with the gh tool:  
 `gh pr checkout <pr_number>`
+///
 
-[//]: # (end-note)
 
 ### Address Review Comments and Test Failures
 
@@ -192,10 +208,9 @@ If you need to make code changes to address comments or failures, the process is
 
 This will force push the commit to your fork first, then update the PR with the new commit and restart the testing process.
 
-!!! warning 
-Unlike Gerrit, GitHub allows you to have multiple commits for a pull request but it was intended to allow a PR to be broken up into multiple logical chunks, not to address review comments. Using multiple commits to address review comments will make the commit history messy and confusing. Please amend and force push otherwise the PR will be rejected.
-
-[//]: # (end-warning)
+/// note
+If you feel that amending and force pushing changes might make it har for a reviewer to detect what was changed/fixed, you can push interim commits.  See [Interim commits to facilitate code review](#interim-commits-to-facilitate-code-review) above.
+///
 
 
 ### Cherry-Pick Tests
