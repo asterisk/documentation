@@ -2,12 +2,9 @@
 
 A commit message serves to notify others of the changes made to the Asterisk source code, both in a historical sense and in the present. Commit messages are **incredibly** important to the continued success of the Asterisk project. Developers maintaining the Asterisk project in the future will often only have your commit message to guide them in why a particular change was made. For non-developers, archives containing commit messages may be used when searching for fixes to a particular bug. Be sure that the information contained in your message will help them out.
 
-!!! warning Follow These Guidelines
-    Commit messages are part of your code change. Committing code with a poorly written commit message creates a maintenance problem for everyone in the Asterisk project.  
-
-
-[//]: # (end-warning)
-
+/// warning | Follow These Guidelines
+Commit messages are part of your code change. Committing code with a poorly written commit message creates a maintenance problem for everyone in the Asterisk project.  
+///
 
 This page describes the expected format for commit messages used when submitting code to the Asterisk project. See [Code Contribution](/Development/Policies-and-Procedures/Code-Contribution) for more information about pushing your commit for review.
 
@@ -47,8 +44,9 @@ Since we've moved to a complete GitHub SCM solution, commit messages will automa
 
 GitHub and our release process support several commit message trailers that are used by the change log generation process.  The trailer name MUST start on a new line, be followed by a colin (`:`) and each should be separated by a blank line.  If specified at all, the trailers listed below MUST be the last items in the commit message.  
 
-!!! warning
-    If you specify any other trailers, including ones that were formerly acceptable, they will become part of the official trailer they follow. So, if you insist on adding trailers like `ASTERISK-nnnnn`, `Signed-Off-By` or `Reported-By` they MUST come BEFORE the first of the official trailers.
+/// warning | Unofficial Trailers
+If you specify any other trailers, including ones that were formerly acceptable, they will become part of the official trailer they follow. So, if you insist on adding trailers like `ASTERISK-nnnnn`, `Signed-Off-By` or `Reported-By` they MUST come BEFORE the first of the official trailers.
+///
 
 Current official trailers:
 
