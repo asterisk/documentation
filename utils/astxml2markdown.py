@@ -35,10 +35,17 @@ usage = "Usage: ./astxml2markdown.py " \
 
 class FormatExample(etree.XSLTExtension):
     def __init__(self):
-        self.replre = re.compile(r'^\s+')
+        # We need to preserve blank lines while stripping leading whitespace
+        # so we mark them with '<>', then remove leading whitespace
+        # and then remove the '<>' markers.
+        self.replre1 = re.compile(r'^\s*$', re.MULTILINE)
+        self.replre2 = re.compile(r'^\s+', re.MULTILINE)
+        self.replre3 = re.compile(r'^<>', re.MULTILINE)
 
     def execute(self, context, self_node, input_node, output_parent):
-        newtext = re.sub(self.replre, '', input_node.text)
+        newtext = re.sub(self.replre1, '<>', input_node.text)
+        newtext = re.sub(self.replre2, '', newtext)
+        newtext = re.sub(self.replre3, '', newtext)
         newnode = deepcopy(input_node)
         newnode.text = newtext
         output_parent.append( newnode )
