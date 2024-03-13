@@ -1,0 +1,41 @@
+name: PROpened
+
+on:
+  pull_request:
+    types: [opened, reopened, synchronize]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          show-progress: false
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: 3.x
+          cache: 'pip'
+      - run: pip install -r requirements.txt
+
+      - name: Build
+        env:
+          GH_TOKEN:  ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          cat >Makefile.inc <<EOF
+          ${{vars.MAKEFILE_INC}}
+          EOF
+          make
+          mkdir output
+          mv temp output/docs-output-${{github.event.number}}
+
+      - name: Save Output
+        id: save-output-temp
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: docs-output-${{github.event.number}}
+          path: |
+            output
+
