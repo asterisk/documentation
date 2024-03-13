@@ -38,4 +38,3 @@ jobs:
           name: docs-output-${{github.event.number}}
           path: |
             output
-
