@@ -1,7 +1,3 @@
----
-title: Home
-pageid: 4259930
----
 
 This is the home of the official documentation for The Asterisk Project.
 
