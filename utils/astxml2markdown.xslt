@@ -27,7 +27,7 @@ extension-element-prefixes="ast str"
     <xsl:text># </xsl:text><xsl:value-of select="@name"/><xsl:text>()</xsl:text>
     <xsl:choose>
         <xsl:when test="@module">
-        <xsl:text> - \[</xsl:text><xsl:value-of select="@module"/><xsl:text>\]</xsl:text>
+        <xsl:text> - [</xsl:text><xsl:value-of select="@module"/><xsl:text>\]</xsl:text>
         </xsl:when>
     </xsl:choose>
     <xsl:text>&#10;&#10;</xsl:text>
@@ -56,7 +56,7 @@ extension-element-prefixes="ast str"
     <xsl:text># </xsl:text><xsl:value-of select="@name"/><xsl:text>()</xsl:text>
     <xsl:choose>
         <xsl:when test="@module">
-            <xsl:text> - \[</xsl:text><xsl:value-of select="@module"/><xsl:text>\]</xsl:text>
+            <xsl:text> - [</xsl:text><xsl:value-of select="@module"/><xsl:text>\]</xsl:text>
         </xsl:when>
     </xsl:choose>
     <xsl:text>&#10;&#10;</xsl:text>
@@ -80,7 +80,7 @@ extension-element-prefixes="ast str"
     <xsl:text># </xsl:text><xsl:value-of select="translate(@name, $smallcase, $uppercase)"/>
     <xsl:choose>
         <xsl:when test="@module">
-        <xsl:text> - \[</xsl:text><xsl:value-of select="@module"/><xsl:text>\]</xsl:text>
+        <xsl:text> - [</xsl:text><xsl:value-of select="@module"/><xsl:text>\]</xsl:text>
         </xsl:when>
     </xsl:choose>
     <xsl:text>&#10;&#10;</xsl:text>
@@ -104,7 +104,7 @@ extension-element-prefixes="ast str"
     <xsl:text># </xsl:text><xsl:value-of select="@name"/>
     <xsl:choose>
         <xsl:when test="@module">
-        <xsl:text> - \[</xsl:text><xsl:value-of select="@module"/><xsl:text>\]</xsl:text>
+        <xsl:text> - [</xsl:text><xsl:value-of select="@module"/><xsl:text>\]</xsl:text>
         </xsl:when>
     </xsl:choose>
     <xsl:text>&#10;&#10;</xsl:text>
@@ -128,7 +128,7 @@ extension-element-prefixes="ast str"
     <xsl:text># </xsl:text><xsl:value-of select="@name"/>
     <xsl:choose>
         <xsl:when test="@module">
-        <xsl:text> - \[</xsl:text><xsl:value-of select="@module"/><xsl:text>\]</xsl:text>
+        <xsl:text> - [</xsl:text><xsl:value-of select="@module"/><xsl:text>\]</xsl:text>
         </xsl:when>
     </xsl:choose>
     <xsl:text>&#10;&#10;</xsl:text>
@@ -667,7 +667,16 @@ the XML again with the full descriptions, and forms bulleted lists.
     <xsl:text>
 </xsl:text>
     <xsl:value-of select="str:padding($bulletlevel * $tabsize, ' ')"/>
-    <xsl:value-of select="concat('* __Technology: ', @tech, '__&#10;')"/>
+    <xsl:value-of select="concat('* __Technology: ', @tech, '__')"/>
+    <xsl:choose>
+        <xsl:when test="para">
+            <xsl:text>&lt;br&gt;&#10;</xsl:text>
+        </xsl:when>
+        <xsl:otherwise>
+           <xsl:text>&#10;</xsl:text>
+        </xsl:otherwise>
+    </xsl:choose>
+    
     <xsl:apply-templates>
         <xsl:with-param name="returntype">single</xsl:with-param>
         <xsl:with-param name="bulletlevel" select="$bulletlevel + 1"/>
@@ -724,22 +733,16 @@ the XML again with the full descriptions, and forms bulleted lists.
     <xsl:text>
 </xsl:text>
     <xsl:value-of select="str:padding($bulletlevel * $tabsize, ' ')"/>
-    <xsl:text>* </xsl:text>
-    <xsl:if test="@required='true' or @required='yes'">
-        <xsl:text>**</xsl:text>
-    </xsl:if>
+    <xsl:text>* `</xsl:text>
     <xsl:value-of select="@name"/>
-    <xsl:if test="@required='true' or @required='yes'">
-        <xsl:text>**</xsl:text>
-    </xsl:if>
     <xsl:if test="@multiple='true' or @multiple='yes'">
-        <xsl:text>\[</xsl:text>
+        <xsl:text>[</xsl:text>
         <xsl:value-of select="$separator"/>
         <xsl:value-of select="@name"/>
-        <xsl:text>...\]</xsl:text>
+        <xsl:text>...]</xsl:text>
     </xsl:if>
     <xsl:if test="@hasparams='yes' or @hasparams='true' or @hasparams='optional'">
-        <xsl:text> `(</xsl:text>
+        <xsl:text> (</xsl:text>
         <xsl:if test="@hasparams='yes' or @hasparams='true'">
             <xsl:text>*</xsl:text>
         </xsl:if>
@@ -747,8 +750,13 @@ the XML again with the full descriptions, and forms bulleted lists.
         <xsl:if test="@hasparams='yes' or @hasparams='true'">
             <xsl:text>*</xsl:text>
         </xsl:if>
-        <xsl:text> )`</xsl:text>
+        <xsl:text> )</xsl:text>
     </xsl:if>
+    <xsl:text>`</xsl:text>
+    <xsl:if test="@required='true' or @required='yes'">
+        <xsl:text> **required**</xsl:text>
+    </xsl:if>
+    
     <xsl:choose>
         <xsl:when test="para">
             <xsl:text> - </xsl:text>
@@ -851,8 +859,9 @@ be displayed.
     <xsl:text>
 </xsl:text>
     <xsl:value-of select="str:padding($bulletlevel * $tabsize, ' ')"/>
-    <xsl:text>* </xsl:text>
+    <xsl:text>* `</xsl:text>
     <xsl:value-of select="translate(@name, $smallcase, $uppercase)"/>
+    <xsl:text>`</xsl:text>
     <xsl:choose>
         <xsl:when test="para">
             <xsl:text> - </xsl:text>
@@ -870,8 +879,9 @@ be displayed.
     <xsl:text>
 </xsl:text>
                 <xsl:value-of select="str:padding(($bulletlevel + 1) * $tabsize, ' ')"/>
-                <xsl:text>* </xsl:text>
+                <xsl:text>* `</xsl:text>
                 <xsl:value-of select="translate(@name, $smallcase, $uppercase)"/>
+                <xsl:text>`</xsl:text>
                 <xsl:choose>
                     <xsl:when test="string-length(@default) &gt; 0">
                         <xsl:text> default: (</xsl:text><xsl:value-of select="@default"/><xsl:text>)</xsl:text>
@@ -946,10 +956,10 @@ be displayed.
     <xsl:text>
 </xsl:text>
     <xsl:value-of select="str:padding($bulletlevel * $tabsize, ' ')"/>
-    <xsl:text>* </xsl:text>
+    <xsl:text>* `</xsl:text>
     <xsl:value-of select="@name"/>
     <xsl:if test="argument">
-        <xsl:text>`( </xsl:text>
+        <xsl:text>(</xsl:text>
     </xsl:if>
     <xsl:for-each select="argument">
         <!-- xsl:if test="@required='true' or @required='yes'">
@@ -971,8 +981,9 @@ be displayed.
          </xsl:if>
     </xsl:for-each>
     <xsl:if test="argument">
-        <xsl:text> )`</xsl:text>
+        <xsl:text>)</xsl:text>
     </xsl:if>
+    <xsl:text>`</xsl:text>
     <xsl:choose>
         <xsl:when test="para">
             <xsl:text> - </xsl:text>
