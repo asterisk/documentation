@@ -16,8 +16,8 @@ All contributions are subject to the
 # Markdown Flavor
 The docs are written in standard markdown, not GitHub Flavored markdown.  There are lots of extensions available though.  Most of the extensions provided by [Material for MkDocs](https://squidfunk.github.io/mkdocs-material/reference/) are enabled except those only available to paying sponsors and a few that don't make sense in this environment.
 
-!!! note
-    The conversion process that moved the documentation from the Confluence Wiki used equals signs `=====` and dashes `----` to denote headers.  The new infrastructure renders those correctly but they do not get added to the page's table of contents.  Going forward, you should always use hash signs `#`, `##`, `###`, etc to denote headers.
+> [!NOTE]
+> The conversion process that moved the documentation from the Confluence Wiki used equals signs `=====` and dashes `----` to denote headers.  The new infrastructure renders those correctly but they do not get added to the page's table of contents.  Going forward, you should always use hash signs `#`, `##`, `###`, etc to denote headers.
 
 # Dynamic Documentation
 
@@ -57,10 +57,10 @@ $
 
 The next time you want to test, you can just activate the virtual environment without needing to install the dependencies again.  The `.venv` directory is already in the `.gitignore` file.
 
-You'll also need the [`gh`](https://cli.github.com) tool to pull down the dynamic documentaiton from the CreateDocs job.
+You'll also need the [`gh`](https://cli.github.com) tool to pull down the dynamic documentation from the CreateDocs job.
 
-**NOTE:**  The documentation build process no longer uses the `mike` python package.
-
+> [!NOTE]
+> The documentation build process no longer uses the `mike` python package.
 
 # Building and Testing the Documentation
 
@@ -73,7 +73,7 @@ $ git clone -b main https://github.com/asterisk/documentation
 $ cd documentation
 ```
 
-Create a `Makefile.inc` file with some configuration variables.  This file must NOT be checked in.  Here are the contents to use:
+Create a `Makefile.inc` file with some configuration variables.  This file must **not** be checked in.  Here are the contents to use:
 
 ```
 # BUILD_DIR := <somepath>  # Defaults to ./temp
@@ -150,7 +150,7 @@ Building branches does need at least a skeleton static layout so `static-setup` 
 $ make BRANCHES=18,20 
 ```
 
-If you only want the skeketon static documentation, you can add `NO_STATIC=yes` to that command line...
+If you only want the skeleton static documentation, you can add `NO_STATIC=yes` to that command line...
 
 ```
 $ make BRANCHES=18,20 NO_STATIC=yes
