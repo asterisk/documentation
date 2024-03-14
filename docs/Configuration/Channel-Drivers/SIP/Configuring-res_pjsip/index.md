@@ -21,7 +21,7 @@ Before You Configure
 
 This page assumes certain knowledge, or that you have completed a few prerequisites.
 
-* You have [installed pjproject](/Getting-Started/Installing-Asterisk/Installing-Asterisk-From-Source/PJSIP-pjproject), a dependency for res_pjsip.
+* You have [installed pjproject](/Getting-Started/Installing-Asterisk/Installing-Asterisk-From-Source/Prerequisites/PJSIP-pjproject), a dependency for res_pjsip.
 * You have Installed Asterisk including the res_pjsip and chan_pjsip [modules](/Getting-Started/Installing-Asterisk/Installing-Asterisk-From-Source/Using-Menuselect-to-Select-Asterisk-Options) and their dependencies.
 * You understand [basic Asterisk concepts](/Getting-Started). Including the [role of extensions.conf](/Configuration/Dialplan) (dialplan) in your overall Asterisk configuration.
 
