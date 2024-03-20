@@ -70,6 +70,9 @@ plugins:
       cache_safe: false
 
 extra:
+  analytics:
+    provider: google
+    property: G-2ZKMCW9DZ9
   social:
     - icon: asterisk/favicon
       link: https://www.asterisk.org/
