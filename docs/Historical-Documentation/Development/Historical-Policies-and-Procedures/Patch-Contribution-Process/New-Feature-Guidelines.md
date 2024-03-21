@@ -1,4 +1,6 @@
 ---
+search:
+  boost: 0.2
 title: New Feature Guidelines
 pageid: 21464432
 ---

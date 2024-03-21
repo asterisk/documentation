@@ -1,4 +1,6 @@
 ---
+search:
+  boost: 0.2
 title: Digium License Agreement
 pageid: 27820104
 ---

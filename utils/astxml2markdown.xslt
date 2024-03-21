@@ -21,10 +21,13 @@ extension-element-prefixes="ast str"
 </xsl:template>
 
 <xsl:template match="application">
-    <xsl:text>---&#10;</xsl:text>
-    <xsl:text>title: </xsl:text><xsl:value-of select="@name"/><xsl:text>&#10;</xsl:text>
-    <xsl:text>---&#10;&#10;</xsl:text>
-    <xsl:text># </xsl:text><xsl:value-of select="@name"/><xsl:text>()</xsl:text>
+    <xsl:text>---
+search:
+  boost: 0.5
+title: </xsl:text><xsl:value-of select="@name"/><xsl:text>
+---
+
+# </xsl:text><xsl:value-of select="@name"/><xsl:text>()</xsl:text>
     <xsl:choose>
         <xsl:when test="@module">
         <xsl:text> - [</xsl:text><xsl:value-of select="@module"/><xsl:text>\]</xsl:text>
@@ -50,10 +53,13 @@ extension-element-prefixes="ast str"
 </xsl:template>
 
 <xsl:template match="function">
-    <xsl:text>---&#10;</xsl:text>
-    <xsl:text>title: </xsl:text><xsl:value-of select="@name"/><xsl:text>&#10;</xsl:text>
-    <xsl:text>---&#10;&#10;</xsl:text>
-    <xsl:text># </xsl:text><xsl:value-of select="@name"/><xsl:text>()</xsl:text>
+    <xsl:text>---
+search:
+  boost: 0.5
+title: </xsl:text><xsl:value-of select="@name"/><xsl:text>
+---
+
+# </xsl:text><xsl:value-of select="@name"/><xsl:text>()</xsl:text>
     <xsl:choose>
         <xsl:when test="@module">
             <xsl:text> - [</xsl:text><xsl:value-of select="@module"/><xsl:text>\]</xsl:text>
@@ -77,7 +83,13 @@ extension-element-prefixes="ast str"
 </xsl:template>
 
 <xsl:template match="agi">
-    <xsl:text># </xsl:text><xsl:value-of select="translate(@name, $smallcase, $uppercase)"/>
+    <xsl:text>---
+search:
+  boost: 0.5
+title: </xsl:text><xsl:value-of select="translate(@name, $smallcase, $uppercase)"/><xsl:text>
+---
+
+# </xsl:text><xsl:value-of select="translate(@name, $smallcase, $uppercase)"/>
     <xsl:choose>
         <xsl:when test="@module">
         <xsl:text> - [</xsl:text><xsl:value-of select="@module"/><xsl:text>\]</xsl:text>
@@ -101,7 +113,13 @@ extension-element-prefixes="ast str"
 </xsl:template>
 
 <xsl:template match="manager">
-    <xsl:text># </xsl:text><xsl:value-of select="@name"/>
+    <xsl:text>---
+search:
+  boost: 0.5
+title: </xsl:text><xsl:value-of select="@name"/><xsl:text>
+---
+
+# </xsl:text><xsl:value-of select="@name"/>
     <xsl:choose>
         <xsl:when test="@module">
         <xsl:text> - [</xsl:text><xsl:value-of select="@module"/><xsl:text>\]</xsl:text>
@@ -125,7 +143,13 @@ extension-element-prefixes="ast str"
 </xsl:template>
 
 <xsl:template match="managerEvent">
-    <xsl:text># </xsl:text><xsl:value-of select="@name"/>
+    <xsl:text>---
+search:
+  boost: 0.5
+title: </xsl:text><xsl:value-of select="@name"/><xsl:text>
+---
+
+# </xsl:text><xsl:value-of select="@name"/>
     <xsl:choose>
         <xsl:when test="@module">
         <xsl:text> - [</xsl:text><xsl:value-of select="@module"/><xsl:text>\]</xsl:text>
@@ -162,7 +186,13 @@ extension-element-prefixes="ast str"
 </xsl:template>
 
 <xsl:template match="configInfo">
-    <xsl:text># </xsl:text>
+     <xsl:text>---
+search:
+  boost: 0.5
+title: </xsl:text><xsl:value-of select="@name"/><xsl:text>
+---
+
+# </xsl:text>
     <xsl:value-of select="@name"/>
     <xsl:if test="synopsis">
         <xsl:text>: </xsl:text>
@@ -282,7 +312,13 @@ extension-element-prefixes="ast str"
 </xsl:template>
 
 <xsl:template match="module">
-    <xsl:text># </xsl:text><xsl:value-of select="@name"/>
+    <xsl:text>---
+search:
+  boost: 0.5
+title: </xsl:text><xsl:value-of select="@name"/><xsl:text>
+---
+
+# </xsl:text><xsl:value-of select="@name"/>
     <xsl:text>&#10;</xsl:text>
     <xsl:text>## Support Level </xsl:text>
     <xsl:text>&#10;</xsl:text>

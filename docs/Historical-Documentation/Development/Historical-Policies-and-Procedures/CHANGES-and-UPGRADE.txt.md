@@ -1,4 +1,6 @@
 ---
+search:
+  boost: 0.2
 title: CHANGES and UPGRADE.txt
 pageid: 41454547
 ---

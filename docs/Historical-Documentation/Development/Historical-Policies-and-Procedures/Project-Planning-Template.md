@@ -1,4 +1,6 @@
 ---
+search:
+  boost: 0.2
 title: Project Planning Template
 pageid: 21463986
 ---

@@ -1,4 +1,6 @@
 ---
+search:
+  boost: 0.2
 title: Git Usage
 pageid: 32375061
 ---

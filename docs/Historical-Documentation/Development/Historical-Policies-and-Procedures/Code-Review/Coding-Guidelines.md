@@ -1,4 +1,6 @@
 ---
+search:
+  boost: 0.2
 title: Coding Guidelines
 pageid: 3702830
 ---

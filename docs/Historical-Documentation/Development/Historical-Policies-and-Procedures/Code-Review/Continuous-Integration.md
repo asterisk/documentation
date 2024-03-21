@@ -1,4 +1,6 @@
 ---
+search:
+  boost: 0.2
 title: Continuous Integration
 pageid: 32375810
 ---

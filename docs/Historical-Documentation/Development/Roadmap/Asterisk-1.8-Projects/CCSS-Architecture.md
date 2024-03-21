@@ -1,4 +1,6 @@
 ---
+search:
+  boost: 0.2
 title: CCSS Architecture
 pageid: 9076838
 ---

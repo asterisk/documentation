@@ -1,4 +1,6 @@
 ---
+search:
+  boost: 0.2
 title: Subversion Usage
 pageid: 5243336
 ---

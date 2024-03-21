@@ -1,4 +1,6 @@
 ---
+search:
+  boost: 0.2
 title: Issue Tracker Workflow
 pageid: 3702839
 ---

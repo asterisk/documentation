@@ -1,4 +1,6 @@
 ---
+search:
+  boost: 0.2
 title: Review Board Usage
 pageid: 4816917
 ---

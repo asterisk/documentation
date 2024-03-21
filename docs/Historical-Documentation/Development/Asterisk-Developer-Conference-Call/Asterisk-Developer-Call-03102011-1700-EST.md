@@ -1,4 +1,6 @@
 ---
+search:
+  boost: 0.2
 title: Asterisk Developer Call - 03102011 - 1700 EST
 pageid: 12550688
 ---

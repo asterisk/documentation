@@ -1,4 +1,6 @@
 ---
+search:
+  boost: 0.2
 title: CODEC Bit Expansion
 pageid: 4259984
 ---

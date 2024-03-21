@@ -1,4 +1,6 @@
 ---
+search:
+  boost: 0.2
 title: Asterisk Developer Call - 01272011 - 1700 EST
 pageid: 11338103
 ---

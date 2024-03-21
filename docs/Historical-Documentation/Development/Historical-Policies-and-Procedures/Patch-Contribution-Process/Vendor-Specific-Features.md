@@ -1,4 +1,6 @@
 ---
+search:
+  boost: 0.2
 title: Vendor-Specific Features
 pageid: 22088009
 ---

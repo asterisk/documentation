@@ -141,6 +141,7 @@ dynamic-ari-setup: branch-check $(BUILD_DIR)/docs $(BRANCH_DIR) $(ARI_PREREQ)
 	@echo "  Copying ARI markdown"
 	@mkdir -p $(BRANCH_DIR)/docs/Asterisk_REST_Interface
 	@rsync -aH $(ASTERISK_ARI_DIR)/*.md $(BRANCH_DIR)/docs/Asterisk_REST_Interface/
+	@sed -i "1i ---\nsearch:\n  boost: 0.5\n---\n" $(BRANCH_DIR)/docs/Asterisk_REST_Interface/*REST_API.md
 	@cp overrides/.copy-in/ari.pages $(BRANCH_DIR)/docs/Asterisk_REST_Interface/.pages
 	@echo "# Asterisk REST Interface" > $(BRANCH_DIR)/docs/Asterisk_REST_Interface/index.md
 	

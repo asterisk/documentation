@@ -1,4 +1,6 @@
 ---
+search:
+  boost: 0.2
 title: Asterisk Developer Call - 09222011 - 1000 EST
 pageid: 18415960
 ---
