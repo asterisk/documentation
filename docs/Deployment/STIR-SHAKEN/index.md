@@ -1,7 +1,5 @@
 # STIR-SHAKEN
 
-**DRAFT**
-
 This document refers to the Stir/Shaken Refactor of 1Q2024.
 The earlier version was only partially functional and not interoperable with other implementations.
 
