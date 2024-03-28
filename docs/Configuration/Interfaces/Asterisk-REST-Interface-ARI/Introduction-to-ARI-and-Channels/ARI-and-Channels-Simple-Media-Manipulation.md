@@ -8,15 +8,15 @@ pageid: 29395606
 
 Almost all media is played to a channel using the `POST /channels/{channel_id}/play` operation. This will do the following:
 
-1. Create a new [`Playback`](/latest_api/API_Documentation/Asterisk_REST_Interface/Asterisk_REST_Data_Models/#playback) object for the channel. If a media operation is currently in progress on the channel, the new `Playback` object will be queued up for the channel.
+1. Create a new [`Playback`](/Latest_API/API_Documentation/Asterisk_REST_Interface/Asterisk_REST_Data_Models/#playback) object for the channel. If a media operation is currently in progress on the channel, the new `Playback` object will be queued up for the channel.
 2. The `media` URI passed to the `play` operation will be inspected, and Asterisk will attempt to find the media requested. Currently, the following media schemes are supported:
 
 
 
 | URI Scheme | Description |
 | --- | --- |
-| `sound` | A sound file located on the Asterisk system. You can use the `[/sounds](/latest_api/API_Documentation/Asterisk_REST_Interface/Sounds_REST_API)` resource to query for available sounds on the system. You can also use specify a media file which is consumed via HTTP (e.g sound:http://foo.com/sound.wav) |
-| `recording` | A [`StoredRecording`](/latest_api/API_Documentation/Asterisk_REST_Interface/Asterisk_REST_Data_Models/#storedrecording) stored on the Asterisk system. You can use the [`/recordings/stored`](/latest_api/API_Documentation/Asterisk_REST_Interface/Recordings_REST_API) resource to query for available `StoredRecording`s on the system. |
+| `sound` | A sound file located on the Asterisk system. You can use the `[/sounds](/Latest_API/API_Documentation/Asterisk_REST_Interface/Sounds_REST_API)` resource to query for available sounds on the system. You can also use specify a media file which is consumed via HTTP (e.g sound:http://foo.com/sound.wav) |
+| `recording` | A [`StoredRecording`](/Latest_API/API_Documentation/Asterisk_REST_Interface/Asterisk_REST_Data_Models/#storedrecording) stored on the Asterisk system. You can use the [`/recordings/stored`](/Latest_API/API_Documentation/Asterisk_REST_Interface/Recordings_REST_API) resource to query for available `StoredRecording`s on the system. |
 | `number` | Play back the specified number. This uses the same mechanism as Asterisk's `[Say](/SayDigits-+SayNumber-+SayAlpha-+and+SayPhonetic+Applications?src=search)` family of applications. |
 | `digits` | Play back the specified digits. This uses the same mechanism as Asterisk's `[Say](/SayDigits-+SayNumber-+SayAlpha-+and+SayPhonetic+Applications?src=search)` family of applications. |
 | `characters` | Play back the specified characters. This uses the same mechanism as Asterisk's `[Say](/SayDigits-+SayNumber-+SayAlpha-+and+SayPhonetic+Applications?src=search)` family of applications. |
@@ -89,7 +89,7 @@ playback_id = str(uuid.uuid4())
 
 ```
 
-Since this is a media operation and not *technically* a ringing indication, when we `answer` the channel, the tone playback will not stop! To stop playing back our French ringing tone, we issue a `stop` operation on the `playback` object. This actually maps to a [`DELETE /playbacks/{playback_id}`](/latest_api/API_Documentation/Asterisk_REST_Interface/Playbacks_REST_API/#stop) operation.
+Since this is a media operation and not *technically* a ringing indication, when we `answer` the channel, the tone playback will not stop! To stop playing back our French ringing tone, we issue a `stop` operation on the `playback` object. This actually maps to a [`DELETE /playbacks/{playback_id}`](/Latest_API/API_Documentation/Asterisk_REST_Interface/Playbacks_REST_API/#stop) operation.
 
 ```python
 def answer_channel(channel, playback):
@@ -208,7 +208,7 @@ timers[channel.id] = timer;
 
 ```
 
-Since this is a media operation and not *technically* a ringing indication, when we `answer` the channel, the tone playback will not stop! To stop playing back our French ringing tone, we issue a `stop` operation on the `playback` object. This actually maps to a [`DELETE /playbacks/{playback_id}`](/latest_api/API_Documentation/Asterisk_REST_Interface/Playbacks_REST_API/#stop) operation. Notice that we use the fact that the answer callback closes on the original channel and playback variables to access them from the callback.
+Since this is a media operation and not *technically* a ringing indication, when we `answer` the channel, the tone playback will not stop! To stop playing back our French ringing tone, we issue a `stop` operation on the `playback` object. This actually maps to a [`DELETE /playbacks/{playback_id}`](/Latest_API/API_Documentation/Asterisk_REST_Interface/Playbacks_REST_API/#stop) operation. Notice that we use the fact that the answer callback closes on the original channel and playback variables to access them from the callback.
 
 ```javascript
 function answer() {
@@ -332,7 +332,7 @@ Channel PJSIP/alice-00000000 just left our application`Example: Playing back a s
 This example ARI application will do the following:
 
 1. When a channel enters the Stasis application, initiate a playback of howler monkeys on the channel. Fly my pretties, FLY!
-2. If the user has not hung up their phone in panic, it will hang up the channel when the howler monkeys return victorious - or rather, when ARI notifies the application that the playback has finished via the [`PlaybackFinished`](/latest_api/API_Documentation/Asterisk_REST_Interface/Asterisk_REST_Data_Models/#playbackfinished) event.
+2. If the user has not hung up their phone in panic, it will hang up the channel when the howler monkeys return victorious - or rather, when ARI notifies the application that the playback has finished via the [`PlaybackFinished`](/Latest_API/API_Documentation/Asterisk_REST_Interface/Asterisk_REST_Data_Models/#playbackfinished) event.
 
 Dialplan
 --------

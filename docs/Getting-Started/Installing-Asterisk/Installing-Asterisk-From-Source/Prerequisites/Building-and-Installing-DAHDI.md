@@ -26,7 +26,7 @@ See [What to Download?](/Getting-Started/Installing-Asterisk/Installing-Asterisk
 
 
 !!! note Don't need DAHDI?
-    If you are not integrating with any traditional telephony equipment and you are not planning on using the [MeetMe](/latest_api/API_Documentation/Dialplan_Applications/MeetMe) dialplan application, then you do not have to install DAHDI or libpri in order to use Asterisk.
+    If you are not integrating with any traditional telephony equipment and you are not planning on using the [MeetMe](/Latest_API/API_Documentation/Dialplan_Applications/MeetMe) dialplan application, then you do not have to install DAHDI or libpri in order to use Asterisk.
 
       
 [//]: # (end-note)

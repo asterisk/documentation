@@ -80,5 +80,5 @@ Dialplan
 
 Dialplan is the one main method of directing Asterisk behavior. Dialplan exists as text files (for example extensions.conf) either in the built-in dialplan scripting language, AEL or LUA formats. Alternatively dialplan could be read from a [database](/Fundamentals/Asterisk-Configuration/Database-Support-Configuration), along with other module configuration. When writing dialplan, you will make heavy use of **applications** and **functions**to affect channels, configuration and features.
 
-Dialplan can also call out through other interfaces such as [AGI](/latest_api/API_Documentation/Dialplan_Applications/AGI) to receive call control instruction from external scripts and programs. The [Dialplan](/Configuration/Dialplan) section of the wiki goes into detail on the usage of dialplan.  
+Dialplan can also call out through other interfaces such as [AGI](/Latest_API/API_Documentation/Dialplan_Applications/AGI) to receive call control instruction from external scripts and programs. The [Dialplan](/Configuration/Dialplan) section of the wiki goes into detail on the usage of dialplan.  
 

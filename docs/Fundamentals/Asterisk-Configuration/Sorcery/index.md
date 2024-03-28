@@ -38,17 +38,17 @@ The PJSIP modules and resources were the first to use the Sorcery DAL. All futur
 
 AMI actions existing at the time of Asterisk 14.2.1
 
-* [SorceryMemoryCacheExpire](/latest_api/API_Documentation/AMI_Actions/SorceryMemoryCacheExpire)
-* [SorceryMemoryCacheExpireObject](/latest_api/API_Documentation/AMI_Actions/SorceryMemoryCacheExpireObject)
-* [SorceryMemoryCachePopulate](/latest_api/API_Documentation/AMI_Actions/SorceryMemoryCachePopulate)
-* [SorceryMemoryCacheStale](/latest_api/API_Documentation/AMI_Actions/SorceryMemoryCacheStale)
-* [SorceryMemoryCacheStaleObject](/latest_api/API_Documentation/AMI_Actions/SorceryMemoryCacheStaleObject)
+* [SorceryMemoryCacheExpire](/Latest_API/API_Documentation/AMI_Actions/SorceryMemoryCacheExpire)
+* [SorceryMemoryCacheExpireObject](/Latest_API/API_Documentation/AMI_Actions/SorceryMemoryCacheExpireObject)
+* [SorceryMemoryCachePopulate](/Latest_API/API_Documentation/AMI_Actions/SorceryMemoryCachePopulate)
+* [SorceryMemoryCacheStale](/Latest_API/API_Documentation/AMI_Actions/SorceryMemoryCacheStale)
+* [SorceryMemoryCacheStaleObject](/Latest_API/API_Documentation/AMI_Actions/SorceryMemoryCacheStaleObject)
 
 ## Sorcery Functions
 
 Sorcery functions existing at the time of Asterisk 14.2.1
 
-* [AST_SORCERY()](/latest_api/API_Documentation/Dialplan_Functions/AST_SORCERY)
+* [AST_SORCERY()](/Latest_API/API_Documentation/Dialplan_Functions/AST_SORCERY)
 
 ## Sorcery Mapping Configuration
 

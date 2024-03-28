@@ -24,10 +24,10 @@ type = <object type>
 
 Reference documentation for all configuration parameters:
 
-* [Core res_pjsip configuration options](/latest_api/API_Documentation/Module_Configuration/res_pjsip)
-* [Configuration options for ACLs in res_pjsip_acl](/latest_api/API_Documentation/Module_Configuration/res_pjsip_acl)
-* [Configuration options for outbound registration, provided by res_pjsip_outbound_registration](/latest_api/API_Documentation/Module_Configuration/res_pjsip_outbound_registration)
-* [Configuration options for endpoint identification by IP address, provided by res_pjsip_endpoint_identifier_ip](/latest_api/API_Documentation/Module_Configuration/res_pjsip_endpoint_identifier_ip)
+* [Core res_pjsip configuration options](/Latest_API/API_Documentation/Module_Configuration/res_pjsip)
+* [Configuration options for ACLs in res_pjsip_acl](/Latest_API/API_Documentation/Module_Configuration/res_pjsip_acl)
+* [Configuration options for outbound registration, provided by res_pjsip_outbound_registration](/Latest_API/API_Documentation/Module_Configuration/res_pjsip_outbound_registration)
+* [Configuration options for endpoint identification by IP address, provided by res_pjsip_endpoint_identifier_ip](/Latest_API/API_Documentation/Module_Configuration/res_pjsip_endpoint_identifier_ip)
 
 The same documentation is available at the Asterisk CLI as well. You can use "config show help <res_pjsip module name> <configobject> <configoption>" to get help on a particular option. That help will typically describe the default value for an option as well.
 

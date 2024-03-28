@@ -6,7 +6,7 @@ pageid: 29395612
 Handling DTMF events
 ====================
 
-DTMF events are conveyed via the [`ChannelDtmfReceived`](/latest_api/API_Documentation/Asterisk_REST_Interface/Asterisk_REST_Data_Models/#channeldtmfreceived) event. The event contains the channel that pressed the DTMF key, the digit that was pressed, and the duration of the digit.
+DTMF events are conveyed via the [`ChannelDtmfReceived`](/Latest_API/API_Documentation/Asterisk_REST_Interface/Asterisk_REST_Data_Models/#channeldtmfreceived) event. The event contains the channel that pressed the DTMF key, the digit that was pressed, and the duration of the digit.
 
 While this concept is relatively straight forward, handling DTMF is quite common in applications, as it is the primary mechanism that phones have to inform a server to perform some action. This includes manipulating media, initiating call features, performing transfers, dialling, and just about every thing in between. As such, the examples on this page focus less on simply handling the event and more on using the DTMF in a relatively realistic fashion.
 

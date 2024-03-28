@@ -33,7 +33,7 @@ pageid: 20189328
 
 
 !!! warning WARNINGS
-    * As hangup handlers are subroutines, they must be terminated with a call to [Return](/latest_api/API_Documentation/Dialplan_Applications/Return).
+    * As hangup handlers are subroutines, they must be terminated with a call to [Return](/Latest_API/API_Documentation/Dialplan_Applications/Return).
     * Adding a hangup handler in the h extension or during a hangup handler execution is undefined behaviour.
     * As always, hangup handlers, like the h extension, need to execute quickly because they are in the hangup sequence path of the call leg. Specific channel driver protocols like ISDN and SIP may not be able to handle excessive delays completing the hangup sequence.
       
@@ -44,7 +44,7 @@ pageid: 20189328
 Dialplan Applications and Functions
 -----------------------------------
 
-All manipulation of a channel's hangup handlers are done using the [CHANNEL](/latest_api/API_Documentation/Dialplan_Functions/CHANNEL) function. All values manipulated for hangup handlers are write-only.
+All manipulation of a channel's hangup handlers are done using the [CHANNEL](/Latest_API/API_Documentation/Dialplan_Functions/CHANNEL) function. All values manipulated for hangup handlers are write-only.
 
 ### hangup_handler_push
 
@@ -105,7 +105,7 @@ same => n,Return()
 
 ##### Removing and replacing hangup handlers
 
-In this example, three hangup handlers are added to a channel: hdlr3, hdlr2, and hdlr1. Using the [CHANNEL](/latest_api/API_Documentation/Dialplan_Functions/CHANNEL) function's **hangup_handler_pop** value, hdlr1 is removed from the stack of hangup handlers. Then, using the **hangup_handler_pop** value again, hdlr2 is replaced with hdlr4. When the channel is hung up, hdlr4 will be executed, followed by hdlr3.
+In this example, three hangup handlers are added to a channel: hdlr3, hdlr2, and hdlr1. Using the [CHANNEL](/Latest_API/API_Documentation/Dialplan_Functions/CHANNEL) function's **hangup_handler_pop** value, hdlr1 is removed from the stack of hangup handlers. Then, using the **hangup_handler_pop** value again, hdlr2 is replaced with hdlr4. When the channel is hung up, hdlr4 will be executed, followed by hdlr3.
 
 ```
 ; Some dialplan extension

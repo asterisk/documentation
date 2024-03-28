@@ -11,7 +11,7 @@ This Asterisk Manager Interface (AMI) specification describes the relationship b
 
 ### Scope
 
-This specification describes AMI versions starting at 2.0.0 which was implemented by Asterisk 12.  This specification provides details on the functional, operational and design requirements for AMI. Note that this does not include a comprehensive listing of the AMI configuration file parameters or messages that a system interfacing over AMI will send/receive.  Those are documented in the [AMI Actions](/latest_api/API_Documentation/AMI_Actions/) and [AMI Events](/latest_api/API_Documentation/AMI_Events/) sections of the [API Documentation](/latest_api/API_Documentation/) for the latest Asterisk release.
+This specification describes AMI versions starting at 2.0.0 which was implemented by Asterisk 12.  This specification provides details on the functional, operational and design requirements for AMI. Note that this does not include a comprehensive listing of the AMI configuration file parameters or messages that a system interfacing over AMI will send/receive.  Those are documented in the [AMI Actions](/Latest_API/API_Documentation/AMI_Actions/) and [AMI Events](/Latest_API/API_Documentation/AMI_Events/) sections of the [API Documentation](/Latest_API/API_Documentation/) for the latest Asterisk release.
 
 In addition, this specification provides interface requirements levied on AMI by Stasis, a message bus internal to Asterisk. It conveys sufficient detail to understand how AMI attaches to the Stasis message bus and interacts with other entities on Stasis.
 
@@ -358,7 +358,7 @@ An optional text message that provides additional contextual information regardi
 ### Actions
 
 The supported actions for the latest version of Asterisk are listed here:
-[AMI Actions](/latest_api/API_Documentation/AMI_Actions/)
+[AMI Actions](/Latest_API/API_Documentation/AMI_Actions/)
 
 While new AMI Actions may be added over the lifetime of an Asterisk major version, existing AMI Actions may only be deprecated and removed in later Asterisk major versions.
 
@@ -367,7 +367,7 @@ Optional fields may be added to an existing AMI action with altering the AMI ver
 ### Events
 
 The supported events for Asterisk 12 are listed here:
-[AMI Events](/latest_api/API_Documentation/AMI_Events/)
+[AMI Events](/Latest_API/API_Documentation/AMI_Events/)
 
 While new AMI Events may be added over the lifetime of an Asterisk major version, existing AMI Events may only be deprecated or removed in later Asterisk major versions.
 
@@ -388,7 +388,7 @@ Changes in the state of the channel, i.e., the ChannelState field, are conveyed
 
 Notification of a Channel being disposed of occurs via a **Hangup** event. A **Hangup** signals the termination of the channel associated with the Uniqueid. After the **Hangup** event, no further events will be raised in relation to the channel with that Uniqueid, and the communication between the endpoint and Asterisk via that channel is terminated.
 
-The examples in this specification do not show all of the fields in every event. For a full listing of all of the fields, see the documentation for the specific event in [AMI Events](/latest_api/API_Documentation/AMI_Events/).
+The examples in this specification do not show all of the fields in every event. For a full listing of all of the fields, see the documentation for the specific event in [AMI Events](/Latest_API/API_Documentation/AMI_Events/).
 
 Example:
 

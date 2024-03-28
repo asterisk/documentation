@@ -20,7 +20,7 @@ Note that bridge provides several options to tweak behavior and upon completion 
 Using the Bridge application
 ----------------------------
 
-Read the Bridge documentation for your version of Asterisk (e.g. Asterisk 13 - [Asterisk 13 Application_Bridge](/latest_api/API_Documentation/Dialplan_Applications/Bridge)) and the [Key Concepts](/Fundamentals/Key-Concepts) section on [Bridges](/Fundamentals/Key-Concepts/Bridges) to get a good start.
+Read the Bridge documentation for your version of Asterisk (e.g. Asterisk 13 - [Asterisk 13 Application_Bridge](/Latest_API/API_Documentation/Dialplan_Applications/Bridge)) and the [Key Concepts](/Fundamentals/Key-Concepts) section on [Bridges](/Fundamentals/Key-Concepts/Bridges) to get a good start.
 
 See Also
 ========
@@ -28,7 +28,7 @@ See Also
 * [Bridging Modules](/Fundamentals/Asterisk-Architecture/Types-of-Asterisk-Modules/Bridging-Modules)
 * [Pre-Bridge Handlers](/Configuration/Dialplan/Subroutines/Pre-Bridge-Handlers)
 * [Introduction to ARI and Bridges](/Configuration/Interfaces/Asterisk-REST-Interface-ARI/Introduction-to-ARI-and-Bridges)
-* [Asterisk 13 Application_BridgeWait](/latest_api/API_Documentation/Dialplan_Applications/BridgeWait)
+* [Asterisk 13 Application_BridgeWait](/Latest_API/API_Documentation/Dialplan_Applications/BridgeWait)
 * [Conferencing Applications](/Configuration/Applications/Conferencing-Applications)
 
 

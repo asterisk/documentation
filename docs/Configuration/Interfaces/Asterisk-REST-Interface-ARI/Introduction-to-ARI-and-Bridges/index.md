@@ -37,7 +37,7 @@ Depending on the combination of attributes selected when a bridge is created, di
 Subscription Model
 ------------------
 
-Unlike channels, bridges in a Stasis application are not automatically subscribed to for events. In order to receive events concerning events for a given bridge, the [applications](/latest_api/API_Documentation/Asterisk_REST_Interface/Applications_REST_API) resource must be used to subscribe to the bridge via the `POST - /applications/{app_name}/subscription` operation. Events related to channels entering and leaving bridges will be sent without the need to subscribe to them since they are related to a channel in a Stasis application.
+Unlike channels, bridges in a Stasis application are not automatically subscribed to for events. In order to receive events concerning events for a given bridge, the [applications](/Latest_API/API_Documentation/Asterisk_REST_Interface/Applications_REST_API) resource must be used to subscribe to the bridge via the `POST - /applications/{app_name}/subscription` operation. Events related to channels entering and leaving bridges will be sent without the need to subscribe to them since they are related to a channel in a Stasis application.
 
 Example: Interacting with Bridges
 =================================

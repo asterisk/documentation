@@ -239,7 +239,7 @@ allow=opus,ulaw
 
 ```
 
-An explanation of each of these settings parameters can be found on the [Asterisk 16 Configuration for `res_pjsip`](/latest_api/API_Documentation/Module_Configuration/res_pjsip) page. Briefly:
+An explanation of each of these settings parameters can be found on the [Asterisk 16 Configuration for `res_pjsip`](/Latest_API/API_Documentation/Module_Configuration/res_pjsip) page. Briefly:
 
 * Declare an endpoint that references our previously-made aor and auth.
 * Notify Asterisk to expect the AVPF profile (secure RTP)

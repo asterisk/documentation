@@ -49,7 +49,7 @@ Assign each option the DTMF character string that you want users to enter for in
 Dialplan application options
 ----------------------------
 
-For each feature there are a pair of options that can be set in the [Dial](/latest_api/API_Documentation/Dialplan_Applications/Dial) or [Queue](/latest_api/API_Documentation/Dialplan_Applications/Queue) applications. The two options enable the feature on either the calling party channel or the called party channel.
+For each feature there are a pair of options that can be set in the [Dial](/Latest_API/API_Documentation/Dialplan_Applications/Dial) or [Queue](/Latest_API/API_Documentation/Dialplan_Applications/Queue) applications. The two options enable the feature on either the calling party channel or the called party channel.
 
 
 

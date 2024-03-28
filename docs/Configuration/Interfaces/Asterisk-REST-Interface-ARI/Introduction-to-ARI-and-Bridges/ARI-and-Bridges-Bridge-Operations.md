@@ -6,7 +6,7 @@ pageid: 29396222
 Moving Between Bridges
 ======================
 
-Channels can be both added and removed from bridges via the [`POST - /bridges/{bridgeId}/addChannel`](/latest_api/API_Documentation/Asterisk_REST_Interface/Bridges_REST_API/#addchannel) and [`POST - /bridges/{bridgeId}/removeChannel`](/latest_api/API_Documentation/Asterisk_REST_Interface/Bridges_REST_API/#removechannel) operations. This allows channels to be put in a holding bridge while waiting for an application to continue to its next step for example. One example of this would be to put an incoming channel into a holding bridge playing music on hold while dialing another endpoint. Once that endpoint answers, the incoming channel can be moved from the holding bridge to a mixing bridge to establish an audio call between the two channels.
+Channels can be both added and removed from bridges via the [`POST - /bridges/{bridgeId}/addChannel`](/Latest_API/API_Documentation/Asterisk_REST_Interface/Bridges_REST_API/#addchannel) and [`POST - /bridges/{bridgeId}/removeChannel`](/Latest_API/API_Documentation/Asterisk_REST_Interface/Bridges_REST_API/#removechannel) operations. This allows channels to be put in a holding bridge while waiting for an application to continue to its next step for example. One example of this would be to put an incoming channel into a holding bridge playing music on hold while dialing another endpoint. Once that endpoint answers, the incoming channel can be moved from the holding bridge to a mixing bridge to establish an audio call between the two channels.
 
 Example: Dialing with Entertainment
 ===================================

@@ -90,7 +90,7 @@ The **inbound** channel is created from Alice's phone calling Asterisk. Asterisk
 
 ### Fig 2
 
-A user runs the [originate](/latest_api/API_Documentation/Dialplan_Applications/Originate) command from [AMI](/Configuration/Interfaces/Asterisk-Manager-Interface-AMI), or maybe something like "channel originate SIP/Alice application playback demo-congrats" from the [CLI](/Operation/Asterisk-Command-Line-Interface). Asterisk creates an **outbound** channel to call the device specified (SIP/Alice). When answered, Asterisk begins treating the channel like an **inbound** channel and connects it to the specified dialplan application.
+A user runs the [originate](/Latest_API/API_Documentation/Dialplan_Applications/Originate) command from [AMI](/Configuration/Interfaces/Asterisk-Manager-Interface-AMI), or maybe something like "channel originate SIP/Alice application playback demo-congrats" from the [CLI](/Operation/Asterisk-Command-Line-Interface). Asterisk creates an **outbound** channel to call the device specified (SIP/Alice). When answered, Asterisk begins treating the channel like an **inbound** channel and connects it to the specified dialplan application.
 
 ### Fig 3
 

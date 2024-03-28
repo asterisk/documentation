@@ -6,7 +6,7 @@ pageid: 31097214
 Overview
 ========
 
-Pre-bridge handlers allow you to execute dialplan subroutines on a channel after the call has been initiated and the channels have been created, but before connecting the caller to the callee. Handlers for the [Dial](/latest_api/API_Documentation/Dialplan_Applications/Dial) and [queue](/latest_api/API_Documentation/Dialplan_Applications/Queue) applications allow both the older [**macro**](/Configuration/Dialplan/Subroutines/Macros) and the newer [**gosub**](/Configuration/Dialplan/Subroutines/Gosub) routines to be executed. These handlers are executed on the **called party** channel, after it is **answered**, but **pre-bridge** before the calling and called party are connected.
+Pre-bridge handlers allow you to execute dialplan subroutines on a channel after the call has been initiated and the channels have been created, but before connecting the caller to the callee. Handlers for the [Dial](/Latest_API/API_Documentation/Dialplan_Applications/Dial) and [queue](/Latest_API/API_Documentation/Dialplan_Applications/Queue) applications allow both the older [**macro**](/Configuration/Dialplan/Subroutines/Macros) and the newer [**gosub**](/Configuration/Dialplan/Subroutines/Gosub) routines to be executed. These handlers are executed on the **called party** channel, after it is **answered**, but **pre-bridge** before the calling and called party are connected.
 
 If you want to execute routinesearlier in the call lifetime then check out the [Pre-Dial Handlers](/Configuration/Dialplan/Subroutines/Pre-Dial-Handlers) section.
 
@@ -26,7 +26,7 @@ M(macro[^arg[^...]])
 
 ```
 
-The variable MACRO_RESULT can be set with certain options inside the specified macro to determine behavior when the macro finishes. The options are documented in the [Dial application documentation](/latest_api/API_Documentation/Dialplan_Applications/Dial).
+The variable MACRO_RESULT can be set with certain options inside the specified macro to determine behavior when the macro finishes. The options are documented in the [Dial application documentation](/Latest_API/API_Documentation/Dialplan_Applications/Dial).
 
 
 
@@ -40,7 +40,7 @@ U(x[^arg[^...]])
 
 ```
 
-The variable GOSUB_RESULT can be set within certain options inside the specified gosub to determine behavior when the gosub returns. The options are documented in the [Dial application documentation](/latest_api/API_Documentation/Dialplan_Applications/Dial).
+The variable GOSUB_RESULT can be set within certain options inside the specified gosub to determine behavior when the gosub returns. The options are documented in the [Dial application documentation](/Latest_API/API_Documentation/Dialplan_Applications/Dial).
 
 Queue application
 -----------------

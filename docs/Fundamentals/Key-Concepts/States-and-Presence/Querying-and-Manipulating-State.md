@@ -11,7 +11,7 @@ This section will enumerate and briefly describe the ways in which you can query
 Device State
 ============
 
-The [**DEVICE_STATE**](/latest_api/API_Documentation/Dialplan_Functions/DEVICE_STATE) **function** will return the Device State for a specified device state identifier and allow you to set Custom device states.
+The [**DEVICE_STATE**](/Latest_API/API_Documentation/Dialplan_Functions/DEVICE_STATE) **function** will return the Device State for a specified device state identifier and allow you to set Custom device states.
 
 On the command line, the **devstate** command will allow you to list or modify Custom device states specifically.
 
@@ -27,7 +27,7 @@ On this Page
 Extension State
 ===============
 
-The **[EXTENSION_STATE](/latest_api/API_Documentation/Dialplan_Functions/EXTENSION_STATE)** **function** will return the [Extension State](/Fundamentals/Key-Concepts/States-and-Presence/Extension-State-and-Hints) for any specified extension that has a defined hint.
+The **[EXTENSION_STATE](/Latest_API/API_Documentation/Dialplan_Functions/EXTENSION_STATE)** **function** will return the [Extension State](/Fundamentals/Key-Concepts/States-and-Presence/Extension-State-and-Hints) for any specified extension that has a defined hint.
 
 The CLI command **core show hints** will show extension state for all defined hints, as well as display a truncated list of the mapped Device State or Presence State identifiers.
 
@@ -44,7 +44,7 @@ myserver\*CLI> core show hints
 Presence State
 ==============
 
-Added in Asterisk 11, the **[PRESENCE_STATE](/latest_api/API_Documentation/Dialplan_Functions/PRESENCE_STATE) function** will return [Presence State](/Fundamentals/Key-Concepts/States-and-Presence/Presence-State) for any specified Presence State identifier, or set the Presence State for specifically for a [CustomPresence identifier](/Fundamentals/Key-Concepts/States-and-Presence/Presence-State).
+Added in Asterisk 11, the **[PRESENCE_STATE](/Latest_API/API_Documentation/Dialplan_Functions/PRESENCE_STATE) function** will return [Presence State](/Fundamentals/Key-Concepts/States-and-Presence/Presence-State) for any specified Presence State identifier, or set the Presence State for specifically for a [CustomPresence identifier](/Fundamentals/Key-Concepts/States-and-Presence/Presence-State).
 
 The **presencestate** CLI command will list or modify any currently defined Presence State resources provided by the CustomPresence provider.
 
@@ -60,7 +60,7 @@ presencestate list -- List currently know custom presence states
 Asterisk Manager Interface actions
 ==================================
 
-Any of the previously mentioned functions could be called via [AMI](/Configuration/Interfaces/Asterisk-Manager-Interface-AMI) with the [Setvar](/latest_api/API_Documentation/AMI_Actions/Setvar) and [Getvar](/latest_api/API_Documentation/AMI_Actions/Getvar) actions.
+Any of the previously mentioned functions could be called via [AMI](/Configuration/Interfaces/Asterisk-Manager-Interface-AMI) with the [Setvar](/Latest_API/API_Documentation/AMI_Actions/Setvar) and [Getvar](/Latest_API/API_Documentation/AMI_Actions/Getvar) actions.
 
-Then there are two more specific actions called [ExtensionState](/latest_api/API_Documentation/AMI_Actions/ExtensionState) and [PresenceState](/latest_api/API_Documentation/AMI_Actions/PresenceState). See the linked documentation for more info.
+Then there are two more specific actions called [ExtensionState](/Latest_API/API_Documentation/AMI_Actions/ExtensionState) and [PresenceState](/Latest_API/API_Documentation/AMI_Actions/PresenceState). See the linked documentation for more info.
 

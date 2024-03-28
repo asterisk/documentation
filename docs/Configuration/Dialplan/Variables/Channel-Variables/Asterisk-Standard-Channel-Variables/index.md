@@ -55,6 +55,6 @@ Variables marked with a \* are builtin functions and can't be set, only read in 
 ## Variables present in Asterisk 11 and forward:
 
 * ${AGIEXITONHANGUP} - set to `1` to force the behavior of a call to AGI to behave as it did in 1.4, where the AGI script would exit immediately on detecting a channel hangup
-* ${CALENDAR_SUCCESS} \* - Status of the [CALENDAR_WRITE](/latest_api/API_Documentation/Dialplan_Functions/CALENDAR_WRITE) function. Set to `1` if the function completed successfully; `0` otherwise.
+* ${CALENDAR_SUCCESS} \* - Status of the [CALENDAR_WRITE](/Latest_API/API_Documentation/Dialplan_Functions/CALENDAR_WRITE) function. Set to `1` if the function completed successfully; `0` otherwise.
 * ${SIP_RECVADDR} \* - the address a SIP MESSAGE request was received from
-* ${VOICEMAIL_PLAYBACKSTATUS} \* - Status of the [VoiceMailPlayMsg](/latest_api/API_Documentation/Dialplan_Applications/VoiceMailPlayMsg) application. `SUCCESS` if the voicemail was played back successfully, {{FAILED} otherwise
+* ${VOICEMAIL_PLAYBACKSTATUS} \* - Status of the [VoiceMailPlayMsg](/Latest_API/API_Documentation/Dialplan_Applications/VoiceMailPlayMsg) application. `SUCCESS` if the voicemail was played back successfully, {{FAILED} otherwise

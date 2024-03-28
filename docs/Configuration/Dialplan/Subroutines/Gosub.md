@@ -6,7 +6,7 @@ pageid: 31097218
 Overview
 ========
 
-[`Gosub` is a dialplan application](/latest_api/API_Documentation/Dialplan_Applications/Gosub). It replaces (is recommended in place of, and deprecates) the `Macro` application.
+[`Gosub` is a dialplan application](/Latest_API/API_Documentation/Dialplan_Applications/Gosub). It replaces (is recommended in place of, and deprecates) the `Macro` application.
 
 `Gosub` allows you to execute a specific block (context or section) of dialplan as well as pass and return information via arguments to/from the scope of the block. Whereas `Macro` has issues with nesting, `Gosub` does not and `Gosub` should be used wherever you would have used a `Macro`.
 
@@ -15,7 +15,7 @@ Other dialplan applications, such as `Dial` and `Queue` make use of `Gosub` func
 Defining a dialplan context for use with Gosub
 ==============================================
 
-No special syntax is needed when defining the dialplan code that you want to call with `Gosub`, *unless* you want to return back to where you called `Gosub` from. In the case of wanting to return, then you should call the `[Return](/latest_api/API_Documentation/Dialplan_Applications/Return)` application.
+No special syntax is needed when defining the dialplan code that you want to call with `Gosub`, *unless* you want to return back to where you called `Gosub` from. In the case of wanting to return, then you should call the `[Return](/Latest_API/API_Documentation/Dialplan_Applications/Return)` application.
 
 Here is an example of dialplan we could call with `Gosub` when we don't wish to return.
 

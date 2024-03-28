@@ -87,7 +87,7 @@ If you do want to write an `external_replaces` extension, the first thing you wa
 
 
 !!! note 
-    Asterisk dialplan contains functions for manipulating strings. A function [Asterisk 13 Function_PJSIP_PARSE_URI](/latest_api/API_Documentation/Dialplan_Functions/PJSIP_PARSE_URI) exists for parsing a URI within the dialplan.
+    Asterisk dialplan contains functions for manipulating strings. A function [Asterisk 13 Function_PJSIP_PARSE_URI](/Latest_API/API_Documentation/Dialplan_Functions/PJSIP_PARSE_URI) exists for parsing a URI within the dialplan.
 
       
 [//]: # (end-note)

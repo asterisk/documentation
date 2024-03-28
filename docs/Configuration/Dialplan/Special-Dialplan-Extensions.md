@@ -27,7 +27,7 @@ This extension is similar to the **o** extension, only it gets triggered when th
 e: Exception Catchall extension
 -------------------------------
 
-This extension will substitute as a catchall for any of the 'i', 't', or 'T' extensions, if any of them do not exist and catching the error in a single routine is desired. The function [EXCEPTION](/latest_api/API_Documentation/Dialplan_Functions/EXCEPTION) may be used to query the type of exception or the location where it occurred.
+This extension will substitute as a catchall for any of the 'i', 't', or 'T' extensions, if any of them do not exist and catching the error in a single routine is desired. The function [EXCEPTION](/Latest_API/API_Documentation/Dialplan_Functions/EXCEPTION) may be used to query the type of exception or the location where it occurred.
 
 h: Hangup extension
 -------------------
