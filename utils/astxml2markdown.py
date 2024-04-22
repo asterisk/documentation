@@ -171,10 +171,16 @@ class AstXML2Markdown:
             link = refnode.text.replace(" ", "_")
 
             if self.parent.get(type) is not None:
-                link = '[%s %s%s](/Asterisk_%s_Documentation/API_Documentation/%s/%s%s)' % (
-                    self.parent[type], link, module,
-                    self.args['branch'],
-                    self.parent[type].replace(' ', '_'), link, module)
+                if "certified" in self.args['branch']:
+                    link = '[%s %s%s](/Certified-Asterisk_%s_Documentation/API_Documentation/%s/%s%s)' % (
+                        self.parent[type], link, module,
+                        self.args['branch'].replace('certified/', ''),
+                        self.parent[type].replace(' ', '_'), link, module)
+                else:
+                    link = '[%s %s%s](/Asterisk_%s_Documentation/API_Documentation/%s/%s%s)' % (
+                        self.parent[type], link, module,
+                        self.args['branch'],
+                        self.parent[type].replace(' ', '_'), link, module)
             else:
                 link = '{{%s}}\n' % link
 
