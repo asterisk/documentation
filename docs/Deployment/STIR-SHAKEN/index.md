@@ -202,7 +202,18 @@ although this has probably already been done by the issuing authority.
 
 The "id" of this object MUST be a canonicalized telephone nmumber which
 starts with a country code.  The only valid characters are the numbers
-0-9, '#' and '*'.
+0-9, '#' and '*'.  With the 18.23.0, 20.8.0 and 21.3.0 releases of Asterisk,
+caller-ids are canonicalized before searching for "tn" objects.  Previously,
+caller-ids had to match "tn" ids exactly.
+
+/// warning
+The STIR-SHAKEN subsystem takes "caller-id" from the channel exactly like
+the `CALLERID(num)` dialplan function.  If you create or modify outgoing SIP
+headers like `From` or `P-Asserted-Identity` and they don't match what's on the
+channel, the information in the outgoing Identity header won't match
+the the headers.  This may cause the remote end to fail to validate
+your attestation.
+///
 
 The default values for all of the "tn" parameters come from the "[attestation](#attestation-object)" and "[profile](#profile-object)" objects.
 
@@ -561,7 +572,7 @@ Compared to verification, attestation is simple.
 1. If the profile name set in `stir_shaken_profile` doesn't exist, skip attestation and continue the call.
 1. If the [attestation](#attestation) `global_disable` flag is true, skip attestation and continue the call.
 1. If the [profile](#profile-object) `endpoint_behavior` parameter isn't `attest` or `on`, skip attestation and continue the call.
-1. If there's no "tn" object matching the caller-id, skip attestation and continue the call.
+1. If there's no "tn" object matching the caller-id, skip attestation and continue the call. With the 18.23.0, 20.8.0 and 21.3.0 releases of Asterisk, the caller-id is canonicalized (everything except 0-9, # and * are removed) before a "tn" object is searched for.  Previously, the caller-id had to match the "tn" id exactly so a caller-id of "+1234567890" would NOT match a "tn" id of "1234567890".
 1. Finally create and sign the Identity header using the `private_key_file`, `public_cert_url`, `attest_level` and `send_mky` parameters from [tn](#tn-object), [profile](#profile-object) or [attestation](#attestation-object).  If this fails, the call will be terminated.
 
 ## References
