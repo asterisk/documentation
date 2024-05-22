@@ -6,7 +6,7 @@ pageid: 28315594
 Command Syntax and Availability
 ===============================
 
-Commands follow a general syntax of **<module name> <action type> <parameters>**.
+Commands follow a general syntax of **`<module name> <action type> <parameters>`**.
 
 For example:
 
@@ -33,7 +33,7 @@ Finding Help at the CLI
 Command-line Completion
 -----------------------
 
-The Asterisk CLI supports command-line completion on all commands, including many arguments. To use it, simply press the **<Tab>** key at any time while entering the beginning of any command. If the command can be completed unambiguously, it will do so, otherwise it will complete as much of the command as possible. Additionally, Asterisk will print a list of all possible matches, if possible.
+The Asterisk CLI supports command-line completion on all commands, including many arguments. To use it, simply press the **<kbd>Tab</kbd>** key at any time while entering the beginning of any command. If the command can be completed unambiguously, it will do so, otherwise it will complete as much of the command as possible. Additionally, Asterisk will print a list of all possible matches, if possible.
 
 On this Page
 

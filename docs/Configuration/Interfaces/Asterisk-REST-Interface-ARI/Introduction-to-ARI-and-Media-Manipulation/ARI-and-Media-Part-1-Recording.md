@@ -142,7 +142,7 @@ This way, when calling any three-digit extension that begins with the number '3'
 Basic Voice Mail Recording
 ==========================
 
-We've seen a lot of the underlying concepts for our application, so let's actually make something useful now. We'll start with a very simple application that allows callers to record a message upon entering the application. When the caller has completed recording the message, the caller may press the '#' key or may hang up to accept the recording. Here is a state machine diagram for the application:
+We've seen a lot of the underlying concepts for our application, so let's actually make something useful now. We'll start with a very simple application that allows callers to record a message upon entering the application. When the caller has completed recording the message, the caller may press the <kbd>#</kbd> key or may hang up to accept the recording. Here is a state machine diagram for the application:
 
 ![](record.png)
 
@@ -372,7 +372,7 @@ var HungUpState = require('./hungup_state');
 
 ```
 
-The following is a sample output of a user calling the application and pressing the '#' key when finished recording
+The following is a sample output of a user calling the application and pressing the <kbd>#</kbd> key when finished recording
 
 ```
 Channel PJSIP/200-00000003 recording voicemail for 305
@@ -391,7 +391,7 @@ silverseagreenReader Exercise 1solidblackCurrently, the voicemails being recorde
 Cancelling a Recording
 ======================
 
-Now we have a simple application set up to record a message, but it's pretty bare at the moment. Let's start expanding some. One feature we can add is the ability to press a DTMF key while recording a voice mail to cancel the current recording and re-start the recording process. We'll use the DTMF '\*' key to accomplish this. The updated state machine diagram looks like the following:
+Now we have a simple application set up to record a message, but it's pretty bare at the moment. Let's start expanding some. One feature we can add is the ability to press a DTMF key while recording a voice mail to cancel the current recording and re-start the recording process. We'll use the DTMF <kbd>*</kbd> key to accomplish this. The updated state machine diagram looks like the following:
 
 ![](record-with-retry.png)
 
@@ -446,7 +446,7 @@ jstrue function on_dtmf(event, channel) {
 
 ```
 
-The first part of the method is the same as it was before, but we have added extra handling for when the user presses the '\*' key. The `cancel()` method for live recordings causes the live recording to be stopped and for it not to be stored on the file system.
+The first part of the method is the same as it was before, but we have added extra handling for when the user presses the <kbd>*</kbd> key. The `cancel()` method for live recordings causes the live recording to be stopped and for it not to be stored on the file system.
 
 We also need to add our new transition while setting up our state machine. Our `VoiceMailCall::setup_state_machine()` method now looks like:
 
@@ -488,7 +488,7 @@ jstruethis.setup_state_machine = function() {
 
 ```
 
-This is exactly the same as it was, except for the penultimate line adding the ``Event.DTMF_STAR`` transition. Here is sample output for when a user calls in, presses '\*' twice, and then presses '#' to complete the call
+This is exactly the same as it was, except for the penultimate line adding the ``Event.DTMF_STAR`` transition. Here is sample output for when a user calls in, presses <kbd>*</kbd> twice, and then presses <kbd>#</kbd> to complete the call
 
 ```
 Channel PJSIP/200-00000007 recording voicemail for 305
@@ -519,7 +519,7 @@ Modify the `RecordingState` to allow for a DTMF digit of your choice to cancel t
 Operating on Stored Recordings
 ==============================
 
-So far, we've recorded a channel, stopped a live recording, and cancelled a live recording. Now let's turn our attention to operations that can be performed on stored recordings. An obvious operation to start with is to play back the stored recording. We're going to make another modification to our voice mail recording application that adds a "reviewing" state after a voicemail is recorded. In this state, a user that has recorded a voice mail will hear the recorded message played back to him/her. The user may press the '#' key or hang up in order to accept the recorded message, or the user may press '\*' to erase the stored recording and record a new message in its place. Below is the updated state diagram with the new "reviewing" state added.
+So far, we've recorded a channel, stopped a live recording, and cancelled a live recording. Now let's turn our attention to operations that can be performed on stored recordings. An obvious operation to start with is to play back the stored recording. We're going to make another modification to our voice mail recording application that adds a "reviewing" state after a voicemail is recorded. In this state, a user that has recorded a voice mail will hear the recorded message played back to him/her. The user may press the <kbd>#</kbd> key or hang up in order to accept the recorded message, or the user may press <kbd>*</kbd> to erase the stored recording and record a new message in its place. Below is the updated state diagram with the new "reviewing" state added.
 
 ![](record-with-review.png)
 
@@ -712,7 +712,7 @@ this.setup_state_machine = function() {
 
 ```
 
-The following is the output from a sample call. The user records audio, then presses '#'. Upon hearing the recording, the user decides to record again, so the user presses '\*'. After re-recording, the user presses '#'. The user hears the new version of the recording played back and is satisfied with it, so the user presses '#' to accept the recording.
+The following is the output from a sample call. The user records audio, then presses <kbd>#</kbd>. Upon hearing the recording, the user decides to record again, so the user presses <kbd>*</kbd>. After re-recording, the user presses <kbd>#</kbd>. The user hears the new version of the recording played back and is satisfied with it, so the user presses <kbd>#</kbd> to accept the recording.
 
 ```
 Channel PJSIP/200-00000009 recording voicemail for 305
@@ -734,9 +734,9 @@ Ending voice mail call from PJSIP/200-00000009
 
 silverseagreenReader Exercise 5solidblackIn the previous section we introduced the ability to delete a stored recording. Stored recordings have a second operation available to them: [copying](/Latest_API/API_Documentation/Asterisk_REST_Interface/Recordings_REST_API/#copystored). The `copy()` method of a stored recording can be used to copy the stored recording from one location to another.
 
-For this exercise modify `ReviewingState` to let a DTMF key of your choice copy the message to a different mailbox on the system. When a user presses this DTMF key, the state machine should transition into a new state called "copying." The "copying" state should gather DTMF from the user to determine which mailbox the message should be copied to. If '#' is entered, then the message is sent to the mailbox the user has typed in. If '\*' is entered, then the copying operation is cancelled. Both a '#' and a '\*' should cause the state machine to transition back into `ReviewingState`.
+For this exercise modify `ReviewingState` to let a DTMF key of your choice copy the message to a different mailbox on the system. When a user presses this DTMF key, the state machine should transition into a new state called "copying." The "copying" state should gather DTMF from the user to determine which mailbox the message should be copied to. If <kbd>#</kbd> is entered, then the message is sent to the mailbox the user has typed in. If <kbd>*</kbd> is entered, then the copying operation is cancelled. Both a <kbd>#</kbd> and a <kbd>*</kbd> should cause the state machine to transition back into `ReviewingState`.
 
-As an example, let's say that you have set DTMF '0' to be the key that the user presses in `ReviewingState` to copy the message. The user presses '0'. The user then presses '3' '2' '0' '#'. The message should be copied to mailbox "320", and the user should start hearing the message played back again. Now let's say the user presses '0' to copy the message again. The user then presses '3' '2' '1' '0' '\*'. The message should not be copied to any mailbox, and the user should start hearing the message played back again.
+As an example, let's say that you have set DTMF <kbd>0</kbd> to be the key that the user presses in `ReviewingState` to copy the message. The user presses <kbd>0</kbd>. The user then presses <kbd>3</kbd> <kbd>2</kbd> <kbd>0</kbd> <kbd>#</kbd>. The message should be copied to mailbox "320", and the user should start hearing the message played back again. Now let's say the user presses <kbd>0</kbd> to copy the message again. The user then presses <kbd>3</kbd> <kbd>2</kbd> <kbd>1</kbd> <kbd>0</kbd> <kbd>*</kbd>. The message should not be copied to any mailbox, and the user should start hearing the message played back again.
 
 Recording Bridges
 =================

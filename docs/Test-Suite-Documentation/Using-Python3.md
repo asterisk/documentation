@@ -75,7 +75,7 @@ Install Asterisk
 * Add **`--enable-dev-mode`** and optionally, **`--disable-binary-modules`** to your **`./configure`** command line.  Disabling the binary modules just prevents the need to download the external codecs and res_digium_phone.
 * In menuselect...
 	+ Under **Compiler Flags - Development**,  enable **DONT_OPTIMIZE**, **MALLOC_DEBUG**, **`DO_CRASH`** and **`TEST_FRAMEWORK`** and disable **`COMPILE_DOUBLE`**.
-	+ Make sure all modules are enabled.  You don't need the **Test Modules** though.  If you enter **Test Modules** and press **`F7`**, you can quickly disable all modules.
+	+ Make sure all modules are enabled.  You don't need the **Test Modules** though.  If you enter **Test Modules** and press **<kbd>F7</kbd>**, you can quickly disable all modules.
 * Build and install Asterisk and the development header files.
 
 ```bash title=" " linenums="1"

@@ -16,7 +16,7 @@ While this concept is relatively straight forward, handling DTMF is quite common
 This example mimics the [automated attendant/IVR dialplan example](/Deployment/Basic-PBX-Functionality/Auto-attendant-and-IVR-Menus/Handling-Special-Extensions). It does the following:
 
 * Plays a menu to the user which is cancelled when the user takes some action.
-* If the user presses 1 or 2, the digit is repeated to the user and the menu restarted.
+* If the user presses <kbd>1</kbd> or <kbd>2</kbd>, the digit is repeated to the user and the menu restarted.
 * If the user presses an invalid digit, a prompt informing the user that the digit was invalid is played to the user and the menu restarted.
 * If the user fails to press anything within some period of time, a prompt asking the user if they are still present is played to the user and the menu restarted.
 
@@ -350,7 +350,7 @@ def cancel_timeout(channel):
 
 ```
 
-Finally, we need to actually do *something* when the user presses a `1` or a `2`. We could do anything here - but in our case, we're merely going to play back the number that they pressed and restart the menu.
+Finally, we need to actually do *something* when the user presses a <kbd>1</kbd> or a <kbd>2</kbd>. We could do anything here - but in our case, we're merely going to play back the number that they pressed and restart the menu.
 
 ```python
 def handle_extension_one(channel):
@@ -586,7 +586,7 @@ client.run(apps='channel-aa')
 
 ### channel-aa.py in action
 
-The following shows the output of `channel-aa.py` when a PJSIP channel presses `1`, `2`, `8`, then times out. Finally they hang up.
+The following shows the output of `channel-aa.py` when a PJSIP channel presses <kbd>1</kbd>, <kbd>2</kbd>, <kbd>8</kbd>, then times out. Finally they hang up.
 
 ```
 Channel PJSIP/alice-00000001 has entered the application
@@ -833,7 +833,7 @@ function cancelTimeout(channel) {
 
 ```
 
-Finally, we need to actually do *something* when the user presses a `1` or a `2`. We could do anything here - but in our case, we're merely going to play back the number that they pressed and restart the menu.
+Finally, we need to actually do *something* when the user presses a <kbd>1</kbd> or a <kbd>2</kbd>. We could do anything here - but in our case, we're merely going to play back the number that they pressed and restart the menu.
 
 ```javascript
 function handleDtmf(channel, digit) {
@@ -1038,7 +1038,7 @@ function clientLoaded (err, client) {
 
 ### channel-aa.js in action
 
-The following shows the output of `channel-aa.js` when a PJSIP channel presses `1`, `2`, `8`, then times out. Finally they hang up.
+The following shows the output of `channel-aa.js` when a PJSIP channel presses <kbd>1</kbd>, <kbd>2</kbd>, <kbd>8</kbd>, then times out. Finally they hang up.
 
 ```
 Channel PJSIP/alice-00000001 has entered the application

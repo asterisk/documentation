@@ -67,10 +67,10 @@ texttag,timestamp[,data]
 
 The tag can be one of the following characters:
 
-* `0-9` - DTMF event for keys 0 through 9
-* `A-D` - DTMF event for keys A through D
-* `*` - DTMF event for key \*
-* `#` - DTMF event for key #
+* `0-9` - DTMF event for keys <kbd>0</kbd> through <kbd>9</kbd>
+* `A-D` - DTMF event for keys <kbd>A</kbd> through <kbd>D</kbd>
+* `*` - DTMF event for key <kbd>*</kbd>
+* `#` - DTMF event for key <kbd>#</kbd>
 * `H` - The channel was hung up by the connected party
 * `E` - The script requested an exit
 * `Z` - The previous command was unable to be executed. There may be a data element if appropriate, see specific commands below for details
