@@ -210,7 +210,7 @@ this.setup_state_machine = function() {
 
 ```
 
-Here is a sample run where the user cuts off the greeting by pressing the '#' key, records a greeting and presses the '#' key, and after listening to the recording presses the '#' key once more.
+Here is a sample run where the user cuts off the greeting by pressing the <kbd>#</kbd> key, records a greeting and presses the <kbd>#</kbd> key, and after listening to the recording presses the <kbd>#</kbd> key once more.
 
 ```
 Channel PJSIP/200-0000000b recording voicemail for 305
@@ -237,14 +237,14 @@ So far in our voice mail application, we have stopped playbacks, but there are a
 
 For this, we will write a new application. This new application will allow a caller to listen to the voicemails that are stored in a specific mailbox. When the caller enters the application, a prompt is played to the caller saying which message number the caller is hearing. When the message number finishes playing (or if the caller interrupts the playback with '#'), then the caller hears the specified message in the voicemail box. While listening to the voicemail, the caller can do several things:
 
-* Press the '1' key to go back 3 seconds in the current message playback.
-* Press the '2' key to pause or unpause the current message playback.
-* Press the '3' key to go forward 3 seconds in the current message playback.
-* Press the '4' key to play to the previous message.
-* Press the '5' key to restart the current message playback.
-* Press the '6' key to play to the next message.
-* Press the '\*' key to delete the current message and play the next message.
-* Press the '#' key to end the call.
+* Press the <kbd>1</kbd>' key to go back 3 seconds in the current message playback.
+* Press the <kbd>2</kbd> key to pause or unpause the current message playback.
+* Press the <kbd>3</kbd> key to go forward 3 seconds in the current message playback.
+* Press the <kbd>4</kbd> key to play to the previous message.
+* Press the <kbd>5</kbd> key to restart the current message playback.
+* Press the <kbd>6</kbd> key to play to the next message.
+* Press the <kbd>*</kbd> key to delete the current message and play the next message.
+* Press the <kbd>#</kbd> key to end the call.
 
 If all messages in a mailbox are deleted or if the mailbox contained no messages to begin with, then "no more messages" is played back to the user, and the call is completed.
 

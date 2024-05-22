@@ -22,7 +22,7 @@ Here we'll list all of the special built-in dialplan extensions and their usage.
 a: Assistant extension
 ----------------------
 
-This extension is similar to the **o** extension, only it gets triggered when the caller presses the asterisk (\*) key while recording a voice mail message. This is typically used to reach an assistant.
+This extension is similar to the **o** extension, only it gets triggered when the caller presses the asterisk (<kbd>*</kbd>) key while recording a voice mail message. This is typically used to reach an assistant.
 
 e: Exception Catchall extension
 -------------------------------
