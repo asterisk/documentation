@@ -23,7 +23,7 @@ The Asterisk project takes the issue of its users security seriously. If you bel
     The Issue Tracker is Public!
     The [Asterisk Issue Tracker](https://github.com/asterisk/asterisk/issues) is a public site, and all bug reports against Asterisk can be viewed openly by the public. While this results in a transparent, open process - which is good - reporting a security vulnerability on the issue tracker without properly selecting "[Report a vulnerability](https://github.com/asterisk/asterisk/security/advisories/new)" on the [New Issue page](https://github.com/asterisk/asterisk/issues/new/choose) makes the entire Asterisk user community vulnerable.
 
-    Reporting a vulnerability will automatically restrict who can view the information. If you have any difficulties with that we'll help; please follow the instructions here and e-mail the team at [security@asterisk.org.](mailto:security@asterisk.org)
+    Reporting a vulnerability will automatically restrict who can view the information.
 
       
 [//]: # (end-warning)
@@ -43,13 +43,9 @@ What Can Be Reported?
 Reporting a Security Vulnerability
 ==================================
 
-1. Send an e-mail to the Asterisk Development Team by e-mailing [security@asterisk.org.](mailto:security@asterisk.org) Include the following:
-	1. A summary of the suspected vulnerability, e.g., 'Remotely exploitable buffer overflow in the FOO channel driver'
-	2. A detailed explanation of how the vulnerability can be exploited and/or reproduced. Test drivers/cases that can be used to demonstrate the vulnerability are highly appreciated.
-2. A developer will respond to your inquiry. If you'd like, e-mails can be signed and/or encrypted.
-3. Once the developer confirms the security vulnerability is discussed and confirmed you will be asked to report a vulnerability on the Asterisk issue tracker. **You must use the "[Report a vulnerability](https://github.com/asterisk/asterisk/security/advisories/new)" option on the [New Issue page](https://github.com/asterisk/asterisk/issues/new/choose) or the information will be publicly disclosed.**
+Report the security vulnerability on GitHub. **You must use the "[Report a vulnerability](https://github.com/asterisk/asterisk/security/advisories/new)" option on the [New Issue page](https://github.com/asterisk/asterisk/issues/new/choose) or the information will be publicly disclosed.**
 
-Security vulnerabilities are treated seriously by the developer community, and the Asterisk Development Team always attempts to address vulnerabilities in a timely fashion. Sometimes, external influences may impact when a security release can be made; feel free to e-mail the developer assigned to the issue or [security@asterisk.org](mailto:security@asterisk.org) to discuss the schedule for a security release for your issue.
+Security vulnerabilities are treated seriously by the developer community, and the Asterisk Development Team always attempts to address vulnerabilities in a timely fashion. Sometimes, external influences may impact when a security release can be made; feel free to comment on the security vulnerability report to discuss the schedule for a security release for your issue.
 
 
 
