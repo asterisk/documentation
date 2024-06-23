@@ -44,7 +44,7 @@ Starting with DAHDI-Linux-complete version 2.8.0+2.8.0, all files necessary to i
 
 [root@server dahdi-linux-complete-2.X.Y+2.X.Y]# make install
 
-[root@server dahdi-linux-complete-2.X.Y+2.X.Y]# make config 
+[root@server dahdi-linux-complete-2.X.Y+2.X.Y]# make install-config
 
 ```
 
