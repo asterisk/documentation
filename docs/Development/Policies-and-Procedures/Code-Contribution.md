@@ -145,19 +145,57 @@ cherry-pick-to: 18
 
 Each branch must be on a separate line and don't put anything else in the comment.  When all the PR tests and checks have passed, an Asterisk Core developer will trigger the cherry-pick test process which will look for that comment.  If the commit can't be cherry-picked cleanly to the branches you indicated or the tests fail, none of the commits will be merged.  This is why it's important for you to make sure your commit cherry-picks cleanly before submitting the first pull request.
 
-If you don't need your PR automatically cherry-picked, please add a comment stating `cherry-pick-to: none`.  This saves us not having to ask if you want it cherry-picked.
+If you don't need your PR automatically cherry-picked, please add a comment stating `cherry-pick-to: none`.  This saves us not having to ask if you want it cherry-picked and suppresses the automated reminder.
+
+You have a minimum of two minutes from the time the PR is submitted before the automation will remind you to add either branch-specific entries or a `cherry-pick-to: none` entry.  In reality, that check is done when the submit tests are completed so you probably have at least 30 minutes.
 
 /// note 
 You can also add comments to a PR from the command line with `gh pr comment`. See the man page for more info.
 ///
 
-
 /// warning
-Don't add the cherry-pick-to lines to the commit message or the PR description.  They're only searched for in PR comments.
+Don't add the `cherry-pick-to` lines to the commit message or the PR description.  They're only searched for in PR comments.
 ///
 
 /// warning 
 **If you change your mind and don't want your PR automatically cherry-picked, edit the comment and replace the "cherry-pick-to" lines with a single `cherry-pick-to: none` line** Don't use formatting or other means to say "nevermind". The automation might not understand.
+///
+
+#### Test against a Testsuite PR
+
+If you've created a corresponding pull request in the Asterisk Testsuite, you can tell the automation to test your Asterisk PR using your Testsuite PR by adding a comment to the Asterisk PR with `testsuite-test-pr: <testsuite pr number>` as the content.  For example:
+
+```text
+testsuite-test-pr: 400
+```
+
+That entry would tell the automation to checkout the testsuite PR 400 before running the testsuite tests for the Asterisk PR. You can add the `testsuite-test-pr` entry to the same comment you created for the `cherry-pick-to` entries if you prefer.
+
+/// warning
+As with the `cherry-pick-to` entries, don't add the `testsuite-test-pr` entry to the commit message or the PR description.  They're only searched for in PR comments.
+///
+
+You only have about two minutes from the time the PR is submitted before the automation actually starts the tests so you'll need to add the comment rather quickly.  As noted above, you can easily add comments from the command line using `gh pr comment`.  If you don't make it in time or you haven't written the test yet, you can always add the comment then ping someone on the Asterisk team to recheck the PR.
+
+/// note 
+Due to time constraints, only tests in the tests/channels, tests/fax, tests/extra_gates and tests/rest_api directories are run for pull request testing.  If a test created by your Testsuite PR isn't in one of those directories, create a relative symlink to it in the tests/extra_gates directory and update the tests/extra_gates/tests.yml file to include it.  For example...
+
+```
+tests/apps/a_new_test
+tests/extra_gates/a_new_test -> ../apps/a_new_test
+```
+Then, assuming `a_new_test` is a single test, add the following to tests/extra_tests/tests.yml:
+
+```
+    - test: 'a_new_test'
+```
+
+Of course, if `a_new_test` is a directory of tests, you'd add:
+
+```
+    - dir: 'a_new_test'
+```
+
 ///
 
 ## Pull Request Review Process
