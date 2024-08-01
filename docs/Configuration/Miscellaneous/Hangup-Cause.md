@@ -21,19 +21,19 @@ Used to obtain a comma separated list of all channels for which hangup causes ar
 The following example shows one way of accessing the channels that have hangup cause related information after a Dial has completed. In this particular example, a parallel dial occurs to both *SIP/foo* and *SIP/bar*. A hangup handler has been attached to the calling channel, which executes the subroutine at **handler,s,1** when the channel is hung up. This queries the HANGUPCAUSE\_KEYS function for the channels with hangup cause information and prints the information as a Verbose message. On the CLI, this would look something like:
 
 Channels with hangup cause information: SIP/bar-00000002,SIP/foo-00000001
+```
 [default]
-
 exten => s,1,NoOp()
- same => n,Set(CHANNEL(hangup\_handler\_push)=handler,s,1)
+ same => n,Set(CHANNEL(hangup_handler_push)=handler,s,1)
  same => n,Dial(SIP/foo&SIP/bar,10)
  same => n,Hangup()
 
 [handler]
-
 exten => s,1,NoOp()
- same => n,Set(HANGUPCAUSE\_STRING=${HANGUPCAUSE\_KEYS()})
- same => n,Verbose(0, Channels with hangup cause information: ${HANGUPCAUSE\_STRING})
+ same => n,Set(HANGUPCAUSE_STRING=${HANGUPCAUSE_KEYS()})
+ same => n,Verbose(0, Channels with hangup cause information: ${HANGUPCAUSE_STRING})
  same => n,Return()
+```
 ### HANGUPCAUSE
 
 Used to obtain hangup cause information for a specific channel. For a given channel, there are two sources of hangup cause information:
@@ -46,45 +46,41 @@ Note that in some cases, the hangup causes returned may not be reflected in . Fo
 #### Example
 
 This example illustrates obtaining hangup cause information for a parallel dial to *SIP/foo* and *SIP/bar*. A hangup handler has been attached to the calling channel, which executes the subroutine at **handler,s,1** when the channel is hung up. This queries the hangup cause information using the HANGUPCAUSE\_KEYS function and the HANGUPCAUSE function. The channels returned from HANGUPCAUSE\_KEYS are parsed out, and each is queried for their hangup cause information. The technology specific cause code as well as the Asterisk cause code are printed to the CLI.
-
+```
 [default]
-
 exten => s,1,NoOp()
- same => n,Set(CHANNEL(hangup\_handler\_push)=handler,s,1)
+ same => n,Set(CHANNEL(hangup_handler_push)=handler,s,1)
  same => n,Dial(SIP/foo&SIP/bar,10)
  same => n,Hangup()
 
 [handler]
-
 exten => s,1,NoOp()
-
-same => n,Set(HANGUPCAUSE\_STRING=${HANGUPCAUSE\_KEYS()})
+ same => n,Set(HANGUPCAUSE_STRING=${HANGUPCAUSE_KEYS()})
 
 ; start loop
-same => n(hu\_begin),NoOp()
+ same => n(hu_begin),NoOp()
 
 ; check exit condition (no more array to check)
-same => n,GotoIf($[${LEN(${HANGUPCAUSE\_STRING})}=0]?hu\_exit)
+ same => n,GotoIf($[${LEN(${HANGUPCAUSE_STRING})}=0]?hu_exit)
 
 ; pull the next item
-same => n,Set(ARRAY(item)=${HANGUPCAUSE\_STRING})
-same => n,Set(HANGUPCAUSE\_STRING=${HANGUPCAUSE\_STRING:${LEN(${item})}})
+ same => n,Set(ARRAY(item)=${HANGUPCAUSE_STRING})
+ same => n,Set(HANGUPCAUSE_STRING=${HANGUPCAUSE_STRING:${LEN(${item})}})
 
 ; display the channel name and cause codes
-same => n,Verbose(0, Got Channel ID ${item} with Technology Cause Code ${HANGUPCAUSE(${item},tech)}, Asterisk Cause Code ${HANGUPCAUSE(${item},ast)})
+ same => n,Verbose(0, Got Channel ID ${item} with Technology Cause Code ${HANGUPCAUSE(${item},tech)}, Asterisk Cause Code ${HANGUPCAUSE(${item},ast)})
 
 ; check exit condition (no more array to check)
-same => n,GotoIf($[${LEN(${HANGUPCAUSE\_STRING})}=0]?hu\_exit)
+ same => n,GotoIf($[${LEN(${HANGUPCAUSE_STRING})}=0]?hu_exit)
 
 ; we still have entries to process, so strip the leading comma
-same => n,Set(HANGUPCAUSE\_STRING=${HANGUPCAUSE\_STRING:1})
+ same => n,Set(HANGUPCAUSE_STRING=${HANGUPCAUSE_STRING:1})
 
 ; go back to the beginning of the loop
-same => n,Goto(hu\_begin)
-
-same => n(hu\_exit),NoOp()
-same => n,Return()
-
+ same => n,Goto(hu_begin)
+ same => n(hu_exit),NoOp()
+ same => n,Return()
+```
 ### HangupCauseClear
 
 Used to remove all hangup cause information currently stored.
@@ -92,17 +88,17 @@ Used to remove all hangup cause information currently stored.
 #### Example
 
 The following example clears the hangup cause information from the channel if *SIP/foo* fails to answer and execution continues in the dialplan. The hangup handler attached to the channel will thus only report the the name of the last channel dialled.
-
+```
 exten => s,1,NoOp()
- same => n,Set(CHANNEL(hangup\_handler\_push)=handler,s,1)
+ same => n,Set(CHANNEL(hangup_handler_push)=handler,s,1)
  same => n,Dial(SIP/foo,10)
  same => n,HangupCauseClear()
  same => n,Dial(SIP/bar,10)
  same => n,Hangup()
 
 [handler]
-
 exten => s,1,NoOp()
- same => n,Set(HANGUPCAUSE\_STRING=${HANGUPCAUSE\_KEYS()})
- same => n,Verbose(0, Channels with hangup cause information: ${HANGUPCAUSE\_STRING})
+ same => n,Set(HANGUPCAUSE_STRING=${HANGUPCAUSE_KEYS()})
+ same => n,Verbose(0, Channels with hangup cause information: ${HANGUPCAUSE_STRING})
  same => n,Return()
+```
