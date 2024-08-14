@@ -31,6 +31,7 @@ The following table shows the release time lines for all releases of Asterisk, i
 | 19.x | Standard | 2021-11-02 | 2022-11-02 | 2023-11-02 | EOL |
 | 20.x | LTS | 2022-10-19 | 2026-10-19 | 2027-10-19 | Fully Supported |
 | 21.x | Standard | 2023-10-18 | 2025-10-18 | 2026-10-18 | Fully Supported |
+| 22.x | LTS | 2024-10-16 | 2028-10-16 | 2029-10-16 | Pre-Release |
 
 New releases of Asterisk will be made roughly once a year, alternating between standard and LTS releases. Within a given release series that is fully supported, bug fix updates are provided roughly every 4 to 6 weeks. For a release series that is receiving only maintenance for security fixes, updates are made on an as needed basis.
 
