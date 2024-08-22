@@ -181,7 +181,7 @@ Default: no
 ```
 [attestation]
 global_disable = no
-private_key_path = /var/lib/asterisk/keys/stir_shaken/tns/multi-tns-key.pem
+private_key_file = /var/lib/asterisk/keys/stir_shaken/tns/multi-tns-key.pem
 public_cert_url = https://example.com/tncerts/multi-tns-cert.pem
 attest_level = C
 ```
@@ -241,7 +241,7 @@ See the description under [attestation](#attestation-object)
 ```
 [18005551515]
 type = tn
-private_key_path = /var/lib/asterisk/keys/stir_shaken/tns/18005551515-key.pem
+private_key_file = /var/lib/asterisk/keys/stir_shaken/tns/18005551515-key.pem
 public_cert_url = https://example.com/tncerts/18005551515-cert.pem
 attest_level = C
 ```
