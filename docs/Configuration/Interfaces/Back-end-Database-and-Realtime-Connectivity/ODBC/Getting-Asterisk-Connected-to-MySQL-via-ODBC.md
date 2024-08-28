@@ -211,7 +211,7 @@ If you already had Asterisk installed from source and the modules you need are a
 
 ```
 
-Otherwise you should follow the typical Asterisk installation process to make sure modules such as res_odbc, res_config_odbc, cdr_odbc, cdr_adaptive_odbc and func_odbc have their dependencies fulfilled and that they will be built.
+Make sure that at least the func_odbc, res_odbc and res_odbc_transaction modules are built and installed.  You may also need the following modules depending on your use case: res_config_odbc, cdr_odbc, cdr_adaptive_odbc, cel_odbc.
 
 See [Building and Installing Asterisk](/Getting-Started/Installing-Asterisk/Installing-Asterisk-From-Source/Building-and-Installing-Asterisk) and [Using Menuselect to Select Asterisk Options](/Getting-Started/Installing-Asterisk/Installing-Asterisk-From-Source/Using-Menuselect-to-Select-Asterisk-Options).
 

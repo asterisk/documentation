@@ -22,7 +22,7 @@ Other pages on the wiki describe that process:
 
 [Using Menuselect to Select Asterisk Options](/Getting-Started/Installing-Asterisk/Installing-Asterisk-From-Source/Using-Menuselect-to-Select-Asterisk-Options)
 
-When using menuselect, verify that the **func_odbc** (you'll probably be using that one) and **res_odbc** (required) modules will be built. Then, build Asterisk and make sure those modules were built and exist in  */usr/lib/asterisk/modules** (or whatever directory you use).
+When using menuselect, verify that the **func_odbc** (you'll probably be using that one), **res_odbc** (required) and **res_odbc_transaction** (required) modules will be built. Then, build Asterisk and make sure those modules were built and exist in  */usr/lib/asterisk/modules** (or whatever directory you use).
 
 Configure res_odbc.conf to connect to your ODBC installation
 =============================================================
