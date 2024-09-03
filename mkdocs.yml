@@ -52,9 +52,12 @@ extra_css:
   - material-override.css
 
 plugins:
+  - redirects:
+      redirect_maps:
+        Asterisk-Community-Code-of-Conduct.md: Asterisk-Community/Asterisk-Community-Code-of-Conduct.md
   - search
-  - awesome-pages
-#      filename: .pages
+  - awesome-pages:
+      filename: .pages
 #      collapse_single_pages: true
 #      strict: false
 #      order: asc
