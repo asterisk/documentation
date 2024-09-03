@@ -1,34 +1,20 @@
----
-title: ConfBridge Configuration
-pageid: 34014252
----
-
-ConfBridge Configuration
-========================
+# ConfBridge Configuration
 
 ConfBridge Profiles and Menus are configured in the confbridge.conf configuration file - normally located at /etc/asterisk/confbridge.conf. The file contains three reserved sections:
 
-* [general]
-* [default_bridge]
-* [default_user]
-
-The **[general]** section is currently unused, but is reserved for future use.  
- The **[default_bridge]** section contains all options invoked when ConfBridge is instantiated from the dialplan without a bridge profile argument.  
- The **[default_user]** section contains all options invoked when ConfBridge is instantiated from the dialplan without a user profile argument.
+* `[general]`: Currently unused, but is reserved for future use.
+* `[default_bridge]`: Contains all options invoked when ConfBridge is instantiated from the dialplan without a bridge profile argument.
+* `[default_user]`: Contains all options invoked when ConfBridge is instantiated from the dialplan without a user profile argument.
 
 Each section contains a **type** definition. The type definition determines the function of the section. The three **types** are:
 
-* bridge
-* user
-* menu
-
-**bridge** is used to denote Bridge Profile section definitions.  
- **user** is used to denote User Profile section definitions.  
- **menu** is used to denote Conference Menu section definitions.
+* bridge: Used to denote Bridge Profile section definitions.
+* user: Used to denote User Profile section definitions.
+* menu: Used to denote Conference Menu section definitions.
 
 All other sections, defined by a section identifier encapsulated in square brackets, are user-definable.
 
-On This Page**Example**
+**Example**
 
 This is an example, using invalid options and functions, of a confbridge.conf configuration file, displaying the organizational layout. The various options and functions are described later in this page.
 
@@ -59,8 +45,7 @@ otherDTMF=otherFunction
 
 ```
 
-Bridge Profile Configuration Options
-------------------------------------
+## Bridge Profile Configuration Options
 
 A Bridge Profile provides the following configuration options:
 
@@ -110,8 +95,7 @@ record_conference=yes
 
 ```
 
-User Profile Configuration Options
-----------------------------------
+## User Profile Configuration Options
 
 A User Profile provides the following configuration options:
 
@@ -133,13 +117,8 @@ A User Profile provides the following configuration options:
 | wait_marked | yes/no | Sets if the user must wait for another marked user to enter before joining the conference. By default, no. |   |
 | end_marked | yes/no | If enabled, every user with this option in their profile will be removed from the conference when the last marked user exists the conference. |   |
 | dsp_drop_silence | yes/no | Drops what Asterisk detects as silence from entering into the bridge. Enabling this option will drastically improve performance and help remove the buildup of background noise from the conference. This option is highly recommended for large conferences, due to its performance improvements. |   |
-| dsp_talking_threshold | integer in milliseconds | The time, in milliseconds, by default 160, of sound above what the DSP has established as base-line silence for a user, before that user is considered to be talking. This value affects several options:1. Audio is only mixed out of a user's incoming audio stream if talking is detected. If this value is set too loose, the user will hear themselves briefly each time they begin talking until the DSP has time to establish that they are in fact talking.
-2. When talker detection AMI events are enabled, this value determines when talking has begun, which causes AMI events to fire. If this value is set too tight, AMI events may be falsely triggered by variants in the background noise of the caller.
-3. The drop_silence option depends on this value to determine when the user's audio should be mixed into the bridge after periods of silence. If this value is too loose, the beginning of a user's speech will get cut off as they transition from silence to talking.
- |   |
-| dsp_silence_threshold | integer in milliseconds | The time, in milliseconds, by default 2500, of sound falling within what the DSP has established as the baseline silence, before a user is considered to be silent. The best way to approach this option is to set it slightly above the maximum amount of milliseconds of silence a user may generate during natural speech. This value affects several operations:1. When talker detection AMI events are enabled, this value determines when the user has stopped talking after a period of talking. If this value is set too low, AMI events indicating that the user has stopped talking may get faslely sent out when the user briefly pauses during mid sentence.
-2. The drop_silence option depends on this value to determine when the user's audio should begin to be dropped from the bridge, after the user stops talking. If this value is set too low, the user's audio stream may sound choppy to other participants.
- |   |
+| dsp_talking_threshold | integer in milliseconds | The time, in milliseconds, by default 160, of sound above what the DSP has established as base-line silence for a user, before that user is considered to be talking. This value affects several options:<br>1. Audio is only mixed out of a user's incoming audio stream if talking is detected. If this value is set too loose, the user will hear themselves briefly each time they begin talking until the DSP has time to establish that they are in fact talking.<br>2. When talker detection AMI events are enabled, this value determines when talking has begun, which causes AMI events to fire. If this value is set too tight, AMI events may be falsely triggered by variants in the background noise of the caller.<br>3. The drop_silence option depends on this value to determine when the user's audio should be mixed into the bridge after periods of silence. If this value is too loose, the beginning of a user's speech will get cut off as they transition from silence to talking.|   |
+| dsp_silence_threshold | integer in milliseconds | The time, in milliseconds, by default 2500, of sound falling within what the DSP has established as the baseline silence, before a user is considered to be silent. The best way to approach this option is to set it slightly above the maximum amount of milliseconds of silence a user may generate during natural speech. This value affects several operations:<br>1. When talker detection AMI events are enabled, this value determines when the user has stopped talking after a period of talking. If this value is set too low, AMI events indicating that the user has stopped talking may get faslely sent out when the user briefly pauses during mid sentence.<br>2. The drop_silence option depends on this value to determine when the user's audio should begin to be dropped from the bridge, after the user stops talking. If this value is set too low, the user's audio stream may sound choppy to other participants.|   |
 | talk_detection_events | yes/no | Sets whether or not notifications of when a user begins and ends talking should be sent out as events over AMI. By default, no. |   |
 | denoise | yes/no | Whether or not a noise reduction filter should be applied to the audio before mixing. By default, off. This requires codec_speex to be built and installed. Do not confuse this option with drop_silence. denoise is useful if there is a lot of background noise for a user, as it attempts to remove the noise while still preserving the speech. This option does not remove silence from being mixed into the conference and does come at the cost of a slight performance hit. |   |
 | jitterbuffer | yes/no | Whether or not to place a jitter buffer on the caller's audio stream before any audio mixing is performed. This option is highly recommended, but will add a slight delay to the audio and will incur a slight performance penalty. This option makes use of the JITTERBUFFER dialplan function's default adaptive jitter buffer. For a more fine-tuned jitter buffer, disable this option and use the JITTERBUFFER dialplan function on the calling channel, before it enters the ConfBridge application. |   |
@@ -162,8 +141,7 @@ pin=456
 
 ```
 
-Conference Menu Configuration Options
--------------------------------------
+## Conference Menu Configuration Options
 
 A Conference Menu provides the following configuration options:
 
@@ -196,26 +174,26 @@ A Conference Menu provides the following configuration options:
 ```
 [fancymenu]
 type=menu
-\*=playback_and_continue(conf-togglemute&press&digits/1&silence/1&conf-leave&press&digits/2&silence/1&add-a-caller&press&digits/3&silence/1&conf-decrease-talking&press&digits/4&silence/1&reset-talking&press&digits/5&silence/1&increase-talking&press&digits/6&silence/1&conf-decrease-listening&press&digits/7&silence/1&conf-reset-listening&press&digits/8&silence/1&conf-increase-listening&press&digits/9&silence/1&conf-exit-menu&press&digits/0)
-\*1=toggle_mute
+*=playback_and_continue(conf-togglemute&press&digits/1&silence/1&conf-leave&press&digits/2&silence/1&add-a-caller&press&digits/3&silence/1&conf-decrease-talking&press&digits/4&silence/1&reset-talking&press&digits/5&silence/1&increase-talking&press&digits/6&silence/1&conf-decrease-listening&press&digits/7&silence/1&conf-reset-listening&press&digits/8&silence/1&conf-increase-listening&press&digits/9&silence/1&conf-exit-menu&press&digits/0)
+*1=toggle_mute
 1=toggle_mute
-\*2=leave_conference
+*2=leave_conference
 2=leave_conference
-\*3=dialplan_exec(addcallers,1,1)
+*3=dialplan_exec(addcallers,1,1)
 3=dialplan_exec(addcallers,1,1)
-\*4=decrease_listening_volume
+*4=decrease_listening_volume
 4=decrease_listening_volume
-\*5=reset_listening_volume
+*5=reset_listening_volume
 5=reset_listening_volume
-\*6=increase_listening_volume
+*6=increase_listening_volume
 6=increase_listening_volume
-\*7=decrease_talking_volume
+*7=decrease_talking_volume
 7=decrease_talking_volume
-\*8=reset_talking_volume
+*8=reset_talking_volume
 8=reset_talking_volume
-\*9=increase_talking_volume
+*9=increase_talking_volume
 9=increase_talking_volume
-\*0=no_op
+*0=no_op
 0=no_op
 
 ```
