@@ -165,13 +165,13 @@ int foo(int a, char \*s)
 ```
 
 #### If statements:
-{newcode:C}
+```C
 if (foo) {
  bar();
 } else {
  blah();
 }
-{newcode}
+```
 
 #### Case statements:
 ```C
