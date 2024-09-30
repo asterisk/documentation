@@ -55,6 +55,7 @@ plugins:
   - redirects:
       redirect_maps:
         Asterisk-Community-Code-of-Conduct.md: Asterisk-Community/Asterisk-Community-Code-of-Conduct.md
+        Building+and+Installing+Asterisk.md: Getting-Started/Installing-Asterisk/Installing-Asterisk-From-Source/Building-and-Installing-Asterisk.md
   - search
   - awesome-pages:
       filename: .pages
