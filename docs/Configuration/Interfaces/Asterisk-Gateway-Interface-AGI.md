@@ -19,7 +19,7 @@ Overview
 
  AGI is analogous to CGI in Apache. AGI provides an interface between the Asterisk dialplan and an external program that wants to manipulate a channel in the dialplan. In general, the interface is synchronous - actions taken on a channel from an AGI block and do not return until the action is completed.
 
-On This PageAGI Libraries and Frameworks
+AGI Libraries and Frameworks
 ============================
 
 
@@ -39,6 +39,8 @@ On This PageAGI Libraries and Frameworks
 | astive | Java | <https://github.com/fonoster/astive> | FastAGI |
 | FastAGI-Go | Go | <https://github.com/BlayD91/FastAGI-go> | FastAGI |
 | astgo | Go | <https://github.com/wenerme/astgo> | AMI/AGI/FastAGI |
+| Asterisk::AGI | Perl | <https://metacpan.org/pod/Asterisk::AGI> | AGI |
+| lua-agi | Lua | <https://github.com/stolendata/lua-agi> | AGI |
 
   
 
