@@ -1,0 +1,781 @@
+<!doctype html><html lang=en class=no-js> <head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><link href=../Asterisk-14-Project-URI-Media-Playback/ rel=prev><link href=../Git-Migration/ rel=next><link rel=icon href=../../../../favicon.ico><meta name=generator content="mkdocs-1.5.3, mkdocs-material-9.5.6"><title>Asterisk Beacon Module - Asterisk Documentation</title><link rel=stylesheet href=../../../../assets/stylesheets/main.50c56a3b.min.css><link rel=stylesheet href=../../../../assets/stylesheets/palette.06af60db.min.css><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback"><style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style><link rel=stylesheet href=../../../../material-override.css><script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script><script id=__analytics>function __md_analytics(){function n(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],n("js",new Date),n("config","G-2ZKMCW9DZ9"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){this.value&&n("event","search",{search_term:this.value})}),document$.subscribe(function(){var a=document.forms.feedback;if(void 0!==a)for(var e of a.querySelectorAll("[type=submit]"))e.addEventListener("click",function(e){e.preventDefault();var t=document.location.pathname,e=this.getAttribute("data-md-value");n("event","feedback",{page:t,data:e}),a.firstElementChild.disabled=!0;e=a.querySelector(".md-feedback__note [data-md-value='"+e+"']");e&&(e.hidden=!1)}),a.hidden=!1}),location$.subscribe(function(e){n("config","G-2ZKMCW9DZ9",{page_path:e.pathname})})});var e=document.createElement("script");e.async=!0,e.src="https://www.googletagmanager.com/gtag/js?id=G-2ZKMCW9DZ9",document.getElementById("__analytics").insertAdjacentElement("afterEnd",e)}</script><script>"undefined"!=typeof __md_analytics&&__md_analytics()</script></head> <body dir=ltr data-md-color-scheme=default data-md-color-primary=indigo data-md-color-accent=indigo> <input class=md-toggle data-md-toggle=drawer type=checkbox id=__drawer autocomplete=off> <input class=md-toggle data-md-toggle=search type=checkbox id=__search autocomplete=off> <label class=md-overlay for=__drawer></label> <div data-md-component=skip> <a href=#background class=md-skip> Skip to content </a> </div> <div data-md-component=announce> </div> <header class="md-header md-header--shadow" data-md-component=header> <nav class="md-header__inner md-grid" aria-label=Header> <a href=../../../.. title="Asterisk Documentation" class="md-header__button md-logo" aria-label="Asterisk Documentation" data-md-component=logo> <img src=../../../../favicon.ico alt=logo> </a> <label class="md-header__button md-icon" for=__drawer> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg> </label> <div class=md-header__title data-md-component=header-title> <div class=md-header__ellipsis> <div class=md-header__topic> <span class=md-ellipsis> Asterisk Documentation </span> </div> <div class=md-header__topic data-md-component=header-topic> <span class=md-ellipsis> Asterisk Beacon Module </span> </div> </div> </div> <form class=md-header__option data-md-component=palette> <input class=md-option data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme=default data-md-color-primary=indigo data-md-color-accent=indigo aria-label="Switch to dark mode" type=radio name=__palette id=__palette_0> <label class="md-header__button md-icon" title="Switch to dark mode" for=__palette_1 hidden> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg> </label> <input class=md-option data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme=slate data-md-color-primary=indigo data-md-color-accent=indigo aria-label="Switch to light mode" type=radio name=__palette id=__palette_1> <label class="md-header__button md-icon" title="Switch to light mode" for=__palette_0 hidden> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg> </label> </form> <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script> <label class="md-header__button md-icon" for=__search> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg> </label> <div class=md-search data-md-component=search role=dialog> <label class=md-search__overlay for=__search></label> <div class=md-search__inner role=search> <form class=md-search__form name=search> <input type=text class=md-search__input name=query aria-label=Search placeholder=Search autocapitalize=off autocorrect=off autocomplete=off spellcheck=false data-md-component=search-query required> <label class="md-search__icon md-icon" for=__search> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg> </label> <nav class=md-search__options aria-label=Search> <a href=javascript:void(0) class="md-search__icon md-icon" title=Share aria-label=Share data-clipboard data-clipboard-text data-md-component=search-share tabindex=-1> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7 0-.24-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91 1.61 0 2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08Z"/></svg> </a> <button type=reset class="md-search__icon md-icon" title=Clear aria-label=Clear tabindex=-1> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg> </button> </nav> <div class=md-search__suggest data-md-component=search-suggest></div> </form> <div class=md-search__output> <div class=md-search__scrollwrap data-md-scrollfix> <div class=md-search-result data-md-component=search-result> <div class=md-search-result__meta> Initializing search </div> <ol class=md-search-result__list role=presentation></ol> </div> </div> </div> </div> </div> <div class=md-header__source> <table border=0 style="width: max-content;padding:0px;margin:0px"><tr><td> <a href=https://github.com/asterisk/asterisk title="Go to repository" class=md-source data-md-component=source> <div class="md-source__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 496 512"><!-- Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg> </div> <div class=md-source__repository> Asterisk </div> </a> </td> <td style=font-size:.65rem;line-height:1.2;vertical-align:middle;> <a href=/About-the-Project/Asterisk-Versions>Asterisk Versions</a><br> <a target=_blank href=https://github.com/asterisk/documentation/issues>Report Documentation Issues</a><br> <a target=_blank href=https://github.com/asterisk/documentation>Contribute to the Documentation</a> </td></tr> </table> </div> </nav> </header> <div class=md-container data-md-component=container> <main class=md-main data-md-component=main> <div class="md-main__inner md-grid"> <div class="md-sidebar md-sidebar--primary" data-md-component=sidebar data-md-type=navigation> <div class=md-sidebar__scrollwrap> <div class=md-sidebar__inner> <nav class="md-nav md-nav--primary" aria-label=Navigation data-md-level=0> <label class=md-nav__title for=__drawer> <a href=../../../.. title="Asterisk Documentation" class="md-nav__button md-logo" aria-label="Asterisk Documentation" data-md-component=logo> <img src=../../../../favicon.ico alt=logo> </a> Asterisk Documentation </label> <div class=md-nav__source> <table border=0 style="width: max-content;padding:0px;margin:0px"><tr><td> <a href=https://github.com/asterisk/asterisk title="Go to repository" class=md-source data-md-component=source> <div class="md-source__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 496 512"><!-- Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg> </div> <div class=md-source__repository> Asterisk </div> </a> </td> <td style=font-size:.65rem;line-height:1.2;vertical-align:middle;> <a href=/About-the-Project/Asterisk-Versions>Asterisk Versions</a><br> <a target=_blank href=https://github.com/asterisk/documentation/issues>Report Documentation Issues</a><br> <a target=_blank href=https://github.com/asterisk/documentation>Contribute to the Documentation</a> </td></tr> </table> </div> <ul class=md-nav__list data-md-scrollfix> <li class="md-nav__item md-nav__item--pruned md-nav__item--nested"> <a href=../../../../About-the-Project/ class=md-nav__link> <span class=md-ellipsis> About the Project </span> <span class="md-nav__icon md-icon"></span> </a> </li> <li class="md-nav__item md-nav__item--pruned md-nav__item--nested"> <a href=../../../../Asterisk-Community/ class=md-nav__link> <span class=md-ellipsis> Asterisk Community </span> <span class="md-nav__icon md-icon"></span> </a> </li> <li class="md-nav__item md-nav__item--pruned md-nav__item--nested"> <a href=../../../../Fundamentals/ class=md-nav__link> <span class=md-ellipsis> Fundamentals </span> <span class="md-nav__icon md-icon"></span> </a> </li> <li class="md-nav__item md-nav__item--pruned md-nav__item--nested"> <a href=../../../../Getting-Started/Beginning-Asterisk/ class=md-nav__link> <span class=md-ellipsis> Getting Started </span> <span class="md-nav__icon md-icon"></span> </a> </li> <li class="md-nav__item md-nav__item--pruned md-nav__item--nested"> <a href=../../../../Configuration/ class=md-nav__link> <span class=md-ellipsis> Configuration </span> <span class="md-nav__icon md-icon"></span> </a> </li> <li class="md-nav__item md-nav__item--pruned md-nav__item--nested"> <a href=../../../../Deployment/ class=md-nav__link> <span class=md-ellipsis> Deployment </span> <span class="md-nav__icon md-icon"></span> </a> </li> <li class="md-nav__item md-nav__item--pruned md-nav__item--nested"> <a href=../../../../Operation/ class=md-nav__link> <span class=md-ellipsis> Operation </span> <span class="md-nav__icon md-icon"></span> </a> </li> <li class="md-nav__item md-nav__item--active md-nav__item--nested"> <input class="md-nav__toggle md-toggle " type=checkbox id=__nav_8 checked> <div class="md-nav__link md-nav__container"> <a href=../../../ class="md-nav__link "> <span class=md-ellipsis> Development </span> </a> <label class="md-nav__link " for=__nav_8 id=__nav_8_label tabindex=0> <span class="md-nav__icon md-icon"></span> </label> </div> <nav class=md-nav data-md-level=1 aria-labelledby=__nav_8_label aria-expanded=true> <label class=md-nav__title for=__nav_8> <span class="md-nav__icon md-icon"></span> Development </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../../Asterisk-Bug-Bounties/ class=md-nav__link> <span class=md-ellipsis> Asterisk Bug Bounties </span> </a> </li> <li class=md-nav__item> <a href=../../../Asterisk-C-API-Deprecations/ class=md-nav__link> <span class=md-ellipsis> Asterisk C API Deprecations </span> </a> </li> <li class=md-nav__item> <a href=../../../Asterisk-Module-Deprecations/ class=md-nav__link> <span class=md-ellipsis> Asterisk Module Deprecations </span> </a> </li> <li class=md-nav__item> <a href=../../../Asterisk-Open-Source-Maintainers/ class=md-nav__link> <span class=md-ellipsis> Asterisk Open Source Maintainers </span> </a> </li> <li class=md-nav__item> <a href=../../../Asterisk-Project-Infrastructure-Migration/ class=md-nav__link> <span class=md-ellipsis> Asterisk Project Infrastructure Migration </span> </a> </li> <li class=md-nav__item> <a href=../../../Open-Features-and-Improvements/ class=md-nav__link> <span class=md-ellipsis> Open Features and Improvements </span> </a> </li> <li class="md-nav__item md-nav__item--pruned md-nav__item--nested"> <a href=../../../Asterisk-Project-Infrastructure-Future/ class=md-nav__link> <span class=md-ellipsis> Asterisk Project Infrastructure Future </span> <span class="md-nav__icon md-icon"></span> </a> </li> <li class="md-nav__item md-nav__item--pruned md-nav__item--nested"> <a href=../../../Debugging/ class=md-nav__link> <span class=md-ellipsis> Debugging </span> <span class="md-nav__icon md-icon"></span> </a> </li> <li class="md-nav__item md-nav__item--pruned md-nav__item--nested"> <a href=../../../Policies-and-Procedures/ class=md-nav__link> <span class=md-ellipsis> Policies and Procedures </span> <span class="md-nav__icon md-icon"></span> </a> </li> <li class="md-nav__item md-nav__item--pruned md-nav__item--nested"> <a href=../../../Reference-Information/ class=md-nav__link> <span class=md-ellipsis> Reference Information </span> <span class="md-nav__icon md-icon"></span> </a> </li> <li class="md-nav__item md-nav__item--active md-nav__item--nested"> <input class="md-nav__toggle md-toggle " type=checkbox id=__nav_8_12 checked> <div class="md-nav__link md-nav__container"> <a href=../../ class="md-nav__link "> <span class=md-ellipsis> Roadmap </span> </a> <label class="md-nav__link " for=__nav_8_12 id=__nav_8_12_label tabindex=0> <span class="md-nav__icon md-icon"></span> </label> </div> <nav class=md-nav data-md-level=2 aria-labelledby=__nav_8_12_label aria-expanded=true> <label class=md-nav__title for=__nav_8_12> <span class="md-nav__icon md-icon"></span> Roadmap </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../AstriCon-2012-Presentations/ class=md-nav__link> <span class=md-ellipsis> AstriCon 2012 Presentations </span> </a> </li> <li class=md-nav__item> <a href=../../AstriDevCon-2010/ class=md-nav__link> <span class=md-ellipsis> AstriDevCon 2010 </span> </a> </li> <li class=md-nav__item> <a href=../../AstriDevCon-2011/ class=md-nav__link> <span class=md-ellipsis> AstriDevCon 2011 </span> </a> </li> <li class=md-nav__item> <a href=../../AstriDevCon-2012/ class=md-nav__link> <span class=md-ellipsis> AstriDevCon 2012 </span> </a> </li> <li class=md-nav__item> <a href=../../AstriDevCon-2013/ class=md-nav__link> <span class=md-ellipsis> AstriDevCon 2013 </span> </a> </li> <li class=md-nav__item> <a href=../../AstriDevCon-2014/ class=md-nav__link> <span class=md-ellipsis> AstriDevCon 2014 </span> </a> </li> <li class=md-nav__item> <a href=../../AstriDevCon-2015/ class=md-nav__link> <span class=md-ellipsis> AstriDevCon 2015 </span> </a> </li> <li class=md-nav__item> <a href=../../AstriDevCon-2016/ class=md-nav__link> <span class=md-ellipsis> AstriDevCon 2016 </span> </a> </li> <li class=md-nav__item> <a href=../../AstriDevCon-2017/ class=md-nav__link> <span class=md-ellipsis> AstriDevCon 2017 </span> </a> </li> <li class=md-nav__item> <a href=../../AstriDevCon-2022/ class=md-nav__link> <span class=md-ellipsis> AstriDevCon 2022 </span> </a> </li> <li class=md-nav__item> <a href=../../AstriDevCon-2024/ class=md-nav__link> <span class=md-ellipsis> AstriDevCon 2024 </span> </a> </li> <li class=md-nav__item> <a href=../../AstriDevCon/ class=md-nav__link> <span class=md-ellipsis> AstriDevCon </span> </a> </li> <li class=md-nav__item> <a href=../../Astricon-2021-Presentation-attachments/ class=md-nav__link> <span class=md-ellipsis> Astricon 2021 Presentation attachments </span> </a> </li> <li class=md-nav__item> <a href=../../FOSDEM-2011-Open-Source-Telephony-Devroom/ class=md-nav__link> <span class=md-ellipsis> FOSDEM 2011 Open Source Telephony Devroom </span> </a> </li> <li class=md-nav__item> <a href=../../OpenSIPit-2021/ class=md-nav__link> <span class=md-ellipsis> OpenSIPit 2021 </span> </a> </li> <li class="md-nav__item md-nav__item--pruned md-nav__item--nested"> <a href=../../Asterisk-10-Projects/ class=md-nav__link> <span class=md-ellipsis> Asterisk 10 Projects </span> <span class="md-nav__icon md-icon"></span> </a> </li> <li class="md-nav__item md-nav__item--pruned md-nav__item--nested"> <a href=../../Asterisk-11-Projects/ class=md-nav__link> <span class=md-ellipsis> Asterisk 11 Projects </span> <span class="md-nav__icon md-icon"></span> </a> </li> <li class="md-nav__item md-nav__item--pruned md-nav__item--nested"> <a href=../../Asterisk-12-Projects/ class=md-nav__link> <span class=md-ellipsis> Asterisk 12 Projects </span> <span class="md-nav__icon md-icon"></span> </a> </li> <li class="md-nav__item md-nav__item--pruned md-nav__item--nested"> <a href=../../Asterisk-13-Projects/ class=md-nav__link> <span class=md-ellipsis> Asterisk 13 Projects </span> <span class="md-nav__icon md-icon"></span> </a> </li> <li class="md-nav__item md-nav__item--active md-nav__item--nested"> <input class="md-nav__toggle md-toggle " type=checkbox id=__nav_8_12_21 checked> <div class="md-nav__link md-nav__container"> <a href=../ class="md-nav__link "> <span class=md-ellipsis> Asterisk 14 Projects </span> </a> <label class="md-nav__link " for=__nav_8_12_21 id=__nav_8_12_21_label tabindex=0> <span class="md-nav__icon md-icon"></span> </label> </div> <nav class=md-nav data-md-level=3 aria-labelledby=__nav_8_12_21_label aria-expanded=true> <label class=md-nav__title for=__nav_8_12_21> <span class="md-nav__icon md-icon"></span> Asterisk 14 Projects </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../ARI-Feature-Wish-list/ class=md-nav__link> <span class=md-ellipsis> ARI Feature Wish-list </span> </a> </li> <li class=md-nav__item> <a href=../Asterisk-14-Project-ARI-and-generic-Text-To-Speech/ class=md-nav__link> <span class=md-ellipsis> Asterisk 14 Project - ARI and generic Text To Speech </span> </a> </li> <li class=md-nav__item> <a href=../Asterisk-14-Project-Media-Playlists/ class=md-nav__link> <span class=md-ellipsis> Asterisk 14 Project - Media Playlists </span> </a> </li> <li class=md-nav__item> <a href=../Asterisk-14-Project-URI-Media-Playback/ class=md-nav__link> <span class=md-ellipsis> Asterisk 14 Project - URI Media Playback </span> </a> </li> <li class="md-nav__item md-nav__item--active"> <input class="md-nav__toggle md-toggle" type=checkbox id=__toc> <a href=./ class="md-nav__link md-nav__link--active"> <span class=md-ellipsis> Asterisk Beacon Module </span> </a> </li> <li class=md-nav__item> <a href=../Git-Migration/ class=md-nav__link> <span class=md-ellipsis> Git Migration </span> </a> </li> <li class=md-nav__item> <a href=../Module-Loader-Ideas/ class=md-nav__link> <span class=md-ellipsis> Module Loader Ideas </span> </a> </li> <li class="md-nav__item md-nav__item--pruned md-nav__item--nested"> <a href=../Asterisk-DNS-API/ class=md-nav__link> <span class=md-ellipsis> Asterisk DNS API </span> <span class="md-nav__icon md-icon"></span> </a> </li> <li class="md-nav__item md-nav__item--pruned md-nav__item--nested"> <a href=../RTP-engine-replacement/ class=md-nav__link> <span class=md-ellipsis> RTP engine replacement </span> <span class="md-nav__icon md-icon"></span> </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--pruned md-nav__item--nested"> <a href=../../Asterisk-15-Projects/ class=md-nav__link> <span class=md-ellipsis> Asterisk 15 Projects </span> <span class="md-nav__icon md-icon"></span> </a> </li> <li class="md-nav__item md-nav__item--pruned md-nav__item--nested"> <a href=../../Asterisk-16-Projects/ class=md-nav__link> <span class=md-ellipsis> Asterisk 16 Projects </span> <span class="md-nav__icon md-icon"></span> </a> </li> <li class="md-nav__item md-nav__item--pruned md-nav__item--nested"> <a href=../../Asterisk-18-Projects/ class=md-nav__link> <span class=md-ellipsis> Asterisk 18 Projects </span> <span class="md-nav__icon md-icon"></span> </a> </li> <li class="md-nav__item md-nav__item--pruned md-nav__item--nested"> <a href=../../Asterisk-19-Projects/ class=md-nav__link> <span class=md-ellipsis> Asterisk 19 Projects </span> <span class="md-nav__icon md-icon"></span> </a> </li> <li class="md-nav__item md-nav__item--pruned md-nav__item--nested"> <a href=../../AstriDevCon-2018/ class=md-nav__link> <span class=md-ellipsis> AstriDevCon 2018 </span> <span class="md-nav__icon md-icon"></span> </a> </li> <li class="md-nav__item md-nav__item--pruned md-nav__item--nested"> <a href=../../AstriDevCon-2019/ class=md-nav__link> <span class=md-ellipsis> AstriDevCon 2019 </span> <span class="md-nav__icon md-icon"></span> </a> </li> <li class="md-nav__item md-nav__item--pruned md-nav__item--nested"> <a href=../../AstriDevCon-2020/ class=md-nav__link> <span class=md-ellipsis> AstriDevCon 2020 </span> <span class="md-nav__icon md-icon"></span> </a> </li> <li class="md-nav__item md-nav__item--pruned md-nav__item--nested"> <a href=../../AstriDevCon-2021/ class=md-nav__link> <span class=md-ellipsis> AstriDevCon 2021 </span> <span class="md-nav__icon md-icon"></span> </a> </li> <li class="md-nav__item md-nav__item--pruned md-nav__item--nested"> <a href=../../Future-Potential-Project-Thoughts/ class=md-nav__link> <span class=md-ellipsis> Future Potential Project Thoughts </span> <span class="md-nav__icon md-icon"></span> </a> </li> </ul> </nav> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--pruned md-nav__item--nested"> <a href=../../../../Latest_API/ class=md-nav__link> <span class=md-ellipsis> Latest API </span> <span class="md-nav__icon md-icon"></span> </a> </li> <li class="md-nav__item md-nav__item--pruned md-nav__item--nested"> <a href=../../../../Asterisk_16_Documentation/ class=md-nav__link> <span class=md-ellipsis> Asterisk 16 Documentation </span> <span class="md-nav__icon md-icon"></span> </a> </li> <li class="md-nav__item md-nav__item--pruned md-nav__item--nested"> <a href=../../../../Asterisk_18_Documentation/ class=md-nav__link> <span class=md-ellipsis> Asterisk 18 Documentation </span> <span class="md-nav__icon md-icon"></span> </a> </li> <li class="md-nav__item md-nav__item--pruned md-nav__item--nested"> <a href=../../../../Asterisk_19_Documentation/ class=md-nav__link> <span class=md-ellipsis> Asterisk 19 Documentation </span> <span class="md-nav__icon md-icon"></span> </a> </li> <li class="md-nav__item md-nav__item--pruned md-nav__item--nested"> <a href=../../../../Asterisk_20_Documentation/ class=md-nav__link> <span class=md-ellipsis> Asterisk 20 Documentation </span> <span class="md-nav__icon md-icon"></span> </a> </li> <li class="md-nav__item md-nav__item--pruned md-nav__item--nested"> <a href=../../../../Asterisk_21_Documentation/ class=md-nav__link> <span class=md-ellipsis> Asterisk 21 Documentation </span> <span class="md-nav__icon md-icon"></span> </a> </li> <li class="md-nav__item md-nav__item--pruned md-nav__item--nested"> <a href=../../../../Asterisk_22_Documentation/ class=md-nav__link> <span class=md-ellipsis> Asterisk 22 Documentation </span> <span class="md-nav__icon md-icon"></span> </a> </li> <li class="md-nav__item md-nav__item--pruned md-nav__item--nested"> <a href=../../../../Certified-Asterisk_18.9_Documentation/ class=md-nav__link> <span class=md-ellipsis> Certified Asterisk 18.9 Documentation </span> <span class="md-nav__icon md-icon"></span> </a> </li> <li class="md-nav__item md-nav__item--pruned md-nav__item--nested"> <a href=../../../../Certified-Asterisk_20.7_Documentation/ class=md-nav__link> <span class=md-ellipsis> Certified Asterisk 20.7 Documentation </span> <span class="md-nav__icon md-icon"></span> </a> </li> <li class="md-nav__item md-nav__item--pruned md-nav__item--nested"> <a href=../../../../Test-Suite-Documentation/ class=md-nav__link> <span class=md-ellipsis> Test Suite Documentation </span> <span class="md-nav__icon md-icon"></span> </a> </li> <li class="md-nav__item md-nav__item--pruned md-nav__item--nested"> <a href=../../../../Historical-Documentation/ class=md-nav__link> <span class=md-ellipsis> Historical Documentation </span> <span class="md-nav__icon md-icon"></span> </a> </li> </ul> </nav> </div> </div> </div> <div class="md-sidebar md-sidebar--secondary" data-md-component=sidebar data-md-type=toc> <div class=md-sidebar__scrollwrap> <div class=md-sidebar__inner> <nav class="md-nav md-nav--secondary" aria-label="Table of contents"> </nav> </div> </div> </div> <div class=md-content data-md-component=content> <article class="md-content__inner md-typeset"> <h1 id=background>Background<a class=headerlink href=#background title="Permanent link">&para;</a></h1> <p>The Asterisk project has been downloaded millions of times, in hundreds of different versions and distributions. A subset of this large number of downloads represents the number of deployed and operational Asterisk instances. Certain specifics of these operational systems are invaluable bits of information for developers maintaining the Asterisk project. With knowledge of these specifics, the Asterisk development team can better prioritize its efforts towards new feature development, bug-fixes and software releases.</p> <h1 id=assumptions>Assumptions<a class=headerlink href=#assumptions title="Permanent link">&para;</a></h1> <ol> <li>The module in question will be called <code>res_beacon</code>.</li> <li>The module will be targeted at Asterisk versions 11, 13, and master. Some implementation differences will have to occur in the various versions.</li> <li>All communication will occur using encrypted transports.</li> <li>The communication protocol will be backwards compatible between all versions of Asterisk. Things may be added to the protocol between Asterisk versions, but not removed. On This PageProtocol ========</li> </ol> <p>Asterisk will communicate with the server using <code>HTTPS</code> to a REST API. Due to the sensitive nature of the data being transmitted, HTTP will not be supported. The specifics of the REST API will be published using Swagger such that other implementations may be developed for personal use.</p> <h2 id=user-authentication>User Authentication<a class=headerlink href=#user-authentication title="Permanent link">&para;</a></h2> <p>Since the purpose of Beacon is to collect anonymous usage statistics, no authentication will be provided. Asterisk systems will initially request a server ID from the API. The server ID maps to a resource that will be used for all subsequent requests.</p> <h3 id=spoofing>Spoofing<a class=headerlink href=#spoofing title="Permanent link">&para;</a></h3> <p>In order to limit spoofing, the server will return a token for all accepted requests to a server. Any subsequent requests to that resource must present the token in the request. If a subsequent request fails to provide the token, the request is rejected. Tokens expire after 48 hours, at which point, a request does not have to provide a token. If a request does provide a token that is expired - and no token is required at that point - the request should be accepted and a new token granted. Once a request is made without a token (and no token is expected), a new token is issued for subsequent requests.</p> <p>So long as Asterisk's transmission of data occurs faster than once every 48 hours, a malicious entity will not be able to spoof a resource. If a system is down then a remote system can 'take over' a system, and the legitimate system's attempts will be rejected. If that occurs... oh well. It is anonymous data.</p> <h3 id=spamming>Spamming<a class=headerlink href=#spamming title="Permanent link">&para;</a></h3> <p>In order to prevent spamming with false data, the server should rate limit inbound requests.</p> <h2 id=swagger-definition>Swagger Definition<a class=headerlink href=#swagger-definition title="Permanent link">&para;</a></h2> <p><div class="language-json highlight"><table class=highlighttable><tr><th colspan=2 class=filename><span class=filename>resources.json</span></th></tr><tr><td class=linenos><div class=linenodiv><pre><span></span><span class=normal><a href=#__codelineno-0-1> 1</a></span>
+<span class=normal><a href=#__codelineno-0-2> 2</a></span>
+<span class=normal><a href=#__codelineno-0-3> 3</a></span>
+<span class=normal><a href=#__codelineno-0-4> 4</a></span>
+<span class=normal><a href=#__codelineno-0-5> 5</a></span>
+<span class=normal><a href=#__codelineno-0-6> 6</a></span>
+<span class=normal><a href=#__codelineno-0-7> 7</a></span>
+<span class=normal><a href=#__codelineno-0-8> 8</a></span>
+<span class=normal><a href=#__codelineno-0-9> 9</a></span>
+<span class=normal><a href=#__codelineno-0-10>10</a></span></pre></div></td><td class=code><div><pre><span></span><code><span id=__span-0-1><a id=__codelineno-0-1 name=__codelineno-0-1></a><span class=p>{</span>
+</span><span id=__span-0-2><a id=__codelineno-0-2 name=__codelineno-0-2></a><span class=w> </span><span class=nt>&quot;apiVersion&quot;</span><span class=p>:</span><span class=w> </span><span class=s2>&quot;1.0.0&quot;</span><span class=p>,</span>
+</span><span id=__span-0-3><a id=__codelineno-0-3 name=__codelineno-0-3></a><span class=w> </span><span class=nt>&quot;swaggerVersion&quot;</span><span class=p>:</span><span class=w> </span><span class=s2>&quot;1.2&quot;</span><span class=p>,</span>
+</span><span id=__span-0-4><a id=__codelineno-0-4 name=__codelineno-0-4></a><span class=w> </span><span class=nt>&quot;apis&quot;</span><span class=p>:</span><span class=w> </span><span class=p>[</span>
+</span><span id=__span-0-5><a id=__codelineno-0-5 name=__codelineno-0-5></a><span class=w> </span><span class=p>{</span>
+</span><span id=__span-0-6><a id=__codelineno-0-6 name=__codelineno-0-6></a><span class=w> </span><span class=nt>&quot;path&quot;</span><span class=p>:</span><span class=w> </span><span class=s2>&quot;/servers&quot;</span><span class=p>,</span>
+</span><span id=__span-0-7><a id=__codelineno-0-7 name=__codelineno-0-7></a><span class=w> </span><span class=nt>&quot;description&quot;</span><span class=p>:</span><span class=w> </span><span class=s2>&quot;Asterisk servers&quot;</span>
+</span><span id=__span-0-8><a id=__codelineno-0-8 name=__codelineno-0-8></a><span class=w> </span><span class=p>}</span>
+</span><span id=__span-0-9><a id=__codelineno-0-9 name=__codelineno-0-9></a><span class=w> </span><span class=p>]</span>
+</span><span id=__span-0-10><a id=__codelineno-0-10 name=__codelineno-0-10></a><span class=p>}</span>
+</span></code></pre></div></td></tr></table></div> <div class="language-json highlight"><table class=highlighttable><tr><th colspan=2 class=filename><span class=filename>beacon.json</span></th></tr><tr><td class=linenos><div class=linenodiv><pre><span></span><span class=normal><a href=#__codelineno-1-1>  1</a></span>
+<span class=normal><a href=#__codelineno-1-2>  2</a></span>
+<span class=normal><a href=#__codelineno-1-3>  3</a></span>
+<span class=normal><a href=#__codelineno-1-4>  4</a></span>
+<span class=normal><a href=#__codelineno-1-5>  5</a></span>
+<span class=normal><a href=#__codelineno-1-6>  6</a></span>
+<span class=normal><a href=#__codelineno-1-7>  7</a></span>
+<span class=normal><a href=#__codelineno-1-8>  8</a></span>
+<span class=normal><a href=#__codelineno-1-9>  9</a></span>
+<span class=normal><a href=#__codelineno-1-10> 10</a></span>
+<span class=normal><a href=#__codelineno-1-11> 11</a></span>
+<span class=normal><a href=#__codelineno-1-12> 12</a></span>
+<span class=normal><a href=#__codelineno-1-13> 13</a></span>
+<span class=normal><a href=#__codelineno-1-14> 14</a></span>
+<span class=normal><a href=#__codelineno-1-15> 15</a></span>
+<span class=normal><a href=#__codelineno-1-16> 16</a></span>
+<span class=normal><a href=#__codelineno-1-17> 17</a></span>
+<span class=normal><a href=#__codelineno-1-18> 18</a></span>
+<span class=normal><a href=#__codelineno-1-19> 19</a></span>
+<span class=normal><a href=#__codelineno-1-20> 20</a></span>
+<span class=normal><a href=#__codelineno-1-21> 21</a></span>
+<span class=normal><a href=#__codelineno-1-22> 22</a></span>
+<span class=normal><a href=#__codelineno-1-23> 23</a></span>
+<span class=normal><a href=#__codelineno-1-24> 24</a></span>
+<span class=normal><a href=#__codelineno-1-25> 25</a></span>
+<span class=normal><a href=#__codelineno-1-26> 26</a></span>
+<span class=normal><a href=#__codelineno-1-27> 27</a></span>
+<span class=normal><a href=#__codelineno-1-28> 28</a></span>
+<span class=normal><a href=#__codelineno-1-29> 29</a></span>
+<span class=normal><a href=#__codelineno-1-30> 30</a></span>
+<span class=normal><a href=#__codelineno-1-31> 31</a></span>
+<span class=normal><a href=#__codelineno-1-32> 32</a></span>
+<span class=normal><a href=#__codelineno-1-33> 33</a></span>
+<span class=normal><a href=#__codelineno-1-34> 34</a></span>
+<span class=normal><a href=#__codelineno-1-35> 35</a></span>
+<span class=normal><a href=#__codelineno-1-36> 36</a></span>
+<span class=normal><a href=#__codelineno-1-37> 37</a></span>
+<span class=normal><a href=#__codelineno-1-38> 38</a></span>
+<span class=normal><a href=#__codelineno-1-39> 39</a></span>
+<span class=normal><a href=#__codelineno-1-40> 40</a></span>
+<span class=normal><a href=#__codelineno-1-41> 41</a></span>
+<span class=normal><a href=#__codelineno-1-42> 42</a></span>
+<span class=normal><a href=#__codelineno-1-43> 43</a></span>
+<span class=normal><a href=#__codelineno-1-44> 44</a></span>
+<span class=normal><a href=#__codelineno-1-45> 45</a></span>
+<span class=normal><a href=#__codelineno-1-46> 46</a></span>
+<span class=normal><a href=#__codelineno-1-47> 47</a></span>
+<span class=normal><a href=#__codelineno-1-48> 48</a></span>
+<span class=normal><a href=#__codelineno-1-49> 49</a></span>
+<span class=normal><a href=#__codelineno-1-50> 50</a></span>
+<span class=normal><a href=#__codelineno-1-51> 51</a></span>
+<span class=normal><a href=#__codelineno-1-52> 52</a></span>
+<span class=normal><a href=#__codelineno-1-53> 53</a></span>
+<span class=normal><a href=#__codelineno-1-54> 54</a></span>
+<span class=normal><a href=#__codelineno-1-55> 55</a></span>
+<span class=normal><a href=#__codelineno-1-56> 56</a></span>
+<span class=normal><a href=#__codelineno-1-57> 57</a></span>
+<span class=normal><a href=#__codelineno-1-58> 58</a></span>
+<span class=normal><a href=#__codelineno-1-59> 59</a></span>
+<span class=normal><a href=#__codelineno-1-60> 60</a></span>
+<span class=normal><a href=#__codelineno-1-61> 61</a></span>
+<span class=normal><a href=#__codelineno-1-62> 62</a></span>
+<span class=normal><a href=#__codelineno-1-63> 63</a></span>
+<span class=normal><a href=#__codelineno-1-64> 64</a></span>
+<span class=normal><a href=#__codelineno-1-65> 65</a></span>
+<span class=normal><a href=#__codelineno-1-66> 66</a></span>
+<span class=normal><a href=#__codelineno-1-67> 67</a></span>
+<span class=normal><a href=#__codelineno-1-68> 68</a></span>
+<span class=normal><a href=#__codelineno-1-69> 69</a></span>
+<span class=normal><a href=#__codelineno-1-70> 70</a></span>
+<span class=normal><a href=#__codelineno-1-71> 71</a></span>
+<span class=normal><a href=#__codelineno-1-72> 72</a></span>
+<span class=normal><a href=#__codelineno-1-73> 73</a></span>
+<span class=normal><a href=#__codelineno-1-74> 74</a></span>
+<span class=normal><a href=#__codelineno-1-75> 75</a></span>
+<span class=normal><a href=#__codelineno-1-76> 76</a></span>
+<span class=normal><a href=#__codelineno-1-77> 77</a></span>
+<span class=normal><a href=#__codelineno-1-78> 78</a></span>
+<span class=normal><a href=#__codelineno-1-79> 79</a></span>
+<span class=normal><a href=#__codelineno-1-80> 80</a></span>
+<span class=normal><a href=#__codelineno-1-81> 81</a></span>
+<span class=normal><a href=#__codelineno-1-82> 82</a></span>
+<span class=normal><a href=#__codelineno-1-83> 83</a></span>
+<span class=normal><a href=#__codelineno-1-84> 84</a></span>
+<span class=normal><a href=#__codelineno-1-85> 85</a></span>
+<span class=normal><a href=#__codelineno-1-86> 86</a></span>
+<span class=normal><a href=#__codelineno-1-87> 87</a></span>
+<span class=normal><a href=#__codelineno-1-88> 88</a></span>
+<span class=normal><a href=#__codelineno-1-89> 89</a></span>
+<span class=normal><a href=#__codelineno-1-90> 90</a></span>
+<span class=normal><a href=#__codelineno-1-91> 91</a></span>
+<span class=normal><a href=#__codelineno-1-92> 92</a></span>
+<span class=normal><a href=#__codelineno-1-93> 93</a></span>
+<span class=normal><a href=#__codelineno-1-94> 94</a></span>
+<span class=normal><a href=#__codelineno-1-95> 95</a></span>
+<span class=normal><a href=#__codelineno-1-96> 96</a></span>
+<span class=normal><a href=#__codelineno-1-97> 97</a></span>
+<span class=normal><a href=#__codelineno-1-98> 98</a></span>
+<span class=normal><a href=#__codelineno-1-99> 99</a></span>
+<span class=normal><a href=#__codelineno-1-100>100</a></span>
+<span class=normal><a href=#__codelineno-1-101>101</a></span>
+<span class=normal><a href=#__codelineno-1-102>102</a></span>
+<span class=normal><a href=#__codelineno-1-103>103</a></span>
+<span class=normal><a href=#__codelineno-1-104>104</a></span>
+<span class=normal><a href=#__codelineno-1-105>105</a></span>
+<span class=normal><a href=#__codelineno-1-106>106</a></span>
+<span class=normal><a href=#__codelineno-1-107>107</a></span>
+<span class=normal><a href=#__codelineno-1-108>108</a></span>
+<span class=normal><a href=#__codelineno-1-109>109</a></span>
+<span class=normal><a href=#__codelineno-1-110>110</a></span>
+<span class=normal><a href=#__codelineno-1-111>111</a></span>
+<span class=normal><a href=#__codelineno-1-112>112</a></span>
+<span class=normal><a href=#__codelineno-1-113>113</a></span>
+<span class=normal><a href=#__codelineno-1-114>114</a></span>
+<span class=normal><a href=#__codelineno-1-115>115</a></span>
+<span class=normal><a href=#__codelineno-1-116>116</a></span>
+<span class=normal><a href=#__codelineno-1-117>117</a></span>
+<span class=normal><a href=#__codelineno-1-118>118</a></span>
+<span class=normal><a href=#__codelineno-1-119>119</a></span>
+<span class=normal><a href=#__codelineno-1-120>120</a></span>
+<span class=normal><a href=#__codelineno-1-121>121</a></span>
+<span class=normal><a href=#__codelineno-1-122>122</a></span>
+<span class=normal><a href=#__codelineno-1-123>123</a></span>
+<span class=normal><a href=#__codelineno-1-124>124</a></span>
+<span class=normal><a href=#__codelineno-1-125>125</a></span>
+<span class=normal><a href=#__codelineno-1-126>126</a></span>
+<span class=normal><a href=#__codelineno-1-127>127</a></span>
+<span class=normal><a href=#__codelineno-1-128>128</a></span>
+<span class=normal><a href=#__codelineno-1-129>129</a></span>
+<span class=normal><a href=#__codelineno-1-130>130</a></span>
+<span class=normal><a href=#__codelineno-1-131>131</a></span>
+<span class=normal><a href=#__codelineno-1-132>132</a></span>
+<span class=normal><a href=#__codelineno-1-133>133</a></span>
+<span class=normal><a href=#__codelineno-1-134>134</a></span>
+<span class=normal><a href=#__codelineno-1-135>135</a></span>
+<span class=normal><a href=#__codelineno-1-136>136</a></span>
+<span class=normal><a href=#__codelineno-1-137>137</a></span>
+<span class=normal><a href=#__codelineno-1-138>138</a></span>
+<span class=normal><a href=#__codelineno-1-139>139</a></span>
+<span class=normal><a href=#__codelineno-1-140>140</a></span>
+<span class=normal><a href=#__codelineno-1-141>141</a></span>
+<span class=normal><a href=#__codelineno-1-142>142</a></span>
+<span class=normal><a href=#__codelineno-1-143>143</a></span>
+<span class=normal><a href=#__codelineno-1-144>144</a></span>
+<span class=normal><a href=#__codelineno-1-145>145</a></span>
+<span class=normal><a href=#__codelineno-1-146>146</a></span>
+<span class=normal><a href=#__codelineno-1-147>147</a></span>
+<span class=normal><a href=#__codelineno-1-148>148</a></span>
+<span class=normal><a href=#__codelineno-1-149>149</a></span>
+<span class=normal><a href=#__codelineno-1-150>150</a></span>
+<span class=normal><a href=#__codelineno-1-151>151</a></span>
+<span class=normal><a href=#__codelineno-1-152>152</a></span>
+<span class=normal><a href=#__codelineno-1-153>153</a></span>
+<span class=normal><a href=#__codelineno-1-154>154</a></span>
+<span class=normal><a href=#__codelineno-1-155>155</a></span>
+<span class=normal><a href=#__codelineno-1-156>156</a></span>
+<span class=normal><a href=#__codelineno-1-157>157</a></span>
+<span class=normal><a href=#__codelineno-1-158>158</a></span>
+<span class=normal><a href=#__codelineno-1-159>159</a></span>
+<span class=normal><a href=#__codelineno-1-160>160</a></span>
+<span class=normal><a href=#__codelineno-1-161>161</a></span>
+<span class=normal><a href=#__codelineno-1-162>162</a></span>
+<span class=normal><a href=#__codelineno-1-163>163</a></span>
+<span class=normal><a href=#__codelineno-1-164>164</a></span>
+<span class=normal><a href=#__codelineno-1-165>165</a></span>
+<span class=normal><a href=#__codelineno-1-166>166</a></span>
+<span class=normal><a href=#__codelineno-1-167>167</a></span>
+<span class=normal><a href=#__codelineno-1-168>168</a></span>
+<span class=normal><a href=#__codelineno-1-169>169</a></span>
+<span class=normal><a href=#__codelineno-1-170>170</a></span>
+<span class=normal><a href=#__codelineno-1-171>171</a></span>
+<span class=normal><a href=#__codelineno-1-172>172</a></span>
+<span class=normal><a href=#__codelineno-1-173>173</a></span>
+<span class=normal><a href=#__codelineno-1-174>174</a></span>
+<span class=normal><a href=#__codelineno-1-175>175</a></span>
+<span class=normal><a href=#__codelineno-1-176>176</a></span>
+<span class=normal><a href=#__codelineno-1-177>177</a></span>
+<span class=normal><a href=#__codelineno-1-178>178</a></span>
+<span class=normal><a href=#__codelineno-1-179>179</a></span>
+<span class=normal><a href=#__codelineno-1-180>180</a></span>
+<span class=normal><a href=#__codelineno-1-181>181</a></span>
+<span class=normal><a href=#__codelineno-1-182>182</a></span>
+<span class=normal><a href=#__codelineno-1-183>183</a></span>
+<span class=normal><a href=#__codelineno-1-184>184</a></span>
+<span class=normal><a href=#__codelineno-1-185>185</a></span>
+<span class=normal><a href=#__codelineno-1-186>186</a></span>
+<span class=normal><a href=#__codelineno-1-187>187</a></span>
+<span class=normal><a href=#__codelineno-1-188>188</a></span>
+<span class=normal><a href=#__codelineno-1-189>189</a></span>
+<span class=normal><a href=#__codelineno-1-190>190</a></span>
+<span class=normal><a href=#__codelineno-1-191>191</a></span>
+<span class=normal><a href=#__codelineno-1-192>192</a></span>
+<span class=normal><a href=#__codelineno-1-193>193</a></span>
+<span class=normal><a href=#__codelineno-1-194>194</a></span>
+<span class=normal><a href=#__codelineno-1-195>195</a></span>
+<span class=normal><a href=#__codelineno-1-196>196</a></span>
+<span class=normal><a href=#__codelineno-1-197>197</a></span>
+<span class=normal><a href=#__codelineno-1-198>198</a></span>
+<span class=normal><a href=#__codelineno-1-199>199</a></span>
+<span class=normal><a href=#__codelineno-1-200>200</a></span>
+<span class=normal><a href=#__codelineno-1-201>201</a></span>
+<span class=normal><a href=#__codelineno-1-202>202</a></span>
+<span class=normal><a href=#__codelineno-1-203>203</a></span>
+<span class=normal><a href=#__codelineno-1-204>204</a></span>
+<span class=normal><a href=#__codelineno-1-205>205</a></span>
+<span class=normal><a href=#__codelineno-1-206>206</a></span>
+<span class=normal><a href=#__codelineno-1-207>207</a></span>
+<span class=normal><a href=#__codelineno-1-208>208</a></span>
+<span class=normal><a href=#__codelineno-1-209>209</a></span>
+<span class=normal><a href=#__codelineno-1-210>210</a></span>
+<span class=normal><a href=#__codelineno-1-211>211</a></span>
+<span class=normal><a href=#__codelineno-1-212>212</a></span>
+<span class=normal><a href=#__codelineno-1-213>213</a></span>
+<span class=normal><a href=#__codelineno-1-214>214</a></span>
+<span class=normal><a href=#__codelineno-1-215>215</a></span>
+<span class=normal><a href=#__codelineno-1-216>216</a></span>
+<span class=normal><a href=#__codelineno-1-217>217</a></span>
+<span class=normal><a href=#__codelineno-1-218>218</a></span>
+<span class=normal><a href=#__codelineno-1-219>219</a></span>
+<span class=normal><a href=#__codelineno-1-220>220</a></span>
+<span class=normal><a href=#__codelineno-1-221>221</a></span>
+<span class=normal><a href=#__codelineno-1-222>222</a></span>
+<span class=normal><a href=#__codelineno-1-223>223</a></span>
+<span class=normal><a href=#__codelineno-1-224>224</a></span>
+<span class=normal><a href=#__codelineno-1-225>225</a></span>
+<span class=normal><a href=#__codelineno-1-226>226</a></span>
+<span class=normal><a href=#__codelineno-1-227>227</a></span>
+<span class=normal><a href=#__codelineno-1-228>228</a></span>
+<span class=normal><a href=#__codelineno-1-229>229</a></span>
+<span class=normal><a href=#__codelineno-1-230>230</a></span>
+<span class=normal><a href=#__codelineno-1-231>231</a></span>
+<span class=normal><a href=#__codelineno-1-232>232</a></span>
+<span class=normal><a href=#__codelineno-1-233>233</a></span>
+<span class=normal><a href=#__codelineno-1-234>234</a></span>
+<span class=normal><a href=#__codelineno-1-235>235</a></span>
+<span class=normal><a href=#__codelineno-1-236>236</a></span>
+<span class=normal><a href=#__codelineno-1-237>237</a></span>
+<span class=normal><a href=#__codelineno-1-238>238</a></span>
+<span class=normal><a href=#__codelineno-1-239>239</a></span>
+<span class=normal><a href=#__codelineno-1-240>240</a></span>
+<span class=normal><a href=#__codelineno-1-241>241</a></span>
+<span class=normal><a href=#__codelineno-1-242>242</a></span>
+<span class=normal><a href=#__codelineno-1-243>243</a></span>
+<span class=normal><a href=#__codelineno-1-244>244</a></span>
+<span class=normal><a href=#__codelineno-1-245>245</a></span>
+<span class=normal><a href=#__codelineno-1-246>246</a></span>
+<span class=normal><a href=#__codelineno-1-247>247</a></span>
+<span class=normal><a href=#__codelineno-1-248>248</a></span>
+<span class=normal><a href=#__codelineno-1-249>249</a></span>
+<span class=normal><a href=#__codelineno-1-250>250</a></span>
+<span class=normal><a href=#__codelineno-1-251>251</a></span>
+<span class=normal><a href=#__codelineno-1-252>252</a></span>
+<span class=normal><a href=#__codelineno-1-253>253</a></span>
+<span class=normal><a href=#__codelineno-1-254>254</a></span>
+<span class=normal><a href=#__codelineno-1-255>255</a></span>
+<span class=normal><a href=#__codelineno-1-256>256</a></span>
+<span class=normal><a href=#__codelineno-1-257>257</a></span>
+<span class=normal><a href=#__codelineno-1-258>258</a></span>
+<span class=normal><a href=#__codelineno-1-259>259</a></span>
+<span class=normal><a href=#__codelineno-1-260>260</a></span>
+<span class=normal><a href=#__codelineno-1-261>261</a></span>
+<span class=normal><a href=#__codelineno-1-262>262</a></span>
+<span class=normal><a href=#__codelineno-1-263>263</a></span>
+<span class=normal><a href=#__codelineno-1-264>264</a></span>
+<span class=normal><a href=#__codelineno-1-265>265</a></span>
+<span class=normal><a href=#__codelineno-1-266>266</a></span>
+<span class=normal><a href=#__codelineno-1-267>267</a></span>
+<span class=normal><a href=#__codelineno-1-268>268</a></span>
+<span class=normal><a href=#__codelineno-1-269>269</a></span>
+<span class=normal><a href=#__codelineno-1-270>270</a></span>
+<span class=normal><a href=#__codelineno-1-271>271</a></span>
+<span class=normal><a href=#__codelineno-1-272>272</a></span>
+<span class=normal><a href=#__codelineno-1-273>273</a></span>
+<span class=normal><a href=#__codelineno-1-274>274</a></span>
+<span class=normal><a href=#__codelineno-1-275>275</a></span>
+<span class=normal><a href=#__codelineno-1-276>276</a></span>
+<span class=normal><a href=#__codelineno-1-277>277</a></span>
+<span class=normal><a href=#__codelineno-1-278>278</a></span>
+<span class=normal><a href=#__codelineno-1-279>279</a></span>
+<span class=normal><a href=#__codelineno-1-280>280</a></span>
+<span class=normal><a href=#__codelineno-1-281>281</a></span>
+<span class=normal><a href=#__codelineno-1-282>282</a></span>
+<span class=normal><a href=#__codelineno-1-283>283</a></span>
+<span class=normal><a href=#__codelineno-1-284>284</a></span>
+<span class=normal><a href=#__codelineno-1-285>285</a></span>
+<span class=normal><a href=#__codelineno-1-286>286</a></span></pre></div></td><td class=code><div><pre><span></span><code><span id=__span-1-1><a id=__codelineno-1-1 name=__codelineno-1-1></a><span class=p>{</span>
+</span><span id=__span-1-2><a id=__codelineno-1-2 name=__codelineno-1-2></a><span class=w> </span><span class=nt>&quot;apiVersion&quot;</span><span class=p>:</span><span class=w> </span><span class=s2>&quot;1.0.0&quot;</span><span class=p>,</span>
+</span><span id=__span-1-3><a id=__codelineno-1-3 name=__codelineno-1-3></a><span class=w> </span><span class=nt>&quot;swaggerVersion&quot;</span><span class=p>:</span><span class=w> </span><span class=s2>&quot;1.2&quot;</span><span class=p>,</span>
+</span><span id=__span-1-4><a id=__codelineno-1-4 name=__codelineno-1-4></a><span class=w> </span><span class=nt>&quot;basePath&quot;</span><span class=p>:</span><span class=w> </span><span class=nt>&quot;https://beacon.asterisk.org:443&quot;</span>
+</span><span id=__span-1-5><a id=__codelineno-1-5 name=__codelineno-1-5></a><span class=w> </span><span class=nt>&quot;resourcePath&quot;</span><span class=p>:</span><span class=w> </span><span class=nt>&quot;/servers&quot;</span>
+</span><span id=__span-1-6><a id=__codelineno-1-6 name=__codelineno-1-6></a><span class=w> </span><span class=nt>&quot;apis&quot;</span><span class=p>:</span><span class=w> </span><span class=p>[</span>
+</span><span id=__span-1-7><a id=__codelineno-1-7 name=__codelineno-1-7></a><span class=w> </span><span class=p>{</span>
+</span><span id=__span-1-8><a id=__codelineno-1-8 name=__codelineno-1-8></a><span class=w> </span><span class=nt>&quot;path&quot;</span><span class=p>:</span><span class=w> </span><span class=nt>&quot;/servers&quot;</span>
+</span><span id=__span-1-9><a id=__codelineno-1-9 name=__codelineno-1-9></a><span class=w> </span><span class=nt>&quot;operations&quot;</span><span class=p>:</span><span class=w> </span><span class=p>[</span>
+</span><span id=__span-1-10><a id=__codelineno-1-10 name=__codelineno-1-10></a><span class=w> </span><span class=p>{</span>
+</span><span id=__span-1-11><a id=__codelineno-1-11 name=__codelineno-1-11></a><span class=w> </span><span class=nt>&quot;method&quot;</span><span class=p>:</span><span class=w> </span><span class=s2>&quot;POST&quot;</span><span class=p>,</span>
+</span><span id=__span-1-12><a id=__codelineno-1-12 name=__codelineno-1-12></a><span class=w> </span><span class=nt>&quot;summary&quot;</span><span class=p>:</span><span class=w> </span><span class=s2>&quot;Request a new server ID&quot;</span><span class=p>,</span>
+</span><span id=__span-1-13><a id=__codelineno-1-13 name=__codelineno-1-13></a><span class=w> </span><span class=nt>&quot;notes&quot;</span><span class=p>:</span><span class=w> </span><span class=nt>&quot;This allocates a new server token and returns it to the user for subsequent requests.&quot;</span>
+</span><span id=__span-1-14><a id=__codelineno-1-14 name=__codelineno-1-14></a><span class=w> </span><span class=nt>&quot;nickname&quot;</span><span class=p>:</span><span class=w> </span><span class=s2>&quot;requestServer&quot;</span><span class=p>,</span>
+</span><span id=__span-1-15><a id=__codelineno-1-15 name=__codelineno-1-15></a><span class=w> </span><span class=nt>&quot;type&quot;</span><span class=p>:</span><span class=w> </span><span class=s2>&quot;ServerToken&quot;</span><span class=p>,</span>
+</span><span id=__span-1-16><a id=__codelineno-1-16 name=__codelineno-1-16></a><span class=w> </span><span class=nt>&quot;parameters&quot;</span><span class=p>:</span><span class=w> </span><span class=p>[</span>
+</span><span id=__span-1-17><a id=__codelineno-1-17 name=__codelineno-1-17></a><span class=w> </span><span class=p>],</span>
+</span><span id=__span-1-18><a id=__codelineno-1-18 name=__codelineno-1-18></a><span class=w> </span><span class=nt>&quot;responseMessages&quot;</span><span class=p>:</span><span class=w> </span><span class=p>[</span>
+</span><span id=__span-1-19><a id=__codelineno-1-19 name=__codelineno-1-19></a><span class=w> </span><span class=p>{</span>
+</span><span id=__span-1-20><a id=__codelineno-1-20 name=__codelineno-1-20></a><span class=w> </span><span class=nt>&quot;code&quot;</span><span class=p>:</span><span class=w> </span><span class=mi>409</span><span class=p>,</span>
+</span><span id=__span-1-21><a id=__codelineno-1-21 name=__codelineno-1-21></a><span class=w> </span><span class=nt>&quot;message&quot;</span><span class=p>:</span><span class=w> </span><span class=s2>&quot;Server already exists&quot;</span>
+</span><span id=__span-1-22><a id=__codelineno-1-22 name=__codelineno-1-22></a><span class=w> </span><span class=p>}</span>
+</span><span id=__span-1-23><a id=__codelineno-1-23 name=__codelineno-1-23></a><span class=w> </span><span class=p>]</span>
+</span><span id=__span-1-24><a id=__codelineno-1-24 name=__codelineno-1-24></a><span class=w> </span><span class=p>}</span>
+</span><span id=__span-1-25><a id=__codelineno-1-25 name=__codelineno-1-25></a><span class=w> </span><span class=p>],</span>
+</span><span id=__span-1-26><a id=__codelineno-1-26 name=__codelineno-1-26></a>
+</span><span id=__span-1-27><a id=__codelineno-1-27 name=__codelineno-1-27></a><span class=w> </span><span class=p>},</span>
+</span><span id=__span-1-28><a id=__codelineno-1-28 name=__codelineno-1-28></a><span class=w> </span><span class=p>{</span>
+</span><span id=__span-1-29><a id=__codelineno-1-29 name=__codelineno-1-29></a><span class=w> </span><span class=nt>&quot;path&quot;</span><span class=p>:</span><span class=w> </span><span class=nt>&quot;/servers/{server}&quot;</span>
+</span><span id=__span-1-30><a id=__codelineno-1-30 name=__codelineno-1-30></a><span class=w> </span><span class=nt>&quot;operations&quot;</span><span class=p>:</span><span class=w> </span><span class=p>[</span>
+</span><span id=__span-1-31><a id=__codelineno-1-31 name=__codelineno-1-31></a><span class=w> </span><span class=p>{</span>
+</span><span id=__span-1-32><a id=__codelineno-1-32 name=__codelineno-1-32></a><span class=w> </span><span class=nt>&quot;method&quot;</span><span class=p>:</span><span class=w> </span><span class=s2>&quot;PUT&quot;</span><span class=p>,</span>
+</span><span id=__span-1-33><a id=__codelineno-1-33 name=__codelineno-1-33></a><span class=w> </span><span class=nt>&quot;summary&quot;</span><span class=p>:</span><span class=w> </span><span class=s2>&quot;Update a server&quot;</span><span class=p>,</span>
+</span><span id=__span-1-34><a id=__codelineno-1-34 name=__codelineno-1-34></a><span class=w> </span><span class=nt>&quot;notes&quot;</span><span class=p>:</span><span class=w> </span><span class=nt>&quot;Upon updating a server, a token is returned. If not provided on a subsequent update, the request is rejected. Tokens expire after 48 hours.&quot;</span>
+</span><span id=__span-1-35><a id=__codelineno-1-35 name=__codelineno-1-35></a><span class=w> </span><span class=nt>&quot;nickname&quot;</span><span class=p>:</span><span class=w> </span><span class=s2>&quot;updateServer&quot;</span><span class=p>,</span>
+</span><span id=__span-1-36><a id=__codelineno-1-36 name=__codelineno-1-36></a><span class=w> </span><span class=nt>&quot;type&quot;</span><span class=p>:</span><span class=w> </span><span class=s2>&quot;Token&quot;</span><span class=p>,</span>
+</span><span id=__span-1-37><a id=__codelineno-1-37 name=__codelineno-1-37></a><span class=w> </span><span class=nt>&quot;parameters&quot;</span><span class=p>:</span><span class=w> </span><span class=p>[</span>
+</span><span id=__span-1-38><a id=__codelineno-1-38 name=__codelineno-1-38></a><span class=w> </span><span class=p>{</span>
+</span><span id=__span-1-39><a id=__codelineno-1-39 name=__codelineno-1-39></a><span class=w> </span><span class=nt>&quot;name&quot;</span><span class=p>:</span><span class=w> </span><span class=s2>&quot;serverId&quot;</span><span class=p>,</span>
+</span><span id=__span-1-40><a id=__codelineno-1-40 name=__codelineno-1-40></a><span class=w> </span><span class=nt>&quot;description&quot;</span><span class=p>:</span><span class=w> </span><span class=nt>&quot;The unique ID of the server. Must be a v4 UUID.&quot;</span>
+</span><span id=__span-1-41><a id=__codelineno-1-41 name=__codelineno-1-41></a><span class=w> </span><span class=nt>&quot;paramType&quot;</span><span class=p>:</span><span class=w> </span><span class=s2>&quot;path&quot;</span><span class=p>,</span>
+</span><span id=__span-1-42><a id=__codelineno-1-42 name=__codelineno-1-42></a><span class=w> </span><span class=nt>&quot;required&quot;</span><span class=p>:</span><span class=w> </span><span class=kc>true</span><span class=p>,</span>
+</span><span id=__span-1-43><a id=__codelineno-1-43 name=__codelineno-1-43></a><span class=w> </span><span class=nt>&quot;allowMultiple&quot;</span><span class=p>:</span><span class=w> </span><span class=kc>false</span><span class=p>,</span>
+</span><span id=__span-1-44><a id=__codelineno-1-44 name=__codelineno-1-44></a><span class=w> </span><span class=nt>&quot;type&quot;</span><span class=p>:</span><span class=w> </span><span class=s2>&quot;string&quot;</span>
+</span><span id=__span-1-45><a id=__codelineno-1-45 name=__codelineno-1-45></a><span class=w> </span><span class=p>},</span>
+</span><span id=__span-1-46><a id=__codelineno-1-46 name=__codelineno-1-46></a><span class=w> </span><span class=p>{</span>
+</span><span id=__span-1-47><a id=__codelineno-1-47 name=__codelineno-1-47></a><span class=w> </span><span class=nt>&quot;name&quot;</span><span class=p>:</span><span class=w> </span><span class=s2>&quot;tokenId&quot;</span><span class=p>,</span>
+</span><span id=__span-1-48><a id=__codelineno-1-48 name=__codelineno-1-48></a><span class=w> </span><span class=nt>&quot;description&quot;</span><span class=p>:</span><span class=w> </span><span class=nt>&quot;The current server token.&quot;</span>
+</span><span id=__span-1-49><a id=__codelineno-1-49 name=__codelineno-1-49></a><span class=w> </span><span class=nt>&quot;paramType&quot;</span><span class=p>:</span><span class=w> </span><span class=s2>&quot;query&quot;</span><span class=p>,</span>
+</span><span id=__span-1-50><a id=__codelineno-1-50 name=__codelineno-1-50></a><span class=w> </span><span class=nt>&quot;required&quot;</span><span class=p>:</span><span class=w> </span><span class=kc>false</span><span class=p>,</span>
+</span><span id=__span-1-51><a id=__codelineno-1-51 name=__codelineno-1-51></a><span class=w> </span><span class=nt>&quot;allowMultiple&quot;</span><span class=p>:</span><span class=w> </span><span class=kc>false</span><span class=p>,</span>
+</span><span id=__span-1-52><a id=__codelineno-1-52 name=__codelineno-1-52></a><span class=w> </span><span class=nt>&quot;type&quot;</span><span class=p>:</span><span class=w> </span><span class=s2>&quot;string&quot;</span>
+</span><span id=__span-1-53><a id=__codelineno-1-53 name=__codelineno-1-53></a><span class=w> </span><span class=p>},</span>
+</span><span id=__span-1-54><a id=__codelineno-1-54 name=__codelineno-1-54></a><span class=w> </span><span class=p>{</span>
+</span><span id=__span-1-55><a id=__codelineno-1-55 name=__codelineno-1-55></a><span class=w> </span><span class=nt>&quot;name&quot;</span><span class=p>:</span><span class=w> </span><span class=s2>&quot;body&quot;</span><span class=p>,</span>
+</span><span id=__span-1-56><a id=__codelineno-1-56 name=__codelineno-1-56></a><span class=w> </span><span class=nt>&quot;description&quot;</span><span class=p>:</span><span class=w> </span><span class=nt>&quot;Properties of the server.&quot;</span>
+</span><span id=__span-1-57><a id=__codelineno-1-57 name=__codelineno-1-57></a><span class=w> </span><span class=nt>&quot;paramType&quot;</span><span class=p>:</span><span class=w> </span><span class=s2>&quot;body&quot;</span><span class=p>,</span>
+</span><span id=__span-1-58><a id=__codelineno-1-58 name=__codelineno-1-58></a><span class=w> </span><span class=nt>&quot;required&quot;</span><span class=p>:</span><span class=w> </span><span class=kc>true</span><span class=p>,</span>
+</span><span id=__span-1-59><a id=__codelineno-1-59 name=__codelineno-1-59></a><span class=w> </span><span class=nt>&quot;allowMultiple&quot;</span><span class=p>:</span><span class=w> </span><span class=kc>false</span><span class=p>,</span>
+</span><span id=__span-1-60><a id=__codelineno-1-60 name=__codelineno-1-60></a><span class=w> </span><span class=nt>&quot;type&quot;</span><span class=p>:</span><span class=w> </span><span class=s2>&quot;Server&quot;</span>
+</span><span id=__span-1-61><a id=__codelineno-1-61 name=__codelineno-1-61></a><span class=w> </span><span class=p>},</span>
+</span><span id=__span-1-62><a id=__codelineno-1-62 name=__codelineno-1-62></a><span class=w> </span><span class=p>],</span>
+</span><span id=__span-1-63><a id=__codelineno-1-63 name=__codelineno-1-63></a><span class=w> </span><span class=nt>&quot;responseMessages&quot;</span><span class=p>:</span><span class=w> </span><span class=p>[</span>
+</span><span id=__span-1-64><a id=__codelineno-1-64 name=__codelineno-1-64></a><span class=w> </span><span class=p>{</span>
+</span><span id=__span-1-65><a id=__codelineno-1-65 name=__codelineno-1-65></a><span class=w> </span><span class=nt>&quot;code&quot;</span><span class=p>:</span><span class=w> </span><span class=mi>400</span><span class=p>,</span>
+</span><span id=__span-1-66><a id=__codelineno-1-66 name=__codelineno-1-66></a><span class=w> </span><span class=nt>&quot;message&quot;</span><span class=p>:</span><span class=w> </span><span class=s2>&quot;Invalid parameters for updating a server&quot;</span>
+</span><span id=__span-1-67><a id=__codelineno-1-67 name=__codelineno-1-67></a><span class=w> </span><span class=p>},</span>
+</span><span id=__span-1-68><a id=__codelineno-1-68 name=__codelineno-1-68></a><span class=w> </span><span class=p>{</span>
+</span><span id=__span-1-69><a id=__codelineno-1-69 name=__codelineno-1-69></a><span class=w> </span><span class=nt>&quot;code&quot;</span><span class=p>:</span><span class=w> </span><span class=mi>401</span><span class=p>,</span>
+</span><span id=__span-1-70><a id=__codelineno-1-70 name=__codelineno-1-70></a><span class=w> </span><span class=nt>&quot;message&quot;</span><span class=p>:</span><span class=w> </span><span class=s2>&quot;Invalid token provided&quot;</span>
+</span><span id=__span-1-71><a id=__codelineno-1-71 name=__codelineno-1-71></a><span class=w> </span><span class=p>}</span>
+</span><span id=__span-1-72><a id=__codelineno-1-72 name=__codelineno-1-72></a><span class=w> </span><span class=p>]</span>
+</span><span id=__span-1-73><a id=__codelineno-1-73 name=__codelineno-1-73></a><span class=w> </span><span class=p>}</span>
+</span><span id=__span-1-74><a id=__codelineno-1-74 name=__codelineno-1-74></a><span class=w> </span><span class=p>]</span>
+</span><span id=__span-1-75><a id=__codelineno-1-75 name=__codelineno-1-75></a><span class=w> </span><span class=p>}</span>
+</span><span id=__span-1-76><a id=__codelineno-1-76 name=__codelineno-1-76></a><span class=w> </span><span class=p>],</span>
+</span><span id=__span-1-77><a id=__codelineno-1-77 name=__codelineno-1-77></a><span class=w> </span><span class=nt>&quot;models&quot;</span><span class=p>:</span><span class=w> </span><span class=p>{</span>
+</span><span id=__span-1-78><a id=__codelineno-1-78 name=__codelineno-1-78></a><span class=w> </span><span class=nt>&quot;Token&quot;</span><span class=p>:</span><span class=w> </span><span class=p>{</span>
+</span><span id=__span-1-79><a id=__codelineno-1-79 name=__codelineno-1-79></a><span class=w> </span><span class=nt>&quot;id&quot;</span><span class=p>:</span><span class=w> </span><span class=s2>&quot;Token&quot;</span><span class=p>,</span>
+</span><span id=__span-1-80><a id=__codelineno-1-80 name=__codelineno-1-80></a><span class=w> </span><span class=nt>&quot;description&quot;</span><span class=p>:</span><span class=w> </span><span class=s2>&quot;A time-based token that authorizes a server for a particular resource&quot;</span><span class=p>,</span>
+</span><span id=__span-1-81><a id=__codelineno-1-81 name=__codelineno-1-81></a><span class=w> </span><span class=nt>&quot;required&quot;</span><span class=p>:</span><span class=w> </span><span class=p>[</span>
+</span><span id=__span-1-82><a id=__codelineno-1-82 name=__codelineno-1-82></a><span class=w> </span><span class=s2>&quot;id&quot;</span><span class=p>,</span>
+</span><span id=__span-1-83><a id=__codelineno-1-83 name=__codelineno-1-83></a><span class=w> </span><span class=s2>&quot;issued&quot;</span>
+</span><span id=__span-1-84><a id=__codelineno-1-84 name=__codelineno-1-84></a><span class=w> </span><span class=p>],</span>
+</span><span id=__span-1-85><a id=__codelineno-1-85 name=__codelineno-1-85></a><span class=w> </span><span class=nt>&quot;properties&quot;</span><span class=p>:</span><span class=w> </span><span class=p>{</span>
+</span><span id=__span-1-86><a id=__codelineno-1-86 name=__codelineno-1-86></a><span class=w> </span><span class=nt>&quot;id&quot;</span><span class=p>:</span><span class=w> </span><span class=p>{</span>
+</span><span id=__span-1-87><a id=__codelineno-1-87 name=__codelineno-1-87></a><span class=w> </span><span class=nt>&quot;type&quot;</span><span class=p>:</span><span class=w> </span><span class=s2>&quot;string&quot;</span><span class=p>,</span>
+</span><span id=__span-1-88><a id=__codelineno-1-88 name=__codelineno-1-88></a><span class=w> </span><span class=nt>&quot;description&quot;</span><span class=p>:</span><span class=w> </span><span class=s2>&quot;UUID uniquely identifying the token&quot;</span>
+</span><span id=__span-1-89><a id=__codelineno-1-89 name=__codelineno-1-89></a><span class=w> </span><span class=p>},</span>
+</span><span id=__span-1-90><a id=__codelineno-1-90 name=__codelineno-1-90></a><span class=w> </span><span class=nt>&quot;issued&quot;</span><span class=p>:</span><span class=w> </span><span class=p>{</span>
+</span><span id=__span-1-91><a id=__codelineno-1-91 name=__codelineno-1-91></a><span class=w> </span><span class=nt>&quot;type&quot;</span><span class=p>:</span><span class=w> </span><span class=s2>&quot;string&quot;</span><span class=p>,</span>
+</span><span id=__span-1-92><a id=__codelineno-1-92 name=__codelineno-1-92></a><span class=w> </span><span class=nt>&quot;format&quot;</span><span class=p>:</span><span class=w> </span><span class=s2>&quot;date-time&quot;</span><span class=p>,</span>
+</span><span id=__span-1-93><a id=__codelineno-1-93 name=__codelineno-1-93></a><span class=w> </span><span class=nt>&quot;description&quot;</span><span class=p>:</span><span class=w> </span><span class=s2>&quot;Timestamp when the token was issued&quot;</span>
+</span><span id=__span-1-94><a id=__codelineno-1-94 name=__codelineno-1-94></a><span class=w> </span><span class=p>},</span>
+</span><span id=__span-1-95><a id=__codelineno-1-95 name=__codelineno-1-95></a><span class=w> </span><span class=p>}</span>
+</span><span id=__span-1-96><a id=__codelineno-1-96 name=__codelineno-1-96></a><span class=w> </span><span class=p>},</span>
+</span><span id=__span-1-97><a id=__codelineno-1-97 name=__codelineno-1-97></a><span class=w> </span><span class=nt>&quot;RunTimeStats&quot;</span><span class=p>:</span><span class=w> </span><span class=p>{</span>
+</span><span id=__span-1-98><a id=__codelineno-1-98 name=__codelineno-1-98></a><span class=w> </span><span class=nt>&quot;id&quot;</span><span class=p>:</span><span class=w> </span><span class=s2>&quot;RunTimeStats&quot;</span><span class=p>,</span>
+</span><span id=__span-1-99><a id=__codelineno-1-99 name=__codelineno-1-99></a><span class=w> </span><span class=nt>&quot;description&quot;</span><span class=p>:</span><span class=w> </span><span class=s2>&quot;Running time statistics for an Asterisk instance&quot;</span><span class=p>,</span>
+</span><span id=__span-1-100><a id=__codelineno-1-100 name=__codelineno-1-100></a><span class=w> </span><span class=nt>&quot;required&quot;</span><span class=p>:</span><span class=w> </span><span class=p>[</span>
+</span><span id=__span-1-101><a id=__codelineno-1-101 name=__codelineno-1-101></a><span class=w> </span><span class=p>],</span>
+</span><span id=__span-1-102><a id=__codelineno-1-102 name=__codelineno-1-102></a><span class=w> </span><span class=nt>&quot;properties&quot;</span><span class=p>:</span><span class=w> </span><span class=p>{</span>
+</span><span id=__span-1-103><a id=__codelineno-1-103 name=__codelineno-1-103></a><span class=w> </span><span class=nt>&quot;startup_time&quot;</span><span class=p>:</span><span class=w> </span><span class=p>{</span>
+</span><span id=__span-1-104><a id=__codelineno-1-104 name=__codelineno-1-104></a><span class=w> </span><span class=nt>&quot;type&quot;</span><span class=p>:</span><span class=w> </span><span class=s2>&quot;string&quot;</span><span class=p>,</span>
+</span><span id=__span-1-105><a id=__codelineno-1-105 name=__codelineno-1-105></a><span class=w> </span><span class=nt>&quot;format&quot;</span><span class=p>:</span><span class=w> </span><span class=s2>&quot;date-time&quot;</span><span class=p>,</span>
+</span><span id=__span-1-106><a id=__codelineno-1-106 name=__codelineno-1-106></a><span class=w> </span><span class=nt>&quot;description&quot;</span><span class=p>:</span><span class=w> </span><span class=s2>&quot;When this instance was started&quot;</span>
+</span><span id=__span-1-107><a id=__codelineno-1-107 name=__codelineno-1-107></a><span class=w> </span><span class=p>},</span>
+</span><span id=__span-1-108><a id=__codelineno-1-108 name=__codelineno-1-108></a><span class=w> </span><span class=nt>&quot;last_reload_time&quot;</span><span class=p>:</span><span class=w> </span><span class=p>{</span>
+</span><span id=__span-1-109><a id=__codelineno-1-109 name=__codelineno-1-109></a><span class=w> </span><span class=nt>&quot;type&quot;</span><span class=p>:</span><span class=w> </span><span class=s2>&quot;string&quot;</span><span class=p>,</span>
+</span><span id=__span-1-110><a id=__codelineno-1-110 name=__codelineno-1-110></a><span class=w> </span><span class=nt>&quot;format&quot;</span><span class=p>:</span><span class=w> </span><span class=s2>&quot;date-time&quot;</span><span class=p>,</span>
+</span><span id=__span-1-111><a id=__codelineno-1-111 name=__codelineno-1-111></a><span class=w> </span><span class=nt>&quot;description&quot;</span><span class=p>:</span><span class=w> </span><span class=s2>&quot;When this instance was last reloaded&quot;</span>
+</span><span id=__span-1-112><a id=__codelineno-1-112 name=__codelineno-1-112></a><span class=w> </span><span class=p>}</span>
+</span><span id=__span-1-113><a id=__codelineno-1-113 name=__codelineno-1-113></a><span class=w> </span><span class=p>}</span>
+</span><span id=__span-1-114><a id=__codelineno-1-114 name=__codelineno-1-114></a><span class=w> </span><span class=p>},</span>
+</span><span id=__span-1-115><a id=__codelineno-1-115 name=__codelineno-1-115></a><span class=w> </span><span class=nt>&quot;CallStats&quot;</span><span class=p>:</span><span class=w> </span><span class=p>{</span>
+</span><span id=__span-1-116><a id=__codelineno-1-116 name=__codelineno-1-116></a><span class=w> </span><span class=nt>&quot;id&quot;</span><span class=p>:</span><span class=w> </span><span class=s2>&quot;CallStats&quot;</span><span class=p>,</span>
+</span><span id=__span-1-117><a id=__codelineno-1-117 name=__codelineno-1-117></a><span class=w> </span><span class=nt>&quot;description&quot;</span><span class=p>:</span><span class=w> </span><span class=s2>&quot;Running time statistics for an Asterisk instance&quot;</span><span class=p>,</span>
+</span><span id=__span-1-118><a id=__codelineno-1-118 name=__codelineno-1-118></a><span class=w> </span><span class=nt>&quot;required&quot;</span><span class=p>:</span><span class=w> </span><span class=p>[</span>
+</span><span id=__span-1-119><a id=__codelineno-1-119 name=__codelineno-1-119></a><span class=w> </span><span class=p>],</span>
+</span><span id=__span-1-120><a id=__codelineno-1-120 name=__codelineno-1-120></a><span class=w> </span><span class=nt>&quot;properties&quot;</span><span class=p>:</span><span class=w> </span><span class=p>{</span>
+</span><span id=__span-1-121><a id=__codelineno-1-121 name=__codelineno-1-121></a><span class=w> </span><span class=nt>&quot;active&quot;</span><span class=p>:</span><span class=w> </span><span class=p>{</span>
+</span><span id=__span-1-122><a id=__codelineno-1-122 name=__codelineno-1-122></a><span class=w> </span><span class=nt>&quot;type&quot;</span><span class=p>:</span><span class=w> </span><span class=s2>&quot;integer&quot;</span><span class=p>,</span>
+</span><span id=__span-1-123><a id=__codelineno-1-123 name=__codelineno-1-123></a><span class=w> </span><span class=nt>&quot;format&quot;</span><span class=p>:</span><span class=w> </span><span class=s2>&quot;int32&quot;</span><span class=p>,</span>
+</span><span id=__span-1-124><a id=__codelineno-1-124 name=__codelineno-1-124></a><span class=w> </span><span class=nt>&quot;description&quot;</span><span class=p>:</span><span class=w> </span><span class=s2>&quot;Number of active calls&quot;</span>
+</span><span id=__span-1-125><a id=__codelineno-1-125 name=__codelineno-1-125></a><span class=w> </span><span class=p>},</span>
+</span><span id=__span-1-126><a id=__codelineno-1-126 name=__codelineno-1-126></a><span class=w> </span><span class=nt>&quot;processed&quot;</span><span class=p>:</span><span class=w> </span><span class=p>{</span>
+</span><span id=__span-1-127><a id=__codelineno-1-127 name=__codelineno-1-127></a><span class=w> </span><span class=nt>&quot;type&quot;</span><span class=p>:</span><span class=w> </span><span class=s2>&quot;integer&quot;</span><span class=p>,</span>
+</span><span id=__span-1-128><a id=__codelineno-1-128 name=__codelineno-1-128></a><span class=w> </span><span class=nt>&quot;format&quot;</span><span class=p>:</span><span class=w> </span><span class=s2>&quot;int32&quot;</span><span class=p>,</span>
+</span><span id=__span-1-129><a id=__codelineno-1-129 name=__codelineno-1-129></a><span class=w> </span><span class=nt>&quot;description&quot;</span><span class=p>:</span><span class=w> </span><span class=s2>&quot;Number of processed calls&quot;</span>
+</span><span id=__span-1-130><a id=__codelineno-1-130 name=__codelineno-1-130></a><span class=w> </span><span class=p>}</span>
+</span><span id=__span-1-131><a id=__codelineno-1-131 name=__codelineno-1-131></a><span class=w> </span><span class=p>}</span>
+</span><span id=__span-1-132><a id=__codelineno-1-132 name=__codelineno-1-132></a><span class=w> </span><span class=p>},</span>
+</span><span id=__span-1-133><a id=__codelineno-1-133 name=__codelineno-1-133></a><span class=w> </span><span class=nt>&quot;AsteriskStats&quot;</span><span class=p>:</span><span class=w> </span><span class=p>{</span>
+</span><span id=__span-1-134><a id=__codelineno-1-134 name=__codelineno-1-134></a><span class=w> </span><span class=nt>&quot;id&quot;</span><span class=p>:</span><span class=w> </span><span class=s2>&quot;AsteriskStats&quot;</span><span class=p>,</span>
+</span><span id=__span-1-135><a id=__codelineno-1-135 name=__codelineno-1-135></a><span class=w> </span><span class=nt>&quot;description&quot;</span><span class=p>:</span><span class=w> </span><span class=s2>&quot;Statistics for a running instance of Asterisk&quot;</span><span class=p>,</span>
+</span><span id=__span-1-136><a id=__codelineno-1-136 name=__codelineno-1-136></a><span class=w> </span><span class=nt>&quot;required&quot;</span><span class=p>:</span><span class=w> </span><span class=p>[</span>
+</span><span id=__span-1-137><a id=__codelineno-1-137 name=__codelineno-1-137></a><span class=w> </span><span class=p>],</span>
+</span><span id=__span-1-138><a id=__codelineno-1-138 name=__codelineno-1-138></a><span class=w> </span><span class=nt>&quot;properties&quot;</span><span class=p>:</span><span class=w> </span><span class=p>{</span>
+</span><span id=__span-1-139><a id=__codelineno-1-139 name=__codelineno-1-139></a><span class=w> </span><span class=nt>&quot;run_time&quot;</span><span class=p>:</span><span class=w> </span><span class=p>{</span>
+</span><span id=__span-1-140><a id=__codelineno-1-140 name=__codelineno-1-140></a><span class=w> </span><span class=nt>&quot;$ref&quot;</span><span class=p>:</span><span class=w> </span><span class=s2>&quot;RunTimeStats&quot;</span><span class=p>,</span>
+</span><span id=__span-1-141><a id=__codelineno-1-141 name=__codelineno-1-141></a><span class=w> </span><span class=nt>&quot;description&quot;</span><span class=p>:</span><span class=w> </span><span class=s2>&quot;Statistics on how long Asterisk has been running&quot;</span>
+</span><span id=__span-1-142><a id=__codelineno-1-142 name=__codelineno-1-142></a><span class=w> </span><span class=p>},</span>
+</span><span id=__span-1-143><a id=__codelineno-1-143 name=__codelineno-1-143></a><span class=w> </span><span class=nt>&quot;calls&quot;</span><span class=p>:</span><span class=w> </span><span class=p>{</span>
+</span><span id=__span-1-144><a id=__codelineno-1-144 name=__codelineno-1-144></a><span class=w> </span><span class=nt>&quot;$ref&quot;</span><span class=p>:</span><span class=w> </span><span class=s2>&quot;CallStats&quot;</span><span class=p>,</span>
+</span><span id=__span-1-145><a id=__codelineno-1-145 name=__codelineno-1-145></a><span class=w> </span><span class=nt>&quot;description&quot;</span><span class=p>:</span><span class=w> </span><span class=s2>&quot;Statistics on the number of calls processed&quot;</span>
+</span><span id=__span-1-146><a id=__codelineno-1-146 name=__codelineno-1-146></a><span class=w> </span><span class=p>}</span>
+</span><span id=__span-1-147><a id=__codelineno-1-147 name=__codelineno-1-147></a><span class=w> </span><span class=p>}</span>
+</span><span id=__span-1-148><a id=__codelineno-1-148 name=__codelineno-1-148></a><span class=w> </span><span class=p>}</span>
+</span><span id=__span-1-149><a id=__codelineno-1-149 name=__codelineno-1-149></a><span class=w> </span><span class=nt>&quot;AsteriskModule&quot;</span><span class=p>:</span><span class=w> </span><span class=p>{</span>
+</span><span id=__span-1-150><a id=__codelineno-1-150 name=__codelineno-1-150></a><span class=w> </span><span class=nt>&quot;id&quot;</span><span class=p>:</span><span class=w> </span><span class=s2>&quot;AsteriskModule&quot;</span><span class=p>,</span>
+</span><span id=__span-1-151><a id=__codelineno-1-151 name=__codelineno-1-151></a><span class=w> </span><span class=nt>&quot;description&quot;</span><span class=p>:</span><span class=w> </span><span class=s2>&quot;An Asterisk module&quot;</span><span class=p>,</span>
+</span><span id=__span-1-152><a id=__codelineno-1-152 name=__codelineno-1-152></a><span class=w> </span><span class=nt>&quot;required&quot;</span><span class=p>:</span><span class=w> </span><span class=p>[</span>
+</span><span id=__span-1-153><a id=__codelineno-1-153 name=__codelineno-1-153></a><span class=w> </span><span class=s2>&quot;name&quot;</span><span class=p>,</span>
+</span><span id=__span-1-154><a id=__codelineno-1-154 name=__codelineno-1-154></a><span class=w> </span><span class=s2>&quot;description&quot;</span><span class=p>,</span>
+</span><span id=__span-1-155><a id=__codelineno-1-155 name=__codelineno-1-155></a><span class=w> </span><span class=s2>&quot;status&quot;</span>
+</span><span id=__span-1-156><a id=__codelineno-1-156 name=__codelineno-1-156></a><span class=w> </span><span class=p>],</span>
+</span><span id=__span-1-157><a id=__codelineno-1-157 name=__codelineno-1-157></a><span class=w> </span><span class=nt>&quot;properties&quot;</span><span class=p>:</span><span class=w> </span><span class=p>{</span>
+</span><span id=__span-1-158><a id=__codelineno-1-158 name=__codelineno-1-158></a><span class=w> </span><span class=nt>&quot;name&quot;</span><span class=p>:</span><span class=w> </span><span class=p>{</span>
+</span><span id=__span-1-159><a id=__codelineno-1-159 name=__codelineno-1-159></a><span class=w> </span><span class=nt>&quot;type&quot;</span><span class=p>:</span><span class=w> </span><span class=s2>&quot;string&quot;</span><span class=p>,</span>
+</span><span id=__span-1-160><a id=__codelineno-1-160 name=__codelineno-1-160></a><span class=w> </span><span class=nt>&quot;description&quot;</span><span class=p>:</span><span class=w> </span><span class=s2>&quot;The name of the module&quot;</span>
+</span><span id=__span-1-161><a id=__codelineno-1-161 name=__codelineno-1-161></a><span class=w> </span><span class=p>},</span>
+</span><span id=__span-1-162><a id=__codelineno-1-162 name=__codelineno-1-162></a><span class=w> </span><span class=nt>&quot;description&quot;</span><span class=p>:</span><span class=w> </span><span class=p>{</span>
+</span><span id=__span-1-163><a id=__codelineno-1-163 name=__codelineno-1-163></a><span class=w> </span><span class=nt>&quot;type&quot;</span><span class=p>:</span><span class=w> </span><span class=s2>&quot;string&quot;</span><span class=p>,</span>
+</span><span id=__span-1-164><a id=__codelineno-1-164 name=__codelineno-1-164></a><span class=w> </span><span class=nt>&quot;description&quot;</span><span class=p>:</span><span class=w> </span><span class=s2>&quot;A description of the module&quot;</span>
+</span><span id=__span-1-165><a id=__codelineno-1-165 name=__codelineno-1-165></a><span class=w> </span><span class=p>},</span>
+</span><span id=__span-1-166><a id=__codelineno-1-166 name=__codelineno-1-166></a><span class=w> </span><span class=nt>&quot;status&quot;</span><span class=p>:</span><span class=w> </span><span class=p>{</span>
+</span><span id=__span-1-167><a id=__codelineno-1-167 name=__codelineno-1-167></a><span class=w> </span><span class=nt>&quot;type&quot;</span><span class=p>:</span><span class=w> </span><span class=s2>&quot;string&quot;</span><span class=p>,</span>
+</span><span id=__span-1-168><a id=__codelineno-1-168 name=__codelineno-1-168></a><span class=w> </span><span class=nt>&quot;description&quot;</span><span class=p>:</span><span class=w> </span><span class=s2>&quot;The current state of the module&quot;</span>
+</span><span id=__span-1-169><a id=__codelineno-1-169 name=__codelineno-1-169></a><span class=w> </span><span class=p>},</span>
+</span><span id=__span-1-170><a id=__codelineno-1-170 name=__codelineno-1-170></a><span class=w> </span><span class=nt>&quot;support_level&quot;</span><span class=p>:</span><span class=w> </span><span class=p>{</span>
+</span><span id=__span-1-171><a id=__codelineno-1-171 name=__codelineno-1-171></a><span class=w> </span><span class=nt>&quot;type&quot;</span><span class=p>:</span><span class=w> </span><span class=s2>&quot;string&quot;</span><span class=p>,</span>
+</span><span id=__span-1-172><a id=__codelineno-1-172 name=__codelineno-1-172></a><span class=w> </span><span class=nt>&quot;description&quot;</span><span class=p>:</span><span class=w> </span><span class=s2>&quot;The support level of the module&quot;</span>
+</span><span id=__span-1-173><a id=__codelineno-1-173 name=__codelineno-1-173></a><span class=w> </span><span class=p>}</span>
+</span><span id=__span-1-174><a id=__codelineno-1-174 name=__codelineno-1-174></a><span class=w> </span><span class=p>}</span>
+</span><span id=__span-1-175><a id=__codelineno-1-175 name=__codelineno-1-175></a><span class=w> </span><span class=p>},</span>
+</span><span id=__span-1-176><a id=__codelineno-1-176 name=__codelineno-1-176></a><span class=w> </span><span class=nt>&quot;AsteriskVersion&quot;</span><span class=p>:</span><span class=w> </span><span class=p>{</span>
+</span><span id=__span-1-177><a id=__codelineno-1-177 name=__codelineno-1-177></a><span class=w> </span><span class=nt>&quot;id&quot;</span><span class=p>:</span><span class=w> </span><span class=s2>&quot;AsteriskVersion&quot;</span><span class=p>,</span>
+</span><span id=__span-1-178><a id=__codelineno-1-178 name=__codelineno-1-178></a><span class=w> </span><span class=nt>&quot;description&quot;</span><span class=p>:</span><span class=w> </span><span class=s2>&quot;The version of an instance of Asterisk&quot;</span><span class=p>,</span>
+</span><span id=__span-1-179><a id=__codelineno-1-179 name=__codelineno-1-179></a><span class=w> </span><span class=nt>&quot;required&quot;</span><span class=p>:</span><span class=w> </span><span class=p>[</span>
+</span><span id=__span-1-180><a id=__codelineno-1-180 name=__codelineno-1-180></a><span class=w> </span><span class=s2>&quot;name&quot;</span><span class=p>,</span>
+</span><span id=__span-1-181><a id=__codelineno-1-181 name=__codelineno-1-181></a><span class=w> </span><span class=s2>&quot;number&quot;</span>
+</span><span id=__span-1-182><a id=__codelineno-1-182 name=__codelineno-1-182></a><span class=w> </span><span class=p>],</span>
+</span><span id=__span-1-183><a id=__codelineno-1-183 name=__codelineno-1-183></a><span class=w> </span><span class=nt>&quot;properties&quot;</span><span class=p>:</span><span class=w> </span><span class=p>{</span>
+</span><span id=__span-1-184><a id=__codelineno-1-184 name=__codelineno-1-184></a><span class=w> </span><span class=nt>&quot;name&quot;</span><span class=p>:</span><span class=w> </span><span class=p>{</span>
+</span><span id=__span-1-185><a id=__codelineno-1-185 name=__codelineno-1-185></a><span class=w> </span><span class=nt>&quot;type&quot;</span><span class=p>:</span><span class=w> </span><span class=s2>&quot;string&quot;</span><span class=p>,</span>
+</span><span id=__span-1-186><a id=__codelineno-1-186 name=__codelineno-1-186></a><span class=w> </span><span class=nt>&quot;description&quot;</span><span class=p>:</span><span class=w> </span><span class=s2>&quot;The textual description of the Asterisk version&quot;</span>
+</span><span id=__span-1-187><a id=__codelineno-1-187 name=__codelineno-1-187></a><span class=w> </span><span class=p>},</span>
+</span><span id=__span-1-188><a id=__codelineno-1-188 name=__codelineno-1-188></a><span class=w> </span><span class=nt>&quot;number&quot;</span><span class=p>:</span><span class=w> </span><span class=p>{</span>
+</span><span id=__span-1-189><a id=__codelineno-1-189 name=__codelineno-1-189></a><span class=w> </span><span class=nt>&quot;type&quot;</span><span class=p>:</span><span class=w> </span><span class=s2>&quot;string&quot;</span><span class=p>,</span>
+</span><span id=__span-1-190><a id=__codelineno-1-190 name=__codelineno-1-190></a><span class=w> </span><span class=nt>&quot;description&quot;</span><span class=p>:</span><span class=w> </span><span class=s2>&quot;A derived numeric version of the Major.Minor.Patch value of the Asterisk version&quot;</span>
+</span><span id=__span-1-191><a id=__codelineno-1-191 name=__codelineno-1-191></a><span class=w> </span><span class=p>},</span>
+</span><span id=__span-1-192><a id=__codelineno-1-192 name=__codelineno-1-192></a><span class=w> </span><span class=p>}</span>
+</span><span id=__span-1-193><a id=__codelineno-1-193 name=__codelineno-1-193></a><span class=w> </span><span class=p>},</span>
+</span><span id=__span-1-194><a id=__codelineno-1-194 name=__codelineno-1-194></a><span class=w> </span><span class=nt>&quot;Asterisk&quot;</span><span class=p>:</span><span class=w> </span><span class=p>{</span>
+</span><span id=__span-1-195><a id=__codelineno-1-195 name=__codelineno-1-195></a><span class=w> </span><span class=nt>&quot;id&quot;</span><span class=p>:</span><span class=w> </span><span class=s2>&quot;Asterisk&quot;</span><span class=p>,</span>
+</span><span id=__span-1-196><a id=__codelineno-1-196 name=__codelineno-1-196></a><span class=w> </span><span class=nt>&quot;description&quot;</span><span class=p>:</span><span class=w> </span><span class=s2>&quot;Information about a running instance of Asterisk&quot;</span><span class=p>,</span>
+</span><span id=__span-1-197><a id=__codelineno-1-197 name=__codelineno-1-197></a><span class=w> </span><span class=nt>&quot;required&quot;</span><span class=p>:</span><span class=w> </span><span class=p>[</span>
+</span><span id=__span-1-198><a id=__codelineno-1-198 name=__codelineno-1-198></a><span class=w> </span><span class=s2>&quot;version&quot;</span>
+</span><span id=__span-1-199><a id=__codelineno-1-199 name=__codelineno-1-199></a><span class=w> </span><span class=p>],</span>
+</span><span id=__span-1-200><a id=__codelineno-1-200 name=__codelineno-1-200></a><span class=w> </span><span class=nt>&quot;properties&quot;</span><span class=p>:</span><span class=w> </span><span class=p>{</span>
+</span><span id=__span-1-201><a id=__codelineno-1-201 name=__codelineno-1-201></a><span class=w> </span><span class=nt>&quot;version&quot;</span><span class=p>:</span><span class=w> </span><span class=p>{</span>
+</span><span id=__span-1-202><a id=__codelineno-1-202 name=__codelineno-1-202></a><span class=w> </span><span class=nt>&quot;$ref&quot;</span><span class=p>:</span><span class=w> </span><span class=s2>&quot;AsteriskVersion&quot;</span><span class=p>,</span>
+</span><span id=__span-1-203><a id=__codelineno-1-203 name=__codelineno-1-203></a><span class=w> </span><span class=nt>&quot;description&quot;</span><span class=p>:</span><span class=w> </span><span class=s2>&quot;The version of Asterisk&quot;</span>
+</span><span id=__span-1-204><a id=__codelineno-1-204 name=__codelineno-1-204></a><span class=w> </span><span class=p>},</span>
+</span><span id=__span-1-205><a id=__codelineno-1-205 name=__codelineno-1-205></a><span class=w> </span><span class=nt>&quot;modules&quot;</span><span class=p>:</span><span class=w> </span><span class=p>{</span>
+</span><span id=__span-1-206><a id=__codelineno-1-206 name=__codelineno-1-206></a><span class=w> </span><span class=nt>&quot;type&quot;</span><span class=p>:</span><span class=w> </span><span class=s2>&quot;array&quot;</span><span class=p>,</span>
+</span><span id=__span-1-207><a id=__codelineno-1-207 name=__codelineno-1-207></a><span class=w> </span><span class=nt>&quot;items&quot;</span><span class=p>:</span><span class=w> </span><span class=p>{</span>
+</span><span id=__span-1-208><a id=__codelineno-1-208 name=__codelineno-1-208></a><span class=w> </span><span class=nt>&quot;$ref&quot;</span><span class=p>:</span><span class=w> </span><span class=s2>&quot;AsteriskModule&quot;</span>
+</span><span id=__span-1-209><a id=__codelineno-1-209 name=__codelineno-1-209></a><span class=w> </span><span class=p>},</span>
+</span><span id=__span-1-210><a id=__codelineno-1-210 name=__codelineno-1-210></a><span class=w> </span><span class=nt>&quot;description&quot;</span><span class=p>:</span><span class=w> </span><span class=s2>&quot;The loaded modules&quot;</span>
+</span><span id=__span-1-211><a id=__codelineno-1-211 name=__codelineno-1-211></a><span class=w> </span><span class=p>},</span>
+</span><span id=__span-1-212><a id=__codelineno-1-212 name=__codelineno-1-212></a><span class=w> </span><span class=nt>&quot;stats&quot;</span><span class=p>:</span><span class=w> </span><span class=p>{</span>
+</span><span id=__span-1-213><a id=__codelineno-1-213 name=__codelineno-1-213></a><span class=w> </span><span class=nt>&quot;$ref&quot;</span><span class=p>:</span><span class=w> </span><span class=s2>&quot;AsteriskStats&quot;</span><span class=p>,</span>
+</span><span id=__span-1-214><a id=__codelineno-1-214 name=__codelineno-1-214></a><span class=w> </span><span class=nt>&quot;description&quot;</span><span class=p>:</span><span class=w> </span><span class=s2>&quot;Statistics about the Asterisk instance&quot;</span>
+</span><span id=__span-1-215><a id=__codelineno-1-215 name=__codelineno-1-215></a><span class=w> </span><span class=p>}</span>
+</span><span id=__span-1-216><a id=__codelineno-1-216 name=__codelineno-1-216></a><span class=w> </span><span class=p>}</span>
+</span><span id=__span-1-217><a id=__codelineno-1-217 name=__codelineno-1-217></a><span class=w> </span><span class=p>},</span>
+</span><span id=__span-1-218><a id=__codelineno-1-218 name=__codelineno-1-218></a><span class=w> </span><span class=nt>&quot;OperatingSystem&quot;</span><span class=p>:</span><span class=w> </span><span class=p>{</span>
+</span><span id=__span-1-219><a id=__codelineno-1-219 name=__codelineno-1-219></a><span class=w> </span><span class=nt>&quot;id&quot;</span><span class=p>:</span><span class=w> </span><span class=s2>&quot;OperatingSystem&quot;</span><span class=p>,</span>
+</span><span id=__span-1-220><a id=__codelineno-1-220 name=__codelineno-1-220></a><span class=w> </span><span class=nt>&quot;description&quot;</span><span class=p>:</span><span class=w> </span><span class=s2>&quot;Information about the machine OS. Note that this is likely only to have meaning on Linux distros&quot;</span><span class=p>,</span>
+</span><span id=__span-1-221><a id=__codelineno-1-221 name=__codelineno-1-221></a><span class=w> </span><span class=nt>&quot;required&quot;</span><span class=p>:</span><span class=w> </span><span class=p>[</span>
+</span><span id=__span-1-222><a id=__codelineno-1-222 name=__codelineno-1-222></a><span class=w> </span><span class=p>],</span>
+</span><span id=__span-1-223><a id=__codelineno-1-223 name=__codelineno-1-223></a><span class=w> </span><span class=nt>&quot;properties&quot;</span><span class=p>:</span><span class=w> </span><span class=p>{</span>
+</span><span id=__span-1-224><a id=__codelineno-1-224 name=__codelineno-1-224></a><span class=w> </span><span class=nt>&quot;sys_name&quot;</span><span class=p>:</span><span class=w> </span><span class=p>{</span>
+</span><span id=__span-1-225><a id=__codelineno-1-225 name=__codelineno-1-225></a><span class=w> </span><span class=nt>&quot;type&quot;</span><span class=p>:</span><span class=w> </span><span class=s2>&quot;string&quot;</span><span class=p>,</span>
+</span><span id=__span-1-226><a id=__codelineno-1-226 name=__codelineno-1-226></a><span class=w> </span><span class=nt>&quot;description&quot;</span><span class=p>:</span><span class=w> </span><span class=s2>&quot;The system name, e.g., Linux&quot;</span>
+</span><span id=__span-1-227><a id=__codelineno-1-227 name=__codelineno-1-227></a><span class=w> </span><span class=p>},</span>
+</span><span id=__span-1-228><a id=__codelineno-1-228 name=__codelineno-1-228></a><span class=w> </span><span class=nt>&quot;release&quot;</span><span class=p>:</span><span class=w> </span><span class=p>{</span>
+</span><span id=__span-1-229><a id=__codelineno-1-229 name=__codelineno-1-229></a><span class=w> </span><span class=nt>&quot;type&quot;</span><span class=p>:</span><span class=w> </span><span class=s2>&quot;string&quot;</span><span class=p>,</span>
+</span><span id=__span-1-230><a id=__codelineno-1-230 name=__codelineno-1-230></a><span class=w> </span><span class=nt>&quot;description&quot;</span><span class=p>:</span><span class=w> </span><span class=s2>&quot;The OS release, e.g., 3.13.0-24-generic&quot;</span>
+</span><span id=__span-1-231><a id=__codelineno-1-231 name=__codelineno-1-231></a><span class=w> </span><span class=p>},</span>
+</span><span id=__span-1-232><a id=__codelineno-1-232 name=__codelineno-1-232></a><span class=w> </span><span class=nt>&quot;version&quot;</span><span class=p>:</span><span class=w> </span><span class=p>{</span>
+</span><span id=__span-1-233><a id=__codelineno-1-233 name=__codelineno-1-233></a><span class=w> </span><span class=nt>&quot;type&quot;</span><span class=p>:</span><span class=w> </span><span class=s2>&quot;string&quot;</span><span class=p>,</span>
+</span><span id=__span-1-234><a id=__codelineno-1-234 name=__codelineno-1-234></a><span class=w> </span><span class=nt>&quot;description&quot;</span><span class=p>:</span><span class=w> </span><span class=s2>&quot;The OS version, e.g., #47-Ubuntu SMP Fri May 2 23:30:00 UTC 2014&quot;</span>
+</span><span id=__span-1-235><a id=__codelineno-1-235 name=__codelineno-1-235></a><span class=w> </span><span class=p>},</span>
+</span><span id=__span-1-236><a id=__codelineno-1-236 name=__codelineno-1-236></a><span class=w> </span><span class=nt>&quot;machine&quot;</span><span class=p>:</span><span class=w> </span><span class=p>{</span>
+</span><span id=__span-1-237><a id=__codelineno-1-237 name=__codelineno-1-237></a><span class=w> </span><span class=nt>&quot;type&quot;</span><span class=p>:</span><span class=w> </span><span class=s2>&quot;string&quot;</span><span class=p>,</span>
+</span><span id=__span-1-238><a id=__codelineno-1-238 name=__codelineno-1-238></a><span class=w> </span><span class=nt>&quot;description&quot;</span><span class=p>:</span><span class=w> </span><span class=s2>&quot;The machine hardware identifier, e.g., x86_64&quot;</span>
+</span><span id=__span-1-239><a id=__codelineno-1-239 name=__codelineno-1-239></a><span class=w> </span><span class=p>}</span>
+</span><span id=__span-1-240><a id=__codelineno-1-240 name=__codelineno-1-240></a><span class=w> </span><span class=p>}</span>
+</span><span id=__span-1-241><a id=__codelineno-1-241 name=__codelineno-1-241></a><span class=w> </span><span class=p>},</span>
+</span><span id=__span-1-242><a id=__codelineno-1-242 name=__codelineno-1-242></a><span class=w> </span><span class=nt>&quot;Server&quot;</span><span class=p>:</span><span class=w> </span><span class=p>{</span>
+</span><span id=__span-1-243><a id=__codelineno-1-243 name=__codelineno-1-243></a><span class=w> </span><span class=nt>&quot;id&quot;</span><span class=p>:</span><span class=w> </span><span class=s2>&quot;Server&quot;</span><span class=p>,</span>
+</span><span id=__span-1-244><a id=__codelineno-1-244 name=__codelineno-1-244></a><span class=w> </span><span class=nt>&quot;description&quot;</span><span class=p>:</span><span class=w> </span><span class=s2>&quot;Information regarding a server&quot;</span><span class=p>,</span>
+</span><span id=__span-1-245><a id=__codelineno-1-245 name=__codelineno-1-245></a><span class=w> </span><span class=nt>&quot;required&quot;</span><span class=p>:</span><span class=w> </span><span class=p>[</span>
+</span><span id=__span-1-246><a id=__codelineno-1-246 name=__codelineno-1-246></a><span class=w> </span><span class=s2>&quot;id&quot;</span>
+</span><span id=__span-1-247><a id=__codelineno-1-247 name=__codelineno-1-247></a><span class=w> </span><span class=p>],</span>
+</span><span id=__span-1-248><a id=__codelineno-1-248 name=__codelineno-1-248></a><span class=w> </span><span class=nt>&quot;properties&quot;</span><span class=p>:</span><span class=w> </span><span class=p>{</span>
+</span><span id=__span-1-249><a id=__codelineno-1-249 name=__codelineno-1-249></a><span class=w> </span><span class=nt>&quot;id&quot;</span><span class=p>:</span><span class=w> </span><span class=p>{</span>
+</span><span id=__span-1-250><a id=__codelineno-1-250 name=__codelineno-1-250></a><span class=w> </span><span class=nt>&quot;type&quot;</span><span class=p>:</span><span class=w> </span><span class=s2>&quot;string&quot;</span><span class=p>,</span>
+</span><span id=__span-1-251><a id=__codelineno-1-251 name=__codelineno-1-251></a><span class=w> </span><span class=nt>&quot;description&quot;</span><span class=p>:</span><span class=w> </span><span class=s2>&quot;UUID uniquely identifying the server&quot;</span>
+</span><span id=__span-1-252><a id=__codelineno-1-252 name=__codelineno-1-252></a><span class=w> </span><span class=p>},</span>
+</span><span id=__span-1-253><a id=__codelineno-1-253 name=__codelineno-1-253></a><span class=w> </span><span class=nt>&quot;asterisk&quot;</span><span class=p>:</span><span class=w> </span><span class=p>{</span>
+</span><span id=__span-1-254><a id=__codelineno-1-254 name=__codelineno-1-254></a><span class=w> </span><span class=nt>&quot;$ref&quot;</span><span class=p>:</span><span class=w> </span><span class=s2>&quot;Asterisk&quot;</span><span class=p>,</span>
+</span><span id=__span-1-255><a id=__codelineno-1-255 name=__codelineno-1-255></a><span class=w> </span><span class=nt>&quot;description&quot;</span><span class=p>:</span><span class=w> </span><span class=s2>&quot;Information about Asterisk&quot;</span>
+</span><span id=__span-1-256><a id=__codelineno-1-256 name=__codelineno-1-256></a><span class=w> </span><span class=p>},</span>
+</span><span id=__span-1-257><a id=__codelineno-1-257 name=__codelineno-1-257></a><span class=w> </span><span class=nt>&quot;operating_system&quot;</span><span class=p>:</span><span class=w> </span><span class=p>{</span>
+</span><span id=__span-1-258><a id=__codelineno-1-258 name=__codelineno-1-258></a><span class=w> </span><span class=nt>&quot;$ref&quot;</span><span class=p>:</span><span class=w> </span><span class=s2>&quot;OperatingSystem&quot;</span><span class=p>,</span>
+</span><span id=__span-1-259><a id=__codelineno-1-259 name=__codelineno-1-259></a><span class=w> </span><span class=nt>&quot;description&quot;</span><span class=p>:</span><span class=w> </span><span class=s2>&quot;Information about the system OS&quot;</span>
+</span><span id=__span-1-260><a id=__codelineno-1-260 name=__codelineno-1-260></a><span class=w> </span><span class=p>},</span>
+</span><span id=__span-1-261><a id=__codelineno-1-261 name=__codelineno-1-261></a><span class=w> </span><span class=nt>&quot;private_name&quot;</span><span class=p>:</span><span class=w> </span><span class=p>{</span>
+</span><span id=__span-1-262><a id=__codelineno-1-262 name=__codelineno-1-262></a><span class=w> </span><span class=nt>&quot;type&quot;</span><span class=p>:</span><span class=w> </span><span class=s2>&quot;string&quot;</span><span class=p>,</span>
+</span><span id=__span-1-263><a id=__codelineno-1-263 name=__codelineno-1-263></a><span class=w> </span><span class=nt>&quot;description&quot;</span><span class=p>:</span><span class=w> </span><span class=s2>&quot;A name for the server that is never displayed on the Asterisk Beacon server. It is provided via configuration for custom use.&quot;</span>
+</span><span id=__span-1-264><a id=__codelineno-1-264 name=__codelineno-1-264></a><span class=w> </span><span class=p>}</span>
+</span><span id=__span-1-265><a id=__codelineno-1-265 name=__codelineno-1-265></a><span class=w>  </span><span class=p>}</span>
+</span><span id=__span-1-266><a id=__codelineno-1-266 name=__codelineno-1-266></a><span class=w> </span><span class=p>},</span>
+</span><span id=__span-1-267><a id=__codelineno-1-267 name=__codelineno-1-267></a><span class=w> </span><span class=nt>&quot;ServerToken&quot;</span><span class=p>:</span><span class=w> </span><span class=p>{</span>
+</span><span id=__span-1-268><a id=__codelineno-1-268 name=__codelineno-1-268></a><span class=w> </span><span class=nt>&quot;id&quot;</span><span class=p>:</span><span class=w> </span><span class=s2>&quot;ServerToken&quot;</span><span class=p>,</span>
+</span><span id=__span-1-269><a id=__codelineno-1-269 name=__codelineno-1-269></a><span class=w> </span><span class=nt>&quot;description&quot;</span><span class=p>:</span><span class=w> </span><span class=s2>&quot;A server and a token for the subsequent request that updates the server&quot;</span><span class=p>,</span>
+</span><span id=__span-1-270><a id=__codelineno-1-270 name=__codelineno-1-270></a><span class=w> </span><span class=nt>&quot;required&quot;</span><span class=p>:</span><span class=w> </span><span class=p>[</span>
+</span><span id=__span-1-271><a id=__codelineno-1-271 name=__codelineno-1-271></a><span class=w> </span><span class=s2>&quot;token&quot;</span><span class=p>,</span>
+</span><span id=__span-1-272><a id=__codelineno-1-272 name=__codelineno-1-272></a><span class=w> </span><span class=s2>&quot;server&quot;</span>
+</span><span id=__span-1-273><a id=__codelineno-1-273 name=__codelineno-1-273></a><span class=w> </span><span class=p>],</span>
+</span><span id=__span-1-274><a id=__codelineno-1-274 name=__codelineno-1-274></a><span class=w> </span><span class=nt>&quot;properties&quot;</span><span class=p>:</span><span class=w> </span><span class=p>{</span>
+</span><span id=__span-1-275><a id=__codelineno-1-275 name=__codelineno-1-275></a><span class=w> </span><span class=nt>&quot;token&quot;</span><span class=p>:</span><span class=w> </span><span class=p>{</span>
+</span><span id=__span-1-276><a id=__codelineno-1-276 name=__codelineno-1-276></a><span class=w> </span><span class=nt>&quot;$ref&quot;</span><span class=p>:</span><span class=w> </span><span class=s2>&quot;Token&quot;</span><span class=p>,</span>
+</span><span id=__span-1-277><a id=__codelineno-1-277 name=__codelineno-1-277></a><span class=w> </span><span class=nt>&quot;description&quot;</span><span class=p>:</span><span class=w> </span><span class=s2>&quot;The token that has just been issued&quot;</span>
+</span><span id=__span-1-278><a id=__codelineno-1-278 name=__codelineno-1-278></a><span class=w> </span><span class=p>},</span>
+</span><span id=__span-1-279><a id=__codelineno-1-279 name=__codelineno-1-279></a><span class=w> </span><span class=nt>&quot;server&quot;</span><span class=p>:</span><span class=w> </span><span class=p>{</span>
+</span><span id=__span-1-280><a id=__codelineno-1-280 name=__codelineno-1-280></a><span class=w> </span><span class=nt>&quot;$ref&quot;</span><span class=p>:</span><span class=w> </span><span class=s2>&quot;Server&quot;</span><span class=p>,</span>
+</span><span id=__span-1-281><a id=__codelineno-1-281 name=__codelineno-1-281></a><span class=w> </span><span class=nt>&quot;description&quot;</span><span class=p>:</span><span class=w> </span><span class=s2>&quot;The server that the token is for&quot;</span>
+</span><span id=__span-1-282><a id=__codelineno-1-282 name=__codelineno-1-282></a><span class=w> </span><span class=p>}</span>
+</span><span id=__span-1-283><a id=__codelineno-1-283 name=__codelineno-1-283></a><span class=w> </span><span class=p>}</span>
+</span><span id=__span-1-284><a id=__codelineno-1-284 name=__codelineno-1-284></a><span class=w> </span><span class=p>}</span>
+</span><span id=__span-1-285><a id=__codelineno-1-285 name=__codelineno-1-285></a><span class=w> </span><span class=p>}</span>
+</span><span id=__span-1-286><a id=__codelineno-1-286 name=__codelineno-1-286></a><span class=p>}</span>
+</span></code></pre></div></td></tr></table></div></p> <h2 id=example-requestresponses>Example Request/Responses<a class=headerlink href=#example-requestresponses title="Permanent link">&para;</a></h2> <h3 id=client-server-request>Client Server Request<a class=headerlink href=#client-server-request title="Permanent link">&para;</a></h3> <p>In this example, a client requests a new server from the Asterisk Beacon. It is handed back a new token to use for subsequent requests, which is valid for 48 hours after issuance. It is also handed back the ID of the server to use.</p> <p>Note that the Server object is used for this; however, as only the <code>id</code> field is mandatory, that is what is provided. A client <strong>should</strong> provide more information back - but a server implementation should be tolerant of missing optional fields.</p> <div class="language-text highlight"><pre><span></span><code><span id=__span-2-1><a id=__codelineno-2-1 name=__codelineno-2-1 href=#__codelineno-2-1></a>POST https://beacon.asterisk.org:443/servers
+</span><span id=__span-2-2><a id=__codelineno-2-2 name=__codelineno-2-2 href=#__codelineno-2-2></a>
+</span><span id=__span-2-3><a id=__codelineno-2-3 name=__codelineno-2-3 href=#__codelineno-2-3></a>Response: 200 OK
+</span><span id=__span-2-4><a id=__codelineno-2-4 name=__codelineno-2-4 href=#__codelineno-2-4></a>{
+</span><span id=__span-2-5><a id=__codelineno-2-5 name=__codelineno-2-5 href=#__codelineno-2-5></a> &quot;token&quot;: { &quot;id&quot;: &quot;ca74af9d-260c-4764-b452-e0628a9468a9&quot;, &quot;issue&quot;: &quot;Mon Dec 29 2014 15:37:18 UTC&quot; },
+</span><span id=__span-2-6><a id=__codelineno-2-6 name=__codelineno-2-6 href=#__codelineno-2-6></a> &quot;server&quot;: { &quot;id&quot;: &quot;bc5829cc-4584-43e5-8395-a9b1206d7e02&quot; }
+</span><span id=__span-2-7><a id=__codelineno-2-7 name=__codelineno-2-7 href=#__codelineno-2-7></a>}
+</span></code></pre></div> <h3 id=client-server-update>Client Server Update<a class=headerlink href=#client-server-update title="Permanent link">&para;</a></h3> <p>In this example, the client uses the previously obtained token/server ID to issue a new request.</p> <p>Note that the server hands back the same token as was provided. It is up to the server to generate a new token at the appropriate time.</p> <div class="language-text highlight"><pre><span></span><code><span id=__span-3-1><a id=__codelineno-3-1 name=__codelineno-3-1 href=#__codelineno-3-1></a>PUT https://beacon.asterisk.org:80/servers/bc5829cc-4584-43e5-8395-a9b1206d7e02?tokenId=ca74af9d-260c-4764-b452-e0628a9468a9
+</span><span id=__span-3-2><a id=__codelineno-3-2 name=__codelineno-3-2 href=#__codelineno-3-2></a>{
+</span><span id=__span-3-3><a id=__codelineno-3-3 name=__codelineno-3-3 href=#__codelineno-3-3></a> &quot;id&quot;: &quot;bc5829cc-4584-43e5-8395-a9b1206d7e02&quot;,
+</span><span id=__span-3-4><a id=__codelineno-3-4 name=__codelineno-3-4 href=#__codelineno-3-4></a> &quot;asterisk&quot;: {
+</span><span id=__span-3-5><a id=__codelineno-3-5 name=__codelineno-3-5 href=#__codelineno-3-5></a> &quot;version&quot;: {
+</span><span id=__span-3-6><a id=__codelineno-3-6 name=__codelineno-3-6 href=#__codelineno-3-6></a> &quot;name&quot;: &quot;Asterisk 13-GIT-a18hf7lq&quot;,
+</span><span id=__span-3-7><a id=__codelineno-3-7 name=__codelineno-3-7 href=#__codelineno-3-7></a> &quot;number&quot;: &quot;11300&quot;
+</span><span id=__span-3-8><a id=__codelineno-3-8 name=__codelineno-3-8 href=#__codelineno-3-8></a> },
+</span><span id=__span-3-9><a id=__codelineno-3-9 name=__codelineno-3-9 href=#__codelineno-3-9></a> &quot;modules&quot;: [
+</span><span id=__span-3-10><a id=__codelineno-3-10 name=__codelineno-3-10 href=#__codelineno-3-10></a> {
+</span><span id=__span-3-11><a id=__codelineno-3-11 name=__codelineno-3-11 href=#__codelineno-3-11></a> &quot;name&quot;: &quot;res_pjsip.so&quot;,
+</span><span id=__span-3-12><a id=__codelineno-3-12 name=__codelineno-3-12 href=#__codelineno-3-12></a> &quot;description&quot;: &quot;Basic SIP resource&quot;,
+</span><span id=__span-3-13><a id=__codelineno-3-13 name=__codelineno-3-13 href=#__codelineno-3-13></a> &quot;status&quot;: &quot;Running&quot;,
+</span><span id=__span-3-14><a id=__codelineno-3-14 name=__codelineno-3-14 href=#__codelineno-3-14></a> &quot;support_level&quot;: &quot;core&quot;
+</span><span id=__span-3-15><a id=__codelineno-3-15 name=__codelineno-3-15 href=#__codelineno-3-15></a> },
+</span><span id=__span-3-16><a id=__codelineno-3-16 name=__codelineno-3-16 href=#__codelineno-3-16></a> ...
+</span><span id=__span-3-17><a id=__codelineno-3-17 name=__codelineno-3-17 href=#__codelineno-3-17></a> ],
+</span><span id=__span-3-18><a id=__codelineno-3-18 name=__codelineno-3-18 href=#__codelineno-3-18></a> &quot;stats&quot;: {
+</span><span id=__span-3-19><a id=__codelineno-3-19 name=__codelineno-3-19 href=#__codelineno-3-19></a> &quot;run_time&quot;:
+</span><span id=__span-3-20><a id=__codelineno-3-20 name=__codelineno-3-20 href=#__codelineno-3-20></a> {
+</span><span id=__span-3-21><a id=__codelineno-3-21 name=__codelineno-3-21 href=#__codelineno-3-21></a> startup_time: &quot;23:00:00 UTC 2014&quot;,
+</span><span id=__span-3-22><a id=__codelineno-3-22 name=__codelineno-3-22 href=#__codelineno-3-22></a> last_reload_time: &quot;23:10:00 UTC 2014&quot;
+</span><span id=__span-3-23><a id=__codelineno-3-23 name=__codelineno-3-23 href=#__codelineno-3-23></a> },
+</span><span id=__span-3-24><a id=__codelineno-3-24 name=__codelineno-3-24 href=#__codelineno-3-24></a> &quot;calls&quot;:
+</span><span id=__span-3-25><a id=__codelineno-3-25 name=__codelineno-3-25 href=#__codelineno-3-25></a> {
+</span><span id=__span-3-26><a id=__codelineno-3-26 name=__codelineno-3-26 href=#__codelineno-3-26></a> &quot;active&quot;: 2
+</span><span id=__span-3-27><a id=__codelineno-3-27 name=__codelineno-3-27 href=#__codelineno-3-27></a> &quot;processed&quot;: 1238
+</span><span id=__span-3-28><a id=__codelineno-3-28 name=__codelineno-3-28 href=#__codelineno-3-28></a> }
+</span><span id=__span-3-29><a id=__codelineno-3-29 name=__codelineno-3-29 href=#__codelineno-3-29></a> }
+</span><span id=__span-3-30><a id=__codelineno-3-30 name=__codelineno-3-30 href=#__codelineno-3-30></a> },
+</span><span id=__span-3-31><a id=__codelineno-3-31 name=__codelineno-3-31 href=#__codelineno-3-31></a> &quot;operating_system&quot;: {
+</span><span id=__span-3-32><a id=__codelineno-3-32 name=__codelineno-3-32 href=#__codelineno-3-32></a> &quot;sys_name&quot;: &quot;Linux&quot;,
+</span><span id=__span-3-33><a id=__codelineno-3-33 name=__codelineno-3-33 href=#__codelineno-3-33></a> &quot;release&quot;: &quot;3.13.0-24-generic&quot;,
+</span><span id=__span-3-34><a id=__codelineno-3-34 name=__codelineno-3-34 href=#__codelineno-3-34></a> &quot;version&quot;: &quot;#47-Ubuntu SMP Fri May 2 23:30:00 UTC 2014&quot;,
+</span><span id=__span-3-35><a id=__codelineno-3-35 name=__codelineno-3-35 href=#__codelineno-3-35></a> &quot;machine&quot;: &quot;x86_64&quot;
+</span><span id=__span-3-36><a id=__codelineno-3-36 name=__codelineno-3-36 href=#__codelineno-3-36></a> }
+</span><span id=__span-3-37><a id=__codelineno-3-37 name=__codelineno-3-37 href=#__codelineno-3-37></a>}
+</span></code></pre></div> <h1 id=client-res_beacon>Client: res_beacon<a class=headerlink href=#client-res_beacon title="Permanent link">&para;</a></h1> <p>Asterisk shall have a new resource module, <code>res_beacon</code>. As a user of <code>cURL</code>, <code>res_beacon</code> will depend on the <code>cURL</code> library and the <code>res_curl</code> module.</p> <div class="admonition info"> <p>Yes. This means that if a system doesn't have <code>cURL</code> on it, we won't get its stats. That beats doing something silly like rolling our own transport.</p> </div> <p>The module will be able to send data to both the Asterisk Beacon server (hard coded, can't change or remove without re-compiling) as well as any configurable number of other servers. Those other servers allow a user to set up their own instance of the publicly defined API and collect their own statistics themselves.</p> <p>The minimum value for reporting interval to beacon.asterisk.org should be 60 minutes. Any user input values smaller than that should be rounded to 60.</p> <h2 id=dev-mode>Dev-Mode<a class=headerlink href=#dev-mode title="Permanent link">&para;</a></h2> <p>Asterisk runs a lot under the Test Suite. When it does so, it is sandboxed, and hence can't reuse a 'test server ID' or test token. What's more, as an open source module, we should not just hardcode a 'test ID' into the module.</p> <p>When compiled under <code>-dev-mode</code>, <code>res_beacon</code> should disable sending to the Asterisk Beacon URI. It should still support sending to an alternate server, which should be adequate for the vast majority of CI testing.</p> <h2 id=persistence>Persistence<a class=headerlink href=#persistence title="Permanent link">&para;</a></h2> <p><code>res_beacon</code> shall add a new family to the AstDB, "/beacon." This family should contain:</p> <ul> <li>The Server ID</li> <li>The current token ID</li> </ul> <p>If Asterisk attempts to use a cached server ID and token and it is rejected with a 401, a new server ID should be obtained.</p> <h2 id=logging-notification>Logging Notification<a class=headerlink href=#logging-notification title="Permanent link">&para;</a></h2> <p>When logging is enabled, the CLI will display - as the last thing that is displayed before the "Asterisk Ready" prompt - a message that Asterisk is logging. This should be displayed on the CLI in suitably garish and annoying colors:</p> <div class="language-text highlight"><pre><span></span><code><span id=__span-4-1><a id=__codelineno-4-1 name=__codelineno-4-1 href=#__codelineno-4-1></a>[Dec 29 16:10:59] NOTICE[13489]: app_queue.c:8885 reload_queues: No call queueing config file (queues.conf), so no call queues
+</span><span id=__span-4-2><a id=__codelineno-4-2 name=__codelineno-4-2 href=#__codelineno-4-2></a> Loading res_manager_devicestate.so.
+</span><span id=__span-4-3><a id=__codelineno-4-3 name=__codelineno-4-3 href=#__codelineno-4-3></a> == Manager registered action DeviceStateList
+</span><span id=__span-4-4><a id=__codelineno-4-4 name=__codelineno-4-4 href=#__codelineno-4-4></a> == res_manager_devicestate.so =&gt; (Manager Device State Topic Forwarder)
+</span><span id=__span-4-5><a id=__codelineno-4-5 name=__codelineno-4-5 href=#__codelineno-4-5></a> Loading res_manager_presencestate.so.
+</span><span id=__span-4-6><a id=__codelineno-4-6 name=__codelineno-4-6 href=#__codelineno-4-6></a> == Manager registered action PresenceStateList
+</span><span id=__span-4-7><a id=__codelineno-4-7 name=__codelineno-4-7 href=#__codelineno-4-7></a> == res_manager_presencestate.so =&gt; (Manager Presence State Topic Forwarder)
+</span><span id=__span-4-8><a id=__codelineno-4-8 name=__codelineno-4-8 href=#__codelineno-4-8></a> Asterisk Malloc Debugger Started (see /var/log/asterisk/mmlog))
+</span><span id=__span-4-9><a id=__codelineno-4-9 name=__codelineno-4-9 href=#__codelineno-4-9></a>[Dec 29 16:10:59] NOTICE[13489]: res_beacon.c:103 load_module: &lt;&lt;&lt; &lt;&lt;&lt; &lt;&lt;&lt; ANONYMOUS USAGE STATISTICS ENABLED &gt;&gt;&gt; &gt;&gt;&gt; &gt;&gt;&gt;
+</span><span id=__span-4-10><a id=__codelineno-4-10 name=__codelineno-4-10 href=#__codelineno-4-10></a>Asterisk Ready.
+</span><span id=__span-4-11><a id=__codelineno-4-11 name=__codelineno-4-11 href=#__codelineno-4-11></a>\*CLI&gt;
+</span></code></pre></div> <h2 id=configuration>Configuration<a class=headerlink href=#configuration title="Permanent link">&para;</a></h2> <p>Configuration shall be provided by <code>res_beacon.conf</code>.</p> <table> <thead> <tr> <th>Category</th> <th>Option</th> <th>Data type</th> <th>Default</th> <th>Description</th> </tr> </thead> <tbody> <tr> <td>^general$</td> <td>WHITELIST</td> <td></td> <td></td> <td>Settings that apply to all servers</td> </tr> <tr> <td></td> <td>enabled</td> <td>Boolean</td> <td>True</td> <td>Enable/disable sending to all servers</td> </tr> <tr> <td></td> <td>private_name</td> <td>String</td> <td></td> <td>Name of the system to send in reports. This is not shown on the Beacon server.</td> </tr> <tr> <td>^beacon$</td> <td>WHITELIST</td> <td></td> <td></td> <td>Settings that apply to the Asterisk beacon server</td> </tr> <tr> <td></td> <td>proxy</td> <td>String</td> <td></td> <td>Set an optional user:pass@proxy to use</td> </tr> <tr> <td></td> <td>interval</td> <td>Int32</td> <td>360</td> <td>How often, in minutes, to send a report, minimum 60</td> </tr> <tr> <td></td> <td>start_time</td> <td>Time</td> <td>00:00</td> <td>When to start sending reports</td> </tr> <tr> <td>^general$</td> <td>^beacon$</td> <td>BLACKLIST</td> <td></td> <td></td> </tr> <tr> <td></td> <td>type</td> <td>String</td> <td></td> <td>Must be server</td> </tr> <tr> <td></td> <td>proxy</td> <td>String</td> <td></td> <td>Set an optional user:pass@proxy to use</td> </tr> <tr> <td></td> <td>interval</td> <td>Int32</td> <td>360</td> <td>How often, in minutes, to send a report</td> </tr> <tr> <td></td> <td>start_time</td> <td>Time</td> <td>00:00</td> <td>When to start sending reports</td> </tr> <tr> <td></td> <td>verify_cert</td> <td>Boolean</td> <td>True</td> <td>Whether or not to verify the server certificates.</td> </tr> <tr> <td></td> <td>ca_path</td> <td>String</td> <td></td> <td>Location of client certificates to use for the server.</td> </tr> </tbody> </table> <h3 id=example>Example<a class=headerlink href=#example title="Permanent link">&para;</a></h3> <div class="language-text highlight"><pre><span></span><code><span id=__span-5-1><a id=__codelineno-5-1 name=__codelineno-5-1 href=#__codelineno-5-1></a>[general]
+</span><span id=__span-5-2><a id=__codelineno-5-2 name=__codelineno-5-2 href=#__codelineno-5-2></a>enabled = True
+</span><span id=__span-5-3><a id=__codelineno-5-3 name=__codelineno-5-3 href=#__codelineno-5-3></a>private_name = My awesome server
+</span><span id=__span-5-4><a id=__codelineno-5-4 name=__codelineno-5-4 href=#__codelineno-5-4></a>
+</span><span id=__span-5-5><a id=__codelineno-5-5 name=__codelineno-5-5 href=#__codelineno-5-5></a>[beacon]
+</span><span id=__span-5-6><a id=__codelineno-5-6 name=__codelineno-5-6 href=#__codelineno-5-6></a>interval = 180
+</span><span id=__span-5-7><a id=__codelineno-5-7 name=__codelineno-5-7 href=#__codelineno-5-7></a>start_time = 12:00
+</span><span id=__span-5-8><a id=__codelineno-5-8 name=__codelineno-5-8 href=#__codelineno-5-8></a>
+</span><span id=__span-5-9><a id=__codelineno-5-9 name=__codelineno-5-9 href=#__codelineno-5-9></a>[awesome_stats_server]
+</span><span id=__span-5-10><a id=__codelineno-5-10 name=__codelineno-5-10 href=#__codelineno-5-10></a>type = server
+</span><span id=__span-5-11><a id=__codelineno-5-11 name=__codelineno-5-11 href=#__codelineno-5-11></a>proxy = https://batman:rocks@awesome_stats_server.mydomain.com/beacon
+</span><span id=__span-5-12><a id=__codelineno-5-12 name=__codelineno-5-12 href=#__codelineno-5-12></a>verify_cert = false
+</span></code></pre></div> <h2 id=cli-commands>CLI Commands<a class=headerlink href=#cli-commands title="Permanent link">&para;</a></h2> <h3 id=beacon-show-server>beacon show server<a class=headerlink href=#beacon-show-server title="Permanent link">&para;</a></h3> <p>Display the gathered information about the server. This should show what we would send in a server update request.</p> <div class="language-text highlight"><pre><span></span><code><span id=__span-6-1><a id=__codelineno-6-1 name=__codelineno-6-1 href=#__codelineno-6-1></a> \*CLI&gt; beacon show server
+</span><span id=__span-6-2><a id=__codelineno-6-2 name=__codelineno-6-2 href=#__codelineno-6-2></a>
+</span><span id=__span-6-3><a id=__codelineno-6-3 name=__codelineno-6-3 href=#__codelineno-6-3></a>Server ID: bc5829cc-4584-43e5-8395-a9b1206d7e02
+</span><span id=__span-6-4><a id=__codelineno-6-4 name=__codelineno-6-4 href=#__codelineno-6-4></a>Token:
+</span><span id=__span-6-5><a id=__codelineno-6-5 name=__codelineno-6-5 href=#__codelineno-6-5></a> ID: ca74af9d-260c-4764-b452-e0628a9468a9
+</span><span id=__span-6-6><a id=__codelineno-6-6 name=__codelineno-6-6 href=#__codelineno-6-6></a> Issued: Mon Dec 29 2014 15:37:18 UTC
+</span><span id=__span-6-7><a id=__codelineno-6-7 name=__codelineno-6-7 href=#__codelineno-6-7></a>Last Posting: Mon Dec 2014 15:37:18 UTC
+</span><span id=__span-6-8><a id=__codelineno-6-8 name=__codelineno-6-8 href=#__codelineno-6-8></a>Next Posting: Mon Dec 2014 21:37:18 UTC
+</span><span id=__span-6-9><a id=__codelineno-6-9 name=__codelineno-6-9 href=#__codelineno-6-9></a>Asterisk Information:
+</span><span id=__span-6-10><a id=__codelineno-6-10 name=__codelineno-6-10 href=#__codelineno-6-10></a> Version: Asterisk SVN-branch-13-r430034 (11300)
+</span><span id=__span-6-11><a id=__codelineno-6-11 name=__codelineno-6-11 href=#__codelineno-6-11></a> Stats:
+</span><span id=__span-6-12><a id=__codelineno-6-12 name=__codelineno-6-12 href=#__codelineno-6-12></a> Run-time:
+</span><span id=__span-6-13><a id=__codelineno-6-13 name=__codelineno-6-13 href=#__codelineno-6-13></a> Started at: Mon Dec 29 2014 15:37:18 UTC
+</span><span id=__span-6-14><a id=__codelineno-6-14 name=__codelineno-6-14 href=#__codelineno-6-14></a> Running for: 10 minutes
+</span><span id=__span-6-15><a id=__codelineno-6-15 name=__codelineno-6-15 href=#__codelineno-6-15></a> Last reload time: Mon Dec 29 2014 15:37:18 UTC
+</span><span id=__span-6-16><a id=__codelineno-6-16 name=__codelineno-6-16 href=#__codelineno-6-16></a> Calls:
+</span><span id=__span-6-17><a id=__codelineno-6-17 name=__codelineno-6-17 href=#__codelineno-6-17></a> Active: 0
+</span><span id=__span-6-18><a id=__codelineno-6-18 name=__codelineno-6-18 href=#__codelineno-6-18></a> Processed: 1238
+</span><span id=__span-6-19><a id=__codelineno-6-19 name=__codelineno-6-19 href=#__codelineno-6-19></a> Module:
+</span><span id=__span-6-20><a id=__codelineno-6-20 name=__codelineno-6-20 href=#__codelineno-6-20></a> ... (laundry list)
+</span><span id=__span-6-21><a id=__codelineno-6-21 name=__codelineno-6-21 href=#__codelineno-6-21></a>Operating System:
+</span><span id=__span-6-22><a id=__codelineno-6-22 name=__codelineno-6-22 href=#__codelineno-6-22></a> Linux 3.13.0-24-generic #47-Ubuntu SMP Fri May 2 23:30:00 UTC 2014 x86_64
+</span></code></pre></div> <h3 id=beacon-show-configuration>beacon show configuration<a class=headerlink href=#beacon-show-configuration title="Permanent link">&para;</a></h3> <p>Display our configuration data.</p> <h2 id=ami-actions>AMI Actions<a class=headerlink href=#ami-actions title="Permanent link">&para;</a></h2> <h3 id=beaconshowserver>BeaconShowServer<a class=headerlink href=#beaconshowserver title="Permanent link">&para;</a></h3> <p>Note that the date/time format may be different than what is displayed below. This is for informational purposes only.</p> <p>Since multiple modules can be returned, the AMI response should increase the 'count' of the header.</p> <div class="language-text highlight"><pre><span></span><code><span id=__span-7-1><a id=__codelineno-7-1 name=__codelineno-7-1 href=#__codelineno-7-1></a>Action: BeaconShowServer
+</span><span id=__span-7-2><a id=__codelineno-7-2 name=__codelineno-7-2 href=#__codelineno-7-2></a>ActionId: 12345
+</span><span id=__span-7-3><a id=__codelineno-7-3 name=__codelineno-7-3 href=#__codelineno-7-3></a>
+</span><span id=__span-7-4><a id=__codelineno-7-4 name=__codelineno-7-4 href=#__codelineno-7-4></a>Event: BeaconShowServerResponse
+</span><span id=__span-7-5><a id=__codelineno-7-5 name=__codelineno-7-5 href=#__codelineno-7-5></a>ActionId: 12345
+</span><span id=__span-7-6><a id=__codelineno-7-6 name=__codelineno-7-6 href=#__codelineno-7-6></a>ServerId: bc5829cc-4584-43e5-8395-a9b1206d7e02
+</span><span id=__span-7-7><a id=__codelineno-7-7 name=__codelineno-7-7 href=#__codelineno-7-7></a>TokenId: ca74af9d-260c-4764-b452-e0628a9468a9
+</span><span id=__span-7-8><a id=__codelineno-7-8 name=__codelineno-7-8 href=#__codelineno-7-8></a>TokenIssuedDate: Mon Dec 29 2014 15:37:18 UTC
+</span><span id=__span-7-9><a id=__codelineno-7-9 name=__codelineno-7-9 href=#__codelineno-7-9></a>LastPosting: Mon Dec 29 2014 15:37:18 UTC
+</span><span id=__span-7-10><a id=__codelineno-7-10 name=__codelineno-7-10 href=#__codelineno-7-10></a>NextPosting: Mon Dec 29 2014 21:37:18 UTC
+</span><span id=__span-7-11><a id=__codelineno-7-11 name=__codelineno-7-11 href=#__codelineno-7-11></a>Module0Name: res_pjsip.so
+</span><span id=__span-7-12><a id=__codelineno-7-12 name=__codelineno-7-12 href=#__codelineno-7-12></a>Module0Description: Basic SIP resource
+</span><span id=__span-7-13><a id=__codelineno-7-13 name=__codelineno-7-13 href=#__codelineno-7-13></a>Module0Status: Running
+</span><span id=__span-7-14><a id=__codelineno-7-14 name=__codelineno-7-14 href=#__codelineno-7-14></a>Module0SupportLevel: core
+</span><span id=__span-7-15><a id=__codelineno-7-15 name=__codelineno-7-15 href=#__codelineno-7-15></a>...
+</span><span id=__span-7-16><a id=__codelineno-7-16 name=__codelineno-7-16 href=#__codelineno-7-16></a>StartupTime: 23:00:00 UTC 2014
+</span><span id=__span-7-17><a id=__codelineno-7-17 name=__codelineno-7-17 href=#__codelineno-7-17></a>LastReloadTime: 23:10:00 UTC 2014
+</span><span id=__span-7-18><a id=__codelineno-7-18 name=__codelineno-7-18 href=#__codelineno-7-18></a>ActiveCalls: 2
+</span><span id=__span-7-19><a id=__codelineno-7-19 name=__codelineno-7-19 href=#__codelineno-7-19></a>ProcessedCalls: 1238
+</span><span id=__span-7-20><a id=__codelineno-7-20 name=__codelineno-7-20 href=#__codelineno-7-20></a>OperatingSystemName: Linux
+</span><span id=__span-7-21><a id=__codelineno-7-21 name=__codelineno-7-21 href=#__codelineno-7-21></a>OperatingSystemRelease: 3.13.0-24-generic
+</span><span id=__span-7-22><a id=__codelineno-7-22 name=__codelineno-7-22 href=#__codelineno-7-22></a>OperatingSystemVersion: #47-Ubuntu SMP Fri May 2 23:30:00 UTC 2014
+</span><span id=__span-7-23><a id=__codelineno-7-23 name=__codelineno-7-23 href=#__codelineno-7-23></a>OperatingSystemMachine: x86_64
+</span></code></pre></div> <h2 id=ari-resources-13>ARI Resources (13+)<a class=headerlink href=#ari-resources-13 title="Permanent link">&para;</a></h2> <p>A large portion of the REST API can be re-used for Asterisk's ARI as well. Note that the data models are not modified for this purpose - only the operations have been changed as shown below.</p> <hr> <p>Swagger Definition </p> <div class="language-javascript highlight"><pre><span></span><code><span id=__span-8-1><a id=__codelineno-8-1 name=__codelineno-8-1 href=#__codelineno-8-1></a><span class=p>{</span>
+</span><span id=__span-8-2><a id=__codelineno-8-2 name=__codelineno-8-2 href=#__codelineno-8-2></a><span class=w> </span><span class=s2>&quot;apiVersion&quot;</span><span class=o>:</span><span class=w> </span><span class=s2>&quot;1.0.0&quot;</span><span class=p>,</span>
+</span><span id=__span-8-3><a id=__codelineno-8-3 name=__codelineno-8-3 href=#__codelineno-8-3></a><span class=w> </span><span class=s2>&quot;swaggerVersion&quot;</span><span class=o>:</span><span class=w> </span><span class=s2>&quot;1.2&quot;</span><span class=p>,</span>
+</span><span id=__span-8-4><a id=__codelineno-8-4 name=__codelineno-8-4 href=#__codelineno-8-4></a><span class=w> </span><span class=s2>&quot;basePath&quot;</span><span class=o>:</span><span class=w> </span><span class=s2>&quot;https://localhost:8088/ari&quot;</span>
+</span><span id=__span-8-5><a id=__codelineno-8-5 name=__codelineno-8-5 href=#__codelineno-8-5></a><span class=w> </span><span class=s2>&quot;resourcePath&quot;</span><span class=o>:</span><span class=w> </span><span class=s2>&quot;/beacon&quot;</span>
+</span><span id=__span-8-6><a id=__codelineno-8-6 name=__codelineno-8-6 href=#__codelineno-8-6></a><span class=w> </span><span class=s2>&quot;apis&quot;</span><span class=o>:</span><span class=w> </span><span class=p>[</span>
+</span><span id=__span-8-7><a id=__codelineno-8-7 name=__codelineno-8-7 href=#__codelineno-8-7></a><span class=w> </span><span class=p>{</span>
+</span><span id=__span-8-8><a id=__codelineno-8-8 name=__codelineno-8-8 href=#__codelineno-8-8></a><span class=w> </span><span class=s2>&quot;path&quot;</span><span class=o>:</span><span class=w> </span><span class=s2>&quot;/&quot;</span>
+</span><span id=__span-8-9><a id=__codelineno-8-9 name=__codelineno-8-9 href=#__codelineno-8-9></a><span class=w> </span><span class=s2>&quot;operations&quot;</span><span class=o>:</span><span class=w> </span><span class=p>[</span>
+</span><span id=__span-8-10><a id=__codelineno-8-10 name=__codelineno-8-10 href=#__codelineno-8-10></a><span class=w> </span><span class=p>{</span>
+</span><span id=__span-8-11><a id=__codelineno-8-11 name=__codelineno-8-11 href=#__codelineno-8-11></a><span class=w> </span><span class=s2>&quot;method&quot;</span><span class=o>:</span><span class=w> </span><span class=s2>&quot;GET&quot;</span><span class=p>,</span>
+</span><span id=__span-8-12><a id=__codelineno-8-12 name=__codelineno-8-12 href=#__codelineno-8-12></a><span class=w> </span><span class=s2>&quot;summary&quot;</span><span class=o>:</span><span class=w> </span><span class=s2>&quot;Retrieve the information transmitted to the server&quot;</span><span class=p>,</span>
+</span><span id=__span-8-13><a id=__codelineno-8-13 name=__codelineno-8-13 href=#__codelineno-8-13></a><span class=w> </span><span class=s2>&quot;$ref&quot;</span><span class=o>:</span><span class=w> </span><span class=s2>&quot;Server&quot;</span><span class=p>,</span>
+</span><span id=__span-8-14><a id=__codelineno-8-14 name=__codelineno-8-14 href=#__codelineno-8-14></a><span class=w> </span><span class=s2>&quot;parameters&quot;</span><span class=o>:</span><span class=w> </span><span class=p>[</span>
+</span><span id=__span-8-15><a id=__codelineno-8-15 name=__codelineno-8-15 href=#__codelineno-8-15></a><span class=w> </span><span class=p>],</span>
+</span><span id=__span-8-16><a id=__codelineno-8-16 name=__codelineno-8-16 href=#__codelineno-8-16></a><span class=w> </span><span class=s2>&quot;responseMessages&quot;</span><span class=o>:</span><span class=w> </span><span class=p>[</span>
+</span><span id=__span-8-17><a id=__codelineno-8-17 name=__codelineno-8-17 href=#__codelineno-8-17></a><span class=w> </span><span class=p>{</span>
+</span><span id=__span-8-18><a id=__codelineno-8-18 name=__codelineno-8-18 href=#__codelineno-8-18></a><span class=w> </span><span class=s2>&quot;code&quot;</span><span class=o>:</span><span class=w> </span><span class=mf>500</span><span class=p>,</span>
+</span><span id=__span-8-19><a id=__codelineno-8-19 name=__codelineno-8-19 href=#__codelineno-8-19></a><span class=w> </span><span class=s2>&quot;message&quot;</span><span class=o>:</span><span class=w> </span><span class=s2>&quot;Beacon resource unavailable.&quot;</span>
+</span><span id=__span-8-20><a id=__codelineno-8-20 name=__codelineno-8-20 href=#__codelineno-8-20></a><span class=w> </span><span class=p>}</span>
+</span><span id=__span-8-21><a id=__codelineno-8-21 name=__codelineno-8-21 href=#__codelineno-8-21></a><span class=w> </span><span class=p>]</span>
+</span><span id=__span-8-22><a id=__codelineno-8-22 name=__codelineno-8-22 href=#__codelineno-8-22></a><span class=w> </span><span class=p>}</span>
+</span><span id=__span-8-23><a id=__codelineno-8-23 name=__codelineno-8-23 href=#__codelineno-8-23></a><span class=w> </span><span class=p>]</span>
+</span><span id=__span-8-24><a id=__codelineno-8-24 name=__codelineno-8-24 href=#__codelineno-8-24></a><span class=w> </span><span class=p>}</span>
+</span><span id=__span-8-25><a id=__codelineno-8-25 name=__codelineno-8-25 href=#__codelineno-8-25></a><span class=w> </span><span class=p>]</span>
+</span><span id=__span-8-26><a id=__codelineno-8-26 name=__codelineno-8-26 href=#__codelineno-8-26></a><span class=p>}</span>
+</span></code></pre></div> </article> </div> <script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script> </div> <button type=button class="md-top md-icon" data-md-component=top hidden> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg> Back to top </button> </main> <footer class=md-footer> <div class="md-footer-meta md-typeset"> <div class="md-footer-meta__inner md-grid"> <div class=md-copyright> <div class=md-copyright__highlight> Content is licensed under a Creative Commons Attribution-ShareAlike 3.0 United States License. </div> Made with <a href=https://squidfunk.github.io/mkdocs-material/ target=_blank rel=noopener> Material for MkDocs </a> </div> <div class=md-social> <a href=https://www.asterisk.org/ target=_blank rel=noopener title=www.asterisk.org class=md-social__link> <?xml version="1.0" encoding="UTF-8" standalone="no"?> <svg version=1.1 id=svg2 width=48 height=48 viewbox="0 0 48 48" sodipodi:docname=favicon.svg inkscape:version="1.2.2 (b0a8486541, 2022-12-01)" xmlns:inkscape=http://www.inkscape.org/namespaces/inkscape xmlns:sodipodi=http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd xmlns:xlink=http://www.w3.org/1999/xlink xmlns=http://www.w3.org/2000/svg xmlns:svg=http://www.w3.org/2000/svg> <defs id=defs6 /> <sodipodi:namedview id=namedview4 pagecolor=#ffffff bordercolor=#666666 borderopacity=1.0 inkscape:showpageshadow=2 inkscape:pageopacity=0.0 inkscape:pagecheckerboard=0 inkscape:deskcolor=#d1d1d1 showgrid=false inkscape:zoom=17.291667 inkscape:cx=24 inkscape:cy=24.028916 inkscape:current-layer=g8 /> <g inkscape:groupmode=layer inkscape:label=Image id=g8> <image width=48 height=48 preserveaspectratio=none id=image10 xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABHNCSVQICAgIfAhkiAAACzxJREFU
+aIHtmXuQXNVxxn997jz3qRdasay0s5IMiQCDIx4JqaSwjQFDoGIXAhUVMAajgF0kAWShB48xDy2W
+eLmoOLbsFBHGBahcgYTEBAJBhYNLxsjEWKEko6BdJCEJSWi1O7O7M3Pv+fLHvmZ3Z1YrYZJ/+Kqm
+am6fPt393XNud5974RN8go8E+ziNK4s70HtSbTpWrCl5pdMxFy9FYdx8EBdRKBcrxeWLUUR/nyXz
+M2q25S2LPxofHwuB/LLZzVEQnGXyp2HuJEythh0PTAXSoADMA33AIcFeEzvMsRVpc6RwU3377g/3
+LW2qmfXAvvz/CQEJy9/ZcorC2DeccZ5gOtAAuEGVItIHODuIKCDiGNMMZgmSgzoeowuxXfgHEwrf
+Kvj4tM3pztc/myX8WAgom0kVC35uyexWwxYLUkAXsB/pVx694nz0evchvdO87v3esfN33tySnl4T
+P7XkdbEzLjXIAI2ASTwdmH8NXCxU6fGG9t0Hf6cE+pZnMnLc4I2vmDRDst/g+HeTXhXujdrVOz4w
+0GTtHbxpfkO6rnSezK4GLhTEgP/00i9jxqySi+5uvHfXO78TAodXzr4gwD2CbJ4ZuyTucS58Mb2/
+6QNbt7l0rHYF1n1zy9QgHVwH3A+GxFbQf5jZjND7r0+5/71Dx0xAS5tq8/H09Rh3I/I4Hi+GbvW0
+b797+FiDrobcisxXZTxi0IB4E6MGaV3t6s6HzQZW9qgIdK84Ybpz8TsRfwG8JvRwXaLzZzbmAeu5
+Y87JLuScclkEexra3/uXo/Gnm1vS+bS7A9wtCDD2AnUu4OKaezp+MWkCyuLyxZnHQc0PQJ8DvisV
+1ta3791fmWjb9YHpO6OEppdr7+u85GgIAOz/m9bj0zX2b8CngSIQk/RKV390yeyHd/W5iSYruyBx
+YNnxv0+xtQnSDwj+1MTq2kTnymrBAzgUCtKjfxO6qorjHunc46RvAR5IAM7MTm9IB+cO+Jog+Fx/
+9zn1ybjrxe5CnOvEbTXJzvuHtowWEVRh0D/OnihUUt1QzUYZ0gc7n0O8WSaaGsjO3ZJdkKhKoKfQ
+c7ZzwfxS6JYIFoM9uCNZ89hQqd9xTSaVn5/5cX757DM1ZivKa1ywJj+OVO+yE1ouOrH1sdzKzOkT
+EbB1lDB+VCZyzrTwZLoaKhLov735pJhzWYNGjKtMPFV7sONvT8m+XQTQBoKZzdyGcYVc7Kd9y1u/
+0Z1tnjFExAXjV8DKVkVLm2pzt2cu9LH4C8iuQjykZSfVT0SCyDZStorCTuwP4/XjCPSuap4d+sT3
+Q29veLgS089rvLvN1jGc2/t+3bJQ6GuDpmZ4Z9+xYuKJ3hWtX9ySXZCotAJeFJTF5VZmTu9NpB/C
+6yfAAgCZzuwN+i+vuiWBwHTYjD3DBMQs52O1owgouyAhxa8HjnfYCcIapdhyK8vxe5c21Uqx68Ca
+y6Y6g/Nl9nim0LsWXGxsACYr9hdbrzH0E+A6sNrhMaxOZkt6P9U6sxoBn4qKEsMFDCNeME0ZRaC3
+P3+ysK9JvI9pkTP9Q11i9tZynVQqNVPGn1TwYcB0jL8Cnq4wem2E/b2weWLcnRZwYmT8YTUCFJ1g
+dL2Jex8ME3glS8w7uws4HlgIdIRR9JRlN46a1PjpzveiEtcKfiDK7shoNFaQNVTRLZnpX510XX3c
+nq8Wv1nkGEijQ/De1DNMYGGh7SJDFw8oU2/GUw3tu/5nnKHLiRrXdGyqSxRvCUIuQnoJiKo5PgK2
+Ofkrw3j0lXR75zOW7Rj38I8QCBJmTB26FnQHLuiJwUBLnCvqVrChvduH9L2hfqOiwez7vcCmHdnM
+JTNLXANaKm9zMOJHCNpjfCDPBjNbXdP+3r7JMI28NRo0DV07o9Or2OsAevr8GQYnlbF7sXZ1555K
+hsaiLdvRvzbesU5m92F0HUnfoCTPU3XJ4oq61TsmFfzgvLPKDj54z7a+eKrHCcwFdjYwbZiA16Sb
+rt5VLSd8s9T6PcT9DJzCJoQgiXFtvph4Nr9q7hnSZBtKXVr2PxS8OY3tuRjZ5jRFOwUGlt5QGMHm
+CU0J61naPD0ej1/gPXfLbO7kghiADTzQX5D8Wb23tz7auyq2Lh2fvWdswhhCftnsZmFfGAnAPowT
+vWZZvMvl0nUSbcNj0JUm6qnmfOfNLenciszlLpl4IjJbf7TBj0GjZLd7hT/NF3f8dW5lW1NFrcDd
+SFkGEnorlYw2A7ggSRIbeTgM6+2PBVWzyvRE4jhzuhM4H6tcOSul1wlSLmCnAN/Cc9rYkUPLMxlv
+dnm5zBsPDSYRnFkYM1RX5iiZwldt8tLp1F7QP4HGkvSIvZJWx/CLKrBaH1q0GPQ2aOxWEfCqt+Ko
+ratFBHHTZQatw1ThhcbVncP1whVCGWXdpMGU0AdVGyvLvl30LlgPtr3MfUHS0/LRFXXJtrsqz1Sy
+8d6dG3xY+rLDHgTKM1CXl62rb9/9YfmM7nktbWBXM5R9xN5I/p5yHZcMgsiwkU5xQHnC9rb+nh2/
+9Wjt4OU2c1xRl4zfUP/tna9admPosdTYOc5ImqGGNe9vS/fE7jKL/gzTSwwcVJ6vz8WeH/sGIwiC
+OzFOHryMMJ48mHSjVikWxVWgyAFg3ojYLpNYX62QmSGp87H8qkyTC0s/qlmze1f5uPekbMwmlEZy
+uD26vQC8sXdp05/XJVJft9D/2B7tGGmVlyyM52YcWILsqhGn2hqz4O/asu+OqtaxArHeBGGnwdll
+7j7ftSpzGnT8VyUCQySgo73imBsJdkTfjVuVwdeGa8tl2kCQ+/WBSw27c+j2CQ47cVvqvnffGWvD
+TWN7zqEtjO5nUgnpDi05YltQEX7g7dwoqIKsEnrebDvHZA8ijhsUlfAsr0l0Vmz0nGXxQpswjUpz
+Mvtcbkbbl5Q9htO4B0wHyn+Sr3gmLkf/8nnzndOzDGQdA4USP+zrzj9R7a11DKCQSPwiWQx/A3y2
+bGyKodvyxbatsOOto4k/puAlr/DKclnkNEEdGEAy1fd+WEi8jnEhgGHPOVdsn/nd/blqc4bTZ//y
+OeeF5l7EynoTIWBLLIi+lLp357jW+uPAoW9mTo/H+WdgtozF9fd1jD8clWFUI5Vflfm+xHWMPzF1
+4LmxNsXGiXr2o8GW7ILE3FJXEz7eYiX2Hqb/g6YH9vWSJegptC5zZnchfl6bLF48VHWPSKB31bzZ
+XuF6ZOeOWokB7BPaIPFkfabzDftLjukFbtfyOVNjuLMxfR5nFyAWALsMvSzcKy4sbqQGfCH+jzI+
+5cRXa9s7np0UAQk7vGLOHwSBPW2yeRX0/QARXpfX+vpU6YWJ7s6w3ZvmJ/saws8gfdnLzsdoYeBr
+TXmCEJAD9gDPO2mXx9ZgPFnoid04/dHt3UckMITuFZnfc/CUGQtE9VRqKCfZLzH9Ssa7RHbQmfWZ
+kYq8n2FmrZhOxWzhYFoc60+CHkPdhk0V1IzoyIM54LCz8Pya+3a9PmkCAIdubWuNJ3QLxtXAlGp6
+HwH7kV6U7Dlc9N/ywRku4DOIUxk4Hc5icIUEz9QlOi6rlEonPA0p21zTU4ifFhirJLuwWvs8aQjh
++G0g1pfEM4UouXvGmm25oR7onZvmJ2fV0RAPCg3ybo6Hc4A/lnEm0uK61e+9fFQEhv0uIuib23q2
+d9xg5v5IqNGgdrC6Vip03qCgga+QedA+sJ95Rc/UH9y5qfwt36T8Z8+N7c93zJi5tmPvMREoR25l
+W5PwCyTmBsasSEwzsxpnCpArCfokuhzRPrDdMezdRH/YaQ/v6jtaX5PBR/rIJ7DNSxbGpjcfDDKH
+Q6Mt5fmwJSK7MTqaj3uf4BP8P+J/ASVw7ffFYZkMAAAAAElFTkSuQmCC
+"/> </g> </svg> </a> <a href=https://www.asterisk.org/blog/ target=_blank rel=noopener title=www.asterisk.org class=md-social__link> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 512 512"><!-- Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="m61.7 169.4 101.5 278C92.2 413 43.3 340.2 43.3 256c0-30.9 6.6-60.1 18.4-86.6zm337.9 75.9c0-26.3-9.4-44.5-17.5-58.7-10.8-17.5-20.9-32.4-20.9-49.9 0-19.6 14.8-37.8 35.7-37.8.9 0 1.8.1 2.8.2-37.9-34.7-88.3-55.9-143.7-55.9-74.3 0-139.7 38.1-177.8 95.9 5 .2 9.7.3 13.7.3 22.2 0 56.7-2.7 56.7-2.7 11.5-.7 12.8 16.2 1.4 17.5 0 0-11.5 1.3-24.3 2l77.5 230.4L249.8 247l-33.1-90.8c-11.5-.7-22.3-2-22.3-2-11.5-.7-10.1-18.2 1.3-17.5 0 0 35.1 2.7 56 2.7 22.2 0 56.7-2.7 56.7-2.7 11.5-.7 12.8 16.2 1.4 17.5 0 0-11.5 1.3-24.3 2l76.9 228.7 21.2-70.9c9-29.4 16-50.5 16-68.7zm-139.9 29.3-63.8 185.5c19.1 5.6 39.2 8.7 60.1 8.7 24.8 0 48.5-4.3 70.6-12.1-.6-.9-1.1-1.9-1.5-2.9l-65.4-179.2zm183-120.7c.9 6.8 1.4 14 1.4 21.9 0 21.6-4 45.8-16.2 76.2l-65 187.9C426.2 403 468.7 334.5 468.7 256c0-37-9.4-71.8-26-102.1zM504 256c0 136.8-111.3 248-248 248C119.2 504 8 392.7 8 256 8 119.2 119.2 8 256 8c136.7 0 248 111.2 248 248zm-11.4 0c0-130.5-106.2-236.6-236.6-236.6C125.5 19.4 19.4 125.5 19.4 256S125.6 492.6 256 492.6c130.5 0 236.6-106.1 236.6-236.6z"/></svg> </a> <a href=https://twitter.com/asteriskdev target=_blank rel=noopener title=twitter.com class=md-social__link> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 512 512"><!-- Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg> </a> <a href=https://github.com/asterisk target=_blank rel=noopener title=github.com class=md-social__link> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 496 512"><!-- Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg> </a> <a href=https://community.asterisk.org target=_blank rel=noopener title=community.asterisk.org class=md-social__link> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 448 512"><!-- Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M225.9 32C103.3 32 0 130.5 0 252.1 0 256 .1 480 .1 480l225.8-.2c122.7 0 222.1-102.3 222.1-223.9C448 134.3 348.6 32 225.9 32zM224 384c-19.4 0-37.9-4.3-54.4-12.1L88.5 392l22.9-75c-9.8-18.1-15.4-38.9-15.4-61 0-70.7 57.3-128 128-128s128 57.3 128 128-57.3 128-128 128z"/></svg> </a> </div> </div> </div> </footer> </div> <div class=md-dialog data-md-component=dialog> <div class="md-dialog__inner md-typeset"></div> </div> <script id=__config type=application/json>{"base": "../../../..", "features": ["navigation.instant", "navigation.tracking", "navigation.prune", "navigation.indexes", "navigation.top", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.code.annotate", "toc.follow"], "search": "../../../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script> <script src=../../../../assets/javascripts/bundle.e1c3ead8.min.js></script> </body> </html>
