@@ -164,7 +164,7 @@ Next, we'll tell ODBC **which** MySQL database to use.  To do this, we'll edit t
 [asterisk]
 Driver = MySQL
 Description = MySQL connection to ‘asterisk’ database
-Server = localhost
+Servername = localhost
 Port = 3306
 Database = asterisk
 UserName = root
