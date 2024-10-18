@@ -164,7 +164,7 @@ Next, we'll tell ODBC **which** MySQL database to use.  To do this, we'll edit t
 [asterisk]
 Driver = MySQL
 Description = MySQL connection to ‘asterisk’ database
-Server = localhost
+Servername = localhost
 Port = 3306
 Database = asterisk
 UserName = root
@@ -173,7 +173,10 @@ Socket = /var/run/mysqld/mysqld.sock
 
 ```
 
-Take care to use your database access UserName and Password, and not necessarily what's defined in this example.
+Keep in mind that the `Servername` parameter should not be confused with `Server` that is invalid.
+
+!!!note
+    Take care to use your database access UserName and Password, and not necessarily what's defined in this example.
 
 Now, we need to configure Asterisk's ODBC resource, res_odbc, to connect to the ODBC **asterisk** database handle that we just created.  res_odbc is configured using the  */etc/asterisk/res_odbc.conf** configuration file.  There, you'll want:
 
