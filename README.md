@@ -13,11 +13,59 @@ The static documentation contained in the ./docs/ directory is written directly 
 All contributions are subject to the 
 [Creative Commons Attribution-ShareAlike 3.0 United States](LICENSE.md) license.
 
-# Markdown Flavor
+## Markdown Flavor
 The docs are written in standard markdown, not GitHub Flavored markdown.  There are lots of extensions available though.  Most of the extensions provided by [Material for MkDocs](https://squidfunk.github.io/mkdocs-material/reference/) are enabled except those only available to paying sponsors and a few that don't make sense in this environment.
 
 > [!NOTE]
 > The conversion process that moved the documentation from the Confluence Wiki used equals signs `=====` and dashes `----` to denote headers.  The new infrastructure renders those correctly but they do not get added to the page's table of contents.  Going forward, you should always use hash signs `#`, `##`, `###`, etc to denote headers.
+
+### PyMdown Extensions
+
+Many extensions from the [PyMdown](https://facelessuser.github.io/pymdown-extensions/) plugin are also available.  The `admonition` extension is particularly useful as a replacement for the legacy `!!! note` admonition style because it uses a trailer to mark the end of the admonition instead of just a blank line.  This allows you to add things like code blocks and quotes inside admonitions.
+
+Admonition Example:
+
+```
+/// warning | Don't Do This
+Don't do this in your code!!!
+'''
+	free(NULL);
+'''
+///
+```
+
+You couldn't do that with the legacy `!!!` style admonition.
+
+If you decide to use any of the extensions from this plugin (and you should use them where possible), don't use the legacy version in the same page.  For instance, don't mix `///` admonitions with `!!!` admonitions in the same page.  There's a good chance they won't render correctly.
+
+At some point, we'll try and convert all of the existing legacy admonitions to the new style.
+
+[PyMdown Documentation](https://facelessuser.github.io/pymdown-extensions/extensions/arithmatex/)
+
+Enabled extensions:
+
+```
+betterem
+blocks.admonition
+blocks.definition
+caret
+critic
+details
+emoji
+highlight
+inlinehilite
+keys
+mark
+saneheaders
+smartsymbols
+snippets
+superfences
+tabbed
+tilde
+```
+
+See `markdown_extensions` in the [mkdocs.yml](mkdocs.yml) file for the current list.
+
 
 # Dynamic Documentation
 
