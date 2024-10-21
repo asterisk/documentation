@@ -128,7 +128,7 @@ Add the following to /etc/odbc.ini
 Description = MySQL connection to 'asterisk' database
 Driver = MariaDB
 Database = asterisk
-Server = localhost
+Servername = localhost
 Port = 3306
 Socket = /var/lib/mysql/mysql.sock
 
