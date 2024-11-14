@@ -54,20 +54,20 @@ Within each extension, there must be one or more *priorities*. A priority is sim
   
   
 
-```
-javascriptexten => 6123,1,do something
+```javascript title=" " linenums="1"
+exten => 6123,1,do something
 exten => 6123,2,do something else
 exten => 6123,4,do something different
-  
+```
 
 
 
----
+
 
 
 In this case, Asterisk would execute priorities one and two, but would then terminate the call, because it couldn't find priority number three.
 
-```
+
 
 ### Priority letter n
 
