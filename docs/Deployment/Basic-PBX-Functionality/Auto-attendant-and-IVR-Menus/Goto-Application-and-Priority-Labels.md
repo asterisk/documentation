@@ -8,7 +8,7 @@ Before we create a simple auto-attendant menu, let's cover a couple of other use
 
 The **Goto()** application can be called with either one, two, or three parameters. If you call the **Goto()** application with a single parameter, Asterisk will jump to the specified priority (or its label) within the current extension. If you specify two parameters, Asterisk will read the first as an extension within the current context to jump to, and the second parameter as the priority (or label) within that extension. If you pass three parameters to the application, Asterisk will assume they are the context, extension, and priority (respectively) to jump to.
 
-```javascript title=" " linenums="1"
+```conf title=" " linenums="1"
 [StartingContext]
 exten => 100,1,Goto(monkeys)
  same => n,NoOp(We skip this)

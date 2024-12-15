@@ -14,7 +14,7 @@ The **SayAlpha()** and **SayPhonetic()** applications are used to spell an alpha
 
 We'll use these four applications to read back various data to the caller througout this guide. In the meantime, please feel free to add some sample extensions to your dialplan to try out these applications. Here are some examples:
 
-```javascript title=" " linenums="1"
+```conf title=" " linenums="1"
 exten => 6592,1,SayDigits(123)
 exten => 6593,1,SayNumber(123)
 exten => 6594,1,SayAlpha(hello)

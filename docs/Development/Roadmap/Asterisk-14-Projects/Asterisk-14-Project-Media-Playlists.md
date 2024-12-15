@@ -110,8 +110,8 @@ The `channels` and `bridges` resources will have their respective `play` operati
   
 \[channels|bridges\]/play  
 
-```
-js  {
+```js
+{
  "name": "media",
  "description": "Media URIs to play.",
  "paramType": "query",

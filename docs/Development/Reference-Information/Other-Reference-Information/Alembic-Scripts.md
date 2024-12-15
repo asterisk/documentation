@@ -8,16 +8,12 @@ Boolean Values
 
 Originally, boolean values were represented as simple "yes/no" strings but this was inconsistent with the valid boolean values for config files which include '0', '1', 'off', 'on', etc.  The correct representation in Alembic scripts was therefore changed to the following:
 
-
-
-
 ---
-
   
 Alembic Script Boolean Values  
 
-```
-pyAST_BOOL_NAME = 'ast_bool_values'
+```python linenums="1"
+AST_BOOL_NAME = 'ast_bool_values'
 AST_BOOL_VALUES = [ '0', '1',
  'off', 'on',
  'false', 'true',
@@ -41,7 +37,7 @@ There are a few extra steps necessary when merging alembic scripts into the code
 
 3) If you have multiple heads to the version chain as a result of a merge conflict, you need to update the down_revision of your new version script to point to the head of the chain already checked into the repository. For completeness, you should also update the comment indicating which revision your new version script revises. You can run "alembic heads" to see the head information.
 
-```
+```python linenums="1"
 """Create queue tables
 
 Revision ID: 28887f25a46f

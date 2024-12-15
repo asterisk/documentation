@@ -9,9 +9,7 @@ Merge Tools
 
 The repotools Makefile installs the merge tools which are useful for simplifying the merging process for commits to Asterisk's various branches.  
 
-Installation requires that you have repotools checked out (or otherwise available) and that you have expect. On Ubuntu/Debian, expect can be  
-
-installed trivially with apt-get (usually with default repositories)
+Installation requires that you have repotools checked out (or otherwise available) and that you have expect. On Ubuntu/Debian, expect can be installed trivially with apt-get (usually with default repositories)
 
 ```bash title=" " linenums="1"
 $ sudo apt-get install expect
@@ -33,7 +31,6 @@ Other Requirements
 
 
 In addition to the mergetools, there are a number of scripts in repotools that we use for a variety of purposes. Some examples are automated  
-
 
 
 jira-python

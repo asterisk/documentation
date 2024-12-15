@@ -37,10 +37,8 @@ To start our state machine, we will define what events might cause state transit
 ---
 
   
-event.py  
-
-```
-pytrueclass Event(object):
+```python title="event.py" linenums="1"
+class Event(object):
  # DTMF digits
  DTMF_1 = "1"
  DTMF_2 = "2"
@@ -65,7 +63,7 @@ pytrueclass Event(object):
 
 ```
 ```javascript title="event.js" linenums="1"
-jstruevar Event = {
+var Event = {
  // DTMF digits
  DTMF_1: "1",
  DTMF_2: "2",
@@ -102,10 +100,8 @@ After we have defined our events, we need to create a state machine itself. The 
 ---
 
   
-state_machine.py  
-
-```
-pytrueclass StateMachine(object):
+```python title="state_machine.py" linenums="1"
+class StateMachine(object):
  def __init__(self):
  self.transitions = {}
  self.current_state = None
@@ -126,7 +122,7 @@ pytrueclass StateMachine(object):
 
 ```
 ```javascript title="state_machine.js" linenums="1"
-jstruefunction StateMachine() {
+function StateMachine() {
  var transitions = {};
  var current_state = null;
 

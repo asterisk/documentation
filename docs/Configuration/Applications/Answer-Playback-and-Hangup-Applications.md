@@ -15,14 +15,14 @@ The **Playback()** application loads a sound prompt from disk and plays it to th
 
 To avoid the first few milliseconds of a prompt from being cut off you can play a second of silence. For example, if the prompt you wanted to play was hello-world which would look like this in the dialplan:
 
-```javascript title=" " linenums="1"
+```conf title=" " linenums="1"
 exten => 1234,1,Playback(hello-world)
 
 ```
 
 You could avoid the first few seconds of the prompt from being cut off by playing the silence/1 file:
 
-```javascript title=" " linenums="1"
+```conf title=" " linenums="1"
 exten => 1234,1,Playback(silence/1)
 exten => 1234,n,Playback(hello-world)
 
@@ -30,7 +30,7 @@ exten => 1234,n,Playback(hello-world)
 
 Alternatively this could all be done on the same line by separating the filenames with an ampersand (&):
 
-```javascript title=" " linenums="1"
+```conf title=" " linenums="1"
 exten => 1234,1,Playback(silence/1&hello-world)
 
 ```
@@ -39,7 +39,7 @@ The **Hangup()** application hangs up the current call. While not strictly neces
 
 Now let's put **Answer()**, **Playback()**, and **Hangup()** together to play a sample sound file.
 
-```javascript title=" " linenums="1"
+```conf title=" " linenums="1"
 exten => 6000,1,Answer(500)
 exten => 6000,n,Playback(hello-world)
 exten => 6000,n,Hangup()
