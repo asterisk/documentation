@@ -9,7 +9,7 @@ pageid: 29396202
 
 Transfer is a telephony feature. There are two types of transfer, attendant and blind. These names may differ depending on the system you are looking on, or what background you have.
 
-The ARI transfer handling is supposed to be used in an ARI only environment. to Control a traditional channel or bridge wie ARI is not possible since it needs to be in an Stasis Context. Please refer to "how to use ARI" for more information. For this scenario all channels and bridges need to bei placed into an ARI context.
+The ARI transfer handling is supposed to be used in an ARI only environment. to Control a traditional channel or bridge wie ARI is not possible since it needs to be in a Stasis Context. Please refer to "how to use ARI" for more information. For this scenario all channels and bridges need to bei placed into an ARI context.
 
 ### Attendant Transfer
 Attendant transfer happens, if a call on hold and an active call are connected on request of the user. The user can talk to both parties before connecting them. This is also called a consultative transfer.
@@ -107,7 +107,7 @@ Actions what needs to be done by ARI Application for the call schema 2 above:
 
 ## Transfer handling for multi Asterisk setups
 
-There are installations where the asterisk is used like a media server and sourrounded by SIP Proxy or SBC like Kamailio or OpeSips. In these cases the Asterisk is not used as a traditional PBX and it is not the entry point for calls from phones. In these scenarios it might happen, the asterisk does not know all related channels.
+There are installations where the asterisk is used like a media server and surrounded by SIP Proxy or SBC like Kamailio or OpeSips. In these cases the Asterisk is not used as a traditional PBX and it is not the entry point for calls from phones. In these scenarios it might happen, the asterisk does not know all related channels.
 
 A scenario could look like this:
 
