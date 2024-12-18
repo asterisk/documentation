@@ -26,26 +26,28 @@ You should have a working `chan_pjsip` based Asterisk installation to start with
 * `res_pjsip_transport_websocket`
 * `codec_opus` (optional but highly recommended for high quality audio)
 
-### We recommend installing Asterisk from source because it's easy to make sure these modules are built and installed.Certificates
+/// tip | Build From Source
+We recommend installing Asterisk from source because it's easy to make sure these modules are built and installed.
+///
+
+### Certificates
 
 Technically, a client can use WebRTC over an insecure WebSocket to connect to Asterisk. In practice though, most browsers will require a TLS based WebSocket to be used. You can use self-signed certificates to set up the Asterisk TLS server but getting browsers to accept them is tricky so if you're able, we highly recommend getting trusted certificates from an organization such as [LetsEncrypt](https://letsencrypt.org).
 
 If you already have certificate files (certificate, key, CA certificate), whether self-signed or trusted, you can skip the rest of this section. If you need to generate a self-signed certificate, read on.
 
-### Create Certificates
+#### Create Certificates
 
 Asterisk provides a utility script, `**ast_tls_cert**` in the `**contrib/scripts**` source directory. We will use it to make a self-signed certificate authority and a server certificate for Asterisk, signed by our new authority.
 
 From the Asterisk source directory run the following commands. You'll be prompted to set a a pass phrase for the CA key, then you'll be asked for that same pass phrase a few times. Use anything you can easily remember. The pass phrase is indicated below with "`********`".  Replace "`pbx.example.com`" with your PBX's hostname or IP address. Replace "`My Organization`" as appropriate.
 
-!!! note Private Key Size
-    In Asterisk 13, 16, and 17, the `ast_tls_cert` script creates 1024 bit private keys by default. Newer versions of OpenSSL prevent Asterisk from loading private keys that are only 1024 bits resulting in a "key too small" error. The `ast_tls_cert` script in Asterisk versions 13.32.0, 16.9.0, and 17.3.0 and later includes a new command line flag (`-b`) that allows you to set the size of the generated private key in bits.
+/// note | Private Key Size
+In Asterisk 13, 16, and 17, the `ast_tls_cert` script creates 1024 bit private keys by default. Newer versions of OpenSSL prevent Asterisk from loading private keys that are only 1024 bits resulting in a "key too small" error. The `ast_tls_cert` script in Asterisk versions 13.32.0, 16.9.0, and 17.3.0 and later includes a new command line flag (`-b`) that allows you to set the size of the generated private key in bits.
+///
 
-      
-[//]: # (end-note)
-
-```
-text$ sudo mkdir /etc/asterisk/keys
+```bash title="Create Keys" linenums="1"
+$ sudo mkdir /etc/asterisk/keys
 $ sudo contrib/scripts/ast_tls_cert -C pbx.example.com -O "My Organization" -b 2048 -d /etc/asterisk/keys
 
 No config file specified, creating '/etc/asterisk/keys/tmp.cfg'
@@ -73,7 +75,6 @@ Getting CA Private Key
 Enter pass phrase for /etc/asterisk/keys/ca.key:\*\*\*\*\*\*\*\*
 Combining key and crt into /etc/asterisk/keys/asterisk.pem
 
-
 $ ls -l /etc/asterisk/keys
 total 32
 -rw------- 1 root root 1204 Mar 4 2019 asterisk.crt
@@ -96,15 +97,8 @@ We'll use the `asterisk.crt` and `asterisk.key` files later to configure the HTT
 To communicate with WebSocket clients, Asterisk uses its built-in HTTP server. Configure ` */etc/asterisk/http.conf**` as follows:
 
 
-
-
----
-
-  
-/etc/asterisk/http.conf  
-
-```
-text[general]
+```conf title="/etc/asterisk/http.conf" linenums="1"
+[general]
 enabled=yes
 bindaddr=0.0.0.0
 bindport=8088
@@ -112,33 +106,16 @@ tlsenable=yes
 tlsbindaddr=0.0.0.0:8089
 tlscertfile=/etc/asterisk/keys/asterisk.crt
 tlsprivatekey=/etc/asterisk/keys/asterisk.key
-
 ```
 
-
-
-!!! note 
-    If you have not used the generated self-signed certificates produced in the [Create Certificates](#create-certificates) section then you will need to set the "`tlscertfile`" and "`tlsprivatekey`" to the path of your own certificates if they differ.
-
-      
-[//]: # (end-note)
-
-
-
-
+/// note 
+If you have not used the generated self-signed certificates produced in the [Create Certificates](#create-certificates) section then you will need to set the "`tlscertfile`" and "`tlsprivatekey`" to the path of your own certificates if they differ.
+///
 
 Now start or restart Asterisk and make sure the TLS server is running by issuing the following CLI command:
 
-
-
-
----
-
-  
-Asterisk CLI  
-
-```
-text\*CLI> http show status
+```text title="Asterisk CLI"
+*CLI> http show status
 
 HTTP Server Status:
 Prefix: 
@@ -177,21 +154,12 @@ Note that the HTTPS Server is enabled and bound to `[::]:8089` and that the `/ws
 
 Although the HTTP server does the heavy lifting for WebSockets, we still need to define a basic PJSIP Transport:
 
-
-
-
----
-
-  
-/etc/asterisk/pjsip.conf  
-
-```
+```conf title="/etc/asterisk/pjsip.conf" linenums="1"
 [transport-wss]
 type=transport
 protocol=wss
 bind=0.0.0.0
 ; All other transport parameters are ignored for wss transports.
-
 ```
 
 #### PJSIP Endpoint, AOR and Auth
@@ -199,14 +167,7 @@ bind=0.0.0.0
 We now need to create the basic PJSIP objects that represent the client. In this example, we'll call the client `webrtc_client` but you can use any name you like, such as an extension number. Only the minimum options needed for a working configuration are shown. NOTE: It's normal for multiple objects in `pjsip.conf` to have the same name as long as the types differ.
 
 
-
-
----
-
-  
-/etc/asterisk/pjsip.conf  
-
-```
+```conf title="/etc/asterisk/pjsip.conf" linenums="1"
 [webrtc_client]
 type=aor
 max_contacts=5
@@ -236,7 +197,6 @@ webrtc=yes
 context=default
 disallow=all
 allow=opus,ulaw
-
 ```
 
 An explanation of each of these settings parameters can be found on the [Asterisk 16 Configuration for `res_pjsip`](/Latest_API/API_Documentation/Module_Configuration/res_pjsip) page. Briefly:

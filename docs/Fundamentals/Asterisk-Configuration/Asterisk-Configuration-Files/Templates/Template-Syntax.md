@@ -5,7 +5,7 @@ pageid: 4817465
 
 To define a section as a template **only** (not to be loaded for use as configuration by itself), place an exclamation mark in parentheses after the section heading, as shown in the example below.
 
-```javascript title=" " linenums="1"
+```conf linenums="1"
 [template-name](!)
 setting=value
 

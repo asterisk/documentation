@@ -3,34 +3,22 @@ title: Performance Tuning
 pageid: 36799664
 ---
 
-
-
 These are some areas to consider when trying to performance tune your Asterisk installation.
 
-Threadpools
------------
+## Threadpools
 
 There are two threadpools of interest:  pjsip and stasis.
 
-
-
-
-!!! warning 
-    Any changes to threadpool settings require a full Asterisk restart. A reload is insufficient.
-
-      
-[//]: # (end-warning)
-
-
-
-
+/// warning 
+Any changes to threadpool settings require a full Asterisk restart. A reload is insufficient.
+///
 
 ### PJSIP Threadpool:
 
 The `system` section of pjsip.conf (or the ps_systems table in the database) contains 2 settings that control the threadpool used for the stack:
 
-```
-text[system]
+```conf title="pjsip.conf" linenums="1"
+[system]
 type=system
 ;
 ; <other settings>
@@ -68,12 +56,12 @@ threadpool_max_size=100
 
 ```
 
-### 
+### Stasis Threadpool
 
 Although the stasis message bus is not used much for simple call processing, it *is* used heavily for ARI and AGI processing, transfers, conference bridges, AMI, CDR and CEL processing, etc.  The threadpool is configured in stasis.conf:
 
-```
-text[threadpool]
+```conf title="stasis.conf" linenums="1"
+[threadpool]
 ;
 ; For a busy 8 core PBX, these settings are probably safe.
 ;
@@ -88,15 +76,14 @@ max_size = 60
 
 If you don't need AMI, CDR, or CEL then disabling those modules will reduce resource usage.  The CDR module uses a lot of processing to create the CDR records and can easily get backed up on a busy system.
 
-PJSIP Protocol Tuning
----------------------
+## PJSIP Protocol Tuning
 
 ### Timers
 
 The `timer_t1` and `timer_b` settings are in the `system` section of pjsip.conf (or the ps_systems table in the database)
 
-```
-text[system]
+```conf title="pjsip.conf" linenums="1"
+[system]
 type=system
 ; Timer t1 sets the timeout after which pjsip gives up on waiting for a response from
 ; the remote party. The general rule is to set this to slightly higher than the round-trip
@@ -121,8 +108,8 @@ timer_b=6400
 
 The order in which endpoint identification methods are tried when an incoming request is received directly affects transaction rate.  The default order is set in the `global` of pjsip.conf (or the ps_globals table in the database).
 
-```
-text[global]
+```conf title="pjsip.conf" linenums="1"
+[global]
 type=global
 ; The default identifier order is ip,username,anonymous but for a PBX environment
 ; with lots of phones that register, identifying by ip address first is a waste of time.
@@ -132,10 +119,7 @@ endpoint_identifier_order=username,ip,anonymous
 
 ```
 
-
-
-Sorcery/Database
-----------------
+## Sorcery/Database
 
 While storing pjsip objects in the pjsip.conf results in the fastest access time during call processing, a config change requires the entire file to be re-written and the res_pjsip module to be reloaded.  Using backend database for storage is most convenient for configuration but will be slowest for access time during call processing.  The solution is to use the database for storage and use sorcery to cache the objects.  This will result in the same access times as using pjsip.conf. 
 
@@ -143,8 +127,8 @@ While storing pjsip objects in the pjsip.conf results in the fastest access time
 
 The sorcery caches are defined in sorcery.conf.
 
-```
-text[res_pjsip]
+```conf title="sorcery.conf" linenums="1"
+[res_pjsip]
 
 ; maximum_objects: How many object to allow in the cache at 1 time.
 ; expire_on_reload: If res_pjsip is reloaded, should the cache be flushed?
@@ -199,7 +183,4 @@ registration=realtime,ps_registrations
 ### Flushing the caches:
 
 The `sorcery memory cache` Asterisk CLI commands will allow flushing caches and individual objects from a specific cache.  There are also equivalent AMI commands (SorcerymemoryCache\*) that do the same.  After you make all pjsip configuration changes, call the appropriate AMI commands to flush objects and caches where appropriate.  This is necessary for Asterisk to see the changes made in the database immediately.
-
-  
-
 

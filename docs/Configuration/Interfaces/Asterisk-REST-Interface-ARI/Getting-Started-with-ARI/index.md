@@ -1,5 +1,5 @@
 ---
-title: Overview
+title: Getting Started with ARI
 pageid: 26478450
 ---
 
@@ -45,17 +45,14 @@ $ npm install -g wscat
 
 ```
 
-
-
-!!! tip 
-    Some distributions repos (e.g. Ubuntu) may have older versions of nodejs and npm that will throw a wrench in your install of the ws package. You'll have to install a newer version from another repo or via source.
+/// tip 
+Some distributions repos (e.g. Ubuntu) may have older versions of nodejs and npm that will throw a wrench in your install of the ws package. You'll have to install a newer version from another repo or via source.
 
 [Installing Nodejs via packages](https://github.com/joyent/node/wiki/Installing-Node.js-via-package-manager)
 
 [Installing npm in a variety of ways](https://github.com/npm/npm)
 
-      
-[//]: # (end-tip)
+///
 
 
 ### Getting curl
@@ -66,214 +63,194 @@ In order to control a channel in the Stasis dialplan application through ARI, we
 $ apt-get install curl
 
 ```
-
 ### Configuring Asterisk
 
 1. Enable the Asterisk HTTP service in `http.conf`:
 
----
-http.conf  
+    ```conf title="http.conf" linenums="1"
+    [general]
+    enabled = yes
+    bindaddr = 0.0.0.0
+    ```
 
-```text
-[general]
-enabled = yes
-bindaddr = 0.0.0.0
-
-```
 2. Configure an ARI user in `ari.conf`:
 
----
-ari.conf  
+    ```conf title="ari.conf" linenums="1"
+    [general]
+    enabled = yes 
+    pretty = yes 
 
-```text
-[general]
-enabled = yes 
-pretty = yes 
+    [asterisk]
+    type = user
+    read_only = no
+    password = asterisk
+    ```
 
-[asterisk]
-type = user
-read_only = no
-password = asterisk
-
-```
-
-
-
-!!! warning "This is just a demo"
-
+    /// warning | This is just a demo
     Please use a more secure account user and password for production applications. Outside of examples and demos, asterisk/asterisk is a terrible, horrible, no-good choice...
-
+    ///
       
-[//]: # (end-warning)
-
 3. Create a dialplan extension for your Stasis application. Here, we're choosing extension `1000` in context `default` - if your SIP phone is configured for a different context, adjust accordingly.
 
----
+    ```conf title="extensions.conf" linenums="1"
+    [default]
 
-  
-extensions.conf  
+    exten => 1000,1,NoOp()
+     same => n,Answer()
+     same => n,Stasis(hello-world)
+     same => n,Hangup()
 
-```text
-[default]
-
-exten => 1000,1,NoOp()
- same => n,Answer()
- same => n,Stasis(hello-world)
- same => n,Hangup()
-
-```
+    ```
 
 ### Hello World!
 
 1. Connect to Asterisk using `wscat`:
 
-```bash title=" " linenums="1"
-$ wscat -c "ws://localhost:8088/ari/events?api_key=asterisk:asterisk&app=hello-world"
-connected (press CTRL+C to quit)
->
+    ```bash title=" " linenums="1"
+    $ wscat -c "ws://localhost:8088/ari/events?api_key=asterisk:asterisk&app=hello-world"
+    connected (press CTRL+C to quit)
+    >
+    ```
 
-```
+    In Asterisk, we should see a new WebSocket connection and a message telling us that our Stasis application has been created:
 
-In Asterisk, we should see a new WebSocket connection and a message telling us that our Stasis application has been created:
+    ```text
+    == WebSocket connection from '127.0.0.1:37872' for protocol '' accepted using version '13'
+    Creating Stasis app 'hello-world'
+    ```
 
-```
-text == WebSocket connection from '127.0.0.1:37872' for protocol '' accepted using version '13'
- Creating Stasis app 'hello-world'
-
-```
 2. From your SIP device, dial extension 1000:
 
-```
-text  -- Executing [1000@default:1] NoOp("PJSIP/1000-00000001", "") in new stack
- -- Executing [1000@default:2] Answer("PJSIP/1000-00000001", "") in new stack
- -- PJSIP/1000-00000001 answered
- -- Executing [1000@default:3] Stasis("PJSIP/1000-00000001", "hello-world") in new stack
+    ```text
+     -- Executing [1000@default:1] NoOp("PJSIP/1000-00000001", "") in new stack
+     -- Executing [1000@default:2] Answer("PJSIP/1000-00000001", "") in new stack
+     -- PJSIP/1000-00000001 answered
+     -- Executing [1000@default:3] Stasis("PJSIP/1000-00000001", "hello-world") in new stack
 
-```
+    ```
 
-In wscat, we should see the `StasisStart` event, indicating that a channel has entered into our Stasis application:
+    In wscat, we should see the `StasisStart` event, indicating that a channel has entered into our Stasis application:
 
-```
-js< {
- "application":"hello-world",
- "type":"StasisStart",
- "timestamp":"2014-05-20T13:15:27.131-0500",
- "args":[],
- "channel":{
- "id":"1400609726.3",
- "state":"Up",
- "name":"PJSIP/1000-00000001",
- "caller":{
- "name":"",
- "number":""},
- "connected":{
- "name":"",
- "number":""},
- "accountcode":"",
- "dialplan":{
- "context":"default",
- "exten":"1000",
- "priority":3},
- "creationtime":"2014-05-20T13:15:26.628-0500"}
- }
-> 
+    ```js
+    < {
+     "application":"hello-world",
+     "type":"StasisStart",
+     "timestamp":"2014-05-20T13:15:27.131-0500",
+     "args":[],
+     "channel":{
+     "id":"1400609726.3",
+     "state":"Up",
+     "name":"PJSIP/1000-00000001",
+     "caller":{
+     "name":"",
+     "number":""},
+     "connected":{
+     "name":"",
+     "number":""},
+     "accountcode":"",
+     "dialplan":{
+     "context":"default",
+     "exten":"1000",
+     "priority":3},
+     "creationtime":"2014-05-20T13:15:26.628-0500"}
+     }
+    > 
+    ```
 
-```
 3. Using `curl`, tell Asterisk to playback `hello-world`. Note that the identifier of the channel in the `channels` resource **must** match the channel `id` passed back in the `StasisStart` event:
 
-```bash title=" " linenums="1"
-$ curl -v -u asterisk:asterisk -X POST "http://localhost:8088/ari/channels/1400609726.3/play?media=sound:hello-world"
+    ```bash title=" " linenums="1"
+    $ curl -v -u asterisk:asterisk -X POST "http://localhost:8088/ari/channels/1400609726.3/play?media=sound:hello-world"
+    ```
 
-```
+    The response to our HTTP request will tell us whether or not the request succeeded or failed (in our case, a success will queue the playback onto the channel), as well as return in JSON the Playback resource that was created for the operation:
 
-The response to our HTTP request will tell us whether or not the request succeeded or failed (in our case, a success will queue the playback onto the channel), as well as return in JSON the Playback resource that was created for the operation:
+    ```text
+    * About to connect() to localhost port 8088 (#0)
+    * Trying 127.0.0.1... connected
+    * Server auth using Basic with user 'asterisk'
+    > POST /ari/channels/1400609726.3/play?media=sound:hello-world HTTP/1.1
+    > Authorization: Basic YXN0ZXJpc2s6c2VjcmV0
+    > User-Agent: curl/7.22.0 (x86_64-pc-linux-gnu) libcurl/7.22.0 OpenSSL/1.0.1 zlib/1.2.3.4 libidn/1.23 librtmp/2.3
+    > Host: localhost:8088
+    > Accept */*
+    > 
+    < HTTP/1.1 201 Created
+    < Server: Asterisk/SVN-branch-12-r414137M
+    < Date: Tue, 20 May 2014 18:25:15 GMT
+    < Connection: close
+    < Cache-Control: no-cache, no-store
+    < Content-Length: 146
+    < Location: /playback/9567ea46-440f-41be-a044-6ecc8100730a
+    < Content-type: application/json
+    < 
+    * Closing connection #0
+    {"id":"9567ea46-440f-41be-a044-6ecc8100730a",
+     "media_uri":"sound:hello-world",
+     "target_uri":"channel:1400609726.3",
+     "language":"en",
+     "state":"queued"}
 
-```
-text\* About to connect() to localhost port 8088 (#0)
-* Trying 127.0.0.1... connected
-* Server auth using Basic with user 'asterisk'
-> POST /ari/channels/1400609726.3/play?media=sound:hello-world HTTP/1.1
-> Authorization: Basic YXN0ZXJpc2s6c2VjcmV0
-> User-Agent: curl/7.22.0 (x86_64-pc-linux-gnu) libcurl/7.22.0 OpenSSL/1.0.1 zlib/1.2.3.4 libidn/1.23 librtmp/2.3
-> Host: localhost:8088
-> Accept */*
-> 
-< HTTP/1.1 201 Created
-< Server: Asterisk/SVN-branch-12-r414137M
-< Date: Tue, 20 May 2014 18:25:15 GMT
-< Connection: close
-< Cache-Control: no-cache, no-store
-< Content-Length: 146
-< Location: /playback/9567ea46-440f-41be-a044-6ecc8100730a
-< Content-type: application/json
-< 
-* Closing connection #0
-{"id":"9567ea46-440f-41be-a044-6ecc8100730a",
- "media_uri":"sound:hello-world",
- "target_uri":"channel:1400609726.3",
- "language":"en",
- "state":"queued"}
+    $
 
-$
+    ```
 
-```
+    In Asterisk, the sound file will be played back to the channel:
 
-In Asterisk, the sound file will be played back to the channel:
+    ```text
+     -- <PJSIP/1000-00000001> Playing 'hello-world.gsm' (language 'en')
+    ```
 
-```
-text -- <PJSIP/1000-00000001> Playing 'hello-world.gsm' (language 'en')
+    And in our `wscat` WebSocket connection, we'll be informed of the start of the playback, as well as it finishing:
 
-```
+    ```js
+    < {"application":"hello-world",
+     "type":"PlaybackStarted",
+     "playback":{
+     "id":"9567ea46-440f-41be-a044-6ecc8100730a",
+     "media_uri":"sound:hello-world",
+     "target_uri":"channel:1400609726.3",
+     "language":"en",
+     "state":"playing"}
+     }
 
-And in our `wscat` WebSocket connection, we'll be informed of the start of the playback, as well as it finishing:
+    < {"application":"hello-world",
+     "type":"PlaybackFinished",
+     "playback":{
+     "id":"9567ea46-440f-41be-a044-6ecc8100730a",
+     "media_uri":"sound:hello-world",
+     "target_uri":"channel:1400609726.3",
+     "language":"en",
+     "state":"done"}
+     }
 
-```
-js< {"application":"hello-world",
- "type":"PlaybackStarted",
- "playback":{
- "id":"9567ea46-440f-41be-a044-6ecc8100730a",
- "media_uri":"sound:hello-world",
- "target_uri":"channel:1400609726.3",
- "language":"en",
- "state":"playing"}
- }
+    ```
 
-< {"application":"hello-world",
- "type":"PlaybackFinished",
- "playback":{
- "id":"9567ea46-440f-41be-a044-6ecc8100730a",
- "media_uri":"sound:hello-world",
- "target_uri":"channel:1400609726.3",
- "language":"en",
- "state":"done"}
- }
-
-```
 4. Hang up the phone! This will cause the channel in Asterisk to be hung up, and the channel will leave the Stasis application, notifying the client via a `StasisEnd` event:
 
-```
-js < {"application":"hello-world",
- "type":"StasisEnd",
- "timestamp":"2014-05-20T13:30:01.852-0500",
- "channel":{
- "id":"1400609726.3",
- "state":"Up",
- "name":"PJSIP/1000-00000001",
- "caller":{
- "name":"",
- "number":""},
- "connected":{
- "name":"",
- "number":""},
- "accountcode":"",
- "dialplan":{
- "context":"default",
- "exten":"1000",
- "priority":3},
- "creationtime":"2014-05-20T13:15:26.628-0500"}
- }
+    ```js
+    < {"application":"hello-world",
+     "type":"StasisEnd",
+     "timestamp":"2014-05-20T13:30:01.852-0500",
+     "channel":{
+     "id":"1400609726.3",
+     "state":"Up",
+     "name":"PJSIP/1000-00000001",
+     "caller":{
+     "name":"",
+     "number":""},
+     "connected":{
+     "name":"",
+     "number":""},
+     "accountcode":"",
+     "dialplan":{
+     "context":"default",
+     "exten":"1000",
+     "priority":3},
+     "creationtime":"2014-05-20T13:15:26.628-0500"}
+     }
 
-```
+    ```
 
 
 

@@ -3,18 +3,15 @@ title: Speech to Text / Text to Speech / Emotion
 pageid: 45482453
 ---
 
-Background
-----------
+## Background
 
 Speech to text, text to speech, and other speech related things in Asterisk have traditionally been done in two ways: C modules, or external AGIs that use record and playback. This project aims to provide an easier bridge between the two worlds to provide a better user experience while allowing developers to more easily connect to modern speech APIs.
 
-Overview
---------
+## Overview
 
 Speech functionality is going to be passed to an outside entity to handle all of the heavy lifting, allowing us to leverage official SDKs provided by more friendly languages. This page will break down the process into sections of how Asterisk is going to accomplish this. There are already some existing dialplan and API functions for speech to text, but the core API (and dialplan applications) for text to speech will need to be created. A module will be created which registers to these APIs and provides the functionality described in The Process, Speech to Text, and Text to Speech. The module will allow multiple external applications to be configured and the user, in the dialplan, can select which one will be used.
 
-The Process
------------
+## The Process
 
 There will be three entities involved: Asterisk, an external application, and the speech service.
 
@@ -38,80 +35,64 @@ The external application will be responsible for taking the text Asterisk provid
 
 The speech service will do the heavy lifting of producing the audio. The audio will be played back to the user as received.
 
-The Protocol
-------------
+## The Protocol
 
-
-
-
-!!! note 
-    The protocol is purposely simple and generalized to allow further expansion or additional request types as needed. This includes the possibility of using it for external media purposes with ARI applications.
-
-      
-[//]: # (end-note)
-
-
+/// note 
+The protocol is purposely simple and generalized to allow further expansion or additional request types as needed. This includes the possibility of using it for external media purposes with ARI applications.
+///
 
 As mentioned above, JSON will be used for the protocol. There are requests:
 
-```
-text{
- "version": "1.0",
- "request": "text_to_speech" | "speech_to_text",
- "codecs": [
- {
- "type": "ulaw",
- "attributes": {
- "parameter_name": "parameter_value"
- }
- }
- ],
- "app_config": {
- "gender": "male" | "female",
- "language": "english" | "en",
- "ssml": "yes" | "no"
- },
- "data": "Inconceivable!"
+```json title="Request"
+{
+    "version": "1.0",
+    "request": "text_to_speech" | "speech_to_text",
+    "codecs": [
+        {
+            "type": "ulaw",
+            "attributes": {
+                "parameter_name": "parameter_value"
+            }
+        }
+    ],
+    "app_config": {
+        "gender": "male" | "female",
+        "language": "english" | "en",
+        "ssml": "yes" | "no"
+    },
+    "data": "Inconceivable!"
 }
 
 ```
 
-And responses:
-
-```
-text{
- "version": "1.0",
- "response": "success",
- "codec": {
- "type": "ulaw",
- "attributes": {
- "parameter_name": "parameter_value"
- }
- },
- "talk_detect": "true" | "false"
+```json title="Possible Responses"
+{
+    "version": "1.0",
+    "response": "success",
+    "codec": {
+        "type": "ulaw",
+        "attributes": {
+            "parameter_name": "parameter_value"
+        }
+    },
+    "talk_detect": "true" | "false"
 }
 
-```
-```
-text{
- "version": "1.0",
- "response": "complete",
- "data": "Inconceivable!"
+{
+    "version": "1.0",
+    "response": "complete",
+    "data": "Inconceivable!"
 }
 
-```
-```
-text{
- "version": "1.0",
- "response": "talk_detect"
+{
+    "version": "1.0",
+    "response": "talk_detect"
 }
 
-```
-```
-text{
- "version": "1.0",
- "response": "error",
- "error_msg": "Could not connect to Google (server down)."
+{
+    "version": "1.0",
+    "response": "error",
+    "error_msg": "Could not connect to Google (server down)."
 }
 
 ```
@@ -126,100 +107,97 @@ Here are some examples of what speech to text would look like.
 
 **Scenario 1 (success)**
 
-```
-text{
- "version": "1.0",
- "request": "speech_to_text",
- "codecs": [
- {
- "type": "ulaw"
- }
- ],
- "app_config": {
- "language": "en"
- }
+```json title="Request"
+{
+    "version": "1.0",
+    "request": "speech_to_text",
+    "codecs": [
+        {
+            "type": "ulaw"
+        }
+    ],
+    "app_config": {
+        "language": "en"
+    }
 }
 
 ```
 
 The first response lets us know that everything is good to go for translation.
 
-```
-text{
- "version": "1.0",
- "response": "success",
- "codec": {
- "type": "ulaw"
- }
+```json title="Response 1"
+{
+    "version": "1.0",
+    "response": "success",
+    "codec": {
+        "type": "ulaw"
+    }
 }
 
 ```
 
 The second response lets us know that translation is complete, with our result in the JSON under *data.*
 
-```
-text{
- "version": "1.0",
- "response": "complete",
- "data": "Inconceivable!"
+```json title="Response 2"
+{
+    "version": "1.0",
+    "response": "complete",
+    "data": "Inconceivable!"
 }
 
 ```
 
 **Scenario 2 (failure)**
 
-```
-text{
- "version": "1.0",
- "request": "speech_to_text",
- "codecs": [
- {
- "type": "ulaw"
- }
- ],
- "app_config": {
- "language": "en"
- }
+```json title="Request"
+{
+    "version": "1.0",
+    "request": "speech_to_text",
+    "codecs": [
+        {
+            "type": "ulaw"
+        }
+    ],
+    "app_config": {
+        "language": "en"
+    }
 }
+```
 
-```
-```
-text{
- "version": "1.0",
- "response": "error",
- "error_msg": "Could not connect to Google (server down)."
+```json title="Response"
+{
+    "version": "1.0",
+    "response": "error",
+    "error_msg": "Could not connect to Google (server down)."
 }
 
 ```
 
 ****Scenario 3 (language not supported)****
 
+```json title="Request"
+{
+    "version": "1.0",
+    "request": "speech_to_text",
+    "codecs": [
+        {
+            "type": "ulaw"
+        }
+    ],
+    "app_config": {
+        "language": "en"
+    }
+}
 ```
-text{
- "version": "1.0",
- "request": "speech_to_text",
- "codecs": [
- {
- "type": "ulaw"
- }
- ],
- "app_config": {
- "language": "en"
- }
+
+```json title="Response"
+{
+    "version": "1.0",
+    "response": "error",
+    "error_msg": "Google does not support the language 'en'."
 }
 
 ```
-```
-text{
- "version": "1.0",
- "response": "error",
- "error_msg": "Google does not support the language 'en'."
-}
-
-```
-
-  
-
 
 ### Text to Speech
 
@@ -227,43 +205,43 @@ Here are some examples of what text to speech would look like.
 
 **Scenario 1 (success)**
 
-```
-text{
- "version": "1.0",
- "request": "text_to_speech",
- "codecs": [
- {
- "type": "ulaw"
- },
- {
- "type": "alaw",
- "attributes": {
- "annexb": "no"
- }
- }
- ],
- "app_config": {
- "gender": "male",
- "language": "en",
- "ssml": "no"
- },
- "data": "Inconceivable!"
+```json title="Request"
+{
+    "version": "1.0",
+    "request": "text_to_speech",
+    "codecs": [
+        {
+            "type": "ulaw"
+        },
+        {
+            "type": "alaw",
+            "attributes": {
+                "annexb": "no"
+            }
+        }
+    ],
+    "app_config": {
+        "gender": "male",
+        "language": "en",
+        "ssml": "no"
+    },
+    "data": "Inconceivable!"
 }
 
 ```
 
 Unlike speech to text, we only need to know if setup was successful. Then we know that media will flow over the websocket.
 
-```
-text{
- "version": "1.0",
- "response": "success",
- "codec": {
- "type": "alaw",
- "attributes": {
- "annexb": "no"
- }
- }
+```json title="Response"
+{
+    "version": "1.0",
+    "response": "success",
+    "codec": {
+        "type": "alaw",
+        "attributes": {
+            "annexb": "no"
+        }
+    }
 }
 
 ```
@@ -272,58 +250,58 @@ text{
 
 **Scenario 2 (failure)**
 
-```
-text{
- "version": "1.0",
- "request": "text_to_speech",
- "codecs": [
- {
- "type": "ulaw"
- }
- ],
- "app_config": {
- "gender": "male",
- "language": "en",
- "ssml": "no"
- },
- "data": "Inconceivable!"
+```json title="Request"
+{
+    "version": "1.0",
+    "request": "text_to_speech",
+    "codecs": [
+        {
+            "type": "ulaw"
+        }
+    ],
+    "app_config": {
+        "gender": "male",
+        "language": "en",
+        "ssml": "no"
+    },
+    "data": "Inconceivable!"
 }
+```
 
-```
-```
-text{
- "version": "1.0",
- "response": "error",
- "error_msg": "Could not connect to Google (server down)."
+```json title="Response"
+{
+    "version": "1.0",
+    "response": "error",
+    "error_msg": "Could not connect to Google (server down)."
 }
 
 ```
 
 ****Scenario 3 (codec not supported)****
 
-```
-text{
- "version": "1.0",
- "request": "text_to_speech",
- "codecs": [
- {
- "type": "ulaw"
- }
- ],
- "app_config": {
- "gender": "male",
- "language": "en",
- "ssml": "no"
- },
- "data": "Inconceivable!"
+```json title="Request"
+{
+    "version": "1.0",
+    "request": "text_to_speech",
+    "codecs": [
+        {
+            "type": "ulaw"
+        }
+    ],
+    "app_config": {
+        "gender": "male",
+        "language": "en",
+        "ssml": "no"
+    },
+    "data": "Inconceivable!"
 }
+```
 
-```
-```
-text{
- "version": "1.0",
- "response": "error",
- "error_msg": "Google does not support the following codec(s): ulaw."
+```json title="Response"
+{
+    "version": "1.0",
+    "response": "error",
+    "error_msg": "Google does not support the following codec(s): ulaw."
 }
 
 ```

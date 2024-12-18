@@ -119,8 +119,8 @@ Please don't spread lots of direct HTTP calls throughout your application. There
 
 Note that the abstraction layer doesn't (and shouldn't) be complicated. Your client side API can even be something as simple wrapper around GET, POST and DELETE that addresses the cross-cutting concerns. The Asterisk TestSuite has a very simple abstraction library that can be used like this:
 
-```
-pyari = ARI('localhost', ('username', 'password'))
+```python linenums="1"
+ari = ARI('localhost', ('username', 'password'))
 
 # Hang up all channels
 channels = ari.get('channels')

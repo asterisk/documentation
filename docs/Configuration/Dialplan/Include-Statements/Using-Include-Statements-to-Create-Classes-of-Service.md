@@ -5,33 +5,19 @@ pageid: 4817347
 
 Now that we've shown the basic syntax of include statements, let's put some include statements to good use. Include statements are often used to build chains of functionality or classes of service. In this example, we're going to build several different contexts, each with its own type of outbound calling. We'll then use include statements to chain these contexts together.
 
+/// tip | Numbering Plans
+The examples in this section use patterns designed for the North American Number Plan, and may not fit your individual circumstances. Feel free to use this example as a guide as you build your own dialplan.
 
+In these examples, we're going to assuming that a seven-digit number that does not begin with a zero or a one is a local (non-toll) call. Ten-digit numbers (where neither the first or fourth digits begin with zero or one) are also treated as local calls. A one, followed by ten digits (where neither the first or fourth digits begin with zero or one) is considered a long-distance (toll) call. Again, feel free to modify these examples to fit your own particular circumstances.
+///
 
-
-!!! tip Numbering Plans
-    The examples in this section use patterns designed for the North American Number Plan, and may not fit your individual circumstances. Feel free to use this example as a guide as you build your own dialplan.
-
-    In these examples, we're going to assuming that a seven-digit number that does not begin with a zero or a one is a local (non-toll) call. Ten-digit numbers (where neither the first or fourth digits begin with zero or one) are also treated as local calls. A one, followed by ten digits (where neither the first or fourth digits begin with zero or one) is considered a long-distance (toll) call. Again, feel free to modify these examples to fit your own particular circumstances.
-
-      
-[//]: # (end-tip)
-
-
-
-
-
-!!! warning Outbound dialing
-    These examples assume that you have a SIP provider named provider configured in **sip.conf**. The examples dial out through this SIP provider using the **SIP/provider/number** syntax.  
-
-
-      
-[//]: # (end-warning)
-
-
+/// warning | Outbound dialing
+These examples assume that you have a SIP provider named provider configured in **sip.conf**. The examples dial out through this SIP provider using the **SIP/provider/number** syntax.  
+///
 
 First, let's create a new context for local calls.
 
-```
+```text linenums="1"
 [local]
 ; seven-digit local numbers
 exten => _NXXXXXX,1,Dial(SIP/provider/${EXTEN})
@@ -51,7 +37,7 @@ Remember that the variable **${EXTEN}** will get replaced with the dialed extens
 
 Next, we'll build a long-distance context, and link it back to the **local** context with an include statement. This way, if you dial a local number and your phone's channel driver sends the call to the **longdistance** context, Asterisk will search the **local** context if it doesn't find a matching pattern in the **longdistance** context.
 
-```javascript title=" " linenums="1"
+```conf title=" " linenums="1"
 [longdistance]
 ; 1+ ten digit long-distance numbers
 exten => _1NXXNXXXXXX,1,Dial(SIP/provider/${EXTEN})
@@ -63,7 +49,7 @@ include => local
 
 Last but not least, let's add an **international** context. In North America, you dial 011 to signify that you're going to dial an international number.
 
-```javascript title=" " linenums="1"
+```conf title=" " linenums="1"
 [international]
 ; 1+ ten digit long-distance numbers
 exten => _011.,1,Dial(SIP/provider/${EXTEN})
