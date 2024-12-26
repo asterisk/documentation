@@ -6,9 +6,13 @@ copyright: >
   Content is licensed under a Creative Commons Attribution-ShareAlike 3.0 United States License.
 
 validation:
-  absolute_links: ignore
-  unrecognized_links: ignore
-
+  nav:
+    omitted_files: info
+    not_found: ignore
+  links:
+    absolute_links: relative_to_docs
+    anchors: warn
+    unrecognized_links: ignore
 
 theme:
   name: material
@@ -106,13 +110,18 @@ markdown_extensions:
       permalink: true
   - pymdownx.betterem
   - pymdownx.blocks.admonition
+  - pymdownx.blocks.caption
   - pymdownx.blocks.definition
+  - pymdownx.blocks.details
+  - pymdownx.blocks.html
+  - pymdownx.blocks.tab:
+      alternate_style: true
   - pymdownx.caret
   - pymdownx.critic
-  - pymdownx.details
   - pymdownx.emoji:
       emoji_index: !!python/name:material.extensions.emoji.twemoji
       emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.fancylists
   - pymdownx.highlight:
       anchor_linenums: true
       line_spans: __span
@@ -130,8 +139,6 @@ markdown_extensions:
         - name: mermaid
           class: mermaid
           format: !!python/name:pymdownx.superfences.fence_code_format
-  - pymdownx.tabbed:
-      alternate_style: true
   - pymdownx.tilde
 
 
