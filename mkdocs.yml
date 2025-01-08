@@ -10,8 +10,9 @@ validation:
     omitted_files: info
     not_found: ignore
   links:
+    omitted_files: ignore
     absolute_links: relative_to_docs
-    anchors: warn
+    anchors: ignore
     unrecognized_links: ignore
 
 theme:
@@ -62,6 +63,8 @@ plugins:
         Building+and+Installing+Asterisk.md: Getting-Started/Installing-Asterisk/Installing-Asterisk-From-Source/Building-and-Installing-Asterisk.md
         Secure+Calling+Tutorial.md: Deployment/Secure-Calling/Secure-Calling-Tutorial/index.md
         PJSIP+Configuration+Wizard.md: Configuration/Channel-Drivers/SIP/Configuring-res_pjsip/PJSIP-Configuration-Wizard.md
+        Realtime+Database+Configuration.md: Fundamentals/Asterisk-Configuration/Database-Support-Configuration/Realtime-Database-Configuration.md
+        ConfBridge.md: Configuration/Applications/Conferencing-Applications/ConfBridge/index.md
   - search
   - awesome-pages:
       filename: .pages
