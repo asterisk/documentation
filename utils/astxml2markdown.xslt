@@ -38,6 +38,12 @@ title: </xsl:text><xsl:value-of select="@name"/><xsl:text>
     <xsl:text>&#10;</xsl:text>
     <xsl:apply-templates select="synopsis"/>
     <xsl:text>&#10;&#10;</xsl:text>
+    <xsl:if test="since">
+        <xsl:text>### Since&#10;</xsl:text>
+        <xsl:text>&#10;</xsl:text>
+        <xsl:apply-templates select="since"/>
+        <xsl:text>&#10;&#10;</xsl:text>
+    </xsl:if>
     <xsl:if test="description">
         <xsl:text>### Description&#10;</xsl:text>
         <xsl:text>&#10;</xsl:text>
@@ -70,6 +76,12 @@ title: </xsl:text><xsl:value-of select="@name"/><xsl:text>
     <xsl:text>&#10;</xsl:text>
     <xsl:apply-templates select="synopsis"/>
     <xsl:text>&#10;&#10;</xsl:text>
+    <xsl:if test="since">
+        <xsl:text>### Since&#10;</xsl:text>
+        <xsl:text>&#10;</xsl:text>
+        <xsl:apply-templates select="since"/>
+        <xsl:text>&#10;&#10;</xsl:text>
+    </xsl:if>
     <xsl:text>### Description&#10;</xsl:text>
     <xsl:text>&#10;</xsl:text>
     <xsl:apply-templates select="description"/>
@@ -100,6 +112,12 @@ title: </xsl:text><xsl:value-of select="translate(@name, $smallcase, $uppercase)
     <xsl:text>&#10;</xsl:text>
     <xsl:apply-templates select="synopsis"/>
     <xsl:text>&#10;&#10;</xsl:text>
+    <xsl:if test="since">
+        <xsl:text>### Since&#10;</xsl:text>
+        <xsl:text>&#10;</xsl:text>
+        <xsl:apply-templates select="since"/>
+        <xsl:text>&#10;&#10;</xsl:text>
+    </xsl:if>
     <xsl:text>### Description&#10;</xsl:text>
     <xsl:text>&#10;</xsl:text>
     <xsl:apply-templates select="description"/>
@@ -130,6 +148,12 @@ title: </xsl:text><xsl:value-of select="@name"/><xsl:text>
     <xsl:text>&#10;</xsl:text>
     <xsl:apply-templates select="synopsis"/>
     <xsl:text>&#10;&#10;</xsl:text>
+    <xsl:if test="since">
+        <xsl:text>### Since&#10;</xsl:text>
+        <xsl:text>&#10;</xsl:text>
+        <xsl:apply-templates select="since"/>
+        <xsl:text>&#10;&#10;</xsl:text>
+    </xsl:if>
     <xsl:text>### Description&#10;</xsl:text>
     <xsl:text>&#10;</xsl:text>
     <xsl:apply-templates select="description"/>
@@ -167,6 +191,12 @@ title: </xsl:text><xsl:value-of select="@name"/><xsl:text>
     <xsl:text>&#10;</xsl:text>
     <xsl:apply-templates select="synopsis"/>
     <xsl:text>&#10;&#10;</xsl:text>
+    <xsl:if test="since">
+        <xsl:text>### Since&#10;</xsl:text>
+        <xsl:text>&#10;</xsl:text>
+        <xsl:apply-templates select="since"/>
+        <xsl:text>&#10;&#10;</xsl:text>
+    </xsl:if>
     <xsl:if test="description">
         <xsl:text>### Description&#10;</xsl:text>
         <xsl:text>&#10;</xsl:text>
@@ -226,12 +256,18 @@ title: </xsl:text><xsl:value-of select="@name"/><xsl:text>
     <xsl:text>]: </xsl:text>
     <xsl:apply-templates select="synopsis"/>
     <xsl:text>&#10;&#10;</xsl:text>
+    <xsl:if test="since">
+        <xsl:text>### Since&#10;</xsl:text>
+        <xsl:text>&#10;</xsl:text>
+        <xsl:apply-templates select="since"/>
+        <xsl:text>&#10;&#10;</xsl:text>
+    </xsl:if>
     <xsl:apply-templates select="description"/>
     <xsl:if test="count(configOption) &gt; 0">
         <xsl:text>#### Configuration Option Reference</xsl:text>
         <xsl:text>&#10;&#10;</xsl:text>
-        <xsl:text>| Option Name | Type | Default Value | Regular Expression | Description |&#10;</xsl:text>
-        <xsl:text>|:---|:---|:---|:---|:---| &#10;</xsl:text>
+        <xsl:text>| Option Name | Type | Default Value | Regular Expression | Description | Since |&#10;</xsl:text>
+        <xsl:text>|:---|:---|:---|:---|:---|:---| &#10;</xsl:text>
     </xsl:if>
     <xsl:for-each select="configOption">
         <xsl:sort select="@name"/>
@@ -299,13 +335,21 @@ title: </xsl:text><xsl:value-of select="@name"/><xsl:text>
 
         <xsl:text>| </xsl:text>
         <xsl:apply-templates select="synopsis"/>
+        <xsl:text>| </xsl:text>
+        <xsl:apply-templates select="since"/>
         <xsl:text>|&#10;</xsl:text>
     </xsl:if>
+
     <xsl:if test="$summary='false'">
         <xsl:if test="description">
             <xsl:text>##### </xsl:text>
             <xsl:value-of select="translate(@name,'\%!@{}$&amp;^[]|+','')"/>
             <xsl:text>&#10;&#10;</xsl:text>
+            <xsl:if test="since">
+                    <xsl:text>Since: </xsl:text>
+                    <xsl:apply-templates select="since" />
+                    <xsl:text>&#10;&#10;</xsl:text>
+            </xsl:if>
             <xsl:apply-templates select="description"/>
         </xsl:if>
     </xsl:if>
@@ -342,6 +386,15 @@ title: </xsl:text><xsl:value-of select="@name"/><xsl:text>
     <xsl:value-of select="normalize-space(.)"/>
 </xsl:template>
 
+<xsl:template match="since">
+    <xsl:for-each select="*">
+        <xsl:value-of select="normalize-space(.)"/>
+        <xsl:if test="position() != last()">
+            <xsl:text>, </xsl:text>
+        </xsl:if>
+    </xsl:for-each>
+</xsl:template>
+
 <xsl:template match="support_level">
     <xsl:value-of select="normalize-space(.)"/>
 </xsl:template>
@@ -364,7 +417,7 @@ title: </xsl:text><xsl:value-of select="@name"/><xsl:text>
      -->
     <for-each select="./*">
         <xsl:apply-templates select="./*">
-	        <xsl:with-param name="bulletlevel" select="$bulletlevel"/>
+            <xsl:with-param name="bulletlevel" select="$bulletlevel"/>
             <xsl:with-param name="returntype" select="single"/>
         </xsl:apply-templates>
         <!--
