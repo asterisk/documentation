@@ -4,7 +4,7 @@
 
 Transfer is a telephony feature. There are two types of transfer, attended and blind. These names may differ depending on the system you are looking on, or what background you have.
 
-The ARI transfer handling is supposed to be used in an ARI only environment to control a traditional channel or bridge wie ARI is not possible since it needs to be in a Stasis context. Please refer to "how to use ARI" for more information. For this scenario all channels and bridges need to be placed into an ARI context.
+The ARI transfer handling is supposed to be used in an ARI only environment to control a traditional channel or bridge with ARI is not possible since it needs to be in a Stasis context. Please refer to "how to use ARI" for more information. For this scenario all channels and bridges need to be placed into an ARI context.
 
 ### Attended transfer
 Attended transfer happens, if a call on hold and an active call are connected on request of the user. The user can talk to both parties before connecting them. This is also called a consultative transfer.
