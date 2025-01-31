@@ -12,20 +12,20 @@ Special Characters Used in Pattern Matching
 
 Pattern matches always begin with an underscore. This is how Asterisk recognizes that the extension is a pattern and not just an extension with a funny name. Within the pattern, we use various letters and characters to represent sets or ranges of numbers. Here are the most common letters:
 
+/// define
 X
--
 
-The letter **X** or **x** represents a single digit from 0 to 9.
+- The letter **X** or **x** represents a single digit from 0 to 9.
 
 Z
--
 
-The letter **Z** or **z** represents any digit from 1 to 9.
+- The letter **Z** or **z** represents any digit from 1 to 9.
 
 N
--
 
-The letter **N** or **n** matches any digit from 2-9.
+- The letter **N** or **n** matches any digit from 2-9.
+
+///
 
 
 
@@ -34,13 +34,11 @@ Ranges used in Pattern Matching
 
 A numeric range can be used to match against a dialed number. This is also called a Character Set
 
-
-
+```
 [1237-9]
---------
+```
 
 This pattern matches any digit or letter in the brackets. In this example, the pattern will match: 1,2,3,7,8,9
-
 
 
 Wilcards used in Pattern Matching
@@ -48,18 +46,20 @@ Wilcards used in Pattern Matching
 
 The following special characters are considered wildcards
 
-* . The '.' character matches one or more characters
-* ! The '!' character matches zero or more characters immediately
+/// define
+.
 
+- The '.' character matches one or more characters
+
+!
+
+- The '!' character matches zero or more characters immediately
+///
 
 
 The exclamation mark wildcard (!), behaves specially and will be further explained below in 'Other Special Characters' below.
 
 Please make sure to read 'Be Careful With Wildcards in Pattern Matches' below.
-
-
-
-
 
 
 Basic Example
@@ -108,18 +108,12 @@ If we want to be more specific about a range of numbers, we can put those number
 
 You can also use ranges within square brackets. For example, **[1-468]** would match a single digit from one through four or six or eight. It does not match any number from one to four hundred sixty-eight!
 
+/// note 
+The X, N, and Z convenience notations mentioned earlier have no special meaning within a set.
 
+The only characters with special meaning within a set are the '-' character, to define a range between two characters, the  '\' character to escape a special character available within a set, and  
 
-
-!!! note 
-    The X, N, and Z convenience notations mentioned earlier have no special meaning within a set.
-
-    The only characters with special meaning within a set are the '-' character, to define a range between two characters, the  '\' character to escape a special character available within a set, and  
-
-
-      
-[//]: # (end-note)
-
+///
 
 
 Other Special Characters
@@ -129,28 +123,15 @@ Within Asterisk patterns, we can also use a couple of other characters to repres
 
 The exclamation mark (**!**) character is similar to the period and matches zero or more remaining characters. It is used in overlap dialing to dial through Asterisk. For example, **_9876!** would match any number that began with **9876** including **9876**, and would respond that the number was complete as soon as there was an unambiguous match.
 
+/// tip
+Asterisk treats a period or exclamation mark as the end of a pattern. If you want a period or exclamation mark in your pattern as a plain character you should put it into a character set: **[.]** or **[!]**
+///
 
+/// warning | Be Careful With Wildcards in Pattern Matches
+Please be extremely cautious when using the period and exclamation mark characters in your pattern matches. They match more than just digits. They match on characters. If you're not careful to filter the input from your callers, a malicious caller might try to use these wildcards to bypass security boundaries on your system.
 
-
-!!! tip
-**  Asterisk treats a period or exclamation mark as the end of a pattern. If you want a period or exclamation mark in your pattern as a plain character you should put it into a character set: **[.]** or **[!]
-    .
-
-      
-[//]: # (end-tip)
-
-
-
-
-
-!!! warning Be Careful With Wildcards in Pattern Matches
-    Please be extremely cautious when using the period and exclamation mark characters in your pattern matches. They match more than just digits. They match on characters. If you're not careful to filter the input from your callers, a malicious caller might try to use these wildcards to bypass security boundaries on your system.
-
-    For a more complete explanation of this topic and how you can protect yourself, please refer to the **README-SERIOUSLY.bestpractices.txt** file in the Asterisk source code.
-
-      
-[//]: # (end-warning)
-
+For a more complete explanation of this topic and how you can protect yourself, please refer to the **README-SERIOUSLY.bestpractices.txt** file in the Asterisk source code.
+///
 
 
 Order of Pattern Matching
@@ -251,16 +232,8 @@ server*CLI> dialplan show users
 
 You can dial extension **6421** to try it out on your own.
 
-
-
-
-!!! warning Be Careful with Pattern Matching
-    Please be aware that because of the way auto-fallthrough works, if Asterisk can't find the next priority number for the current extension or pattern match, it will also look for that same priority in a less specific pattern match. Consider the following example:
-[//]: # (end-warning)
-
-
-  
-  
+/// warning | Be Careful with Pattern Matching
+Please be aware that because of the way auto-fallthrough works, if Asterisk can't find the next priority number for the current extension or pattern match, it will also look for that same priority in a less specific pattern match. Consider the following example:
 
 ```
 exten => 6410,1,SayDigits(987)
@@ -269,14 +242,11 @@ exten => _641X,n,SayDigits(54321)
   
 ```
 
----
-
-
 If you were to dial extension **6410**, you'd hear "nine eight seven five four three two one".
 
 We strongly recommend you make the **Hangup()** application be the last priority of any extension to avoid this behaviour, unless you purposely want to fall through to a less specific match.
+///
 
-```
 
 Matching on Caller ID
 =====================
@@ -301,15 +271,8 @@ same => n,Hangup()
 The phone with Caller ID 101, when dialing 306, will hear the prompt "year" and will be hung up.  The phone with Caller ID 102, when dialing 306, will hear the "beep" sound and will be hung up.  The phone with Caller ID 103, or any other caller, when dialing 306, will hear the "goodbye" prompt and will be hung up.
 
 
-
-
-!!! warning Rewriting Caller ID
-    Changing the value of **CALLERID(num)** variable inside of extension handler matched by Caller ID can immediately **throw the call to another handler**. Consider the following example:
-[//]: # (end-warning)
-
-
-  
-  
+/// warning | Rewriting Caller ID
+Changing the value of **CALLERID(num)** variable inside of extension handler matched by Caller ID can immediately **throw the call to another handler**. Consider the following example:
 
 ```
 [unexpected-jump-test]
@@ -322,12 +285,5 @@ same => 2,SayDigits(2) ; <- This is where the dialplan proceeds instead
 same => 3,SayDigits(3)
 same => 4,SayDigits(4)  
 
-
-
----
-
-
-You'd expect the call with Caller ID 100 to hang up, but instead you'd hear Asterisk saying "two, three, four".  
-
 ```
-
+///

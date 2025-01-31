@@ -1,19 +1,13 @@
----
-title: Overview
-pageid: 32375228
----
 
-Conferencing with Asterisk
-==========================
+# Conferencing with Asterisk
 
 Up until about Asterisk 1.6; app_meetme was the main application providing conferencing style features. In Asterisk 1.6.2 the ConfBridge module was added and then rewritten in Asterisk 10.
 
-Both MeetMe and ConfBridge still exist in the latest Asterisk versions and provide different feature sets, but with plenty of overlap. Development attention is primarily given to ConfBridge these days and it is the recommended option for modern deployments when using a pre-built application.
+Both MeetMe (now deprecated) and ConfBridge still exist in the latest Asterisk versions and provide different feature sets, but with plenty of overlap. Development attention is primarily given to ConfBridge these days and it is the recommended option for modern deployments when using a pre-built application.
 
-There is a detailed [description of ConfBridge functionality](/Latest_API/API_Documentation/Dialplan_Applications/ConfBridge) on the wiki as well as [MeetMe application](/Latest_API/API_Documentation/Dialplan_Applications/MeetMe) usage notes.
+There is a detailed [description of ConfBridge functionality](/Latest_API/API_Documentation/Dialplan_Applications/ConfBridge) on the wiki as well as the (now deprecated) [MeetMe application](/Latest_API/API_Documentation/Dialplan_Applications/MeetMe).
 
-Building your own conferencing application
-------------------------------------------
+## Building your own conferencing application
 
 Conferencing needs can be very specific to your business application. The conferencing applications included with Asterisk provide basic features that will work for many users.
 

@@ -1,7 +1,3 @@
----
-title: Realtime Database Configuration
-pageid: 4620317
----
 
 # Realtime Database Configuration
 
