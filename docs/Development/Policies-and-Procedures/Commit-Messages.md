@@ -56,7 +56,7 @@ Current official trailers:
 * **UpgradeNote**: To make users aware of possible breaking changes on update, use an `UpgradeNote: <text>` trailer.
 * **UserNote**: To make users aware of a new feature or significant fix, use a `UserNote: <text>` trailer.
 
-Any user-affecting change (new feature, change to CLI commands, etc) must be documented with a `UserNote:` trailer.   Any breaking change (change to dialplan application or function arguments, API change, etc.) must be documented with an `UpgradeNote:` trailer.   Those trailers cause special notes to be output in the change log in addition to the full commit message.
+Any user-affecting change (new feature, change to CLI commands, etc) must be documented with a `UserNote:` trailer.   Any potentially breaking change (change to or new alembic database scripts, change to dialplan application or function arguments, API change, etc.) must be documented with an `UpgradeNote:` trailer.   Those trailers cause special notes to be output in the change log in addition to the full commit message.
 
 /// warning | Updating Commit Messages
 GitHub only looks in the PR comments for the `Resolves` or `Fixes` trailers not the commit message, however the Asterisk release process only looks in the commit message for the trailers so it's important that they match.  Be aware though, if you subsequently force push the commit after the PR is created, GitHub will NOT automatically update the PR title or the description/first comment from the updated commit so if you've added or changed the `Resolves:` or `Fixes:` trailers in the commit message and forced pushed, you MUST manually edit the PR description/first comment or GitHub won't be able to automatically close any related issues.
