@@ -37,17 +37,17 @@ channel C --- bridge 2 --- channel D
 
 Where the channel marked with an "X" is set on hold, channel A should receive MOH but this is not necessary.
 Depending on the used telephone a SIP REFER is send to the channel B or D. Either way, Asterisk tries to resolve all the channel information involved.
-the `channelTransferEvent` contains both `refere_to` and `refered_by` information.
-The `refere_to` sections will always contain information about the SIP-Call ID in the field `requested-destination`. This is the information we receive from the telephone.
-In addition, the `refere_to` does contain, as far as the Asterisk could resolve it, the information about the own `channel-id` the `bridge-id` the channel is connected to and the connected `channel-id`. Relating to the schema above the `refere_to` would contain channel B, bridge 1 and channel A, if the REFER is received on channel D. 
+the `channelTransferEvent` contains both `refer_to` and `referred_by` information.
+The `refer_to` sections will always contain information about the SIP-Call ID in the field `requested-destination`. This is the information we receive from the telephone.
+In addition, the `refer_to` does contain, as far as the Asterisk could resolve it, the information about the own `channel-id` the `bridge-id` the channel is connected to and the connected `channel-id`. Relating to the schema above the `refer_to` would contain channel B, bridge 1 and channel A, if the REFER is received on channel D. 
 
-Corresponding to the `refere_to` the `refered_by` section contains the information about the channel and bridge the REFER was received on. Related to the schema above it would contain channel D, bridge 2 and channel C.
+Corresponding to the `refer_to` the `referred_by` section contains the information about the channel and bridge the REFER was received on. Related to the schema above it would contain channel D, bridge 2 and channel C.
 
 #### Blind transfer
 
 Here the information `refer_to` contains the destination to where the call should be placed. This information is dialed by the user and most likely follows the dial schema the user is used to. In most cases the user dialed a telephone number.
 
-The `refered_by` section does contain exactly what it does for the attended transfer.
+The `referred_by` section does contain exactly what it does for the attended transfer.
 
 The call scenario would look like:
 
