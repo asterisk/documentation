@@ -20,12 +20,9 @@ Operators are listed below in order of increasing precedence. Operators with equ
 * ! expr1  
  Return the result of a logical complement of expr1. In other words, if expr1 is null, 0, an empty string, or the string "0", return a 1. Otherwise, return a 0. It has the same precedence as the unary minus operator, and is also right associative.
 * expr1 : expr2  
- The `:' operator matches expr1 against expr2, which must be a regular expression. The regular expression is anchored to the beginning of the string with an implicit `'.
-
-If the match succeeds and the pattern contains at least one regular expression subexpression `', the string corresponing to `\1' is returned; otherwise the matching operator returns the number of characters matched. If the match fails and the pattern contains a regular expression subexpression the null string is returned; otherwise 0.
-
-Normally, the double quotes wrapping a string are left as part of the string. This is disastrous to the : operator. Therefore, before the regex match is made, beginning and ending double quote characters are stripped from both the pattern and the string.
-
+ The `:` operator matches expr1 against expr2, which must be a regular expression. The regular expression is anchored to the beginning of the string with an implicit `^`.
+ If the match succeeds and the pattern contains at least one regular expression match group `()`, the string corresponing to `\1` is returned; otherwise the matching operator returns the number of characters matched. If the match fails and the pattern contains a regular expression match group the null string is returned; otherwise 0.
+ Normally, the double quotes wrapping a string are left as part of the string. This is disastrous to the : operator. Therefore, before the regex match is made, beginning and ending double quote characters are stripped from both the pattern and the string.
 * expr1 =~ expr2  
  Exactly the same as the ':' operator, except that the match is not anchored to the beginning of the string. Pardon any similarity to seemingly similar operators in other programming languages! The ":" and "=~" operators share the same precedence.
 * expr1 ? expr2 :: expr3  
