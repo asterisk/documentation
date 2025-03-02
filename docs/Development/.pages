@@ -1,0 +1,14 @@
+nav:
+  - index.md
+  - Policies-and-Procedures
+  - Debugging
+  - Reference-Information
+  - Roadmap
+  - Asterisk-Bug-Bounties.md
+  - Asterisk-C-API-Deprecations.md
+  - Asterisk-Module-Deprecations.md
+  - Asterisk-Open-Source-Maintainers.md
+  - Open-Features-and-Improvements.md
+  - Asterisk-Project-Infrastructure-Migration.md
+#  - Asterisk-Project-Infrastructure-Future
+  
