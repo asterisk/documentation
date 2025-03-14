@@ -452,10 +452,15 @@ the XML again with the full descriptions, and forms bulleted lists.
         <xsl:value-of select="$name"/><xsl:text>(</xsl:text>
         <xsl:for-each select="parameter">
             <xsl:choose>
+                <!-- Ignore dialplan contexts and extensions as priority will encompass it -->
+                <xsl:when test="(@documentationtype='dialplan_context' or @documentationtype='dialplan_extension')">
+                </xsl:when>
                 <!-- Handle parameters with arguments -->
                 <xsl:when test="argument">
                     <!-- Close off optional parameters if we're required and last -->
                     <xsl:choose>
+                        <xsl:when test="(@documentationtype='dialplan_context' or @documentationtype='dialplan_extension' or @documentationtype='dialplan_priority')">
+                        </xsl:when>
                         <xsl:when test="position() = last() and (@required='yes' or @required='true')">
                             <xsl:for-each select="current()/../parameter">
                                 <xsl:choose>
@@ -472,7 +477,16 @@ the XML again with the full descriptions, and forms bulleted lists.
                          itself has argument parameters; otherwise, the
                          arguments themselves form the parameter -->
                     <xsl:if test="@hasparams">
-                        <xsl:value-of select="@name"/>
+                        <!-- Dialplan priority has special handling for conversion, as it encompasses the entire CEP -->
+                        <xsl:choose>
+                            <xsl:when test="(@documentationtype='dialplan_priority')">
+                                <xsl:text>[[context,]extension,]priority</xsl:text>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:value-of select="@name"/>
+                            </xsl:otherwise>
+                        </xsl:choose>
+
                         <xsl:if test="@hasparams='optional'">
                             <xsl:text>[</xsl:text>
                         </xsl:if>
@@ -488,7 +502,15 @@ the XML again with the full descriptions, and forms bulleted lists.
                             </xsl:otherwise>
                         </xsl:choose>
 
-                        <xsl:value-of select="@name"/>
+                        <xsl:choose>
+                            <xsl:when test="(@documentationtype='dialplan_priority')">
+                                <xsl:text>[[context,]extension,]priority</xsl:text>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:value-of select="@name"/>
+                            </xsl:otherwise>
+                        </xsl:choose>
+
                         <!-- Separators are either the parent's or ',' -->
                         <xsl:if test="position() != last()">
                             <xsl:choose>
@@ -562,7 +584,8 @@ the XML again with the full descriptions, and forms bulleted lists.
                         <xsl:when test="position() = last() and (@required='true' or @required='yes')">
                             <xsl:for-each select="current()/../parameter">
                                 <xsl:choose>
-                                    <xsl:when test="@required='true' or @required='yes' or position() = last()"/>
+                                    <!-- 'dialplan_priority' should handle closing brackets for us, so ignore context and extension -->
+                                    <xsl:when test="(@required='true' or @required='yes' or position() = last()) or (@documentationtype='dialplan_context' or @documentationtype='dialplan_extension')"/>
                                     <xsl:otherwise>
                                         <xsl:text>]</xsl:text>
                                     </xsl:otherwise>
@@ -570,7 +593,14 @@ the XML again with the full descriptions, and forms bulleted lists.
                             </xsl:for-each>
                         </xsl:when>
                     </xsl:choose>
-                    <xsl:value-of select="@name"/>
+                    <xsl:choose>
+                        <xsl:when test="(@documentationtype='dialplan_priority')">
+                            <xsl:text>[[context,]extension,]priority</xsl:text>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:value-of select="@name"/>
+                        </xsl:otherwise>
+                    </xsl:choose>
                     <xsl:if test="position() != last()">
                         <xsl:choose>
                             <xsl:when test="../@argsep">
