@@ -10,7 +10,7 @@ validation:
     omitted_files: info
     not_found: ignore
   links:
-    omitted_files: ignore
+    not_found: ignore
     absolute_links: relative_to_docs
     anchors: ignore
     unrecognized_links: ignore
