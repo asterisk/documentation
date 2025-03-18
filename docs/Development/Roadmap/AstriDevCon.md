@@ -12,7 +12,7 @@ Sangoma invites developers who are interested in the future of Asterisk to join 
 
 AstriDevCon is a mix of open and focused discussion all on topics within the realm of Asterisk development, primarily regarding current concerns that Asterisk faces and how to improve Asterisk for the future.
 
-**Starting at [10AM EST](https://www.timeanddate.com/worldclock/fixedtime.html?msg=AstriDevCon+2024+December&iso=20241202T10&p1=250&ah=6).**
+**Starting at [10AM EST](https://www.timeanddate.com/worldclock/fixedtime.html?msg=AstriDevCon+2025+March&iso=20250326T10&p1=250&ah=6).**
 
 Break 11:30 EST
 
@@ -22,20 +22,18 @@ Break 2:30 EST
 
 **Event ends at 4PM EST or at completion.**
 
-We'll build a rough agenda together in the morning.
-
 ### Agenda
+
+If people have specific things they would like to bring up we will build a rough agenda, but otherwise the event is informal and people are welcome to bring up topics as things progress.
 
 ### Location
 
-AstriDevCon will be held virtually on December 2nd, 2024. Virtual participation details will be sent to those who register.
+AstriDevCon will be held virtually on March 26, 2025 on [Sangoma Meet](https://meet.sangoma.com/AstriDevCon).
 
 Registering for AstriDevCon
 ---------------------------
 
-**[Fill out the registration form!](https://forms.gle/P9kGB9VEd5psS2JQ6)**
-
-Registration will be required for participation. If you don't register you will not be able to receive the participation details.
+Registration will NOT be required for participation. You can join and leave as you like.
 
 Additional Information
 ----------------------
