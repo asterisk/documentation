@@ -6,7 +6,7 @@ pageid: 42012937
 AudioSocket
 ===========
 
-AudioSocket is a simple TCP-based protocol for sending and receiving real-time audio streams.
+AudioSocket is a simple TCP-based protocol for sending and receiving real-time audio streams, and sending DTMF digits.
 
 There exists a protocol definition (below), a Go [library](https://github.com/CyCoreSystems/audiosocket), and Asterisk application and channel interfaces.
 
@@ -21,6 +21,7 @@ The minimum message length is three bytes: type and payload-length. Hangup indic
 
 * `0x00` - Terminate the connection (socket closure is also sufficient)
 * `0x01` - Payload will contain the UUID (16-byte binary representation) for the audio stream
+* `0x03` - Payload is 1 byte (ascii) DTMF (dual-tone multi-frequency) digit
 * `0x10` - Payload is signed linear, 16-bit, 8kHz, mono PCM (little-endian)
 * `0xff` - An error has occurred; payload is the (optional) application-specific error code. Asterisk-generated error codes are listed below.
 
