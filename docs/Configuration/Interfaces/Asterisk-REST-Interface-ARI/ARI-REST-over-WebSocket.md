@@ -1,10 +1,10 @@
-# ARI REST over Websocket - DRAFT
+# ARI REST over Websocket
 
-Historically, using ARI required two communications channels... HTTP for making REST requests and getting their reponses, and Websocket for receiving events.  Upcoming releases of Asterisk however, will allow you to make REST requests and receive their responses over the same Websocket you use to receive events.
+Historically, using ARI required two communications channels, HTTP for making REST requests and getting their responses, and a Websocket for receiving events.  Upcoming releases of Asterisk however, will allow you to make REST requests and receive their responses over the same Websocket you use to receive events.
 
 ## The Protocol
 
-There are several published protocols for request/response type communication over Websockets including [WAMP](https://wamp-proto.org), [JSON-RPC](https://www.jsonrpc.org), [XMPP](https://xmpp.org), [Socket.IO](https://socket.io), etc. but these are all fairly heavyweight and would require significant effort to implement.  Instead we went with a simple JSON wrapper loosely based on [SwaggerSocket](https://github.com/swagger-api/swagger-socket).
+There are several published protocols for request/response type communication over Websockets including [WAMP](https://wamp-proto.org), [JSON-RPC](https://www.jsonrpc.org), [XMPP](https://xmpp.org), [Socket.IO](https://socket.io), etc. but these are all fairly heavyweight and would require significant effort to implement in Asterisk.  Instead we went with a simple JSON wrapper inspired by [SwaggerSocket](https://github.com/swagger-api/swagger-socket).
 
 ### Request/Response
 
@@ -72,12 +72,7 @@ Server responds with:
   "status_code": 200,
   "reason_phrase": "OK",
   "uri": "channels/ast-1741988825.0",
-  "headers": [
-    {
-      "name": "Content-type",
-      "value": "application/json"
-    }
-  ],
+  "content_type": "application/json",
   "message_body": "{\"id\":\"ast-1741990187.0\",\"name\":\"PJSIP/1171-00000000\",
     \"state\":\"Up\",\"protocol_id\":\"tqOjze4LWAiFZVNlsj4FJpE7H0VX1Yhm\",\"caller\":
     {\"name\":  \"Alice Cooper\",\"number\":\"1171\"},\"connected\":{\"name\":\"\",
@@ -118,10 +113,10 @@ This requires us to send parameters to the resource. There are 4 methods for doi
   "method": "POST",
   "uri": "channels/ast-12345678.0/snoop/snoop-channel1",
   "query_strings": [
-      "spy": "both",
-      "whisper": "none",
-      "app": "Record",
-      "appArgs": "myfile.wav,5,60,q"
+      { "name": "spy", "value": "both" },
+      { "name": "whisper", "value": "none" },
+      { "name": "app", "value": "Record" },
+      { "name": "appArgs", "value": "myfile.wav,5,60,q" }
   ]
 }
 ```
@@ -155,7 +150,7 @@ This requires us to send parameters to the resource. There are 4 methods for doi
 ```
 
 /// warning
-PICK A METHOD! Using more than one method to pass parameters to the resource is highly discouraged because the rules for duplicates are a bit tricky.  Of the first 3 methods, the first occurence wins. However, if you also use the 4th method, it will overwrite any earlier values.
+PICK A METHOD! Using more than one method to pass parameters to the resource is highly discouraged because the rules for duplicates are a bit tricky.  Of the first 3 methods, the first occurrence wins. However, if you also use the 4th method, it will overwrite any earlier values.
 ///
 
 Server responds with:
@@ -176,6 +171,10 @@ Server responds with:
 
 That's all there is to it.
 
-## Caveats
+## Restrictions
 
-There's really only one...  You can't get binary data like recordings via the websocket.  The frames written to the underlying websocket use the TEXT opcode and the messages are all JSON and while there are ways we could send binary data, they're just too complicated and could interfere with getting asynchronous events.  Attempting to retrieve binary data will result in a 406 "Not Acceptable. Use HTTP GET" response.
+There are two:
+
+* You can't get binary data like recordings via the websocket.  The frames written to the underlying websocket use the TEXT opcode and the messages are all JSON and while there are ways we could send binary data, they're just too complicated and could interfere with getting asynchronous events.  Attempting to retrieve binary data will result in a 406 "Not Acceptable. Use HTTP GET" response.
+
+* Calling `GET` on `events` via HTTP is what does the `UPGRADE` to a websocket so it doesn't make sense to call it _via_ the websocket.  If you try, you'll get a 400 "Bad request. Can't upgrade to a websocket from a websocket".
