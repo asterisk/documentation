@@ -14,13 +14,7 @@ AstriDevCon is a mix of open and focused discussion all on topics within the rea
 
 **Starting at [10AM EDT](https://www.timeanddate.com/worldclock/fixedtime.html?msg=AstriDevCon+2025+April&iso=20250402T10&p1=250&ah=6).**
 
-Break 11:30 EDT
-
-Lunch 12:10 EDT
-
-Break 2:30 EDT
-
-**Event ends at 4PM EDT or at completion.**
+**Event ends at 12PM.**
 
 ### Agenda
 
@@ -28,7 +22,7 @@ If people have specific things they would like to bring up we will build a rough
 
 ### Location
 
-AstriDevCon will be held virtually on April 2, 2025 on [Sangoma Meet](https://meet.sangoma.com/AstriDevCon).
+AstriDevCon will be held virtually in July on [Sangoma Meet](https://meet.sangoma.com/AstriDevCon).
 
 Registering for AstriDevCon
 ---------------------------
