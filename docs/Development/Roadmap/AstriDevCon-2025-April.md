@@ -30,6 +30,7 @@ ARI Transfer support
 Dialplan transfer handling
 Regulation around software and bill of materials
 Packaging of Asterisk
+Documentation improvements around making version easier to select, and limiting search
 
 ### Location
 
