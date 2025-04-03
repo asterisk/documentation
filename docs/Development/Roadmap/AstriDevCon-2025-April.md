@@ -1,10 +1,4 @@
----
-title: AstriDevCon
-pageid: 50923585
----
-
-AstriDevCon
------------
+# AstriDevCon 2025 April
 
 Sangoma invites developers who are interested in the future of Asterisk to join us at AstriDevCon.
 
