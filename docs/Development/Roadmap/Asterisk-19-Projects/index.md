@@ -1,20 +1,14 @@
----
-title: Overview
-pageid: 45482448
----
+# Asterisk 19 Projects
 
-This page serves as a place to collect development information, and notes for Asterisk 19.
+This section serves as a place to collect development information and
+notes for Asterisk 19.
 
-If you have any questions about the content here please talk with developers on the [asterisk-dev](https://groups.io/g/asterisk-dev) mailing list, or #asterisk-dev IRC channel.
+If you have any questions about the content here please talk with
+developers on the [asterisk-dev](https://groups.io/g/asterisk-dev)
+mailing list or #asterisk-dev IRC channel on [Libera
+Chat](https://libera.chat/).
 
-
-
-
-!!! note **  Information on these pages should **not
-    be considered end-user documentation (even if they may appear that way at first).
-
-      
-[//]: # (end-note)
-
-
-
+/// warning
+Information on these pages should not be considered end-user
+documentation (even if they may appear that way at first).
+///
