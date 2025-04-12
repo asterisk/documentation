@@ -1,11 +1,8 @@
----
-title: Overview
-pageid: 19008034
----
+# Asterisk 11 Projects
 
 ## Overview
 
-The following is a listing of projects Digium has committed developer resources to for Asterisk 11. The majority of these were derived from the notes taken from ﻿﻿[AstriDevCon 2011](/Development/Roadmap/AstriDevCon-2011), held on Monday, October 24th, 2011. The choice of the projects listed on this page was based on the following:
+The following is a listing of projects Digium has committed developer resources to for Asterisk 11. The majority of these were derived from the notes taken from [AstriDevCon 2011](/Development/Roadmap/AstriDevCon-2011), held on Monday, October 24th, 2011. The choice of the projects listed on this page was based on the following:
 
 
 * The agreement in the community that Asterisk 11 is to be an LTS release (see [Asterisk Versions](/About-the-Project/Asterisk-Versions)).
@@ -40,12 +37,12 @@ Pre-dial allows you to jump to the dialplan after a channel has been created but
 Both of these are currently being developed by Kobaz:
 
 
-Pre-dial review:<https://reviewboard.asterisk.org/r/1229>  
+Pre-dial review:<https://reviewboard.asterisk.org/r/1229>
 
 Hangup handlers review: <https://reviewboard.asterisk.org/r/1230>
 
 
-[Pre-dial handlers](/Development/Roadmap/Asterisk-11-Projects/Pre-dial-handlers-Specification)  
+[Pre-dial handlers](/Development/Roadmap/Asterisk-11-Projects/Pre-dial-handlers-Specification)
 
 [Hangup Handlers Specification](/Development/Roadmap/Asterisk-11-Projects/Hangup-Handlers-Specification)
 
@@ -231,4 +228,3 @@ Attributes have not been applied for other formats, such as h264. SDP negotiatio
 
 
 This project continues to leverage the Media Format Architecture in chan_sip, with potential room for growth in other channel drivers (if the maintainers of those channel drivers would like to participate). This includes modifications to the architecture to make it easy for channel drivers to provide attributes to the format modules.
-
