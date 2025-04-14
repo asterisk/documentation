@@ -24,7 +24,7 @@ Example of use :
 ```
 exten => s,2,Set(vara=1)
 exten => s,3,Set(varb=$[${vara} + 2])
-exten => s,4,Set(varc=$[${varb} \* 2])
+exten => s,4,Set(varc=$[${varb} * 2])
 exten => s,5,GotoIf($[${varc} = 6]?99,1:s,6)
 
 ```

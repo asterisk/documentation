@@ -83,7 +83,7 @@ Each change in the reference count value of an `ao2` object will generate one li
 
 ```
 ...
-0x7f9dbc002048,+1,19256,chan_sip.c,8651,sip_alloc,\*\*constructor\*\*,allocate a dialog(pvt) struct
+0x7f9dbc002048,+1,19256,chan_sip.c,8651,sip_alloc,**constructor**,allocate a dialog(pvt) struct
 0x7f9dbc002048,+1,19256,chan_sip.c,8795,sip_alloc,1,link pvt into dialogs table
 0x7f9dbc002048,+1,19256,chan_sip.c,4186,__sip_reliable_xmit,2,__sip_reliable_xmit: setting pkt->owner
 0x7f9dbc002048,+1,19256,chan_sip.c,4352,sip_scheddestroy,3,setting ref as passing into ast_sched_add for __sip_autodestruct
@@ -96,7 +96,7 @@ Each change in the reference count value of an `ao2` object will generate one li
 0x7f9dbc002048,-1,19256,chan_sip.c,3286,dialog_unlink_all,4,unlinking dialog via ao2_unlink
 0x7f9dbc002048,-1,19256,chan_sip.c,3287,dialog_unlink_all,3,unlinking dialog_needdestroy via ao2_unlink
 0x7f9dbc002048,-1,19256,chan_sip.c,3335,dialog_unlink_all,2,when you delete the autokillid sched, you should dec the refcount for the stored dialog ptr
-0x7f9dbc002048,-1,19256,chan_sip.c,3352,dialog_unlink_all,\*\*destructor\*\*,Let's unbump the count in the unlink so the poor pvt can disappear if it is time
+0x7f9dbc002048,-1,19256,chan_sip.c,3352,dialog_unlink_all,**destructor**,Let's unbump the count in the unlink so the poor pvt can disappear if it is time
 ...
 
 ```

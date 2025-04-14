@@ -124,7 +124,7 @@ $ sudo cp configs/ais.conf.sample /etc/asterisk/ais.conf
 First, ensure that you have a unique "entity ID" set for each server.
 
 ```
-\*CLI> core show settings
+*CLI> core show settings
  ...
  Entity ID: 01:23:45:67:89:ab
 ```
@@ -167,7 +167,7 @@ The first thing to test is to verify that all of the nodes that you think should
 (CLM).
 
 ```
-\*CLI> ais clm show members 
+*CLI> ais clm show members 
 
 =============================================================
 === Cluster Members =========================================
@@ -196,7 +196,7 @@ If you're having trouble getting the nodes of the cluster to see each other, mak
 The next thing to do is to verify that you have successfully configured some event channels in the Asterisk ais.conf file. This command is related to the event service (EVT), so like the previous command, uses the syntax: `ais <service name> <command>`.
 
 ```
-\*CLI> ais evt show event channels 
+*CLI> ais evt show event channels 
 
 =============================================================
 === Event Channels ==========================================
@@ -225,24 +225,24 @@ exten => 1234,hint,Custom:mystate
 Now, you can test that the cluster-wide state of "Custom:mystate" is what you would expect after going to the CLI of each server and adjusting the state.
 
 ```
-server1\*CLI> dialplan set global DEVICE_STATE(Custom:mystate) NOT_INUSE
+server1*CLI> dialplan set global DEVICE_STATE(Custom:mystate) NOT_INUSE
  ...
 
-server2\*CLI> dialplan set global DEVICE_STATE(Custom:mystate) INUSE
+server2*CLI> dialplan set global DEVICE_STATE(Custom:mystate) INUSE
  ...
 ```
 Various combinations of setting and checking the state on different servers can be used to verify that it works as expected. Also, you can see the status of the hint on each server, as well, to see how extension state would reflect the
 state change with distributed device state:
 
 ```
-server2\*CLI> core show hints
+server2*CLI> core show hints
  -= Registered Asterisk Dial Plan Hints =-
  1234@devstate_test : Custom:mystate State:InUse Watchers 0
 ```
 One other helpful thing here during testing and debugging is to enable debug logging. To do so, enable debug on the console in /etc/asterisk/logger.conf. Also, enable debug at the Asterisk CLI.
 
 ```
-\*CLI> core set debug 1
+*CLI> core set debug 1
 ```
 When you have this debug enabled, you will see output during the processing of every device state change. The important thing to look for is where the known state of the device for each server is added together to determine the overall
 state.

@@ -493,19 +493,19 @@ Park, Queue, ConfBridge could be derivative classes of the abstract bridge class
 ```
 
 class ast_bridge {
- join(struct ast_channel \*chan);
- depart(struct ast_channel \*chan);
- remove(struct ast_channel \*chan);
- move_pull(class ast_bridge_channel \*chan);
+ join(struct ast_channel *chan);
+ depart(struct ast_channel *chan);
+ remove(struct ast_channel *chan);
+ move_pull(class ast_bridge_channel *chan);
  Pull a channel out of this bridge to be pushed into another bridge.
- move_push(class ast_bridge_channel \*chan, class ast_bridge_channel \*swap);
+ move_push(class ast_bridge_channel *chan, class ast_bridge_channel *swap);
  Push a channel into this bridge that was pulled from another bridge.
- masquerade_pull(class ast_bridge_channel \*chan);
+ masquerade_pull(class ast_bridge_channel *chan);
  A masquerade is figuratively pulling this channel out of the bridge
  to be pushed back in as a new channel.
  This is done for the clone and original channels because a masquerade
  swaps the guts of the two channels.
- masquerade_push(class ast_bridge_channel \*chan);
+ masquerade_push(class ast_bridge_channel *chan);
  Push the channel back into the bridge as a new channel.
  poke();
  new();
@@ -519,7 +519,7 @@ class ast_bridge {
  of a swapped channel when it is pushed or joined.
 };
 class ast_bridge_channel {
- class ast_bridge \*bridge;
+ class ast_bridge *bridge;
  suspend();
  Mark channel as suspended and poke the bridge to recognize it.
  unsuspend();

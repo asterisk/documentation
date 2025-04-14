@@ -100,10 +100,10 @@ Useful Commands and Tips
 
 	$ git log --graph --decorate --no-merges -E --grep="^(realtime: Add database scripts for|ChangeLog:|Release summaries:|[.])" \
 	$ --invert-grep --pretty=format:'%Cred %h %C(yellow) %d %Creset %<(60,trunc) %s %Cgreen(%cr)' 13.8..13.9
-	\* d27ee3b res_sorcery_astdb: Fix creation of retrieved objects. (11 days ago)
-	\* 15c427c Use doubles instead of floats for conversions when compari.. (11 days ago)
-	\* e702b9f pjproject_bundled: Disable PJSIP_UNESCAPE_IN_PLACE (3 weeks ago)
-	\* b470aab func_odbc: Check connection status before executing queries. (3 weeks ago)
+	* d27ee3b res_sorcery_astdb: Fix creation of retrieved objects. (11 days ago)
+	* 15c427c Use doubles instead of floats for conversions when compari.. (11 days ago)
+	* e702b9f pjproject_bundled: Disable PJSIP_UNESCAPE_IN_PLACE (3 weeks ago)
+	* b470aab func_odbc: Check connection status before executing queries. (3 weeks ago)
 	<snip>
 	$
 
@@ -146,8 +146,8 @@ Useful Commands and Tips
 	```
 
 	$ git cdiff 13.9.0..13.9.1
-	\* d27ee3b res_sorcery_astdb: Fix creation of retrieved objects. (11 days ago)
-	\* 15c427c Use doubles instead of floats for conversions when compari.. (11 days ago)
+	* d27ee3b res_sorcery_astdb: Fix creation of retrieved objects. (11 days ago)
+	* 15c427c Use doubles instead of floats for conversions when compari.. (11 days ago)
 	<snip>
 	$
 
@@ -161,13 +161,13 @@ Useful Commands and Tips
 	```
 
 	$ git cdiff --cherry-pick --right-only 13.8...certified/13.8
-	\* b9a28cc udptl: Don't eat sequence numbers until OK is received (5 days ago)
-	| \* f85c77a chan_sip: Prevent extra Session-Expires headers from bein.. (6 days ago)
+	* b9a28cc udptl: Don't eat sequence numbers until OK is received (5 days ago)
+	| * f85c77a chan_sip: Prevent extra Session-Expires headers from bein.. (6 days ago)
 	|/ 
-	\* 8bf050b config_transport: Tell pjproject to allow all SSL/TLS pro.. (10 days ago)
-	\* 4fc2c98 res_pjsip_authenticator_digest: Don't use source port in n.. (2 weeks ago)
-	\* 4e7791d file: Ensure nativeformats remains valid for lifetime of u.. (3 weeks ago)
-	\* c4426f1 res_pjsip: disable multi domain to improve realtime perfor.. (3 weeks ago)
+	* 8bf050b config_transport: Tell pjproject to allow all SSL/TLS pro.. (10 days ago)
+	* 4fc2c98 res_pjsip_authenticator_digest: Don't use source port in n.. (2 weeks ago)
+	* 4e7791d file: Ensure nativeformats remains valid for lifetime of u.. (3 weeks ago)
+	* c4426f1 res_pjsip: disable multi domain to improve realtime perfor.. (3 weeks ago)
 	<snip>
 	$
 

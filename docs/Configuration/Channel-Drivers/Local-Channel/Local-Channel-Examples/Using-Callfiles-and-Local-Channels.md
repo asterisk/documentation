@@ -23,7 +23,7 @@ Our dialplan will perform a lookup in the AstDB to determine which device to cal
 Before looking at our dialplan, lets put some data into AstDB that we can then lookup from the dialplan. From the Asterisk CLI, run the following command:
 
 ```
-\*CLI> database put phones 201/device SIP/0004f2040001 
+*CLI> database put phones 201/device SIP/0004f2040001 
 
 ```
 
@@ -32,7 +32,7 @@ We've now put the device destination (SIP/0004f2040001) into the 201/device key 
 We can then verify our entry in the database using the 'database show' CLI command:
 
 ```
-\*CLI> database show /phones/201/device : SIP/0004f2040001 
+*CLI> database show /phones/201/device : SIP/0004f2040001 
 
 ```
 
@@ -52,7 +52,7 @@ exten => 201,n(hangup),Hangup()
 Then, we can perform a call to our device using the callfile by moving it into the /var/spool/asterisk/outgoing/ directory.
 
 ```
-mv callfile.new /var/spool/asterisks/outgoing\*
+mv callfile.new /var/spool/asterisks/outgoing*
 
 ```
 
@@ -90,7 +90,7 @@ We perform a check to make sure ${DEVICE} isn't NULL. If it is, we'll just hangu
 Now we call our device SIP/0004f2040001 from the Local channel.
 
 ```
-SIP/0004f2040001-00000022 answered Local/201@devices-ecf0;2\*
+SIP/0004f2040001-00000022 answered Local/201@devices-ecf0;2*
 
 ```
 

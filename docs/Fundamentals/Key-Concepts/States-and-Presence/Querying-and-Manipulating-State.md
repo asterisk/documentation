@@ -31,7 +31,7 @@ The **[EXTENSION_STATE](/Latest_API/API_Documentation/Dialplan_Functions/EXTENSI
 The CLI command **core show hints** will show extension state for all defined hints, as well as display a truncated list of the mapped Device State or Presence State identifiers.
 
 ```
-myserver\*CLI> core show hints
+myserver*CLI> core show hints
  -= Registered Asterisk Dial Plan Hints =-
  6002@from-internal : SIP/6002 State:Unavailable Watchers 0
  7777@from-internal : SIP/6003,CustomPrese State:Unavailable Watchers 0
@@ -48,7 +48,7 @@ Added in Asterisk 11, the **[PRESENCE_STATE](/Latest_API/API_Documentation/Dialp
 The **presencestate** CLI command will list or modify any currently defined Presence State resources provided by the CustomPresence provider.
 
 ```
-myserver\*CLI> core show help presencestate 
+myserver*CLI> core show help presencestate 
 presencestate change -- Change a custom presence state
 presencestate list -- List currently know custom presence states
 

@@ -33,9 +33,9 @@ features.conf
 
 ```
  [featuremap]
-automon = \*1
-automixmon = \*3
-disconnect = \*0
+automon = *1
+automixmon = *3
+disconnect = *0
 parkcall = #72
 
 ```

@@ -39,7 +39,7 @@ extensions = {
 The `extensions.lua` file can be reloaded by reloading the pbx_lua module.
 
 ```
-\*CLI> module reload pbx_lua
+*CLI> module reload pbx_lua
 
 ```
 

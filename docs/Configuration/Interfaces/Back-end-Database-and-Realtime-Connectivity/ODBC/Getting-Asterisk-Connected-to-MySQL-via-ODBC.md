@@ -45,7 +45,7 @@ Now verify you are at the MySQL command prompt. It should look like "mysql>". Th
 ```bash title=" " linenums="1"
 # CREATE USER 'asterisk'@'%' IDENTIFIED BY 'replace_with_strong_password';
 # CREATE DATABASE asterisk;
-# GRANT ALL PRIVILEGES ON asterisk.\* TO 'asterisk'@'%';
+# GRANT ALL PRIVILEGES ON asterisk.* TO 'asterisk'@'%';
 # exit
 
 ```

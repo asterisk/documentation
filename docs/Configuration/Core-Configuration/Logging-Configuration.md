@@ -98,15 +98,15 @@ Log Files Section:
 ; not be logged to the file. If a verbose level is not given, verbose messages are logged
 ; based upon the current level set for the root console.
 ;
-; The special character "\*" can also be specified and represents all levels, even dynamic
+; The special character "*" can also be specified and represents all levels, even dynamic
 ; levels registered by modules after the logger has been initialized. This means that loading
 ; and unloading modules that create and remove dynamic logging levels will result in these
-; levels being included on filenames that have a level name of "\*", without any need to
+; levels being included on filenames that have a level name of "*", without any need to
 ; perform a "logger reload" or similar operation.
 ;
-; Note, there is no value in specifying both "\*" and specific level types for a file name.
-; The "\*" level means ALL levels. The only exception is if you need to specify a specific
-; verbose level. e.g, "verbose(3),\*".
+; Note, there is no value in specifying both "*" and specific level types for a file name.
+; The "*" level means ALL levels. The only exception is if you need to specify a specific
+; verbose level. e.g, "verbose(3),*".
 ;
 ; It is highly recommended that you DO NOT turn on debug mode when running a production system
 ; unless you are in the process of debugging a specific issue. Debug mode outputs a LOT of

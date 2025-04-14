@@ -50,7 +50,7 @@ struct ast_sip_digest_challenge_data {
  /*!
  * The realm to which the user is authenticating. An authenticator MUST fill this in.
  */
- const char \*realm;
+ const char *realm;
  /*!
  * Indicates whether the username and password are in plaintext or encoded as MD5.
  * If this is non-zero, then the data is an MD5 sum. Otherwise, the username and password are plaintext.
@@ -69,13 +69,13 @@ struct ast_sip_digest_challenge_data {
  * Structure containing the username and password to encode in a digest authentication challenge.
  */
  struct {
- const char \*username;
- const char \*password;
+ const char *username;
+ const char *password;
  } plain;
  /*!
  * An MD5-encoded string that incorporates the username and password.
  */
- const char \*md5;
+ const char *md5;
  } auth;
  /*!
  * Domain for which the authentication challenge is being sent. This corresponds to the "domain=" portion of
@@ -83,17 +83,17 @@ struct ast_sip_digest_challenge_data {
  *
  * Authenticators do not have to fill in this field since it is an optional part of a digest.
  */
- const char \*domain;
+ const char *domain;
  /*!
  * Opaque string for digest challenge. This corresponds to the "opaque=" portion of a digest authentication.
  * Authenticators do not have to fill in this field. If an authenticator does not fill it in, Asterisk will provide one.
  */
- const char \*opaque;
+ const char *opaque;
  /*!
  * Nonce string for digest challenge. This corresponds to the "nonce=" portion of a digest authentication.
  * Authenticators do not have to fill in this field. If an authenticator does not fill it in, Asterisk will provide one.
  */
- const char \*nonce;
+ const char *nonce;
 };
 
 /*!
@@ -108,17 +108,17 @@ struct ast_sip_authenticator {
  * \brief Check if a request requires authentication
  * See ast_sip_requires_authentication for more details
  */
- int (\*requires_authentication)(struct ast_sip_endpoint \*endpoint, struct pjsip_rx_data \*rdata);
+ int (*requires_authentication)(struct ast_sip_endpoint *endpoint, struct pjsip_rx_data *rdata);
  /*!
  * \brief Attempt to authenticate the incoming request
  * See ast_sip_authenticate_request for more details
  */
- int (\*authenticate_request)(struct ast_sip_endpoint \*endpoint, struct pjsip_rx_data \*rdata);
+ int (*authenticate_request)(struct ast_sip_endpoint *endpoint, struct pjsip_rx_data *rdata);
  /*!
  * \brief Get digest authentication details
  * See ast_sip_get_authentication_credentials for more details
  */
- int (\*get_authentication_credentials)(struct ast_sip_endpoint \*endpoint, struct sip_digest_challenge_data \*challenge);
+ int (*get_authentication_credentials)(struct ast_sip_endpoint *endpoint, struct sip_digest_challenge_data *challenge);
 };
 
 /*!
@@ -129,7 +129,7 @@ struct ast_sip_endpoint_identifier {
  * \brief Callback used to identify the source of a message.
  * See ast_sip_identify_endpoint for more details
  */
- struct ast_sip_endpoint \*(\*identify_endpoint)(struct pjsip_rx_data \*data);
+ struct ast_sip_endpoint *(*identify_endpoint)(struct pjsip_rx_data *data);
 };
 
 ```
@@ -152,7 +152,7 @@ c
  * \retval 0 Success
  * \retval -1 Failure
  */
-int ast_sip_register_service(pjsip_module \*module);
+int ast_sip_register_service(pjsip_module *module);
 
 /*!
  * This is the opposite of ast_sip_register_service(). Unregistering a
@@ -161,7 +161,7 @@ int ast_sip_register_service(pjsip_module \*module);
  *
  * \param module The PJSIP module to unregister
  */
-void ast_sip_unregister_service(pjsip_module \*module);
+void ast_sip_unregister_service(pjsip_module *module);
 
 /*!
  * \brief Register a SIP authenticator
@@ -178,7 +178,7 @@ void ast_sip_unregister_service(pjsip_module \*module);
  * \retval 0 Success
  * \retval -1 Failure
  */
-int ast_sip_register_authenticator(struct ast_sip_authenticator \*auth);
+int ast_sip_register_authenticator(struct ast_sip_authenticator *auth);
 
 /*!
  * \brief Unregister a SIP authenticator
@@ -188,7 +188,7 @@ int ast_sip_register_authenticator(struct ast_sip_authenticator \*auth);
  *
  * \param auth The authenticator to unregister
  */
-void ast_sip_unregister_authenticator(struct ast_sip_authenticator \*auth);
+void ast_sip_unregister_authenticator(struct ast_sip_authenticator *auth);
 
 /*!
  * \brief Register a SIP endpoint identifier
@@ -211,7 +211,7 @@ void ast_sip_unregister_authenticator(struct ast_sip_authenticator \*auth);
  * \retval 0 Success
  * \retval -1 Failure
  */
-int ast_sip_register_endpoint_identifier(struct ast_sip_endpoint_identifier \*identifier);
+int ast_sip_register_endpoint_identifier(struct ast_sip_endpoint_identifier *identifier);
 
 /*!
  * \brief Unregister a SIP endpoint identifier
@@ -220,7 +220,7 @@ int ast_sip_register_endpoint_identifier(struct ast_sip_endpoint_identifier \*id
  *
  * \param identifier The SIP endoint identifier to unregister
  */
-void ast_sip_unregister_endpoint_identifier(struct ast_sip_endpoint_identifier \*identifier);
+void ast_sip_unregister_endpoint_identifier(struct ast_sip_endpoint_identifier *identifier);
 
 ```
 
@@ -242,14 +242,14 @@ c
  * \retval NULL Failure
  * \retval non-NULL Newly-created SIP work
  */
-struct ast_sip_work \*ast_sip_create_work(void);
+struct ast_sip_work *ast_sip_create_work(void);
 
 /*!
  * \brief Destroy a SIP work structure
  *
  * \param work The SIP work to destroy
  */
-void ast_sip_destroy_work(struct ast_sip_work \*work);
+void ast_sip_destroy_work(struct ast_sip_work *work);
 
 /*!
  * \brief Pushes a task into the SIP threadpool
@@ -262,7 +262,7 @@ void ast_sip_destroy_work(struct ast_sip_work \*work);
  * \retval 0 Success
  * \retval -1 Failure
  */
-int ast_sip_push_task(struct ast_sip_work \*work, int (\*sip_task)(void \*), void \*task_data);
+int ast_sip_push_task(struct ast_sip_work *work, int (*sip_task)(void *), void *task_data);
 
 ```
 
@@ -284,7 +284,7 @@ c
  * \retval 0 Success
  * \retval -1 Failure
  */
-int ast_sip_send_request(const char \*method, const char \*body, struct pjsip_dialog \*dlg);
+int ast_sip_send_request(const char *method, const char *body, struct pjsip_dialog *dlg);
 
 /*!
  * \brief Determine if an incoming request requires authentication
@@ -300,7 +300,7 @@ int ast_sip_send_request(const char \*method, const char \*body, struct pjsip_di
  * \retval non-zero The request requires authentication
  * \retval 0 The request does not require authentication
  */
-int ast_sip_requires_authentication(struct ast_sip_endpoint \*endpoint, struct pjsip_rx_data \*rdata);
+int ast_sip_requires_authentication(struct ast_sip_endpoint *endpoint, struct pjsip_rx_data *rdata);
 
 /*!
  * \brief Authenticate an inbound SIP request
@@ -317,7 +317,7 @@ int ast_sip_requires_authentication(struct ast_sip_endpoint \*endpoint, struct p
  * \retval 0 Successfully authenticated
  * \retval nonzero Failure to authenticate
  */
-int ast_sip_authenticate_request(struct ast_sip_endpoint \*endpoint, struct pjsip_rx_data \*rdata);
+int ast_sip_authenticate_request(struct ast_sip_endpoint *endpoint, struct pjsip_rx_data *rdata);
 
 /*!
  * \brief Get authentication credentials in order to challenge a request
@@ -330,7 +330,7 @@ int ast_sip_authenticate_request(struct ast_sip_endpoint \*endpoint, struct pjsi
  * \retval 0 Success
  * \retval -1 Failure
  */
-int ast_sip_get_authentication_credentials(struct ast_sip_endpoint \*endpoint, struct ast_sip_digest_challenge_data \*challenge);
+int ast_sip_get_authentication_credentials(struct ast_sip_endpoint *endpoint, struct ast_sip_digest_challenge_data *challenge);
 
 /*!
  * \brief Possible returns from ast_sip_check_authentication
@@ -359,7 +359,7 @@ enum ast_sip_check_auth_result {
  * \param rdata The request to potentially authenticate
  * \return The result of checking authentication.
  */
-ast_sip_check_authentication(struct ast_sip_endpoint \*endpoint, struct pjsip_rxdata \*rdata);
+ast_sip_check_authentication(struct ast_sip_endpoint *endpoint, struct pjsip_rxdata *rdata);
 
 /*!
  * \brief Challenge an inbound SIP request with a 401
@@ -372,7 +372,7 @@ ast_sip_check_authentication(struct ast_sip_endpoint \*endpoint, struct pjsip_rx
  * \retval 0 Success
  * \retval -1 Failure
  */
-int ast_sip_challenge_request(struct sip_digest_challenge_data \*challenge);
+int ast_sip_challenge_request(struct sip_digest_challenge_data *challenge);
 
 /*!
  * \brief Determine the endpoint that has sent a SIP message
@@ -386,7 +386,7 @@ int ast_sip_challenge_request(struct sip_digest_challenge_data \*challenge);
  * \retval NULL No matching endpoint
  * \retval non-NULL The matching endpoint
  */
-struct ast_sip_endpoint \*ast_sip_identify_endpoint(struct pjsip_rx_data \*rdata);
+struct ast_sip_endpoint *ast_sip_identify_endpoint(struct pjsip_rx_data *rdata);
 
 /*!
  * \brief Add a header to an outbound SIP message
@@ -397,7 +397,7 @@ struct ast_sip_endpoint \*ast_sip_identify_endpoint(struct pjsip_rx_data \*rdata
  * \retval 0 Success
  * \retval -1 Failure
  */
-int ast_sip_add_header(struct pjsip_tx_data \*tdata, const char \*name, const char \*value);
+int ast_sip_add_header(struct pjsip_tx_data *tdata, const char *name, const char *value);
 
 /*!
  * \brief Add a body to an outbound SIP message
@@ -410,7 +410,7 @@ int ast_sip_add_header(struct pjsip_tx_data \*tdata, const char \*name, const ch
  * \retval 0 Success
  * \retval -1 Failure
  */
-int ast_sip_add_body(struct pjsip_tx_data \*tdata, const char \*body);
+int ast_sip_add_body(struct pjsip_tx_data *tdata, const char *body);
 
 /*!
  * \brief Add a multipart body to an outbound SIP message
@@ -423,7 +423,7 @@ int ast_sip_add_body(struct pjsip_tx_data \*tdata, const char \*body);
  * \retval 0 Success
  * \retval -1 Failure
  */
-int ast_sip_add_body(struct pjsip_tx_data \*tdata, const char \*bodies[]);
+int ast_sip_add_body(struct pjsip_tx_data *tdata, const char *bodies[]);
 
 /*!
  * \brief Append body data to a SIP message
@@ -436,6 +436,6 @@ int ast_sip_add_body(struct pjsip_tx_data \*tdata, const char \*bodies[]);
  * \retval 0 Success
  * \retval -1 Failure
  */
-int ast_sip_append_body(struct pjsip_tx_data \*tdata, const char \*body);
+int ast_sip_append_body(struct pjsip_tx_data *tdata, const char *body);
 
 ```

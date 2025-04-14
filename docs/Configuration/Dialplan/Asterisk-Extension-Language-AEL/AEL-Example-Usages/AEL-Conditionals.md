@@ -16,7 +16,7 @@ context conditional {
  }
  else 
  Voicemail(${EXTEN},u);
- ifTime (14:00-23:59|sat-sun|\*|\*) 
+ ifTime (14:00-23:59|sat-sun|*|*) 
  Voicemail(${EXTEN},b); 
  else 
  { 

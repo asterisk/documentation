@@ -37,7 +37,7 @@ Listing commands and showing usage
 Once on the console, the 'help' alias (for 'core show help') may be used to see a large list of commands available for use.
 
 ```
-\*CLI> help
+*CLI> help
 ! -- Execute a shell command
 acl show -- Show a named ACL or list all named ACLs
 ael reload -- Reload AEL configuration
@@ -48,14 +48,14 @@ ael reload -- Reload AEL configuration
 The 'help' alias may also be used to obtain more detailed information on how to use a particular command and listing sub-commands. For example, if you type 'help core show', Asterisk will respond with a list of all commands that start with that string. If you type 'help core show version', specifying a complete command, Asterisk will respond with a usage message which describes how to use that command. As with other commands on the Asterisk console, the help command also responds to tab command line completion.
 
 ```
-\*CLI> help core show
+*CLI> help core show
 core show applications [like|describing] -- Shows registered dialplan applications
 core show application -- Describe a specific dialplan application
 ...
 
 ```
 ```
-\*CLI> help core show version
+*CLI> help core show version
 Usage: core show version
  Shows Asterisk version information.
 
@@ -69,7 +69,7 @@ A big part of working with Asterisk involves making use of Asterisk applications
 The command  **`core show application <application name>`**  or similarly  **`core show function <function name>`** will show you the usage and arguments.
 
 ```
-\*CLI> core show application Wait
+*CLI> core show application Wait
  -= Info about application 'Wait' =- 
 [Synopsis]
 Waits for some time.
@@ -93,7 +93,7 @@ Module Configuration Help
 A very useful addition to Asterisk's help and documentation features is the command **`config show help`**. This command provides detailed information about configuration files, option sections in those files, and options within the sections.
 
 ```
-\*CLI> help config show help
+*CLI> help config show help
 Usage: config show help [<module> [<type> [<option>]]]
  Display detailed information about module configuration.
  * If nothing is specified, the modules that have
@@ -116,7 +116,7 @@ Usage: config show help [<module> [<type> [<option>]]]
 For example maybe we see the 'callerid' option in a pjsip.conf file sent to us from a friend. We want to know what that option configures. If we know that pjsip.conf is provided by the res_pjsip module then we can find help on that configuration option.
 
 ```
-\*CLI> config show help res_pjsip endpoint callerid
+*CLI> config show help res_pjsip endpoint callerid
 [endpoint]
 callerid = [(null)] (Default: n/a) (Regex: False)
 

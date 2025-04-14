@@ -47,15 +47,15 @@ Explanation of the 'tonelist' usage:
 ; The tonelist itself is defined by a comma-separated sequence of elements.
 ; Each element consist of a frequency (f) with an optional duration (in ms)
 ; attached to it (f/duration). The frequency component may be a mixture of two
-; frequencies (f1+f2) or a frequency modulated by another frequency (f1\*f2).
+; frequencies (f1+f2) or a frequency modulated by another frequency (f1*f2).
 ; The implicit modulation depth is fixed at 90%, though.
 ; If the list element starts with a !, that element is NOT repeated,
 ; therefore, only if all elements start with !, the tonelist is time-limited,
 ; all others will repeat indefinitely.
 ;
 ; concisely:
-; element = [!]freq[+|\*freq2][/duration]
-; tonelist = element[,element]\*
+; element = [!]freq[+|*freq2][/duration]
+; tonelist = element[,element]*
 
 ```
 

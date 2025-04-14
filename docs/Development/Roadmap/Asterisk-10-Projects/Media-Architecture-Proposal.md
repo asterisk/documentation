@@ -83,7 +83,7 @@ enum ast_format_cmp_res {
  * \return Pointer to ast_format object, same pointer that is passed in
  * by the first argument.
  */
-struct ast_format \*ast_format_set(struct ast_format \*format, enum ast_format_id id, int set_attributes, ... );
+struct ast_format *ast_format_set(struct ast_format *format, enum ast_format_id id, int set_attributes, ... );
 
 /*!
  * \brief This function is used to set an ast_format object to represent a media format
@@ -95,14 +95,14 @@ struct ast_format \*ast_format_set(struct ast_format \*format, enum ast_format_i
  * \return 0, The format key value pairs are within the capabilities defined in this structure.
  * \return -1, The format key value pairs are _NOT_ within the capabilities of this structure.
  */
-int ast_format_isset(struct ast_format \*format, ... );
+int ast_format_isset(struct ast_format *format, ... );
 
 /*!
  * \brief Compare ast_formats structures
  *
  * \retval ast_format_cmp_res representing the result of comparing format1 and format2.
  */
-enum ast_format_cmp_res ast_format_cmp(struct ast_format \*format1, struct ast_format \*format2);
+enum ast_format_cmp_res ast_format_cmp(struct ast_format *format1, struct ast_format *format2);
 
 /*!
  * \brief Find joint format attributes of two ast_format
@@ -112,12 +112,12 @@ enum ast_format_cmp_res ast_format_cmp(struct ast_format \*format1, struct ast_f
  * retval 0, joint attribute capabilities exist.
  * retval -1, no joint attribute capabilities exist.
  */
-int ast_format_joint(struct ast_format \*format1, struct ast_format \*format2, struct ast_format \*result);
+int ast_format_joint(struct ast_format *format1, struct ast_format *format2, struct ast_format *result);
 
 /*!
  * \brief copy format src into format dst.
  */
-void ast_format_copy(struct ast_format \*src, struct ast_format \*dst);
+void ast_format_copy(struct ast_format *src, struct ast_format *dst);
 
 /*!
  * \brief ast_format to iax2 bitfield format represenatation
@@ -127,7 +127,7 @@ void ast_format_copy(struct ast_format \*src, struct ast_format \*dst);
  * \retval iax2 representation of ast_format
  * \retval 0, if no representation existis for iax2
  */
-uint64_t ast_format_to_iax2(struct ast_format \*format);
+uint64_t ast_format_to_iax2(struct ast_format *format);
 
 /*!
  * \brief convert iax2 bitfield format to ast_format represenatation
@@ -136,7 +136,7 @@ uint64_t ast_format_to_iax2(struct ast_format \*format);
  * \retval on success, pointer to the dst format in the input parameters
  * \retval on failure, NULL
  */
-struct ast_format \*ast_format_from_iax2(uint64_t src, struct ast_format \*dst);
+struct ast_format *ast_format_from_iax2(uint64_t src, struct ast_format *dst);
 
 ```
 
@@ -164,18 +164,18 @@ struct ast_format_attr_interface {
  *
  * \retval ast_format_cmp_res representing the result of comparing fattr1 and fattr2.
  */
- enum ast_format_cmp_res (\* const format_attr_cmp)(struct ast_format_attr \*fattr1, struct ast_format_attr \*fattr2);
+ enum ast_format_cmp_res (* const format_attr_cmp)(struct ast_format_attr *fattr1, struct ast_format_attr *fattr2);
 
  /*! \brief Get joint attributes of same format type if they exist.
  *
  * \retval 0 if joint attributes exist
  * \retval -1 if no joint attributes are present
  */
- int (\* const format_attr_get_joint)(struct ast_format_attr \*fattr1, struct ast_format_attr \*fattr2, struct ast_format_attr \*result);
+ int (* const format_attr_get_joint)(struct ast_format_attr *fattr1, struct ast_format_attr *fattr2, struct ast_format_attr *result);
 
  /*! \brief Set format capabilities from a list of key value pairs ending with AST_FORMAT_ATTR_END.
  * \note This function is expected to call va_end(ap) after processing the va_list */
- void (\* const format_attr_set)(struct ast_format_attr \*format_attr, va_list ap);
+ void (* const format_attr_set)(struct ast_format_attr *format_attr, va_list ap);
 };
 
 /*! \brief register ast_format_attr_interface with core.
@@ -183,7 +183,7 @@ struct ast_format_attr_interface {
  * \retval 0 success
  * \retval -1 failure
  */
-int ast_format_attr_reg_interface(struct ast_format_attr_interface \*interface);
+int ast_format_attr_reg_interface(struct ast_format_attr_interface *interface);
 
 /*!
  * \brief unregister format_attr interface with core.
@@ -191,7 +191,7 @@ int ast_format_attr_reg_interface(struct ast_format_attr_interface \*interface);
  * \retval 0 success
  * \retval -1 failure
  */
-int ast_format_attr_unreg_interface(struct ast_format_attr_interface \*interface);
+int ast_format_attr_unreg_interface(struct ast_format_attr_interface *interface);
 
 ```
 
@@ -228,9 +228,9 @@ Since the number of formats that can be represented will likely never be exhaust
 
 /* ALL FORMAT CATEGORIE */
 enum ast_format_type {
- AST_FORMAT_TYPE_AUDIO = 1 \* FORMAT_INC,
- AST_FORMAT_TYPE_VIDEO = 2 \* FORMAT_INC,
- AST_FORMAT_TYPE_IMAGE = 3 \* FORMAT_INC,
+ AST_FORMAT_TYPE_AUDIO = 1 * FORMAT_INC,
+ AST_FORMAT_TYPE_VIDEO = 2 * FORMAT_INC,
+ AST_FORMAT_TYPE_IMAGE = 3 * FORMAT_INC,
 };
 
 enum ast_format_id {
@@ -246,7 +246,7 @@ enum ast_format_id {
 };
 
 /* Determine what category a format type is i */
-#define AST_FORMAT_GET_TYPE(format) (((unsigned int) (format->uid / AST_FORMAT_INC)) \* AST_FORMAT_INC)
+#define AST_FORMAT_GET_TYPE(format) (((unsigned int) (format->uid / AST_FORMAT_INC)) * AST_FORMAT_INC)
 
 ```
 ## New Format Representation Code Examples and Use cases.
@@ -402,7 +402,7 @@ jointcapabilties = peer->capability & remote_capability
 ```
 ```
 /*---NEW: Peer and remote capabilities are ast_cap objects. */
-struct ast_cap \*jointcapabilities;
+struct ast_cap *jointcapabilities;
 
 ast_cap_add(peer->capability, ast_format_set(&tmp, AST_FORMAT_ULAW));
 ast_cap_add(peer->capability, ast_format_set(&tmp, AST_FORMAT_GSM));
@@ -455,9 +455,9 @@ format_t text_capabilities = capabilities & AST_FORMAT_TEXT_MASK;
 ```
 ```
 /*---NEW: Separate media types are returned on a new capabilities structure using ast_cap_get_type() */
-struct ast_cap \*video = ast_cap_get_type(capabilities, AST_FORMAT_TYPE_AUDIO);
-struct ast_cap \*voice = ast_cap_get_type(capabilities, AST_FORMAT_TYPE_VIDEO);
-struct ast_cap \*text = ast_cap_get_type(capabilities, AST_FORMAT_TYPE_TEXT);
+struct ast_cap *video = ast_cap_get_type(capabilities, AST_FORMAT_TYPE_AUDIO);
+struct ast_cap *voice = ast_cap_get_type(capabilities, AST_FORMAT_TYPE_VIDEO);
+struct ast_cap *text = ast_cap_get_type(capabilities, AST_FORMAT_TYPE_TEXT);
 
 ```
 ## Ast Format Capability API Defined
@@ -471,13 +471,13 @@ struct ast_cap;
  * \retval ast_cap object on success.
  * \retval NULL on failure.
  */
-struct ast_cap \*ast_cap_alloc(void);
+struct ast_cap *ast_cap_alloc(void);
 
 /*! \brief Destroy an ast_cap structure.
  *
  * \return NULL
  */
-void \*ast_cap_destroy(struct ast_cap \*cap);
+void *ast_cap_destroy(struct ast_cap *cap);
 
 /*! \brief Add format capability to capabilities structure.
  *
@@ -485,7 +485,7 @@ void \*ast_cap_destroy(struct ast_cap \*cap);
  * what is placed in the ast_cap structure. The actual
  * input format ptr is not stored.
  */
-void ast_cap_add(struct ast_cap \*cap, struct ast_format \*format);
+void ast_cap_add(struct ast_cap *cap, struct ast_format *format);
 
 /*! \brief Remove format capability from capability structure.
  *
@@ -495,7 +495,7 @@ void ast_cap_add(struct ast_cap \*cap, struct ast_format \*format);
  * \retval 0, remove was successful
  * \retval -1, remove failed. Could not find format to remove
  */
-int ast_cap_remove(struct ast_cap \*cap, struct ast_format \*format);
+int ast_cap_remove(struct ast_cap *cap, struct ast_format *format);
 
 /*! \brief Remove all format capabilities from capability
  * structure for a specific format id.
@@ -506,31 +506,31 @@ int ast_cap_remove(struct ast_cap \*cap, struct ast_format \*format);
  * \retval 0, remove was successful
  * \retval -1, remove failed. Could not find formats to remove
  */
-int ast_cap_remove_byid(struct ast_cap \*cap, enum ast_format_id id);
+int ast_cap_remove_byid(struct ast_cap *cap, enum ast_format_id id);
 
 /*! \brief Find if ast_format is within the capabilities of the ast_cap object.
  *
  * retval 1 format is compatible with formats held in ast_cap object.
  * retval 0 format is not compatible with any formats in ast_cap object.
  */
-int ast_cap_iscompatible(struct ast_cap \*cap, struct ast_format \*format);
+int ast_cap_iscompatible(struct ast_cap *cap, struct ast_format *format);
 
 /*! \brief Get joint capability structure.
  *
  * \retval !NULL success
  * \retval NULL failure
  */
-struct ast_cap \*ast_cap_joint(struct ast_cap \*cap1, struct ast_cap \*cap2);
+struct ast_cap *ast_cap_joint(struct ast_cap *cap1, struct ast_cap *cap2);
 
 /*! \brief Get all capabilities for a specific media type
  *
  * \retval !NULL success
  * \retval NULL failure
  */
-struct ast_cap \*ast_cap_get_type(struct ast_cap \*cap, enum ast_format_type ftype);
+struct ast_cap *ast_cap_get_type(struct ast_cap *cap, enum ast_format_type ftype);
 
 /*! \brief Start iterating format */
-void ast_cap_iter_start(struct ast_cap \*cap);
+void ast_cap_iter_start(struct ast_cap *cap);
 
 /*! \brief Next format in interation
  *
@@ -552,12 +552,12 @@ void ast_cap_iter_start(struct ast_cap \*cap);
  * \retval 0 on success, new format is copied into input format struct
  * \retval -1, no more formats are present.
  */
-int ast_cap_iter_next(struct ast_cap \*cap, struct ast_format \*format);
+int ast_cap_iter_next(struct ast_cap *cap, struct ast_format *format);
 
 /*! \brief Ends ast_cap iteration.
  * \note this must be call after every ast_cap_iter_start
  */
-void ast_cap_iter_end(struct ast_cap \*cap);
+void ast_cap_iter_end(struct ast_cap *cap);
 
 /*!
  * \brief ast_cap to iax2 bitfield format represenatation
@@ -567,13 +567,13 @@ void ast_cap_iter_end(struct ast_cap \*cap);
  * \retval iax2 representation of ast_cap
  * \retval 0, if no iax2 capabilities are present in ast_cap
  */
-uint64_t ast_cap_to_iax2(struct ast_cap \*cap);
+uint64_t ast_cap_to_iax2(struct ast_cap *cap);
 
 /*!
  * \brief convert iax2 bitfield format to ast_cap represenatation
  * \note This is only to be used for IAX2 compatibility 
  */
-void ast_cap_from_iax2(uint64_t src, struct ast_cap \*dst);
+void ast_cap_from_iax2(uint64_t src, struct ast_cap *dst);
 
 ```
 
@@ -780,7 +780,7 @@ static struct ast_translator lin16tog722 = {
  .framein = lintog722_framein,
  .sample = slin16_sample,
  .desc_size = sizeof(struct g722_encoder_pvt),
- .buffer_samples = BUFFER_SAMPLES \* 2,
+ .buffer_samples = BUFFER_SAMPLES * 2,
  .buf_size = BUFFER_SAMPLES,
 };
 
@@ -887,8 +887,8 @@ struct ast_channel_stream {
  /*! represents the stream typ */
  enum ast_channel_stream_id id;
 
- struct ast_trans_pvt \*writetrans;
- struct ast_trans_pvt \*readtrans;
+ struct ast_trans_pvt *writetrans;
+ struct ast_trans_pvt *readtrans;
 
  struct ast_cap nativeformats;
 
@@ -915,23 +915,23 @@ enum ast_channel_stream_id {
  */
 }
 
-void ast_channel_init_write_format(struct ast_channel \*chan, enum ast_channel_stream_id id, struct ast_format \*format)
+void ast_channel_init_write_format(struct ast_channel *chan, enum ast_channel_stream_id id, struct ast_format *format)
 
-void ast_channel_init_read_format(struct ast_channel \*chan, enum ast_channel_stream_id id, struct ast_format \*format)
+void ast_channel_init_read_format(struct ast_channel *chan, enum ast_channel_stream_id id, struct ast_format *format)
 
-void ast_channel_set_native_cap(struct ast_channel \*chan, enum ast_channel_stream_id id, struct ast_cap \*cap)
+void ast_channel_set_native_cap(struct ast_channel *chan, enum ast_channel_stream_id id, struct ast_cap *cap)
 
-int ast_channel_copy_readwrite_format(struct ast_channel \*chan1, struct ast_channel \*chan2, enum ast_channel_stream_id id)
+int ast_channel_copy_readwrite_format(struct ast_channel *chan1, struct ast_channel *chan2, enum ast_channel_stream_id id)
 
-void ast_channel_set_read_format(struct ast_channel \*chan, enum ast_channel_stream_id id, struct ast_format \*format)
+void ast_channel_set_read_format(struct ast_channel *chan, enum ast_channel_stream_id id, struct ast_format *format)
 
-void ast_channel_set_write_format(struct ast_channel \*chan, enum ast_channel_stream_id id, struct ast_format \*format)
+void ast_channel_set_write_format(struct ast_channel *chan, enum ast_channel_stream_id id, struct ast_format *format)
 
-int ast_channel_get_native_cap(struct ast_channel \*chan, enum ast_channel_stream_id id, struct ast_cap \*result)
+int ast_channel_get_native_cap(struct ast_channel *chan, enum ast_channel_stream_id id, struct ast_cap *result)
 
-int ast_channel_get_write_format(struct ast_channel \*chan, enum ast_channel_stream_id id, struct ast_format \*result)
+int ast_channel_get_write_format(struct ast_channel *chan, enum ast_channel_stream_id id, struct ast_format *result)
 
-int ast_channel_get_read_format(struct ast_channel \*chan, enum ast_channel_stream_id id, struct ast_format \*result)
+int ast_channel_get_read_format(struct ast_channel *chan, enum ast_channel_stream_id id, struct ast_format *result)
 
 ```
 

@@ -25,7 +25,7 @@ The following should be placed in the `~/.subversion/servers` file:
 
 ```
 [groups]
-digium = \*.digium.com
+digium = *.digium.com
 
 [digium]
 ssl-client-cert-file = /home/<username>/.subversion/<name>-cert.p12
@@ -202,7 +202,7 @@ Use the following commands to enable automerge on a developer branch:
 
 ```
 $ cd my-fun-branch
-$ svn ps automerge '\*' .
+$ svn ps automerge '*' .
 $ svn ps automerge-email 'me@example.com' .
 $ svn commit -m "initialize automerge"
 
@@ -232,7 +232,7 @@ Running the `svnmerge` tool will merge in the changes that cause your branch to 
 
 ```
 $ svn resolved path/to/conflicted/file
-$ svn ps automerge '\*' .
+$ svn ps automerge '*' .
 $ svn commit -m "resolve conflict, enable automerge"
 
 ```

@@ -28,7 +28,7 @@ License version 2 and other licenses; you are welcome to redistribute it under
 certain conditions. Type 'core show license' for details.
 =========================================================================
 Connected to Asterisk 11.9.0 currently running on asterisk-server (pid = 26246)
-asterisk-server\*CLI> 
+asterisk-server*CLI> 
 
 ```
 
@@ -40,7 +40,7 @@ asterisk-server\*CLI>
 On this Page* To disconnect from a connected remote console, simply hit **Ctrl+C**:
 
 ```
-asterisk-server\*CLI> 
+asterisk-server*CLI> 
 Disconnected from Asterisk server
 Asterisk cleanly ending (0).
 Executing last minute cleanups
@@ -49,7 +49,7 @@ Executing last minute cleanups
 * To shut down Asterisk, issue `core stop gracefully`:
 
 ```
-asterisk-server\*CLI> core stop gracefully
+asterisk-server*CLI> core stop gracefully
 Disconnected from Asterisk server
 Asterisk cleanly ending (0).
 Executing last minute cleanups
@@ -76,7 +76,7 @@ certain conditions. Type 'core show license' for details.
 Connected to Asterisk 11.9.0 currently running on asterisk-server (pid = 26246)
 [May 16 17:02:50] NOTICE[27035]: loader.c:1323 load_modules: 287 modules will be loaded.
 Asterisk Ready.
-\*CLI> 
+*CLI> 
 
 ```
 Adding Verbosity

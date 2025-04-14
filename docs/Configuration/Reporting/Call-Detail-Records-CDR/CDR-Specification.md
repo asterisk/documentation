@@ -6,9 +6,9 @@ pageid: 22088359
 Call Detail Records, or CDRs, have been around in Asterisk for a long, long time. In fact, portions of it were taken from the `Zapata` library, as noted in `cdr.c`:
 
 ```
- \*
- \* \note Includes code and algorithms from the Zapata library.
- \*
+ *
+ * \note Includes code and algorithms from the Zapata library.
+ *
 ```
 
 CDRs have always attempted to provide the billing information between two parties involved in a call. While their simplicity has been a big advantage in quickly deploying a billing system, it has also been their largest disadvantage when trying to express complex scenarios. As Asterisk evolved and adapted to more complex scenarios, it became difficult to express the full details of a call within a single CDR. Compounding this problem, the way in which bridging was performed in Asterisk made call scenarios involving more than two parties incredibly difficult to track and coalesce into one or more CDRs. Numerous attempts were made to address the various problems in CDRs with varying degrees of success.

@@ -77,7 +77,7 @@ Keep the number of header files small by not including them unnecessarily. Don't
 * Functions and variables that are not intended to be used outside the module must be declared static. If you are compiling on a Linux platform that has the 'dwarves' package available, you can use the 'pglobal' tool from that package to check for unintended global variables or functions being exposed in your object files. Usage is very simple:
 
 ```
-$ pglobal \-vf <path to .o file>
+$ pglobal -vf <path to .o file>
 ```
 * When reading integer numeric input with scanf (or variants), do _NOT_ use '%i' unless you specifically want to allow non-base-10 input; '%d' is always a better choice, since it will not silently turn numbers with leading zeros into base-8.
 
@@ -90,7 +90,7 @@ On many platforms, structure fields (in structures that are not marked 'packed')
 ```
 struct foo {
  int bar;
- void \*xyz;
+ void *xyz;
 }
 
 ```
@@ -98,7 +98,7 @@ struct foo {
 On nearly every 64-bit platform, this will result in 4 bytes of dead space between 'bar' and 'xyz', because pointers on 64-bit platforms must be aligned on 8-byte boundaries. Once you have your code written and tested, it may be worthwhile to review your structure definitions to look for problems of this nature. If you are on a Linux platform with the 'dwarves' package available, the 'pahole' tool from that package can be used to both check for padding issues of this type and also propose reorganized structure definitions to eliminate it. Usage is quite simple; for a structure named 'foo', the command would look something like this:
 
 ```
-$ pahole \--reorganize \--show_reorg_steps \-C foo <path to module>
+$ pahole --reorganize --show_reorg_steps -C foo <path to module>
 ```
 The 'pahole' tool has many other modes available, including some that will list all the structures declared in the module and the amount of padding in each one that could possibly be recovered.
 
@@ -164,7 +164,7 @@ Following are examples of how code should be formatted.
 ### Functions:
 
 ```
-int foo(int a, char \*s)
+int foo(int a, char *s)
 {
  return 0;
 }
@@ -367,11 +367,11 @@ use them when possible.
 When allocating/zeroing memory for a structure, use code like this:
 
 ```
-struct foo \*tmp;
+struct foo *tmp;
 
 ...
 
-tmp = ast_calloc(1, sizeof(\*tmp));
+tmp = ast_calloc(1, sizeof(*tmp));
 
 ```
 
@@ -406,11 +406,11 @@ Furthermore, it is unnecessary to have code that malloc/calloc's for the length 
 
 New CLI commands should be named using the module's name, followed by a verb and then any parameters that the command needs. For example:
 ```
-\*CLI> iax2 show peer <peername>
+*CLI> iax2 show peer <peername>
 ```
 not
 ```
-\*CLI> show iax2 peer <peername>
+*CLI> show iax2 peer <peername>
 ```
 ## New dialplan applications/functions
 

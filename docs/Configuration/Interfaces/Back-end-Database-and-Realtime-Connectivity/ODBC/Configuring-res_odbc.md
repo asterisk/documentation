@@ -42,7 +42,7 @@ pre-connect => yes
 Then start up Asterisk and assuming res_odbc loads properly on the CLI you can use odbc show to verify a DSN is configured and shows up:
 
 ```
-rnewton-office-lab\*CLI> odbc show
+rnewton-office-lab*CLI> odbc show
 ODBC DSN Settings
 -----------------
  Name: asterisk

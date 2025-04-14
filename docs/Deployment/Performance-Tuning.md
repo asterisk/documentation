@@ -95,7 +95,7 @@ type=system
 timer_t1=100
 
 ; Timer B is technically the INVITE transaction timeout but it also controls other aspects
-; of stack timing. It's default is 32 seconds but its minimum is (64 \* timer_t1) which
+; of stack timing. It's default is 32 seconds but its minimum is (64 * timer_t1) which
 ; would also be 32 seconds if timer_t1 were left at its default of 500ms. Unfortunately,
 ; this timer has the side effect of controlling how long completed transactions are kept in
 ; memory so on a busy PBX, a setting of 32 seconds will probably result in higher than

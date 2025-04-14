@@ -48,7 +48,7 @@ Example output of both commands is shown below.
 
 ```
 
-\*CLI> manager show events
+*CLI> manager show events
 Events:
  -------------------- -------------------- -------------------- 
  AgentCalled AgentComplete AgentConnect 
@@ -65,7 +65,7 @@ Events:
 ```
 ```
 
-\*CLI> manager show event Dial
+*CLI> manager show event Dial
 Event: Dial
 [Synopsis]
 Raised when a dial action has started.
@@ -109,7 +109,7 @@ SubEvent
  A sub event type, specifying whether or not the dial action has begun
  or ended.
 
-\*CLI> 
+*CLI> 
 
 ```
 
@@ -127,7 +127,7 @@ AMI Event documentation behaves a bit differently then other Asterisk documentat
 
 ```
 
- /*\*\* DOCUMENTATION
+ /*** DOCUMENTATION
  <managerEventInstance>
  <synopsis>Raised when a dial action has ended.</synopsis>
  <syntax>
@@ -149,7 +149,7 @@ AMI Event documentation behaves a bit differently then other Asterisk documentat
 
 ```
 
- /*\*\* DOCUMENTATION
+ /*** DOCUMENTATION
  <managerEventInstance>
  <synopsis>Raised when a dial action has started.</synopsis>
  <syntax>
@@ -164,7 +164,7 @@ AMI Event documentation behaves a bit differently then other Asterisk documentat
  </managerEventInstance>
     * */
 ...
- /*\*\* DOCUMENTATION
+ /*** DOCUMENTATION
  <managerEventInstance>
  <synopsis>Raised when a dial action has ended.</synopsis>
  <syntax>
@@ -181,7 +181,7 @@ AMI Event documentation behaves a bit differently then other Asterisk documentat
 
 ```
 
- /*\*\* DOCUMENTATION
+ /*** DOCUMENTATION
  <managerEventInstance>
  <synopsis>Raised when a dial action has ended.</synopsis>
  <syntax>
@@ -194,7 +194,7 @@ AMI Event documentation behaves a bit differently then other Asterisk documentat
 
 Is equivalent to:
 
- /*\*\* DOCUMENTATION
+ /*** DOCUMENTATION
  <managerEventInstance>
  <synopsis>Raised when a dial action has ended.</synopsis>
  <parameter name="DialStatus">
@@ -216,7 +216,7 @@ The following are the changes to the XML DTD schema used to validate the generat
  <!ATTLIST managerEvent name CDATA #REQUIRED>
  <!ATTLIST managerEvent language CDATA #REQUIRED>
 
- <!ELEMENT managerEventInstance (synopsis?,syntax?,description?,see-also?)\*>
+ <!ELEMENT managerEventInstance (synopsis?,syntax?,description?,see-also?)*>
  <!ATTLIST managerEventInstance class CDATA #REQUIRED>
 
 ```
@@ -271,7 +271,7 @@ Source Comments
 
 ```
 
-/*\*\* DOCUMENTATION
+/*** DOCUMENTATION
 ....
     * */
 

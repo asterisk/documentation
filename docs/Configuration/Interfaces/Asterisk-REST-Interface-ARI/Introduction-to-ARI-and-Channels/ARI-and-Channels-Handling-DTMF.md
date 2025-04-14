@@ -665,7 +665,7 @@ function queueUpSound() {
  if (!state.done) {
  // have we played all sounds in the menu?
  if (!state.currentSound) {
- var timer = setTimeout(stillThere, 10 \* 1000);
+ var timer = setTimeout(stillThere, 10 * 1000);
  timers[channel.id] = timer;
  } else {
  var playback = client.Playback();
@@ -888,7 +888,7 @@ function clientLoaded (err, client) {
  }
  }
 
- /*\*
+ /**
  * Play our intro menu to the specified channel
  * 
  * Since we want to interrupt the playback of the menu when the user presses
@@ -930,7 +930,7 @@ function clientLoaded (err, client) {
  if (!state.done) {
  // have we played all sounds in the menu?
  if (!state.currentSound) {
- var timer = setTimeout(stillThere, 10 \* 1000);
+ var timer = setTimeout(stillThere, 10 * 1000);
  timers[channel.id] = timer;
  } else {
  var playback = client.Playback();

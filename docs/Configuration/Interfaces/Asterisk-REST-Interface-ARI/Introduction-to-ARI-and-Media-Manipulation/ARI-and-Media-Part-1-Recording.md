@@ -346,9 +346,9 @@ def on_dtmf(self, channel, event):
 		self.recording.stop()
 		self.call.state_machine.change_state(Event.DTMF_OCTOTHORPE)
 	# NEW CONTENT
-	elif digit == '\*':
+	elif digit == '*':
 		rec_name = self.recording.json.get('name')
-		print "Canceling recording {0} on DTMF \*".format(rec_name)
+		print "Canceling recording {0} on DTMF *".format(rec_name)
 		self.cleanup()
 		self.recording.cancel()
 		self.call.state_machine.change_state(Event.DTMF_STAR)
@@ -365,7 +365,7 @@ function on_dtmf(event, channel) {
 		});
 		break;
 	// NEW CONTENT
-	case '\*':
+	case '*':
 		console.log("Canceling recording", call.vm_path);
 		cleanup();
 		recording.cancel(function(err) {
@@ -415,11 +415,11 @@ This is exactly the same as it was, except for the penultimate line adding the `
 Channel PJSIP/200-00000007 recording voicemail for 305
 Entering recording state
 Recording voicemail at voicemail/305/1411498790.65
-Canceling recording voicemail/305/1411498790.65 on DTMF \*
+Canceling recording voicemail/305/1411498790.65 on DTMF *
 Cleaning up event handlers
 Entering recording state
 Recording voicemail at voicemail/305/1411498790.65
-Canceling recording voicemail/305/1411498790.65 on DTMF \*
+Canceling recording voicemail/305/1411498790.65 on DTMF *
 Cleaning up event handlers
 Entering recording state
 Recording voicemail at voicemail/305/1411498790.65
@@ -495,8 +495,8 @@ class ReviewingState(object):
 			print("Accepted recording {0} on DTMF #".format(self.call.vm_path))
 			self.cleanup()
 			self.call.state_machine.change_state(Event.DTMF_OCTOTHORPE)
-		elif digit == '\*':
-			print("Discarding stored recording {0} on DTMF \*".format(self.call.vm_path))
+		elif digit == '*':
+			print("Discarding stored recording {0} on DTMF *".format(self.call.vm_path))
 			self.cleanup()
 			self.call.client.recordings.deleteStored(
 				recordingName=self.call.vm_path)
@@ -547,7 +547,7 @@ function ReviewingState(call) {
 				cleanup();
 				call.state_machine.change_state(Event.DTMF_OCTOTHORPE);
 				break;
-			case '\*':
+			case '*':
 				console.log("Canceling recording", call.vm_path);
 				cleanup();
 				call.client.recordings.deleteStored({recordingName: call.vm_path});
@@ -625,7 +625,7 @@ Recording voicemail at voicemail/305/1411501058.42
 Accepted recording voicemail/305/1411501058.42 on DTMF #
 Cleaning up event handlers
 Entering reviewing state
-Discarding stored recording voicemail/305/1411501058.42 on DTMF \*
+Discarding stored recording voicemail/305/1411501058.42 on DTMF *
 Entering recording state
 Recording voicemail at voicemail/305/1411501058.42
 Accepted recording voicemail/305/1411501058.42 on DTMF #

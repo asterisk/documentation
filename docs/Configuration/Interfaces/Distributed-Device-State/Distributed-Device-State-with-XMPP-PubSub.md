@@ -213,7 +213,7 @@ We need to start up our first server and make sure we get connected to the XMPP 
 On Asterisk 1 we can run 'jabber show connected' to verify we're connected to the XMPP server.
 
 ```
-\*CLI> jabber show connected 
+*CLI> jabber show connected 
 Jabber Users and their status:
  User: server1@asterisk.mydomain.tld/astvoip1 - Connected
 ----
@@ -224,7 +224,7 @@ The command above has given us output which verifies we've connected our first s
 We can then check the state of our buddies with the 'jabber show buddies' CLI command.
 
 ```
-\*CLI> jabber show buddies
+*CLI> jabber show buddies
 Jabber buddy lists
 Client: server1@asterisk.mydomain.tld/astvoip1
  Buddy: server2@asterisk.mydomain.tld
@@ -239,7 +239,7 @@ Now, let's start the other server and verify the servers are able to establish a
 On Asterisk 2, again we run the 'jabber show connected' command to make sure we've connected successfully to the XMPP server.
 
 ```
-\*CLI> jabber show connected 
+*CLI> jabber show connected 
 Jabber Users and their status:
  User: server2@asterisk.mydomain.tld/astvoip2 - Connected
 ----
@@ -248,7 +248,7 @@ Jabber Users and their status:
 And now we can check the status of our buddies.
 
 ```
-\*CLI> jabber show buddies
+*CLI> jabber show buddies
 Jabber buddy lists
 Client: server2@scooter/astvoip2
  Buddy: server1@asterisk.mydomain.tld
@@ -280,24 +280,24 @@ exten => check,1,NoOp(Custom:mystate is ${DEVICE_STATE(Custom:mystate)})
 Now, you can test that the cluster-wide state of "Custom:mystate" is what you would expect after going to the CLI of each server and adjusting the state.
 
 ```
-server1\*CLI> console dial set_inuse@devstate_test
+server1*CLI> console dial set_inuse@devstate_test
  ...
 
-server2\*CLI> console dial check@devstate_test
+server2*CLI> console dial check@devstate_test
  -- Executing [check@devstate_test:1] NoOp("OSS/dsp", "Custom:mystate is INUSE") in new stack
 ```
 Various combinations of setting and checking the state on different servers can be used to verify that it works as expected. Also, you can see the status of the hint on each server, as well, to see how extension state would reflect the
 state change with distributed device state: 
 
 ```
-server2\*CLI> core show hints
+server2*CLI> core show hints
  -= Registered Asterisk Dial Plan Hints =-
  1234@devstate_test : Custom:mystate State:InUse Watchers 0
 ```
 One other helpful thing here during testing and debugging is to enable debug logging. To do so, enable debug on the console in /etc/asterisk/logger.conf. Also, enable debug at the Asterisk CLI.
 
 ```
-\*CLI> core set debug 1
+*CLI> core set debug 1
 ```
 When you have this debug enabled, you will see output during the processing of every device state change. The important thing to look for is where the known state of the device for each server is added together to determine the overall
 state.

@@ -52,7 +52,7 @@ The [Querying and Manipulating State](/Fundamentals/Key-Concepts/States-and-Pres
 For a quick CLI example, once you have defined some hints, you can easily check from the CLI to verify they get loaded correctly.
 
 ```
-\*CLI> core show hints
+*CLI> core show hints
  -= Registered Asterisk Dial Plan Hints =-
  6003@internal : SIP/Charlie&DAHDI/3 State:Unavailable Watchers 0
  6002@internal : SIP/Bob State:Unavailable Watchers 0

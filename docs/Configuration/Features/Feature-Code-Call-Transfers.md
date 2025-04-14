@@ -47,7 +47,7 @@ In features.conf you must configure the blindxfer or atxfer options in the featu
 ```
 [featuremap]
 blindxfer = #1
-atxfer = \*2
+atxfer = *2
 
 ```
 
@@ -97,10 +97,10 @@ Dialing the **atxferswap** code swaps you between bridges with either party befo
 
 ```
 [general]
-atxferabort = \*3
-atxfercomplete = \*4
-atxferthreeway = \*5
-atxferswap = \*6
+atxferabort = *3
+atxfercomplete = *4
+atxferthreeway = *5
+atxferswap = *6
 
 ```
 

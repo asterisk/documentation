@@ -19,7 +19,7 @@ All four modules support event notification. Both CalDAV and Exchange support re
 You can see list all registered calendar types at the CLI with **"****calendar show types"**.
 
 ```
-\*CLI> calendar show types
+*CLI> calendar show types
 Type Description
 caldav CalDAV calendars
 exchange MS Exchange calendars

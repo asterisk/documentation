@@ -7,7 +7,7 @@ Use the [CLI](/Operation/Asterisk-Command-Line-Interface) command `module show` 
 
 Example:
 ```
-mypbx\*CLI> module show 
+mypbx*CLI> module show 
 Module Description Use Count Status Support Level
 app_adsiprog.so Asterisk ADSI Programming Application 0 Running extended
 app_agent_pool.so Call center agent pool applications 0 Running core

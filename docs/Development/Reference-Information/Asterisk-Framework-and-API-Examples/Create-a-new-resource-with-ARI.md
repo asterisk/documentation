@@ -121,12 +121,12 @@ The parameters described in your API declaration are parsed into an `args` struc
 resource_fizzbuzz.c  
 
 ```cpp
-void ast_ari_fizzbuzz(struct ast_variable \*headers,
- struct ast_fizzbuzz_args \*args,
- struct ast_ari_response \*response)
+void ast_ari_fizzbuzz(struct ast_variable *headers,
+ struct ast_fizzbuzz_args *args,
+ struct ast_ari_response *response)
 {
- RAII_VAR(struct ast_json \*, json, NULL, ast_json_unref);
- struct ast_json \*fb;
+ RAII_VAR(struct ast_json *, json, NULL, ast_json_unref);
+ struct ast_json *fb;
  int i;
  int max = 100;
  if (args->max) {

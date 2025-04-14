@@ -97,14 +97,14 @@ timeframe = 60
 Once you have a configuration you can startup Asterisk or else reload the modules. After this you can check to see if the calendar is being read. Use the commands **"calendar show calendars"** and **"calendar show calendar <calendar name>"**
 
 ```
-CentOSLab\*CLI> calendar show calendars
+CentOSLab*CLI> calendar show calendars
 Calendar Type Status
 -------- ---- ------
 gcal1 ical busy
 
 ```
 ```
-CentOSLab\*CLI> calendar show calendar gcal1
+CentOSLab*CLI> calendar show calendar gcal1
 Name : gcal1
 Notify channel :
 Notify context :

@@ -366,7 +366,7 @@ And we can confirm that Alice no longer exists:
 ```text title="Asterisk CLI"
 *CLI> pjsip show endpoints
 No objects found.
-\*CLI> database show
+*CLI> database show
 0 results found.
 *CLI> 
 ```

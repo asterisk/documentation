@@ -112,8 +112,8 @@ Exten: s
 Priority: 1
 CallerID: "Kermit the Frog" <123-4567>
 Account: FrogLegs
-Variable: MY\_VAR=frogs
-Variable: HIDE\_FROM\_CHEF=true
+Variable: MY_VAR=frogs
+Variable: HIDE_FROM_CHEF=true
 ```
 
 In addition, no ordering is implied on message specific keys. Hence, the following two messages are semantically the same.
@@ -127,15 +127,15 @@ Exten: s
 Priority: 1
 CallerID: "Kermit the Frog" <123-4567>
 Account: FrogLegs
-Variable: MY\_VAR=frogs
-Variable: HIDE\_FROM\_CHEF=true50%ActionId: SDY4-12837-123878782
+Variable: MY_VAR=frogs
+Variable: HIDE_FROM_CHEF=true50%ActionId: SDY4-12837-123878782
 ```
 
 ```
 Action: Originate
 ActionId: SDY4-12837-123878782
-Variable: HIDE\_FROM\_CHEF=true
-Variable: MY\_VAR=frogs
+Variable: HIDE_FROM_CHEF=true
+Variable: MY_VAR=frogs
 Channel: PJSIP/kermit-00000002
 Account: FrogLegs
 Context: outbound
@@ -585,13 +585,13 @@ Example - Two Party Bridge:
 ```
 Event: BridgeCreate
 BridgeType: basic
-BridgeTechnology: simple\_bridge
+BridgeTechnology: simple_bridge
 BridgeUniqueid: 1234
 BridgeNumChannels: 0
 ...
 Event: BridgeEnter
 BridgeType: basic
-BridgeTechnology: simple\_bridge
+BridgeTechnology: simple_bridge
 BridgeUniqueid: 1234
 BridgeNumChannels: 1
 Channel: PJSIP/kermit-00000001
@@ -603,7 +603,7 @@ Kermit the Frog's PJSIP channel enters into Bridge 1234. As a result, the bridge
 ```
 Event: BridgeEnter
 BridgeType: basic
-BridgeTechnology: simple\_bridge
+BridgeTechnology: simple_bridge
 BridgeUniqueid: 1234
 BridgeNumChannels: 2
 Channel: PJSIP/gonzo-00000002
@@ -615,7 +615,7 @@ Gonzo the Great enters the bridge and talks with Kermit. Note that the bridge Go
 ```
 Event: BridgeLeave
 BridgeType: basic
-BridgeTechnology: simple\_bridge
+BridgeTechnology: simple_bridge
 BridgeUniqueid: 1234
 BridgeNumChannels: 1
 Channel: PJSIP/kermit-00000001
@@ -631,7 +631,7 @@ Kermit realizes that he has to leave to avoid Miss Piggy, so he hangs up on Gonz
 ```
 Event: BridgeLeave
 BridgeType: basic
-BridgeTechnology: simple\_bridge
+BridgeTechnology: simple_bridge
 BridgeUniqueid: 1234
 BridgeNumChannels: 0
 Channel: PJSIP/gonzo-00000002
@@ -643,7 +643,7 @@ Uniqueid: asterisk-1368479150.1
 ...
 Event: BridgeDestroy
 BridgeType: basic
-BridgeTechnology: simple\_bridge
+BridgeTechnology: simple_bridge
 BridgeUniqueid: 1234
 BridgeNumChannels: 0
 ```
@@ -667,12 +667,12 @@ Example - Blind Transfer
 ```
 Event: BridgeCreate
 BridgeType: basic
-BridgeTechnology: simple\_bridge
+BridgeTechnology: simple_bridge
 BridgeUniqueid: 1234
 ...
 Event: BridgeEnter
 BridgeType: basic
-BridgeTechnology: simple\_bridge
+BridgeTechnology: simple_bridge
 BridgeUniqueid: 1234
 Channel: PJSIP/kermit-00000001
 Uniqueid: asterisk-1368479150.0
@@ -683,7 +683,7 @@ Kermit the Frog's PJSIP channel enters into Bridge 1234
 ```
 Event: BridgeEnter
 BridgeType: basic
-BridgeTechnology: simple\_bridge
+BridgeTechnology: simple_bridge
 BridgeUniqueid: 1234
 Channel: PJSIP/fozzie-00000002
 Uniqueid: asterisk-1368479150.2
@@ -736,7 +736,7 @@ TransfererChannel: PJSIP/fozzie-00000002
 TransfererUniqueid: asterisk-1368479150.2
 BridgeUniqueid: 1234
 BridgeType: basic
-BridgeTechnology: simple\_bridge
+BridgeTechnology: simple_bridge
 Context: default
 Extension: 2000
 ```
@@ -761,7 +761,7 @@ Uniqueid: asterisk-1368479150.0
 Event: BridgeLeave
 BridgeUniqueid: 1234
 BridgeType: basic
-BridgeTechnology: simple\_bridge
+BridgeTechnology: simple_bridge
 Channel: PJSIP/kermit-00000001
 Uniqueid: asterisk-1368479150.0
 ```
@@ -772,14 +772,14 @@ Kermit leaves the bridge with Fozzie. Asterisk politely turns off the hold music
 Event: BridgeLeave
 BridgeUniqueid: 1234
 BridgeType: basic
-BridgeTechnology: simple\_bridge
+BridgeTechnology: simple_bridge
 Channel: PJSIP/fozzie-00000002
 Uniqueid: asterisk-1368479150.2
 ...
 Event: BridgeDestroy
 BridgeUniqueid: 1234
 BridgeType: basic
-BridgeTechnology: simple\_bridge
+BridgeTechnology: simple_bridge
 ```
 
 Because Fozzie isn't talking to anyone anymore, he leaves the bridge as well. At this point Asterisk could hang up Fozzie's channel, or, if configured, he could continue on in the dialplan (say, perhaps, to talk to his rubber chicken).
@@ -845,13 +845,13 @@ DialStatus: ANSWER
 Event: BridgeCreate
 BridgeUniqueid: 1234
 BridgeType: basic
-BridgeTechnology: simple\_bridge
+BridgeTechnology: simple_bridge
 BridgeNumChannels: 0
 ...
 Event: BridgeEnter
 BridgeUniqueid: 1234
 BridgeType: basic
-BridgeTechnology: simple\_bridge
+BridgeTechnology: simple_bridge
 BridgeNumChannels: 1
 Channel: PJSIP/gonzo-00000001
 Uniqueid: asterisk-1368479150.0
@@ -859,7 +859,7 @@ Uniqueid: asterisk-1368479150.0
 Event: BridgeEnter
 BridgeUniqueid: 1234
 BridgeType: basic
-BridgeTechnology: simple\_bridge
+BridgeTechnology: simple_bridge
 BridgeNumChannels: 2
 Channel: Local/kermit@default-00000001;1
 Uniqueid: asterisk-1368479150.1
@@ -891,13 +891,13 @@ DialStatus: ANSWER
 Event: BridgeCreate
 BridgeUniqueid: 5678
 BridgeType: basic
-BridgeTechnology: simple\_bridge
+BridgeTechnology: simple_bridge
 BridgeNumChannels: 0
 ...
 Event: BridgeEnter
 BridgeUniqueid: 5678
 BridgeType: basic
-BridgeTechnology: simple\_bridge
+BridgeTechnology: simple_bridge
 BridgeNumChannels: 1
 Channel: Local/kermit@default-00000001;2
 Uniqueid: asterisk-1368479150.2
@@ -905,7 +905,7 @@ Uniqueid: asterisk-1368479150.2
 Event: BridgeEnter
 BridgeUniqueid: 5678
 BridgeType: basic
-BridgeTechnology: simple\_bridge
+BridgeTechnology: simple_bridge
 BridgeNumChannels: 2
 Channel: PJSIP/kermit-00000002
 Uniqueid: asterisk-1368479150.3
@@ -927,7 +927,7 @@ SourceUniqueid: asterisk-1368479150.0
 Event: BridgeLeave
 BridgeUniqueid: 1234
 BridgeType: basic
-BridgeTechnology: simple\_bridge
+BridgeTechnology: simple_bridge
 BridgeNumChannels: 1
 Channel: PJSIP/gonzo-00000001
 Uniqueid: asterisk-1368479150.0
@@ -935,7 +935,7 @@ Uniqueid: asterisk-1368479150.0
 Event: BridgeEnter 
 BridgeUniqueid: 5678
 BridgeType: basic 
-BridgeTechnology: simple\_bridge 
+BridgeTechnology: simple_bridge 
 BridgeNumChannels: 3 
 Channel: PJSIP/gonzo-00000001
 Uniqueid: asterisk-1368479150.0
@@ -947,7 +947,7 @@ Asterisk determines that it can optimize away the Local channel. It notifies the
 Event: BridgeLeave
 BridgeUniqueid: 5678
 BridgeType: basic 
-BridgeTechnology: simple\_bridge 
+BridgeTechnology: simple_bridge 
 BridgeNumChannels: 2 
 Channel: Local/kermit@default-00000001;2
 Uniqueid: asterisk-1368479150.2
@@ -955,13 +955,13 @@ Uniqueid: asterisk-1368479150.2
 Event: LocalOptimizationEnd 
 LocalOneChannel: Local/kermit@default-00000001;1
 LocalOneUniqueid: asterisk-1368479150.1
-LocalTwoChannel: Local/dial\_bar@default-00000001;2 
+LocalTwoChannel: Local/dial_bar@default-00000001;2 
 LocalTwoUniqueid: asterisk-1368479150.2
 ...
 Event: BridgeLeave
 BridgeUniqueid: 1234
 BridgeType: basic 
-BridgeTechnology: simple\_bridge 
+BridgeTechnology: simple_bridge 
 BridgeNumChannels: 0
 Channel: Local/kermit@default-00000001;1
 Uniqueid: asterisk-1368479150.1
@@ -977,7 +977,7 @@ Uniqueid: asterisk-1368479150.2
 Event: BridgeDestroy
 BridgeUniqueid: 1234
 BridgeType: basic 
-BridgeTechnology: simple\_bridge 
+BridgeTechnology: simple_bridge 
 BridgeNumChannels: 0
 ```
 

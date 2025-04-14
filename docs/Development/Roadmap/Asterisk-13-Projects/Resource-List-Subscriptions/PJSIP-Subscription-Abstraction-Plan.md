@@ -27,7 +27,7 @@ The following will need to be removed from the `ast_list_subscription` structure
 
 ```
 struct ast_sip_subscription {
- pjsip_evsub \*evsub;
+ pjsip_evsub *evsub;
 };
 
 ```
@@ -42,14 +42,14 @@ With the division between real and virtual subscriptions, it makes no sense for 
 
 struct ast_sip_subscription {
  /*! Name of the subscribed resourc */
- const char \*resource;
+ const char *resource;
  /*! Indicator if subscription is real or virtua */
  enum sip_subscription_type type;
  union {
  /*! Real subscriptions point to a PJSIP subscriptio */
- pjsip_evsub \*evsub;
+ pjsip_evsub *evsub;
  /*! Virtual subscriptions point to a parent Asterisk subscriptio */
- struct ast_sip_subscription \*parent;
+ struct ast_sip_subscription *parent;
  };
  /*! List of child subscription */
  AST_LIST_HEAD(,ast_sip_subscription) children;
@@ -63,8 +63,8 @@ General API changes
 The biggest removals from the API are the following:
 
 ```
-pjsip_evsub \*ast_sip_subscription_get_evsub(struct ast_sip_subscription \*sub);
-pjsip_dialog \*ast_sip_subscription_get_dlg(struct ast_sip_subscription \*sub);
+pjsip_evsub *ast_sip_subscription_get_evsub(struct ast_sip_subscription *sub);
+pjsip_dialog *ast_sip_subscription_get_dlg(struct ast_sip_subscription *sub);
 
 ```
 
@@ -83,25 +83,25 @@ In order to satisfy previously-required functionality, new calls will be added t
  * This will create a SIP NOTIFY request, send the notify_data to
  * a body generator, and then send the NOTIFY request out.
  */
-int ast_sip_subscription_notify(struct ast_sip_subscription \*sub, void \*notify_data);
+int ast_sip_subscription_notify(struct ast_sip_subscription *sub, void *notify_data);
 
 /*! Reject an incoming SIP SUBSCRIBE request.
  * This will send the specified response to the SUBSCRIBE. If a
  * NULL reason is specified, then default reason text will be used.
  */
-void ast_sip_subscription_reject(struct ast_sip_subscription \*sub, int response, const char \*reason);
+void ast_sip_subscription_reject(struct ast_sip_subscription *sub, int response, const char *reason);
 
 /*! Accept an incoming SIP SUBSCRIBE request with a 200 OK */
-void ast_sip_subscription_accept(struct ast_sip_subscription \*sub);
+void ast_sip_subscription_accept(struct ast_sip_subscription *sub);
 
 /*! Retrieve the local URI for this subscriptio */
-void ast_sip_subscription_get_local_uri(struct ast_sip_subscription \*sub, char \*buf, size_t size);
+void ast_sip_subscription_get_local_uri(struct ast_sip_subscription *sub, char *buf, size_t size);
 
 /*! Retrive the remote URI for this subscriptio */
-void ast_sip_subscription_get_remote_uri(struct ast_sip_subscription \*sub, char \*buf, size_t size);
+void ast_sip_subscription_get_remote_uri(struct ast_sip_subscription *sub, char *buf, size_t size);
 
 /*! Terminate an active SIP subscription */
-void ast_sip_subscription_terminate(struct ast_sip_subscripiton \*sub);
+void ast_sip_subscription_terminate(struct ast_sip_subscripiton *sub);
 
 ```
 
@@ -116,12 +116,12 @@ The `ast_sip_subscription_handler` structure will also need to be altered to rid
 
 ```
 struct ast_sip_subscription_handler {
- struct ast_sip_subscription \*(\*new_subscribe)(struct ast_sip_endpoint \*endpoint,
- pjsip_rx_data \*rdata);
- void (\*resubscribe)(struct ast_sip_subscription \*sub,
- pjsip_rx_data \*rdata, struct ast_sip_subscription_response_data \*response_data);
- void (\*subscription_terminated)(struct ast_sip_subscription \*sub, pjsip_rx_data \*rdata);
- void (\*notify_response)(struct ast_sip_subscription \*sub, pjsip_rx_data \*rdata);
+ struct ast_sip_subscription *(*new_subscribe)(struct ast_sip_endpoint *endpoint,
+ pjsip_rx_data *rdata);
+ void (*resubscribe)(struct ast_sip_subscription *sub,
+ pjsip_rx_data *rdata, struct ast_sip_subscription_response_data *response_data);
+ void (*subscription_terminated)(struct ast_sip_subscription *sub, pjsip_rx_data *rdata);
+ void (*notify_response)(struct ast_sip_subscription *sub, pjsip_rx_data *rdata);
 };
 
 ```
@@ -142,13 +142,13 @@ enum ast_sip_subscription_notify_reason {
 
 struct ast_sip_subscription_notifier {
  /*! Return the response code for the incoming SUBSCRIBE reques */
- int (\*new_subscribe)(struct ast_sip_endpoint \*endpoint, const char \*resource);
+ int (*new_subscribe)(struct ast_sip_endpoint *endpoint, const char *resource);
  /*! Subscription is in need of a NOTIF */
- void (notify_required)(struct ast_sip_subscription \*sub, enum ast_sip_subscription_notify_reason reason);
+ void (notify_required)(struct ast_sip_subscription *sub, enum ast_sip_subscription_notify_reason reason);
 };
 
 /*! Get the name of a subscribed resourc */
-const char \*ast_sip_subscription_get_resource_name(struct ast_sip_subscription \*sub);
+const char *ast_sip_subscription_get_resource_name(struct ast_sip_subscription *sub);
 
 ```
 
@@ -164,14 +164,14 @@ Changes to subscriber usage
 More in-depth subscriber usage changes may happen at a later date; however, a prerequisite is to make sure that inadequate subscriber callbacks in the `ast_sip_subscription_handler` structure are abstracted. The old subscriber-specific callbacks need to be converted not to use PJSIP-specific structures. Here are the parts that need conversion:
 
 ```
-struct ast_sip_subscription \*ast_sip_create_subscription(const struct ast_sip_subscription_handler \*handler,
- enum ast_sip_subscription_role role, struct ast_sip_endpoint \*endpoint, pjsip_rx_data \*rdata);
+struct ast_sip_subscription *ast_sip_create_subscription(const struct ast_sip_subscription_handler *handler,
+ enum ast_sip_subscription_role role, struct ast_sip_endpoint *endpoint, pjsip_rx_data *rdata);
 
 struct ast_sip_subscription_handler {
- void (\*subscription_terminated)(struct ast_sip_subscription \*sub, pjsip_rx_data \*rdata);
- void (\*notify_request)(struct ast_sip_subscription \*sub,
- pjsip_rx_data \*rdata, struct ast_sip_subscription_response_data \*response_data);
- int (\*refresh_subscription)(struct ast_sip_subscription \*sub);
+ void (*subscription_terminated)(struct ast_sip_subscription *sub, pjsip_rx_data *rdata);
+ void (*notify_request)(struct ast_sip_subscription *sub,
+ pjsip_rx_data *rdata, struct ast_sip_subscription_response_data *response_data);
+ int (*refresh_subscription)(struct ast_sip_subscription *sub);
 }
 
 ```
@@ -180,12 +180,12 @@ Here is the revised version:
 
 ```
 /*! Create a new outbound SIP subscription to the requested resource at the requested endpoint */
-struct ast_sip_subscription \*ast_sip_create_subscription(const struct ast_sip_subscriber \*subscriber,
- struct ast_sip_endpoint \*endpoint, const char \*resource);
+struct ast_sip_subscription *ast_sip_create_subscription(const struct ast_sip_subscriber *subscriber,
+ struct ast_sip_endpoint *endpoint, const char *resource);
 
 struct ast_sip_subscriber {
  /*! A NOTIFY has been received with the attached body */
- void (\*state_change)(struct ast_sip_subscription \*sub, const char \*body, enum pjsip_evsub_state state);
+ void (*state_change)(struct ast_sip_subscription *sub, const char *body, enum pjsip_evsub_state state);
 }
 
 ```
@@ -201,12 +201,12 @@ Publisher changes are similar to notifier changes. Here are the areas where publ
 
 ```
 struct ast_sip_publication_handler {
- struct ast_sip_publication \*(\*new_publication)(struct ast_sip_endpoint \*endpoint, pjsip_rx_data \*rdata);
- int (\*publish_refresh)(struct ast_sip_publication \*pub, pjsip_rx_data \*rdata);
- void (\*publish_termination)(struct ast_sip_publication \*pub, pjsip_rx_data \*rdata);
+ struct ast_sip_publication *(*new_publication)(struct ast_sip_endpoint *endpoint, pjsip_rx_data *rdata);
+ int (*publish_refresh)(struct ast_sip_publication *pub, pjsip_rx_data *rdata);
+ void (*publish_termination)(struct ast_sip_publication *pub, pjsip_rx_data *rdata);
 };
 
-struct ast_sip_publication \*ast_sip_create_publication(struct ast_sip_endpoint \*endpoint, pjsip_rx_data \*rdata);
+struct ast_sip_publication *ast_sip_create_publication(struct ast_sip_endpoint *endpoint, pjsip_rx_data *rdata);
 
 ```
 
@@ -224,12 +224,12 @@ enum ast_sip_publish_state {
 
 struct ast_sip_publication_handler {
  /*! New publication has arrived. Return appropriate SIP response cod */
- int (\*new_publication)(struct ast_sip_endpoint \*endpoint, const char \*resource);
+ int (*new_publication)(struct ast_sip_endpoint *endpoint, const char *resource);
  /*! Published resource has changed states. Use the state parameter to determine if publication is terminated */
- int (\*publication_state_change)(struct ast_sip_publication \*pub, const char \*body, enum ast_sip_publish_state state);
+ int (*publication_state_change)(struct ast_sip_publication *pub, const char *body, enum ast_sip_publish_state state);
 };
 
-const char \*ast_sip_publish_get_resource(struct ast_sip_publication \*pub);
+const char *ast_sip_publish_get_resource(struct ast_sip_publication *pub);
 
 ```
 

@@ -30,10 +30,10 @@ The old names are still available but deprecated until all code is converted to 
 ### Hash Function
 
 ```
-int ao2_hash_fn(const void \*obj, int flags)
+int ao2_hash_fn(const void *obj, int flags)
 {
- const struct my_object \*object;
- const char \*key;
+ const struct my_object *object;
+ const char *key;
 
  switch (flags & OBJ_SEARCH_MASK) {
  case OBJ_SEARCH_KEY:
@@ -56,11 +56,11 @@ int ao2_hash_fn(const void \*obj, int flags)
 ### Sort Function
 
 ```
-int ao2_sort_fn(const void \*obj_left, const void \*obj_right, int flags)
+int ao2_sort_fn(const void *obj_left, const void *obj_right, int flags)
 {
- const struct my_object \*object_left = obj_left;
- const struct my_object \*object_right = obj_right;
- const char \*right_key = obj_right;
+ const struct my_object *object_left = obj_left;
+ const struct my_object *object_right = obj_right;
+ const char *right_key = obj_right;
  int cmp;
 
  switch (flags & OBJ_SEARCH_MASK) {
@@ -103,7 +103,7 @@ This function should not return CMP_STOP unless you never want a container searc
  * This callback function is exactly what you get when you pass
  * NULL as the callback function.
  */
-int ao2_callback_fn_sorted_cmp(void \*obj, void \*arg, int flags)
+int ao2_callback_fn_sorted_cmp(void *obj, void *arg, int flags)
 {
  return CMP_MATCH;
 }
@@ -115,11 +115,11 @@ Unsorted containers must do more work selecting objects since traversals will ei
 ### Unsorted container cmp function
 
 ```
-int ao2_callback_fn_unsorted_cmp(void \*obj, void \*arg, int flags)
+int ao2_callback_fn_unsorted_cmp(void *obj, void *arg, int flags)
 {
- const struct my_object \*object_left = obj;
- const struct my_object \*object_right = arg;
- const char \*right_key = arg;
+ const struct my_object *object_left = obj;
+ const struct my_object *object_right = arg;
+ const char *right_key = arg;
  int cmp;
 
  switch (flags & OBJ_SEARCH_MASK) {

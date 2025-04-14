@@ -91,12 +91,12 @@ struct ast_foo {
 };
 
 /*! \brief Message type for \ref ast_fo */
-struct stasis_message_type \*ast_foo_type(void);
+struct stasis_message_type *ast_foo_type(void);
 
 /*!
  * \brief Topic for the foo module.
  */
-struct stasis_topic \*ast_foo_topic(void);
+struct stasis_topic *ast_foo_topic(void);
 
 ```
 ```
@@ -109,16 +109,16 @@ ASTERISK_FILE_VERSION(__FILE__, "$Revision$")
 #include "asterisk/stasis.h"
 #include "foo.h"
 
-static struct stasis_message_type \*foo_type;
+static struct stasis_message_type *foo_type;
 
-struct stasis_topic \*foo_topic;
+struct stasis_topic *foo_topic;
 
-struct stasis_message_type \*ast_foo_type(void)
+struct stasis_message_type *ast_foo_type(void)
 {
  return foo_type;
 }
 
-struct stasis_topic \*ast_foo_topic(void)
+struct stasis_topic *ast_foo_topic(void)
 {
  return foo_topic;
 }
@@ -127,9 +127,9 @@ struct stasis_topic \*ast_foo_topic(void)
  * \brief Convenience function to publish an \ref ast_foo message to the
  * \ref foo_topic.
  */
-static void publish_foo(struct ast_foo \*foo)
+static void publish_foo(struct ast_foo *foo)
 {
- RAII_VAR(struct stasis_message \*, msg, NULL, ao2_cleanup);
+ RAII_VAR(struct stasis_message *, msg, NULL, ao2_cleanup);
 
  msg = stasis_message_create(foo_type, foo);
 
@@ -183,12 +183,12 @@ AST_MODULE_INFO(ASTERISK_GPL_KEY, 0, "The wonders of foo",
 #include "foo.h"
 
 struct ast_bar {
- struct stasis_subscription \*sub;
+ struct stasis_subscription *sub;
 };
 
-static void bar_dtor(void \*obj)
+static void bar_dtor(void *obj)
 {
- struct ast_bar \*bar = obj;
+ struct ast_bar *bar = obj;
 
  /* Since the subscription holds a reference, unsubscribe
  * should happen before destruction.
@@ -196,12 +196,12 @@ static void bar_dtor(void \*obj)
  ast_assert(bar->sub == NULL);
 }
 
-static void bar_callback(void \*data,
- struct stasis_subscription \*sub,
- struct stasis_topic \*topic,
- struct stasis_message \*message)
+static void bar_callback(void *data,
+ struct stasis_subscription *sub,
+ struct stasis_topic *topic,
+ struct stasis_message *message)
 {
- struct ast_bar \*bar = data;
+ struct ast_bar *bar = data;
 
  if (stasis_subscription_final_message(sub, message)) {
  /* Final message; we can clean ourselves u */
@@ -210,19 +210,19 @@ static void bar_callback(void \*data,
  }
 
  if (ast_foo_type() == stasis_message_type(message)) {
- struct ast_foo \*foo = stasis_message_data(message);
+ struct ast_foo *foo = stasis_message_data(message);
  /* A fooing we will go.. */
  } else if (ast_whatever_type() == stasis_message_type(message)) {
- struct ast_whatever \*whatever = stasis_message_data (message);
+ struct ast_whatever *whatever = stasis_message_data (message);
  /* whateve */
  }
 }
 
-struct ast_bar \*ast_bar_create(void)
+struct ast_bar *ast_bar_create(void)
 {
- RAII_VAR(struct ast_bar \*, bar, NULL, ao2_cleanup);
+ RAII_VAR(struct ast_bar *, bar, NULL, ao2_cleanup);
 
- bar = ao2_alloc(sizeof(\*bar), bar_dtor);
+ bar = ao2_alloc(sizeof(*bar), bar_dtor);
  if (!bar) {
  return NULL;
  }
@@ -238,7 +238,7 @@ struct ast_bar \*ast_bar_create(void)
  return bar;
 }
 
-void ast_bar_shutdown(struct ast_bar \*bar)
+void ast_bar_shutdown(struct ast_bar *bar)
 {
  if (!bar) {
  return NULL;
@@ -258,12 +258,12 @@ void ast_bar_shutdown(struct ast_bar \*bar)
 #include "foo.h"
 
 struct ast_bar {
- struct stasis_message_router \*router;
+ struct stasis_message_router *router;
 };
 
-static void bar_dtor(void \*obj)
+static void bar_dtor(void *obj)
 {
- struct ast_bar \*bar = obj;
+ struct ast_bar *bar = obj;
 
  /* Since the subscription holds a reference, unsubscribe
  * should happen before destruction.
@@ -271,25 +271,25 @@ static void bar_dtor(void \*obj)
  ast_assert(bar->router == NULL);
 }
 
-static void bar_default(void \*data,
- struct stasis_subscription \*sub,
- struct stasis_topic \*topic,
- struct stasis_message \*message)
+static void bar_default(void *data,
+ struct stasis_subscription *sub,
+ struct stasis_topic *topic,
+ struct stasis_message *message)
 {
- struct ast_bar \*bar = data;
+ struct ast_bar *bar = data;
  if (stasis_subscription_final_message(sub, message)) {
  /* Final message; we can clean ourselves u */
  ao2_cleanup(bar);
  }
 }
 
-static void bar_foo(void \*data,
- struct stasis_subscription \*sub,
- struct stasis_topic \*topic,
- struct stasis_message \*message)
+static void bar_foo(void *data,
+ struct stasis_subscription *sub,
+ struct stasis_topic *topic,
+ struct stasis_message *message)
 {
- struct ast_bar \*bar = data;
- struct ast_foo \*foo;
+ struct ast_bar *bar = data;
+ struct ast_foo *foo;
 
  ast_assert(ast_foo_type() == stasis_message_type(message));
  foo = stasis_message_data(message);
@@ -297,25 +297,25 @@ static void bar_foo(void \*data,
 
 }
 
-static void bar_whatever(void \*data,
- struct stasis_subscription \*sub,
- struct stasis_topic \*topic,
- struct stasis_message \*message)
+static void bar_whatever(void *data,
+ struct stasis_subscription *sub,
+ struct stasis_topic *topic,
+ struct stasis_message *message)
 {
- struct ast_bar \*bar = data;
- struct ast_whatever \*whatever;
+ struct ast_bar *bar = data;
+ struct ast_whatever *whatever;
 
  ast_assert(ast_whatever_type() == stasis_message_type(message));
  whatever = stasis_message_data (message);
  /* whateve */
 }
 
-struct ast_bar \*ast_bar_create(void)
+struct ast_bar *ast_bar_create(void)
 {
- RAII_VAR(struct ast_bar \*, bar, NULL, ao2_cleanup);
+ RAII_VAR(struct ast_bar *, bar, NULL, ao2_cleanup);
  int r;
 
- bar = ao2_alloc(sizeof(\*bar), bar_dtor);
+ bar = ao2_alloc(sizeof(*bar), bar_dtor);
  if (!bar) {
  return NULL;
  }
@@ -345,7 +345,7 @@ struct ast_bar \*ast_bar_create(void)
  return bar;
 }
 
-void ast_bar_shutdown(struct ast_bar \*bar)
+void ast_bar_shutdown(struct ast_bar *bar)
 {
  if (!bar) {
  return;

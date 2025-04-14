@@ -161,13 +161,13 @@ struct ast_bridge_channel {
  /*! Current bridged channel stat */
  enum ast_bridge_channel_state state;
  /*! Asterisk channel participating in the bridg */
- struct ast_channel \*chan;
+ struct ast_channel *chan;
  /*! Asterisk channel we are swapping with (if swapping */
- struct ast_channel \*swap;
+ struct ast_channel *swap;
  /*! Bridge this channel is participating i */
- struct ast_bridge \*bridge;
+ struct ast_bridge *bridge;
  /*! Private information unique to the bridge technolog */
- void \*bridge_pvt;
+ void *bridge_pvt;
  /*! Thread handling the bridged channe */
  pthread_t thread;
  /*! Additional file descriptors to look a */
@@ -177,12 +177,12 @@ struct ast_bridge_channel {
  /*! TRUE if the imparted channel must wait for an explicit depart from the bridge to reclaim the channel */
  unsigned int depart_wait:1;
  /*! Features structure for features that are specific to this channe */
- struct ast_bridge_features \*features;
+ struct ast_bridge_features *features;
  /*! Technology optimization parameters used by bridging technologies capable of
  * optimizing based upon talk detection */
  struct ast_bridge_tech_optimizations tech_args;
  /*! Call ID associated with bridge channe */
- struct ast_callid \*callid;
+ struct ast_callid *callid;
  /*! Linked list informatio */
  AST_LIST_ENTRY(ast_bridge_channel) entry;
  /*! Queue of actions to perform on the channel */
@@ -201,7 +201,7 @@ For bridges that support video that are in AST_BRIDGE_VIDEO_MODE_SINGLE_SRC mode
  * should be the current single video fee */
 struct ast_bridge_video_single_src_data {
  /*! Only accept video coming from this channe */
- struct ast_channel \*chan_vsrc;
+ struct ast_channel *chan_vsrc;
 };
 
 ```
@@ -216,11 +216,11 @@ For bridges that support video that are in AST_BRIDGE_VIDEO_MODE_TALKER_SRC mode
  * should be the current single video fee */
 struct ast_bridge_video_talker_src_data {
  /*! Only accept video coming from this channe */
- struct ast_channel \*chan_vsrc;
+ struct ast_channel *chan_vsrc;
  int average_talking_energy;
 
  /*! Current talker see's this perso */
- struct ast_channel \*chan_old_vsrc;
+ struct ast_channel *chan_old_vsrc;
 };
 
 ```
@@ -274,21 +274,21 @@ struct ast_bridge {
  /*! Bridge flags to tweak behavio */
  struct ast_flags feature_flags;
  /*! Bridge technology that is handling the bridg */
- struct ast_bridge_technology \*technology;
+ struct ast_bridge_technology *technology;
  /*! Private information unique to the bridge technolog */
- void \*bridge_pvt;
+ void *bridge_pvt;
  /*! Thread running the bridg */
  pthread_t thread;
  /*! Enabled features informatio */
  struct ast_bridge_features features;
  /*! Array of channels that the bridge thread is currently handlin */
- struct ast_channel \*\*array;
+ struct ast_channel **array;
  /*! Number of channels in the above arra */
  size_t array_num;
  /*! Number of channels the array can handl */
  size_t array_size;
  /*! Call ID associated with the bridg */
- struct ast_callid \*callid;
+ struct ast_callid *callid;
  /*! Linked list of channels participating in the bridg */
  AST_LIST_HEAD_NOLOCK(, ast_bridge_channel) channels;
  /*! Linked list of channels removed from the bridge and waiting to be departed */
@@ -318,14 +318,14 @@ Create a new instance of `ast_bridge` with the requested capabilities.
  * Example usage:
  *
  * \code
- * struct ast_bridge \*bridge;
+ * struct ast_bridge *bridge;
  * bridge = ast_bridge_new(AST_BRIDGE_CAPABILITY_1TO1MIX, AST_BRIDGE_FLAG_DISSOLVE_HANGUP);
  * \endcode
  *
  * This creates a simple two party bridge that will be destroyed once one of
  * the channels hangs up.
  */
-struct ast_bridge \*ast_bridge_new(uint32_t capabilities, int flags);
+struct ast_bridge *ast_bridge_new(uint32_t capabilities, int flags);
 
 ```
 
@@ -343,7 +343,7 @@ Lock the bridge. While locked, the state of the bridge cannot be changed by exte
  * \return Nothing
  */
 #define ast_bridge_lock(bridge) _ast_bridge_lock(bridge, __FILE__, __PRETTY_FUNCTION__, __LINE__, #bridge)
-static inline void _ast_bridge_lock(struct ast_bridge \*bridge, const char \*file, const char \*function, int line, const char \*var)
+static inline void _ast_bridge_lock(struct ast_bridge *bridge, const char *file, const char *function, int line, const char *var)
 {
  __ao2_lock(bridge, AO2_LOCK_REQ_MUTEX, file, function, line, var);
 }
@@ -364,7 +364,7 @@ Unlock the bridge.
  * \return Nothing
  */
 #define ast_bridge_unlock(bridge) _ast_bridge_unlock(bridge, __FILE__, __PRETTY_FUNCTION__, __LINE__, #bridge)
-static inline void _ast_bridge_unlock(struct ast_bridge \*bridge, const char \*file, const char \*function, int line, const char \*var)
+static inline void _ast_bridge_unlock(struct ast_bridge *bridge, const char *file, const char *function, int line, const char *var)
 {
  __ao2_unlock(bridge, file, function, line, var);
 }
@@ -420,7 +420,7 @@ Explicitly destroy a bridge. Note that a self managing bridge will automatically
  *
  * This destroys a bridge that was previously created using ast_bridge_new.
  */
-int ast_bridge_destroy(struct ast_bridge \*bridge);
+int ast_bridge_destroy(struct ast_bridge *bridge);
 
 ```
 
@@ -468,11 +468,11 @@ It is up to the caller of the function to decide what happens next. In general, 
  * If channel specific features are enabled a pointer to the features structure
  * can be specified in the features parameter.
  */
-enum ast_bridge_channel_state ast_bridge_join(struct ast_bridge \*bridge,
- struct ast_channel \*chan,
- struct ast_channel \*swap,
- struct ast_bridge_features \*features,
- struct ast_bridge_tech_optimizations \*tech_args);
+enum ast_bridge_channel_state ast_bridge_join(struct ast_bridge *bridge,
+ struct ast_channel *chan,
+ struct ast_channel *swap,
+ struct ast_bridge_features *features,
+ struct ast_bridge_tech_optimizations *tech_args);
 
 ```
 
@@ -538,7 +538,7 @@ When the channel leaves the bridge the channel will:
  * Channels placed into a bridge by ast_bridge_join() are
  * removed by a third party using ast_bridge_remove().
  */
-int ast_bridge_impart(struct ast_bridge \*bridge, struct ast_channel \*chan, struct ast_channel \*swap, struct ast_bridge_features \*features, int independent);
+int ast_bridge_impart(struct ast_bridge *bridge, struct ast_channel *chan, struct ast_channel *swap, struct ast_bridge_features *features, int independent);
 
 ```
 
@@ -570,7 +570,7 @@ Remove a previously imparted `ast_channel` from the bridge.
  * \note This API call can only be used on channels that were added to the bridge
  * using the ast_bridge_impart API call with the independent flag FALSE.
  */
-int ast_bridge_depart(struct ast_bridge \*bridge, struct ast_channel \*chan);
+int ast_bridge_depart(struct ast_bridge *bridge, struct ast_channel *chan);
 
 ```
 
@@ -602,7 +602,7 @@ Remove any channel from the bridge.
  * \note This API call can be used on channels that were added to the bridge
  * using both ast_bridge_join and ast_bridge_impart.
  */
-int ast_bridge_remove(struct ast_bridge \*bridge, struct ast_channel \*chan);
+int ast_bridge_remove(struct ast_bridge *bridge, struct ast_channel *chan);
 
 ```
 
@@ -633,7 +633,7 @@ Merge two bridges together.
  * \note The second bridge specified is not destroyed when this operation is
  * completed.
  */
-int ast_bridge_merge(struct ast_bridge \*bridge0, struct ast_bridge \*bridge1);
+int ast_bridge_merge(struct ast_bridge *bridge0, struct ast_bridge *bridge1);
 
 ```
 
@@ -665,7 +665,7 @@ Suspend a channel from the bridge. Channels that are suspended from the bridge a
  * \note This API call can be used on channels that were added to the bridge
  * using both ast_bridge_join and ast_bridge_impart.
  */
-int ast_bridge_suspend(struct ast_bridge \*bridge, struct ast_channel \*chan);
+int ast_bridge_suspend(struct ast_bridge *bridge, struct ast_channel *chan);
 
 ```
 
@@ -696,7 +696,7 @@ Unsuspend a previously suspended channel, returning control of it back to the br
  * \note You must not mess with the channel once this function returns.
  * Doing so may result in bad things happening.
  */
-int ast_bridge_unsuspend(struct ast_bridge \*bridge, struct ast_channel \*chan);
+int ast_bridge_unsuspend(struct ast_bridge *bridge, struct ast_channel *chan);
 
 ```
 
@@ -729,7 +729,7 @@ Change the state of a bridged channel.
  * \note This API call is only meant to be used in feature hook callbacks to
  * request the channel exit the bridge.
  */
-void ast_bridge_change_state(struct ast_bridge_channel \*bridge_channel, enum ast_bridge_channel_state new_state);
+void ast_bridge_change_state(struct ast_bridge_channel *bridge_channel, enum ast_bridge_channel_state new_state);
 
 ```
 
@@ -749,7 +749,7 @@ If a bridging technology supports the multimix capability, set the mixing sampli
  * what ever sample rate it chooses.
  *
  */
-void ast_bridge_set_internal_sample_rate(struct ast_bridge \*bridge, unsigned int sample_rate);
+void ast_bridge_set_internal_sample_rate(struct ast_bridge *bridge, unsigned int sample_rate);
 
 ```
 
@@ -767,7 +767,7 @@ If a bridging technology supports the multimix capability, set the mixing interv
  * \param mixing_interval the sample rate to change to. If 0 is set
  * the bridge tech is free to choose any mixing interval it uses by default.
  */
-void ast_bridge_set_mixing_interval(struct ast_bridge \*bridge, unsigned int mixing_interval);
+void ast_bridge_set_mixing_interval(struct ast_bridge *bridge, unsigned int mixing_interval);
 
 ```
 
@@ -780,7 +780,7 @@ If a bridging technology supports video, set the single video source to feed to 
 /*!
  * \brief Set a bridge to feed a single video source to all participants.
  */
-void ast_bridge_set_single_src_video_mode(struct ast_bridge \*bridge, struct ast_channel \*video_src_chan);
+void ast_bridge_set_single_src_video_mode(struct ast_bridge *bridge, struct ast_channel *video_src_chan);
 
 ```
 
@@ -794,7 +794,7 @@ If a bridging technology supports video, set the video mode to use the current t
  * \brief Set the bridge to pick the strongest talker supporting
  * video as the single source video feed
  */
-void ast_bridge_set_talker_src_video_mode(struct ast_bridge \*bridge);
+void ast_bridge_set_talker_src_video_mode(struct ast_bridge *bridge);
 
 ```
 
@@ -807,7 +807,7 @@ Inform a video capable bridging technology about the talk energy and frame infor
 /*!
  * \brief Update information about talker energy for talker src video mode.
  */
-void ast_bridge_update_talker_src_video_mode(struct ast_bridge \*bridge, struct ast_channel \*chan, int talker_energy, int is_keyfame);
+void ast_bridge_update_talker_src_video_mode(struct ast_bridge *bridge, struct ast_channel *chan, int talker_energy, int is_keyfame);
 
 ```
 
@@ -820,7 +820,7 @@ Get the number of video sources in the bridge.
 /*!
  * \brief Returns the number of video sources currently active in the bridge
  */
-int ast_bridge_number_video_src(struct ast_bridge \*bridge);
+int ast_bridge_number_video_src(struct ast_bridge *bridge);
 
 ```
 
@@ -838,7 +838,7 @@ Return whether or not a channel is a video source.
  * returned represents the priority this video stream has
  * on the bridge where 1 is the highest priority.
  */
-int ast_bridge_is_video_src(struct ast_bridge \*bridge, struct ast_channel \*chan);
+int ast_bridge_is_video_src(struct ast_bridge *bridge, struct ast_channel *chan);
 
 ```
 
@@ -851,7 +851,7 @@ Remove a channel from being the video source.
 /*!
  * \brief remove a channel as a source of video for the bridge.
  */
-void ast_bridge_remove_video_src(struct ast_bridge \*bridge, struct ast_channel \*chan);
+void ast_bridge_remove_video_src(struct ast_bridge *bridge, struct ast_channel *chan);
 
 ```
 
@@ -893,40 +893,40 @@ The interface that defines a bridging technology.
  */
 struct ast_bridge_technology {
  /*! Unique name to this bridge technolog */
- const char \*name;
+ const char *name;
  /*! The capabilities that this bridge technology is capable of. This has nothing to do with
  * format capabilities */
  uint32_t capabilities;
  /*! Preference level that should be used when determining whether to use this bridge technology or no */
  enum ast_bridge_preference preference;
  /*! Callback for when a bridge is being create */
- int (\*create)(struct ast_bridge \*bridge);
+ int (*create)(struct ast_bridge *bridge);
  /*! Callback for when a bridge is being destroye */
- int (\*destroy)(struct ast_bridge \*bridge);
+ int (*destroy)(struct ast_bridge *bridge);
  /*! Callback for when a channel is being added to a bridg */
- int (\*join)(struct ast_bridge \*bridge, struct ast_bridge_channel \*bridge_channel);
+ int (*join)(struct ast_bridge *bridge, struct ast_bridge_channel *bridge_channel);
  /*! Callback for when a channel is leaving a bridg */
- int (\*leave)(struct ast_bridge \*bridge, struct ast_bridge_channel \*bridge_channel);
+ int (*leave)(struct ast_bridge *bridge, struct ast_bridge_channel *bridge_channel);
  /*! Callback for when a channel is suspended from the bridg */
- void (\*suspend)(struct ast_bridge \*bridge, struct ast_bridge_channel \*bridge_channel);
+ void (*suspend)(struct ast_bridge *bridge, struct ast_bridge_channel *bridge_channel);
  /*! Callback for when a channel is unsuspended from the bridg */
- void (\*unsuspend)(struct ast_bridge \*bridge, struct ast_bridge_channel \*bridge_channel);
+ void (*unsuspend)(struct ast_bridge *bridge, struct ast_bridge_channel *bridge_channel);
  /*! Callback to see if a channel is compatible with the bridging technolog */
- int (\*compatible)(struct ast_bridge_channel \*bridge_channel);
+ int (*compatible)(struct ast_bridge_channel *bridge_channel);
  /*! Callback for writing a frame into the bridging technolog */
- enum ast_bridge_write_result (\*write)(struct ast_bridge \*bridge, struct ast_bridge_channel \*bridged_channel, struct ast_frame \*frame);
+ enum ast_bridge_write_result (*write)(struct ast_bridge *bridge, struct ast_bridge_channel *bridged_channel, struct ast_frame *frame);
  /*! Callback for when a file descriptor trip */
- int (\*fd)(struct ast_bridge \*bridge, struct ast_bridge_channel \*bridge_channel, int fd);
+ int (*fd)(struct ast_bridge *bridge, struct ast_bridge_channel *bridge_channel, int fd);
  /*! Callback for replacement thread functio */
- int (\*thread)(struct ast_bridge \*bridge);
+ int (*thread)(struct ast_bridge *bridge);
  /*! Callback for poking a bridge threa */
- int (\*poke)(struct ast_bridge \*bridge, struct ast_bridge_channel \*bridge_channel);
+ int (*poke)(struct ast_bridge *bridge, struct ast_bridge_channel *bridge_channel);
  /*! Formats that the bridge technology support */
- struct ast_format_cap \*format_capabilities;
+ struct ast_format_cap *format_capabilities;
  /*! Bit to indicate whether the bridge technology is currently suspended or no */
  unsigned int suspended:1;
  /*! Module this bridge technology belongs to. Is used for reference counting when creating/destroying a bridge */
- struct ast_module \*mod;
+ struct ast_module *mod;
  /*! Linked list informatio */
  AST_RWLIST_ENTRY(ast_bridge_technology) entry;
 };
@@ -961,7 +961,7 @@ Register a technology with the Bridging Framework.
  * simple_bridge_tech with the bridging core and makes it available for
  * use when creating bridges.
  */
-int __ast_bridge_technology_register(struct ast_bridge_technology \*technology, struct ast_module \*mod);
+int __ast_bridge_technology_register(struct ast_bridge_technology *technology, struct ast_module *mod);
 
 /*! \brief See \ref __ast_bridge_technology_register( */
 #define ast_bridge_technology_register(technology) __ast_bridge_technology_register(technology, ast_module_info->self)
@@ -992,7 +992,7 @@ Unregister a technology with the Bridging Framework.
  * simple_bridge_tech with the bridging core. It will no longer be
  * considered when creating a new bridge.
  */
-int ast_bridge_technology_unregister(struct ast_bridge_technology \*technology);
+int ast_bridge_technology_unregister(struct ast_bridge_technology *technology);
 
 ```
 
@@ -1021,7 +1021,7 @@ Notify the Bridging Framework that a channel has a frame waiting.
  *
  * \note This should only be used by bridging technologies.
  */
-void ast_bridge_handle_trip(struct ast_bridge \*bridge, struct ast_bridge_channel \*bridge_channel, struct ast_channel \*chan, int outfd);
+void ast_bridge_handle_trip(struct ast_bridge *bridge, struct ast_bridge_channel *bridge_channel, struct ast_channel *chan, int outfd);
 
 ```
 
@@ -1044,7 +1044,7 @@ Notify the Bridging Framework that a channel has started talking.
  * \param started_talking set to 1 when this indicates the channel has started talking set to 0
  * when this indicates the channel has stopped talking.
  */
-void ast_bridge_notify_talking(struct ast_bridge_channel \*bridge_channel, int started_talking);
+void ast_bridge_notify_talking(struct ast_bridge_channel *bridge_channel, int started_talking);
 
 ```
 
@@ -1069,7 +1069,7 @@ Suspend a bridging technology from consideration by the Bridging Framework.
  * when creating a new bridge. Existing bridges using the bridge technology
  * are not affected.
  */
-void ast_bridge_technology_suspend(struct ast_bridge_technology \*technology);
+void ast_bridge_technology_suspend(struct ast_bridge_technology *technology);
 
 ```
 
@@ -1093,6 +1093,6 @@ Unsuspend a bridging technology from consideration by the Bridging Framework.
  * This makes the bridge technology simple_bridge_tech considered when
  * creating a new bridge again.
  */
-void ast_bridge_technology_unsuspend(struct ast_bridge_technology \*technology);
+void ast_bridge_technology_unsuspend(struct ast_bridge_technology *technology);
 
 ```

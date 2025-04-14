@@ -99,21 +99,21 @@ struct ast_stir_shaken_payload {
  /* This is actually a JWT (JSON Web Token) so this may need to change, but for this page it'll d */
 
  /*! The JWT heade */
- struct ast_json \*header;
+ struct ast_json *header;
  /*! The JWT payloa */
- struct ast_json \*payload;
+ struct ast_json *payload;
  /*! Signature for the payloa */
- char \*signature;
+ char *signature;
  /*! The algorithm use */
- char \*algorithm;
+ char *algorithm;
  /*! The URL to the public key for the certificat */
- char \*public_key_url;
+ char *public_key_url;
 };
 
 /*!
  * \brief Free a STIR/SHAKEN payload
  */
-void ast_stir_shaken_payload_free(struct ast_stir_shaken_payload \*payload);
+void ast_stir_shaken_payload_free(struct ast_stir_shaken_payload *payload);
 
 ```
 
@@ -129,7 +129,7 @@ The module will expose a single API call that can be used to sign a payload.
  *
  * \note This function will automatically add the "attest", "iat", and "origid" fields.
  */
-struct ast_stir_shaken_payload \*ast_stir_shaken_sign(struct ast_json \*json);
+struct ast_stir_shaken_payload *ast_stir_shaken_sign(struct ast_json *json);
 
 ```
 
@@ -150,7 +150,7 @@ The module will expose a single API call that can be used to verify a payload.
 /*!
  * \brief Verify a JSON STIR/SHAKEN payload
  */
-struct ast_stir_shaken_payload \*ast_stir_shaken_verify(const char \*header, const char \*payload, const char \*signature, const char \*algorithm, const char \*public_key_url);
+struct ast_stir_shaken_payload *ast_stir_shaken_verify(const char *header, const char *payload, const char *signature, const char *algorithm, const char *public_key_url);
 
 ```
 
@@ -181,7 +181,7 @@ enum ast_stir_shaken_verification_result {
 /*!
  * \brief Add a STIR/SHAKEN verification result to a channel
  */
-int ast_stir_shaken_add_verification(struct ast_channel \*chan, const char \*identity, const char \*attestation, enum ast_stir_shaken_verification_result result);
+int ast_stir_shaken_add_verification(struct ast_channel *chan, const char *identity, const char *attestation, enum ast_stir_shaken_verification_result result);
 
 ```
 

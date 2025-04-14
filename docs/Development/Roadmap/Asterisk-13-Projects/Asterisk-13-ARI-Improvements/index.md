@@ -79,7 +79,7 @@ POST /endpoints/PJSIP/message
 {
  "from": "xmpp:bob@jabber.org",
  "to": "pjsip:generic/sip:alice@mysipserver.org"
- "body": "No, \*I\* am the very model of a major general"
+ "body": "No, *I* am the very model of a major general"
 }
 
 ```
@@ -126,9 +126,9 @@ There's a few pieces to the message core in Asterisk that will need to be change
 First, *message.h* will need to expose a registration function that allows for an external participant to handle the message routing:
 
 ```
-static int ast_msg_register_observer(const char \*id, void (\*msg_cb)(struct ast_msg \*msg));
+static int ast_msg_register_observer(const char *id, void (*msg_cb)(struct ast_msg *msg));
 
-static int ast_msg_unregister_observer(const char \*id);
+static int ast_msg_unregister_observer(const char *id);
 
 ```
 
@@ -142,10 +142,10 @@ When performing the routing (after pulling the message off the taskprocessor), m
  * \pre The message has already been set up on the msg datastore
  * on this channel.
  */
-static void msg_route(struct ast_channel \*chan, struct ast_msg \*msg)
+static void msg_route(struct ast_channel *chan, struct ast_msg *msg)
 {
  struct ast_pbx_args pbx_args;
- msg_cb_t \*cb;
+ msg_cb_t *cb;
 
  AST_LIST_TRAVERSE(&observers, cb, list) {
  cb(msg);

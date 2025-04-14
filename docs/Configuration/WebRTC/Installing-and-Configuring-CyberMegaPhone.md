@@ -66,7 +66,7 @@ Asterisk CLI
 
 ```
 
-\*CLI> http show status
+*CLI> http show status
 HTTP Server Status:
 Prefix: 
 Server: Asterisk/GIT-16-a84c257cd6

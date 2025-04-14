@@ -318,7 +318,7 @@ Procedure:
 
 ```
 ; order pref flags service regexp replacement
-IN NAPTR 50 50 "s" "SIP+D2T" "!.\*!_sip._tcp.test.internal!" .
+IN NAPTR 50 50 "s" "SIP+D2T" "!.*!_sip._tcp.test.internal!" .
 IN NAPTR 60 50 "s" "SIP+D2U" "" _sip._udp.test.internal.
 
 ```
