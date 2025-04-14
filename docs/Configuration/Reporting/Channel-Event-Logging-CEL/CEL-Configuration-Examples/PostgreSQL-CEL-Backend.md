@@ -5,12 +5,9 @@ pageid: 5242956
 
 If you want to go directly to postgresql database, and have the cel_pgsql.so compiled you can use the following sample setup. On Debian, before compiling asterisk, just install libpqxx-dev. Other distros will likely have a similiar package.
 
-
 Once you have the compile done, copy the sample cel_pgsql.conf file or create your own. 
 
-
 Here is a sample: 
-
 
 /etc/asterisk/cel_pgsql.conf
 
@@ -56,4 +53,3 @@ CREATE TABLE cel (
 );
 
 ```
-

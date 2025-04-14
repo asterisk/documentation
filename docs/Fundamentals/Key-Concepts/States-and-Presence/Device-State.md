@@ -22,9 +22,6 @@ Common Device State Providers
 
 On this Page
 
-
-
-
 | Device State Identifier | Device State Provider |
 | --- | --- |
 | PJSIP/<resource> | PJSIP SIP stack, res_pjsip.so, chan_pjsip.so. |
@@ -69,4 +66,3 @@ There is module specific configuration that you must be aware of to get optimal 
 For **chan_sip** see the [chan_sip State and Presence Options](/Configuration/Channel-Drivers/SIP/Configuring-chan_sip/chan_sip-State-and-Presence-Options) section.
 
 For **res_pjsip** see the [Configuring res_pjsip for Presence Subscriptions](/Configuration/Channel-Drivers/SIP/Configuring-res_pjsip/Configuring-res_pjsip-for-Presence-Subscriptions) section.
-

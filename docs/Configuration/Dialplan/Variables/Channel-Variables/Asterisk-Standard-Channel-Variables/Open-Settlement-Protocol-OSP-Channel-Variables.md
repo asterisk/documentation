@@ -44,5 +44,3 @@ pageid: 4620440
 * ${OSPDIALSTR} - The outbound Dial command string.
 * ${OSPINAUDIOQOS} - The inbound call leg audio QoS string.
 * ${OSPOUTAUDIOQOS} - The outbound call leg audio QoS string.
-
-

@@ -8,4 +8,3 @@ The application modules provide call functionality to the system. These applicat
 For more information on dialplan applications, see [Applications](/Configuration/Applications).
 
 All application modules have file names that looks like **app_xxxxx.so**, such as **app_voicemail.so**, however applications and functions can also be provided by the core and other modules. Modules like res_musiconhold and res_xmpp provide applications related to their own functionality.
-

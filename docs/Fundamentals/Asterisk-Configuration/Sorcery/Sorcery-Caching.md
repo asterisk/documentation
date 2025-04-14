@@ -32,7 +32,6 @@ Not all configurable objects are managed by sorcery. The following is a list of 
 * External MWI mailboxes
 On this Page
 
-
 ## When Should I Use Caching?
 
 First, if you are using default sorcery backends for objects (i.e. you have not altered `sorcery.conf` at all), then caching will likely not have any positive effect on your configuration. However, if you are using the "realtime" sorcery wizard or any other that retrieves data from outside the Asterisk process, then caching could be a good fit for certain object types.
@@ -102,7 +101,6 @@ This option specifies the maximum number of objects that can be in the cache at 
 #### object_lifetime_maximum
 
 This option specifies the number of seconds an object may occupy the cache before it is automatically removed. This time is measured from when the object is initially added to the cache, not the time when the object was last accessed. If this option is not set or if its value is set to 0, then objects will stay in the cache forever.
-
 
 #### object_lifetime_stale
 
@@ -279,4 +277,3 @@ Issuing this command has the same effect as the CLI "sorcery memory cache popula
 ### When to use this Caching method
 
 Pre-caching the entire backend is a good idea if you find that caching individual objects is not working for you. The tradeoff is that you will use more memory this way since all objects are retrieved from the cache at once.
-

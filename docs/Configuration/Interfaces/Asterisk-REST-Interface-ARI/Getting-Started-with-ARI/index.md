@@ -54,7 +54,6 @@ Some distributions repos (e.g. Ubuntu) may have older versions of nodejs and npm
 
 ///
 
-
 ### Getting curl
 
 In order to control a channel in the Stasis dialplan application through ARI, we also need an HTTP client. For the sake of this example, we'll use [curl](http://linux.about.com/od/commands/l/blcmdl1_curl.htm):
@@ -89,7 +88,7 @@ $ apt-get install curl
     /// warning | This is just a demo
     Please use a more secure account user and password for production applications. Outside of examples and demos, asterisk/asterisk is a terrible, horrible, no-good choice...
     ///
-      
+
 3. Create a dialplan extension for your Stasis application. Here, we're choosing extension `1000` in context `default` - if your SIP phone is configured for a different context, adjust accordingly.
 
     ```conf title="extensions.conf" linenums="1"
@@ -251,7 +250,3 @@ $ apt-get install curl
      }
 
     ```
-
-
-
-

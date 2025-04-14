@@ -9,8 +9,6 @@ The type of release defines how long it will be supported. A Long Term Support (
 
 The following table shows the release time lines for all releases of Asterisk, including those that have reached End of Life.
 
-
-
 | Release Series | Release Type | Release Date | Security Fix Only | EOL | Current Status |
 | --- | --- | --- | --- | --- | --- |
 | 1.2.x |   | [2005-11-21](http://lists.digium.com/pipermail/asterisk-announce/2005-November/000007.html) | 2007-08-07 | 2010-11-21 | EOL |
@@ -41,12 +39,9 @@ For developers, it is useful to be aware of when the next release branch will be
 
 For additional information on policies please see the [Software Configuration Management Policies](/Development/Policies-and-Procedures/Software-Configuration-Management-Policies) wiki page.
 
-
-
 |  |  |
 | --- | --- |
 | **Asterisk Release Branch Creation Reminder** | 1st Wednesday of August |
 | **Asterisk Release Branch Creation** | 2nd Wednesday of August |
 | **First Release Candidate of Asterisk Branch** | 2nd Wednesday of September |
 | **First Release of Asterisk from Branch** | 3rd Wednesday of October |
-

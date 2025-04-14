@@ -45,12 +45,7 @@ max_contacts=1
 * auth= is used for the endpoint as opposed to outbound_auth= since we want to allow inbound registration for this endpoint
 * max_contacts= is set to something non-zero as we want to allow contacts to be created through registration
 
-
-
 On this Page
-
-
-
 
 A SIP trunk to your service provider, including outbound registration
 ---------------------------------------------------------------------
@@ -104,16 +99,9 @@ match=sip.example.com
 * We use an identify object to map all traffic from the provider's IP as traffic to that endpoint since the user portion of their From: header may vary with each call.
 * This example assumes that [sip.example.com](http://sip.example.com) resolves to 203.0.113.1
 
-
-
-
 !!! tip 
     You can specify the transport type by appending it to the server_uri and client_uri parameters. e.g.:
 [//]: # (end-tip)
-
-
-  
-  
 
 ```
 [mytrunk]
@@ -122,8 +110,6 @@ outbound_auth=mytrunk
 server_uri=sip:sip.example.com\;transport=tcp
 client_uri=sip:1234567890@sip.example.com\;transport=tcp
 retry_interval=60  
-
-
 
 ---
 
@@ -197,4 +183,3 @@ username=6003
 ```
 
 Obviously the larger your configuration is, the more templates will benefit you. Here we just break apart the endpoints with templates, but you could do that with any config section that needs instances with variation, but where each may share common settings with their peers.
-

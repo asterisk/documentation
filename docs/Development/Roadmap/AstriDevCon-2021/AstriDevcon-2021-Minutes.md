@@ -42,9 +42,6 @@ Yitzchak Pachtman - Israel, NY Based IT MSP, Ast & FreePBX for 5 years (Pitzkey)
 
 10AM - Matt Frederickson, introductions
 
-  
-
-
 10:35 - Matt Frederickson, Asterisk 19 Update
 
 * 13, 17 EOL (shout out 13, 7 years!)
@@ -99,9 +96,6 @@ Yitzchak Pachtman - Israel, NY Based IT MSP, Ast & FreePBX for 5 years (Pitzkey)
 + Please move to pjsip, chan sip will not be built in 19 by default!
 + Keep an eye on the new module and versions wiki!
 
-  
-
-
 11AM - Set Agenda
 
 * Give update on Policy - Josh
@@ -120,10 +114,6 @@ Yitzchak Pachtman - Israel, NY Based IT MSP, Ast & FreePBX for 5 years (Pitzkey)
 * Asterisk 20? - Sylvain
 * Conference Join announcement options - MC
 * Chan pjsip retrieve/inject multipart MIME - Torrey
-
-  
-  
-
 
 11:15 - J Colp, Project Policy update
 
@@ -158,9 +148,6 @@ Yitzchak Pachtman - Israel, NY Based IT MSP, Ast & FreePBX for 5 years (Pitzkey)
     + Is changing a default an improvement?
     + Could easily come with the same risks
 
-      
-
-
     11:50 - G Joseph, Releases and numbering in flight
 
     * Going straight to 22?
@@ -171,9 +158,6 @@ Yitzchak Pachtman - Israel, NY Based IT MSP, Ast & FreePBX for 5 years (Pitzkey)
     + LTS reliability?
     + Is the stability due to LTS or because there were a number of stability improvements that occurred at the same time?
 
-      
-
-
     12:10 - Joran, Codec Handling
 
     * Where did things land?
@@ -182,32 +166,17 @@ Yitzchak Pachtman - Israel, NY Based IT MSP, Ast & FreePBX for 5 years (Pitzkey)
     + E911 deadlines
     + Is still on the list for development
 
-      
-
-
     12:20 - BJ, Question about SWP JIRAs (11321)
-
-      
-
 
     12:30 - Break for Lunch
 
-      
-
-
     2PM - Taco Talk
-
-      
-
 
     2:05 - Pascal, Audio quality issues with confbridge
 
     * 1on1 Calls Google Chrome was compensating for packet loss
     * Initial determination is that compensation is usually done on the write side, but this is not possible after it has already been mixed
     * Jitter buffer would have to be set on the read side, or on the internal write
-
-      
-
 
     2:20 - J Colp, Atlassian move
 
@@ -226,9 +195,6 @@ Yitzchak Pachtman - Israel, NY Based IT MSP, Ast & FreePBX for 5 years (Pitzkey)
     + How to move open tickets to the new system and have users mapped properly.
 
     * Bugzilla, Tuleap, explore other issue trackers
-
-      
-
 
     2:40 - J Colp, Working better in a cloud environment
 
@@ -260,13 +226,7 @@ Yitzchak Pachtman - Israel, NY Based IT MSP, Ast & FreePBX for 5 years (Pitzkey)
     + RTP / RTCP
     + Error rates
 
-      
-
-
     3:30 - 15 minute break
-
-      
-
 
     3:45 - M Bradeen, e911
 
@@ -277,16 +237,10 @@ Yitzchak Pachtman - Israel, NY Based IT MSP, Ast & FreePBX for 5 years (Pitzkey)
     * NG 112 EU, similar to US
     * Add a dialplan app to check an IP against a known list and return location information
 
-      
-
-
     4PM - Joran, Multiple entities subscribing to an ARI application
 
     * Ensure you always hit an application in case the stasis topic is not watched
     * Load balance or redundancy between registered applications.
-
-      
-
 
     4:05 - Yitzchak, Dynamic features in holding bridges (parked call)
 
@@ -295,24 +249,15 @@ Yitzchak Pachtman - Israel, NY Based IT MSP, Ast & FreePBX for 5 years (Pitzkey)
     * No DTMF receiver attached
     * Pull limited Queue functionality into parked calls
 
-      
-
-
     4:15 - Yitxchak, controlling MoH from another channel or AMI
 
     * FreePBX using chanspy overlays announcement on MoH
     * Interrupting MoH can be done but then the other periodic announcements get unreliable.
 
-      
-
-
     4:20 - Joran, Timeouts on a Stasis application
 
     * To prevent a call hanging due to the application hanging.
     * Prefer to not to have to wait for SIP level timers.
-
-      
-
 
     4:40 - J Colp, DDoS
 
@@ -320,9 +265,6 @@ Yitzchak Pachtman - Israel, NY Based IT MSP, Ast & FreePBX for 5 years (Pitzkey)
     * Pjsip global settings can help mitigate, blacklist past certain configurable parameters
     * Greylist registration, request second registration
     * Sliding scale of response, bigger fish requires more coverage and cost
-
-      
-
 
     5:05 - Sylvan, Asterisk 20(22)?
 
@@ -334,9 +276,6 @@ Yitzchak Pachtman - Israel, NY Based IT MSP, Ast & FreePBX for 5 years (Pitzkey)
     + AMR-WB?  Other codecs?
     + MS teams?
 
-      
-
-
     5:20 - M Cargile, Pre-join warning to conference (vs post-join)
 
     * Alert existing participants before a caller joins
@@ -344,20 +283,11 @@ Yitzchak Pachtman - Israel, NY Based IT MSP, Ast & FreePBX for 5 years (Pitzkey)
     * Patches welcome ;)
     * ARI all the things
 
-      
-
-
     5:25 - Torrey, Adding custom MIME body
 
     * Can be adapted from Pidi Flow work
 
-      
-
-
     5:30 - ARI ALL THE THINGS
-
-      
-
 
     5:35 - Pitzkey final question,
 
@@ -365,9 +295,4 @@ Yitzchak Pachtman - Israel, NY Based IT MSP, Ast & FreePBX for 5 years (Pitzkey)
     * Place outgoing call to user getting variables from previous call
     + Store in AGI script?
 
-      
-
-
     5:50 - Wrap up!
-
-      

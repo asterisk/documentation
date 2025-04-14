@@ -39,14 +39,9 @@ From a logistical standpoint, these modules are typically files with a **.so** f
 
 Asterisk modules which are part of the core have a file name that look like **pbx_xxxxx.so**. All of the modules types are discussed in the section [Types of Asterisk Modules](/Fundamentals/Asterisk-Architecture/Types-of-Asterisk-Modules).
 
-
-
-
 !!! tip A Plethora of Modules
     Take just a minute and go look at the Asterisk modules directory on your system. You should find a wide variety of modules. A default installation of Asterisk has over one hundred fifty different modules!  
 [//]: # (end-tip)
-
-
 
 ### A Few Module Examples
 
@@ -81,4 +76,3 @@ Dialplan
 Dialplan is the one main method of directing Asterisk behavior. Dialplan exists as text files (for example extensions.conf) either in the built-in dialplan scripting language, AEL or LUA formats. Alternatively dialplan could be read from a [database](/Fundamentals/Asterisk-Configuration/Database-Support-Configuration), along with other module configuration. When writing dialplan, you will make heavy use of **applications** and **functions**to affect channels, configuration and features.
 
 Dialplan can also call out through other interfaces such as [AGI](/Latest_API/API_Documentation/Dialplan_Applications/AGI) to receive call control instruction from external scripts and programs. The [Dialplan](/Configuration/Dialplan) section of the wiki goes into detail on the usage of dialplan.  
-

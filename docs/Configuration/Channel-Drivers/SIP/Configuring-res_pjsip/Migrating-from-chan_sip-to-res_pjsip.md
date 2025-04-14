@@ -42,22 +42,15 @@ Writing pjsip.conf
 
 On this Page
 
-
 Side by Side Examples of sip.conf and pjsip.conf Configuration
 ==============================================================
 
 These examples contain only the configuration required for sip.conf/pjsip.conf as the configuration for other files should be the same, excepting the Dial statements in your extensions.conf. Dialing with PJSIP is discussed in [Dialing PJSIP Channels](/Configuration/Channel-Drivers/SIP/Configuring-res_pjsip/Dialing-PJSIP-Channels).
 
-
-
-
 !!! note 
     It is important to know that PJSIP syntax and configuration format is stricter than the older chan_sip driver. When in doubt, try to follow the documentation exactly, avoid extra spaces or strange capitalization. Always check your logs for warnings or errors if you suspect something is wrong.
 
-      
 [//]: # (end-note)
-
-
 
 Example Endpoint Configuration
 ------------------------------
@@ -68,8 +61,6 @@ This examples shows the configuration required for:
 * for them to be identified as users (in the old chan_sip) or endpoints (in the new res_sip/chan_pjsip)
 * both devices need to use username and password authentication
 * 6001 is setup to allow registration to Asterisk, and 6002 is setup with a static host/contact
-
-
 
 | sip.conf | pjsip.conf |
 | --- | --- |
@@ -158,8 +149,6 @@ This shows configuration for a SIP trunk as would typically be provided by an IT
 * SIP provider requires outbound calls to their server at the same address of registration, plus using same authentication details.
 * SIP provider will call your server with a user name of "mytrunk". Their traffic will only be coming from 203.0.113.1
 
-
-
 | sip.conf | pjsip.conf |
 | --- | --- |
 | 
@@ -224,8 +213,6 @@ match=203.0.113.1
 ```
  |
 
-
-
 Disabling res_pjsip and chan_pjsip
 ====================================
 
@@ -262,8 +249,6 @@ Network Address Translation (NAT)
 
 When configured with **chan_sip**, peers that are, relative to Asterisk, located behind a NAT are configured using the **nat** parameter.  In versions 1.8 and greater of Asterisk, the following nat parameter options are available:
 
-
-
 | Value | Description |
 | --- | --- |
 | no | Do not perform NAT handling other than [RFC 3581](http://www.ietf.org/rfc/rfc3581.txt). |
@@ -273,8 +258,6 @@ When configured with **chan_sip**, peers that are, relative to Asterisk, located
 | auto_comedia | Automatically send media to the port from which Asterisk received it, regardless of where SDP indicates that it should be sent, if Asterisk detects NAT. |
 
 Versions of Asterisk prior to 1.8 had less granularity for the nat parameter:
-
-
 
 | Value | Description |
 | --- | --- |
@@ -291,8 +274,6 @@ In **chan_pjsip**, the **endpoint** options that control NAT behavior are:
 
 Thus, the following are equivalent:
 
-
-
 | chan_sip (sip.conf) | chan_pjsip (pjsip.conf) |
 | --- | --- |
 | 
@@ -305,21 +286,15 @@ type=peer
 nat=yes
 ;...
 
-
-
 [mypeer2]
 type=peer
 nat=no
 ;...
 
-
-
 [mypeer3]
 type=peer
 nat=never
 ;...
-
-
 
 [mypeer4]
 type=peer
@@ -362,4 +337,3 @@ rewrite_contact=yes
 
 ```
  |
-

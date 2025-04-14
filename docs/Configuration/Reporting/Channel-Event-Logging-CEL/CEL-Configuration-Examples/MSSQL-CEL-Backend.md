@@ -7,7 +7,6 @@ pageid: 5242952
 
 Asterisk can currently store Channel Events into an MSSQL database in two different ways: cel_odbc or cel_tds 
 
-
 Channel Event Records can be stored using unixODBC (which requires the FreeTDS package) cel_odbc or directly by using just the FreeTDS package cel_tds.
 
 The following provide some examples known to get asterisk working with mssql. 
@@ -15,12 +14,9 @@ The following provide some examples known to get asterisk working with mssql.
 !!! note 
     Only choose one db connector.
 
-      
 [//]: # (end-note)
 
-
 ## ODBC using cel_odbc
-
 
 ### Compile, configure, and install the latest unixODBC package:
 
@@ -48,9 +44,7 @@ make clean && ./configure --with-odbc && make update && make && make install
 
 ### Setup odbc configuration files.
 
-
 These are working examples from my system. You will need to modify for your setup. You are not required to store usernames or passwords here. 
-
 
 /etc/odbcinst.ini
 
@@ -79,8 +73,6 @@ language = us_english
 
 ```
 
-
-
 !!! warning 
     Only install one database connector. Do not confuse asterisk by using both ODBC (cel_odbc) and FreeTDS (cel_tds). This command will erase the contents of cel_tds.conf 
 [//]: # (end-warning)
@@ -92,13 +84,11 @@ language = us_english
 !!! note 
     unixODBC requires the freeTDS package, but asterisk does not call freeTDS directly. 
 
-      
 [//]: # (end-note)
 
 ### Now set up cel_odbc configuration files.
 
 These are working samples from my system. You will need to modify for your setup. Define your usernames and passwords here, secure file as well. 
-
 
 /etc/asterisk/cel_odbc.conf
 
@@ -142,7 +132,6 @@ Start asterisk in verbose mode, you should see that asterisk logs a connection t
 
 ## FreeTDS, using cel_tds
 
-
 ### Compile, configure, and install the latest FreeTDS package:
 
 ```
@@ -159,12 +148,9 @@ make clean && ./configure --with-tds && make update && make && make install
 
 ```
 
-
-
 !!! warning 
     Only install one database connector. Do not confuse asterisk by using both ODBC (cel_odbc) and FreeTDS (cel_tds). This command will erase the contents of cel_odbc.conf 
 [//]: # (end-warning)
-
 
 ```
 [ -f /etc/asterisk/cel_odbc.conf ] > /etc/asterisk/cel_odbc.conf 
@@ -172,9 +158,7 @@ make clean && ./configure --with-tds && make update && make && make install
 
 ### Setup cel_tds configuration files.
 
-
 These are working samples from my system. You will need to modify for your setup. Define your usernames and passwords here, secure file as well. 
-
 
 /etc/asterisk/cel_tds.conf
 
@@ -217,4 +201,3 @@ CREATE TABLE cel (
 ```
 
 Start asterisk in verbose mode, you should see that asterisk logs a connection to the database and will now record every call to the database when it's complete.
-

@@ -142,7 +142,6 @@ IP address used in SDP for media handling
 
 At the time of SDP creation, the IP address defined here will be used as  
 
-
 #### rtp_symmetric
 
 Enforce that RTP must be symmetric. Send RTP back to the same address/port we received it from.
@@ -162,4 +161,3 @@ Determine whether SIP requests will be sent to the source IP address and port, i
 ## Clients Supporting ICE,STUN,TURN
 
 This is really relevant to media, so look to the [section here](/Configuration/Miscellaneous/Interactive-Connectivity-Establishment-ICE-in-Asterisk) for basic information on enabling this support and we'll add relevant examples later.
-

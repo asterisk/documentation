@@ -8,4 +8,3 @@ In the Key Concepts section [States and Presence](/Fundamentals/Key-Concepts/Sta
 The child pages here discuss the configuration of modules that allow device state to be distributed between multiple systems or instances of Asterisk.
 
 In This Section
-

@@ -54,20 +54,7 @@ A `Playback` resource will support two new operations:
 
 An attempt to move past the end of the last media resource will return a 2xx response and will result in a `PlaybackFinished` event. An attempt to move prior to the beginning of the first media resource will return a 2xx response and will result in a `PlaybackStarted` event.
 
-
-
-
-
-
-
 On this Page
-
-
-
-
-
-
-
 
 ### Example
 
@@ -102,12 +89,8 @@ Swagger Model updates
 
 The `channels` and `bridges` resources will have their respective `play` operations updated to allow multiple `media` query parameters. The list is constructed in the order that the query parameters are presented.
 
-
-
-
 ---
 
-  
 \[channels|bridges\]/play  
 
 ```js
@@ -124,12 +107,8 @@ The `channels` and `bridges` resources will have their respective `play` operati
 
 The `playbacks` resource will have its `control` operation updated with new options for the `operation` query parameter.
 
-
-
-
 ---
 
-  
 playbacks/control  
 
 ```
@@ -161,12 +140,8 @@ Core updates
 
 * New control frames for `next` and `prev` should be added:
 
-
-
-
 ---
 
-  
 frame.h  
 
 ```cpp
@@ -222,8 +197,6 @@ func_frame_trace
 Testing
 =======
 
-
-
 | Test | Path | Purpose |
 | --- | --- | --- |
 | control_prev | tests/apps/control_playback | Verify that sending a remote initiated `prev` command via AMI results in `CPLAYBACKSTATUS` being set to `PREVIOUS`. |
@@ -253,8 +226,6 @@ Phase One - Write Tests That Fail
 
 In both of these cases, it is expected that the existing tests can be used as a basis.
 
-
-
 | Task | Description | Status |
 | --- | --- | --- |
 | Write the dialplan application tests | Write tests that exercise the `ControlPlayback` and `Playback` applications with the new options. |  |
@@ -262,8 +233,6 @@ In both of these cases, it is expected that the existing tests can be used as a 
 
 Phase Two - Update the core/non-ARI portions
 --------------------------------------------
-
-
 
 | Task | Description | Status |
 | --- | --- | --- |
@@ -280,8 +249,6 @@ Phase Two - Update the core/non-ARI portions
 Phase Three - Update ARI
 ------------------------
 
-
-
 | Task | Description | Status |
 | --- | --- | --- |
 | Update the swagger model; generate bindings | What the task says. |  |
@@ -293,4 +260,3 @@ Phase Three - Update ARI
 * If the callback is called and the file is at the end/beginning of the stream, shift to the next/previous file appropriately and store the offset
 * In the main loop, start the playback at the appropriate offset
  |  |
-

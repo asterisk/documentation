@@ -32,12 +32,9 @@ asterisk-server\*CLI>
 
 ```
 
-
-
 !!! tip 
     The `-R` option will also attach a remote console - however, it will attempt to automatically reconnect to Asterisk if for some reason the connection is broken. This is particularly useful if your remote console restarts Asterisk.
 
-      
 [//]: # (end-tip)
 
 On this Page* To disconnect from a connected remote console, simply hit **Ctrl+C**:
@@ -59,12 +56,9 @@ Executing last minute cleanups
 
 ```
 
-
-
 !!! tip 
     You can stop/restart Asterisk in many ways. See [Stopping and Restarting Asterisk From The CLI](/Operation/Running-Asterisk/Stopping-and-Restarting-Asterisk-From-The-CLI) for more information.
 
-      
 [//]: # (end-tip)
 
 * You can start Asterisk in the foreground, with an attached **root console**, using the `-c` option:
@@ -102,31 +96,18 @@ Command line parameters can be combined. The previous command can also be invoke
 
 ```
 
-
-
 !!! note 
     The `VERBOSE` message level set via the command line is only applicable if the `asterisk.conf` `verbose` setting is not set.
 
-      
 [//]: # (end-note)
 
-
-
 ### Remote Console Verbosity
-
-
-
 
 !!! tip **  **This feature is only available in Asterisk 11 and later versions.
     ---
 
-
     The verboseness of a remote console is set independently of the verboseness of other consoles and the core. A root console can be created with no verboseness:
 [//]: # (end-tip)
-
-
-  
-  
 
 ```
 # asterisk -c
@@ -150,18 +131,12 @@ Multiple remote consoles can be attached, each with their own verbosity:
 Executing as another User
 -------------------------
 
-
-
-
 !!! warning Do not run as root
     Running Asterisk as `root` or as a user with super user permissions is dangerous and not recommended. There are many ways Asterisk can affect the system on which it operates, and running as `root` can increase the cost of small configuration mistakes.
 
     For more information, see the [README-SERIOUSLY.bestpractices.md](https://github.com/asterisk/asterisk/blob/master/README-SERIOUSLY.bestpractices.md) file delivered with Asterisk.
 
-      
 [//]: # (end-warning)
-
-
 
 Asterisk can be run as another user using the `-U` option:
 
@@ -252,6 +227,3 @@ Not all distributions of Linux/Unix are supported by the `make config` target. T
 * Gentoo
 * Mandrake/Mandriva
 * SuSE/Novell
-
-
-

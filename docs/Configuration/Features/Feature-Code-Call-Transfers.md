@@ -20,7 +20,6 @@ Channel driver technologies such as chan_sip and chan_pjsip have native capabili
 
 On this Page
 
-
 Blind transfer
 --------------
 
@@ -68,16 +67,10 @@ exten = 102,1,Dial(PJSIP/BOB,30,T)
 
 Asterisk should be restarted or relevant modules should be reloaded for changes to take effect.
 
-
-
-
 !!! tip 
     The same arguments ("t" and "T") work for the [Queue](/Latest_API/API_Documentation/Dialplan_Applications/Queue) and [Dial](/Latest_API/API_Documentation/Dialplan_Applications/Dial) applications!
 
-      
 [//]: # (end-tip)
-
-
 
 Feature codes for attended transfer control
 -------------------------------------------
@@ -203,5 +196,3 @@ An example call flow:
 * ALICE enters the digits 103 for the destination extension. Asterisk places BOB on hold and creates a channel for ALICE to dial CATHY.
 * CATHY answers - ALICE and CATHY talk. ALICE decides to complete the transfer and hangs up the phone.
 * Asterisk immediately hangs up the channel between ALICE and BOB. Asterisk plays a short beep tone to CATHY and then bridges the channels for BOB and CATHY.
-
-  

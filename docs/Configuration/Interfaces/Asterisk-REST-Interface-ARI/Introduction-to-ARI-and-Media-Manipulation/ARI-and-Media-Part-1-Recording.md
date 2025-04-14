@@ -56,7 +56,7 @@ client.run(apps=sys.argv[1])
 ```javascript title="vm-record.js" linenums="1"
 /*jshint node:true */
 'use strict';
- 
+
 var ari = require('ari-client');
 var util = require('util');
 var path = require('path');
@@ -65,7 +65,7 @@ var Event = require('./event');
 var StateMachine = require('./state_machine');
 // As we add new states to our state machine, this is where we will
 // add the new required states. 
- 
+
 ari.connect('http://localhost:8088', 'asterisk', 'asterisk', clientLoaded);
 
 var VoiceMailCall = function(ari_client, channel, mailbox) {
@@ -177,7 +177,7 @@ function RecordingState(call) {
 		call.channel.on("ChannelDtmfReceived", on_dtmf);
 		call.channel.record({name: recording.name, format: 'wav', beep: true,
 			ifExists: 'overwrite'}, recording);
-		
+
 		function cleanup() {
 			call.channel.removeListener('ChannelHangupRequest', on_hangup);
 			call.channel.removeListener('ChannelDtmfReceived', on_dtmf);
@@ -228,7 +228,7 @@ class EndingState(object):
 ```javascript title="ending_state.js" linenums="1"
 function EndingState(call) {
 	this.state_name = "ending";
-	
+
 	this.enter = function() {
 		channel_name = call.channel.name;
 		console.log("Ending voice mail call from", channel_name);
@@ -241,10 +241,10 @@ module.exports = EndingState;
 ```python title="hangup_state.py" linenums="1"
 class HungUpState(object):
 	state_name = "hungup"
-	
+
 	def __init__(self, call):
 		self.call = call
-	
+
 	def enter(self):
 		channel_name = self.call.channel.json.get('name')
 		print("Channel {0} hung up".format(channel_name))
@@ -254,7 +254,7 @@ class HungUpState(object):
 ```javascript title="hungup_state.js" linenums="1"
 function HungUpState(call) {
 	this.state_name = "hungup";
-	
+
 	this.enter = function() {
 		channel_name = call.channel.name;
 		console.log("Channel %s hung up", channel_name);
@@ -278,7 +278,7 @@ from hungup_state import HungUpState
 		hungup_state = HungUpState(self)
 		recording_state = RecordingState(self)
 		ending_state = EndingState(self)
-		
+
 		self.state_machine = StateMachine()
 		self.state_machine.add_transition(recording_state, Event.DTMF_OCTOTHORPE, ending_state)
 		self.state_machine.add_transition(recording_state, Event.HANGUP, hungup_state)
@@ -291,13 +291,12 @@ var RecordingState = require('./recording_state');
 var EndingState = require('./ending_state');
 var HungUpState = require('./hungup_state');
 
-
  // Inside our VoiceMailCall function
 	 this.setup_state_machine = function() {
 		 var hungup_state = new HungUpState(self)
 		 var recording_state = new RecordingState(self)
 		 var ending_state = new EndingState(self)
-		
+
 		 this.state_machine = new StateMachine()
 		 this.state_machine.add_transition(recording_state, Event.DTMF_OCTOTHORPE, ending_state)
 		 this.state_machine.add_transition(recording_state, Event.HANGUP, hungup_state)
@@ -336,7 +335,6 @@ Now we have a simple application set up to record a message, but it's pretty bar
 ![](record-with-retry.png)
 
 All that has changed is that there is a new transition, which means a minimal change to our current code to facilitate the change. In our `recording_state` file, we will rewrite the `on_dtmf` method as follows:
-
 
 ```python title="recording_state.py" linenums="1"
 def on_dtmf(self, channel, event):
@@ -402,7 +400,7 @@ this.setup_state_machine = function() {
 	var hungup_state = new HungUpState(this);
 	var recording_state = new RecordingState(this);
 	var ending_state = new EndingState(this);
-	
+
 	this.state_machine = new StateMachine();
 	this.state_machine.add_transition(recording_state, Event.DTMF_OCTOTHORPE, ending_state);
 	this.state_machine.add_transition(recording_state, Event.HANGUP, hungup_state);
@@ -453,7 +451,7 @@ import uuid
 
 class ReviewingState(object):
 	state_name = "reviewing"
-	
+
 	def __init__(self, call):
 		self.call = call
 		self.playback_id = None
@@ -461,7 +459,7 @@ class ReviewingState(object):
 		self.playback_finished = None
 		self.dtmf_event = None
 		self.playback = None
-	
+
 	def enter(self):
 		self.playback_id = str(uuid.uuid4())
 		print("Entering reviewing state")
@@ -474,23 +472,23 @@ class ReviewingState(object):
 		self.playback = self.call.channel.playWithId(
 			playbackId=self.playback_id, media="recording:{0}".format(
 			self.call.vm_path))
-	
+
 	def cleanup(self):
 		self.playback_finished.close()
 		if self.playback:
 			self.playback.stop()
 			self.dtmf_event.close()
 			self.hangup_event.close()
-	
+
 	def on_hangup(self, channel, event):
 		print("Accepted recording {0} on hangup".format(self.call.vm_path))
 		self.cleanup()
 		self.call.state_machine.change_state(Event.HANGUP)
-	
+
 	def on_playback_finished(self, event):
 		if self.playback_id == event.get('playback').get('id'):
 			self.playback = None
-	
+
 	def on_dtmf(self, channel, event):
 		digit = event.get('digit')
 		if digit == '#':
@@ -519,7 +517,7 @@ function ReviewingState(call) {
 		call.channel.on("ChannelDtmfReceived", on_dtmf);
 		call.client.on("PlaybackFinished", on_playback_finished);
 		call.channel.play({media: url}, playback);
-		
+
 		function cleanup() {
 			call.channel.removeListener('ChannelHangupRequest', on_hangup);
 			call.channel.removeListener('ChannelDtmfReceived', on_dtmf);
@@ -605,7 +603,7 @@ this.setup_state_machine = function() {
 	var recording_state = new RecordingState(this);
 	var ending_state = new EndingState(this);
 	var reviewing_state = new ReviewingState(this);
-	
+
 	this.state_machine = new StateMachine();
 	this.state_machine.add_transition(recording_state, Event.DTMF_OCTOTHORPE, reviewing_state);
 	this.state_machine.add_transition(recording_state, Event.HANGUP, hungup_state);
@@ -650,4 +648,3 @@ As an example, let's say that you have set DTMF <kbd>0</kbd> to be the key that 
 This discussion of recordings has focused on recording channel audio. It's important to note that bridges also have an option to be recorded. What's the difference? Recording a channel's audio records only the audio coming **from** a channel. Recording a bridge records the mixed audio coming from all channels into the bridge. This means that if you are attempting to do something like record a conversation between participants in a phone call, you would want to record the audio in the bridge rather than on either of the channels involved.
 
 Once recording is started on a bridge, the operations available for the live recording and the resulting stored recording are exactly the same as for live recordings and stored recordings on a channel. Since the API for recording a bridge and recording a channel are so similar, this page will not provide any examples of recording bridge audio.
-

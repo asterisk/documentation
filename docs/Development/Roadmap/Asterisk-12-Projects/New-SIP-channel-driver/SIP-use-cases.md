@@ -3,8 +3,6 @@ title: SIP use cases
 pageid: 21464262
 ---
 
-
-
 The following are use cases for a new SIP channel driver. These are written at a very high level, so details such as what transport is used, what codecs are used, how endpoints are configured, whether NAT is involved do not factor in. These details will be important when translating the use cases into test scenarios, however.
 
 Media sessions
@@ -102,16 +100,10 @@ Transfers/redirections
 * Audio flows bidirectionally between Alice and Bob.
 * Alice hangs up.
 
-
-
-
 !!! note 
     Transfer use cases below are centered around Bob transferring Alice to Carol. Use cases also should include Alice transferring Bob to Carol, but for the sake of brevity, these are omitted.
 
-      
 [//]: # (end-note)
-
-
 
 ### Local attended transfer: success
 
@@ -239,18 +231,12 @@ Transfers/redirections
 
 ### Local blind transfer: Busy transfer target
 
-
-
-
 !!! note 
     The behavior described here is highly dependent on the phone used by Bob. Some phones may react to a failed blind transfer by attempting to revive the initial call, while others may unconditionally end their call on a blind transfer no matter the outcome.
 
     Also note that the scenario described below will not work in current Asterisk because chan_sip "fakes" the sip-frag NOTIFY to Bob saying the call to Carol succeeded before Asterisk actually knows the outcome of the call. Alice and Bob will not be reconnected when Carol is found to be busy.
 
-      
 [//]: # (end-note)
-
-
 
 * Alice picks up her SIP phone and dials Bob's extension.
 * Bob's phone begins ringing; Alice hears ringing in her handset's speaker.
@@ -271,18 +257,12 @@ Transfers/redirections
 
 ### Local blind transfer: Nonexistent transfer target
 
-
-
-
 !!! note 
     The behavior described here is highly dependent on the phone used by Bob. Some phones may react to a failed blind transfer by attempting to revive the initial call, while others may unconditionally end their call on a blind transfer no matter the outcome.
 
     Note that unlike the previous scenario, this one actually should work in Asterisk's current chan_sip.
 
-      
 [//]: # (end-note)
-
-
 
 * Alice picks up her SIP phone and dials Bob's extension.
 * Bob's phone begins ringing; Alice hears ringing in her handset's speaker.
@@ -303,9 +283,6 @@ Transfers/redirections
 
 ### Local blind transfer: Transfer target does not answer
 
-
-
-
 !!! note 
     The behavior described here is dependent on the dialplan in use for calling Carol. If Carol's extension goes to Voicemail or is in some other way "answered", then the call will be deemed as successful even though a human did not respond to the call. If the dialplan signals congestion or some other such signal after the call times out, then the call will be deemed a failure. For this scenario, we assume the latter scenario: if Carol does not answer within a specified time frame, a congestion indication is sent.
 
@@ -313,10 +290,7 @@ Transfers/redirections
 
     Also note that the scenario described below will not work in current Asterisk because chan_sip "fakes" the sip-frag NOTIFY to Bob saying the call to Carol succeeded before Asterisk actually knows the outcome of the call. Alice and Bob will not be reconnected when Carol does not answer.
 
-      
 [//]: # (end-note)
-
-
 
 * Alice picks up her SIP phone and dials Bob's extension.
 * Bob's phone begins ringing; Alice hears ringing in her handset's speaker.
@@ -359,16 +333,10 @@ Transfers/redirections
 * Alice hangs up.
 * Carol's phone stops ringing.
 
-
-
-
 !!! note 
     The following tests refer to a concept called a "blond" transfer. This is the process by which a transferer uses the attended transfer key on his phone to perform a blind transfer. In other words, the transferer presses the attended transfer key, dials the appropriate extension, and then immediately hangs up when the destination begins ringing. Since the process involves hanging up once the far end begins ringing, it means that there are no scenarios to check such as "transfer target busy" or "transfer target nonexistent".
 
-      
 [//]: # (end-note)
-
-
 
 ### Local blond transfer: success
 
@@ -440,16 +408,10 @@ Transfers/redirections
 
 ### Remote attended transfer: success
 
-
-
-
 !!! note 
     In this scenarios, Alice and Bob are users of a remote system, and Carol is a user of the local Asterisk system. We only care about the experience for Carol in this situation, so details are glossed over regarding Bob and Alice's experience.
 
-      
 [//]: # (end-note)
-
-
 
 * Alice and Bob are connected on a call on a remote system
 * Bob presses the attended transfer key on his SIP phone.
@@ -485,30 +447,18 @@ FAX
 * The server notifies Bob that a FAX has been received for him.
 * Bob prints the contents of the FAX on a local printer.
 
-
-
-
 !!! note 
     I have not included a "gateway" FAX scenario because from the user perspective, it is the same as pass-through.
 
-      
 [//]: # (end-note)
-
-
 
 Registrations
 =============
 
-
-
-
 !!! note 
     The following scenarios were created under the assumption that the new chan_sip will, like the current chan_sip, initially only support a single contact URI per address of record. If multiple contacts are allowed per AoR, then there are several further use cases that could be listed.
 
-      
 [//]: # (end-note)
-
-
 
 ### Initial registration
 
@@ -548,16 +498,10 @@ Registrations
 Subscriptions
 =============
 
-
-
-
 !!! note 
     The tests described below exercise features that the current Asterisk chan_sip has. It may be worthwhile to pursue more options in the new chan_sip, especially as it pertains to PUBLISH support.
 
-      
 [//]: # (end-note)
-
-
 
 Message Waiting
 ---------------
@@ -610,16 +554,10 @@ Presence
 Call Completion
 ---------------
 
-
-
-
 !!! note 
     The following scenarios exercise CCBS, but CCNR is just as applicable.
 
-      
 [//]: # (end-note)
-
-
 
 ### CCBS: Normal
 

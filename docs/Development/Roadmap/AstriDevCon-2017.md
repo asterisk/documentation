@@ -53,8 +53,6 @@ Attendees
 * Jared Smith, US
 * Corey McFadden, Voneto, US
 
-
-
 Presentation Slides
 ===================
 
@@ -80,9 +78,6 @@ Current releases of 13 and 14 and now 15.0.0.
 
 Asterisk 15 contribution stats:  924 commits, 82 individual contributors, almost 2400 merged code reviews acros all branches on Gerrit in the past 12 months.
 
-  
-
-
 Top contributors by # of commits by people outside of Digium:
 
 * 104 Sean Bright, Callshaper
@@ -104,9 +99,6 @@ Top contributors by # of commits by people outside of Digium:
 * 4 Joshua Elson
 * 4 Jean Aunis
 * 4 Aaron an
-
-  
-
 
 ### What’s new in Asterisk 15?
 
@@ -162,15 +154,9 @@ Extensive work to preserve RTP sequence number gaps / losses across legs in a ca
 
 ICE interface blacklist optional added to rtp.conf
 
-  
-
-
 (Discussion about Sean Bright’s patch on Gerrit for ephemeral keys - that are used in the RTP encryption in DTLS-SRTP.)
 
 (Torrey brought up the point that Kamailio now has ephemeral authentication, as well, so that certificates for authentication can be time-limited, etc.)
-
-  
-
 
 Support for more than 32 dynamic RTP payloads now exists.
 
@@ -185,9 +171,6 @@ Support for BUNDLE was added
 app_steram_echo added
 
 SFU support in app_confbridge
-
-  
-
 
 (some discussion about SFU and MCU and the tradeoffs between them)
 
@@ -205,9 +188,6 @@ Asterisk 15 was released Tuesday, October 3rd of 2017
 
 Asterisk 16 is the next LTS target.  There is a lot of additional work that needs to go into the video capabilities of Asterisk 15 before we want to support it as an LTS.  The video work in Asterisk 15 is a great MVP, but it needs more functionality to be useful for years to come.  So, many changes will occur in 15 towards the goal of 16 as the next LTS.
 
-  
-
-
 RTCP-MUX
 
 Chrome decided to require an additional flag be passed in to interoperate with legacy endpoints that lack support for RTCP-MUX in January/February of this year
@@ -224,16 +204,11 @@ Chrome is supposed to completely remove support for RTCP-MUX at sometime around 
 
 11 was already in security-fix only mode and is going to be completely dead in October.  Get off that branch! (particularly if you run WebRTC)
 
-  
 Now, Joshua Colp and Kevin Harwell to talk about video SFU in Asterisk.  
-
 
 But first, recognition to those that have built tests for the Asterisk test-suite in the past year.
 
 Now, actually, Josh and Kevin.
-
-  
-
 
 ### Asterisk 15 and video.
 
@@ -395,8 +370,6 @@ Best option for rich ConfBridge SFU experience
 
 ### BUNDLE
 
-
-
 Required for Google Chrome to support multiple streams due to Plan B usage
 
 Specification to allow multiple streams to be sent/received over the same transport
@@ -433,23 +406,12 @@ Better handling of packet loss and out of order packets
 
 …(notes not compiled for this segment)
 
-  
-
-
 (A demo of CyberMegaPhone was done.)
-
-  
-
 
 Now, it’s time for planning the Agenda.
 
-  
-
-
 Agenda:
 -------
-
-
 
 * Prepared Presentations:
 	+ Talk by Wazo
@@ -458,10 +420,8 @@ Agenda:
 * Discussion by Nir
 * Proposed deprecation of `app_macro`
 
-
 	+ `Gosub has existed for 12 years now and is suitable replacement, but not 100% compatible.`
-	
-	
+
 		- `You exit a Macro by using Goto to any different context.`
 		- `You normally exit a Gosub using the Return app which sends control back to the n+1 priority that originally called Gosub.`
 		- `A Gosub return address can be thrown out using "StackPop", then you can use Goto with any context.`
@@ -492,7 +452,6 @@ Agenda:
 * What's the next revolution of Asterisk?
 * How to improve functions in ARI to make it more of a first class citizen?
 
-
 	+ Setting variables on a bridge (Sylvain and Torrey +1 this)
 	+ Set or Get multiple variables on a channel
 	+ List global variables
@@ -509,9 +468,6 @@ Agenda:
 		- Integration with edited wiki content
 
 Now Wazo
-
-  
-
 
 ### AMQP and the Stasis Message Bus
 
@@ -530,9 +486,6 @@ Remove external proxy for ARI
 <https://github.com/invisibleinc/go-ari-proxy>
 
 We already talked about this feature at the last AstriDevCon
-
-  
-
 
 ### Res_amqp
 
@@ -557,9 +510,6 @@ It doesn’t nothing, only an AMQP connection
 To install
 
  Git clone; make; make install
-
-  
-
 
 ### Res_stasis_amqp
 
@@ -589,13 +539,7 @@ To test on your Asterisk and get messages
 
  Adapt the exchange on the script
 
-  
-
-
 Allows you to subscribe on specific events, e.g. just the status of a Queue.
-
-  
-
 
 ### Demo TIme!
 
@@ -617,23 +561,11 @@ Roadmap
 
  Your feedback is welcome!
 
-  
-
-
 (Some discussion on why the original patches weren’t merged (lack of tests in the CEL and CDR modules) and about where this would end up if it was merged (16 if no tests, or 13 if tests).)
-
-  
-
 
 Now, Ludovic to talk about res_calendar!
 
-  
-
-
 ### Asterisk and the calendars, when non-C developers meet Asterisk+libical
-
-  
-
 
 #### Who am I?
 
@@ -649,9 +581,6 @@ Interested by benchmarks to find the bottlenecks
 
 Contributor of <https://www.techempower.com/benchmarks>
 
-  
-
-
 #### ALLOcloud
 
 Most simple as possible
@@ -660,9 +589,6 @@ Distributed telephony and collaboration
 
 Efficiency is the first class citizen (1500+ simultaneous calls by server)
 
-  
-
-
 #### Eyepea
 
 Full-monty customized solutions
@@ -670,9 +596,6 @@ Full-monty customized solutions
 Solutions mainly based on Wazo
 
 Historical business of the company
-
-  
-
 
 #### Customer needs:
 
@@ -684,17 +607,11 @@ Oncall schedule
 
 Google Calendar/Office365 integrations
 
-  
-
-
 #### There are two steps:
 
 Step 1, define a calendar.
 
 Step 2, put the calendar in the callflow
-
-  
-
 
 #### What now?  Icalendar is the most obvious format.
 
@@ -705,9 +622,6 @@ It’s a stable standard
 And it’s very old; more chances that there are good implementations
 
 But not really...old != stable.
-
-  
-
 
 First, they wrote an implementation using icalendar in Python
 
@@ -723,39 +637,21 @@ Need to dig in the original Astricon presentation to understand how to use the d
 
 And, crashes.
 
-  
-
-
 (they’re not C-developers)
 
 First client?  Crashed immediately.
-
-  
-
 
 The first challenge: recurrency; something very common with calendar events.
 
 Most libraries parse recurrency fields, but most don’t interpret correctly recurrency data.
 
-  
-
-
  They tested lots of libraries, but libical works best.
-
-  
-
 
 Plan B: libical integration in Asterisk
 
 They put it into production, and it worked!
 
-  
-
-
 But..then comes the daylight savings time in winter and everything’s going to be thrown for a loop.
-
-  
-
 
 Libcal has bugs with timezone and DST.
 
@@ -767,15 +663,9 @@ Libical3 isn’t released and available in Debian or CentOS.
 
 So, they had to import it manually from libical master branch.
 
-  
-
-
 One more bug remains...editing of a recurring event, recurrence-id.
 
 A fix was submitted on Gerrit: ASTERISK-27296 / 
-
-  
-
 
 For now, they have 973 calendars in production.
 
@@ -783,23 +673,11 @@ Right now, there is no file system support for res_calendar..working on a patch 
 
 Might do python bindings for libical.
 
-  
-
-
 Lunch!
-
-  
-
 
 ### Next, Daniel will talk about SIP Proxy Router and Media Server PBX; Integrate, Interconnect, Innovate.
 
-  
-
-
 There are things that aren’t yet possible, but we worry about how to make things easier.
-
-  
-
 
 #### Integrate:
 
@@ -807,15 +685,9 @@ There are things that aren’t yet possible, but we worry about how to make thin
 
  It would improve troubleshooting and unit testing.
 
-  
-
-
  We could integrate user profile and database structure
 
  That’d give us unified user authentication, user location, and presence.
-
-  
-
 
 #### Interconnect:
 
@@ -834,9 +706,6 @@ There are things that aren’t yet possible, but we worry about how to make thin
  ...so that we can make configuration easier on people.  People can forget to make changes in two places and have negative results today.
 
  Could be done via templates that respect special headers that are sent in the signaling.  Templates indicate what sorts of parameters to apply to the call/endpoint.
-
-  
-
 
 #### Innovate
 
@@ -862,44 +731,19 @@ There are things that aren’t yet possible, but we worry about how to make thin
 
  Federation and open peering.  There’s a lot of FUD out there that suggests SIP isn’t designed for federation.  But, if we don’t have a trust model that people will use, then they won’t interconnect, because they’re afraid of bad calls.
 
-  
-
-
 (Discussion about Asterisk’s existing, new capability to a allow identification of an incoming request by token, as well as discussion around how to pass a SIP call identifier around the internals of Asterisk - today, you can’t.)
-
-  
-
 
 (Discussion about the upcoming implementations of SHAKEN/STIR that are going to be mandated on many carriers.)
 
-  
-
-
 (Summary of discussion: It would be good to see work in the area of authentication between services.)
-
-  
-
 
 What about knowing what pool of servers is available?  DNS is currently used, for round-robin environments. What’s the right way in Kamailio though to make it intelligently aware there has been an expansion or contraction of a pool of available media (Asterisk) servers?
 
-  
-
-
 Kamailio has a module called RTJSON that allows pushing JSON into Kamailio to tell it about new routes.
-
-  
-
 
 (More discussion of the sharing of state and the dangers of replication - you’re only as good as your weakest server.)
 
-  
-  
-
-
 ### Now...Nir!
-
-  
-
 
 #### Make our community greater.
 
@@ -925,9 +769,6 @@ Why aren’t people using it enough?  It’s probably documentation.
 
 How do we change the state?
 
-  
-
-
 Kamailio has moved to accepting markdown.  ARI in Asterisk is Swagger, so there’s no markdown.  The docs in Asterisk are in the code in XML and aren’t in a good position to include lots of formatting.
 
 Kamailio, like Asterisk, isn’t missing reference documentation, just examples.
@@ -942,13 +783,7 @@ Sometimes, while people are happy to contribute code, because it’s a burden to
 
 Post-DevCon discussion to be had at the Wine event.
 
-  
-
-
 ### Now, the afternoon topics (at 3:30pm)...
-
-  
-
 
 #### Proposed deprecation of app_macro
 
@@ -964,13 +799,7 @@ Post-DevCon discussion to be had at the Wine event.
 
  Macro adds some code/complexity to the pbx core and a few apps.
 
-  
-
-
  (Room is in general consensus that it should be proposed.)
-
-  
-
 
 #### Proposed deprecation of chan_sip
 
@@ -984,33 +813,15 @@ Post-DevCon discussion to be had at the Wine event.
 
  Outside Forces - Is there a business case for keeping chan_sip around?
 
-  
-
-
 What 3 features are missing?  CCSS, AOC and outbound Subscriptions.  The only one that still gets used is CCSS.  Asterisk maintains support for CCSS in the core, and pjproject has the necessary bits to handle it; someone just has to tie them together.
-
-  
-
 
 What about stability?  The FreePBX community has a large thread with users indicating issues with PJSIP that they don’t experience with chan_sip, but no one is filing bugs or presenting actual issues - it appears to be primarily anecdotal.
 
-  
-
-
 Is it already defacto deprecated since it’s in extended support and there is no community maintainer?  And, are we being setup for something bad by not making it more clear.
-
-  
-
 
 What about configuration?  The converter isn’t necessarily feature complete; but is written in Python (hint, non-C developers)  There’s built-in help in Asterisk’s CLI (config show help [res_pjsip_endpoint.so](http://res_pjsip_endpoint.so), for example).  Is it worthwhile to make PJSIP read sip.conf?  (There are problems here as a friend and a peer are different and if you move that to PJSIP under the hood you can end up with weird configuration or vulnerability issues)
 
-  
-
-
 We need a plan of attack.  Something in 15 (warning on startup, something else in 16 (noload it and unselect it in menuconfig), and deprecate it in 18.  All deprecated modules should probably have a warning on startup.  When fully booted list all modules that are deprecated.
-
-  
-
 
 #### How do we get to an all ARI solution?
 
@@ -1026,23 +837,15 @@ We need a plan of attack.  Something in 15 (warning on startup, something else i
 
  How can an ARI app know more than just what’s in its own app?  “Subscribe all” when connecting the web socket.
 
-
-
 #### Getting features from 14 into an LTS.
 
 Discussion about the implications of 15 as a Standard release instead of an LTS.
-
-  
-
 
 #### What’s the next revolution of Asterisk?
 
  There’s going to be a continued focus on video.
 
  There’s going to be less of a focus on Asterisk as a PBX, and a continued focus on Asterisk as a general purpose media application server, which might be a PBX by the time a developer delivers it to an end user, but might be more like a call center, but could be something else entirely.
-
-  
-
 
 #### How to improve functions in ARI to make it more of a first class citizen?
 
@@ -1056,11 +859,6 @@ Discussion about the implications of 15 as a Standard release instead of an LTS.
 
  Easily redirect a channel into Stasis
 
-
-
-  
-
-
 #### Should Asterisk be packaged up as a ready-made app for certain purposes?
 
 (Discussion that this is complex and not best served by the core development team)
@@ -1068,4 +866,3 @@ Discussion about the implications of 15 as a Standard release instead of an LTS.
 ### Closing
 
 Everyone's work is appreciated! Thanks for coming!
-

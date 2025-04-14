@@ -18,7 +18,6 @@ The lunch this year will be sponsored by [E4 Strategies](https://www.e4strategie
 
 ### Event day schedule
 
-  
 AstriDevCon is a mix of open and focused discussion all on topics within the realm of Asterisk development, primarily regarding current concerns that Asterisk faces and how to improve Asterisk for the future.
 
 **Starting at 9AM**
@@ -28,8 +27,6 @@ AstriDevCon is a mix of open and focused discussion all on topics within the rea
 **Event ends this year at 3 PM.  (This year only, hopefully all will be back to normal next year)**
 
 We'll build a rough agenda together in the morning.
-
-
 
 Agenda:
 

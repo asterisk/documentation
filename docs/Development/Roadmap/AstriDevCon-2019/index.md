@@ -18,7 +18,6 @@ The lunch this year will be sponsored by [E4 Strategies](https://www.e4strategie
 
 ### Event day schedule
 
-  
 AstriDevCon is a mix of open and focused discussion all on topics within the realm of Asterisk development, primarily regarding current concerns that Asterisk faces and how to improve Asterisk for the future.
 
 **Starting at 9AM**
@@ -28,8 +27,6 @@ AstriDevCon is a mix of open and focused discussion all on topics within the rea
 **Event ends at 5PM.**
 
 We'll build a rough agenda together in the morning.
-
-
 
 LocationAstriDevCon will be held in the **Battery Ballroom A** room in the [The Omni at The Battery in Atlanta, Georgia](http://www.asterisk.org/community/astricon-user-conference/when-where) . This is the same location as [AstriCon](http://www.asterisk.org/community/astricon-user-conference/when-where), on the Monday before the main Astricon schedule.
 
@@ -66,8 +63,6 @@ Stream: [Youtube](https://youtu.be/SV-BG9n4mpE)
 We'll be using IRC during the AstriDevCon for out of band discussion, and may be taking some questions or participation from the channel. Keep in mind that it is hard to have a synchronous conversation between those present and speaking and those in the channel, so don't take it too hard if your question doesn't get brought up from the channel. We'll do our best.
 
 irc.freenode.net, #astridevcon
-
-
 
 ### Attendees:
 

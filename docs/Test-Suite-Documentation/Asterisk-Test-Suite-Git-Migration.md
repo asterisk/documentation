@@ -22,4 +22,3 @@ Maintaining the current structure certainly keeps things simple. Nothing would r
 #### A path forward:
 
 Moving to git and learning a new source control system is a task in and of itself for new git users. With this, and the aforementioned things, in mind for now the migration of the test suite from subversion to git will consist of *keeping the current structure in place*. The test suite structure will stay the same and the framework and tests will be maintained in one repository to be hosted on git.asterisk.org.
-

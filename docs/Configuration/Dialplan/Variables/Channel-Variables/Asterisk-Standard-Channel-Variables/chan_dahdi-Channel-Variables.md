@@ -10,5 +10,3 @@ pageid: 4620419
 * ${FAXEXTEN} \* - The extension called before being redirected to "fax"
 * ${PRIREDIRECTREASON} \* - Reason for redirect, if a call was directed
 * ${SMDI_VM_TYPE} \* - When an call is received with an SMDI message, the 'type' of message 'b' or 'u'
-
-

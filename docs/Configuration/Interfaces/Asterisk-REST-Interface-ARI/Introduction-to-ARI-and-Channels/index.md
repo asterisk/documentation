@@ -78,7 +78,6 @@ For our Python examples, we will rely primarily on the [ari-py](https://github.c
 
     **Please don't use these credentials in production systems!**
 
-      
 [//]: # (end-tip)
 
 ```python
@@ -148,7 +147,6 @@ The full source code for `channel-dump.py` is shown below:
 
 ---
 
-  
 channel-dump.py  
 
 ```python
@@ -224,7 +222,6 @@ For our JavaScript examples, we will rely primarily on the Node.js [ari-client](
 
     **Please don't use these credentials in production systems!**
 
-      
 [//]: # (end-tip)
 
 ```javascript
@@ -372,4 +369,3 @@ id: asterisk-01-1402353503.1
 PJSIP/alice-00000001 has left the application
 
 ```
-

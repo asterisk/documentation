@@ -23,7 +23,6 @@ devstate list -- List currently known custom device states
 
 On this Page
 
-
 Extension State
 ===============
 
@@ -55,12 +54,9 @@ presencestate list -- List currently know custom presence states
 
 ```
 
-
-
 Asterisk Manager Interface actions
 ==================================
 
 Any of the previously mentioned functions could be called via [AMI](/Configuration/Interfaces/Asterisk-Manager-Interface-AMI) with the [Setvar](/Latest_API/API_Documentation/AMI_Actions/Setvar) and [Getvar](/Latest_API/API_Documentation/AMI_Actions/Getvar) actions.
 
 Then there are two more specific actions called [ExtensionState](/Latest_API/API_Documentation/AMI_Actions/ExtensionState) and [PresenceState](/Latest_API/API_Documentation/AMI_Actions/PresenceState). See the linked documentation for more info.
-

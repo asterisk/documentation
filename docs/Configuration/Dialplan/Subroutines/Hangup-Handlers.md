@@ -3,12 +3,8 @@ title: Hangup Handlers
 pageid: 20189328
 ---
 
-
-
-
 !!! info "**  Hangup Handlers were added in **Asterisk 11"
     ---
-
 
     Overview
     --------
@@ -18,28 +14,18 @@ pageid: 20189328
     Multiple hangup handlers can be attached to a single channel. If multiple hangup handlers are attached to a channel, the hangup handlers will be executed in the order of most recently added first.
 [//]: # (end-info)
 
-
-
 **Information: NOTES** * Please note that when the hangup handlers execute in relation to the h extension is not defined. They could execute before or after the h extension.
 * Call transfers, call pickup, and call parking can result in channels on both sides of a bridge containing hangup handlers.
 * Hangup handlers can be attached to any call leg using [pre-dial handlers](/Configuration/Dialplan/Subroutines/Pre-Dial-Handlers).
-  
-
-
 
 ---
-
-
-
 
 !!! warning WARNINGS
     * As hangup handlers are subroutines, they must be terminated with a call to [Return](/Latest_API/API_Documentation/Dialplan_Applications/Return).
     * Adding a hangup handler in the h extension or during a hangup handler execution is undefined behaviour.
     * As always, hangup handlers, like the h extension, need to execute quickly because they are in the hangup sequence path of the call leg. Specific channel driver protocols like ISDN and SIP may not be able to handle excessive delays completing the hangup sequence.
-      
+
 [//]: # (end-warning)
-
-
 
 Dialplan Applications and Functions
 -----------------------------------
@@ -144,12 +130,8 @@ same => n,Return()
 CLI Commands
 ------------
 
-
-
-
 ---
 
-  
 Single channel  
 
 ```
@@ -157,11 +139,8 @@ core show hanguphandlers <chan>
 
 ```
 
-
-
 ---
 
-  
 Output  
 
 ```
@@ -172,11 +151,8 @@ Channel Handler
 
 ```
 
-
-
 ---
 
-  
 All channels  
 
 ```
@@ -184,11 +160,8 @@ core show hanguphandlers all
 
 ```
 
-
-
 ---
 
-  
 Output  
 
 ```
@@ -201,4 +174,3 @@ Channel Handler
  <second handler to execute>
 
 ```
-

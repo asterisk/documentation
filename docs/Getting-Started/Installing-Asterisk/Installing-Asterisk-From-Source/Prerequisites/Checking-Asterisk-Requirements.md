@@ -23,13 +23,10 @@ This will run for a couple of minutes, and warn you of any missing system librar
 
 Once a dependency is resolved, run **configure** again to make sure the missing dependency is fixed.
 
-
 !!! tip **  If you have many missing dependencies, you may find yourself running **configure
     a lot. If that is the case, you'll do yourself a favour by checking the [System Requirements](/Operation/System-Requirements) or installing all dependencies via the `install_prereq` script.
 
-      
 [//]: # (end-tip)
-
 
 On this PageUpon successful completion of **./configure**, you should see a message that looks similar to the one shown below. (Obviously, your host CPU type may be different than the below.)
 
@@ -65,29 +62,18 @@ configure: host-cpu:vendor:os: x86_64 : unknown : linux-gnu :
 
 ```
 
-
-
 !!! tip Cached Data** The **./configure
     command caches certain data to speed things up if it's invoked multiple times. To clear all the cached data, you can use the following command to completely clear out any cached data from the Asterisk build system.
 [//]: # (end-tip)
 
-
-  
-  
-
 ```
 [root@server asterisk-14.X.Y]# make distclean
-  
-
-
 
 ---
-
 
 You can then re-run **./configure**.
 
 ```
-
 
 ## Using install_prereq
 
@@ -97,13 +83,9 @@ The **install_prereq** script is included with every release of Asterisk in the 
 * **install** - install package dependencies only. Depending on your distribution of Linux, version of Asterisk, and capabilities you wish to use, this may be sufficient.
 * **install-unpackaged** - install dependencies that don't have packages but only have tarballs. You may need these dependencies for certain capabilities in Asterisk.
 
-
-
-
 !!! warning 
     You should always use your operating system's package management tools to ensure that your system is running the latest software **before** running `install_prereq`. Ubuntu 14's libsnmp-dev package, for instance, has an issue where it will attempt to remove critical system packages if the system isn't updated before an attempt is made to install that package.
 
-      
 [//]: # (end-warning)
 
 ```
@@ -114,4 +96,3 @@ The **install_prereq** script is included with every release of Asterisk in the 
 [root@server asterisk-14.X.Y/contrib/scripts]# ./install_prereq install-unpackaged
 
 ```
-

@@ -6,23 +6,18 @@ pageid: 22088290
 Asterisk Client Library Generator
 =================================
 
-
 Generator for client libraries for [Asterisk's REST API](../) which is provided by res_http_stasis.
-
 
 Languages
 ---------
-
 
 * Python
 * JavaScript
 * Perl
 * format such that additional language support is not difficult.
 
-
 Library structure
 =================
-
 
 * Top-level library or object or structure
 	+ Asterisk.get_info()
@@ -42,14 +37,11 @@ Library structure
 	+ add_event_handler(event_name, function)
 	+ remove_event_handler(event_name, function)
 
-
 Library behavior
 ================
 
-
 HTTP codes
 ----------
-
 
 * 2XX - no error. If we got a JSON response, return it, else, return void.
 * 3XX - followed by HTTP libraries
@@ -69,10 +61,8 @@ JavaScript
 ----------
 * Methods should pass the object specified in the Swagger documentation into a success handler (2xx). Fatal errors (400, 418, 5XX) will cause an error to be throw. Non-fatal errors will call an error handler (404, 409).
 
-
 Project location and directory structure
 ========================================
-
 
 This project is located [on GitHub](https://github.com/asterisk/asterisk_rest_libraries). Inside asterisk_rest_libraries
 
@@ -109,4 +99,3 @@ asterisk_rest_libraries
  ... and perhaps more in the future
 
 ```
-

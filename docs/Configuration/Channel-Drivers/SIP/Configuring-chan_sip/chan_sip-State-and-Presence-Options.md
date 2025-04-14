@@ -52,8 +52,6 @@ notifyhold=no
 
 ```
 
-
-
 Extension State, Hints, Subscriptions
 =====================================
 
@@ -128,10 +126,3 @@ Default: no
  ; to PICKUPMARK.
 
 ```
-
-
-
-
-
-
-

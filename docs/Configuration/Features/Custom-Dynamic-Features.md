@@ -25,8 +25,6 @@ Syntax:
 
 Syntax Fields:
 
-
-
 | Field Name | Description |
 | --- | --- |
 | FeatureName | This is the name of the feature used when setting the DYNAMIC_FEATURES variable to enable usage of this feature. |
@@ -49,12 +47,8 @@ Example Feature Definitions:
 
 Here we have defined a few custom features to give you an idea of how the configuration looks.
 
-
-
-
 ---
 
-  
 features.conf  
 
 ```
@@ -82,12 +76,8 @@ DYNAMIC_FEATURES accepts as an argument a list of hash-sign delimited feature na
 
 Example Usage:
 
-
-
-
 ---
 
-  
 extensions.conf  
 
 ```
@@ -95,13 +85,7 @@ extensions.conf
 
 ```
 
-
-
 !!! tip Tip: Variable Inheritance
     The [two leading underscores](/Configuration/Dialplan/Variables/Channel-Variables/Variable-Inheritance) allow these feature settings to be set on the outbound channels, as well.  Otherwise, only the original channel will have access to these features.
 
-      
 [//]: # (end-tip)
-
-
-

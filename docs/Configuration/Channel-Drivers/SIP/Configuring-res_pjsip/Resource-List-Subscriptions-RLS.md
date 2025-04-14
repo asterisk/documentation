@@ -14,7 +14,6 @@ In a PBX environment, it is common for SIP devices to subscribe to many resource
 * In the SIP stack, N-squared long-term SIP dialogs have to be maintained, tying up more system resources (e.g. memory).
 On this Page
 
-
 These limitations can drastically limit the number of devices a PBX administrator can use with an Asterisk system. Even if the hardware is capable of handling the mean traffic of, say, 200 users, it may be required to limit the number of users to 50 or fewer because of the N-squared subscriptions generating so much simultaneous traffic.
 
 Resource list subscriptions provide relief for this problem by allowing for resources to be grouped into lists. A single subscription to a list will result in multiple back-end subscriptions to the resources in that list. Notifications of state changes can also be batched so that multiple state changes may be conveyed in a single message. This can help to significantly decrease the amount of subscription-related traffic and processing being performed.
@@ -154,7 +153,6 @@ type = resource_list
 event = presence
 list_item = tech_support
 
-
 [tech_support]
 type = resource_list
 event = presence
@@ -263,4 +261,3 @@ Lack of dynamism
 Resource lists can be updated as you please, adding and removing list items, altering the batching interval, etc. However, you will find that when a list is altered, any current subscriptions to the list are not updated to reflect the changes to the list. This is because the list is read from configuration at the time that the subscription is established, and the configuration is never again consulted during the lifetime of the subscription. If configuration is updated, then you must terminate your current subscriptions to the list and create a new subscription in order to apply the changes.
 
 Similarly, the state of resources is locked in at the time the subscription is established. For instance, if a list contains a list item that does not exist at the time the subscription is established, if that resource comes into existence later, then the established subscription is not updated to properly reflect the added list item. The subscription must be terminated and re-established in order to have the corrected list item included.
-

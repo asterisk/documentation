@@ -21,12 +21,8 @@ Setup
 
 A "setup" must be the first request sent. It is used to determine if further interactions will be allowed, and if so then any given parameters are used to establish initial configuration and setup.
 
-
-
-
 ---
 
-  
 offer request  
 
 ```
@@ -52,12 +48,8 @@ offer request
 
 "request", "id", and "version" are all required fields and must be included. The version is a value that represents the current AEAP message version. As well, at least one or more "codecs" must be specified. While the codec "name" is mandatory, codec attributes are optional. However, if a codec attribute is given then both the attribute "name" and "value" must be provided. "params" is optional, but when given each parameter must be specified as a "name"/"value" pair.
 
-
-
-
 ---
 
-  
 Example 1 offer request  
 
 ```
@@ -70,11 +62,8 @@ Example 1 offer request
 
 ```
 
-
-
 ---
 
-  
 Example 2 offer request  
 
 ```
@@ -87,11 +76,8 @@ Example 2 offer request
 
 ```
 
-
-
 ---
 
-  
 Example 3 offer request  
 
 ```
@@ -107,12 +93,8 @@ Example 3 offer request
 
 A "setup" response must only be sent in response to a "setup" request, and must be formatted as follows:
 
-
-
-
 ---
 
-  
 offer response okay  
 
 ```
@@ -132,12 +114,8 @@ offer response okay
 
 Much like the initial request, "response", "id", and "codecs" are required fields. The codec "name" is also required, and must match one of the names given in the request's codec list. "attributes" are again optional.
 
-
-
-
 ---
 
-  
 Example 1 offer response okay  
 
 ```
@@ -154,12 +132,8 @@ Get
 
 A "get" request can be sent anytime after an initial "setup" is accepted, and is used to retrieve attributes, settings, and other data (e.g. results). A "get" request has the following form:
 
-
-
-
 ---
 
-  
 get request  
 
 ```
@@ -173,12 +147,8 @@ get request
 
 All fields are required, and at least one parameter name to retrieve must be specified. Parameter names should be the name of the attribute, setting, etc... to be retrieved.
 
-
-
-
 ---
 
-  
 Example 1 get request  
 
 ```
@@ -192,12 +162,8 @@ Example 1 get request
 
 A "get" response is similar, but retrieved "params" are made available in name/value pairs:
 
-
-
-
 ---
 
-  
 get response okay  
 
 ```
@@ -211,12 +177,8 @@ get response okay
 
 Be aware that the returned value's type is named parameter dependent. For instance, depending on the given "param" the returned "value" could be a string, an integer, or even an array of values.
 
-
-
-
 ---
 
-  
 Example 1 get response okay  
 
 ```
@@ -233,12 +195,8 @@ Set
 
 A "set" request can be sent anytime after an initial "setup" is accepted, and is used to set attributes, settings, and other data on the remote. A "set" request has the following form, and can be used to even set multiple parameters at once:
 
-
-
-
 ---
 
-  
 set request  
 
 ```
@@ -252,12 +210,8 @@ set request
 
 All fields are required. Similar to "get", a named parameter's value type varies based on the parameters themselves.
 
-
-
-
 ---
 
-  
 Example 1 set request  
 
 ```
@@ -271,12 +225,8 @@ Example 1 set request
 
 A "set" response to a successful request is just a basic acknowledgment that only contains response name and id:
 
-
-
-
 ---
 
-  
 set response  
 
 ```
@@ -287,11 +237,8 @@ set response
 
 ```
 
-
-
 ---
 
-  
 Example 1 set response okay  
 
 ```
@@ -307,12 +254,8 @@ Errors
 
 When an error occurs for any given request all responses follow the same format. Similar to a regular response the response name and id are the same as that of the request. The only other additional field is an "error_msg", which is a text description of the error:
 
-
-
-
 ---
 
-  
 error response  
 
 ```
@@ -324,11 +267,8 @@ error response
 
 ```
 
-
-
 ---
 
-  
 Example 1 setup error  
 
 ```
@@ -340,11 +280,8 @@ Example 1 setup error
 
 ```
 
-
-
 ---
 
-  
 Example 2 get error  
 
 ```
@@ -356,11 +293,8 @@ Example 2 get error
 
 ```
 
-
-
 ---
 
-  
 Example 3 set error  
 
 ```
@@ -371,10 +305,3 @@ Example 3 set error
 }
 
 ```
-
-
-
-
-
-
-

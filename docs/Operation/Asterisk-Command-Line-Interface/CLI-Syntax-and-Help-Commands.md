@@ -14,16 +14,10 @@ For example:
 * **voicemail show users** - returns a list of app_voicemail loaded users
 * **core set debug 5** - sets the core debug to level 5 verbosity.
 
-
-
-
 !!! note 
     Commands are provided by the core, or by Asterisk modules. If the component that provides the commands is not loaded, then the commands it provides won't be available.
 
-      
 [//]: # (end-note)
-
-
 
 Asterisk does support command aliases. You can find information in the [Asterisk CLI Configuration](/Configuration/Core-Configuration/Asterisk-CLI-Configuration) section.
 
@@ -36,7 +30,6 @@ Command-line Completion
 The Asterisk CLI supports command-line completion on all commands, including many arguments. To use it, simply press the **<kbd>Tab</kbd>** key at any time while entering the beginning of any command. If the command can be completed unambiguously, it will do so, otherwise it will complete as much of the command as possible. Additionally, Asterisk will print a list of all possible matches, if possible.
 
 On this Page
-
 
 Listing commands and showing usage
 ----------------------------------
@@ -132,4 +125,3 @@ CallerID information for the endpoint
  Must be in the format 'Name <Number>', or only '<Number>'. 
 
 ```
-

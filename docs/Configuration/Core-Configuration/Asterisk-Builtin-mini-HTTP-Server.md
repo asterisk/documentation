@@ -31,5 +31,3 @@ Configuration Options
 =====================
 
 See the sample file in your version of Asterisk for detail on the various configuration options, as this information is not yet automatically pushed to the wiki.  
-
-

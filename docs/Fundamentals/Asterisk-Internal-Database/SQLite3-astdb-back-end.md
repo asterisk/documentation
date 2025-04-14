@@ -3,16 +3,10 @@ title: SQLite3 astdb back-end
 pageid: 19005573
 ---
 
-
-
-
 !!! note **  Starting with **Asterisk 10** , Asterisk uses **SQLite3
     for its internal database instead of the Berkeley DB database used by Asterisk 1.8 and previous versions.
 
-      
 [//]: # (end-note)
-
-
 
  Every effort has been made to make this transition as automatic and painless for users as possible. This page will describe the upgrade process, any potential problems, and the appropriate solutions to those problems.
 
@@ -23,16 +17,10 @@ Asterisk 10 will attempt to upgrade any existing old-style Berkeley DB internal 
 
 When Asterisk 10 is run, as part of the initialization process it checks for the existence of the SQLite3 database. If it doesn't exist and an old-style Berkeley DB does exist, it will attempt to convert the Berkeley DB to the SQLite3 format. If no existing database exists, a new SQLite 3 database will be created. If the conversion fails, a warning will be displayed with instructions describing possible fixes and Asterisk will exit.
 
-
-
-
 !!! info ""
     It is important that you perform the upgrade process at the same permission level that you expect Asterisk to run at. For example, if you upgrade as root, but run Asterisk as a user with lower permissions, the SQLite3 database created as part of the upgrade will not be able to be accessed by Asterisk.
 
-      
 [//]: # (end-info)
-
-
 
 Troubleshooting an upgrade
 --------------------------
@@ -79,4 +67,3 @@ Migrating back from Asterisk 10 to Asterisk 1.8
 -----------------------------------------------
 
 If migrating back to Asterisk 1.8 from Asterisk 10, it is possible to convert the SQLite 3 internal database back to the Berkeley DB format that Asterisk 1.8 uses by using the astdb2bdb utility found in the utils/ directory of the Asterisk 10 source. To build, make sure that astdb2bdb is selected in the Utilities section when running 'make menuselect'. Running 'utils/astdb2bdb /var/lib/asterisk/astdb.sqlite3' (replacing '/var/lib/asterisk' with the 'astdbdir' directory listed in asterisk.conf) will produce a file named 'astdb' in the current directory. Back up any existing astdb file in the astdbdir directory and replace it with the newly created astdb file.
-

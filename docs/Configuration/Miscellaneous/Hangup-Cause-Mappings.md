@@ -5,8 +5,6 @@ title: Hangup Cause Mappings
 Asterisk Hangup Cause Code Mappings
 -----------------------------------
 
-
-
 | Asterisk Value | ISDN Cause codes (Q.850 & Q.931 unless specified) | MFC/R2 | SIP/PJSIP | Motif |
 | --- | --- | --- | --- | --- |
 | AST\_CAUSE\_NOT\_DEFINED | Cause not defined | OR2\_CAUSE\_UNSPECIFIED |   |   |

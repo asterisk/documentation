@@ -69,7 +69,7 @@ def stasis_start_cb(channel_obj, ev):
 	channel = channel_obj.get('channel')
 	channel_name = channel.json.get('name')
 	args = ev.get('args')
-	
+
 	if not args:
 		print("Error: {} didn't provide any arguments!".format(channel_name))
 		return
@@ -126,18 +126,18 @@ This is shown in the following code:
 ```python linenums="1"
 def outgoing_start_cb(channel_obj, ev):
 	"""StasisStart handler for our dialed channel"""
-	
+
 	print("{} answered; bridging with {}".format(outgoing.json.get('name'),
 		channel.json.get('name'))
 	channel.answer()
-	
+
 	bridge = client.bridges.create(type='mixing')
 	bridge.addChannel(channel=[channel.id, outgoing.id])
-	
+
 	# Clean up the bridge when done
 	channel.on_event('StasisEnd', lambda \*args: safe_bridge_destroy(bridge))
 	outgoing.on_event('StasisEnd', lambda \*args: safe_bridge_destroy(bridge))
-	
+
 outgoing.on_event('StasisStart', outgoing_start_cb)
 ```
 
@@ -175,30 +175,29 @@ def safe_bridge_destroy(bridge):
 		if e.response.status_code != requests.codes.not_found:
 			raise e
 
-
 def stasis_start_cb(channel_obj, ev):
 	"""Handler for StasisStart"""
-	
+
 	channel = channel_obj.get('channel')
 	channel_name = channel.json.get('name')
 	args = ev.get('args')
-	
+
 	if not args:
 		print("Error: {} didn't provide any arguments!".format(channel_name))
 		return
-	
+
 	if args and args[0] != 'inbound':
 		# Only handle inbound channels here
 		return
-	
+
 	if len(args) != 2:
 		print("Error: {} didn't tell us who to dial".format(channel_name))
 		channel.hangup()
 		return
-	
+
 	print("{} entered our application".format(channel_name))
 	channel.ring()
-	
+
 	try:
 		print "Dialing {}".format(args[1])
 		outgoing = client.channels.originate(endpoint=args[1],
@@ -207,20 +206,20 @@ def stasis_start_cb(channel_obj, ev):
 		print("Whoops, pretty sure %s wasn't valid" % args[1])
 		channel.hangup()
 		return
-	
+
 	channel.on_event('StasisEnd', lambda \*args: safe_hangup(outgoing))
 	outgoing.on_event('StasisEnd', lambda \*args: safe_hangup(channel))
 
  def outgoing_start_cb(channel_obj, ev):
 	"""StasisStart handler for our dialed channel"""
-	
+
 	print("{} answered; bridging with {}".format(outgoing.json.get('name'),
 		channel.json.get('name'))
 	channel.answer()
-	
+
 	bridge = client.bridges.create(type='mixing')
 	bridge.addChannel(channel=[channel.id, outgoing.id])
-	
+
 	# Clean up the bridge when done
 	channel.on_event('StasisEnd', lambda \*args: safe_bridge_destroy(bridge))
 	outgoing.on_event('StasisEnd', lambda \*args: safe_bridge_destroy(bridge))
@@ -250,15 +249,15 @@ This example shows how to use anonymous functions to call functions with extra p
 function stasisStart(event, channel) {
 	// ensure the channel is not a dialed channel
 	var dialed = event.args[0] === 'dialed';
-	
+
 	if (!dialed) {
 		channel.answer(function(err) {
 			if (err) {
 				throw err;
 			}
-		
+
 			console.log('Channel %s has entered our application', channel.name);
-		
+
 			var playback = client.Playback();
 			channel.play({media: 'sound:pls-wait-connect-call'},
 				playback, function(err, playback) {
@@ -266,7 +265,7 @@ function stasisStart(event, channel) {
 					throw err;
 				}
 			});
-			
+
 			originate(channel);
 		});
 	}
@@ -279,19 +278,19 @@ We then prepare an object with a locally generate Id for the dialed channel and 
 ```javascript linenums="1"
 function originate(channel) {
 	var dialed = client.Channel();
-	
+
 	channel.on('StasisEnd', function(event, channel) {
 		hangupDialed(channel, dialed);
 	});
-	
+
 	dialed.on('ChannelDestroyed', function(event, dialed) {
 		hangupOriginal(channel, dialed);
 	});
-	
+
 	dialed.on('StasisStart', function(event, dialed) {
 		joinMixingBridge(channel, dialed);
 	});
-	
+
 	dialed.originate({endpoint: process.argv[2], app: 'bridge-dial', appArgs: 'dialed'},
 		function(err, dialed) {
 		if (err) {
@@ -336,17 +335,17 @@ We then handle the StasisStart event for the dialed channel by registered an eve
 ```javascript linenums="1"
 function joinMixingBridge(channel, dialed) {
 	var bridge = client.Bridge();
-	
+
 	dialed.on('StasisEnd', function(event, dialed) {
 		dialedExit(dialed, bridge);
 	});
-	
+
 	dialed.answer(function(err) {
 		if (err) {
 			throw err;
 		}
 	});
-	
+
 	bridge.create({type: 'mixing'}, function(err, bridge) {
 		if (err) {
 			throw err;
@@ -364,7 +363,7 @@ function dialedExit(dialed, bridge) {
 	console.log(
 		'Dialed channel %s has left our application, destroying bridge %s',
 		dialed.name, bridge.id);
-	
+
 	bridge.destroy(function(err) {
 		if (err) {
 			throw err;
@@ -379,7 +378,7 @@ Finally, the function that was called earlier by the callback handling the Stasi
 function addChannelsToBridge(channel, dialed, bridge) {
 	console.log('Adding channel %s and dialed channel %s to bridge %s',
 		channel.name, dialed.name, bridge.id);
-	
+
 	bridge.addChannel({channel: [channel.id, dialed.id]}, function(err) {
 		if (err) {
 			throw err;
@@ -412,20 +411,20 @@ function clientLoaded (err, client) {
 	if (err) {
 		throw err;
 	}
-	
+
 	// handler for StasisStart event
 	function stasisStart(event, channel) {
 		// ensure the channel is not a dialed channel
 		var dialed = event.args[0] === 'dialed';
-		
+
 		if (!dialed) {
 			channel.answer(function(err) {
 				if (err) {
 					throw err;
 				}
-			
+
 				console.log('Channel %s has entered our application', channel.name);
-			
+
 				var playback = client.Playback();
 				channel.play({media: 'sound:pls-wait-connect-call'},
 					playback, function(err, playback) {
@@ -433,27 +432,27 @@ function clientLoaded (err, client) {
 						throw err;
 					}
 				});
-			
+
 				originate(channel);
 			});
 		}
 	}
-	
+
 	function originate(channel) {
 		var dialed = client.Channel();
-		
+
 		channel.on('StasisEnd', function(event, channel) {
 			hangupDialed(channel, dialed);
 		});
-		
+
 		dialed.on('ChannelDestroyed', function(event, dialed) {
 			hangupOriginal(channel, dialed);
 		});
-		
+
 		dialed.on('StasisStart', function(event, dialed) {
 			joinMixingBridge(channel, dialed);
 		});
-		
+
 		dialed.originate(
 			{endpoint: process.argv[2], app: 'bridge-dial', appArgs: 'dialed'},
 			function(err, dialed) {
@@ -462,48 +461,48 @@ function clientLoaded (err, client) {
 			}
 		});
 	}
-	
+
 	// handler for original channel hanging up so we can gracefully hangup the
 	// other end
 	function hangupDialed(channel, dialed) {
 		console.log(
 			'Channel %s left our application, hanging up dialed channel %s',
 			channel.name, dialed.name);
-		
+
 		// hangup the other end
 		dialed.hangup(function(err) {
 			// ignore error since dialed channel could have hung up, causing the
 			// original channel to exit Stasis
 		});
 	}
-	
+
 	// handler for the dialed channel hanging up so we can gracefully hangup the
 	// other end
 	function hangupOriginal(channel, dialed) {
 		console.log('Dialed channel %s has been hung up, hanging up channel %s',
 			dialed.name, channel.name);
-		
+
 		// hangup the other end
 		channel.hangup(function(err) {
 			// ignore error since original channel could have hung up, causing the
 			// dialed channel to exit Stasis
 		});
 	}
-	
+
 	// handler for dialed channel entering Stasis
 	function joinMixingBridge(channel, dialed) {
 		var bridge = client.Bridge();
-		
+
 		dialed.on('StasisEnd', function(event, dialed) {
 			dialedExit(dialed, bridge);
 		});
-		
+
 		dialed.answer(function(err) {
 			if (err) {
 				throw err;
 			}
 		});
-		
+
 		bridge.create({type: 'mixing'}, function(err, bridge) {
 			if (err) {
 				throw err;
@@ -512,34 +511,34 @@ function clientLoaded (err, client) {
 			addChannelsToBridge(channel, dialed, bridge);
 		});
 	}
-	
+
 	// handler for the dialed channel leaving Stasis
 	function dialedExit(dialed, bridge) {
 		console.log(
 			'Dialed channel %s has left our application, destroying bridge %s',
 			dialed.name, bridge.id);
-		
+
 		bridge.destroy(function(err) {
 			if (err) {
 				throw err;
 			}
 		});
 	}
-	
+
 	// handler for new mixing bridge ready for channels to be added to it
 	function addChannelsToBridge(channel, dialed, bridge) {
 		console.log('Adding channel %s and dialed channel %s to bridge %s',
 			channel.name, dialed.name, bridge.id);
-		
+
 		bridge.addChannel({channel: [channel.id, dialed.id]}, function(err) {
 			if (err) {
 				throw err;
 			}
 		});
 	}
-	
+
 	client.on('StasisStart', stasisStart);
-	
+
 	client.start('bridge-dial');
 }
 
@@ -558,4 +557,3 @@ Dialed channel PJSIP/bob-00000002 has been hung up, hanging up channel PJSIP/ali
 Channel PJSIP/alice-00000001 left our application, hanging up dialed channel undefined
 
 ```
-

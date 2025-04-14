@@ -64,12 +64,8 @@ Add it to `resources.json`
 
 The master list of resources served by Asterisk is kept in `rest-api/resources.json`. Simply add your resource to the end of the list.
 
-
-
-
 ---
 
-  
 resources.json.diff  
 
 ```
@@ -96,13 +92,9 @@ Generate the code
 
 The API declarations are used to generate much of the boilerplate code in Asterisk for routing RESTful API invocations. This code is generated using `make ari-stubs`.
 
-
-
-
 !!! note 
     The code generator requires [Pystache](https://pypi.python.org/pypi/pystache), which can be installed using `pip install pystache`.
 
-      
 [//]: # (end-note)
 
 ```bash title=" " linenums="1"
@@ -124,12 +116,8 @@ As you can see, a number of files are generated. Most of the files are always re
 
 The parameters described in your API declaration are parsed into an `args` structure for use in your implementation. The `response` struct is to be filled in with the HTTP response.
 
-
-
-
 ---
 
-  
 resource_fizzbuzz.c  
 
 ```cpp
@@ -189,4 +177,3 @@ Don't put business logic in the ARI code
 The design of Asterisk, including ARI, is to be modular. All of the `res_ari_*.so` modules are supposed to be the logic exposing underlying API's via an HTTP interface. Think of it as a controller in a Model-View-Controller architecture. This could should look up objects, validate inputs, call functions on those object, build the HTTP response.
 
 If you find yourself writing lots of logic in your ARI code, it should probably be extracted down into either a `res_stasis*.so` module, or into Asterisk core.
-

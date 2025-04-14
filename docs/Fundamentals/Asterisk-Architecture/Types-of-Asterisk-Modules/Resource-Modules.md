@@ -8,4 +8,3 @@ Resources provide functionality to Asterisk that may be called upon at any time 
 Resource modules have file names that looks like **res_xxxxx.so**, such as **res_musiconhold.so**.
 
 Resource modules can provide [Dialplan Applications](/Latest_API/API_Documentation/Dialplan_Applications) and [Dialplan Functions](/Latest_API/API_Documentation/Dialplan_Functions) even if those apps or functions don't have separate modules.
-

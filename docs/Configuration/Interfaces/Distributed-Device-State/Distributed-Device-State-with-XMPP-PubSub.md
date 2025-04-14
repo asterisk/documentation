@@ -3,10 +3,6 @@ title: Distributed Device State with XMPP PubSub
 pageid: 4259993
 ---
 
-
-
-
-
 # Introduction
 
 This document describes installing and utilizing XMPP PubSub events to distribute device state and message waiting indication (MWI) events between servers. The difference between this method and OpenAIS (see [Distributed Device State with AIS]) is that OpenAIS can only be used in low latency networks; meaning only on the LAN, and not across the internet.
@@ -147,7 +143,6 @@ We then need to configure our servers to communicate with the Tigase server. We 
 The key note here is to note that the pubsub_node option needs to start with pubsub, so for example, pubsub.asterisk.mydomain.tld. Without the 'pubsub' your Asterisk system will not be able to distribute events.
 
 Additionally, you will need to specify each of the servers you need to connec to using the 'buddy' option.
-
 
 \*Asterisk Server 1
 
@@ -321,4 +316,3 @@ One method for making this slightly easier is to utilize the #exec functionality
 Unfortunately this still requires a reload of res_jabber.so on all the servers, but this could also be solved through the use of the Asterisk Manager Interface (AMI).
 
 So while this is not the ideal situation, it is programmatically solvable with existing technologies and features found in Asterisk today.
-

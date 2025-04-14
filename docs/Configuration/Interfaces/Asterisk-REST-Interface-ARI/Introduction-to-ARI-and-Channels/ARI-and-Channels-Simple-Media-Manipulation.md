@@ -292,7 +292,6 @@ exten => 1000,1,NoOp()
 
 ### Python
 
-
 We'll start off by initiating a playback on the channel. Instead of specifying a `tone` scheme, however, we'll specify a scheme of `sound` with a resource of `tt-monkeys`. Unlike the tones, this media *does* have a well defined ending - the end of the sound file! So we'll subscribe for the `PlaybackFinished` event and tell `ari-py` to call `playback_finished` when our monkeys are done attacking.
 
 ```python linenums="1"
@@ -343,13 +342,13 @@ def playback_finished(playback, ev):
 	target_uri = playback.json.get('target_uri')
 	channel_id = target_uri.replace('channel:', '')
 	channel = client.channels.get(channelId=channel_id)
-	
+
 	print("Monkeys successfully vanquished %s; hanging them up" % channel.json.get('name'))
 	channel.hangup()
-	
+
 	channel = channel_obj.get('channel')
 	print("Monkeys! Attack %s!" % channel.json.get('name'))
-	
+
 	playback_id = str(uuid.uuid4())
 	playback = channel.playWithId(playbackId=playback_id, media='sound:tt-monkeys')
 	playback.on_event('PlaybackFinished', playback_finished)
@@ -429,7 +428,7 @@ function clientLoaded (err, client) {
 			}
 		});
 		playback.on('PlaybackFinished', playbackFinished);
-	
+
 		function playbackFinished(event, completedPlayback) {
 			console.log(util.format('Monkeys successfully vanquished %s; hanging them up',
 				channel.name));
@@ -461,4 +460,3 @@ Monkeys! Attack PJSIP/alice-00000000!
 Monkeys successfully vanquished PJSIP/alice-00000000; hanging them up
 Channel PJSIP/alice-00000000 just left our application
 ```
-

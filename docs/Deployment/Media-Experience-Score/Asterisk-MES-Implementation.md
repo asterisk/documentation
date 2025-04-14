@@ -21,8 +21,6 @@ Retrieving the stats:
 
 The MES can be retrieved from the Dialplan using the same mechanisms available to retrieve the other RTP/RTCP stats.
 
-
-
 ### Using the CHANNEL dialplan application:
 
 `${CHANNEL(rtcp,<stat>)`} (chan_pjsip only) using the stats:
@@ -50,6 +48,3 @@ The MES can be retrieved from the Dialplan using the same mechanisms available t
 * RTCPReceived
 * VarSet (RTPAUDIOQOSMES)
 * VarSet(RTPAUDIOQOSMESBRIDGED)
-
-
-

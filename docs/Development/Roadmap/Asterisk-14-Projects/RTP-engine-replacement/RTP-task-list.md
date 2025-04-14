@@ -3,18 +3,10 @@ title: RTP task list
 pageid: 31752472
 ---
 
-
-
-
 !!! warning 
     This page has not received peer review and may still be undergoing edits.
 
-      
 [//]: # (end-warning)
-
-
-
-
 
 This page contains a list of necessary tasks in order to write a new RTP engine. The tasks start out with incredibly specific detail and eventually move into much more general terms. The reason for this is to help remain agile in the process. Undoubtedly, requirements will change, or mistakes in the design early will change the nature of later tasks.
 
@@ -161,7 +153,6 @@ Modify the RTP encoder to use proper values for these.
 	+ Implement a `change_source()` RTP engine callback that will change our SSRC to a different random value when called. One of the reasons for us creating a new RTP engine was due to "mangling SSRC". It may be wise to keep in consideration that the `change_source()` method on Steel Zebra should be a bit smarter about when to actually change SSRC. For this particular task, though, we're going to leave this method stupid.
 * Marker bit
 
-
 	+ The marker bit should always be set during the first packet that we send during an RTP stream.
 	+ Implement an `update_source()` RTP engine callback that will indicate that the marker bit should be set on the next media frame sent
 
@@ -227,32 +218,20 @@ The channel driver maintains information about whether RFC 4733 DTMF should be u
 	+ The method will create an RFC 4733 payload with updated duration based on the timestamp.
 	+ The method will then pass this RFC 4733 payload to the RTP encoder to be transmitted.
 
-
-
-
 !!! warning 
     This section currently is saying to pass the RFC 4733 payload to the encoder. Previous language on this page said to pass `ast_frame` payloads to the encoder, which are different. This probably means that the `encode()` method should have its input parameters broken up a bit more. For instance, instead of `encode(voice_frame)`, it should be `encode(timestamp, marker_bit, raw_voice_data)`. This way, when it comes time to encode RFC 4733 DTMF, this works just as well.
 
-      
 [//]: # (end-warning)
-
-
 
 Add support for multiple remote media sources
 ---------------------------------------------
 
 When communicating with a remote endpoint, even though we may be receiving media from only a single remote IP address and port, the media could originate from multiple sources, represented by different SSRC identifiers. This section mostly deals with what should be done when receiving audio from multiple SSRCs.
 
-
-
-
 !!! warning 
     Honestly, I'm not really sure what should be done here. Should this mostly be a statistical thing? Should we actually even expect to be communicating with an endpoint that sends us audio from multiple sources on a single stream?
 
-      
 [//]: # (end-warning)
-
-
 
 Basic RTCP support
 ==================
@@ -316,7 +295,6 @@ Strict RTP is an Asterisk security feature that prevents injection of media from
 * We have to recognize periods where our strictness needs to be opened back up and reset the learning period.
 
 Strict RTP is controlled through an option in `rtp.conf`.  
-
 
 Symmetric RTP
 -------------
@@ -480,4 +458,3 @@ The channel driver calls this function in order to add an RTP instance to a bund
 This is called on the RTP instance whose local address has been chosen as the BUNDLE address for the session. The RTP stream will need to communicate to the RTP session that it has been selected. The RTP session can then point the other streams in the BUNDLE group to the chosen stream's transport and packet router so they all use the same one.
 
 Also at this point, the RTP session will need to add a stream selection plugin to the chosen stream's decoder so that after the RTP header can be decoded and then sent to the appropriate stream for further processing. This can be a bit complicated since different streams may have different decoding steps required (e.g. an audio stream uses RTP/AVP and a video stream uses RTP/SAVPF). This means that the initial part of a decode may be performed by one decoder, but a subsequent decode step may be performed by a separate decoder. Getting this to work will sure be fun!
-

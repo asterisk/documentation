@@ -12,12 +12,8 @@ The REST API that makes up ARI is documented using [Swagger](https://developers.
 
 In order to access ARI, you have to populate the `api_key` field with a `[username:password](http://usernamepassword)` configured in `ari.conf`. You should also set `allowed_origins` in `ari.conf` to allow the site hosting Swagger-UI to access ARI.
 
-
-
-
 ---
 
-  
 ari.conf  
 
 ```text
@@ -31,7 +27,7 @@ enabled=yes
 ; That origin needs to be added to the allowed_origins list.
 ;
 allowed_origins=http://ari.asterisk.org
- 
+
 [hey]
 type=user
 password=peekaboo
@@ -39,7 +35,4 @@ password=peekaboo
 
 ```
 
-
-
 ![Getting Started with ARI](swagger-ui-screenshot.png)
-

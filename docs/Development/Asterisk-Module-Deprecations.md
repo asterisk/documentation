@@ -11,16 +11,12 @@ This page lists modules which are in the process of being deprecated or have bee
 Proposed Modules To Deprecate In Future
 =======================================
 
-
-
 | **Module Name** | Deprecated Version | Removal Version | Notes |
 | --- | --- | --- | --- |
 |  |  |  |  |
 
 Deprecated Modules
 ==================
-
-
 
 | **Module Name** | Deprecated Version | Removal Version | Notes |
 | --- | --- | --- | --- |
@@ -31,8 +27,6 @@ Deprecated Modules
 
 Removed Modules
 ===============
-
-
 
 | **Module Name** | Deprecated Version | Removed Version | Notes |
 | --- | --- | --- | --- |
@@ -61,4 +55,3 @@ Removed Modules
 | res_config_sqlite | 16 | 19 |  |
 | conf2ael | 16 | 19 |  |
 | muted | 16 | 19 |  |
-

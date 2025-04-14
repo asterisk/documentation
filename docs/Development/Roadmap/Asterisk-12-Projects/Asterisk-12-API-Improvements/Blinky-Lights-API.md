@@ -55,8 +55,6 @@ POST /topics Topic - create a new topic. When you create a topic, you are implic
 
 POST /topics/{topicId}/publish - publish an event to a topic. Events are passed as JSON, and are opaque from the perspective of ARI. It would be up to the specific topic types to understand the  event packages.
 
-
-
 /applications/{applicationName}/subscription will be updated to allow for an ARI client to subscribe to any topic in Asterisk.
 
 Data model
@@ -69,42 +67,30 @@ Topic:
 * subscribers: List[Subscriber] - A list of active subscriptions
 * id: string - A unique ID for the topic
 
-
-
 Subscriber
 
 * id: string - A unique ID for the subscriber
 * topic_id: string - The topic ID this subscription refers to
 * endpoint: Endpoint - If available, the endpoint that subscribed to this Topic
 
-
-
 TopicSubscriptionCreated : Event - Event raised when a new subscription is created for a topic
 
 * subscriber : Subscriber
 * topic: Topic
-
-
 
 TopicSubscriptionDestroyed : Event - Event raised when a subscription is destroyed for a topic
 
 * subscriber : Subscriber
 * topic : Topic
 
-
-
 TopicEvent : Event - Event raised in relation to a topic
 
 * topic : Topic
 * body : JSON
 
-
-
 TopicCreated : Event - Event raised when a new topic is created
 
 * topic : Topic
-
-
 
 TopicDestroyed : Event - Event raised when a topic is destroyed
 
@@ -115,8 +101,6 @@ Proposal two: First class resources
 
 API
 ---
-
-
 
 | Method | URL | Return type | Description |
 | --- | --- | --- | --- |

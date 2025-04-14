@@ -25,6 +25,3 @@ In this Section
 | StatsD | This StatsD application is a dialplan application that is used to send statistics automatically whenever a call is made to an extension that employs the application. The user must provide the arguments to the application in the dialplan, but after that, the application will send statistics to StatsD without requiring the user to perform anymore actions whenever a call comes through that extension. |
 
 **\*** Event ordering is not guaranteed. Applications monitoring events from these interfaces should be aware that the order between received events is not assured unless otherwise, and elsewhere specified. For example, an event monitoring application may receive the following events: A->B->C. However, later it might receive those same events, but in a different order: B->A->C
-
-
-

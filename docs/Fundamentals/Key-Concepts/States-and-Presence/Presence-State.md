@@ -64,16 +64,10 @@ same => n(voicemail)VoiceMail(Bob@default)
 
 With this dialplan, a user can dial `2000@default` to toggle Bob's presence between `available` and `unavailable`. When a user attempts to call Bob using `2001@default`, if Bob's presence is currently not `available` then the call will go directly to voicemail.
 
-
-
-
 !!! note 
     One thing to keep in mind with the `PRESENCE_STATE` dialplan function is that, like with `DEVICE_STATE`, state may be queried from any presence provider, but `PRESENCE_STATE` is only capable of setting presence state for the `CustomPresence` presence state provider.
 
-      
 [//]: # (end-note)
-
-
 
 Configuring Presence Subscription with Hints
 ============================================
@@ -182,14 +176,7 @@ Digium Phones
 
 When using Digium phones with the [Digium Phone Module for Asterisk](http://downloads.digium.com/pub/telephony/res_digium_phone/), you can set hints in Asterisk so that when one Digium phone's presence is updated, other Digium phones can be notified of the presence change. The DPMA automatically creates provisions such that when a Digium Phone updates its presence, `CustomPresence:<line name>` is updated, where `<line name>` is the value set for the `line=` option in a `type=phone` category. Using the example dialplan from the Overview section, Digium phones that are subscribed to `2000@default` will automatically be updated about line 2000's presence whenever line 2000's presence changes.
 
-
-
-
 !!! tip 
     Digium phones support only the available, away, dnd, xa, and chat states. The unavailable and not_set states are not supported.
 
-      
 [//]: # (end-tip)
-
-
-

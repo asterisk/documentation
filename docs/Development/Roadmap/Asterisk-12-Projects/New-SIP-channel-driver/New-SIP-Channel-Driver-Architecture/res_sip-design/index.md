@@ -3,47 +3,33 @@ title: Overview
 pageid: 22085835
 ---
 
-
-
-
 !!! warning 
     This page is a work in progress. Please refrain from making comments until this warning has been removed
 
-      
 [//]: # (end-warning)
-
-
 
 Overview
 ========
 
-
 res_sip is the decadent dark chocolate core of the new SIP work in Asterisk 12. It is the cockpit of the SIP jet. As such, its contents are those upon which all other SIP modules (and potentially non-SIP modules) will rely. The following describes its design and its public APIs.
-
 
 Makeup
 ======
 
-
 res_sip can be divided into four overall sections:
-
 
 * service registrar
 * SIP threadpool operator
 * provider of common SIP methods
 * servicer of PJSIP endpoint (i.e. reads incoming SIP messages)
 
-
 Startup process
 ===============
 
-
 On startup, res_sip will create a threadpool for SIP to use. The threadpool's specifics will be discussed on a separate page. The threadpool will be used for as much of SIP's operation as possible. After starting the threadpool, res_sip will create a PJSIP endpoint and then begin handling incoming requests from the endpoint.
-
 
 Public methods
 ==============
-
 
 Structures
 ----------
@@ -453,4 +439,3 @@ int ast_sip_add_body(struct pjsip_tx_data \*tdata, const char \*bodies[]);
 int ast_sip_append_body(struct pjsip_tx_data \*tdata, const char \*body);
 
 ```
-

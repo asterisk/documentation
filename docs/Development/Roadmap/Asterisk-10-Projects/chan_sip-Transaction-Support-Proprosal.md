@@ -3,8 +3,6 @@ title: chan_sip Transaction Support Proprosal
 pageid: 10649861
 ---
 
-
-
 # Introduction
 SIP is a transactional protocol. Asterisk's chan_sip has no transaction concept of a transaction layer. Developers have spent countless hours providing workarounds for bugs caused by this situation. In fact, more hours have been spent trying to work around the issue than it would take to actually implement a transaction layer for chan_sip. This document outlines how a transaction layer can be added to chan_sip with a relatively minimal amount of change to existing code.
 
@@ -38,4 +36,3 @@ If transaction support is enabled (either by having it be the only option, or by
 For handling retransmissions for messages that we send, we should always have a copy of the packet that we are sending and re-send that.
 
 The transaction handling code should be self-contained and should rely on copies of data where possible, since retransmissions will be happening from a separate thread.
-

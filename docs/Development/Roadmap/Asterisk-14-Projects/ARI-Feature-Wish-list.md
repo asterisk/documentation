@@ -11,7 +11,6 @@ The ARI Feature Wish-List has been setup to help collect ideas from the wider AR
 
 Don't see your Wish-List request below? Ask in #asterisk-ari on freenode.
 
-
 | Feature | Short Description | Submitted | JIRA # | Status |
 | --- | --- | --- | --- | --- |
 | ARI TTS/ASR Support | See: [Re: Asterisk 14 Project - ARI and generic Text To Speech] | 14/3/2015 |  |  |
@@ -37,4 +36,3 @@ Don't see your Wish-List request below? Ask in #asterisk-ari on freenode.
 | Set Presence State | The ability to set presencestate information via ARI would be immensely helpful for those developing custom apps that need to integrate Asterisk media functionality with external chat apps, etc. | 15/09/2016 |  |  |
 | Multi-Channel Recording | Recorded to multi-channel wav with a channel for each leg of a bridge. WAV format spec supports up to 18 channels. It would be greatly useful for audio analysis | 15/09/2016 |  |   |
 | On Connection End | When a call is active and the ARI connection dies, add an option to be able to send the call to a dialplan location or be able to set it within the ARI connection JSON |  |  |  |
-

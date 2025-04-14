@@ -115,10 +115,9 @@ If a channel is bridged with another channel, the following procedure is perform
 	+ If the channel entering the bridge is the Party B, the other channel has a CDR with a Party B, and this channel is not that CDR's Party B, then the existing CDR is finalized and a new CDR is created for that other channel with this channel as the Party B.
 * If a third party joins the bridge with Party A and Party B, the process [Choosing the Party A channel](#choosing-the-party-a-channel) is repeated for each pairing of channels. Thus, in a three-way call there will be three CDR records; in a four-way call there will be six records, etc.
 
-
 !!! tip 
     This feels complex, but there's really two rules going on here:
-    
+
     1. Keep using the existing CDR for a channel as long as possible
     2. Make CDRs for all pairings of channels in a bridge
 
@@ -156,7 +155,6 @@ The `party_A` flag may be set using the [CDR function](/Latest_API/API_Docume
 When two channels are bridged, the `linkedid` property for the channels is updated. The channel with the oldest `linkedid` "wins", and the other channel's `linkedid` is replaced. This creates an association between the channels that lasts even if the bridge is broken at a latter time.
 
 Note that dialed channels automatically receive the `linkedid` of the calling channel.
-
 
 ## Fields
 
@@ -200,7 +198,6 @@ Dispositions represent the final state of the call from the perspective of Party
 | BUSY | The channel attempted to dial but the remote party was busy. | `AST_CAUSE_BUSY` | BUSY |
 | ANSWERED | The channel was answered. When the channel is answered, the hangup cause no longer changes the disposition. | Any not explicitly listed | ANSWER |
 
-
 #### AMA Flags
 
 AMA Flags are set on a channel and are conveyed in the CDR. They inform billing systems how to treat the particular CDR. Asterisk provides no additional semantics regarding these flags - they are present simply to help external systems classify CDRs.
@@ -221,9 +218,8 @@ User defined CDR fields are created using the [CDR function](/Latest_API/API_Doc
 
 !!! note "Scenario Caveats"
     The following scenarios show examples of CDRs created in common use cases. If a particular scenario is not shown below, the CDRs created during the scenario should still match the behavior described previously. Some applications, however, may have undefined behavior as their use is not common or the mechanism by which they manipulate channels does not allow for the capturing of the channel state.  
-  
-    Undefined behavior means that the behavior of CDRs in those cases is unsupported and will not be addressed as a bug.
 
+    Undefined behavior means that the behavior of CDRs in those cases is unsupported and will not be addressed as a bug.
 
 ### Unanswered "Inbound" Call
 
@@ -260,8 +256,6 @@ Two party calls can be initiated in a variety of ways. Several of the more commo
 
 Alice calls into Asterisk, which dials Bob. Bob Answers, and a bridge is formed between Alice and Bob. Alice and Bob talk for awhile, then Bob hangs up. This breaks the bridge between Alice and Bob, and Alice is hung up on as well.
 
-
-
 | clid | src | dst | dcontext | channel | dstchannel | lastapp | lastdata | start | answer | end | duration | billsec | disposition | amaflags | accountcode | peeraccount | uniqueid | userfield | sequence | linkedid |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | "Alice <100>" | 100 | 200 | default | SIP/alice-00000000 | SIP/bob-00000001 | Dial | SIP/bob,,Tt | 2013-03-04 13:11:18 | 2013-03-04 13:11:26 | 2013-03-04 13:13:18 | 120 | 112 | ANSWERED | DOCUMENTATION |   |   | Asterisk-01-1362424276.2 |   | 12 | Asterisk-01-1362424276.2 |
@@ -270,8 +264,6 @@ Alice calls into Asterisk, which dials Bob. Bob Answers, and a bridge is formed 
 
 Alice calls into Asterisk, which dials Bob. Bob refuses to pick up his phone, and the call eventually times out.
 
-
-
 | clid | src | dst | dcontext | channel | dstchannel | lastapp | lastdata | start | answer | end | duration | billsec | disposition | amaflags | accountcode | peeraccount | uniqueid | userfield | sequence | linkedid |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | "Alice <100>" | 100 | 200 | default | SIP/alice-00000000 | SIP/bob-00000001 | Dial | SIP/bob,10,Tt | 2013-03-04 13:11:18 |   | 2013-03-04 13:11:28 | 10 | 0 | NO ANSWER | DOCUMENTATION |   |   | Asterisk-01-1362424276.2 |   | 1 | Asterisk-01-1362424276.2 |
@@ -279,8 +271,6 @@ Alice calls into Asterisk, which dials Bob. Bob refuses to pick up his phone, an
 #### Parallel Dial
 
 Alice calls into Asterisk, which dials Bob's SIP desk phone as well as his IAX2 soft phone. Both ring for awhile, and Bob eventually presses the Answer button on his IAX2 soft phone.
-
-
 
 | clid | src | dst | dcontext | channel | dstchannel | lastapp | lastdata | start | answer | end | duration | billsec | disposition | amaflags | accountcode | peeraccount | uniqueid | userfield | sequence | linkedid |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -299,8 +289,6 @@ Transfers create multiple CDRs. In general, a CDR is created for each path of co
 
 Alice calls into Asterisk, which dials Bob's SIP phone. Bob answers, and Alice and Bob talk for awhile. Eventually, Bob decides to send Alice off to Charlie, and he blind transfers Alice to Charlie's extension. Asterisk dials Charlie's SIP phone, and Charlie answers. Alice and Charlie talk for awhile until Alice decides to hang up.
 
-
-
 | clid | src | dst | dcontext | channel | dstchannel | lastapp | lastdata | start | answer | end | duration | billsec | disposition | amaflags | accountcode | peeraccount | uniqueid | userfield | sequence | linkedid |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | "Alice <100>" | 100 | 200 | default | SIP/alice-00000000 | SIP/bob-00000001 | Dial | SIP/bob,,Tt | 2013-03-04 13:11:18 | 2013-03-04 13:11:28 | 2013-03-04 13:11:48 | 30 | 20 | ANSWERED | DOCUMENTATION |   |   | Asterisk-01-1362424276.2 |   | 101 | Asterisk-01-1362424276.2 |
@@ -310,18 +298,15 @@ Alice calls into Asterisk, which dials Bob's SIP phone. Bob answers, and Alice a
 
 Alice calls into Asterisk, which dials Bob's SIP phone. Bob answers, and Alice and Bob talk for awhile. Eventually, Bob decides to send Alice off to Charlie, and he initiates an attended transfer. Alice is put on hold, and Bob dials Charlie's extension. Asterisk dials Charlie's SIP phone, and Charlie answers. Bob and Charlie talk for a bit, and Charlie agrees to talk to Alice. Bob completes the attended transfer, Alice is taken off hold, and Alice and Charlie are bridged. Alice talks to Charlie for awhile, then hangs up.
 
-
-
 | clid | src | dst | dcontext | channel | dstchannel | lastapp | lastdata | start | answer | end | duration | billsec | disposition | amaflags | accountcode | peeraccount | uniqueid | userfield | sequence | linkedid |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | "Alice <100>" | 100 | 200 | default | SIP/alice-00000000 | SIP/bob-00000001 | Dial | SIP/bob,,Tt | 2013-03-04 13:11:18 | 2013-03-04 13:11:28 | 2013-03-04 13:12:18 | 60 | 50 | ANSWERED | DOCUMENTATION |   |   | Asterisk-01-1362424276.2 |   | 101 | Asterisk-01-1362424276.2 |
 | "Bob <200>" | 200 | 300 | default | SIP/bob-00000001 | SIP/charlie-00000002 | Dial | SIP/charlie,,Tt | 2013-03-04 13:11:48 | 2013-03-04 13:11:53 | 2013-03-04 13:12:18 | 30 | 26 | ANSWERED | DOCUMENTATION |   |   | Asterisk-01-1362424280.1 |   | 102 | Asterisk-01-1362424276.2 |
 | "Alice <100>" | 100 | 300 | default | SIP/alice-00000000 | SIP/charlie-00000002 | Dial | SIP/bob,,Tt | 2013-03-04 13:12:18 | 2013-03-04 13:12:18 | 2013-03-04 13:12:53 | 45 | 45 | ANSWERED | DOCUMENTATION |   |   | Asterisk-01-1362424276.2 |   | 103 | Asterisk-01-1362424276.2 |
 
-
 !!! note
     In the example above, note the following:
-    
+
     * Hold time is not reflected in CDRs.
     * When Bob dials Charlie, he becomes the Party A channel. However, the `linkedid` from Alice 'wins', and so the CDR reflects the `linkedid` from Alice's CDR.
     * Alice and Charlie are bridged automatically by the attended transfer, so their start and answer times are identical.
@@ -351,8 +336,6 @@ In a SIP protocol attended transfer, two independent channels make up the transf
 
 Alice calls into Asterisk, which dials Bob's SIP phone. Bob answers, and Alice and Bob talk for awhile. Eventually, Bob decides to send Alice off to Charlie, and he initiates an attended transfer. Alice is put on hold, and Bob dials Charlie's extension. Asterisk dials Charlie's SIP phone, but before Charlie answers Bob hangs up. Asterisk recognizes that this is a blonde transfer, takes Alice off hold, and ties Charlie's ringing phone to Alice. Charlie answers, Alice talks to Charlie for awhile, then hangs up.
 
-
-
 | clid | src | dst | dcontext | channel | dstchannel | lastapp | lastdata | start | answer | end | duration | billsec | disposition | amaflags | accountcode | peeraccount | uniqueid | userfield | sequence | linkedid |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | "Alice <100>" | 100 | 200 | default | SIP/alice-00000000 | SIP/bob-00000001 | Dial | SIP/bob,,Tt | 2013-03-04 13:11:18 | 2013-03-04 13:11:28 | 2013-03-04 13:12:18 | 60 | 50 | ANSWERED | DOCUMENTATION |   |   | Asterisk-01-1362424276.2 |   | 101 | Asterisk-01-1362424276.2 |
@@ -370,10 +353,9 @@ Alice calls into Asterisk, which dials Bob's SIP phone. Bob answers, and Alice a
 | "Alice <100>" | 100 | 300 | default | SIP/alice-00000000 | SIP/charlie-00000002 | Dial | SIP/bob,,Tt | 2013-03-04 13:12:08 | 2013-03-04 13:12:08 | 2013-03-04 13:13:18 | 70 | 70 | ANSWERED | DOCUMENTATION |   |   | Asterisk-01-1362424276.2 |   | 103 | Asterisk-01-1362424276.2 |
 | "Bob <200>" | 200 | 300 | default | SIP/bob-00000001 | SIP/charlie-00000002 | Dial | SIP/charlie,,Tt | 2013-03-04 13:12:08 | 2013-03-04 13:12:08 | 2013-03-04 13:13:18 | 70 | 70 | ANSWERED | DOCUMENTATION |   |   | Asterisk-01-1362424280.1 |   | 104 | Asterisk-01-1362424276.2 |
 
-
 !!! note
     In the example above, note the following:
-    
+
     * The consultation between Bob and Charlie is treated as a separate conversation from the conversation between all three parties. Thus, there are two CDRs between Bob and Charlie.
     * Because the path of communication never was broken between Alice and Bob (despite Alice being put on hold), there is only one CDR for Alice to Bob.
 
@@ -386,7 +368,6 @@ Alice calls into Asterisk, which dials Bob's SIP phone. Bob answers, and Alice a
 | "Alice <100>" | 100 | 200 | default | SIP/alice-00000000 | SIP/bob-00000001 | Dial | SIP/bob | 2013-03-04 13:11:18 | 2013-03-04 13:11:28 | 2013-03-04 13:12:18 | 60 | 50 | ANSWERED | DOCUMENTATION |   |   | Asterisk-01-1362424276.2 |   | 101 | Asterisk-01-1362424276.2 |
 | "Bob <200>" | 200 | 300 | default | SIP/bob-00000002 | SIP/charlie-00000003 | Dial | SIP/charlie | 2013-03-04 13:11:48 | 2013-03-04 13:11:53 | 2013-03-04 13:12:08 | 20 | 15 | ANSWERED | DOCUMENTATION |   |   | Asterisk-01-1362424280.1 |   | 102 | Asterisk-01-1362424276.2 |
 | "Alice <100>" | 100 | 200 | default | SIP/alice-00000000 | SIP/charlie-00000003 | Dial | SIP/bob | 2013-03-04 13:12:18 | 2013-03-04 13:12:18 | 2013-03-04 13:12:28 | 10 | 10 | ANSWERED | DOCUMENTATION |   |   | Asterisk-01-1362424276.2 |   | 103 | Asterisk-01-1362424276.2 |
-
 
 !!! note
     The important point to note here is that a SIP attended transfer uses two channels to communicate with Bob - `SIP/bob-00000001` and `SIP/bob-00000002`. The CDR records are associated by virtue of the `linkedid` field.
@@ -423,7 +404,6 @@ An external application [Originates](/Latest_API/API_Documentation/AMI_Actions/O
 #### Local Channel Optimization
 
 When a Local channel optimization occurs, the CDR records associated with the Local channel are finalized. New CDR records are generated for the channels in the merged bridge, per the rules outlined in [CDR Bridging](#bridging). That is, new CDRs are generated from each pair of channels that result from the merging of the bridges.
-
 
 !!! warning
     CDR properties set on optimized Local channels are **not** propagated to other channels. Setting CDR information on optimizing Local channels will cause that information to be lost.
@@ -487,8 +467,6 @@ Alice calls into Asterisk and Dials Bob. Bob answers, and he and Alice talk for 
 
 * Bob realizes Alice wants to talk to Sales, so he blind transfers her off to the Sales Queue. Alice enters into the Sales Queue, where she waits for a bit while agents David and Frank are dialed using Local channels to SIP devices. Alice is eventually Answered by David, a sales agent.
 
-
-
 | clid | src | dst | dcontext | channel | dstchannel | lastapp | lastdata | start | answer | end | duration | billsec | disposition | amaflags | accountcode | peeraccount | uniqueid | userfield | sequence | linkedid |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | "Alice <100>" | 100 | 700 | default | SIP/alice-00000000 | Local/member1@default-00000001;1 | Queue | sales | 2013-03-04 13:01:00 |   | 2013-03-04 13:02:00 | 60 | 0 | NO ANSWER | DOCUMENTATION |   |   | Asterisk-01-1362424276.2 |   | 2 | Asterisk-01-1362424276.2 |
@@ -496,10 +474,8 @@ Alice calls into Asterisk and Dials Bob. Bob answers, and he and Alice talk for 
 | "Alice <100>" | 100 | 700 | default | SIP/alice-00000000 | Local/member2@default-00000002;1 | Queue | sales | 2013-03-04 13:01:00 | 2013-03-04 13:02:00 | 2013-03-04 13:05:00 | 240 | 180 | ANSWERED | DOCUMENTATION |   |   | Asterisk-01-1362424276.2 |   | 4 | Asterisk-01-1362424276.2 |
 |   | 700 | member2 | default | Local/member2@default-00000002;2 | SIP/david-00000003 | Dial | SIP/david | 2013-03-04 13:02:00 | 2013-03-04 13:02:05 | 2013-03-04 13:06:00 | 240 | 235 | ANSWERED | DOCUMENTATION |   |   | Asterisk-01-1362424280.3 |   | 5 | Asterisk-01-1362424276.2 |
 
-
 !!! note
     Note that with non-optimizing Local channels, the duration of the Alice to the Local channel (which in turns passes media to/from David) may not reflect the length of time that the Local channel to David is in the bridge. As we'll see, additional channels joining the bridge will change that CDR's durations.
-
 
 * Meanwhile, Bob calls Charlie.
 
@@ -518,7 +494,6 @@ Alice calls into Asterisk and Dials Bob. Bob answers, and he and Alice talk for 
 !!! note
     During the consultation period, David's SIP channel directly Dials Ellen's SIP device. However, when Ellen joins the bridge with David, it is the Local channel to David that is in the bridge, not David's SIP channel. Thus, the CDR reflects the Local channel to Ellen's SIP channel.
 
-
 * Around this time, Charlie decides that he should talk to Alice as well. He transfers himself to the Sales bridge, hanging up on Bob in the process. This turns the Sales bridge into a four-way call. The four parties talk for awhile, and eventually Alice is sold on the new whiz-bang product, so she hangs up. Ellen realizes she isn't need any more either, and hangs up as well. Charlie and David talk about the weather for awhile, and then Charlie hangs up, hanging up David as well.
 
 | clid | src | dst | dcontext | channel | dstchannel | lastapp | lastdata | start | answer | end | duration | billsec | disposition | amaflags | accountcode | peeraccount | uniqueid | userfield | sequence | linkedid |
@@ -529,7 +504,6 @@ Alice calls into Asterisk and Dials Bob. Bob answers, and he and Alice talk for 
 
 !!! note 
     Because Charlie's channel is older then either the Local channel to David's SIP channel or Ellen's SIP channel, Charlie is chosen as Party A for those CDRs. Alice, on the other hand, is older than Charlie, so she is Party A for that CDR. Because Alice is the oldest channel, her `linkedid` is propagated to all CDRs in the bridge. However, the CDR between Charlie and Bob is not affected, as Bob is the Party A in that CDR and the CDR would already have been dispatched by the time Charlie joined this bridge.
-
 
 ## Asterisk CDR APIs
 
@@ -602,4 +576,3 @@ The following settings must appear in the context `general`.
 | scheduleronly | Boolean | Deprecated. See `usethreadpool` instead. |
 | usethreadpool | Boolean | For any CDRs that are dispatched, use a thread pool thread to perform the dispatching. This prevents the CDR taskprocessor thread from being blocked by any CDR backends. |
 | safeshutdown | Boolean | Block Asterisk shutdown on dispatching of CDRs |
-

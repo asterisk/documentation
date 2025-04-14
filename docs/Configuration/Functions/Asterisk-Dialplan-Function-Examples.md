@@ -3,18 +3,10 @@ title: Asterisk Dialplan Function Examples
 pageid: 36215464
 ---
 
-
-
-
 !!! warning 
     UNDER CONSTRUCTION
 
-      
 [//]: # (end-warning)
-
-
-
-
 
 Function Examples
 =================
@@ -50,8 +42,6 @@ Set the channel variable myvar to a space-delimited list of all channels.
 same = n,Set(myvar=${CHANNELS})
 
 ```
-
-
 
 DB and other DB functions
 -------------------------
@@ -89,4 +79,3 @@ Delete the entry while logging the value of the key!
 same = n,Log(NOTICE, Deleting the key testfamily/testkey which had the value: ${DB_DELETE(testfamily/testkey)})
 
 ```
-

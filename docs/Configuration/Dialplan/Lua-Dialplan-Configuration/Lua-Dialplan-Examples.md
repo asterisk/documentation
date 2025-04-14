@@ -5,19 +5,13 @@ pageid: 16548020
 
 Some example `extensions.lua` files can be found below. They demonstrate various ways to organize extensions.
 
-
 Less Clutter
 ------------
 
-
 Instead of defining every extension inline, you can use this method to create a neater `extensions.lua` file. Since the extensions table and each context are both normal lua tables, you can treat them as such and build them piece by piece.
-
-
-
 
 ---
 
-  
 extensions.lua  
 
 ```
@@ -54,15 +48,10 @@ extensions = e
 Less Clutter v2
 ---------------
 
-
 In this example, we use a fancy function to register extensions.
-
-
-
 
 ---
 
-  
 extensions.lua  
 
 ```
@@ -120,4 +109,3 @@ register("sales", "7000", function()
 end)
 
 ```
-

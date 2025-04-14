@@ -5,19 +5,15 @@ pageid: 20185280
 
 The Asterisk Test Suite uses a python script, ***runtests.py***, to execute the tests within the suite. The *runtests.py* script is responsible for determining what tests exist in the Test Suite and managing their execution. 
 
-
 There are a number of ways the Asterisk Test Suite can be executed:
-
 
 * Execute all tests
 * Execute a single test
 * Execute a set of tests that share common tags
 * Execute a pre-defined set of tests
 
-
 Executing all tests
 -------------------
-
 
 The simplest way of executing tests, all tests in the Test Suite can be run by simply calling the *runtests.py* script with no arguments.
 
@@ -34,22 +30,15 @@ Running ['tests/example/run-test'] ...
 
 ```
 
-
-
 !!! note 
     Depending on permissions and the modules installed, you may need to run the runtests.py script with elevated permissions.
 
-      
 [//]: # (end-note)
-
-
 
 Since this can take a long time to execute to completion - and may cover functionality you do not want to test - there are a variety of other ways to run tests as well.
 
-
 Executing a single test
 -----------------------
-
 
 A single test can be executed using the *-t* command line option.
 
@@ -58,19 +47,13 @@ A single test can be executed using the *-t* command line option.
 
 ```
 
-
-
 !!! note 
     You can determine what tests are available for execution by using the *-l* command line option.
 
-      
 [//]: # (end-note)
-
-
 
 Executing a set of tests by tag
 -------------------------------
-
 
 Many tests in the Asterisk Test Suite have tags that group them according to functionality that they test. The tags currently in use by all executable tests in the Test Suite can be determined using the *-L* command line option:
 
@@ -108,7 +91,6 @@ Multiple tags can be specified as well, using multiple invocations of the *-g* c
 
 Executing pre-defined sets of tests
 -----------------------------------
-
 
 Pre-defined sets of tests can be set up in the top level *test-config.yaml* configuration file. When the *runtests.py* script starts, it looks for the key in *global-settings/test-configuration*. The value specified for that key is used to look up test run specific settings. An example is shown below, where the *test-configuration* is set to *config-quick*.
 
@@ -156,4 +138,3 @@ config-quick:
  - 'gateway_timeout5'
 
 ```
-

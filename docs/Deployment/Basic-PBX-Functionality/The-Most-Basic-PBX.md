@@ -17,4 +17,3 @@ Got here without installing Asterisk? Head back to the [Installation Asterisk se
 **Two or more phones which speak the SIP voice-over-IP protocol.**
 
 There are a wide variety of SIP phones available in many different shapes and sizes, and if your budget doesn't allow for you to buy phones, feel free to use a free soft phone. [Softphones](http://en.wikipedia.org/wiki/Softphone) are simply computer programs which run on your computer and emulate a real phone, and communicate with other devices across your network, just like a real voice-over-IP phone would. If you do use a soft phone, remember to watch out for software firewalls blocking traffic from or to the system hosting the softphone.
-

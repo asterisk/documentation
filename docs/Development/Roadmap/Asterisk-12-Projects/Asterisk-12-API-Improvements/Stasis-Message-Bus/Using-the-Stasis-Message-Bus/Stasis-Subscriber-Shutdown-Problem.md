@@ -17,12 +17,8 @@ The naïve subscriber
 
 The first time we wrote subscription code, it looked like this:
 
-
-
-
 ---
 
-  
 Bad code we all wrote at first  
 
 ```
@@ -54,9 +50,7 @@ static void foo_dtor(void \*obj) {
      return foo;
     }
 
-
     ```
-
 
     So the code looks fine, so what's the problem?
 
@@ -67,14 +61,9 @@ static void foo_dtor(void \*obj) {
 
     Okay, you notice the problem, and it's an easy fix. The subscription should have a reference to the data object. We even have a `stasis_subscription_final_message()` function for cleaning up after the final message has been received. Easy, right?
 
-
-
-
     ---
 
-      
     Bad code we all wrote second  
-
 
     ```
 
@@ -112,7 +101,6 @@ static void foo_dtor(void \*obj) {
 
     ```
 
-
     This has a decided advantage over the earlier code: it no longer segfaults. But it's still not correct. What's wrong with it?
 
     It has a memory leak. The subscription properly increases the ref count on the data object. But the data object has a reference to the subscription. This is a cyclic reference, and until C introduces a garbage collector, isn't going away. The subscription isn't going to release its reference to `foo` until the last message has been received. But it's not going to be unsubscribed until `foo` has been destroyed, which won't happen until all references to it go away.
@@ -122,14 +110,9 @@ static void foo_dtor(void \*obj) {
 
     Now we've seen it all. We've learned our lessons. Now we can properly code up how to handle subscriptions from an object.
 
-
-
-
     ---
 
-      
     Good code we finally wrote there at the end  
-
 
     ```
 
@@ -174,7 +157,6 @@ static void foo_dtor(void \*obj) {
 
     ```
 
-
     Finally, we've got code that works. Not what we wanted ideally, but the best we can do with what we've got.
 
     The object returned by `ast_foo_create()` must be explicitly shut down with the `ast_foo_shutdown()` function. It is still AO2 managed, so you can `ao2_ref()` it all you want. But the of `foo` object has an explicit lifetime, and must be shutdown before it can be disposed of.
@@ -197,4 +179,3 @@ static void foo_dtor(void \*obj) {
     And even if that were acceptable (which it's not), the worst possible case is that while blocking in the destructor, the subscription may process a message which will bump the refcount up by one. Then it does whatever it does, decrements the refcount, which then proceeds to re-destroy the object. Now you've got hard to reproduce bugs that only show up under certain loads.
 
     We welcome any ideas for a cleaner means to handle these cyclic references. Until someone figures that out, explicit shutdown functions are the way to go.
-

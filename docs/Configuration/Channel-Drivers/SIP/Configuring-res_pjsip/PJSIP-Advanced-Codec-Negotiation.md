@@ -151,11 +151,4 @@ The old implementation had codec negotiation was scattered though chan_pjsip, re
 	+ app_dial:wait_for_answer() receives the ANSWER frame and places the topology into the bridge config structure.  That gets passed to features:ast_bridge_call() and down to pre_bridge_setup() which calls ast_raw_answer_with_stream_topology().  That in turn calls chan_pjsip_answer_with_stream_topology on Alice's channel.
 	+ outgoing_answer: chan_pjsip_answer_with_stream_topology's answer task does the final resolution using Bob's active topology, Alice's pending topology that was originally sent to the core, and Alice's endpoint's outgoing_answer parameters.
 
-
-
-
-
-
-
 * Direct media \* 100rel/early media \* Re-invites \* Fax \* Multi-stream \* Deferred SDP \* ARI channel operations \* Operation with other channel technologies
-

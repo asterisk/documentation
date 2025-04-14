@@ -3,47 +3,32 @@ title: Event Subscription and Publication Design
 pageid: 22773838
 ---
 
-
-
-
 !!! warning 
     This page is a work in progress. Please do not make comments on this until this warning is removed
 
-      
 [//]: # (end-warning)
 
-
-
 Asterisk's SIP implementation has a need for supporting RFC 3265's event subscription system since the original `chan_sip` had support for it.
-
 
 Requirements
 ============
 
-
 Asterisk needs to fully support RFC 3265. Support should be approached in a modular fashion. It should be easy to write a module that handles a specific Event and Accept type. So for instance, a module should exist for the "presence" event and the "application/pidf" type. A separate module should exist for the "presence" event and the "application/xpidf" type.
-
 
 Pubsub core
 ===========
 
-
 The core of the pubsub feature comes in Asterisk's ability to register different event types as being handled. A module can register itself as a subscription handler for a specific event type. By doing so, Asterisk will know to call into that module when SUBSCRIBE or NOTIFY requests or responses are received for that event type.
-
 
 At the base of it all is PJSIP's evsub framework. It takes care of a large portion of our job for us, like maintaining timers, maintaining the state of the subscription, and maintaining the state of the underlying dialog and transactions. Asterisk's pubsub core will sit on top of this and help further take care of automatic duties. The pubsub core will also help to associate PJSIP's event subscriptions with our own representation. Asterisk's pubsub core will also provide some abstractions for common dealings in PJSIP.
 
-
 PJSIP's evsub API is quite extensive, and there is no good reason to try to completely hide it from subscription handlers. Thus Asterisk will not attempt to wrap every single thing that the evsub API provides. However, certain operations will be wrapped if there are additional duties that will be performed by the core or if it makes things easier to handle.
-
 
 API
 ===
 
-
 Base subscription structure
 ---------------------------
-
 
 The pubsub framework is based around an opaque structure called `ast_sip_subscription`. This structure is the basis for all subscriptions and is used in the majority of functions in the API. The following are functions involving the `ast_sip_subscription`.
 
@@ -74,7 +59,6 @@ enum ast_sip_subscription_role {
  */
 struct ast_sip_subscription \*ast_sip_create_subscription(const struct ast_sip_subscription_handler \*handler,
  enum ast_sip_subscription_role role, struct ast_sip_endpoint \*endpoint, pjsip_rx_data \*rdata);
-
 
 /*!
  * \brief Get the endpoint that is associated with this subscription
@@ -183,7 +167,6 @@ void ast_sip_subscription_remove_datastore(struct ast_sip_subscription \*subscri
 
 Subscription handlers
 ---------------------
-
 
 Subscription handlers are what are responsible for handling specific event packages. Subscription handlers act as the barrier between Asterisk and PJSIP in that they take Asterisk data and make appropriate SIP requests. Subscription handlers also are called into by the pubsub core when changes in subscription state occur.
 
@@ -352,15 +335,11 @@ void ast_sip_unregister_subscription_handler(const struct ast_sip_subscription_h
 Event publication
 =================
 
-
 In addition to supporting the SUBSCRIBE/NOTIFY methods specified in RFC 3265, we also wish to have support for the PUBLISH method defined in RFC 3903. PJSIP provides client support for event publication, but it has no such support for serving as an event state compositor. Unfortunately, Asterisk is much more likely to be needed as an event state compositor than as an event publication agent.
-
 
 When acting as an event publication agent, Asterisk will use the PJSIP publish API directly. Any amount of state that needs to be kept can be done locally as needed.
 
-
 When acting as an event state compositor, there will be a core set of Asterisk APIs to use instead, as well as a structure that can be used for accumulating state.
-
 
 PUBLISH API
 ===========
@@ -502,4 +481,3 @@ struct ast_datastore \*ast_sip_subscription_get_datastore(struct ast_sip_subscri
 void ast_sip_subscription_remove_datastore(struct ast_sip_subscription \*subscription, const char \*name);
 
 ```
-

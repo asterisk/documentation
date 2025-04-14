@@ -13,8 +13,6 @@ You will...
 * Create a PJSIP WebSocket transport.
 * Create PJSIP Endpoint, AOR and Authentication objects that represent a WebRTC client.
 
-
-
 ## Prerequisites
 
 ### Asterisk Installation
@@ -96,7 +94,6 @@ We'll use the `asterisk.crt` and `asterisk.key` files later to configure the HTT
 
 To communicate with WebSocket clients, Asterisk uses its built-in HTTP server. Configure ` */etc/asterisk/http.conf**` as follows:
 
-
 ```conf title="/etc/asterisk/http.conf" linenums="1"
 [general]
 enabled=yes
@@ -166,13 +163,12 @@ bind=0.0.0.0
 
 We now need to create the basic PJSIP objects that represent the client. In this example, we'll call the client `webrtc_client` but you can use any name you like, such as an extension number. Only the minimum options needed for a working configuration are shown. NOTE: It's normal for multiple objects in `pjsip.conf` to have the same name as long as the types differ.
 
-
 ```conf title="/etc/asterisk/pjsip.conf" linenums="1"
 [webrtc_client]
 type=aor
 max_contacts=5
 remove_existing=yes
- 
+
 [webrtc_client]
 type=auth
 auth_type=userpass
@@ -218,4 +214,3 @@ Restart Asterisk to pick up the changes and if you have a firewall, don't forget
 ## Wrap Up
 
 At this point, your WebRTC client should be able to register and make calls. If you've used self-signed certificates however, your browser may not allow the connection and because the attempt is not from a normal URI supplied by the user, the user might not even be notified that there's an issue.  You *may* be able to get the browser to accept the certificate by visiting "`https://pbx.example.com:8089/ws`" directly.  This will usually result in a warning from the browser and may give you the opportunity to accept the self-signed certificate and/or create an exception. If you generated your certificate from a pre-existing local Certificate Authority, you can also import that Certificate Authority's certificate into your trusted store but that procedure is beyond the scope of this document.
-

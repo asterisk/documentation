@@ -60,16 +60,7 @@ using set_wakeup_fd
 ```
 2. Blink should launch and show up within your graphical desktop.
 
-
-
-
-
-
 !!! note 
     Blink doesn't appear to support call forwarding or call transfers, so don't expect to do anything too fancy!
 
-      
 [//]: # (end-note)
-
-
-

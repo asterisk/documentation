@@ -19,4 +19,3 @@ exten=>6124,1,Set(GLOBAL(MYGLOBALVAR)=somevalue)
 ```
 
 To retrieve the value of a global channel variable, use the same syntax as you would if you were retrieving the value of a channel variable.
-

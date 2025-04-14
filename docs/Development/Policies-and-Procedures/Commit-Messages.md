@@ -8,7 +8,6 @@ A commit message serves to notify others of the changes made to the Asterisk sou
 Commit messages are part of your code change. Committing code with a poorly written commit message creates a maintenance problem for everyone in the Asterisk project.  Pull Requests can and will be rejected if the commit message doesn't follow these rules!
 ///
 
-
 ## Commit Message Body
 
 ### Basic Format
@@ -87,4 +86,3 @@ UpgradeNote: The X argument to the OldFoo application has been removed
 and will cause an error if supplied.
 
 ```
-

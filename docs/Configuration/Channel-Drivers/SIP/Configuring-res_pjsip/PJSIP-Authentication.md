@@ -60,7 +60,6 @@ Although rare, some scenarios require that an endpoint configuration both send a
 So, unless you know in advance the exact realm a UAS will send in challenges AND it's the same realm you want to use when you're sending challenges as a UAS, create two separate auth objects. for the endpoint.
 ///
 
-
 #### username
 
 No change.  Username to use for account.

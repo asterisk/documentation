@@ -7,10 +7,7 @@ The PJSIP Configuration Wizard (module `res_pjsip_config_wizard`) is a new featu
 
 The following configurations demonstrate a simple ITSP scenario.
 
-
-
 | `pjsip_wizard.conf`
-
 
 ---
 
@@ -28,7 +25,6 @@ aor/qualify_frequency = 15
 ```
 
    | `pjsip.conf`
-
 
 ---
 
@@ -66,8 +62,6 @@ match = sip.my-itsp.net
   |
 | --- | --- |
 
-
-
 Both produce the same result.  In fact, the wizard creates standard `chan_pjsip` objects behind the scenes.  In the above example...
 
 * An endpoint and aor are created with the same name as the wizard.
@@ -82,12 +76,8 @@ Both produce the same result.  In fact, the wizard creates standard `chan_pjsip`
 * The `server_uri` and `client_uri` are constructed using the remote host and username.
 * An identify object is created and a match is added for each remote host.
 
-
-
 Configuration Reference:
 ------------------------
-
-
 
 | Parameter | Description |
 | --- | --- |
@@ -106,10 +96,6 @@ Configuration Reference:
 | hint_exten | The extension this hint will be registered with. |
 | hint_application | An application with parameters to execute when 'hint_exten' is dialed.`Example: Gosub(stdexten,${EXTEN},1(${HINT}))` |
 | <object>/<parameter> | These parameters are passed unmodified to the native object. |
-
-
-
-
 
 Configuration Notes:
 --------------------
@@ -154,8 +140,6 @@ Full Examples:
 --------------
 
 ###  Phones:
-
-
 
 | Configuration | Notes |
 | --- | --- |
@@ -218,8 +202,6 @@ phoneprov/MAC = deadbeef4dad
 
 ### Trunk to an ITSP requiring registration:
 
-
-
 | Configuration | Notes |
 | --- | --- |
 | 
@@ -264,8 +246,6 @@ registration/support_path = no
 
 ### Trunk between trusted peers:
 
-
-
 | Configuration | Notes |
 | --- | --- |
 | 
@@ -283,4 +263,3 @@ accepts_auth = no
 
 ```
  | This one's even simpler. The `sends_` and `accepts_` parameters all default to `no` so you don't really |
-

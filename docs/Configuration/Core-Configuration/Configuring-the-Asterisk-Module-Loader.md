@@ -78,5 +78,3 @@ Usage: module reload [module ...]
  reloading, or for all supported modules if none are listed.
 
 ```
-
-

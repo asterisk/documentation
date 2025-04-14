@@ -100,8 +100,3 @@ Channel 'SIP/6001-00000005' successfully redirected to somecontext,9999,1
 ```
 
 Here we make a call from SIP/6001 to a 100@from-internal, which results in a call to Playback. After the call is established, we issue a 'channel redirect' to redirect that channel to the extension 9999 in the context 'somecontext'. It is immediately placed into that extension and we hear the VoicemailMain prompt.
-
-
-
-
-

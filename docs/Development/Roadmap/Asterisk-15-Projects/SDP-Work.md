@@ -253,16 +253,10 @@ Let's talk about the API a bit. The API introduces two new structures: `ast_sdp_
 
 The first to talk about is `ast_sdp_options`. This is vaguely defined in the API above because there will likely be a lot of options, and trying to make sure all are covered at this point is futile. The options here will be used to influence behavior of the SDP layer. Have a look at the sample code sections to see some hypothetical uses of SDP options.
 
-
-
-
 !!! note 
     It may be a good idea to have some shortcut methods for options. For instance, have an `ast_sdp_options_set_webrtc()`, which will set up bundle, ICE, RTCP-mux, DTLS, and anything else that WebRTC requires.
 
-      
 [//]: # (end-note)
-
-
 
 `ast_sdp_state`
 ---------------
@@ -389,7 +383,7 @@ int incoming_call(struct my_channel_driver_session \*session, struct my_channel_
  struct ast_stream_topology \*channel_topology;
  ast_sdp_state_set_remote(session->sdp_state, message->sdp);
  joint_topology = ast_stream_topology_copy(ast_sdp_state_get_joint_topology(session->sdp_state));
- 
+
  /* Since we're receiving an initial offer, we can just modify the channel stream topology directly */
  ast_channel_lock(session->channel);
  old_channel_topology = channel_topology = ast_channel_stream_topology_get(session->channel));
@@ -403,7 +397,7 @@ int incoming_call(struct my_channel_driver_session \*session, struct my_channel_
  response = make_provisional_response(message);
 
  response->sdp = ast_sdp_state_get_local(session->sdp_state);
- 
+
  return send_message(response);
 }
 
@@ -426,7 +420,7 @@ int direct_media_enabled(struct my_channel_driver_session \*session, struct ast_
  ast_sdp_state_set_connection_address(session->sdp_state, peer_addr);
 
  message = make_media_update_message(session);
- 
+
  message->sdp = ast_sdp_state_get_local(session->sdp_state);
 
  return send_message(message);

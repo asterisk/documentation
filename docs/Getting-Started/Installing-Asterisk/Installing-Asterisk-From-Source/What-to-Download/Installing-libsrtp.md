@@ -8,12 +8,3 @@ libsrtp is a critical part of providing secure calling with Asterisk but there a
 As of November 2017, the minimum supported version of libsrtp supported by Asterisk is 1.5.4.  Earlier versions may allow Asterisk to compile but there were enough issues that earlier versions MAY CRASH, will NOT BE SUPPORTED and are used at your own risk.  Both Asterisk and pjproect do support libsrtp 2.x.
 
 Make sure to specify **`--with-pjproject-bundled`** when running **`./configure`** to make sure both Asterisk and pjproject are in sync with respect to library versions.
-
-
-
-
-
-
-
-
-

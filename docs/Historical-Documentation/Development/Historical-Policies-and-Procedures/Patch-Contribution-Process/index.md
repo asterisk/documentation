@@ -10,16 +10,10 @@ Overview
 
 As an open source project, the Asterisk project welcomes contributions that enhance and improve the functionality of Asterisk. This page describes the process for submitting patches to Asterisk.
 
-
-
-
 !!! note Read More!
     This page links to many other pages on the wiki that provide deeper explanations regarding reporting of issues, writing of patches, and participation in the Asterisk project. Please read the information on those linked pages! Having well tested, high quality patches proposed to the Asterisk project helps everyone.
 
-      
 [//]: # (end-note)
-
-
 
 On This PageAdditional InformationSubmitting a Patch
 ==================
@@ -49,12 +43,9 @@ Some Frequently Asked Questions
 1. **Do I have to put my patch up for code review?**
 2. **No one has looked at my review. What do I do now?**  
 First, please be patient. There may be lots of peer reviews occurring, and it can take some time for members of the community to comment on a review.  
-  
+
 Second, help the reviewers by making sure that your patch is explained well, that the issue it solves/feature it provides is well understood, and that the patch is well tested. Unit tests and functional tests for the [Asterisk Test Suite](/Test-Suite-Documentation/Test-Development/Home/Asterisk-Test-Suite-Documentation) will help immensely, and may also be necessary for your patch to be included.  
-  
+
 Finally, get involved! Contributors who participate in other reviews and show a willingness to test and help out with other submissions will probably receive more attention themselves.  
-  
+
 When all else fails, ask for a review on the #asterisk-dev IRC channel or the [asterisk-dev](http://lists.digium.com/) mailing list. Sometimes, we all just need a gentle nudge.
-
-
-

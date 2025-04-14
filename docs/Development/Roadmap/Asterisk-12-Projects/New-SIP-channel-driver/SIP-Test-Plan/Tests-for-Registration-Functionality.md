@@ -9,8 +9,6 @@ This page outlines registration tests for the new SIP channel driver.
 
 All registration / un-registration tests will need to be run multiple times. Details on each iteration are given below:
 
-
-
 | Iteration | Transport-specific options | Comment |
 | --- | --- | --- |
 | 1 | bind = 127.0.0.1:5060protocol = udp | IPv4 UDP |
@@ -163,8 +161,6 @@ Pass Conditions:
 
 #### Test 1: Invalid expirations
 
-
-
 | Iteration | Alice-specific Data | Alice-auth-specific data | Alice-aor-specific data | Supplied Credentials | Supplied SIP Headers | Comment | Written? |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | 1 | aors=alice | none | max_contacts=1minimum_expiration=5default_expiration=30 | none | Contact: &lt;sip:alice@127.0.0.2:5061&gt;Expires: 4294967296 | Identify by username,no auth,***invalid Expires* header** | no |
@@ -192,8 +188,6 @@ Pass Conditions:
 
 #### Test 2: No Contact header
 
-
-
 | Iteration | Alice-specific Data | Alice-auth-specific data | Alice-aor-specific data | Supplied Credentials | Supplied SIP Headers | Comment | Written? |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | 1 | aors=alice | none | max_contacts=1minimum_expiration=5default_expiration=30 | none | Expires: 10 | Identify by username,no auth,**no Contact header**,***Expires* header** | yes |
@@ -211,8 +205,6 @@ Pass Conditions:
 
 #### Test 3: Configuration Option *max_contacts*
 
-
-
 | Iteration | Alice-specific Data | Alice-auth-specific Data | Alice-aor-specific Data | Supplied Credentials | Supplied SIP Headers | Comment | Written? |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | 1 | aors=alice | none | max_contacts=1 | none | Contact: &lt;sip:alice-office@127.0.0.2:5061&gt;;expires=15Contact: &lt;sip:alice-home@127.0.0.3:5062&gt;;expires=20Expires: 10 | Identify by username,no auth,two contacts, one AOR,*Expires* header,*expires* Contact param | yes |
@@ -229,8 +221,6 @@ Pass Conditions:
 * Asterisk responds with a 403 Forbidden
 
 #### Test 4: Wrong Password
-
-
 
 | Iteration | Alice-specific Data | Alice-auth-specific data | Alice-aor-specific data | Supplied Credentials | Supplied SIP Headers | Comment | Written? |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -253,8 +243,6 @@ Pass Conditions:
 
 #### Test 1: Un-register single contact from AOR
 
-
-
 | Iteration | Alice-specific Data | Alice-auth-specific data | Alice-aor-specific data | Supplied Credentials | Supplied SIP Headers | Comment | Written? |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | 1 | aors=alice | none | max_contacts=1 | none | Contact: &lt;sip:alice@127.0.0.2:5061&gt;Expires: 0 | Identify by username,no auth,***Contact* header**,***Expires* header** | yes |
@@ -270,8 +258,6 @@ Pass Conditions:
 * Asterisk responds with a 200 OK
 
 #### Test 2: Un-register multiple contacts from AOR
-
-
 
 | Iteration | Alice-specific Data | Alice-auth-specific data | Alice-aor-specific data | Supplied Credentials | Supplied SIP Headers | Comment | Written? |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -290,8 +276,6 @@ Pass Conditions:
 
 #### Test 3: Un-register all contacts using '\*' from AOR
 
-
-
 | Iteration | Alice-specific Data | Alice-auth-specific data | Alice-aor-specific data | Supplied Credentials | Supplied SIP Headers | Comment | Written? |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | 1 | aors=alice | none | max_contacts=1minimum_expiration=5default_expiration=30 | none | Contact: \*Expires: 0 | Identify by username,no auth,***Contact* header**,***Expires* header** | yes |
@@ -309,8 +293,6 @@ Pass Conditions:
 ### Off-nominal Tests
 
 #### Test 1: Un-register single contact using '\*' without an *Expires* header from AOR
-
-
 
 | Iteration | Alice-specific Data | Alice-auth-specific data | Alice-aor-specific data | Supplied Credentials | Supplied SIP Headers | Comment | Written? |
 | --- | --- | --- | --- | --- | --- | --- | --- |

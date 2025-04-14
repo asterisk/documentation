@@ -17,4 +17,3 @@ setting=false ; this is a comment
 ; comment, disabling the setting
 
 ```
-

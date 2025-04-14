@@ -47,9 +47,7 @@ context agents {
 
 In the above, the variables ${RAQUEL}, etc stand for actual devices to ring that person's phone (like DAHDI/37). 
 
-
 The 8010, 8011, and 8013 extensions are purely for transferring incoming callers to queues. For instance, a customer service agent might want to transfer the caller to talk to sales. The agent only has to transfer to extension 8010, in this case. 
-
 
 Here is the callagent macro, note that if a person in the queue is called, but does not answer, then they are automatically removed from the queue.
 
@@ -80,6 +78,4 @@ macro callagent(device,exten) {
 
 In the callagent macro above, the ${exten} will be 6121, or 6165, etc, which is the extension of the agent. 
 
-
 The use of the GROUP_COUNT, and OUTBOUND_GROUP follow this line of thinking. Incoming calls can be queued to ring all agents in the current priority. If some of those agents are already talking, they would get bothersome call-waiting tones. To avoid this inconvenience, when an agent gets a call, the OUTBOUND_GROUP assigns that conversation to the group specified, for instance 6171@agents. The ${GROUP_COUNT()} variable on a subsequent call should return "1" for that group. If GROUP_COUNT returns 1, then the busy() is returned without actually trying to dial the agent.
-

@@ -42,4 +42,3 @@ exten => 1,3,Set(${varname1}=value)
 The above dialplan stores to the variable "varname1" the value "varname2" and to variable "varname2" the value "value".
 
 In fact, everything contained ${here} is just replaced with the value of the variable "here".
-

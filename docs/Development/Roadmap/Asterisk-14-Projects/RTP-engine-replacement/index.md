@@ -3,16 +3,10 @@ title: Overview
 pageid: 31752285
 ---
 
-
-
-
 !!! warning 
     This page has not received peer review and is still undergoing edits.
 
-      
 [//]: # (end-warning)
-
-
 
 Purpose of this project
 =======================
@@ -227,4 +221,3 @@ The Actual Work
 I have created a task list for what would be required in order to write an RTP engine from scratch. The page can be found [here](/Development/Roadmap/Asterisk-14-Projects/RTP-engine-replacement/RTP-task-list).
 
 My personal opinion on the matter is that the positive impact of having a new RTP engine does not outweigh the risks and time investment. Since the goal is not to ruffle the feathers of higher-level users of the RTP engine API, the amount of work that can actually be done within an RTP engine is not that much. However, I do think that the current RTP engine could use an overhaul, architecturally, so refactoring `res_rtp_asterisk` to be more able to accept new features is a good idea.
-

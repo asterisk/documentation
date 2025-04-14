@@ -13,8 +13,6 @@ Simple Speech Recognition Scenario:
 
 ![](Simple-Scenario.png)
 
-
-
 In this scenario, your ARI application creates a new External Media channel supplying some basic parameters like media destination and format, then adds that channel to an existing bridge.  The channel driver then forwards all media from the bridge to the destination you specified.  Your application takes the media and re-encapsulates it to match the requirements of your chosen speech recognition provider.  What you do with the result is up to you.  You could store it offline for later retrieval or you could send it to a browser application for real-time display as subtitles, etc.
 
 The External Media channel can also inject media into a bridge it's a member of so you can play progress messages, music, IVR menus, etc.
@@ -25,8 +23,6 @@ Implementation
 To create an External Media channel, you make an ARI `POST` request to `/channels/externalMedia`.  Asterisk will then return a standard ARI Channel object to you.
 
 Parameters:
-
-
 
 | Parameter | Description |
 | --- | --- |
@@ -55,8 +51,3 @@ The returned object will be an ExternalMedia object that contains a standard Cha
 You will automatically be subscribed to events for this channel so you'll see events like StasisStart, Dial(ANSWER), ChannelEnteredBridge, ChannelVarset etc.
 
 The underlying channel technology for the `rtp/udp` encapsulation and transport is the existing UnicastRTP (chan_rtp) channel driver. The chan_rtp channel driver sets the UNICASTRTP_LOCAL_ADDRESS and UNICASTRTP_LOCAL_PORT channel variables with the local IP address and port that media can be sent to. If you want to use this to inject media into the bridge the Extecrnal Media channel is a member of you can retrieve these channel variables using the normal ARI mechanism to get their values.
-
-
-
-
-

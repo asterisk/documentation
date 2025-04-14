@@ -19,7 +19,6 @@ type = <object type>
 <option> = <value>
 ```
 
-
 ## Config Section Help and Defaults
 
 Reference documentation for all configuration parameters:
@@ -30,7 +29,6 @@ Reference documentation for all configuration parameters:
 * [Configuration options for endpoint identification by IP address, provided by res_pjsip_endpoint_identifier_ip](/Latest_API/API_Documentation/Module_Configuration/res_pjsip_endpoint_identifier_ip)
 
 The same documentation is available at the Asterisk CLI as well. You can use "config show help <res_pjsip module name> <configobject> <configoption>" to get help on a particular option. That help will typically describe the default value for an option as well.
-
 
 /// tip|Defaults
 For many config options, it's very helpful to understand their default behavior. For example, for the endpoint section "transport=" option, if no value is assigned then Asterisk will \*DEFAULT\* to the first configured transport in pjsip.conf which is valid for the URI we are trying to contact.
@@ -47,7 +45,6 @@ However, in some cases, (endpoint and aor types) the section name has a relation
 Below is a brief description of each section type and an example showing configuration of that section only. The module providing the configuration object related to the section is listed in parentheses next to each section name.
 
 There are dozens of config options for some of the sections, but the examples below are very minimal for the sake of simplicity.
-
 
 ### ENDPOINT
 
@@ -88,11 +85,9 @@ You can setup multiple transport sections and other sections (such as endpoints)
 * They cannot share the same IP+port or IP+protocol combination. That is, each transport that binds to the same IP as another must use a different port or protocol.
 * PJSIP does not allow multiple TCP or TLS transports of the same IP version (IPv4 or IPv6).
 
-
 /// info|Reloading Config
 Configuration for transport type sections can't be reloaded during run-time unless their `allow_reload` option is set to `yes` 
 ///
-
 
 EXAMPLE BASIC CONFIGURATION
 
@@ -166,7 +161,6 @@ Statically
 Dynamically
 
 - A remote user agent can send a SIP REGISTER request to Asterisk that contains a Contact URI.  In this case, the name of the AOR section must match the user portion of the SIP URI in the "To:" header of the inbound SIP registration. That will usually be the "user name" set in your hard or soft phones configuration.
-
 
 EXAMPLE BASIC CONFIGURATION
 
@@ -333,7 +327,4 @@ You'll see that the new SIP implementation within Asterisk is extremely flexible
 |IDENTIFY|<ul><li>Zero to One ENDPOINTs can be associated with an IDENTIFY object</ul>|
 |ACL, DOMAIN_ALIAS|<ul><li>These objects don't have a direct configuration relationship to the other objects.</ul>|
 
-
 Unfamiliar with ERD notation? Click [here](https://www.google.com/search?q=entity+relationship+diagram+symbols) for more info courtesy of Google Search.
-
-

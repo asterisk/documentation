@@ -28,5 +28,3 @@ pageid: 4620405
 * `${TOUCH_MIXMONITOR_OUTPUT`} - Recorded file from Touch MixMonitor (auto record)
 * `${TXTCIDNAME`} - Result of application TXTCIDName
 * `${VPB_GETDTMF`} - chan_vpb
-
-

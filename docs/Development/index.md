@@ -15,17 +15,9 @@ And anything else developers can think of that can use a wiki page.
 
 Most of the documentation related to the source code is embedded in the source files and is processed with [Doxygen](http://www.doxygen.org). Doxygen can be generated on your system using "make progdocs" with doxygen installed.
 
-
-
-
-
-
 !!! note **  The information on the pages in this section may be developer planning notes, which can differ quite a bit from the final implementation. Do **not
     assume that a page in this section reflects the implemented behaviour in Asterisk!
 
-      
 [//]: # (end-note)
-
-
 
 Topics

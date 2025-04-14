@@ -83,29 +83,17 @@ Now that the theory has been presented, you'll need to write your `external_repl
 
 If you do want to write an `external_replaces` extension, the first thing you want to do is determine if you want to perform the remote attended transfer.  `SIPREFERTOHDR`, and values provided by the `CHANNEL()` dialplan function can help you to decide if you want to allow the transfer. For instance, you might use `CHANNEL(endpoint)` to see which PJSIP endpoint is performing the transfer, and you can inspect `SIPREFERTOHDR` to determine if the transfer is destined for a trusted domain.
 
-
-
-
 !!! note 
     Asterisk dialplan contains functions for manipulating strings. A function [Asterisk 13 Function_PJSIP_PARSE_URI](/Latest_API/API_Documentation/Dialplan_Functions/PJSIP_PARSE_URI) exists for parsing a URI within the dialplan.
 
-      
 [//]: # (end-note)
 
-
-
 If you decide not to perform the transfer, the simplest thing to do is to call the `Hangup()` application.
-
-
-
 
 !!! note 
     Calling `Hangup()` in this situation can have different effects depending on what type of phone Bob is using. Asterisk updates the phone with a notification that the attended transfer failed. It is up to the phone to decide if it wants to try to reinvite itself back into the original conversation with Alice or simply hang up.
 
-      
 [//]: # (end-note)
-
-
 
 If you decide to perform the transfer, the most straightforward way to do this is with the `Dial()` application. Here is an example of how one might complete the transfer
 
@@ -138,4 +126,3 @@ The easiest but most severe way to prevent remote attended transfers is to set `
 A second way has been discussed already, and that is not to write an `external_replaces` extension. This prevents any attempted remote attended transfers from succeeding, but it does not help to prevent the remote attended transfer from happening in the first place.
 
 Another way is to configure your Asterisk server to only call phones that are directly registered to it and trusted SIP servers. In the scenario we have been inspecting, the remote attended transfer could have been avoided by having Asterisk A call Bob through Server B instead of dialing Bob directly. By receiving the initial call through Server B, Bob will send his REFER request to Server B, who being aware of all necessary dialogs, may be able to perform a local attended transfer (assuming it can do the same optimization as Asterisk). Configuring Asterisk this way is not necessarily guaranteed to prevent all remote attended transfer attempts, but it will help to lessen them.
-

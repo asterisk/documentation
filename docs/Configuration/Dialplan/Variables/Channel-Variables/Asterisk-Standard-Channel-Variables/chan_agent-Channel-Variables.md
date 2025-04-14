@@ -12,5 +12,3 @@ pageid: 4620430
 * ${AGENTNUMBER} \* - Agent number (username) set at login
 * ${AGENTSTATUS} \* - Status of login ( fail | on | off )
 * ${AGENTEXTEN} \* - Extension for logged in agent
-
-

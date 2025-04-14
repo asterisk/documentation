@@ -68,4 +68,3 @@ The role of project leadership is handled by the founders of the Asterisk projec
 In addition to providing development resources for Asterisk itself, Sangoma provides community resources including the bug tracker, mailing lists, wiki, version control, continuous integration services, and other necessary project infrastructure. 
 
 Development discussions take place on the public [asterisk-dev mailing list](https://groups.io/g/asterisk-dev) and the [#asterisk-dev](https://libera.chat/) IRC channel. More information on the development of Asterisk can be found on the Asterisk wiki.
-

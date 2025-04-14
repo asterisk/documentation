@@ -3,16 +3,10 @@ title: STIR and SHAKEN
 pageid: 44370563
 ---
 
-
-
-
 !!! warning 
     STIR/Shaken from a technical perspective has improved quite a lot, so much so that some companies have been able to do interop and it does work. The problematic area is really the foundational aspects and policy side of things. It's one thing to say "oh you use private key to sign some stuff" but who issues such things? Who actually does the work of signing and verifying? Are the certificates short lived ephemeral ones? Do you have to use a proprietary API to some upstream to manage things? There's still lots to flesh out there by the industry and governments.
 
-      
 [//]: # (end-warning)
-
-
 
 Welcome to the party!
 ---------------------
@@ -32,9 +26,6 @@ Before we dive into things how about a bit of a TLDR on STIR/SHAKEN? From a pure
 Implementation
 ==============
 
-
-
-
 !!! note 
     If you're actually planning to work on this here's some handy links!
 
@@ -52,12 +43,7 @@ Implementation
 
     <https://www.telecompaper.com/news/atis-picks-iconectiv-as-policy-administrator-of-shakenstir-framework--1295009>
 
-      
 [//]: # (end-note)
-
-
-
-
 
 res_stir_shaken
 -----------------
@@ -67,8 +53,6 @@ The res_stir_shaken module is responsible for certificate management, signing, v
 ### Configuration
 
 Configuration is done using a stir_shaken.conf configuration file. Due to the amount of state required it is implemented using ACO. If we truly feel we need realtime in some way we could use sorcery but it doesn't seem reasonable to allow what most people would consider realtime (looking up at use time). This module will support reload so if things change on disk or in configuration, it can be reloaded by using a reload command.
-
-
 
 As STIR/SHAKEN requires retrieving and using a public key it is advantageous to keep a cache of public keys to minimize call handling time. This is configured in the "general" section. The certificate authority information is also configured here.
 
@@ -80,8 +64,6 @@ cache_max_size=1000
 
 ```
 
-
-
 Individual certificates can be configured using the "certificate" type.
 
 ```
@@ -91,8 +73,6 @@ path=/etc/stir/jcolp.crt
 public_key_url=http://joshua-colp.com/jcolp.crt
 
 ```
-
-
 
 A group of certificates can be configured using the "store" type.
 
@@ -105,8 +85,6 @@ public_key_url=http://joshua-colp.com/${CERTIFICATE}.crt
 ```
 
 If the "store" type is used then all certificates in the directory will be examined and loaded. The public key URL is generated based on the filename and variable substitution.
-
-
 
 In both cases the certificate is examined to determine what phone numbers or SIP URIs it is applicable to and this is then stored away in state information. Note that a certificate may not have any phone numbers or SIP URIs associated with it, but can still be used for signing. This merely conveys where the call came from - not that there is permission to use the phone number for callerid.
 
@@ -258,4 +236,3 @@ res_pjsip_stir_shaken
 ------------------------
 
 The testsuite is the best choice of action for testing this module. Using 2 Asterisk instances, certificates for each, and the Asterisk HTTP server we could place calls between them under various conditions and examine the result in dialplan - raising different user events to indicate success or failure.
-

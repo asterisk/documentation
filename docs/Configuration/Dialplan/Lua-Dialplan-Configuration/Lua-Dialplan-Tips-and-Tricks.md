@@ -19,27 +19,18 @@ app.stopmusiconhold()
 
 ```
 
-
-
 !!! info ""
     In Asterisk 10 an autoservice is automatically started for you by default.
 
-      
 [//]: # (end-info)
-
-
 
 Defining Extensions Dynamically
 -------------------------------
 
 Since extensions are functions in pbx_lua, any function can be used, including closures. A function can be defined that returns extension functions and used to populate the extensions table.
 
-
-
-
 ---
 
-  
 extensions.lua  
 
 ```
@@ -62,12 +53,8 @@ Creating Custom Aliases for Built-in Constructs
 
 If you don't like the `app` table being named 'app' or if you think typing 'channel' to access the `channel` table is too much work, you can rename them.
 
-
-
-
 ---
 
-  
 I prefer less typing  
 
 ```
@@ -117,12 +104,8 @@ Compile extensions.lua
 
 The `luac` program can be used to compile your `extensions.lua` file into lua bytecode. This will slightly increase performance as pbx_lua will no longer need to parse `extensions.lua` on load. The `luac` compiler will also detect and report any syntax errors. To use `luac`, rename your `extensions.lua` file and then run `luac` as follows.
 
-
-
-
 ---
 
-  
 Assume you name your extensions.lua file extensions.lua.lua  
 
 ```
@@ -131,4 +114,3 @@ luac -o extensions.lua extensions.lua.lua
 ```
 
 The pbx_lua module automatically knows the difference between a lua text file and a lua bytecode file.
-

@@ -3,16 +3,10 @@ title: Overview
 pageid: 27200342
 ---
 
-
-
-
 !!! warning 
     Under Construction
 
-      
 [//]: # (end-warning)
-
-
 
 # Sorcery Overview
 
@@ -26,7 +20,6 @@ Added in Asterisk 12, Asterisk has a data abstraction and object persistence CRU
 Sorcery also provides a caching service as well as the capability for push configuration through the Asterisk REST Interface. See the section [ARI Push Configuration](/Configuration/Interfaces/Asterisk-REST-Interface-ARI/The-Asterisk-Resource/ARI-Push-Configuration) for more information on that topic.
 
 On This Page
-
 
 In This Section
 
@@ -126,7 +119,7 @@ auth=realtime,ps_auths
 aor=realtime,ps_aors
 domain_alias=realtime,ps_domain_aliases
 contact=realtime,ps_contacts
- 
+
 [res_pjsip_endpoint_identifier_ip]
 identify=realtime,ps_endpoint_id_ips
 
@@ -146,13 +139,13 @@ transport=config,pjsip.conf,criteria=type=transport
 aor=config,pjsip.conf,criteria=type=aor
 endpoint=config,pjsip.conf,criteria=type=endpoint
 contact=astdb,registrator
- 
+
 [res_pjsip_endpoint_identifier_ip]
 identify=config,pjsip.conf,criteria=type=identify
- 
+
 [res_pjsip_outbound_publish]
 outbound-publish=config,pjsip.conf,criteria=type=outbound-publish
- 
+
 [res_pjsip_outbound_registration]
 registration=config,pjsip.conf,criteria=type=registration
 

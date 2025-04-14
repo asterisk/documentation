@@ -3,16 +3,10 @@ title: Allow Manager Access via HTTP
 pageid: 4817260
 ---
 
-
-
-
 !!! warning 
     AJAM is not supported and may have issues and may be removed in the future. Do not use it if at all possible. Use standard TCP based AMI instead.
 
-      
 [//]: # (end-warning)
-
-
 
 Configuring manager.conf
 ------------------------
@@ -28,16 +22,10 @@ Once those configurations are complete you can reload or restart Asterisk and yo
 
 ### Examples:
 
-
-
-
 !!! info ""
     Be sure the syntax for the URLs below is followed precisely
 
-      
 [//]: # (end-info)
-
-
 
 * http://localhost:8088/manager?action=login&username=foo&secret=bar
 
@@ -57,12 +45,6 @@ If you have enabled static content support and have done a make install, Asteris
 
 A sample library (astman.js) is included to help ease the creation of manager HTML interfaces.
 
-
-
-
 !!! note **  For the demo, there is no need for **any external web server.
 
 [//]: # (end-note)
-
-
-

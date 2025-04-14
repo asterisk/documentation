@@ -31,28 +31,17 @@ The interesting information is located in the last column.
 
 Second, your copy of Asterisk must have been built without optimization or the backtrace will be (nearly) unusable. This can be done by selecting the 'DONT_OPTIMIZE' option in the Compiler Flags submenu in the 'make menuselect' tree before building Asterisk.
 
-
-
-
 !!! note 
     | Using BETTER_BACKTRACES |
     | --- |
     | As of Asterisk versions 1.4.40, 1.6.2.17, and 1.8.3, the option BETTER_BACKTRACES which uses libbfd, will provide better symbol information within both the Asterisk binary, as well as loaded modules, to assist when using inline backtraces to track down problems. **It is recommended that you enable both DONT_OPTIMIZE and BETTER_BACKTRACES** |
 
-      
 [//]: # (end-note)
-
-
-
-
 
 !!! tip 
     libbfd is included in the binutils-devel package on CentOS / RHEL, or the binutils-dev package on Debian / Ubuntu.
 
-      
 [//]: # (end-tip)
-
-
 
 Running a production server with DONT_OPTIMIZE is generally safe. You'll notice the binary files may be a bit larger, but in terms of Asterisk performance, impact should be negligible.
 
@@ -67,16 +56,10 @@ There are two kind of backtraces (aka 'bt') which are useful: bt and bt full.
 
 Now that we've verified the core file has been written to disk, the final part is to extract 'bt' from the core file. Core files are pretty big, don't be scared, it's normal.
 
-
-
-
 !!! note 
     Don't attach core files on the bug tracker as they are only useful on the machine they were generated on. We only need the output of the 'bt' and 'bt full.'
 
-      
 [//]: # (end-note)
-
-
 
 For extraction, we use a really nice tool, called gdb. To verify that you have gdb installed on your system:
 
@@ -94,13 +77,9 @@ This GDB was configured as "i486-linux-gnu"...
 
 If you don't have gdb installed, go install gdb. You should be able to install using something like: apt-get install gdb **or** yum install gdb
 
-
-
-
 !!! tip 
     Just run the following command to get the output into the backtrace.txt file, ready for uploading to the issue tracker. Be sure to change the name of the core file to your actual core dump file:
 
-      
 [//]: # (end-tip)
 
 ```bash title=" " linenums="1"
@@ -234,16 +213,10 @@ Getting Information For A Deadlock
 
 Whenever collecting information about a deadlock it is useful to have additional information about the threads involved. We can generate this information by attaching to a running Asterisk process and gathering that information. Follow the two steps below to collect debug that will be useful to Asterisk developers.
 
-
-
-
 !!! note **  In the Compiler Flags menu of menuselect and you should enable **DEBUG_THREADS**, **DONT_OPTIMIZE** and **BETTER_BACKTRACES
     . Then, you need to recompile, re-install, and restart Asterisk before following the steps below.
 
-      
 [//]: # (end-note)
-
-
 
 **Use GDB to collect a backtrace:** You can easily attach to a running Asterisk process, gather the output required and then detach from the process all in a single step. Since this gathers information from the running Asterisk process,  you want to make sure you run this command immediately before or after gathering the output of '[core show locks](/Development/Debugging/CLI-commands-useful-for-debugging)'. Execute the following command and upload the resulting backtrace-threads.txt file to the Asterisk issue tracker:
 
@@ -301,21 +274,14 @@ Uploading Your Information To The Issue Tracker
 
 You're now ready to upload your files to the Asterisk issue tracker (located at <https://github.com/asterisk/asterisk/issues>).
 
-
-
-
 !!! note 
     Please ATTACH your output! DO NOT paste it as a note!
 
     The menu item is located on the JIRA issue report under: ( More > Attach Files )
 
-      
 [//]: # (end-note)
-
-
 
 Questions?
 ==========
 
 If you have questions or comments regarding this documentation, feel free to pass by the #asterisk-bugs channel on irc.freenode.net.
-

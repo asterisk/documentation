@@ -43,7 +43,6 @@ Angle may be specified in either degrees or radians by specifying the `degrees` 
 
 See the references above for the exact shape definitions.
 
-
 | Shape | Attributes |
 | --- | --- |
 | Point | pos or pos3d |
@@ -54,8 +53,6 @@ See the references above for the exact shape definitions.
 | Ellipsoid | pos3d, semiMajorAxis, semiMinorAxis, verticalAxis, orientation |
 | Polygon | 3 or more pos or pos3d |
 | Prism | 3 or more pos3d, height |
-
-
 
 | Attribute | Description | Units | Example |
 | --- | --- | --- | --- |

@@ -7,7 +7,6 @@ pageid: 25919712
 
 ## Introduction
 
-
 Channel Event Logging (CEL) provides a series of records describing the state of channels in Asterisk to any of several [event recording back-ends](../CEL-Configuration-Examples). CEL records provide substantially more information than CDRs and thus allow an Asterisk User to construct their own more complex billing system.
 
 As a result of the bridging work done for Asterisk 12, CEL behavior has changed for several events that occur in the system. The most significant changes are:
@@ -24,7 +23,6 @@ As a result of the bridging work done for Asterisk 12, CEL behavior has changed 
 This CEL specification applies to Asterisk 12 and above. While some portions of this specification are applicable to prior versions of Asterisk, other portions are specific to Asterisk 12 and their counterparts in prior versions are not discussed.
 
 ## Terminology
-
 
 | Term | Definition |
 | --- | --- |
@@ -376,4 +374,3 @@ For this scenario, assume that AST\_CEL\_ANSWER and AST\_CEL\_HANGUP are configu
 | Charlie is destroyed | AST\_CEL\_CHANNEL\_END | Charlie |  |
 
 Note that the ATTENDEDTRANSFER event does not necessarily occur before or after the records it is related to.
-

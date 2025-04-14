@@ -3,16 +3,10 @@ title: Asterisk PJSIP Troubleshooting Guide
 pageid: 30278355
 ---
 
-
-
-
 !!! warning 
     This page is currently under construction. Please refrain from commenting until this warning is removed.
 
-      
 [//]: # (end-warning)
-
-
 
 Overview
 ========
@@ -224,7 +218,6 @@ a=sendrecv
 a=rtpmap:96 telephone-event/8000
 a=fmtp:96 0-15
 
-
 <--- Transmitting SIP response (543 bytes) to UDP:10.24.16.37:5060 --->
 SIP/2.0 401 Unauthorized
 Via: SIP/2.0/UDP 10.24.16.37:5060;rport;received=10.24.16.37;branch=z9hG4bKPjQevrxvXqk9Lk5xSW.pzQQb8SAWnJ5Lll
@@ -235,7 +228,6 @@ CSeq: 9775 INVITE
 WWW-Authenticate: Digest realm="asterisk",nonce="1413305427/8dd1b7f56aba97da45754f7052d8a688",opaque="3b9c806b61adf911",algorithm=md5,qop="auth"
 Content-Length: 0
 
-
 <--- Received SIP request (370 bytes) from UDP:10.24.16.37:5060 --->
 ACK sip:201@10.24.20.249 SIP/2.0
 Via: SIP/2.0/UDP 10.24.16.37:5060;rport;branch=z9hG4bKPjQevrxvXqk9Lk5xSW.pzQQb8SAWnJ5Lll
@@ -245,7 +237,6 @@ To: <sip:201@10.24.20.249>;tag=z9hG4bKPjQevrxvXqk9Lk5xSW.pzQQb8SAWnJ5Lll
 Call-ID: q.TF2SAaX3jn8dtaLTOCuIO8FRyDCsSR
 CSeq: 9775 ACK
 Content-Length: 0
-
 
 <--- Received SIP request (1343 bytes) from UDP:10.24.16.37:5060 --->
 INVITE sip:201@10.24.20.249 SIP/2.0
@@ -285,7 +276,6 @@ a=sendrecv
 a=rtpmap:96 telephone-event/8000
 a=fmtp:96 0-15
 
-
 <--- Transmitting SIP response (543 bytes) to UDP:10.24.16.37:5060 --->
 SIP/2.0 401 Unauthorized
 Via: SIP/2.0/UDP 10.24.16.37:5060;rport;received=10.24.16.37;branch=z9hG4bKPjCrZnx79augJPtGcTbYlXEs2slZNtwYeC
@@ -295,7 +285,6 @@ To: <sip:201@10.24.20.249>;tag=z9hG4bKPjCrZnx79augJPtGcTbYlXEs2slZNtwYeC
 CSeq: 9776 INVITE
 WWW-Authenticate: Digest realm="asterisk",nonce="1413305427/8dd1b7f56aba97da45754f7052d8a688",opaque="0b5a53ab6484480a",algorithm=md5,qop="auth"
 Content-Length: 0
-
 
 <--- Received SIP request (370 bytes) from UDP:10.24.16.37:5060 --->
 ACK sip:201@10.24.20.249 SIP/2.0
@@ -667,4 +656,3 @@ If you look into your logs you might messages similar to the following:
 ```
 
 The most likely issue is that you have not compiled **pjproject** with support for IPv6. You can find instructions at [PJSIP-pjproject](/Getting-Started/Installing-Asterisk/Installing-Asterisk-From-Source/PJSIP-pjproject).
-

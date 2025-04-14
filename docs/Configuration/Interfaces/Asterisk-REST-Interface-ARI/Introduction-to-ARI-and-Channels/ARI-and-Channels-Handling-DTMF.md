@@ -6,7 +6,6 @@ While this concept is relatively straight forward, handling DTMF is quite common
 
 ## Example: A simple automated attendant
 
-
 This example mimics the [automated attendant/IVR dialplan example](/Deployment/Basic-PBX-Functionality/Auto-attendant-and-IVR-Menus/Handling-Special-Extensions). It does the following:
 
 * Plays a menu to the user which is cancelled when the user takes some action.
@@ -20,7 +19,7 @@ This example mimics the [automated attendant/IVR dialplan example](/Deployment/B
     1. The **extra** sound package from Asterisk. You can install this using the `menuselect` tool.
     2. If using the Python example, `ari-py` version 0.1.3 or later.
     3. If using the JavaScript example, ari-client version 0.1.4 or later.
-      
+
 [//]: # (end-tip)
 
 ### Dialplan
@@ -301,7 +300,6 @@ def on_dtmf_received(channel, ev):
   channel.play(media='sound:option-is-invalid')
  play_intro_menu(channel)
 
-
 def stasis_start_cb(channel_obj, ev):
  """Handler for StasisStart event"""
 
@@ -342,7 +340,6 @@ def handle_extension_one(channel):
  channel.play(media='digits:1')
  play_intro_menu(channel)
 
-
 def handle_extension_two(channel):
  """Handler for a channel pressing '2'
 
@@ -381,7 +378,6 @@ class MenuState(object):
  def __init__(self, current_sound, complete):
  self.current_sound = current_sound
  self.complete = complete
-
 
 def play_intro_menu(channel):
  """Play our intro menu to the specified channel
@@ -473,7 +469,6 @@ def play_intro_menu(channel):
 
  queue_up_sound(channel, menu_state)
 
-
 def handle_extension_one(channel):
  """Handler for a channel pressing '1'
 
@@ -484,7 +479,6 @@ def handle_extension_one(channel):
  channel.play(media='digits:1')
  play_intro_menu(channel)
 
-
 def handle_extension_two(channel):
  """Handler for a channel pressing '2'
 
@@ -494,7 +488,6 @@ def handle_extension_two(channel):
  channel.play(media='sound:you-entered')
  channel.play(media='digits:2')
  play_intro_menu(channel)
-
 
 def cancel_timeout(channel):
  """Cancel the timeout timer for the channel
@@ -507,7 +500,6 @@ def cancel_timeout(channel):
  timer.cancel()
  del channel_timers[channel.id]
 
- 
 def on_dtmf_received(channel, ev):
  """Our main DTMF handler for a channel in the IVR
 
@@ -530,7 +522,6 @@ def on_dtmf_received(channel, ev):
   channel.play(media='sound:option-is-invalid')
  play_intro_menu(channel)
 
-
 def stasis_start_cb(channel_obj, ev):
  """Handler for StasisStart event"""
 
@@ -540,13 +531,11 @@ def stasis_start_cb(channel_obj, ev):
  channel.on_event('ChannelDtmfReceived', on_dtmf_received)
  play_intro_menu(channel)
 
-
 def stasis_end_cb(channel, ev):
  """Handler for StasisEnd event"""
 
  print "%s has left the application" % channel.json.get('name')
  cancel_timeout(channel)
-
 
 client.on_channel_event('StasisStart', stasis_start_cb)
 client.on_channel_event('StasisEnd', stasis_end_cb)
@@ -569,8 +558,6 @@ Channel PJSIP/alice-00000001 stopped paying attention...
 PJSIP/alice-00000001 has left the application
 
 ```
-
-
 
 ### JavaScript (Node.js)
 
@@ -1020,4 +1007,3 @@ Channel PJSIP/alice-00000001 stopped paying attention...
 PJSIP/alice-00000001 has left the application
 
 ```
-

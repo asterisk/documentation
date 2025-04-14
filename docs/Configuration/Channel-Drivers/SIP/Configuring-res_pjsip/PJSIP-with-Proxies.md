@@ -84,6 +84,3 @@ Inbound Proxy
 =============
 
 In a service provider scenario, Asterisk will most likely be behind a proxy separated from the public internet and the clients, be they phones or PBXes or whatever.  In this case, the configuration burden shifts from Asterisk to the proxy.   You'll probably want to set the proxy up to handle authentication, qualification, direction of media to media gateways, voicemail servers, etc, and that's all well beyond the scope of this document.   Contributions that contain instructions for popular proxies would be most welcomed.
-
-
-

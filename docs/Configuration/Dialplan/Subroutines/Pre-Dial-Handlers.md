@@ -3,12 +3,8 @@ title: Pre-Dial Handlers
 pageid: 20189344
 ---
 
-
-
-
 !!! info "**  Pre-Dial Handlers were added in **Asterisk 11"
     ---
-
 
     Overview
     --------
@@ -23,16 +19,11 @@ pageid: 20189344
     Pre-dial handlers are supported in the [Dial](/Latest_API/API_Documentation/Dialplan_Applications/Dial) application and the [FollowMe](/Latest_API/API_Documentation/Dialplan_Applications/FollowMe) application.
 [//]: # (end-info)
 
-
 **WARNING!: WARNINGS**  
 * As pre-dial handlers are implemented using [Gosub](/Latest_API/API_Documentation/Dialplan_Applications/Gosub) subroutines, they must be terminated with a call to [Return](/Latest_API/API_Documentation/Dialplan_Applications/Return).
 * Taking actions in pre-dial handlers that would put the caller/callee channels into other applications will result in undefined behaviour. Pre-dial handlers should be short routines that do not impact the state that the dialing application assumes the channel will be in.
-  
-
-
 
 ---
-
 
 Syntax
 ------
@@ -45,15 +36,10 @@ B([[context^]exten^]priority[(arg1[^...][^argN])])
 
 ```
 
-
-
 !!! info ""
     If context or exten are not supplied then the current values from the caller channel are used.
 
-      
 [//]: # (end-info)
-
-
 
 Examples
 --------
@@ -80,11 +66,8 @@ same => n,Return()
 
 ```
 
-
-
 ---
 
-  
 Example 1 CLI Output  
 
 ```
@@ -110,11 +93,8 @@ same => n,Return()
 
 ```
 
-
-
 ---
 
-  
 Example 2 CLI Output  
 
 ```
@@ -140,11 +120,8 @@ same => n,Return()
 
 ```
 
-
-
 ---
 
-  
 Example 3 CLI Output  
 
 ```
@@ -157,4 +134,3 @@ Example 3 CLI Output
 <SIP/foo-123> calling SIP/baz-125
 
 ```
-

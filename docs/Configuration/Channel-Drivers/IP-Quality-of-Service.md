@@ -17,8 +17,6 @@ vconfig set_egress_map [vlan-device] [skb-priority] [vlan-qos]
 
 The table below shows all VoIP channel drivers and other Asterisk modules that support QoS settings for network traffic. It also shows the type(s) of traffic for which each module can support setting QoS settings:
 
-
-
 |   | Signaling | Audio | Video | Text |
 | --- | --- | --- | --- | --- |
 | chan_sip | + | + | + | + |
@@ -42,8 +40,6 @@ Note that on a Linux system, Asterisk must be compiled with libcap in order to u
 The lowdelay, throughput, reliability, mincost, and none values have been removed in current releases.
 
 ToS decimal equivalence table:
-
-
 
 | name | decimal value |
 | --- | --- |
@@ -77,8 +73,6 @@ Because 802.1p uses 3 bits of the VLAN header, this parameter can take integer v
 
 The recommended values shown below are also included in sample configuration files:
 
-
-
 |   | tos | cos |
 | --- | --- | --- |
 | Signaling | cs3 | 3 |
@@ -97,25 +91,16 @@ In iaxprov.conf, there is a "tos" parameter that tells the IAXy what TOS to set 
 
 In chan_sip, there are four parameters that control the TOS settings: "tos_sip", "tos_audio", "tos_video" and "tos_text". tos_sip controls what TOS SIP call signaling packets are set to. tos_audio, tos_video and tos_text control what TOS values are used for RTP audio, video, and text packets, respectively.   
 
-
 ### CHAN_PJSIP
 
 In chan_pjsip, there are three parameters that control the TOS settings: a **tos** option for a **type=transport**that controls the TOS of SIP signaling packets, a **tos_audio** option for a **type=endpoint** that controls the TOS of RTP audio packets, and a **tos_video** option for a **type=endpoint** that controls the TOS of video packets.
 
 Similarly, there are there parameters that control the 802.1p CoS settings: a **cos** option for a **type=transport** that controls the 802.1p value for SIP signaling packets, a**cos_audio** option for a **type=endpoint** that controls the 802.1p value of RTP audio packets, and a **cos_video** option for a **type=endpoint** that controls the 802.1p value for video packets.
 
-
-
-
 !!! tip **  Changes to a chan_pjsip **type=transport
     require an Asterisk restart to be affected. They are not affected by simply reloading Asterisk.
 
-      
 [//]: # (end-tip)
-
-
-
-
 
 ### Other RTP channels
 
@@ -128,5 +113,3 @@ IEEE 802.1Q Standard: <http://standards.ieee.org/getieee802/download/802.1Q-1998
 RFC 2474 - "Definition of the Differentiated Services Field (DS field) in the IPv4 and IPv6 Headers", Nichols, K., et al, December 1998.
 
 IANA Assignments, DSCP registry Differentiated Services Field Codepoints <http://www.iana.org/assignments/dscp-registry>   
-
-

@@ -8,4 +8,3 @@ The sub-pages here cover any possible configuration of Asterisk's core. That is,
 If you are unfamiliar with the core and modules concepts, take a look at the [Asterisk Architecture](/Fundamentals/Asterisk-Architecture) section.
 
 Topics
-

@@ -11,16 +11,12 @@ This page lists public Asterisk C APIs which are in [the process of being deprec
 Proposed APIs To Deprecate In Future
 ====================================
 
-
-
 | **API Name/Description** | Deprecated Version | Removal Version | Notes |
 | --- | --- | --- | --- |
 | `ast_gethostbyname()` | 21 | 23 | Deprecated in favor of `ast_sockaddr` family of functions |
 
 Deprecated APIs
 ===============
-
-
 
 | API Name/Description | Deprecated Version | Removal Version | Notes |
 | --- | --- | --- | --- |
@@ -29,9 +25,6 @@ Deprecated APIs
 Removed APIs
 ============
 
-
-
 | API Name/Description | Deprecated Version | Removed Version | Notes |
 | --- | --- | --- | --- |
 |  |  |  |  |
-

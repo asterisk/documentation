@@ -8,11 +8,9 @@ pageid: 19008058
 
     #### We strongly recommend that you write your tests using test-config.yaml and pluggable modules rather than in Python. If you find yourself limited by the pluggable modules, we'd all be better off if you updated an existing module or created a new one to handle your scenario.
 
-      
 [//]: # (end-warning)
 
 ## Overview
-
 
 While the Asterisk Test Suite can execute a test written in any scripting language, [Python](http://www.python.org) has become the de facto language of choice. The Asterisk Test Suite contains a number of modules written in Python to help with writing tests; as such, we strongly encourage people to make use of the existing infrastructure - and, of course - add to it as necessary!
 
@@ -37,10 +35,10 @@ This walkthrough will create a test (*sample*) that makes Asterisk playback tt-m
 * *test-config.yaml*, which will contain the test information and its dependency properties
 * A *configs* directory. The *configs* directory should contain subfolder(s) for each instance of Asterisk that will be instantiated by the test, named *ast#*, where # is the 1-based index of the Asterisk instance. For now, create a single folder named *ast1*.
 * In each *ast#* subfolder, the Asterisk config files needed for the test. At a minimum, this will be *extensions.conf*.
-	
+
 !!! info
     NoteThe asterisk class automatically creates an *asterisk.conf* file, and installs it along with other basic Asterisk configuration files (see the *configs* directory). You can override their behavior by providing your own *.conf.inc* files. Any configuration files not provided in the *configs* directory are installed from the subfolders for each test.
-	
+
 3. Edit your *extensions.conf* to perform some test in Asterisk. For our test, we'll simply check that we can dial into Asterisk and play back a sound file.
 
 ```
@@ -73,13 +71,10 @@ Each test has a corresponding [yaml](http://yaml.org/) file that defines informa
 		- custom: Custom dependencies, e.g., 'soundcard', 'fax', etc.
 		- app: External applications that are needed, i.e., 'pjsua'
 
-
 !!! info ""
     NoteSee the Test Suite's README.txt for all of the possible fields in a test configuration file
 
-      
 [//]: # (end-info)
-
 
 The *test-config.yaml* file for our *sample* test is below.
 
@@ -452,7 +447,6 @@ class SampleTest(TestCase):
  LOGGER.error("No monkeys found :-(")
  self.stop_reactor()
 
-
 def main():
  """
  Main entry point for the test. This will do the following:
@@ -474,4 +468,3 @@ if __name__ == "__main__":
  sys.exit(main() or 0)
 
 ```
-

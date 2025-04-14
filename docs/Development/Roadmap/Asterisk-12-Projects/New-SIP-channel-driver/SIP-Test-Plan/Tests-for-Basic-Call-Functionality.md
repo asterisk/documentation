@@ -10,12 +10,8 @@ Configuration for Tests
 
 The configuration for these tests will all be made from a basic template. Some tests will require configuration to be added to the template. This will be specified in the test if necessary.
 
-
-
-
 ---
 
-  
 res_sip.conf  
 
 ```
@@ -57,11 +53,8 @@ username=bob
 
 ```
 
-
-
 ---
 
-  
 extensions.conf  
 
 ```
@@ -94,8 +87,6 @@ Incoming call tests involve a call placed from endpoint "alice" to Asterisk.
 ### Nominal path
 
 All Nominal path tests will be run multiple times. Each iteration of the test is detailed in the table below.
-
-
 
 | Iteration | Transport-specific Data | Alice-specific Data | Alice-auth-specific data | modules.conf additions | INVITE details | Comment | Written? |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -173,8 +164,6 @@ Pass conditions:
 
 All off-nominal tests will need to be run multiple times. Details on each iteration are given below:
 
-
-
 | Iteration | Transport-specific options | Comment |
 | --- | --- | --- |
 | 1 | bind = 127.0.0.1:5060protocol = udp | IPv4 UDP |
@@ -197,8 +186,6 @@ Pass conditions:
 ##### Test 2: Authentication failure
 
 This test requires several iterations. The differences in each iteration are detailed in the table below
-
-
 
 | Iteration | Alice-specific Data | Alice-auth-specific data | Supplied Credentials | Comment | Written? |
 | --- | --- | --- | --- | --- | --- |
@@ -241,8 +228,6 @@ Outgoing Call Tests
 These tests all describe calls from Asterisk to endpoint "bob".
 
 All outgoing tests will require multiple iterations. The details of each iteration are given in the following table:
-
-
 
 | Iteration | Transport-specific data | Originate channel | Comment |
 | --- | --- | --- | --- |
@@ -344,8 +329,6 @@ Two-party Call tests
 
 The following tests require multiple iterations. Details about each iteration are in the following table:
 
-
-
 | Iteration | Transport-specific data | Extension Alice calls |
 | --- | --- | --- |
 | 1 | bind = 127.0.0.1:5060protocol=udp | bob@default |
@@ -387,8 +370,6 @@ Pass Conditions:
 
 The following tests require multiple iterations. Details about each iteration are in the following table:
 
-
-
 | Iteration | Transport-specific data | Originate channel | Originate extension | INVITE details |
 | --- | --- | --- | --- | --- |
 | 1 | bind = 127.0.0.1:5060protocol=udp | PJSIP/sip:alice@127.0.0.1:5061 | bob@default | SDP in offer from Alice |
@@ -429,8 +410,6 @@ Pass Conditions:
 ### Off-nominal Tests, Alice-initiated
 
 The following tests require multiple iterations. Details about each iteration are in the following table:
-
-
 
 | Iteration | Transport-specific data | Extension Alice calls |
 | --- | --- | --- |
@@ -493,8 +472,6 @@ Pass Conditions:
 
 The following tests require multiple iterations. Details about each iteration are in the following table:
 
-
-
 | Iteration | Transport-specific data | Originate channel | Originate extension |
 | --- | --- | --- | --- |
 | 1 | bind = 127.0.0.1:5060protocol=udp | PJSIP/sip:alice@127.0.0.1:5061 | bob@default |
@@ -551,4 +528,3 @@ Procedure:
 Pass Conditions:  
  Ensure that Asterisk sends an immediate BYE after ACKing the 200 OK from Bob.  
  Ensure that Asterisk sends a BYE to Alice.
-

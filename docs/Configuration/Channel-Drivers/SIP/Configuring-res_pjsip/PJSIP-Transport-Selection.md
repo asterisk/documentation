@@ -6,8 +6,6 @@ pageid: 31097159
 Sending Messages
 ================
 
-
-
 The process by which an underlying transport is chosen for sending of a message is broken up into different steps depending on the type of message.SIP Request Handling
 --------------------
 
@@ -102,19 +100,16 @@ type=transport
 protocol=udp
 bind=0.0.0.0
 
-
 [system-tcp]
 type=transport
 protocol=tcp
 bind=0.0.0.0
-
 
 [system-tls]
 type=transport
 protocol=tls
 bind=0.0.0.0:5061
 cert_file=certificate
-
 
 [phone]
 type=endpoint
@@ -134,7 +129,6 @@ type=transport
 protocol=udp
 bind=5.5.5.5
 
-
 [system-internet-tcp]
 type=transport
 protocol=tcp
@@ -146,18 +140,15 @@ protocol=tls
 bind=5.5.5.5:5061
 cert_file=certificate
 
-
 [system-local-udp]
 type=transport
 protocol=udp
 bind=192.168.1.1
 
-
 [system-local-tcp]
 type=transport
 protocol=tcp
 bind=192.168.1.1
-
 
 [system-local-tls]
 type=transport
@@ -169,19 +160,14 @@ cert_file=certificate
 type=endpoint
 transport=system-internet-udp
 
-
 [phone-local]
 type=endpoint
 transport=system-local-udp
-
-
 
 [phone-unspecified]
 type=endpoint
 
 ```
-
-
 
 This example includes three endpoints which are each present on different networks. To ensure that outgoing requests to the first two endpoints travel over the correct transport the transport has been explicitly specified on each. For requests to these endpoints the logic in section 3b will be used. For requests to the "phone-unspecified" endpoint since no transport has been explicitly specified the logic in section 3a will be used.
 
@@ -196,15 +182,12 @@ type=transport
 protocol=udp
 bind=[2001:470:e20f:42::42]
 
-
 [system-tcp6]
 type=transport
 protocol=tcp
 bind=[2001:470:e20f:42::42]
 
 ```
-
-
 
 IPv4+IPv6 Combined (Single Interface)
 -------------------------------------
@@ -217,18 +200,15 @@ type=transport
 protocol=udp
 bind=192.168.1.1
 
-
 [system-tcp]
 type=transport
 protocol=tcp
 bind=192.168.1.1
 
-
 [system-udp6]
 type=transport
 protocol=udp
 bind=[2001:470:e20f:42::42]
-
 
 [system-tcp6]
 type=transport
@@ -237,16 +217,10 @@ bind=[2001:470:e20f:42::42]
 
 ```
 
-
-
-
 !!! warning
     It might be tempting to use a wildcard IPv6 address to bind a single transport to allow both IPv6 and IPv4. In this configuration IPv6 mapped IPv4 addresses will be used which is unsupported by PJSIP. This will cause a SIP message parsing failure.
 
-
 [//]: # (end-warning)
-
-
 
 Common Issues
 =============
@@ -264,7 +238,4 @@ Failed to send Request msg INVITE/cseq=7846 (tdta0x7fa920002e50)! err=171060 (Un
 
 ```
 
-
-
 This can occur due to using a transport type (such as TCP) or address family when a transport meeting the requirements does not exist.
-

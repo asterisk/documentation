@@ -13,7 +13,6 @@ If you would like to make changes or contribute you can find the documentation r
 
 Thank you very much for your continued support of Asterisk!
 
-
 # Tags
 
 Following is a list of relevant tags:

@@ -7,18 +7,10 @@ If Asterisk is crashing due to potential memory corruption then head to the [Get
 
 If Asterisk developers suspect that you have a memory leak then you will be asked to follow the instructions below.
 
-
-
-
 !!! tip 
     Follow the instructions here and all linked instructions closely to speed up the debugging process.
 
-      
 [//]: # (end-tip)
-
-
-
-
 
 1. Verify the Description field of your issue report contains details about the environment in which the issue occurs.
 	1. Basic information - Linux environment, Asterisk version, modifications in use, third-party modules, etc.
@@ -29,4 +21,3 @@ If Asterisk developers suspect that you have a memory leak then you will be aske
 	1. [MALLOC_DEBUG Compiler Flag](/Development/Debugging/MALLOC_DEBUG-Compiler-Flag)
 
 All debug should be attached using ( More > Attach Files ) on the JIRA issue report.
-

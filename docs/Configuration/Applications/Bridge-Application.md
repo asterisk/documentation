@@ -30,10 +30,3 @@ See Also
 * [Introduction to ARI and Bridges](/Configuration/Interfaces/Asterisk-REST-Interface-ARI/Introduction-to-ARI-and-Bridges)
 * [Asterisk 13 Application_BridgeWait](/Latest_API/API_Documentation/Dialplan_Applications/BridgeWait)
 * [Conferencing Applications](/Configuration/Applications/Conferencing-Applications)
-
-
-
-
-
-
-

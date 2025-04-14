@@ -18,7 +18,7 @@ To configure res_pjsip for communication over an IPv6 interface you must modify 
 type=transport
 protocol=udp
 bind=[fe80::5e26:aff:fe4b:4399]
- 
+
 [transport-tcp6]
 type=transport
 protocol=tcp
@@ -53,8 +53,3 @@ disallow=all
 allow=ulaw
 
 ```
-
-
-
-
-

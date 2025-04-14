@@ -11,7 +11,6 @@ The Asterisk project uses [Gerrit](https://gerrit.asterisk.org) for code reviews
 
 Use of Gerrit is beyond the scope of this wiki page - for in depth information, see the [Gerrit documentation](https://gerrit.asterisk.org/Documentation/index.html).
 
-
 ## SSH Host Key Fingerprint
 
 Gerrit uses an internal ssh server on port 29418 for all git operations.  This is the current host key fingerprint,
@@ -32,7 +31,7 @@ Gerrit uses [OpenID](https://openid.asterisk.org) in conjunction with the Asteri
 
 1. Create an account at [signup.asterisk.org](https://signup.asterisk.org/signup).
 2. Sign a [Contributor License Agreement](https://github.com/asterisk/asterisk/issues/jira/secure/DigiumLicense.jspa).
-	
+
 	/// warning 
 	Until your Contributor License Agreement is approved, you will not be able to sign into the project OpenID provider or Gerrit.
 	///
@@ -50,7 +49,7 @@ Upon logging in for the first time, you will need to perform the following:
 	2. Click "Settings"
 	3. Click "Profile" on the left side of the screen.
 	4. In the top text box in the center, enter your user name, and confirm.
-	
+
 	/// warning
 	Failure to set your username will result in clones using SSH failing, despite adding your SSH key. If you can not clone using SSH please ensure you have set your username.
 	///
@@ -234,7 +233,6 @@ To ssh://gerrit.asterisk.org:29418/asterisk
 
 `9999` is the review number.  
 
-
 ### Cherry Pick
 
 If you're making your change to the Asterisk 13 or 14 branches, you'll probably need to cherry-pick your change to other branches.  For changes to 13, cherry-pick to 14 and master.  For changes to 14, cherry-pick to master.  The easiest way to do this is via the Gerrit web user interface.
@@ -254,7 +252,6 @@ This will cherry pick review 9999 to the 14 branch.
 
 As each review is created, Gerrit will automatically schedule a verification step with Jenkins (our continuous integration platform).  To pass the verification, Asterisk has to build successfully with your change and all unit tests must pass.  Passing is usually the signal to reviewers that it's a valid patch and they can spend time reviewing it.  If it fails, it's up to you to examine the results by following the links that Jenkins added to the comments and taking appropriate action.  
 
-
 ### Respond to comments
 
 The worst thing you can do is push a review then not respond to comments!.  This tells reviewers that the review isn't important to you and the review will probably keep falling further back in the queue.
@@ -262,7 +259,6 @@ The worst thing you can do is push a review then not respond to comments!.  This
 ### Next Steps
 
 If your review is accepted without the need for re-work, you need to nothing further.  Otherwise, read on.  
-
 
 ## Updating a Review
 
@@ -373,5 +369,3 @@ $ git push --no-thin asterisk:{repo} HEAD:refs/for/master
 Solution: You may have mistaken the Gerrit notifications on a mailing list for notifications associated with your account. Of course if the notifications are being received via a mailing list then you would need to unsubscribe from the entire mailing list to stop receiving related mailings.
 
 Other possibilities are that you have multiple accounts or are receiving notifications via forwarding from another E-mail address.  
-
-

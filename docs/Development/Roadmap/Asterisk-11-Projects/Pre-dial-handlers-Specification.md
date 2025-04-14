@@ -3,8 +3,6 @@ title: Pre-dial handlers Specification
 pageid: 19008337
 ---
 
-
-
 # Summary
 
 Pre-dial - Ability to run dialplan on callee and caller channel right before actual Dial. Available on the Dial and FollowMe applications.
@@ -98,4 +96,3 @@ exten => _X.,n(failed),Hangup()
 exten => s,1,Set(Is_Unlocked=${UNLOCK(foo)})
 ```
 Now, under no circumstances can this dialplan be run through and execute the Dial unless lock 'foo' is released. Obviously this doesn't ensure that you're not calling SIP/abc more than once (you would need more dialplan logic for that), but it will allow a dialplan coder to also put the Dial in the locked section to ensure tighter control.
-

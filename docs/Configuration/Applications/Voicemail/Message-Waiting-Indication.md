@@ -37,18 +37,10 @@ Depending on your Asterisk version and configuration, there are a few different 
 2. **res_external_mwi**: A module providing an API for other systems to communicate MWI state to Asterisk
 3. **chan_pjsip**: Setting `incoming_mwi_mailbox` on an endpoint
 
-
-
-
-
-
 !!! note **  **res_pjsip
     : The functionality for outbound SIP subscription is not available in res_pjsip yet. Internal infrastructure is built that would allow it, so if this is something you want to work on, please contact the [Asterisk development community](http://www.asterisk.org/community/discuss).
 
-      
 [//]: # (end-note)
-
-
 
 Outbound MWI subscription with chan_sip
 ----------------------------------------
@@ -91,21 +83,12 @@ External sources can use the API provided by res_external_mwi to communicate MWI
 
 [Asterisk 12 Configuration_res_mwi_external](/Latest_API/API_Documentation/Module_Configuration/res_mwi_external)
 
-
-
-
 !!! warning 
     res_external_mwi.so is mutually exclusive with app_voicemail.so. You'll have to load only the one you want to use.
 
-      
 [//]: # (end-warning)
-
-
 
 chan_pjsip
 -----------
 
 The endpoint parameter `incoming_mwi_mailbox` (introduced in 13.18.0 and 14.7.0) takes a <`mailbox>@<context>` value.  When an unsolicited NOTIFY message is received ***from*** this endpoint with an event type of `message-summary` and the `incoming_mwi_mailbox` parameter is set, Asterisk will automatically publish the new/old message counts for the specified mailbox on the internal stasis bus for any other module to use.  For instance, if you have an analog phone and you specify `mailbox=userx@default` in chan_dahdi.conf, when a NOTIFY comes in on a pjsip endpoint with `incoming_mwi_mailbox=userx@default`, chan_dahdi will automatically pick that up and turn the MWI light on on the analog phone.
-
-
-

@@ -5,7 +5,6 @@
     concepts are the same.
 [//]: # (end-note)
 
-
 ## Overview
 
 When SIP endpoints communicate by way of Asterisk, Asterisk will
@@ -78,4 +77,3 @@ servers, it is a good idea to set the option in the `sip.conf` file
 (or realtime storage) of all the Asterisk servers in question. This
 way calls can go from any Asterisk server to any other Asterisk server
 and glares will be prevented.
-

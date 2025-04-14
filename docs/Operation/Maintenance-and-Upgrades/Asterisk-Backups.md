@@ -26,4 +26,3 @@ Restoring a Backup
 Restoring a backup, in most cases should be as simple as placing the files back in [their original locations](/Fundamentals/Directory-and-File-Structure) and [starting Asterisk](/Operation/Running-Asterisk).
 
 When restoring a backup to a new major version of Asterisk you'll need to take the same steps as if you were [upgrading Asterisk](/Operation/Maintenance-and-Upgrades/Updating-or-Upgrading-Asterisk). That is because a [new major version](/About-the-Project/Asterisk-Versions) may include changes to the format or syntax of configuration, required database schema, or applications and functions could be deprecated, removed or just have different behavior.
-

@@ -3,30 +3,21 @@ title: Unique Call-ID Logging
 pageid: 19008294
 ---
 
-
 Overview
 ========
 
-
 Unique Call-ID Logging is meant to make log messages easily understood to relate with a particular call in Asterisk. This concept was branched off from Clod Patry's CLI filtering patch. The CLI filtering patch used thread storage to link threads to channels. If filters were set in CLI, channels bound to the thread would be examined to see if they are part of a call involved with some field specified on the channel (channel name, accountcode, or callerid num). That patch has been determined to have significant problems related to locking, which if resolved could potentially result in a heavy performance hit with logging, so some concepts from it were split off in order to design this feature, which basically just adds a uniquely identifying value for the call-id to all log messages which can be identified as relating to a certain call.
-
 
 Table of Contents
 =================
 
-
 Specification
 =============
 
-
 A <call-id> is a unique identifier that is associated with a complete call and the elements that compose it. Logs that could benefit from this <call-id> can occur both before any channels for that call are created, and after all channels in a call are destroyed. The <call-id> is bound to any channels that are created by something associated with the <call-id>. Only log statements that can be associated with a call are tagged with a <call_id>; some log statements related to a call can occur before a <call-id> can be created (it isn't always immediately known when one will be needed). In a typical Asterisk log file, a call's log messages can look something like the following:
-
-
-
 
 ---
 
-  
 log  
 
 ```
@@ -44,7 +35,6 @@ css[Mar 7 00:00:00] VERBOSE[6165] netsock2.c: == Using SIP RTP CoS mark 5
 ```
 
 This case represents a simple scenario where a a SIP packet is received which starts a new call. Before a channel can be created, The SIP channel driver anticipates a new call will be started and creates a <call-id> related to that call. The call id is referenced by the pbx thread created for that channel. [000001].
-
 
 Many users use Asterisk from the perspective of the CLI. By default, verbose messages in CLI don't display the call-id file. In order to accommodate these users without forcing them to look at log files, a cli command to enable the <call-id> to be displayed with the verbose message will need to be added (which could be placed in startup_commands).
 
@@ -69,29 +59,20 @@ css-- [C00000001] Executing [023@sipphones:2] NoOp("SIP/123-00000000", "Oh wait,
 
 Having call identifiers in log messages like this could greatly help users to visually parse what is happening with their calls and could also be helpful in identifying problems from the perspective of support or development.
 
-
 A callid string should always appear as an 8-digit hexadecimal number in the following format: [C########]
-
 
 Design
 ======
 
-
 The <call-id> is a refcounted object that stores a uniquely identifying value
-
 
 Call-ID struct
 --------------
 
-
 The <call-id> struct should be stored in an ao2 container for reference counting. All channel threads should reference one and only one call-id in thread storage and for the lifetime of the thread, they will hold one reference. Since the call-id is stored in thread storage for the channel thread, it should persist through masquerades. The channel tech itself might need to reference the <call-id> so that it can be linked to the call if it becomes a zombie.  Any applications that produce monitor threads (like audio hooks) that attach to a call will also need to add a reference to the call-id in thread storage belonging to the newly created thread. Theads that hold call-id's will need to give up those references when they die.
-
-
-
 
 ---
 
-  
 logger.h  
 
 ```
@@ -149,39 +130,27 @@ int ast_callid_threadassoc_add(struct ast_callid \*callid);
 Logging - Thread storage and ast_log_callid
 ---------------------------------------------
 
-
 In order to avoid having to modify every log call in Asterisk, Clod's patch used thread storage to store a channel pointer. Since it was stored in thread storage, it didn't need to be directly passed to the function and could just be checked at the time of log output for the existence of relevant data. In this way, CLI filtering could log messages between different calls without any new arguments to ast_log. A similar method could be used to bind threads to <call-id>s.
-
 
 This alone may not be enough to handle all logs related to specific calls though. Some threads that get involved with specific calls change which call they are working on frequently (notably channel drivers) and in these cases, the proper solution might be to introduce a secondary ast_log function which includes either a reference to the <call-id> being worked with or else just the value of the <call-id>
 
-
 **ast_log_callid(struct call_id \*id,** ***args from ast_log*****) -** Acts as ast_log currently does, except if call_id is not NULL, then [CALL_ID] will be attached after the thread ID as shown above for written log statements.  For verbose logs in CLI, it will not be displayed  
-
-
 
     **ast_log(*****args from ast_log*****)** **-** Acts as ast_log currently does, except it checks thread storage to see if the thread calling ast_log is bound to a callid. If it is, then the callid is passed to ast_log_callid.  If not, a NULL value is passed for call_id instead.
 
-
 ast_log will become a helper function to ast_log_callid.
-
 
 Handling and Spreading Call IDs - Channel Drivers, Channel/PBX threads, and Application Threads
 -----------------------------------------------------------------------------------------------
 
-
 Each call starts with a channel driver responsible for creating channels. In the case of SIP for example, the channel driver has a thread which reads incoming SIP messages, and if one of these SIP messages happens to be requesting a call of some sort, then Asterisk will eventually create a channel thread for it. There may be some relevant log messages between the time a channel driver has discerned that a new call is taking place and when it has actually created the channel (and PBX thread) associated with it. Since the lifetime of logs related to a call starts before the birth of any PBX threads related to the call (and possibly also after the death of the call), each individual channel driver will be responsible for creating <call-ids> and linking them to the channels and pbx threads that need them.
-
 
 In the case of threads that interact with multiple channels from multiple calls, thread storage can't be used to handle the log messages. For these types of situations, the <call-ids> will need an additional reference stored in channels that are part of the call and threads working with these channels will have to read the <call-ids> from each channel before processing logs with ast_log_callid.
 
-
 Also, certain applications such as mixmonitor will create threads which act within the call, but are slightly disjoint from the call itself. The tentative approach for dealing with these threads is to copy the <call-id> in thread storage from the threads responsible for creating them to to the created threads by manipulating ast_pthread_create (and/or its variants).
-
 
 Running through a simple example call with an audiohook
 -------------------------------------------------------
-
 
 1. An invite request comes in through the SIP channel driver.  The driver handles the request in the handle_request_invite function and determines that the dialog is going to create a new channel.
 2. handle_request_invite determines the call to be a 'first invitation' and creates a new ast_callid with ast_create_callid() which it will store in a local variable. Some log messages
@@ -203,13 +172,10 @@ exten => s,3,Dial(SIP/examplepeer)
 11. During the hangup process, the channel thread dies. As part of this dying process, the ast_callid it is associated with is dereffed (1).
 12. The MixMonitor thread closes out since the channels it was interacting with are all dead, so its reference to the ast_callid is also dereffed (0). Since the refcount hits zero, the ast_callid is freed.
 
-
 This is a simple example and some details may be incomplete (or even incorrect).
-
 
 Running through a simple example call with transfers
 ----------------------------------------------------
-
 
 1. Steps 1-4 from the above occur. For the sake of the example, the user that started the call will be called SIP/examplecaller.
 2. The new channel starts going through pbx on the following extension:
@@ -224,52 +190,38 @@ exten => s,1,Dial(SIP/examplepeer)
 6. The zombie finally dies. During that process, it ditches a reference to <call-id> (1).
 7. After some time, examplepeer gets bored of talking to examplepeer2 and hangs up. The channel thread gives up the last reference (0) and dies. When the reference count hit zero, the call-id was disposed of.
 
-
 Implmentation Phases
 ====================
-
 
 Phase I - Create relevant data structures and API
 -------------------------------------------------
 
-
 Develop a simple prototype that handles the following:
-
 
 1. Implement <call-id> structure and factory. Bind <call-id> pointers to newly created channel threads.
 2. Modify logging to read thread storage so that channel thread log messages include the <call-id> stamp.
 
-
 * Phase I is complete as of 14 Mar 2012 <http://svn.asterisk.org/svn/asterisk/team/jrose/call_identifiers> r359343
-
 
 Phase II - Handle application threads and other small improvements (in-progress)
 --------------------------------------------------------------------------------
 
-
 Improve from phase I and add:
-
 
 1. Spread references to ast_callid structs to threads created by a pbx/channel thread already bound to a <call-id>.
 2. Add CLI command to display <call-id> with verbose messages on CLI.
 
-
 Phase III - Migrate <call-id> creation and binding to individual channel drivers
 --------------------------------------------------------------------------------
-
 
 1. Add logger API for ast_log_callid
 2. Handle call-creation on a per channel-driver basis
 3. Bind the callids to newly created channels.
 4. Bind callids to pbx threads by using the channel callids if they are available.
 
-
 Transfers
 =========
 
-
 Transfers are somewhat tricky when it comes to receiving callids. Since the channel drivers are deeply involved in how transfers work, differences in individual channel drivers may cause inconsistencies. As a general rule, transfers should not create new callids unless a new call occurs. For instance, in an attended transfer, a new conversation occurs between the transferrer and the person receiving the transferred call. This results in a new callid being created. Since the old call is on the old callid while the new recipient has a fresh callid, at least in the case of SIP a masquerade will occur and the transferee's original channel will be torn down and replaced with a new one containing the new callid.
 
-
 As a general rule, if a call involves transfers, it may be necessary to track multiple callids based on the known transfers.
-

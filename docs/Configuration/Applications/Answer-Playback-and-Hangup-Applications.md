@@ -45,4 +45,3 @@ exten => 6000,n,Playback(hello-world)
 exten => 6000,n,Hangup()
 
 ```
-

@@ -23,4 +23,3 @@ exten => 1,1,Set(lala=$[ 1 + 2 ]);
 ```
 
 will parse as intended. Extra spaces are ignored.
-

@@ -1,4 +1,3 @@
-
 # Conferencing with Asterisk
 
 Up until about Asterisk 1.6; app_meetme was the main application providing conferencing style features. In Asterisk 1.6.2 the ConfBridge module was added and then rewritten in Asterisk 10.
@@ -12,4 +11,3 @@ There is a detailed [description of ConfBridge functionality](/Latest_API/API_Do
 Conferencing needs can be very specific to your business application. The conferencing applications included with Asterisk provide basic features that will work for many users.
 
 If the included applications don't work for you then you might consider building your own application using the [Asterisk REST Interface](/Configuration/Interfaces/Asterisk-REST-Interface-ARI/Getting-Started-with-ARI). This will give you access to all the communication primitives needed and then you can write the logic you need in a language you are comfortable with.
-

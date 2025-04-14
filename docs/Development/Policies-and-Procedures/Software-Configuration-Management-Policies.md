@@ -12,10 +12,7 @@ See [Asterisk Versions](/About-the-Project/Asterisk-Versions) for the approximat
 !!! info "**  For an excellent article on Software Configuration Management branching schemes and a description of the **Mainline"
     branching model, see [Branching Strategies by Stephen Vance](http://www.vance.com/steve/perforce/Branching_Strategies.html)
 
-      
 [//]: # (end-info)
-
-
 
 On This Page
 
@@ -63,7 +60,7 @@ When a security vulnerability is reported against the Asterisk project (typicall
 
 !!! info
     See [Code Contribution](/Development/Policies-and-Procedures/Code-Contribution) 
-      
+
 [//]: # (end-tip)
 
 ### New Features
@@ -80,7 +77,6 @@ New features should follow the same procedure as bug fixes however they are, sub
 !!! tip 
     Tests are always good and encouraged, especially for new features. Having tests is a mandatory requirement for new features in release branches to minimize the risk of regression.
 
-      
 [//]: # (end-tip)
 
 * The new feature or improvement must be backwards compatible with the previous releases in those major versions. That is, users upgrading from one point release to the next should **not** be aware of any new feature or improvement unless they want to use said feature. Some things that should **not** be changed naturally follow from this:
@@ -109,16 +105,10 @@ A breaking change is any that invalidates a previous configuration or changes th
 * CLI Commands and Responses
 * CDR/CEL behavior
 
-
-
-
 !!! warning 
     Within a major version branch, there are times when a breaking change must be introduced - usually to fix a serious, critical bug within that branch. Or because we switched source control systems. When this occurs, the UPGRADE text file delivered with Asterisk will be updated noting the change.
 
-      
 [//]: # (end-warning)
-
-
 
 The following items **can be changed** between minor versions in a major version branch:
 
@@ -135,14 +125,7 @@ Asterisk uses three digits in its version number sequence:
 * **Minor** - denotes a release version. These increase sequentially for each release.
 * **Patch** - denotes that the release was either a security release made from the previous release, or a release made to fix regressions or serious bugs detected in the release.
 
-
-
-
 !!! note 
     Over the years, the Asterisk version numbers have changed. A lot. For anyone who has ever had to write a script that parses Asterisk version numbers, we apologize. We'll try hard not to change it again.
 
-      
 [//]: # (end-note)
-
-
-

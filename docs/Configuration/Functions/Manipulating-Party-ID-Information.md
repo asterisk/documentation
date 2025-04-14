@@ -3,9 +3,6 @@ title: Manipulating Party ID Information
 pageid: 5243183
 ---
 
-
-
-
 Introduction
 ============
 
@@ -37,16 +34,10 @@ The CALLERID information is passed during the initial call setup. However, depen
 
 The CONNECTEDLINE function does the opposite of the CALLERID function. CONNECTEDLINE can be used to setup connected line information to be sent when the call is answered. You can use it to send new connected line information to the remote party on the channel when a call is transferred. The CONNECTEDLINE information is passed when the call is answered and when the call is transferred.
 
-
-
-
 !!! note 
     It is up to the channel technology to determine when to act upon connected line updates before the call is answered. ISDN will just store the updated information until the call is answered. SIP could immediately update the caller with a provisional response or wait for some other event to notify the caller.
 
-      
 [//]: # (end-note)
-
-
 
 Since the connected line information can be sent while a call is connected, you may need to prevent the channel driver from acting on a **partial** update. The 'i' option is used to inhibit the channel driver from sending the changed information immediately.
 

@@ -486,12 +486,10 @@ Address:
 
 Email:
 
-
  _________________________ _________________________
  Authorized Signature Authorized Signature
 
 Name:
-
 
 END OF GENERAL PEERING AGREEMENT
 
@@ -506,4 +504,3 @@ accordance with this GPA.
 DUNDi, IAX, Asterisk and GPA are trademarks of Digium, Inc.
 
 ```
-

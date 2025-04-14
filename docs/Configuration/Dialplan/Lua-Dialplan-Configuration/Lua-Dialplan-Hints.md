@@ -5,12 +5,8 @@ pageid: 16548017
 
 In Asterisk 10 dialplan hints can be specified in `extensions.lua` in a manner similar to the way extensions are specified.
 
-
-
-
 ---
 
-  
 extensions.lua  
 
 ```
@@ -31,4 +27,3 @@ hints = {
 }
 
 ```
-

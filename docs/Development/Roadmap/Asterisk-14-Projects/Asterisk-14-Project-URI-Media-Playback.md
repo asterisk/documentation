@@ -8,16 +8,10 @@ Project Overview
 
 One of the features that was discussed for the [Asterisk 13 Projects](/Development/Roadmap/Asterisk-13-Projects) was the ability to playback media from a URI to a channel or bridge. See <http://lists.digium.com/pipermail/asterisk-app-dev/2014-April/000425.html> for more information.
 
-
-
-
 !!! note 
     The conversation on the mailing list included both playback of a URI, as well as allowing for a unicast stream of media to be injected into a channel/bridge. At this time, that would be considered a separate project from this one.
 
-      
 [//]: # (end-note)
-
-
 
 The primary reason to add this feature is scalability. Allowing sounds to be placed on a remote HTTP server allows a cluster of Asterisk servers to access and pull down the sounds as needed. This is much easier for system administration, as the sounds don't have to all be pushed to individual Asterisk machines.
 
@@ -45,26 +39,16 @@ Generally, the rules should follow as such:
 * If a `Cache-Control` header is included, Asterisk will obey whatever rules it specifies. In particular, the following should be checked:
 	+ If `no-cache` is specified, the resulting file is marked as always 'dirty' - that is, we have to always retrieve a new resource from the server.
 	+ If `no-store` is specified, Asterisk must attempt to purge the information before Asterisk shutdown and will always retrieve the resource from the server.
-	
-	
-	
-	
+
 	---
-	
+
 	**Note:**  We can't play back the file if we don't store it temporarily on disk. With file streams, we may not get notified when the playback completes, so it may be difficult to purge it out of the cache until Asterisk shuts down. If Asterisk does shut down however, we have an opportunity to flush it out of any semi-permanent storage we may have set up.
-	
-	  
-	
-	
-	
+
 	---
 	+ `s-maxage` or `max-age`: mark the file as 'dirty' after so many seconds.
 * If the cached resource is 'dirty', look at the `E-Tag` header on the remote resource and compare it to the local `E-Tag`. If the two are different, retrieve the resource and update the entry in the cache. If the cached resource was retrieved with `no-store`, then we always retrieve the full resource.
 
 CLI commands and an ARI resource should be provided to view the local cached files, the last time they were updated, and their originating URIs. Similar mechanisms should be provided to flush the entire cache.
-
-
-
 
 ### Video
 
@@ -105,9 +89,6 @@ same => n,Playback(http://myserver.com/monkeys.wav&http://myserver.com/weasels.w
 
 Since an `&` is valid for a URI but is also used as a separator in dialplan, ampersands in a resource cannot be supported. If an ampersand is used in a URI (say, as part of a query), then the entire URI must be URI encoded.
 
-
-
-
 !!! note 
     URIs in a resource can't be supported, as performing a URI decode on the URI cannot tell the difference between an `&` in a resource and an `&` in a query. That is:
 
@@ -115,10 +96,7 @@ Since an `&` is valid for a URI but is also used as a separator in dialplan, amp
 
     The latter cannot be decoded correctly as the `&` that forms the query parameter cannot now be distinguished from the already URI encoded `&` in the resource.
 
-      
 [//]: # (end-note)
-
-
 
 ##### AGI
 
@@ -181,7 +159,6 @@ http://localhost:8088/ari/channels/12345/play/p3
  }
  ]
 }
- 
 
 ```
 
@@ -316,16 +293,10 @@ Prior to call `ast_openstream`, users who want to support URI playback should fi
 * If so, ask the cache for the actual file. Use that for subsequent calls to `ast_openstream` and `ast_openvstream`.
 * If not, move on as normal.
 
-
-
-
 !!! note 
     There are other callers of `ast_openstream`, but it's probably not worth updating `ExternalIVR` (sorry )
 
-      
 [//]: # (end-note)
-
-
 
 ### Core - file.c::ast_streamfile
 
@@ -559,8 +530,6 @@ js {
 
 ```
 
-
-
 ### Mustache Templates
 
 The Mustache templates generated will need to be modified to check for `text/uri-list` as a possible body type:
@@ -570,23 +539,16 @@ The Mustache templates generated will need to be modified to check for `text/uri
 	+ The body parsers should be updated for a playback operation to return the structured Playback object.
 * A new `text_uri_body_parser` should be added that parses a body into a `struct ast_uri_list`. This should be hard-typed to convert the URI list into a structured Playback object.
 
-
-
-
 !!! note 
     This is limiting, but for now, we don't have any use for a URI list in ARI outside of specifying a list of media resources. If that assumption proves false later, that code should be re-visited.
 
-      
 [//]: # (end-note)
-
 
 Test Plan
 =========
 
 Unit Tests
 ----------
-
-
 
 | Category | Test | Description |
 | --- | --- | --- |
@@ -615,8 +577,6 @@ Unit Tests
 Asterisk Test Suite
 -------------------
 
-
-
 | Test | Level | Description |
 | --- | --- | --- |
 | `funcs/func_curl/read` | Asterisk Test Suite | A regression test that verifies that the current read functionality of `CURL` is maintained |
@@ -641,7 +601,6 @@ The various phases are meant to be implemented as separately as possible to ease
 Phase One - Core Media Cache
 ----------------------------
 
-
 | Task | Description | Status |
 | --- | --- | --- |
 | Implement the basic API | Mask callbacks into the `bucket` API based on the URI scheme being requested. Add handling for manipulating the created bucket's local file if the predefined filename is provided. | Done |
@@ -650,8 +609,6 @@ Phase One - Core Media Cache
 
 Phase Two - res_http_media_cache
 -----------------------------------
-
-
 
 | Task | Description | Status |
 | --- | --- | --- |
@@ -669,8 +626,6 @@ Phase Two - res_http_media_cache
 Phase Three - Core/dialplan/AGI implementations
 -----------------------------------------------
 
-
-
 | Task | Description | Status |
 | --- | --- | --- |
 | Update the `file` core to use the `http_media_cache` | Update the core `file` users of `ast_openstream` to first look for the resource in the `http_media_cache`. If found, use the returned file. | Done |
@@ -682,20 +637,12 @@ Phase Three - Core/dialplan/AGI implementations
 Phase Four - ARI Playlists
 --------------------------
 
-
-
-
 !!! note 
     This is actually a completely separate and super useful feature. URI playbacks really need it to function so... here it is.
 
     Note that this does not envision complete playlist control (such as 'skip to next sound in the playlist'). That could be added either as part of this work or at a future date.
 
-      
 [//]: # (end-note)
-
-
-
-
 
 | Task | Description | Status |
 | --- | --- | --- |
@@ -707,9 +654,6 @@ Phase Four - ARI Playlists
 | Update `res_stasis_playback` | The various function calls boil down to `play_on_channel` in `res_stasis_playback`. This is passed the actual `Playback` resource object, which now can contain a `Playlist`. The function should be updated to parse out the various items in the playlist and pass them to `ast_control_streamfile_lang`. | Not Done (see Note below) |
 | Add `rest_api` tests for playlists. |  | Not Done (see Note below) |
 
-
-
-
 !!! note 
     Arguably, we don't really need a 'playlist' media resource type. Lists of media are now played back in sequence by simply specifying multiple media URIs in a sequence, e.g., `media=``sound:foo.wav,sound:bar.wav`, or as a list, e.g., `media=sound:foo.wav,media=sound:bar.wav`.
 
@@ -717,15 +661,10 @@ Phase Four - ARI Playlists
 
     `media=sound:http://localhost/foo.wav,media=sound:http://localhost/bar.wav`
 
-      
 [//]: # (end-note)
-
-
 
 Phase Five - HTTP Server Updates
 --------------------------------
-
-
 
 | Task | Description | Status |
 | --- | --- | --- |
@@ -734,8 +673,6 @@ Phase Five - HTTP Server Updates
 
 Phase Six - ARI `text/uri-list` support/URI playbacks
 -----------------------------------------------------
-
-
 
 | Task | Description | Status |
 | --- | --- | --- |
@@ -755,8 +692,6 @@ Digium/Asterisk JIRAee634d14-2067-31b4-9ca3-00e0845ec070ASTERISK-25654
 Contributors
 ------------
 
-
-
 | Name | E-mail Address |
 | --- | --- |
 | unknown user | [mjordan@digium.com](mailto:mjordan@digium.com) |
@@ -765,4 +700,3 @@ Reference Information
 =====================
 
 http%3A%2F%[2Fmyserver.com](http://2Fmyserver.com)%2Fmedia%3Fsound%3Dmonkeys%26format%3Dwav
-

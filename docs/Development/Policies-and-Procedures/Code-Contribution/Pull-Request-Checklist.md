@@ -33,4 +33,3 @@ Documentation:<br>
 * [Code Contribution](https://docs.asterisk.org/Development/Policies-and-Procedures/Code-Contribution/)<br>
 * [Commit Messages](https://docs.asterisk.org/Development/Policies-and-Procedures/Commit-Messages)<br>
 * [Alembic Scripts](https://docs.asterisk.org/Development/Reference-Information/Other-Reference-Information/Alembic-Scripts/)<br>
-

@@ -17,24 +17,14 @@ If the command returns nothing, then DAHDI has not been started. Start DAHDI by 
 
 ```
 
-
-
 !!! tip Different Methods for Starting Initscripts
     Many Linux distributions have different methods for starting initscripts. On most Red Hat based distributions (such as Red Hat Enterprise Linux, Fedora, and CentOS) you can run:
 [//]: # (end-tip)
 
-
-  
-  
-
 ```
 [root@server asterisk-14.X.Y]# service dahdi start
-  
-
-
 
 ---
-
 
 Distributions based on Debian (such as Ubuntu) have a similar command, though it's not commonly used:
 
@@ -80,4 +70,3 @@ asterisk (pid 32117) is running...
 ```
 
 And there you have it! You've compiled and installed Asterisk, DAHDI, and libpri from source code.
-

@@ -23,5 +23,3 @@ pageid: 4816913
 18. (0.9) the semicolon is no longer required after a closing brace! (i.e. "];" === "}". You can have them there if you like, but they are not necessary. Someday they may be rejected as a syntax error, maybe.
 19. (0.9) the // comments are not recognized and removed in the spots where expressions are gathered, nor in application call arguments. You may have to move a comment if you get errors in existing files.
 20. (0.10) the random statement has been added. Syntax: random ( expr ) lucky-statement [ else unlucky-statement ]. The probability of the lucky-statement getting executed is expr, which should evaluate to an integer between 0 and 100. If the lucky-statement isn't so lucky this time around, then the unlucky-statement gets executed, if it is present.
-
-

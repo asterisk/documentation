@@ -39,7 +39,6 @@ static int load_module(void)
  return AST_MODULE_LOAD_SUCCESS;
 }
 
-
 static int unload_module(void)
 {
  stasis_unsubscribe(sub);
@@ -130,7 +129,6 @@ static int load_module(void)
  return AST_MODULE_LOAD_SUCCESS;
 }
 
-
 static int unload_module(void)
 {
  /* .. */
@@ -142,4 +140,3 @@ static int unload_module(void)
 ```
 
 Messages are dispatched to the router with the same guarantees as a regular subscription. The difference is that you can provide a different callback for every message type that you're interested in. You can also add a default route, which is useful for handling miscellaneous messages, such as the final message.
-

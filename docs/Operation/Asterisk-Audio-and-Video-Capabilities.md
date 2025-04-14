@@ -35,12 +35,8 @@ We'll provide two examples, but you should look at the documentation for the cha
 
 ### Configuring allowed media for a PJSIP endpoint
 
-
-
-
 ---
 
-  
 pjsip.conf  
 
 ```
@@ -62,12 +58,8 @@ See the section [Configuring res_pjsip](/Configuration/Channel-Drivers/SIP/Confi
 
 ### Configuring app_voicemail file formats for recordings
 
-
-
-
 ---
 
-  
 voicemail.conf  
 
 ```
@@ -98,10 +90,6 @@ Audio Support
 =============
 
 A variety of audio capabilities are supported by Asterisk.
-
-
-
-
 
 | Name | Config Value | Capability:(P)assthrough | CODEC Module | Format Module | Distributed w/ Asterisk? | Commercial License |
 | --- | --- | --- | --- | --- | --- | --- |
@@ -137,8 +125,6 @@ Signed Linear PCM
 
 Asterisk can resample between several different sampling rates and can read/write raw 16-bit signed linear audio files from/to disk. The complete list of supported sampling rates and file format is found in the expansion link below:
 
-
-
 | Sampling Rate | Asterisk File format |
 | --- | --- |
 | 8kHz | .sln |
@@ -151,38 +137,24 @@ Asterisk can resample between several different sampling rates and can read/writ
 | 96kHz | .sln96 |
 | 192kHz | .sln192 |
 
-
-
-
 !!! tip 
     Users can create 16-bit Signed Linear files of varying sampling rates from WAV files using the sox command-line audio utility.
 [//]: # (end-tip)
-
-
-  
-  
 
 ```
 sox input.wav -t raw -b 16 -r 32000 output.sln
 mv output.sln output.sln32  
 
-
-
 ---
-
 
 In this example, an input WAV file has been converted to Signed Linear at a depth of 16-bits and at a rate of 32kHz. The resulting output.sln file is then renamed output.sln32 so that it can be processed correctly by Asterisk.
 
 ```
 
-
-
 Video and Image Support
 =======================
 
 You'll notice the CODEC module column is missing. Video transcoding or image transcoding is not currently supported.
-
-
 
 | Name | Config Value | Capability:(P)assthrough | Format Module | Distributed w/ Asterisk |
 | --- | --- | --- | --- | --- |
@@ -193,8 +165,3 @@ You'll notice the CODEC module column is missing. Video transcoding or image tra
 | H.264 | h264 | P | format_h264 | YES |
 | VP8 | vp8 | P | n/a | YES |
 | VP9 | vp9 | P | n/a | YES |
-
-
-
-
-

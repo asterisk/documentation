@@ -5,7 +5,6 @@ pageid: 4620401
 
 Many applications return the result in a variable that you read to get the result of the application. These status fields are unique for each application. For the various status values, see each application's help text. 
 
-
 * ${AGISTATUS} \* agi()
 * ${AQMSTATUS} \* addqueuemember()
 * ${AVAILSTATUS} \* chanisavail()
@@ -37,5 +36,3 @@ Many applications return the result in a variable that you read to get the resul
 * ${VMSTATUS} \* voicmail()
 * ${VMBOXEXISTSSTATUS} \* vmboxexists()
 * ${WAITSTATUS} \* waitforsilence()
-
-

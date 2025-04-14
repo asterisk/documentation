@@ -8,7 +8,7 @@ Here are some examples of how to use chan_misdn in the dialplan (extensions.conf
 [globals]
 OUT_PORT=1 ; The physical Port of the Card
 OUT_GROUP=ExternE1 ; The Group of Ports defined in misdn.conf
- 
+
 [misdnIn]
 exten => _X.,1,Dial(mISDN/${OUT_PORT}/${EXTEN})
 exten => _0X.,1,Dial(mISDN/g:${OUT_GROUP}/${EXTEN:1})

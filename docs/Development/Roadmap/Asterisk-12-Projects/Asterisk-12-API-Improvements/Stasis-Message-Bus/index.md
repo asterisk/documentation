@@ -196,7 +196,6 @@ static void bar_dtor(void \*obj)
  ast_assert(bar->sub == NULL);
 }
 
-
 static void bar_callback(void \*data,
  struct stasis_subscription \*sub,
  struct stasis_topic \*topic,
@@ -271,7 +270,6 @@ static void bar_dtor(void \*obj)
  */
  ast_assert(bar->router == NULL);
 }
-
 
 static void bar_default(void \*data,
  struct stasis_subscription \*sub,
@@ -357,6 +355,3 @@ void ast_bar_shutdown(struct ast_bar \*bar)
 }
 
 ```
-
-
-

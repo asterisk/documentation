@@ -15,5 +15,3 @@ Thank you very much for your continued support of Asterisk!
     Documentation for DAHDI and Digium Asterisk Products is no longer hosted here.  Please see:
     [https://github.com/asterisk/dahdi-linux/wiki](https://github.com/asterisk/dahdi-linux/wiki)<br>
     [https://wiki.sangoma.com/display/PHON](https://wiki.sangoma.com/display/PHON)
-
-

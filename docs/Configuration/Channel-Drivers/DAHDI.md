@@ -3,18 +3,10 @@ title: DAHDI
 pageid: 28314858
 ---
 
-
-
-
 !!! warning 
     Under Construction
 
-      
 [//]: # (end-warning)
-
-
-
-
 
 !!! note **  Top-level page for DAHDI **channel driver
     information
@@ -29,8 +21,4 @@ pageid: 28314858
 
 [DAHDI](/Configuration/Channel-Drivers/DAHDI)
 
-      
 [//]: # (end-note)
-
-
-

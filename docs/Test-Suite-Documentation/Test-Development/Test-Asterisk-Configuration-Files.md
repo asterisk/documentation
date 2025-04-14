@@ -50,8 +50,6 @@ Most test directories will have the following structure:
 
 ```
 
-
-
 Files placed in any of the "ast\*dir" directories can be referenced by configuration files in the "configs" tree using their symbolic directory location. For example, let's say that you're testing TLS transports between two asterisk instances.  Your test directory structure might look like this:
 
 ```
@@ -99,18 +97,7 @@ priv_key_file = <astvarlibdir>>/keys/ast1-key.pem
 
 The second Asterisk instance's pjsip.conf file would look similar except that "ast1" would be changed to "ast2".
 
-
-
-
 !!! warning 
     Files like keys (and the directories that contain them) usually have permissions restrictions, such as being only readable by the owner. Make sure your files have the correct permission before you commit them so those permissions are preserved when they are copied to their final locations. The user and group don't matter. Most people, including Jenkins, run the Testsuite as root.
 
-      
 [//]: # (end-warning)
-
-
-
-
-
-
-

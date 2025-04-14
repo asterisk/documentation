@@ -20,4 +20,3 @@ The sub-sections here describe these concepts, point to related module specific 
 The figure below may help you get an idea of the overall use of states and presence with the Asterisk system. It has been simplified to focus on the flow and usage of state and presence. In reality, the architecture can be a bit more confusing. For example a module could both provide subscription functionality for a subscriber and be the same module providing the devices and device state on the other end.
 
 ![](StateAndPresenceOverview.png)
-

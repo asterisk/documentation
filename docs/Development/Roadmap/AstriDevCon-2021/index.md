@@ -9,7 +9,6 @@ Sangoma invites developers who are interested in the future of Asterisk to join 
 
 ### Event day schedule
 
-  
 AstriDevCon is a mix of open and focused discussion all on topics within the realm of Asterisk development, primarily regarding current concerns that Asterisk faces and how to improve Asterisk for the future.
 
 **Starting at [10AM EDT](https://www.timeanddate.com/worldclock/fixedtime.html?msg=AstriDevCon+2021&iso=20211102T10&p1=179&ah=6).**
@@ -32,8 +31,7 @@ We'll build a rough agenda together in the morning.
 	+ Photo
 	+ Challenges with audio quality with confbridge - Pascal
 	+ Talk about moving away from Atlassian for Asterisk's community infrastructure and bug tracker - Josh Colp
-	
-	
+
 		- Anybody have feelings about github as a potential alternative?
 		- wiki transition is something that we may need to do some research on.
 		- CLAs - making sure that we can handle them properly.
@@ -43,7 +41,7 @@ We'll build a rough agenda together in the morning.
 	+ Being a better participant in a cloud environment - Josh
 		- Provisioning?
 		- Monitoring?  
-		
+
 			* Maybe adding additional metrics to prometheus
 				+ Good questions to ask for monitoring (asterisk specific):
 					- How many channels are active?
@@ -54,7 +52,7 @@ We'll build a rough agenda together in the morning.
 					- Open ports used by Asterisk
 					- Number of error messages in the error log over time.
 		- Storage of stateful data? (voicemails, recordings...)?  
-		
+
 			* S3 backending of stateful data
 			* Can Playback from URL
 			* Can't Record to a URL
@@ -78,7 +76,6 @@ We'll build a rough agenda together in the morning.
 	+ Asterisk 20: What could it look like? - Sylvain
 	+ Pre-join warning to conference participants prior to adding a new channel (confbridge) - Michael Cargile
 	+ Adding a custom MIME body to PJSIP separate from SDP - Torrey
-
 
 ### Location
 
@@ -155,8 +152,6 @@ Torrey Searle
 Walter Moon
 
 Yitzchak Pachtman
-
-
 
 ![](DevCon2021.png)
 

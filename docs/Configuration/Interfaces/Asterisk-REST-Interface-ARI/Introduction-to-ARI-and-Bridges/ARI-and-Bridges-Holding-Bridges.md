@@ -32,17 +32,12 @@ POST /bridges/{bridge_id}/addChannel?channel=56789&role=announcer
 
 ```
 
-
-
 !!! tip When is an Announcer channel useful?
     If you want to simply play back a media file to all participants in a holding bridge, e.g., "your call is important to us, please keep waiting", you can simply initiate a `/play` operation on the holding bridge itself. That will perform a playback to all participants in the same fashion as an announcer channel.
 
     An announcer channel is particularly useful when there is someone actually on the other end of the channel, as opposed to a pre-recorded message. For example, you may have a call queue supervisor who wants to let everyone who is waiting for an agent that response times are especially long, but to hold on for a bit longer. Jumping into the holding bridge as an announcer adds a small bit of humanity to the dreaded call queue experience!
 
-      
 [//]: # (end-tip)
-
-
 
 ### Music on hold, media playback, recording, and other such things
 
@@ -72,12 +67,8 @@ Dialplan
 
 For this example, we need to just drop the channel into Stasis, specifying our application:
 
-
-
-
 ---
 
-  
 extensions.conf  
 
 ```
@@ -155,16 +146,15 @@ The function that does this work, `find_or_create_bridge`, is called from our `S
 ```python
 def stasis_start_cb(channel_obj, ev):
  """Handler for StasisStart event"""
- 
+
  bridge = find_or_create_bridge()
 
  channel = channel_obj.get('channel')
  print "Channel %s just entered our application, adding it to bridge %s" % (
  channel.json.get('name'), holding_bridge.id)
- 
+
  channel.answer()
  bridge.addChannel(channel=channel.id)
- 
 
 ```
 
@@ -184,7 +174,7 @@ def on_channel_left_bridge(bridge, ev):
  if announcer_timer:
  announcer_timer.cancel()
  announcer_timer = None
- 
+
  print "Destroying bridge %s" % bridge.id
  holding_bridge.destroy()
  holding_bridge = None
@@ -195,12 +185,8 @@ def on_channel_left_bridge(bridge, ev):
 
 The full source code for `bridge-infinite-wait.py` is shown below:
 
-
-
-
 ---
 
-  
 bridge-infinite-wait.py  
 
 ```python
@@ -209,11 +195,11 @@ bridge-infinite-wait.py
 import ari
 import logging
 import threading
- 
+
 logging.basicConfig(level=logging.ERROR)
- 
+
 client = ari.connect('http://localhost:8088', 'asterisk', 'asterisk')
- 
+
 # find or create a holding bridge
 holding_bridge = None
 
@@ -275,7 +261,7 @@ def find_or_create_bridge():
  if announcer_timer:
  announcer_timer.cancel()
  announcer_timer = None
- 
+
  print "Destroying bridge %s" % bridge.id
  holding_bridge.destroy()
  holding_bridge = None
@@ -289,32 +275,29 @@ def find_or_create_bridge():
 
  return bridge
 
-
 def stasis_start_cb(channel_obj, ev):
  """Handler for StasisStart event"""
- 
+
  bridge = find_or_create_bridge()
 
  channel = channel_obj.get('channel')
  print "Channel %s just entered our application, adding it to bridge %s" % (
  channel.json.get('name'), holding_bridge.id)
- 
+
  channel.answer()
  bridge.addChannel(channel=channel.id)
- 
+
 def stasis_end_cb(channel, ev):
  """Handler for StasisEnd event"""
- 
+
  print "Channel %s just left our application" % channel.json.get('name')
- 
+
 client.on_channel_event('StasisStart', stasis_start_cb)
 client.on_channel_event('StasisEnd', stasis_end_cb)
- 
+
 client.run(apps='bridge-infinite-wait')
 
 ```
-
-
 
 ### bridge-infinite-wait.py in action
 
@@ -592,4 +575,3 @@ Channel PJSIP/alice-00000001 left bridge 31a4a193-36a7-412b-854b-cf2cf5f90bbd
 Channel PJSIP/alice-00000001 just left our application
 
 ```
-

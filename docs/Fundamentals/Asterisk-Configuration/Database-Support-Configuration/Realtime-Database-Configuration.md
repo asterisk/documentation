@@ -1,4 +1,3 @@
-
 # Realtime Database Configuration
 
 ## Introduction
@@ -25,7 +24,6 @@ If you have an option that depends on another one in a given configuration file 
 
 That doesn't happen when you use a static file in the file system. Although this might be interpreted as a bug or limitation, it is not.
 
-
 **Information:**  To use static realtime with certain core configuration files (e.g. `features.conf`, `cdr.conf`, `cel.conf`, `indications.conf`, etc.) the realtime backend you wish to use must be preloaded in `modules.conf`.
 
 ```
@@ -49,7 +47,6 @@ Like SIP realtime friends, H.323 friends also can be configured using dynamic re
 ## New function in the dial plan: The Realtime Switch
 
 The realtime switch is more than a port of functionality in v1.0 to the new architecture, this is a new feature of Asterisk based on the ARA. The realtime switch lets your Asterisk server do database lookups of extensions in realtime from your dial plan. You can have many Asterisk servers sharing a dynamically updated dial plan in real time with this solution.  
-
 
 ## Capabilities
 

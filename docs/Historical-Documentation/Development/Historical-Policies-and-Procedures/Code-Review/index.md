@@ -17,14 +17,9 @@ Code reviews are done through [Gerrit](https://gerrit.asterisk.org). Everyone wh
 
 Git-specific code review policies can be found on the [Git Usage](/Development/Policies-and-Procedures/Historical-Policies-and-Procedures/Git-Usage) page. Instructions for using Gerrit can be found at [Gerrit Usage](/Development/Policies-and-Procedures/Historical-Policies-and-Procedures/Code-Review/Gerrit-Usage).
 
-
-
-
 !!! note Licensing and Attribution
     By posting a patch to Gerrit, you agree that you are the author of the patch and that you have the license to contribute the code to the Asterisk project per the [Digium License Agreement](/Development/Policies-and-Procedures/Historical-Policies-and-Procedures/Patch-Contribution-Process/Digium-License-Agreement). If you are not the author of the patch, please arrange for the author to either post the patch themselves or comment on the respective JIRA issue that you have permission to contribute the patch to the project.  
 [//]: # (end-note)
-
-
 
 On This PageAdditional Information
 
@@ -60,4 +55,3 @@ Often, as developers, we take a personal pride in our work. This is a Good Thing
 The Asterisk project is bigger than any one developer. Ensuring quality for the project is the goal for everyone who participates in it, and sometimes that may result in findings against your code. It is not personal: the developers who participate in the Asterisk project are passionate about the success of the project and want the very best to go into it.
 
 When participating in a code review, please remember the [Asterisk Community Code of Conduct](/Asterisk-Community/Asterisk-Community-Code-of-Conduct), and remember that we're all trying to make Asterisk the best possible open source communications engine.
-

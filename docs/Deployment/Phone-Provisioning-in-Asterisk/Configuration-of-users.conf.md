@@ -5,15 +5,11 @@ pageid: 5243056
 
 The asterisk-gui sets up extensions, SIP/IAX2 peers, and a host of other settings. User-specific settings are stored in users.conf. If the asterisk-gui is not being used, manual entries to users.conf can be made.
 
-
 ### The [general] section
-
 
 There are only two settings in the general section of users.conf that apply to phone provisioning: localextenlength which maps to template variable EXTENSION_LENGTH and vmexten which maps to the VOICEMAIL_EXTEN variable.
 
-
 ### Individual Users
-
 
 To enable auto-provisioning of a phone, the user in users.conf needs to have:
 
@@ -57,4 +53,3 @@ cid_number = 6001 ; ${CALLERID}
 ```
 
 The variables above, are the user-specfic variables that can be substituted into dynamic filenames and config templates.
-

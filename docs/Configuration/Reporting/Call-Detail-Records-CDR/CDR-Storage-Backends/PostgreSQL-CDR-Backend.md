@@ -7,9 +7,7 @@ If you want to go directly to postgresql database, and have the cdr_pgsql.so com
 
 Once you have the compile done, copy the sample cdr_pgsql.conf file or create your own. 
 
-
 Here is a sample:
-
 
 /etc/asterisk/cdr_pgsql.conf
 
@@ -53,7 +51,6 @@ CREATE TABLE cdr (
 
 ##### In 1.8 and later
 
-
 The following columns can also be defined:
 
 ```
@@ -63,4 +60,3 @@ The following columns can also be defined:
  sequence int NOT NULL
 
 ```
-

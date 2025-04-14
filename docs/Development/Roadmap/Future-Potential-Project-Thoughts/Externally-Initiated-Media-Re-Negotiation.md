@@ -22,4 +22,3 @@ There is currently no place to store the pending requested topology. It could be
 The bridging API does not currently provide the pending requested topology to the bridging technology. The existing API callback will need to be extended or a new one added, unless the topology is stored on the channel.
 
 The res_pjsip_sdp_rtp module does not have the logic broken apart for negotiating and applying negotiated SDP potentially enough to allow it to be deferred.
-

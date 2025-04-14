@@ -3,9 +3,6 @@ title: Overview
 pageid: 21464232
 ---
 
-
-
-
 Project Overview
 ================
 
@@ -31,37 +28,23 @@ The new chan_sip will use a third-party SIP stack. Research was done into variou
 
 As part of this work, pjproject has been pulled out of the Asterisk source tree and placed into its own Git repository. The repository is available at <git://github.com/asterisk/pjproject.git>.
 
-
-
-
 !!! note **  You **must
     use the version of pjproject in the github repository. Asterisk requires the shared objects built by this version of pjproject and will not build against another version of pjproject.
 
     If you already have an old installation of pjproject, you can remove it with:
 [//]: # (end-note)
 
-
-  
-  
-
 ```
 rm -f /usr/lib/libpj\*.a /usr/lib/libmilenage\*.a /usr/lib/pkgconfig/libpjproject.pc  
-
-
 
 ---
 
 ```
 
-
-
 !!! note 
     Alternatively, packages for CentOS 6 are available at <http://packages.asterisk.org/centos/6/current/>.
 
-      
 [//]: # (end-note)
-
-
 
 ### Installing pjproject
 
@@ -79,14 +62,11 @@ rm -f /usr/lib/libpj\*.a /usr/lib/libmilenage\*.a /usr/lib/pkgconfig/libpjprojec
 
 ```
 
-
-
 !!! note 
     You may need additional configure options depending on your local system and what is already installed.
 
     Commonly used options are: --with-external-speex --with-external-gsm --with-external-srtp --disable-sound --disable-resample
 
-      
 [//]: # (end-note)
 
 3. Compile pjproject and install
@@ -96,7 +76,6 @@ rm -f /usr/lib/libpj\*.a /usr/lib/libmilenage\*.a /usr/lib/pkgconfig/libpjprojec
 # make install
 
 ```
-
 
 Configuration
 
@@ -278,8 +257,6 @@ Testing
 Notable Reviews
 ---------------
 
-
-
 | Review | Link |
 | --- | --- |
 | res_sip and res_sip_session design review | <https://reviewboard.asterisk.org/r/2251/> |
@@ -288,4 +265,3 @@ Notable Reviews
 | Pimp My SIP Media Improvements | <https://reviewboard.asterisk.org/r/2318/> |
 | Make new SIP work make use of threadpool | <https://reviewboard.asterisk.org/r/2305/> |
 | Fix pjproject's build system to support shared objects | <https://code.asterisk.org/code/cru/CR-AST-12> |
-

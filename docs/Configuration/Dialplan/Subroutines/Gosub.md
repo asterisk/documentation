@@ -84,6 +84,3 @@ exten => s,1,Verbose("Here we are in a subroutine! This subroutine was called fr
 ```
 
 To use multiple arguments, simply separate them via commas when defining them in the `Gosub` call. Then within the `Gosub` reference them as `ARG1`, `ARG2`, `ARG3`, etc.
-
-
-

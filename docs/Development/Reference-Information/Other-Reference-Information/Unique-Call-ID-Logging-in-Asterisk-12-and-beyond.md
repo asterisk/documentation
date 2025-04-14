@@ -3,16 +3,10 @@ title: Unique Call-ID Logging in Asterisk 12 and beyond
 pageid: 29396023
 ---
 
-
-
-
 !!! note 
     This is an Asterisk-specific concept. Not to be confused with Caller-ID or a SIP 'Call-ID' field.
 
-      
 [//]: # (end-note)
-
-
 
 What is a call?
 ===============
@@ -83,19 +77,13 @@ then propagating them back to the bridges that provided the earlier call ID whic
 
 If a bridge isn't connected to the call, it should no longer be affiliated with that call ID.  At that point, if there aren't any channels in the bridge we should just drop affiliation. Otherwise this should be considered a new call and those entities need to be affiliated with a new call ID.  At that point, the bridge would create a new call ID and take overship of it.
 
-
-
 The diagram below shows a simple case of call ID linking and separating between bridges via local channels. This diagram is written with the assumption that lowest call ID is used.
 
 ![](call-ids-and-local-chains.png)
 
-
-
 The following diagram demonstrates how multiple bridge chains and loops might function when the ;1 wins rule is used.
 
 ![](Call-IDs-Multi-bridge-chains-and-loops.png)
-
-
 
 Tests:
 ======
@@ -203,8 +191,6 @@ Linking Bridges via local Channels
 
 Note: A decision needs to be made about the call ID preferences for linked bridges before behavior can be nailed down for these tests.
 
-
-
 Other Considerations
 --------------------
 
@@ -214,6 +200,3 @@ be appropriate to bind them to a Call-ID and instead it may be preferable to lea
 joining and leaving and for it not to give up ownership to the last channel that leaves the bridge. This might also apply for something like a conference bridge, though  
 that is questionable. Under the currently proposed model, if all channels leave a conference bridge and then a new one enters that is effectively a new conference  
 and a new call.
-
-
-

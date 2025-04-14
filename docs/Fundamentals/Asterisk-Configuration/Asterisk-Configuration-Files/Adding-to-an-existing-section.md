@@ -48,11 +48,11 @@ This works because the filters ensure that the additions are to the correct obje
 [101]
 type=endpoint
 allow=ulaw
- 
+
 [101]
 type=aor
 default_expiration=3600
- 
+
 [101](+type=aor)
 default_expiration=1200
 
@@ -71,11 +71,11 @@ A weird and not so useful example
 [101]
 type=endpoint
 allow=ulaw
- 
+
 [101]
 type=aor
 default_expiration=3600
- 
+
 [101](+default_.\*=36[0-9][0-9])
 default_expiration=1200
 
@@ -94,11 +94,11 @@ Another weird and not so useful example
 [101]
 type=endpoint
 allow=ulaw
- 
+
 [101]
 type=aor
 default_expiration=3600
- 
+
 [101](+type=aor&default_.\*=36[0-9][0-9])
 default_expiration=1200
 
@@ -110,7 +110,7 @@ allow=g722
 ## Include/Restrict
 
 And finally, you can elect to include or restrict parameters inherited from templates in the search.
-  
+
 The final weird and not so useful example. This will NOT match because default_expiration is defined in the parent template.  
 
 ```conf linenums="1"
@@ -123,7 +123,7 @@ type=aor
 default_expiration=3600
 
 [101](aor_template)
- 
+
 [101](+TEMPLATES=restrict&default_.\*=36[0-9][0-9])
 default_expiration=1200
 
@@ -131,12 +131,3 @@ default_expiration=1200
 allow=g722
 
 ```
-
-
-
-
-
-
-
-
-

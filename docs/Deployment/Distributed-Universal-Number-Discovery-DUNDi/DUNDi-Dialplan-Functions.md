@@ -16,4 +16,3 @@ exten => 1,n,Set(X=$[${X} + 1])
 exten => 1,n,EndWhile
 
 ```
-

@@ -74,4 +74,3 @@ Display in menuselect-newt for extended modules:
 Display in menuselect-newt for deprecated modules:
 
 ![](menuselect-newt-deprecated.png)
-

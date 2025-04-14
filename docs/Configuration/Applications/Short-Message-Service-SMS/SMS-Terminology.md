@@ -9,5 +9,3 @@ pageid: 5242992
 * MT - Mobile Terminated A message on its way from the SMSC to the mobile or landline device
 * RX - Receive A message coming in to the Asterisk box
 * TX - Transmit A message going out of the Asterisk box
-
-

@@ -25,8 +25,6 @@ A full description of semantic versionining can be found at <http://semver.org/>
 
 ## Terminology
 
-
-
 | Term | Definition |
 | --- | --- |
 | Action | A command issued to Asterisk from an external entity via AMI |
@@ -38,8 +36,6 @@ A full description of semantic versionining can be found at <http://semver.org/>
 ## Protocol Overview
 
 Asterisk provides a number of interfaces that serve different purposes. Say, for example, we wanted to manipulate a call between Alice and Bob via some external mechanism. Depending on what we wanted to do with the call, we may use one or more interfaces to manipulate the channels that make up the call between Alice and Bob.
-
-
 
 | Alice calls Bob and... | Interface |
 | --- | --- |
@@ -67,7 +63,6 @@ Historically, AMI has existed in Asterisk as its own core component `manager`. A
 AMI High Level Diagram:
 
 ![AMI High Level Diagram](AMI-High-Level-Diagram.png)
-
 
 Stasis acts as a generic publish/subscribe message bus inside of Asterisk. While AMI often directly interacts with constructs in Asterisk through actions, it receives its events through messages published over Stasis-Core. It translates the generic Stasis messages into an AMI event, and sends those to the appropriate AMI clients.
 
@@ -256,7 +251,6 @@ ChannelState
 
 Depending on the underlying channel technology, not all states will be used. Channels typically begin in either the Down or Up states.
 
-
 ChannelStateDesc
 
 - The text description of the channel state. This will be one of the State descriptions in the table in ChannelState.
@@ -435,7 +429,6 @@ For each channel variable that is changed, a **VarSet** event is sent to the cli
 
 DTMF is indicated via a **DTMFBegin**/**DTMFEnd** events. A **DTMFEnd** event MUST convey the duration of the DTMF tone in milliseconds.
 
-
 /// warning|Behavior Change
 The combination of **DTMFBegin**/**DTMFEnd** events replaces the removed **DTMF** event.
 ///
@@ -497,7 +490,6 @@ DialStatus: ANSWER
 In this example, Kermit decides to dial Animal. A new channel between Asterisk and Animal's SIP device is created and conveyed via a **Newchannel** event, and then a dial operation is begun. Note that in the **DialBegin** event, Kermit's SIP device is the caller as he initiated the dial operation, while Animal's SIP device is the destination. As such, the fields referring to Animal's PJSIP channel are prefixed with "Dest".
 
 When Animal eats his handset (causing the device to think he merely took it off the hook), the SIP device answers and the dial operation completes. This indicated by a **DialEnd** event. At this point, the channel is ready for something - it can execute in the dialplan, or be immediately bridged with the calling channel.
-
 
 Simple Failed Dial:
 
@@ -1100,4 +1092,3 @@ Note that the name of the client settings context is the username for the client
  
 
 The item has all class authorizations associated with it
-

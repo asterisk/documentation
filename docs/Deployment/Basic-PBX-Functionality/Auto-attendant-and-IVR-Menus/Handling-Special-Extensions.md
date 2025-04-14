@@ -54,4 +54,3 @@ Now dial your auto-attendant menu again (by dialing extension **6598**), and try
 ```
 
 If you don't enter anything at the auto-attendant menu and instead wait approximately ten seconds, you should hear (and see) Asterisk go to the **t** extension as well.
-

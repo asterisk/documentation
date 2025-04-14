@@ -13,8 +13,6 @@ The next step in the build process is to tell Asterisk which [modules](/Fundamen
 
 ```
 
-
-
 !!! note Terminal Window
     Your terminal window size must be at least eighty characters wide and twenty-seven lines high, or Menuselect will not work. Instead, you'll get an error message stating
 [//]: # (end-note)
@@ -40,8 +38,6 @@ Module Support Levels
 Menuselect Categories
 =====================
 
-
-
 | Category | Description |
 | --- | --- |
 | **Add-ons** | Modules that link with libraries that have licensing restrictions beyond what is allowed via the GPLv2 and Asterisk's dual licensing model. See [README-addons.txt](http://svn.asterisk.org/svn/asterisk/trunk/README-addons.txt), delivered with Asterisk, for more information. |
@@ -60,11 +56,9 @@ Menuselect Categories
  |
 | **Compiler Flags - Development** | Various compilation flags that alter Asterisk's behaviour. These flags are often useful in debugging Asterisk, or obtaining information for Asterisk developers.
 
-
 !!! tip Easier Debugging of Asterisk Crashes** As much as we may hate to admit it, Asterisk *may* sometimes have problems.If you're finding that Asterisk is crashing on you, there's are settings under **Compiler Flags - Development
     that are critical for developers attempting to assist you. For detailed instructions on enabling these settings, see [Getting a Backtrace (Asterisk versions < 13.14.0 and 14.3.0)](/Development/Debugging/Getting-a-Backtrace-Asterisk-versions-13.14.0-and-14.3.0).
 [//]: # (end-tip)
-
 
  |
 | **Voicemail Build Options** | Compilation flags that enable different Voicemail (via `app_voicemail`) storage backends. |
@@ -94,16 +88,10 @@ Available options can be viewed using the `--help` command line parameter:
 
 Some of the more common options are shown below.
 
-
-
-
 !!! tip Menuselect Output**  Asterisk expects all **Menuselect** options to be written to the **menuselect.makeopts** file. When enabling/disabling **Menuselect
     options via the command line, your output should typically be to that file.
 
-      
 [//]: # (end-tip)
-
-
 
 Listing Options
 ---------------
@@ -114,8 +102,6 @@ To list all options in **Menuselect**, use the `--list-options` command line par
 [root@server asterisk-14.X.Y]# menuselect/menuselect --list-options
 
 ```
-
-
 
 To list only the categories, use the `--category-list` command line parameter:
 
@@ -144,8 +130,6 @@ MENUSELECT_EXTRA_SOUNDS
 
 ```
 
-
-
 To list the options in a category, use the `--list-category` command line parameter:
 
 ```
@@ -166,20 +150,12 @@ To enable an option in Menuselect, use the `--enable` command line parameter:
 
 ```
 
-
-
 !!! tip Chaining Options
     Multiple options can be chained together:
 [//]: # (end-tip)
 
-
-  
-  
-
 ```
 [root@server asterisk-14.X.Y]# menuselect/menuselect --enable app_voicemail --enable IMAP_STORAGE menuselect.makeopts  
-
-
 
 ---
 
@@ -204,4 +180,3 @@ An entire category can be enabled in **Menuselect** using the `--enable-category
 [root@server asterisk-14.X.Y]# menuselect/menuselect --enable-category MENUSELECT_ADDONS menuselect.makeopts
 
 ```
-

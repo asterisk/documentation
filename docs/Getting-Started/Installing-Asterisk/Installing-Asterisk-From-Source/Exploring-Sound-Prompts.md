@@ -10,6 +10,3 @@ Asterisk comes with a wide variety of pre-recorded sound prompts. When you insta
      You can type the command **core show translation** at the Asterisk CLI to see the transcoding times for various CODECs. The times reported (in Asterisk 1.6.0 and later releases) are the number of microseconds it takes Asterisk to transcode one second worth of audio. These times are calculated when Asterisk loads the codec modules, and often vary slightly from machine to machine.  To perform a current calculation of translation times, you can type the command **core show translation recalc 60**.
 
 [//]: # (end-tip)
-
-
-

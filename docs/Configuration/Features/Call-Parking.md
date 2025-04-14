@@ -20,7 +20,6 @@ Before we move any further, there is one more rather important detail to address
 !!! note 
     `res_parking` uses the configuration framework. If an invalid configuration is  supplied, `res_parking` will fail to load or fail to reload. Previously,  invalid configurations would generally be accepted, with certain errors  resulting in individually disabled parking lots.
 
-      
 [//]: # (end-note)
 
 Now that we've covered all of that, let's look at some examples of how all this works.
@@ -72,11 +71,8 @@ findslot => next ; Configures the parking slot selection behavior. For this exam
 
 ```
 
-
-
 ---
 
-  
 features.conf  
 
 ```
@@ -148,12 +144,8 @@ In summary:
 * Asterisk sends the call to `t` extension in the `park-dial` context
 * Our caller hears, "Goodbye", before being disconnected
 
-
-
-
 ---
 
-  
 res_parking.conf  
 
 ```text
@@ -199,11 +191,8 @@ comebacktoorigin=yes ; Determines what should be done with a parked call if it i
 
 ```
 
-
-
 ---
 
-  
 features.conf  
 
 ```text
@@ -218,11 +207,8 @@ parkcall => #72 ; Parks the call (one-step parking). For this example, a call wi
 
 ```
 
-
-
 ---
 
-  
 extensions.conf  
 
 ```text
@@ -282,12 +268,8 @@ In summary:
 * Asterisk sends the call to the `s` extension in our `parkedcallstimeout`
 * Our caller hears, "Goodbye", before being disconnected
 
-
-
-
 ---
 
-  
 res_parking.conf  
 
 ```text
@@ -334,11 +316,8 @@ comebackcontext=parkedcallstimeout ; The context that a parked call will be rout
 
 ```
 
-
-
 ---
 
-  
 features.conf  
 
 ```text
@@ -353,11 +332,8 @@ parkcall => #72 ; Parks the call (one-step parking). For this example, a call wi
 
 ```
 
-
-
 ---
 
-  
 extensions.conf  
 
 ```text
@@ -395,4 +371,3 @@ exten => s,1,NoOp(This is all that happens to parked calls if they time out.)
  same => n,Hangup()
 
 ```
-

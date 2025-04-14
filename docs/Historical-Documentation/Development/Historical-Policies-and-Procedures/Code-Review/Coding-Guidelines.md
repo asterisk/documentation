@@ -7,7 +7,6 @@ pageid: 3702830
 
 INLINE
 
-
 # Introduction
 
 This document gives some basic indication on how the asterisk code is structured. Please read it to the end to understand in detail how the asterisk code is organized, and to know how to extend asterisk or contribute new code.
@@ -36,7 +35,6 @@ Asterisk uses [Gerrit|https://www.gerritcodereview.com/] to manage code submissi
 * Try to match the existing formatting of the file you are working on.
 
 * Use spaces instead of tabs when aligning in-line comments or #defines (this makes your comments aligned even if the code is viewed with another tabsize)
-
 
 ## File structure and header inclusion
 
@@ -482,6 +480,3 @@ for the same type of data.
 Manager events that signal a status are required to have one event name, with a status header that shows the status. The old style, with one event named "ThisEventOn" and another named "ThisEventOff", is no longer approved.
 
 Check [AST:Asterisk Manager Interface (AMI)] for more information on manager and existing headers. Please update the page, [AST:Some Standard AMI Headers], if you add new headers.
-
-
-

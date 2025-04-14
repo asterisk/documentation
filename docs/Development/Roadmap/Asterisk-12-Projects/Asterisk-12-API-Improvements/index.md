@@ -3,8 +3,6 @@ title: Overview
 pageid: 21464586
 ---
 
-
-
 {warning}
 This page contains the original development plans and notes for Stasis and ARI. The names and organization of the final implementation are slightly different (notably, Stasis HTTP became known as ARI).
 {warning}
@@ -259,12 +257,11 @@ Please see the [API docs|http://doxygen.asterisk.org/trunk/d8/d9c/stasis__app_8h
 The `app\_stasis.so` module simply exports the `res\_stasis.so` functionality as a dialplan application. This allows you to send channels to a Stasis application from within the dialplan. 
 
 ```
- 
+
 ; Send channel to the 'Queue' application, with the args 'enqueue,sales' 
 exten => 7001,1,Stasis(Queue,enqueue,sales) 
 
 ```
- 
 
 ## {{stasis_\{channels,bridges,endpoints\}.c}} 
 
@@ -340,4 +337,3 @@ Each controller in the RESTful API should have at least one integration test val
 # Footnotes
 
 * {anchor:bad-name} While it may stand for "Some Thought Actually Spent In Specification", suggestions for a better name are welcome.
-

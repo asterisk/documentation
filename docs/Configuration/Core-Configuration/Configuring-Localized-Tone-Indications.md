@@ -59,8 +59,6 @@ Explanation of the 'tonelist' usage:
 
 ```
 
-
-
 Example of a location specific tone configuration:
 --------------------------------------------------
 
@@ -82,4 +80,3 @@ info = 950/330,1400/330,1800/330
 stutter = 350+440
 
 ```
-

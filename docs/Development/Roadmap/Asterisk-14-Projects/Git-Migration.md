@@ -15,22 +15,13 @@ For a long time now, there's been a desire to move to Git. A few highlights why:
 
 This page serves as a place to put thoughts and findings on moving to Git, document draft processes, and generally get this project moving. As things progress and policies become more well-defined, they will be spun off into their own pages.
 
-
-
-
 !!! note This Page Is Historical
     Two things to keep in mind when reading this page:
 
     1. This page's purpose was always meant to record things for historical purposes. Don't take what is on here as gospel.
     2. Per the discussion on the [asterisk-dev](http://lists.digium.com/pipermail/asterisk-dev/2014-September/070303.html) mailing list, the tools chosen for managing review/CI around git are Gerrit and Jenkins.
-      
+
 [//]: # (end-note)
-
-
-
-
-
-
 
 [Underpants Gnomes](http://en.wikipedia.org/wiki/Gnomes_%28South_Park%29) Project Plan for Moving to Git
 ========================================================================================================
@@ -55,10 +46,6 @@ Below is a comparison of four platforms, subjected to a variety of criteria:
 * Git Hooks/Web Hooks - given the amount of infrastructure the project already has, it is certain we'll need to integrate Git with existing tools.
 * Performance - this is a big one, given the amount of history the Asterisk project has. A good management tool will need to be able to handle the nearly half a million commits the Asterisk project currently has.
 
-
-
-
-
 |  | Github | Atlassian Stash | Gitlab | Gitolite | Gerrit OpenStack Workflow |
 | --- | --- | --- | --- | --- | --- |
 | **Web View** | Yes | Yes | Yes | Provided by gitweb or CGit (CGit looks like a more attractive solution) | Provided by CGit |
@@ -79,8 +66,6 @@ Notes
 
 Initial Recommendations
 -----------------------
-
-
 
 | Platform | Recommendations |
 | --- | --- |

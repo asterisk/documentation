@@ -79,7 +79,6 @@ pageid: 40817607
 
 **A:** Yes.  Allison Smith has been the voice of Asterisk and FreePBX users for the better part of two decades.  You will still be able to get wonderful prompts from her for your IVR needs since both Sangoma and Digium offer purchasing of those prompts already.  
 
-
  **If I want to engage with the Asterisk and FreePBX communities, where do I go?**
 
 **A:**The various entry points for users into the ecosystem are designed to best-serve the types of users entering via those means.  Users with questions about Asterisk should continue to use the Asterisk Community Forums ([community.asterisk.org](http://community.asterisk.org)). Users with questions about FreePBX should continue to use the FreePBX Community Forums ([community.freepbx.org](http://community.freepbx.org)).  Issue reports should continue to be made at the respective issue trackers: [issues.asterisk.org](https://github.com/asterisk/asterisk/issues) and [issues.freepbx.org](http://issues.freepbx.org). Users who prefer mailing lists can use the Asterisk mailing lists and users who prefer IRC can use the #asterisk or #freepbx IRC channels.  Some of this may change in the future, but until that happens, please communicate the same way you do today.
@@ -99,4 +98,3 @@ pageid: 40817607
  **Where should I go for questions about commercial products?**
 
 **A:** Contact your Sangoma and Digium account managers.
-

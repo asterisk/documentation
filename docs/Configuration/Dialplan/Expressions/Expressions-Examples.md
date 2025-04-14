@@ -3,8 +3,6 @@ title: Expressions Examples
 pageid: 4620379
 ---
 
-
-
 | Expression | Result | Note |
 | --- | --- | --- |
 | `"One Thousand Five Hundred" =~ "(T[^ ])"` | Thousand |  |
@@ -35,4 +33,3 @@ pageid: 4620379
 | `TRUNC(-3.5)` | -3 |  |
 
 Of course, all of the above examples use constants, but would work the same if any of the numeric or string constants were replaced with a variable reference, e.g. `${CALLERID(num)}`.
-
