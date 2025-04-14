@@ -60,16 +60,10 @@ The DAHDI code can be downloaded as individual pieces (**dahdi-linux** for the D
 
 You will only need to install DAHDI if you are going to utilize DAHDI compatible analog or digital telephony interface boards.
 
-
-
-
 !!! tip Why is DAHDI split into different pieces?
     DAHDI has been split into two pieces (the Linux drivers and the tools) as third parties have begun porting the DAHDI drivers to other operating systems, such as FreeBSD. Eventually, we may have dahdi-linux, dahdi-freebsd, and so on.
 
-      
 [//]: # (end-tip)
-
-
 
 ## Download Locations
 
@@ -80,8 +74,3 @@ You will only need to install DAHDI if you are going to utilize DAHDI compatible
 | dahdi-linux | <https://downloads.asterisk.org/pub/telephony/dahdi-linux/dahdi-linux-current.tar.gz> |
 | dahdi-tools | <https://downloads.asterisk.org/pub/telephony/dahdi-tools/dahdi-tools-current.tar.gz> |
 | dahdi-complete | <https://downloads.asterisk.org/pub/telephony/dahdi-linux-complete/dahdi-linux-complete-current.tar.gz> |
-
-
-
-
-

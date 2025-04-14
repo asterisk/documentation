@@ -246,8 +246,6 @@ Unlike speech to text, we only need to know if setup was successful. Then we kno
 
 ```
 
-
-
 **Scenario 2 (failure)**
 
 ```json title="Request"
@@ -305,4 +303,3 @@ Unlike speech to text, we only need to know if setup was successful. Then we kno
 }
 
 ```
-

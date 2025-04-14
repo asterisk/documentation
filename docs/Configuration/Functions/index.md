@@ -3,16 +3,10 @@ title: Overview
 pageid: 27200281
 ---
 
-
-
-
 !!! warning 
     Under Construction
 
-      
 [//]: # (end-warning)
-
-
 
 Asterisk Dialplan Functions
 ===========================
@@ -79,4 +73,3 @@ Help for specific functions
 The wiki section CLI Syntax and Help Commands details how to use the CLI-accessible documentation. This will allow you to access the syntax and usage info for each function including detail on all the arguments for each function.
 
 Wikibot also publishes the same documentation on the wiki. You can find function docs in the version specific top level sections; such as Asterisk 13 Dialplan Functions.
-

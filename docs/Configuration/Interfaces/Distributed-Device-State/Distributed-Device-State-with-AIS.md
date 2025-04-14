@@ -3,10 +3,6 @@ title: Distributed Device State with AIS
 pageid: 4259996
 ---
 
-
-
-
-
 # Introduction
 
 Various changes have been made related to "event handling" in Asterisk. One of the most important things included in these changes is the ability to share certain events between servers. The two types of events that can currently be shared between servers are:
@@ -250,4 +246,3 @@ One other helpful thing here during testing and debugging is to enable debug log
 ```
 When you have this debug enabled, you will see output during the processing of every device state change. The important thing to look for is where the known state of the device for each server is added together to determine the overall
 state.
-

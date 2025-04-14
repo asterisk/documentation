@@ -6,18 +6,10 @@ pageid: 30279239
 Project Overview
 ================
 
-
-
-
 !!! info ""
     This is a draft. Please keep that in mind when commenting. Thanks!
 
-      
 [//]: # (end-info)
-
-
-
-
 
 Text to Speech is nice. If nothing else, it let's you get a demo off the ground much faster. Doing something like this in ARI:
 
@@ -40,15 +32,8 @@ The goal of this project is two-fold:
 1. Provide a generic TTS engine implementation engine in Asterisk with at least one reference implementation.
 2. Add support to ARI for `/play` operations on a `tts` scheme.
 
-
-
-
-
-
 Requirements and Specification
 ==============================
-
-
 
 Configuration
 -------------
@@ -56,8 +41,6 @@ Configuration
 ### project.conf
 
 #### [general]
-
-
 
 | Parameter | Description | Type | Default Value |
 | --- | --- | --- | --- |
@@ -88,8 +71,6 @@ Each test description should provide, at a minimum, the name of the test, the te
 Tests for Use Case: Bob calls Alice
 -----------------------------------
 
-
-
 | Test | Level | Description |
 | --- | --- | --- |
 | sip_basic_call | Integration | Test a basic call scenario between two SIP UAs and Asterisk |
@@ -108,8 +89,6 @@ JIRA Issues
 Contributors
 ------------
 
-
-
 | Name | E-mail Address |
 | --- | --- |
 | unknown user | mjordan@digium.com |
@@ -118,4 +97,3 @@ Reference Information
 =====================
 
 Include links to code reviews, asterisk-dev mailing list discussions, and any other related information.
-

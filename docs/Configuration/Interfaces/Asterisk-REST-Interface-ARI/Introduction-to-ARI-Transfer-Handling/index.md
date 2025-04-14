@@ -102,7 +102,6 @@ There are installations where the Asterisk is used like a media server and surro
 
 A scenario could look like this:
 
-
 ```
 telePhone A --- Kamailio --- Asterisk 1 --- Kamailio -
                                                   \
@@ -124,8 +123,6 @@ telePhone C --- Kamailio --- Asterisk 2 --- Kamailio -----
 Both channels to telephone B are placed by the same ARI application (or they share the same knowledge about ongoing calls).
 
 If an SIP `REFER` reaches one Asterisk instance, the Asterisk will publish the `channelTransferEvent` without any destination channel ID or bridge ID but the SIP call ID. The ARI application is now able to establish a new call between the Asterisk instances to complete the transfer. The Scenario after the transfer would look like this:
-
-
 
 ```
 telePhone A --- Kamailio --- Asterisk 1  --------------

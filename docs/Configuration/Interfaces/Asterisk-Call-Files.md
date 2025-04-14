@@ -16,7 +16,6 @@ With call files you submit this information simply by creating a file with the r
 
 The `pbx_spool.so` module watches the spooling directly, either using an event notification system supplied by the operating system such as `[inotify](http://en.wikipedia.org/wiki/Inotify)` or `[kqueue](http://en.wikipedia.org/wiki/Kqueue)`, or by polling the directory each second when one of those notification systems is unavailable. When a new file appears, Asterisk initiates a new call based on the file's contents.
 
-
 !!! warning "Creating Files in the Spool Directory"
     Do **not** write or create the call file directly in the `outgoing` directory, but always create the file in another directory of the same filesystem and then move the file to the `outgoing` directory, or Asterisk may read a partial file.
 [//]: # (end-warning)
@@ -31,9 +30,7 @@ The call file consists of <Key>: <value> pairs; one per line.
 
 Comments are indicated by a '#' character that begins a line, or follows a space or tab character. To be consistent with the configuration files in Asterisk, comments can also be indicated by a semicolon. However, the multiline comments (;----;) used in Asterisk configuration files are not supported. Semicolons can be escaped by a backslash.
 
-
 The following keys-value pairs are used to specify how setup a call:
-
 
 * `Channel: <channel>` - The channel to use for the new call, in the form **technology/resource** as in the Dial application. This value is required.
 * `Callerid: <callerid>` - The caller id to use.
@@ -42,13 +39,10 @@ The following keys-value pairs are used to specify how setup a call:
 * `RetryTime: <number>` - How many seconds to wait before retry. The default is 300 (5 minutes).
 * `Account: <account>` - The account code for the call. This value will be assigned to CDR(accountcode)
 
-
 When the call answers there are two choices: 
-
 
 1. Execute a single application, or
 2. Execute the dialplan at the specified context/extension/priority.
-
 
 ## To execute an application:
 
@@ -83,7 +77,6 @@ EndRetry: <pid> <retrycount> (<time>)
 
 With the main process ID (pid) of the Asterisk process, the retry number, and the attempts start and end times in time\_t format.
 
-
 ## Directory locations
 
 * `<astspooldir>/outgoing` - The outgoing dir, where call files are put for processing
@@ -93,4 +86,3 @@ With the main process ID (pid) of the Asterisk process, the retry number, and th
 ## How to schedule a call
 
 Call files that have the time of the last modification in the future are ignored by Asterisk. This makes it possible to modify the time of a call file to the wanted time, move to the outgoing directory, and Asterisk will attempt to create the call at that time.
-

@@ -3,10 +3,6 @@ title: Build System Architecture
 pageid: 5243137
 ---
 
-
-
-
-
 # Build Architecture
 
 The asterisk build architecture relies on autoconf to detect the system configuration, and on a locally developed tool (menuselect) to select build options and modules list, and on gmake to do the build.
@@ -71,6 +67,3 @@ Modules that have a dependency must have a special comment block in them that is
     * */
 
 ```
-
-
-

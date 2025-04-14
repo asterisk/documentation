@@ -18,6 +18,3 @@ In this section you'll find [Local Channel Examples](Local-Channel-Examples) tha
 ## The Local Channel in Asterisk Architecture
 
 Previous to Asterisk 12, Local Channel functionality was provided by the **chan_local** module. In Asterisk 12, chan_local was moved into the Asterisk system core and is no longer a [loadable module](/Configuration/Core-Configuration/Configuring-the-Asterisk-Module-Loader).
-
-
-

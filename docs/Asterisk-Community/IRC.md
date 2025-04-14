@@ -28,4 +28,3 @@ Use <https://libera.chat/> IRC server to connect with Asterisk developers and us
 #asterisk-ari
 
 ```
-

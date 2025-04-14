@@ -39,4 +39,3 @@ database show -- Shows database contents
 database showkey -- Shows database contents
 
 ```
-

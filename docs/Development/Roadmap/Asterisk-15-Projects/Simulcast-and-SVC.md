@@ -21,9 +21,6 @@ The [Chrome implementation](http://www.rtcbits.com/2014/09/using-native-webrtc-s
 
 The Firefox implementation follows the [RFC](https://tools.ietf.org/html/draft-ietf-mmusic-sdp-simulcast-10) and defines within the SDP alternative streams. The quality of each is also provided in the SDP, unlike Chrome, as well as the direction. What is not present is the SSRC of the alternative streams. In WebRTC usage you have to associate them by first looking at the [MID RTP extension](https://www.ietf.org/id/draft-ietf-mmusic-sdp-bundle-negotiation-39.txt) to determine what media stream it is for. After that you have to associate it with the alternative stream using the RtpStreamId RTP extension. These together allow you to determine what media stream and substream it is for.
 
-  
-
-
 SVC
 ===
 
@@ -61,4 +58,3 @@ Support for the Chrome method of simulcast will need to be added, as well as the
 ### Core
 
 The "core show channel" CLI command should be extended to also show substreams.
-

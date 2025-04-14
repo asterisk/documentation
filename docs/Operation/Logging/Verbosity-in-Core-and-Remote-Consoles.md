@@ -69,4 +69,3 @@ Current console verbosity: 3
 ...
 
 ```
-

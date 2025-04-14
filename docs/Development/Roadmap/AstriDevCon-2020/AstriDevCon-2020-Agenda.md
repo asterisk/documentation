@@ -9,16 +9,12 @@ Date
 Discussion items
 ----------------
 
-
-
 | Time | Item | Who | Notes |
 | --- | --- | --- | --- |
 | 10:15-11 | State of Asterisk Talk | Matthew Fredrickson | Link to presentation: [AstriDevCon Asterisk Update - 2020.pdf](AstriDevCon-Asterisk-Update-2020.pdf) |
 | 11-11:45 | Asterisk 18 - Codec Work | George Joseph | Link to presentation: [AstriDevCon 2020 Advanced Codec Negotiation.pdf](AstriDevCon-2020-Advanced-Codec-Negotiation.pdf) |
 | 11:45-1:15 | Lunch |  |  |
 | 1:15 | Start building detailed agenda |  |   |
-
-
 
 Afternoon topics:
 
@@ -56,6 +52,3 @@ Afternoon topics:
 	+ PauseRecording/UnPauseRecording support in mixmonitor is missing - recommended workaround is to use mixmonitor stop and then mixmonitor append.
 	+ Better handling of RTP header extensions in Asterisk. (passthrough or processing of radio related header, potentially also for webrtc and other header extensions)
 	+ Optimistic encryption support when using DTLS with chan_pjsip
-
-
-

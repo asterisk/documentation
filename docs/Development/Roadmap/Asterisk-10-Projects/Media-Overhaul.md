@@ -3,8 +3,6 @@ title: Media Overhaul
 pageid: 4260120
 ---
 
-
-
 # Project Requirements
 
 {warning}
@@ -50,4 +48,3 @@ Rework media representation completely across all of Asterisk, while maintaining
 * GTalk Video Support
 * Support for unknown media types for pass-through (research required)
 * Support for more than one stream of the same type (audio/video/text)
-

@@ -62,22 +62,15 @@ You need to find out what error is causing Asterisk to halt and resolve it.
 
 * The quick way is to run Asterisk in root/core console mode and watch for the last messages Asterisk prints out before halting.
 	+ ---
-	
-	  
-	  
-	
-	
+
 	```
-	
+
 	asterisk -cvvvvv
-	
+
 	```
-	
-	
-	
+
 	---
-	
-	
+
 	This will start Asterisk in console mode with level 5 verbosity. That should give you plenty to look at.
 * Another way is to setup Asterisk [Logging](/Operation/Logging) to log what you want to see to a file. You'll need to read up on Asterisk's [Logging Configuration](/Configuration/Core-Configuration/Logging-Configuration)
 * Asterisk could halt for a variety of reasons. The last messages you see before Asterisk halts will give you a clue. Then you can Google from there or ask the user community.

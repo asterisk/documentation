@@ -5,7 +5,6 @@ pageid: 4816911
 
 AEL, after parsing, but before compiling, traverses the dialplan tree, and makes several checks:
 
-
 * Macro calls to non-existent macros.
 * Macro calls to contexts.
 * Macro calls with argument count not matching the definition.
@@ -20,9 +19,7 @@ AEL, after parsing, but before compiling, traverses the dialplan tree, and makes
 * (0.12) check for abstract contexts that are not included by any context.
 * (0.13) Issue a warning if a label is a numeric value.
 
-
 There are a subset of checks that have been removed until the proposed AAL (Asterisk Argument Language) is developed and incorporated into Asterisk. These checks will be:
-
 
 * (if the application argument analyzer is working: the presence of the 'j' option is reported as error.
 * if options are specified, that are not available in an application.
@@ -32,5 +29,3 @@ There are a subset of checks that have been removed until the proposed AAL (Aste
 * a Switch construct is used, which is uses a known variable, and the application that would set that variable is not called in the same extension. This is a warning only...
 * Calls to applications not in the "applist" database (installed in /var/lib/asterisk/applist" on most systems).
 * In an assignment statement, if the assignment is to a function, the function name used is checked to see if it one of the currently known functions. A warning is issued if it is not.
-
-

@@ -5,20 +5,12 @@ title: Review Board Usage
 pageid: 4816917
 ---
 
-
-
-
 !!! info "Historical Page"
     The Asterisk project used Review Board for code review when Subversion was used for source control. After to moving to Git, Gerrit is now used for Code Reviews.
 
     Please see the [Gerrit Usage](/Development/Policies-and-Procedures/Historical-Policies-and-Procedures/Code-Review/Gerrit-Usage) page for more information on using Gerrit for code review.
 
-      
 [//]: # (end-info)
-
-
-
-
 
 Usage Guidelines
 ================
@@ -35,31 +27,21 @@ Users who have an accepted [Digium License Agreement](/Development/Policies-and-
 Posting Code to Review Board
 ============================
 
-
-
-
 !!! note 
     It is acceptable for a contributor to post patches to Review Board before they are complete to get some feedback on the approach being taken. However, if the code is not yet ready to be merged, it must be documented as such.
 
     A review request with a patch proposed for merging should have documented testing and should not have blatant [Coding Guidelines](/Development/Policies-and-Procedures/Historical-Policies-and-Procedures/Code-Review/Coding-Guidelines) violations. If a patch has substantial issues, the review will be closed and you will be asked to re-submit it once it conforms to the project guidelines.
 
-      
 [//]: # (end-note)
-
-
 
 Using post-review
 -----------------
 
 The easiest way to post a patch to Review Board is by using the rbt tool. Install it using `easy_install`.
 
-
-
-
 !!! note 
     If you do not already have `easy_install`, install the `python-setuptools` package.
 
-      
 [//]: # (end-note)
 
 ```
@@ -129,4 +111,3 @@ Most of the time, a patch on Review Board will require multiple iterations befor
  $ rbt post -r <review request number>
 
 ```
-

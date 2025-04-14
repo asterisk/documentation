@@ -22,16 +22,10 @@ If an Asterisk issue is present for the new feature or bug fix on the [Asterisk 
 
 It is the case that some corporate users of Asterisk will pay you hard cash for your work on developing patches and bug fixes. Often, there are reasons that a firm can't or won't fix/patch Asterisk internally, and wants to outsource that work to the larger Asterisk community. The Asterisk community wins whenever a bounty bug is resolved because everyone benefits from that work. The company sponsoring the bounty wins, because their specific problem is fixed. And, of course, the programmer wins because they're paid.
 
-
-
-
 !!! warning 
     Bounty arrangements are made between the sponsor and the programmer, and are NOT via Digium or any other third-party middleman. Payment terms, guarantees, etc. etc. are the problem of the two parties (programmer and bounty sponsor) and the bugtracker simply permits an open forum for discussion of the problems and for the bounty.
 
-      
 [//]: # (end-warning)
-
-
 
 ### But what about ... ?
 

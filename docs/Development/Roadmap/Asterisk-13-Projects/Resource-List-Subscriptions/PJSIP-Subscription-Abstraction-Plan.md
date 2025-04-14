@@ -182,7 +182,7 @@ Here is the revised version:
 /*! Create a new outbound SIP subscription to the requested resource at the requested endpoint */
 struct ast_sip_subscription \*ast_sip_create_subscription(const struct ast_sip_subscriber \*subscriber,
  struct ast_sip_endpoint \*endpoint, const char \*resource);
- 
+
 struct ast_sip_subscriber {
  /*! A NOTIFY has been received with the attached body */
  void (\*state_change)(struct ast_sip_subscription \*sub, const char \*body, enum pjsip_evsub_state state);
@@ -234,4 +234,3 @@ const char \*ast_sip_publish_get_resource(struct ast_sip_publication \*pub);
 ```
 
 Like with the notifier, the `new_publication` callback is being simplified just to be an indicator if the PUBLISH should be accepted or not. The pubsub core will take care of creating the publication and will then immediately call into the `publication_state_change` callback to relay the actual PUBLISH body to the handler. `publish_refresh` and `publish_termination` are not needed since the `publication_state_change` covers their functionality.
-

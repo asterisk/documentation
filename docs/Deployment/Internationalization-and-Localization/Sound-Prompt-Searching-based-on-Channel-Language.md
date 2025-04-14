@@ -20,4 +20,3 @@ This means that if we set the language to en_GB_female_BT, for example, Asterisk
 .../sounds
 
 This scheme makes it easy to add new sound prompts for various language variants, while falling back to a more general prompt if there is no prompt recorded in the more specific variant.
-

@@ -56,4 +56,3 @@ $ curl -X GET -u asterisk:SECRET https://localhost:8088/ari/asterisk/info
 }
 
 ```
-

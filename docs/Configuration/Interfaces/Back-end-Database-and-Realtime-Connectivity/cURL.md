@@ -3,18 +3,10 @@ title: cURL
 pageid: 28314908
 ---
 
-
-
-
 !!! note 
     This page is under construction and may be incomplete or missing information in some areas. If you have questions, please wait until this notice is removed before asking, since it is possible your question will be answered by the time this page is completed.
 
-      
 [//]: # (end-note)
-
-
-
-
 
 Asterisk's ability to retrieve and store data to realtime backends is most commonly associated with relational databases. One of the lesser-known realtime backends available in Asterisk is [cURL](http://curl.haxx.se/). Using this realtime backend makes Asterisk use HTTP GET and POST requests in order to retrieve data from and store data to an HTTP server.
 
@@ -38,8 +30,6 @@ If you use a distribution with aptitude-based packaging (Debian, Ubuntu, Mint, e
 apt-get install libcurl4-openssl-dev
 
 ```
-
-
 
 If you use a distribution with yum-based packaging (CentOS, RHEL, Fedora, et al), then use this command to install:
 
@@ -483,4 +473,3 @@ Other Information
 =================
 
 If you are interested in looking more in-depth into Asterisk's cURL realtime backend, you can find a reference example of an HTTP server in `contrib/scripts/dbsep.cgi` written by Tilghman Lesher, who also wrote Asterisk's realtime cURL support. This script works by converting the HTTP request from Asterisk into a SQL query for a relational database. The configuration for the database used in the `dbsep.cgi` script is detailed in the `configs/dbsep.conf.sample` file in the Asterisk source.
-

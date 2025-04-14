@@ -3,8 +3,6 @@ title: Media Architecture Proposal
 pageid: 9568381
 ---
 
-
-
 # Introduction
 Asterisk was written from the ground up with a set of assumptions about how media is represented and negotiated. These assumptions have worked to get Asterisk where it is today, but unfortunately they have also put in place a set of limitations that must be overcome before Asterisk can meet the demands of the future. While these limitations are built into the foundation of Asterisk's design, the necessary changes required to lift these constraints can be made. This document outlines the required changes and breaks them up into a layered approach. Each section addresses a specific problem with Asterisk's current media architecture and proposes a solution. As the sections progress each new section uses the foundation outlined in the previous sections to address an increasingly complex set of problems. By attacking this issue from the foundation up it is possible to generate a complete solution that exceeds the current development constraints opening Asterisk up to an entire new set of possibilities.
 
@@ -208,7 +206,6 @@ In order to remove the limitation of the number of unique formats that can be re
 The old system of using a single bit in a bit field to represent a single format also allows for bitmasks to be used to determine what type of media a format is categorized as. For example, there is a bitmask for determining if a format is an audio format, video format, or text format. By changing the unique id to a number the ability to use bitmasks to determine the category is no longer possible. Instead, a new convention of organizing these formats into media categories must be set in place.
 
 Since the number of formats that can be represented will likely never be exhausted using the new system, formats can be uniquely identified and categorized using a system that sections off each category into a range of numbers. Since it is unlikely any category will ever have even close to 100,000 unique formats associated with it, each category will be sectioned off by increments of 100,000. For example, all audio formats will be uniquely identified in a category between 100,000-199,999, all video formats will be uniquely identified in a category between 200,000-299,999, and so on for every category. This new system allows for each format's unique id to be overloaded with a category as well just like the previous system did. Instead of using a bitmask to determine if a format is video or audio, a function or macro can be used to do the comparison consistently across the code base.
-
 
 ## New Format Unique Id Changes to frame.h
 
@@ -531,7 +528,6 @@ struct ast_cap \*ast_cap_joint(struct ast_cap \*cap1, struct ast_cap \*cap2);
  * \retval NULL failure
  */
 struct ast_cap \*ast_cap_get_type(struct ast_cap \*cap, enum ast_format_type ftype);
-
 
 /*! \brief Start iterating format */
 void ast_cap_iter_start(struct ast_cap \*cap);
@@ -858,7 +854,6 @@ If a channel driver is capable of negotiating more streams than can be represent
 Since Asterisk supports multiple protocols with various capabilities, all the auxiliary streams that can be used anywhere in Asterisk must be defined at compile time. This means when a channel driver is extended to make use of a new type of auxiliary stream, that stream must be defined with a stream id that uniquely represents it across the entire code base. This is the only way to keep the different types of auxiliary streams and what they are used for consistent across all modules.
 
 ```
- 
 
 Example 1: Chan_sip is extended to make use of up to four video and audio streams per call. This sort of functionality has never been done before so six new auxiliary streams must be defined for the three new video and three new audio streams.
 
@@ -883,7 +878,6 @@ As chan_sip receives individual stream payloads and creates ast_frames to pass i
 ### Dynamic Streams
 
 It is possible that Asterisk will need the ability to pass through streams containing media it does not understand. This can only be accomplished if both the channel negotiating the unknown media type and whatever that channel is bridged too can agree that they both understand the unknown media type and are assigning it a dynamic stream id that they both agree upon. This document does not define the negotiation of dynamic streams in Asterisk.
-
 
 ## Ast Channel Stream API Defined
 
@@ -1031,7 +1025,6 @@ allow=h264_custom1
 
 Notice from these examples that both the SILK and H264 custom formats are defined using fields specific to their format. Each format will define what fields are applicable to them. If there are common fields used for several different media formats, those fields should be named in a consistent way across all the media formats that use them. Every format allowing custom media formats to be defined must be documented in codecs.conf along with all the available fields.
 
-
 # Enhancing Format Negotiation During Call Setup
 {warning}
 This is an area of focus for our initial media overhaul efforts, but research into this area is still incomplete. Because of this, the design surrounding the ability to better negotiate media formats during call setup has not yet been defined. This will be addressed at a later date.
@@ -1159,4 +1152,3 @@ Allowing calls to renegotiate their media formats after call setup is perhaps th
 * Step 2
     * Implement core functionality changes required to detect and attempt format renegotiation with channel techs.
     * Implement chan_sip configuration options and functionality required to allow format renegotiation triggered by the Asterisk core to occur after call setup.
-

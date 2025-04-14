@@ -85,4 +85,3 @@ exten => 2,1,Dial(SIP/PHONE_B)
 [internal]
 exten => 4,1,Dial(Local/2@services,,L(60000:45000:15000));
 ```
-

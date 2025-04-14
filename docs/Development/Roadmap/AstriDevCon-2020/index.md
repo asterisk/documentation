@@ -12,7 +12,6 @@ AstriDevCon is an annual event, held alongside [AstriCon](http://www.asterisk.or
 
 ### Event day schedule
 
-  
 AstriDevCon is a mix of open and focused discussion all on topics within the realm of Asterisk development, primarily regarding current concerns that Asterisk faces and how to improve Asterisk for the future.
 
 **Starting at [10AM EST](https://www.timeanddate.com/worldclock/fixedtime.html?msg=AstriDevCon+2020&iso=20201020T10&p1=837&ah=6).**
@@ -20,8 +19,6 @@ AstriDevCon is a mix of open and focused discussion all on topics within the rea
 **Event ends at 4PM EST or until completion.**
 
 We'll build a rough agenda together in the morning.
-
-
 
 ### Location
 
@@ -42,8 +39,6 @@ Additional Information
 We'll be using IRC during the AstriDevCon for out of band discussion. Since this year we will be virtual expect more communication to occur using this method.
 
 irc.freenode.net, #astridevcon
-
-
 
 ### Attendees
 

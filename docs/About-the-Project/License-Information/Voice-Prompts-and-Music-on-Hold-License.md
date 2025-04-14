@@ -12,4 +12,3 @@ Music On Hold
 =============
 
 The Hold (on hold) music included with the Asterisk distribution has been sourced from [opsound.org](http://opsound.org/) which itself distributes the music under [Creative Commons Attribution-ShareAlike 2.5](http://creativecommons.org/licenses/by-sa/2.5/legalcode) license.
-

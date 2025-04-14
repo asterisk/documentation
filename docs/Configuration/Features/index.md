@@ -7,16 +7,10 @@ The [Asterisk core](/Configuration/Core-Configuration) provides a set of feature
 
 Features are configured in features.conf and most require additional configuration via arguments or options to applications that invoke channel creation.
 
-
-
-
 !!! tip 
     Versions of Asterisk older than 12 included parking configuration inside features.conf. In Asterisk 12 parking configuration was moved out into res_parking.conf.
 
-      
 [//]: # (end-tip)
-
-
 
 The core features discussed in this section are:
 
@@ -35,6 +29,3 @@ The core features discussed in this section are:
 	+ Instructions for how to implement parking lots (with examples).
 
 The only features discussed in this section are those that have some relation to features.conf. Features in a broader sense - that is features that your application built with Asterisk may have - are implemented through usage of [Applications](/Configuration/Applications), [Functions](/Configuration/Functions) and [Interfaces](/Configuration/Interfaces) or [Dialplan](/Configuration/Dialplan).
-
-
-

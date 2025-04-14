@@ -28,16 +28,7 @@ bindaddr=[2001:db8::1]:4569
 
 You can specify 'bindaddr' more than once to bind to multiple addresses, but the first will be the default. IPv6 addresses are accepted.
 
-
-
-
-
-
 !!! tip 
     For details IAX configuration examples see the iax.conf.sample file that comes with the source.
 
-      
 [//]: # (end-tip)
-
-
-

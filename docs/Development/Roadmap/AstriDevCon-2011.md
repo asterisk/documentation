@@ -3,15 +3,11 @@ title: AstriDevCon 2011
 pageid: 19006492
 ---
 
-
 ## Introduction
-
 
 AstriDevCon 2011 was held on Monday, October 24th. It was held on the day prior to AstriCon at the same location. A group of active development community members met and discussed a number of topics, including:
 
-
 * Review of AstriDevCon 2011 (Asterisk)
-
 
 ## Developers Present
 
@@ -44,18 +40,13 @@ AstriDevCon 2011 was held on Monday, October 24th. It was held on the day prior 
 * Shawn McCord: Cycore Systems
 * Klaus Darilion: ipcom.at
 
-
 ## AstriDevCon 2010 Results
-
 
 The following sections are a list of ideas that have been discussed at AstriDevCon. They are listed in a priority order where a lower number is a higher weight. P0 priority are for projects that are near completion and need the original developer to push through to the end. Other priority issues from P1 and higher are ranked by the participants at AstriDevCon.
 
-
 ### (P0)
 
-
 P0 are committed projects that are going to get done.
-
 
 * T.38 Gateway (Digium)
 * Performance of State Change Processing (Stefan Schmidt)
@@ -97,12 +88,9 @@ P0 are committed projects that are going to get done.
 * Make ast_channel an opaque type (Digium)
 	+ **Review 2011**: Large project and has not been started. Should not be on P0.
 
-
 ### (P1)
 
-
 P1 is the highest priority.
-
 
 * Who hung up? (there's a branch, shouldn't take too much time - Olle)
 	+ **Review 2011**: Jason Parker thinks something like that may have been committed a few months ago by Jeffrey C. Ollie. Will need to review to see if anything has actually been done there.
@@ -122,7 +110,6 @@ P1 is the highest priority.
 	+ **Review 2011**: Completed and in Asterisk 10. Updated ConfBridge() application which was pretty much re-written. Now supports high resolution codecs and voice activity video switching within ConfBridge().
 	+ higher sampling rates
 	+ **Review 2011**: Part of the codec negotiation framworks.
-
 
 ### (P2)
 
@@ -147,9 +134,7 @@ P1 is the highest priority.
 * RTMP client channel driver
 	+ **Review 2011**: No change.
 
-
 ### (P3)
-
 
 * Unique identifier for filtering log data to a call
 	+ (finishing what was already begun w/ Clod's project, CLI filtering; should take a look at what Stephan from Unlimitel.ca's created)
@@ -157,7 +142,6 @@ P1 is the highest priority.
 		- Discussion about in the logger.conf to change the configuration so that the 'core set verbose 5' (or debug, etc) that it does not affect all the configuration files when you just want to change the verbosity on the console. (<https://github.com/asterisk/asterisk/issues/jira/browse/ASTERISK-18352>)
 		- Configuration could be under a header, and then create your own filters for channels, and what verbosity,debug,etc. is output to a log file and console per file
 		- **Take Away**: Need to have a discussion of what people would want and need (requirements gathering), and then we can investigate how difficult it would be to implement, and what the order of implementation.
-
 
 ### (P4, Simon's features)
 
@@ -171,7 +155,6 @@ P1 is the highest priority.
 	+ (no code, responding correctly to ICE connectivity checks (STUN multiplexed on the RTP port) and understanding the SDP); it makes NAT traversal work for clients that do ICE; also addressed lightweight NAT refresh)
 	+ **Review 2011**: No change or progress. No one has tried to work on it. Appears to be very little deployment.
 
-
 ### (P5)
 
 * AstDB replacement SQLite
@@ -179,7 +162,6 @@ P1 is the highest priority.
 * SIP identity
 	+ (on reviewboard; needs to be forward ported; important for organizations w/ federated identities; a requirement for DTLS SRTP; not widely deployed)
 	+ **Review 2011**: No change.\
-
 
 ### (P6)
 
@@ -195,16 +177,13 @@ P1 is the highest priority.
 	+ (not likely to be widely deployed in the next 12 months)
 	+ **Review 2011**: No progress has been made. Only one library has it, and is not very mature. Not really up to the Asterisk project to solve the problem. Future consideration.
 
-
 ### (P7, not kobaz)
-
 
 * Write a Specification for AMI (not kobaz)
 	+ **Review 2011**: Goes hand-in-hand with the event documentation. Make it so that we do no break AMI versions – no changes within the same version. We can do this since we do have the ability to version the AMI commands.
 * Multiple TLS server certs
 	+ (1 socket, requires support by OpenSSL; simpler to implement than multiple SIP profiles; don't know if any clients use it yet; needs more research)
 	+ **Review 2011**: Currently no SIP end points that support the mechanism, and some discussion on SIP lists say that an RFC should be written. Not very difficult to do on the server side of things. Could be done between Asterisk to Asterisk since we'd implement both the client and the server.
-
 
 ### (P8, nice to have)
 
@@ -215,7 +194,6 @@ P1 is the highest priority.
 * Make MixMonitor and Monitor feature compatible
 	+ **Review 2011**: Done in Asterisk 10 (per David Vossel)
 		- Some discussion should be done to move res_monitor to 'extended' or 'deprecated' support level. MixMonitor() likely is now feature complete for Monitor(), especially since MixMonitor() has been implemented in a more friendly manner (in terms of I/O and threading).
-
 
 ### (P?, Research Required)
 
@@ -245,7 +223,6 @@ P1 is the highest priority.
 * Export ISDN ROSE information up to Asterisk channels
 	+ **Review 2011**: Not much was really discussed on this as there has not been much requirement for it.
 
-
 ## AstriDevCon 2011 Ideas
 
 ### Brainstorm (will move after)
@@ -273,17 +250,13 @@ P1 is the highest priority.
 * Allow Originate() dialplan application and CLI originate command to pass variables to the channel
 * Update modules that require app_macro to not require it; prefer app_stack (GoSub)
 
-
 ### (P0)
 
-
 P0 are issues that are near completion.
-
 
 ### (P1)
 
 P1 is the highest priority.
-
 
 ### (P2)
 
@@ -304,7 +277,6 @@ P1 is the highest priority.
 ## Testing Framework Ideas
 
 We discussed the automated testing that has been built for Asterisk and discussed ideas for future improvements.
-
 
 * Add Adhearsion
 	+ **Review 2011**: A good way to make sure we don't break AGI and AMI. Uses starpy right now; good to have another interface in testing.
@@ -342,32 +314,24 @@ We discussed the automated testing that has been built for Asterisk and discusse
 * Tonezone tests
 * Language tests
 
-
 ## Release Policy Discussion
 
 ### 2010
 
 We discussed Asterisk release policy. Specifically, we were considering the current policy that excludes features from a release branch. After a bit of discussion, it was decided that no changes to policy would be made. We did agree that a new self contained module that was not compiled by default would be fine, but that it would be rare that it would provide benefit, since most projects are modifications of existing code.
 
-
 ### 2011
 
-
 No change in policy.
-
 
 ## Photos of attendees
 
 We rock.
 
-
 ### 2010
 
 ![](IMG_4162.JPG)  ![](IMG_4164.JPG)  ![](IMG_4165.JPG)  ![](IMG_4166.JPG)
 
-
 ### 2011
 
-
 ![](IMG_5579.jpg)  ![](IMG_5581.jpg) ![](IMG_5583.jpg) ![](IMG_5590.jpg)  ![](IMG_5588.jpg)  ![](IMG_5584.jpg)
-

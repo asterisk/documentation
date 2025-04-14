@@ -5,54 +5,44 @@ pageid: 19008145
 
 ### Protocol versions
 
-
 31 October 2008  
 
 UNIStim Firmware Release 3.1 for IP Phones, includes:
-
 
 * 0604DCG for Phase II IP Phones (2001, 2002 и 2004),
 * 0621C6H for IP Phone 2007,
 * 0623C6J, 0624C6J, 0625C6J and 0627C6J for IP Phone 1110, 1120E,1140E and 1150E respectively
 * 062AC6J for IP Phone 1210, 1220, and 1230
 
-
 27 February 2009  
 
 UNIStim Firmware Release 3.2 for IP Phones, including:
-
 
 * 0604DCJ for Phase II IP Phones (2001, 2002 & 2004),
 * 0621C6M for IP Phone 2007,
 * 0623C6N, 0624C6N, 0625C6N and 0627C6N for IP Phone 1110, 1120E,1140E and 1150E respectively
 * 062AC6N for IP Phone 1210, 1220, and 1230
 
-
 30 June 2009  
 
 UNIStim Firmware Release 3.3 for IP Phones:
-
 
 * 0604DCL for Phase II IP Phones (2001, 2002 & 2004),
 * 0621C6P for IP Phone 2007,
 * 0623C6R, 0624C6R, 0625C6R and 0627C6R for IP Phone 1110, 1120E,1140E and 1150E respectively
 * 062AC6R for IP Phone 1210, 1220, and 1230
 
-
 27 November 2009  
 
 UNIStim Software Release 4.0 for IP Phones, includes:
-
 
 * 0621C7A for IP Phone 2007,
 * 0623C7F, 0624C7F, 0625C7F and 0627C7F for IP Phone 1110, 1120E,1140E and 1150E respectively
 * 062AC7F for IP Phone 1210, 1220, and 1230
 
-
 28 February 2010  
 
 UNIStim Software Release 4.1 IP Deskphone Software
-
 
 * 0621C7D / 2007 IP Deskphone
 * 0623C7J / 1110 IP Deskphone
@@ -64,11 +54,9 @@ UNIStim Software Release 4.1 IP Deskphone Software
 * 062AC7J / 1220 IP Deskphone
 * 062AC7J / 1230 IP Deskphone
 
-
 29 Июня 2010  
 
 UNIStim Software Release 4.2 IP Deskphone Software
-
 
 * 0621C7G / 2007 IP Deskphone
 * 0623C7M / 1110 IP Deskphone
@@ -80,9 +68,7 @@ UNIStim Software Release 4.2 IP Deskphone Software
 * 062AC7M / 1220 IP Deskphone
 * 062AC7M / 1230 IP Deskphone
 
-
 ### Protocol description
-
 
 Query Audio Manager  
 
@@ -236,7 +222,6 @@ Query Supervisory headset status
 
 16 03 01
 
-
 Audio Manager Options  
 
 (16 04 02 xx)  
@@ -311,7 +296,6 @@ call in progress.)
 
 16 04 02 0A
 
-
 Mute/un-mute  
 
 (16 xx 04 xx...)  
@@ -350,7 +334,6 @@ is given the ID 47.129.31.36. Commands are sent to phone 1 )
 
 16 07 04 00 00 02 00
 
-
 Transducer Based tone on  
 
 (16 04 10 xx)  
@@ -379,7 +362,6 @@ Transducer Based tone on
 
 16 04 10 09
 
-
 Transducer Based tone off  
 
 (16 04 10 xx)  
@@ -391,7 +373,6 @@ Transducer Based tone off
 16 04 11 02 (paging off)  
 
 16 04 11 03 (not defined)
-
 
 Alerting tone configuration  
 
@@ -514,7 +495,6 @@ message before sending this message)
 16 05 12 08 7F (configure cadence with alerting tone cadence download  
 
 message before sending this message)
-
 
 Special tone configuration  
 
@@ -642,7 +622,6 @@ download message before sending this message)
 
 download message before sending this message)
 
-
 Paging tone configuration  
 
 (16 05 14 xx xx)  
@@ -711,7 +690,6 @@ message before sending this message)
 
 message before sending this message)
 
-
 Alerting Tone Cadence Download  
 
 (16 xx 15 xx xx...)  
@@ -726,7 +704,6 @@ Alerting Tone Cadence Download
 
 off; 0.5 sec on, 1 sec off , one shot)
 
-
 Special Tone Cadence Download  
 
 (16 xx 16 xx xx...)  
@@ -738,7 +715,6 @@ Special Tone Cadence Download
 16 09 16 0A 10 14 1E  
 
 (125ms on, 200 ms off; 250ms on, 375ms off )
-
 
 Paging Tone Cadence Download  
 
@@ -767,7 +743,6 @@ Paging Tone Cadence Download
 (375ms on, 200 ms off; 750ms on, 375ms off; 500ms on, 200 ms off,  
 
 250Hz, (333Hz,1000Hz), 500 Hz )
-
 
 Transducer Based Tone Volume Level  
 
@@ -915,7 +890,6 @@ and then send the alerting on command and alerting off commands)
 
 16 06 14 08 04
 
-
 Alerting Tone Test  
 
 (16 04 19 xx)  
@@ -952,7 +926,6 @@ Alerting Tone Test
 
 16 04 19 07
 
-
 Visual Transducer Based Tones Enable  
 
 (16 04 1A xx)  
@@ -964,7 +937,6 @@ Visual tone enabled
 (Visual tone disabled)  
 
 16 04 1A 00
-
 
 Stream Based Tone On  
 
@@ -986,7 +958,6 @@ Stream Based Tone On
 
 16 06 1B C0 00 08
 
-
 (Line busy tone is summed with data on Rx stream 00 at volume level -3dBm0)  
 
 16 06 1B 02 00 08  
@@ -1002,7 +973,6 @@ Stream Based Tone On
 (Line busy tone replaces the voice on Tx stream 00 at volume level -3dBm0)  
 
 16 06 1B C2 00 08
-
 
 (ROH tone is summed with data on Rx stream 00 at volume level -3dBm0)  
 
@@ -1028,7 +998,6 @@ Stream Based Tone On
 
 16 06 1B 81 00 10
 
-
 (Reorder tone is summed with data on Rx stream 00 at volume level -3dBm0)  
 
 16 06 1B 03 00 08  
@@ -1036,7 +1005,6 @@ Stream Based Tone On
 (Reorder dial tone replaces the voice on Rx stream 00 at volume level -6dBm0)  
 
 16 06 1B 83 00 10
-
 
 (Audible Ringing tone is summed with data on Rx stream 00 at volume  
 
@@ -1047,7 +1015,6 @@ level -3dBm0)
 (Audible Ringing tone replaces the voice on Rx stream 00 at volume level -6dBm0)  
 
 16 06 1B 84 00 10
-
 
 (Stream based tone ID 06 is summed with data on Rx stream 00 at volume  
 
@@ -1065,7 +1032,6 @@ level -6dBm0)
 
 16 06 1B 86 00 10
 
-
 (Stream based tone ID 0F is summed with data on Rx stream 00 at volume  
 
 level -3dBm0;  
@@ -1081,7 +1047,6 @@ load commands)
 level -6dBm0)  
 
 16 06 1B 8F 00 10
-
 
 Stream Based Tone Off  
 
@@ -1131,7 +1096,6 @@ Stream Based Tone Off
 
 16 05 1C 0F 00
 
-
 Stream Based Tone Frequency Component List Download (up to 4  
 
 frequencies can be specified)  
@@ -1153,7 +1117,6 @@ turned on.
 16 08 1D 07 2C CC 48 51  
 
 (1400 Hz and 2250Hz)
-
 
 Stream Based Tone Cadence Download (up to 4 cadences can be specified)  
 
@@ -1183,7 +1146,6 @@ until stream based
 
 tone off command is received.
 
-
 Select Adjustable Rx Volume  
 
 (16 04 20 xx)  
@@ -1208,7 +1170,6 @@ Select Adjustable Rx Volume
 
 (Paging tone Rx volume)
 
-
 Set APB's Rx Volume Levels  
 
 (16 05 21 xx xx)  
@@ -1220,7 +1181,6 @@ Set APB's Rx Volume Levels
 16 05 21 01 05  
 
 (? Rx volume level 5 steps quieter than System RLR)
-
 
 Change Adjustable Rx Volume  
 
@@ -1236,7 +1196,6 @@ through Select Adjustable Rx Volume command)
 
 Select Adjustable Rx Volume command)
 
-
 Adjust Default Rx Volume  
 
 (16 04 24 xx)  
@@ -1248,7 +1207,6 @@ Adjust Default Rx Volume
 16 04 25 01  
 
 (Default Rx volume level is one step louder for the APB 1)
-
 
 Adjust APB's Tx and/or STMR Volume Level  
 
@@ -1294,7 +1252,6 @@ quieter on APB 3)
 
 16 04 26 01
 
-
 Query APB's Tx and/or STMR Volume Level  
 
 (16 04 27 XX)  
@@ -1327,13 +1284,11 @@ Query APB's Tx and/or STMR Volume Level
 
 16 04 27 23
 
-
 APB Download  
 
 (16 xx-1F xx...)  
 
 16 09 28 FF AA 88 03 00 00
-
 
 Open Audio Stream  
 
@@ -1359,13 +1314,11 @@ open audio stream command is sent)
 
 (Open G723? ulaw Audio stream to 2F.81.1F.9F)
 
-
 Close Audio Stream  
 
 (16 05 31 xx xx)  
 
 16 05 31 00 00
-
 
 Connect Transducer  
 
@@ -1390,7 +1343,6 @@ Connect Transducer
 16 06 32 C2 03 00  
 
 (Connect the set in Hands free mode)
-
 
 Frequency Response Specification  
 
@@ -1470,7 +1422,6 @@ last byte indicates the bucket ID)
 
 16 04 39 27
 
-
 16 04 39 01  
 
 16 04 39 12  
@@ -1484,4 +1435,3 @@ last byte indicates the bucket ID)
 16 04 39 56  
 
 16 04 39 67
-

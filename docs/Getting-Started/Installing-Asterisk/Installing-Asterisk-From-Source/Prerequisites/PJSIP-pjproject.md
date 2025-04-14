@@ -57,31 +57,21 @@ Now perform either of the following 2 steps:
 1. 1. Run ./configure with the `--with-externals-cache=/tmp/downloads` option.  ./configure will check there first and only download if the files aren't already there or the tarball checksum doesn't match what's in the md5 file.  This is similar to the `--with-sounds-cache` option.  BTW, the `--with-externals-cache` mechanism works for the precompiled codecs and the Digium Phone Module for Asterisk as well.  As of Asterisk 13.18, 14.7 and 15.0, the `--with-download-cache`  option can be used to specify both the externals and sounds cache directory.
 	2. Set the `PJPROJECT_URL` environment variable to any valid URL (including file:// URLs) where `./configure` can find the tarball and checksum files.  The variable can be set in your environment and exported or specified directly on the `./configure` command line.  As of Asterisk 13.18, 14.7 and 15.0, the `AST_DOWNLOAD_CACHE` environment variable can be used to specify both the externals and sounds cache directory.
 
-
-
 ## Building and Installing pjproject from Source
 
 !!! warning 
     **Installing pjproject from source or from packages is no longer a supported configuration for Asterisk versions that contain the [bundled version of pjproject](#using-the-bundled-version-of-pjproject).** Reports of pjproject-related Asterisk issues may only be made against the bundled version. The bundled version inherits flags like DONT_OPTIMIZE and MALLOC_DEBUG from Asterisk which allows us to accurately diagnose issues across both Asterisk and pjproject.
 
-      
 [//]: # (end-warning)
-
-
 
 Despite efforts to maintain backwards compatibility, some changes to Asterisk require a particular version of pjproject (or above) to be installed. For instance, earlier releases of pjproject cannot build shared object libraries, so some changes were required in order to use it with Asterisk 12. As such, Asterisk requires a pjproject version that is the same version of pjproject that is bundled with Asterisk, or **no more than 4 versions behind**. Alternatively, you may be able to find an Asterisk compatible version of pjproject available on [github](https://github.com/asterisk/pjproject) , or - depending on your Linux distribution - available as a package.
 
 Earlier versions of pjproject downloaded from [www.pjsip.org](http://www.pjsip.org/) will **not** work with Asterisk 12 or greater.
 
-
-
-
 !!! warning 
     If you have previously installed a version of pjproject, you **must** remove that version of pjproject prior to building and installing the Asterisk 12+ compatible version of pjproject. See [Uninstalling pjproject](#uninstalling-a-previous-version-of-pjproject) for more information.
 
-      
 [//]: # (end-warning)
-
 
 ### Downloading pjproject
 
@@ -90,7 +80,6 @@ Earlier versions of pjproject downloaded from [www.pjsip.org](http://www.pjsip.o
 Navigate to the [Teluu GitHub Repo](https://github.com/pjsip/pjproject) and click on Releases.  Click the link to "Source code (tar.gz)"
 
 Hovering over that link will give you the direct URL you could use with utilities such as `wget` or `curl`.
-
 
 ### Building and Installing pjproject
 
@@ -105,10 +94,7 @@ Additionally, Asterisk **REQUIRES** two or three options to be passed to **confi
 !!! warning 
     Failure to build Asterisk with shared pjproject object libraries **WILL** result in seemingly random crashes. For Asterisk to work properly with pjproject, pjproject **MUST** be built with shared object libraries.
 
-      
 [//]: # (end-warning)
-
-
 
 #### Compiler DEFINEs
 
@@ -271,7 +257,7 @@ Verify that pjproject has been installed in the target location by looking for, 
 ```
 
 Verify that Asterisk detects the pjproject libraries. In your Asterisk source directory:
-	
+
 ```
 # ./configure
 # make menuselect
@@ -286,10 +272,7 @@ Now, build and install Asterisk as your normally would.
 !!! note 
     If you need pjsua (for the testsuite, for example), then you may also need to take a look at [Installing the Asterisk Test Suite](/Test-Suite-Documentation/Installing-the-Asterisk-Test-Suite) to set that up externally as well.
 
-      
 [//]: # (end-note)
-
-
 
 First, if you're using Asterisk 13.8.0 or greater, consider switching to the [Bundled Version of pjproject](#using-the-bundled-version-of-pjproject)
 
@@ -360,7 +343,6 @@ After building pjproject, the dump provided by  `ldconfig -p`  doesn't display a
 Solution:
 
 Run  `ldconfig`  to re-configure dynamic linker run-time bindings. This will need to be run with super user permissions.  
- 
 
 ####  pjproject fails to build on Raspberry Pi
 
@@ -449,4 +431,3 @@ If you want to run a sanity check, you can verify that pjproject has been uninst
 ```
 
 If running the above command yields no results, that's it! You have successfully uninstalled pjproject from your system. If there are results, you may need to remove other pjproject-related items from /usr/lib as well.
-

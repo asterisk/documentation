@@ -3,8 +3,6 @@ title: Hangup Handlers Specification
 pageid: 19726432
 ---
 
-
-
 # Summary
 
 Hangup handlers - Ability to attach subroutines to a channel that runs dialplan when the channel hangs up.

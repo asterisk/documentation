@@ -8,8 +8,6 @@ Function CONFBRIDGE
 
 The CONFBRIDGE dialplan function is used to set customized Bridge and/or User Profiles on a channel for the ConfBridge application. It uses the same options defined in confbridge.conf and allows the creation of dynamic, dialplan-driven conferences.
 
-
-
 On This PageSyntax
 ------
 
@@ -61,4 +59,3 @@ CONFBRIDGE_INFO(type,conf)
 * conf - Refers to the name of the conference being referenced.
 
 The CONFBRIDGE_INFO function returns a non-negative integer for valid conference identifiers, 0 or 1 for locked, and "" for invalid conference identifiers.
-

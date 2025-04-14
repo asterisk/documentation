@@ -3,9 +3,6 @@ title: Asterisk Issue Guidelines
 pageid: 19726406
 ---
 
-
-
-
 Purpose of the Asterisk issue tracker
 -------------------------------------
 
@@ -27,40 +24,23 @@ See the [How to request a feature section](#how-to-request-a-feature-or-improvem
 Please head to the Commercial category at <https://community.asterisk.org/>. If what you want is a specific feature or bug fixed, you may want to consider [requesting a bug bounty](/Development/Asterisk-Bug-Bounties).
 * and...
 
-
-
-
 !!! warning 
     Security vulnerability issues must NEVER be reported as regular bugs in the issue tracker. Instead they must be reported at [Security Vulnerabilities](https://github.com/asterisk/asterisk/security/advisories/new). You can reach this page by navigating to <https://github.com/asterisk/asterisk> and clicking the "Security" tab at the top of the page.
 
-      
 [//]: # (end-warning)
-
-
-
-
 
 #### Why should you read this?
 
 The steps here will help you provide all the information the Asterisk team needs to solve your issue. Issues with clear, accurate, and complete information are often solved much faster than issues lacking the necessary information.
 
-
-
-
 Bug Reporting Check List
 ------------------------
-
-
-
 
 !!! warning
     Before filing a bug report...
     Your issue may not be a bug or could have been fixed already. Run through the check list below to verify you have done your due diligence.
 
-      
 [//]: # (end-warning)
-
-
 
 * **Are** **you reporting a suspected security vulnerability?**
 * **Are you are on a supported version of Asterisk?**
@@ -85,7 +65,6 @@ If you don't already have a GitHub account, sign up for one now at <https://gith
 2. **Create a new issue in the tracker**  
 Navigate to <https://github.com/asterisk/asterisk/issues> and click on the 'New Issue" button at the top right, then choose an appropriate issue type. The following are the supported issue types:
 
-
 	* Bug
 	* New feature
 	* Improvement
@@ -93,10 +72,8 @@ Navigate to <https://github.com/asterisk/asterisk/issues> and click on the 'New 
 3. **Fill out the issue form**  
 For a bug you must include the following information:
 
-
 	* **Concise and descriptive summary**
-	
-	
+
 		+ Accurate and descriptive, not prescriptive. Provide the facts of what is happening and leave out assumptions as to what the issue might be.
 		+ Good example: "Crash occurs when exactly twelve SIP channels hang up at the same time inside of a queue"
 		+ Bad Examples: "asterisk crashes" , "problem with queue", "asterisk doesn't work", "channel hangups cause crash"
@@ -108,24 +85,16 @@ For a bug you must include the following information:
 	* **Steps required to reproduce the issue** (tell the developer exactly how to reproduce the issue, just imagine you are making steps for a manual)
 	* **Workarounds in detail with specific steps** (if you found a workaround for a serious issue, please include it for others who may be affected)
 	* **Debugging output** - You'll almost always want to include extensions.conf, and config files for any involved component of Asterisk. Depending on the issue you may also need the following:
-	
-	
+
 		+ For crashes, provide a backtrace generated from an Asterisk core dump. See [Getting a Backtrace](/Development/Debugging/Getting-a-Backtrace) for more information.
 		+ For apparent deadlocks, you may need to enable the compile time option `DEBUG_THREADS`. A backtrace may also be necessary. See [Getting a Backtrace](/Development/Debugging/Getting-a-Backtrace) for more information.
 		+ For memory leaks or memory corruptions, Valgrind may be necessary. Valgrind can detect memory leaks and memory corruptions, although it does result in a substantial performance impact.
 		+ For debugging most problems, a properly generated debug log file will be needed. See [CLI commands useful for debugging](/Development/Debugging/CLI-commands-useful-for-debugging) and [Collecting Debug Information](/Operation/Logging/Collecting-Debug-Information) for more information. Note that for issues involving SIP, IAX2, or other channel drivers, you should enable that driver's enhanced debug mode through the CLI before collecting information. A pcap demonstrating the problem may also be needed.
-		
-		
-		
-		
+
 		---
-		
+
 		**Tip:**  Be courteous. Do not paste long debug output in the description or a comment, instead please **attach** any debugging output as text files and reference them by file name.
-		
-		  
-		
-		
-		
+
 		---
 4. **Submit the Issue**
 
@@ -149,9 +118,6 @@ it may be closed immediately by a bug marshal. If you believe this to be in erro
 If insufficient commentary or debug information was given in the ticket then bug marshals will request additional information from the reporter. If there are questions posted as follow-ups to your bug or patch, please try to answer them - the system automatically sends email to you for every update on a bug you reported. If the original reporter of the patch/bug does not reply within some period of time (usually 14 days) and there are outstanding questions, the bug/patch may get closed out, which would be unfortunate. The developers have a lot on their plate and only so much time to spend managing inactive issues with insufficient information.
 
 If your bug was closed, but you get additional debug or data later on, you can always contact a bug marshal in #asterisk-bugs on irc.freenode.net to have them re-open the issue.
-
-
-
 
 How to request a feature or improvement
 ------------------------
@@ -182,6 +148,3 @@ There are some key qualities to keep in mind. These should be reflected in your 
 
 1. Follow the guidelines on this patch! Having good, accurate information that helps bug marshals reproduce the issue typically leads to much faster issue resolution.
 2. Provide a patch! Issues with patches are also generally resolved much faster. If you can't write a patch, there are many smart, talented developers in the Asterisk community who may be worth helping you. You can contract with them on the [community forums](https://community.asterisk.org/), or offer a [bug bounty](/Development/Asterisk-Bug-Bounties).
-
-
-

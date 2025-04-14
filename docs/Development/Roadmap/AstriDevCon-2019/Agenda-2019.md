@@ -6,7 +6,7 @@ pageid: 42566556
 * Talks
 	+ **Matt Fredrickson - Introduction**
 		- ARI changes
-		
+
 			* Automatic context creation, no need for dialplan
 			* Ability to move from one stasis application to another- Stasis caching underwent a lot of internal changes to make it easier to use
 		- MWI is different, lots of work done internally
@@ -14,7 +14,7 @@ pageid: 42566556
 		- Variables for post dial delay calcs
 		- Bundled pjproject 2.9
 		- Additional ICE mappings in rtp.conf
-		
+
 			* Asterisk can mimic a STUN server by setting the IP- DTLS fragmentation support
 		- MWI devstate allows subscribing to a voice mailbox as if i t were a device
 		- Per member wrap up time using AddQueueMember
@@ -36,14 +36,14 @@ pageid: 42566556
 		- Chan_sip will still be around for at least 4 years
 		- PJSIP used exclusively in switchvox since Feb 2016
 		- PJSIP created and maintained by Teluu
-		
+
 			* Since Feb 2005
 			* Wide platform availability (Linux, Windows, iOS, Android, embedded)- We use PJSIP as low level SIP stack
 		- Some high level features used when it makes sense (pubsub, outbound reg)
 		- We build on top of it, and contribute to it
 		- 12.0.0 was the first release including PJSIP support, back in Dec 2013
 		- Things we’ve contributed
-		
+
 			* Pluggable DNS support
 			* Numerous crash fixes
 			* Transport related fixes- PJSIP has been heavily tested on our end
@@ -71,18 +71,18 @@ pageid: 42566556
 		- res_pjsip binds asterisk to PJSIP
 		- Provides low level functionality, APIs, and helpers
 		- Chan_sip threading
-		
+
 			* 1 thread for all UDP traffic and scheduled items
 			* 1 thread for each TCP/TLS/WS/WSS connection
 			* 1 thread for each channel (generally)- Res_pjsip threading
-		
+
 			* 1 thread for network traffic (UDP/TCP/TLS)
 			* N threads for network traffic handling (configurable and can grow)
 			* 1 thread of each WE/WSS connection
 			* 1 thread for each channel (generally)
 			* 1 thread of scheduled items
 			* Thread pool is configurable- Traffic distributor
-		
+
 			* All network traffic is received in 1 thread
 			* Network traffic is distributed to worker threads for handling- All traffic is associated with an endpoint
 		- Order is not fixed and is instead controlled in the global section
@@ -90,63 +90,63 @@ pageid: 42566556
 		- Always guaranteed to have an endpoint
 		- Low level hooks for handling SIP messages of given types
 		- Res_pjsip_session
-		
+
 			* Handles SIP sessions and lifecycle
 			* Provides session level helpers- Session supplements
-		
+
 			* Higher level hooks
 			* When you register one, you tell it when it should be invoked
 			* Example: res_pjsip_caller_id- Chan_pjsip
-		
+
 			* Glue between asterisk core and res_pjsip_session
 			* Implements API defined by core for channels
 			* Implements session supplement API defined by res_pjsip_session- Res_pjsip_sdp_rtp
-		
+
 			* Handle SDP negotiation of RTP streams including attributes
 			* Acts as glue between RTP engine API and PJSIP sessions
 			* Manages lifecycle of RTP sessions themselves- Res_pjsip_registrar
-		
+
 			* Provides functionality for REGISTER SIP requests
 			* Manages AORs and contacts on them
 			* Enforces configuration of AORS- Res_pjsip_pubsub
-		
+
 			* Provides functionality for SUBSCRIBE SIP requests
 			* Uses PJSIP provided “evsub” API
 			* Provides “Subscription/Notifier Handler” API to allow pluggable even and body types
 			* Handles lifecycle of subscriptions- Res_pjsip_exten_state
-		
+
 			* Handles subs for extension state (hints)
 			* Acts as glue between asterisk core and PJSIP- PJSIP vs chan_sip
-		
+
 			* “Line” support in outbound registrations
-			
+
 				+ Adds randomly generated token to outbound reg
 				+ If received the request is associated with the configured endpoint
 				+ Removes need for IP matching and other matching mechanisms
 				+ Not supported by all SIP implementations, even though RFC says it should be* Multiple IP matching of inbound traffic
-			
+
 				+ Identify section allows multiple IP addresses to be specified or discovered
 				+ Subnet masks can also be specified to allow ranges
 				+ All traffic is associated back to a single endpoint, so no need to configure multiple* SRV/NAPTR load balancing and failover
-			
+
 				+ DNS resolution occurs when a SIP request is sent, result is not stored except in external DNS cache
 				+ Load balancing will occur based on DNS lookup
 				+ We get back a list of targets to send the request to
 				+ If connection fails or certain response is received failover to new target occurs
 				+ Both A and AAA records are supported with preference for AAA records* Media stream support
-			
+
 				+ Multiple streams can be negotiated in SDP
 				+ Streams can be added/removed as needed by Asterisk applications
 				+ Used for WebRTC SFU video support* Multiple contacts on AOR
-			
+
 				+ AOR can be configured to allow multiple contacts with policy
 				+ Allows multiple phones to register using same endpoint/auth/AOR
 				+ Can all be called at once* Music on hold passthrough
-			
+
 				+ If configured causes PJSIP to emit re-invite for hold/unhold
 	+ **Sean McCord - Real time speech processing w/ Asterisk**
 		- Benefits of external media
-		
+
 			* Speech recognition
 			* Speech synthesis
 			* Dynamic generation
@@ -159,7 +159,7 @@ pageid: 42566556
 		- MRCP (Media Resource COntrol Protocol)
 		- Chan_rtp
 		- AudioSocket
-		
+
 			* Network-first
 			* No telephony knowledge
 			* Simple TCP protocol
@@ -167,10 +167,10 @@ pageid: 42566556
 			* Channel interface
 			* Go reference server library
 			* Fully open source
-			
+
 				+ GPL (Asterisk side)
 				+ Apache 2.0 (Go library)- Chan_audiosocket and app_audiosocket
-		
+
 			* AudioSocket/ip:port/UUID
 			* Exten => 100,1,Answer()  
 			 Same => n,AUdioSocket(UUID, ip:port)- AudioSocket: [github.com/CyCoreSystems/audiosocket](http://github.com/CyCoreSystems/audiosocket)
@@ -197,8 +197,7 @@ pageid: 42566556
 		- Websocket is another transport option that should be on the radar
 		- Goals to make an external media type channel that can generically encapsulate all the necessary information and make it possible to originate via dialplan
 	+ **Pascal MIchaud - More Websocket**
-	
-	
+
 		- Another websocket implementation
 		- You get a stream channel, give it an ID, and you can start receiving voice over the websocket
 		- Sends audio to URL and prints out transcript, similar to George’s demonstration with cyber mega phone
@@ -212,7 +211,7 @@ pageid: 42566556
 		- Remove external proxy for ARI
 		- First version presented at astricon 2017
 		- AMQP support for Stasis in
-		
+
 			* AMI
 			* ARI
 			* Channels- But it wasn’t possible to use websocket and AMQP at same time
@@ -220,19 +219,19 @@ pageid: 42566556
 		- Added ARI endpoint to activate the application
 		- Add support for subscribing to ARMP for res_amqp
 		- 3 modules now
-		
+
 			* With vision of adding for (pluggable systems)- Res_amqp
-		
+
 			* Client for Asterisk
 			* Publish and subscribe (on a branch)
 			* Based on librabbitmq
 			* Configuration in /etc/asterisk/amqp.conf
 			* Serves solely as a client- Res_stasis_amqp
-		
+
 			* Publish stasis messages to AMQP
 			* Support for stasis AMI, ARI, channel
 			* Depends on res_aqmp- Res_ari_aqmp
-		
+
 			* Activate application to use AMQP instead of websocket
 			* Stateless and not stateful
 			* Application is not connected, bt events are still sent
@@ -266,7 +265,7 @@ pageid: 42566556
 		- Their upgrade path was all over the place at the time we looked at this
 		- It sounds like it’s completely different now than what it was
 	+ Future Development in Asterisk - What are fun new frontiers?  
-	
+
 		- High availability (active call failover)
 			* Minimal configuration to have defense against a call being dropped (active call failover / Asterisk failover)
 			* Way down the road, what happens with bridges? Stasis? State in general?
@@ -282,9 +281,6 @@ pageid: 42566556
 		- Allowing Opus to be more than a single channel
 	+ Bindings of ARI to AGI like we had with AMI
 	+ Opportunistic DTLS
-	
+
 		- The sending side
 		- If the first try fails, what do we do?
-
-
-

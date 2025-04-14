@@ -20,20 +20,12 @@ Lunch was provided by [Bluehost](https://www.bluehost.com), who once again spons
 Participants
 ============
 
-
-
-
 !!! note Apologies in Advance
     I often misspell names while I'm taking them at the start of AstriDevCon. If you see your name here and it is typed incorrectly, please comment on the bottom of the page and we'll get it fixed up quickly. The same goes for your organization as well.
 
     If you were in attendance at AstriDevCon and I don't have you on the list, please also comment and we'll make sure you're noted.
 
-      
 [//]: # (end-note)
-
-
-
-
 
 | Name | Organization |
 | --- | --- |
@@ -114,7 +106,7 @@ Recap of 2015
 		- [`ChannelHold`](/Latest_API/API_Documentation/Asterisk_REST_Interface/Asterisk_REST_Data_Models/#channelhold) and [`ChannelUnhold`](/Latest_API/API_Documentation/Asterisk_REST_Interface/Asterisk_REST_Data_Models/#channelunhold)
 		- [`ContactStatusChange`](/Latest_API/API_Documentation/Asterisk_REST_Interface/Asterisk_REST_Data_Models/#contactstatuschange) and [`PeerStatusChange`](/Latest_API/API_Documentation/Asterisk_REST_Interface/Asterisk_REST_Data_Models/#peerstatuschange)
 	+ [`channels`](/Latest_API/API_Documentation/Asterisk_REST_Interface/Channels_REST_API) resource additions:  
-	
+
 		- The [`originate`](/Latest_API/API_Documentation/Asterisk_REST_Interface/Channels_REST_API/#originate) operation now lets you specify an `originator` for `linkedid` propagation
 		- The [`channel`](/Latest_API/API_Documentation/Asterisk_REST_Interface/Asterisk_REST_Data_Models/#channel) data model now includes the `language` field for the Asterisk channel it represents
 		- The [`originate`](/Latest_API/API_Documentation/Asterisk_REST_Interface/Channels_REST_API/#originate) operation and [`continue`](/Latest_API/API_Documentation/Asterisk_REST_Interface/Channels_REST_API/#continueindialplan) operation now let you specify a priority label
@@ -140,16 +132,10 @@ Presentations
 
 ### Sean McCord
 
-
-
-
 !!! note Where is Sean's Presentation?
     Sean, in a fit of daring, presented completely without slides. Impressive!
 
-      
 [//]: # (end-note)
-
-
 
 * Sean has now migrated/rewritten several systems that previously used AMI and AGI with Asterisk 11 to Asterisk 13, ARI, Go, and Docker
 	+ As an aside, with ARI, there are pros/cons to using a statically typed language such as Go. The more dynamic languages (JavaScript, Python, etc.) can auto-generate bindings more easily. On the other hand, static typed languages can make development more predictable, eliminating some classes of errors. It's a tradeoff.
@@ -180,7 +166,6 @@ As a result of Sean's presentation, a large number of discussions occurred on a 
 ### Torrey Searle
 
 <TorreySearle_astridevcon.pdf>
-
 
 Open Discussion
 ----------------
@@ -274,6 +259,3 @@ Open Discussion
 	+ Sean Bright was working on this
 Conclusions
 ===========
-
-
-

@@ -34,4 +34,3 @@ object2 => name2
 In this example, **object1** inherits both **label1** and **label2**. It is important to note that **object2** also inherits **label2**, along with **label1** (with the new overridden value **value0**) and **label3**.
 
 In short, objects inherit all the settings defined above them in the current section, and later settings override earlier settings.
-

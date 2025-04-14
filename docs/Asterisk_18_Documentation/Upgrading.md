@@ -18,7 +18,7 @@ title: Upgrading to Asterisk 18
 	------------------  
 	 \* The 'Reason' header in the QueueMemberPause AMI Event has been  
 	 removed. The 'PausedReason' header should be used instead.
-	
+
 	\* If they are not specified in [general], "shared\_lastcall" and "autofill"  
 	 now always default to OFF. Before this version, they would be off ('no') if  
 	 queues.conf did not have a [general] section, but on ('yes') if it did.
@@ -38,26 +38,23 @@ title: Upgrading to Asterisk 18
 	 received variables was never included even if ones were available. However,  
 	 variables set to send would be (which they should have not been), but would  
 	 fail validation due to the bad formatting.
-	
+
 	So basically there was no way to get a "TextMessageReceived" event with  
 	 variables. Due to this the API has changed. The "TextMessageVariable" object  
 	 no longer exists. "TextMessageReceived" now returns a JSON object of key/value  
 	 pairs. So for instance instead of a list of "TextMessageVariable" objects:
-	
+
 	[ TextMessageVariable, TextMessageVariable, TextMessageVariable]
-	
+
 	where a TextMessageVariable was supposed to be:
-	
+
 	{ "key": "<var name>", "value":, "<var value>" }
-	
+
 	The output is now just:
-	
+
 	{ "<var name>": "<var value>" }
-	
+
 	This aligns more with how variables are specified when sending a message, as  
 	 well as other variable lists in ARI.
 
-
-
 For a complete list of upgrade notes please see the included [UPGRADE.txt document](https://raw.githubusercontent.com/asterisk/asterisk/18/UPGRADE.txt).
-

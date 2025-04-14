@@ -13,9 +13,7 @@ This is an Asterisk 18 proposal for the refactor of end-to-end codec negotiation
 !!! note
     Support for passing back negotiated codecs from an outgoing call leg to an incoming call leg HAS NOT been implemented in Asterisk.
 
-      
 [//]: # (end-note)
-
 
 Within a basic call scenario using Asterisk, where Alice calls Bob, and Bob answers, there are at least four distinct points in the process where it is advantageous to allow user control over the preferred codec order and selection:
 
@@ -157,8 +155,6 @@ Here's an example sequence using "local" configuration values:
 
 ![](Negotiation.png)
 
-
-
 As you can see at point **1.** the list of codecs is the intersection of those codecs given by Alice's phone, and those specified in her configuration. The list is ordered by Alice's configuration because *local* was specified for the *incoming_call_offer_pref*, and here "local" means use Alice's configuration. This list is then passed across the bridge to be used as the "remote" list in the outgoing offer to Bob. However, Bob's *outgoing_call_offer_pref* is also set to *local*. Again in this instance it means order the resulting list that will be used in the outgoing offer by Bob's configuration. So to get the list at point **2.** Asterisk uses those codecs from his configuration, and orders it by that configuration. The list at point **2.** is then sent to Bob's phone.
 
 Bob's phone will then take that list, and compare it to its supported list of codecs. In most, if not all, cases Bob's phone will probably either return an intersection between it's supported codecs, and the list of codecs given to it in the offer ordered by what was offered, or it'll return the single most preferred codec from the offer that it supports. However, for the above example Bob's phone responds with a list of codecs containing the intersection between the device supported codecs, and the offered ones, ordered by the phone's preference.
@@ -166,8 +162,6 @@ Bob's phone will then take that list, and compare it to its supported list of co
 Now, position **3.'s** list is the intersection of those codecs given by Bob's phone, and those used in the original offer to Bob (i.e. the list from position **2.**). Bob's configuration specifies *outgoing_call_answer_pref=local*, so this means to order by the "local" list (again the list from position **2.**). This list is passed back across the bridge to be used when forming an answer to Alice. Alice has specified to use the "local" codec list for preference ordering. The "local" list in this case is the codec list created in position **1.** So, the list at position **4.** contains the codecs from and ordered by **1.** This list is then sent to Alice.
 
 Below is a list of tables (click to expand) containing the various combinations of "joint" lists for a given configuration at the specified points. Each spot in a numbered column will contain the option value used, and the resulting "joint" list that is created between a given local and remote list at that position.
-
-
 
 A. incoming_sdp_receive_prefs=local
 
@@ -466,8 +460,3 @@ B. incoming_sdp_receive_prefs=remote
 | remote488 |
 | remote_limit488 |
 | remote_single488 |
-
-
-
-
-

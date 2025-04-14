@@ -73,14 +73,11 @@ exten => 100,1,NoOp()
  same => n,StatsD(g,confBridgeUsers,-1,1)
  same => n,Hangup()
 
-
 exten => 200,1,NoOp()
  same => n,StatsD(g,confBridgeUsers,-1,1)
  same => n,Hangup()
 
 ```
-
-
 
 Example
 -------
@@ -95,4 +92,3 @@ The image below is an example of how calling into the dialplan provided above wo
 ![](image2015-11-24-13:57:15.png)
 
 Note: this graph is not a part of StatsD, but is rather a backend that StatsD can be configured to use. This configuration would occur on the StatsD server.
-

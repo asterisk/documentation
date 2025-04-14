@@ -338,8 +338,6 @@ Swagger Definition
  }
  }
 }
- 
- 
 
 ```
 
@@ -415,16 +413,10 @@ Client: res_beacon
 
 Asterisk shall have a new resource module, `res_beacon`. As a user of `cURL`, `res_beacon` will depend on the `cURL` library and the `res_curl` module.
 
-
-
-
 !!! info ""
     Yes. This means that if a system doesn't have `cURL` on it, we won't get its stats. That beats doing something silly like rolling our own transport.
 
-      
 [//]: # (end-info)
-
-
 
 The module will be able to send data to both the Asterisk Beacon server (hard coded, can't change or remove without re-compiling) as well as any configurable number of other servers. Those other servers allow a user to set up their own instance of the publicly defined API and collect their own statistics themselves.
 
@@ -471,8 +463,6 @@ Configuration
 -------------
 
 Configuration shall be provided by `res_beacon.conf`.
-
-
 
 | Category | Option | Data type | Default | Description |
 | --- | --- | --- | --- | --- |
@@ -587,12 +577,8 @@ ARI Resources (13+)
 
 A large portion of the REST API can be re-used for Asterisk's ARI as well. Note that the data models are not modified for this purpose - only the operations have been changed as shown below.
 
-
-
-
 ---
 
-  
 Swagger Definition  
 
 ```javascript
@@ -624,6 +610,3 @@ Swagger Definition
 }
 
 ```
-
-
-

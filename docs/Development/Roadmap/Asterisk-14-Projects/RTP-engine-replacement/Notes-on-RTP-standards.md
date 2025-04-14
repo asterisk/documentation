@@ -10,29 +10,21 @@ RTP (RFC 3550)
 
 RTP is an interesting protocol in how lightweight and purposely underspecified it is. From section 1:
 
-
-
-
 > RTP is a protocol framework that is deliberately not complete
-
 
 > ...RTP is intended to be tailored through modifications and/or additions to the headers as needed
 
 As far as RTP is concerned, the specification is incredibly loose. The specification leaves most of the implementation details to other specifications which define "profiles" for RTP usage. RFC 3550 defines a fixed RTP header, but interestingly does not require that the header be used exactly as defined. From section 5.3
 
-
 > ...the header MAY be tailored through modifications or additions defined in a profile specification while still allowing profile-independent monitoring and recording tools to function.
 
 and
 
-
 > If a particular class of applications needs additional functionality independent of payload format, the profile under which those applications operate SHOULD define additional fixed fields to follow immediately after the SSRC field of the existing fixed header
 
-  
 So in other words, it's difficult to impossible to define a universal profile-independent RTP recorder since profiles have the ability to change the meanings of bits in the RTP header and to lengthen the header beyond what is described in RFC 3550.
 
 RTP defines a means of extending the header, as well. This is not to be confused with profile-dependent additions to the fixed RTP header. Section 5.3.1 states
-
 
 > `Note that this header extension is intended only for limited use. Most potential uses of this``mechanism would be better done another way, using the methods described in the previous section.``For example, a profile-specific extension to the fixed header is less expensive to process``because it is not conditional nor in a variable location.`
 
@@ -50,12 +42,7 @@ RTP/AVP (RFC 3551)
 
 This starts out pretty innocuous, mostly just saying "all the defaults from RFC 3550 stand", and then they go and pull this:
 
-
-
-
 > `While CNAME information MUST be sent every reporting interval, other items SHOULD only``be sent every third reporting interval, with NAME sent seven out of eight times within``that slot and the remaining SDES items cyclically taking up the eighth slot, as defined``in Section 6.2.2 of the RTP specification. In other words, NAME is sent in RTCP packets``1, 4, 7, 10, 13, 16, 19, while, say, EMAIL is used in RTCP packet 22.`
-
-
 
 OH COME ON, WHAT? RFC 3550 section 6.2.2 doesn't exist!
 
@@ -77,7 +64,6 @@ SRTP (RFC 3711)
 ---------------
 
 This document creates a new RTP profile, called RTP/SAVP. From section 3:
-
 
 > 
 > ```
@@ -125,7 +111,6 @@ RTP/SAVPF (RFC 5124)
 --------------------
 
 As the name implies, this is is an RTP profile that combines RTP/SAVP and RTP/AVPF into a single profile that has features of both. From section 1:
-
 
 > 
 > ```

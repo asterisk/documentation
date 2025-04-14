@@ -10,19 +10,12 @@ Overview
 
 This document describes how issues move through the [Asterisk Issue Tracker on GitHub](https://github.com/asterisk/asterisk/issues). It is most beneficial for Asterisk bug marshals; however, it is also good reading for anyone who may be filing issues or wondering how the Asterisk Open Source project moves issues from filing to completion.
 
-
-
-
 !!! warning 
     Security vulnerability issues must NEVER be reported as regular bugs in the issue tracker. Instead they must be reported at [Security Vulnerabilities](https://github.com/asterisk/asterisk/security/advisories/new). You can reach this page by navigating to <https://github.com/asterisk/asterisk> and clicking the "Security" tab at the top of the page.
 
-      
 [//]: # (end-warning)
 
-
-
 On This Page
-
 
 Issue Tracker Workflow
 ======================
@@ -32,13 +25,9 @@ The workflow in the issue tracker is handled in the following way:
 1. A bug is reported and is automatically placed in the **Triage** status.
 2. The Bug Marshall team should go through bugs in the **Triage** status to determine whether the report is valid (not a duplicate, hasn't already been fixed, not a tech support issue, etc.). Invalid reports should be set to 'Closed' with the appropriate resolution set. Categories and descriptions should be corrected at this point.
 
-
-
-
 !!! note 
     Issues should also have enough information for a developer to either reproduce the issue or determine where an issue exists (or both). If this is not the case then the issue should be moved to 'Waiting for Feedback' with the appropriate information requested. See [Asterisk Issue Guidelines](/Asterisk-Community/Asterisk-Issue-Guidelines) for more information on what an issue should have before it is accepted.
 
-      
 [//]: # (end-note)
 
 3. If a patch has been created for the issue, it is acceptable to modify the summary with the text "[patch]" to indicate that a patch is available for the issue. If a patch has been included with the issue, it should be submitted for [Code Review](/Development/Policies-and-Procedures/Historical-Policies-and-Procedures/Code-Review) on [Gerrit](https://gerrit.asterisk.org).
@@ -66,16 +55,10 @@ This issue requires feedback from the poster of the issue before any additional 
 
 This is a submitted bug or new feature (with patch!) which has yet to be worked either by an Asterisk developer, but appears to be a valid bug or new feature based on the description and provided debugging information.
 
-
-
-
 !!! info "**  An issue can also be in the **Reopen** state, indicating that it was closed but reopened for some reason. This state is semantically the same as **Open"
     .
 
-      
 [//]: # (end-info)
-
-
 
 ### In Progress
 
@@ -90,16 +73,10 @@ Severity Levels
 
 Severity levels can be selected for an issue and may be viewed by bug marshals as a way to categorize issues for priority; however, a high priority does not necessarily entail that any bug marshal will treat that issue with any greater urgency.
 
-
-
-
 !!! warning 
     The **Blocker** severity may be used by bug marshals as a way to indicate that the Asterisk developer community has decided that an issue is of such critical importance that it should prevent release of a new version of Asterisk in the affected branches. In general, this status should be used sparingly and may warrant discussion on the issue tracker if assigned to an issue. Issue reporters should not select the **Blocker** severity.
 
-      
 [//]: # (end-warning)
-
-
 
 Notes
 =====

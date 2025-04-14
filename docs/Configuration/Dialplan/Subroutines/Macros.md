@@ -6,16 +6,10 @@ pageid: 31097216
 Overview
 ========
 
-
-
-
 !!! warning 
     Macros are very similar in function to the [Gosub](/Configuration/Dialplan/Subroutines/Gosub) application **which deprecates Macro**. This information is here for historical purposes and you should really use Gosub wherever you would have previously used Macro.
 
-      
 [//]: # (end-warning)
-
-
 
 Macro is a dialplan application that facilitates code-reuse within the dialplan. That is, a macro, once defined can be called from almost anywhere else within the dialplan using the Macro application or else via flags and arguments for other applications that allow calling macros.
 
@@ -89,4 +83,3 @@ same = s,n,Return()
 ```
 
 To use multiple arguments, simply separate them via commas when defining them in the Macro call. Then within the Macro reference them as ARG1, ARG2, ARG3, etc.
-

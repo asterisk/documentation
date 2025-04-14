@@ -36,22 +36,7 @@ Interfaces for Monitoring Asterisk Status
 
 Maintenance can mean keeping an eye on the system and its state. The [wiki discusses Asterisk interfaces](/Configuration/Interfaces), such as SNMP or APIs such as AMI. Through these interfaces you can monitor Asterisk in a variety of ways or even affect control over calls.
 
-
-
-
-
-
 !!! info "Reporting Issues that You Encounter"
     In the process of monitoring the operation of your system, you might spot an issue. If you believe the issue is a bug with Asterisk rather than a configuration issue, then you should follow the guidelines at the [Asterisk Issue Guidelines](/Asterisk-Community/Asterisk-Issue-Guidelines) page to report a bug.
 
-      
 [//]: # (end-info)
-
-
-
-
-
-
-
-
-

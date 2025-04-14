@@ -73,16 +73,11 @@ Configure a SIP channel driver
 
 Depending on the version of Asterisk in use, you may have the option of more than one SIP channel driver. You'll have to pick one to use for the example.
 
-
-
-
 !!! info ""
     * Asterisk 11 and previous: chan_sip is the primary option.
     * Asterisk 12 and beyond: You'll probably want to use chan_pjsip (the newest driver), but you still have the option of using chan_sip as well
-      
+
 [//]: # (end-info)
-
-
 
 Follow the instructions below for the channel driver you chose.
 
@@ -192,8 +187,3 @@ On the Asterisk CLI, you should see something like:
 ![](Selection_012.png)
 
 Now that you have made a very simple call, you may want to start reading through the other sections on the wiki to learn more about [Operation](/Operation), [Fundamentals](/Fundamentals) and [Configuration](/Configuration).
-
-
-
-
-

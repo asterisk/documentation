@@ -88,4 +88,3 @@ Other points of interest
 The RTP API of Asterisk is written in such a way that it does not understand the concept of an RTP session. Rather, each RTP instance is a single stream that has no association with any other streams. Because of this, implementing synchronization of media streams, implementing BUNDLE, and implementing SSRC management becomes difficult.
 
 When ICE is in use, we use PJNATH, which uses PJLIB under the hood. Because of this, all threads that call ICE functions have to be registered with PJNATH. This means that there are several places throughout the code where thread registration checks are performed. This can potentially be redundant and wasteful in threads that call ICE functions multiple times. In threads that rarely call ICE functions, it means that the thread has to get registered with PJLIB for barely any purpose.
-

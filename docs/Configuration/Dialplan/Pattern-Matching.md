@@ -27,8 +27,6 @@ N
 
 ///
 
-
-
 Ranges used in Pattern Matching
 ===============================
 
@@ -39,7 +37,6 @@ A numeric range can be used to match against a dialed number. This is also calle
 ```
 
 This pattern matches any digit or letter in the brackets. In this example, the pattern will match: 1,2,3,7,8,9
-
 
 Wilcards used in Pattern Matching
 =================================
@@ -56,11 +53,9 @@ The following special characters are considered wildcards
 - The '!' character matches zero or more characters immediately
 ///
 
-
 The exclamation mark wildcard (!), behaves specially and will be further explained below in 'Other Special Characters' below.
 
 Please make sure to read 'Be Careful With Wildcards in Pattern Matches' below.
-
 
 Basic Example
 =============
@@ -115,7 +110,6 @@ The only characters with special meaning within a set are the '-' character, to 
 
 ///
 
-
 Other Special Characters
 ========================
 
@@ -132,7 +126,6 @@ Please be extremely cautious when using the period and exclamation mark characte
 
 For a more complete explanation of this topic and how you can protect yourself, please refer to the **README-SERIOUSLY.bestpractices.txt** file in the Asterisk source code.
 ///
-
 
 Order of Pattern Matching
 =========================
@@ -165,13 +158,8 @@ Can you tell (without reading ahead) which one would match?
 
 Using the sorting rules explained above, the extensions sort as follows:  
 
-
-
-
-
 ---
 
-  
 Sorted extensions  
 
 ```
@@ -239,14 +227,13 @@ Please be aware that because of the way auto-fallthrough works, if Asterisk can'
 exten => 6410,1,SayDigits(987)
 exten => _641X,1,SayDigits(12345)
 exten => _641X,n,SayDigits(54321)
-  
+
 ```
 
 If you were to dial extension **6410**, you'd hear "nine eight seven five four three two one".
 
 We strongly recommend you make the **Hangup()** application be the last priority of any extension to avoid this behaviour, unless you purposely want to fall through to a less specific match.
 ///
-
 
 Matching on Caller ID
 =====================
@@ -269,7 +256,6 @@ same => n,Hangup()
 ```
 
 The phone with Caller ID 101, when dialing 306, will hear the prompt "year" and will be hung up.  The phone with Caller ID 102, when dialing 306, will hear the "beep" sound and will be hung up.  The phone with Caller ID 103, or any other caller, when dialing 306, will hear the "goodbye" prompt and will be hung up.
-
 
 /// warning | Rewriting Caller ID
 Changing the value of **CALLERID(num)** variable inside of extension handler matched by Caller ID can immediately **throw the call to another handler**. Consider the following example:

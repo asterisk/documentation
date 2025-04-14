@@ -40,4 +40,3 @@ General community contributors
 ==============================
 
 Plenty of credit goes to a very broad community of contributors. As with most open source projects there are many contributors that submit a patch here and there or tend to be very active for a few months and then disappear. Regardless of how active you are the community as a whole certainly appreciates every single patch, page of documentation and bug report that is submitted. Asterisk has become what it is thanks to the contributions from every single contributor throughout the history of the project. Thanks!
-

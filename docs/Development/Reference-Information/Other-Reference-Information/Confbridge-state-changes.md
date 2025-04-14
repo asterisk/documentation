@@ -3,16 +3,10 @@ title: Confbridge state changes
 pageid: 21463456
 ---
 
-
-
-
 !!! note 
     This page discusses confbridge state information for internal development use. This is unrelated to the device, extension or presence state concepts at the user level.
 
-      
 [//]: # (end-note)
-
-
 
 Intro
 =====
@@ -45,8 +39,6 @@ The EMPTY state is the starting state of the conference. EMPTY is defined as no 
 
 ##### Event handling
 
-
-
 | Event | Guard | Target state | Notes |
 | --- | --- | --- | --- |
 | JOIN:unmarked | \* | SINGLE | Play the "only person" prompt unless configured not to. |
@@ -63,8 +55,6 @@ The EMPTY state is the starting state of the conference. EMPTY is defined as no 
 The INACTIVE state is defined as having *only* inactive/WAITMARKED users.
 
 ##### Event handling
-
-
 
 | Event | Guard | Target state | Notes |
 | --- | --- | --- | --- |
@@ -84,8 +74,6 @@ The SINGLE state is defined as having a single active unmarked user. There can b
 
 ##### Event handling
 
-
-
 | Event | Guard | Target state | Notes |
 | --- | --- | --- | --- |
 | JOIN:unmarked | \* | MULTI_UNMARKED | There are now at least two active users. Stop MOH/unmute first user if necessary |
@@ -104,8 +92,6 @@ The SINGLE_MARKED state is defined as having a single active marked user. It is 
 
 ##### Event handling
 
-
-
 | Event | Guard | Target state | Notes |
 | --- | --- | --- | --- |
 | JOIN:unmarked | \* | MULTI_MARKED | There are now at least two active users, one of which is marked. Stop MOH/unmute first user if necessary |
@@ -122,8 +108,6 @@ The SINGLE_MARKED state is defined as having a single active marked user. It is 
 The MULTI_UNMARKED state is defined as having more than one active unmarked user and 0 marked users. There can be 0 or more inactive/WAITMARKED users in the MULTI_UNMARKED state.
 
 ##### Event handling
-
-
 
 | Event | Guard | Target state | Notes |
 | --- | --- | --- | --- |
@@ -143,8 +127,6 @@ The MULTI_MARKED state is defined of having at least one marked user in addition
 
 ##### Event handling
 
-
-
 | Event | Guard | Target state | Notes |
 | --- | --- | --- | --- |
 | JOIN:unmarked | \* | MULTI_MARKED | No change |
@@ -162,4 +144,3 @@ The MULTI_MARKED state is defined of having at least one marked user in addition
 | LEAVE:marked | active == 1 && marked == 1 && waiting > 0 | MULTI_MARKED | I don't think this can happen since you shouldn't be able to have marked and waiting users. But, if you could, you would be in MULTI_MARKED. |
 | LEAVE:marked | active > 1 && marked == 0 | MULTI_UNMARKED | There are multiple users, but no marked users. Transition to MULTI_UNMARKED. |
 | LEAVE:marked | active > 1 && marked > 0 | MULTI_MARKED | There are still multiple marked users. No change. |
-

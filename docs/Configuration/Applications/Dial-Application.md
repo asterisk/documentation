@@ -22,6 +22,3 @@ See Also
 
 * [Pre-Dial Handlers](/Configuration/Dialplan/Subroutines/Pre-Dial-Handlers)
 * [Hangup Handlers](/Configuration/Dialplan/Subroutines/Hangup-Handlers)
-
-
-

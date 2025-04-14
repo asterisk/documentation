@@ -44,7 +44,7 @@ The line=> entry in unistim.conf does not add an extension in asterisk by defaul
 If you have this entry on unistim.conf :
 
 ```
- 
+
 [violet]
 device=006038abcdef
 line => 102

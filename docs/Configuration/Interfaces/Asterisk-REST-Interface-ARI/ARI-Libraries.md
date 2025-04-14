@@ -8,8 +8,6 @@ ARI Libraries
 
 Listing of community Asterisk Rest Interface libraries and frameworks.
 
-
-
 | Library | Language | Website |
 | --- | --- | --- |
 | `ari-py` | Python | <https://github.com/asterisk/ari-py> |
@@ -22,4 +20,3 @@ Listing of community Asterisk Rest Interface libraries and frameworks.
 | `aritester` | html (app) | <https://github.com/daniele77/aritester> |
 | `asyncari` | Python | [https://pypi.org/project/asyncari](https://pypi.org/project/asyncari)(https://pypi.org/project/asyncari/) |
 | `asterisk-ari-go` | Go | <https://github.com/quintex-dev/asterisk-ari-go> |
-

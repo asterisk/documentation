@@ -3,9 +3,6 @@ title: Packaging pjproject
 pageid: 22085786
 ---
 
-
-
-
 # Introduction
 
 \*pjproject\* is a collection of libraries and utilities for building and testing SIP applications. Asterisk currently "bundles" a copy of pjproject, however this is undesirable for a variety of reasons. However, the pjproject constituents are not available as packages for common Linux distributions or as suitable pre-compiled binaries for popular target platforms. The Asterisk community would benefit from the existence of these packages and so is motivated to, at the very least, contribute to the creation of a package-ready \*pjproject\* distribution and an initial set of packages for CentOS and a distribution that supports the installation of header files and libraries according to a given platform's standards and best practices. Given that \*pjsip\* (the SIP implementation library included in \*pjproject\*) is currently the _first choice_ as a basis for the next generation SIP channel driver to be included in Asterisk 12, it is appropriate to address packaging \*pjproject\* now.

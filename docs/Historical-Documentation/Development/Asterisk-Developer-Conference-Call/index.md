@@ -5,9 +5,6 @@ title: Overview
 pageid: 11337917
 ---
 
-
-
-
 !!! info ""
     Discussions about Asterisk development occur on the [asterisk-dev mailing list](http://lists.digium.com/mailman/listinfo/asterisk-dev) and the #asterisk-dev channel on irc.freenode.net.
 
@@ -15,10 +12,7 @@ pageid: 11337917
 
     This page is maintained for historical purposes only.
 
-      
 [//]: # (end-info)
-
-
 
 The Asterisk Developer Conference call is held every other Thursday.
 
@@ -29,7 +23,6 @@ Shared calendar URL:  <http://devcon.digium.com/calendar/AsteriskDevCall>
 The Asterisk Developer Conference Call can be accessed via the following methods:
 
 sip:100@devcon.asterisk.org  
-
 
 Bridge: Shared calendar URL:  <http://devcon.digium.com/calendar/AsteriskDevCall>  
  Pin Code: Shared calendar URL:  <http://devcon.digium.com/calendar/AsteriskDevCall>
@@ -48,4 +41,3 @@ All participants are muted by default and should press "\*" to access the confer
 Please make best efforts to join from handsets or use a headset in conjunction with a software phone or SKYPE to maximize audio quality.
 
 We look forward to your participation!
-

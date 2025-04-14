@@ -21,4 +21,3 @@ Links to specific instructions:
 * [Configuring ACLs for IPv6](/Configuration/Core-Configuration/Named-ACLs)
 
 At the time of writing, DUNDi does not support IPv6.
-

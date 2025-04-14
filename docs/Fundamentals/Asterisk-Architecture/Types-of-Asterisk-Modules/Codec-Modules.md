@@ -35,14 +35,7 @@ Support for the patent-encumbered G.729A or G.723.1 CODECs is provided by Digium
 
 Support for Polycom's patent-encumbered but free G.722.1 Siren7 and G.722.1C Siren14 CODECs, or for Skype's SILK CODEC, can be enabled in Asterisk by [downloading the binary CODEC modules](http://downloads.digium.com/pub/telephony/) from Digium's website.
 
-
-
-
 !!! tip 
     On the Asterisk Command Line Interface, use the command "core show translation" to show the translation times between all registered audio formats.
 
-      
 [//]: # (end-tip)
-
-
-

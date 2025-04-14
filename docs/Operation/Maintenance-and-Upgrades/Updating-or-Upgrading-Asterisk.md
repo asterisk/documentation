@@ -59,36 +59,17 @@ When updating or upgrading Asterisk you should also check for updates to any thi
 Update and Upgrade Tips
 -----------------------
 
-
-
-
-
-
 !!! tip 
     Updates and upgrades could include changes to configuration samples.  Sample files will not be updated unless you run "make samples" again or copy the new sample files from the source directory. Be careful not to overwrite your current configuration.
 
-      
 [//]: # (end-tip)
-
-
-
-
 
 !!! tip 
     Keep old menuselect.makeopts files (see Asterisk source directory) and use them when building a new version to avoid customizing menuselect again when building a new version. This may only work for updates and not upgrades.
 
-      
 [//]: # (end-tip)
-
-
-
-
 
 !!! tip 
     If you forget to re-build all Asterisk modules currently installed on the system then you may be prompted after compilation with a warning about those modules. That can be resolved by simply re-building those modules or re-installing them if you obtain them in binary form from a third party.
 
-      
 [//]: # (end-tip)
-
-
-

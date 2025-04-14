@@ -35,4 +35,3 @@ This uses a contact(and its domain) set in the AOR associated with the **mytrunk
 exten => _9NXXNXXXXXX,1,Dial(PJSIP/${EXTEN:1}@mytrunk)
 
 ```
-

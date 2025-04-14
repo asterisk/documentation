@@ -8,16 +8,10 @@ Asterisk Bridges
 
 In Asterisk, bridges can be thought of as a container for channels that form paths of communication between the channels contained within them. They can be used to pass media back and forth between the channels, as well as to play media to the various channels in a variety of ways.
 
-
-
-
 !!! tip More Information
     For more information on bridges in Asterisk, see [Bridges](/Fundamentals/Key-Concepts/Bridges).
 
-      
 [//]: # (end-tip)
-
-
 
 Bridges in a Stasis Application
 ===============================
@@ -52,12 +46,8 @@ Dialplan
 
 The dialplan for this will be very straight forward: a simple extension that drops a channel into Stasis.
 
-
-
-
 ---
 
-  
 extensions.conf  
 
 ```text
@@ -79,15 +69,11 @@ For our Python examples, we will rely primarily on the [ari-py](https://github.c
 2. The username of the ARI user account to connect as. In this case, we're specifying it as `asterisk`.
 3. The password for the ARI user account. In this case, that's asterisk.
 
-
-
-
 !!! tip 
     Modify the connection credentials as appropriate for your server, although many examples will use these credentials.
 
     **Please don't use these credentials in production systems!**
 
-      
 [//]: # (end-tip)
 
 ```python
@@ -95,9 +81,9 @@ For our Python examples, we will rely primarily on the [ari-py](https://github.c
 
 import ari
 import logging
- 
+
 logging.basicConfig(level=logging.ERROR)
- 
+
 client = ari.connect('http://localhost:8088', 'asterisk', 'asterisk')
 
 ```
@@ -201,8 +187,6 @@ client.run(apps='bridge-hold')
 
 ```
 
-
-
 ### bridge-hold.py in action
 
 Here, we see the output from the `bridge-hold.py` script when a PJSIP channel for endpoint 'alice' enters into the application:
@@ -215,8 +199,6 @@ Channel PJSIP/alice-00000001 just left our application
 
 ```
 
-
-
 JavaScript (Node.js)
 --------------------
 
@@ -227,15 +209,11 @@ For our JavaScript examples, we will rely primarily on the Node.js [ari-client](
 3. The password for the ARI user account. In this case, that's asterisk.
 4. A callback that will be called with an error if one occurred, followed by an instance of an ARI client.
 
-
-
-
 !!! tip 
     Modify the connection credentials as appropriate for your server, although many examples will use these credentials.
 
     **Please don't use these credentials in production systems!**
 
-      
 [//]: # (end-tip)
 
 ```javascript
@@ -432,4 +410,3 @@ Channel PJSIP/alice-00000001 just entered our application, adding it to bridge 4
 Channel PJSIP/alice-00000001 just left our application
 
 ```
-

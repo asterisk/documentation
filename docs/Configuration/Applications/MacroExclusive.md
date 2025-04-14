@@ -73,4 +73,3 @@ We get to the push and pop macros "via" the stack macro. But only one call can e
 Hope people find this useful.
 
 Lastly, its worth pointing out that only Macros that access shared data will require this MacroExclusive protection. And Macro's that you call with macroExclusive should run quickly or you will clog up your Asterisk system.
-

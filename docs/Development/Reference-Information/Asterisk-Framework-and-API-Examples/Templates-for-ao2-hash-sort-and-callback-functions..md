@@ -155,4 +155,3 @@ int ao2_callback_fn_unsorted_cmp(void \*obj, void \*arg, int flags)
 }
 
 ```
-

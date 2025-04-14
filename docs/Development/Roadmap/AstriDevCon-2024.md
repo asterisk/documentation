@@ -4,7 +4,6 @@ Sangoma invites developers who are interested in the future of Asterisk to join 
 
 ## Event day schedule
 
-
 AstriDevCon is a mix of open and focused discussion all on topics within the realm of Asterisk development, primarily regarding current concerns that Asterisk faces and how to improve Asterisk for the future. You can also attend remotely via Sangoma Meet.
 
 State of the Project presentation by Josh

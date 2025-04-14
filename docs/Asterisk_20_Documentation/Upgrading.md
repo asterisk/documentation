@@ -550,4 +550,3 @@
    to ARI channel resources as 'protocol_id'.
 
    ASTERISK-30027
-

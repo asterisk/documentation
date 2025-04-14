@@ -10,16 +10,10 @@ AstriDevCon 2013 took place on October 7th and 8th during [AstriCon](http://www.
 
 ![](bluehost_main_logo.png)
 
-
-
 This was the largest AstriDevCon to date and was spread over two days to encompass discussion of all of the changes in Asterisk 12 as well as planning for Asterisk 13. A huge thanks to everyone who participated!
-
-
 
 Participants
 ------------
-
-
 
 | Participant | Organization | Country |
 | --- | --- | --- |
@@ -74,16 +68,10 @@ Participants
 | Russ Meyerriecks | Digium | US |
 | Shaun Ruffell | Digium | US |
 
-
-
-
 !!! note 
     If your name is not on this list, please let someone know in #asterisk-dev so we can add you to this list!
 
-      
 [//]: # (end-note)
-
-
 
 Day One: Asterisk 12 Development Discussion
 ===========================================
@@ -92,16 +80,10 @@ Day one consisted of an in depth discussion of the features in Asterisk 12, as w
 
 * [Asterisk 12 - In Depth.odp](Asterisk-12-In-Depth.odp)
 
-
-
-
 !!! note 
     It's probably worth noting that the slides were used only to help discussion and don't contain a lot of explanation. For more information on the features discussed on those slides, please see the relevant sections under [Asterisk 12 Projects](../Asterisk-12-Projects).
 
-      
 [//]: # (end-note)
-
-
 
 Some questions and comments that came up during the discussion:
 
@@ -162,14 +144,9 @@ Some questions and comments that came up during the discussion:
 	+ Stasis is an internal message bus, but you could write wrapper over stasis to expose what you want to AMI or other API.
 * Anyone using chan_agent? silence (except JSmith).  
 
-
-
-
-
 !!! info ""
     chan_agent is dead in Asterisk 12, replaced by [Asterisk 12 Application_AgentRequest](/Latest_API/API_Documentation/Dialplan_Applications/AgentRequest) and [Asterisk 12 Application_AgentLogin](/Latest_API/API_Documentation/Dialplan_Applications/AgentLogin). No one seemed to mind.
 
-      
 [//]: # (end-info)
 
 * Anyone still using MeetMe?
@@ -198,9 +175,6 @@ Day One wrapped up with hands on labs using the server provided by BlueHost and 
 1. PJPROJECT can still be tricky to install. The more effort we can put into getting good packages made for distros as well as making the build and install process easier, the better.
 	1. Common issues: installation in lib instead of lib64, various third party conflicts, pkg-config not looking in correct location
 2. ARI is neat, but having some wrapper libraries that manage the WebSocket connection would be nice
-
-  
-
 
 Day Two: Asterisk 12 Future and Asterisk 13 Discussion
 ======================================================
@@ -284,18 +258,11 @@ Agenda
     		- Ignore forwards
     		- Fake ringing
     		- Play music instead of ringing
-    		
-    		
-    		
-    		
+
     		---
-    		
+
     		**Note:**  Should we have a "Dial" operation that does all of this in ARI? Discussion now ongoing on the asterisk-app-dev list: <http://lists.digium.com/pipermail/asterisk-app-dev/2013-October/000002.html>
-    		
-    		  
-    		
-    		
-    		
+
     		---
     	+ ARI options for Digium commercial modules
     		- Matt Jordan: probably not, or at least not right away. Digium commercial modules typically only expose inspection level commands (how many licenses do I have, etc.) - ARI is more about application control. If we end up exposing a REST interface that provides system inspection, then we may want more of this in our commercial modules
@@ -373,8 +340,6 @@ Agenda
     	+ Current status: still working with/waiting on Xiph.
     	+ transcoding
 
-    
-
     Clustering/distributed asterisk
     -------------------------------
 
@@ -431,8 +396,6 @@ Agenda
 
 ![](astridevcon.jpg)
 
-    
-
     James Body's awesome 360 panorama picture (taken from a self-rotating smart phone! We live in the future!):
 
 ![](10310580255_d4c3778f0a_o.jpg)
@@ -441,8 +404,3 @@ Agenda
     ======
 
 [Asterisk 12 - In Depth](Asterisk-12-In-Depth.odp)
-
-    
-
-    
-

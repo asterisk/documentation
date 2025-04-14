@@ -31,4 +31,3 @@ exten => timeout-handler,1)
  same => n,Hangup()
 
 ```
-

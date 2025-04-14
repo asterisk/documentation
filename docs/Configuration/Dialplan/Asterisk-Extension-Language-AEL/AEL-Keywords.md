@@ -5,9 +5,7 @@ pageid: 4620468
 
 The AEL keywords are case-sensitive. If an application name and a keyword overlap, there is probably good reason, and you should consider replacing the application call with an AEL statement. If you do not wish to do so, you can still use the application, by using a capitalized letter somewhere in its name. In the Asterisk extension language, application names are NOT case-sensitive. 
 
-
 The following are keywords in the AEL language:
-
 
 * abstract
 * context
@@ -36,5 +34,3 @@ The following are keywords in the AEL language:
 * switches
 * eswitches
 * includes
-
-

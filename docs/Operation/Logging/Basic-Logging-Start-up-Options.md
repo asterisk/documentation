@@ -23,4 +23,3 @@ And of course both of these arguments can be specified at the same time:
 asterisk -dddvvv
 
 ```
-

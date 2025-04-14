@@ -5,7 +5,6 @@ pageid: 5242911
 
 If the channel has a CDR, that CDR has its own set of variables which can be accessed just like channel variables. The following builtin variables are available. 
 
-
 * ${CDR(clid)} Caller ID
 * ${CDR(src)} Source
 * ${CDR(dst)} Destination
@@ -25,6 +24,4 @@ If the channel has a CDR, that CDR has its own set of variables which can be acc
 * ${CDR(uniqueid)} The channel's unique id.
 * ${CDR(userfield)} The channels uses specified field.
 
-
 In addition, you can set your own extra variables by using Set(CDR(name)=value). These variables can be output into a text-format CDR by using the cdr_custom CDR driver; see the cdr_custom.conf.sample file in the configs directory for an example of how to do this.
-

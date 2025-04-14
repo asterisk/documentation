@@ -43,4 +43,3 @@ irc.libera.chat, #asterisk-dev
 ### Group Photo
 
 ### Recording
-

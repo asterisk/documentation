@@ -8,13 +8,9 @@ While there are many states a channel can be in, the following are the most comm
 * **Ringing** - the device is ringing. Media may or may not be able to flow from Asterisk to the device.
 * **Up** - the device has been answered. When in the up state, media can flow bidirectionally between Asterisk and the device.
 
-
-
-
 !!! note More Channel States
     Certain channel technologies, such as DAHDI analog channels, may have additional channel states (such as "Pre-ring" or "Dialing Offhook"). When handling channel state, consult the [Channel data model](/Latest_API/API_Documentation/Asterisk_REST_Interface/Asterisk_REST_Data_Models/#channel) for all possible values.
 
-      
 [//]: # (end-note)
 
 ## Indicating Ringing
@@ -83,8 +79,6 @@ client.on_channel_event('ChannelStateChange', channel_state_change_cb)
 client.on_channel_event('StasisEnd', stasis_end_cb)
 
 ```
-
-
 
 The `StasisStart` event is the most interesting part.
 
@@ -169,7 +163,6 @@ def stasis_end_cb(channel, ev):
         timer.cancel()
     del channel_timers[channel.id]
 
-
 def stasis_start_cb(channel_obj, ev):
  """Handler for StasisStart event"""
 
@@ -249,8 +242,6 @@ client.on_channel_event('ChannelStateChange', channel_state_change_cb)
 client.on_channel_event('StasisEnd', stasis_end_cb)
 ```
 
-
-
 The `StasisStart` event is the most interesting part.
 
 1. First, we tell the channel to ring, and after two seconds, to answer the channel:
@@ -318,7 +309,6 @@ function stasisEnd(event, channel) {
 
 ```
 
-
 Finally, we want to print out the state of the channel in the `ChannelStateChanged` callback. This will tell us exactly when our channel has been answered:
 
 ```javascript linenums="1"
@@ -354,7 +344,7 @@ function clientLoaded (err, client) {
 	function stasisStart(event, channel) {
 		console.log(util.format(
 			'Channel %s has entered the application', channel.name));
-	
+
 		channel.ring(function(err) {
 			if (err) {
 				throw err;
@@ -363,7 +353,7 @@ function clientLoaded (err, client) {
 		// answer the channel after 2 seconds
 		var timer = setTimeout(answer, 2000);
 		timers[channel.id] = timer;
-	
+
 		// callback that will answer the channel
 		function answer() {
 			console.log(util.format('Answering channel %s', channel.name));
@@ -381,7 +371,7 @@ function clientLoaded (err, client) {
 			var timer = setTimeout(hangup, 4000);
 			timers[channel.id] = timer;
 		}
-	
+
 		// callback that will hangup the channel
 		function hangup() {
 			console.log(util.format('Hanging up channel %s', channel.name));
@@ -392,7 +382,7 @@ function clientLoaded (err, client) {
 			});
 		}
 	}
-	
+
 	// handler for StasisEnd event
 	function stasisEnd(event, channel) {
 		console.log(util.format(
@@ -403,17 +393,17 @@ function clientLoaded (err, client) {
 			delete timers[channel.id];
 		}
 	}
-	
+
 	// handler for ChannelStateChange event
 	function channelStateChange(event, channel) {
 		console.log(util.format(
 			'Channel %s is now: %s', channel.name, channel.state));
 	}
-	
+
 	client.on('StasisStart', stasisStart);
 	client.on('StasisEnd', stasisEnd);
 	client.on('ChannelStateChange', channelStateChange);
-	
+
 	client.start('channel-state');
 }
 
@@ -431,4 +421,3 @@ Hanging up channel PJSIP/alice-00000001
 Channel PJSIP/alice-00000001 just left our application
 
 ```
-

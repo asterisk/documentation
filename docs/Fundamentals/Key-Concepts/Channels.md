@@ -74,8 +74,6 @@ The primary exception is with [Local Channels](/Configuration/Channel-Drivers/Lo
 
 Below we'll diagram a few examples for clarity.
 
-
-
 ![](InboundOutboundChannels.png)
 
 The figures have been kept somewhat generic and should apply to most channel types. Each figure shows the final state of the call, rather than a sequence of events.
@@ -105,4 +103,3 @@ For this example demonstrating relationships between channels and other elements
 ## Channel Variable Inheritance
 
 When working with channels you'll almost certainly be touching channel variables. It is useful to note that upon setting a channel variable the level of inheritance between channels can be defined. This is discussed in the [Channel Variables](/Configuration/Dialplan/Variables/Channel-Variables) sub-section [Variable Inheritance](/Configuration/Dialplan/Variables/Channel-Variables/Variable-Inheritance).
-

@@ -55,6 +55,3 @@ Digium distributes Asterisk under a multi-licensing model often referred to as [
 ### How can I contribute to Asterisk?
 
 Documentation, new features, bug fixes, testing, protocol and programming expertise,, and general feedback are all welcome to the project. There is an [overview](http://www.asterisk.org/community/developers) that points to many resources for developers, also you can see the [guidelines](/Asterisk-Community/Asterisk-Issue-Guidelines) for contribution to see how it works.
-
-
-

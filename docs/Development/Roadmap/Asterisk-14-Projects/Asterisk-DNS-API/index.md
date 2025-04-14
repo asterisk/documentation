@@ -3,8 +3,6 @@ title: Overview
 pageid: 31752496
 ---
 
-
-
 Overview
 ========
 
@@ -247,7 +245,6 @@ int ast_dns_resolve(const char \*name, int rr_type, int rr_class, struct ast_dns
 
 On this Page
 
-
 dns_query_set.h
 =================
 
@@ -350,8 +347,6 @@ void ast_dns_query_set_free(struct ast_dns_query_set \*query_set);
 
 ```
 
-
-
 dns_naptr.h
 ============
 
@@ -412,8 +407,6 @@ unsigned short ast_dns_naptr_get_preference(const struct ast_dns_record \*record
 
 ```
 
-
-
 dns_srv.h
 ==========
 
@@ -458,8 +451,6 @@ unsigned short ast_dns_srv_get_port(const struct ast_dns_record \*record);
 
 ```
 
-
-
 dns_tlsa.h
 ===========
 
@@ -500,8 +491,6 @@ unsigned int ast_dns_tlsa_get_matching_type(const struct ast_dns_record \*record
 const char \*ast_dns_tlsa_get_association_data(const struct ast_dns_record \*record);
 
 ```
-
-
 
 dns_resolver.h
 ===============
@@ -593,8 +582,6 @@ int ast_dns_resolver_register(const struct ast_core_dns_resolver \*resolver);
 int ast_dns_resolver_unregister(const struct ast_core_dns_resolver \*resolver);
 
 ```
-
-
 
 dns_internal.h
 ===============
@@ -692,8 +679,6 @@ struct ast_dns_query_set {
 
 ```
 
-
-
 Examples
 ========
 
@@ -731,8 +716,6 @@ int test(void)
 }
 
 ```
-
-
 
 Asynchronous Resolution
 -----------------------
@@ -772,8 +755,6 @@ int test(void)
 }
 
 ```
-
-
 
 Parallel Queries
 ----------------
@@ -823,8 +804,6 @@ int test(void)
 
 ```
 
-
-
 Fallback
 --------
 
@@ -868,8 +847,6 @@ int test(void)
 }
 
 ```
-
-
 
 NAPTR
 -----
@@ -942,8 +919,6 @@ int test(void)
 
 ```
 
-
-
 Recurring
 ---------
 
@@ -978,4 +953,3 @@ int test(void)
 }
 
 ```
-

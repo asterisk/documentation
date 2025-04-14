@@ -8,26 +8,15 @@ Overview
 
 Asterisk 15 introduced a new feature that allows you to utilize multiple streams (both audio and video) to create cool applications for things like video conferencing. Some tests were created to ensure that everything is working as intended, and this wiki page aims to document those tests as well as older ones that are still relevant to SFU (selective forwarding unit) test coverage. This will help us understand the depth of coverage we have for SFU testing and what needs to be done in the future to provide a solid foundation.
 
-
-
-
 !!! tip 
     To get started with SFU testing and WebRTC, look at [WebRTC tutorial using SIPML5](/Configuration/WebRTC/WebRTC-tutorial-using-SIPML5).
 
-      
 [//]: # (end-tip)
-
-
-
-
 
 !!! note 
     This page covers areas that are catered towards SFU coverage with streams. Other things, such as fax, will need to be investigated as well but have been left out for the purpose of this page.
 
-      
 [//]: # (end-note)
-
-
 
 Testsuite: Pre Asterisk 15
 --------------------------
@@ -244,11 +233,11 @@ This list's purpose is to narrow down the above improvements and order them base
 	1. Add two users, both with audio and video. Make sure everything is in the correct state. Use the packet sniffer to ensure audio and video is being sent and received for both users. Remove the users. Check the state again to ensure everything was cleaned up.
 	2. Add a user with audio and video. Add another user with audio only. Make sure everything is in the correct state. Use the packet sniffer to ensure that media is being sent and received for the appropriate users. Remove the users. Check the state again to ensure everything was cleaned up.
 		1. Run through some basic scenarios to keep the gears turning.  
-		
+
 			1. Add two users with audio and video. Use the packet sniffer to make sure audio and video are being sent and received by both users.
 			2. Add a user with audio and video. Add another user with audio only. Use the packet sniffer to make sure audio and video is being received by the audio only user, and the user with audio and video is only receiving audio.
 		2. Run through these common scenarios that resulted in finicky behavior, e.g. this message popping up on Asterisk CLI when things go wrong: “res_pjsip_sdp_rtp.c: set_caps: No joint capabilities for ‘video’ media stream between our configuration ((vp8)) and incoming sdp ((ulaw))”.  
-		
+
 			1. Add a user with audio only. Add a user with audio and video. The user with audio only will be waiting for video. The packet sniffer should be used here to figure out if anything is actually being sent. Adding another user with audio and video results in all users receiving video. If the user that joined second leaves, the user with audio only loses video again.
 			2. Add a user with audio and video. Add another user with audio and video. Add a third user with audio only. Then remove the first user that joined. The user with audio only will lose video.
 			3. Add a user with audio and video. Add another user with audio only. Add a third user with audio and video. Remove the first user that joined. The user with audio only will lose video.
@@ -258,6 +247,3 @@ This list's purpose is to narrow down the above improvements and order them base
 	2. Add a user with audio and video. Make sure everything is in the appropriate state. Add a user with video only. Check the state again. Remove the video only user. Check the state again. Remove the last user. Check the state again to ensure everything was cleaned up.
 8. Accept an inbound offer with the maximum number of video streams. Try to add another video stream, which should result in a failure.
 9. Accept an inbound offer with the maximum number of audio streams. Try to add another audio stream, which should result in a failure.
-
-
-

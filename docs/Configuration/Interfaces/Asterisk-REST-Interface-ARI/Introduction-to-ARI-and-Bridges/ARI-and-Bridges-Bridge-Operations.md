@@ -24,12 +24,8 @@ Dialplan
 
 For this example, we need to just drop the channel into Stasis, specifying our application:
 
-
-
-
 ---
 
-  
 extensions.conf  
 
 ```
@@ -47,7 +43,6 @@ A large part of the implementation of this particular example is similar to the 
 ```python
 # Our one and only holding bridge
 holding_bridge = None
-
 
 def find_or_create_holding_bridge():
  """Find our infinite wait bridge, or create a new one
@@ -115,7 +110,6 @@ client = ari.connect('http://localhost:8088', 'asterisk', 'asterisk')
 # Our one and only holding bridge
 holding_bridge = None
 
-
 def find_or_create_holding_bridge():
  """Find our infinite wait bridge, or create a new one
 
@@ -140,7 +134,6 @@ def find_or_create_holding_bridge():
  holding_bridge = bridge
  return holding_bridge
 
-
 def safe_hangup(channel):
  """Safely hang up the specified channel"""
  try:
@@ -150,7 +143,6 @@ def safe_hangup(channel):
  if e.response.status_code != requests.codes.not_found:
  raise e
 
-
 def safe_bridge_destroy(bridge):
  """Safely destroy the specified bridge"""
  try:
@@ -158,7 +150,6 @@ def safe_bridge_destroy(bridge):
  except requests.HTTPError as e:
  if e.response.status_code != requests.codes.not_found:
  raise e
-
 
 def stasis_start_cb(channel_obj, ev):
  """Handler for StasisStart"""
@@ -214,7 +205,6 @@ def stasis_start_cb(channel_obj, ev):
  safe_bridge_destroy(bridge))
 
  outgoing.on_event('StasisStart', outgoing_start_cb)
-
 
 client.on_channel_event('StasisStart', stasis_start_cb)
 
@@ -493,4 +483,3 @@ Hanging up channel PJSIP/alice-00000001
 Hanging up channel undefined
 
 ```
-

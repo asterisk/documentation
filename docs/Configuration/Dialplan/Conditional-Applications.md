@@ -28,4 +28,3 @@ exten => s,4,Set(varc=$[${varb} \* 2])
 exten => s,5,GotoIf($[${varc} = 6]?99,1:s,6)
 
 ```
-

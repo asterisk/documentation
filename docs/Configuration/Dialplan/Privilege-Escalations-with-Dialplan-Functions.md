@@ -12,4 +12,3 @@ Channel variables can be get or set via external mechanisms (like [AMI](/Latest_
 In order to avoid this security issue, Asterisk can now inhibit the execution of privilege escalating functions from external protocols. These functions will continue to execute normally when invoked from the dialplan. For legacy configurations where the less secure behavior is desired, a new flag called `live_dangerously` has been added to `asterisk.conf`. When set to `yes`, Asterisk will allow privilege escalating functions to execute, even from external protocols.
 
 For Asterisk 11 and earlier, in order to maintain backward compatibility, `live_dangerously` defaults to yes. In Asterisk 12, that default was changed to no.
-

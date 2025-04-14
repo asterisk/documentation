@@ -25,7 +25,6 @@ Require: eventlist
 Content-Type: multipart/related;type="application/rlmi+xml";boundary=eqjjy
 Content-Length: 11012
 
-
 --eqjjy
 Content-ID: <lspgs@127.0.0.1>
 Content-Type: application/rlmi+xml
@@ -536,10 +535,7 @@ Conclusion
 
 My suggestion is to move forward with the first idea from the "In PJSIP" section. This is minimally invasive to PJSIP, and I suspect that the Teluu would be more willing to accept such a change over the other proposed changes to PJSIP. It also gives Asterisk and other users of PJSIP lots of flexibility to react to errors due to large messages. The other ideas from the "In PJSIP" section would be better than any of the other ideas on this page. After that, the top idea from the "In Asterisk" section would be the next best idea, but it ranks **way** below any of the "In PJSIP" ideas. After that, none of the other ideas are actually workable, but I felt the need to list them simply because they exist as possibilities.
 
-
-
 Edit September 4, 2014
 ======================
 
 I actually have devised a new strategy that requires no PJSIP change and that I have borne out in tests to work properly. I figured out that I can pre-allocate the `pjsip_tx_data` buffer to be whatever size I want, thereby bypassing the restriction of `PJSIP_MAX_PKT_LEN`. What I can do is to perform a backoff algorithm of memory allocations and once I have a suitably-sized buffer, I set the `pjsip_tx_data` to use that buffer. In experiments, I have found that I can send very large PJSIP messages with no issue, and with no changes to PJSIP. I now have revised my recommendation to go with this method, as it requires no PJSIP changes, and isn't nearly as ugly as the rest of the Asterisk-only changes.
-

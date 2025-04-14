@@ -25,4 +25,3 @@ Direct links to old lists:
 | [asterisk-app-dev](https://lists.digium.com/cgi-bin/mailman/listinfo/asterisk-app-dev.html){:target="_blank"} | Discussions about the development of applications that use Asterisk. |
 | [asterisk-security](https://lists.digium.com/mailman/listinfo/asterisk-security.html){:target="_blank"} | Asterisk Security Discussion |
 | [asterisk-users](https://lists.digium.com/mailman/listinfo/asterisk-users.html){:target="_blank"} | Discussions about the use and configuration of Asterisk. |
-

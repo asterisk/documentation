@@ -6,16 +6,10 @@ pageid: 8127019
 Overview
 ========
 
-
-
-
 !!! note 
     This tutorial makes use of SRTP and TLS. SRTP support was added in Asterisk 1.8, TLS was added in 1.6.
 
-      
 [//]: # (end-note)
-
-
 
 So you'd like to make some secure calls.
 
@@ -92,27 +86,16 @@ tmp.cfg
 
 Next, copy the malcolm.pem and ca.crt files to the computer running the Blink soft client.
 
-
-
-
 !!! tip .p12 Client Certificates
     If your client requires a .p12 certificate file instead, you can generate that using openssl like:
 [//]: # (end-tip)
 
-
-  
-  
-
 ```
 # openssl pkcs12 -export -out MySuperClientCert.p12 -inkey ca.key -in ca.crt -certfile asterisk.crt   
-
-
 
 ---
 
 ```
-
-
 
 Asterisk chan_pjsip configuration
 ----------------------------------
@@ -180,7 +163,6 @@ tlscafile=/etc/asterisk/keys/ca.crt
 ```
 
 Here, we're enabling TLS support.  
-
 
 Next, you'll need to configure a SIP peer within Asterisk to use TLS as a transport type. Here's an example:
 
@@ -264,8 +246,6 @@ You can set **tlsdontverifyserver=yes** in sip.conf to prevent Asterisk from att
 
 ```
 
-
-
 Part 2 (SRTP)
 =============
 
@@ -306,4 +286,3 @@ Reload Asterisk's SIP configuration (sip reload), make a call, and voilà:
 ![](BlinkTLSSRTP.png)
 
 We're making secure calls with TLS (signaling) and SRTP (media).
-

@@ -6,7 +6,6 @@ All code management/contribution/review processes will be handled with [GitHub A
 
 ### Install the [GitHub CLI "gh"](https://cli.github.com) tool
 
-
 While not strictly required, using the "[gh](https://cli.github.com)" tool to manage the process will make things much easier.  The package is available in most distribution's package management systems as "gh".
 
 1. Create a GitHub Personal Access Token.  Although "[gh](https://cli.github.com)" will allow you to authenticate via a browser, having a PAT does make things easier.
@@ -235,7 +234,6 @@ If you're not the submitter but you want to test a PR locally, you can do so eas
 `gh pr checkout <pr_number>`
 ///
 
-
 ### Address Review Comments and Test Failures
 
 If you need to make code changes to address comments or failures, the process is much like it is with Gerrit...
@@ -250,7 +248,6 @@ This will force push the commit to your fork first, then update the PR with the 
 If you feel that amending and force pushing changes might make it har for a reviewer to detect what was changed/fixed, you can push interim commits.  See [Interim commits to facilitate code review](#interim-commits-to-facilitate-code-review) above.
 ///
 
-
 ### Cherry-Pick Tests
 
 When an Asterisk Core Team member believes the PR is ready, they'll add a `cherry-pick-test` label to the PR that will jobs to run that check that the cherry-pick applies cleanly to the other branches and run the same automated tests that ran for the original PR.  These tests must pass (or be deemed false alarms) for the PR to be eligible for merging.
@@ -258,4 +255,3 @@ When an Asterisk Core Team member believes the PR is ready, they'll add a `cherr
 ### Merge
 
 When an Asterisk Core Team member believes the PR is ready for merging, they'll approve the merge which will cause the original PR to merge into its target branch and cause the change to be cherry-picked  into each of the cherry-pick target branches.
-

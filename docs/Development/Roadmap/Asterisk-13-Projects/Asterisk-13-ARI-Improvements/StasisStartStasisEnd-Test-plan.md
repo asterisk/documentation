@@ -5,9 +5,6 @@ pageid: 30279826
 
 StasisStart and StasisEnd events are the most crucial events to be sent since Stasis applications use these to determine if channels are in or not in their applications any longer. The problem is that the process for determining channel's existence in Stasis is not as straight-forward as seeing the channel enter and exit the Stasis() dialplan application. This page's intent is to detail a list of tests that will ensure that StasisStart and StasisEnd messages are received when we expect and are not received when not expected.
 
-
-
-
 Transfers
 =========
 
@@ -32,9 +29,7 @@ Alice completes the Transfer
 
 (Expected scenario: A Local channel is created. One half masquerades into the Echo application, and the other half is swapped in for Alice's channel in the bridge with Bob)   
 
-
 Stasis should emit a StasisStart for the Local channel and a StasisEnd for Alice's channel. The StasisStart on the Local channel should indicate it is replacing Alice.  
-
 
 Bob hangs up.
 
@@ -69,7 +64,6 @@ Alice completes the transfer.
 
 Stasis should emit a StasisStart for the Local channel and a StasisEnd for Alice's channel. The StasisStart on the Local channel should indicate it is replacing Alice.  
 
-
 Bob hangs up.
 
 (Expected scenario: Since Bob and the local channel are in a basic bridge, the local channel should be hung up)
@@ -81,8 +75,6 @@ Carol hangs up.
 Stasis should emit a StasisEnd for Carol's channel.
 
 Destroy the Stasis bridge.
-
-
 
 Attended: Non-Stasis Bridge to Stasis Application
 -------------------------------------------------
@@ -101,11 +93,9 @@ Alice completes the transfer.
 
 Stasis should emit a StasisStart for Bob's channel and a StasisEnd for Alice's channel. The StasisStart on Bob's channel should indicate it is replacing Alice.  
 
-
 Bob hangs up.
 
 Stasis should emit a StasisEnd for Bob's channel.  
-
 
 Attended: Stasis Bridge to Non-Stasis Application
 -------------------------------------------------
@@ -129,7 +119,6 @@ Alice completes the transfer
 (Expected scenario: A Local channel is created. One half is masqueraded into the Echo application. The other half is swapped into the Stasis bridge for Alice's channel)
 
 Stasis should emit a StasisStart for the local channel and a StasisEnd for Alice's channel. The StasisStart on the Local channel should indicate it is replacing Alice.  
-
 
 Bob hangs up.
 
@@ -164,7 +153,6 @@ When Alice and Carol are bridged, Alice completes the transfer.
 
 Stasis should emit StasisStart for the Local channel and a StasisEnd for Alice's channel. The StasisStart on the Local channel should indicate it is replacing Alice.  
 
-
 Bob hangs up.
 
 Stasis should emit a StasisEnd for Bob's channel.
@@ -176,7 +164,6 @@ Carol hangs up.
 Stasis should emit a StasisEnd for the Local channel.
 
 Destroy the Stasis bridge.  
-
 
 Attended: Stasis Bridge to Stasis Bridge in same Stasis application
 -------------------------------------------------------------------
@@ -212,7 +199,6 @@ Alice2 completes the transfer.
 (Expected scenario: A local channel is created to link the two bridges)
 
  Stasis should emit a StasisStart for each half of the local channel, and StasisEnd events for Alice1 and Alice2. The StasisStart on the Local channels should indicate they are replacing the Alice channels.  
-
 
 Bob hangs up
 
@@ -261,7 +247,6 @@ Alice2 completes the transfer.
 
 Stasis should emit a StasisStart for each half of the local channel, one in application A and one in application B. The StasisStart on the Local channels should indicate they are replacing Alice1 and Alice2.  
 
-
 Stasis should emit a StasisEnd event for Alice 1, application A, and Alice2, application B.
 
 Bob hangs up
@@ -271,7 +256,6 @@ Stasis should emit a StasisEnd for Bob's channel, applicaiton A.
 Carol hangs up
 
 Stasis should emit a StasisEnd for Carol's channel, application B.  
-
 
 The Stasis app hangs up the local channel that was previously bridged to Bob
 
@@ -297,7 +281,6 @@ Alice dials an extension that calls the Echo() application
 (Expected scenario: A local channel will be created. One half of the local channel will be masqueraded into the Echo application. The other half will be swapped in for Alice's channel in the Stasis bridge.)
 
 Stasis should emit a StasisStart for the local channel and a StasisEnd event for Alice. The StasisStart on the Local channel should indicate it is replacing Alice.  
-
 
 Bob hangs up.
 
@@ -330,7 +313,6 @@ Alice dials an extension that calls the same Stasis application
 
 Stasis should emit a StasisStart for each of the local channel halves and a StasisEnd event for Alice. The StasisStart on one of the Local channel halves should indicate it is replacing Alice.  
 
-
 Bob hangs up.
 
 Stasis should emit a StasisEnd for Bob's channel.
@@ -361,7 +343,6 @@ Alice dials an extension that calls Stasis application B.
 (Expected scenario: A local channel will be created. One half of the local channel will be masqueraded into the Stasis application. The other half will be swapped in for Alice's channel in the Stasis bridge.)
 
 Stasis should emit a StasisStart for each of the local channel halves, one for application A and one for application B, and a StasisEnd event for Alice in application A. The StasisStart for the Local channel in application A should indicate it is replacing Alice.  
-
 
 Bob hangs up.
 
@@ -398,7 +379,6 @@ Bob hangs up.
 Alice should not re-enter Stasis.
 
 Destroy the Stasis bridge.  
-
 
 ### Bridge() Dialplan Application
 
@@ -547,7 +527,6 @@ Destroy the Stasis bridge in application A.
 
 Destroy the Stasis bridge in application B.  
 
-
 Both channels in Same Stasis application
 ----------------------------------------
 
@@ -682,8 +661,6 @@ Destroy the Stasis bridge.
 Current Status
 ==============
 
-
-
 | Test | Issue | TestSuite Test |
 | --- | --- | --- |
 | 1.1 Attended: Non-Stasis Application to Stasis Bridge |  | tests/rest_api/external_interaction/attended_transfer/non_stasis_app_to_stasis_bridge |
@@ -712,4 +689,3 @@ Current Status
 | 2.10 One channel in Stasis application, One channel in non-Stasis application – 2.10.3 Bridge() Dialplan Application (x option) |  |  |
 | 3 AMI Redirect – 3.1 Channel in a Stasis application |  | tests/rest_api/external_interaction/ami_redirect/stasis_app |
 | 3 AMI Redirect – 3.2 Channel in a Stasis bridge |  | tests/rest_api/external_interaction/ami_redirect/stasis_bridge |
-

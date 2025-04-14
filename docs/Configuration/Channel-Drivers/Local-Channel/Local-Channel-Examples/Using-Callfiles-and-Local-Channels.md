@@ -119,4 +119,3 @@ At this point we now see the Local channel has been optimized out of the call pa
 ```
 
 We can now see the tt-weasels file is played directly to the destination (instead of through the Local channel which was optimized out of the call path) and then a NOTICE stating the call was completed.
-

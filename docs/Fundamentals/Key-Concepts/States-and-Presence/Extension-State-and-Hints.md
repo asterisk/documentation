@@ -74,6 +74,3 @@ Once a hint is configured, Asterisk's SIP drivers can be configured to allow SIP
 Configuration for **chan_sip** is discussed in [Configuring chan_sip for Presence Subscriptions](/Configuration/Channel-Drivers/SIP/Configuring-chan_sip/Configuring-chan_sip-for-Presence-Subscriptions)
 
 Configuration for **res_pjsip** is discussed in [Configuring res_pjsip for Presence Subscriptions](/Configuration/Channel-Drivers/SIP/Configuring-res_pjsip/Configuring-res_pjsip-for-Presence-Subscriptions)
-
-
-

@@ -35,34 +35,22 @@ Third, your copy of Asterisk must have the debug symbols still included in the b
 
 After Asterisk crashes, a file named "core" will be dumped in the present working directory of the Linux shell from which Asterisk was started or in the location specified by the `kernel.core_pattern` sysctl setting. In the event that there are multiple core files present, it is important to look at the file timestamps in order to determine which one you really intend to look at.
 
-
-
 Getting Preliminary Information After A Crash
 ---------------------------------------------
 
 Before you go further, you must have the GNU Debugger (gdb) installed on the machine that experienced the crash.  Use your package manager to install it if it isn't already.
 
-
-
-
 !!! note 
     Don't attach core files on the bug tracker as they are only useful on the machine they were generated on. We only need the output of ast_coredumper.
 
-      
 [//]: # (end-note)
-
-
 
 ### ast_coredumper
 
 Asterisk versions 13.14.0, 14.3.0, and later release branches added a few tools to make debugging easier.  One of these is `ast_coredumper`.   By default, it's installed in `/var/lib/asterisk/scripts` and it takes in a core file and produces backtraces and lock dumps in a format for uploading to Jira. 
 
-
-
-
 ---
 
-  
 /var/lib/asterisk/scripts/ast_coredumper --help  
 
 ```
@@ -256,8 +244,6 @@ Creating /tmp/core-asterisk-1497620664.32259-locks.txt
 
 ```
 
-
-
 By default, ast_coredumper also processes existing core files it detects.  You can suppress that using the `--no-default-search` option and supplying a path directly to a coredump.
 
 ```bash title=" " linenums="1"
@@ -299,22 +285,9 @@ If Asterisk is truly deadlocked and you compiled with `DEBUG_THREADS`, the locks
 Reporting crashes and deadlocks
 -------------------------------
 
-
-
-
-
-
 !!! warning 
     Coredump files may contain sensitive information you might not wish to expose. You should scrub them before attaching them to an issue.
 
-      
 [//]: # (end-warning)
 
-
-
-
-
 Subject to the warning above, you can attach the text files directly to an Asterisk issue.  Occasionally, we'll ask you to run `ast_coredumper` again with additional options that will create a tarball that includes the Asterisk binaries and the the raw coredump.  The command for that is `/var/lib/asterisk/scripts/ast_coredumper --tarball-coredumps --no-default-search <path_to_coredump>`.  We'll give you instructions on how to get the file to us securely.
-
-
-

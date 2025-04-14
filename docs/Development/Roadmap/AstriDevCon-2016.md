@@ -137,8 +137,6 @@ Then, topics we'll try to get to:
 
 ### Discussion items
 
-
-
 | Time | Item | Who | Notes |
 | --- | --- | --- | --- |
 | 30 min | Overview of Asterisk 14 | Matthew Fredrickson |  |
@@ -157,7 +155,6 @@ STEAK project home: <http://steakconferencing.de/>
 Pages from the project site were used as slides during the presentation. It covers most of the information presented.
 
 Code: <https://github.com/steakconferencing>
-
 
 Some Q&A with Dennis:
 
@@ -235,8 +232,6 @@ A: No, and not open source yet
 Q: What is the gain on efficiency?  
 A:They didn't have a big focus on efficiency; mainly on destroy the association between endpoint and Asterisk system. Abstracting out to dealing with pools of resources.
 
-
-
 1:45PM
 
 ### Open Discussion Topics
@@ -299,8 +294,6 @@ Relaxing JIRA rules... feature requests and trying to get more people involved
 Should we enforce a requirement for tests on all relevant contributions?
 
 * No consensus, but leaning towards no. We don't want to scare away too many people. Perhaps we should be more lenient up front to help people come into the community and then enforce more as people participate regularly.
-
-
 
 #### SIP issues:
 

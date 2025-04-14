@@ -333,7 +333,7 @@ same => n,Dial(PJSIP/${EXTEN})
 ```
 
 Or to dial multiple AOR contacts at the same time, use the PJSIP_DIAL_CONTACTS function:
-  
+
 ```conf title="extensions.conf" linenums="1"
 [testing]
 exten => _1XX,1,NoOp()
@@ -363,4 +363,3 @@ sip:10.30.100.28:5060^3Blr
 ## Conclusion
 
 Now, start Asterisk back up, or reload it using **core reload** from the Asterisk CLI, register your two SIP phones using the 101/101 and 102/102 credentials, and make a call.
-

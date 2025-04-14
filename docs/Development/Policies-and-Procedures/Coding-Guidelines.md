@@ -32,7 +32,6 @@ Asterisk uses [Gerrit|https://www.gerritcodereview.com/] to manage code submissi
 
 \* Use spaces instead of tabs when aligning in-line comments or #defines (this makes your comments aligned even if the code is viewed with another tabsize)
 
-
 ### File structure and header inclusion
 
 Every C source file should start with a proper copyright and a brief description of the content of the file. Following that, you should immediately put the following lines:
@@ -452,4 +451,3 @@ Manager events that signal a status are required to have one event name, with a 
 Check [AST:Asterisk Manager Interface (AMI)] for more information on manager and existing headers. Please update the page, [AST:Some Standard AMI Headers], if you add new headers.
 
 {numberedheadings}
-

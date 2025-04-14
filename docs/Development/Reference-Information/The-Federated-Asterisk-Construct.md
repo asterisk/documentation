@@ -3,16 +3,10 @@ title: The Federated Asterisk Construct
 pageid: 30279846
 ---
 
-
-
-
 !!! info "Disclaimer"
     This page contains many of the ideas that I've been discussing with unknown user. Bear in mind that currently, much is missing here, so don't expect any actions items to spring from this page in the near future.
 
-      
 [//]: # (end-info)
-
-
 
 Overview
 ========
@@ -23,8 +17,6 @@ The following set of wiki pages are meant to serve as an idea discussion pad, to
 * Avoid paradigm changes as much as possible. Introduction of new ones is ok, as long as they don't clash with the old.
 * Asterisk should be regarded as a building block, not the actual core federation tool.
 * Federation should utilize existing componets (realtime, sqlite, ARI, Stasis, etc) as much as possible
-
-
 
 What a Federated Asterisk really is?
 ====================================
@@ -49,8 +41,6 @@ This approach dictates the following paradigm:
 * The data store provides a means of replicating information from one Asterisk server in the federation to the other, without requiring the service logic to interfere
 * Routing decision are based upon local decisions, with full federation visibility
 
-
-
 | Pros | Cons |
 | --- | --- |
 | * Fairly simple to implement using legacy Asterisk versions
@@ -66,8 +56,6 @@ This approach dictates the following paradigm:
 * **Cool factor: low and boring!**
  |
 
-
-
 Partial Data Distribution with Full Service Distribution
 --------------------------------------------------------
 
@@ -79,8 +67,6 @@ This approach dictates the following paradigm:
 * The service logic is capable of communicating with the local data store, the local Asterisk server and the centralized data store - via known well defined APIs
 * Data is no longer replicated from one server to the other, information that is required at the federation level is stored in the centralized data store
 * Routing decision are based upon local and centralized querying
-
-
 
 | Pros | Cons |
 | --- | --- |
@@ -109,8 +95,6 @@ Partial Data Distribution with Centralized Service Distribution
 * ~~Data is no longer replicated from one server to the other, information that is required at the federation level is stored in the centralized data store~~
 * ~~Routing decision are based upon local and centralized querying~~
 
-
-
 | ~~Pros~~ | ~~Cons~~ |
 | --- | --- |
 | * ~~Fairly simple to implement using legacy Asterisk versions~~
@@ -129,10 +113,7 @@ Partial Data Distribution with Centralized Service Distribution
 Contributors
 ============
 
-
-
 | Name | E-mail Address |
 | --- | --- |
 | unknown user | [mjordan@digium.com](mailto:mjordan@digium.com) |
 | Nir Simionovich | [nirs@greenfieldtech.net](mailto:nirs@greenfieldtech.net) |
-

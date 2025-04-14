@@ -12,5 +12,3 @@ pageid: 4620410
 * ${VM_CIDNUM} \* - Voicemail Caller ID Number
 * ${VM_DATE} \* - Voicemail Date
 * ${VM_MESSAGEFILE} \* - Path to message left by caller
-
-

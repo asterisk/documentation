@@ -3,16 +3,12 @@ title: Module Deprecation
 pageid: 44800471
 ---
 
-
-
 Overview
 ========
 
 This page documents the module deprecation process in Asterisk. This allows a module to be deprecated with notice and to eventually be removed.
 
 On This Page
-
-
 
 Policy
 ======
@@ -32,18 +28,10 @@ During the time at which the module is deprecated in both a standard and long te
 Marking A Module As Deprecated For Standard Release
 ===================================================
 
-
-
-
 !!! note 
     Reminder: Module deprecation practices within the tree are only eligible to be done in master when the next release is a standard release. No module deprecation can be done during the development of a long term supported release.
 
-      
 [//]: # (end-note)
-
-
-
-
 
 #### The following instructions are for the master branch in which the module is to be deprecated.
 
@@ -63,13 +51,9 @@ Marking A Module As Deprecated For Standard Release
 
 #### The following instructions are for the previous still supported branches to notify users that a module will be deprecated in an upcoming version.
 
-
-
-
 !!! info ""
     Setting these values in the MODULEINFO XML will cause Asterisk to output a warning at startup with the information to inform the user that in a future new version of Asterisk deprecation and then removal will occur.
 
-      
 [//]: # (end-info)
 
 1. Obtain the Asterisk source code from [GitHub](https://github.com/asterisk/asterisk). Since you'll need to put your patch up for review, make an account in GitHub as well, following the instructions on [Code Contribution](/Development/Policies-and-Procedures/Code-Contribution).
@@ -81,18 +65,10 @@ Marking A Module As Deprecated For Standard Release
 7. Submit the patch to Gerrit.
 8. Cherry pick the change to other appropriate branches.
 
-
-
-
 !!! note 
     A single commit can be used to update multiple modules, but each module will need its own JIRA issue.
 
-      
 [//]: # (end-note)
-
-
-
-
 
 Recording A Module For Future Deprecation
 =========================================
@@ -105,18 +81,10 @@ During development of a long term supported release modules are not eligible to 
 Removing A Module
 =================
 
-
-
-
 !!! note 
     Reminder: Module removal is only eligible to be done in master when the next release is a standard release. No module removal can be done during the development of a long term supported release.
 
-      
 [//]: # (end-note)
-
-
-
-
 
 1. Only remove a module if it has not been reverted from being deprecated.
 2. Create a new issue in the [Asterisk project issue tracker](https://github.com/asterisk/asterisk/issues/) using the "Deprecation" issue type. Ensure the issue summary is descriptive as it will go into release notes.
@@ -138,4 +106,3 @@ Module Maintainership
 =====================
 
 If an individual has a special interest in a deprecated module they may become maintainer of it. The module will remain in a deprecated state but will not be removed. A warning message will continue to be provided to users that the module is deprecated and may be removed. If the maintainer leaves the project or no longer wishes to maintain the module it will then be removed in the next standard release.
-

@@ -8,15 +8,6 @@ Introduction
 
 At [AstriDevCon 2017](/Development/Roadmap/AstriDevCon-2017), Digium introduced a sample WebRTC Video Conference Web Application called CyberMegaPhone (CMP2K).  This document will walk you through installing the application and configuring it and Asterisk as a simple video conference server.
 
-
-
-
-
-
-
-
-
-
 Prerequisites
 =============
 
@@ -41,12 +32,8 @@ Configure Asterisk
 
 The CMP2K software needs to be served by a TLS capable web server.  The easiest way to do this by far is to simply use Asterisk's built-in HTTP server.  Here's what we need to add...
 
-
-
-
 ---
 
-  
 /etc/asterisk/http.conf  
 
 ```
@@ -73,12 +60,8 @@ Restart Asterisk or issue the CLI command "`config reload /etc/asterisk/http.con
 
 Now check that the configuration was applied.  From the Asterisk CLI...
 
-
-
-
 ---
 
-  
 Asterisk CLI  
 
 ```
@@ -88,7 +71,6 @@ HTTP Server Status:
 Prefix: 
 Server: Asterisk/GIT-16-a84c257cd6
 Server Enabled and Bound to [::]:8088
-
 
 HTTPS Server Enabled and Bound to [::]:8089
 
@@ -114,8 +96,6 @@ Enabled Redirects:
 
 ```
 
-
-
 Notice that there's a new Redirect entry. 
 
 For security reasons, the HTTP server will not serve arbitrary paths so the  `/static/cyber_mega_phone_2k/index.html` path will actually resolve to is `/var/lib/asterisk/static-http/cyber_mega_phone_2k/index.html`.  You can either move the CMP2K directory that you downloaded to `/var/lib/asterisk/static-http` or you can simply create a symlink to it as follows:
@@ -139,12 +119,8 @@ Great.
 
 In the [Configuring Asterisk for WebRTC Clients](/Configuration/WebRTC/Configuring-Asterisk-for-WebRTC-Clients) tutorial, you created a PJSIP Endpoint named "webrtc_client".  We need to modify that definition for our purposes.
 
-
-
-
 ---
 
-  
 /etc/asterisk/pjsip.conf  
 
 ```
@@ -176,12 +152,8 @@ Configure app_confbridge
 
 The sample `confbridge.conf` file is enough to get you going with one exception.  In the `default_bridge` section, we need to set `video_mode=sfu`.
 
-
-
-
 ---
 
-  
 /etc/asterisk/confbridge.conf  
 
 ```
@@ -201,12 +173,8 @@ Configure extensions.conf
 
 Now we need to configure an extension that, when dialed, will put us into the video conference bridge, so add the following to extensions.conf
 
-
-
-
 ---
 
-  
 /etc/asterisk/extensions.conf  
 
 ```
@@ -257,6 +225,3 @@ Recommendations
 ===============
 
 If you experience audio issues, it may be a good idea to turn on the jitterbuffer. This can cause the audio to be slightly delayed, but will also eliminate problems such as bursty audio packets causing disruptions. You can enable this option in confbridge.conf for a user, or you can do it through the dialplan before placing the user in the conference by using the JITTERBUFFER dialplan function for a more fine tuned experience.
-
-
-

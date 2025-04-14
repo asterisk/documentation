@@ -25,4 +25,3 @@ exten=>s,51,Playback(connected)
 exten=>s,52,Playback(beep)
 
 ```
-

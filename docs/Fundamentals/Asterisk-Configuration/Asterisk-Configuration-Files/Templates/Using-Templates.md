@@ -67,16 +67,16 @@ Here is a more extensive and realistic example from the chan_sip channel driver'
  dtmfmode=rfc2833
  context=from-office
  type=friend
- 
+
 [natted-phone](!,basic-options) ; another template inheriting basic-options
  nat=yes
  directmedia=no
  host=dynamic
- 
+
 [public-phone](!,basic-options) ; another template inheriting basic-options
  nat=no
  directmedia=yes
- 
+
 [my-codecs](!) ; a template for my preferred codecs
  disallow=all
  allow=ilbc
@@ -84,11 +84,11 @@ Here is a more extensive and realistic example from the chan_sip channel driver'
  allow=gsm
  allow=g723
  allow=ulaw
- 
+
 [ulaw-phone](!) ; and another one for ulaw-only
  disallow=all
  allow=ulaw
- 
+
 ; and finally instantiate a few phones
 ;
 ; [2133](natted-phone,my-codecs)
@@ -99,4 +99,3 @@ Here is a more extensive and realistic example from the chan_sip channel driver'
 ; secret = not_very_secret_either
 
 ```
-

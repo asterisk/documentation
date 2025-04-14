@@ -67,7 +67,6 @@ User Notes:
  * redirect_protocols
  * dns_cache_timeout_secs
 
-
 Upgrade Notes:
 ----------------------------------------
 
@@ -75,7 +74,6 @@ Upgrade Notes:
  The existing AST_CEL_LOCAL_OPTIMIZE can continue
  to be used as-is and the AST_CEL_LOCAL_OPTIMIZE_BEGIN event
  can be ignored if desired.
-
 
 Closed Issues:
 ----------------------------------------
@@ -110,7 +108,6 @@ Detail:
  Author: George Joseph 
  Date: 2023-05-05 
 
-
 - ### chan_pjsip: also return all codecs on empty re-INVITE for late offers
  Author: Henning Westerholt 
  Date: 2023-05-03 
@@ -121,7 +118,6 @@ Detail:
  (https://github.com/asterisk/asterisk/issues/jira/browse/ASTERISK-30193)
 
  Migration from previous gerrit change that was not merged.
-
 
 - ### cel: add local optimization begin event
  Author: Mike Bradeen 
@@ -150,12 +146,3 @@ Branching Changes
 =================
 
 In the past, a new branch was created for each minor release, for example `18.1, 18.2, 18.3, etc`.  These branches were fairly useless once a release was cut because the only contained the tags for the current release and didn't really show the true release commit history.  Instead we now have a "release" branch for each major release, like `releases/20` which will have the full-tagged commit history for the major release back to the date to the migration to GitHub (2023-04-29).  The commit history itself will go back to the start of time of course, it's just the tags that will go back as far as them migration date.
-
-
-
-
-
-
-
-
-

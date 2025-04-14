@@ -11,13 +11,10 @@ Much thanks to Jared Smith and BlueHost for sponsoring the event!
 
 ## Participants
 
-
 !!! note 
     Unfortunately, my list of developers present got eaten by the cleaning crew (through no fault of their own, that's what I get for leaving it behind in a stack of scribbled papers!) If I miss your name and/or company on here, let me know and I'll be sure to correct the list below. – Matt
 
-      
 [//]: # (end-note)
-
 
 ### Developers/Contributors Present
 
@@ -234,15 +231,10 @@ Please remember that these notes merely represent the items that were discussed,
 
 We discussed prior proposed projects, what was done for Asterisk 11, and what might make sense in Asterisk 12. The listing below is pulled from the AstriDevCon 2011 Projects; items committed are crossed out.
 
-
-
-
 !!! note 
     If someone feels that some aspect of a project that was committed was not fully finished in Asterisk 11, please let me know and I'll make a note on the project. – Matt
 
-      
 [//]: # (end-note)
-
 
 ## [AstriDevCon 2011 Projects](/Development/Roadmap/AstriDevCon-2011)
 

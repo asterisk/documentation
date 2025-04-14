@@ -29,13 +29,11 @@ Asterisk ICE support is enabled globally by default throughout Asterisk, but is 
 
 icesupport=yesHowever, as ICE needs a STUN and/or TURN server to gather usable candidates, these do need to be configured to get things working. Since ICE is an RTP level feature, the configuration can be found in the `rtp.conf` file. The configuration applies to all RTP based communications so the options are set in the `general` section. To configure a STUN server add a `stunaddr` option with the hostname of the STUN server. For example,
 
- 
 stunaddr=setyourphaserson.stun.org 
 *A short list of publicly accessible STUN servers can be found at the [VoIP-Info's STUN](http://www.voip-info.org/wiki/view/STUN) page.*
 
 TURN servers are required for relay candidates and are configured through the `turnaddr` property. TURN servers often require authentication so options are provided for configuring the username and password.
 
- 
 turnaddr=4everyseason.turn.org 
 turnusername=relayme 
 turnpassword=please 
@@ -43,7 +41,6 @@ The `turnport` option can also be used if the TURN server is running on a non-st
 
 Successful configuration can be visually verified by turning SIP debugging on (`sip set debug on`) in an Asterisk console and looking at INVITE messages as they go past. The body of a typical message would look something like this:
 
- 
 0: v=0 
 1: o=root 1903343929 1903343929 IN IP4 10.0.1.40 
 2: s=Asterisk PBX SVN-trunk-r372051 
@@ -83,4 +80,3 @@ rfcs RFCS:
 [RFC 5245](http://tools.ietf.org/html/rfc5245) Interactive Connectivity Establishment (ICE): A Protocol for Network Address Translator (NAT) Traversal for Offer/Answer Protocols   
  [RFC 5389](http://tools.ietf.org/html/rfc5389) Session Traversal Utilities for NAT (STUN)   
  [RFC 5766](http://tools.ietf.org/html/rfc5766) Traversal Using Relays around NAT (TURN): Relay Extensions to Session Traversal Utilities for NAT (STUN)
-

@@ -9,16 +9,10 @@ Building Queues
 Written by: Leif Madsen  
  Initial version: 2010-01-14
 
-
-
-
 !!! note 
     Note that this documentation is based on Asterisk 1.6.2, and this is just one approach to creating queues and the dialplan logic. You may create a better way, and in that case, I would encourage you to submit it to the Asterisk issue tracker at <https://github.com/asterisk/asterisk/issues> for inclusion in Asterisk.
 
-      
 [//]: # (end-note)
-
-
 
 In this article, we'll look at setting up a pair of queues in Asterisk called 'sales' and 'support'. These queues can be logged into by queue members, and those members will also have the ability to pause and unpause themselves.
 
@@ -75,7 +69,6 @@ There are no registered dialplan hint
 ```
 
 We need to add the devices we're going to track to the extensions.conf file under the [default] context which is the default configuration in sip.conf, however we can change this to any context we want with the 'subscribecontext'  
-
 
 Add the following lines to extensions.conf:
 
@@ -275,7 +268,6 @@ Now, if we dial our 555 extension, we should see that our member becomes InUse w
  -- Executing [555@devices:1] Playback("SIP/0004f2040001-00000001", "tt-monkeys") in new stack
  -- <SIP/0004f2040001-00000001> Playing 'tt-monkeys.slin' (language 'en')
 
-
 \*CLI> queue show sales
 sales has 0 calls (max unlimited) in 'rrmemory' strategy (0s holdtime, 0s talktime), W:0, C:0, A:0, SL:0.0% within 0s
  Members: 
@@ -384,7 +376,6 @@ In this section we'll show how to use the AddQueueMember() and RemoveQueueMember
 The following bit of dialplan is a bit long, but stick with it, and you'll see that it isn't really all that bad. The gist of the dialplan is that it will check to see if the active user (the device that is dialing the extension) is currently logged into the queue extension that has been requested, and if logged in, then will log them out; if not logged in, then they will be logged into the queue.
 
 We've updated the two lines we added in the previous section that allowed us to dial the sales and support queues. We've abstracted this out a bit in order to make it easier to add new queues in the future. This is done by adding the queue  
-
 
 So we replace extension 100 and 101 with the following dialplan.
 
@@ -531,7 +522,6 @@ exten => q_login,n,Playback(silence/1) ; answer the channel by playing one secon
 ; If the member was added to the queue successfully, then playback "Agent logged in", otherwise, state an error occurred
 exten => q_login,n,ExecIf($["${AQMSTATUS}" = "ADDED"]?Playback(agent-loginok):Playback(an-error-has-occurred))
 exten => q_login,n,Hangup()
-
 
 ; ### Logout queue member ###
 exten => q_logout,1,Verbose(2,Logging ${thisActiveMember} out of ${thisQueue} queue)
@@ -821,6 +811,4 @@ Note, QUEUE_VARIABLES needs to be called with a valid queue name, and prior to c
 
 You should now have a simple system that permits you to login and out of queues you create in queues.conf, and to allow queue members to pause themselves within one or more queues. There are a lot of dialplan concepts utilized in this  
 
-
 A good start is the doc/ subdirectory of the Asterisk sources, or the various configuration samples files located in the configs/ subdirectory of your Asterisk source code.
-

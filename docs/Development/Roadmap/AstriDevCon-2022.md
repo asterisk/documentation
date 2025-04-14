@@ -10,7 +10,6 @@ Sangoma invites developers who are interested in the future of Asterisk to join 
 
 ### Event day schedule
 
-  
 AstriDevCon is a mix of open and focused discussion all on topics within the realm of Asterisk development, primarily regarding current concerns that Asterisk faces and how to improve Asterisk for the future.
 
 **Starting at [10AM EDT](https://www.timeanddate.com/worldclock/fixedtime.html?msg=AstriDevCon+2021&iso=20211102T10&p1=179&ah=6).**
@@ -39,7 +38,7 @@ Agenda
 		- Have patch to do early media video
 * Other Discussion
 	+ Mailing Lists - Joshua Colp  
-	
+
 		- Some people still using mailing lists
 		- Fine with moving to alternate solution
 	+ ARI Usage - Joshua Colp
@@ -89,7 +88,7 @@ Agenda
 		- Proof of concept to evaluate, not in production as of yet
 	+ Usage of Debian with Asterisk has been fine - Sylvain, Joran, and Florian
 	+ Queues - Pitzkey
-	
+
 		- Periodic announcements don't trigger on initial, FreePBX using chanspy which can go over MOH, would be better if it could be done initially
 		- ARI makes it considerably easier+ Joran has higher level interface, users don't worry about scaling/SIP/Asterisk/etc
 	+ Testsuite

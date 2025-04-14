@@ -16,4 +16,3 @@ As your Asterisk system runs, it will generate logfiles. It is recommended to in
 [root@server asterisk-14.X.Y]# make install-logrotate
 
 ```
-

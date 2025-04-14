@@ -3,16 +3,10 @@ title: Signaling System Number 7
 pageid: 4260059
 ---
 
-
-
-
 !!! warning 
     The LibSS7 project is not actively developed or maintained.
 
-      
 [//]: # (end-warning)
-
-
 
 ### Where to get LibSS7?
 
@@ -42,21 +36,13 @@ Collin Rose and John Lodden, John for introducing me to Collin, and Collin for t
 
 In order to use libss7, you must get at least the following versions of DAHDI and Asterisk:  
 
-
 You must then do a `make; make install` in each of the directories that you installed in the given order (DAHDI first, libss7 second, and Asterisk last).
-
-
-
 
 !!! note 
     In order to check out the code, you must have the subversion client installed. This is how to check them out from the public subversion server.
 
     These are the commands you would type to install them:
 [//]: # (end-note)
-
-
-  
-  
 
 ```
 `svn co http://svn.digium.com/svn/dahdi/linux/trunk dahdi-trunk`
@@ -74,12 +60,8 @@ You must then do a `make; make install` in each of the directories that you inst
 `svn co http://svn.digium.com/svn/asterisk/trunk asterisk-trunk`
 `cd asterisk-trunk`
 `./configure; make; make install;`
-  
-
-
 
 ---
-
 
 This should build DAHDI, libss7, and Asterisk with SS7 support.
 
@@ -126,7 +108,7 @@ channel = 17-31 ; This assigns CICs 17-31 to channels 17-31
 sigchan = 16 ; This is where you declare which DAHDI channel is your signalling
  ; channel. In our case it is DAHDI/16. You can add redundant
  ; signalling channels by adding additional sigchan= lines.
- 
+
 ; If we want an alternate redundant signalling channel add this
 
 sigchan = 48 ; This would put two signalling channels in our linkset, one at
@@ -139,6 +121,4 @@ sigchan = 48 ; This would put two signalling channels in our linkset, one at
 
 This is how a basic linkset is setup. For more detailed chan_dahdi.conf SS7 config information as well as other options available for that file, see the default chan_dahdi.conf that comes with the samples in asterisk. If you would like, you can do a `make samples` in your asterisk-trunk directory and it will install a sample chan_dahdi.conf for you that contains  
 
-
 For more information, you can ask questions of the community on the asterisk-ss7 or asterisk-dev mailing lists.
-

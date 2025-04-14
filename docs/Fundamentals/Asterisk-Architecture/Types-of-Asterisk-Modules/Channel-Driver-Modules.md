@@ -10,4 +10,3 @@ The PJSIP channel driver (chan_pjsip), for example, communicates with external d
 For more information on the various channel drivers, see the configuration section for [Channel Drivers](/Configuration/Channel-Drivers).
 
 All channel drivers have a file name that look like **chan_xxxxx.so**, such as **chan_pjsip.so** or **chan_dahdi.so**.
-

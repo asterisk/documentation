@@ -8,16 +8,10 @@ Overview
 
 ARI has a number of parts to it - the HTTP server in Asterisk servicing requests, the dialplan application handing control of channels over to a connected client, and the websocket sharing state in Asterisk with the external application. This page provides the configuration files in Asterisk that can be altered to suit deployment considerations.
 
-
-
-
 !!! tip 
     This page does not include all of the configuration options available to a system administrator. It does cover some of the basics that you might be interested in when setting up your Asterisk system for ARI.
 
-      
 [//]: # (end-tip)
-
-
 
 Asterisk Configuration Options for ARI
 ======================================
@@ -28,9 +22,6 @@ HTTP Server
 The HTTP server in Asterisk is configured via `http.conf`. Note that this does not describe all of the options available via `http.conf` - rather, it lists the most useful ones for ARI.
 
 On This Page
-
-
-
 
 | Section | Parameter | Type | Default | Description |
 | --- | --- | --- | --- | --- |
@@ -46,12 +37,8 @@ On This Page
 
 ### Example http.conf
 
-
-
-
 ---
 
-  
 http.conf  
 
 ```text
@@ -62,22 +49,15 @@ bindport = 8088
 
 ```
 
-
-
 !!! note Use TLS!** It is **highly
     recommended that you encrypt your HTTP signalling with TLS, and use secure WebSockets (WSS) for your events. This requires configuring the TLS information in `http.conf`, and establishing secure websocket/secure HTTP connections from your ARI application.
 
-      
 [//]: # (end-note)
-
-
 
 ARI Configuration
 -----------------
 
 ARI users and properties are configured via `ari.conf`. Note that all options may not be listed here; this listing includes the most useful ones for configuring users in ARI. For a full description, see the [ARI configuration](/Latest_API/API_Documentation/Module_Configuration/res_ari) documentation.
-
-
 
 | Section | Parameter | Type | Default | Description |
 | --- | --- | --- | --- | --- |
@@ -93,12 +73,8 @@ ARI users and properties are configured via `ari.conf`. Note that all options ma
 
 ### Example ari.conf
 
-
-
-
 ---
 
-  
 ari.conf  
 
 ```text
@@ -124,8 +100,6 @@ password_format = crypt
 
 ```
 
-
-
 Configuring the Dialplan for ARI
 ================================
 
@@ -140,12 +114,8 @@ To hand a channel over to ARI, Asterisk uses a dialplan application called [Stas
 
 This snippet of dialplan, taken from `extensions.conf`, illustrates two ARI applications. The first hands a channel over to an ARI application "Intro-IVR" without any additional parameters; the second hands a channel over to an ARI application "Super-Conference" with a parameter that specifies a conference room to enter.
 
-
-
-
 ---
 
-  
 extensions.conf  
 
 ```
@@ -161,20 +131,11 @@ exten => conference,1,NoOp()
 
 ```
 
-
-
 When a channel enters into a Stasis application, Asterisk will check to see if a WebSocket connection has been established for that application. If so, the channel is handed over to ARI for control, a subscription for the channel is made for the WebSocket, and a [StasisStart](/Latest_API/API_Documentation/Asterisk_REST_Interface/Asterisk_REST_Data_Models/#stasisstart) event is sent to the WebSocket notifying it that a channel has entered into its application.
-
-
-
 
 !!! note A WebSocket connection is necessary!
     If you have not connected a WebSocket to Asterisk for a particular application, when a channel enters into Stasis for that application, Asterisk will immediately eject the channel from the application and return back to the dialplan. This is to prevent channels from entering into an application before something is ready to handle them.
 
     Note that if a connection is broken, Asterisk will know that a connection previously existed and will allow channels to enter (although you may got warned that events are about to get missed...)
 
-      
 [//]: # (end-note)
-
-
-

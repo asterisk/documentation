@@ -66,7 +66,6 @@ tilde
 
 See `markdown_extensions` in the [mkdocs.yml](mkdocs.yml) file for the current list.
 
-
 # Dynamic Documentation
 
 The dynamic documentation includes the pages generated from Asterisk itself and includes:
@@ -204,7 +203,6 @@ If you only want the skeleton static documentation, you can add `NO_STATIC=yes` 
 $ make BRANCHES=18,20 NO_STATIC=yes
 ```
 
-
 ### To build just 1 branch
 
 If you're always going to build just 1 branch's dynamic documentation, you can skip the `Makefile.<branch>.inc` file and just place everything in the main `Makefile.inc`:
@@ -219,4 +217,3 @@ NO_STATIC := yes
 ```
 
 And just run `make`.
-

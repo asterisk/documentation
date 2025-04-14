@@ -9,16 +9,10 @@ OpenSIPit 2021 Notes
 Stir/Shaken
 -----------
 
-
-
-
 !!! info ""
     REMINDER: The Asterisk STIR/SHAKEN work was all done last year before things were finalized and there hasn't been anyone to test with until now so it's nor surprising that we have interoperability issues.
 
-      
 [//]: # (end-info)
-
-
 
 ### George's Notes:
 
@@ -46,8 +40,6 @@ Stir/Shaken
 
 Andreas Granig has a GitHub repo with a ton of Stir/Shaken sipp tests...  <https://github.com/agranig/stirshaken-scenarios>  It currently relies on a patched version of sipp (provided in the repo) but he's working to get the changes merged upstream.  If anything, it's a good reference for what we should test ourselves.
 
-
-
 RFC8760
 -------
 
@@ -55,10 +47,3 @@ RFC8760
 
 * Eventually we (and pjproject) need to support the additional authentication digest algorithms defined in [RFC8760](https://www.rfc-editor.org/rfc/rfc8760.html) which include SHA-256 and SHA512-256.
 * We are not currently tolerant of RFC8760 compliant UASs that send us multiple WWW-Authenticate headers.  If they send us one using SHA-256 and a second one using MD5, we fail when we see SHA-256 and don't continue to look for more WWW-Authenticate  headers.  I have a patch that at least makes us tolerant.
-
-
-
-
-
-
-

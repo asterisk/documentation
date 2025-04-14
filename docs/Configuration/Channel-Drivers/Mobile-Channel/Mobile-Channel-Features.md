@@ -16,5 +16,3 @@ pageid: 4817194
 * Supports devicestate for dialplan hinting.
 * Supports Inbound and Outbound SMS.
 * Supports 'channel' groups for implementing 'GSM Gateways'
-
-

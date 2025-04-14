@@ -14,20 +14,12 @@ In the current state of the Asterisk Test Suite, we've focused our efforts on wr
 
 All of that said, even when a single implementation language is chosen, there is still a fair amount of repeated code throughout the Test Suite. Because tests support their own execution, they often have to implement similar mechanisms. Each test must have its own execution entry point, instantiate its own objects, do the minimum amount needed to get Asterisk running, etc. Between tests that cover similar functionality, there is even more repeated code. Moving shared code into libraries helps alleviate that to some extent, but even then some amount of duplication occurs.
 
-
-
-
 !!! tip 
     For a list of all pluggable test objects and modules in the Test Suite, see the sample YAML files:
 
     <http://svn.asterisk.org/svn/testsuite/asterisk/trunk/sample-yaml/>
 
-      
 [//]: # (end-tip)
-
-
-
-
 
 An Example - Two Traditional Tests Using SIPp
 =============================================
@@ -54,7 +46,6 @@ sys.path.append("lib/python")
 from twisted.internet import reactor
 from asterisk.sipp import SIPpTest
 
-
 WORKING_DIR = "sip/message_auth"
 TEST_DIR = os.path.dirname(os.path.realpath(__file__))
 
@@ -68,7 +59,6 @@ SIPP_SCENARIOS = [
  '-p' : '5061'
  }
 ]
-
 
 def main():
  test = SIPpTest(WORKING_DIR, TEST_DIR, SIPP_SCENARIOS)
@@ -103,7 +93,6 @@ sys.path.append("lib/python")
 from twisted.internet import reactor
 from asterisk.sipp import SIPpTest
 
-
 WORKING_DIR = "sip/message_disabled"
 TEST_DIR = os.path.dirname(os.path.realpath(__file__))
 
@@ -113,7 +102,6 @@ SIPP_SCENARIOS = [
  }
 ]
 
-
 def main():
  test = SIPpTest(WORKING_DIR, TEST_DIR, SIPP_SCENARIOS)
  reactor.run()
@@ -121,7 +109,6 @@ def main():
  return 1
 
  return 0
-
 
 if __name__ == "__main__":
  sys.exit(main())

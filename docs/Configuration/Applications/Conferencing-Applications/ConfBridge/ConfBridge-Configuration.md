@@ -49,8 +49,6 @@ otherDTMF=otherFunction
 
 A Bridge Profile provides the following configuration options:
 
-
-
 | Option | Values | Description | Notes |
 | --- | --- | --- | --- |
 | type | bridge | Set this to bridge to configure a bridge profile |   |
@@ -99,8 +97,6 @@ record_conference=yes
 
 A User Profile provides the following configuration options:
 
-
-
 | Option | Values | Description | Notes |
 | --- | --- | --- | --- |
 | type | user | Set this to user to configure a user profile |   |
@@ -144,8 +140,6 @@ pin=456
 ## Conference Menu Configuration Options
 
 A Conference Menu provides the following configuration options:
-
-
 
 | Option | Values | Description | Notes |
 | --- | --- | --- | --- |
@@ -210,4 +204,3 @@ exten => 100,1,ConfBridge(1234)
 ```
 
 Thus, when someone dials "3" while in the bridge, they'll Originate a call from the dialplan that puts SIP/otherpeer into the conference. Once the dial has completed, the person that dialed "3" will find themselves back in the bridge, with the other participants.
-

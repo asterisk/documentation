@@ -32,4 +32,3 @@ The payload length is a 16-bit unsigned integer (big endian) indicating how many
 ### Payload
 
 The content of the payload is defined by the header: type and length.
-

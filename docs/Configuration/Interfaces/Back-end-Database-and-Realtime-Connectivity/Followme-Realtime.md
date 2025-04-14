@@ -5,7 +5,6 @@ pageid: 4260003
 
 Followme is now realtime-enabled.
 
-
 To use, you must define two backend data structures, with the following fields:
 
 ```
@@ -42,4 +41,3 @@ followme_numbers:
  for more information on how this value is handled.
 
 ```
-

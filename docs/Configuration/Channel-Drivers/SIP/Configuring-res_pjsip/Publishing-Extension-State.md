@@ -34,8 +34,6 @@ Configuration
 
 The publishing of extension state is configured by specifying an **outbound publish** in the pjsip.conf configuration file. This tells PJSIP how to publish to another entity and gives it information about what to publish. The outbound publishing of extension state has some additional arguments, though, which allow more control.
 
-
-
 The **@body** option specifies what body type to publish. This is a required option.
 
 The **@context** option specifies a filter for context. This is a regular expression and is optional.
@@ -102,5 +100,3 @@ The Other Entity
 ----------------
 
 Throughout this page, I've mentioned another entity; but what can you use? Kamailio! Kamailio has event state compositor support available using the [presence module](http://kamailio.org/docs/modules/4.4.x/modules/presence.html). It can be configured to accept SUBSCRIBE and PUBLISH requests, persist information in a database, and to then send NOTIFY messages to each subscribed device. The module exports the handle_publish and handle_subscribe functions for handling each.  
-
-

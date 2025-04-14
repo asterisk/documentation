@@ -19,7 +19,6 @@ The following ARI client libraries are used in the code samples on these pages
 * Node.js samples use [node-ari-client](https://github.com/asterisk/node-ari-client)
 40%On This Page
 
-
 Media In DepthAll of the code presented here has been tested with Asterisk 13 and works as intended. That being said, the code samples given are intended more to demonstrate the capabilities of ARI than to be a best practices guide for writing an application or to illustrate watertight code. Error-handling is virtually non-existent in the code samples. For a real application, Python calls to ARI should likely be in `try-catch` blocks in case there is an error, and Node.js calls to ARI should provide callbacks that detect if there was an error.
 
 The asynchronous nature of Node.js and the node-ari-client library is not always used in the safest ways in the code samples provided. For instance, there are code samples where DTMF presses cause media operations to take place, and the code does not await confirmation that the media operation has actually completed before accepting more DTMF presses. This could potentially result in the desired media operations happening out of order if many DTMF presses occur in rapid succession.
@@ -31,12 +30,8 @@ Voice mail, at its heart, is an IVR. IVRs are most easily represented using a fi
 
 To start our state machine, we will define what events might cause state transitions. If you think about a typical IVR, the events that can occur are DTMF key presses, and changes in the state of a call, such as hanging up. As such, we'll define a base set of events.
 
-
-
-
 ---
 
-  
 ```python title="event.py" linenums="1"
 class Event(object):
  # DTMF digits
@@ -94,12 +89,8 @@ There is no hard requirement for our application that we define events as named 
 
 After we have defined our events, we need to create a state machine itself. The state machine keeps track of what the current state is, and which events cause state changes. Here is a simple implementation of a state machine
 
-
-
-
 ---
 
-  
 ```python title="state_machine.py" linenums="1"
 class StateMachine(object):
  def __init__(self):
@@ -159,4 +150,3 @@ States within a state machine have certain duties that they must fulfill if they
 	+ `enter()`, a method that is called whenever the state is entered.
 
 It should be noted that this state machine implementation is not necessarily ideal, since it requires the states to know what events cause it to change states. However, it will become clear later that for a simple voice mail system, this is not that big a deal. To see how we use this state machine, continue on to the sub-pages.
-

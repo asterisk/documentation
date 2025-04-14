@@ -47,8 +47,6 @@ exten => 6123,4,do something different
 In this case, Asterisk would execute priorities one and two, but would then terminate the call, because it couldn't find priority number three.
 ///
 
-
-
 ### Priority letter n
 
 Priority numbers can also be simplified by using the letter **n** in place of the priority numbers greater than one. The letter **n** stands for **next**, and when Asterisk sees priority **n** it replaces it in memory with the previous priority number plus one. Note that you must still explicitly declare priority number one.
@@ -63,7 +61,6 @@ exten => 6123,n,Verbose("Do something different!")
 ///note 
 Every time an extension and priority is executed Asterisk searches for the next best match in priority sequence.
 ///
-
 
 Consider the dialplan below.
 
@@ -114,4 +111,3 @@ Search order:
 * Switches
 
 Make sure to see the [Pattern Matching](/Configuration/Dialplan/Pattern-Matching) page for a description of pattern matching order.
-

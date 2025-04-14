@@ -5,32 +5,18 @@ pageid: 28315432
 
 MALLOC_DEBUG enhancements can be used as a poor-man's Valgrind if Valgrind performance makes the PC unusable due to resource consumption.
 
-
-
-
 !!! warning 
     Don't attempt to use Asterisk compiled with MALLOC_DEBUG and run Valgrind at the same time, as they will compete and render the findings invalid for either tool.
 
-      
 [//]: # (end-warning)
-
-
 
 Gathering output
 ----------------
 
-
-
-
 !!! info ""
     For this output to be useful make sure to upgrade Asterisk versions 1.8.20, 11.2.0 or above as they include important enhancements to MALLOC_DEBUG
 
-      
 [//]: # (end-info)
-
-
-
-
 
 1. Run [menuselect](/Getting-Started/Installing-Asterisk/Installing-Asterisk-From-Source/Using-Menuselect-to-Select-Asterisk-Options) and in the Compiler Options, enable MALLOC_DEBUG. A bug marshal may also ask you to enable additional compiler flags depending upon the nature of the issue.
 2. Rebuild and install Asterisk

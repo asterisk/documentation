@@ -7,8 +7,5 @@ This section discusses the architecture of the Asterisk modifications being prop
 
 There are two main components that we propose for the initial implementation of the security framework:
 
-
 * Security Event Generation
 * Security Event Logger
-
-

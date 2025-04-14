@@ -37,4 +37,3 @@ exten => 500,n,Queue(queuename)
 Getting the hang of when to use Progress and Answer can be a little tricky, and it varies greatly from application to application. If you want to be safe, you can always just answer the calls and keep things simple, but there are a number of use cases where it is more appropriate to use early media, and most people who actually need this feature will probably be aware of when it is necessary.
 
 Applications which can use early media and do not automatically answer (incomplete list, please contribute):  
-

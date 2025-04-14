@@ -39,7 +39,7 @@ Example:
  bash-3.2# more CREDITS
  Recorded by:
  Allison Smith (http://www.theivrvoice.com)
- 
+
  Financial Contributions by: Digium, Inc. (http://www.digium.com)
  bash-3.2#
 
@@ -65,7 +65,6 @@ License Form:
 ```
 LICENSE FOR VOICE PROMPT FILES ------------------------------
 
-
 The voice prompt files distributed herewith are Copyright (C)
 2014-20[XX] [ARTIST NAME OR COPYRIGHT HOLDER NAME], and provided under
 terms of the following License. If I am providing the voice prompt files
@@ -83,9 +82,7 @@ Attribution/ShareAlike license, as follows.
 
  [include description of files submitted]
 
-
  Signed: __________________________________________________________
-
 
  Printed: __________________________________________________________
  Name
@@ -98,8 +95,6 @@ ________________________________________________________________________
  Number
 
  Date : __________________________________________________________
-
-
 
 LICENSE -------
 
@@ -422,8 +417,6 @@ Creative Commons Notice
 
  Creative Commons may be contacted at http://creativecommons.org/
 
-
  -- end printout --
 
 ```
-

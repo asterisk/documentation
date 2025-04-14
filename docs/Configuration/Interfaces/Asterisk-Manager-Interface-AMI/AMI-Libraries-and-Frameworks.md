@@ -3,18 +3,10 @@ title: AMI Libraries and Frameworks
 pageid: 32375585
 ---
 
-
-
-
 !!! warning 
     This page is under construction!
 
-      
 [//]: # (end-warning)
-
-
-
-
 
 | Name | Language | Website | Protocols |
 | --- | --- | --- | --- |
@@ -33,4 +25,3 @@ pageid: 32375585
 | CAMI | C | <https://github.com/InterLinked1/cami> | AMI |
 | Asterisk to Go | Go | <https://github.com/wenerme/astgo> | AMI |
 | Bami | Bash | <https://github.com/marcelog/Bami> | AMI |
-

@@ -62,7 +62,6 @@ Figure 1![](ExtensionAndDeviceState.png)
 
 This diagram is purposefully simplified to only show the relationships between the  
 
-
 Configure Hints
 ---------------
 
@@ -165,7 +164,6 @@ Supported: replaces, timer
 WWW-Authenticate: Digest algorithm=MD5, realm="asterisk", nonce="522456f4"
 Content-Length: 0
 
-
 <------------>
 Scheduling destruction of SIP dialog 'ZjE2ZDAwYThiOTA2MzYxOWEwNTEwMjc1ZGIxNTk3NDU.' in 32000 ms (Method: SUBSCRIBE)
 
@@ -209,7 +207,6 @@ Supported: replaces, timer
 Expires: 1800
 Contact: <sip:6001@10.24.18.124:5060>;expires=1800
 Content-Length: 0
-
 
 <------------>
 set_destination: Parsing <sip:Alice@10.24.17.254:37509;transport=UDP> for address/port to send to
@@ -274,6 +271,3 @@ Peer User Call ID Extension Last state Type Mailbox Expiry
 ```
 
 From this point onward, Asterisk should send out a SIP NOTIFY to the Alice peer whenever state changes for any of the devices mapped to the hint 6001. Alice's phone should then reflect that state on its display.
-
-
-

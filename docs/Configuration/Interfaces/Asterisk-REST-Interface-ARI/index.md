@@ -31,8 +31,6 @@ And so, before Asterisk 12, if you wanted your own custom communication applicat
 * Write an Asterisk module in C, **or**
 * Write a custom application using both AGI and AMI, performing some herculean effort to marry the two APIs together (as well as some dialplan trickery)
 
-
-
 ARI: An Interface for Communications Applications
 -------------------------------------------------
 
@@ -130,6 +128,3 @@ for channel in channels:
 ```
 
 In other words: **use one of the aforementioned libraries or write your own!**
-
-
-

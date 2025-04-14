@@ -6,8 +6,6 @@ pageid: 30278623
 Participants
 ============
 
-
-
 | Person | Organization | Country |
 | --- | --- | --- |
 | Matt Jordan | Digium | US |
@@ -54,16 +52,10 @@ Participants
 Agenda
 ======
 
-
-
-
 !!! note 
     All times are in PDT
 
-      
 [//]: # (end-note)
-
-
 
 Project Policies (10-11:15am)
 -----------------------------
@@ -291,8 +283,6 @@ Data Capture (Phone Home) (4pm - 4:15pm)
 	+ Philippe: this is two projects, stats and debugging), keep them separate
 	+ Define where the data goes to
 
-
-
 Conclusions
 ===========
 
@@ -301,8 +291,3 @@ GIT needs to happen. Need to improve our infrastructure and make it clearer how 
 Document features better, including scenarios. Make it easier to configure/deploy Asterisk.
 
 Pushing Asterisk into acting more as a media applications server is very important.  It feeds into scalability, into making it do more than what it can do today, and affects more pointedly the features in ARI.
-
-
-
-
-

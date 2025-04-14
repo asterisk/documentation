@@ -8,7 +8,6 @@ pageid: 31097220
 !!! note 
     As Interception routines are implemented internally using the [Gosub](/Latest_API/API_Documentation/Dialplan_Applications/Gosub) application, all routines should end with an explicit call to the [Return](/Latest_API/API_Documentation/Dialplan_Applications/Return) application.
 
-      
 [//]: # (end-note)
 
 The interception routines give the administrator an opportunity to alter [connected line and redirecting information](/Configuration/Functions/Manipulating-Party-ID-Information) before the channel driver is given the information. If the routine does not change a value then that is what is going to be passed to the channel driver.
@@ -20,7 +19,6 @@ The 'i' option of the CONNECTEDLINE dialplan function should always be used in t
 !!! info ""
     Note that Interception routines do not attempt to draw a distinction between caller/callee. As it turned out, it was not a good thing to distinguish since transfers make a mockery of caller/callee.
 
-      
 [//]: # (end-info)
 
 * ${REDIRECTING_SEND_SUB}
@@ -35,7 +33,6 @@ The 'i' option of the CONNECTEDLINE dialplan function should always be used in t
 !!! warning WARNING
     Interception macros have been deprecated in Asterisk 11 due to deprecation of [Macro](/Latest_API/API_Documentation/Dialplan_Applications/Macro). Users of the interception functionality should plan to migrate to [Interception routines](#interception-routines).
 
-      
 [//]: # (end-warning)
 
 The interception macros give the administrator an opportunity to alter [connected line and redirecting information](/Configuration/Functions/Manipulating-Party-ID-Information) before the channel driver is given the information. If the macro does not change a value then that is what is going to be passed to the channel driver.

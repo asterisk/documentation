@@ -32,7 +32,7 @@ class GreetingState(object):
 		self.dtmf_event = None
 		self.playback = None
 		sounds_installed(call.client)
-	
+
 	def enter(self):
 		print("Entering greeting state")
 		self.hangup_event = self.call.channel.on_event('ChannelHangupRequest',
@@ -42,21 +42,21 @@ class GreetingState(object):
 		self.dtmf_event = self.call.channel.on_event('ChannelDtmfReceived',
 			self.on_dtmf)
 		self.playback = self.call.channel.play(media="sound:vm-intro")
-	
+
 	def cleanup(self):
 		self.playback_finished.close()
 		self.dtmf_event.close()
 		self.hangup_event.close()
-	
+
 	def on_hangup(self, channel, event):
 		print("Abandoning voicemail recording on hangup")
 		self.cleanup()
 		self.call.state_machine.change_state(Event.HANGUP)
-	
+
 	def on_playback_finished(self, playback):
 		self.cleanup()
 		self.call.state_machine.change_state(Event.PLAYBACK_COMPLETE)
-	
+
 	def on_dtmf(self, channel, event):
 		digit = event.get('digit')
 		if digit == '#':
@@ -254,7 +254,7 @@ class VoiceMailCall(object):
 	def __init__(self, ari_client, channel, mailbox):
 		self.client = ari_client
 		self.channel = channel
-	
+
 		self.voicemails = []
 		recordings = ari_client.recordings.listStored()
 		vm_number = 1
@@ -262,10 +262,10 @@ class VoiceMailCall(object):
 			if rec.json['name'].startswith('voicemail/{0}'.format(mailbox)):
 				self.voicemails.append((vm_number, rec.json['name']))
 				vm_number += 1
-	
+
 		self.current_voicemail = 0
 		self.setup_state_machine()
-	
+
 	def setup_state_machine(self):
 		hungup_state = HungUpState(self)
 		ending_state = EndingState(self)
@@ -296,28 +296,28 @@ class VoiceMailCall(object):
 		self.state_machine.add_transition(empty_state,
 			Event.PLAYBACK_COMPLETE, ending_state)
 		self.state_machine.start(preamble_state)
-	
+
 	def next_message(self):
 		self.current_voicemail += 1
 		if self.current_voicemail == len(self.voicemails):
 			self.current_voicemail = 0
-	
+
 	def previous_message(self):
 		self.current_voicemail -= 1
 		if self.current_voicemail < 0:
 			self.current_voicemail = len(self.voicemails) - 1
-	
+
 	def delete_message(self):
 		del self.voicemails[self.current_voicemail]
 		if self.current_voicemail == len(self.voicemails):
 			self.current_voicemail = 0
-	
+
 	def get_current_voicemail_number(self):
 		return self.voicemails[self.current_voicemail][0]
-	
+
 	def get_current_voicemail_file(self):
 		return self.voicemails[self.current_voicemail][1]
-	
+
 	def mailbox_empty(self):
 		return len(self.voicemails) == 0
 
@@ -336,7 +336,7 @@ client.run(apps=sys.argv[1])
 ```javascript title="vm-playback.js" linenums="1"
 /*jshint node:true */
 'use strict';
- 
+
 var ari = require('ari-client');
 var util = require('util');
 var path = require('path');
@@ -445,7 +445,6 @@ Quite a bit of this is similar to what we were using for our voice mail recordin
 
 Now that we have the state machine defined and the application written, let's actually write the required new states. First of the new states is the "preamble" state.
 
-
 ```python title="preamble_state.py" linenums="1"
 from event import Event
 import uuid
@@ -457,10 +456,9 @@ def sounds_installed(client):
 		print "Required sound 'vm-message' not installed. Aborting"
 		raise 
 
-
 class PreambleState(object):
 	state_name = "preamble"
-	
+
 	def __init__(self, call):
 		self.call = call
 		self.hangup_event = None
@@ -583,7 +581,7 @@ function PreambleState(call) {
 			playback = current_sound['playback'];
 			call.channel.play({media: current_sound['media']}, playback);
 		}
-		
+
 		function cleanup() {
 			call.channel.removeListener('ChannelHangupRequest', on_hangup);
 			call.channel.removeListener('ChannelDtmfReceived', on_dtmf);
@@ -640,10 +638,9 @@ def sounds_installed(client):
 		print "Required sound 'vm-nomore' not installed. Aborting"
 		raise
 
-
 class EmptyState(object):
 	state_name = "empty"
-	
+
 	def __init__(self, call):
 		self.call = call
 		self.playback_id = None
@@ -651,7 +648,7 @@ class EmptyState(object):
 		self.playback_finished = None
 		self.playback = None
 		sounds_installed(call.client)
-	
+
 	def enter(self):
 		self.playback_id = str(uuid.uuid4())
 		print("Entering empty state")
@@ -661,20 +658,20 @@ class EmptyState(object):
 			'PlaybackFinished', self.on_playback_finished)
 		self.playback = self.call.channel.playWithId(
 			playbackId=self.playback_id, media="sound:vm-nomore")
-	
+
 	def cleanup(self):
 		self.playback_finished.close()
 		if self.playback:
 			self.playback.stop()
 		self.hangup_event.close()
-	
+
 	def on_hangup(self, channel, event):
 		# Setting playback to None stops cleanup() from trying to stop the
 		# playback.
 		self.playback = None
 		self.cleanup()
 		self.call.state_machine.change_state(Event.HANGUP)
-	
+
 	def on_playback_finished(self, event):
 		if self.playback_id == event.get('playback').get('id'):
 			self.playback = None
@@ -696,7 +693,7 @@ function sounds_installed(client) {
 
 function EmptyState(call) {
 	this.state_name = "empty";
-	
+
 	this.enter = function() {
 		console.log("Entering empty state");
 		playback = call.client.Playback();
@@ -738,7 +735,7 @@ import uuid
 
 class ListeningState(object):
 	state_name = "listening"
-	
+
 	def __init__(self, call):
 		self.call = call
 		self.playback_id = None
@@ -746,7 +743,7 @@ class ListeningState(object):
 		self.playback_finished = None
 		self.dtmf_event = None
 		self.playback = None
-	
+
 	def enter(self):
 		self.paused = False
 		self.playback_id = str(uuid.uuid4())
@@ -760,22 +757,22 @@ class ListeningState(object):
 		self.playback = self.call.channel.playWithId(
 			playbackId=self.playback_id, media="recording:{0}".format(
 			self.call.get_current_voicemail_file()))
-	
+
 	def cleanup(self):
 		self.playback_finished.close()
 		if self.playback:
 			self.playback.stop()
 		self.dtmf_event.close()
 		self.hangup_event.close()
-	
+
 	def on_hangup(self, channel, event):
 		self.cleanup()
 		self.call.state_machine.change_state(Event.HANGUP)
-	
+
 	def on_playback_finished(self, event):
 		if self.playback_id == event.get('playback').get('id'):
 			self.playback = None
-	
+
 	def on_dtmf(self, channel, event):
 		digit = event.get('digit')
 		if digit == '1':
@@ -830,7 +827,7 @@ function ListeningState(call) {
 	this.enter = function() {
 		var playback = call.client.Playback();
 		var url = "recording:" + call.get_current_voicemail_file();
-		
+
 		console.log("Entering Listening state");
 		call.channel.on("ChannelHangupRequest", on_hangup);
 		call.channel.on("ChannelDtmfReceived", on_dtmf);
@@ -841,7 +838,7 @@ function ListeningState(call) {
 				console.error(err);
 			}
 		});
-		
+
 		function cleanup() {
 			call.channel.removeListener('ChannelHangupRequest', on_hangup);
 			call.channel.removeListener('ChannelDtmfReceived', on_dtmf);
@@ -850,19 +847,19 @@ function ListeningState(call) {
 				playback.stop();
 			}
 		}
-		
+
 		function on_hangup(event, channel) {
 			playback = null;
 			cleanup();
 			call.state_machine.change_state(Event.HANGUP);
 		}
-		
+
 		function on_playback_finished(event) {
 			if (playback && (playback.id === event.playback.id)) {
 				playback = null;
 			}
 		}
-		
+
 		function on_dtmf(event, channel) {
 			switch (event.digit) {
 			case '1':
@@ -951,4 +948,3 @@ You will be creating a rudimentary call queue application. The queue application
 * Once bridged, if the caller hangs up, then the agent should be placed into the back of the agent queue.
 
 Best of luck!
-

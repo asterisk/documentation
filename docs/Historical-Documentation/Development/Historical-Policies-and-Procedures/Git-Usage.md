@@ -36,7 +36,6 @@ The repositories on GitHub mirror the repositories on Gerrit, also provide sourc
 
 On This Page
 
-
 Gerrit Access
 =============
 
@@ -44,16 +43,10 @@ Anyone may clone repositories from Gerrit anonymously.
 
 Users may participate in code reviews or contribute patches if they have signed a [Contributor License Agreement](https://github.com/asterisk/asterisk/issues/jira/secure/DigiumLicense.jspa). Access to Gerrit is performed using your JIRA (Atlassian) username/password. You may create an account at <https://signup.asterisk.org>, and sign a CLA in [JIRA](https://github.com/asterisk/asterisk/issues/jira). Note that you will not be able to log into Gerrit if a CLA is not associated with your JIRA account.
 
-
-
-
 !!! note 
     When submitting a patch to Gerrit, you are explicitly doing so under the terms and conditions of the [Contributor License Agreement](https://github.com/asterisk/asterisk/issues/jira/secure/DigiumLicense.jspa). If you do not wish to contribute a patch back to the Asterisk project, please do not push a patch up to Gerrit.
 
-      
 [//]: # (end-note)
-
-
 
 Gerrit Policies
 ===============
@@ -63,13 +56,9 @@ Code Reviews
 
 * A `-2` should only be used if the current implementation requires a complete rewrite to be acceptable, or if the change should not be made under any implementation.
 
-
-
-
 !!! note 
     If you use a `-2`, please be prepared to justify its usage.
 
-      
 [//]: # (end-note)
 
 * A `+2` should generally not be given unless someone has already given the review a `+1`.
@@ -103,21 +92,12 @@ Useful Commands and Tips
 * If you use an IDE or other tools that need configuration files in the working directory but their names don't match an entry in .gitignore, you can add them to git/info/exclude to ignore them locally without updating the checked-in .gitignore.
 * `git log`:  This is one of the more useful tools there is.  Here are some examples:Show the commit difference between 13.8 and 13.9
 
-
 	+ Show the difference between the 13.8 and 13.9 branches:  
-	
-	
-	
-	
-	
+
 	---
-	
-	  
-	  
-	
-	
+
 	```
-	
+
 	$ git log --graph --decorate --no-merges -E --grep="^(realtime: Add database scripts for|ChangeLog:|Release summaries:|[.])" \
 	$ --invert-grep --pretty=format:'%Cred %h %C(yellow) %d %Creset %<(60,trunc) %s %Cgreen(%cr)' 13.8..13.9
 	\* d27ee3b res_sorcery_astdb: Fix creation of retrieved objects. (11 days ago)
@@ -126,100 +106,60 @@ Useful Commands and Tips
 	\* b470aab func_odbc: Check connection status before executing queries. (3 weeks ago)
 	<snip>
 	$
-	
+
 	```
-	
-	
-	
+
 	---
-	
-	
+
 	 Both are branches so you'll see the diff between their current states with the merge and housekeeping commits excluded.
 	+ That's a lot to type so add an alias:  
-	
-	
-	
-	
-	
+
 	---
-	
-	  
-	  
-	
-	
+
 	```
-	
+
 	$ git config --global --add alias.cdiff "log --graph --decorate --no-merges \
 	 -E --grep='^(realtime: Add database scripts for|ChangeLog:|Release summaries:|[.])' \
 	 --invert-grep --pretty=format:'%Cred %h %C(yellow) %d %Creset %<(60,trunc) %s %Cgreen(%cr)'"
 	$
-	
+
 	```
-	
-	
-	
+
 	---
 	+ Show the commits added to 13.9 after up to 13.9.1  
-	
-	
-	
-	
-	
+
 	---
-	
-	  
-	  
-	
-	
+
 	```
-	
+
 	$ git cdiff 13.9..13.9.1
 	$
-	
+
 	```
-	
-	
-	
+
 	---
-	
-	
+
 	 Wait, that didn't show anything!  That's because 13.9.1 is a tag on 13.9 and nothing's been added to 13.9 since then so they're equal. What you probably want is:
-	
-	
-	
-	
+
 	---
-	
-	  
-	  
-	
-	
+
 	```
-	
+
 	$ git cdiff 13.9.0..13.9.1
 	\* d27ee3b res_sorcery_astdb: Fix creation of retrieved objects. (11 days ago)
 	\* 15c427c Use doubles instead of floats for conversions when compari.. (11 days ago)
 	<snip>
 	$
-	
+
 	```
-	
-	
-	
+
 	---
 	+ Now things get a little complicated. Let's say 13.8 is closed but certified/13.8 is still open. So, what's in certified/13.8 but not 13.8? You might be tempted to use the `'..'` operator between the 2 branches as before but because `'..'` is a range operator it doesn't work well when the 2 branches overlap, especially when we're cherry-picking; you'll wind up showing commits that are in both branches. Instead, you need to use the `'...'` operator and the `--cherry-pick` flag.
-	
-	
-	
-	
+
 	---
-	
-	  
-	  
-	
-	
+
 	```
-	
+
 	$ git cdiff --cherry-pick --right-only 13.8...certified/13.8
 	\* b9a28cc udptl: Don't eat sequence numbers until OK is received (5 days ago)
 	| \* f85c77a chan_sip: Prevent extra Session-Expires headers from bein.. (6 days ago)
@@ -230,25 +170,16 @@ Useful Commands and Tips
 	\* c4426f1 res_pjsip: disable multi domain to improve realtime perfor.. (3 weeks ago)
 	<snip>
 	$
-	
+
 	```
-	
-	
-	
+
 	---
 	+ Finally, things get even more complicated when trying to compare 13 and master.  Because of the cherry-picking and the fact that these 2 branches started in subversion, there is no single git command that will show the differences reliably. The only way to do this is to pick a point in time as a starting reference, list the log from both branches, sort them, then compare them.  It would be nice if git could do the matching on the gerrit change id but it can't so we're left with matching on subject
-	
-	
-	
-	
+
 	---
-	
-	  
-	  
-	
-	
+
 	```
-	
+
 	$ git log --date=short --pretty=format:"master %h %cd %s" --since='2015/04/11' --no-merges master > /tmp/master
 	$ git log --date=short --pretty=format:"13 %h %cd %s" --since='2015/04/11' --no-merges 13 > /tmp/13
 	$ sort -k4 /tmp/13 /tmp/master | uniq -u --skip-fields=3
@@ -261,14 +192,9 @@ Useful Commands and Tips
 	master 8c14b91 2015-11-19 app_bridgeaddchan: ability to barge into existing call
 	<snip>
 	$
-	
-	```
-	
-	
-	
-	---
-	
-	
-	April 11 2015 was the migration from subversion to git.  Also note that the 2 app_amd commits are probably the same but we have no way to tell.
 
-  
+	```
+
+	---
+
+	April 11 2015 was the migration from subversion to git.  Also note that the 2 app_amd commits are probably the same but we have no way to tell.

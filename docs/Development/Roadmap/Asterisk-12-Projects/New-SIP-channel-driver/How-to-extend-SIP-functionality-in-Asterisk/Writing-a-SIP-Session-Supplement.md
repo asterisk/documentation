@@ -15,18 +15,12 @@ Method of solution
 
 In order to solve this problem, we will write a simple session supplement that is capable of adding information to outgoing INVITE requests to add appropriate headers to request that the recipient of the INVITE automatically answers the call. The headers will be added if there exists a channel variable called `SIP_AUTO_ANSWER` on the outbound channel.
 
-
-
-
 !!! warning 
     What follows is a very naive implementation of of the auto-answer feature in SIP. In actuality, there is more to this, such as determining the capability of a SIP UA to understand the "answermode" option. In addition, there are headers beyond what we add here in order to indicate a "privileged" answer mode, as well as headers that direct proxies what sort of UAs to send and not to send an INVITE to.
 
     For demonstration purposes of a SIP session supplement, however, this should get the appropriate point across.
 
-      
 [//]: # (end-warning)
-
-
 
 Creating the supplement
 =======================
@@ -283,7 +277,7 @@ c ...
  if (!add_auto_answer) {
  return;
  }
- 
+
  /* Let's add the require header. There could already be a require header present in the
  ...
 
@@ -340,7 +334,7 @@ static void auto_answer_outgoing_request(struct ast_sip_session \*session, pjsip
  pjsip_generic_string_hdr \*answer_mode;
  pjsip_require_hdr \*require;
  int add_auto_answer;
- 
+
  if (session->inv_session->state >= PJSIP_INV_STATE_CONFIRMED) {
  return;
  }
@@ -399,4 +393,3 @@ AST_MODULE_INFO(ASTERISK_GPL_KEY, AST_MODFLAG_LOAD_ORDER, "SIP Auto Answer Suppo
 ```
 
 And there you have it. In approximately 80 lines of code, you've added an Asterisk module that can modify outgoing INVITE requests!
-

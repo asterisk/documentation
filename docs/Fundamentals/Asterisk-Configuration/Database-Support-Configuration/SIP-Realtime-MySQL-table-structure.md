@@ -107,4 +107,3 @@ CREATE TABLE IF NOT EXISTS `sipfriends` (
 ) ENGINE=MyISAM;
 
 ```
-

@@ -7,16 +7,10 @@ Example output on this page is from Asterisk 11.
 
 ### core show locks
 
-
-
-
 !!! warning Warning!
     Compiling with DEBUG_THREADS can reduce the performance of Asterisk. Primarily in terms of CPU consumption.
 
-      
 [//]: # (end-warning)
-
-
 
 This command is not available until you compile with [DEBUG_THREADS](/Getting-Started/Installing-Asterisk/Installing-Asterisk-From-Source/Using-Menuselect-to-Select-Asterisk-Options) and it is generally preferred that you also compile with [BETTER_BACKTRACES](/Getting-Started/Installing-Asterisk/Installing-Asterisk-From-Source/Using-Menuselect-to-Select-Asterisk-Options) to get the most useful output.
 
@@ -194,8 +188,3 @@ Current maxfiles: unlimited
  24 asterisk.c:4489 (main ): pipe({23,24})
 
 ```
-
-
-
-
-

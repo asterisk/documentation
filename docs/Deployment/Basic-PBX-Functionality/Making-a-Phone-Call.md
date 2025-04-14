@@ -19,9 +19,6 @@ As you can see, Alice called extension **6002** in the [from-internal] context, 
 
 At this point, you have a very basic PBX. It has two extensions which can dial each other, but that's all. Before we move on, however, let's review a few basic troubleshooting steps that will help you be more successful as you learn about Asterisk.
 
-
-
-
 !!! tip 
     ##### Basic PBX Troubleshooting
 
@@ -35,8 +32,4 @@ At this point, you have a very basic PBX. It has two extensions which can dial e
 
     To see which extension will be executed when you dial extension **6002**, type **dialplan show 6002@from-internal**.
 
-      
 [//]: # (end-tip)
-
-
-

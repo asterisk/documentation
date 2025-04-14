@@ -63,6 +63,3 @@ As the first LTS release of Asterisk based on the new architecture provided by A
 * Advice of Charge (AoC)
 * CEL
 * Connected Party (COLP)
-
-
-

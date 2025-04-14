@@ -3,9 +3,6 @@ title: Asterisk Project Infrastructure Migration
 pageid: 52069711
 ---
 
-
-
-
 !!! note 
     The Asterisk Project Issue Tracking and Code Management functions were successfully moved to GitHub on April 29th 2023!
 
@@ -23,14 +20,9 @@ pageid: 52069711
 
 [Asterisk Community Services](/Asterisk-Community/Asterisk-Community-Services)
 
-    
-
     Migration of this Wiki is still pending.
 
-      
 [//]: # (end-note)
-
-
 
 Overview
 ========
@@ -51,10 +43,3 @@ If you don't already have one, you must create a GitHub account if you plan on r
 
 Detailed Information:
 =====================
-
-
-
-
-
-
-

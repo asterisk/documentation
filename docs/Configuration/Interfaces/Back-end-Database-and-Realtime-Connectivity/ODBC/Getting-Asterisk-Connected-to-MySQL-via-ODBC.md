@@ -58,14 +58,11 @@ After each of the CREATE and GRANT commands you should see output indicating tha
 
 ```
 
-
 ## Install ODBC and the MariaDB ODBC connector
-
 
 !!! warning 
     It is not recommended to use the MySQL ODBC connector due to crash issues experienced by users. These have not been experienced when using the MariaDB ODBC connector.
 
-      
 [//]: # (end-warning)
 
 Be sure you have followed the previous sections as we presume you already have MySQL installed on your CentOS server along with a database and user for Asterisk configured. The database name should be 'asterisk' and the username should be 'asterisk'.
@@ -105,9 +102,6 @@ UsageCount=1
 
 ```
 
-  
-
-
 You can also call **`odbcinst`** to query the driver, verifying that the configuration is found.
 
 ```bash title=" " linenums="1"
@@ -134,17 +128,10 @@ Socket = /var/lib/mysql/mysql.sock
 
 ```
 
-
-
 !!! note 
     You may want to verify that mysql.sock is actually in the location specific here. It will differ on some systems depending on your configuration.
 
-      
 [//]: # (end-note)
-
-
-
-
 
 ## Test the ODBC Data Source Name connection
 
@@ -159,17 +146,10 @@ So, for our purposes you would enter:
 
 ```
 
-
-
 !!! tip 
     It is important to use the -v flag so that if isql runs into a problem you will be alerted of any diagnostics or errors available.
 
-      
 [//]: # (end-tip)
-
-
-
-
 
 At this point you should get an SQL prompt. Run the following command:
 
@@ -193,8 +173,6 @@ SQLRowCount returns 1
 SQL> quit
 
 ```
-
-
 
 ## Configuring Asterisk to Use the New ODBC and MySQL Install
 
@@ -220,4 +198,3 @@ See [Building and Installing Asterisk](/Getting-Started/Installing-Asterisk/Inst
 The basic configuration for an Asterisk ODBC connection is handled in res_odbc.conf. You should check out the [Configuring res_odbc](/Configuration/Interfaces/Back-end-Database-and-Realtime-Connectivity/ODBC/Configuring-res_odbc) page and follow it using the DSN and database username and password you setup earlier.
 
 After you have the connection set up in Asterisk you are ready to then configure your database tables with the proper schema depending on what exactly you want to do with them. Asterisk comes with some helpful tools to do this, such as Alembic. See the [Managing Realtime Databases with Alembic](../../Managing-Realtime-Databases-with-Alembic) section to get started with Alembic if you are working towards an Asterisk Realtime setup.
-

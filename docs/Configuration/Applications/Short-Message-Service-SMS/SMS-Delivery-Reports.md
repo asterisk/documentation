@@ -7,9 +7,6 @@ The SMS specification allows for delivery reports. These are requested using the
 
 The main changes that are proposed for delivery report handling are :
 
-
 * New queues for sent messages, one file for each destination address and message reference.
 * New field in message format, user reference, allowing applications to tie up their original message with a report.
 * Handling of the delivery confirmation/rejection and connecting to the outgoing message - the received message file would then have fields for the original outgoing message and user reference allowing applications to handle confirmations better.
-
-

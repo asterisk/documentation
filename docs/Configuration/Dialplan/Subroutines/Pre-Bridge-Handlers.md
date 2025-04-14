@@ -28,9 +28,6 @@ M(macro[^arg[^...]])
 
 The variable MACRO_RESULT can be set with certain options inside the specified macro to determine behavior when the macro finishes. The options are documented in the [Dial application documentation](/Latest_API/API_Documentation/Dialplan_Applications/Dial).
 
-
-
-
 ### U flag
 
 The U flag allows a [gosub](/Configuration/Dialplan/Subroutines/Gosub) and arguments to be specified. You must remember to call Return inside the gosub.
@@ -91,8 +88,6 @@ CLI output
  == Spawn extension (from-internal, 6001, 1) exited non-zero on 'PJSIP/BOB-00000014'
 
 ```
-
-
 
 ### Example 2 - Executing a pre-bridge gosub handler from Dial
 
@@ -227,4 +222,3 @@ CLI output
  == Spawn extension (from-internal, 7001, 2) exited non-zero on 'PJSIP/BOB-00000004'
 
 ```
-

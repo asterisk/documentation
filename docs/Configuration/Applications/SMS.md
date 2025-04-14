@@ -116,4 +116,3 @@ In this case the called number we get from BT is 6 digits (XXXXXX) and we are us
 Priority 1 causes the SMS to be received and processed for the incoming call. It is from 080058752X0. The two versions handle the queue name as 3 digits (no sub address) or 4 digits (with sub address). In both cases, after the call a script (smsin) is run - this is optional, but is useful to actually processed the received queued SMS. In our case we email them based on the target number. Priority 3 hangs up.
 
 If using the CAPI drivers they send the right CLI and so the _800... would be _0800...
-

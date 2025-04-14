@@ -3,16 +3,10 @@ title: Call Pickup
 pageid: 21463197
 ---
 
-
-
-
 !!! info ""
     Call pickup support added in Asterisk 11
 
-      
 [//]: # (end-info)
-
-
 
 Overview
 ========
@@ -60,17 +54,13 @@ same => n,Set(CHANNEL(namedcallgroup)=engineering,sales)
 
 ```
 
-
-
 !!! note 
     For this option to be effective, you must set it on the outgoing channel. There are a couple of ways:
 
     * You can use the setvar option available with several channel driver configuration files to set the pickup groups.
     * You can use a pre-dial handler.
-      
+
 [//]: # (end-note)
-
-
 
 ### pickupgroup/namedpickupgroup
 
@@ -88,16 +78,12 @@ same => n,Set(CHANNEL(namedpickupgroup)=engineering,sales)
 
 ```
 
-
-
 !!! note 
     For this option to be effective, you must set it on the channel before executing the Pickup application or calling the pickupexten.
 
     * You can use the setvar option available with several channel driver configuration files to set the pickup groups.
-      
+
 [//]: # (end-note)
-
-
 
 Configuration Options
 ---------------------
@@ -106,22 +92,13 @@ The pickupexten request method selects calls using the numeric and named call gr
 
 Calls picked up using pickupexten can hear an optional sound file for success and failure.
 
-
-
-
 !!! note 
     The current channel drivers that support calling the pickupexten to pickup a call are: chan_dahdi/analog, chan_mgcp, chan_misdn, chan_sip, chan_unistim and chan_pjsip.
 
-      
 [//]: # (end-note)
-
-
-
-
 
 ---
 
-  
 features.conf  
 
 ```
@@ -135,12 +112,8 @@ pickupfailsound = beeperr ; to indicate that the pickup failed (default: no soun
 
 A numeric callgroup and pickupgroup can be set to a comma separated list of ranges (e.g., 1-4) or numbers that can have a value of 0 to 63. There can be a maximum of 64 numeric groups.
 
-
-
-
 ---
 
-  
 SYNTAX  
 
 ```
@@ -152,12 +125,8 @@ pickupgroup=[number[-number][,number[-number][,...]]]
 * callgroup - specifies which numeric pickup groups that this channel is a member.
 * pickupgroup - specifies which numeric pickup groups this channel can pickup.
 
-
-
-
 ---
 
-  
 Configuration example  
 
 ```
@@ -177,12 +146,8 @@ Configuration should be supported in several channel drivers, including:
 
 pjsip.conf uses snake case:
 
-
-
-
 ---
 
-  
 Configuration in pjsip.conf  
 
 ```
@@ -195,12 +160,8 @@ pickup_group=1
 
 A named callgroup and pickupgroup can be set to a comma separated list of case sensitive name strings. The number of named groups is unlimited. The number of named groups you can specify at once is limited by the line length supported.
 
-
-
-
 ---
 
-  
 SYNTAX  
 
 ```
@@ -212,12 +173,8 @@ namedpickupgroup=[name[,name[,...]]]
 * namedcallgroup - specifies which named pickup groups that this channel is a member.
 * namedpickupgroup - specifies which named pickup groups this channel can pickup.
 
-
-
-
 ---
 
-  
 Configuration Example  
 
 ```
@@ -241,19 +198,9 @@ named_pickup_group=sales
 
 ```
 
-
-
 !!! note 
     You can use named pickup groups in parallel with numeric pickup groups. For example, the named pickup group '4' is not the same as the numeric pickup group '4'.
 
     Named pickup groups are new with Asterisk 11.
 
-      
 [//]: # (end-note)
-
-
-
-
-
-
-

@@ -3,10 +3,6 @@ title: AstriDevCon 2010
 pageid: 6979978
 ---
 
-
-
-
-
 # Introduction
 
 AstriDevCon 2010 was held on Friday, October 29th. It was held on the day following AstriCon at the same location. A group of active development community members met and discussed a number of topics, including:
@@ -64,7 +60,6 @@ P1 is the highest priority.
 * -Conferencing that supports a new magic media- (Digium)
     * -higher sampling rates-
 
-
 ## (P2)
 
 - Async DNS (TCP DNS and use a good resolver)
@@ -80,7 +75,6 @@ P1 is the highest priority.
 * Who hung up? (there's a branch, shouldn't take too much time - Olle)
 * Unique identifier for filtering log data to a call 
     * (finishing what was already begun w/ Clod's project, CLI filtering; should take a look at what Stephan from Unlimitel.ca's created)
-
 
 ## (P4, Simon's features)
 
@@ -99,7 +93,6 @@ P1 is the highest priority.
     * (on reviewboard; needs to be forward ported; important for organizations w/ federated identities; a requirement for DTLS SRTP; not widely deployed)
 * RTMP client channel driver
 
-
 ## (P6)
 
 * Structured identifiers for errors 
@@ -109,7 +102,6 @@ P1 is the highest priority.
 * AMI filters on demand
 * DTLS SRTP
     * (not likely to be widely deployed in the next 12 months)
-
 
 ## (P7, not kobaz)
 
@@ -123,7 +115,6 @@ P1 is the highest priority.
 - Make resource modules that talk to DBs attempt reconnects
 - Apple's new file streaming format, derived from .m3u
 - Make MixMonitor and Monitor feature compatible
-
 
 ## (P?, Research Required)
 
@@ -140,9 +131,6 @@ P1 is the highest priority.
 * Bridging thread pool
 * Threadify chan_sip
 * Export ISDN ROSE information up to Asterisk channels
-
-
-
 
 # Testing Framework Ideas
 
@@ -180,7 +168,6 @@ We discussed the automated testing that has been built for Asterisk and discusse
 - Tonezone tests
 - Language tests
 
-
 # Release Policy Discussion
 
 We discussed Asterisk release policy. Specifically, we were considering the current policy that excludes features from a release branch. After a bit of discussion, it was decided that no changes to policy would be made. We did agree that a new self contained module that was not compiled by default would be fine, but that it would be rare that it would provide benefit, since most projects are modifications of existing code. 
@@ -193,4 +180,3 @@ We rock.
 !IMG_4164.JPG|align=center,thumbnail!
 !IMG_4165.JPG|align=center,thumbnail!
 !IMG_4166.JPG|align=center,thumbnail!
-

@@ -3,34 +3,23 @@ title: res_sip_session design
 pageid: 22085841
 ---
 
-
-
-
 !!! warning 
     This page is currently under construction. Please refrain from adding comments until this warning is removed
 
-      
 [//]: # (end-warning)
-
-
 
 Overview
 ========
 
-
 `res_sip_session` represents the "core" of SIP session operations. In the context of SIP, a "session" refers to a media session, such as a phone call. The SIP channel driver will be a consumer of the services provided by `res_sip_session`.
-
 
 Startup procedure
 =================
 
-
 When `res_sip_session` starts up, it registers itself with `res_sip` as a service. This will cause `res_sip` to call into `res_sip_session` when new SIP messages come in. `res_sip_session` will handle those associated with sessions (i.e. INVITEs, and in-dialog REFERs, INFOs, UPDATEs, and PRACKs).
-
 
 Public methods
 ==============
-
 
 Structures
 ----------
@@ -254,4 +243,3 @@ int ast_sip_session_send_reinvite(struct ast_sip_session \*session, int (\*respo
 int ast_sip_session_send_response(struct ast_sip_session \*session, int response_code, struct pjsip_rx_data \*rdata);
 
 ```
-

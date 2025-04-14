@@ -43,13 +43,9 @@ Options Context
 
 Some additional annotation for each configuration option is included inline.
 
-
-
-
 !!! note 
     TODO: Match this up with what is current in the sample, and update both.
 
-      
 [//]: # (end-note)
 
 ```
@@ -160,4 +156,3 @@ lockmode = lockfile | flock
 ;astctl = asterisk.ctl
 
 ```
-

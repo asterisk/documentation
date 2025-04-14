@@ -3,16 +3,10 @@ title: Asterisk 12 chan_pjsip CLI Specification
 pageid: 26478200
 ---
 
-
-
-
 !!! warning 
     This is a draft under construction.
 
-      
 [//]: # (end-warning)
-
-
 
 Asterisk 12 chan_pjsip CLI Specification
 =========================================
@@ -39,7 +33,4 @@ CLI Command Specifications
 pjsip show endpoints
 --------------------
 
-
-
 ---
-

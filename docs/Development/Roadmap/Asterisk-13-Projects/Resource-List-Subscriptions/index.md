@@ -15,7 +15,6 @@ These limitations can drastically limit the number of devices a PBX administrato
 
 25%On this Page
 
-
 Resource List Subscriptions
 ---------------------------
 

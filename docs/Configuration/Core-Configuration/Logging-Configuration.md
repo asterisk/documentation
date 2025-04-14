@@ -132,4 +132,3 @@ full => notice,warning,error,verbose,dtmf,fax
 syslog.local0 => notice,warning,error
 
 ```
-

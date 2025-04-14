@@ -92,8 +92,6 @@ Note that the actual CEL events below are in CSV format and do not include the ;
 
 ```
 
-
-
 In terms of Manager events, the above Events correspond to the following 80 Manager events shown in the expansion link.
 
 ```
@@ -720,4 +718,3 @@ And, humorously enough, the above 80 manager events, or 42 CEL events, correspon
 ""fxs.50" 150","150","152","extension","Zap/50-1","Zap/51-1","NoOp","More Hangup message after hopping around"","2007-05-09 17:37:59","2007-05-09 17:38:06","2007-05-09 17:39:11","72","65","ANSWERED","DOCUMENTATION","","1178753871.3",""
 
 ```
-

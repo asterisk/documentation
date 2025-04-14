@@ -186,7 +186,6 @@ public_cert_url = https://example.com/tncerts/multi-tns-cert.pem
 attest_level = C
 ```
 
-
 #### TN Object
 
 Each "tn" object contains the parameters needed to create the Identity
@@ -485,7 +484,6 @@ Default: none
 CAUTION: Setting this parameter could have serious security
 implications and should only be use for testing.
 
-
 ##### Example "verification" object:
 
 ```
@@ -764,4 +762,3 @@ The best places to become familiar with STIR/SHAKEN itself are:
 * [RFC8224 Authenticated Identity Management in the Session Initiation Protocol (SIP)](https://www.rfc-editor.org/rfc/rfc8224.html)
 * [RFC 9060 Secure Telephone Identity Revisited (STIR) Certificate Delegation](https://www.rfc-editor.org/rfc/rfc9060.html)
 * [ATIS-1000074v003: Signature-based Handling of Asserted information using toKENs (SHAKEN)](https://access.atis.org/higherlogic/ws/public/download/67436/ATIS-1000074.v003.pdf)
-

@@ -17,12 +17,8 @@ Configure Asterisk Dialplan
 
 We'll make a simple dialplan for receiving a test call from the sipml5 client.
 
-
-
-
 ---
 
-  
 /etc/asterisk/extensions.conf  
 
 ```
@@ -33,8 +29,6 @@ same => n,Hangup()
 
 ```
 
-
-
 This instructs Asterisk to Answer a call to "200," to play a file named "demo-congrats" (included in Asterisk's core sound file packages), and to hang up.  To make the extension active, either restart Asterisk or issue a "dialplan reload" command from the Asterisk CLI.
 
 Browsers and WSS
@@ -44,24 +38,13 @@ When using WSS as a transport, Chrome and Firefox will not allow you, by default
 
 Or, for Firefox and Chrome, you can open a separate browser tab and point it to Asterisk's HTTPs server's TLS port and WS path, e.g. `https://pbx.example.com:8089/ws`, and you can manually confirm the security exception.
 
-  
-
-
 Configure SIPML5
 ================
-
-
-
-
-
 
 !!! info ""
     SIPML5 is a useful client for testing Asterisk. Many real-world users explore other options that may include rolling your own client.
 
-      
 [//]: # (end-info)
-
-
 
 Next, visit <https://sipml5.org> - you'll be redirected to <https://www.doubango.org/sipml5/>
 
@@ -84,8 +67,6 @@ Next, click the "Expert mode?" form button.  It will open a new browser tab.  In
 
 ![](Screenshot_2018-09-07_06-57-13.png)
 
-
-
 Here, we have made the following changes:
 
 * Checked the "Disable Video" box
@@ -98,16 +79,12 @@ Next, click "Login" and you should see *Connected* as such:
 
 ![](Screenshot_2018-09-07_06-58-43.png)
 
-
-
 You should see a corresponding connection happen on the Asterisk CLI.  You can log into the Asterisk CLI by performing:
 
 ```bash title=" " linenums="1"
 # asterisk -vvvr
 
 ```
-
-
 
 Then, you can LogOut and Login and see something like:
 
@@ -142,6 +119,3 @@ Finally, when the call is connected, you will see *In Call*:
 and you will hear "Congratulations, you have successfully installed and executed the Asterisk open source PBX..."
 
 You've just made your first call via WebRTC using Asterisk!
-
-
-

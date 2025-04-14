@@ -22,9 +22,7 @@ When specifiying a file extension when using the **Record()** application, you m
 
 You've now learned the basics of how to create a simple auto-attendant menu. Now let's build a more practical menu for callers to be able to reach Alice or Bob or the dial-by-name directory.
 
-
 ##  Procedure 216.1. Building a Practical Auto-Attendant Menu
-
 
 1. Add an extension 6599 to the `[docs:users]` context which sends the calls to a new context we'll build called `[docs:day-menu]`. Your extension should look something like:
 
@@ -39,17 +37,17 @@ You've now learned the basics of how to create a simple auto-attendant menu. Now
 	exten => s,1,Answer(500)
 	same => n(loop),Background(custom-menu)
 	same => n,WaitExten()
-	
+
 	exten => 1,1,Goto(users,6001,1)
-	
+
 	exten => 2,1,Goto(users,6002,1)
-	
+
 	exten => 9,1,Directory(vm-demo,users,fe)
 	exten => \*,1,VoiceMailMain(@vm-demo)
-	
+
 	exten => i,1,Playback(option-is-invalid) 
 	same => n,Goto(s,loop)
-	
+
 	exten => t,1,Playback(are-you-still-there)
 	same => n,Goto(s,loop)
 	```
@@ -57,6 +55,4 @@ You've now learned the basics of how to create a simple auto-attendant menu. Now
 1. Dial extension **6597** to record your auto-attendant sound prompt. Your sound prompt should say something like "Thank you for calling! Press one for Alice, press two for Bob, or press 9 for a company directory". Press the hash key (**#**) on your keypad when you're finished recording, and Asterisk will play it back to you. If you don't like it, simply dial extension **6597** again to re-record it.
 2. Dial extension **6599** to test your auto-attendant menu.
 
-
 In just a few lines of code, you've created your own auto-attendant menu. Feel free to experiment with your auto-attendant menu before moving on to the next section.
-

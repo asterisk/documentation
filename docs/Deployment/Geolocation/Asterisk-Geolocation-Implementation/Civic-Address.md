@@ -14,7 +14,6 @@ The following tables list the IANA registered element names that are currently a
 
 These codes were originally defined in [RFC4119](https://www.rfc-editor.org/rfc/rfc4119) and [RFC4776](https://www.rfc-editor.org/rfc/rfc4776)
 
-
 | Label | Description | Example |
 | --- | --- | --- |
 | country | The country is identified by the two-letter ISO 3166 code. | US |
@@ -37,7 +36,6 @@ These codes were originally defined in [RFC4119](https://www.rfc-editor.org/rfc/
 
 These codes were added in [RFC5139](https://www.rfc-editor.org/rfc/rfc5139)
 
-
 | Label | Description | Example |
 | --- | --- | --- |
 | BLD | Building (structure) | Hope Theatre |
@@ -56,7 +54,6 @@ These codes were added in [RFC5139](https://www.rfc-editor.org/rfc/rfc5139)
 | POM | Road post-modifier | Service |
 
 These codes were added in [RFC6848](https://www.rfc-editor.org/rfc/rfc6848)
-
 
 | Label | Description | Example |
 | --- | --- | --- |
@@ -172,4 +169,3 @@ Here's what Bob's PIDF-LO would look like:
 ```
 
 Note that the only civicAddress difference between the two are the `FLR` and `ROOM`.
-

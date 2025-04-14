@@ -15,16 +15,9 @@ Use Cases
 
 The following, for the most part, assumes that the channels use RTP for media and SIP for signalling. Most use cases, however, will translate to any VoIP channel driver. DAHDI, as always, is its own thing.
 
-
-
-
 !!! note 
     The Offer/Answer use cases below only apply to `chan_pjsip`. `chan_sip`, for better or worse, has its own fun rules about what codecs are offered and when.
 [//]: # (end-note)
-
-
-  
-  
 
 ```
 /* add_sdp */
@@ -35,12 +28,7 @@ The following, for the most part, assumes that the channels use RTP for media an
  - Then other codecs in capabilities, including video
 */  
 
-
-
 ---
-
-
-
 
 Changing `chan_sip` is fraught with peril. As such, we're going to try and give the power/flexibility of how things are offered/answered to where we can better maintain/control the behaviour, which means `chan_pjsip`.
 
@@ -64,24 +52,15 @@ Single Channel
 
 ### Nominal Offer/Answer (Single Media Stream)
 
-
-
-
 !!! info ""
     Each of the tests with a Single Media Stream should be repeated for each media stream that a channel driver supports, i.e., audio, video, RTT, etc.
 
-      
 [//]: # (end-info)
-
-
 
 #### Offer Negotiation - Nominal
 
 * Alice's phone offers some set of codecs in an INVITE request (example: ulaw,g729,ilbc), where all codecs are supported by Alice's endpoint
 * Asterisk responds with an answer containing the codecs in the order specified by the offer
-
-
-
 
 !!! tip 
     This should also verify various SDP offers:
@@ -91,10 +70,7 @@ Single Channel
 
     While these could be considered "off-nominal", they are allowed by the various RFCs and should be covered under a 'nominal negotiation', where the set of codecs offered match completely with what is configured in Asterisk
 
-      
 [//]: # (end-tip)
-
-
 
 #### Offer Negotiation - Subset (Alice)
 
@@ -130,9 +106,6 @@ Single Channel
 
 All use cases covered in Nominal Offer/Answer (Single Media Stream) apply here as well, save that there should be multiple streams of different types. Asterisk should treat the preferred codec offer in the same fashion for each stream independently; that is, if the preferred codec list is ulaw,g722,h261,h264, then the preferred audio codec is ulaw and the preferred video codec is h261.
 
-
-
-
 !!! info ""
     Each of the following tests be repeated to include multiple media streams in various combinations:
 
@@ -140,10 +113,8 @@ All use cases covered in Nominal Offer/Answer (Single Media Stream) apply here a
     * Video + Text
     * Audio + Text
     * Audio + Video + Text
-      
+
 [//]: # (end-info)
-
-
 
 ### Restricted Offer/Answer (Single Stream)
 
@@ -242,13 +213,9 @@ Multiple Channels
 * Alice sends an INVITE request with a different ordered set of codecs than Bob.
 * Alice's channel is set to re-INVITE back to native bridging if possible.
 
-
-
-
 !!! tip 
     Variants to test: Bob's channel being set to re-INVITE back to a native bridge, as well as both channels being set to re-INVITE.
 
-      
 [//]: # (end-tip)
 
 * Asterisk dials Bob with his set of codecs in his endpoint's priority order.
@@ -268,13 +235,9 @@ Multiple Channels
 * Alice and Bob enter a bridge together. Asterisk sends a re-INVITE to Alice and to Bob with the formats that are in common.
 * Alice responds to the re-INVITE with a failure response (488)
 
-
-
-
 !!! tip 
     Variants to test: Bob rejects the re-INVITE; both Alice and Bob reject the re-INVITE
 
-      
 [//]: # (end-tip)
 
 * Asterisk sends an UPDATE request (if Alice/Bob support it) with the previous SDP (see RFC 6337, section 3.4)
@@ -286,15 +249,10 @@ Multiple Channels
 * Prior to dialling Bob, PJSIP_MEDIA_OFFER modifies which codecs will be offered. (Alternatively, the CHANNEL function in a pre-dial handler)
 * Asterisk sends an INVITE request with the codecs specified, regardless of whether or not Bob's endpoint supports them.
 
-
-
-
 !!! tip 
     This scenario should test sending Bob both acceptable codecs for his endpoint, as well as codecs that are unsupported.
 
-      
 [//]: # (end-tip)
-
 
 ### Modified inbound response
 
@@ -302,22 +260,12 @@ Multiple Channels
 * Prior to being answered, the CHANNEL function changes what media formats are accepted. Note that this must be a subset of what Alice's endpoint accepts.
 * Asterisk responds with the formats the CHANNEL function specified
 
-
-
 ### Modified codecs (chan_sip)
-
-
-
 
 !!! note 
     This needs to be populated with tests that exercise SIP_CODEC
 
-      
 [//]: # (end-note)
-
-
-
-
 
 Design
 ======
@@ -436,16 +384,10 @@ The ast_format_pref structure currently uses a fixed sized array of formats (not
 
 The ast_format_copy operation will simply be incrementing the reference count of the format and returning it.
 
-
-
-
 !!! note 
     I don't foresee needing a function which does a deep copy. In practice you don't copy a media format and then modify it.
 
-      
 [//]: # (end-note)
-
-
 
 ### ast_format_cmp
 
@@ -474,8 +416,6 @@ struct ast_format \*ast_format_create(struct ast_codec \*codec);
 
 ```
 
-
-
 Example:
 
 ```
@@ -496,8 +436,6 @@ static void example(void)
 
 ```
 
-
-
 #### Setting attributes
 
 Attribute information can be set on a format by using the ast_format_attribute_set function. To keep things dynamic it takes in both a string for attribute name and value.
@@ -506,8 +444,6 @@ Attribute information can be set on a format by using the ast_format_attribute_s
 int ast_format_attribute_set(struct ast_format \*format, const char \*attribute, const char \*value); 
 
 ```
-
-
 
 Example:
 
@@ -537,15 +473,10 @@ static void test_example(void)
 
 ```
 
-
-
 !!! note 
     Since format attributes are stored in an implementation specific manner there is no API for getting/retrieving/clearing/etc attributes.
 
-      
 [//]: # (end-note)
-
-
 
 ### Format Capabilities Usage
 
@@ -557,8 +488,6 @@ The function to allocate a capabilities structure is unchanged but the format ca
 struct ast_format_cap \*ast_format_cap_alloc(enum ast_format_cap_flags flags);
 
 ```
-
-
 
 Example:
 
@@ -580,8 +509,6 @@ This is slightly changed from the existing API in that the format passed in is n
 void ast_format_cap_add(struct ast_format_cap \*cap, struct ast_format \*format);
 
 ```
-
-
 
 Example:
 
@@ -617,15 +544,10 @@ static void example(void)
 
 ```
 
-
-
 !!! note 
     Ordering of format additions to a capabilities structure is preserved and forms the format preference order.
 
-      
 [//]: # (end-note)
-
-
 
 #### Capabilities structure manipulation
 
@@ -653,8 +575,6 @@ size_t ast_format_cap_count(const struct ast_format_cap \*cap);
 struct ast_format \*ast_format_cap_get(const struct ast_format_cap \*cap, int index);
 
 ```
-
-
 
 Example:
 
@@ -690,8 +610,6 @@ unsigned int ast_format_cap_framing_get(const struct ast_format_cap \*cap, const
 
 ```
 
-
-
 Example:
 
 ```
@@ -701,28 +619,28 @@ static void example(void)
  struct ast_format \*format;
  struct ast_format_cap \*caps;
  unsigned int framing;
- 
+
  if (!codec) {
  return;
  }
- 
+
  format = ast_format_create(codec);
  ao2_ref(codec, -1);
- 
+
  if (!format) {
  return;
  }
- 
+
  caps = ast_format_cap_alloc(AST_FORMAT_CAP_FLAG_NOLOCK);
  if (!caps) {
  ao2_ref(format, -1);
  return;
  }
- 
+
  ast_format_cap_add(caps, format);
  ast_format_cap_framing_set(caps, format, 20);
  framing = ast_format_cap_framing_get(caps, format);
- 
+
  ao2_ref(format, -1);
  ao2_ref(caps, -1);
 }
@@ -740,8 +658,6 @@ int ast_format_cap_joint_append(const struct ast_format_cap \*cap1, const struct
 
 ```
 
-
-
 Example:
 
 ```
@@ -750,24 +666,24 @@ static void example(void)
  struct ast_codec \*codec = ast_codec_get("ulaw", AST_FORMAT_TYPE_AUDIO, 8000);
  struct ast_format \*format;
  struct ast_format_cap \*caps0, \*caps1, \*joint;
- 
+
  if (!codec) {
  return;
  }
- 
+
  format = ast_format_create(codec);
  ao2_ref(codec, -1);
- 
+
  if (!format) {
  return;
  }
- 
+
  caps0 = ast_format_cap_alloc(AST_FORMAT_CAP_FLAG_NOLOCK);
  if (!caps0) {
  ao2_ref(format, -1);
  return;
  }
- 
+
  ast_format_cap_add(caps0, format);
  ao2_ref(format, -1);
 
@@ -787,4 +703,3 @@ static void example(void)
 }
 
 ```
-

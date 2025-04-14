@@ -601,4 +601,3 @@ Handling a request to change the stream topology
 ```
 
 This code reads in a request to change the topology and accepts the topology as requested. Note that we only receive request changes if we are capable of supporting multiple streams. If this were to use ast_read() the topology request change would be internally handled.
-

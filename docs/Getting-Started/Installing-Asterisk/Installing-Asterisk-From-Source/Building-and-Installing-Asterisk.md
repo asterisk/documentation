@@ -52,15 +52,10 @@ When finished, Asterisk will display the following warning:
 
 ```
 
-
-
 !!! warning Security Precautions
     As the message above suggests, we very strongly recommend that you read the security documentation before continuing with your Asterisk installation. Failure to read and follow the security documentation can leave your system vulnerable to a number of security issues, including toll fraud.
 
-      
 [//]: # (end-warning)
-
-
 
 Advanced Build and Install Options
 ==================================
@@ -112,8 +107,6 @@ Note that the default value for `prefix` is `/usr/local`.
 
 Other Make Targets
 ------------------
-
-
 
 | Target | Description |
 | --- | --- |

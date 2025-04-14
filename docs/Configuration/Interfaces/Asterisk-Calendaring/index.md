@@ -7,8 +7,6 @@ The Asterisk Calendaring API is provided by the res_calendar module. It aims to 
 
 There are four calendaring modules that ship with Asterisk that provide support for the following calendaring servers.
 
-
-
 | Calendar Server Support | Module Name |
 | --- | --- |
 | iCalendar | res_calendar_icalendar.so |
@@ -29,4 +27,3 @@ ews MS Exchange Web Service calend
 ical iCalendar .ics calendars
 
 ```
-

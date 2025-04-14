@@ -129,5 +129,3 @@ astsbindir => /usr/sbin
 ```
 
 By default, Asterisk looks in this directory for any system binaries that it uses, if you move the Asterisk binary itself or any others that it uses, you'll need to change this location.  
-
-

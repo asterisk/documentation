@@ -24,4 +24,3 @@ In the [Dialplan](/Configuration/Dialplan), all references to these variables re
 exten = 1234,1,Set(__FOO=bar)
 
 ```
-

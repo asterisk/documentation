@@ -165,12 +165,10 @@ auth=realtime,ps_auths
 contact/cache=memory_cache,maximum_objects=3000,expire_on_reload=yes,object_lifetime_maximum=900
 contact=realtime,ps_contacts
 
-
 [res_pjsip_endpoint_identifier_ip]
 ; There will be 1 ip identifier for each host across all providers plus 1 for each peered PBX.
 identify/cache=memory_cache,maximum_objects=150,expire_on_reload=yes,object_lifetime_maximum=900
 identify=realtime,ps_endpoint_id_ips
-
 
 ;[res_pjsip_outbound_registration]
 ; There could be 1 outbound registration for each host across all providers depending on whether
@@ -183,4 +181,3 @@ registration=realtime,ps_registrations
 ### Flushing the caches:
 
 The `sorcery memory cache` Asterisk CLI commands will allow flushing caches and individual objects from a specific cache.  There are also equivalent AMI commands (SorcerymemoryCache\*) that do the same.  After you make all pjsip configuration changes, call the appropriate AMI commands to flush objects and caches where appropriate.  This is necessary for Asterisk to see the changes made in the database immediately.
-

@@ -55,6 +55,4 @@ Call event logs are similar to call detail records, but record more detail about
 
 Bridge drivers are used by the bridging architecture in Asterisk, and provide various methods of bridging call media between participants in a call.
 
-
 The next sub-sections will include detail on each of the module types.
-

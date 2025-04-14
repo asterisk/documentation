@@ -7,7 +7,6 @@ pageid: 32375922
 
 Asterisk typically retrieves its configuration information by *pulling* it from some configuration source - whether that be a static configuration file or a relational database. This page describes an alternative way to provide configuration information to Asterisk using a *push* model through ARI. Note that only modules whose configuration is managed by the [Sorcery](/Fundamentals/Asterisk-Configuration/Sorcery) data abstraction framework in Asterisk can make use of this mechanism. Predominately, this implies configuration of the [PJSIP](/Configuration/Channel-Drivers/SIP/Configuring-res_pjsip) stack.
 
-
 /// note | Version Information
 This feature was introduced in ARI version 1.8.0, or Asterisk 13.5.0 or later.
 ///
@@ -134,7 +133,7 @@ If we then ask Asterisk what endpoints we have, it will show us something like t
 #### PJSIP
 
 Remove Alice from `pjsip.conf`:
-  
+
 ```conf title="pjsip.conf" linenums="1"
 [transport-udp]
 type=transport
@@ -150,7 +149,7 @@ bind=0.0.0.0:5060
 #### Sorcery
 
 Tell the Sorcery data abstraction framework to pull *endpoint*, *aor*, and *auth* objects from the Asterisk Database:
- 
+
 ```conf title="sorcery.conf" linenums="1"
 [res_pjsip]
 endpoint=astdb,ps_endpoints

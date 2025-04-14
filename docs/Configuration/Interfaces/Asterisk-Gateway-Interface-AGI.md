@@ -3,16 +3,10 @@ title: Asterisk Gateway Interface (AGI)
 pageid: 32375589
 ---
 
-
-
-
 !!! warning 
     This page is under construction!
 
-      
 [//]: # (end-warning)
-
-
 
 Overview
 ========
@@ -21,8 +15,6 @@ Overview
 
 AGI Libraries and Frameworks
 ============================
-
-
 
 | Name | Language | Website | Protocols |
 | --- | --- | --- | --- |
@@ -41,7 +33,3 @@ AGI Libraries and Frameworks
 | astgo | Go | <https://github.com/wenerme/astgo> | AMI/AGI/FastAGI |
 | Asterisk::AGI | Perl | <https://metacpan.org/pod/Asterisk::AGI> | AGI |
 | lua-agi | Lua | <https://github.com/stolendata/lua-agi> | AGI |
-
-  
-
-

@@ -3,16 +3,10 @@ title: Configuring Outbound Registrations
 pageid: 30278351
 ---
 
-
-
-
 !!! warning 
     This page is under construction. Please refrain from commenting here until this warning is removed.
 
-      
 [//]: # (end-warning)
-
-
 
 Overview
 ========
@@ -25,7 +19,6 @@ Configuration options
 A list of outbound registration configuration options can be found on [this page](/Latest_API/API_Documentation/Module_Configuration/res_pjsip_outbound_registration). Here is a simple example configuration for an outbound registration to a provider:
 
 On this Page
-
 
 pjsip.conf
 
@@ -64,16 +57,9 @@ Let's go over how the options were applied to this REGISTER:
 
 An English translation of the above REGISTER is "Tell the server at sip:registrar@example.com that when SIP traffic arrives addressed to sip:client@example.com, the traffic should be sent to sip:inbound-calls@10.24.20.249." Note in this example that 10.24.20.249 is the IP address of the Asterisk server that sent the outbound REGISTER request.
 
-
-
-
 !!! tip 
     The transport type, e.g. tcp, for the registration can be specified by appending the details to the client_uri and/or server_uri parameters, e.g.:
 [//]: # (end-tip)
-
-
-  
-  
 
 ```
 [my_provider]
@@ -82,13 +68,9 @@ server_uri = sip:registrar@example.com\;transport=tcp
 client_uri = sip:client@example.com\;transport=tcp
 contact_user = inbound-calls  
 
-
-
 ---
 
 ```
-
-
 
 Outbound registrations and endpoints
 ====================================
@@ -118,7 +100,7 @@ pjsip.conf
 [my_provider_endpoint]
 type = endpoint
 aors = my_provider_aor
- 
+
 [my_provider_identify]
 type = identify
 match = <ip address of provider>
@@ -130,16 +112,10 @@ contact = sip:my_provider@example.com
 
 ```
 
-
-
-
 !!! warning 
     Let me reiterate that this is the **bare minimum**. If you want calls to and from the provider to actually work correctly, you will want to set a context, codecs, authentication, etc. on the endpoint.
 
-      
 [//]: # (end-warning)
-
-
 
 Authentication
 ==============
@@ -241,7 +217,6 @@ In addition, you can see the details of a particular registration by issuing the
 
  my_provider/sip:registrar@example.com provider_auth Unregistered 
 
-
  ParameterName : ParameterValue
  ====================================================
  auth_rejection_permanent : false
@@ -266,11 +241,9 @@ AMI provides the `PJSIPShowRegistrationsOutbound` command that provides the same
 ```
 action: PJSIPShowRegistrationsOutbound
 
-
 Response: Success
 EventList: start
 Message: Following are Events for each Outbound registration
-
 
 Event: OutboundRegistrationDetail
 ObjectType: registration
@@ -290,7 +263,6 @@ Expiration: 3600
 Status: Rejected
 NextReg: 0
 
-
 Event: OutboundRegistrationDetail
 ObjectType: registration
 ObjectName: outreg
@@ -309,7 +281,6 @@ Expiration: 3600
 Status: Rejected
 NextReg: 0
 
-
 Event: OutboundRegistrationDetailComplete
 EventList: Complete
 Registered: 0
@@ -324,18 +295,10 @@ Manually Unregistering
 
 The AMI and CLI provide ways for you to manually unregister if you want. The CLI provides the `pjsip send unregister <registration name>` command. AMI provides the `PJSIPUnregister` command to do the same thing.
 
-
-
-
 !!! note 
     After manually unregistering, the specified outbound registration will continue to reregister based on its last registration expiration.
 
-      
 [//]: # (end-note)
-
-
-
-
 
 Realtime
 ========
@@ -343,4 +306,3 @@ Realtime
 At the time of this wiki article writing, it is not possible, nor would it be recommended, to use dynamic realtime for outbound registrations. The code in `res_pjsip_outbound_registration.so`, the module that allows outbound registrations to occur, does not attempt to look outside of `pjsip.conf` for details regarding outbound registrations. This is done because outbound registrations are composed both of the configuration values as well as state (e.g. how many retries have we attempted for an outbound registration). When pulling configuration from a file, a reload is necessary, which makes it easy to have a safe place to transfer state information or alter configuration values when told that things have changed. With dynamic realtime, this is much harder to manage since presumably the configuration could change at any point.
 
 If you prefer to use a database to store your configuration, you are free to use static realtime for outbound registrations instead. Like with a configuration file, you will be forced to reload (from the CLI, `module reload res_pjsip_outbound_registration.so`) in order to apply configuration changes.
-

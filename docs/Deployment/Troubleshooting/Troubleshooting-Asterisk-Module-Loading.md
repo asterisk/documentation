@@ -27,7 +27,6 @@ The reason for the failure to load or run is typically invalid configuration or 
 
 On this Page
 
-
 Solution
 ========
 
@@ -196,4 +195,3 @@ allowoverlap=no
 ```
 
 For our example, a square bracket is missing from the context definition! Fix this issue, restart Asterisk and things should work assuming I don't have any other syntax errors.
-

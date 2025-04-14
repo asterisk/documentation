@@ -9,7 +9,7 @@ Boolean Values
 Originally, boolean values were represented as simple "yes/no" strings but this was inconsistent with the valid boolean values for config files which include '0', '1', 'off', 'on', etc.  The correct representation in Alembic scripts was therefore changed to the following:
 
 ---
-  
+
 Alembic Script Boolean Values  
 
 ```python linenums="1"
@@ -23,8 +23,6 @@ def upgrade():
  op.add_column('ps_aors', sa.Column('remove_unavailable', ast_bool_values))
 
 ```
-
-
 
 Merging Alembic Scripts
 =======================
@@ -53,4 +51,3 @@ down_revision = '21e526ad3040' <---- change this version to the previous head
 ```
 
 4) If the above fails consult the alembic tutorial here for more information about resolving the conflict in the working with branches section: <http://alembic.zzzcomputing.com/en/latest/branches.html>
-

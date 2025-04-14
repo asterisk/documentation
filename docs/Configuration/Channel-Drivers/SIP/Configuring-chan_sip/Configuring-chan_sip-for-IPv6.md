@@ -35,17 +35,12 @@ bindaddr=[::]:5062
 
 ```
 
-
-
 !!! tip 
     You can choose independently for UDP, TCP, and TLS, by specifying different values for  "udpbindaddr", "tcpbindaddr", and "tlsbindaddr".
 
     Note that using bindaddr=:: will show only a single IPv6 socket in netstat. IPv4 is supported at the same time using IPv4-mapped IPv6 addresses.)
 
-      
 [//]: # (end-tip)
-
-
 
 Other Options
 =============
@@ -56,4 +51,3 @@ Other options such as "outboundproxy" or "permit" can use IPv6 addresses the sam
 permit=2001:db8::/32
 
 ```
-

@@ -27,12 +27,8 @@ Configuration of features.conf
 
 The options are configured in features.conf in the featuremap section. They use typical Asterisk [configuration file syntax](/Fundamentals/Asterisk-Configuration/Asterisk-Configuration-Files/Config-File-Format).
 
-
-
-
 ---
 
-  
 features.conf  
 
 ```
@@ -51,16 +47,10 @@ Dialplan application options
 
 For each feature there are a pair of options that can be set in the [Dial](/Latest_API/API_Documentation/Dialplan_Applications/Dial) or [Queue](/Latest_API/API_Documentation/Dialplan_Applications/Queue) applications. The two options enable the feature on either the calling party channel or the called party channel.
 
-
-
-
 !!! note 
     If neither option of a pair are set then you will not be able to use the related feature on the channel.
 
-      
 [//]: # (end-note)
-
-
 
 **automon**
 
@@ -86,12 +76,8 @@ For each feature there are a pair of options that can be set in the [Dial](/Late
 
 Set the option as you would any [application](/Configuration/Applications) option.
 
-
-
-
 ---
 
-  
 extensions.conf  
 
 ```
@@ -105,4 +91,3 @@ Using the Feature
 =================
 
 One you have configured features.conf and the options in the application then you only have to enter the feature code on your phone's keypad during a call!
-

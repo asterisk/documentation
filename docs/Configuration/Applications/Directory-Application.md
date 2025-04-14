@@ -40,4 +40,3 @@ exten => 6501,1,Directory(vm-demo,users,ef)
 ```
 
 Now you should be able to dial extension **6501** to test your dial-by-name directory.
-
