@@ -43,12 +43,12 @@ Full Example:
 
 ```
 
-void callback_destroy(void \*data)
+void callback_destroy(void *data)
 {
  ast_free(data);
 }
 
-struct ast_datastore \*datastore = NULL;
+struct ast_datastore *datastore = NULL;
 datastore = ast_datastore_alloc(&example_datastore, NULL);
 datastore->data = mysillydata;
 ast_channel_datastore_add(chan, datastore);

@@ -26,7 +26,7 @@ same => n,Hangup()
 Set the DTMF sequence for attended transfer on this channel to \*9.  
 
 ```
-exten => s,1,Set(FEATUREMAP(atxfer)=\*9)
+exten => s,1,Set(FEATUREMAP(atxfer)=*9)
 same => n,Dial(SIP/100,,T)
 same => n,Hangup()
 

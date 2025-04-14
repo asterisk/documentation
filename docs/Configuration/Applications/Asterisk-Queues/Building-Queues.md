@@ -50,7 +50,7 @@ What we're doing here is creating a [std-device] template and applying it to a p
 Then our devices can register to Asterisk. In my case I have a hard phone and a soft phone registered. I can verify their connectivity by running 'sip show peers'.
 
 ```
-\*CLI> sip show peers
+*CLI> sip show peers
 Name/username Host Dyn Nat ACL Port Status 
 0004f2040001/0004f2040001 192.168.128.145 D 5060 Unmonitored 
 0004f2040002/0004f2040002 192.168.128.126 D 5060 Unmonitored 
@@ -63,7 +63,7 @@ Name/username Host Dyn Nat ACL Port Status
 Next, we need to configure our system to track the state of the devices. We do this by defining a 'hint' in the dialplan which creates the ability for a device subscription to be retained in memory. By default we can see there are no hints registered in our system by running the 'core show hints' command.
 
 ```
-\*CLI> core show hints
+*CLI> core show hints
 There are no registered dialplan hint
 
 ```
@@ -84,7 +84,7 @@ Then perform a 'dialplan reload' in order to reload the dialplan.
 After reloading our dialplan, you can see the status of the devices with 'core show hints' again.
 
 ```
-\*CLI> core show hints
+*CLI> core show hints
 
  -= Registered Asterisk Dial Plan Hints =-
  0004f2040002@default : SIP/0004f2040002 State:Idle Watchers 0
@@ -110,11 +110,11 @@ exten => 555,1,Playback(tt-monkeys)
 Dial that extension and then check the state of your device on the console.
 
 ```
-\*CLI> == Using SIP RTP CoS mark 5
+*CLI> == Using SIP RTP CoS mark 5
  -- Executing [555@devices:1] Playback("SIP/0004f2040001-00000001", "tt-monkeys") in new stack
  -- <SIP/0004f2040001-00000001> Playing 'tt-monkeys.slin' (language 'en')
 
-\*CLI> core show hints
+*CLI> core show hints
 
  -= Registered Asterisk Dial Plan Hints =-
  0004f2040002@default : SIP/0004f2040002 State:Idle Watchers 0
@@ -149,11 +149,11 @@ callcounter=yes ; <-- add this
 Then reload chan_sip with 'sip reload' and perform our 555 test again. Dial 555 and then check the device state with 'core show hints'.
 
 ```
-\*CLI> == Using SIP RTP CoS mark 5
+*CLI> == Using SIP RTP CoS mark 5
  -- Executing [555@devices:1] Playback("SIP/0004f2040001-00000002", "tt-monkeys") in new stack
  -- <SIP/0004f2040001-00000002> Playing 'tt-monkeys.slin' (language 'en')
 
-\*CLI> core show hints
+*CLI> core show hints
 
  -= Registered Asterisk Dial Plan Hints =-
  0004f2040002@default : SIP/0004f2040002 State:Idle Watchers 0
@@ -207,7 +207,7 @@ ringinuse=no ; don't ring members when already InUse
 After defining our queues, lets reload our app_queue.so module.
 
 ```
-\*CLI> module reload app_queue.so
+*CLI> module reload app_queue.so
  -- Reloading module 'app_queue.so' (True Call Queueing)
 
  == Parsing '/etc/asterisk/queues.conf': == Found
@@ -217,7 +217,7 @@ After defining our queues, lets reload our app_queue.so module.
 Then verify our queues loaded with 'queue show'.
 
 ```
-\*CLI> queue show
+*CLI> queue show
 support has 0 calls (max unlimited) in 'rrmemory' strategy (0s holdtime, 0s talktime), W:0, C:0, A:0, SL:0.0% within 0s
  No Members
  No Callers
@@ -245,7 +245,7 @@ The penalty, membername, and state_interface are all optional values. Special at
 Lets add our device located at SIP/0004f2040001
 
 ```
-\*CLI> queue add member SIP/0004f2040001 to sales
+*CLI> queue add member SIP/0004f2040001 to sales
 Added interface 'SIP/0004f2040001' to queue 'sales'
 
 ```
@@ -253,7 +253,7 @@ Added interface 'SIP/0004f2040001' to queue 'sales'
 Then lets verify our member was indeed added.
 
 ```
-\*CLI> queue show sales
+*CLI> queue show sales
 sales has 0 calls (max unlimited) in 'rrmemory' strategy (0s holdtime, 0s talktime), W:0, C:0, A:0, SL:0.0% within 0s
  Members: 
  SIP/0004f2040001 (dynamic) (Not in use) has taken no calls yet
@@ -264,11 +264,11 @@ sales has 0 calls (max unlimited) in 'rrmemory' strategy (0s holdtime, 0s talkti
 Now, if we dial our 555 extension, we should see that our member becomes InUse within the queue.
 
 ```
-\*CLI> == Using SIP RTP CoS mark 5
+*CLI> == Using SIP RTP CoS mark 5
  -- Executing [555@devices:1] Playback("SIP/0004f2040001-00000001", "tt-monkeys") in new stack
  -- <SIP/0004f2040001-00000001> Playing 'tt-monkeys.slin' (language 'en')
 
-\*CLI> queue show sales
+*CLI> queue show sales
 sales has 0 calls (max unlimited) in 'rrmemory' strategy (0s holdtime, 0s talktime), W:0, C:0, A:0, SL:0.0% within 0s
  Members: 
  SIP/0004f2040001 (dynamic) (In use) has taken no calls yet
@@ -279,7 +279,7 @@ sales has 0 calls (max unlimited) in 'rrmemory' strategy (0s holdtime, 0s talkti
 We can also remove our members from the queue using the 'queue remove' CLI command.
 
 ```
-\*CLI> queue remove member SIP/0004f2040001 from sales 
+*CLI> queue remove member SIP/0004f2040001 from sales 
 Removed interface 'SIP/0004f2040001' from queue 'sales'
 
 ```
@@ -304,14 +304,14 @@ exten => 101,1,Queue(support)
 Then reload the dialplan, and try calling extension 100 from SIP/0004f2040002, which is the device we have not logged into the queue.
 
 ```
-\*CLI> dialplan reload
+*CLI> dialplan reload
 
 ```
 
 And now we call the queue at extension 100 which will ring our device at SIP/0004f2040001.
 
 ```
-\*CLI> == Using SIP RTP CoS mark 5
+*CLI> == Using SIP RTP CoS mark 5
  -- Executing [100@devices:1] Queue("SIP/0004f2040002-00000005", "sales") in new stack
  -- Started music on hold, class 'default', on SIP/0004f2040002-00000005
  == Using SIP RTP CoS mark 5
@@ -322,7 +322,7 @@ And now we call the queue at extension 100 which will ring our device at SIP/000
 We can see the device state has changed to Ringing while the device is ringing.
 
 ```
-\*CLI> queue show sales
+*CLI> queue show sales
 sales has 1 calls (max unlimited) in 'rrmemory' strategy (2s holdtime, 3s talktime), W:0, C:1, A:1, SL:0.0% within 0s
  Members: 
  SIP/0004f2040001 (dynamic) (Ringing) has taken 1 calls (last was 14 secs ago)
@@ -334,7 +334,7 @@ sales has 1 calls (max unlimited) in 'rrmemory' strategy (2s holdtime, 3s talkti
 Our queue member then answers the phone.
 
 ```
-\*CLI> -- SIP/0004f2040001-00000006 answered SIP/0004f2040002-00000005
+*CLI> -- SIP/0004f2040001-00000006 answered SIP/0004f2040002-00000005
  -- Stopped music on hold on SIP/0004f2040002-00000005
  -- Native bridging SIP/0004f2040002-00000005 and SIP/0004f2040001-00000006
 
@@ -343,7 +343,7 @@ Our queue member then answers the phone.
 And we can see the queue member is now in use.
 
 ```
-\*CLI> queue show sales
+*CLI> queue show sales
 sales has 0 calls (max unlimited) in 'rrmemory' strategy (3s holdtime, 3s talktime), W:0, C:1, A:1, SL:0.0% within 0s
  Members: 
  SIP/0004f2040001 (dynamic) (In use) has taken 1 calls (last was 22 secs ago)
@@ -354,14 +354,14 @@ sales has 0 calls (max unlimited) in 'rrmemory' strategy (3s holdtime, 3s talkti
 Then the call is hung up.
 
 ```
-\*CLI> == Spawn extension (devices, 100, 1) exited non-zero on 'SIP/0004f2040002-00000005'
+*CLI> == Spawn extension (devices, 100, 1) exited non-zero on 'SIP/0004f2040002-00000005'
 
 ```
 
 And we see that our queue member is available to take another call.
 
 ```
-\*CLI> queue show sales
+*CLI> queue show sales
 sales has 0 calls (max unlimited) in 'rrmemory' strategy (3s holdtime, 4s talktime), W:0, C:2, A:1, SL:0.0% within 0s
  Members: 
  SIP/0004f2040001 (dynamic) (Not in use) has taken 2 calls (last was 6 secs ago)
@@ -426,9 +426,9 @@ Lets move into the nitty-gritty section and show how we can login and logout our
 First, we create a pattern match that takes star  plus the queue number that we want to login or logout of. So to login/out of the sales queue (100) we would dial \*100. We use the same extension for logging in and out.
 
 ```
-; Extension \*100 or \*101 will login/logout a queue member from sales or support queues respectively.
-exten => _\*10[0-1],1,Set(xtn=${EXTEN:1}) ; save ${EXTEN} with \* chopped off to ${xtn}
-exten => _\*10[0-1],n,Goto(queueLoginLogout,member_check,1) ; check if already logged into a queue
+; Extension *100 or *101 will login/logout a queue member from sales or support queues respectively.
+exten => _*10[0-1],1,Set(xtn=${EXTEN:1}) ; save ${EXTEN} with * chopped off to ${xtn}
+exten => _*10[0-1],n,Goto(queueLoginLogout,member_check,1) ; check if already logged into a queue
 
 ```
 
@@ -537,7 +537,7 @@ And that's it! Give it a shot and you should see console output similar to the f
 You can see there are already a couple of queue members logged into the sales queue.
 
 ```
-\*CLI> queue show sales
+*CLI> queue show sales
 sales has 0 calls (max unlimited) in 'rrmemory' strategy (3s holdtime, 4s talktime), W:0, C:2, A:1, SL:0.0% within 0s
  Members: 
  SIP/0004f2040001 (dynamic) (Not in use) has taken no calls yet
@@ -549,9 +549,9 @@ sales has 0 calls (max unlimited) in 'rrmemory' strategy (3s holdtime, 4s talkti
 Then we dial \*100 to logout the active device from the sales queue.
 
 ```
-\*CLI> == Using SIP RTP CoS mark 5
- -- Executing [\*100@devices:1] Set("SIP/0004f2040001-00000012", "xtn=100") in new stack
- -- Executing [\*100@devices:2] Goto("SIP/0004f2040001-00000012", "queueLoginLogout,member_check,1") in new stack
+*CLI> == Using SIP RTP CoS mark 5
+ -- Executing [*100@devices:1] Set("SIP/0004f2040001-00000012", "xtn=100") in new stack
+ -- Executing [*100@devices:2] Goto("SIP/0004f2040001-00000012", "queueLoginLogout,member_check,1") in new stack
  -- Goto (queueLoginLogout,member_check,1)
  -- Executing [member_check@queueLoginLogout:1] Verbose("SIP/0004f2040001-00000012", "2,Logging queue member in or out of the request queue") in new stack
  == Logging queue member in or out of the request queue
@@ -585,7 +585,7 @@ Then we dial \*100 to logout the active device from the sales queue.
 And we can see that the device we loggd out by running 'queue show sales'.
 
 ```
-\*CLI> queue show sales
+*CLI> queue show sales
 sales has 0 calls (max unlimited) in 'rrmemory' strategy (3s holdtime, 4s talktime), W:0, C:2, A:1, SL:0.0% within 0s
  Members: 
  SIP/0004f2040002 (dynamic) (Not in use) has taken no calls yet
@@ -600,7 +600,7 @@ Once we have our queue members logged in, it is inevitable that they will want t
 We have two devices logged into the sales queue as we can see with the 'queue show sales' CLI command.
 
 ```
-\*CLI> queue show sales
+*CLI> queue show sales
 sales has 0 calls (max unlimited) in 'rrmemory' strategy (0s holdtime, 0s talktime), W:0, C:0, A:0, SL:0.0% within 0s
  Members: 
  SIP/0004f2040002 (dynamic) (Not in use) has taken no calls yet
@@ -622,7 +622,7 @@ Usage: queue {pause|unpause} member <member> [queue <queue> [reason <reason>]]
 Lets pause device 0004f2040001 in the sales queue by executing the following.
 
 ```
-\*CLI> queue pause member SIP/0004f2040001 queue sales
+*CLI> queue pause member SIP/0004f2040001 queue sales
 paused interface 'SIP/0004f2040001' in queue 'sales' for reason 'lunch'
 
 ```
@@ -630,7 +630,7 @@ paused interface 'SIP/0004f2040001' in queue 'sales' for reason 'lunch'
 And we can see they are paused with 'queue show sales'.
 
 ```
-\*CLI> queue show sales
+*CLI> queue show sales
 sales has 0 calls (max unlimited) in 'rrmemory' strategy (0s holdtime, 0s talktime), W:0, C:0, A:0, SL:0.0% within 0s
  Members: 
  SIP/0004f2040002 (dynamic) (Not in use) has taken no calls yet
@@ -642,7 +642,7 @@ sales has 0 calls (max unlimited) in 'rrmemory' strategy (0s holdtime, 0s talkti
 At this point the queue member will no longer receive calls from the system. We can unpause them with the CLI command 'queue unpause member'.
 
 ```
-\*CLI> queue unpause member SIP/0004f2040001 queue sales 
+*CLI> queue unpause member SIP/0004f2040001 queue sales 
 unpaused interface 'SIP/0004f2040001' in queue 'sales'
 
 ```
@@ -650,7 +650,7 @@ unpaused interface 'SIP/0004f2040001' in queue 'sales'
 And if you don't specify a queue, it will pause or unpause from all queues.
 
 ```
-\*CLI> queue pause member SIP/0004f2040001
+*CLI> queue pause member SIP/0004f2040001
 paused interface 'SIP/0004f2040001'
 
 ```
@@ -667,11 +667,11 @@ extensions.conf
 
 ; Allow queue members to pause and unpause themselves from all queues, or an individual queue.
 ;
-; _\*0[01]! pattern match will match on \*00 and \*01 plus 0 or more digits.
-exten => _\*0[01]!,1,Verbose(2,Pausing or unpausing queue member from one or more queues)
-exten => _\*0[01]!,n,Set(xtn=${EXTEN:3}) ; save the queue extension to 'xtn'
-exten => _\*0[01]!,n,Set(thisQueue=${GLOBAL(QUEUE_${xtn})}) ; get the queue name if available
-exten => _\*0[01]!,n,GotoIf($[${ISNULL(${thisQueue})} & ${EXISTS(${xtn})}]?invalid_queue,1) ; if 'thisQueue' is blank and the
+; _*0[01]! pattern match will match on *00 and *01 plus 0 or more digits.
+exten => _*0[01]!,1,Verbose(2,Pausing or unpausing queue member from one or more queues)
+exten => _*0[01]!,n,Set(xtn=${EXTEN:3}) ; save the queue extension to 'xtn'
+exten => _*0[01]!,n,Set(thisQueue=${GLOBAL(QUEUE_${xtn})}) ; get the queue name if available
+exten => _*0[01]!,n,GotoIf($[${ISNULL(${thisQueue})} & ${EXISTS(${xtn})}]?invalid_queue,1) ; if 'thisQueue' is blank and the
  ; the agent dialed a queue exten,
  ; we will tell them it's invalid
 
@@ -690,15 +690,15 @@ offset ^ ^ length
 Which causes the following.
 
 ```
- \*00100
+ *00100
  ^^ offset these characters
 
- \*00100
+ *00100
  ^ then return a digit length of one, which is digit 0
 
 ```
 ```
-exten => _\*0[01]!,n,GotoIf($[${EXTEN:2:1} = 0]?pause,1:unpause,1) ; determine if they wanted to pause
+exten => _*0[01]!,n,GotoIf($[${EXTEN:2:1} = 0]?pause,1:unpause,1) ; determine if they wanted to pause
  ; or to unpause.
 
 ```

@@ -42,7 +42,7 @@ A data buffer acts as a ring buffer of data. It is given a fixed number of data 
  *
  * \param The data payload
  */
-typedef void (\*ast_data_buffer_free_callback)(void \*data);
+typedef void (*ast_data_buffer_free_callback)(void *data);
 
 /*!
  * \brief Data buffer containing fixed number of data payloads
@@ -63,7 +63,7 @@ struct ast_data_buffer {
  * \retval non-NULL success
  * \retval NULL failure
  */
-struct ast_data_buffer \*ast_data_buffer_alloc(ast_data_buffer_free_callback free_fn, size_t size);
+struct ast_data_buffer *ast_data_buffer_alloc(ast_data_buffer_free_callback free_fn, size_t size);
 
 /*!
  * \brief Resize a data buffer
@@ -73,7 +73,7 @@ struct ast_data_buffer \*ast_data_buffer_alloc(ast_data_buffer_free_callback fre
  *
  * \note If the data buffer is shrunk any old data payloads will be freed using the configured callback
  */
-void ast_data_buffer_resize(struct ast_data_buffer \*buffer, size_t size);
+void ast_data_buffer_resize(struct ast_data_buffer *buffer, size_t size);
 
 /*!
  * \brief Place a data payload at a position in the data buffer
@@ -87,7 +87,7 @@ void ast_data_buffer_resize(struct ast_data_buffer \*buffer, size_t size);
  *
  * \note It is up to the consumer of this API to ensure proper memory management of data payloads
  */
-int ast_data_buffer_put(struct ast_data_buffer \*buffer, int pos, void \*payload);
+int ast_data_buffer_put(struct ast_data_buffer *buffer, int pos, void *payload);
 
 /*!
  * \brief Retrieve a data payload from the data buffer
@@ -100,14 +100,14 @@ int ast_data_buffer_put(struct ast_data_buffer \*buffer, int pos, void \*payload
  *
  * \note This does not remove the data payload from the data buffer. It will be removed when it is displaced.
  */
-void \*ast_data_buffer_get(const struct ast_data_buffer \*buffer, int pos);
+void *ast_data_buffer_get(const struct ast_data_buffer *buffer, int pos);
 
 /*!
  * \brief Free a data buffer (and all held data payloads)
  *
  * \param buffer The data buffer
  */
-void ast_data_buffer_free(struct ast_data_buffer \*buffer);
+void ast_data_buffer_free(struct ast_data_buffer *buffer);
 
 ```
 
@@ -141,7 +141,7 @@ The RTP engine API also needs to have two API calls added:
  * \param rtp The RTP instance
  * \return The SSRC value
  */
-unsigned int ast_rtp_instance_get_rtx_ssrc(struct ast_rtp_instance \*rtp);
+unsigned int ast_rtp_instance_get_rtx_ssrc(struct ast_rtp_instance *rtp);
 
 /*!
  * \brief Set the remote RTP packet retransmission (RTX) SSRC for an RTP instance
@@ -149,7 +149,7 @@ unsigned int ast_rtp_instance_get_rtx_ssrc(struct ast_rtp_instance \*rtp);
  * \param rtp The RTP instance
  * \param ssrc The remote RTX SSRC
  */
-void ast_rtp_instance_set_remote_rtx_ssrc(struct ast_rtp_instance \*rtp, unsigned int ssrc);
+void ast_rtp_instance_set_remote_rtx_ssrc(struct ast_rtp_instance *rtp, unsigned int ssrc);
 
 ```
 

@@ -43,7 +43,7 @@ From the [Asterisk CLI](/Operation/Asterisk-Command-Line-Interface) you can use 
 Previous to Asterisk 12, you could only see if the module is loaded. However it may not actually be running (usable).
 
 ```
-\*CLI> module show like chan_sip.so 
+*CLI> module show like chan_sip.so 
 Module Description Use Count 
 chan_sip.so Session Initiation Protocol (SIP) 0 
 1 modules loaded
@@ -53,7 +53,7 @@ chan_sip.so Session Initiation Protocol (SIP) 0
 In Asterisk 12 and beyond you can quickly see if a module is loaded and whether it is running or not.
 
 ```
-\*CLI> module show like chan_sip.so 
+*CLI> module show like chan_sip.so 
 Module Description Use Count Status
 chan_sip.so Session Initiation Protocol (SIP) 0 Not Running
 1 modules loaded
@@ -141,7 +141,7 @@ You'll see a lot of information output in the terminal as Asterisk loads.
 After the output calms down and Asterisk has finished loading, go ahead and stop Asterisk. The logs should have already been recorded.
 
 ```
-\*CLI> core stop now
+*CLI> core stop now
 
 ```
 

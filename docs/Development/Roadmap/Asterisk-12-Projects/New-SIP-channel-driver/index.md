@@ -35,7 +35,7 @@ As part of this work, pjproject has been pulled out of the Asterisk source tree 
 [//]: # (end-note)
 
 ```
-rm -f /usr/lib/libpj\*.a /usr/lib/libmilenage\*.a /usr/lib/pkgconfig/libpjproject.pc  
+rm -f /usr/lib/libpj*.a /usr/lib/libmilenage*.a /usr/lib/pkgconfig/libpjproject.pc  
 
 ---
 

@@ -96,7 +96,7 @@ cpp
  * \note The newly created callid will be referenced upon creation and this function should be
  * paired with a call to ast_callid_deref()
  */
-struct ast_callid \*ast_create_callid();
+struct ast_callid *ast_create_callid();
 
 /*!
  * \brief Increase callid reference count
@@ -114,7 +114,7 @@ struct ast_callid \*ast_create_callid();
  *
  * \retval NULL always
  */
-#define ast_callid_unref(c) ({ ao2_ref(c, -1); (struct ast_channel \*) (NULL); )}
+#define ast_callid_unref(c) ({ ao2_ref(c, -1); (struct ast_channel *) (NULL); )}
 
 /*!
  * \brief Adds a known callid to thread storage of the calling thread
@@ -123,7 +123,7 @@ struct ast_callid \*ast_create_callid();
  * \retval 0 - success
  * \retval 1 - failure due to thread already being bound to a callid
  */
-int ast_callid_threadassoc_add(struct ast_callid \*callid);
+int ast_callid_threadassoc_add(struct ast_callid *callid);
 
 ```
 

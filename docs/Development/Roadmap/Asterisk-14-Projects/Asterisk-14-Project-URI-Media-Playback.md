@@ -198,7 +198,7 @@ cpp/*
  * \retval 0 The item is not in the cache
  * \retval 1 The item is in the cache
  */
-int ast_media_cache_exists(const char \*uri);
+int ast_media_cache_exists(const char *uri);
 
 /*
  * \brief Retrieve media from a URI or in the cache
@@ -212,7 +212,7 @@ int ast_media_cache_exists(const char \*uri);
  * \retval 0 on success
  * \retval -1 on error
  */
-int ast_media_cache_retrieve(const char \*uri, const char \*preferred_file_name, char \*file_path, size_t len);
+int ast_media_cache_retrieve(const char *uri, const char *preferred_file_name, char *file_path, size_t len);
 
 /*!
  * \brief Update an item in the cache
@@ -224,7 +224,7 @@ int ast_media_cache_retrieve(const char \*uri, const char \*preferred_file_name,
  * \retval 0 success
  * \retval -1 error
  */
-int ast_media_cache_create_or_update(const char \*uri, const char \*file_path, struct ast_variable \*metadata);
+int ast_media_cache_create_or_update(const char *uri, const char *file_path, struct ast_variable *metadata);
 
 /*
  * \brief Remove an item from the cache
@@ -234,7 +234,7 @@ int ast_media_cache_create_or_update(const char \*uri, const char \*file_path, s
  * \retval 0 success
  * \retval -1 error
  */
-int ast_media_cache_delete(const char \*uri);
+int ast_media_cache_delete(const char *uri);
 
 ```
 
@@ -245,7 +245,7 @@ int ast_media_cache_delete(const char \*uri);
 Just for fun! It'd be good to see what is in the cache, the timestamps, etc.
 
 ```
-\*CLI>core show media-cache
+*CLI>core show media-cache
 
 URI Last update Local file
 http://myserver.com/awesome.wav 2014-10-30 00:52:25 UTC /var/spool/asterisk/media_cache/ahsd98d1.wav
@@ -263,11 +263,11 @@ Note that the last two files would have been created using a preferred file pref
 This is really a handy way for a system administrator to force files to be pulled down.
 
 ```
-\*CLI>core clear media-cache
+*CLI>core clear media-cache
 
 3 items purged.
 
-\*CLI>core show media-cache
+*CLI>core show media-cache
 
 URI Last update Local file
 0 items found.
@@ -323,7 +323,7 @@ Support for a new Content-Type, `text/uri-list`, needs to be added to the HTTP s
  * \retval NULL on error or a body not encoded as text/uri-list
  * \retval A list of URIs. This an ao2 object that must be disposed of by the caller of the function.
  */
-struct ast_uri_list \*ast_http_get_uri_list(struct ast_tcptls_session_instance \*ser, struct ast_variable \*headers);
+struct ast_uri_list *ast_http_get_uri_list(struct ast_tcptls_session_instance *ser, struct ast_variable *headers);
 
 ```
 
@@ -337,7 +337,7 @@ struct ast_uri_list \*ast_http_get_uri_list(struct ast_tcptls_session_instance \
  *
  * \retval The string representation of the URI.
  */
-const char \*ast_uri_to_string(struct ast_uri \*uri);
+const char *ast_uri_to_string(struct ast_uri *uri);
 
 struct ast_uri_list;
 struct ast_uri_list_iterator;
@@ -348,14 +348,14 @@ struct ast_uri_list_iterator;
  * \retval A new \c ast_uri_list on success. This is an ao2 object.
  * \retval NULL on error
  */
-struct ast_uri_list \*ast_uri_list_create(void);
+struct ast_uri_list *ast_uri_list_create(void);
 
 /*!
  * \brief Append a \c ast_uri to a \c ast_uri_list
  *
  * \param uri The \c ast_uri to append
  */
-void ast_uri_list_append(struct ast_uri \*uri);
+void ast_uri_list_append(struct ast_uri *uri);
 
 /*!
  * \brief Create an iterator for a \c ast_uri_list
@@ -365,14 +365,14 @@ void ast_uri_list_append(struct ast_uri \*uri);
  * \retval A \c ast_uri_list_iterator on success
  * \retval NULL on error
  */
-struct ast_uri_list_iterator \*ast_uri_list_iterator_create(struct ast_uri_list \*uri_list);
+struct ast_uri_list_iterator *ast_uri_list_iterator_create(struct ast_uri_list *uri_list);
 
 /*!
  * \brief Dispose of a \c ast_uri_list_iterator
  *
  * \param iterator The \c ast_uri_list_iterator to destroy
  */
-void ast_uri_list_iterator_destroy(struct ast_uri_list_iterator \*iterator);
+void ast_uri_list_iterator_destroy(struct ast_uri_list_iterator *iterator);
 
 /*!
  * \brief Retrieve the next \c ast_uri in an \c ast_uri_list
@@ -382,7 +382,7 @@ void ast_uri_list_iterator_destroy(struct ast_uri_list_iterator \*iterator);
  * \retval NULL if no more items in the list
  * \retval The next \c ast_uri otherwise
  */
-struct ast_uri \*ast_uri_list_iterator_next(struct ast_uri_list_iterator \*iterator);
+struct ast_uri *ast_uri_list_iterator_next(struct ast_uri_list_iterator *iterator);
 
 ```
 

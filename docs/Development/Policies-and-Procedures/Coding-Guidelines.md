@@ -72,7 +72,7 @@ Keep the number of header files small by not including them unnecessarily. Don't
 \* Functions and variables that are not intended to be used outside the module must be declared static. If you are compiling on a Linux platform that has the 'dwarves' package available, you can use the 'pglobal' tool from that package to check for unintended global variables or functions being exposed in your object files. Usage is very simple:
 
 ```
-$ pglobal \-vf <path to .o file>
+$ pglobal -vf <path to .o file>
 ```
 
 \* When reading integer numeric input with scanf (or variants), do \_NOT\_ use '%i' unless you specifically want to allow non-base-10 input; '%d' is always a better choice, since it will not silently turn numbers with leading zeros into base-8.
@@ -85,14 +85,14 @@ On many platforms, structure fields (in structures that are not marked 'packed')
 ```C
 struct foo {
  int bar;
- void \*xyz;
+ void *xyz;
 }
 ```
 
 On nearly every 64-bit platform, this will result in 4 bytes of dead space between 'bar' and 'xyz', because pointers on 64-bit platforms must be aligned on 8-byte boundaries. Once you have your code written and tested, it may be worthwhile to review your structure definitions to look for problems of this nature. If you are on a Linux platform with the 'dwarves' package available, the 'pahole' tool from that package can be used to both check for padding issues of this type and also propose reorganized structure definitions to eliminate it. Usage is quite simple; for a structure named 'foo', the command would look something like this:
 
 ```
-$ pahole \--reorganize \--show\_reorg\_steps \-C foo <path to module>
+$ pahole --reorganize --show_reorg_steps -C foo <path to module>
 ```
 
 The 'pahole' tool has many other modes available, including some that will list all the structures declared in the module and the amount of padding in each one that could possibly be recovered.
@@ -157,7 +157,7 @@ Following are examples of how code should be formatted.
 
 #### Functions:
 ```C
-int foo(int a, char \*s)
+int foo(int a, char *s)
 {
  return 0;
 }
@@ -209,7 +209,7 @@ Always use braces around the statements following an if/for/while construct, eve
 Don't build code like this:
 ```C
 if (foo) {
- /\* .... 50 lines of code ... \*/
+ /* .... 50 lines of code ... */
 } else {
  result = 0;
  return;
@@ -270,14 +270,14 @@ In fact, don't use 'variable type' suffixes at all; it's much preferable to just
 Use enums rather than long lists of #define-d numeric constants when possible; this allows structure members, local variables and function arguments to be declared as using the enum's type. For example:
 ```C
 enum option {
- OPT\_FOO = 1,
- OPT\_BAR = 2,
- OPT\_BAZ = 4,
+ OPT_FOO = 1,
+ OPT_BAR = 2,
+ OPT_BAZ = 4,
 };
 
-static enum option global\_option;
+static enum option global_option;
 
-static handle\_option(const enum option opt)
+static handle_option(const enum option opt)
 {
  ...
 }
@@ -307,19 +307,19 @@ For the sake of uclibc, do not use index, bcopy or bzero; use strchr(), memset()
 When making applications, always ast\_strdupa(data) to a local pointer if you intend to parse the incoming data string.
 ```C
  if (data) {
- mydata = ast\_strdupa(data);
+ mydata = ast_strdupa(data);
  }
 ```
 
 Use the argument parsing macros to declare arguments and parse them, i.e.:
 ```C
- AST\_DECLARE\_APP\_ARGS(args,
- AST\_APP\_ARG(arg1);
- AST\_APP\_ARG(arg2);
- AST\_APP\_ARG(arg3);
+ AST_DECLARE_APP_ARGS(args,
+ AST_APP_ARG(arg1);
+ AST_APP_ARG(arg2);
+ AST_APP_ARG(arg3);
  );
- parse = ast\_strdupa(data);
- AST\_STANDARD\_APP\_ARGS(args, parse);
+ parse = ast_strdupa(data);
+ AST_STANDARD_APP_ARGS(args, parse);
 ```
 
 Make sure you are not duplicating any functionality already found in an API call somewhere. If you are duplicating functionality found in
@@ -343,11 +343,11 @@ use them when possible.
 
 When allocating/zeroing memory for a structure, use code like this:
 ```C
-struct foo \*tmp;
+struct foo *tmp;
 
 ...
 
-tmp = ast\_calloc(1, sizeof(\*tmp));
+tmp = ast_calloc(1, sizeof(*tmp));
 ```
 
 Avoid the combination of ast\_malloc() and memset(). Instead, always use ast\_calloc(). This will allocate and zero the memory in a single operation. In the case that uninitialized memory is acceptable, there should be a comment in the code that states why this is the case.
@@ -369,7 +369,7 @@ The functions strdup and strndup can \*not\* accept a NULL argument. This result
 However, the ast\_strdup and ast\_strdupa functions will happily accept a NULL
 argument without generating an error. The same code can be written as:
 ```C
- newstr = ast\_strdup(str);
+ newstr = ast_strdup(str);
 ```
 Furthermore, it is unnecessary to have code that malloc/calloc's for the length of a string (+1 for the terminating '\0') and then using strncpy to copy the copy the string into the resulting buffer. This is the exact same thing as using ast\_strdup.
 
@@ -377,11 +377,11 @@ Furthermore, it is unnecessary to have code that malloc/calloc's for the length 
 
 New CLI commands should be named using the module's name, followed by a verb and then any parameters that the command needs. For example:
 ```
-\*CLI> iax2 show peer <peername>
+*CLI> iax2 show peer <peername>
 ```
 not
 ```
-\*CLI> show iax2 peer <peername>
+*CLI> show iax2 peer <peername>
 ```
 
 ### New dialplan applications/functions
@@ -399,18 +399,18 @@ Functions are registered using 'struct ast\_custom\_function' structures and the
 When writing Asterisk API documentation the following format should be followed. Do not use the javadoc style.
 
 ```C
-/\*!
- \* \brief Do interesting stuff.
- \*
- \* \param thing1 interesting parameter 1.
- \* \param thing2 interesting parameter 2.
- \*
- \* This function does some interesting stuff.
- \*
- \* \retval zero on success
- \* \retval -1 on error.
- \*/
-int ast\_interesting\_stuff(int thing1, int thing2)
+/*!
+ * \brief Do interesting stuff.
+ *
+ * \param thing1 interesting parameter 1.
+ * \param thing2 interesting parameter 2.
+ *
+ * This function does some interesting stuff.
+ *
+ * \retval zero on success
+ * \retval -1 on error.
+ */
+int ast_interesting_stuff(int thing1, int thing2)
 {
  return 0;
 }
@@ -426,15 +426,15 @@ When adding new API you should also attach a \since note because this will indic
 
 Structures should be documented as follows.
 ```C
-/\*!
- \* \brief A very interesting structure.
- \*/
-struct interesting\_struct
+/*!
+ * \brief A very interesting structure.
+ */
+struct interesting_struct
 {
- /\*! \brief A data member. \*/
+ /*! \brief A data member. */
  int member1;
 
- int member2; /\*!< \brief Another data member. \*/
+ int member2; /*!< \brief Another data member. */
 }
 ```
 Note that /\\*\! \\*/ blocks document the construct immediately following them unless they are written, /\\*\!< \\*/, in which case they document the construct preceding them.

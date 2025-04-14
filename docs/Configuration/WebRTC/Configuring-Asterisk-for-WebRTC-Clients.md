@@ -56,10 +56,10 @@ Generating RSA private key, 4096 bit long modulus
 ............................................................................++
 .....................++
 e is 65537 (0x010001)
-Enter pass phrase for /etc/asterisk/keys/ca.key:\*\*\*\*\*\*\*\*
-Verifying - Enter pass phrase for /etc/asterisk/keys/ca.key:\*\*\*\*\*\*\*\*
+Enter pass phrase for /etc/asterisk/keys/ca.key:********
+Verifying - Enter pass phrase for /etc/asterisk/keys/ca.key:********
 Creating CA certificate /etc/asterisk/keys/ca.crt
-Enter pass phrase for /etc/asterisk/keys/ca.key:\*\*\*\*\*\*\*\*
+Enter pass phrase for /etc/asterisk/keys/ca.key:********
 Creating certificate /etc/asterisk/keys/asterisk.key
 Generating RSA private key, 1024 bit long modulus
 ........++++++
@@ -70,7 +70,7 @@ Creating certificate /etc/asterisk/keys/asterisk.crt
 Signature ok
 subject=CN = pbx.example.com, O = My Organization
 Getting CA Private Key
-Enter pass phrase for /etc/asterisk/keys/ca.key:\*\*\*\*\*\*\*\*
+Enter pass phrase for /etc/asterisk/keys/ca.key:********
 Combining key and crt into /etc/asterisk/keys/asterisk.pem
 
 $ ls -l /etc/asterisk/keys

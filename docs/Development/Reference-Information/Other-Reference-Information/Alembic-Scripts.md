@@ -19,7 +19,7 @@ AST_BOOL_VALUES = [ '0', '1',
  'false', 'true',
  'no', 'yes' ]
 def upgrade():
- ast_bool_values = ENUM(\*AST_BOOL_VALUES, name=AST_BOOL_NAME, create_type=False)
+ ast_bool_values = ENUM(*AST_BOOL_VALUES, name=AST_BOOL_NAME, create_type=False)
  op.add_column('ps_aors', sa.Column('remove_unavailable', ast_bool_values))
 
 ```

@@ -48,7 +48,7 @@ class Event(object):
  # Use "octothorpe" so there is no confusion about "pound" or "hash"
  # terminology.
  DTMF_OCTOTHORPE = "#"
- DTMF_STAR = "\*"
+ DTMF_STAR = "*"
  # Call has hung up
  HANGUP = "hangup"
  # Playback of a file has completed
@@ -73,7 +73,7 @@ var Event = {
  // Use "octothorpe" so there is no confusion about "pound" or "hash"
  // terminology.
  DTMF_OCTOTHORPE: "#",
- DTMF_STAR: "\*",
+ DTMF_STAR: "*",
  // Call has hung up
  HANGUP: "hangup",
  // Playback of a file has completed

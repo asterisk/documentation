@@ -106,7 +106,7 @@ When a SIP device is subscribed to a hint you have configured in Asterisk and th
 Click here to see the NOTIFY example
 
 ```
-myserver\*CLI> presencestate change CustomPresence:6002 UNAVAILABLE
+myserver*CLI> presencestate change CustomPresence:6002 UNAVAILABLE
 Changing 6002 to UNAVAILABLE
 set_destination: Parsing <sip:6002@10.24.18.138:5060;ob> for address/port to send to
 set_destination: set destination to 10.24.18.138:5060

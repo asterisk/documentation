@@ -58,21 +58,21 @@ static AO2_GLOBAL_OBJ_STATIC(globals);
 ```
 C
 struct my_config {
- struct my_global_cfg \*global;
- struct ao2_container \*items;
+ struct my_global_cfg *global;
+ struct ao2_container *items;
 };
 
-static void my_config_destructor(void \*obj)
+static void my_config_destructor(void *obj)
 {
- struct my_config \*cfg = obj;
+ struct my_config *cfg = obj;
  ao2_cleanup(cfg->global);
  ao2_cleanup(cfg->items);
 }
 
-static void \*my_config_alloc(void)
+static void *my_config_alloc(void)
 {
- struct my_config \*cfg;
- if (!(cfg = ao2_alloc(sizeof(\*cfg), my_config_destructor))) {
+ struct my_config *cfg;
+ if (!(cfg = ao2_alloc(sizeof(*cfg), my_config_destructor))) {
  return NULL;
  }
  if (!(cfg->global = my_global_cfg_alloc())) {
@@ -160,8 +160,8 @@ A completely consistent snapshot of config data can be accessed via
 C
 void some_func_that_accesses_config_data(void)
 {
- RAII_VAR(struct my_config \*, cfg, ao2_global_obj_ref(globals), ao2_cleanup);
- RAII_VAR(struct my_item \*, item, NULL, ao2_cleanup);
+ RAII_VAR(struct my_config *, cfg, ao2_global_obj_ref(globals), ao2_cleanup);
+ RAII_VAR(struct my_item *, item, NULL, ao2_cleanup);
  if (!cfg) {
  return;
  }

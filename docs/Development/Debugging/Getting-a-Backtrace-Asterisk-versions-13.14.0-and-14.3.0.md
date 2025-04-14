@@ -162,8 +162,8 @@ No symbol table info available.
 #12 0x00000000 in ?? ()
 No symbol table info available.
 #13 0x407513c3 in confcall_careful_stream (conf=0x8180bf8, filename=0x8181de8 "DAHDI/pseudo-1324221520") at app_meetme.c:262
- f = (struct ast_frame \*) 0x8180bf8
- trans = (struct ast_trans_pvt \*) 0x0
+ f = (struct ast_frame *) 0x8180bf8
+ trans = (struct ast_trans_pvt *) 0x0
 #14 0x40751332 in streamconfthread (args=0x8180bf8) at app_meetme.c:1965
 No locals.
 #15 0xbcdffbe0 in ?? ()

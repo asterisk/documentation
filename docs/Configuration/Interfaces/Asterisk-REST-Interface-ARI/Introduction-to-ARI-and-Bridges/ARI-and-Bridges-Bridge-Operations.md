@@ -183,8 +183,8 @@ def stasis_start_cb(channel_obj, ev):
  channel.hangup()
  return
 
- channel.on_event('StasisEnd', lambda \*args: safe_hangup(outgoing))
- outgoing.on_event('StasisEnd', lambda \*args: safe_hangup(channel))
+ channel.on_event('StasisEnd', lambda *args: safe_hangup(outgoing))
+ outgoing.on_event('StasisEnd', lambda *args: safe_hangup(channel))
 
  def outgoing_start_cb(channel_obj, ev):
  """StasisStart handler for our dialed channel"""
@@ -199,9 +199,9 @@ def stasis_start_cb(channel_obj, ev):
  bridge.addChannel(channel=[channel.id, outgoing.id])
 
  # Clean up the bridge when done
- channel.on_event('StasisEnd', lambda \*args:
+ channel.on_event('StasisEnd', lambda *args:
  safe_bridge_destroy(bridge))
- outgoing.on_event('StasisEnd', lambda \*args:
+ outgoing.on_event('StasisEnd', lambda *args:
  safe_bridge_destroy(bridge))
 
  outgoing.on_event('StasisStart', outgoing_start_cb)

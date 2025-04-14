@@ -76,7 +76,7 @@ allow=ulaw
 type=aor
 default_expiration=3600
 
-[101](+default_.\*=36[0-9][0-9])
+[101](+default_.*=36[0-9][0-9])
 default_expiration=1200
 
 [101](+type=endpoint)
@@ -99,7 +99,7 @@ allow=ulaw
 type=aor
 default_expiration=3600
 
-[101](+type=aor&default_.\*=36[0-9][0-9])
+[101](+type=aor&default_.*=36[0-9][0-9])
 default_expiration=1200
 
 [101](+type=endpoint)
@@ -124,7 +124,7 @@ default_expiration=3600
 
 [101](aor_template)
 
-[101](+TEMPLATES=restrict&default_.\*=36[0-9][0-9])
+[101](+TEMPLATES=restrict&default_.*=36[0-9][0-9])
 default_expiration=1200
 
 [101](+type=endpoint)

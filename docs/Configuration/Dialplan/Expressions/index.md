@@ -9,7 +9,7 @@ For example, after the sequence:
 
 ```
 exten => 1,1,Set(lala=$[1 + 2])
-exten => 1,2,Set(koko=$[2 \* ${lala}])
+exten => 1,2,Set(koko=$[2 * ${lala}])
 
 ```
 

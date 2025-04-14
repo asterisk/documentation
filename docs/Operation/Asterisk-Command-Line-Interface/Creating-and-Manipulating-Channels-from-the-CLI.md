@@ -22,12 +22,12 @@ Usage: channel request hangup <channel>|<all>
 An example:
 
 ```
-newtonr-laptop\*CLI> core show channels
+newtonr-laptop*CLI> core show channels
 Channel Location State Application(Data) 
 SIP/6001-00000001 (None) Up Playback(demo-congrats) 
 1 active channel
 
-newtonr-laptop\*CLI> channel request hangup SIP/6001-00000001 
+newtonr-laptop*CLI> channel request hangup SIP/6001-00000001 
 Requested Hangup on channel 'SIP/6001-00000001'
 [May 2 09:51:19] WARNING[7045][C-00000001]: app_playback.c:493 playback_exec: Playback failed on SIP/6001-00000001 for demo-congrats
 
@@ -60,7 +60,7 @@ used. If no extension is given, the 's' extension will be used.
 An example:
 
 ```
-newtonr-laptop\*CLI> channel originate SIP/6001 extension 9999@somecontext
+newtonr-laptop*CLI> channel originate SIP/6001 extension 9999@somecontext
  == Using SIP RTP CoS mark 5
  -- Called 6001
  -- SIP/6001-00000004 is ringing
@@ -91,7 +91,7 @@ An example:
  -- Executing [100@from-internal:1] Playback("SIP/6001-00000005", "demo-congrats") in new stack
  > 0x7f07ec03e560 -- Probation passed - setting RTP source address to 10.24.18.16:4048
  -- <SIP/6001-00000005> Playing 'demo-congrats.gsm' (language 'en')
-newtonr-laptop\*CLI> channel redirect SIP/6001-00000005 somecontext,9999,1
+newtonr-laptop*CLI> channel redirect SIP/6001-00000005 somecontext,9999,1
 Channel 'SIP/6001-00000005' successfully redirected to somecontext,9999,1
 [May 2 09:56:28] WARNING[7056][C-00000005]: app_playback.c:493 playback_exec: Playback failed on SIP/6001-00000005 for demo-congrats
  -- Executing [9999@somecontext:1] VoiceMailMain("SIP/6001-00000005", "") in new stack

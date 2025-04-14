@@ -201,7 +201,7 @@ If everything is setup correctly, you should see this output after executing a '
 
 ```
 
-\*CLI> corosync show members
+*CLI> corosync show members
 
 =============================================================
 === Cluster members =========================================
@@ -219,7 +219,7 @@ After starting Corosync and Asterisk on your second node, the 'corosync show mem
 
 ```
 
-\*CLI> corosync show members 
+*CLI> corosync show members 
 
 =============================================================
 === Cluster members =========================================

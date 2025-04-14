@@ -73,7 +73,7 @@ $ asterisk -c
 Once Asterisk has started, type the following on the CLI:
 
 ```
-\*CLI> module show like res_config_curl
+*CLI> module show like res_config_curl
 Module Description Use Count Status
 res_config_curl.so Realtime Curl configuration 0 Running
 1 modules loaded

@@ -129,7 +129,7 @@ struct ast_sdp_options;
  * Simple allocation for SDP options.
  * Initializes with sane defaults
  */
-struct ast_sdp_options \*ast_sdp_options_alloc(void);
+struct ast_sdp_options *ast_sdp_options_alloc(void);
 
 /*!
  * \brief Free SDP options.
@@ -139,7 +139,7 @@ struct ast_sdp_options \*ast_sdp_options_alloc(void);
  * that uses these options. Otherwise, freeing the SDP state
  * will free the SDP options it inherited.
  */
-void ast_sdp_options_free(struct ast_sdp_options \*options);
+void ast_sdp_options_free(struct ast_sdp_options *options);
 
 /*!
  * \brief General template for setting SDP options
@@ -147,7 +147,7 @@ void ast_sdp_options_free(struct ast_sdp_options \*options);
  * The types are going to differ for each individual option, hence
  * the "whatever" second parameter.
  */
-int ast_sdp_options_set_<whatever>(struct ast_sdp_options \*sdp_options, <whatever>);
+int ast_sdp_options_set_<whatever>(struct ast_sdp_options *sdp_options, <whatever>);
 
 /*!
  *\brief General template for retrieving SDP options
@@ -155,7 +155,7 @@ int ast_sdp_options_set_<whatever>(struct ast_sdp_options \*sdp_options, <whatev
  * The type being retrieved is going to be dependent on the option being retrieved,
  * thus the return type of "whatever" here.
  */
-<whatever> ast_sdp_options_get_<whatever>(struct ast_sdp_options \*sdp_options);
+<whatever> ast_sdp_options_get_<whatever>(struct ast_sdp_options *sdp_options);
 
 /*!
  * \brief Allocate a new SDP state
@@ -165,14 +165,14 @@ int ast_sdp_options_set_<whatever>(struct ast_sdp_options \*sdp_options, <whatev
  * Ownership of the SDP options is taken on by the SDP state.
  * A good strategy is to call this during session creation.
  */
-struct ast_sdp_state\* ast_sdp_state_alloc(struct ast_stream_topology \*streams, const struct ast_sdp_options \*options);
+struct ast_sdp_state* ast_sdp_state_alloc(struct ast_stream_topology *streams, const struct ast_sdp_options *options);
 
 /*!
  * \brief Free the SDP state.
  *
  * A good strategy is to call this during session destruction
  */
-void ast_sdp_state_free(struct ast_sdp_state \*sdp_state);
+void ast_sdp_state_free(struct ast_sdp_state *sdp_state);
 
 /*!
  * \brief Get the local SDP.
@@ -188,7 +188,7 @@ void ast_sdp_state_free(struct ast_sdp_state \*sdp_state);
  * message. The API user should not attempt to modify the SDP. SDP modification should only be done through
  * the API.
  */
-const void \*ast_sdp_state_get_local(const struct ast_sdp_state \*sdp_state);
+const void *ast_sdp_state_get_local(const struct ast_sdp_state *sdp_state);
 
 /*!
  * \brief Set the remote SDP.
@@ -201,7 +201,7 @@ const void \*ast_sdp_state_get_local(const struct ast_sdp_state \*sdp_state);
  * This function will allocate RTP instances if RTP instances have not already
  * been allocated for the streams.
  */
-int ast_sdp_state_set_remote(struct ast_sdp_state \*sdp, void \*remote);
+int ast_sdp_state_set_remote(struct ast_sdp_state *sdp, void *remote);
 
 /*!
  * \brief Reset the SDP state and stream capabilities as if the SDP state had just been allocated.
@@ -210,20 +210,20 @@ int ast_sdp_state_set_remote(struct ast_sdp_state \*sdp, void \*remote);
  * and needs to re-advertise its initial capabilities instead of the previously-negotiated
  * joint capabilities.
  */
-int ast_sdp_state_reset(struct ast_sdp_state \*sdp);
+int ast_sdp_state_reset(struct ast_sdp_state *sdp);
 
 /*!
  * \brief Get the associated RTP instance for a particular stream on the SDP state.
  *
  * Stream numbers correspond to the streams in the topology of the associated channel
  */
-struct ast_rtp_instance \*ast_sdp_state_get_rtp_instance(const struct ast_sdp_state \*sdp_state, int stream_index);
+struct ast_rtp_instance *ast_sdp_state_get_rtp_instance(const struct ast_sdp_state *sdp_state, int stream_index);
 
 /*!
  * \brief Get the joint negotiated streams based on local and remote capabilities.
  * If this is called prior to receiving a remote SDP, then this will just mirror the local configured endpoint capabilities.
  */
-struct ast_stream_topology \*ast_sdp_state_get_joint_topology(const struct ast_sdp_state \*sdp_state);
+struct ast_stream_topology *ast_sdp_state_get_joint_topology(const struct ast_sdp_state *sdp_state);
 
 /*!
  * \brief Update remote and local stream capabilities
@@ -235,14 +235,14 @@ struct ast_stream_topology \*ast_sdp_state_get_joint_topology(const struct ast_s
  * Retrieval of the local SDP after calling either of these functions will result in the appropriate
  * joint stream capabilities being represented.
  */
-int ast_sdp_state_update_local_topology(struct ast_sdp_state \*state, struct ast_stream_topology \*new_topology);
-int ast_sdp_state_update_remote_topology(struct ast_sdp_state \*state, struct ast_stream_topology \*new_topology);
+int ast_sdp_state_update_local_topology(struct ast_sdp_state *state, struct ast_stream_topology *new_topology);
+int ast_sdp_state_update_remote_topology(struct ast_sdp_state *state, struct ast_stream_topology *new_topology);
 
 /*
  * Override the default connection address for SDP.
  * This is useful for NAT operations and for direct media.
  */
-int ast_sdp_state_set_connection_address(struct ast_sdp_state \*state, struct ast_sockaddr \*addr);
+int ast_sdp_state_set_connection_address(struct ast_sdp_state *state, struct ast_sockaddr *addr);
 
 ```
 
@@ -288,12 +288,12 @@ The callback would look something like the following:
  * This will be called each time a new ICE candidate is discovered on an RTP instance.
  * The opaque pointer is the same data that was passed in when registering the callback.
  */
-typedef int (\*new_candidate_fn)(struct ast_rtp_instance \*rtp, struct ast_rtp_engine_ice_candidate \*candidate, void \*data);
+typedef int (*new_candidate_fn)(struct ast_rtp_instance *rtp, struct ast_rtp_engine_ice_candidate *candidate, void *data);
 
 /*
  * Indicate interest in being told of new ICE candidates.
  * 
-int ast_rtp_instance_register_ice_new_candidate_cb(struct ast_rtp_instance \*rtp, new_candidate_fn cb, void \*data);
+int ast_rtp_instance_register_ice_new_candidate_cb(struct ast_rtp_instance *rtp, new_candidate_fn cb, void *data);
 
 ```
 
@@ -309,10 +309,10 @@ Code samples
 Here is a hypothetical allocation of an `ast_sdp_state`.
 
 ```
-int init_session(struct my_channel_driver_session \*session)
+int init_session(struct my_channel_driver_session *session)
 {
- struct ast_sdp_options \*sdp_options;
- struct ast_sdp_state \*sdp_state;
+ struct ast_sdp_options *sdp_options;
+ struct ast_sdp_state *sdp_state;
 
  sdp_options = ast_sdp_options_alloc();
  if (!sdp_options) {
@@ -355,9 +355,9 @@ In this example, we enable several SDP options and then use those to allocate th
 Now let's make a call.
 
 ```
-int make_a_call(struct my_channel_driver_session \*session, char \*dest)
+int make_a_call(struct my_channel_driver_session *session, char *dest)
 {
- struct my_channel_driver_message \*message;
+ struct my_channel_driver_message *message;
 
  message = make_call_message(dest);
 
@@ -373,14 +373,14 @@ When it comes time to make a call, all we have to do is request our local SDP, t
 Now what about receiving an incoming call.
 
 ```
-int incoming_call(struct my_channel_driver_session \*session, struct my_channel_driver_message \*message)
+int incoming_call(struct my_channel_driver_session *session, struct my_channel_driver_message *message)
 { 
- struct my_channel_driver_message \*response;
+ struct my_channel_driver_message *response;
 
  if (message->sdp) {
- struct ast_stream_topology \*joint_topology;
- struct ast_stream_topology \*old_channel_topology;
- struct ast_stream_topology \*channel_topology;
+ struct ast_stream_topology *joint_topology;
+ struct ast_stream_topology *old_channel_topology;
+ struct ast_stream_topology *channel_topology;
  ast_sdp_state_set_remote(session->sdp_state, message->sdp);
  joint_topology = ast_stream_topology_copy(ast_sdp_state_get_joint_topology(session->sdp_state));
 
@@ -408,10 +408,10 @@ This is very similar to what we did when creating an outgoing call. The interest
 Now let's look at a hypothetical switchover to direct media.
 
 ```
-int direct_media_enabled(struct my_channel_driver_session \*session, struct ast_stream_topology \*peer_topology, struct ast_sockaddr \*peer_addr)
+int direct_media_enabled(struct my_channel_driver_session *session, struct ast_stream_topology *peer_topology, struct ast_sockaddr *peer_addr)
 {
- struct my_channel_driver_message \*message;
- struct ast_format_cap \*joint_topology;
+ struct my_channel_driver_message *message;
+ struct ast_format_cap *joint_topology;
 
  ast_sdp_state_update_local_topology(session->sdp_state, peer_topology);
  joint_topology = ast_sdp_state_get_joint_topology(session->sdp_state);

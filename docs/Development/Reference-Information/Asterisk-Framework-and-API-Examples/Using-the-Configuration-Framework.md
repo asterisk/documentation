@@ -160,9 +160,9 @@ Cmy_module - load_configuration
  */
 static int load_configuration(int reload)
 {
- struct ast_config \*cfg;
- char \*cat = NULL;
- struct ast_variable \*var;
+ struct ast_config *cfg;
+ char *cat = NULL;
+ struct ast_variable *var;
  struct ast_flags config_flags = { reload ? CONFIG_FLAG_FILEUNCHANGED : 0 };
  int res = 0;
 
@@ -325,9 +325,9 @@ static void log_module_values(void)
  */
 static int load_configuration(int reload)
 {
- struct ast_config \*cfg;
- char \*cat = NULL;
- struct ast_variable \*var;
+ struct ast_config *cfg;
+ char *cat = NULL;
+ struct ast_variable *var;
  struct ast_flags config_flags = { reload ? CONFIG_FLAG_FILEUNCHANGED : 0 };
  int res = 0;
 
@@ -342,7 +342,7 @@ static int load_configuration(int reload)
  return 0;
  }
 
- /* \*\*\* LOCK ADDED \*\*\ */
+ /* *** LOCK ADDED **\ */
  ast_config_lock(&config_lock);
 
  /* Set the default value */
@@ -387,7 +387,7 @@ static int load_configuration(int reload)
  }
 
 cleanup:
- /* \*\*\* UNLOCK ADDED \*\*\ */
+ /* *** UNLOCK ADDED **\ */
  ast_config_unlock(&config_lock);
  ast_config_destroy(cfg);
  return res;
@@ -442,7 +442,7 @@ struct global_options {
  * other items in this struct
  */
 struct module_config {
- struct global_options \*general; /*< Our global setting */
+ struct global_options *general; /*< Our global setting */
 }
 
 /*! \brief A container that holds our global module configuratio */
@@ -477,18 +477,18 @@ Well, as we mentioned previously, the configuration objects are going to be `ao2
 
 ```
 Cmodule_config Constructor/Destructor
-static void \*module_config_alloc(void);
-static void module_config_destructor(void \*obj);
+static void *module_config_alloc(void);
+static void module_config_destructor(void *obj);
 
 /*! \internal \brief Create a module_config objec */
-static void \*module_config_alloc(void)
+static void *module_config_alloc(void)
 {
- struct module_config \*cfg;
+ struct module_config *cfg;
 
- if (!(cfg = ao2_alloc(sizeof(\*cfg), module_config_destructor))) {
+ if (!(cfg = ao2_alloc(sizeof(*cfg), module_config_destructor))) {
  return NULL;
  }
- if (!(cfg->general = ao2_alloc(sizeof(\*cfg->general), NULL))) {
+ if (!(cfg->general = ao2_alloc(sizeof(*cfg->general), NULL))) {
  ao2_ref(cfg, -1);
  return NULL;
  }
@@ -497,9 +497,9 @@ static void \*module_config_alloc(void)
 }
 
 /*! \internal \brief Dispose of a module_config objec */
-static void module_config_destructor(void \*obj)
+static void module_config_destructor(void *obj)
 {
- struct module_config \*cfg = obj;
+ struct module_config *cfg = obj;
  ao2_cleanup(cfg->general);
 }
 
@@ -521,7 +521,7 @@ CONFIG_INFO_STANDARD(cfg_info, module_configs, module_config_alloc,
  .files = ACO_FILES(&module_conf),
 );
 
-static struct aco_type \*general_options[] = ACO_TYPES(&general_option);
+static struct aco_type *general_options[] = ACO_TYPES(&general_option);
 
 ```
 
@@ -598,7 +598,7 @@ CReloads and Using the Configuration Information
 /*! \internal \brief Log the current module value */
 static void log_module_values(void)
 {
- RAII_VAR(struct module_config \*, cfg, ao2_global_obj_ref(module_configs), ao2_cleanup);
+ RAII_VAR(struct module_config *, cfg, ao2_global_obj_ref(module_configs), ao2_cleanup);
 
  if (!cfg || !cfg->general) {
  ast_log(LOG_ERROR, "Rut roh - something blew away our configuration!);
@@ -670,7 +670,7 @@ struct global_options {
  * other items in this struct
  */
 struct module_config {
- struct global_options \*general; /*< Our global setting */
+ struct global_options *general; /*< Our global setting */
 };
 
 /*! \brief A container that holds our global module configuratio */
@@ -686,8 +686,8 @@ static struct aco_type general_option = {
  .category_match = ACO_WHITELIST,
 };
 
-static void \*module_config_alloc(void);
-static void module_config_destructor(void \*obj);
+static void *module_config_alloc(void);
+static void module_config_destructor(void *obj);
 
 /*! \brief A configuration file that will be processed for the modul */
 static struct aco_file module_conf = {
@@ -699,17 +699,17 @@ CONFIG_INFO_STANDARD(cfg_info, module_configs, module_config_alloc,
  .files = ACO_FILES(&module_conf),
 );
 
-static struct aco_type \*general_options[] = ACO_TYPES(&general_option);
+static struct aco_type *general_options[] = ACO_TYPES(&general_option);
 
 /*! \internal \brief Create a module_config objec */
-static void \*module_config_alloc(void)
+static void *module_config_alloc(void)
 {
- struct module_config \*cfg;
+ struct module_config *cfg;
 
- if (!(cfg = ao2_alloc(sizeof(\*cfg), module_config_destructor))) {
+ if (!(cfg = ao2_alloc(sizeof(*cfg), module_config_destructor))) {
  return NULL;
  }
- if (!(cfg->general = ao2_alloc(sizeof(\*cfg->general), NULL))) {
+ if (!(cfg->general = ao2_alloc(sizeof(*cfg->general), NULL))) {
  ao2_ref(cfg, -1);
  return NULL;
  }
@@ -718,16 +718,16 @@ static void \*module_config_alloc(void)
 }
 
 /*! \internal \brief Dispose of a module_config objec */
-static void module_config_destructor(void \*obj)
+static void module_config_destructor(void *obj)
 {
- struct module_config \*cfg = obj;
+ struct module_config *cfg = obj;
  ao2_cleanup(cfg->general);
 }
 
 /*! \internal \brief Log the current module value */
 static void log_module_values(void)
 {
- RAII_VAR(struct module_config \*, cfg, ao2_global_obj_ref(module_configs), ao2_cleanup);
+ RAII_VAR(struct module_config *, cfg, ao2_global_obj_ref(module_configs), ao2_cleanup);
 
  if (!cfg || !cfg->general) {
  ast_log(LOG_ERROR, "Rut roh - something blew away our configuration!");

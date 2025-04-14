@@ -95,8 +95,8 @@ def stasis_start_cb(channel_obj, ev):
 		channel.hangup()
 		return
 
-	channel.on_event('StasisEnd', lambda \*args: safe_hangup(outgoing))
-	outgoing.on_event('StasisEnd', lambda \*args: safe_hangup(channel))
+	channel.on_event('StasisEnd', lambda *args: safe_hangup(outgoing))
+	outgoing.on_event('StasisEnd', lambda *args: safe_hangup(channel))
 ```
 
 The `safe_hangup` function referenced above simply does a "safe" hangup on the channel provided. This is because it is entirely possible for both parties to hang up nearly simultaneously. Since our Python code is running in a separate process from Asterisk, we may be processing the hang up of the first party and instruct Asterisk to hang up the second party when they are already technically hung up! Again, it is always a good idea to view the processing of a communications application in an asynchronous fashion: we live in an asynchronous world, and a user can take an action at any moment in time.
@@ -135,8 +135,8 @@ def outgoing_start_cb(channel_obj, ev):
 	bridge.addChannel(channel=[channel.id, outgoing.id])
 
 	# Clean up the bridge when done
-	channel.on_event('StasisEnd', lambda \*args: safe_bridge_destroy(bridge))
-	outgoing.on_event('StasisEnd', lambda \*args: safe_bridge_destroy(bridge))
+	channel.on_event('StasisEnd', lambda *args: safe_bridge_destroy(bridge))
+	outgoing.on_event('StasisEnd', lambda *args: safe_bridge_destroy(bridge))
 
 outgoing.on_event('StasisStart', outgoing_start_cb)
 ```
@@ -207,8 +207,8 @@ def stasis_start_cb(channel_obj, ev):
 		channel.hangup()
 		return
 
-	channel.on_event('StasisEnd', lambda \*args: safe_hangup(outgoing))
-	outgoing.on_event('StasisEnd', lambda \*args: safe_hangup(channel))
+	channel.on_event('StasisEnd', lambda *args: safe_hangup(outgoing))
+	outgoing.on_event('StasisEnd', lambda *args: safe_hangup(channel))
 
  def outgoing_start_cb(channel_obj, ev):
 	"""StasisStart handler for our dialed channel"""
@@ -221,8 +221,8 @@ def stasis_start_cb(channel_obj, ev):
 	bridge.addChannel(channel=[channel.id, outgoing.id])
 
 	# Clean up the bridge when done
-	channel.on_event('StasisEnd', lambda \*args: safe_bridge_destroy(bridge))
-	outgoing.on_event('StasisEnd', lambda \*args: safe_bridge_destroy(bridge))
+	channel.on_event('StasisEnd', lambda *args: safe_bridge_destroy(bridge))
+	outgoing.on_event('StasisEnd', lambda *args: safe_bridge_destroy(bridge))
 	outgoing.on_event('StasisStart', outgoing_start_cb)
 
 client.on_channel_event('StasisStart', stasis_start_cb)

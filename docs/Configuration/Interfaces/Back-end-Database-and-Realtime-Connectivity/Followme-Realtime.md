@@ -19,7 +19,7 @@ followme:
  music
  context Dialplan context from which to dial numbers
  takecall DTMF used to accept the call and be connected. For obvious reasons,
- this needs to be a single digit, '\*', or '#'.
+ this needs to be a single digit, '*', or '#'.
  declinecall DTMF used to refuse the call, sending it onto the next step, if any.
  call_from_prompt Prompt to play to the callee, announcing the call.
  norecording_prompt The alternate prompt to play to the callee, when the caller

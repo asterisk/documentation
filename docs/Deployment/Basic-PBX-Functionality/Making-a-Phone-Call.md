@@ -6,7 +6,7 @@ pageid: 4817414
 At this point, you should be able to pick up Alice's phone and dial extension **6002** to call Bob, and dial **6001** from Bob's phone to call Alice. As you make a few test calls, be sure to watch the Asterisk command-line interface (and ensure that your verbosity is set to a value three or higher) so that you can see the messages coming from Asterisk, which should be similar to the ones below:
 
 ```
-server\*CLI>     -- Executing [6002@from-internal:1] Dial("SIP/demo-alice-00000000", "SIP/demo-bob,20") in new stack
+server*CLI>     -- Executing [6002@from-internal:1] Dial("SIP/demo-alice-00000000", "SIP/demo-bob,20") in new stack
  -- Called demo-bob
  -- SIP/demo-bob-00000001 is ringing
  -- SIP/demo-bob-00000001 answered SIP/demo-alice-00000000

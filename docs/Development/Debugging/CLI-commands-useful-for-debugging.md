@@ -23,7 +23,7 @@ Examples: (both a lock during a feature code attended transfer)
 Example output with DEBUG_THREADS only
 
 ```
-ubuntu\*CLI> core show locks
+ubuntu*CLI> core show locks
 
 =======================================================================
 === Currently Held Locks ==============================================
@@ -57,7 +57,7 @@ ubuntu\*CLI> core show locks
 Example output with DEBUG_THREADS and BETTER_BACKTRACES
 
 ```
-ubuntu\*CLI> core show locks
+ubuntu*CLI> core show locks
 
 =======================================================================
 === Currently Held Locks ==============================================
@@ -95,7 +95,7 @@ List instantiated task processors and statistics
 Example command output
 
 ```
-ubuntu\*CLI> core show taskprocessors
+ubuntu*CLI> core show taskprocessors
 
  +----- Processor -----+--- Processed ---+- In Queue -+- Max Depth -+
  app_queue 8 0 0
@@ -113,7 +113,7 @@ ubuntu\*CLI> core show taskprocessors
 Example command output (Asterisk 13)
 
 ```
-\*CLI> core show taskprocessors
+*CLI> core show taskprocessors
 Processor Processed In Queue Max Depth Low water High water
 app_voicemail 0 0 0 450 500
 ast_msg_queue 0 0 0 450 500
@@ -150,7 +150,7 @@ Shows running threads!  Doesn't require any compilation flags to be set.
 Example command output
 
 ```
-ubuntu\*CLI> core show threads
+ubuntu*CLI> core show threads
 0x7f869a7fb700 25102 netconsole started at [ 1442] asterisk.c listener()
 0x7f869a877700 25100 tps_processing_function started at [ 471] taskprocessor.c ast_taskprocessor_get()
 0x7f869a8f3700 25099 do_monitor started at [ 5743] chan_unistim.c restart_monitor()
@@ -172,7 +172,7 @@ This command is not available until you compile Asterisk with [DEBUG_FD_LEAKS](/
 Shows file descriptors open by Asterisk.
 
 ```
-newtonr-laptop\*CLI> core show fd
+newtonr-laptop*CLI> core show fd
 Current maxfiles: unlimited
  3 utils.c:2310 (ast_utils_init ): open("/dev/urandom",0)
  5 asterisk.c:1626 (ast_makesocket ): socket(PF_UNIX,SOCK_STREAM,"tcp")

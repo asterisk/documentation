@@ -43,7 +43,7 @@ You've now learned the basics of how to create a simple auto-attendant menu. Now
 	exten => 2,1,Goto(users,6002,1)
 
 	exten => 9,1,Directory(vm-demo,users,fe)
-	exten => \*,1,VoiceMailMain(@vm-demo)
+	exten => *,1,VoiceMailMain(@vm-demo)
 
 	exten => i,1,Playback(option-is-invalid) 
 	same => n,Goto(s,loop)

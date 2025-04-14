@@ -23,8 +23,8 @@ Plain subscriptions
 A regular subscription is Stasis is created by using the [stasis_subscribe()](http://doxygen.asterisk.org/trunk/dd/d79/stasis_8h.html#0f22205d00ef47310681da71d082017b) function. You provide the topic, a callback function, and a piece of data you wish to come along with the callback, and the message bus does the rest.
 
 ```
-static void statsmaker(void \*data, struct stasis_subscription \*sub,
- struct stasis_topic \*topic, struct stasis_message \*message)
+static void statsmaker(void *data, struct stasis_subscription *sub,
+ struct stasis_topic *topic, struct stasis_message *message)
 {
  /* .. */
 }
@@ -64,10 +64,10 @@ You have some really strong guarantees about how the messages get dispatched to 
 The bulk of the subscription callback will be whatever logic you need to process the incoming messages. But there is one caveat: [handling the final message](/Development/Roadmap/Asterisk-12-Projects/Asterisk-12-API-Improvements/Stasis-Message-Bus/Using-the-Stasis-Message-Bus/Stasis-Subscriber-Shutdown-Problem).
 
 ```
-static void statsmaker(void \*data, struct stasis_subscription \*sub,
- struct stasis_topic \*topic, struct stasis_message \*message)
+static void statsmaker(void *data, struct stasis_subscription *sub,
+ struct stasis_topic *topic, struct stasis_message *message)
 {
- RAII_VAR(struct ast_str \*, metric, NULL, ast_free);
+ RAII_VAR(struct ast_str *, metric, NULL, ast_free);
  if (stasis_subscription_final_message(sub, message)) {
  /* Normally, data points to an object that must be cleaned up.
  * The final message is an unsubscribe notification that's
@@ -97,18 +97,18 @@ Message Routing
 We discovered in using subscriptions that most subscription handlers were simply chains of `if/else` clauses dispatching messages based on type. Rather than encourage that sort of ugly boilerplate, we introduced the [stasis_message_router](http://doxygen.asterisk.org/trunk/d4/d25/stasis__message__router_8h.html).
 
 ```
-static void updates(void \*data, struct stasis_subscription \*sub,
- struct stasis_topic \*topic, struct stasis_message \*message)
+static void updates(void *data, struct stasis_subscription *sub,
+ struct stasis_topic *topic, struct stasis_message *message)
 {
  /* Since this came from a message router, we know the type of the
  * message. We can cast the data without checking its type.
  */
- struct stasis_cache_update \*update = stasis_message_data(message);
+ struct stasis_cache_update *update = stasis_message_data(message);
  /* .. */
 
 }
-static void default_route(void \*data, struct stasis_subscription \*sub,
- struct stasis_topic \*topic, struct stasis_message \*message)
+static void default_route(void *data, struct stasis_subscription *sub,
+ struct stasis_topic *topic, struct stasis_message *message)
 {
  if (stasis_subscription_final_message(sub, message)) {
  /* subscription cleanu */

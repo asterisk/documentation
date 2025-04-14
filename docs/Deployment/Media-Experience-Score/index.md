@@ -24,7 +24,7 @@ We’ll be reducing a given transmission rating factor, or ‘R’ value for sho
 Let’s start with latency. Depending on the situation the media itself may or may not be affected by late arriving packets, but the overall user experience may suffer. For example, If you’re on a VOIP call and audio is delayed by a second it makes it harder to have a conversation. As well if packets arrive out of order, and no jitter buffer is enabled that too will make for an unpleasant experience. To that end we can compute an “effective latency” (in milliseconds), and reduce the ‘R’ value accordingly:
 
 ```text
-Effective Latency = Average Round Trip Time + Average Jitter \* 2 \* (Jitter Standard Deviation / 3) + Codec Delay
+Effective Latency = Average Round Trip Time + Average Jitter * 2 * (Jitter Standard Deviation / 3) + Codec Delay
 If Effective Latency < 160: R = 93.2 - (Effective Latency / 40)
 Else: R = 93.2 - (Effective Latency - 120) / 10
 ```
@@ -34,7 +34,7 @@ Multiplying the jitter, and factoring in its standard deviation adds to its “w
 Next up is packet loss. If anything is going to have a known effect on media quality it’s packet loss. Again we can further reduce the ‘R’ value according to average number of packets lost since the last report:
 
 ```text
-R = R - Packets Lost \* 2.5
+R = R - Packets Lost * 2.5
 ```
 
 /// note
@@ -47,7 +47,7 @@ All that is needed to do now is convert the ‘R’ value into an “opinion sco
 ```text
 If R < 0: Opinion = 1
 Else if R > 100: Opinion = 4.5
-Else: Opinion = 1 + (0.035 \* R) + (R \* (R - 60) \* (100 - R) \* 0.0000007);
+Else: Opinion = 1 + (0.035 * R) + (R * (R - 60) * (100 - R) * 0.0000007);
 ```
 
 ## In Asterisk

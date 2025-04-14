@@ -804,7 +804,7 @@ class ListeningState(object):
 		elif digit == '#':
 			self.cleanup()
 			self.call.state_machine.change_state(Event.DTMF_OCTOTHORPE)
-		elif digit == '\*':
+		elif digit == '*':
 			print("Deleting stored recording {0}".format(
 				self.call.get_current_voicemail_file()))
 			self.cleanup()
@@ -903,7 +903,7 @@ function ListeningState(call) {
 				cleanup();
 				call.state_machine.change_state(Event.DTMF_OCTOTHORPE);
 				break;
-			case '\*':
+			case '*':
 				console.log("Deleting stored recording", call.get_current_voicemail_file());
 				cleanup();
 				call.client.recordings.deleteStored({recordingName:call.get_current_voicemail_file()});

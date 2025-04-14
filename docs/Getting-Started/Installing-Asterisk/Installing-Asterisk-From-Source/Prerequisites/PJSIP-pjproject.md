@@ -150,10 +150,10 @@ pjlib/include/pj/config_site.h
 #endif
 
 #define PJ_ENABLE_EXTRA_CHECK 1
-#define PJSIP_MAX_TSX_COUNT ((64\*1024)-1)
-#define PJSIP_MAX_DIALOG_COUNT ((64\*1024)-1)
-#define PJSIP_UDP_SO_SNDBUF_SIZE (512\*1024)
-#define PJSIP_UDP_SO_RCVBUF_SIZE (512\*1024)
+#define PJSIP_MAX_TSX_COUNT ((64*1024)-1)
+#define PJSIP_MAX_DIALOG_COUNT ((64*1024)-1)
+#define PJSIP_UDP_SO_SNDBUF_SIZE (512*1024)
+#define PJSIP_UDP_SO_RCVBUF_SIZE (512*1024)
 #define PJ_DEBUG 0
 #define PJSIP_SAFE_MODULE 0
 #define PJ_HAS_STRICMP_ALNUM 0
@@ -179,12 +179,12 @@ pjlib/include/pj/config_site.h
 
 /* Defaults too low for WebRT */
 #define PJ_ICE_MAX_CAND 32
-#define PJ_ICE_MAX_CHECKS (PJ_ICE_MAX_CAND \* PJ_ICE_MAX_CAND)
+#define PJ_ICE_MAX_CHECKS (PJ_ICE_MAX_CAND * PJ_ICE_MAX_CAND)
 
 /* Increase limits to allow more format */
 #define PJMEDIA_MAX_SDP_FMT 64
 #define PJMEDIA_MAX_SDP_BANDW 4
-#define PJMEDIA_MAX_SDP_ATTR (PJMEDIA_MAX_SDP_FMT\*2 + 4)
+#define PJMEDIA_MAX_SDP_ATTR (PJMEDIA_MAX_SDP_FMT*2 + 4)
 #define PJMEDIA_MAX_SDP_MEDIA 16
 
 /*
@@ -412,7 +412,7 @@ If you don't have an "uninstall" make target, you may need to fetch and merge th
 Alternatively, the following should also remove all previously installed static libraries:
 
 ```bash title=" " linenums="1"
-# rm -f /usr/lib/libpj\*.a /usr/lib/libmilenage\*.a /usr/lib/pkgconfig/libpjproject.pc
+# rm -f /usr/lib/libpj*.a /usr/lib/libmilenage*.a /usr/lib/pkgconfig/libpjproject.pc
 
 ```
 

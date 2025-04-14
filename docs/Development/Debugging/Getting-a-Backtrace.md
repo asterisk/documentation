@@ -137,12 +137,12 @@ DESCRIPTION
  specified on the command line the value of COREDUMPS from
  ast_debug_tools.conf will be used. Failing that, the following
  patterns will be used:
- /tmp/core[-._]asterisk!(\*.txt)
- /tmp/core[-._]$(hostname)!(\*.txt)
+ /tmp/core[-._]asterisk!(*.txt)
+ /tmp/core[-._]$(hostname)!(*.txt)
 NOTES
  You must be root to use ast_coredumper.
  The script relies on not only bash, but also recent GNU date and
- gdb with python support. \*BSD operating systems may require
+ gdb with python support. *BSD operating systems may require
  installation of the 'coreutils' and 'devel/gdb' packagess and minor
  tweaking of the ast_debug_tools.conf file.
  Any files output will have ':' characters changed to '-'. This is
@@ -171,7 +171,7 @@ FILES
  # The exclusion of files ending ".txt" is just for
  # demonstration purposes as non-coredumps will be ignored
  # anyway.
- COREDUMPS=(/tmp/core[-._]asterisk!(\*.txt) /tmp/core[-._]$(hostname)!(\*.txt))
+ COREDUMPS=(/tmp/core[-._]asterisk!(*.txt) /tmp/core[-._]$(hostname)!(*.txt))
  # Date command for the "running" coredump and tarballs.
  # DATEFORMAT will be executed to get the timestamp.
  # Don't put quotes around the format string or they'll be
@@ -182,7 +182,7 @@ FILES
  # Unix timestamp
  #DATEFORMAT='date +%s.%N'
  #
- # \*BSD/MacOS doesn't support %N but after installing GNU
+ # *BSD/MacOS doesn't support %N but after installing GNU
  # coreutils...
  #DATEFORMAT='gdate +%s.%N'
  #
@@ -217,7 +217,7 @@ Many system administrators use the sysctl `kernel.core_pattern` parameter to con
 ```bash title=" " linenums="1"
 $ sysctl -n kernel.core_pattern
 /tmp/core-%e-%t
-$ ls -al /tmp/core-asterisk\*
+$ ls -al /tmp/core-asterisk*
 -rw-------. 1 root root 173936640 Jun 16 07:44 /tmp/core-asterisk-1497620664.32259
 $ sudo /var/lib/asterisk/scripts/ast_coredumper /tmp/core-asterisk-1497620664.32259 
 Processing /tmp/core-asterisk-1497620664.32259

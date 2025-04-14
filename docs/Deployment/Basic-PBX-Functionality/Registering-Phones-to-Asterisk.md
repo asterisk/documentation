@@ -15,7 +15,7 @@ Configuring your particular phone is obviously beyond the scope of this guide, b
 When using chan_sip you can tell whether or not your phone has registered successfully to Asterisk by checking the output of the **sip show peers** command at the Asterisk CLI. If the **Host** column says **(Unspecified)**, the phone has not yet registered. On the other hand, if the **Host** column contains an IP address and the **Dyn** column contains the letter **D**, you know that the phone has successfully registered.
 
 ```
-server\*CLI> sip show peers
+server*CLI> sip show peers
 Name/username Host Dyn NAT ACL Port Status
 demo-alice (Unspecified) D A 5060 Unmonitored
 demo-bob 192.168.5.105 D A 5060 Unmonitored

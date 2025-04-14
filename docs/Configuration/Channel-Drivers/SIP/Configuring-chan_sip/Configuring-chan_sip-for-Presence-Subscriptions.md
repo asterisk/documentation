@@ -82,7 +82,7 @@ Notice that we put it in the context we set in **subscribecontext** in sip.conf 
 If you have restarted Asterisk to load the hints, then you can check to make sure they are configured with "core show hints"
 
 ```
-\*CLI> core show hints
+*CLI> core show hints
  -= Registered Asterisk Dial Plan Hints =-
  6001@default : SIP/Bob-mobile&SIP/B State:Unavailable Watchers 0
 
@@ -263,7 +263,7 @@ Content-Length: 0
 Once the subscription has taken place, there is a command to list them. "sip show subscriptions"
 
 ```
-\*CLI> sip show subscriptions
+*CLI> sip show subscriptions
 Peer User Call ID Extension Last state Type Mailbox Expiry
 10.24.17.254 Alice ZjE2ZDAwYThiOTA 6001@default Unavailable pidf+xml <none> 001800
 1 active SIP subscription

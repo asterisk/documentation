@@ -102,7 +102,7 @@ Calls picked up using pickupexten can hear an optional sound file for success an
 features.conf  
 
 ```
-pickupexten = \*8 ; Configure the pickup extension. (default is \*8)
+pickupexten = *8 ; Configure the pickup extension. (default is *8)
 pickupsound = beep ; to indicate a successful pickup (default: no sound)
 pickupfailsound = beeperr ; to indicate that the pickup failed (default: no sound)
 

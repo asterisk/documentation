@@ -455,7 +455,7 @@ When logging is enabled, the CLI will display - as the last thing that is displa
  Asterisk Malloc Debugger Started (see /var/log/asterisk/mmlog))
 [Dec 29 16:10:59] NOTICE[13489]: res_beacon.c:103 load_module: <<< <<< <<< ANONYMOUS USAGE STATISTICS ENABLED >>> >>> >>>
 Asterisk Ready.
-\*CLI>
+*CLI>
 
 ```
 
@@ -507,7 +507,7 @@ CLI Commands
 Display the gathered information about the server. This should show what we would send in a server update request.
 
 ```
- \*CLI> beacon show server
+ *CLI> beacon show server
 
 Server ID: bc5829cc-4584-43e5-8395-a9b1206d7e02
 Token:

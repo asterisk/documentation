@@ -29,7 +29,7 @@ Database commands on the CLI
 Sub-commands under the command "database" allow a variety of functions to be performed on or with the database.
 
 ```
-\*CLI> core show help database
+*CLI> core show help database
 database del -- Removes database key/value
 database deltree -- Removes database keytree/values
 database get -- Gets database value

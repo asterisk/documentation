@@ -80,7 +80,7 @@ An RLMI document can be constructed using the following structure:
 
 ```
 struct rlmi_data {
- struct ast_sip_subscription \*list_subscription;
+ struct ast_sip_subscription *list_subscription;
  AST_LIST_HEAD(,ast_list_subscription) child_subscriptions;
 };
 
