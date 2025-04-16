@@ -1,4 +1,5 @@
 nav:
+  - index.md
   - The-Most-Basic-PBX.md
   - Registering-Phones-to-Asterisk.md
   - Creating-Dialplan-Extensions.md
