@@ -4,11 +4,7 @@ pageid: 28315986
 ---
 
 
-
-
-
-Overview
-========
+# The Wiki Organization and Style Guide
 
 !!! warning
 # This page is now obsolete. Revisions in progress.
