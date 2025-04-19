@@ -3,6 +3,8 @@ title: Asterisk Security Vulnerabilities
 pageid: 27199866
 ---
 
+# Finding Security Vulnerabilities in Asterisk
+
 The Asterisk project takes the issue of its users security seriously. If you believe you have found a security vulnerability in the Asterisk software itself, please follow the steps on this wiki page to report the security vulnerability to the Asterisk Development Team.
 
 
