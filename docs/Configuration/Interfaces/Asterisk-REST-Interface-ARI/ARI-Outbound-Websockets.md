@@ -1,8 +1,4 @@
-# ARI Outbound Websockets - DRAFT
-
-/// warning
-This document is currently in DRAFT status and may change before final publication.
-///
+# ARI Outbound Websockets
 
 Historically, Asterisk has accepted websocket connections _from_ external ARI applications.  Since a Stasis application can be handled by only one websocket connection, this limited opportunities for load sharing and redundancy. Upcoming releases of Asterisk however, will allow you to configure Asterisk to make outbound websocket connections _to_ external ARI applications.
 
@@ -20,32 +16,18 @@ A Per-Call connection is one where you configure a template connection that only
 
 ## Configuration
 
-All configfuration is done in ari.conf.
+Basic configuration is done in [`ari.conf`](/Latest_API/API_Documentation/Module_Configuration/res_ari/) but the details of the websocket client are configured in the common [`websocket_client.conf`](/Latest_API/API_Documentation/Module_Configuration/res_websocket_client/) file shared with the [WebSocket Channel Driver](/Configuration/Channel-Drivers/WebSocket/)
 
-### Configuration Parameters
+### ari.conf Configuration Parameters
 
 | Parameter | Default<br>Value | Description |
 | :-------- | :--------------- | :-----------|
 |[&lt;object_name&gt;] | none | The connection name |
 |type | none | Must be "outbound_websocket" |
-|connection_type | none | "persistent" or "per_call_config" |
-|uri | none | The URI needed to contact the remote server |
+|websocket_client_id | none | The name of a connection defined in websocket_client.conf |
 |apps | none | A comma-separated list of Stasis applications that will be served by this connection. No other connection may serve these apps. |
 |subscribe_all | no  | If set to "yes", the server will receive all events just as though "subscribeAll=true" was specified on an incoming websocket connection. |
-|protocols | none | A comma-separated list of websocket protocols expected by the server. |
-|username | none | An authentication username if required by the server. |
-|password | none | The authentication password for the username. |
 |local_ari_user | none | The name of a local ARI user defined elsewhere in ari.conf. This controls whether this connection can make read/write requests or is read-only. The user specified MUST use a plain-text password. |
-|connection_timeout | 500 | Connection timeout in milliseconds.|
-|reconnect_interval | 500 | Number of milliseconds between reconnection attempts.|
-|reconnect_attempts | 4 | The number of (re)connection attempts to make for a per-call connection before returning to the dialplan with an error.  Persistent connections always retry forever but this parameter will determine how often connection failure log messages are emitted. |
-|tls_enabled | no | Set to "yes" to enable TLS connections. |
-|ca_list_file | none | A file containing all CA certificates needed for the connection.  Not needed if your server has a certificate from a recognized CA. |
-|ca_list_path | none | A directory containing individual CA certificates as an alternative to ca_list_file.  Rarely needed. |
-|cert_file | none | If the server requires you to have a client certificate, specify it here and if it wasn't issued by a recognized CA, make sure the matching CA certificate is available in ca_list_file or ca_list_path. |
-|priv_key_file | none | The private key for the client certificate. |
-|verify_server_cert | yes | Verify that the server certificate is valid. |
-|verify_server_hostname | yes| Verify that the hostname in the server's certificate matches the hostname in the URI configured above.|
 
 You can define as many connections as you need but, as stated above, a single Stasis app can be associated with only one connection.
 
@@ -59,15 +41,15 @@ Should either of these situations occur, log messages will be emitted but becaus
 
 ### Changing Configurations
 
-You can make changes to the config and do a `module reload res_ari.so` but be aware of the following:
+You can make changes to both ari.conf and websocket_client.conf and reload but be aware of the following:
 
-Per-call configurations can be changed at any time.  New per-call connections using that configuration will use the new parameters but any existing connections will continue uninterrupted using the previous configuration until the call ends . If you delete a per-call configuration, no new connections can be created of course, but existing connections will continue uninterrupted until the call ends.
-
-For persistent connections, what happens on a reload depends on the parameters changed.
+* Performing a `module reload res_ari.so` will automatically reload websocket_client.conf so there's no need to specifically reload res_websocket_client.so.
 
 * Changing `apps` is fairly safe.  Adding a new app to the list simply registers that app to this connection (assuming it's not already registered to another connection).  Deleting an app from the list simply unregisters it.  If you need to move an app from one connection to another, you need to do it in two stages.  Remove it from one connection and reload, then add it to the other connection and reload.  Regardless of the action, the connection will remain active.
 
-* Changing `subscribe_all` will result in all apps being unregistered and re-registered so for a brief instant, no stasis apps will be registered.  The connection will remain active however.
+* Changing `subscribe_all` will result in all apps in the configuration being unregistered and re-registered so for a brief instant, no stasis apps will be registered.  The connection will remain active however.
+
+* Per-call configurations can be changed at any time.  New per-call connections using that configuration will use the new parameters but any existing connections will continue uninterrupted using the previous configuration until the call ends. If you delete a per-call configuration, no new connections can be created of course, but existing connections will continue uninterrupted until the call ends. For persistent connections, what happens on a reload depends on the parameters changed.
 
 * Changing `connection_timeout`, `reconnect_interval` or `reconnect_attempts` doesn't affect the existing connection until it disconnects for some reason and has to reconnect so these can be changed at any time without affecting the existing connection.
 
@@ -77,9 +59,9 @@ For persistent connections, what happens on a reload depends on the parameters c
 
 * Renaming a connection is the same as deleting it then adding it with the new name.
 
-### Sample ari.conf
+### Sample Configuration
 
-```ini
+```ini title="ari.conf"
 [general]
 enabled = yes
 pretty = no
@@ -93,20 +75,28 @@ password = mypassword
 
 [connection1]
 type = outbound_websocket
-connection_type = persistent
-uri = wss://some.appserver.net:443
+websocket_client_id = ari_persistent
 apps = app1, app2
 subscribe_all = yes
+local_ari_user = ari_user
+```
+
+```ini title="websocket_client.conf"
+[ari_persistent]
+type = websocket_client
+uri = wss://some.appserver.net
 protocols = ari
 username = some_user
-password = some_password
-local_ari_user = ari_user
+password = some_users_password
+connection_type = per_call_config
 connection_timeout = 500
-reconnect_interval = 1000
+reconnect_interval = 500
+reconnect_attempts = 5
 tls_enabled = yes
 verify_server_cert = no
 verify_server_hostname = no
 ```
+
 
 This sample creates a persistent secure websocket connection to `some.appserver.net` which has a certificate issued by a recognized certificate authority, and authenticates as `some_user`. The connection is granted read/write access via ARI user `ari_user`.
 
