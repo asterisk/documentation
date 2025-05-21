@@ -112,6 +112,10 @@ Once the apps are registered, Asterisk will attempt to connect to to your applic
 
 There are a few differences between persistent and per-call connections.  When Asterisk starts, per-call connections only create the dialplan contexts named `stasis-<app name>` with the `Stasis(<app name>)` extension.  Nothing else happens until a channel causes `Stasis(<app name>)` to be called.  When it does, Stasis() checks the internal app registry and if it doesn't find an ARI/Stasis app registered with that name (which it won't in this case), it looks to see if an outbound-websocket "per_call" connection has been defined and if it finds one, it creates an ephemeral ARI/Stasis app with the name `<app name>:<channel name>` and that's the name that will appear in the initial `ApplicationRegistered` event your external application will see.
 
+/// note
+If you plan to create additional channels using this same websocket connection, ensure you specify the full `<app name>:<channel name>` in the REST call's `app` parameter or Asterisk will attempt to make a new outbound websocket connection instead of using the existing one.
+///
+
 Active per-call connections are never reconfigured so there'll be no further `Application*` messages sent.
 
 If a per-call connection fails to (re-)connect after `reconnect_attempts` tries, the  Stasis() application will set the `${STASISSTATUS}` variable to `FAILED` and return control to the dialplan.

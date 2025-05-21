@@ -1,0 +1,10 @@
+nav:
+  - Asterisk-Manager-Interface-AMI
+  - Asterisk-REST-Interface-ARI
+  - Asterisk-Gateway-Interface-AGI.md
+  - Asterisk-External-Application-Protocol-AEAP.md
+  - Back-end-Database-and-Realtime-Connectivity
+  - Distributed-Device-State
+  - Asterisk-Call-Files.md
+  - Asterisk-Calendaring
+  - Utilizing-the-StatsD-Dialplan-Application.md
