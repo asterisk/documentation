@@ -125,6 +125,15 @@ Create a `Makefile.inc` file with some configuration variables.  This file must 
 ```
 # BUILD_DIR := <somepath>  # Defaults to ./temp
 
+# MkDocs needs to know the base URL for the documentation site
+# to properly handle links and navigation.
+# If you're going to deploy the site locally, use the
+# URL of your local server.
+# The default is https://docs.asterisk.org which is
+# probably not what you want.
+# NOTE: You MUST use the export keyword for this variable.
+# export SITE_URL := <your_local_server>
+
 # The following 2 DEPLOY_ variables are only needed if you
 # need to deploy the built site to some other repo.
 # The nightly job uses this to publish the site to
@@ -135,7 +144,7 @@ Create a `Makefile.inc` file with some configuration variables.  This file must 
 # The comma-separated list of branches for which dynamic
 # documentation should be built when doing a `make` without
 # specifying BRANCH=<branch>.
-BRANCHES := 16,18,19,20
+# BRANCHES := 20,21,22
 
 # If you don't want to build the static documentation at all...
 # NO_STATIC=yes

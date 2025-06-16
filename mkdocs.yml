@@ -1,5 +1,6 @@
 docs_dir: docs
 site_name: Asterisk Documentation
+site_url: !ENV [SITE_NAME, 'https://docs.asterisk.org']
 repo_url: https://github.com/asterisk/asterisk
 repo_name: Asterisk
 copyright: >
@@ -20,8 +21,6 @@ theme:
   favicon: favicon.ico
   logo: favicon.ico
   custom_dir: overrides
-  features:
-    - search.share
   icon:
     repo: fontawesome/brands/github
 
