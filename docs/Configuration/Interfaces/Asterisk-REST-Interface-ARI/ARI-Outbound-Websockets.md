@@ -215,3 +215,7 @@ Both outbound websockets connection types create several possibilities for failu
 If you have multiple external application servers, you could assign them the same DNS hostname and let the DNS round-robin process offer a different IP address each time the hostname is resolved.  If a connection attempt should fail or an existing connection drop, the next connection attempt should get a different IP address from the pool of hosts with the same hostname.  For per-call connections, this could also provide a simple load balancing method.
 
 A websocket-aware HTTP load balancer can give you even more fail-over and load balancing options by allowing you to set policies that determine how connections are routed.
+
+## Sample Code
+
+Sample Python code demonstrating Asterisk's ARI and Media WebSocket capabilities is available in the GitHub [asterisk-websocket-examples](https://github.com/asterisk/asterisk-websocket-examples) repository.

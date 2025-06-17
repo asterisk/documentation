@@ -101,7 +101,7 @@ Some of the control TEXT messages you can send the driver have already been ment
 
 `FLUSH_MEDIA`
 
-- Send this command to the channel driver if you've sent a large amount of media but want to discard any queued but not sent. Flushing the buffer automatically ends any bulk transfer in progress and also resets the paused state so there's no need to send `STOP_MEDIA_BUFFERING` or `CONTINUE_MEDIA` commands. No `MEDIA_BUFFERING_COMPLETED` notification will be sent in this case.  This command could be useful if an automated agent detects the caller is speaking and wants to interrupt a prompt it already replied with.
+- Send this command to the channel driver if you've sent a large amount of media but want to discard any queued but not sent. Flushing the buffer automatically ends any bulk transfer in progress and also resets the paused state so there's no need to send `STOP_MEDIA_BUFFERING` or `CONTINUE_MEDIA` commands. No `MEDIA_BUFFERING_COMPLETED` notification will be sent in this case but you could send a `REPORT_QUEUE_DRAINED` command (see below) before sending the `MEDIA_FLUSH` to get a confirmation that the queue was indeed flushed.  This command could be useful if an automated agent detects the caller is speaking and wants to interrupt a prompt it already replied with.
 
 `PAUSE_MEDIA`
 
@@ -206,3 +206,6 @@ POST http://server:8088/ari/channels/externalMedia?transport=websocket&encapsula
 
 The first example will create an outbound websocket connection to your app using the "media_connection1" websocket_client configuration.  The second example will wait for an incoming connection from your app.  Both examples will automatically dial and answer the websocket channel.  There's no option to suppress either.  Use the normal channel creation APIs if you need to handle them yourself.
 
+## Sample Code
+
+Sample Python code demonstrating Asterisk's ARI and Media WebSocket capabilities is available in the GitHub [asterisk-websocket-examples](https://github.com/asterisk/asterisk-websocket-examples) repository.

@@ -178,3 +178,8 @@ There are two:
 * You can't get binary data like recordings via the websocket.  The frames written to the underlying websocket use the TEXT opcode and the messages are all JSON and while there are ways we could send binary data, they're just too complicated and could interfere with getting asynchronous events.  Attempting to retrieve binary data will result in a 406 "Not Acceptable. Use HTTP GET" response.
 
 * Calling `GET` on `events` via HTTP is what does the `UPGRADE` to a websocket so it doesn't make sense to call it _via_ the websocket.  If you try, you'll get a 400 "Bad request. Can't upgrade to a websocket from a websocket".
+
+## Sample Code
+
+Sample Python code demonstrating Asterisk's ARI and Media WebSocket capabilities is available in the GitHub [asterisk-websocket-examples](https://github.com/asterisk/asterisk-websocket-examples) repository.
+
