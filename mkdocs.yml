@@ -66,7 +66,7 @@ plugins:
         ConfBridge.md: Configuration/Applications/Conferencing-Applications/ConfBridge/index.md
         SIP+Retransmissions.md: Deployment/Troubleshooting/SIP-Retransmissions.md
         Voice+Prompts+and+Music+on+Hold+License.md: About-the-Project/License-Information/Voice-Prompts-and-Music-on-Hold-License.md
-        Querying-and-Manipulating-State.md: Fundamentals/Key-Concepts/States-and-Presence/Querying-and-Manipulating-State.md
+        Querying+and+Manipulating+State.md: Fundamentals/Key-Concepts/States-and-Presence/Querying-and-Manipulating-State.md
   - search
   - awesome-pages:
       filename: .pages
