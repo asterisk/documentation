@@ -15,9 +15,10 @@ Enabling the alternative requires following these steps:
 3.  In menuselect, select the `channelstorage_cpp_map_name_id` option under the "Alternate Channel Storage Backends" category.
 4.  Build and install Asterisk.
 
-Once enabled, built and installed, you can select which backend to use, `ao2_legacy` or `cpp_map_name_id`, in the `asterisk.conf` file:
+Once enabled, built and installed, you can select which backend to use, `ao2_legacy` or `cpp_map_name_id`, in the `asterisk.conf` by adding the `channel_storage_backend` parameter to the `[options]` section of asterisk.conf:
 
 ```ini title="asterisk.conf"
+[options]
 channel_storage_backend = ao2_legacy ; Select the channel storage backend
                 ; to use for live operation.
                 ;   ao2_legacy:  Original implementation (default)
