@@ -1,8 +1,4 @@
-# WebSocket **DRAFT**
-
-/// warning
-This document is in DRAFT status and may change before final publication.
-///
+# WebSocket
 
 ## Background
 
@@ -124,6 +120,12 @@ Some of the control TEXT messages you can send the driver have already been ment
 #### Notifications
 
 /// define
+
+`MEDIA_START`
+
+- The channel driver will send this notification when it connects to the app or the app connects to it.<br>
+Example: `MEDIA_START connection_id:e226e283-c90a-4ea9-9e37-389000b9ef47 channel:WebSocket/connectionid format:ulaw optimal_frame_size:160`<br>
+Not only does this notification contain the optimal frame size and format, it also contains the channel name and connection id which you can use to correlate incoming connections from the driver to channels you've created.
 
 `MEDIA_XOFF`
 
