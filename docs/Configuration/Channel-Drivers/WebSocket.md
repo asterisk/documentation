@@ -2,7 +2,7 @@
 
 ## Background
 
-The WebSocket Channel Driver (chan_websocket) is designed to ease the burden on ARI application developers with getting media in and out of Asterisk.  The ARI /channels/externalMedia REST endpoint already has two other channel drivers  available (AudioSocket and RTP) but they require binary packet manipulation (RTP especially) and both require that the app developer handle the timing of sending packets to asterisk.  chan_websocket requires neither.
+The WebSocket Channel Driver (chan_websocket) is designed to ease the burden on ARI application developers with getting media in and out of Asterisk.  The ARI /channels/externalMedia REST endpoint already has two other channel drivers  available (AudioSocket and RTP) but they require binary packet manipulation (RTP especially) and both require that the app developer handle the timing of sending packets to asterisk.  chan_websocket requires neither.  The new driver will be available starting with Asterisk releases 22.6.0, 21.11.0 and 20.16.0.
 
 ## Features
 

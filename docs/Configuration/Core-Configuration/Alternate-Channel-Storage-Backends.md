@@ -2,7 +2,7 @@
 
 ## **Background**
 
-Over the years, the single biggest source of deadlocks in Asterisk involve channels and the AO2 hash container all channels are kept in. While things have gotten better in recent years (mostly due to masquerades becoming less frequent), it's still an issue. Performance is also an issue, especially when the number of active channels grows past a few hundred.  To address these issues, upcoming releases of Asterisk will allow you to select an alternate channel storage backend.
+Over the years, the single biggest source of deadlocks in Asterisk involve channels and the AO2 hash container all channels are kept in. While things have gotten better in recent years (mostly due to masquerades becoming less frequent), it's still an issue. Performance is also an issue, especially when the number of active channels grows past a few hundred.  To address these issues, Asterisk releases >= 22.5.0, 21.10.0 and 20.15.0 will allow you to select an alternate channel storage backend.
 
 ## **Choosing an Alternative**
 
@@ -26,6 +26,19 @@ channel_storage_backend = ao2_legacy ; Select the channel storage backend
                 ; available:
                 ;   cpp_map_name_id: Use C++ Maps to index on both
                 ;                    channel name and channel uniqueid.
+```
+
+You can verify which backend is in use by running the `core show settings` CLI command:
+
+```
+*CLI> core show settings
+PBX Core settings
+-----------------
+  Version:                     22.5.0
+ ...
+  RTP dynamic payload types:   35-63,96-127
+  Channel storage backend:     cpp_map_name_id
+  Shell on remote consoles:    Enabled 
 ```
 
 /// warning
