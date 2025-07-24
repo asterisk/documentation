@@ -28,6 +28,13 @@ channel_storage_backend = ao2_legacy ; Select the channel storage backend
                 ;                    channel name and channel uniqueid.
 ```
 
+/// warning
+This configuration **must** be set before Asterisk starts, as the backend is
+selected during core initialization.  A **full restart** of Asterisk is required
+after making changes to `channel_storage_backend`. Reloading the configuration is
+**not** sufficient.
+///
+
 You can verify which backend is in use by running the `core show settings` CLI command:
 
 ```
