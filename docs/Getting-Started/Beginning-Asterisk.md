@@ -75,6 +75,6 @@ When reading about Asterisk on the web, you may come across old or incorrect inf
 * Check which version of Asterisk is mentioned.  There are significant changes in every version.
 * Check the published date of the article if the Asterisk version isn’t provided.
 * Take things with a grain of salt until checked with another resource or proven correct through your own testing.
-* Refer to the   [Asterisk Wiki](//)   and the   [Official Asterisk Youtube Channel](http://www.youtube.com/user/asteriskvideos)   for the most accurate and up to date details on the specific version of Asterisk you are using.
+* Refer to this website and the [Asterisk Community Forums](https://community.asterisk.org) for the most accurate and up to date details on the specific version of Asterisk you are using.
 
- Please note that it is always possible that even the official documentation does not match what is written into the source code itself.  If you find something lacking or incorrect in the Asterisk documentation, please communicate it through comments on the   [Asterisk Wiki](//)   or by filing an issue through the   [Asterisk Issues Tracker](https://github.com/asterisk/asterisk/issues)  . 
+ Please note that it is always possible that even the official documentation does not match what is written into the source code itself.  If you find something lacking or incorrect in the Asterisk documentation, please file an issue through the [Asterisk Documentation Issues Tracker](https://github.com/asterisk/documentation/issues).
