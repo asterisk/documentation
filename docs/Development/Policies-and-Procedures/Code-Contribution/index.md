@@ -48,13 +48,13 @@ Checkout the **HIGHEST** VERSION branch to which your work will apply ('master',
 2. `git pull upstream master`
 3. `git push`
 
-Now, check out that branch to a branch with a new name.  For instance if you're working on issue 45 and your work will apply to the 18, 20 and master branches, check out the master branch and create a new branch from it:
+Now, check out that branch to a branch with a new name.  For instance if you're working on issue 45 and your work will apply to the 20, 21, 22 and master branches, check out the master branch and create a new branch from it:
 
 1. `git checkout -b master-issue-45`
 
-The name of the new branch can be anything but it does show up in the GitHub UI so including the base branch at least is a good idea.  That branch name will also be used if someone downloads your PR for testing.
+If you're not working on an issue, you can use a more descriptive name for the new branch, `master-new-feature` for instance, but in all cases, the name of the new branch must be prefixed with the target branch.  That branch name appears in many GitHub CI logs and in the Pull Request UI so having the target branch name can help troubleshooting.  It's also used if someone downloads your PR for testing.  Finally, if you need to submit separate PRs for the same work because the original PR won't cherry-pick cleanly to all branches, you'll have to create another branch that won't conflict with your original branch.
 
-If your work fixes a bug in a non-master branch that doesn't exist in the higher branches, start with the highest version branch that the fix does apply to.  For instance, if the fix applies to 20 and 18 but not master, base your new branch on 20.
+If your work fixes a bug in a non-master branch that doesn't exist in the higher branches, start with the highest version branch that the fix does apply to.  For instance, if the fix applies to 20 and 21 but not master, base your new branch on 21.
 
 /// warning 
 You should never do work in the upstream branches like '18', '20', or 'master'.  Doing so will pollute those branches in your fork and will make updating them difficult.
