@@ -69,7 +69,7 @@ AstriDevCon is a mix of open and focused discussion all on topics within the rea
     - Yes, particularly with EVS
     - Would likely need to license and make it a commercial binary
 ---
-#### Recording Available at [downlaods.asterisk.org](https://downloads.asterisk.org/astridevcon/2025/) (audio only)
+#### Recording Available at [downloads.asterisk.org](https://downloads.asterisk.org/astridevcon/2025/) (audio only)
 
 ---
 
