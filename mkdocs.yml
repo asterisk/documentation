@@ -68,6 +68,7 @@ plugins:
         Voice+Prompts+and+Music+on+Hold+License.md: About-the-Project/License-Information/Voice-Prompts-and-Music-on-Hold-License.md
         Querying+and+Manipulating+State.md: Fundamentals/Key-Concepts/States-and-Presence/Querying-and-Manipulating-State.md
         Build+System+Architecture.md: Development/Reference-Information/Other-Reference-Information/Build-System-Architecture.md
+        Important+Security+Considerations.md: Deployment/Important-Security-Considerations/index.md
   - search
   - awesome-pages:
       filename: .pages
