@@ -87,6 +87,7 @@ plugins:
             - pre
             - code
       cache_safe: false
+  - mermaid2
 
 extra:
   analytics:
@@ -103,7 +104,6 @@ extra:
       link: https://github.com/asterisk
     - icon: fontawesome/brands/discourse
       link: https://community.asterisk.org
-
 
 markdown_extensions:
   - abbr
@@ -139,13 +139,13 @@ markdown_extensions:
   - pymdownx.saneheaders
   - pymdownx.smartsymbols
   - pymdownx.snippets:
-      base_path: '/'
+      base_path: './docs'
       check_paths: true
   - pymdownx.superfences:
       custom_fences:
         - name: mermaid
           class: mermaid
-          format: !!python/name:pymdownx.superfences.fence_code_format
+          format: !!python/name:mermaid2.fence_mermaid_custom
   - pymdownx.tilde
 
 

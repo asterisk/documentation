@@ -1,7 +1,7 @@
 #
 # NOTE: For readability, two space characters are used to
 # indent the contents of make ifeq/ifneq statements.
-# Don;y confuse these with tabs used to indent rule
+# Don't confuse these with tabs used to indent rule
 # recipies.
 #
 
@@ -10,10 +10,17 @@ DEPLOY_BRANCH ?= gh-pages
 BUILD_DIR ?= ./temp
 GH=gh
 JOB_DATE ?= $(shell date +%F)
+SERVE_OPTS ?= -a [::]:8000
+BRANCHES ?=
+BRANCH ?=
 
-include Makefile.inc
-ifneq ($(BRANCH),)
-  -include Makefile.$(BRANCH).inc
+-include Makefile.inc
+
+ifneq ($(BRANCHES),)
+  COMMA := ,
+  BB := $(subst $(COMMA), ,$(BRANCHES))
+  includes := $(foreach b,$(BB),Makefile.$(b).inc)
+  -include $(includes)
 endif
 
 # 'make' has a realpath function but it only works on
