@@ -27,7 +27,7 @@ Browse to <https://downloads.asterisk.org/pub/telephony/asterisk>, select [aster
 
 You can also get the latest releases from the downloads page on [asterisk.org](http://asterisk.org/downloads).
 
-Alternatively, you can us`e [wget](https://www.gnu.org/software/wget/)` to retrieve the latest release:
+Alternatively, you can use [`wget`](https://www.gnu.org/software/wget/) to retrieve the latest release:
 
 ```
 [root@server:/usr/local/src]# wget https://downloads.asterisk.org/pub/telephony/asterisk/asterisk-14-current.tar.gz
