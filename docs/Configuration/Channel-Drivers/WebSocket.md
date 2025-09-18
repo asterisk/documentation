@@ -2,7 +2,7 @@
 
 ## Background
 
-The WebSocket Channel Driver (chan_websocket) is designed to ease the burden on ARI application developers with getting media in and out of Asterisk.  The ARI /channels/externalMedia REST endpoint already has two other channel drivers  available (AudioSocket and RTP) but they require binary packet manipulation (RTP especially) and both require that the app developer handle the timing of sending packets to asterisk.  chan_websocket requires neither.  The new driver will be available starting with Asterisk releases 22.6.0, 21.11.0 and 20.16.0.
+The WebSocket Channel Driver (chan_websocket) is designed to ease the burden on ARI application developers with getting media in and out of Asterisk.  The ARI /channels/externalMedia REST endpoint already has two other channel drivers  available (AudioSocket and RTP) but they require binary packet manipulation (RTP especially) and both require that the app developer handle the timing of sending packets to asterisk.  chan_websocket requires neither.  The new driver will be available starting with Asterisk releases 23.0.0, 22.6.0, 21.11.0 and 20.16.0.
 
 ## Features
 
@@ -46,7 +46,11 @@ Whether inbound or outbound, the default behavior is to automatically answer the
 
 Media sent from Asterisk to your application is simply streamed in BINARY websocket messages.  The message size will be whatever the internal Asterisk frame size is.  For ulaw/alaw for instance, Asterisk will send a 160 byte packet every 20ms.  This is the same as RTP except the messages will contain raw media with no RTP or other headers.  You could stream this directly to a file or other service.
 
-Media sent _to_ Asterisk _from_ your app is a bit trickier because chances are that the media you send Asterisk will eventually need to go out to a caller in a format that is both properly framed and properly timed.  I.E. 160 byte blocks every 20 ms for a/ulaw.  Sending short, long or mistimed packets will surely result is poor audio quality.  To relieve your app of the burden of having to do the framing and timing, the channel driver will do it automatically but there are a few rules you have to follow.
+Media sent _to_ Asterisk _from_ your app is a bit trickier because chances are that the media you send Asterisk will eventually need to go out to a caller in a format that is both properly framed and properly timed.  I.E. 160 byte blocks every 20 ms for a/ulaw.  Sending short, long or mistimed packets will surely result is poor audio quality.  To relieve your app of the burden of having to do the framing and timing, the channel driver will do it automatically for most codecs but there are a few exceptions and rules you have to follow.
+
+/// warning
+There currently is no way for chan_websocket to re-frame or re-time variable bitrate, variable bandwidth and/or variable encoding rate media.  For this reason, codecs like opus must be used in ["passthrough mode"](#passthrough-mode) (see below) where the application is responsible for correctly framing and timing the media it sends to Asterisk.
+///
 
 When the websocket channel is created, a `MEDIA_WEBSOCKET_OPTIMAL_FRAME_SIZE` channel variable will be set that tells you the amount of data Asterisk needs to create a good 20ms frame using the codec you specified in the dialstring.  This is also reported in the `MEDIA_START` TEXT message. If you send a websocket message with a length that's exactly that size or some even multiple of that size, the channel driver will happily break that message up into the correctly sized frames and send one frame to the Asterisk core every 20ms with no leftover data.  If you send an oddly sized message though, the extra data that won't fill a frame will be dropped.  However...
 
@@ -89,23 +93,23 @@ Some of the control TEXT messages you can send the driver have already been ment
 
 `START_MEDIA_BUFFERING`
 
-- Indicates to the channel driver that the following media should be buffered to create properly sized and timed frames.
+- Indicates to the channel driver that the following media should be buffered to create properly sized and timed frames.  Not applicable in passthrough mode.
 
 `STOP_MEDIA_BUFFERING <optional_id>`
 
-- Indicates to the channel driver that buffering is no longer needed and anything remaining in the buffer should have silence appended before sending to the Asterisk core.  When the last frame of this bulk transfer has been sent to the core, the app will receive a `MEDIA_BUFFERING_COMPLETED` notification.  If the optional id was specified in this command, it'll be returned in the notification.  If you send multiple files in quick succession, the id can help you correlate the `MEDIA_BUFFERING_COMPLETED` notification to the `STOP_MEDIA_BUFFERING` command that triggered it.
+- Indicates to the channel driver that buffering is no longer needed and anything remaining in the buffer should have silence appended before sending to the Asterisk core.  When the last frame of this bulk transfer has been sent to the core, the app will receive a `MEDIA_BUFFERING_COMPLETED` notification.  If the optional id was specified in this command, it'll be returned in the notification.  If you send multiple files in quick succession, the id can help you correlate the `MEDIA_BUFFERING_COMPLETED` notification to the `STOP_MEDIA_BUFFERING` command that triggered it.  Not applicable in passthrough mode.
 
 `FLUSH_MEDIA`
 
-- Send this command to the channel driver if you've sent a large amount of media but want to discard any queued but not sent. Flushing the buffer automatically ends any bulk transfer in progress and also resets the paused state so there's no need to send `STOP_MEDIA_BUFFERING` or `CONTINUE_MEDIA` commands. No `MEDIA_BUFFERING_COMPLETED` notification will be sent in this case but you could send a `REPORT_QUEUE_DRAINED` command (see below) before sending the `MEDIA_FLUSH` to get a confirmation that the queue was indeed flushed.  This command could be useful if an automated agent detects the caller is speaking and wants to interrupt a prompt it already replied with.
+- Send this command to the channel driver if you've sent a large amount of media but want to discard any queued but not sent. Flushing the buffer automatically ends any bulk transfer in progress and also resets the paused state so there's no need to send `STOP_MEDIA_BUFFERING` or `CONTINUE_MEDIA` commands. No `MEDIA_BUFFERING_COMPLETED` notification will be sent in this case but you could send a `REPORT_QUEUE_DRAINED` command (see below) before sending the `MEDIA_FLUSH` to get a confirmation that the queue was indeed flushed.  This command could be useful if an automated agent detects the caller is speaking and wants to interrupt a prompt it already replied with.  Not applicable in passthrough mode.
 
 `PAUSE_MEDIA`
 
-- If you've sent a large amount of media but need to pause it playing to a caller while you decide if you need to flush it or not, you can send a `PAUSE_MEDIA` command.  The channel driver will then start playing silence to the caller but keep the data you've already sent in the queue.  You can still send media to the channel driver while it's paused; it'll just get queued behind whatever was already in the queue.
+- If you've sent a large amount of media but need to pause it playing to a caller while you decide if you need to flush it or not, you can send a `PAUSE_MEDIA` command.  The channel driver will then start playing silence to the caller but keep the data you've already sent in the queue.  You can still send media to the channel driver while it's paused; it'll just get queued behind whatever was already in the queue.  Not applicable in passthrough mode.
 
 `CONTINUE_MEDIA`
 
-- If you've previously paused the media, this will cause the channel driver to stop playing silence and resume playing media from the queue from the point you paused it.
+- If you've previously paused the media, this will cause the channel driver to stop playing silence and resume playing media from the queue from the point you paused it.  Not applicable in passthrough mode.
 
 `GET_STATUS`
 
@@ -113,7 +117,7 @@ Some of the control TEXT messages you can send the driver have already been ment
 
 `REPORT_QUEUE_DRAINED`
 
-- This will cause the channel driver to send back a one-time `QUEUE_DRAINED` notification the next time it detects that there are no more frames to process in the queue.
+- This will cause the channel driver to send back a one-time `QUEUE_DRAINED` notification the next time it detects that there are no more frames to process in the queue.  Not applicable in passthrough mode.
 
 ///
 
@@ -126,6 +130,10 @@ Some of the control TEXT messages you can send the driver have already been ment
 - The channel driver will send this notification when it connects to the app or the app connects to it.<br>
 Example: `MEDIA_START connection_id:e226e283-c90a-4ea9-9e37-389000b9ef47 channel:WebSocket/connectionid format:ulaw optimal_frame_size:160`<br>
 Not only does this notification contain the optimal frame size and format, it also contains the channel name and connection id which you can use to correlate incoming connections from the driver to channels you've created.
+
+`DTMF_END`
+
+- The channel driver will send this notification when DTMF_END frames are received from the core.  The format will be `DTMF_END digit:n` where `n` is the DTMF digit.
 
 `MEDIA_XOFF`
 
@@ -174,11 +182,14 @@ Dial(WebSocket/<connection_id>/<options>[,<timeout>[,<dial_options>]])
 * **&lt;options&gt;**:
     * `c(<codec>)`: If not specified, the first codec from the caller's channel will be used.  Having said that, if your app is expecting a specific codec, you should specify it here or you may be getting audio in a format you don't expect.
     * `n`: Don't auto-answer the WebSocket channel upon successful connection. Set this if you wish to answer the channel yourself. You can then send an `ANSWER` TEXT message on the websocket when you're ready to answer the channel or make a `/channels/<channel_id>/answer` REST call.
+    * `p`:  [](){ #passthrough-mode } Passthrough mode - In passthrough mode, the channel driver won't attempt to re-frame or re-time media coming in over the websocket from the remote app.  This must be used for variable-bitrate, variable-bandwidth, and/or variable-encoding-rate codecs like Opus because there's no way for the channel driver to create correctly sized frames.  In this case, the remote app is fully responsible for correctly framing and timing media sent to Asterisk.
+    * `v(<uri_parameters>)`: Add parameters to the outbound URI. This option allows you to add additional parameters to the outbound URI. The format is: 'v(param1=value1,param2=value2...)'. You must ensure that no parameter name or value contains characters not valid in a URL.  The easiest way to do this is to use the URIENCODE() dialplan function to encode them.  Be aware though that each name and value must be encoded separately.  You can't simply encode the whole string.
 
 Examples:
 
 ``` title="Dial() Examples"
 Dial(WebSocket/connection1/c(alaw)n)
+Dial(WebSocket/connection1/c(opus)p)
 Dial(WebSocket/INCOMING/c(slin16))
 ```
 
