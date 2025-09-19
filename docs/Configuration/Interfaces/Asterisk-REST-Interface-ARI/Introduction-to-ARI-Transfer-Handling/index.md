@@ -20,6 +20,31 @@ In SIP there is a method called `REFER`. This method, if triggered by the user, 
 
 Asterisk handles the REFER without any config changes by itself. To have ARI handle the transfer you need to change a setting so the ARI events are generated. If done, the `channelTransferEvent` will be generated in case a `REFER` is received. The `channelTransferEvent` contains the information about the transfer. The `channelTransferEvent` is generated for both, blind and attended transfer.
 
+
+### Configuration
+
+To enable ARI transfer handling, set [PJSIP_TRANSFER_HANDLING()=ari-only](https://docs.asterisk.org/Latest_API/API_Documentation/Dialplan_Functions/PJSIP_TRANSFER_HANDLING/).
+
+• Endpoint configuration:
+
+```
+set_var=PJSIP_TRANSFER_HANDLING()=ari-only
+```
+
+All channels from this endpoint will inherit the setting.
+
+• Dialplan:
+
+```
+same => n,Set(PJSIP_TRANSFER_HANDLING()=ari-only)
+```
+
+Apply before sending the channel to a Stasis application.
+
+• ARI-created channels:
+
+Set the variable at channel creation. See the [ARI REST documentation](https://docs.asterisk.org/Latest_API/API_Documentation/Asterisk_REST_Interface/Channels_REST_API/#create) for details.
+
 ### Information within the `channelTransferEvent`
 
 #### Attended transfer
@@ -61,7 +86,14 @@ Where the channel marked with the "X" might be placed on hold, or not.
 ### Actions after the event is received
 
 #### Attended transfer
-The ARI application MUST take some action in order to handle the REFER. The Asterisk will not do anything by itself. The first thing to do when received an SIP REFER is acknowledge it. This is done by the Asterisk, as well as the first `NOTIFY` telling the telephone an `100 Trying` SIP frag. After that, the telephon waits for a `Notify` containing a SIP frag  with `200 OK`. This has to be sent by the ARI application manually.
+The ARI application MUST take action in order to handle a SIP REFER. Asterisk does not handle the transfer automatically.
+
+When a REFER is received, Asterisk will acknowledge it with a `202 Accepted`. After that, it is the responsibility of the ARI application to send the required NOTIFY messages to the transferrer. This includes:
+
+* An initial NOTIFY with a SIP frag of `100 Trying`
+* Subsequent NOTIFY messages with updated status, such as a SIP frag of `200 OK` once the transfer is complete, or an appropriate error if the transfer fails
+
+If the ARI application does not send these NOTIFY messages, the transferrer will never receive progress or completion information for the transfer.
 
 Actions that should be taken by the ARI application in the scenario described in call schema 1:
 
