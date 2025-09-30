@@ -15,12 +15,16 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
+
       - uses: actions/setup-python@v5
         with:
           python-version: 3.x
           cache: 'pip'
-      - run: pip install -r requirements.txt
-      
+
+      - name: Setup
+        run: |
+          pip install -r requirements.txt
+
       - name: Get Token needed to push updates
         id: get_workflow_token
         uses: peter-murray/workflow-application-token-action@v3
@@ -35,11 +39,11 @@ jobs:
           GH_TOKEN:      ${{steps.get_workflow_token.outputs.token}}
         run: |
           gh auth setup-git -h github.com
-          git config --global user.email "asteriskteam@digium.com"
+          git config --global user.email "asteriskteam@sangoma.com"
           git config --global user.name "Asterisk Development Team"
           cat >Makefile.inc <<EOF
           ${{vars.MAKEFILE_INC}}
           EOF
           make
+          make temp/site/redirect_map.conf
           make deploy
-

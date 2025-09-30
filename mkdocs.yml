@@ -56,19 +56,6 @@ extra_css:
   - material-override.css
 
 plugins:
-  - redirects:
-      redirect_maps:
-        Asterisk+Community+Code+of+Conduct.md: Asterisk-Community/Asterisk-Community-Code-of-Conduct.md
-        Building+and+Installing+Asterisk.md: Getting-Started/Installing-Asterisk/Installing-Asterisk-From-Source/Building-and-Installing-Asterisk.md
-        Secure+Calling+Tutorial.md: Deployment/Secure-Calling/Secure-Calling-Tutorial/index.md
-        PJSIP+Configuration+Wizard.md: Configuration/Channel-Drivers/SIP/Configuring-res_pjsip/PJSIP-Configuration-Wizard.md
-        Realtime+Database+Configuration.md: Fundamentals/Asterisk-Configuration/Database-Support-Configuration/Realtime-Database-Configuration.md
-        ConfBridge.md: Configuration/Applications/Conferencing-Applications/ConfBridge/index.md
-        SIP+Retransmissions.md: Deployment/Troubleshooting/SIP-Retransmissions.md
-        Voice+Prompts+and+Music+on+Hold+License.md: About-the-Project/License-Information/Voice-Prompts-and-Music-on-Hold-License.md
-        Querying+and+Manipulating+State.md: Fundamentals/Key-Concepts/States-and-Presence/Querying-and-Manipulating-State.md
-        Build+System+Architecture.md: Development/Reference-Information/Other-Reference-Information/Build-System-Architecture.md
-        Important+Security+Considerations.md: Deployment/Important-Security-Considerations/index.md
   - search
   - awesome-pages:
       filename: .pages
