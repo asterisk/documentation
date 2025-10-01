@@ -180,9 +180,14 @@ else
 	@mkdocs build -f $(BUILD_DIR)/mkdocs.yml -d $(SITE_DIR)
 endif
 
-temp/site/redirect_map.conf: temp/site/sitemap.xml
-	@echo "Creating $@ from $^"
-	@./utils/create_redirect_map.py $^ $@
+temp/site/redirect_map.conf: utils/confluence_redirects/redirect_map_static.conf utils/confluence_redirects/redirect_map_extra.conf
+	@echo "Creating $@"
+	@utils/confluence_redirects/check_map.sh $^
+	@echo "# This file is auto-generated from the files in utils/confluence_redirects" > $@
+	@echo "# Do not edit directly" >> $@
+	@echo "# Generated: $$(date -u -Is)" >> $@
+	@echo "#" >> $@
+	@cat $^ >> $@
 
 deploy: no-branch-check
 	@if [ -z "$(DEPLOY_REMOTE)" ] ; then \

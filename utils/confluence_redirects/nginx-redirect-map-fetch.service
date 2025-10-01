@@ -1,0 +1,10 @@
+[Unit]
+Description=Fetch the nginx redirect map from docs.asterisk.org
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/curl -o /etc/nginx/redirect_map.conf.temp https://docs.asterisk.org/redirect_map.conf
+ExecStartPost=/usr/bin/cp /etc/nginx/redirect_map.conf.temp /etc/nginx/redirect_map.conf
+ExecStartPost=/usr/sbin/nginx -t
+ExecStartPost=/usr/bin/systemctl reload nginx
+

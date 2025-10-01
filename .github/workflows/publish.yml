@@ -44,6 +44,12 @@ jobs:
           cat >Makefile.inc <<EOF
           ${{vars.MAKEFILE_INC}}
           EOF
+          echo "::group::Building documentation"
           make
+          echo "::endgroup::"
+          echo "::group::Generating the redirect map"
           make temp/site/redirect_map.conf
+          echo "::endgroup::"
+          echo "::group::Deploying"
           make deploy
+          echo "::endgroup::"

@@ -1,0 +1,10 @@
+[Unit]
+Description=Timer to fetch the nginx redirect map from docs.asterisk.org
+
+[Timer]
+OnCalendar=*-*-* 01:00:00
+Persistent=true
+
+[Install]
+WantedBy=timers.target
+
