@@ -23,6 +23,14 @@ The minimum message length is three bytes: type and payload-length. Hangup indic
 * `0x01` - Payload will contain the UUID (16-byte binary representation) for the audio stream
 * `0x03` - Payload is 1 byte (ascii) DTMF (dual-tone multi-frequency) digit
 * `0x10` - Payload is signed linear, 16-bit, 8kHz, mono PCM (little-endian)
+* `0x11` - Payload is signed linear, 16-bit, 12kHz, mono PCM (little-endian)
+* `0x12` - Payload is signed linear, 16-bit, 16kHz, mono PCM (little-endian)
+* `0x13` - Payload is signed linear, 16-bit, 24kHz, mono PCM (little-endian)
+* `0x14` - Payload is signed linear, 16-bit, 32kHz, mono PCM (little-endian)
+* `0x15` - Payload is signed linear, 16-bit, 44.1kHz, mono PCM (little-endian)
+* `0x16` - Payload is signed linear, 16-bit, 48kHz, mono PCM (little-endian)
+* `0x17` - Payload is signed linear, 16-bit, 96kHz, mono PCM (little-endian)
+* `0x18` - Payload is signed linear, 16-bit, 192kHz, mono PCM (little-endian)
 * `0xff` - An error has occurred; payload is the (optional) application-specific error code. Asterisk-generated error codes are listed below.
 
 ### Payload length
