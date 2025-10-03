@@ -1,4 +1,4 @@
- ---
+---
 title: Checking Asterisk Requirements
 pageid: 4817512
 ---
