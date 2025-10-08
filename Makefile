@@ -198,7 +198,7 @@ deploy: no-branch-check
 	@[ ! -f $(BUILD_DIR)/mkdocs.yml ] && \
 		{ echo "Can't deploy. '$(BUILD_DIR)/mkdocs.yml' not found" ; exit 1 ; } || :
 	@sed -i -r -e "$(MINIFY_REGEX)" $(BUILD_DIR)/mkdocs.yml
-	@mkdocs gh-deploy --dirty -r $(DEPLOY_REMOTE) -b $(DEPLOY_BRANCH) \
+	@mkdocs gh-deploy -r $(DEPLOY_REMOTE) -b $(DEPLOY_BRANCH) \
 		-d $(SITE_DIR) --no-history -f $(BUILD_DIR)/mkdocs.yml
 
 serve: 
