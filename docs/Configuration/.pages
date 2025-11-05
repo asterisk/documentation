@@ -1,4 +1,5 @@
 nav:
+  - index.md
   - Core-Configuration
   - Channel-Drivers
   - Dialplan

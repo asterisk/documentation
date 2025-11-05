@@ -1,4 +1,5 @@
 nav:
+  - index.md
   - SIP
   - DAHDI.md
   - Inter-Asterisk-eXchange-protocol-version-2-IAX2

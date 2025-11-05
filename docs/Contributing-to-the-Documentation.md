@@ -107,7 +107,19 @@ nav:
   - Page-3.md
 ```
 
-Each entry must be a name as it appears in the filesystem.  Only list what you want to appear in the left sidebar.  Don't list supporting files like images and don't list `index.md` files.
+Each entry must be a name as it appears in the filesystem.  Only list what you want to appear in the left sidebar.  Don't list supporting files like images.
+
+/// note
+The plugin that handles the .pages files has an annoying habit of automatically expanding the first item in the nav list which can be very confusing to the user. So, if the first entry is a directory and you don't want it automatically expanded, make the `index.md` file the first entry.  It won't show up in the sidebar but it'll keep the first section from auto-expanding.
+
+```yaml title="Sample .pages file"
+nav:
+  - index.md  # Keeps Section-1 from auto-expanding
+  - Section-1
+  - Page-2.md
+```
+
+///
 
 ### Deleting, renaming or moving pages or sections
 

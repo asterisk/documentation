@@ -1,4 +1,5 @@
 nav:
+  - index.md
   - Asterisk-Manager-Interface-AMI
   - Asterisk-REST-Interface-ARI
   - Asterisk-Gateway-Interface-AGI.md
