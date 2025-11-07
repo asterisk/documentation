@@ -32,7 +32,7 @@ GitHub will automatically use the one-line summary as the title for pull request
 
 The verbose description may contain multiple paragraphs, itemized lists, etc. *Always end the first sentence (and any subsequent sentences) with punctuation.*
 
-Commit messages should be wrapped at 72 columns.
+Commit messages should be wrapped at 80 columns.
 
 Note that for trivial commits, such as fixes for spelling mistakes, the verbose description may not be necessary.
 
@@ -42,7 +42,7 @@ Since we've moved to a complete GitHub SCM solution, commit messages will automa
 
 ### Special Trailers for Commit Messages
 
-GitHub and the Asterisk release process support several commit message trailers that are used to automatically close related issues and to create the release change logs.  The trailer name MUST start on a new line, be followed by a colon (`:`) and each should be separated by a blank line.  If specified at all, the trailers listed below MUST be the last items in the commit message.
+GitHub and the Asterisk release process support several commit message trailers that are used to automatically close related issues and to create the release change logs.  The trailer name MUST start on a new line, be followed by a colon and a space (`: `) and each should be separated by a blank line.  If specified at all, the trailers listed below MUST be the last items in the commit message.
 
 /// warning | Unofficial Trailers
 If you specify any other trailers, including ones that were formerly acceptable, they will become part of the official trailer they follow. So, if you insist on adding trailers like `ASTERISK-nnnnn`, `Signed-Off-By` or `Reported-By` they MUST come BEFORE the first of the official trailers.
@@ -57,7 +57,7 @@ Current official trailers:
 * **DeveloperNote**: To make developers aware of a new or changed API
 or any other change that might be of interest to those working on Asterisk itself, custom modules, or external apps that integrate with Asterisk, use a `DeveloperNote: <text>` trailer.
 
-Any user-affecting change (new feature, change to CLI commands, etc) must be documented with a `UserNote:` trailer.   Any potentially breaking change (change to or new alembic database scripts, change to dialplan application or function arguments, etc.) must be documented with an `UpgradeNote:` trailer.  Any changes to public APIs that might affect external developers must be documented with a `DevelopmentNote:` trailer.  These trailers cause special notes to be output in the change log in addition to the full commit message.
+Any user-affecting change (new feature, change to CLI commands, etc) must be documented with a `UserNote:` trailer.   Any potentially breaking change (change to or new alembic database scripts, change to dialplan application or function arguments, etc.) must be documented with an `UpgradeNote:` trailer.  Any changes to public APIs that might affect external developers must be documented with a `DeveloperNote:` trailer.  These trailers cause special notes to be output in the change log in addition to the full commit message.
 
 /// warning | Updating Commit Messages
 GitHub only looks in the PR comments for the `Resolves` or `Fixes` trailers not the commit message, however the Asterisk release process only looks in the commit message for the trailers so it's important that they match.  Be aware though, if you subsequently force push the commit after the PR is created, GitHub will NOT automatically update the PR title or the description/first comment from the updated commit so if you've added or changed the `Resolves:` or `Fixes:` trailers in the commit message and forced pushed, you MUST manually edit the PR description/first comment or GitHub won't be able to automatically close any related issues.

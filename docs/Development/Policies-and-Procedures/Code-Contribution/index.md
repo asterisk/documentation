@@ -42,22 +42,26 @@ In each of the clones, run `gh repo set-default`.  Select either asterisk/asteri
 
 ### Do Work
 
-Checkout the **HIGHEST** VERSION branch to which your work will apply ('master', '20', '18', etc.), update it to match the upstream repo, then push it to your fork.
+New work should never be based on a branch other than "master" so unless you have some special circumstance, start by checking out the "master" branch and syncing it to your fork.
 
 1. `git checkout master`
 2. `git pull upstream master`
 3. `git push`
 
-Now, check out that branch to a branch with a new name.  For instance if you're working on issue 45 and your work will apply to the 20, 21, 22 and master branches, check out the master branch and create a new branch from it:
+Now, check out that branch to a branch with a new name.  For instance if you're working on issue 45, create a new branch:
 
 1. `git checkout -b master-issue-45`
 
-If you're not working on an issue, you can use a more descriptive name for the new branch, `master-new-feature` for instance, but in all cases, the name of the new branch must be prefixed with the target branch.  That branch name appears in many GitHub CI logs and in the Pull Request UI so having the target branch name can help troubleshooting.  It's also used if someone downloads your PR for testing.  Finally, if you need to submit separate PRs for the same work because the original PR won't cherry-pick cleanly to all branches, you'll have to create another branch that won't conflict with your original branch.
+If you're not working on an issue, you can use a more descriptive name for the new branch, `master-new-feature` for instance, but in all cases, the name of the new branch must be prefixed with the target branch.  That branch name appears in many GitHub CI logs and in the Pull Request UI so having the target branch name can help troubleshooting.  It's also used if someone downloads your PR for testing.
 
+If you need to submit separate PRs for the same work because the original PR won't cherry-pick cleanly to all branches, you'll have to create another branch that won't conflict with your original branch.
+
+/// note | Exception to starting with the master branch
 If your work fixes a bug in a non-master branch that doesn't exist in the higher branches, start with the highest version branch that the fix does apply to.  For instance, if the fix applies to 20 and 21 but not master, base your new branch on 21.
+///
 
 /// warning 
-You should never do work in the upstream branches like '18', '20', or 'master'.  Doing so will pollute those branches in your fork and will make updating them difficult.
+You should never do work in the upstream branches like '22', '23', or 'master'.  Doing so will pollute those branches in your fork and will make updating them difficult.
 ///
 
 Now make your change and test locally.
@@ -95,6 +99,10 @@ UpgradeNote: The X argument to the OldFoo application has been removed
 and will cause an error if supplied.
 ```
 
+/// warning
+Updating the commit message does NOT automatically update the Pull Request description.  If you change the commit message, you must manually edit the PR description to match.
+///
+
 ### Test and check for Cherry-pick-ability
 
 This should go without saying but test your change locally to make sure it does what you think it should and that it doesn't break anything else.  If it passes and it needs to be cherry-picked to other branches, test cherry-picking now.  Create a new branch off the cherry-pick target branch, cherry-pick your change into it then compile and test.  If it picks cleanly and passes your tests, you can just delete the branch as you won't be creating additional pull requests for it.  If it doesn't apply or pass the tests, you have two options...
@@ -106,43 +114,18 @@ You should always use option 1 when possible.  Unlike Gerrit, GitHub was never d
 
 ### Create a Pull Request
 
-When you've finished your work and committed, you can create a new pull request by running `gh pr create --fill --base 18`.  The `--fill` option sets the pull request description to the same as the commit message and the `--base` option indicates which asterisk branch the pull request is targeted for.  This is similar to running `git review 18` to create a new Gerrit review.  When prompted where the new branch should be pushed, choose your fork, NOT the upstream repo.
+When you've finished your work and committed, you can create a new pull request by running `gh pr create --fill --base <base branch>`.  The `--fill` option sets the pull request description to the same as the commit message and the `--base` option indicates which asterisk branch the pull request is targeted for (usually master).  When prompted where the new branch should be pushed, choose your fork, NOT the upstream repo.
 
-#### Multiple Commits
-There are only two situations where you may have multiple commits in a single pull request:
-
-##### Multiple commits that stand on their own
-You may have multiple commits in a single PR if the the commits represent a progression of changes that can stand on their own.  For instance, a commit to add a feature to a core source file, then a commit against an application to use that new feature.  In this case, each commit will be merged as is, without squashing.  You must be prepared to do some juggling however should changes be requested to an earlier commit in the series.  For instance, if changes were requested to commit 1, you'd have to reset your working branch back to that commit, make your fixes, do a `git commit -a --amend`, reapply commit 2 on top of that amended commit, then do a `git push --force` to update the PR.
-
-/// warning
-You MUST add a comment with the exact content below to your PR otherwise the automation will flag your PR with a reminder that multiple commits are not normally allowed and will prevent it from being merged.
-```
-multiple-commits: standalone
-```
-///
-
-##### Interim commits to facilitate code review
-You may also have multiple commits in your PR if your PR is complex and you've been asked to make changes that might be hard for a reviewer to re-review.  For instance, if your initial commit contained multiple changes to multiple files and you've been requested to make a change like correcting indentation, it might be hard for a reviewer to figure out what changed if you made your changes and just did an amend and force push on your original commit because the changes might be buried in what was a large diff originally.
-
-In this case, the multiple commits will NOT be allowed into the codebase as is.  You MUST ultimately squash your interim commits down to one commit before it will be approved for merging.
-
-/// warning
-You MUST add a comment with the exact content below to your PR otherwise the automation will flag your PR with a reminder that multiple commits are not normally allowed.
-
-```
-multiple-commits: interim
-```
-///
-
-#### Cherry picking
-If you want your change to be automatically cherry-picked to other branches, you'll need to add a comment to your pull request.  Head over to <https://github.com/asterisk/asterisk/pulls> and open your PR. Add a comment with a `cherry-pick-to: <branch>"` header line for each branch.  For example, if the PR is against the master branch and you want it cherry-picked down to 20 and 18, add a comment with the following:
+#### Cherry Picking
+Unless there are special circumstances, all changes need to be cherry-picked to the currently-supported major version branches.  This is accomplished by adding a special comment to the PR indicating which branches the PR should be cherry-picked to:
 
 ```text
+cherry-pick-to: 23
+cherry-pick-to: 22
 cherry-pick-to: 20
-cherry-pick-to: 18
 ```
 
-Each branch must be on a separate line and don't put anything else in the comment.  When all the PR tests and checks have passed, an Asterisk Core developer will trigger the cherry-pick test process which will look for that comment.  If the commit can't be cherry-picked cleanly to the branches you indicated or the tests fail, none of the commits will be merged.  This is why it's important for you to make sure your commit cherry-picks cleanly before submitting the first pull request.
+Each branch must be on a separate line.  When all the PR tests and checks have passed, an Asterisk Core developer will trigger the cherry-pick test process which will look for that comment.  If the commit can't be cherry-picked cleanly to the branches you indicated or the tests fail, none of the commits will be merged.  This is why it's important for you to make sure your commit cherry-picks cleanly before submitting the first pull request.
 
 If you don't need your PR automatically cherry-picked, please add a comment stating `cherry-pick-to: none`.  This saves us not having to ask if you want it cherry-picked and suppresses the automated reminder.
 
@@ -160,6 +143,25 @@ Don't add the `cherry-pick-to` lines to the commit message or the PR description
 **If you change your mind and don't want your PR automatically cherry-picked, edit the comment and replace the "cherry-pick-to" lines with a single `cherry-pick-to: none` line** Don't use formatting or other means to say "nevermind". The automation might not understand.
 ///
 
+#### Multiple Commits
+There are only two situations where you may have multiple commits in a single pull request:
+
+1. Multiple commits that stand on their own.  <br>
+You may have multiple commits in a single PR if the the commits represent a progression of changes that can stand on their own.  For instance, a commit to add a feature to a core source file, then a commit against an application to use that new feature.  In this case, each commit will be merged as is, without squashing.  You must be prepared to do some juggling however should changes be requested to an earlier commit in the series.  For instance, if changes were requested to commit 1, you'd have to reset your working branch back to that commit, make your fixes, do a `git commit -a --amend`, reapply commit 2 on top of that amended commit, then do a `git push --force` to update the PR.
+
+2. Interim commits to facilitate code review.  <br>
+You may also have multiple commits in your PR if your PR is complex and you've been asked to make changes that might be hard for a reviewer to re-review.  For instance, if your initial commit contained multiple changes to multiple files and you've been requested to make a change like correcting indentation, it might be hard for a reviewer to figure out what changed if you made your changes and just did an amend and force push on your original commit because the changes might be buried in what was a large diff originally.  In this scenario, the multiple commits will NOT be allowed into the codebase as is.  You MUST ultimately squash your interim commits down to one commit and force push before it will be approved for merging.
+
+If you do choose to have multiple commits in the PR, you MUST indicate which scenario applies by adding a special comment to the PR.
+
+```
+multiple-commits: standalone
+or
+multiple-commits: interim
+```
+
+The entry can go in a separate comment or can be added to the existing comment that has your `cherry-pick-to` entries.  If your PR has multiple commits and no `multiple-commits` entry is found, the PR will be flagged.
+
 #### Test against a Testsuite PR
 
 If you've created a corresponding pull request in the Asterisk Testsuite, you can tell the automation to test your Asterisk PR using your Testsuite PR by adding a comment to the Asterisk PR with `testsuite-test-pr: <testsuite pr number>` as the content.  For example:
@@ -168,10 +170,16 @@ If you've created a corresponding pull request in the Asterisk Testsuite, you ca
 testsuite-test-pr: 400
 ```
 
-That entry would tell the automation to checkout the testsuite PR 400 before running the testsuite tests for the Asterisk PR. You can add the `testsuite-test-pr` entry to the same comment you created for the `cherry-pick-to` entries if you prefer.
+That entry would tell the automation to checkout the Testsuite PR 400 before running the testsuite tests for the Asterisk PR. You can add the `testsuite-test-pr` entry to the same comment you created for the `cherry-pick-to` entries if you prefer.
+
+You can also have the Testsuite PR tested against the Asterisk PR by adding a similar comment to the testsuite PR:
+
+```text
+asterisk-test-pr: 1500
+```
 
 /// warning
-As with the `cherry-pick-to` entries, don't add the `testsuite-test-pr` entry to the commit message or the PR description.  They're only searched for in PR comments.
+As with the `cherry-pick-to` entries, don't add these entries to the commit message or the PR description.  They're only searched for in PR comments.
 ///
 
 You only have about two minutes from the time the PR is submitted before the automation actually starts the tests so you'll need to add the comment rather quickly.  As noted above, you can easily add comments from the command line using `gh pr comment`.  If you don't make it in time or you haven't written the test yet, you can always add the comment then ping someone on the Asterisk team to recheck the PR.
@@ -199,7 +207,17 @@ Of course, if `a_new_test` is a directory of tests, you'd add:
 
 ## Pull Request Review Process
 
-As with Gerrit reviews, a new PR triggers a set of tests and checks.  If you browse to your PR and scroll to the bottom, you'll see the status of those checks listed.  There are some differences to Gerrit however.
+All new PRs trigger a set of tests and checks.  If you browse to your PR and scroll to the bottom, you'll see the status of those checks listed.
+
+### Pull Request Checklist
+
+To help provide more accurate and up-to-date information converning pull request and commit message formatting and requirements, all new pull requests will be scanned for common issues and if any are found, a checklist will be added to the PR explaining the issue and recommending action.  As updates are made to the PR, the checklist will be updated and when all items have been resolved, the checklist will be deleted.
+
+[Current Pull Request Checklist Items](Pull-Request-Checklist.md)
+
+/// note
+Having open checklist items won't necessarily prevent your PR from being merged.  It isn't perfect and false positives are possible.  If you have suggestions for additional checklist items or you believe the criteria or display text for an existing check is faulty, let us know.
+///
 
 ### New Contributor License Agreement
 
@@ -245,7 +263,7 @@ If you need to make code changes to address comments or failures, the process is
 This will force push the commit to your fork first, then update the PR with the new commit and restart the testing process.
 
 /// note
-If you feel that amending and force pushing changes might make it har for a reviewer to detect what was changed/fixed, you can push interim commits.  See [Interim commits to facilitate code review](#interim-commits-to-facilitate-code-review) above.
+If you feel that amending and force pushing changes might make it hard for a reviewer to detect what was changed/fixed, you can push interim commits.  See [Multiple Commits](#multiple-commits) above.
 ///
 
 ### Cherry-Pick Tests
