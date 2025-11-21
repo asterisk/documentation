@@ -48,10 +48,10 @@ As luck and my mental-illness would have it, I still have the Confluence extract
 
 ## Operation
 
-So now we have 2 redirect files in `utils/confluence_redirects`.  The top-level Makefile has a rule for `temp/site/redirect_map.conf` that concatenates the two files into the one and checks them for formatting and duplicate entries (which will cause Nginx to barf).  The publish process will make that file available as `https://docs.asterisk.org/redirect_map.conf`.
+So now we have 2 redirect files in `utils/confluence_redirects`.  The top-level Makefile has a rule for `docs/redirect_map.conf` that concatenates the two files into the one and checks them for formatting and duplicate entries (which will cause Nginx to barf).  After that's run, the result must be committed and pushed to make the file available at `https://docs.asterisk.org/redirect_map.conf` the next time a site publish is performed.
 
 The `nginx-redirect-map-fetch.service` and `nginx-redirect-map-fetch.timer` files reside on oss-downloads in `/etc/systemd/system` and cause the server to download the file to `/etc/nginx/redirect_map.conf` and reload nginx.  `/etc/nginx/nginx.conf` loads the map and `/etc/nginx/conf.d/redirects.conf` has the lookup block.
 
 ## Maintenance
 
-If you discover bad entries in the original `redirect_map_static.conf` file, you can correct or comment them out but you shouldn't remove any entries and any new entries should go in the `redirect_map_extra.conf` file.  You also should run `./check_map.sh redirect_map_static.conf redirect_map_extra.conf` to check the formatting and make sure there are no dups in the file.  `make temp/site/redirect_map.conf` does this as well.
+If you discover bad entries in the original `redirect_map_static.conf` file, you can correct or comment them out but you shouldn't remove any entries and any new entries should go in the `redirect_map_extra.conf` file.  You also should run `./check_map.sh redirect_map_static.conf redirect_map_extra.conf` to check the formatting and make sure there are no dups in the file.  `make docs/redirect_map.conf` does this as well.

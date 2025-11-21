@@ -180,7 +180,7 @@ else
 	@mkdocs build -f $(BUILD_DIR)/mkdocs.yml -d $(SITE_DIR)
 endif
 
-temp/site/redirect_map.conf: utils/confluence_redirects/redirect_map_static.conf utils/confluence_redirects/redirect_map_extra.conf
+docs/redirect_map.conf: utils/confluence_redirects/redirect_map_static.conf utils/confluence_redirects/redirect_map_extra.conf
 	@echo "Creating $@"
 	@utils/confluence_redirects/check_map.sh $^
 	@echo "# This file is auto-generated from the files in utils/confluence_redirects" > $@
