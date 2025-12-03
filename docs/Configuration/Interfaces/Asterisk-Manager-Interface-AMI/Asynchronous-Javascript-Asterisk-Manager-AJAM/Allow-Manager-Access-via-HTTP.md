@@ -11,7 +11,7 @@ pageid: 4817260
 Configuring manager.conf
 ------------------------
 
-1. Make sure you have both "enabled = yes" and "webenabled = yes" setup in /etc/asterisk/manager.conf
+1. Make sure you have both "enabled = yes" and "webenabled = yes" set in /etc/asterisk/manager.conf
 2. You may also use "httptimeout" to set a default timeout for HTTP connections.
 3. Make sure you have a manager username/secret
 

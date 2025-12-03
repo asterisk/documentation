@@ -114,7 +114,7 @@ Allowed values:
 
 yes - Allow transcoding based on default "call" setup (default).
 
-no - Never allow transcoding. Setting this could cause some calls to not get setup.
+no - Never allow transcoding. Setting this could cause some calls not to get set up.
 
 always - Always transcode even if both sides negotiate the same codec(s).
 

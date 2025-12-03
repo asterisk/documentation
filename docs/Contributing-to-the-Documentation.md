@@ -382,7 +382,7 @@ Most of the pages that were converted from the old Confluence wiki use the `!!!`
 [//]: # (end-tip)
 ```
 
-That style is only supported for backwards compatibility and must not be used in new content.  If you are editing a page with old style admonitions, you MUST convert them ALL to the new style.  Mixing old and new styles will most probably cause the page to not be rendered correctly.
+That style is only supported for backwards compatibility and must not be used in new content.  If you are editing a page with old style admonitions, you MUST convert them ALL to the new style.  Mixing old and new styles will most probably cause the page not to be rendered correctly.
 
 ///
 
@@ -511,7 +511,7 @@ This can be useful to force wrap the text in table cells.
 
 Once you've made your updates, you'll want to test it locally to make sure everything renders properly.
 
-### Setup the environment
+### Set up the environment
 
 You've already cloned your fork of the documentation repo at this point but to set it up for building the documentation perform the following steps:
 

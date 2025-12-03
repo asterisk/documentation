@@ -36,7 +36,7 @@ A comment from ast_do_masquerade
 
 ```
 
-The way the operation works is to take two channels and 'swap' portions of them. In the diagram below, assume that Thread A has a channel that Thread B wants to take over. Thread B creates a new channel ("Original") and starts a Masquerade operation on the channel owned by Thread A ("Clone"). Both channels are locked, and the state of the Clone channel is moved into the Original channel, while the Clone channel obtains the Original channel's state. In order to denote that the channel is about to die, a special ZOMBIE flag is put on the channel and the name renamed to Clone<ZOMBIE>. The lock is released, and the Original channel - which now has the state associated with Clone channel - executes in Thread B, while the Clone channel (which is now quite dead) see's that its dead and goes off to silently contemplate its demise in an `h` extension.
+The way the operation works is to take two channels and 'swap' portions of them. In the diagram below, assume that Thread A has a channel that Thread B wants to take over. Thread B creates a new channel ("Original") and starts a Masquerade operation on the channel owned by Thread A ("Clone"). Both channels are locked, and the state of the Clone channel is moved into the Original channel, while the Clone channel obtains the Original channel's state. In order to denote that the channel is about to die, a special ZOMBIE flag is put on the channel and the name renamed to Clone<ZOMBIE>. The lock is released, and the Original channel - which now has the state associated with Clone channel - executes in Thread B, while the Clone channel (which is now quite dead) sees that it's dead and goes off to contemplate its demise silently in an `h` extension.
 
 Asterisk_12_MasqueradesL
 Except, of course, that this is a dramatic simplification. It's never quite that easy.
@@ -345,7 +345,7 @@ CHANNEL(after_bridge_goto)=<parseable-goto>
 
 #### BridgeWait()
 
-Potential new dialplan appliction that puts the channel into a holding bridge that the Bridge application or the Bridge AMI action can move to the real bridge. This will avoid the need for a masquerade when the Wait application is used. The Bridge applicaiton and Bridge AMI action will need to be modified to not use masquerades unconditionally if these channels can be moved from the current bridge they are in.
+Potential new dialplan application that puts the channel into a holding bridge that the Bridge application or the Bridge AMI action can move to the real bridge. This will avoid the need for a masquerade when the Wait application is used. The Bridge application and Bridge AMI action will need to be modified not to use masquerades unconditionally if these channels can be moved from the current bridge they are in.
 
 #### More Stuff
 
@@ -359,7 +359,7 @@ It would be nice to implement DTMF attended transfer to be able to toggle back a
 
 Bridge channel hooks can move the bridge channel between bridges. This would be needed to implement the toggle between A and C bridges feature.
 
-A way to implement the toggle between A and C parties is to have an atxfer bridge subclass. Setup the links this way:
+A way to implement the toggle between A and C parties is to have an atxfer bridge subclass. Set up the links this way:
 
 ```
 
@@ -785,7 +785,7 @@ Project Planning
 High Level Bridging construction tasks:
 ---------------------------------------
 
-* **DONE** Change ast_bridge_call callers to not expect getting peer back. Part of this is to add an optional goto dialplan location datastore to set where the peer should go when it exits the bridge. The location datastore is removed if a channel exits with AST_SOFTHANGUP_ASYNCGOTO set or the channel is masqueraded. Part of this is to implement the self managing bridge functionality.
+* **DONE** Change ast_bridge_call callers not to expect getting peer back. Part of this is to add an optional goto dialplan location datastore to set where the peer should go when it exits the bridge. The location datastore is removed if a channel exits with AST_SOFTHANGUP_ASYNCGOTO set or the channel is masqueraded. Part of this is to implement the self managing bridge functionality.
 
 * **DONE** Make all bridge technologies have a bridging thread to handle bridge restructuring tasks like smart bridge and bridge merges. When the bridge thread is not being used to restructure the
 

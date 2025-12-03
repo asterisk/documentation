@@ -13,7 +13,7 @@
    in the amd.conf configuration file.
 
 ### app_bridgewait
- * Adds the n option to not answer the channel when
+ * Adds the n option so as not to answer the channel when
    the BridgeWait application is called.
 
 ### features

@@ -817,7 +817,7 @@ What 3 features are missing?  CCSS, AOC and outbound Subscriptions.  The only on
 
 What about stability?  The FreePBX community has a large thread with users indicating issues with PJSIP that they don’t experience with chan_sip, but no one is filing bugs or presenting actual issues - it appears to be primarily anecdotal.
 
-Is it already defacto deprecated since it’s in extended support and there is no community maintainer?  And, are we being setup for something bad by not making it more clear.
+Is it already defacto deprecated since it’s in extended support and there is no community maintainer?  And, are we being set up for something bad by not making it more clear.
 
 What about configuration?  The converter isn’t necessarily feature complete; but is written in Python (hint, non-C developers)  There’s built-in help in Asterisk’s CLI (config show help [res_pjsip_endpoint.so](http://res_pjsip_endpoint.so), for example).  Is it worthwhile to make PJSIP read sip.conf?  (There are problems here as a friend and a peer are different and if you move that to PJSIP under the hood you can end up with weird configuration or vulnerability issues)
 

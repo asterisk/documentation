@@ -30,7 +30,7 @@ The call file consists of <Key>: <value> pairs; one per line.
 
 Comments are indicated by a '#' character that begins a line, or follows a space or tab character. To be consistent with the configuration files in Asterisk, comments can also be indicated by a semicolon. However, the multiline comments (;----;) used in Asterisk configuration files are not supported. Semicolons can be escaped by a backslash.
 
-The following keys-value pairs are used to specify how setup a call:
+The following keys-value pairs are used to specify how to set up a call:
 
 * `Channel: <channel>` - The channel to use for the new call, in the form **technology/resource** as in the Dial application. This value is required.
 * `Callerid: <callerid>` - The caller id to use.

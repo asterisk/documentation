@@ -1087,7 +1087,7 @@ During ast_channel_make_compatible(), if it is determined that translation is re
 
 # Implementation Phases
 
-With a project of this size, it is important to break down the implementation into manageable phases. Each phase of development contains a set of steps which act as milestones. These steps must be small enough to be attainable within a week to two week period but complete enough to not break any Asterisk functionality once they are introduced. Once a step is complete, it should be reviewed and committed into trunk. This allows progress to be made in a maintainable way.
+With a project of this size, it is important to break down the implementation into manageable phases. Each phase of development contains a set of steps which act as milestones. These steps must be small enough to be attainable within a week to two week period but complete enough not to break any Asterisk functionality once they are introduced. Once a step is complete, it should be reviewed and committed into trunk. This allows progress to be made in a maintainable way.
 
 ## Phase 1: Re-architect how media is represented and how translation paths are built
 

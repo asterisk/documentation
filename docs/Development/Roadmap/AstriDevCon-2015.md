@@ -212,7 +212,7 @@ Open Discussion
 		- I'd like to offer a Docker image that you can run an ARI hello world in
 		- Goal: Have an Asterisk image that people can load up and use
 		- Daniel: How about VirtualBox?
-		- Could be anything, so long as it is easy to setup, deploy, and throw away
+		- Could be anything, so long as it is easy to set up, deploy, and throw away
 * Video
 	+ Ben/Dan: Don't reinvent the wheel
 	+ Farm out to FreeSWITCH or Jitsi videobridge

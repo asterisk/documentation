@@ -8,7 +8,7 @@ Tutorial Overview
 
 This tutorial demonstrates basic WebRTC support and functionality within Asterisk.  Asterisk will be configured to support a remote WebRTC client, the [sipml5](https://www.doubango.org/sipml5/) client, for the purposes of making calls to/from Asterisk within a web browser.  You must be running a recent (as of September 2018) version of a Mozilla or Chromium based web browser.
 
-Setup Asterisk
+Set up Asterisk
 ==============
 
 Follow the instructions at [Configuring Asterisk for WebRTC Clients](/Configuration/WebRTC/Configuring-Asterisk-for-WebRTC-Clients) before proceeding,  The rest of this tutorial assumes that your PBX is reachable at `pbx.example.com` and that the client is known as `webrtc_client`.

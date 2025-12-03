@@ -8,7 +8,7 @@ Streams! ALL THE STREAMS!
 
 Let's start with talking about what streams are. Streams at their core are a flow of media. They can be unidirectional or bidirectional and are comprised of media formats. The media formats also contain a type. To simplify things streams only carry a single type of media. Streams can also carry an identifier in the form of a name.
 
-Asterisk currently has no explicit interface for streams and simply has a single pipe that frames are written to and read from. The negotiated formats are scoped to the entire channel as a result. Interfaces that need to manipulate media have injected themselves into this single pipe and have to take special care to not manipulate frames they do not need to. This pipe also carries control frames and other signaling related operations. This means that there is a single very loose stream for each type of media.
+Asterisk currently has no explicit interface for streams and simply has a single pipe that frames are written to and read from. The negotiated formats are scoped to the entire channel as a result. Interfaces that need to manipulate media have injected themselves into this single pipe and have to take special care not to manipulate frames they do not need to. This pipe also carries control frames and other signaling related operations. This means that there is a single very loose stream for each type of media.
 
 So what do we need to be able to do for streams?
 ================================================

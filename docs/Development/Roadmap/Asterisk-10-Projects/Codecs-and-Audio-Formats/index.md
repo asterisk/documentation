@@ -107,7 +107,7 @@ In this example, three different CELT codecs are created: one for 32kHz mode, on
 
 These codecs cannot be dynamically changed while Asterisk is running. In order to make changes, an Asterisk restart is required.
 
-To make sure a codec or format is setup correctly, you can execute:
+To make sure a codec or format is set up correctly, you can execute:
 
 core show codecs
 
@@ -198,7 +198,7 @@ In this example, four different SILK codecs are created: one each for 8 (silk8),
 
 These codecs cannot be dynamically changed while Asterisk is running. In order to make changes, an Asterisk restart is required.
 
-To make sure a codec or format is setup correctly, you can execute:
+To make sure a codec or format is set up correctly, you can execute:
 
 core show codecs
 

@@ -30,7 +30,7 @@ For chan_pjsip you can use **pjsip show endpoints**.
 !!! tip 
     Debugging SIP Registrations
 
-    If you're having troubles getting a phone to register to Asterisk, make sure you watch the Asterisk CLI with the verbosity level set to at least three while you reboot the phone. You'll likely see error messages indicating what the problem is, like in this example:
+    If you're having trouble getting a phone to register to Asterisk, make sure you watch the Asterisk CLI with the verbosity level set to at least three while you reboot the phone. You'll likely see error messages indicating what the problem is, like in this example:
 [//]: # (end-tip)
 
 ```

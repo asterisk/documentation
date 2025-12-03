@@ -26,7 +26,7 @@ Decision Not To Accept A New Feature Or Improvement
 While we understand that contributors prefer that new features and improvements they create become part of Asterisk, it is not always possible for the Asterisk project to accept them. This may be because the feature or improvement is extremely specialized, or because it would see little to no use by others. Having a specialized or limited use feature or improvement in Asterisk makes the project responsible for all aspects of the feature or improvement and will consume time that would be otherwise used on non-specialized or widely used capabilities. Therefore, the Asterisk project may choose not to accept a new feature or improvement. Such decisions are not taken lightly and are done in consultation with the asterisk-dev mailing list.
 
 !!! note 
-    If a new feature or improvement patch is submitted for review on Gerrit without prior discussion, and a reviewer voices an opinion to not allow the new feature or improvement, or desires more discussion about it then the review may be suspended (given a -2), and the submitter will be required to create a new post to initiate further discussion on the asterisk-dev mailing list about the change, and why it should be allowed in.
+    If a new feature or improvement patch is submitted for review on Gerrit without prior discussion, and a reviewer voices an opinion not to allow the new feature or improvement, or desires more discussion about it then the review may be suspended (given a -2), and the submitter will be required to create a new post to initiate further discussion on the asterisk-dev mailing list about the change, and why it should be allowed in.
 
 [//]: # (end-note)
 

@@ -60,6 +60,6 @@ If you don't have the **odbc** command at the CLI, check that
 
 * The res_odbc.so module exists and has proper permissions in /usr/lib/asterisk/modules/
 * Your modules.conf to make sure the module isn't noloaded or being prevented from loading somehow
-* Debug during Asterisk startup to look for messages regarding res_odbc.conf (see logger.conf to get things setup)
+* Debug during Asterisk startup to look for messages regarding res_odbc.conf (see logger.conf to get things set up)
 
 If you the **odbc show** output shows "Connected: No" then you'll want to try connecting to your ODBC installation from other methods to verify it is working. The Linux tool **isql** is good for that.

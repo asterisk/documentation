@@ -205,7 +205,7 @@ An explanation of each of these settings parameters can be found on the [Asteris
 * Tell Asterisk to send media across the same transport that we receive it from.
 * Enable mux-ing of RTP and RTCP events onto the same socket.
 * Place received calls from this endpoint into an Asterisk [Dialplan](/Configuration/Dialplan) context called "default"
-* And setup codecs by first disabling all and then selectively enabling Opus (presuming that you installed the Opus codec for Asterisk as mentioned at the beginning of this tutorial), then G.711 μ-law.
+* And set up codecs by first disabling all and then selectively enabling Opus (presuming that you installed the Opus codec for Asterisk as mentioned at the beginning of this tutorial), then G.711 μ-law.
 
 ## Restart Asterisk
 

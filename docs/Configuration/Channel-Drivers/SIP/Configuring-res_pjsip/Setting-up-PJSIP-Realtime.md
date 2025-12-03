@@ -78,7 +78,7 @@ Then rename the config.ini.sample file to config.ini
 
 ```
 
-Finally, use Alembic to setup the database tables:
+Finally, use Alembic to set up the database tables:
 
 ```bash title=" " linenums="1"
 # alembic -c config.ini upgrade head
@@ -126,7 +126,7 @@ mysql> quit
 
 ## Configuring ODBC
 
-Now that we have our MySQL database created and populated, we'll need to setup ODBC and Asterisk's ODBC resource to access the database.  First, we'll tell ODBC how to connect to MySQL.  To do this, we'll edit the  **/etc/odbcinst.ini** configuration file.  Your file should look something like:
+Now that we have our MySQL database created and populated, we'll need to set up ODBC and Asterisk's ODBC resource to access the database.  First, we'll tell ODBC how to connect to MySQL.  To do this, we'll edit the  **/etc/odbcinst.ini** configuration file.  Your file should look something like:
 
 ```conf title="/etc/odbcinst.ini"
 [MySQL]

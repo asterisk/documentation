@@ -130,7 +130,7 @@ Please remember that these notes merely represent the items that were discussed,
 	+ Announce on mailing list when a project is kicked off - provide links to wiki for more detail
 	+ Page should include requirements, high level design, links to JIRA issues for tasking, links to code reviews, outstanding tasks, etc.
 * Mailing list policies
-	+ We currently require all mailing list discussions to be conducted only through the mailman server, i.e., you can't CC the mailing list. This can make it difficult if a particular mailing list is not one that you interact with on a constant basis. A proposal was made to not require mailing list discussions to be conducted only through mailman server.
+	+ We currently require all mailing list discussions to be conducted only through the mailman server, i.e., you can't CC the mailing list. This can make it difficult if a particular mailing list is not one that you interact with on a constant basis. A proposal was made not to require mailing list discussions to be conducted only through mailman server.
 	+ Counter-argument: the configuration would most likely need need tweaks for duplicate messages, and allowing conversations to CC a mailing list might mean that conversations fall off of the list easier (or never get put on it in the first place)
 	+ **We didn't seem to come to a conclusion on this issue. If anyone feels like this needs more discussion, please start a policy discussion on the asterisk-dev list.**
 

@@ -6,7 +6,7 @@ pageid: 29393398
 Background
 ----------
 
-Asterisk has permitted the exchange of device and mailbox state for many versions. This has normally been accomplished using the res_xmpp module for instances across networks or using res_corosync for instances on the same network. This has required, in some cases, an extreme amount of work to setup. In the case of res_xmpp this also adds another point of failure for the exchange in the form of the XMPP server itself. The res_pjsip_publish_asterisk module on the other hand does not suffer from this.
+Asterisk has permitted the exchange of device and mailbox state for many versions. This has normally been accomplished using the res_xmpp module for instances across networks or using res_corosync for instances on the same network. This has required, in some cases, an extreme amount of work to set up. In the case of res_xmpp this also adds another point of failure for the exchange in the form of the XMPP server itself. The res_pjsip_publish_asterisk module on the other hand does not suffer from this.
 
 Operation
 ---------

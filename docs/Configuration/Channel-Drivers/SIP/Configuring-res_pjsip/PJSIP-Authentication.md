@@ -117,7 +117,7 @@ SHA2-512/256(stdin)= f8c3d34ce5ae6550740eaed0bff78a8aed354e87f2364813e4dbe9624bf
 You can specify multiple `password_digest` parameters in an auth object but no more than one for each digest hash algorithm.
 
 /// note | Line Endings
-Note that the examples show using the `-n` parameter in the `echo` command.  This tells `echo` to not output any line endings after printing the string.  This is important because you don't want those line endings included in the hash calculation.
+Note that the examples show using the `-n` parameter in the `echo` command.  This tells `echo` not to output any line endings after printing the string.  This is important because you don't want those line endings included in the hash calculation.
 ///
 
 /// warning | Algorithm Names
