@@ -15,7 +15,7 @@ Other dialplan applications, such as `Dial` and `Queue` make use of `Gosub` func
 Defining a dialplan context for use with Gosub
 ==============================================
 
-No special syntax is needed when defining the dialplan code that you want to call with `Gosub`, *unless* you want to return back to where you called `Gosub` from. In the case of wanting to return, then you should call the `[Return](/Latest_API/API_Documentation/Dialplan_Applications/Return)` application.
+No special syntax is needed when defining the dialplan code that you want to call with `Gosub`, *unless* you want to return back to where you called `Gosub` from. In the case of wanting to return, then you should call the [Return](/Latest_API/API_Documentation/Dialplan_Applications/Return) application.
 
 Here is an example of dialplan we could call with `Gosub` when we don't wish to return.
 
