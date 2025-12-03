@@ -7,12 +7,12 @@ pageid: 25919712
 
 ## Introduction
 
-Channel Event Logging (CEL) provides a series of records describing the state of channels in Asterisk to any of several [event recording back-ends](../CEL-Configuration-Examples). CEL records provide substantially more information than CDRs and thus allow an Asterisk User to construct their own more complex billing system.
+Channel Event Logging (CEL) provides a series of records describing the state of channels in Asterisk to any of several [event recording back-ends](../CEL-Configuration-Examples). CEL records provide substantially more information than CDRs and thus allow an Asterisk User to construct their own more complex billing system.
 
 As a result of the bridging work done for Asterisk 12, CEL behavior has changed for several events that occur in the system. The most significant changes are:
 
 * AST\_CEL\_BRIDGE\_ENTER and AST\_CEL\_BRIDGE\_EXIT have been introduced to denote participant changes in bridges.
-* AST\_CEL\_BRIDGE\_START and AST\_CEL\_BRIDGE\_END have been removed as they no longer applies to the new bridging framework.
+* AST\_CEL\_BRIDGE\_START and AST\_CEL\_BRIDGE\_END have been removed as they no longer applies to the new bridging framework.
 * AST\_CEL\_BRIDGE\_UPDATE has been removed as it no longer applies to the new bridging framework.
 * AST\_CEL\_LOCAL\_OPTIMIZE has been added to describe local channel optimizations that occur.
 * All linkedid accounting and record generation is now handled within the CEL engine.
@@ -32,7 +32,7 @@ This CEL specification applies to Asterisk 12 and above. While some portions of 
 | Stasis | The internal message bus in Asterisk that conveys state to the CEL engine. |
 | Primary | The channel around which a CEL record is focused. |
 | AMI | Asterisk Manager Interface |
-| CSV | Comma Separated Values.  A format commonly used for tabular data when stored outside of a database. |
+| CSV | Comma Separated Values.  A format commonly used for tabular data when stored outside of a database. |
 
 ## CEL Overview
 
@@ -86,17 +86,17 @@ An AST\_CEL\_LINKEDID\_END record is generated when the last channel using the g
 
 These records convey the Primary's interactions with other channels or bridges.
 
-#### Bridge Enter
+#### Bridge Enter
 
-An AST\_CEL\_BRIDGE\_ENTER record is generated when a channel enters a bridge. The entering channel is the Primary for this event. Additional information is conveyed in the extra field under the "bridge\_id" key. The "bridge\_technology" key is available in Asterisk 13+. All other channels in the bridge at the time of entry are available in the peer field as a comma-separated list.
+An AST\_CEL\_BRIDGE\_ENTER record is generated when a channel enters a bridge. The entering channel is the Primary for this event. Additional information is conveyed in the extra field under the "bridge\_id" key. The "bridge\_technology" key is available in Asterisk 13+. All other channels in the bridge at the time of entry are available in the peer field as a comma-separated list.
 
 #### Bridge Exit
 
-An AST\_CEL\_BRIDGE\_EXIT record is generated when a channel exits a bridge. The leaving channel is the Primary for this event. Additional information is conveyed in the extra field under the "bridge\_id" key. The "bridge\_technology" key is available in Asterisk 13+. All other channels in the bridge at the time of exit are available in the peer field as a comma-separated list.
+An AST\_CEL\_BRIDGE\_EXIT record is generated when a channel exits a bridge. The leaving channel is the Primary for this event. Additional information is conveyed in the extra field under the "bridge\_id" key. The "bridge\_technology" key is available in Asterisk 13+. All other channels in the bridge at the time of exit are available in the peer field as a comma-separated list.
 
 #### Forward
 
-An AST\_CEL\_FORWARD record is generated when a dialing channel is forwarded elsewhere by a dialed channel. The dialing channel is the Primary for this event. Additional information is conveyed in the extra field under the "forward" key.
+An AST\_CEL\_FORWARD record is generated when a dialing channel is forwarded elsewhere by a dialed channel. The dialing channel is the Primary for this event. Additional information is conveyed in the extra field under the "forward" key.
 
 #### Park Start
 
@@ -104,11 +104,11 @@ An AST\_CEL\_PARK\_START record is generated when a channel is parked. The parke
 
 #### Park End
 
-An AST\_CEL\_PARK\_START record is generated when a channel is unparked. The unparked channel is the Primary for this event. Additional information is conveyed in the extra field under the "reason" key and the "retriever" key when available. This record always occurs after its corresponding AST\_CEL\_PARK\_START.
+An AST\_CEL\_PARK\_START record is generated when a channel is unparked. The unparked channel is the Primary for this event. Additional information is conveyed in the extra field under the "reason" key and the "retriever" key when available. This record always occurs after its corresponding AST\_CEL\_PARK\_START.
 
 #### Pickup
 
-An AST\_CEL\_PICKUP record is generated when a channel is picked up. The picked up channel (also known as the target) is the Primary for this record. The name of the channel that is picking up is conveyed in the extra field under the "pickup\_channel" key.
+An AST\_CEL\_PICKUP record is generated when a channel is picked up. The picked up channel (also known as the target) is the Primary for this record. The name of the channel that is picking up is conveyed in the extra field under the "pickup\_channel" key.
 
 ### Meta-Records
 
@@ -116,7 +116,7 @@ These records convey additional context relating to surrounding CEL records
 
 #### Blind Transfer
 
-An AST\_CEL\_BLINDTRANSFER record is generated when a blind transfer feature is activated on a bridge. The initiating channel is the Primary for this record. Additional information is conveyed in the extra field under the "extension", "context", and "bridge\_id" keys.
+An AST\_CEL\_BLINDTRANSFER record is generated when a blind transfer feature is activated on a bridge. The initiating channel is the Primary for this record. Additional information is conveyed in the extra field under the "extension", "context", and "bridge\_id" keys.
 
 #### Attended Transfer
 
@@ -124,13 +124,13 @@ An AST\_CEL\_ATTENDEDTRANSFER record is generated when an attended transfer is s
 
 ##### Bridge-Bridge Attended Transfers
 
-This type of attended transfer occurs when both involved channels are bridged. The initiating channel is the Primary for this record. Additional information is conveyed in the extra field under the "bridge1\_id", "channel2\_name", "bridge2\_id", "transferee\_channel\_name", and "transfer\_target\_channel\_name" keys.
+This type of attended transfer occurs when both involved channels are bridged. The initiating channel is the Primary for this record. Additional information is conveyed in the extra field under the "bridge1\_id", "channel2\_name", "bridge2\_id", "transferee\_channel\_name", and "transfer\_target\_channel\_name" keys.
 
 The records associated with this type of transfer will vary depending on the configuration of the bridges involved and the number of channels involved. Possible methods of accomplishing the transfer include (but are not limited to) channel swap, bridge merge, and bridge link via a local channel.
 
 ##### Bridge-App Attended Transfers
 
-This type of attended transfer occurs when one involved channel is bridged while the other is running an application. The bridged channel is the Primary for this record. Additional information is conveyed in the extra field under the "bridge1\_id", "channel2\_name", and "app" keys.
+This type of attended transfer occurs when one involved channel is bridged while the other is running an application. The bridged channel is the Primary for this record. Additional information is conveyed in the extra field under the "bridge1\_id", "channel2\_name", and "app" keys.
 
 ##### App-App Attended Transfers
 
@@ -207,15 +207,15 @@ The ODBC CEL output module provides logging capability to any ODBC-compatible da
 
 ### PGSQL
 
-The PGSQL CEL output module provides logging capability to PostgreSQL databases when it is desirable to avoid the ODBC abstraction layer. This module is configured in cel\_pgsql.conf.
+The PGSQL CEL output module provides logging capability to PostgreSQL databases when it is desirable to avoid the ODBC abstraction layer. This module is configured in cel\_pgsql.conf.
 
 ### RADIUS
 
-The RADIUS CEL output module allows the CEL engine to publish records to a RADIUS server. This module is configured in cel.conf in the [radius] section.
+The RADIUS CEL output module allows the CEL engine to publish records to a RADIUS server. This module is configured in cel.conf in the [radius] section.
 
 ### SQLite
 
-The SQLite CEL output module provides logging capability to a SQLite3 database in a format described in its configuration file. This module is configured in cel\_sqlite3\_custom.conf.
+The SQLite CEL output module provides logging capability to a SQLite3 database in a format described in its configuration file. This module is configured in cel\_sqlite3\_custom.conf.
 
 ### TDS
 
@@ -232,7 +232,7 @@ For the following scenarios, assume the CEL engine is configured to generate the
 
 ### Two-Participant Bridge
 
-The following scenario demonstrates channel creation, channel destruction, bridge start, and bridge end:
+The following scenario demonstrates channel creation, channel destruction, bridge start, and bridge end:
 
 | Event | Record | Primary | Extra |
 | --- | --- | --- | --- |
@@ -248,7 +248,7 @@ The following scenario demonstrates channel creation, channel destruction, brid
 
 ### Multi-participant Conference
 
-The following scenario demonstrates conversion of a bridge to a multi-participant conference:
+The following scenario demonstrates conversion of a bridge to a multi-participant conference:
 
 | Event | Record | Primary | Extra |
 | --- | --- | --- | --- |
@@ -302,7 +302,7 @@ For this scenario, assume that AST\_CEL\_ANSWER, AST\_CEL\_HANGUP, AST\_CEL\_APP
 | Channel Alice is created | AST\_CEL\_CHANNEL\_START | Alice |  |
 | Alice executes Dial(SIP/Bob) | AST\_CEL\_APP\_START | Alice |  |
 | Channel Bob is created | AST\_CEL\_CHANNEL\_START | Bob |  |
-| Bob responds BUSY | AST\_CEL\_HANGUP | Bob |  {"hangupcause":21,"dialstatus":"","hangupsource":""} |
+| Bob responds BUSY | AST\_CEL\_HANGUP | Bob |  {"hangupcause":21,"dialstatus":"","hangupsource":""} |
 | Bob is destroyed | AST\_CEL\_CHAN\_END | Bob |  |
 | Alice is hung up | AST\_CEL\_HANGUP | Alice | {"hangupcause":17,"dialstatus":"BUSY","hangupsource":""} |
 | Alice is destroyed | AST\_CEL\_CHAN\_END | Alice |  |
@@ -362,7 +362,7 @@ For this scenario, assume that AST\_CEL\_ANSWER and AST\_CEL\_HANGUP are configu
 | David exits bridge Link2 | AST\_CEL\_BRIDGE\_EXIT | David | {"bridge\_id":"Link2"} |
 | David is hung up | AST\_CEL\_HANGUP | David | {"hangupcause":16,"dialstatus":"","hangupsource":""} |
 | David is destroyed | AST\_CEL\_CHANNEL\_END | David |  |
-| Alice and David execute an attended transfer  | AST\_CEL\_ATTENDEDTRANSFER | Alice | {"bridge1\_id":"Link1","channel2\_name":"David","bridge2\_id":"Link2"} |
+| Alice and David execute an attended transfer  | AST\_CEL\_ATTENDEDTRANSFER | Alice | {"bridge1\_id":"Link1","channel2\_name":"David","bridge2\_id":"Link2"} |
 | Alice exits bridge Link1 | AST\_CEL\_BRIDGE\_EXIT | Alice | {"bridge\_id":"Link1"} |
 | Alice is hung up | AST\_CEL\_HANGUP | Alice | {"hangupcause":16,"dialstatus":"","hangupsource":""} |
 | Alice is destroyed | AST\_CEL\_CHANNEL\_END | Alice |  |

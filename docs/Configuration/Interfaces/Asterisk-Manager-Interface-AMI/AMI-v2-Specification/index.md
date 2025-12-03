@@ -41,7 +41,7 @@ Asterisk provides a number of interfaces that serve different purposes. Say, for
 | --- | --- |
 | ... we want to use a local script to execute some logic on Alice's channel | AGI |
 | ... we want to execute a script on a remote machine on Bob's channel | FastAGI |
-| ... we want to put Alice into an IVR with fine grained media control, where the IVR is written outside of `extensions.conf` | ExternalIVR |
+| ... we want to put Alice into an IVR with fine grained media control, where the IVR is written outside of `extensions.conf` | ExternalIVR |
 | ... we want to control Alice and Bob's underlying channel objects at some asynchronous time | AMI (possibly with AsyncAGI) |
 | ... we want to write our own Dialling application to control both Alice and Bob | ARI |
 
@@ -59,7 +59,6 @@ Sometimes, the term **command** may be used instead of the term **action**. With
 
 Historically, AMI has existed in Asterisk as its own core component `manager`. AMI events were raised throughout Asterisk encoded in an AMI specific format, and AMI actions were processed and passed to the functions that implemented the logic. In Asterisk 12, AMI has been refactored to sit on top of Stasis, a generic, protocol independent message bus internal to Asterisk. From the perspective of clients wishing to communicate with Asterisk over AMI very little has changed; internally, the Stasis representation affords a much higher degree of flexibility with how messages move through Asterisk. It also provides a degree of uniformity for information that is propagated to interested parties.
 
- 
 AMI High Level Diagram:
 
 ![AMI High Level Diagram](AMI-High-Level-Diagram.png)
@@ -72,7 +71,7 @@ Stasis acts as a generic publish/subscribe message bus inside of Asterisk. While
 
 By default, AMI is an asynchronous protocol that sends events immediately to clients when those events are available. Likewise, clients are free to send actions to AMI at any time, which may or may not trigger additional events. The exception to this is when the connection is over HTTP; in that scenario, events are only transmitted as part of the response to an HTTP POST.
 
-Various options for configuration of clients can control which events are sent to a client. Events can be whitelisted/blacklisted explicitly via event filters, or implicitly by class authorizations.
+Various options for configuration of clients can control which events are sent to a client. Events can be whitelisted/blacklisted explicitly via event filters, or implicitly by class authorizations.
 
 ### Message Layout
 
@@ -144,7 +143,7 @@ CallerID: "Kermit the Frog" <123-4567>
 Priority: 1
 ```
 
-This is also true for events, although by convention, the `Event` key is the first key in the event. If an action or event contains duplicate keys, such as `Variable`, the order in which Asterisk processes said keys is the order in which they occur within the action or event.
+This is also true for events, although by convention, the `Event` key is the first key in the event. If an action or event contains duplicate keys, such as `Variable`, the order in which Asterisk processes said keys is the order in which they occur within the action or event.
 
 Keys are case insensitive. Hence, the following keys are equivalent:
 
@@ -181,7 +180,9 @@ It is up to the client to ensure that the **ActionId** provided with an **Action
 
 This section lists fields that apply generally to all actions that interact upon an Asterisk channel. Note that an Action that interacts with a channel \*must\* supply the \*Channel\* field.
 
-Upgrading In the past, AMI clients would have to contend with channel rename events. As Asterisk will now no longer change the name of a channel during its lifetime, this is no longer necessary.
+/// note | Upgrading
+In the past, AMI clients would have to contend with channel rename events. As Asterisk will now no longer change the name of a channel during its lifetime, this is no longer necessary.
+///
 
 /// define
 Channel
@@ -226,11 +227,11 @@ Events that relate multiple channels will prefix these fields with an event spec
 /// define
 Channel
 
-- The current Asterisk channel name. This corresponds to the Channel field in actions.
+- The current Asterisk channel name. This corresponds to the Channel field in actions.
 
 Uniqueid
 
-- A universal unique identifier for the channel. This corresponds to the Uniqueid field in actions.
+- A universal unique identifier for the channel. This corresponds to the Uniqueid field in actions.
 
 ChannelState
 
@@ -253,7 +254,7 @@ Depending on the underlying channel technology, not all states will be used. Cha
 
 ChannelStateDesc
 
-- The text description of the channel state. This will be one of the State descriptions in the table in ChannelState.
+- The text description of the channel state. This will be one of the State descriptions in the table in ChannelState.
 
 CallerIDNum
 
@@ -289,7 +290,7 @@ Priority
 
 ChanVariable
 
-- Channel variables specific to a channel can be conveyed in each AMI event related to that channel. When this occurs, each variable is referenced in a **ChanVariable** field. The value of a **ChanVariable** field will always be of the form `key=value`, where `key` is the name of the channel variable and `value` is its value.
+- Channel variables specific to a channel can be conveyed in each AMI event related to that channel. When this occurs, each variable is referenced in a **ChanVariable** field. The value of a **ChanVariable** field will always be of the form `key=value`, where `key` is the name of the channel variable and `value` is its value.
 
 ///
 
@@ -375,14 +376,14 @@ While channels are independent of AMI, they have a large implication on the even
 
 All channels begin with a **Newchannel** event. A **Newchannel** will always contain the following fields:
 
-* The current Channel name that acts as a handle to the channel for that channel's lifetime for a single Asterisk system.
+* The current Channel name that acts as a handle to the channel for that channel's lifetime for a single Asterisk system.
 * The Uniqueid for the channel, that allows systems to have a globally unique identifier for the channel.
 
-Changes in the state of the channel, i.e., the ChannelState field, are conveyed via **Newstate** events.
+Changes in the state of the channel, i.e., the ChannelState field, are conveyed via **Newstate** events.
 
 Notification of a Channel being disposed of occurs via a **Hangup** event. A **Hangup** signals the termination of the channel associated with the Uniqueid. After the **Hangup** event, no further events will be raised in relation to the channel with that Uniqueid, and the communication between the endpoint and Asterisk via that channel is terminated.
 
-The examples in this specification do not show all of the fields in every event. For a full listing of all of the fields, see the documentation for the specific event in [AMI Events](/Latest_API/API_Documentation/AMI_Events/).
+The examples in this specification do not show all of the fields in every event. For a full listing of all of the fields, see the documentation for the specific event in [AMI Events](/Latest_API/API_Documentation/AMI_Events/).
 
 Example:
 
@@ -395,7 +396,7 @@ ChannelState: 0
 ChannelStateDesc: Down
 ```
 
-* Kermit the Frog's SIP channel is created. The is the first event for `PJSIP/kermit-00000001` and indicates a path of communication being opened up between Asterisk and Kermit's SIP device.
+* Kermit the Frog's SIP channel is created. The is the first event for `PJSIP/kermit-00000001` and indicates a path of communication being opened up between Asterisk and Kermit's SIP device.
 
 ```
 Event: Newstate
@@ -419,11 +420,11 @@ Cause: 16
 Cause-txt: Normal Clearing
 ```
 
-* Kermit the Frog's PJSIP channel is hung up. At this point, no further events for `PJSIP/kermit-00000001` will be sent.
+* Kermit the Frog's PJSIP channel is hung up. At this point, no further events for `PJSIP/kermit-00000001` will be sent.
 
 #### Channel Variables
 
-For each channel variable that is changed, a **VarSet** event is sent to the client. The **VarSet** event contains the new value of the appropriate channel variable. Note that channel variables can also be conveyed in ChanVariable fields.
+For each channel variable that is changed, a **VarSet** event is sent to the client. The **VarSet** event contains the new value of the appropriate channel variable. Note that channel variables can also be conveyed in ChanVariable fields.
 
 #### DTMF
 
@@ -459,11 +460,11 @@ Note that even though Kermit has been hungup, we will not receive the **Hangup**
 
 Dial operations always result in two events: a **DialBegin** event that signals the beginning of the dial to a particular destination, and a **DialEnd** event that signals the end of the dialing. In parallel dialing situations, **DialBegin**/**DialEnd** events MUST be sent for each channel dialed. For each **DialBegin** event sent, there MUST be a corresponding **DialEnd** event.
 
-In dialing situations with a caller and a called party, the **DialBegin** and **DialEnd** events convey information about both channels. The calling channel uses the standard channel field names, while the called party's field names are prefixed with "Dest". In dialing situations where there is no caller, such as when Asterisk originates an outbound call via a call file, only the called channel is represented in the events. The channel field names are still prefixed with "Dest" in this case; the standard channel field names are **not** present in the event in this case.
+In dialing situations with a caller and a called party, the **DialBegin** and **DialEnd** events convey information about both channels. The calling channel uses the standard channel field names, while the called party's field names are prefixed with "Dest". In dialing situations where there is no caller, such as when Asterisk originates an outbound call via a call file, only the called channel is represented in the events. The channel field names are still prefixed with "Dest" in this case; the standard channel field names are **not** present in the event in this case.
 
 A **DialEnd** occurs whenever Asterisk knows the final state of the channel that it was attempting to establish. The status is communicated in the DialStatus field.
 
-Behavior Change The **DialBegin**/**DialEnd** events replace the **Dial** event. Note that the **Dial** event signaling the end of dialing would not normally be sent until after bridging was complete; this operation will now occur when the dial operation has determined the status of a particular called channel.
+Behavior Change The **DialBegin**/**DialEnd** events replace the **Dial** event. Note that the **Dial** event signaling the end of dialing would not normally be sent until after bridging was complete; this operation will now occur when the dial operation has determined the status of a particular called channel.
 
 Simple Successful Dial:
 
@@ -484,7 +485,7 @@ Uniqueid: asterisk-1368479155.1
 DestChannel: PJSIP/animal-00000002
 DestUniqueid: asterisk-1368479160.5
 DialStatus: ANSWER
-... 
+... 
 ```
 
 In this example, Kermit decides to dial Animal. A new channel between Asterisk and Animal's SIP device is created and conveyed via a **Newchannel** event, and then a dial operation is begun. Note that in the **DialBegin** event, Kermit's SIP device is the caller as he initiated the dial operation, while Animal's SIP device is the destination. As such, the fields referring to Animal's PJSIP channel are prefixed with "Dest".
@@ -566,7 +567,7 @@ In this example, Kermit decides to dial Animal and Dr. Teeth. Dr. Teeth immediat
 
 A bridge contains 0 or more channels. When a channel is in a bridge, it has the potential to communicate with other channels within the bridge. Before channels enter a bridge, a **BridgeCreate** event is sent, indicating that a bridge has been created. When a bridge is destroyed, a **BridgeDestroy** event is sent. All channels within a bridge MUST leave a bridge prior to the **BridgeDestroy** event being sent.
 
-When a channel enters a bridge, a **BridgeEnter** event is raised. When a channel is put into a bridge, it is implied that the channel can pass media between other channels in the bridge. This is not guaranteed, as other properties on the channel or bridge may restrict media flow. For example, bridges with a BridgeTechnology type of *holding**\_bridge* implicitly restrict the media flow between channels. Likewise, media may be restricted in multi-party conference bridges based on user role permissions, such as when a conference leader mutes all participants in a conference. The **BridgeEnter** event does indicate, however, that a potential relationship between channels in a bridge exists.
+When a channel enters a bridge, a **BridgeEnter** event is raised. When a channel is put into a bridge, it is implied that the channel can pass media between other channels in the bridge. This is not guaranteed, as other properties on the channel or bridge may restrict media flow. For example, bridges with a BridgeTechnology type of *holding**\_bridge* implicitly restrict the media flow between channels. Likewise, media may be restricted in multi-party conference bridges based on user role permissions, such as when a conference leader mutes all participants in a conference. The **BridgeEnter** event does indicate, however, that a potential relationship between channels in a bridge exists.
 
 When a channel leaves a bridge, a corresponding **BridgeLeave** event is raised. A **BridgeLeave** event MUST mean that the channel that left the bridge can no longer pass media to other channels still in the bridge. This does not necessarily mean that the channel is being hung up; rather, that it is no longer in a communication path with some other set of channels.
 
@@ -654,7 +655,7 @@ In this scenario, it was perfectly acceptable for either Kermit or Gonzo's chann
 
 #### Transfers
 
-Transfer information is conveyed with either a **BlindTransfer** or **AttendedTransfer** event, which indicates information about the transfer that took place. **BridgeLeave**/**BridgeEnter** events are used to indicate which channels are talking in which bridges at different stages during the transfer.
+Transfer information is conveyed with either a **BlindTransfer** or **AttendedTransfer** event, which indicates information about the transfer that took place. **BridgeLeave**/**BridgeEnter** events are used to indicate which channels are talking in which bridges at different stages during the transfer.
 
 Transfers do a LotDepending on the type of transfer and the actions taken, channels will move in and out of a lot of bridges. The purpose of the two transfer events is to convey to the AMI client the overall completed status of the transfer after the users have completed their actions. With Blind Transfers, this typically happens very quickly: Asterisk simply has to determine that the destination of the transfer is a valid extension in the dialplan.
 
@@ -801,7 +802,7 @@ Local channels have an option wherein they can be optimized away if both halves 
 
 Two actions can take place when a Local channel optimizes between two bridges.
 
-1. If, after the Local channel optimization, either bridge contains only a single channel, then a single channel in one of the bridges is moved to the bridge that has the other channel. This is conveyed by a sequence of **BridgeLeave**/**BridgeEnter** events.
+1. If, after the Local channel optimization, either bridge contains only a single channel, then a single channel in one of the bridges is moved to the bridge that has the other channel. This is conveyed by a sequence of **BridgeLeave**/**BridgeEnter** events.
 2. If, after the Local channel optimization, the bridges contain multiple parties, the bridges will be merged together. A **BridgeMerge** event is sent when this occurs. Channels will then be merged from one bridge to the other, denoted by a sequence of **BridgeLeave**/**BridgeEnter** events.
 
 It is not defined which channel is moved first or which bridge wins during a bridge merge. That is an implementation detail left up to Asterisk. Suffice to say, if a Local channel is optimized away, Asterisk attempts to rebridge the channels left over as fast as possible to prevent any loss in audio.
@@ -985,7 +986,7 @@ The Local channel optimization completes by removing the Local channel halves fr
 
 ### Masquerades
 
-Masquerades are goneIn the past, masquerades occurred rather frequently - most often in any scenario where a transfer occurred or where a `pbx_thread` needed to be associated with a channel. This has now changed. Masquerades now rarely occur, and are never communicated to AMI clients. From the perspective of AMI clients, nothing changes - you still use your handle to a channel to communicate with it, regardless of the presence (or lack thereof) of a masquerade operation.
+Masquerades are goneIn the past, masquerades occurred rather frequently - most often in any scenario where a transfer occurred or where a `pbx_thread` needed to be associated with a channel. This has now changed. Masquerades now rarely occur, and are never communicated to AMI clients. From the perspective of AMI clients, nothing changes - you still use your handle to a channel to communicate with it, regardless of the presence (or lack thereof) of a masquerade operation.
 
 This section only exists to explicitly call out the fact that Masquerades are gone.
 
@@ -1085,6 +1086,5 @@ Note that the name of the client settings context is the username for the client
 | read | String | A comma delineated list of the allowed class authorizations applied to events | all |
 | write | String | A comma delineated list of the allowed class authorizations applied to actions | all |
 
- 
 
 The item has all class authorizations associated with it

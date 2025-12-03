@@ -106,7 +106,7 @@ If you need to create a detached thread, use the `ast_pthread_create_detached()`
 ### Code formatting
 
 Roughly, Asterisk code formatting guidelines are generally equivalent to the following:
- 
+
 /// warning
 Running the indent command on an existing module may result in drastic alterations to it or indentation that is actually incorrect. It is recommended that if you are making changes to existing code that you manually indent. If you would like to fix the indentation of an existing module this should be done as a separate review.
 ///

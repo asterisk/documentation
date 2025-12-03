@@ -3,7 +3,7 @@ title: CDR Specification
 pageid: 22088359
 ---
 
-Call Detail Records, or CDRs, have been around in Asterisk for a long, long time. In fact, portions of it were taken from the `Zapata` library, as noted in `cdr.c`:
+Call Detail Records, or CDRs, have been around in Asterisk for a long, long time. In fact, portions of it were taken from the `Zapata` library, as noted in `cdr.c`:
 
 ```
  *
@@ -29,7 +29,7 @@ This CDR specification applies to Asterisk 12 and later. It does not cover CDRs 
 
 Note that this does not include a comprehensive analysis as to how CDRs can be produced in all call scenarios in Asterisk. It defines the behavior for common scenarios, but certain scenarios are deliberately left unspecified. The behavior of CDRs in said scenarios is **undefined and is not a bug.**
 
-It is known that the behavior of CDRs will not allow all applications to capture the billing requirements for their systems. If CDRs cannot meet the requirements of your application, [Channel Event Logging](/Configuration/Reporting/Channel-Event-Logging-CEL) (CEL) provides call information at a much finer granularity, allowing complex billing systems to be constructed. Please see the [Asterisk CEL Specification](/Configuration/Reporting/Channel-Event-Logging-CEL/CEL-Specification) for more information on CEL.
+It is known that the behavior of CDRs will not allow all applications to capture the billing requirements for their systems. If CDRs cannot meet the requirements of your application, [Channel Event Logging](/Configuration/Reporting/Channel-Event-Logging-CEL) (CEL) provides call information at a much finer granularity, allowing complex billing systems to be constructed. Please see the [Asterisk CEL Specification](/Configuration/Reporting/Channel-Event-Logging-CEL/CEL-Specification) for more information on CEL.
 
 ## Terminology
 
@@ -44,7 +44,7 @@ It is known that the behavior of CDRs will not allow all applications to capture
 
 ## CDR Overview
 
-A CDR is a record of communication between one or two parties. As such, a single CDR always addresses the communication between two parties: a Party A and a Party B. The CDR reflects the view of the call from the perspective of Party A, while Party B is the party that Party A is communicating with. Each CDR includes the following times:
+A CDR is a record of communication between one or two parties. As such, a single CDR always addresses the communication between two parties: a Party A and a Party B. The CDR reflects the view of the call from the perspective of Party A, while Party B is the party that Party A is communicating with. Each CDR includes the following times:
 
 * Start time - the time at which the CDR was created for Party A
 * Answer time - the time at which Party A and Party B could begin communicating
@@ -93,27 +93,27 @@ A CDR record is created in any one of the following situations:
 * Whenever a channel leaves a bridge and is not hung up.
 * When a CDR is forked from a prior record.
 * When a channel enters a multi-party bridge.
-* When a channel [dials more than one channel](#dialing-parties).
+* When a channel [dials more than one channel](#dialing-parties).
 
-When it is created, a CDR inherits the `uniqueid` and `linkedid` from its Party A channel, and a new `sequence` number is generated. When created as a result of a dial operation, the channel acting as the caller is always the Party A.
+When it is created, a CDR inherits the `uniqueid` and `linkedid` from its Party A channel, and a new `sequence` number is generated. When created as a result of a dial operation, the channel acting as the caller is always the Party A.
 
 ##### Dialing Parties
 
-When a channel is known to dial other channels, a CDR is created for each dial attempt. The dial status is recorded for each dial attempt as a [CDR Disposition](#dispositions). Note that not all dial attempts may be dispatched depending on the CDR configuration. The caller is always the Party A in the created CDRs.
+When a channel is known to dial other channels, a CDR is created for each dial attempt. The dial status is recorded for each dial attempt as a [CDR Disposition](#dispositions). Note that not all dial attempts may be dispatched depending on the CDR configuration. The caller is always the Party A in the created CDRs.
 
 ##### Bridging
 
 If a channel is bridged with another channel, the following procedure is performed:
 
 * The CDR is marked as having entered a bridge. If there is no other channel in the bridge, the CDR waits for another channel to join.
-* For each pairing of channels, the channels are compared to determine which is the Party A channel and which is the Party B channel. (See [Choosing the Party A channel](#choosing-the-party-a-channel)).
+* For each pairing of channels, the channels are compared to determine which is the Party A channel and which is the Party B channel. (See [Choosing the Party A channel](#choosing-the-party-a-channel)).
 	+ If the channel entering the bridge is the Party A, the CDR has a Party B, and the channel it is bridged with is the Party B, the CDR continues.
 	+ If the channel entering the bridge is the Party A, the CDR has a Party B, and the channel is not already the Party B, the current CDR is finalized and a new CDR is created for the relationship between the two parties. Note that the original CDR will be re-activated if the existing Party B enters the bridge.
 	+ If the channel entering the bridge is the Party A, the CDR has no Party B, then the channel it is bridged with becomes the Party B.
 	+ If the channel entering the bridge is the Party B, the other channel has a CDR with no Party B, this channel becomes the Party B and the existing CDR is finalized.
 	+ If the channel entering the bridge is the Party B, the other channel has a CDR with a Party B, and this channel is that CDR's Party B, then the existing CDR is finalized and the other channel's CDR activated.
 	+ If the channel entering the bridge is the Party B, the other channel has a CDR with a Party B, and this channel is not that CDR's Party B, then the existing CDR is finalized and a new CDR is created for that other channel with this channel as the Party B.
-* If a third party joins the bridge with Party A and Party B, the process [Choosing the Party A channel](#choosing-the-party-a-channel) is repeated for each pairing of channels. Thus, in a three-way call there will be three CDR records; in a four-way call there will be six records, etc.
+* If a third party joins the bridge with Party A and Party B, the process [Choosing the Party A channel](#choosing-the-party-a-channel) is repeated for each pairing of channels. Thus, in a three-way call there will be three CDR records; in a four-way call there will be six records, etc.
 
 !!! tip 
     This feels complex, but there's really two rules going on here:
@@ -132,9 +132,9 @@ A CDR is finalized in one of the following scenarios:
 
 When a CDR is finalized, no further modifications can be made to the CDR by the user or Asterisk.
 
-If a Party A channel in a CDR is not hung up but the CDR is finalized - such as when the channel leaves a bridge of its Party B hangs up - a new CDR is made for that channel and the process in [CDR Creation](#creation) is begun again. Note that if the Party B in a CDR continues on in the the dialplan and/or is bridged with a new party, it may become Party A for a new CDR.
+If a Party A channel in a CDR is not hung up but the CDR is finalized - such as when the channel leaves a bridge of its Party B hangs up - a new CDR is made for that channel and the process in [CDR Creation](#creation) is begun again. Note that if the Party B in a CDR continues on in the the dialplan and/or is bridged with a new party, it may become Party A for a new CDR.
 
-If at any point the Party A channel for a CDR is hung up, all CDR records for that Party A are [dispatched](#dispatch).
+If at any point the Party A channel for a CDR is hung up, all CDR records for that Party A are [dispatched](#dispatch).
 
 ##### Dispatch
 
@@ -145,10 +145,10 @@ When a CDR is dispatched, all CDRs associated with the channel are committed to 
 Asterisk does not have the concept of "internal" versus "external" devices. As such, what constitutes the Party A channel is highly dependent on a particular system configuration which is outside the control of the CDR system. As such, choosing a Party A uses the following rules:
 
 1. If the channel was dialed (but not originated), the channel is always Party B.
-2. If one of the two channels has the `party_a` flag set, then that channel is chosen as the Party A.
-3. If neither or both channels have the `party_A` flag, the channel with the oldest creation time is chosen as the Party A.
+2. If one of the two channels has the `party_a` flag set, then that channel is chosen as the Party A.
+3. If neither or both channels have the `party_A` flag, the channel with the oldest creation time is chosen as the Party A.
 
-The `party_A` flag may be set using the [CDR function](/Latest_API/API_Documentation/Dialplan_Functions/CDR).
+The `party_A` flag may be set using the [CDR function](/Latest_API/API_Documentation/Dialplan_Functions/CDR).
 
 #### LinkedID Propagation
 
@@ -230,7 +230,7 @@ Alice calls into Asterisk at extension 500 using a SIP phone and, during dialpla
 
 | clid | src | dst | dcontext | channel | dstchannel | lastapp | lastdata | start | answer | end | duration | billsec | disposition | amaflags | accountcode | peeraccount | uniqueid | userfield | sequence | linkedid |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| "Alice <100>" | 100 | 500 | default | SIP/alice-00000000 |   | NoOp |   | 2013-03-04 13:11:18 |   | 2013-03-04 13:11:20 | 2 | 0 | NO ANSWER | DOCUMENTATION | 100 |   | Asterisk-01-1362424276.2 |   | 34 | Asterisk-01-1362424276.2 |
+| "Alice <100>" | 100 | 500 | default | SIP/alice-00000000 |   | NoOp |   | 2013-03-04 13:11:18 |   | 2013-03-04 13:11:20 | 2 | 0 | NO ANSWER | DOCUMENTATION | 100 |   | Asterisk-01-1362424276.2 |   | 34 | Asterisk-01-1362424276.2 |
 
 ### Unanswered "Outbound" Call
 
@@ -238,7 +238,7 @@ Asterisk creates a call file to dial Alice and playback tt-monkeys to her. Alice
 
 | clid | src | dst | dcontext | channel | dstchannel | lastapp | lastdata | start | answer | end | duration | billsec | disposition | amaflags | accountcode | peeraccount | uniqueid | userfield | sequence | linkedid |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-|   |   | s | default | SIP/alice-00000000 |   | AppDial | SIP/Alice | 2013-03-04 13:11:18 |   | 2013-03-04 13:11:20 | 2 | 0 | NO ANSWER | DOCUMENTATION |   |   | Asterisk-01-1362424276.2 |   | 4 | Asterisk-01-1362424276.2 |
+|   |   | s | default | SIP/alice-00000000 |   | AppDial | SIP/Alice | 2013-03-04 13:11:18 |   | 2013-03-04 13:11:20 | 2 | 0 | NO ANSWER | DOCUMENTATION |   |   | Asterisk-01-1362424276.2 |   | 4 | Asterisk-01-1362424276.2 |
 
 ### Single Party
 
@@ -246,7 +246,7 @@ Alice calls into Asterisk's VoiceMailMain application. This implicitly Answers t
 
 | clid | src | dst | dcontext | channel | dstchannel | lastapp | lastdata | start | answer | end | duration | billsec | disposition | amaflags | accountcode | peeraccount | uniqueid | userfield | sequence | linkedid |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| "Alice <100>" | 100 | 8500 | default | SIP/alice-00000000 |   | Hangup |   | 2013-03-04 13:11:18 | 2013-03-04 13:11:20 | 2013-03-04 13:12:18 | 60 | 58 | ANSWERED | DOCUMENTATION | 100 |   | Asterisk-01-1362424276.2 |   | 112 | Asterisk-01-1362424276.2 |
+| "Alice <100>" | 100 | 8500 | default | SIP/alice-00000000 |   | Hangup |   | 2013-03-04 13:11:18 | 2013-03-04 13:11:20 | 2013-03-04 13:12:18 | 60 | 58 | ANSWERED | DOCUMENTATION | 100 |   | Asterisk-01-1362424276.2 |   | 112 | Asterisk-01-1362424276.2 |
 
 ### Basic Two Party Calls
 
@@ -258,7 +258,7 @@ Alice calls into Asterisk, which dials Bob. Bob Answers, and a bridge is formed 
 
 | clid | src | dst | dcontext | channel | dstchannel | lastapp | lastdata | start | answer | end | duration | billsec | disposition | amaflags | accountcode | peeraccount | uniqueid | userfield | sequence | linkedid |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| "Alice <100>" | 100 | 200 | default | SIP/alice-00000000 | SIP/bob-00000001 | Dial | SIP/bob,,Tt | 2013-03-04 13:11:18 | 2013-03-04 13:11:26 | 2013-03-04 13:13:18 | 120 | 112 | ANSWERED | DOCUMENTATION |   |   | Asterisk-01-1362424276.2 |   | 12 | Asterisk-01-1362424276.2 |
+| "Alice <100>" | 100 | 200 | default | SIP/alice-00000000 | SIP/bob-00000001 | Dial | SIP/bob,,Tt | 2013-03-04 13:11:18 | 2013-03-04 13:11:26 | 2013-03-04 13:13:18 | 120 | 112 | ANSWERED | DOCUMENTATION |   |   | Asterisk-01-1362424276.2 |   | 12 | Asterisk-01-1362424276.2 |
 
 #### Unanswered Dial
 
@@ -266,7 +266,7 @@ Alice calls into Asterisk, which dials Bob. Bob refuses to pick up his phone, an
 
 | clid | src | dst | dcontext | channel | dstchannel | lastapp | lastdata | start | answer | end | duration | billsec | disposition | amaflags | accountcode | peeraccount | uniqueid | userfield | sequence | linkedid |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| "Alice <100>" | 100 | 200 | default | SIP/alice-00000000 | SIP/bob-00000001 | Dial | SIP/bob,10,Tt | 2013-03-04 13:11:18 |   | 2013-03-04 13:11:28 | 10 | 0 | NO ANSWER | DOCUMENTATION |   |   | Asterisk-01-1362424276.2 |   | 1 | Asterisk-01-1362424276.2 |
+| "Alice <100>" | 100 | 200 | default | SIP/alice-00000000 | SIP/bob-00000001 | Dial | SIP/bob,10,Tt | 2013-03-04 13:11:18 |   | 2013-03-04 13:11:28 | 10 | 0 | NO ANSWER | DOCUMENTATION |   |   | Asterisk-01-1362424276.2 |   | 1 | Asterisk-01-1362424276.2 |
 
 #### Parallel Dial
 
@@ -274,8 +274,8 @@ Alice calls into Asterisk, which dials Bob's SIP desk phone as well as his IAX2 
 
 | clid | src | dst | dcontext | channel | dstchannel | lastapp | lastdata | start | answer | end | duration | billsec | disposition | amaflags | accountcode | peeraccount | uniqueid | userfield | sequence | linkedid |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| "Alice <100>" | 100 | 200 | default | SIP/alice-00000000 | SIP/bob-00000001 | Dial | SIP/bob&IAX2/bob,,Tt | 2013-03-04 13:11:18 |   | 2013-03-04 13:11:28 | 10 | 0 | NO ANSWER | DOCUMENTATION |   |   | Asterisk-01-1362424276.2 |   | 12 | Asterisk-01-1362424276.2 |
-| "Alice <100>" | 100 | 200 | default | SIP/alice-00000000 | IAX2/bob-00000000 | Dial | SIP/bob&IAX2/bob,,Tt | 2013-03-04 13:11:18 | 2013-03-04 13:11:28 | 2013-03-04 13:12:28 | 70 | 60 | ANSWERED | DOCUMENTATION |   |   | Asterisk-01-1362424276.2 |   | 13 | Asterisk-01-1362424276.2 |
+| "Alice <100>" | 100 | 200 | default | SIP/alice-00000000 | SIP/bob-00000001 | Dial | SIP/bob&IAX2/bob,,Tt | 2013-03-04 13:11:18 |   | 2013-03-04 13:11:28 | 10 | 0 | NO ANSWER | DOCUMENTATION |   |   | Asterisk-01-1362424276.2 |   | 12 | Asterisk-01-1362424276.2 |
+| "Alice <100>" | 100 | 200 | default | SIP/alice-00000000 | IAX2/bob-00000000 | Dial | SIP/bob&IAX2/bob,,Tt | 2013-03-04 13:11:18 | 2013-03-04 13:11:28 | 2013-03-04 13:12:28 | 70 | 60 | ANSWERED | DOCUMENTATION |   |   | Asterisk-01-1362424276.2 |   | 13 | Asterisk-01-1362424276.2 |
 
 #### Call Forward
 
@@ -291,8 +291,8 @@ Alice calls into Asterisk, which dials Bob's SIP phone. Bob answers, and Alice a
 
 | clid | src | dst | dcontext | channel | dstchannel | lastapp | lastdata | start | answer | end | duration | billsec | disposition | amaflags | accountcode | peeraccount | uniqueid | userfield | sequence | linkedid |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| "Alice <100>" | 100 | 200 | default | SIP/alice-00000000 | SIP/bob-00000001 | Dial | SIP/bob,,Tt | 2013-03-04 13:11:18 | 2013-03-04 13:11:28 | 2013-03-04 13:11:48 | 30 | 20 | ANSWERED | DOCUMENTATION |   |   | Asterisk-01-1362424276.2 |   | 101 | Asterisk-01-1362424276.2 |
-| "Alice <100>" | 100 | 300 | default | SIP/alice-00000000 | SIP/charlie-00000002 | Dial | SIP/charlie,,Tt | 2013-03-04 13:11:48 | 2013-03-04 13:11:53 | 2013-03-04 13:12:53 | 65 | 60 | ANSWERED | DOCUMENTATION |   |   | Asterisk-01-1362424276.2 |   | 102 | Asterisk-01-1362424276.2 |
+| "Alice <100>" | 100 | 200 | default | SIP/alice-00000000 | SIP/bob-00000001 | Dial | SIP/bob,,Tt | 2013-03-04 13:11:18 | 2013-03-04 13:11:28 | 2013-03-04 13:11:48 | 30 | 20 | ANSWERED | DOCUMENTATION |   |   | Asterisk-01-1362424276.2 |   | 101 | Asterisk-01-1362424276.2 |
+| "Alice <100>" | 100 | 300 | default | SIP/alice-00000000 | SIP/charlie-00000002 | Dial | SIP/charlie,,Tt | 2013-03-04 13:11:48 | 2013-03-04 13:11:53 | 2013-03-04 13:12:53 | 65 | 60 | ANSWERED | DOCUMENTATION |   |   | Asterisk-01-1362424276.2 |   | 102 | Asterisk-01-1362424276.2 |
 
 #### Core Attended Transfer to Channel
 
@@ -300,9 +300,9 @@ Alice calls into Asterisk, which dials Bob's SIP phone. Bob answers, and Alice a
 
 | clid | src | dst | dcontext | channel | dstchannel | lastapp | lastdata | start | answer | end | duration | billsec | disposition | amaflags | accountcode | peeraccount | uniqueid | userfield | sequence | linkedid |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| "Alice <100>" | 100 | 200 | default | SIP/alice-00000000 | SIP/bob-00000001 | Dial | SIP/bob,,Tt | 2013-03-04 13:11:18 | 2013-03-04 13:11:28 | 2013-03-04 13:12:18 | 60 | 50 | ANSWERED | DOCUMENTATION |   |   | Asterisk-01-1362424276.2 |   | 101 | Asterisk-01-1362424276.2 |
-| "Bob <200>" | 200 | 300 | default | SIP/bob-00000001 | SIP/charlie-00000002 | Dial | SIP/charlie,,Tt | 2013-03-04 13:11:48 | 2013-03-04 13:11:53 | 2013-03-04 13:12:18 | 30 | 26 | ANSWERED | DOCUMENTATION |   |   | Asterisk-01-1362424280.1 |   | 102 | Asterisk-01-1362424276.2 |
-| "Alice <100>" | 100 | 300 | default | SIP/alice-00000000 | SIP/charlie-00000002 | Dial | SIP/bob,,Tt | 2013-03-04 13:12:18 | 2013-03-04 13:12:18 | 2013-03-04 13:12:53 | 45 | 45 | ANSWERED | DOCUMENTATION |   |   | Asterisk-01-1362424276.2 |   | 103 | Asterisk-01-1362424276.2 |
+| "Alice <100>" | 100 | 200 | default | SIP/alice-00000000 | SIP/bob-00000001 | Dial | SIP/bob,,Tt | 2013-03-04 13:11:18 | 2013-03-04 13:11:28 | 2013-03-04 13:12:18 | 60 | 50 | ANSWERED | DOCUMENTATION |   |   | Asterisk-01-1362424276.2 |   | 101 | Asterisk-01-1362424276.2 |
+| "Bob <200>" | 200 | 300 | default | SIP/bob-00000001 | SIP/charlie-00000002 | Dial | SIP/charlie,,Tt | 2013-03-04 13:11:48 | 2013-03-04 13:11:53 | 2013-03-04 13:12:18 | 30 | 26 | ANSWERED | DOCUMENTATION |   |   | Asterisk-01-1362424280.1 |   | 102 | Asterisk-01-1362424276.2 |
+| "Alice <100>" | 100 | 300 | default | SIP/alice-00000000 | SIP/charlie-00000002 | Dial | SIP/bob,,Tt | 2013-03-04 13:12:18 | 2013-03-04 13:12:18 | 2013-03-04 13:12:53 | 45 | 45 | ANSWERED | DOCUMENTATION |   |   | Asterisk-01-1362424276.2 |   | 103 | Asterisk-01-1362424276.2 |
 
 !!! note
     In the example above, note the following:
@@ -318,9 +318,9 @@ Alice calls into Asterisk, which dials Bob's SIP phone. Bob answers, and Alice a
 
 | clid | src | dst | dcontext | channel | dstchannel | lastapp | lastdata | start | answer | end | duration | billsec | disposition | amaflags | accountcode | peeraccount | uniqueid | userfield | sequence | linkedid |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| "Alice <100>" | 100 | 200 | default | SIP/alice-00000000 | SIP/bob-00000001 | Dial | SIP/bob,,Tt | 2013-03-04 13:11:18 | 2013-03-04 13:11:28 | 2013-03-04 13:12:18 | 60 | 50 | ANSWERED | DOCUMENTATION |   |   | Asterisk-01-1362424276.2 |   | 101 | Asterisk-01-1362424276.2 |
-| "Bob <200>" | 200 | 8500 | default | SIP/bob-00000001 |   | VoiceMail | 300 | 2013-03-04 13:11:48 | 2013-03-04 13:11:49 | 2013-03-04 13:12:18 | 30 | 29 | ANSWERED | DOCUMENTATION |   |   | Asterisk-01-1362424280.1 |   | 102 | Asterisk-01-1362424276.2 |
-| "Alice <100>" | 100 | 8500 | default | SIP/alice-00000000 |   | VoiceMail | 300 | 2013-03-04 13:12:18 | 2013-03-04 13:12:18 | 2013-03-04 13:13:18 | 60 | 60 | ANSWERED | DOCUMENTATION |   |   | Asterisk-01-1362424276.2 |   | 103 | Asterisk-01-1362424276.2 |
+| "Alice <100>" | 100 | 200 | default | SIP/alice-00000000 | SIP/bob-00000001 | Dial | SIP/bob,,Tt | 2013-03-04 13:11:18 | 2013-03-04 13:11:28 | 2013-03-04 13:12:18 | 60 | 50 | ANSWERED | DOCUMENTATION |   |   | Asterisk-01-1362424276.2 |   | 101 | Asterisk-01-1362424276.2 |
+| "Bob <200>" | 200 | 8500 | default | SIP/bob-00000001 |   | VoiceMail | 300 | 2013-03-04 13:11:48 | 2013-03-04 13:11:49 | 2013-03-04 13:12:18 | 30 | 29 | ANSWERED | DOCUMENTATION |   |   | Asterisk-01-1362424280.1 |   | 102 | Asterisk-01-1362424276.2 |
+| "Alice <100>" | 100 | 8500 | default | SIP/alice-00000000 |   | VoiceMail | 300 | 2013-03-04 13:12:18 | 2013-03-04 13:12:18 | 2013-03-04 13:13:18 | 60 | 60 | ANSWERED | DOCUMENTATION |   |   | Asterisk-01-1362424276.2 |   | 103 | Asterisk-01-1362424276.2 |
 
 #### SIP Protocol Attended Transfer
 
@@ -338,9 +338,9 @@ Alice calls into Asterisk, which dials Bob's SIP phone. Bob answers, and Alice a
 
 | clid | src | dst | dcontext | channel | dstchannel | lastapp | lastdata | start | answer | end | duration | billsec | disposition | amaflags | accountcode | peeraccount | uniqueid | userfield | sequence | linkedid |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| "Alice <100>" | 100 | 200 | default | SIP/alice-00000000 | SIP/bob-00000001 | Dial | SIP/bob,,Tt | 2013-03-04 13:11:18 | 2013-03-04 13:11:28 | 2013-03-04 13:12:18 | 60 | 50 | ANSWERED | DOCUMENTATION |   |   | Asterisk-01-1362424276.2 |   | 101 | Asterisk-01-1362424276.2 |
-| "Bob <200>" | 200 | 300 | default | SIP/bob-00000001 | SIP/charlie-00000002 | Dial | SIP/charlie,,Tt | 2013-03-04 13:11:48 |   | 2013-03-04 13:11:50 | 2 | 0 | NO ANSWER | DOCUMENTATION |   |   | Asterisk-01-1362424280.1 |   | 102 | Asterisk-01-1362424276.2 |
-| "Alice <100>" | 100 | 300 | default | SIP/alice-00000000 | SIP/charlie-00000002 | Dial | SIP/charlie,,Tt | 2013-03-04 13:11:50 | 2013-03-04 13:11:55 | 2013-03-04 13:12:30 | 40 | 35 | ANSWERED | DOCUMENTATION |   |   | Asterisk-01-1362424276.2 |   | 103 | Asterisk-01-1362424276.2 |
+| "Alice <100>" | 100 | 200 | default | SIP/alice-00000000 | SIP/bob-00000001 | Dial | SIP/bob,,Tt | 2013-03-04 13:11:18 | 2013-03-04 13:11:28 | 2013-03-04 13:12:18 | 60 | 50 | ANSWERED | DOCUMENTATION |   |   | Asterisk-01-1362424276.2 |   | 101 | Asterisk-01-1362424276.2 |
+| "Bob <200>" | 200 | 300 | default | SIP/bob-00000001 | SIP/charlie-00000002 | Dial | SIP/charlie,,Tt | 2013-03-04 13:11:48 |   | 2013-03-04 13:11:50 | 2 | 0 | NO ANSWER | DOCUMENTATION |   |   | Asterisk-01-1362424280.1 |   | 102 | Asterisk-01-1362424276.2 |
+| "Alice <100>" | 100 | 300 | default | SIP/alice-00000000 | SIP/charlie-00000002 | Dial | SIP/charlie,,Tt | 2013-03-04 13:11:50 | 2013-03-04 13:11:55 | 2013-03-04 13:12:30 | 40 | 35 | ANSWERED | DOCUMENTATION |   |   | Asterisk-01-1362424276.2 |   | 103 | Asterisk-01-1362424276.2 |
 
 #### Three Way Call
 
@@ -348,10 +348,10 @@ Alice calls into Asterisk, which dials Bob's SIP phone. Bob answers, and Alice a
 
 | clid | src | dst | dcontext | channel | dstchannel | lastapp | lastdata | start | answer | end | duration | billsec | disposition | amaflags | accountcode | peeraccount | uniqueid | userfield | sequence | linkedid |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| "Alice <100>" | 100 | 200 | default | SIP/alice-00000000 | SIP/bob-00000001 | Dial | SIP/bob,,Tt | 2013-03-04 13:11:18 | 2013-03-04 13:11:28 | 2013-03-04 13:13:18 | 120 | 110 | ANSWERED | DOCUMENTATION |   |   | Asterisk-01-1362424276.2 |   | 101 | Asterisk-01-1362424276.2 |
-| "Bob <200>" | 200 | 300 | default | SIP/bob-00000001 | SIP/charlie-00000002 | Dial | SIP/charlie,,Tt | 2013-03-04 13:11:48 | 2013-03-04 13:11:53 | 2013-03-04 13:12:08 | 20 | 15 | ANSWERED | DOCUMENTATION |   |   | Asterisk-01-1362424280.1 |   | 102 | Asterisk-01-1362424276.2 |
-| "Alice <100>" | 100 | 300 | default | SIP/alice-00000000 | SIP/charlie-00000002 | Dial | SIP/bob,,Tt | 2013-03-04 13:12:08 | 2013-03-04 13:12:08 | 2013-03-04 13:13:18 | 70 | 70 | ANSWERED | DOCUMENTATION |   |   | Asterisk-01-1362424276.2 |   | 103 | Asterisk-01-1362424276.2 |
-| "Bob <200>" | 200 | 300 | default | SIP/bob-00000001 | SIP/charlie-00000002 | Dial | SIP/charlie,,Tt | 2013-03-04 13:12:08 | 2013-03-04 13:12:08 | 2013-03-04 13:13:18 | 70 | 70 | ANSWERED | DOCUMENTATION |   |   | Asterisk-01-1362424280.1 |   | 104 | Asterisk-01-1362424276.2 |
+| "Alice <100>" | 100 | 200 | default | SIP/alice-00000000 | SIP/bob-00000001 | Dial | SIP/bob,,Tt | 2013-03-04 13:11:18 | 2013-03-04 13:11:28 | 2013-03-04 13:13:18 | 120 | 110 | ANSWERED | DOCUMENTATION |   |   | Asterisk-01-1362424276.2 |   | 101 | Asterisk-01-1362424276.2 |
+| "Bob <200>" | 200 | 300 | default | SIP/bob-00000001 | SIP/charlie-00000002 | Dial | SIP/charlie,,Tt | 2013-03-04 13:11:48 | 2013-03-04 13:11:53 | 2013-03-04 13:12:08 | 20 | 15 | ANSWERED | DOCUMENTATION |   |   | Asterisk-01-1362424280.1 |   | 102 | Asterisk-01-1362424276.2 |
+| "Alice <100>" | 100 | 300 | default | SIP/alice-00000000 | SIP/charlie-00000002 | Dial | SIP/bob,,Tt | 2013-03-04 13:12:08 | 2013-03-04 13:12:08 | 2013-03-04 13:13:18 | 70 | 70 | ANSWERED | DOCUMENTATION |   |   | Asterisk-01-1362424276.2 |   | 103 | Asterisk-01-1362424276.2 |
+| "Bob <200>" | 200 | 300 | default | SIP/bob-00000001 | SIP/charlie-00000002 | Dial | SIP/charlie,,Tt | 2013-03-04 13:12:08 | 2013-03-04 13:12:08 | 2013-03-04 13:13:18 | 70 | 70 | ANSWERED | DOCUMENTATION |   |   | Asterisk-01-1362424280.1 |   | 104 | Asterisk-01-1362424276.2 |
 
 !!! note
     In the example above, note the following:
@@ -365,9 +365,9 @@ Alice calls into Asterisk, which dials Bob's SIP phone. Bob answers, and Alice a
 
 | clid | src | dst | dcontext | channel | dstchannel | lastapp | lastdata | start | answer | end | duration | billsec | disposition | amaflags | accountcode | peeraccount | uniqueid | userfield | sequence | linkedid |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| "Alice <100>" | 100 | 200 | default | SIP/alice-00000000 | SIP/bob-00000001 | Dial | SIP/bob | 2013-03-04 13:11:18 | 2013-03-04 13:11:28 | 2013-03-04 13:12:18 | 60 | 50 | ANSWERED | DOCUMENTATION |   |   | Asterisk-01-1362424276.2 |   | 101 | Asterisk-01-1362424276.2 |
-| "Bob <200>" | 200 | 300 | default | SIP/bob-00000002 | SIP/charlie-00000003 | Dial | SIP/charlie | 2013-03-04 13:11:48 | 2013-03-04 13:11:53 | 2013-03-04 13:12:08 | 20 | 15 | ANSWERED | DOCUMENTATION |   |   | Asterisk-01-1362424280.1 |   | 102 | Asterisk-01-1362424276.2 |
-| "Alice <100>" | 100 | 200 | default | SIP/alice-00000000 | SIP/charlie-00000003 | Dial | SIP/bob | 2013-03-04 13:12:18 | 2013-03-04 13:12:18 | 2013-03-04 13:12:28 | 10 | 10 | ANSWERED | DOCUMENTATION |   |   | Asterisk-01-1362424276.2 |   | 103 | Asterisk-01-1362424276.2 |
+| "Alice <100>" | 100 | 200 | default | SIP/alice-00000000 | SIP/bob-00000001 | Dial | SIP/bob | 2013-03-04 13:11:18 | 2013-03-04 13:11:28 | 2013-03-04 13:12:18 | 60 | 50 | ANSWERED | DOCUMENTATION |   |   | Asterisk-01-1362424276.2 |   | 101 | Asterisk-01-1362424276.2 |
+| "Bob <200>" | 200 | 300 | default | SIP/bob-00000002 | SIP/charlie-00000003 | Dial | SIP/charlie | 2013-03-04 13:11:48 | 2013-03-04 13:11:53 | 2013-03-04 13:12:08 | 20 | 15 | ANSWERED | DOCUMENTATION |   |   | Asterisk-01-1362424280.1 |   | 102 | Asterisk-01-1362424276.2 |
+| "Alice <100>" | 100 | 200 | default | SIP/alice-00000000 | SIP/charlie-00000003 | Dial | SIP/bob | 2013-03-04 13:12:18 | 2013-03-04 13:12:18 | 2013-03-04 13:12:28 | 10 | 10 | ANSWERED | DOCUMENTATION |   |   | Asterisk-01-1362424276.2 |   | 103 | Asterisk-01-1362424276.2 |
 
 !!! note
     The important point to note here is that a SIP attended transfer uses two channels to communicate with Bob - `SIP/bob-00000001` and `SIP/bob-00000002`. The CDR records are associated by virtue of the `linkedid` field.
@@ -389,8 +389,8 @@ An external application [Originates](/Latest_API/API_Documentation/AMI_Actions/O
 
 | clid | src | dst | dcontext | channel | dstchannel | lastapp | lastdata | start | answer | end | duration | billsec | disposition | amaflags | accountcode | peeraccount | uniqueid | userfield | sequence | linkedid |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| "" | dial\_alice | 100 | default | Local/dial\_alice@default-00000001;1 | SIP/alice-00000002 | Dial | SIP/alice,,tT | 2013-03-04 13:11:18 | 2013-03-04 13:11:28 | 2013-03-04 13:12:18 | 60 | 50 | ANSWERED | DOCUMENTATION |   |   | Asterisk-01-1362424290.1 |   | 101 | Asterisk-01-1362424290.1 |
-| "" | voicemail |   | default | Local/dial\_alice@default-00000001;2 |   | VoiceMailMain | 100 | 2013-03-04 13:11:28 | 2013-03-04 13:11:28 | 2013-03-04 13:12:18 | 50 | 50 | ANSWERED | DOCUMENTATION |   |   | Asterisk-01-1362424290.1 |   | 102 | Asterisk-01-1362424290.1 |
+| "" | dial\_alice | 100 | default | Local/dial\_alice@default-00000001;1 | SIP/alice-00000002 | Dial | SIP/alice,,tT | 2013-03-04 13:11:18 | 2013-03-04 13:11:28 | 2013-03-04 13:12:18 | 60 | 50 | ANSWERED | DOCUMENTATION |   |   | Asterisk-01-1362424290.1 |   | 101 | Asterisk-01-1362424290.1 |
+| "" | voicemail |   | default | Local/dial\_alice@default-00000001;2 |   | VoiceMailMain | 100 | 2013-03-04 13:11:28 | 2013-03-04 13:11:28 | 2013-03-04 13:12:18 | 50 | 50 | ANSWERED | DOCUMENTATION |   |   | Asterisk-01-1362424290.1 |   | 102 | Asterisk-01-1362424290.1 |
 
 ##### Local channel between bridges
 
@@ -398,8 +398,8 @@ An external application [Originates](/Latest_API/API_Documentation/AMI_Actions/O
 
 | clid | src | dst | dcontext | channel | dstchannel | lastapp | lastdata | start | answer | end | duration | billsec | disposition | amaflags | accountcode | peeraccount | uniqueid | userfield | sequence | linkedid |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| "" | dial\_alice | 100 | default | Local/dial\_alice@default-00000001;1 | SIP/alice-00000002 | Dial | SIP/alice,,tT | 2013-03-04 13:11:18 | 2013-03-04 13:11:28 | 2013-03-04 13:12:18 | 60 | 50 | ANSWERED | DOCUMENTATION |   |   | Asterisk-01-1362424290.1 |   | 101 | Asterisk-01-1362424290.1 |
-| "" | dial\_bob | 200 | default | Local/dial\_alice@default-00000001;2 | SIP/bob-00000003 | Dial | SIP/bob,,tT | 2013-03-04 13:11:28 | 2013-03-04 13:11:38 | 2013-03-04 13:12:18 | 50 | 40 | ANSWERED | DOCUMENTATION |   |   | Asterisk-01-1362424290.1 |   | 102 | Asterisk-01-1362424290.1 |
+| "" | dial\_alice | 100 | default | Local/dial\_alice@default-00000001;1 | SIP/alice-00000002 | Dial | SIP/alice,,tT | 2013-03-04 13:11:18 | 2013-03-04 13:11:28 | 2013-03-04 13:12:18 | 60 | 50 | ANSWERED | DOCUMENTATION |   |   | Asterisk-01-1362424290.1 |   | 101 | Asterisk-01-1362424290.1 |
+| "" | dial\_bob | 200 | default | Local/dial\_alice@default-00000001;2 | SIP/bob-00000003 | Dial | SIP/bob,,tT | 2013-03-04 13:11:28 | 2013-03-04 13:11:38 | 2013-03-04 13:12:18 | 50 | 40 | ANSWERED | DOCUMENTATION |   |   | Asterisk-01-1362424290.1 |   | 102 | Asterisk-01-1362424290.1 |
 
 #### Local Channel Optimization
 
@@ -421,9 +421,9 @@ Alice calls into Asterisk and Bob answers. Alice says she wants to talk to Charl
 
 | clid | src | dst | dcontext | channel | dstchannel | lastapp | lastdata | start | answer | end | duration | billsec | disposition | amaflags | accountcode | peeraccount | uniqueid | userfield | sequence | linkedid |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| "Alice <100>" | 100 | 200 | default | SIP/alice-00000000 | SIP/bob-00000001 | Dial | SIP/bob,,Tt | 2013-03-04 13:11:18 | 2013-03-04 13:11:28 | 2013-03-04 13:11:38 | 20 | 10 | ANSWERED | DOCUMENTATION |   |   | Asterisk-01-1362424276.2 |   | 101 | Asterisk-01-1362424276.2 |
-| "Alice <100>" | 100 | 700 | default | SIP/alice-00000000 |   | Park | 60000,default,200,1 | 2013-03-04 13:11:38 | 2013-03-04 13:11:38 | 2013-03-04 13:12:38 | 60 | 60 | ANSWERED | DOCUMENTATION |   |   | Asterisk-01-1362424276.2 |   | 102 | Asterisk-01-1362424276.2 |
-| "Alice <100>" | 100 | 300 | default | SIP/alice-00000000 | SIP/charlie-00000002 | Park | 60000,default,200,1 | 2013-03-04 13:12:38 | 2013-03-04 13:12:38 | 2013-03-04 13:13:38 | 60 | 60 | ANSWERED | DOCUMENTATION |   |   | Asterisk-01-1362424276.2 |   | 103 | Asterisk-01-1362424276.2 |
+| "Alice <100>" | 100 | 200 | default | SIP/alice-00000000 | SIP/bob-00000001 | Dial | SIP/bob,,Tt | 2013-03-04 13:11:18 | 2013-03-04 13:11:28 | 2013-03-04 13:11:38 | 20 | 10 | ANSWERED | DOCUMENTATION |   |   | Asterisk-01-1362424276.2 |   | 101 | Asterisk-01-1362424276.2 |
+| "Alice <100>" | 100 | 700 | default | SIP/alice-00000000 |   | Park | 60000,default,200,1 | 2013-03-04 13:11:38 | 2013-03-04 13:11:38 | 2013-03-04 13:12:38 | 60 | 60 | ANSWERED | DOCUMENTATION |   |   | Asterisk-01-1362424276.2 |   | 102 | Asterisk-01-1362424276.2 |
+| "Alice <100>" | 100 | 300 | default | SIP/alice-00000000 | SIP/charlie-00000002 | Park | 60000,default,200,1 | 2013-03-04 13:12:38 | 2013-03-04 13:12:38 | 2013-03-04 13:13:38 | 60 | 60 | ANSWERED | DOCUMENTATION |   |   | Asterisk-01-1362424276.2 |   | 103 | Asterisk-01-1362424276.2 |
 
 ### Call Queues
 
@@ -433,8 +433,8 @@ Alice calls into Asterisk and enters [Queue](/Latest_API/API_Documentation/Dialp
 
 | clid | src | dst | dcontext | channel | dstchannel | lastapp | lastdata | start | answer | end | duration | billsec | disposition | amaflags | accountcode | peeraccount | uniqueid | userfield | sequence | linkedid |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| "Alice <100>" | 100 | 800 | default | SIP/alice-00000000 | SIP/bob-00000001 | Queue | complaints | 2013-03-04 13:11:18 |   | 2013-03-04 13:14:18 | 180 | 0 | BUSY | DOCUMENTATION |   |   | Asterisk-01-1362424276.2 |   | 101 | Asterisk-01-1362424276.2 |
-| "Alice <100>" | 100 | 800 | default | SIP/alice-00000000 | SIP/charlie-00000002 | Queue | complaints | 2013-03-04 13:11:18 | 2013-03-04 13:12:18 | 2013-03-04 13:14:18 | 180 | 120 | ANSWERED | DOCUMENTATION |   |   | Asterisk-01-1362424276.2 |   | 102 | Asterisk-01-1362424276.2 |
+| "Alice <100>" | 100 | 800 | default | SIP/alice-00000000 | SIP/bob-00000001 | Queue | complaints | 2013-03-04 13:11:18 |   | 2013-03-04 13:14:18 | 180 | 0 | BUSY | DOCUMENTATION |   |   | Asterisk-01-1362424276.2 |   | 101 | Asterisk-01-1362424276.2 |
+| "Alice <100>" | 100 | 800 | default | SIP/alice-00000000 | SIP/charlie-00000002 | Queue | complaints | 2013-03-04 13:11:18 | 2013-03-04 13:12:18 | 2013-03-04 13:14:18 | 180 | 120 | ANSWERED | DOCUMENTATION |   |   | Asterisk-01-1362424276.2 |   | 102 | Asterisk-01-1362424276.2 |
 
 #### Call Queue - Example 2
 
@@ -442,8 +442,8 @@ Alice calls into Asterisk and enters Queue without being Answered. She waits in 
 
 | clid | src | dst | dcontext | channel | dstchannel | lastapp | lastdata | start | answer | end | duration | billsec | disposition | amaflags | accountcode | peeraccount | uniqueid | userfield | sequence | linkedid |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| "Alice <100>" | 100 | 800 | default | SIP/alice-00000000 | SIP/bob-00000001 | Queue | complaints | 2013-03-04 13:11:18 |   | 2013-03-04 13:14:18 | 180 | 0 | NO ANSWER | DOCUMENTATION |   |   | Asterisk-01-1362424276.2 |   | 101 | Asterisk-01-1362424276.2 |
-| "Alice <100>" | 100 | 800 | default | SIP/alice-00000000 | SIP/charlie-00000002 | Queue | complaints | 2013-03-04 13:11:18 | 2013-03-04 13:12:38 | 2013-03-04 13:14:18 | 180 | 100 | ANSWERED | DOCUMENTATION |   |   | Asterisk-01-1362424276.2 |   | 102 | Asterisk-01-1362424276.2 |
+| "Alice <100>" | 100 | 800 | default | SIP/alice-00000000 | SIP/bob-00000001 | Queue | complaints | 2013-03-04 13:11:18 |   | 2013-03-04 13:14:18 | 180 | 0 | NO ANSWER | DOCUMENTATION |   |   | Asterisk-01-1362424276.2 |   | 101 | Asterisk-01-1362424276.2 |
+| "Alice <100>" | 100 | 800 | default | SIP/alice-00000000 | SIP/charlie-00000002 | Queue | complaints | 2013-03-04 13:11:18 | 2013-03-04 13:12:38 | 2013-03-04 13:14:18 | 180 | 100 | ANSWERED | DOCUMENTATION |   |   | Asterisk-01-1362424276.2 |   | 102 | Asterisk-01-1362424276.2 |
 
 ### Conference Call
 
@@ -451,9 +451,9 @@ Alice calls into Asterisk and joins a ConfBridge conference. Bob does a bit late
 
 | clid | src | dst | dcontext | channel | dstchannel | lastapp | lastdata | start | answer | end | duration | billsec | disposition | amaflags | accountcode | peeraccount | uniqueid | userfield | sequence | linkedid |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| "Alice <100>" | 100 | 1000 | default | SIP/alice-00000000 | SIP/bob-00000001 | ConfBridge | 1000,public\_bridge,public\_user,public\_menu | 2013-03-04 13:11:18 | 2013-03-04 13:11:28 | 2013-03-04 13:14:18 | 180 | 170 | ANSWERED | DOCUMENTATION |   |   | Asterisk-01-1362424276.2 |   | 1 | Asterisk-01-1362424276.2 |
-| "Bob <200>" | 200 | 1000 | default | SIP/bob-00000001 | SIP/charlie-00000002 | ConfBridge | 1000,public\_bridge,public\_user,public\_menu | 2013-03-04 13:11:28 | 2013-03-04 13:12:18 | 2013-03-04 13:14:18 | 170 | 120 | ANSWERED | DOCUMENTATION |   |   | Asterisk-01-1362424280.1 |   | 2 | Asterisk-01-1362424276.2 |
-| "Alice <100>" | 100 | 1000 | default | SIP/alice-00000000 | SIP/charlie-00000002 | ConfBridge | 1000,public\_bridge,public\_user,public\_menu | 2013-03-04 13:11:18 | 2013-03-04 13:12:18 | 2013-03-04 13:15:18 | 240 | 180 | ANSWERED | DOCUMENTATION |   |   | Asterisk-01-1362424276.2 |   | 3 | Asterisk-01-1362424276.2 |
+| "Alice <100>" | 100 | 1000 | default | SIP/alice-00000000 | SIP/bob-00000001 | ConfBridge | 1000,public\_bridge,public\_user,public\_menu | 2013-03-04 13:11:18 | 2013-03-04 13:11:28 | 2013-03-04 13:14:18 | 180 | 170 | ANSWERED | DOCUMENTATION |   |   | Asterisk-01-1362424276.2 |   | 1 | Asterisk-01-1362424276.2 |
+| "Bob <200>" | 200 | 1000 | default | SIP/bob-00000001 | SIP/charlie-00000002 | ConfBridge | 1000,public\_bridge,public\_user,public\_menu | 2013-03-04 13:11:28 | 2013-03-04 13:12:18 | 2013-03-04 13:14:18 | 170 | 120 | ANSWERED | DOCUMENTATION |   |   | Asterisk-01-1362424280.1 |   | 2 | Asterisk-01-1362424276.2 |
+| "Alice <100>" | 100 | 1000 | default | SIP/alice-00000000 | SIP/charlie-00000002 | ConfBridge | 1000,public\_bridge,public\_user,public\_menu | 2013-03-04 13:11:18 | 2013-03-04 13:12:18 | 2013-03-04 13:15:18 | 240 | 180 | ANSWERED | DOCUMENTATION |   |   | Asterisk-01-1362424276.2 |   | 3 | Asterisk-01-1362424276.2 |
 
 ### A Complex Example
 
@@ -463,16 +463,16 @@ Alice calls into Asterisk and Dials Bob. Bob answers, and he and Alice talk for 
 
 | clid | src | dst | dcontext | channel | dstchannel | lastapp | lastdata | start | answer | end | duration | billsec | disposition | amaflags | accountcode | peeraccount | uniqueid | userfield | sequence | linkedid |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| "Alice <100>" | 100 | 200 | default | SIP/alice-00000000 | SIP/bob-00000001 | Dial | SIP/bob,,Tt | 2013-03-04 13:00:00 | 2013-03-04 13:00:05 | 2013-03-04 13:01:00 | 60 | 55 | ANSWERED | DOCUMENTATION |   |   | Asterisk-01-1362424276.2 |   | 1 | Asterisk-01-1362424276.2 |
+| "Alice <100>" | 100 | 200 | default | SIP/alice-00000000 | SIP/bob-00000001 | Dial | SIP/bob,,Tt | 2013-03-04 13:00:00 | 2013-03-04 13:00:05 | 2013-03-04 13:01:00 | 60 | 55 | ANSWERED | DOCUMENTATION |   |   | Asterisk-01-1362424276.2 |   | 1 | Asterisk-01-1362424276.2 |
 
 * Bob realizes Alice wants to talk to Sales, so he blind transfers her off to the Sales Queue. Alice enters into the Sales Queue, where she waits for a bit while agents David and Frank are dialed using Local channels to SIP devices. Alice is eventually Answered by David, a sales agent.
 
 | clid | src | dst | dcontext | channel | dstchannel | lastapp | lastdata | start | answer | end | duration | billsec | disposition | amaflags | accountcode | peeraccount | uniqueid | userfield | sequence | linkedid |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| "Alice <100>" | 100 | 700 | default | SIP/alice-00000000 | Local/member1@default-00000001;1 | Queue | sales | 2013-03-04 13:01:00 |   | 2013-03-04 13:02:00 | 60 | 0 | NO ANSWER | DOCUMENTATION |   |   | Asterisk-01-1362424276.2 |   | 2 | Asterisk-01-1362424276.2 |
-|   | 700 | member1 | default | Local/member1@default-00000001;2 | SIP/frank-00000002 | Dial | SIP/frank | 2013-03-04 13:01:50 |   | 2013-03-04 13:02:00 | 10 | 0 | NO ANSWER | DOCUMENTATION |   |   | Asterisk-01-1362424280.1 |   | 3 | Asterisk-01-1362424276.2 |
-| "Alice <100>" | 100 | 700 | default | SIP/alice-00000000 | Local/member2@default-00000002;1 | Queue | sales | 2013-03-04 13:01:00 | 2013-03-04 13:02:00 | 2013-03-04 13:05:00 | 240 | 180 | ANSWERED | DOCUMENTATION |   |   | Asterisk-01-1362424276.2 |   | 4 | Asterisk-01-1362424276.2 |
-|   | 700 | member2 | default | Local/member2@default-00000002;2 | SIP/david-00000003 | Dial | SIP/david | 2013-03-04 13:02:00 | 2013-03-04 13:02:05 | 2013-03-04 13:06:00 | 240 | 235 | ANSWERED | DOCUMENTATION |   |   | Asterisk-01-1362424280.3 |   | 5 | Asterisk-01-1362424276.2 |
+| "Alice <100>" | 100 | 700 | default | SIP/alice-00000000 | Local/member1@default-00000001;1 | Queue | sales | 2013-03-04 13:01:00 |   | 2013-03-04 13:02:00 | 60 | 0 | NO ANSWER | DOCUMENTATION |   |   | Asterisk-01-1362424276.2 |   | 2 | Asterisk-01-1362424276.2 |
+|   | 700 | member1 | default | Local/member1@default-00000001;2 | SIP/frank-00000002 | Dial | SIP/frank | 2013-03-04 13:01:50 |   | 2013-03-04 13:02:00 | 10 | 0 | NO ANSWER | DOCUMENTATION |   |   | Asterisk-01-1362424280.1 |   | 3 | Asterisk-01-1362424276.2 |
+| "Alice <100>" | 100 | 700 | default | SIP/alice-00000000 | Local/member2@default-00000002;1 | Queue | sales | 2013-03-04 13:01:00 | 2013-03-04 13:02:00 | 2013-03-04 13:05:00 | 240 | 180 | ANSWERED | DOCUMENTATION |   |   | Asterisk-01-1362424276.2 |   | 4 | Asterisk-01-1362424276.2 |
+|   | 700 | member2 | default | Local/member2@default-00000002;2 | SIP/david-00000003 | Dial | SIP/david | 2013-03-04 13:02:00 | 2013-03-04 13:02:05 | 2013-03-04 13:06:00 | 240 | 235 | ANSWERED | DOCUMENTATION |   |   | Asterisk-01-1362424280.3 |   | 5 | Asterisk-01-1362424276.2 |
 
 !!! note
     Note that with non-optimizing Local channels, the duration of the Alice to the Local channel (which in turns passes media to/from David) may not reflect the length of time that the Local channel to David is in the bridge. As we'll see, additional channels joining the bridge will change that CDR's durations.
@@ -481,15 +481,15 @@ Alice calls into Asterisk and Dials Bob. Bob answers, and he and Alice talk for 
 
 | clid | src | dst | dcontext | channel | dstchannel | lastapp | lastdata | start | answer | end | duration | billsec | disposition | amaflags | accountcode | peeraccount | uniqueid | userfield | sequence | linkedid |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| "Bob <200>" | 200 | 300 | default | SIP/bob-00000004 | SIP/charlie-00000005 | Dial | SIP/charlie,,Tt | 2013-03-04 13:01:10 | 2013-03-04 13:01:20 | 2013-03-04 13:03:20 | 130 | 120 | ANSWERED | DOCUMENTATION |   |   | Asterisk-01-1362424277.1 |   | 6 | Asterisk-01-1362424277.1 |
+| "Bob <200>" | 200 | 300 | default | SIP/bob-00000004 | SIP/charlie-00000005 | Dial | SIP/charlie,,Tt | 2013-03-04 13:01:10 | 2013-03-04 13:01:20 | 2013-03-04 13:03:20 | 130 | 120 | ANSWERED | DOCUMENTATION |   |   | Asterisk-01-1362424277.1 |   | 6 | Asterisk-01-1362424277.1 |
 
 * David and Alice talk for a bit, but David isn't able to sell her on their new fantastic product, so he puts Alice on hold for a bit and calls Ellen from engineering. Ellen agrees to be on the call, and Alice, David, and Ellen are put into a three-way call.
 
 | clid | src | dst | dcontext | channel | dstchannel | lastapp | lastdata | start | answer | end | duration | billsec | disposition | amaflags | accountcode | peeraccount | uniqueid | userfield | sequence | linkedid |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| "David <900>" | 900 | 901 | default | SIP/david-00000003 | SIP/ellen-00000006 | Dial | SIP/ellen,,Tt | 2013-03-04 13:02:30 | 2013-03-04 13:02:40 | 2013-03-04 13:03:00 | 30 | 20 | ANSWERED | DOCUMENTATION |   |   | Asterisk-01-1362424300.1 |   | 7 | Asterisk-01-1362424276.2 |
-| "Alice <100>" | 100 | 700 | default | SIP/alice-00000000 | SIP/ellen-00000006 | Queue | sales | 2013-03-04 13:03:00 | 2013-03-04 13:03:00 | 2013-03-04 13:05:00 | 120 | 120 | ANSWERED | DOCUMENTATION |   |   | Asterisk-01-1362424276.2 |   | 8 | Asterisk-01-1362424276.2 |
-|   | 700 | member2 | default | Local/member2@default-00000002;2 | SIP/ellen-00000006 | Dial | SIP/david | 2013-03-04 13:03:00 | 2013-03-04 13:03:00 | 2013-03-04 13:05:00 | 120 | 120 | ANSWERED | DOCUMENTATION |   |   | Asterisk-01-1362424280.3 |   | 9 | Asterisk-01-1362424276.2 |
+| "David <900>" | 900 | 901 | default | SIP/david-00000003 | SIP/ellen-00000006 | Dial | SIP/ellen,,Tt | 2013-03-04 13:02:30 | 2013-03-04 13:02:40 | 2013-03-04 13:03:00 | 30 | 20 | ANSWERED | DOCUMENTATION |   |   | Asterisk-01-1362424300.1 |   | 7 | Asterisk-01-1362424276.2 |
+| "Alice <100>" | 100 | 700 | default | SIP/alice-00000000 | SIP/ellen-00000006 | Queue | sales | 2013-03-04 13:03:00 | 2013-03-04 13:03:00 | 2013-03-04 13:05:00 | 120 | 120 | ANSWERED | DOCUMENTATION |   |   | Asterisk-01-1362424276.2 |   | 8 | Asterisk-01-1362424276.2 |
+|   | 700 | member2 | default | Local/member2@default-00000002;2 | SIP/ellen-00000006 | Dial | SIP/david | 2013-03-04 13:03:00 | 2013-03-04 13:03:00 | 2013-03-04 13:05:00 | 120 | 120 | ANSWERED | DOCUMENTATION |   |   | Asterisk-01-1362424280.3 |   | 9 | Asterisk-01-1362424276.2 |
 
 !!! note
     During the consultation period, David's SIP channel directly Dials Ellen's SIP device. However, when Ellen joins the bridge with David, it is the Local channel to David that is in the bridge, not David's SIP channel. Thus, the CDR reflects the Local channel to Ellen's SIP channel.
@@ -498,9 +498,9 @@ Alice calls into Asterisk and Dials Bob. Bob answers, and he and Alice talk for 
 
 | clid | src | dst | dcontext | channel | dstchannel | lastapp | lastdata | start | answer | end | duration | billsec | disposition | amaflags | accountcode | peeraccount | uniqueid | userfield | sequence | linkedid |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| "Alice <100>" | 100 | 700 | default | SIP/alice-00000000 | SIP/charlie-00000005 | Queue | sales | 2013-03-04 13:03:20 | 2013-03-04 13:03:20 | 2013-03-04 13:05:00 | 100 | 100 | ANSWERED | DOCUMENTATION |   |   | Asterisk-01-1362424276.2 |   | 10 | Asterisk-01-1362424276.2 |
-| "Charlie <300>" | 300 | 701 | default | SIP/charlie-00000005 | Local/member2@default-00000002;2 | Bridge | SIP/alice-00000000 | 2013-03-04 13:03:20 | 2013-03-04 13:03:20 | 2013-03-04 13:06:00 | 160 | 160 | ANSWERED | DOCUMENTATION |   |   | Asterisk-01-1362424278.1 |   | 11 | Asterisk-01-1362424276.2 |
-| "Charlie <300>" | 300 | 701 | default | SIP/charlie-00000005 | SIP/ellen-00000006 | Bridge | SIP/alice-00000000 | 2013-03-04 13:03:20 | 2013-03-4 13:03:20 | 2013-03-04 13:05:05 | 105 | 105 | ANSWERED | DOCUMENTATION |   |   | Asterisk-01-1362424278.1 |   | 12 | Asterisk-01-1362424276.2 |
+| "Alice <100>" | 100 | 700 | default | SIP/alice-00000000 | SIP/charlie-00000005 | Queue | sales | 2013-03-04 13:03:20 | 2013-03-04 13:03:20 | 2013-03-04 13:05:00 | 100 | 100 | ANSWERED | DOCUMENTATION |   |   | Asterisk-01-1362424276.2 |   | 10 | Asterisk-01-1362424276.2 |
+| "Charlie <300>" | 300 | 701 | default | SIP/charlie-00000005 | Local/member2@default-00000002;2 | Bridge | SIP/alice-00000000 | 2013-03-04 13:03:20 | 2013-03-04 13:03:20 | 2013-03-04 13:06:00 | 160 | 160 | ANSWERED | DOCUMENTATION |   |   | Asterisk-01-1362424278.1 |   | 11 | Asterisk-01-1362424276.2 |
+| "Charlie <300>" | 300 | 701 | default | SIP/charlie-00000005 | SIP/ellen-00000006 | Bridge | SIP/alice-00000000 | 2013-03-04 13:03:20 | 2013-03-4 13:03:20 | 2013-03-04 13:05:05 | 105 | 105 | ANSWERED | DOCUMENTATION |   |   | Asterisk-01-1362424278.1 |   | 12 | Asterisk-01-1362424276.2 |
 
 !!! note 
     Because Charlie's channel is older then either the Local channel to David's SIP channel or Ellen's SIP channel, Charlie is chosen as Party A for those CDRs. Alice, on the other hand, is older than Charlie, so she is Party A for that CDR. Because Alice is the oldest channel, her `linkedid` is propagated to all CDRs in the bridge. However, the CDR between Charlie and Bob is not affected, as Bob is the Party A in that CDR and the CDR would already have been dispatched by the time Charlie joined this bridge.
