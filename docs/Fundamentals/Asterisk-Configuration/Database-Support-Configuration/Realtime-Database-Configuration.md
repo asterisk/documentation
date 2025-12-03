@@ -103,4 +103,4 @@ This will enable the driver to service many requests at a time, rather than seri
 
 The community provided some additional recommendations on the JIRA issue [ASTERISK-21315](https://issues-archive.asterisk.org/ASTERISK-21315):
 
-* It is a good idea to avoid using sipregs altogether by NOT enabling it in extconfig. Using a writable sipusers table should be enough. If you cannot write to your base sipusers table because it is readonly, you could consider making a separate sipusers view that joins the readonly table with a writable sipregs table.
+* It is a good idea to avoid using sipregs altogether by NOT enabling it in extconfig. Using a writable sipusers table should be enough. If you cannot write to your base sipusers table because it is readonly, you could consider making a separate sipusers view that joins the readonly table with a writable sipregs table.
