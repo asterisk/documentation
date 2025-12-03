@@ -248,7 +248,7 @@ P1 is the highest priority.
 		- atomic commits across modules
 			* This is not trivial. Modules should refuse to load new configuration unless all other modules have successfully loaded theirs.
 * Allow Originate() dialplan application and CLI originate command to pass variables to the channel
-* Update modules that require app_macro to not require it; prefer app_stack (GoSub)
+* Update modules that require app_macro not to require it; prefer app_stack (GoSub)
 
 ### (P0)
 

@@ -156,7 +156,7 @@ make clean && ./configure --with-tds && make update && make && make install
 [ -f /etc/asterisk/cel_odbc.conf ] > /etc/asterisk/cel_odbc.conf 
 ```
 
-### Setup cel_tds configuration files.
+### Set up cel_tds configuration files.
 
 These are working samples from my system. You will need to modify for your setup. Define your usernames and passwords here, secure file as well. 
 

@@ -84,14 +84,14 @@ New features should follow the same procedure as bug fixes however they are, sub
 	+ Configuration and database schemas can be added to or updated, but users should not be required to update their configuration or databases.
 * Any new features or improvements **must** be included in the first release candidate of a new version. First release candidate announcements must be made to the `asterisk-users` mailing lists, with at least a week of testing time allowed. If a new feature or improvement is deemed to cause an inappropriate burden on end-users, it **must** be removed from the release.
 
-Generally, new features or improvements should always be done as new modules where possible, and those modules should be disabled if included in a release branch. If changes are necessary to the Asterisk core, all care possible should be given to not impact existing modules.
+Generally, new features or improvements should always be done as new modules where possible, and those modules should be disabled if included in a release branch. If changes are necessary to the Asterisk core, all care possible should be given not to impact existing modules.
 
 Note that if a new feature radically changes the architecture of Asterisk and the next planned major version branch is an LTS branch, you may be asked to defer the change until the next Standard branch is being developed.
 
 Major Version Stability
 =======================
 
-Once a major version branch has been made, all effort shall be made by Asterisk developers to not introduce breaking changes into that major version.
+Once a major version branch has been made, all effort shall be made by Asterisk developers not to introduce breaking changes into that major version.
 
 What is a breaking change?
 

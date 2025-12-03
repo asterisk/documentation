@@ -257,7 +257,7 @@ Yitzchak Pachtman - Israel, NY Based IT MSP, Ast & FreePBX for 5 years (Pitzkey)
     4:20 - Joran, Timeouts on a Stasis application
 
     * To prevent a call hanging due to the application hanging.
-    * Prefer to not to have to wait for SIP level timers.
+    * Prefer not to have to wait for SIP level timers.
 
     4:40 - J Colp, DDoS
 

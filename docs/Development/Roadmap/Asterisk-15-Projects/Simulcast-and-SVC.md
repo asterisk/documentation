@@ -15,7 +15,7 @@ Support exists for simulcast within both Google Chrome and Firefox. They differ 
 
 ### Chrome
 
-The [Chrome implementation](http://www.rtcbits.com/2014/09/using-native-webrtc-simulcast-support.html) stems from the days of Google Hangouts. It does not implement the RFC and is very simple. Each alternative stream is defined as another SSRC within the SDP and simulcast is enabled by creating a SIM ssrc-group. The quality is fixed within Chrome itself to not exceed specific maximums. The RTCP exchange determines what substreams Chrome will send.
+The [Chrome implementation](http://www.rtcbits.com/2014/09/using-native-webrtc-simulcast-support.html) stems from the days of Google Hangouts. It does not implement the RFC and is very simple. Each alternative stream is defined as another SSRC within the SDP and simulcast is enabled by creating a SIM ssrc-group. The quality is fixed within Chrome itself not to exceed specific maximums. The RTCP exchange determines what substreams Chrome will send.
 
 ### Firefox
 

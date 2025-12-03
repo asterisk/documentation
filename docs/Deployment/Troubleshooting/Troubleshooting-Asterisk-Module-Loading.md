@@ -74,7 +74,7 @@ noload => chan_sip.so
 
 ```
 
-That would tell Asterisk to not load chan_sip.so.
+That would tell Asterisk not to load chan_sip.so.
 
 If you are not using **autoload**, then be sure you have a **load** line for the module you desire to load.
 

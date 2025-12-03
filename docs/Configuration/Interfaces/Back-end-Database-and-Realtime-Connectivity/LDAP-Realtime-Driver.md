@@ -6,7 +6,7 @@ pageid: 4260014
 Asterisk Realtime Lightweight Directory Access Protocol (LDAP) Driver
 =====================================================================
 
-With this driver Asterisk, using the [Realtime Database Configuration](/Fundamentals/Asterisk-Configuration/Database-Support-Configuration/Realtime-Database-Configuration), can access and update information in an LDAP directory. Asterisk can configure SIP/IAX2 users, extensions, queues, queue members, and entire configuration files. This guide assumes you have a working knowledge of LDAP and have an LDAP server with authentication already setup. Asterisk requires read and write permissions to update the directory.
+With this driver Asterisk, using the [Realtime Database Configuration](/Fundamentals/Asterisk-Configuration/Database-Support-Configuration/Realtime-Database-Configuration), can access and update information in an LDAP directory. Asterisk can configure SIP/IAX2 users, extensions, queues, queue members, and entire configuration files. This guide assumes you have a working knowledge of LDAP and have an LDAP server with authentication already set up. Asterisk requires read and write permissions to update the directory.
 
 See [configs/res_ldap.conf.sample](https://raw.githubusercontent.com/asterisk/asterisk/master/configs/samples/res_ldap.conf.sample) for a configuration file sample.  
  See contrib/scripts for the LDAP [schema](https://raw.githubusercontent.com/asterisk/asterisk/master/contrib/scripts/asterisk.ldap-schema) and [ldif](https://raw.githubusercontent.com/asterisk/asterisk/master/contrib/scripts/asterisk.ldif) files needed for the LDAP server.

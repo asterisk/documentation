@@ -79,7 +79,7 @@ The big reason why Asterisk calls into the dialplan instead of automatically sen
 Writing your `external_replaces` extension
 ==========================================
 
-Now that the theory has been presented, you'll need to write your `external_replaces` extension. One option you have is to not write an `external_replaces` extension at all. This will prevent any remote attended transfers from succeeding.
+Now that the theory has been presented, you'll need to write your `external_replaces` extension. One option you have is not to write an `external_replaces` extension at all. This will prevent any remote attended transfers from succeeding.
 
 If you do want to write an `external_replaces` extension, the first thing you want to do is determine if you want to perform the remote attended transfer.  `SIPREFERTOHDR`, and values provided by the `CHANNEL()` dialplan function can help you to decide if you want to allow the transfer. For instance, you might use `CHANNEL(endpoint)` to see which PJSIP endpoint is performing the transfer, and you can inspect `SIPREFERTOHDR` to determine if the transfer is destined for a trusted domain.
 

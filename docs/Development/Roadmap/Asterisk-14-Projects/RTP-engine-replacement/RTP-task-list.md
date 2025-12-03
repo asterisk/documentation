@@ -289,7 +289,7 @@ These RTP features go beyond the humble
 Strict RTP
 ----------
 
-Strict RTP is an Asterisk security feature that prevents injection of media from unknown sources. RFC 3550 provides an algorithm in Appendix A.1 that allows for an RTP implementation to not accept packets from a new SSRC until after receiving a certain minimum number of RTP packets from that SSRC. Strict RTP is similar, except that
+Strict RTP is an Asterisk security feature that prevents injection of media from unknown sources. RFC 3550 provides an algorithm in Appendix A.1 that allows for an RTP implementation not to accept packets from a new SSRC until after receiving a certain minimum number of RTP packets from that SSRC. Strict RTP is similar, except that
 
 * Rather than applying the algorithm to new SSRCs, we apply the algorithm to source IP addresses and ports on arriving packets.
 * We have to recognize periods where our strictness needs to be opened back up and reset the learning period.

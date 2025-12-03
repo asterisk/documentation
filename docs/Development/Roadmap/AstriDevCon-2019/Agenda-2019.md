@@ -274,7 +274,7 @@ pageid: 42566556
 		- STIR/SHAKEN (maybe not "fun", but definitely important)
 		- Missing ARI functionality?
 			* Ability to hook dialplan applications into ARI execution flow.
-			* Lower transaction count necessary to setup SIP headers on outbound channels in ARI.
+			* Lower transaction count necessary to set up SIP headers on outbound channels in ARI.
 	+ Opus improvements
 		- Adaptive bitrate support
 		- Has anybody done multichannel

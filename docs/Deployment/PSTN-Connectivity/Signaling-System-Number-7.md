@@ -119,6 +119,6 @@ sigchan = 48 ; This would put two signalling channels in our linkset, one at
 
 ```
 
-This is how a basic linkset is setup. For more detailed chan_dahdi.conf SS7 config information as well as other options available for that file, see the default chan_dahdi.conf that comes with the samples in asterisk. If you would like, you can do a `make samples` in your asterisk-trunk directory and it will install a sample chan_dahdi.conf for you that contains  
+This is how a basic linkset is set up. For more detailed chan_dahdi.conf SS7 config information as well as other options available for that file, see the default chan_dahdi.conf that comes with the samples in asterisk. If you would like, you can do a `make samples` in your asterisk-trunk directory and it will install a sample chan_dahdi.conf for you that contains  
 
 For more information, you can ask questions of the community on the asterisk-ss7 or asterisk-dev mailing lists.

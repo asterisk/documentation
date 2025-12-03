@@ -13,12 +13,12 @@ On This Page
 Policy
 ======
 
-Asterisk follows a 2 year module deprecation process. A module is initially marked as deprecated and set to not be built by default in a standard release which is carried over to the next long term supported release. This provides a period of 2 releases and thus 2 years where the module is marked as deprecated. In the next standard release the module is then removed from the source code tree entirely which is carried over to the next long term supported release. As an example (note that this has not occurred),
+Asterisk follows a 2 year module deprecation process. A module is initially marked as deprecated and set not to be built by default in a standard release which is carried over to the next long term supported release. This provides a period of 2 releases and thus 2 years where the module is marked as deprecated. In the next standard release the module is then removed from the source code tree entirely which is carried over to the next long term supported release. As an example (note that this has not occurred),
 
-1. The app_alarmreceiver is marked as deprecated in master and set to not build by default
+1. The app_alarmreceiver is marked as deprecated in master and set not to build by default
 2. Previous version branches (such as 16 and 18) are updated with the version in which app_alarmreceiver is to be deprecated (19) and the version it is to be removed (21) to display it to the user
-3. The Asterisk 19 (standard release) branch is created from master with app_alarmreceiver marked as deprecated and set to not build by default
-4. The Asterisk 20 (long term supported release) branch is created from master with app_alarmreceiver marked as deprecated and set to not build by default
+3. The Asterisk 19 (standard release) branch is created from master with app_alarmreceiver marked as deprecated and set not to build by default
+4. The Asterisk 20 (long term supported release) branch is created from master with app_alarmreceiver marked as deprecated and set not to build by default
 5. The app_alarmreceiver module is removed from master
 6. The Asterisk 21 (standard release) branch is created from master with app_alarmreceiver removed
 7. The Asterisk 22 (long term supported release) branch is created from master with app_alarmreceiver removed

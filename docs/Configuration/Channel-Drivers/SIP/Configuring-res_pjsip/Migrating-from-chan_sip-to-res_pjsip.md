@@ -60,7 +60,7 @@ This examples shows the configuration required for:
 * two SIP phones need to make calls to or through Asterisk, we also want to be able to call them from Asterisk
 * for them to be identified as users (in the old chan_sip) or endpoints (in the new res_sip/chan_pjsip)
 * both devices need to use username and password authentication
-* 6001 is setup to allow registration to Asterisk, and 6002 is setup with a static host/contact
+* 6001 is set up to allow registration to Asterisk, and 6002 is set up with a static host/contact
 
 | sip.conf | pjsip.conf |
 | --- | --- |

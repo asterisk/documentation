@@ -32,7 +32,7 @@ The CALLERID information is passed during the initial call setup. However, depen
 
 ### CONNECTEDLINE dialplan function
 
-The CONNECTEDLINE function does the opposite of the CALLERID function. CONNECTEDLINE can be used to setup connected line information to be sent when the call is answered. You can use it to send new connected line information to the remote party on the channel when a call is transferred. The CONNECTEDLINE information is passed when the call is answered and when the call is transferred.
+The CONNECTEDLINE function does the opposite of the CALLERID function. CONNECTEDLINE can be used to set up connected line information to be sent when the call is answered. You can use it to send new connected line information to the remote party on the channel when a call is transferred. The CONNECTEDLINE information is passed when the call is answered and when the call is transferred.
 
 !!! note 
     It is up to the channel technology to determine when to act upon connected line updates before the call is answered. ISDN will just store the updated information until the call is answered. SIP could immediately update the caller with a provisional response or wait for some other event to notify the caller.
@@ -51,8 +51,8 @@ The incoming call may have already been redirected. An incoming call has already
 
 There are several things to do when a call is forwarded by the dialplan:
 
-* Setup the REDIRECTING(to-xxx) values to be sent to the caller.
-* Setup the REDIRECTING(from-xxx) values to be sent to the new destination.
+* Set up the REDIRECTING(to-xxx) values to be sent to the caller.
+* Set up the REDIRECTING(from-xxx) values to be sent to the new destination.
 * Increment the REDIRECTING(count).
 * Set the REDIRECTING(reason).
 * Dial() the new destination.
@@ -67,7 +67,7 @@ For redirected calls out a trunk line, you need to use the 'i' option on all of 
 
 ### Dial() and Queue() dialplan application 'I' option
 
-In the dialplan applications Dial() and Queue(), the 'I' option is a brute force option to block connected line and redirecting information updates while the application is running. Blocking the updates prevents the update from overwriting any CONNECTEDLINE or REDIRECTING values you may have setup before running the application.
+In the dialplan applications Dial() and Queue(), the 'I' option is a brute force option to block connected line and redirecting information updates while the application is running. Blocking the updates prevents the update from overwriting any CONNECTEDLINE or REDIRECTING values you may have set up before running the application.
 
 The option blocks all redirecting updates since they should only happen before a call is answered. The option only blocks the connected line update from the initial answer. Connected line updates resulting from call transfers happen after the application has completed. Better control of connected line and redirecting information is obtained using the interception macros.
 

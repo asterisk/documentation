@@ -15,7 +15,7 @@ Install some dependencies
 -------------------------
 
 1. \*Get latest Python 2.X
-2. Setup repo from here: <http://projects.ag-projects.com/projects/documentation/wiki/Repositories>
+2. Set up repo from here: <http://projects.ag-projects.com/projects/documentation/wiki/Repositories>
 3. In your terminal, run the following commands
 
 ```

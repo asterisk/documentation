@@ -190,7 +190,7 @@ Embedding needs to be set for all modules at once, or per module.  menuselect do
 
 ### Circular dependencies
 
-Circular dependencies would have to be broken by use of "canuse" in at least one link of the loop - on a module that implements an optional API.  In theory we could add a "willuse" - a tag that would cause another module to be loaded immediately after the module that lists it as "willuse".  This is a difficult thing to deal with, the better option would be to fix the modules to not have circular dependencies.
+Circular dependencies would have to be broken by use of "canuse" in at least one link of the loop - on a module that implements an optional API.  In theory we could add a "willuse" - a tag that would cause another module to be loaded immediately after the module that lists it as "willuse".  This is a difficult thing to deal with, the better option would be to fix the modules not to have circular dependencies.
 
 To my knowledge there are not currently any circular dependencies in MODULEINFO blocks.  The module loader will need to protect itself against that (infinite dependency load recursion).  My immediate reaction is that circular dependencies need to prevent those modules from loading.  This may also be good reason for a 'make check' target.  This would not run the testsuite or even unit tests, but would be the right place to do things like validate XMLDOC against schema, ensure module manifests have no errors, etc.
 

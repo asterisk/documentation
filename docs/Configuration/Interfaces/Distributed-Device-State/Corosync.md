@@ -197,7 +197,7 @@ In the general section of the res_corosync.conf file we are specifying which eve
 
 * ###### Verifying Installation
 
-If everything is setup correctly, you should see this output after executing a 'corosync show members' on the Asterisk CLI.
+If everything is set up correctly, you should see this output after executing a 'corosync show members' on the Asterisk CLI.
 
 ```
 

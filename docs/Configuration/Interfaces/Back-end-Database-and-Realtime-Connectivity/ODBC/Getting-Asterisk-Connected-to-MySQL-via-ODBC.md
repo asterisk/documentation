@@ -195,6 +195,6 @@ See [Building and Installing Asterisk](/Getting-Started/Installing-Asterisk/Inst
 
 ### Configuring Asterisk's ODBC connection
 
-The basic configuration for an Asterisk ODBC connection is handled in res_odbc.conf. You should check out the [Configuring res_odbc](/Configuration/Interfaces/Back-end-Database-and-Realtime-Connectivity/ODBC/Configuring-res_odbc) page and follow it using the DSN and database username and password you setup earlier.
+The basic configuration for an Asterisk ODBC connection is handled in res_odbc.conf. You should check out the [Configuring res_odbc](/Configuration/Interfaces/Back-end-Database-and-Realtime-Connectivity/ODBC/Configuring-res_odbc) page and follow it using the DSN and database username and password you set up earlier.
 
 After you have the connection set up in Asterisk you are ready to then configure your database tables with the proper schema depending on what exactly you want to do with them. Asterisk comes with some helpful tools to do this, such as Alembic. See the [Managing Realtime Databases with Alembic](../../Managing-Realtime-Databases-with-Alembic) section to get started with Alembic if you are working towards an Asterisk Realtime setup.

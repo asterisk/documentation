@@ -301,7 +301,7 @@ Should we deprecate chan_sip?
 
 * Benefit to security to deprecate it sooner rather than later. As chan_sip ages without attention, it will become a security risk.
 * Large portion of community still reliant on chan_sip.. a lot of pain to move too soon.
-* A lot of reasons to not deprecate anytime soon, and a lot of reasons to deprecate it sooner rather than later.
+* A lot of reasons not to deprecate anytime soon, and a lot of reasons to deprecate it sooner rather than later.
 * We are on the path..chan_sip was already moved to extended support in 12.
 * Matt F doesn't want to nail down a specific time yet.
 

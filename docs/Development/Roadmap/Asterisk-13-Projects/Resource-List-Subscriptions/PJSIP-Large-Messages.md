@@ -486,7 +486,7 @@ This does a better job of overcoming the inflexibility of the second proposed so
 
 ### In Asterisk
 
-##### Change RLS full state notifications to not include resource instances
+##### Change RLS full state notifications not to include resource instances
 
 While RFC 4662 states that full state notifications must be sent when sending a NOTIFY in response to a SUBSCRIBE, it is somewhat ambiguous about whether a full state notification actually has to have instance data for each of the resources. Evidence on the sip-implementors mailing list suggests that it has been advised of people to send only the names and URIs of resources when sending a full state notification and then sending the actual instances of the resources in subsequent partial state notifications.
 

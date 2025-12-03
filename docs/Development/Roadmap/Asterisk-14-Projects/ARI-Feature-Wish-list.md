@@ -5,7 +5,7 @@ pageid: 32375021
 
 ## Overview
 
-The ARI Feature Wish-List has been setup to help collect ideas from the wider ARI community. If you're using ARI to build applications or developing an ARI framework, we're interested in your thoughts, suggestions and feedback. You can contribute by either posting a comment or by joining the conversation in the #asterisk-dev or #asterisk-ari channels over on freenode. Remember, unless you want to write the feature yourself, there's no guarantee it will be done.
+The ARI Feature Wish-List has been set up to help collect ideas from the wider ARI community. If you're using ARI to build applications or developing an ARI framework, we're interested in your thoughts, suggestions and feedback. You can contribute by either posting a comment or by joining the conversation in the #asterisk-dev or #asterisk-ari channels over on freenode. Remember, unless you want to write the feature yourself, there's no guarantee it will be done.
 
 ## Non-JIRA Feature Requests
 
