@@ -637,4 +637,4 @@ Now run `make`:
 $ make BRANCHES=22
 ```
 
-The main Makefile will automatically include the Makefile.<branch>.inc file for any branch listed in BRANCHES.  It doesn't make sense to build more than one branch in this situation but you could if you wanted to.  You'll have to make sure there's a `Makefile.<branch>.inc` file for each branch you want to build and that the paths in each file are adjusted to that branch's Asterisk files.
+The main Makefile will automatically include the `Makefile.<branch>.inc` file for any branch listed in BRANCHES.  It doesn't make sense to build more than one branch in this situation but you could if you wanted to.  You'll have to make sure there's a `Makefile.<branch>.inc` file for each branch you want to build and that the paths in each file are adjusted to that branch's Asterisk files.

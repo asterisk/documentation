@@ -36,7 +36,7 @@ A comment from ast_do_masquerade
 
 ```
 
-The way the operation works is to take two channels and 'swap' portions of them. In the diagram below, assume that Thread A has a channel that Thread B wants to take over. Thread B creates a new channel ("Original") and starts a Masquerade operation on the channel owned by Thread A ("Clone"). Both channels are locked, and the state of the Clone channel is moved into the Original channel, while the Clone channel obtains the Original channel's state. In order to denote that the channel is about to die, a special ZOMBIE flag is put on the channel and the name renamed to Clone<ZOMBIE>. The lock is released, and the Original channel - which now has the state associated with Clone channel - executes in Thread B, while the Clone channel (which is now quite dead) sees that it's dead and goes off to contemplate its demise silently in an `h` extension.
+The way the operation works is to take two channels and 'swap' portions of them. In the diagram below, assume that Thread A has a channel that Thread B wants to take over. Thread B creates a new channel ("Original") and starts a Masquerade operation on the channel owned by Thread A ("Clone"). Both channels are locked, and the state of the Clone channel is moved into the Original channel, while the Clone channel obtains the Original channel's state. In order to denote that the channel is about to die, a special ZOMBIE flag is put on the channel and the name renamed to `Clone<ZOMBIE>`. The lock is released, and the Original channel - which now has the state associated with Clone channel - executes in Thread B, while the Clone channel (which is now quite dead) sees that it's dead and goes off to contemplate its demise silently in an `h` extension.
 
 Asterisk_12_MasqueradesL
 Except, of course, that this is a dramatic simplification. It's never quite that easy.
@@ -341,7 +341,7 @@ Moves chan into the parking bridge and replaces the swap channel already in the 
 
 #### Add new CHANNEL() option:
 
-CHANNEL(after_bridge_goto)=<parseable-goto>  
+`CHANNEL(after_bridge_goto)=<parseable-goto>`
 
 #### BridgeWait()
 

@@ -29,7 +29,7 @@ Don't see your Wish-List request below? Ask in #asterisk-ari on freenode.
 | Stasis dialplan result variable | Set a channel variable on a channel if it can't get placed into a Stasis dialplan application. | 16/3/2015 | | Done |
 | Increase HTTP max content length | The HTTP max content length is currently 4k. That limits some of the requests that can be made. | 16/3/2015 | | Done |
 | Add/Remove Sounds | Allow ARI to be used to push new sounds to asterisk storage over HTTP and also deleted | 16/3/2015 |  |  |
-| ARI Debug | Allow ARI debug information at console, like sip set debug, we could have: ari set debug on/off. Could show details about messages passed between application and asterisk. Could be filtered by Stasis app too, e.g. "ari set debug <appname> on" | 05/05/2015 |  | Done |
+| ARI Debug | Allow ARI debug information at console, like sip set debug, we could have: ari set debug on/off. Could show details about messages passed between application and asterisk. Could be filtered by Stasis app too, e.g. `ari set debug <appname> on` | 05/05/2015 |  | Done |
 | ari show applications | Ability to list applications from the console. Show details like IP of application websocket endpoint, duration, missed msg's(?) | 01/08/2016 |  | Done |
 | Bridged DTMF Pass-through | Expose ability to set pass-through behavior of DTMF on bridges at bridge creation or when a channel is added to a bridge | 05/08/2016 |  |  |
 | Connection without user | Allow ARI requests to be initiated without requiring authentication or a user | 15/08/2016 |  |  |

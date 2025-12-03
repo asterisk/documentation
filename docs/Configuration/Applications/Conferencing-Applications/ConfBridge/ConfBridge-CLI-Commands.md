@@ -8,7 +8,7 @@ ConfBridge CLI Commands
 
 ConfBridge offers several commands that may be invoked from the Asterisk CLI.
 
-confbridge kick <conference> <channel>
+`confbridge kick <conference> <channel>`
 --------------------------------------
 
 Removes the specified channel from the conference, e.g.:
@@ -19,7 +19,7 @@ Kicking SIP/mypeer-00000000 from confbridge 1111
 
 ```
 
-On This Pageconfbridge list
+`confbridge list`
 ---------------
 
 Shows a summary listing of all bridges, e.g.:
@@ -32,7 +32,7 @@ Conference Bridge Name Users Marked Locked?
 
 ```
 
-confbridge list <conference>
+`confbridge list <conference>`
 ----------------------------
 
 Shows a detailed listing of participants in a specified conference, e.g.:
@@ -45,7 +45,7 @@ SIP/mypeer-00000001 default_user 1111 sample_user_menu
 
 ```
 
-confbridge lock <conference>
+`confbridge lock <conference>`
 ----------------------------
 
 Locks a specified conference so that only Admin users can join, e.g.:
@@ -56,7 +56,7 @@ Conference 1111 is locked.
 
 ```
 
-confbridge unlock <conference>
+`confbridge unlock <conference>`
 ------------------------------
 
 Unlocks a specified conference so that only Admin users can join, e.g.:
@@ -67,7 +67,7 @@ Conference 1111 is unlocked.
 
 ```
 
-confbridge mute <conference> <channel>
+`confbridge mute <conference> <channel>`
 --------------------------------------
 
 Mutes a specified user in a specified conference, e.g.:
@@ -78,7 +78,7 @@ Muting SIP/mypeer-00000001 from confbridge 1111
 
 ```
 
-confbridge unmute <conference> <channel>
+`confbridge unmute <conference> <channel>`
 ----------------------------------------
 
 Unmutes a specified user in a specified conference, e.g.:
@@ -89,7 +89,7 @@ Unmuting SIP/mypeer-00000001 from confbridge 1111
 
 ```
 
-confbridge record start <conference> <file>
+`confbridge record start <conference> <file>`
 -------------------------------------------
 
 Begins recording a conference. If "file" is specified, it will be used, otherwise, the Bridge Profile record_file will be used. If the Bridge Profile does not specify a record_file, one will be automatically generated in Asterisk's monitor directory. Usage:
@@ -101,7 +101,7 @@ Recording started
 
 ```
 
-confbridge record stop <confererence>
+`confbridge record stop <confererence>`
 -------------------------------------
 
 Stops recording the specified conference, e.g.:
@@ -114,7 +114,7 @@ Recording stopped.
 
 ```
 
-confbridge show menus
+`confbridge show menus`
 ---------------------
 
 Shows a listing of Conference Menus as defined in confbridge.conf, e.g.:
@@ -127,7 +127,7 @@ sample_user_menu
 
 ```
 
-confbridge show menu <menu name>
+`confbridge show menu <menu name>`
 --------------------------------
 
 Shows a detailed listing of a named Conference Menu, e.g.:
@@ -147,7 +147,7 @@ Name: sample_admin_menu
 
 ```
 
-confbridge show profile bridges
+`confbridge show profile bridges`
 -------------------------------
 
 Shows a listing of Bridge Profiles as defined in confbridge.conf, e.g.:
@@ -160,7 +160,7 @@ default_bridge
 
 ```
 
-confbridge show profile bridge <bridge>
+`confbridge show profile bridge <bridge>`
 ---------------------------------------
 
 Shows a detailed listing of a named Bridge Profile, e.g.:
@@ -193,7 +193,7 @@ sound_error_menu: conf-errormenu
 
 ```
 
-confbridge show profile users
+`confbridge show profile users`
 -----------------------------
 
 Shows a listing of User Profiles as defined in confbridge.conf, e.g.:
@@ -206,7 +206,7 @@ default_user
 
 ```
 
-confbirdge show profile user <user>
+`confbirdge show profile user <user>`
 -----------------------------------
 
 Shows a detailed listing of a named Bridge Profile, e.g.:

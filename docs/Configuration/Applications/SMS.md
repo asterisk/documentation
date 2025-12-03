@@ -32,13 +32,13 @@ All text messages are stored in /var/spool/asterisk/sms
 
 A log is recorded in /var/log/asterisk/sms
 
-There are two subdirectories called sc-me.<queuename> holding all messages from service centre to phone, and me-sc.<queuename> holding all messages from phone to service centre.
+There are two subdirectories called `sc-me.<queuename>` holding all messages from service centre to phone, and `me-sc.<queuename>` holding all messages from phone to service centre.
 
 In each directory are messages in files, one per file, using any filename not starting with a dot.
 
-When connected as a service centre, SMS(s) will send all messages waiting in the sc-me-<queuename> directory, deleting the files as it goes. Any received in this mode are placed in the me-sc-<queuename> directory.
+When connected as a service centre, SMS(s) will send all messages waiting in the `sc-me-<queuename>` directory, deleting the files as it goes. Any received in this mode are placed in the `me-sc-<queuename>` directory.
 
-When connected as a client, SMS() will send all messages waiting in the me-sc-<queuename> directory, deleting the files as it goes. Any received in this mode are placed in the sc-me-<queuename> directory.
+When connected as a client, SMS() will send all messages waiting in the `me-sc-<queuename>` directory, deleting the files as it goes. Any received in this mode are placed in the `sc-me-<queuename>` directory.
 
 Message files created by SMS() use a time stamp/reference based filename.
 
