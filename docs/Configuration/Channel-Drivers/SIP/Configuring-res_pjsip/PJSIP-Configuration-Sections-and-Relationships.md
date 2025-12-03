@@ -28,7 +28,7 @@ Reference documentation for all configuration parameters:
 * [Configuration options for outbound registration, provided by res_pjsip_outbound_registration](/Latest_API/API_Documentation/Module_Configuration/res_pjsip_outbound_registration)
 * [Configuration options for endpoint identification by IP address, provided by res_pjsip_endpoint_identifier_ip](/Latest_API/API_Documentation/Module_Configuration/res_pjsip_endpoint_identifier_ip)
 
-The same documentation is available at the Asterisk CLI as well. You can use "config show help <res_pjsip module name> <configobject> <configoption>" to get help on a particular option. That help will typically describe the default value for an option as well.
+The same documentation is available at the Asterisk CLI as well. You can use `config show help <res_pjsip module name> <configobject> <configoption>` to get help on a particular option. That help will typically describe the default value for an option as well.
 
 /// tip|Defaults
 For many config options, it's very helpful to understand their default behavior. For example, for the endpoint section "transport=" option, if no value is assigned then Asterisk will \*DEFAULT\* to the first configured transport in pjsip.conf which is valid for the URI we are trying to contact.

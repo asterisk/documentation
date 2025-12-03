@@ -59,7 +59,7 @@ Asterisk can subscribe to receive MWI from another SIP server and store it local
 
 ```
 
-MWI received will be stored in the 1234 mailbox of the SIP_Remote context. It can be used by other phones by setting their SIP peers "mailbox" option to the <mailbox_number>@SIP_Remote. e.g. mailbox=1234@SIP_Remote
+MWI received will be stored in the 1234 mailbox of the SIP_Remote context. It can be used by other phones by setting their SIP peers "mailbox" option to the `<mailbox_number>@SIP_Remote`. e.g. `mailbox=1234@SIP_Remote`
 
 Reception of unsolicited MWI NOTIFY with chan_sip
 --------------------------------------------------
@@ -72,7 +72,7 @@ A chan_sip peer can be configured to receive unsolicited MWI NOTIFY messages and
 
 ```
 
-If the remote SIP server sends an unsolicited MWI NOTIFY message the new/old message count will be stored in the configured virtual mailbox. It can be used by any device supporting MWI by specifying mailbox=<configured value>@SIP_Remote as the mailbox for the desired SIP peer.
+If the remote SIP server sends an unsolicited MWI NOTIFY message the new/old message count will be stored in the configured virtual mailbox. It can be used by any device supporting MWI by specifying `mailbox=<configured value>@SIP_Remote` as the mailbox for the desired SIP peer.
 
 res_external_mwi
 ------------------
@@ -91,4 +91,4 @@ External sources can use the API provided by res_external_mwi to communicate MWI
 chan_pjsip
 -----------
 
-The endpoint parameter `incoming_mwi_mailbox` (introduced in 13.18.0 and 14.7.0) takes a <`mailbox>@<context>` value.  When an unsolicited NOTIFY message is received ***from*** this endpoint with an event type of `message-summary` and the `incoming_mwi_mailbox` parameter is set, Asterisk will automatically publish the new/old message counts for the specified mailbox on the internal stasis bus for any other module to use.  For instance, if you have an analog phone and you specify `mailbox=userx@default` in chan_dahdi.conf, when a NOTIFY comes in on a pjsip endpoint with `incoming_mwi_mailbox=userx@default`, chan_dahdi will automatically pick that up and turn the MWI light on on the analog phone.
+The endpoint parameter `incoming_mwi_mailbox` (introduced in 13.18.0 and 14.7.0) takes a `<mailbox>@<context>` value.  When an unsolicited NOTIFY message is received ***from*** this endpoint with an event type of `message-summary` and the `incoming_mwi_mailbox` parameter is set, Asterisk will automatically publish the new/old message counts for the specified mailbox on the internal stasis bus for any other module to use.  For instance, if you have an analog phone and you specify `mailbox=userx@default` in chan_dahdi.conf, when a NOTIFY comes in on a pjsip endpoint with `incoming_mwi_mailbox=userx@default`, chan_dahdi will automatically pick that up and turn the MWI light on on the analog phone.

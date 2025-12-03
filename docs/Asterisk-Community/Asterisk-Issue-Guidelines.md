@@ -18,7 +18,7 @@ Feature requests without patches are generally not accepted through the issue tr
 See the forums, mailing lists, IRC channels, or this wiki. For even more information, see <http://www.asterisk.org/community>
 * **Support requests**: (My phone doesn't register! My database connectivity doesn't work! How do I get it to work?)  
 Search and ask on the forums, mailing lists, and IRC. Again, see <http://www.asterisk.org/community> for more information.
-* **Random wishes and feature requests with no patch:** (I want Asterisk to support <insert obscure protocol or gadget>, but I don't know how to code!)  
+* **Random wishes and feature requests with no patch:** (I want Asterisk to support `<insert obscure protocol or gadget>`, but I don't know how to code!)  
 See the [How to request a feature section](#how-to-request-a-feature-or-improvement) for more information on requesting a feature.
 * **Business development requests** (I will pay you to make Asterisk support fancy unicorn protocol!)  
 Please head to the Commercial category at <https://community.asterisk.org/>. If what you want is a specific feature or bug fixed, you may want to consider [requesting a bug bounty](/Development/Asterisk-Bug-Bounties).
