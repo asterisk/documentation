@@ -715,34 +715,30 @@ the XML again with the full descriptions, and forms bulleted lists.
     </xsl:if>
     <xsl:if test="$type='manager'">
         <xsl:text>&#10;</xsl:text>
-        <xsl:text>    Action: </xsl:text><xsl:value-of select="$name"/><xsl:text>&#10;</xsl:text>
+        <xsl:text>Action: </xsl:text><xsl:value-of select="$name"/><xsl:text>&#10;</xsl:text>
         <xsl:for-each select="parameter">
-            <xsl:text>    </xsl:text>
             <xsl:if test="@required='false' or @required='no'">
                 <xsl:text>[</xsl:text>
             </xsl:if>
             <xsl:value-of select="@name"/>
-            <xsl:text>:</xsl:text>
+            <xsl:text>: &lt;value&gt;&#10;</xsl:text>
             <xsl:if test="@required='false' or @required='no'">
                 <xsl:text>]</xsl:text>
             </xsl:if>
-            <xsl:text> &lt;value&gt;&#10;</xsl:text>
         </xsl:for-each>
     </xsl:if>
     <xsl:if test="$type='managerEvent'">
         <xsl:text>&#10;</xsl:text>
-        <xsl:text>    Event: </xsl:text><xsl:value-of select="$name"/><xsl:text>&#10;</xsl:text>
+        <xsl:text>Event: </xsl:text><xsl:value-of select="$name"/><xsl:text>&#10;</xsl:text>
         <xsl:for-each select="parameter">
-            <xsl:text>    </xsl:text>
             <xsl:if test="@required='false' or @required='no'">
                 <xsl:text>[</xsl:text>
             </xsl:if>
             <xsl:value-of select="@name"/>
-            <xsl:text>:</xsl:text>
+            <xsl:text>: &lt;value&gt;&#10;</xsl:text>
             <xsl:if test="@required='false' or @required='no'">
                 <xsl:text>]</xsl:text>
             </xsl:if>
-            <xsl:text> &lt;value&gt;&#10;</xsl:text>
         </xsl:for-each>
     </xsl:if>
     <xsl:text>&#10;</xsl:text>
