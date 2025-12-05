@@ -1081,7 +1081,6 @@ Note that the name of the client settings context is the username for the client
 | permit | ACL | An address/mask to allow in an ACL. This option may be present multiple times. |  |
 | acl | String | A Named ACL to apply to the client. |  |
 | setvar | String | A channel variable key/value pair (using the nomenclature VARIABLE=value) that will be set on all channels originated from this client |  |
-| eventfilter | RegEx | This option may be present multiple times. This options allows clients to whitelist or blacklist events. A filter is assumed to be a whitelist unless preceeded by a '\!'.Evaluation of the filters is as follows:  
 | eventfilter | Structured Expression or RegEx (deprecated) | This option may be present multiple times. This option allows clients to whitelist or blacklist events. See [ami-event-filtering](/Configuration/Interfaces/Asterisk-Manager-Interface-AMI/AMI-Event-Filtering) for details. **Added in:** Structured Expression syntax added in 18.26.0, 20.11.0, 21.6.0, 22.1.0 (Nov 2024) | |
 | read | String | A comma delineated list of the allowed class authorizations applied to events | all |
 | write | String | A comma delineated list of the allowed class authorizations applied to actions | all |
