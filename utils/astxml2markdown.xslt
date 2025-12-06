@@ -721,10 +721,11 @@ the XML again with the full descriptions, and forms bulleted lists.
                 <xsl:text>[</xsl:text>
             </xsl:if>
             <xsl:value-of select="@name"/>
-            <xsl:text>: &lt;value&gt;&#10;</xsl:text>
+            <xsl:text>: &lt;value&gt;</xsl:text>
             <xsl:if test="@required='false' or @required='no'">
                 <xsl:text>]</xsl:text>
             </xsl:if>
+            <xsl:text>&#10;</xsl:text>
         </xsl:for-each>
     </xsl:if>
     <xsl:if test="$type='managerEvent'">
@@ -735,10 +736,11 @@ the XML again with the full descriptions, and forms bulleted lists.
                 <xsl:text>[</xsl:text>
             </xsl:if>
             <xsl:value-of select="@name"/>
-            <xsl:text>: &lt;value&gt;&#10;</xsl:text>
+            <xsl:text>: &lt;value&gt;</xsl:text>
             <xsl:if test="@required='false' or @required='no'">
                 <xsl:text>]</xsl:text>
             </xsl:if>
+            <xsl:text>&#10;</xsl:text>
         </xsl:for-each>
     </xsl:if>
     <xsl:text>&#10;</xsl:text>
