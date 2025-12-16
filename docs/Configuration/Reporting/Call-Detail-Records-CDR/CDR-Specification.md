@@ -132,7 +132,7 @@ A CDR is finalized in one of the following scenarios:
 
 When a CDR is finalized, no further modifications can be made to the CDR by the user or Asterisk.
 
-If a Party A channel in a CDR is not hung up but the CDR is finalized - such as when the channel leaves a bridge of its Party B hangs up - a new CDR is made for that channel and the process in [CDR Creation](#creation) is begun again. Note that if the Party B in a CDR continues on in the the dialplan and/or is bridged with a new party, it may become Party A for a new CDR.
+If a Party A channel in a CDR is not hung up but the CDR is finalized - such as when the channel leaves a bridge of its Party B hangs up - a new CDR is made for that channel and the process in [CDR Creation](#creation) is begun again. Note that if the Party B in a CDR continues on in the dialplan and/or is bridged with a new party, it may become Party A for a new CDR.
 
 If at any point the Party A channel for a CDR is hung up, all CDR records for that Party A are [dispatched](#dispatch).
 
