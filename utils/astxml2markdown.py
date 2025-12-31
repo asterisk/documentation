@@ -225,6 +225,15 @@ class AstXML2Markdown:
         with open(markdown_path + "/index.md", "w") as ix:
             ix.write("# API Documentation\n")
 
+            # Generate the index for the 'API Documentation' page. Even though
+            # we don't generate the ARI markdown in this script, it still needs
+            # to be included in the top-level API index page.
+            sections = [*self.parent.values(), 'Asterisk REST Interface']
+            for section in sorted(sections):
+                ix.write("* [%s](%s/)\n" % (
+                    section,
+                    section.replace(' ', '_')))
+
         # The over all layout of this is main documentation -> prefix/version documentation -> parents -> reference documentation
 
     	# Create the main directory to contain the markdown
@@ -235,6 +244,17 @@ class AstXML2Markdown:
             os.makedirs(markdown_path + "/" + self.parent[parent].replace(' ', '_'), exist_ok=True)
             with open(markdown_path + "/" + self.parent[parent].replace(' ', '_') + "/index.md", "w") as ix:
                 ix.write("# %s\n" % self.parent[parent])
+                for node in sorted([e for e in self.elements if e.tag == parent], key=lambda e: e.attrib.get('name')):
+                    if node.tag == 'agi':
+                        # In order for AGI commands to match the casing generated
+                        # by the XSLT, we need to force uppercase here.
+                        ix.write("* [%s](%s.md)\n" % (
+                            node.attrib.get('name').upper(),
+                            node.attrib.get('name').replace(" ", "_")))
+                    else:
+                        ix.write("* [%s](%s.md)\n" % (
+                            node.attrib.get('name'),
+                            node.attrib.get('name').replace(" ", "_")))
 
         for node in self.elements:
             name = node.attrib.get('name')
