@@ -70,7 +70,8 @@ static-setup:: $(BUILD_DIR) $(BUILD_DIR)/mkdocs.yml
 	@echo "Setting Up Static Documentation"
 ifeq ($(NO_STATIC),)
 	@echo "  Copying docs/ to temp build"
-	@rsync -vaH --delete-after docs/. $(BUILD_DIR)/docs/
+	@# Don't copy in static API documentation.
+	@rsync -vaH --delete-after --exclude=*/API_Documentation/ docs/. $(BUILD_DIR)/docs/
 else
 	@echo "  Copying only docs/index.md and favicon.ico to temp build"
 	@mkdir -p $(BUILD_DIR)/docs
@@ -91,9 +92,26 @@ dynamic-setup:
 	@branches=$(BRANCHES) ;\
 	IFS=',' ;\
 	for branch in $${branches} ; do \
-		echo "Building branch $${branch}" ;\
-		$(MAKE) --no-print-directory BRANCH=$${branch} $(if $(NO_STATIC),NO_STATIC=yes,) dynamic-branch-setup ;\
+		if [[ $${branch} =~ certified ]] ; then \
+			BRANCH_DOC_DIR="Certified-Asterisk_$${branch//certified\//}_Documentation" ;\
+		else \
+			BRANCH_DOC_DIR="Asterisk_$${branch}_Documentation" ;\
+		fi ;\
+		if [ -d "docs/$${BRANCH_DOC_DIR}/API_Documentation" ] ; then \
+			echo "Copying static branch $${branch}" ;\
+			$(MAKE) --no-print-directory BRANCH=$${branch} NEEDS_DOWNLOAD=no $(if $(NO_STATIC),NO_STATIC=yes,) static-branch-setup ;\
+		else \
+			echo "Building branch $${branch}" ;\
+			$(MAKE) --no-print-directory BRANCH=$${branch} $(if $(NO_STATIC),NO_STATIC=yes,) dynamic-branch-setup ;\
+		fi ;\
 	done
+
+static-branch-setup: NEEDS_DOWNLOAD = no
+static-branch-setup: branch-check $(BUILD_DIR)/docs $(BRANCH_DIR)
+	@rsync -aH --delete-after docs/${BRANCH_DOC_DIR}/API_Documentation ${BRANCH_DIR}
+	@[ -L $(BUILD_DIR)/docs/$(BRANCH_DOC_DIR)/API_Documentation ] && \
+		rm $(BUILD_DIR)/docs/$(BRANCH_DOC_DIR)/API_Documentation || :
+	@ln -sfr $(BRANCH_DIR)/docs $(BUILD_DIR)/docs/$(BRANCH_DOC_DIR)/API_Documentation
 
 dynamic-branch-setup: branch-check dynamic-core-setup $(if $(SKIP_ARI),,dynamic-ari-setup)
 
