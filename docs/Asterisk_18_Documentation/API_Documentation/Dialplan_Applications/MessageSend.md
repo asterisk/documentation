@@ -116,7 +116,7 @@ The 'from' parameter can be a configured peer name or in the form of "display-na
     * __Technology: XMPP__<br>
 Specifying a prefix of 'xmpp:' will specify the account defined in 'xmpp.conf' to send the message from. Note that this field is required for XMPP messages.<br>
 
-* `to` - A To URI for the message if needed for the message technology being used to send this message. This can be a SIP(S) URI, such as 'Alice <sip:alice@atlanta.com>', or a string in the format 'alice@atlanta.com'. This will override a 'to' specified using the MESSAGE dialplan function or the 'to' that may have been on an incoming message.<br>
+* `to` - A To URI for the message if needed for the message technology being used to send this message. This should be a SIP(S) URI, such as 'Alice <sip:alice@atlanta.com>'. This will override a 'to' specified using the MESSAGE dialplan function or the 'to' that may have been on an incoming message.<br>
 
     * __Technology: PJSIP__<br>
 The 'to' parameter is used to specity the 'To:' header in the outgoing SIP MESSAGE. It will override the value specified in MESSAGE(to) which itself will override any 'to' value from an incoming SIP MESSAGE.<br>
