@@ -48,7 +48,7 @@ This application sets the following channel variables:<br>
 
 ```
 
-AMD([initialSilence,[greeting,[afterGreetingSilence,[totalAnalysis Time,[miniumWordLength,[betweenWordSilence,[maximumNumberOfWords,[silenceThreshold,[maximumWordLength]]]]]]]]])
+AMD([initialSilence,[greeting,[afterGreetingSilence,[totalAnalysisTime,[miniumWordLength,[betweenWordSilence,[maximumNumberOfWords,[silenceThreshold,[maximumWordLength]]]]]]]]])
 ```
 ##### Arguments
 
@@ -62,7 +62,7 @@ If this is exceeded, the result is detection as a MACHINE<br>
 * `afterGreetingSilence` - Is the silence after detecting a greeting.<br>
 If this is exceeded, the result is detection as a HUMAN<br>
 
-* `totalAnalysis Time` - Is the maximum time allowed for the algorithm<br>
+* `totalAnalysisTime` - Is the maximum time allowed for the algorithm<br>
 to decide on whether the audio represents a HUMAN, or a MACHINE<br>
 
 * `miniumWordLength` - Is the minimum duration of Voice considered to be a word<br>
