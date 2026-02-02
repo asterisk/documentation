@@ -323,7 +323,7 @@ You can also create a WebSocket channel using the normal channel API calls and s
 Examples:
 
 ``` title="ARI /channel Examples"
-POST http://server:8088/ari/channels?endpoint="WebSocket/connection1/c(alaw)"
+POST http://server:8088/ari/channels?endpoint="WebSocket/connection1/c(alaw)v(myurivar=myvalue)"
 POST http://server:8088/ari/channels/create?endpoint="WebSocket/INCOMING/c(ulaw)n"
 ```
 
@@ -338,11 +338,11 @@ A new `transport_data` parameter has been added to externalMedia in Asterisk ver
 Example:
 
 ``` title="ARI External Media Examples"
-POST http://server:8088/ari/channels/externalMedia?transport=websocket&encapsulation=none&external_host=media_connection1&format=ulaw&transport_data=f(json)
+POST http://server:8088/ari/channels/externalMedia?transport=websocket&encapsulation=none&external_host=media_connection1&format=ulaw&transport_data=f(json)v(myurivar=myvalue)
 POST http://server:8088/ari/channels/externalMedia?transport=websocket&encapsulation=none&external_host=INCOMING&connection_type=server&format=ulaw
 ```
 
-The first example will create an outbound websocket connection to your app using the "media_connection1" websocket_client configuration and the "json" control message format.  The second example will wait for an incoming connection from your app.  Both examples will automatically dial and answer the websocket channel.  The `transport_data` parameter can be used to set dialstring_options like the control message format or the `n` don't answer flag.  Use the normal channel creation APIs if you need even more control.
+The first example will create an outbound websocket connection to your app using the "media_connection1" websocket_client configuration with the "json" control message format and "myurivar=myvalue" URI parameters.  The second example will wait for an incoming connection from your app.  Both examples will automatically dial and answer the websocket channel.  The `transport_data` parameter can be used to set dialstring_options like the control message format or the `n` don't answer flag.  Use the normal channel creation APIs if you need even more control.
 
 ## Sample Code
 
