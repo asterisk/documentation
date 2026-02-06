@@ -15,7 +15,7 @@ This tutorial assumes the following:
 
 * You have a SIP phone plugged into the same LAN where the Asterisk server is plugged in, or can install the Zoiper softphone used in the example
 * If you use your own hardware phone, we assume both the phone and Asterisk can reach each other and are on the same subnet.
-* When you built Asterisk, you should have made sure to build the SIP channel driver you wanted to use, which may imply other requirements. For example if you want to use chan_pjsip, then make sure you followed the [Installing pjproject](/Getting-Started/Installing-Asterisk/Installing-Asterisk-From-Source/PJSIP-pjproject) guide.
+* When you built Asterisk, you should have made sure to build the SIP channel driver you wanted to use, which may imply other requirements. For example if you want to use chan_pjsip, then make sure you followed the [Installing pjproject](/Getting-Started/Installing-Asterisk/Installing-Asterisk-From-Source/Prerequisites/PJSIP-pjproject) guide.
 
 Configuration files needed
 --------------------------

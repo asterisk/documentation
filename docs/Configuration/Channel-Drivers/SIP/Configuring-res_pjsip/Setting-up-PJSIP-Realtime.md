@@ -11,7 +11,7 @@ This tutorial describes the configuration of Asterisk's PJSIP channel driver wit
 
 For the purposes of this tutorial, we will assume a base Ubuntu 12.0.4.3 x86_64 server installation, with the OpenSSH server and LAMP server options, and that Asterisk will use its [ODBC](http://www.unixodbc.org/) connector to reach a back-end [MySQL](http://www.mysql.com/) database.
 
-Beyond the normal packages needed to install Asterisk 12 on such a server (build-essential, libncurses5-dev, uuid-dev, libjansson-dev, libxml2-dev, libsqlite3-dev) as well as the [Installation of pjproject](/Getting-Started/Installing-Asterisk/Installing-Asterisk-From-Source/PJSIP-pjproject), you will need to install the following packages:
+Beyond the normal packages needed to install Asterisk 12 on such a server (build-essential, libncurses5-dev, uuid-dev, libjansson-dev, libxml2-dev, libsqlite3-dev) as well as the [Installation of pjproject](/Getting-Started/Installing-Asterisk/Installing-Asterisk-From-Source/Prerequisites/PJSIP-pjproject), you will need to install the following packages:
 
 * unixodbc and unixodbc-dev
 	+ ODBC and the development packages for building against ODBC

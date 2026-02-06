@@ -655,4 +655,4 @@ If you look into your logs you might messages similar to the following:
 
 ```
 
-The most likely issue is that you have not compiled **pjproject** with support for IPv6. You can find instructions at [PJSIP-pjproject](/Getting-Started/Installing-Asterisk/Installing-Asterisk-From-Source/PJSIP-pjproject).
+The most likely issue is that you have not compiled **pjproject** with support for IPv6. You can find instructions at [PJSIP-pjproject](/Getting-Started/Installing-Asterisk/Installing-Asterisk-From-Source/Prerequisites/PJSIP-pjproject).

@@ -30,7 +30,7 @@ Core Libraries
 --------------
 
 * DAHDI
-* [pjproject](/Getting-Started/Installing-Asterisk/Installing-Asterisk-From-Source/PJSIP-pjproject)
+* [pjproject](/Getting-Started/Installing-Asterisk/Installing-Asterisk-From-Source/Prerequisites/PJSIP-pjproject)
 * unixodbc
 * libspeex
 * libspeexdsp

@@ -14,7 +14,7 @@ Note about chan_pjsip
     * Beginning with Asterisk 13.8.0, a stable version of pjproject is included in Asterisk's ./third-party directory and is enabled with the `--with-pjproject-bundled` option to `./configure`.
     * Beginning with Asterisk 15.0.0, it is enabled by default but can be disabled with the `--without-pjproject-bundled` option to `./configure`.
 
-    See: [PJSIP-pjproject](/Getting-Started/Installing-Asterisk/Installing-Asterisk-From-Source/PJSIP-pjproject)
+    See: [PJSIP-pjproject](/Getting-Started/Installing-Asterisk/Installing-Asterisk-From-Source/Prerequisites/PJSIP-pjproject)
 
     See:  [Configuring res_pjsip](/Configuration/Channel-Drivers/SIP/Configuring-res_pjsip)
 

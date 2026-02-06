@@ -3,7 +3,7 @@ title: Upgrading pjproject Bundled
 pageid: 38765236
 ---
 
-This page explains how to upgrade the bundled version of a software with examples given for pjproject. For information on how to compile with bundled pjproject, see [PJSIP-pjproject.](/Getting-Started/Installing-Asterisk/Installing-Asterisk-From-Source/PJSIP-pjproject)
+This page explains how to upgrade the bundled version of a software with examples given for pjproject. For information on how to compile with bundled pjproject, see [PJSIP-pjproject.](/Getting-Started/Installing-Asterisk/Installing-Asterisk-From-Source/Prerequisites/PJSIP-pjproject)
 
 Update Third Party Mirror
 
