@@ -1,6 +1,7 @@
 nav:
   - index.md
   - Code-Contribution
+  - AI-Policy.md
   - Commit-Messages.md
   - Coding-Guidelines.md
   - Software-Configuration-Management-Policies.md
@@ -10,4 +11,4 @@ nav:
   - New-Features-and-Improvements.md
   - Release-Management.md
   - Asterisk-Sounds-Submission-Process.md
-  
+

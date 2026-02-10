@@ -4,6 +4,10 @@ All code management/contribution/review processes will be handled with [GitHub A
 
 ## Code Contribution Process
 
+### AI Policy
+
+Before beginning if using AI please see our [AI Policy](/Development/Policies-and-Procedures/AI-Policy).
+
 ### Install the [GitHub CLI "gh"](https://cli.github.com) tool
 
 While not strictly required, using the "[gh](https://cli.github.com)" tool to manage the process will make things much easier.  The package is available in most distribution's package management systems as "gh".
