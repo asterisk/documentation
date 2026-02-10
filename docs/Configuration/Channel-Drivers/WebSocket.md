@@ -167,6 +167,14 @@ If you've previously paused the media, this will cause the channel driver to sto
 
 Parameters: None
 
+#### `MARK_MEDIA`[^1^](#fn1)
+
+This will cause the channel driver to place a "mark" in the media stream you send to Asterisk.  When that
+mark reaches the front of the frame queue, you'll receive a `MEDIA_MARK_PROCESSED` event back. This can help you
+determine when media you've sent is actually going to be heard by the connected party.
+
+* correlation_id: An optional id that will be returned in the `MEDIA_MARK_PROCESSED` event.
+
 #### `GET_STATUS`
 
 This will cause the channel driver to send back a `STATUS` message (described below).
@@ -247,6 +255,15 @@ Parameters:
 
 * channel_id: The channel unique id.
 * correlation_id: The correlation_id provides in the `STOP_MEDIA_BUFFERING` command, if any.
+
+#### `MEDIA_MARK_PROCESSED`
+
+Indicates that a previous mark queued with the `MARK_MEDIA` command has reached the front of the frame queue.
+
+Parameters:
+
+* channel_id[^2^](#fn2): The channel unique id.
+* correlation_id: The correlation_id provides in the `MARK_MEDIA` command, if any.
 
 #### `QUEUE_DRAINED`
 
