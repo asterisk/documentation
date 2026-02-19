@@ -173,6 +173,8 @@ This will cause the channel driver to place a "mark" in the media stream you sen
 mark reaches the front of the frame queue, you'll receive a `MEDIA_MARK_PROCESSED` event back. This can help you
 determine when media you've sent is actually going to be heard by the connected party.
 
+Parameters:
+
 * correlation_id: An optional id that will be returned in the `MEDIA_MARK_PROCESSED` event.
 
 #### `GET_STATUS`
@@ -186,6 +188,20 @@ Parameters: None
 This will cause the channel driver to send back a one-time `QUEUE_DRAINED` notification the next time it detects that there are no more frames to process in the queue.  Not applicable in passthrough mode.
 
 Parameters: None
+
+#### `SET_MEDIA_DIRECTION`[^1^](#fn1)
+
+This will cause the channel driver to set the media direction from the perspective of the application. A direction of "in", "out", or "both" must be specified. If direction is "in", Asterisk will drop any media it receives from the application. If direction is "out", Asterisk will not send any media to the application. If direction is "both", media is sent and received normally. The following commands will generate an error if sent while media direction is "in":
+
+* START_MEDIA_BUFFERING
+* STOP_MEDIA_BUFFERING
+* MARK_MEDIA
+* PAUSE_MEDIA
+* CONTINUE_MEDIA
+
+Parameters:
+
+* direction: The value to set the media direction to. Can be "both", "in", or "out". Mandatory.
 
 #### Footnotes:
 
@@ -331,6 +347,9 @@ Dial(WebSocket/connection1/c(opus)v(chan=${URIENCODE(${CHANNEL})},exten=$(URIENC
 ; Wait for an incoming websocket connection from a remote application and pass media
 ; using the slin16 codec.
 Dial(WebSocket/INCOMING/c(slin16))
+
+; Make an outbound connection using the ulaw codec and a media direction of "in".
+Dial(WebSocket/connection1/c(ulaw)d(in))
 ```
 
 ### Using the [ARI `/channels`](/Latest_API/API_Documentation/Asterisk_REST_Interface/Channels_REST_API/) REST APIs
@@ -341,7 +360,7 @@ Examples:
 
 ``` title="ARI /channel Examples"
 POST http://server:8088/ari/channels?endpoint="WebSocket/connection1/c(alaw)v(myurivar=myvalue)"
-POST http://server:8088/ari/channels/create?endpoint="WebSocket/INCOMING/c(ulaw)n"
+POST http://server:8088/ari/channels/create?endpoint="WebSocket/INCOMING/c(ulaw)d(both)n"
 ```
 
 The first example will create and dial the channel then connect to your app using the "media_connection1" websocket_client configuration. The channel will auto answer when the websocket connection is established.  The second example will create the channel but not dial or auto-answer it.  Instead the channel driver will wait for your app to connect to it.  You can then dial and answer it yourself when appropriate.  You can still omit the `n` to have incoming connections auto-answered.
@@ -355,8 +374,8 @@ A new `transport_data` parameter has been added to externalMedia in Asterisk ver
 Example:
 
 ``` title="ARI External Media Examples"
-POST http://server:8088/ari/channels/externalMedia?transport=websocket&encapsulation=none&external_host=media_connection1&format=ulaw&transport_data=f(json)v(myurivar=myvalue)
-POST http://server:8088/ari/channels/externalMedia?transport=websocket&encapsulation=none&external_host=INCOMING&connection_type=server&format=ulaw
+POST http://server:8088/ari/channels/externalMedia?transport=websocket&encapsulation=none&external_host=media_connection1&format=ulaw&transport_data=f(json)v(myurivar=myvalue)d(out)
+POST http://server:8088/ari/channels/externalMedia?transport=websocket&encapsulation=none&external_host=INCOMING&connection_type=server&format=ulaw&direction=out
 ```
 
 The first example will create an outbound websocket connection to your app using the "media_connection1" websocket_client configuration with the "json" control message format and "myurivar=myvalue" URI parameters.  The second example will wait for an incoming connection from your app.  Both examples will automatically dial and answer the websocket channel.  The `transport_data` parameter can be used to set dialstring_options like the control message format or the `n` don't answer flag.  Use the normal channel creation APIs if you need even more control.
