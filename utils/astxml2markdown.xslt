@@ -786,6 +786,11 @@ the XML again with the full descriptions, and forms bulleted lists.
     <xsl:value-of select="str:padding($bulletlevel * $tabsize, ' ')"/>
     <xsl:value-of select="concat('* __Technology: ', @tech, '__')"/>
     <xsl:choose>
+        <xsl:when test="@module">
+        <xsl:text> - [</xsl:text><xsl:value-of select="@module"/><xsl:text>\]</xsl:text>
+        </xsl:when>
+    </xsl:choose>
+    <xsl:choose>
         <xsl:when test="para">
             <xsl:text>&lt;br&gt;&#10;</xsl:text>
         </xsl:when>
