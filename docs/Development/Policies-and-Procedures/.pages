@@ -4,6 +4,7 @@ nav:
   - AI-Policy.md
   - Commit-Messages.md
   - Coding-Guidelines.md
+  - XML-Documentation.md
   - Software-Configuration-Management-Policies.md
   - Bug-Fixes.md
   - C-API-Deprecation.md
