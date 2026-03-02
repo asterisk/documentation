@@ -92,9 +92,13 @@ documentation
 
 When rendered, the index will only show "My New Page" under "Configuration" and when clicked on, will automatically display the contents of `index.md`.
 
+If the directory you're adding the page to has a `.pages` file, you'll need to add an entry to it for your new page or it won't show in the index.  See [Page Ordering](#page-ordering) below.
+
 ### Adding a new section
 
 Adding a new section is as simple as adding a new directory to the repo filesystem. The same naming rules apply as for pages with the exception of adding the `.md` suffix. You should also add an `index.md` page that describes describe the section.  You can then add your additional pages as above.
+
+If the directory you're adding the section to has a `.pages` file, you'll need to add an entry to it for your new section or it won't show in the index. See [Page Ordering](#page-ordering) below.
 
 ### Page ordering
 
