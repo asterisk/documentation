@@ -162,7 +162,7 @@ Note that dialed channels automatically receive the `linkedid` of the calling ch
 
 | Field | Type | Description | Access |
 | --- | --- | --- | --- |
-| accountcode | String (20) | An account code associated with the Party A channel | r/w |
+| accountcode | String (80) | An account code associated with the Party A channel | r/w |
 | src | String (80) | The Caller ID Number | r |
 | dst | String (80) | The destination extension | r |
 | dcontext | String (80) | The destination context | r |
@@ -179,8 +179,8 @@ Note that dialed channels automatically receive the `linkedid` of the calling ch
 | disposition | Enum | The final known disposition of the CDR record. See [CDR dispositions](#dispositions) for possible values | r |
 | amaflags | Enum | A flag specified on the Party A channel. See AMA records for possible values | r/w |
 | userfield | String (255) | A user defined field set on the channels. If set on both the Party A and Party B channel, the userfields of both are concatenated and separated by a `;` | r/w |
-| uniqueid | String (32) | A unique identifier for the Party A channel | r |
-| linkedid | String (32) | A unique identifier that unites multiple CDR records. See [linkedid propagation](#linkedid-propagation) for more details | r |
+| uniqueid | String (152) | A unique identifier for the Party A channel | r |
+| linkedid | String (152) | A unique identifier that unites multiple CDR records. See [linkedid propagation](#linkedid-propagation) for more details | r |
 | peeraccount | String (80) | The account code of the Party B channel | r/w |
 | sequence | Integer | A numeric value that, combined with uniqueid and linkedid, can be used to uniquely identify a single CDR record | r |
 
