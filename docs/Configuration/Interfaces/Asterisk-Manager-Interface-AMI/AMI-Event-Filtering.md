@@ -31,6 +31,7 @@ You can specify up to one of each criterion in any order, separated by commas:
 #### name(<event_name>)
 - Matches events with the exact event name specified
 - Uses efficient hash-based matching instead of regex
+- **Event names are case-sensitive** - use `asterisk -rx "manager show events"` to verify exact casing
 - Example: `name(Newchannel)`, `name(Hangup)`
 
 #### header(<header_name>)
