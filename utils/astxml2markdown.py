@@ -242,19 +242,21 @@ class AstXML2Markdown:
         # Go through the parents creating their directories and pages
         for parent in self.parent:
             os.makedirs(markdown_path + "/" + self.parent[parent].replace(' ', '_'), exist_ok=True)
+
+            links = dict()
+            for node in sorted([e for e in self.elements if e.tag == parent], key=lambda e: e.attrib.get('name')):
+                key = node.attrib.get('name').replace(' ', '_')
+                if node.tag == 'agi':
+                    # In order for AGI commands to match the casing generated
+                    # by the XSLT, we need to force uppercase here.
+                    links[key] = node.attrib.get('name').upper()
+                else:
+                    links[key] = node.attrib.get('name')
+
             with open(markdown_path + "/" + self.parent[parent].replace(' ', '_') + "/index.md", "w") as ix:
-                ix.write("# %s\n" % self.parent[parent])
-                for node in sorted([e for e in self.elements if e.tag == parent], key=lambda e: e.attrib.get('name')):
-                    if node.tag == 'agi':
-                        # In order for AGI commands to match the casing generated
-                        # by the XSLT, we need to force uppercase here.
-                        ix.write("* [%s](%s.md)\n" % (
-                            node.attrib.get('name').upper(),
-                            node.attrib.get('name').replace(" ", "_")))
-                    else:
-                        ix.write("* [%s](%s.md)\n" % (
-                            node.attrib.get('name'),
-                            node.attrib.get('name').replace(" ", "_")))
+                ix.write(f"# {self.parent[parent]}\n")
+                for link, name in links.items():
+                    ix.write(f"* [{name}]({link}.md)\n")
 
         for node in self.elements:
             name = node.attrib.get('name')
