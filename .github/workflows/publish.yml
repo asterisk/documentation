@@ -12,7 +12,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           fetch-depth: 0
 
@@ -27,7 +27,7 @@ jobs:
 
       - name: Get Token needed to push updates
         id: get_workflow_token
-        uses: peter-murray/workflow-application-token-action@v3
+        uses: peter-murray/workflow-application-token-action@v4
         with:
           application_id: ${{secrets.ASTERISK_ORG_ACCESS_APP_ID}}
           application_private_key: ${{secrets.ASTERISK_ORG_ACCESS_APP_PRIV_KEY}}
