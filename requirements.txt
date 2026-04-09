@@ -9,3 +9,4 @@ lxml==6.0.1
 pymdown-extensions==10.16
 mkdocs-redirects==1.2.2
 mkdocs_mermaid2_plugin==1.2.2
+pygments==2.19.2 # Need to pin this to avoid https://github.com/pygments/pygments/issues/3076
