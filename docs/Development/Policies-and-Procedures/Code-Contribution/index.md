@@ -118,7 +118,7 @@ You should always use option 1 when possible.  Unlike Gerrit, GitHub was never d
 
 ### Create a Pull Request
 
-When you've finished your work and committed, you can create a new pull request by running `gh pr create --fill --base <base branch>`.  The `--fill` option sets the pull request description to the same as the commit message and the `--base` option indicates which asterisk branch the pull request is targeted for (usually master).  When prompted where the new branch should be pushed, choose your fork, NOT the upstream repo.
+When you've finished your work and committed, you can create a new pull request by running `gh pr create --fill --base <base branch>`.  First, run `gh repo set-default --view` to ensure you've set the default repository to the upstream repository (asterisk/asterisk, asterisk/testsuite, etc), then create the pull request with `gh pr create --fill --base <base branch>`.  The `--fill` option sets the pull request description to the same as the commit message and the `--base` option indicates which asterisk branch the pull request is targeted for (usually master).  When prompted where the new branch should be pushed, choose your fork, NOT the upstream repo.
 
 #### Cherry Picking
 Unless there are special circumstances, all changes need to be cherry-picked to the currently-supported major version branches.  This is accomplished by adding a special comment to the PR indicating which branches the PR should be cherry-picked to:
