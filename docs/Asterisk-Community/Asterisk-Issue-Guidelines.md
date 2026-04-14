@@ -55,6 +55,14 @@ Search the [Asterisk Issue Tracker on GitHub](https://github.com/asterisk/asteri
 * **Can you reproduce the problem?**  
 Problems that can't be reproduced can often be difficult to solve, and your issue may be closed if you or the bug marshals cannot reproduce the problem. If you can't find a way to simulate or reproduce the issue, then it is advisable to configure your system such that it is [capturing relevant debug](/Operation/Logging/Collecting-Debug-Information) during the times failure occurs. Yes, that could mean running debug for days or weeks if necessary.
 
+AI Usage in Bug Report
+----------------------
+
+If using AI to assist in the creation of your bug report you must do the following:
+
+1. Verify the results of the AI to ensure it has not injected inaccurate information
+2. Disclose your AI usage including model and version
+
 Submitting the bug report
 -------------------------
 

@@ -7,10 +7,13 @@ Human-generated mistakes tend to be easier to spot and reason about, and code re
 generated without much engagement from the submitter, reviewers with access to AI tools could more efficiently generate the code directly, and since the submitter is not likely to learn from the review process, their time is
 more productively spent researching and reporting on the issue.
 
+## Use in creation of pull requests
+
 We are not opposed to the use of AI tools in generating PRs, but require the following:
 
 * Only submit a PR if you are able to debug and own the changes yourself - review all generated code to understand every detail. [Apache Datafusion has a useful explanation of **why fully AI-generated PRs without understanding are not helpful**](https://datafusion.apache.org/contributor-guide/index.html#why-fully-ai-generated-prs-without-understanding-are-not-helpful).
 * Comply with the coding guidelines including style, conventions, and commit messages
+* Ensure that the commit message contains accurate and correct information about the PR
 * Be upfront about AI usage and summarise what was AI-generated
 * If there are parts you don't fully understand, leave comments on your own PR explaining what steps you took to verify correctness
 * Watch for AI's tendency to generate overly verbose output (comments and code), unnecessary test cases, and incorrect fixes - if you can not explain a fix then it will not be accepted

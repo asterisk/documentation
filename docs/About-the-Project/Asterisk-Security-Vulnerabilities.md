@@ -12,6 +12,18 @@ The Asterisk project does not produce or work on the underlying tools the projec
 1. Issues relating to the Asterisk source code or usage.
 2. Issues in the configuration of a tool the Asterisk project uses.
 
+## AI Usage in Security Vulnerability Reporting
+
+We are not opposed to the use of AI tools in security vulnerability reporting, but require the following:
+
+* Confirm yourself that the vulnerability exists in Asterisk and has not been introduced by AI in its own bespoke test case
+* Be upfront about AI usage and summarise what was AI-generated
+* Disclose the model and version in use
+* If there are parts you don't fully understand, leave comments on the report explaining what steps you took to verify it
+* Watch for AI's tendency to generate overly verbose output
+
+**DO NOT** assume that results from the AI are valid.
+
 ## Reporting a Security Vulnerability
 
 All security vulnerabilities must be reported via the Asterisk GitHub project repository using the
