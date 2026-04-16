@@ -3,3 +3,4 @@ site
 Makefile.inc
 Makefile.*.inc
 temp
+.devcontainer/
