@@ -1,7 +1,8 @@
----
-title: Performance Tuning
-pageid: 36799664
----
+# Performance Tuning (Asterisk Versions < 20.17.0, 22.7.0, 23.1.0)
+
+/// note | Version Information
+As of Asterisk versions 20.17.0, 22.7.0, and 23.1.0, Threadpool has been deprecated in favor of Taskpool. More information can be found at [Performance Tuning](/Deployment/Performance-Tuning).
+///
 
 These are some areas to consider when trying to performance tune your Asterisk installation.
 
