@@ -63,6 +63,10 @@ $ ./bootstrap.sh
 You will need to re-run `bootstrap.sh` any time changes to the build
 system configuration files (like `configure.ac`) are pulled from the
 upstream repository.
+//// warning | Branches
+The contents of `configure.ac` can also change when switching between
+branches.
+////
 ///
 
 If you encounter any errors, the `install_prereq` script
