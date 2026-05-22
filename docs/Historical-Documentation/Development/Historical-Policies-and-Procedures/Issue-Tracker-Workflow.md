@@ -15,7 +15,6 @@ This document describes how issues move through the [Asterisk Issue Tracker on G
 
 [//]: # (end-warning)
 
-On This Page
 
 Issue Tracker Workflow
 ======================

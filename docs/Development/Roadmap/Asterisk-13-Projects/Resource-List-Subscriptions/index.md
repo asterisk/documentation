@@ -13,7 +13,6 @@ In a PBX environment, it is common for SIP devices to subscribe to many resource
 
 These limitations can drastically limit the number of devices a PBX administrator can use with an Asterisk system. Even if the hardware is capable of handling the mean traffic of, say, 200 users, it may be required to limit the number of users to 50 or fewer because of the N-squared subscriptions problem.
 
-25%On this Page
 
 Resource List Subscriptions
 ---------------------------

@@ -19,7 +19,6 @@ Added in Asterisk 12, Asterisk has a data abstraction and object persistence CRU
 
 Sorcery also provides a caching service as well as the capability for push configuration through the Asterisk REST Interface. See the section [ARI Push Configuration](/Configuration/Interfaces/Asterisk-REST-Interface-ARI/The-Asterisk-Resource/ARI-Push-Configuration) for more information on that topic.
 
-On This Page
 
 In This Section
 

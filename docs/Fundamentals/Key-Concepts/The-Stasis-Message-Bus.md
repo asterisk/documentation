@@ -15,7 +15,7 @@ In Asterisk 12, a new core component was added to Asterisk: the Stasis Message B
 
 While the Stasis Message Bus is mostly of interest to those developing Asterisk, its existence is a useful piece of information in understanding how the Asterisk architecture works.
 
-On This PageKey Concepts
+Key Concepts
 ============
 
 The Stasis Message Bus has many concepts that work in concert together. Some of the most important are:

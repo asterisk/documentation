@@ -45,7 +45,6 @@ max_contacts=1
 * auth= is used for the endpoint as opposed to outbound_auth= since we want to allow inbound registration for this endpoint
 * max_contacts= is set to something non-zero as we want to allow contacts to be created through registration
 
-On this Page
 
 A SIP trunk to your service provider, including outbound registration
 ---------------------------------------------------------------------

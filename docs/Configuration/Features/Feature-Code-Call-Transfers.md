@@ -18,7 +18,6 @@ Transfer features provided by the Asterisk core are configured in features.conf 
 
 Channel driver technologies such as chan_sip and chan_pjsip have native capability for various transfer types. That native transfer functionality is independent of this core transfer functionality. The core feature code transfer functionality is channel agnostic.
 
-On this Page
 
 Blind transfer
 --------------

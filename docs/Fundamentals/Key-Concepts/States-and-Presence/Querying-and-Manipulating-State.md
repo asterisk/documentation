@@ -21,7 +21,6 @@ devstate list -- List currently known custom device states
 
 ```
 
-On this Page
 
 Extension State
 ===============

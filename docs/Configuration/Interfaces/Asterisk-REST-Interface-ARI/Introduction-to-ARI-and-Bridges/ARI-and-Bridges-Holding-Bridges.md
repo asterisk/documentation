@@ -22,7 +22,7 @@ POST /bridges/{bridge_id}/addChannel?channel=12345&role=participant
 
 ```
 
-On This PageAdding a channel as an announcer
+Adding a channel as an announcer
 --------------------------------
 
 To add a channel as an announcer to a holding bridge, you must specify a role of `announcer`:

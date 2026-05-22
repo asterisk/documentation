@@ -12,7 +12,7 @@ This is a short tutorial on how to quickly setup Asterisk to use MySQL, the ODBC
 There are three basic steps to install and configure MySQL for Asterisk.* Install MySQL server package and start the DB service.
 * Secure the installation if appropriate.
 * Configure a user and database for Asterisk in MySQL
-On This Page### Install MySQL server package and start the DB service
+### Install MySQL server package and start the DB service
 
 ```bash title=" " linenums="1"
 # sudo yum install mysql-server

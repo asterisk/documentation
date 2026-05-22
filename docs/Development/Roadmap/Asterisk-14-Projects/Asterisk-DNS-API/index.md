@@ -243,7 +243,6 @@ int ast_dns_resolve(const char *name, int rr_type, int rr_class, struct ast_dns_
 
 ```
 
-On this Page
 
 dns_query_set.h
 =================

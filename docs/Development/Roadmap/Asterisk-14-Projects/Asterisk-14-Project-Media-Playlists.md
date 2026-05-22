@@ -54,7 +54,6 @@ A `Playback` resource will support two new operations:
 
 An attempt to move past the end of the last media resource will return a 2xx response and will result in a `PlaybackFinished` event. An attempt to move prior to the beginning of the first media resource will return a 2xx response and will result in a `PlaybackStarted` event.
 
-On this Page
 
 ### Example
 

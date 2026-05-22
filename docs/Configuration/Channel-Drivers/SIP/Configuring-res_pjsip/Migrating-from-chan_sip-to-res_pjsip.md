@@ -40,7 +40,6 @@ Writing pjsip.conf
 
 ```
 
-On this Page
 
 Side by Side Examples of sip.conf and pjsip.conf Configuration
 ==============================================================

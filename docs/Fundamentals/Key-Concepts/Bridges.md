@@ -8,7 +8,6 @@ Overview
 
 In Asterisk, a bridge is the construct that shares media among [Channels](/Fundamentals/Key-Concepts/Channels). While a channel represents the path of communication between Asterisk and some device, a bridge is how that path of communication is shared. While channels are in a bridge, their media is exchanged in a manner dictated by the bridge's type. While we generally think of media being directed among channels, media can also be directed from Asterisk to the channels in a bridge. This can be the case in some conferences, where Music on Hold (MoH) or announcements are played for waiting channels.
 
-On this Page
 
 Creation
 --------

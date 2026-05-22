@@ -21,7 +21,6 @@ HTTP Server
 
 The HTTP server in Asterisk is configured via `http.conf`. Note that this does not describe all of the options available via `http.conf` - rather, it lists the most useful ones for ARI.
 
-On This Page
 
 | Section | Parameter | Type | Default | Description |
 | --- | --- | --- | --- | --- |

@@ -29,7 +29,6 @@ Unrecognized Endpoint
 
 All inbound SIP traffic to Asterisk must be matched to a configured endpoint. If Asterisk is unable to determine which endpoint the SIP request is coming from, then the incoming request will be rejected. If you are seeing messages like:
 
-On this Page
 
 ```
 [2014-10-13 16:12:17.349] DEBUG[27284]: res_pjsip_endpoint_identifier_user.c:106 username_identify: Could not identify endpoint by username 'eggowaffles'

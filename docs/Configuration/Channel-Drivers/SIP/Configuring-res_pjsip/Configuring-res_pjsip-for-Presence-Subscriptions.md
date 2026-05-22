@@ -12,7 +12,6 @@ Capabilities
 ============
 
 Asterisk's PJSIP channel driver provides the same presence subscription capabilities as `chan_sip` does. This means that [RFC 3856](http://tools.ietf.org/html/rfc3856) presence and [RFC 4235](http://www.rfc-editor.org/rfc/rfc4235.txt) dialog info are supported. Presence subscriptions support [RFC 3863](http://tools.ietf.org/html/rfc3863) PIDF+XML bodies as well as [XPIDF+XML](http://tools.ietf.org/html/draft-rosenberg-impp-pidf-00). Beyond that, Asterisk also supports subscribing to [RFC 4662](http://tools.ietf.org/html/rfc4662) lists of presence resources.  
-On this Page
 
 extensions.conf
 

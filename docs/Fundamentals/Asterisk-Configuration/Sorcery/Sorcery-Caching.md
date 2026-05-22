@@ -30,7 +30,6 @@ Not all configurable objects are managed by sorcery. The following is a list of 
 * PJSIP outbound-publish
 * PJSIP transport
 * External MWI mailboxes
-On this Page
 
 ## When Should I Use Caching?
 

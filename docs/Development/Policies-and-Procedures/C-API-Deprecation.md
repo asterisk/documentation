@@ -8,7 +8,6 @@ Overview
 
 This page documents the C API deprecation process in Asterisk.
 
-On This Page
 
 Policy
 ======

@@ -15,7 +15,7 @@ As an open source project, the Asterisk project welcomes contributions that enha
 
 [//]: # (end-note)
 
-On This PageAdditional InformationSubmitting a Patch
+Submitting a Patch
 ==================
 
 1. Create an account with the Asterisk project at <https://signup.asterisk.org>.

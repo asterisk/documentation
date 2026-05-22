@@ -10,7 +10,6 @@ Extension Patterns
 
 Extension pattern matching syntax on logic works the same for `extensions.conf` and `extensions.lua`.
 
-50%
 
 extensions.conf
 ---------------
@@ -24,7 +23,6 @@ exten => _2XX,1,Voicemail(${EXTEN:1})
 
 ```
 
-50%
 
 extensions.lua
 --------------
@@ -47,7 +45,6 @@ end
 Context Includes
 ----------------
 
-50%
 
 extensions.conf
 ---------------
@@ -68,7 +65,6 @@ include => users
 
 ```
 
-50%
 
 extensions.lua
 --------------
@@ -98,7 +94,6 @@ extensions = {
 Loops
 -----
 
-50%
 
 extensions.conf
 ---------------
@@ -113,7 +108,6 @@ exten => 100,n,EndWhile
 
 ```
 
-50%
 
 extensions.lua
 --------------
@@ -130,7 +124,6 @@ end
 Variables
 ---------
 
-50%
 
 extensions.conf
 ---------------
@@ -142,7 +135,6 @@ exten => 100,n,Verbose(my_variable = ${my_variable})
 
 ```
 
-50%
 
 extensions.lua
 --------------
@@ -157,7 +149,6 @@ app.verbose("my_variable = " .. channel.my_variable:get())
 Applications
 ------------
 
-50%
 
 extensions.conf
 ---------------
@@ -168,7 +159,6 @@ exten => 100,1,Dial("SIP/100",,m)
 
 ```
 
-50%
 
 extensions.lua
 --------------
@@ -184,7 +174,6 @@ Macros/GoSub
 
 *Macros can be defined in pbx_lua by naming a context 'macro-\*' just as in `extensions.conf`, but generally where you would use macros or gosub in `extensions.conf` you would simply use a function in lua.*
 
-50%
 
 extensions.conf
 ---------------
@@ -200,7 +189,6 @@ exten => 100,1,Macro(dial,SIP/100)
 
 ```
 
-50%
 
 extensions.lua
 --------------
@@ -225,7 +213,6 @@ Goto
 
 *While `Goto` is an extenstions.conf staple, it should generally be avoided in pbx_lua in favor of functions.*
 
-50%
 
 extensions.conf
 ---------------
@@ -240,7 +227,6 @@ exten => 102,n,Hangup
 
 ```
 
-50%
 
 extensions.lua
 --------------

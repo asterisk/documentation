@@ -34,7 +34,6 @@ The repositories on GitHub mirror the repositories on Gerrit, also provide sourc
 
 **Pull requests on GitHub WILL be ignored.**
 
-On This Page
 
 Gerrit Access
 =============

@@ -12,7 +12,6 @@ At some point in time, you may find yourself asking, "I wish Asterisk did [new c
 
 This page describes how new features move through the Asterisk development process. For more information on general issue workflows, see [Issue Tracker Workflow](/Development/Policies-and-Procedures/Historical-Policies-and-Procedures/Issue-Tracker-Workflow).
 
-On This Page
 
 Before You Begin...
 ===================

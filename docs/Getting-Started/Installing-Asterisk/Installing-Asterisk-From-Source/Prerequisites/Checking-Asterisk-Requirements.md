@@ -28,7 +28,7 @@ Once a dependency is resolved, run **configure** again to make sure the missing 
 
 [//]: # (end-tip)
 
-On this PageUpon successful completion of **./configure**, you should see a message that looks similar to the one shown below. (Obviously, your host CPU type may be different than the below.)
+Upon successful completion of **./configure**, you should see a message that looks similar to the one shown below. (Obviously, your host CPU type may be different than the below.)
 
 ```
               .$$$$$$$$$$$$$$$=..     

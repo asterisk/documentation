@@ -32,7 +32,7 @@ ListItems: 1
 
 ```
 
-On This PageConfbridgeListRooms
+ConfbridgeListRooms
 -------------------
 
 Lists data about all active conferences. ConfbridgeListRooms will follow as separate events, followed by a final event called ConfbridgeListRoomsComplete.

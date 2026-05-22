@@ -10,7 +10,7 @@ Asterisk supports a variety of audio and video media. Asterisk provides CODEC mo
 
 The tables on this page describe what capabilities Asterisk supports and specific details for each format.
 
-On This PageEnabling specific media support
+Enabling specific media support
 ===============================
 
 There are three basic requirements for making use of specific audio or video media with Asterisk.

@@ -12,7 +12,6 @@ In a PBX environment, it is common for SIP devices to subscribe to many resource
 
 * In a situation where all phones boot up simultaneously, each of the phones will be sending out their SIP SUBSCRIBEs nearly simultaneously, placing a larger-than-average burden on the Asterisk server's CPU.
 * In the SIP stack, N-squared long-term SIP dialogs have to be maintained, tying up more system resources (e.g. memory).
-On this Page
 
 These limitations can drastically limit the number of devices a PBX administrator can use with an Asterisk system. Even if the hardware is capable of handling the mean traffic of, say, 200 users, it may be required to limit the number of users to 50 or fewer because of the N-squared subscriptions generating so much simultaneous traffic.
 

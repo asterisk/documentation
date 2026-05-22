@@ -8,7 +8,6 @@ Overview
 
 This page documents the new feature and improvements acceptance policy in Asterisk.
 
-On This Page
 
 Policy
 ======

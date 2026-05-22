@@ -8,7 +8,6 @@ Overview
 
 This page documents the module deprecation process in Asterisk. This allows a module to be deprecated with notice and to eventually be removed.
 
-On This Page
 
 Policy
 ======

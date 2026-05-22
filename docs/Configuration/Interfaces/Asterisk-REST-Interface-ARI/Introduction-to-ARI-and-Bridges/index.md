@@ -24,7 +24,7 @@ When a bridge is created through ARI, there are a number of attributes that can 
 * `mixing` - specify that media should be passed between all channels in the bridge. This attribute cannot be used with `holding`.
 * `dtmf_events` - specify that media should be decoded within Asterisk so that DTMF can be recognized. If this is not specified, then DTMF events may not be raised due to the media being passed directly between the channels in the bridge. This attribute only impacts how media is mixed when the `mixing` attribute is used.
 * `proxy_media` - specify that media should always go through Asterisk, even if it could be redirected between clients. This attribute only impacts how media is mixed when the `mixing` attribute is used.
-On This PageBridges in Depth* `holding` - specify that the channels in the bridge should be entertained with some media. Channels in the bridge have two possible roles: a participant or an announcer. Media between participant channels is not shared; media from an announcer channel is played to all participant channels.
+Bridges in Depth* `holding` - specify that the channels in the bridge should be entertained with some media. Channels in the bridge have two possible roles: a participant or an announcer. Media between participant channels is not shared; media from an announcer channel is played to all participant channels.
 
 Depending on the combination of attributes selected when a bridge is created, different mixing technologies may be used for the participants in the bridge. Asterisk will attempt to use the most performant mixing technology that it can based on the channel types in the bridge, subject to the attributes specified when the bridge was created.
 

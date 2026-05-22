@@ -37,7 +37,7 @@ asterisk-server*CLI>
 
 [//]: # (end-tip)
 
-On this Page* To disconnect from a connected remote console, simply hit **Ctrl+C**:
+* To disconnect from a connected remote console, simply hit **Ctrl+C**:
 
 ```
 asterisk-server*CLI> 
