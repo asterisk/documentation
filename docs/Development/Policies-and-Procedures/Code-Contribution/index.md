@@ -44,6 +44,35 @@ Git Remotes will automatically be created for both your fork and the upstream re
 
 In each of the clones, run `gh repo set-default`.  Select either asterisk/asterisk or asterisk/testsuite as appropriate.  They should be the defaults but check anyway. Also run `git config user.email` and `git config user.name` in each of the repos to make sure they're correct.  At a minimum, user.email should match one of the emails you've added to your GitHub account.
 
+### Run `bootstrap.sh`
+
+Asterisk uses the [GNU Autotools](https://en.wikipedia.org/wiki/GNU_Autotools)
+to configure its build system. Historically, project maintainers would
+include the `configure` script (along with other generated artifacts)
+when making changes to `configure.ac`. That practice is being phased
+out, so your clone of the repository may not include `configure`. If
+that is the case, you should run the `bootstrap.sh` script to invoke
+`autoconf` (and `automake`, etc.) which will generate `configure`
+along with its support files:
+
+```sh
+$ ./bootstrap.sh
+```
+
+/// tip | Keep an eye on `configure.ac`
+You will need to re-run `bootstrap.sh` any time changes to the build
+system configuration files (like `configure.ac`) are pulled from the
+upstream repository.
+///
+
+If you encounter any errors, the `install_prereq` script
+[included in the repository](https://github.com/asterisk/asterisk/blob/master/contrib/scripts/install_prereq)
+can be invoked to install any missing packages:
+
+```sh
+$ sudo ./contrib/scripts/install_prereq minimal
+```
+
 ### Do Work
 
 New work should never be based on a branch other than "master" so unless you have some special circumstance, start by checking out the "master" branch and syncing it to your fork.
