@@ -17,7 +17,6 @@ The following ARI client libraries are used in the code samples on these pages
 
 * Python code samples use [ari-py](https://github.com/asterisk/ari-py)
 * Node.js samples use [node-ari-client](https://github.com/asterisk/node-ari-client)
-40%On This Page
 
 Media In DepthAll of the code presented here has been tested with Asterisk 13 and works as intended. That being said, the code samples given are intended more to demonstrate the capabilities of ARI than to be a best practices guide for writing an application or to illustrate watertight code. Error-handling is virtually non-existent in the code samples. For a real application, Python calls to ARI should likely be in `try-catch` blocks in case there is an error, and Node.js calls to ARI should provide callbacks that detect if there was an error.
 

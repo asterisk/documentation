@@ -8,7 +8,7 @@ The Asterisk Resource
 
 While the [primary purpose of ARI](/Configuration/Interfaces/Asterisk-REST-Interface-ARI/#ari-an-interface-for-communications-applications) is to allow developers to build their own communications applications using Asterisk as a media engine, there are other resources in the API that are useful outside of this use case. One of these is the `asterisk` resource. This resource not only provides information about the running Asterisk instance, but also exposes resources and operations that allow an external system to manipulate the overall Asterisk system.
 
-On This PageMore DetailRetrieving System Information
+Retrieving System Information
 =============================
 
 The `asterisk` resource provides the ability to retrieve basic information about the running Asterisk process. This includes:

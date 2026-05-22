@@ -18,7 +18,6 @@ Configuration options
 
 A list of outbound registration configuration options can be found on [this page](/Latest_API/API_Documentation/Module_Configuration/res_pjsip_outbound_registration). Here is a simple example configuration for an outbound registration to a provider:
 
-On this Page
 
 pjsip.conf
 

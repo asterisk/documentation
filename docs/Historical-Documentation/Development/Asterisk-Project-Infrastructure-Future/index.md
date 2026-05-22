@@ -15,7 +15,6 @@ This page describes the general future of the Asterisk project infrastructure. T
 
 [//]: # (end-note)
 
-On this Page
 
 User Accounts
 =============

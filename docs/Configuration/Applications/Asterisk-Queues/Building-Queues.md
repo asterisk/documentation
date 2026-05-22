@@ -24,7 +24,6 @@ The first thing we want to do is register a couple of SIP devices to our server.
 
 In sip.conf, we add the following to the bottom of our file:
 
-On This Page
 
 ```
 sip.conf

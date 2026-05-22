@@ -16,7 +16,7 @@ Privilege: call,all
 Conference: 1111
 ```
 
-On This PageConfbridgeJoin
+ConfbridgeJoin
 --------------
 
 This event is sent when a user joins a conference - either one already in progress or as the first user to join a newly instantiated bridge.

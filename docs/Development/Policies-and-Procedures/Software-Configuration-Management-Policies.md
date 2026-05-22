@@ -14,7 +14,6 @@ See [Asterisk Versions](/About-the-Project/Asterisk-Versions) for the approximat
 
 [//]: # (end-info)
 
-On This Page
 
 ## Major Version Branch Types
 

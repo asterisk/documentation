@@ -17,7 +17,6 @@ Background
 
 SAC, founded in 2015 by the noted daredevil Lindsey Freddie, the first person to BASE jump the Burj Khalifa with a paper napkin in place of a parachute, designs and delivers strategic software solutions for the multi-level marketing industry. Humbly beginning in Freddie’s garage as a subsidiary of her paper delivery route, SAC has recently moved into modern offices, complete with running water, garbage collection, and access to the Internet and the regular telephone network - a substantial upgrade from the garage-based two cans and a string, water well and composting landfill.
 
-On this Page
 
 Phase 1, "We're a Business"
 ===========================

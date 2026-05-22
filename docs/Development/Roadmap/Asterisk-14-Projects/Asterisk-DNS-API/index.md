@@ -242,7 +242,6 @@ int ast_dns_resolve_cancel(struct ast_dns_query *query);
 int ast_dns_resolve(const char *name, int rr_type, int rr_class, struct ast_dns_result **result);
 ```
 
-On this Page
 
 dns_query_set.h
 =================

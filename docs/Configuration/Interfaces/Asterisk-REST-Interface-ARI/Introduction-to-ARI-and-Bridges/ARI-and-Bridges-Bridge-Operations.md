@@ -17,7 +17,6 @@ This example ARI application will do the following:
 2. When that channel enters into the Stasis application, the original channel will be removed from the holding bridge, a mixing bridge will be created, and the two channels will be put in it.
 3. If either channel hangs up, the other channel will also be hung up.
 4. Once the dialed channel exists the Stasis application, the mixing bridge will be destroyed.
-On This Page
 
 Dialplan
 --------

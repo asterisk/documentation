@@ -12,7 +12,7 @@ For a long time, the Asterisk project has used continuous integration as a means
 
 Users who are here as a result of a failed test (typically noted on a code review by the 'zuul' user) should read the section "[What To Do When Your Patch Fails](#fixing_patch)."
 
-On This PageInfrastructure
+Infrastructure
 ==============
 
 ![](Gerrit-Zuul-Jenkins.png)

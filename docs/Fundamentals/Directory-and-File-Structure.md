@@ -34,7 +34,6 @@ astvarlibdir => /var/lib/asterisk
 
 Additional library elements and files containing data used in runtime are put here.
 
-On This Page
 
 Database Directory
 ------------------

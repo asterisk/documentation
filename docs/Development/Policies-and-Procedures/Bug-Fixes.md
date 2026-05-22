@@ -8,7 +8,6 @@ Overview
 
 This page documents the policy surrounding bug fixes.
 
-On This Page
 
 Policy
 ======

@@ -21,7 +21,7 @@ Git-specific code review policies can be found on the [Git Usage](/Development/P
     By posting a patch to Gerrit, you agree that you are the author of the patch and that you have the license to contribute the code to the Asterisk project per the [Digium License Agreement](/Development/Policies-and-Procedures/Historical-Policies-and-Procedures/Patch-Contribution-Process/Digium-License-Agreement). If you are not the author of the patch, please arrange for the author to either post the patch themselves or comment on the respective JIRA issue that you have permission to contribute the patch to the project.  
 [//]: # (end-note)
 
-On This PageAdditional Information
+Additional Information
 
 Review Workflow
 ---------------

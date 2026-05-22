@@ -15,7 +15,7 @@ Assumptions
 2. The module will be targeted at Asterisk versions 11, 13, and master. Some implementation differences will have to occur in the various versions.
 3. All communication will occur using encrypted transports.
 4. The communication protocol will be backwards compatible between all versions of Asterisk. Things may be added to the protocol between Asterisk versions, but not removed.
-On This PageProtocol
+Protocol
 ========
 
 Asterisk will communicate with the server using `HTTPS` to a REST API. Due to the sensitive nature of the data being transmitted, HTTP will not be supported. The specifics of the REST API will be published using Swagger such that other implementations may be developed for personal use.

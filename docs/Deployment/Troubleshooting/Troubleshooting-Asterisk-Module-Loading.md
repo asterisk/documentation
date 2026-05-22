@@ -24,7 +24,6 @@ Asterisk has started successfully and the module providing the missing functiona
 
 The reason for the failure to load or run is typically invalid configuration or a failure to parse the configuration for the module.
 
-On this Page
 
 Solution
 ========

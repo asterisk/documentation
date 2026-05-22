@@ -6,8 +6,6 @@ pageid: 12550288
 Asterisk on Solaris 10 and OpenSolaris
 --------------------------------------
 
-###### On this page
-
 ### Digium's Support Status
 
 According to the README file from 1.6.2: "Asterisk has also been 'ported' and reportedly runs properly on other operating systems as well, including Sun Solaris, Apple's Mac OS X, Cygwin, and the BSD variants." Digium's developers have also been doing a good job of addressing build and run-time issues encountered with Asterisk on Solaris.

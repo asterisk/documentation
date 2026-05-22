@@ -20,7 +20,6 @@ Common Device State Providers
 
 *Device state providers* are the components of Asterisk that provide some state information for their resources. The device state providers available in Asterisk will depend on the version of Asterisk you are using, what modules you have installed and how those modules are configured. Here is a list of the common *device state identifiers* you will see and what Asterisk component provides the resources and state.
 
-On this Page
 
 | Device State Identifier | Device State Provider |
 | --- | --- |

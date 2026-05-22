@@ -48,7 +48,7 @@ Enabling Reference Count Logs
 
 Note /var/log/asterisk/refs is overwritten on each run of Asterisk.
 
-On This PageUsing refcounter.py to process refs log
+Using refcounter.py to process refs log
 =======================================
 
 Bug marshals can use the refcounter.py script to process and spot issues in a refs log when performing analysis.

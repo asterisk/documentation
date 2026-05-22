@@ -20,7 +20,6 @@ Named ACLs can be defined statically in *acl.conf*. Each context in *acl.conf* d
 | deny | IP address [/Mask] | An IP address to deny, with an optional subnet mask to apply |
 | permit | IP address [/Mask] | An IP address to allow, with an optional subnet mask to apply |
 
-On This Page
 
 #### Examples
 

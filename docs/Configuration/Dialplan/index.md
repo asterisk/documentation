@@ -20,4 +20,3 @@ Example dialplan
 
 The example dial plan, in the configs/samples/extensions.conf.sample file is installed as extensions.conf if you run "make samples" after [installation of Asterisk](/Getting-Started/Installing-Asterisk/Installing-Asterisk-From-Source). The sample file includes many examples of dialplan programming for specific scenarios and environments often common to Asterisk implementations.
 
-On This PageTopics
