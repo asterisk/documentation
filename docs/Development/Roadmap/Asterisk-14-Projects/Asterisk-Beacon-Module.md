@@ -49,7 +49,6 @@ Swagger Definition
  }
  ]
 }
-
 ```
 ```json title="beacon.json" linenums="1"
 {
@@ -338,7 +337,6 @@ Swagger Definition
  }
  }
 }
-
 ```
 
 Example Request/Responses
@@ -358,7 +356,6 @@ Response: 200 OK
  "token": { "id": "ca74af9d-260c-4764-b452-e0628a9468a9", "issue": "Mon Dec 29 2014 15:37:18 UTC" },
  "server": { "id": "bc5829cc-4584-43e5-8395-a9b1206d7e02" }
 }
-
 ```
 
 ### Client Server Update
@@ -405,7 +402,6 @@ PUT https://beacon.asterisk.org:80/servers/bc5829cc-4584-43e5-8395-a9b1206d7e02?
  "machine": "x86_64"
  }
 }
-
 ```
 
 Client: res_beacon
@@ -456,7 +452,6 @@ When logging is enabled, the CLI will display - as the last thing that is displa
 [Dec 29 16:10:59] NOTICE[13489]: res_beacon.c:103 load_module: <<< <<< <<< ANONYMOUS USAGE STATISTICS ENABLED >>> >>> >>>
 Asterisk Ready.
 *CLI>
-
 ```
 
 Configuration
@@ -496,7 +491,6 @@ start_time = 12:00
 type = server
 proxy = https://batman:rocks@awesome_stats_server.mydomain.com/beacon
 verify_cert = false
-
 ```
 
 CLI Commands
@@ -529,7 +523,6 @@ Asterisk Information:
  ... (laundry list)
 Operating System:
  Linux 3.13.0-24-generic #47-Ubuntu SMP Fri May 2 23:30:00 UTC 2014 x86_64
-
 ```
 
 ### beacon show configuration
@@ -569,7 +562,6 @@ OperatingSystemName: Linux
 OperatingSystemRelease: 3.13.0-24-generic
 OperatingSystemVersion: #47-Ubuntu SMP Fri May 2 23:30:00 UTC 2014
 OperatingSystemMachine: x86_64
-
 ```
 
 ARI Resources (13+)
@@ -608,5 +600,4 @@ Swagger Definition
  }
  ]
 }
-
 ```

@@ -57,7 +57,6 @@ multi_user=yes
 @body=application/dialog-info+xml
 @context=^users
 @exten=^1000
-
 ```
 
 #### This configuration would limit outbound publish to all extension state changes a result of hints in the context "users".
@@ -71,7 +70,6 @@ event=dialog
 multi_user=yes
 @body=application/dialog-info+xml
 @context=^users
-
 ```
 
 You are also not limited to a single configured outbound publish. You can have as many as you want, provided they have different names. Each one can go to the same server with a different body type, or to different servers.
@@ -84,14 +82,12 @@ As part of the work to implement the publishing of extension state, the concept 
 ```
 [users]
 autohints=yes
-
 ```
 
 For example, once enabled, if a device state change occurs for "PJSIP/alice" and no hint named "alice" exists, then one will be automatically created in lieu of explicit definition of the following:
 
 ```
 exten => alice,hint,PJSIP/alice
-
 ```
 
 Despite being added after startup, this hint will still be given to the extension state publishing for publishing.

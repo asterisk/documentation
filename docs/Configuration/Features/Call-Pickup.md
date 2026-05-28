@@ -44,14 +44,12 @@ The CHANNEL(callgroup) option specifies which numeric pickup groups that this ch
 
 ```
 same => n,Set(CHANNEL(callgroup)=1,5-7)
-
 ```
 
 The CHANNEL(namedcallgroup) option specifies which named pickup groups that this channel is a member.
 
 ```
 same => n,Set(CHANNEL(namedcallgroup)=engineering,sales)
-
 ```
 
 !!! note 
@@ -68,14 +66,12 @@ The CHANNEL(pickupgroup) option specifies which numeric pickup groups this chann
 
 ```
 same => n,Set(CHANNEL(pickupgroup)=1,6-8)
-
 ```
 
 The CHANNEL(namedpickupgroup) option specifies which named pickup groups this channel can pickup.
 
 ```
 same => n,Set(CHANNEL(namedpickupgroup)=engineering,sales)
-
 ```
 
 !!! note 
@@ -105,7 +101,6 @@ features.conf
 pickupexten = *8 ; Configure the pickup extension. (default is *8)
 pickupsound = beep ; to indicate a successful pickup (default: no sound)
 pickupfailsound = beeperr ; to indicate that the pickup failed (default: no sound)
-
 ```
 
 ### Numeric call pickup groups
@@ -119,7 +114,6 @@ SYNTAX
 ```
 callgroup=[number[-number][,number[-number][,...]]]
 pickupgroup=[number[-number][,number[-number][,...]]]
-
 ```
 
 * callgroup - specifies which numeric pickup groups that this channel is a member.
@@ -132,7 +126,6 @@ Configuration example
 ```
 callgroup=1,5-7
 pickupgroup=1
-
 ```
 
 Configuration should be supported in several channel drivers, including:
@@ -153,7 +146,6 @@ Configuration in pjsip.conf
 ```
 call_group=1,5-7
 pickup_group=1
-
 ```
 
 ### Named call pickup groups
@@ -167,7 +159,6 @@ SYNTAX
 ```
 namedcallgroup=[name[,name[,...]]]
 namedpickupgroup=[name[,name[,...]]]
-
 ```
 
 * namedcallgroup - specifies which named pickup groups that this channel is a member.
@@ -180,7 +171,6 @@ Configuration Example
 ```
 namedcallgroup=engineering,sales,netgroup,protgroup
 namedpickupgroup=sales
-
 ```
 
 Configuration should be supported in several channel drivers, including:
@@ -195,7 +185,6 @@ pjsip.conf uses snake case:
 ```
 named_call_group=engineering,sales,netgroup,protgroup
 named_pickup_group=sales
-
 ```
 
 !!! note 

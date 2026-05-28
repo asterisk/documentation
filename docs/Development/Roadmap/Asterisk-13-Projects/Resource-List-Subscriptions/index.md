@@ -83,7 +83,6 @@ struct rlmi_data {
  struct ast_sip_subscription *list_subscription;
  AST_LIST_HEAD(,ast_list_subscription) child_subscriptions;
 };
-
 ```
 
 This seems a bit minimalistic, but it should be enough.

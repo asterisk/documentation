@@ -36,7 +36,6 @@ dsn => your-configured-dsn-name
 username => your-database-username
 password => insecurepassword
 pre-connect => yes
-
 ```
 
 Then start up Asterisk and assuming res_odbc loads properly on the CLI you can use odbc show to verify a DSN is configured and shows up:
@@ -48,7 +47,6 @@ ODBC DSN Settings
  Name: asterisk
  DSN: your-configured-dsn-name
  Last connection attempt: 1969-12-31 18:00:00
-
 ```
 
 To verify the connection works you should use func_odbc or something similar to query the data source from Asterisk.

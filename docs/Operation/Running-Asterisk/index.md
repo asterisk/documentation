@@ -13,7 +13,6 @@ Running Asterisk from the Command Line
 
 # ps aux | grep asterisk
 my_user 26246 2.0 4.1 2011992 165520 ? Ssl 16:35 0:16 asterisk
-
 ```
 * In order to connect to a running Asterisk process, you can attach a **remote console** using the `-r` option:
 
@@ -29,7 +28,6 @@ certain conditions. Type 'core show license' for details.
 =========================================================================
 Connected to Asterisk 11.9.0 currently running on asterisk-server (pid = 26246)
 asterisk-server*CLI> 
-
 ```
 
 !!! tip 
@@ -44,7 +42,6 @@ asterisk-server*CLI>
 Disconnected from Asterisk server
 Asterisk cleanly ending (0).
 Executing last minute cleanups
-
 ```
 * To shut down Asterisk, issue `core stop gracefully`:
 
@@ -53,7 +50,6 @@ asterisk-server*CLI> core stop gracefully
 Disconnected from Asterisk server
 Asterisk cleanly ending (0).
 Executing last minute cleanups
-
 ```
 
 !!! tip 
@@ -77,7 +73,6 @@ Connected to Asterisk 11.9.0 currently running on asterisk-server (pid = 26246)
 [May 16 17:02:50] NOTICE[27035]: loader.c:1323 load_modules: 287 modules will be loaded.
 Asterisk Ready.
 *CLI> 
-
 ```
 Adding Verbosity
 ----------------
@@ -86,14 +81,12 @@ Asterisk provides a number of mechanisms to control the verbosity of its logging
 
 ```bash title=" " linenums="1"
 # asterisk -c -v -v
-
 ```
 
 Command line parameters can be combined. The previous command can also be invoked in the following way:
 
 ```bash title=" " linenums="1"
 # asterisk -cvv
-
 ```
 
 !!! note 
@@ -111,21 +104,18 @@ Command line parameters can be combined. The previous command can also be invoke
 
 ```
 # asterisk -c
-
 ```
 
 While a remote console can be attached to that Asterisk process with a different verbosity:
 
 ```bash title=" " linenums="1"
 # asterisk -rvvv
-
 ```
 
 Multiple remote consoles can be attached, each with their own verbosity:
 
 ```bash title=" " linenums="1"
 # asterisk -rv
-
 ```
 
 Executing as another User
@@ -142,14 +132,12 @@ Asterisk can be run as another user using the `-U` option:
 
 ```bash title=" " linenums="1"
 # asterisk -U asteriskuser
-
 ```
 
 Often, this option is specified in conjunction with the `-G` option, which specifies the group to run under:
 
 ```bash title=" " linenums="1"
 # asterisk -U asteriskuser -G asteriskuser
-
 ```
 
 When running Asterisk as another user, make sure that user owns the various directories that Asterisk will access:
@@ -161,7 +149,6 @@ When running Asterisk as another user, make sure that user owns the various dire
 # sudo chown -R asteriskuser:asteriskuser /var/log/asterisk
 # sudo chown -R asteriskuser:asteriskuser /var/run/asterisk
 # sudo chown asteriskuser:asteriskuser /usr/sbin/asterisk
-
 ```
 
 More Options
@@ -174,7 +161,6 @@ There are many more command line options available. For more information, use th
 Asterisk 11.9.0, Copyright (C) 1999 - 2014, Digium, Inc. and others.
 Usage: asterisk [OPTIONS]
 ...
-
 ```
 
 Running Asterisk as a Service
@@ -193,21 +179,18 @@ The most common way to run Asterisk in a production environment is as a service.
  /etc/rc3.d/S50asterisk -> ../init.d/asterisk
  /etc/rc4.d/S50asterisk -> ../init.d/asterisk
  /etc/rc5.d/S50asterisk -> ../init.d/asterisk
-
 ```
 * Asterisk can now be started as a service:
 
 ```bash title=" " linenums="1"
 # service asterisk start
  * Starting Asterisk PBX: asterisk [ OK ] 
-
 ```
 * And stopped:
 
 ```bash title=" " linenums="1"
 # service asterisk stop
  * Stopping Asterisk PBX: asterisk [ OK ] 
-
 ```
 * And restarted:
 
@@ -215,7 +198,6 @@ The most common way to run Asterisk in a production environment is as a service.
 # service asterisk restart
  * Stopping Asterisk PBX: asterisk [ OK ] 
  * Starting Asterisk PBX: asterisk [ OK ]
-
 ```
 Supported Distributions
 -----------------------

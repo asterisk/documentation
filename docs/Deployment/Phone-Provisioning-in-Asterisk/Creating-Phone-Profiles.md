@@ -21,7 +21,6 @@ ${TOLOWER(${MAC})}.cfg => 000000000000.cfg
 ${TOLOWER(${MAC})}-phone.cfg => 000000000000-phone.cfg config/
 ${TOLOWER(${MAC})} => polycom.xml 
 ${TOLOWER(${MAC})}-directory.xml => 000000000000-directory.xml
-
 ```
 
 A static_file is set by specifying the file name, relative to AST_DATA_DIR/phoneprov. The mime-type of the file can optionally be specified after a comma. If staticdir is set, all static files will be relative to the subdirectory of AST_DATA_DIR/phoneprov specified. 

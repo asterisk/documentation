@@ -12,7 +12,6 @@ You may see the below message after running some variation of `asterisk -r`
 
 ```
 Unable to connect to remote asterisk (does /var/run/asterisk/asterisk.ctl exist?)
-
 ```
 
 First, let's break down the message.

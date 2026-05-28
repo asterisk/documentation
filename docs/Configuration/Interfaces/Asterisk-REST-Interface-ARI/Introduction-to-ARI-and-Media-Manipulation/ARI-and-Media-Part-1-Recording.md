@@ -248,7 +248,6 @@ class HungUpState(object):
 	def enter(self):
 		channel_name = self.call.channel.json.get('name')
 		print("Channel {0} hung up".format(channel_name))
-
 ```
 
 ```javascript title="hungup_state.js" linenums="1"
@@ -302,7 +301,6 @@ var HungUpState = require('./hungup_state');
 		 this.state_machine.add_transition(recording_state, Event.HANGUP, hungup_state)
 		 this.state_machine.start(recording_state)
 	 }
-
 ```
 
 The following is a sample output of a user calling the application and pressing the <kbd>#</kbd> key when finished recording
@@ -314,7 +312,6 @@ Recording voicemail at voicemail/305/1411497846.53
 Accepted recording voicemail/305/1411497846.53
 Cleaning up event handlers
 Ending voice mail call from PJSIP/200-00000003
-
 ```
 
 ### Reader Exercise 1
@@ -590,7 +587,6 @@ def setup_state_machine(self):
 	self.state_machine.add_transition(reviewing_state, Event.DTMF_STAR,
 		recording_state)
 	self.state_machine.start(recording_state)
-
 ```
 
 ```javascript title="vm-call.js" linenums="1"
@@ -613,7 +609,6 @@ this.setup_state_machine = function() {
 	this.state_machine.add_transition(reviewing_state, Event.DTMF_STAR, recording_state);
 	this.state_machine.start(recording_state);
 }
-
 ```
 
 The following is the output from a sample call. The user records audio, then presses <kbd>#</kbd>. Upon hearing the recording, the user decides to record again, so the user presses <kbd>*</kbd>. After re-recording, the user presses <kbd>#</kbd>. The user hears the new version of the recording played back and is satisfied with it, so the user presses <kbd>#</kbd> to accept the recording.
@@ -633,7 +628,6 @@ Cleaning up event handlers
 Entering reviewing state
 Accepted recording voicemail/305/1411501058.42 on DTMF #
 Ending voice mail call from PJSIP/200-00000009
-
 ```
 
 ### Reader Exercise 5

@@ -9,14 +9,12 @@ Now it's time to compile and install Asterisk. Let's change to the directory whi
 
 ```
 [root@server]# cd /usr/local/src/asterisk-14.X.Y
-
 ```
 
 Next, we'll run a command called **./configure**, which will perform a number of checks on the operating system, and get the Asterisk code ready to compile on this particular server.
 
 ```
 [root@server asterisk-14.X.Y]# ./configure
-
 ```
 
 This will run for a couple of minutes, and warn you of any missing system libraries or other dependencies. Unless you've installed all of the [System Requirements](/Operation/System-Requirements) for your version of Asterisk, the **configure** script is likely to fail. If that happens, resolve the missing dependency manually, or use the [install_prereq](#using-install_prereq) script to resolve all of the dependencies on your system.
@@ -59,7 +57,6 @@ configure: OS type &nbsp;: linux-gnu
 configure: Host CPU : x86_64
 configure: build-cpu:vendor:os: x86_64 : unknown : linux-gnu :
 configure: host-cpu:vendor:os: x86_64 : unknown : linux-gnu :
-
 ```
 
 !!! tip Cached Data** The **./configure
@@ -72,7 +69,6 @@ configure: host-cpu:vendor:os: x86_64 : unknown : linux-gnu :
 ---
 
 You can then re-run **./configure**.
-
 ```
 
 ## Using install_prereq
@@ -94,5 +90,4 @@ The **install_prereq** script is included with every release of Asterisk in the 
 [root@server asterisk-14.X.Y/contrib/scripts]# ./install_prereq install
 
 [root@server asterisk-14.X.Y/contrib/scripts]# ./install_prereq install-unpackaged
-
 ```

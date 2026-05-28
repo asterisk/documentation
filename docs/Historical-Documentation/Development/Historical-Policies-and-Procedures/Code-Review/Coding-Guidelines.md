@@ -42,7 +42,6 @@ Every C source file should start with a proper copyright and a brief description
 
 ```
 #include "asterisk.h"
-
 ```
 
 "asterisk.h" resolves OS and compiler dependencies for the basic set of unix functions (data types, system calls, basic I/O libraries) and the basic Asterisk APIs.
@@ -92,7 +91,6 @@ struct foo {
  int bar;
  void *xyz;
 }
-
 ```
 
 On nearly every 64-bit platform, this will result in 4 bytes of dead space between 'bar' and 'xyz', because pointers on 64-bit platforms must be aligned on 8-byte boundaries. Once you have your code written and tested, it may be worthwhile to review your structure definitions to look for problems of this nature. If you are on a Linux platform with the 'dwarves' package available, the 'pahole' tool from that package can be used to both check for padding issues of this type and also propose reorganized structure definitions to eliminate it. Usage is quite simple; for a structure named 'foo', the command would look something like this:
@@ -151,13 +149,11 @@ There is no shortage of whitespace characters :-) Use them when they make the co
 
 ```
  for (str=foo;str;str=str->next)
-
 ```
 is harder to read than
 
 ```
  for (str = foo; str; str = str->next)
-
 ```
 Following are examples of how code should be formatted.
 
@@ -168,7 +164,6 @@ int foo(int a, char *s)
 {
  return 0;
 }
-
 ```
 
 ### If statements:
@@ -191,7 +186,6 @@ case OTHER:
  other();
  break;
 }
-
 ```
 
 ### No nested statements without braces
@@ -201,7 +195,6 @@ for (x = 0; x < 5; x++)
  if (foo)
  if (bar)
  baz();
-
 ```
 
 Instead, do:
@@ -214,7 +207,6 @@ for (x = 0; x < 5; x++) {
  }
  }
 }
-
 ```
 
 Always use braces around the statements following an if/for/while construct, even if not strictly necessary, as it reduces future possible problems.
@@ -228,7 +220,6 @@ if (foo) {
  result = 0;
  return;
 }
-
 ```
 Instead, try to minimize the number of lines of code that need to be indented, by only indenting the shortest case of the 'if' statement, like so:
 
@@ -239,7 +230,6 @@ if (!foo) {
 }
 
 .... 50 lines of code ....
-
 ```
 
 When this technique is used properly, it makes functions much easier to read and follow, especially those with more than one or two 'setup' operations that must succeed for the rest of the function to be able to execute.
@@ -299,7 +289,6 @@ static handle_option(const enum option opt)
 {
  ...
 }
-
 ```
 
 Note: The compiler will _not_ force you to pass an entry from the enum as an argument to this function; this recommendation serves only to make
@@ -329,7 +318,6 @@ When making applications, always ast_strdupa(data) to a local pointer if you int
  if (data) {
  mydata = ast_strdupa(data);
  }
-
 ```
 
 Use the argument parsing macros to declare arguments and parse them, i.e.:
@@ -342,7 +330,6 @@ Use the argument parsing macros to declare arguments and parse them, i.e.:
  );
  parse = ast_strdupa(data);
  AST_STANDARD_APP_ARGS(args, parse);
-
 ```
 
 Make sure you are not duplicating any functionality already found in an API call somewhere. If you are duplicating functionality found in
@@ -372,7 +359,6 @@ struct foo *tmp;
 ...
 
 tmp = ast_calloc(1, sizeof(*tmp));
-
 ```
 
 Avoid the combination of ast_malloc() and memset(). Instead, always use ast_calloc(). This will allocate and zero the memory in a single operation. In the case that uninitialized memory is acceptable, there should be a comment in the code that states why this is the case.
@@ -391,14 +377,12 @@ The functions strdup and strndup can \*not\* accept a NULL argument. This result
  } else {
  newstr = NULL;
  }
-
 ```
 However, the ast_strdup and ast_strdupa functions will happily accept a NULL
 argument without generating an error. The same code can be written as:
 
 ```
  newstr = ast_strdup(str);
-
 ```
 Furthermore, it is unnecessary to have code that malloc/calloc's for the length of a string (+1 for the terminating '\0') and then using strncpy to copy the copy the string into the resulting buffer. This is the exact same thing as using ast_strdup.
 
@@ -442,7 +426,6 @@ int ast_interesting_stuff(int thing1, int thing2)
 {
  return 0;
 }
-
 ```
 
 Notice the use of the \param, \brief, and \return constructs. These should be used to describe the corresponding pieces of the function being documented. Also notice the blank line after the last \param directive. All doxygen comments must be in one /*\! \ */ block. If the function or struct does not need an extended description it can be left out.
@@ -466,7 +449,6 @@ struct interesting_struct
 
  int member2; /*!< \brief Another data member */
 }
-
 ```
 Note that /\\*\! \ */ blocks document the construct immediately following them unless they are written, /\\*\!< \ */, in which case they document the construct preceding them.
 

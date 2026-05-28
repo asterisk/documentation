@@ -37,7 +37,6 @@ Let's show a few arbitrary examples below.
 ;require = res_pjsip.so
 ;noload = pbx_gtkconsole.so
 ;load = res_musiconhold.so
-
 ```
 
 CLI Commands
@@ -50,14 +49,12 @@ Asterisk provides a few commands for managing modules at run-time. Be sure to ch
 ```
 Usage: module show [like keyword]
  Shows Asterisk modules currently in use, and usage statistics.
-
 ```
 * module load
 
 ```
 Usage: module load <module name>
  Loads the specified module into Asterisk.
-
 ```
 * module unload
 
@@ -68,7 +65,6 @@ Usage: module unload [-f|-h] <module_1> [<module_2> ... ]
  in use (may cause a crash) and the -h module causes the
  module to be unloaded even if the module says it cannot, 
  which almost always will cause a crash.
-
 ```
 * module reload
 
@@ -76,5 +72,4 @@ Usage: module unload [-f|-h] <module_1> [<module_2> ... ]
 Usage: module reload [module ...]
  Reloads configuration files for all listed modules which support
  reloading, or for all supported modules if none are listed.
-
 ```

@@ -20,7 +20,6 @@ Syntax:
 <FeatureName> = <DTMF_sequence>,<ActivateOn>[/<ActivatedBy>],<Application>[,<AppArguments>[,MOH_Class]]
 <FeatureName> = <DTMF_sequence>,<ActivateOn>[/<ActivatedBy>],<Application>[,"<AppArguments>"[,MOH_Class]]
 <FeatureName> = <DTMF_sequence>,<ActivateOn>[/<ActivatedBy>],<Application>([<AppArguments>])[,MOH_Class]
-
 ```
 
 Syntax Fields:
@@ -57,7 +56,6 @@ playmonkeys => #9,peer,Playback,tt-monkeys
 retrieveinfo => #8,peer,Set(ARRAY(CDR(mark),CDR(name))=${ODBC_FOO(${CALLERID(num)})})
 pauseMonitor => #1,self/callee,Pausemonitor
 unpauseMonitor => #3,self/callee,UnPauseMonitor
-
 ```
 
 Example feature descriptions:
@@ -82,7 +80,6 @@ extensions.conf
 
 ```
  Set(__DYNAMIC_FEATURES=playmonkeys#pauseMonitor#unpauseMonitor)
-
 ```
 
 !!! tip Tip: Variable Inheritance

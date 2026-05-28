@@ -32,7 +32,6 @@ allowed_origins=http://ari.asterisk.org
 type=user
 password=peekaboo
 ;read_only=no ; Set to yes for read-only applications
-
 ```
 
 ![Getting Started with ARI](swagger-ui-screenshot.png)

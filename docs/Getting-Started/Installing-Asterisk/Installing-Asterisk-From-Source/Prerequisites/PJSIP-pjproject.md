@@ -36,7 +36,6 @@ $ ./configure --with-pjproject-bundled
 # For Asterisk 15+...
 $ ./configure
 $ make && make install
-
 ```
 
 The configure and make processes will download the correct version of pjproject, patch it, configure it, build it, and finally link Asterisk to it statically.  No changes in runtime configuration are required.  You can leave your system-installed version of pjproject in place if needed.  Once compiled with the `--with-pjproject-bundled` option, Asterisk will ignore any other installed versions of pjproject.
@@ -47,7 +46,6 @@ Using the bundled version of pjproject doesn't necessarily mean you need interne
 $ mkdir /tmp/downloads
 $ wget -O /tmp/downloads/pjproject-2.6.tar.bz2 http://www.pjsip.org/release/2.6/pjproject-2.6.tar.bz2
 $ wget -O /tmp/downloads/pjproject-2.6.md5 http://www.pjsip.org/release/2.6/MD5SUM.txt
-
 ```
 
 It's important that both files be named `pjproject-<version>.tar.bz2` and `pjproject-<version>.md5` respectively.
@@ -194,7 +192,6 @@ pjlib/include/pj/config_site.h
  */
 #define PJSIP_TCP_KEEP_ALIVE_INTERVAL 0
 #define PJSIP_TLS_KEEP_ALIVE_INTERVAL 0
-
 ```
 
 Other common **configure** options needed for pjproject are listed below:
@@ -293,7 +290,6 @@ Package libpjproject was not found in the pkg-config search path.
 Perhaps you should add the directory containing `libpjproject.pc'
 to the PKG_CONFIG_PATH environment variable
 No package 'libpjproject' found
-
 ```
 
 1. Make sure you have `pkg-config` installed on your system.
@@ -313,7 +309,6 @@ output/pjmedia-codec-x86_64-unknown-linux-gnu/opencore_amr.o:(.rodata+0x20): fir
 output/pjmedia-codec-x86_64-unknown-linux-gnu/opencore_amr.o:(.rodata+0x40): multiple definition of `pjmedia_codec_amrwb_framelen'
 output/pjmedia-codec-x86_64-unknown-linux-gnu/opencore_amr.o:(.rodata+0x40): first defined here
 ...
-
 ```
 
 Solution"
@@ -329,7 +324,6 @@ When building pjproject, linker errors referring to various video methods are di
 /home/mjordan/projects/pjproject/pjmedia/lib/libpjmedia.so: undefined reference to `pjmedia_video_format_mgr_instance'
 /home/mjordan/projects/pjproject/pjmedia/lib/libpjmedia-videodev.so: undefined reference to `pjmedia_format_get_video_format_detail'
 /home/mjordan/projects/pjproject/pjmedia/lib/libpjmedia-videodev.so: undefined reference to `pjmedia_get_video_format_info'
-
 ```
 
 Solution:
@@ -357,7 +351,6 @@ In file included from /usr/include/pj/types.h:33:0,
  from conftest.c:290:
 /usr/include/pj/config.h:1161:4: error: #error "PJ_IS_LITTLE_ENDIAN is not defined!"
 /usr/include/pj/config.h:1165:4: error: #error "PJ_IS_BIG_ENDIAN is not defined!"
-
 ```
 
 Solution:
@@ -376,7 +369,6 @@ Solution:
 # if !PJ_IS_LITTLE_ENDIAN && !PJ_IS_BIG_ENDIAN
 # error Endianness must be declared for this processor
 # endif
-
 ```
 
 With this:
@@ -391,7 +383,6 @@ With this:
 # define PJ_HAS_PENTIUM 0
 # define PJ_IS_LITTLE_ENDIAN 1
 # define PJ_IS_BIG_ENDIAN 0
-
 ```
 
 Then recompile. This workaround was taken from issue [ASTERISK-23315](https://github.com/asterisk/asterisk/issues/jira/browse/ASTERISK-23315).
@@ -404,7 +395,6 @@ pjproject provides an `uninstall` make target that will remove previous installa
 
 ```bash title=" " linenums="1"
 # make uninstall
-
 ```
 
 If you don't have an "uninstall" make target, you may need to fetch and merge the latest pjproject from <https://github.com/asterisk/pjproject>
@@ -413,21 +403,18 @@ Alternatively, the following should also remove all previously installed static 
 
 ```bash title=" " linenums="1"
 # rm -f /usr/lib/libpj*.a /usr/lib/libmilenage*.a /usr/lib/pkgconfig/libpjproject.pc
-
 ```
 
 Finally, you will need to update shared library links:
 
 ```bash title=" " linenums="1"
 # ldconfig
-
 ```
 
 If you want to run a sanity check, you can verify that pjproject has been uninstalled by ensuring no pjproject modules remain on the system:
 
 ```bash title=" " linenums="1"
 # ldconfig -p | grep pj
-
 ```
 
 If running the above command yields no results, that's it! You have successfully uninstalled pjproject from your system. If there are results, you may need to remove other pjproject-related items from /usr/lib as well.

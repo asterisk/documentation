@@ -29,7 +29,6 @@ for _, e in ipairs(data) do
  app.dial("SIP/" .. e.sip_peer, e.dial_timeout)
  end
 end
-
 ```
 
 The `extensions` Table
@@ -47,7 +46,6 @@ extensions = {
  end;
  };
 }
-
 ```
 
 Where did the priorities go?
@@ -57,7 +55,6 @@ There are no priorities. Asterisk uses priorities to define the order in which d
 
 ```
 extensions.default["1234"]("default", "1234")
-
 ```
 
 Lua Script Lifetime
@@ -81,7 +78,6 @@ channel variable: var is the placeholder object
 var = channel.my_variable
 var:set("my value")
 value = var:get("my value")
-
 ```
 
 ---
@@ -96,7 +92,6 @@ fax_modems = channel.FAXOPT("module")
 
 fax_modems:set("v17")
 value = fax_modems:get()
-
 ```
 
 ---
@@ -109,7 +104,6 @@ dial = app.dial
 
 -- the only thing we can do with it is execute it
 dial("SIP/100")
-
 ```
 
 There is a small cost in creating the placeholder objects so storing frequently used placeholder objects can be used as a micro optimization. This should never be necessary though and only provides benefits if you are running micro benchmarks.

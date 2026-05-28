@@ -111,7 +111,6 @@ struct ast_sip_session_sdp_handler {
  */
  int (*create_outgoing_sdp_stream)(struct ast_sip_session *session, struct pjmedia_sdp_session *sdp);
 };
-
 ```
 
 Extensibility
@@ -194,7 +193,6 @@ struct ast_sip_session_cookie *ast_sip_session_get_cookie(struct ast_sip_session
  * \retval -1 Failed to remove the cookie
  */
 int ast_sip_session_remove_cookie(struct ast_sip_session *session, const char *name);
-
 ```
 
 Common SIP methods
@@ -241,5 +239,4 @@ int ast_sip_session_send_reinvite(struct ast_sip_session *session, int (*respons
  * \param rdata The response to which the response is being sent
  */
 int ast_sip_session_send_response(struct ast_sip_session *session, int response_code, struct pjsip_rx_data *rdata);
-
 ```

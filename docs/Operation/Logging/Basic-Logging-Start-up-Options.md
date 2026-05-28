@@ -7,19 +7,16 @@ As previously indicated, at start up both the debug and verbose levels can also 
 
 ```
 asterisk -ddd
-
 ```
 
 To set the verbose level on start up use the "-v" argument optionally followed by more "v"s. Asterisk will start with a verbose level represented by the number of "v"s specified.  As an example, the following will start Asterisk with a verbose level of "3":
 
 ```
 asterisk -vvv
-
 ```
 
 And of course both of these arguments can be specified at the same time:
 
 ```
 asterisk -dddvvv
-
 ```

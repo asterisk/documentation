@@ -26,7 +26,6 @@ So, from the CLI, perform:
 
 ```bash title=" " linenums="1"
 # apt-get install unixodbc unixodbc-dev libmyodbc python-dev python-pip python-mysqldb
-
 ```
 
 Once these packages are installed, check your Asterisk installation's **make menuconfig** tool to make sure that the **res_config_odbc** and **res_odbc** resource modules, as well as the **res_pjsip_xxx** modules are selected for installation.  If they are, then go through the normal Asterisk installation process: **./configure; make; make install**
@@ -39,7 +38,6 @@ Use the **mysqladmin** tool to create the database that we'll use to store the c
 
 ```bash title=" " linenums="1"
 # mysqladmin -u root -p create asterisk
-
 ```
 
 This will prompt you for your MySQL database password and then create a database named **asterisk** that we'll use to store our PJSIP configuration.
@@ -52,21 +50,18 @@ First, install Alembic:
 
 ```bash title=" " linenums="1"
 # pip install alembic
-
 ```
 
 Then, move to the Asterisk source directory containing the Alembic scripts:
 
 ```bash title=" " linenums="1"
 # cd contrib/ast-db-manage/
-
 ```
 
 Next, edit the **config.ini.sample** file and change the **sqlalchemy.url** option, e.g.
 
 ```conf title="config.ini.sample"
 sqlalchemy.url = mysql://root:password@localhost/asterisk
-
 ```
 
 such that the URL matches the username and password required to access your database.
@@ -75,14 +70,12 @@ Then rename the config.ini.sample file to config.ini
 
 ```bash title=" " linenums="1"
 # cp config.ini.sample config.ini
-
 ```
 
 Finally, use Alembic to set up the database tables:
 
 ```bash title=" " linenums="1"
 # alembic -c config.ini upgrade head
-
 ```
 
 You'll see something similar to:
@@ -94,7 +87,6 @@ INFO [alembic.migration] Will assume non-transactional DDL.
 INFO [alembic.migration] Running upgrade None -> 4da0c5f79a9c, Create tables
 INFO [alembic.migration] Running upgrade 4da0c5f79a9c -> 43956d550a44, Add tables for pjsip
 #
-
 ```
 
 You can then connect to MySQL to see that the tables were created:
@@ -121,7 +113,6 @@ mysql> show tables;
 +--------------------+
 12 rows in set (0.00 sec)
 mysql> quit
-
 ```
 
 ## Configuring ODBC
@@ -134,7 +125,6 @@ Description = ODBC for MySQL
 Driver = /usr/lib/x86_64-linux-gnu/odbc/libmyodbc.so
 Setup = /usr/lib/x86_64-linux-gnu/odbc/libodbcmyS.so
 UsageCount = 2
-
 ```
 
 Next, we'll tell ODBC **which** MySQL database to use.  To do this, we'll edit the  **/etc/odbc.ini** configuration file and create a database handle called **asterisk**.  Your file should look something like:
@@ -162,7 +152,6 @@ dsn => asterisk
 username => root
 password => password
 pre-connect => yes
-
 ```
 
 Again, take care to use the proper username and password.
@@ -181,7 +170,6 @@ ODBC DSN Settings
  Pooled: No
  Connected: Yes
 *CLI> 
-
 ```
 
 ## Connecting PJSIP Sorcery to the Realtime Database
@@ -210,7 +198,6 @@ contact=realtime,ps_contacts
 
 [res_pjsip_endpoint_identifier_ip]
 identify=realtime,ps_endpoint_id_ips
-
 ```
 
 The items use the following nomenclature:
@@ -230,7 +217,6 @@ For example if you want to read **endpoints** from both realtime and static conf
 ```conf title="sorcery.conf"
 endpoint=realtime,ps_endpoints
 endpoint=config,pjsip.conf,criteria=type=endpoint
-
 ```
 
 You can swap the order to control which data source is read first.
@@ -250,7 +236,6 @@ ps_aors => odbc,asterisk
 ps_domain_aliases => odbc,asterisk
 ps_endpoint_id_ips => odbc,asterisk
 ps_contacts => odbc,asterisk
-
 ```
 
 /// note
@@ -301,7 +286,6 @@ mysql> insert into ps_auths (id, auth_type, password, username) values (102, 'us
 mysql> insert into ps_endpoints (id, transport, aors, auth, context, disallow, allow, direct_media) values (101, 'transport-udp', '101', '101', 'testing', 'all', 'g722', 'no');
 mysql> insert into ps_endpoints (id, transport, aors, auth, context, disallow, allow, direct_media) values (102, 'transport-udp', '102', '102', 'testing', 'all', 'g722', 'no');
 mysql> quit;
-
 ```
 
 In this example, we first created an **aor** for each peer, one called **101** and the other **102**.
@@ -319,7 +303,6 @@ Endpoints:
 101
 102
 *CLI> 
-
 ```
 
 ### A Little Dialplan

@@ -36,7 +36,6 @@ setting=true
 #include otherconfig.conf ; include another configuration file
 #include my_other_files/*.conf ; include all .conf files in the subdirectory my_other_files
 #exec otherprogram ; include output of otherprogram
-
 ```
 
 You can use #tryinclude if there is any chance the target file may not exist and you still want Asterisk to load the configuration for the module.
@@ -46,5 +45,4 @@ Here is a more realistic example of how #exec might be used with real-world comm
 ```conf title=" " linenums="1"
 #exec /usr/bin/curl -s http://example.com/mystuff > /etc/asterisk/mystuff
 #include mystuff
-
 ```

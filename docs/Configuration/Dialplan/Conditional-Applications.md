@@ -7,7 +7,6 @@ There is one conditional application - the conditional goto :
 
 ```
 exten => 1,2,GotoIf(condition?label1:label2)
-
 ```
 
 If condition is true go to label1, else go to label2. Labels are interpreted exactly as in the normal goto command.
@@ -16,7 +15,6 @@ If condition is true go to label1, else go to label2. Labels are interpreted exa
 
 ```
 exten => 1,2,GotoIf($[${CALLERID(all)} = 123456]?2,1:3,1)
-
 ```
 
 Example of use :
@@ -26,5 +24,4 @@ exten => s,2,Set(vara=1)
 exten => s,3,Set(varb=$[${vara} + 2])
 exten => s,4,Set(varc=$[${varb} * 2])
 exten => s,5,GotoIf($[${varc} = 6]?99,1:s,6)
-
 ```

@@ -28,7 +28,6 @@ followme:
  hold_prompt Message played to the caller while dialing the followme steps.
  status_prompt Normally, "Party is not at their desk".
  sorry_prompt Normally, "Unable to locate party".
-
 ```
 ```
 
@@ -39,5 +38,4 @@ followme_numbers:
  phonenumber The telephone number(s) you would like to call, separated by '&'.
  timeout Timeout associated with this step. See the followme documentation
  for more information on how this value is handled.
-
 ```

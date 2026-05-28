@@ -17,7 +17,6 @@ exten => 100,1,NoOp
 exten => 100,n,Progress
 exten => 100,n,Ringing
 exten => 100,n,VoicemailMain(${CALLERID(num)@mycontext,s)
-
 ```
 
 Example (This will not):
@@ -26,5 +25,4 @@ Example (This will not):
 
 exten => 100,1,NoOp
 exten => 100,n,VoicemailMain(${CALLERID(num)@mycontext,s)
-
 ```

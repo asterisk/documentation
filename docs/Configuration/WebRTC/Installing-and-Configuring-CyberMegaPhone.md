@@ -53,7 +53,6 @@ tlscafile=<your_ca_cert_file>
 enablestatic = yes
 ; Create an alias that will allow us to easily load the client in a web browser.
 redirect = /cmp2k /static/cyber_mega_phone_2k/index.html
-
 ```
 
 Restart Asterisk or issue the CLI command "`config reload /etc/asterisk/http.conf`"
@@ -93,7 +92,6 @@ Enabled URI's:
 
 Enabled Redirects:
  /cmp2k => /static/cyber_mega_phone_2k/index.html
-
 ```
 
 Notice that there's a new Redirect entry. 
@@ -103,7 +101,6 @@ For security reasons, the HTTP server will not serve arbitrary paths so the  `/s
 ```bash title="Shell Prompt  " linenums="1"
 # cd /var/lib/asterisk/static-http
 # ln -s /usr/src/asterisk/cyber_mega_phone_2k
-
 ```
 
 OK, let's test.  From your web browser, visit `https://pbx.example.com:8089/cmp2k` remembering to substitute your hostname or ip address as appropriate.
@@ -140,7 +137,6 @@ allow=opus,g722,ulaw,vp9,vp8,h264
 ; we need to indicate the maximum number of streams allowed for audio and video.
 max_audio_streams = 1
 max_video_streams = 15
-
 ```
 
 You may already have some of the config from previous webrtc endpoints for certificates, keys, encryption, ice support etc and think you don't need to add the magical `webrtc=yes` but you do! The `webrtc=yes` flag does more than just shortcut already existing flags which are needed for proper SFU support.
@@ -163,7 +159,6 @@ type=bridge
 ; SFU is Selective Forwarding Mode
 ; Basically all participant's video streams are relayed to all other participants.
 video_mode = sfu
-
 ```
 
 One more change...
@@ -180,7 +175,6 @@ Now we need to configure an extension that, when dialed, will put us into the vi
 ```
 [default]
 exten = my_video_conference,1,Confbridge(MYCONF,default_bridge,default_user,sample_user_menu)
-
 ```
 
 NOW, restart Asterisk!

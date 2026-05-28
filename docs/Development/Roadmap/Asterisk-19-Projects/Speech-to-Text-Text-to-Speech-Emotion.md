@@ -62,7 +62,6 @@ As mentioned above, JSON will be used for the protocol. There are requests:
     },
     "data": "Inconceivable!"
 }
-
 ```
 
 ```json title="Possible Responses"
@@ -94,7 +93,6 @@ As mentioned above, JSON will be used for the protocol. There are requests:
     "response": "error",
     "error_msg": "Could not connect to Google (server down)."
 }
-
 ```
 
 The app_config section contains arbitrary configuration options and are not defined by this protocol. They will be able to be set by the user, and then consumed by the external application.
@@ -120,7 +118,6 @@ Here are some examples of what speech to text would look like.
         "language": "en"
     }
 }
-
 ```
 
 The first response lets us know that everything is good to go for translation.
@@ -133,7 +130,6 @@ The first response lets us know that everything is good to go for translation.
         "type": "ulaw"
     }
 }
-
 ```
 
 The second response lets us know that translation is complete, with our result in the JSON under *data.*
@@ -144,7 +140,6 @@ The second response lets us know that translation is complete, with our result i
     "response": "complete",
     "data": "Inconceivable!"
 }
-
 ```
 
 **Scenario 2 (failure)**
@@ -170,7 +165,6 @@ The second response lets us know that translation is complete, with our result i
     "response": "error",
     "error_msg": "Could not connect to Google (server down)."
 }
-
 ```
 
 ****Scenario 3 (language not supported)****
@@ -196,7 +190,6 @@ The second response lets us know that translation is complete, with our result i
     "response": "error",
     "error_msg": "Google does not support the language 'en'."
 }
-
 ```
 
 ### Text to Speech
@@ -227,7 +220,6 @@ Here are some examples of what text to speech would look like.
     },
     "data": "Inconceivable!"
 }
-
 ```
 
 Unlike speech to text, we only need to know if setup was successful. Then we know that media will flow over the websocket.
@@ -243,7 +235,6 @@ Unlike speech to text, we only need to know if setup was successful. Then we kno
         }
     }
 }
-
 ```
 
 **Scenario 2 (failure)**
@@ -272,7 +263,6 @@ Unlike speech to text, we only need to know if setup was successful. Then we kno
     "response": "error",
     "error_msg": "Could not connect to Google (server down)."
 }
-
 ```
 
 ****Scenario 3 (codec not supported)****
@@ -301,5 +291,4 @@ Unlike speech to text, we only need to know if setup was successful. Then we kno
     "response": "error",
     "error_msg": "Google does not support the following codec(s): ulaw."
 }
-
 ```

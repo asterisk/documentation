@@ -29,14 +29,12 @@ First, let's make a place for our keys.
 
 ```
 mkdir /etc/asterisk/keys
-
 ```
 
 Next, use the "ast_tls_cert" script in the "contrib/scripts" Asterisk source directory to make a self-signed certificate authority and an Asterisk certificate.
 
 ```
 ./ast_tls_cert -C pbx.mycompany.com -O "My Super Company" -d /etc/asterisk/keys -b 2048
-
 ```
 
 * The "-C" option is used to define our host - DNS name or our IP address.
@@ -53,7 +51,6 @@ Next, we generate a client certificate for our SIP device.
 
 ```
 ./ast_tls_cert -m client -c /etc/asterisk/keys/ca.crt -k /etc/asterisk/keys/ca.key -C phone1.mycompany.com -O "My Super Company" -d /etc/asterisk/keys -o malcolm -b 2048
-
 ```
 
 * The "-m client" option tells the script that we want a client certificate, not a server certificate.
@@ -81,7 +78,6 @@ ca.cfg
 ca.crt
 ca.key
 tmp.cfg
-
 ```
 
 Next, copy the malcolm.pem and ca.crt files to the computer running the Blink soft client.
@@ -94,7 +90,6 @@ Next, copy the malcolm.pem and ca.crt files to the computer running the Blink so
 # openssl pkcs12 -export -out MySuperClientCert.p12 -inkey ca.key -in ca.crt -certfile asterisk.crt   
 
 ---
-
 ```
 
 Asterisk chan_pjsip configuration
@@ -112,7 +107,6 @@ bind=0.0.0.0:5061
 cert_file=/etc/asterisk/keys/asterisk.crt
 priv_key_file=/etc/asterisk/keys/asterisk.key
 method=sslv23
-
 ```
 
 Note the **protocol**, **cert_file**, **priv_key_file**, and **method** options.  Here, we're using the TLS protocol, we're specifying the keys that we generated earlier for **cert_file** and **priv_key_file** and we're setting the **method** to SSLv23.
@@ -140,7 +134,6 @@ disallow=all
 allow=g722
 dtmf_mode=rfc4733
 media_encryption=sdes
-
 ```
 
 Note the **media_encryption** option for the endpoint.  In this case, we've configured an endpoint that will be using SDES encryption for RTP.
@@ -159,7 +152,6 @@ tlsenable=yes
 tlsbindaddr=0.0.0.0
 tlscertfile=/etc/asterisk/keys/asterisk.pem
 tlscafile=/etc/asterisk/keys/ca.crt
-
 ```
 
 Here, we're enabling TLS support.  
@@ -176,7 +168,6 @@ dtmfmode=rfc2833
 disallow=all
 allow=g722
 transport=tls
-
 ```
 
 Notice the **transport** option. The Asterisk SIP channel driver supports three types: udp, tcp and tls. Since we're configuring for TLS, we'll set that. It's also possible to list several supported transport types for the peer by separating them with commas.
@@ -211,7 +202,6 @@ Depending on your Asterisk CLI logging levels, you should see something like:
 ```
  -- Registered SIP 'malcolm' at 10.24.250.178:5061
  > Saved useragent "Blink 0.22.2 (MacOSX)" for peer malcolm
-
 ```
 
 Notice that we registered on port 5061, the TLS port.
@@ -230,7 +220,6 @@ When calling **from** Asterisk to Blink or another client, you might run into an
 ```
 [Jan 29 16:04:11] DEBUG[11217]: tcptls.c:248 handle_tcptls_connection: SSL Common Name compare s1='10.24.18.124' s2='phone1.mycompany.com'
 [Jan 29 16:04:11] ERROR[11217]: tcptls.c:256 handle_tcptls_connection: Certificate common name did not match (10.24.18.124)
-
 ```
 
 This is the opposite scenario, where Asterisk is acting as the client and by default attempting to verify the destination server against the cert.
@@ -243,7 +232,6 @@ You can set **tlsdontverifyserver=yes** in sip.conf to prevent Asterisk from att
 ; a client. If you don't have the server's CA certificate you can
 ; set this and it will connect without requiring tlscafile to be set.
 ; Default is no.
-
 ```
 
 Part 2 (SRTP)
@@ -255,7 +243,6 @@ SRTP support is provided by libsrtp. libsrtp has to be installed on the machine 
 
 ```
 [Jan 24 09:29:16] ERROR[10167]: chan_sip.c:27987 setup_srtp: No SRTP module loaded, can't setup SRTP session.
-
 ```
 
 on your Asterisk CLI. If you do see that, install libsrtp (and the development headers), and then reinstall Asterisk (./configure; make; make install).
@@ -274,7 +261,6 @@ allow=g722
 transport=tls
 encryption=yes
 context=local
-
 ```
 
 Next, we'll set Blink to use SRTP:

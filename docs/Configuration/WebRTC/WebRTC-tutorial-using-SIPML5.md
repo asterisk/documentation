@@ -26,7 +26,6 @@ We'll make a simple dialplan for receiving a test call from the sipml5 client.
 exten => 200,1,Answer()
 same => n,Playback(demo-congrats)
 same => n,Hangup()
-
 ```
 
 This instructs Asterisk to Answer a call to "200," to play a file named "demo-congrats" (included in Asterisk's core sound file packages), and to hang up.  To make the extension active, either restart Asterisk or issue a "dialplan reload" command from the Asterisk CLI.
@@ -83,7 +82,6 @@ You should see a corresponding connection happen on the Asterisk CLI.  You can l
 
 ```bash title=" " linenums="1"
 # asterisk -vvvr
-
 ```
 
 Then, you can LogOut and Login and see something like:
@@ -92,7 +90,6 @@ Then, you can LogOut and Login and see something like:
 == WebSocket connection from '192.168.147.245:49976' for protocol 'sip' accepted using version '13'
 -- Added contact 'sips:webrtc_client@192.168.147.245:49976;transport=ws;rtcweb-breaker=no' to AOR 'webrtc_client' with expiration of 200 seconds
 == Endpoint webrtc_client is now Reachable
-
 ```
 
 Make a test call

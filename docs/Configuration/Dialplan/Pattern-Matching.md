@@ -64,7 +64,6 @@ Now let's look at a sample pattern. If you wanted to match all four-digit number
 
 ```
 exten => _64XX,1,SayDigits(${EXTEN})
-
 ```
 
 In this example, each **X** represents a single digit, with any value from zero to nine.
@@ -87,7 +86,6 @@ Lets use some Character Sets and Wildcards
 exten => _64X[4-9],1,SayDigits(${EXTEN})
 exten => _[6-4]4[4-9],1,SayDigits(${EXTEN})
 exten => _64.,1,SayDigits(${EXTEN})
-
 ```
 
 The first example: The first must be a six, the second digit must be a four, the third digit can be anything from zero to nine, and the fourth digit must be between four and nine
@@ -151,7 +149,6 @@ exten => _6.,1,SayAlpha(D)
 exten => _64NX,1,SayAlpha(E)
 exten => _6[45]NX,1,SayAlpha(F)
 exten => _6[34]NX,1,SayAlpha(G)
-
 ```
 
 Can you tell (without reading ahead) which one would match?
@@ -170,7 +167,6 @@ exten => _6[34]NX,1,SayAlpha(G)
 exten => _6[45]NX,1,SayAlpha(F)
 exten => _6XX1,1,SayAlpha(A)
 exten => _6.,1,SayAlpha(D)
-
 ```
 
 When Alice dials **6421**, Asterisk searches through its list of sorted extensions and uses the first matching extension. In this case **_64NX** is found.
@@ -185,7 +181,6 @@ exten => _6.,1,SayAlpha(D)
 exten => _64NX,1,SayAlpha(E)
 exten => _6[45]NX,1,SayAlpha(F)
 exten => _6[34]NX,1,SayAlpha(G)
-
 ```
 
 Reload the dialplan, and then type **dialplan show 6421@users** at the Asterisk CLI. Asterisk will show you all extensions that match in the **[users]** context. If you were to dial extension **6421** in the **[users]** context the first found extension will execute.
@@ -201,7 +196,6 @@ server*CLI> dialplan show 6421@users
  '_6.' => 1. SayAlpha(D) [pbx_config]
 
 -= 6 extensions (6 priorities) in 1 context. =-
-
 ```
 ```
 server*CLI> dialplan show users
@@ -215,7 +209,6 @@ server*CLI> dialplan show users
  '_6.' => 1. SayAlpha(D) [pbx_config]
 
 -= 7 extensions (7 priorities) in 1 context. =-
-
 ```
 
 You can dial extension **6421** to try it out on your own.
@@ -227,7 +220,6 @@ Please be aware that because of the way auto-fallthrough works, if Asterisk can'
 exten => 6410,1,SayDigits(987)
 exten => _641X,1,SayDigits(12345)
 exten => _641X,n,SayDigits(54321)
-
 ```
 
 If you were to dial extension **6410**, you'd hear "nine eight seven five four three two one".
@@ -252,7 +244,6 @@ same => n,Hangup()
 exten => 306/_102,1,NoOp()
 same => n,Background(beep)
 same => n,Hangup()
-
 ```
 
 The phone with Caller ID 101, when dialing 306, will hear the prompt "year" and will be hung up.  The phone with Caller ID 102, when dialing 306, will hear the "beep" sound and will be hung up.  The phone with Caller ID 103, or any other caller, when dialing 306, will hear the "goodbye" prompt and will be hung up.
@@ -270,6 +261,5 @@ exten => s/_2XX,1,SayDigits(1)
 same => 2,SayDigits(2) ; <- This is where the dialplan proceeds instead
 same => 3,SayDigits(3)
 same => 4,SayDigits(4)  
-
 ```
 ///

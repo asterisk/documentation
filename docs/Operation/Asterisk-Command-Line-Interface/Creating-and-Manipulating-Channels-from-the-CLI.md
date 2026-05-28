@@ -16,7 +16,6 @@ Usage: channel request hangup <channel>|<all>
  the next time the driver reads or writes from the channel.
  If 'all' is specified instead of a channel name, all channels
  will see the hangup request.
-
 ```
 
 An example:
@@ -30,7 +29,6 @@ SIP/6001-00000001 (None) Up Playback(demo-congrats)
 newtonr-laptop*CLI> channel request hangup SIP/6001-00000001 
 Requested Hangup on channel 'SIP/6001-00000001'
 [May 2 09:51:19] WARNING[7045][C-00000001]: app_playback.c:493 playback_exec: Playback failed on SIP/6001-00000001 for demo-congrats
-
 ```
 
 Here I made a call to an extension calling Playback, then from the CLI I requested that the established channel be hung up. You can see that it hung up in the middle of playing a sound file, so that sound file fails to continue playing.
@@ -54,7 +52,6 @@ Usage2: channel originate <tech/data> extension [exten@][context]
  This will originate a call between the specified channel tech/data and the
 given extension. If no context is specified, the 'default' context will be
 used. If no extension is given, the 's' extension will be used.
-
 ```
 
 An example:
@@ -69,7 +66,6 @@ newtonr-laptop*CLI> channel originate SIP/6001 extension 9999@somecontext
  -- Executing [9999@somecontext:1] VoiceMailMain("SIP/6001-00000004", "") in new stack
  -- <SIP/6001-00000004> Playing 'vm-login.gsm' (language 'en')
  > 0x7f0828067710 -- Probation passed - setting RTP source address to 10.24.18.16:4046
-
 ```
 
 We originated a call to the chan_sip peer 6001 in this case. The extension parameter tells it what extension to connect that channel to once the channel answers. In this case we connect it to an extension calling VoiceMailMain.
@@ -82,7 +78,6 @@ Provided by res_clioriginate.so, this command allows you to redirect an existing
 ```
 Usage: channel redirect <channel> <[[context,]exten,]priority>
  Redirect an active channel to a specified extension.
-
 ```
 
 An example:
@@ -96,7 +91,6 @@ Channel 'SIP/6001-00000005' successfully redirected to somecontext,9999,1
 [May 2 09:56:28] WARNING[7056][C-00000005]: app_playback.c:493 playback_exec: Playback failed on SIP/6001-00000005 for demo-congrats
  -- Executing [9999@somecontext:1] VoiceMailMain("SIP/6001-00000005", "") in new stack
  -- <SIP/6001-00000005> Playing 'vm-login.gsm' (language 'en')
-
 ```
 
 Here we make a call from SIP/6001 to a 100@from-internal, which results in a call to Playback. After the call is established, we issue a 'channel redirect' to redirect that channel to the extension 9999 in the context 'somecontext'. It is immediately placed into that extension and we hear the VoicemailMain prompt.

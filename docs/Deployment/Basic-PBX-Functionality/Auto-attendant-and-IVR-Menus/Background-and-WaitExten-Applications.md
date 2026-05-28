@@ -29,5 +29,4 @@ exten => timeout-handler,1)
  same => n,Dial(${GLOBAL(OPERATOR)},30)
  same => n,Voicemail(operator@default,${IF($[${DIALSTATUS} = BUSY]?b:u)})
  same => n,Hangup()
-
 ```

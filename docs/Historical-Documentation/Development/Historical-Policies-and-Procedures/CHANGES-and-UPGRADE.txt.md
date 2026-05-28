@@ -25,7 +25,6 @@ core_relevant_title.txt
 README.md
 res_pjsip_relevant_title.txt
 res_rtp_relevant_title.txt
-
 ```
 
 !!! note 
@@ -42,7 +41,6 @@ Subject: Core
 Obviously this is just an example and when you write a description it should be way better than this.
 
 But you get the idea!
-
 ```
 
 !!! note 
@@ -64,7 +62,6 @@ Subject: res_ari
 Master-Only: True
 
 A master only change!
-
 ```
 
 !!! info ""

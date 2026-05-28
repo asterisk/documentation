@@ -32,7 +32,6 @@ extensions.conf:
 exten => 1000,1,NoOp()
  same => n,Stasis(channel-aa)
  same => n,Hangup()
-
 ```
 
 ### Python
@@ -59,7 +58,6 @@ To start, we'll define in a list at the top of our script the sounds that make u
 
 ```python linenums="1"
 sounds = ['press-1', 'or', 'press-2']
-
 ```
 
 Since we'll want to maintain some state, we'll create a small object to do that for us. In Python, tuples are immutable - and we'll want to mutate the state in callbacks when certain operations happen. As such, it makes sense to use a small class for this with two properties:
@@ -76,7 +74,6 @@ class MenuState(object):
  def __init__(self, current_sound, complete):
  self.current_sound = current_sound
  self.complete = complete
-
 ```
 
 To start, we'll write a function, `play_intro_menu`, that starts the menu on a channel. It will simply initialize the state of the menu, and get the ball rolling on the channel by calling `queue_up_sound`.
@@ -100,7 +97,6 @@ def play_intro_menu(channel):
  ...
 
  queue_up_sound(channel, menu_state)
-
 ```
 
 `queue_up_sound` will be responsible for starting the next sound file on the channel and handling the manipulation of that sound file. Since there's a fair amount of checking that goes into this, we'll put the actual act of starting the sound in `play_next_sound`, which will return the `Playback` object from ARI. We'll prep the `menu_state` object for the next sound file playback, and pass it to the `PlaybackFinished` handler for the current sound being played back to the channel.
@@ -121,7 +117,6 @@ def queue_up_sound(channel, menu_state):
  menu_state.current_sound += 1
  current_playback.on_event('PlaybackFinished', on_playback_finished,
  callback_args=[menu_state])
-
 ```
 
 `play_next_sound` will do two things:
@@ -147,7 +142,6 @@ def play_next_sound(menu_state):
  except:
  current_playback = None
  return current_playback
-
 ```
 
 Our playback finished handler is very simple: since we've already incremented the state of the menu, we just call `queue_up_sound` again:
@@ -161,7 +155,6 @@ def on_playback_finished(playback, ev, menu_state):
  menu_state The current state of the menu
  """
  queue_up_sound(channel, menu_state)
-
 ```
 
 To recap, our `play_intro_menu` function has three nested functions:
@@ -209,7 +202,6 @@ def queue_up_sound(channel, menu_state):
  callback_args=[current_playback, menu_state])
  channel.on_event('StasisEnd', cancel_menu,
  callback_args=[current_playback, menu_state])
-
 ```
 
 #### Timing out
@@ -257,14 +249,12 @@ def queue_up_sound(channel, menu_state):
  callback_args=[current_playback, menu_state])
  channel.on_event('StasisEnd', cancel_menu,
  callback_args=[current_playback, menu_state])
-
 ```
 
 Now that we've introduced timers, we know we're going to need to stop them if the user does something. We'll store the timers in a dictionary indexed by channel ID, so we can get them from various parts of the script:
 
 ```python linenums="1"
 channel_timers = {}
-
 ```
 
 #### Handling the DTMF options
@@ -308,7 +298,6 @@ def stasis_start_cb(channel_obj, ev):
 
  channel.on_event('ChannelDtmfReceived', on_dtmf_received)
  play_intro_menu(channel)
-
 ```
 
 Cancelling the timer is done in a fashion similar to other examples. If the channel has a Python timer associated with it, we cancel the timer and remove it from the dictionary.
@@ -324,7 +313,6 @@ def cancel_timeout(channel):
  if timer:
  timer.cancel()
  del channel_timers[channel.id]
-
 ```
 
 Finally, we need to actually do *something* when the user presses a <kbd>1</kbd> or a <kbd>2</kbd>. We could do anything here - but in our case, we're merely going to play back the number that they pressed and restart the menu.
@@ -349,7 +337,6 @@ def handle_extension_two(channel):
  channel.play(media='sound:you-entered')
  channel.play(media='digits:2')
  play_intro_menu(channel)
-
 ```
 
 #### channel-aa.py
@@ -541,7 +528,6 @@ client.on_channel_event('StasisStart', stasis_start_cb)
 client.on_channel_event('StasisEnd', stasis_end_cb)
 
 client.run(apps='channel-aa')
-
 ```
 
 #### channel-aa.py in action
@@ -556,7 +542,6 @@ Channel PJSIP/alice-00000001 entered 8
 Channel PJSIP/alice-00000001 entered an invalid option!
 Channel PJSIP/alice-00000001 stopped paying attention...
 PJSIP/alice-00000001 has left the application
-
 ```
 
 ### JavaScript (Node.js)
@@ -588,7 +573,6 @@ var menu = {
  // note: this uses the 'extra' sounds package
  sounds: ['sound:press-1', 'sound:or', 'sound:press-2']
 };
-
 ```
 
 To start with, well register a callback to handle a StasisStart and StasisEnd event on any channel that enters into our application:
@@ -615,7 +599,6 @@ function stasisEnd(event, channel) {
  channel.removeListener('ChannelDtmfReceived', dtmfReceived);
  cancelTimeout(channel);
 }
-
 ```
 
 Note that we register a callback to handle ChannelDtmfReceived events on a channel entering our application in StasisStart and then unregister that callback on StasisEnd. For long running, non-trivial applications, this allows the JavaScript garbage collector to clean up our callback. This is important since every channel entering into our application will register its own copy of the callback which is not be garbage collected until it is unregistered.
@@ -638,7 +621,6 @@ var state = {
  currentPlayback: undefined,
  done: false
 };
-
 ```
 
 `playIntroMenu will` start the menu on a channel. It will simply initialize the state of the menu, and get the ball rolling on the channel by calling `queueUpSound` which is a nested function within playIntroMenu.
@@ -655,7 +637,6 @@ function playIntroMenu(channel) {
  channel.on('StasisEnd', cancelMenu);
  queueUpSound();
  ...
-
 ```
 
 We'll cover cancelMenu shortly, but first let's discuss queueUpSound. `queueUpSound` will be responsible for starting the next sound file on the channel and handling the manipulation of that sound file. queueUpSound is also responsible for starting a timeout once all sounds for the menu prompt have completed to handle reminding the user that they must choose a menu option. We'll cover that part shortly but first, we'll cover handling progerssing through the sounds that make up the menu prompt. We first initiate playback on the current sound in the sequence. We then register a callback to handle that playback finishing, which will trigger queueUpSound to be called again, moving on to the next sound in the sequence. Finally, we update the state object to reflect the next sound to be played in the menu prompt sequence.
@@ -683,7 +664,6 @@ function queueUpSound() {
  }
  }
 }
-
 ```
 
 Notice that when registering our PlaybackFinished callback handler, we use the once method on the resource instance instead of on. This ensures that the callback will be invoked once and then automatically be unregistered. Since a PlaybackFinished event will only be invoked once for a given Playback instance, it makes sense to use this method which will also enable the callback to be garbage collected once it has been invoked.
@@ -709,7 +689,6 @@ function cancelMenu() {
  channel.removeListener('ChannelDtmfReceived', cancelMenu);
  channel.removeListener('StasisEnd', cancelMenu);
 }
-
 ```
 
 Note that once the cancelMenu callback is invoked, we unregister both the ChannelDtmfReceived and StasisEnd events. This is performed so that once this particular menu instance stops, we do not leave registered callbacks behind that will never be garbage collected.
@@ -730,14 +709,12 @@ function stillThere() {
  playIntroMenu(channel);
  });
 }
-
 ```
 
 Now that we've introduced timers, we know we're going to need to stop them if the user does something. We'll store the timers in an object indexed by channel ID, so we can get them from various parts of the script:
 
 ```javascript linenums="1"
 var timers = {};
-
 ```
 
 #### Handling the DTMF options
@@ -773,7 +750,6 @@ function dtmfReceived(event, channel) {
  });
  }
 }
-
 ```
 
 Cancelling the timer is done in a fashion similar to other examples. If the channel has a JavaScript timeout associated with it, we cancel the timer and remove it from the object.
@@ -787,7 +763,6 @@ function cancelTimeout(channel) {
  delete timers[channel.id];
  }
 }
-
 ```
 
 Finally, we need to actually do *something* when the user presses a <kbd>1</kbd> or a <kbd>2</kbd>. We could do anything here - but in our case, we're merely going to play back the number that they pressed and restart the menu.
@@ -806,7 +781,6 @@ function handleDtmf(channel, digit) {
  });
  });
 } 
-
 ```
 
 #### channel-aa.js
@@ -990,7 +964,6 @@ function clientLoaded (err, client) {
 
  client.start('channel-aa');
 }
-
 ```
 
 #### channel-aa.js in action
@@ -1005,5 +978,4 @@ Channel PJSIP/alice-00000001 entered 8
 Channel PJSIP/alice-00000001 entered an invalid option!
 Channel PJSIP/alice-00000001 stopped paying attention...
 PJSIP/alice-00000001 has left the application
-
 ```

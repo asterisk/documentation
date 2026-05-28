@@ -29,7 +29,6 @@ Underneath that context name, we'll create an extesion numbered **6001** which a
 [from-internal]
 exten=>6001,1,Dial(SIP/demo-alice,20)
 exten=>6002,1,Dial(SIP/demo-bob,20)
-
 ```
 
 /// note 
@@ -48,7 +47,6 @@ After adding that section to **extensions.conf**, go to the Asterisk command-lin
  '6002' => 1. Dial(SIP/demo-bob,20) [pbx_config]
 
 -= 2 extensions (2 priorities) in 1 context. =- 
-
 ```
 
 Now we're ready to make a test call!

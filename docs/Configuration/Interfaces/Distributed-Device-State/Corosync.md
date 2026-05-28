@@ -32,7 +32,6 @@ Debian / Ubuntu
 ```
 
 apt-get install corosync corosync-dev
-
 ```
 
 Red Hat / Fedora
@@ -40,7 +39,6 @@ Red Hat / Fedora
 ```
 
 yum install corosync corosynclib corosynclib-devel
-
 ```
 
 * ###### Authkey
@@ -50,7 +48,6 @@ To create an authentication key for secure communications between your nodes you
 ```
 
 corosync-keygen
-
 ```
 
 This creates a key in /etc/corosync/authkey.
@@ -58,7 +55,6 @@ This creates a key in /etc/corosync/authkey.
 ```
 
 asterisk_active:~# scp /etc/corosync/authkey asterisk_standby:
-
 ```
 
 Now, on the standby node, you'll need to stick the authkey in it's new home and fix it's permissions / ownership.
@@ -68,7 +64,6 @@ Now, on the standby node, you'll need to stick the authkey in it's new home and 
 asterisk_standby:~# mv ~/authkey /etc/corosync/authkey
 asterisk_standby:~# chown root:root /etc/corosync/authkey
 asterisk_standby:~# chmod 400 /etc/corosync/authkey
-
 ```
 * ###### /etc/corosync/corosync.conf
 
@@ -138,7 +133,6 @@ The interface section under the totem block defines the communication path(s) to
 ```
 
 service corosync start
-
 ```
 
 ###### Asterisk
@@ -152,7 +146,6 @@ In your Asterisk source directory:
 ./configure
 make
 make install
-
 ```
 
 * ###### /etc/asterisk/res_corosync.conf
@@ -190,7 +183,6 @@ publish_event = device_state
 ; Subscribe to Device State (presence) events from the cluster.
 subscribe_event = device_state
 ;
-
 ```
 
 In the general section of the res_corosync.conf file we are specifying which events we'd like to publish and subscribe to (at the moment this is either device_state or mwi).
@@ -212,7 +204,6 @@ If everything is set up correctly, you should see this output after executing a 
 === --> Address 1: <host #1 ip goes here>
 ===
 =============================================================
-
 ```
 
 After starting Corosync and Asterisk on your second node, the 'corosync show members' output should look something like this:
@@ -233,5 +224,4 @@ After starting Corosync and Asterisk on your second node, the 'corosync show mem
 === --> Address 1: <host #2 ip goes here>
 ===
 =============================================================
-
 ```

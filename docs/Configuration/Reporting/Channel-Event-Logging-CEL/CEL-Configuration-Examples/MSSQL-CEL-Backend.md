@@ -23,7 +23,6 @@ The following provide some examples known to get asterisk working with mssql.
 ```
 
 tar -zxvf unixODBC-2.2.9.tar.gz && cd unixODBC-2.2.9 && ./configure --sysconfdir=/etc --prefix=/usr --disable-gui && make && make install 
-
 ```
 
 ### Compile, configure, and install the latest FreeTDS package:
@@ -31,7 +30,6 @@ tar -zxvf unixODBC-2.2.9.tar.gz && cd unixODBC-2.2.9 && ./configure --sysconfdir
 ```
 
 tar -zxvf freetds-0.62.4.tar.gz && cd freetds-0.62.4 && ./configure --prefix=/usr --with-tdsver=7.0 \ --with-unixodbc=/usr/lib && make && make install 
-
 ```
 
 ### Compile, or recompile, asterisk so that it will now add support for cel_odbc.
@@ -39,7 +37,6 @@ tar -zxvf freetds-0.62.4.tar.gz && cd freetds-0.62.4 && ./configure --prefix=/us
 ```
 
 make clean && ./configure --with-odbc && make update && make && make install 
-
 ```
 
 ### Setup odbc configuration files.
@@ -55,7 +52,6 @@ Description = FreeTDS ODBC driver for MSSQL
 Driver = /usr/lib/libtdsodbc.so
 Setup = /usr/lib/libtdsS.so
 FileUsage = 1
-
 ```
 
 /etc/odbc.ini
@@ -70,7 +66,6 @@ port = 1433
 database = voipdb
 tds_version = 7.0
 language = us_english 
-
 ```
 
 !!! warning 
@@ -99,7 +94,6 @@ dsn=MSSQL-asterisk
 username=voipdbuser
 password=voipdbpass
 loguniqueid=yes 
-
 ```
 
 ### And finally, create the 'cel' table in your mssql database.
@@ -125,7 +119,6 @@ CREATE TABLE cel (
  [peer] [varchar] (80) NOT NULL ,
  [userfield] [varchar] (255) NOT NULL 
 ) ;
-
 ```
 
 Start asterisk in verbose mode, you should see that asterisk logs a connection to the database and will now record every desired channel event at the moment it occurs.
@@ -137,7 +130,6 @@ Start asterisk in verbose mode, you should see that asterisk logs a connection t
 ```
 
 tar -zxvf freetds-0.62.4.tar.gz && cd freetds-0.62.4 && ./configure --prefix=/usr --with-tdsver=7.0 make && make install 
-
 ```
 
 ### Compile, or recompile, asterisk so that it will now add support for cel_tds.
@@ -145,7 +137,6 @@ tar -zxvf freetds-0.62.4.tar.gz && cd freetds-0.62.4 && ./configure --prefix=/us
 ```
 
 make clean && ./configure --with-tds && make update && make && make install 
-
 ```
 
 !!! warning 
@@ -171,7 +162,6 @@ dbname=voipdb
 user=voipdbuser 
 password=voipdpass 
 charset=BIG5
-
 ```
 
 ### And finally, create the 'cel' table in your mssql database.
@@ -197,7 +187,6 @@ CREATE TABLE cel (
  [userfield] [varchar] (255) NULL , 
  [peer] [varchar] (80) NULL 
 ) ;
-
 ```
 
 Start asterisk in verbose mode, you should see that asterisk logs a connection to the database and will now record every call to the database when it's complete.

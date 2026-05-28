@@ -51,7 +51,6 @@ ubuntu*CLI> core show locks
 === -------------------------------------------------------------------
 ===
 =======================================================================
-
 ```
 
 Example output with DEBUG_THREADS and BETTER_BACKTRACES
@@ -85,7 +84,6 @@ ubuntu*CLI> core show locks
 === -------------------------------------------------------------------
 ===
 =======================================================================
-
 ```
 
 ### core show taskprocessors
@@ -107,7 +105,6 @@ ubuntu*CLI> core show taskprocessors
  iax2_transmit 0 0 0
  +---------------------+-----------------+------------+-------------+
  7 taskprocessors
-
 ```
 
 Example command output (Asterisk 13)
@@ -140,7 +137,6 @@ subp:PJSIP/linphone-00000022 3 0 1 450 500
 subp:PJSIP/sipp-00000020 3 0 1 450 500
 subp:PJSIP/weblooper-00000024 6 0 1 450 500
 118 taskprocessors
-
 ```
 
 ### core show threads
@@ -162,7 +158,6 @@ ubuntu*CLI> core show threads
 0x7f869abdb700 25093 lock_broker started at [ 509] func_lock.c load_module()
 
 ... <snip>
-
 ```
 
 ### core show fd
@@ -186,5 +181,4 @@ Current maxfiles: unlimited
  22 chan_unistim.c:6795 (reload_config ): socket(PF_INET,SOCK_DGRAM,"udp")
  23 asterisk.c:4489 (main ): pipe({23,24})
  24 asterisk.c:4489 (main ): pipe({23,24})
-
 ```

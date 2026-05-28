@@ -46,7 +46,6 @@ context=from-internal
 allow=!all,ulaw
 auth=CATHY
 aors=CATHY
-
 ```
 
 We set the option "allow" to a string of values "!all,ulaw".
@@ -65,7 +64,6 @@ voicemail.conf
 ```
  [general]
 format=wav49,wav,gsm
-
 ```
 
 In the general section of voicemail.conf you can set the formats used when writing [voicemail](/Configuration/Applications/Voicemail)to the file-system. We set the option "format" to a string of file format names.
@@ -148,7 +146,6 @@ mv output.sln output.sln32
 ---
 
 In this example, an input WAV file has been converted to Signed Linear at a depth of 16-bits and at a rate of 32kHz. The resulting output.sln file is then renamed output.sln32 so that it can be processed correctly by Asterisk.
-
 ```
 
 Video and Image Support

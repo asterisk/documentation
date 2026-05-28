@@ -127,7 +127,6 @@ username=6001
 [6001]
 type=aor
 max_contacts=2
-
 ```
 
 ### For Remote Phones Behind NAT

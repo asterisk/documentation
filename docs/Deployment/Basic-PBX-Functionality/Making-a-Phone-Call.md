@@ -12,7 +12,6 @@ server*CLI>     -- Executing [6002@from-internal:1] Dial("SIP/demo-alice-0000000
  -- SIP/demo-bob-00000001 answered SIP/demo-alice-00000000
  -- Native bridging SIP/demo-alice-00000000 and SIP/demo-bob-00000001
  == Spawn extension (from-internal, 6002, 1) exited non-zero on 'SIP/demo-alice-00000000'
-
 ```
 
 As you can see, Alice called extension **6002** in the [from-internal] context, which in turn used the **Dial** application to call Bob's phone. Bob's phone rang, and then answered the call. Asterisk then bridged the two calls (one call from Alice to Asterisk, and the other from Asterisk to Bob), until Alice hung up the phone.

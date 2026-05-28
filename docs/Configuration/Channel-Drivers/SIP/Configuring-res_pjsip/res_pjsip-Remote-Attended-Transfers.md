@@ -22,21 +22,18 @@ As you can see, Bob has simultaneous calls through two separate servers. Now whe
 
 ```
 Refer-To: <sip:carol@server_b.com?Replaces=ABCDE%3Bto-tag%3DBtoBobfrom-tag%3DBobtoB>
-
 ```
 
 That's a bit verbose. So let's break it down a little bit. First, there is a SIP URI:
 
 ```
 sip:carol@server_b.com
-
 ```
 
 Next, there is a Replaces URI header. There are some URL-escaped character sequences in there. If we decode them, we get the following:
 
 ```
 Replaces: ABCDE;to-tag=BtoBob;from-tag=BobtoB
-
 ```
 
 If we break down the parts of this, what the Replaces section tells us is that the REFER request is saying that the SIP dialog with Call-ID "ABCDE", to-tag "BtoBob" and from-tag "BobtoB" needs to be replaced by the party (or parties) that Bob is talking to.
@@ -54,7 +51,6 @@ In the scenario above, when Asterisk A receives the REFER request from Bob, Aste
 
 ```
 Replaces: ABCDE;to-tag=BtoBob;from-tag=BobtoB
-
 ```
 
 When Server B receives this INVITE, it will essentially swap this new call in for the call referenced by the Replaces header. By doing this, the final picture looks something like the following:
@@ -100,7 +96,6 @@ If you decide to perform the transfer, the most straightforward way to do this i
 ```
 exten => external_replaces,1,NoOp()
  same => n,Dial(PJSIP/default_outgoing/${SIPREFERTOHDR})
-
 ```
 
 Let's examine that `Dial()` more closely. First, we're dialing using PJSIP, which is pretty obvious. Next, we have the endpoint name. The endpoint name could be any configured endpoint you want to use to make this call. Remember that endpoint settings are things such as what codecs to use, what user name to place in the from header, etc. By default, if you just dial `PJSIP/some_endpoint`, Asterisk looks at some_endpoint's configured `aors` to determine what location to send the outgoing call to. However, you can override this default behavior and specify a URI to send the call to instead. This is what is being done in this `Dial()` statement. We're dialing using settings for an endpoint called "default_outgoing", presumably used as a default endpoint for outgoing calls. We're sending the call out to the URI specified by `SIPREFERTOHDR` though. Using the scenario on this page, the `Dial()` command would route the call to `sip:carol@server_b`.

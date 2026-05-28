@@ -21,7 +21,6 @@ dbname=asterisk
 password=password 
 user=postgres 
 table=cdr
-
 ```
 
 Now create a table in postgresql for your cdrs
@@ -46,7 +45,6 @@ CREATE TABLE cdr (
  uniqueid varchar (150) NOT NULL , 
  userfield varchar (255) NOT NULL 
 );
-
 ```
 
 ##### In 1.8 and later
@@ -58,5 +56,4 @@ The following columns can also be defined:
  peeraccount varchar(20) NOT NULL
  linkedid varchar(150) NOT NULL
  sequence int NOT NULL
-
 ```

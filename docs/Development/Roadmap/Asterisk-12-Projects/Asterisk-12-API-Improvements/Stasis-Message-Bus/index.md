@@ -97,7 +97,6 @@ struct stasis_message_type *ast_foo_type(void);
  * \brief Topic for the foo module.
  */
 struct stasis_topic *ast_foo_topic(void);
-
 ```
 ```
 #include "asterisk.h"
@@ -172,7 +171,6 @@ AST_MODULE_INFO(ASTERISK_GPL_KEY, 0, "The wonders of foo",
  .load = load_module,
  .unload = unload_module
  );
-
 ```
 
 ## Subscribing (no message router)
@@ -246,7 +244,6 @@ void ast_bar_shutdown(struct ast_bar *bar)
  stasis_unsubscribe(bar->sub);
  bar->sub = NULL;
 }
-
 ```
 
 ## Subscribing (with message router)
@@ -353,5 +350,4 @@ void ast_bar_shutdown(struct ast_bar *bar)
  stasis_message_router_unsubscribe(bar->router);
  bar->router = NULL;
 }
-
 ```

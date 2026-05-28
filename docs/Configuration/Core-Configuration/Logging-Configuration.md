@@ -65,7 +65,6 @@ rotatestrategy = rotate
 ; two archive files to remain uncompressed, but after that point,
 ; they are compressed on disk.
 exec_after_rotate=gzip -9 ${filename}.2
-
 ```
 
 Log Files Section:
@@ -130,5 +129,4 @@ full => notice,warning,error,verbose,dtmf,fax
 
 ; output notices, warning, and errors to the syslog facility
 syslog.local0 => notice,warning,error
-
 ```

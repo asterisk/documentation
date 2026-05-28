@@ -37,7 +37,6 @@ To get started, go ahead and move to the /etc/asterisk/ directory where the file
 
 ```
 cd /etc/asterisk
-
 ```
 
 Configure extensions.conf
@@ -48,7 +47,6 @@ Backup the sample extensions.conf and create a new one
 ```
 mv extensions.conf extensions.sample
 vim extensions.conf
-
 ```
 
 I'm assuming you use the VI/VIM editor here, after all, it is the best.
@@ -63,7 +61,6 @@ exten = 100,1,Answer()
 same = n,Wait(1)
 same = n,Playback(hello-world)
 same = n,Hangup()
-
 ```
 
 When a phone dials extension 100, we are telling Asterisk to **Answer** the call, **Wait** one second, then Play (**Playback**) a sound file (hello-world) to the channel and **Hangup**.
@@ -98,7 +95,6 @@ host=dynamic
 secret=unsecurepassword
 disallow=all
 allow=ulaw
-
 ```
 
 Basic configuration will be explained in more detail in other sections of the wiki. For this example to work, just make sure you have everything exactly as written above. For the sake of terminology, it is useful to note that though we have this SIP configuration configured with "type=friend", most people refer to this as configuring a SIP peer.
@@ -132,7 +128,6 @@ username=6001
 [6001]
 type=aor
 max_contacts=1
-
 ```
 
 Configure your SIP phone
@@ -164,7 +159,6 @@ Back at the Linux shell go ahead and start Asterisk. We'll start Asterisk with a
 
 ```
 asterisk -cvvvvv
-
 ```
 
 Or if Asterisk is already running, restart Asterisk from the shell and connect to it.
@@ -172,7 +166,6 @@ Or if Asterisk is already running, restart Asterisk from the shell and connect t
 ```
 asterisk -rx "core restart now"
 asterisk -rvvvvv
-
 ```
 
 Make the call

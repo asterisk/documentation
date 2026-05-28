@@ -121,7 +121,6 @@ function GreetingState(call) {
 	}
 }
 module.exports = GreetingState;
-
 ```
 
 The `sounds.get()` method employed here allows for a single sound to be retrieved based on input parameters. Here, we simply specify the name of the recording we want to ensure that it exists in some form on the system. By checking for the sound's existence in the initialization of `GreetingState`, we can abort the call early if the sound is not installed.
@@ -181,7 +180,6 @@ this.setup_state_machine = function() {
 	this.state_machine.add_transition(greeting_state, Event.PLAYBACK_COMPLETE, recording_state);
 	this.state_machine.start(greeting_state);
 }
-
 ```
 
 Here is a sample run where the user cuts off the greeting by pressing the <kbd>#</kbd> key, records a greeting and presses the <kbd>#</kbd> key, and after listening to the recording presses the <kbd>#</kbd> key once more.
@@ -197,7 +195,6 @@ Cleaning up event handlers
 Entering reviewing state
 Accepted recording voicemail/305/1411503204.75 on DTMF #
 Ending voice mail call from PJSIP/200-0000000b
-
 ```
 
 ### Reader Exercise 1
@@ -530,7 +527,6 @@ class PreambleState(object):
 		if digit == '#':
 			self.cleanup()
 			self.call.state_machine.change_state(Event.DTMF_OCTOTHORPE)
-
 ```
 
 ```javascript title="preamble_state.js" linenums="1"

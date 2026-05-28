@@ -240,7 +240,6 @@ int ast_dns_resolve_cancel(struct ast_dns_query *query);
  * \retval -1 failure
  */
 int ast_dns_resolve(const char *name, int rr_type, int rr_class, struct ast_dns_result **result);
-
 ```
 
 On this Page
@@ -344,7 +343,6 @@ int ast_dns_query_set_resolve_cancel(struct ast_dns_query_set *query_set);
  * \param query_set A DNS query set
  */
 void ast_dns_query_set_free(struct ast_dns_query_set *query_set);
-
 ```
 
 dns_naptr.h
@@ -404,7 +402,6 @@ unsigned short ast_dns_naptr_get_order(const struct ast_dns_record *record);
  * \return the preference
  */
 unsigned short ast_dns_naptr_get_preference(const struct ast_dns_record *record);
-
 ```
 
 dns_srv.h
@@ -448,7 +445,6 @@ unsigned short ast_dns_srv_get_weight(const struct ast_dns_record *record);
  * \return the port
  */
 unsigned short ast_dns_srv_get_port(const struct ast_dns_record *record);
-
 ```
 
 dns_tlsa.h
@@ -489,7 +485,6 @@ unsigned int ast_dns_tlsa_get_matching_type(const struct ast_dns_record *record)
  * \return the certificate association data
  */
 const char *ast_dns_tlsa_get_association_data(const struct ast_dns_record *record);
-
 ```
 
 dns_resolver.h
@@ -580,7 +575,6 @@ int ast_dns_resolver_register(const struct ast_core_dns_resolver *resolver);
  * \retval -1 failure
  */
 int ast_dns_resolver_unregister(const struct ast_core_dns_resolver *resolver);
-
 ```
 
 dns_internal.h
@@ -676,7 +670,6 @@ struct ast_dns_query_set {
  /*! \brief Timer for recurring resolutio */
  int timer;
 };
-
 ```
 
 Examples
@@ -714,7 +707,6 @@ int test(void)
  }
  return 0;
 }
-
 ```
 
 Asynchronous Resolution
@@ -753,7 +745,6 @@ int test(void)
  sleep(5);
  return 0;
 }
-
 ```
 
 Parallel Queries
@@ -801,7 +792,6 @@ int test(void)
  sleep(5);
  return 0;
 }
-
 ```
 
 Fallback
@@ -845,7 +835,6 @@ int test(void)
  sleep(5);
  return 0;
 }
-
 ```
 
 NAPTR
@@ -916,7 +905,6 @@ int test(void)
  sleep(5);
  return 0;
 }
-
 ```
 
 Recurring
@@ -951,5 +939,4 @@ int test(void)
  sleep(5);
  return 0;
 }
-
 ```

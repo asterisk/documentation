@@ -238,7 +238,6 @@ PJSIP/Alice-00000001 entered our application
 Dialing PJSIP/Bob
 PJSIP/Bob-00000002 answered; bridging with PJSIP/Alice-00000001
 Hung up PJSIP/Bob-00000002
-
 ```
 
 ### JavaScript (Node.js)
@@ -270,7 +269,6 @@ function stasisStart(event, channel) {
 		});
 	}
 }
-
 ```
 
 We then prepare an object with a locally generate Id for the dialed channel and register event callbacks either channels hanging up and the dialed channel entering into the Stasis application. We then originate a call to the endpoint specified by the first command line argument to the script passing in a Stasis application argument of dialed so we can skip the dialed channel when the original StasisStart event callback fires for it:
@@ -298,7 +296,6 @@ function originate(channel) {
 		}
 	});
 }
-
 ```
 
 We then handle either channel hanging up by hanging up the other channel. Note that we skip any errors that occur on hangup since it is possible that the channel we are attempting to hang up is the one that has already left and would result in an HTTP error as it is no longer a Statis channel:
@@ -541,7 +538,6 @@ function clientLoaded (err, client) {
 
 	client.start('bridge-dial');
 }
-
 ```
 
 #### bridge-dial.js in action
@@ -555,5 +551,4 @@ Adding channel PJSIP/alice-00000001 and dialed channel PJSIP/bob-00000002 to bri
 Dialed channel PJSIP/bob-00000002 has left our application, destroying bridge 30430e82-83ed-4242-9f37-1bc040f70724
 Dialed channel PJSIP/bob-00000002 has been hung up, hanging up channel PJSIP/alice-00000001
 Channel PJSIP/alice-00000001 left our application, hanging up dialed channel undefined
-
 ```

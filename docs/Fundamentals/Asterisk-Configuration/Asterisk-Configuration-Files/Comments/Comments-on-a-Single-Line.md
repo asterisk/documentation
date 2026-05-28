@@ -15,5 +15,4 @@ setting=false ; this is a comment
 ;awesome=true
 ; the semicolon on the line above makes it a
 ; comment, disabling the setting
-
 ```

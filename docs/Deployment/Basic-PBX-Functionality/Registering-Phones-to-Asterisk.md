@@ -20,7 +20,6 @@ Name/username Host Dyn NAT ACL Port Status
 demo-alice (Unspecified) D A 5060 Unmonitored
 demo-bob 192.168.5.105 D A 5060 Unmonitored
 2 sip peers [Monitored: 0 online, 0 offline Unmonitored: 2 online, 0 offline]
-
 ```
 
 In the example above, you can see that Alice's phone has not registered, but Bob's phone has registered.
@@ -40,5 +39,4 @@ NOTICE[22214]: chan_sip.c:20824 handle_request_register: Registration from '"Ali
 ---
 
 As you can see, Asterisk has detected that the password entered into the phone doesn't match the secret setting in the [demo-alice] section of sip.conf.
-
 ```

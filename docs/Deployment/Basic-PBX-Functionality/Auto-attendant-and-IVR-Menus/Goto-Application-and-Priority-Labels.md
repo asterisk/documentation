@@ -28,5 +28,4 @@ exten => start,1,NoOp()
 exten => start,1,NoOp()
  same => n,Playback(hello-world)
  same => n,Hangup()
-
 ```

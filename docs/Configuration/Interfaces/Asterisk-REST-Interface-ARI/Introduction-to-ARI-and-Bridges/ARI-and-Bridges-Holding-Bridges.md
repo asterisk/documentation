@@ -19,7 +19,6 @@ To add a channel as a participant to a holding bridge, you can either not specif
 ```
 POST /bridges/{bridge_id}/addChannel?channel=12345
 POST /bridges/{bridge_id}/addChannel?channel=12345&role=participant
-
 ```
 
 On This PageAdding a channel as an announcer
@@ -29,7 +28,6 @@ To add a channel as an announcer to a holding bridge, you must specify a role of
 
 ```
 POST /bridges/{bridge_id}/addChannel?channel=56789&role=announcer
-
 ```
 
 !!! tip When is an Announcer channel useful?
@@ -75,7 +73,6 @@ extensions.conf
 exten => 1000,1,NoOp()
  same => n,Stasis(bridge-infinite-wait)
  same => n,Hangup()
-
 ```
 
 Python
@@ -138,7 +135,6 @@ def find_or_create_bridge():
  announcer_timer = threading.Timer(30, play_announcement, [holding_bridge])
  announcer_timer.start()
  return bridge
-
 ```
 
 The function that does this work, `find_or_create_bridge`, is called from our `StasisStart` event handler. The bridge that it returns will have the new channel added to it.
@@ -155,7 +151,6 @@ def stasis_start_cb(channel_obj, ev):
 
  channel.answer()
  bridge.addChannel(channel=channel.id)
-
 ```
 
 In the `find_or_create_bridge` function, we also subscribed for the `ChannelLeftBridge` event. We'll add a callback handler for this in that function as well. When the channel leaves the bridge, we'll check to see if there are no more channels in the bridge and - if so - destroy the bridge.
@@ -178,7 +173,6 @@ def on_channel_left_bridge(bridge, ev):
  print "Destroying bridge %s" % bridge.id
  holding_bridge.destroy()
  holding_bridge = None
-
 ```
 
 ### bridge-infinite-wait.py
@@ -296,7 +290,6 @@ client.on_channel_event('StasisStart', stasis_start_cb)
 client.on_channel_event('StasisEnd', stasis_end_cb)
 
 client.run(apps='bridge-infinite-wait')
-
 ```
 
 ### bridge-infinite-wait.py in action
@@ -308,7 +301,6 @@ Letting the everyone know we care...
 Channel PJSIP/alice-00000000 left bridge 950c4805-c33c-4895-ad9a-2798055e4939
 Destroying bridge 950c4805-c33c-4895-ad9a-2798055e4939
 Channel PJSIP/alice-00000000 just left our application
-
 ```
 
 JavaScript (Node.js)
@@ -376,7 +368,6 @@ console.log('Channel %s just entered our application', channel.name);
  }
  });
  }
-
 ```
 
 The joinBridge function involves registered a callback for the ChannelLeftBridge event and adds the channel to the bridge.
@@ -398,7 +389,6 @@ function joinBridge(bridge) {
  }
  });
  } 
-
 ```
 
 Notice that we use an anonymous function to pass the bridge as an extra parameter to the ChannelLeftBridge callback so we can keep the handler at the same level as joinBridge and avoid another indentation level of callbacks. Finally, we can handle destroying the bridge when the last channel contained in it has left:
@@ -425,7 +415,6 @@ Notice that we use an anonymous function to pass the bridge as an extra paramete
  });
  }
  }
-
 ```
 
 ### bridge-infinite-wait.js
@@ -560,7 +549,6 @@ function clientLoaded (err, client) {
  console.log('starting');
  client.start('bridge-infinite-wait');
 }
-
 ```
 
 ### bridge-infinite-wait.js in action
@@ -573,5 +561,4 @@ Created bridge 31a4a193-36a7-412b-854b-cf2cf5f90bbd
 Letting everyone know we care...
 Channel PJSIP/alice-00000001 left bridge 31a4a193-36a7-412b-854b-cf2cf5f90bbd
 Channel PJSIP/alice-00000001 just left our application
-
 ```

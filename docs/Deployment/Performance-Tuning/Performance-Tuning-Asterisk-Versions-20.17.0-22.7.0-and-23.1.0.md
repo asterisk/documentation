@@ -54,7 +54,6 @@ threadpool_idle_timeout=120
 ; attempting to use more memory than can be allocated to a 32-bit process. If memory starts
 ; increasing, lowering this value might actually help.
 threadpool_max_size=100
-
 ```
 
 ### Stasis Threadpool
@@ -72,7 +71,6 @@ idle_timeout_sec = 120
 ; The notes about the pjsip max size apply here as well. Increasing to 100 threads is probably
 ; safe, but anything more will probably cause the same thrashing and memory over-utilization,
 max_size = 60
-
 ```
 
 If you don't need AMI, CDR, or CEL then disabling those modules will reduce resource usage.  The CDR module uses a lot of processing to create the CDR records and can easily get backed up on a busy system.
@@ -102,7 +100,6 @@ timer_t1=100
 ; memory so on a busy PBX, a setting of 32 seconds will probably result in higher than
 ; necessary memory utilization. For most installations, 6400ms is fine.
 timer_b=6400
-
 ```
 
 ### Identification Priority
@@ -117,7 +114,6 @@ type=global
 ; The order should be from the most likely to be used, to the least likely to be used
 ; which in this case would put username first for the phones, and ip second for providers.
 endpoint_identifier_order=username,ip,anonymous
-
 ```
 
 ## Sorcery/Database
@@ -176,7 +172,6 @@ identify=realtime,ps_endpoint_id_ips
 ; the provider requires them.
 registration/cache=memory_cache,maximum_objects=150,expire_on_reload=yes,object_lifetime_maximum=900
 registration=realtime,ps_registrations
-
 ```
 
 ### Flushing the caches:

@@ -30,7 +30,6 @@ location = URI='https://my.company.com/location_query?DID=${CALLERID(num)}'
 [employees-outbound]
 type = profile
 location_reference = did-xref
-
 ```
 
 In pjsip.conf, you'd add a `geoloc_outgoing_call_profile` parameter to your *outgoing* endpoint definition:
@@ -40,14 +39,12 @@ In pjsip.conf, you'd add a `geoloc_outgoing_call_profile` parameter to your *out
 type = endpoint
 ...
 geoloc_outgoing_call_profile = employees-outbound
-
 ```
 
 Now let's say that Bob has DID `12125551212` assigned to him and he makes an outgoing call which is routed to "my-provider". Asterisk would automatically add the following header to the INVITE:
 
 ```
 Geolocation: <https://my.company.com/location_query?DID=12125551212>
-
 ```
 
 The recipient could then make a simply query using that URI and get Bob's location in whatever format was agreed upon with you and them.
@@ -74,5 +71,4 @@ exten = _X.,1,Return(0)
 exten = _X.,1,NoOp(Outgoing call)
 ; 'b' will run the pre-dial-handler on the outgoing channel.
 same = n,Dial(PJSIP/${EXTEN},5,b(pre-dial-handler))
-
 ```

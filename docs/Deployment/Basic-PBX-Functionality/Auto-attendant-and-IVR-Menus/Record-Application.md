@@ -13,7 +13,6 @@ exten => 6597,1,Answer(500)
  same => n,Wait(1)
  same => n,Playback(custom-menu)
  same => n,Hangup()
-
 ```
 
 /// tip | Recording Formats

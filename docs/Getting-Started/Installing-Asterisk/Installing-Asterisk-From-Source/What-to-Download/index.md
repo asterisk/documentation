@@ -41,7 +41,6 @@ Saving to: ‘asterisk-14-current.tar.gz’
 asterisk-14-current.tar.gz 100%[======================================================================>] 38.81M 3.32MB/s in 12s 
 
 2017-04-28 15:45:47 (3.37 MB/s) - ‘asterisk-14-current.tar.gz’ saved [40692588/40692588]
-
 ```
 
 ## Other Projects

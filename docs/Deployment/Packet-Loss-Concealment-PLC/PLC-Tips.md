@@ -10,7 +10,6 @@ One of the restrictions mentioned is that PLC will only be used when two audio c
 [example]
 exten => 1,1,Playback(tt-weasels)
 exten => 2,1,Dial(Local/1@example/nj) 
-
 ```
 
 When dialing extension 1, PLC cannot be used because there will be only a single channel involved. When dialing extension 2, however, Asterisk will create a bridge between the incoming channel and the Local channel, thus allowing PLC to be used.

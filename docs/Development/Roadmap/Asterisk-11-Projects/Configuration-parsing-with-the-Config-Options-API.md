@@ -11,7 +11,6 @@ Asterisk uses a standard config file format that is essentially:
 
 [context]
 variable=value
-
 ```
 
 The file 'config.h' specifies a relatively simple API for parsing these config files. Configuration information can usually be reloaded by the Asterisk user via the Asterisk command-line or manager interfaces. These reloads run in a different thread than any created by the specific module being reloaded. It is very important to handle reloads in an atomic, thread-safe manner. To help ensure this, a new configuration API has been added on top of the config.h API: the Config Options API.
@@ -33,7 +32,6 @@ category - A section of a config field denoted by a bracketed name. A category n
 [general]
 variable1 = value
 variable2 = value2
-
 ```
 
 aco_option - A configuration variable of a specific option type. An option may have a default value and has a handler responsible for parsing the textual representation of the option's value and storing its type-specific config object.
@@ -51,7 +49,6 @@ custom option handler - A module-specific option handler for custom options.
 ```
 C
 static AO2_GLOBAL_OBJ_STATIC(globals);
-
 ```
 2. Define a structure to contain any global settings or containers used for configurable items as well as an ao2 allocator and destructor function for it.
 
@@ -86,7 +83,6 @@ error:
  ao2_ref(cfg, -1);
  return NULL;
 }
-
 ```
 3. Define config types to map config categories to the appropriate internal types
 
@@ -107,7 +103,6 @@ static struct aco_type private_options = {
  .item_find = my_item_find,
  .item_offset = offsetof(struct my_config, itemss),
 };
-
 ```
 4. Create an aco_file for any config files that will be processed. Set the filename and aco_types that are valid for the file.
 
@@ -117,7 +112,6 @@ struct aco_file my_conf = {
  .filename = "my.conf",
  .types = ACO_TYPES(&general_option, &private_options),
 };
-
 ```
 5. Define module-level configuration parsing options in a config info struct
 
@@ -126,7 +120,6 @@ C
 CONFIG_INFO_STANDARD(cfg_info, globals, my_config_alloc,
  .files = ACO_FILES(&my_conf),
 );
-
 ```
 6. Initialize the aco_info and register default and custom options with the config info struct
 
@@ -142,14 +135,12 @@ static int load_module(void)
  aco_option_register(&cfg_info, "description", my_conf.types, NULL, OPT_STRINGFIELD_T, 0, STRFLDSET(struct my_item, description));
 ...
 }
-
 ```
 7. Process the config via aco_process_config(), passing in whether or not this is a reload or not.
 
 ```
 C
 aco_process_config(&cfg_info, 0);
-
 ```
 
 ### Using config data
@@ -170,7 +161,6 @@ void some_func_that_accesses_config_data(void)
  return;
  }
 }
-
 ```
 
 !!! info ""

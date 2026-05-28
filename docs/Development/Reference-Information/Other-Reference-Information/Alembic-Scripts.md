@@ -21,7 +21,6 @@ AST_BOOL_VALUES = [ '0', '1',
 def upgrade():
  ast_bool_values = ENUM(*AST_BOOL_VALUES, name=AST_BOOL_NAME, create_type=False)
  op.add_column('ps_aors', sa.Column('remove_unavailable', ast_bool_values))
-
 ```
 
 Merging Alembic Scripts
@@ -47,7 +46,6 @@ Create Date: 2014-03-03 12:26:25.261640
 # revision identifiers, used by Alembic.
 revision = '28887f25a46f'
 down_revision = '21e526ad3040' <---- change this version to the previous head
-
 ```
 
 4) If the above fails consult the alembic tutorial here for more information about resolving the conflict in the working with branches section: <http://alembic.zzzcomputing.com/en/latest/branches.html>

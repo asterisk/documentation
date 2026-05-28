@@ -124,7 +124,6 @@ ari = ARI('localhost', ('username', 'password'))
 channels = ari.get('channels')
 for channel in channels:
  ari.delete('channels', channel['id'])
-
 ```
 
 In other words: **use one of the aforementioned libraries or write your own!**

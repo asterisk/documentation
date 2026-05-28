@@ -38,7 +38,6 @@ Used to push a hangup handler onto a channel.
 
 ```
 same => n,Set(CHANNEL(hangup_handler_push)=[[context,]exten,]priority[(arg1[,...][,argN])]);
-
 ```
 
 ### hangup_handler_pop
@@ -47,7 +46,6 @@ Used to pop a hangup handler off a channel. Optionally, a replacement hangup han
 
 ```
 same => n,Set(CHANNEL(hangup_handler_pop)=[[[context,]exten,]priority[(arg1[,...][,argN])]]);
-
 ```
 
 ### hangup_handler_wipe
@@ -56,7 +54,6 @@ Remove all hangup handlers on the channel. Optionally, a new hangup handler can 
 
 ```
 same => n,Set(CHANNEL(hangup_handler_wipe)=[[[context,]exten,]priority[(arg1[,...][,argN])]]);
-
 ```
 
 ### Examples
@@ -86,7 +83,6 @@ same => n,Return()
 
 exten => s,1,Verbose(0, Executed Third)
 same => n,Return()
-
 ```
 
 ##### Removing and replacing hangup handlers
@@ -124,7 +120,6 @@ same => n,Return()
 
 exten => s,1,Verbose(0, Executed First)
 same => n,Return()
-
 ```
 
 CLI Commands
@@ -136,7 +131,6 @@ Single channel
 
 ```
 core show hanguphandlers <chan>
-
 ```
 
 ---
@@ -148,7 +142,6 @@ Channel Handler
 <chan-name> <first handler to execute>
  <second handler to execute>
  <third handler to execute>
-
 ```
 
 ---
@@ -157,7 +150,6 @@ All channels
 
 ```
 core show hanguphandlers all
-
 ```
 
 ---
@@ -172,5 +164,4 @@ Channel Handler
 <chan2-name> <first handler to execute>
 <chan3-name> <first handler to execute>
  <second handler to execute>
-
 ```

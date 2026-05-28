@@ -56,7 +56,6 @@ server = 127.0.0.1 ; server[:port] of statsd server to use.
 ;add_newline = no ; Append a newline to every event. This is
  ; useful if you want to run a fake statsd
  ; server using netcat (nc -lu 8125)
-
 ```
 
 If you wish to add a port, such as 8126, to the server address, then you would add it at the end of the address with a colon, like so: *127.0.0.1:8126*.
@@ -76,7 +75,6 @@ exten => 100,1,NoOp()
 exten => 200,1,NoOp()
  same => n,StatsD(g,confBridgeUsers,-1,1)
  same => n,Hangup()
-
 ```
 
 Example

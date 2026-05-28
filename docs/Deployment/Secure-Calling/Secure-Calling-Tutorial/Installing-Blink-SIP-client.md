@@ -21,7 +21,6 @@ Install some dependencies
 ```
 sudo apt-get update
 sudo apt-get install python-sipsimple python-gnutls python-eventlib python-application python-cjson python-eventlet python-qt4 python-twisted-core python-zope.interface
-
 ```
 If you have issues see: <http://sipsimpleclient.org/projects/sipsimpleclient/wiki/SipInstallation>
 
@@ -45,7 +44,6 @@ running install_data
 running install_egg_info
 Removing /usr/local/lib/python2.7/dist-packages/blink-0.6.0.egg-info
 Writing /usr/local/lib/python2.7/dist-packages/blink-0.6.0.egg-info
-
 ```
 Run Blink!
 ----------
@@ -56,7 +54,6 @@ Run Blink!
 root@newtonr-laptop:/usr/src/blink-0.6.0# blink
 using set_wakeup_fd
 "sni-qt/6493" WARN 08:11:15.444 void StatusNotifierItemFactory::connectToSnw() Invalid interface to SNW_SERVICE 
-
 ```
 2. Blink should launch and show up within your graphical desktop.
 

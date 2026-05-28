@@ -38,7 +38,6 @@ line => 100 ; Key #1 - can be called Unistim/100@violet
 line => 100 ; Key #2 - blinks when second call comes to 100
 callerid = "Shared" <660000> ; Callerid uses old zaptel.conf like syntax
 line => 200 ; Key #3 - rings on Unistim/100@violet
-
 ```
 
 Multiple languages support

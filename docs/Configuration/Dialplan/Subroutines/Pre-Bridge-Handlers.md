@@ -23,7 +23,6 @@ The M flag allows a [macro](/Configuration/Dialplan/Subroutines/Macros) and argu
 
 ```
 M(macro[^arg[^...]])
-
 ```
 
 The variable MACRO_RESULT can be set with certain options inside the specified macro to determine behavior when the macro finishes. The options are documented in the [Dial application documentation](/Latest_API/API_Documentation/Dialplan_Applications/Dial).
@@ -34,7 +33,6 @@ The U flag allows a [gosub](/Configuration/Dialplan/Subroutines/Gosub) and argum
 
 ```
 U(x[^arg[^...]])
-
 ```
 
 The variable GOSUB_RESULT can be set within certain options inside the specified gosub to determine behavior when the gosub returns. The options are documented in the [Dial application documentation](/Latest_API/API_Documentation/Dialplan_Applications/Dial).
@@ -46,7 +44,6 @@ The Queue application, similar to Dial, has two options for handling pre-bridge 
 
 ```
 Queue(queuename[,options[,URL[,announceoverride[,timeout[,AGI[,macro[,gosub[,rule[,position]]]]]]]]])
-
 ```
 
 **macro** and **gosub** can both be populated with the name of a macro or gosub routine to execute on the called party channel as described in the overview.
@@ -68,7 +65,6 @@ exten = 6001,1,Dial(PJSIP/ALICE,30,M(announcement))
 exten = s,1,NoOp()
  same = n,Playback(tt-weasels)
  same = n,Hangup()
-
 ```
 
 CLI output
@@ -86,7 +82,6 @@ CLI output
  -- Channel PJSIP/BOB-00000014 left 'native_rtp' basic-bridge <612c2313-98bf-48ce-89b1-d530b06e44d7>
  -- Channel PJSIP/ALICE-00000015 left 'native_rtp' basic-bridge <612c2313-98bf-48ce-89b1-d530b06e44d7>
  == Spawn extension (from-internal, 6001, 1) exited non-zero on 'PJSIP/BOB-00000014'
-
 ```
 
 ### Example 2 - Executing a pre-bridge gosub handler from Dial
@@ -103,7 +98,6 @@ exten = 6002,1,Dial(PJSIP/BOB,30,U(sub-announcement))
 exten = s,1,NoOp()
  same = n,Playback(tt-weasels)
  same = n,Return()
-
 ```
 
 CLI output
@@ -125,7 +119,6 @@ CLI output
  -- Channel PJSIP/BOB-00000017 left 'native_rtp' basic-bridge <16e76a40-4a24-441d-a2b2-5c9ddfb21d7a>
  -- Channel PJSIP/ALICE-00000016 left 'native_rtp' basic-bridge <16e76a40-4a24-441d-a2b2-5c9ddfb21d7a>
  == Spawn extension (from-internal, 6002, 1) exited non-zero on 'PJSIP/ALICE-00000016'
-
 ```
 
 ### Example 3 - Executing a pre-bridge gosub handler from Queue
@@ -144,7 +137,6 @@ exten = s,1,NoOp()
 exten => 7002,1,Verbose(2,${CALLERID(all)} entering the sales queue)
 same => n,Queue(sales,,,,,,,sub-announcement)
 same => n,Hangup()
-
 ```
 
 CLI output
@@ -175,7 +167,6 @@ CLI output
  -- Channel PJSIP/BOB-0000000a left 'native_rtp' basic-bridge <cbc54ed6-1f51-4b10-be99-4994f52d851f>
  -- Channel PJSIP/ALICE-00000009 left 'native_rtp' basic-bridge <cbc54ed6-1f51-4b10-be99-4994f52d851f>
  == Spawn extension (from-internal, 7002, 2) exited non-zero on 'PJSIP/ALICE-00000009'
-
 ```
 
 ### Example 4 - Executing a pre-bridge macro handler from Queue
@@ -193,7 +184,6 @@ exten = s,1,NoOp()
 exten => 7001,1,Verbose(2,${CALLERID(all)} entering the support queue)
 same => n,Queue(support,,,,,,announcement)
 same => n,Hangup()
-
 ```
 
 CLI output
@@ -220,5 +210,4 @@ CLI output
  -- Channel PJSIP/ALICE-00000005 left 'native_rtp' basic-bridge <8283212f-b12d-4571-9653-0c8484e88980>
  -- Channel PJSIP/BOB-00000004 left 'native_rtp' basic-bridge <8283212f-b12d-4571-9653-0c8484e88980>
  == Spawn extension (from-internal, 7001, 2) exited non-zero on 'PJSIP/BOB-00000004'
-
 ```

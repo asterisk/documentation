@@ -14,5 +14,4 @@ exten => 1,n,While($[${X} <= ${NUM}])
 exten => 1,n,NoOp(Result ${X} is ${DUNDIRESULT(${ID},${X})}) 
 exten => 1,n,Set(X=$[${X} + 1]) 
 exten => 1,n,EndWhile
-
 ```

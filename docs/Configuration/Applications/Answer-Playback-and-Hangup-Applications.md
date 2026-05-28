@@ -17,7 +17,6 @@ To avoid the first few milliseconds of a prompt from being cut off you can play 
 
 ```conf title=" " linenums="1"
 exten => 1234,1,Playback(hello-world)
-
 ```
 
 You could avoid the first few seconds of the prompt from being cut off by playing the silence/1 file:
@@ -25,14 +24,12 @@ You could avoid the first few seconds of the prompt from being cut off by playin
 ```conf title=" " linenums="1"
 exten => 1234,1,Playback(silence/1)
 exten => 1234,n,Playback(hello-world)
-
 ```
 
 Alternatively this could all be done on the same line by separating the filenames with an ampersand (&):
 
 ```conf title=" " linenums="1"
 exten => 1234,1,Playback(silence/1&hello-world)
-
 ```
 
 The **Hangup()** application hangs up the current call. While not strictly necessary due to auto-fallthrough (see the note on Priority numbers above), in general we recommend you add the **Hangup()** application as the last priority in any extension.
@@ -43,5 +40,4 @@ Now let's put **Answer()**, **Playback()**, and **Hangup()** together to play a 
 exten => 6000,1,Answer(500)
 exten => 6000,n,Playback(hello-world)
 exten => 6000,n,Hangup()
-
 ```

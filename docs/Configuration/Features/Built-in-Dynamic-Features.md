@@ -18,7 +18,6 @@ Set the parking time of this channel to be 100 seconds if it is parked.
 exten => s,1,Set(FEATURE(parkingtime)=100)
 same => n,Dial(SIP/100)
 same => n,Hangup()
-
 ```
 
 ---
@@ -29,5 +28,4 @@ Set the DTMF sequence for attended transfer on this channel to \*9.
 exten => s,1,Set(FEATUREMAP(atxfer)=*9)
 same => n,Dial(SIP/100,,T)
 same => n,Hangup()
-
 ```

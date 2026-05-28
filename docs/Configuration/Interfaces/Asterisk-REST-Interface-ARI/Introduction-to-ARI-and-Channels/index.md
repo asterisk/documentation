@@ -62,7 +62,6 @@ exten => 1000,1,NoOp()
  same => n,Answer()
  same => n,Stasis(channel-dump)
  same => n,Hangup()
-
 ```
 
 ### Python
@@ -89,7 +88,6 @@ import logging
 logging.basicConfig(level=logging.ERROR)
 
 client = ari.connect('http://localhost:8088', 'asterisk', 'asterisk')
-
 ```
 
 Once we've made our connection, our first task is to print out all existing channels or - if there are no channels - print out that there are no channels. The `channels` resource has an operation for this - `GET /channels`. Since the `ari-py` library will dynamically construct operations on objects that map to resource calls using the nickname of an operation, we can use the `list` method on the `channels` resource to get all current channels in Asterisk:
@@ -102,7 +100,6 @@ else:
  print "Current channels:"
  for channel in current_channels:
  print channel.json.get('name') 
-
 ```
 
 The `GET /channels` operation returns back a list of `Channel` resources. Those resources, however, are returned as JSON from the operation, and while the `ari-py` library converts the `uniqueid` of those into an attribute on the object, it leaves the rest of them in the JSON dictionary. Since what we want is the name, we can just extract it ourselves out of the JSON and print it out.
@@ -112,7 +109,6 @@ Our next step involves a bit more - we want to print out all the information abo
 ```python
 client.on_channel_event('StasisStart', stasis_start_cb)
 client.on_channel_event('StasisEnd', stasis_end_cb) 
-
 ```
 
 We need two handler functions - `stasis_start_cb` for the `StasisStart` event and `stasis_end_cb` for the `StasisEnd` event:
@@ -131,14 +127,12 @@ def stasis_end_cb(channel, ev):
  """Handler for StasisEnd event"""
 
  print "%s has left the application" % channel.json.get('name')
-
 ```
 
 Finally, we need to tell the `client` to run our application. Once we call `client.run`, the websocket connection will be made and our application will wait on events infinitely. We can use `Ctrl+C` to kill it and break the connection.
 
 ```python
 client.run(apps='channel-dump') 
-
 ```
 
 #### channel-dump.py
@@ -185,7 +179,6 @@ client.on_channel_event('StasisStart', stasis_start_cb)
 client.on_channel_event('StasisEnd', stasis_end_cb)
 
 client.run(apps='channel-dump')
-
 ```
 
 #### channel-dump.py in action
@@ -205,7 +198,6 @@ connected: {u'name': u'', u'number': u''}
 dialplan: {u'priority': 3, u'exten': u'1000', u'context': u'default'}
 id: asterisk-01-1402353503.1
 PJSIP/alice-00000001 has left the application
-
 ```
 
 ### JavaScript (Node.js)
@@ -239,7 +231,6 @@ function clientLoaded (err, client) {
  throw err;
  }
 }
-
 ```
 
 Once we've made our connection, our first task is to print out all existing channels or - if there are no channels - print out that there are no channels. The `channels` resource has an operation for this - `GET /channels`. Since the `ari-client` library will dynamically construct a client with operations on objects that map to resource calls using the nickname of an operation, we can use the `list` method on the `channels` resource to get all current channels in Asterisk:
@@ -255,7 +246,6 @@ client.channels.list(function(err, channels) {
  });
  }
 });
-
 ```
 
 The `GET /channels` operation expects a callback that will be called with an error if one occurred and a list of `Channel` resources. `ari-client` will return a JavaScript object for each `Channel` resource. Properties such as `name` can be accessed on the object directly.
@@ -265,7 +255,6 @@ Our next step involves a bit more - we want to print out all the information abo
 ```javascript
 client.on('StasisStart', stasisStart);
 client.on('StasisEnd', stasisEnd);
-
 ```
 
 We need two callback functions - `stasisStart` for the `StasisStart` event and `stasisEnd` for the `StasisEnd` event:
@@ -285,14 +274,12 @@ function stasisEnd(event, channel) {
  console.log(util.format(
  'Channel %s has left the application', channel.name));
 }
-
 ```
 
 Finally, we need to tell the `client` to start our application. Once we call `client.start`, a websocket connection will be established and the client will emit Node.js events as events come in through the websocket. We can use `Ctrl+C` to kill it and break the connection.
 
 ```javascript
 client.start('channel-dump');
-
 ```
 
 #### channel-dump.js
@@ -347,7 +334,6 @@ function clientLoaded (err, client) {
 
  client.start('channel-dump');
 }
-
 ```
 
 #### channel-dump.js in action
@@ -367,5 +353,4 @@ connected: {u'name': u'', u'number': u''}
 dialplan: {u'priority': 3, u'exten': u'1000', u'context': u'default'}
 id: asterisk-01-1402353503.1
 PJSIP/alice-00000001 has left the application
-
 ```

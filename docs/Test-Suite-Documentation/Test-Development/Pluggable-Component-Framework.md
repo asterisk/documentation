@@ -70,7 +70,6 @@ def main():
 
 if __name__ == "__main__":
  sys.exit(main())
-
 ```
 
 ##### message_disabled
@@ -112,7 +111,6 @@ def main():
 
 if __name__ == "__main__":
  sys.exit(main())
-
 ```
 
 Both of these are very straight-forward tests that simply execute their SIPp scenarios and base their pass/fail status on the result of those scenarios. Even still, there is repeated code:
@@ -162,7 +160,6 @@ test-object-config:
  -
  scenario: 'message.xml'
  -p: '5061'
-
 ```
 
 ##### message_disabled
@@ -190,7 +187,6 @@ properties:
  - app : 'sipp'
  tags:
  - SIP
-
 ```
 
 All of this, hopefully, gives the following benefits:

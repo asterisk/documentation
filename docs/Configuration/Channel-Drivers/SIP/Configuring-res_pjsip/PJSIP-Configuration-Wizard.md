@@ -21,7 +21,6 @@ outbound_auth/username = my_username
 outbound_auth/password = my_password
 endpoint/context = default
 aor/qualify_frequency = 15
-
 ```
 
    | `pjsip.conf`
@@ -56,7 +55,6 @@ client_uri = sip:my_username@sip.my-itsp.net
 type = identify
 endpoint = my-itsp
 match = sip.my-itsp.net
-
 ```
 
   |
@@ -196,7 +194,6 @@ inbound_auth/username = alice
 inbound_auth/password = alicespassword
 has_phoneprov = yes
 phoneprov/MAC = deadbeef4dad
-
 ```
  | This example demonstrates the power of both wizards and templates.Once the template is created, adding a new phone could be as simple as creating a wizard objectOf course, you can override ANYTHING in the wizard object or specify everything and not use templates at all. |
 
@@ -240,7 +237,6 @@ outbound_auth/username = my_username
 outbound_auth/password = my_password
 registration/expiration = 900
 registration/support_path = no
-
 ```
  | This is an example of trunks to 2 different ITSPs each of which has a primary andIt also shows most of the endpoint and aor parameters being left at their defaults.In this scenario, each wizard object takes the place of an endpoint, aor, auth, |
 
@@ -260,6 +256,5 @@ sends_registrations = no
 accepts_registrations = no
 sends_auth = no
 accepts_auth = no
-
 ```
  | This one's even simpler. The `sends_` and `accepts_` parameters all default to `no` so you don't really |

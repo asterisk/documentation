@@ -17,7 +17,6 @@ On This Page### Install MySQL server package and start the DB service
 ```bash title=" " linenums="1"
 # sudo yum install mysql-server
 # sudo service mysqld start
-
 ```
 
 ### Secure the installation if appropriate
@@ -26,7 +25,6 @@ If you intend to push this install into production or practice as if you were th
 
 ```bash title=" " linenums="1"
 # sudo /usr/bin/mysql_secure_installation
-
 ```
 
 ### Configure a user and database for Asterisk in MySQL
@@ -37,7 +35,6 @@ We'll have you login into the mysql command console, create a user, create a dat
 
 ```bash title=" " linenums="1"
 # mysql -u root -p
-
 ```
 
 Now verify you are at the MySQL command prompt. It should look like "mysql>". Then enter the following commands:
@@ -47,7 +44,6 @@ Now verify you are at the MySQL command prompt. It should look like "mysql>". Th
 # CREATE DATABASE asterisk;
 # GRANT ALL PRIVILEGES ON asterisk.* TO 'asterisk'@'%';
 # exit
-
 ```
 
 After each of the CREATE and GRANT commands you should see output indicating that the Query was OK including many rows were affected.If you want, you can test out the new permissions by logging in as your user to the asterisk database and then logout again.
@@ -55,7 +51,6 @@ After each of the CREATE and GRANT commands you should see output indicating tha
 ```bash title=" " linenums="1"
 # mysql -u asterisk -p asterisk
 # exit
-
 ```
 
 ## Install ODBC and the MariaDB ODBC connector
@@ -73,14 +68,12 @@ The development packages are necessary as well, since later Asterisk will need t
 
 ```bash title=" " linenums="1"
 # sudo yum install unixODBC unixODBC-devel libtool-ltdl libtool-ltdl-devel
-
 ```
 
 ### Install the latest MariaDB ODBC connector
 
 ```bash title=" " linenums="1"
 # sudo yum install mariadb-connector-odbc
-
 ```
 
 ## Configure ODBC and the MariaDB ODBC connector
@@ -99,14 +92,12 @@ Description=ODBC for MariaDB
 Driver=/usr/lib64/libmaodbc.so
 Setup=/usr/lib64/libodbcmyS.so
 UsageCount=1
-
 ```
 
 You can also call **`odbcinst`** to query the driver, verifying that the configuration is found.
 
 ```bash title=" " linenums="1"
 # odbcinst -q -d
-
 ```
 
 The output should read simply "[MySQL]"
@@ -125,7 +116,6 @@ Database = asterisk
 Server = localhost
 Port = 3306
 Socket = /var/lib/mysql/mysql.sock
-
 ```
 
 !!! note 
@@ -143,7 +133,6 @@ So, for our purposes you would enter:
 
 ```bash title=" " linenums="1"
 # isql -v asterisk-connector asterisk replace_with_strong_password
-
 ```
 
 !!! tip 
@@ -155,7 +144,6 @@ At this point you should get an SQL prompt. Run the following command:
 
 ```
 SQL> select 1
-
 ```
 
 You should see some simple results if the query is successful. Then you can exit.
@@ -171,7 +159,6 @@ SQLRowCount returns 1
 1 rows fetched
 
 SQL> quit
-
 ```
 
 ## Configuring Asterisk to Use the New ODBC and MySQL Install
@@ -186,7 +173,6 @@ If you already had Asterisk installed from source and the modules you need are a
 # cd ~/asterisk-source/
 # ./configure
 # make && make install
-
 ```
 
 Make sure that at least the func_odbc, res_odbc and res_odbc_transaction modules are built and installed.  You may also need the following modules depending on your use case: res_config_odbc, cdr_odbc, cdr_adaptive_odbc, cel_odbc.

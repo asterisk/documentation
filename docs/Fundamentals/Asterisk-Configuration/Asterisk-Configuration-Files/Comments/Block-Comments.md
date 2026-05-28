@@ -7,14 +7,12 @@ Asterisk also allows us to create block comments. A block comment is a comment t
 
 ```
 ;--
-
 ```
 
  and continue across multiple lines until the character sequence 
 
 ```
 --;
-
 ```
 
  is encountered. The block comment ends immediately after --; is encountered.
@@ -25,5 +23,4 @@ setting=true
 ;-- this is a block comment that begins on this line
 and continues across multiple lines, until we
 get to here --;
-
 ```

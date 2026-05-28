@@ -28,7 +28,6 @@ list_item = bob
 [sipp]
 type = endpoint
 context = default
-
 ```
 
 extensions.conf:
@@ -37,7 +36,6 @@ extensions.conf:
 [default]
 exten => alice,hint,Custom:alice
 exten => bob,hint,Custom:bob
-
 ```
 
 It is expected that tests that use the `mail_list` are using external MWI, not app_voicemail.
@@ -83,7 +81,6 @@ Add the following line to each list in pjsip.conf:
 
 ```
 full_state = yes
-
 ```
 
 Use SIPp to subscribe to a list. After Asterisk sends the initial notification, change the state of alice. Ensure that Asterisk sends a NOTIFY and that the following changes from the first NOTIFY are present:
@@ -98,7 +95,6 @@ Add the following line to the configured list in pjsip.conf:
 
 ```
 full_state = no
-
 ```
 
 Repeat Test 3. This time, the NOTIFY sent on the state change should have the following changes from the first NOTIFY sent:
@@ -171,7 +167,6 @@ type = resource_list
 event = presence
 list_item = alice@default
 list_item = alice@default
-
 ```
 
 Have SIPp subscribe to `pres_list`. Ensure that Asterisk responds to the SUBSCRIBE with a 200 OK. Ensure that the NOTIFY Asterisk sends contains an RLMI body part with only a single resource (for alice) and only one application/pidf+xml body part.
@@ -209,7 +204,6 @@ list_item = bob
 [sipp]
 type = endpoint
 context = default
-
 ```
 
 extensions.conf:
@@ -218,7 +212,6 @@ extensions.conf:
 [default]
 exten => alice,hint,Custom:alice
 exten => bob,hint,Custom:bob
-
 ```
 
 Nominal Tests
@@ -298,7 +291,6 @@ list_item = bob
 [sipp]
 type = endpoint
 context = default
-
 ```
 
 extensions.conf
@@ -308,7 +300,6 @@ extensions.conf
 exten => alice,hint,Custom:alice
 exten => bob,hint,Custom:bob
 exten => carol,hint,Custom:carol
-
 ```
 
 #### Test 1: Subscription establishment

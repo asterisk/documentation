@@ -13,7 +13,6 @@ On This PageSyntax
 
 ```
 CONFBRIDGE(type,option)
-
 ```
 
 * type - Refers to which type of profile the option belongs to. Type can be either "bridge" or "user."
@@ -29,7 +28,6 @@ exten => 1,1,Answer()
 exten => 1,n,Set(CONFBRIDGE(user,announce_join_leave)=yes)
 exten => 1,n,Set(CONFBRIDGE(user,startmuted)=yes)
 exten => 1,n,ConfBridge(1)
-
 ```
 
 **Example 2**  
@@ -40,7 +38,6 @@ exten => 1,n,Set(CONFBRIDGE(user,template)=default_user)
 exten => 1,n,Set(CONFBRIDGE(user,admin)=yes)
 exten => 1,n,Set(CONFBRIDGE(user,marked)=yes)
 exten => 1,n,ConfBridge(1)
-
 ```
 
 Function CONFBRIDGE_INFO
@@ -52,7 +49,6 @@ The CONFBRIDGE_INFO dialplan function is used to retrieve information about a co
 
 ```
 CONFBRIDGE_INFO(type,conf)
-
 ```
 
 * type - Refers to which information type to be retrieved. Type can be either "parties," "admins," "marked," or "locked."

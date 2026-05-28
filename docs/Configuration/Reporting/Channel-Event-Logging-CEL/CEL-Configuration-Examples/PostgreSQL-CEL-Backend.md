@@ -21,7 +21,6 @@ dbname=asterisk
 password=password 
 user=postgres 
 table=cel 
-
 ```
 
 Now create a table in postgresql for your cels 
@@ -51,5 +50,4 @@ CREATE TABLE cel (
  userfield varchar (255) NOT NULL ,
  peer varchar (80) NOT NULL 
 );
-
 ```

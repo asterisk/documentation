@@ -20,7 +20,6 @@ static const struct example_datastore {
  .type = "example",
  .destroy = callback_destroy
 };
-
 ```
 
 This is a needed structure that contains information about a datastore, it's used by many API calls.
@@ -52,7 +51,6 @@ struct ast_datastore *datastore = NULL;
 datastore = ast_datastore_alloc(&example_datastore, NULL);
 datastore->data = mysillydata;
 ast_channel_datastore_add(chan, datastore);
-
 ```
 
 !!! note 

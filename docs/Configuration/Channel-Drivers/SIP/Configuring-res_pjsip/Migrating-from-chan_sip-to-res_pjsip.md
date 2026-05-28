@@ -26,7 +26,6 @@ Options:
  -h, --help show this help message and exit
  -p PREFIX, --prefix=PREFIX
  output prefix for include files
-
 ```
 
 ### Example of Use
@@ -37,7 +36,6 @@ Options:
 Reading sip.conf
 Converting to PJSIP...
 Writing pjsip.conf
-
 ```
 
 On this Page
@@ -87,7 +85,6 @@ disallow=all
 allow=ulaw
 context=internal
 secret=1234
-
 ```
 
    | 
@@ -135,7 +132,6 @@ type=auth
 auth_type=userpass
 password=1234
 username=6001
-
 ```
  |
 
@@ -169,7 +165,6 @@ host=203.0.113.1
 disallow=all
 allow=ulaw
 context=from-external
-
 ```
  | 
 
@@ -209,7 +204,6 @@ aors=mytrunk
 type=identify
 endpoint=mytrunk
 match=203.0.113.1
-
 ```
  |
 
@@ -231,7 +225,6 @@ noload => res_pjsip_session.so
 noload => chan_pjsip.so
 noload => res_pjsip_exten_state.so
 noload => res_pjsip_log_forwarder.so
-
 ```
 
 Having a noload for the above modules should (at the moment of writing this) prevent any PJSIP related modules from loading.
@@ -300,7 +293,6 @@ nat=never
 type=peer
 nat=route
 ;...
-
 ```
  | 
 
@@ -334,6 +326,5 @@ rtp_symmetric=no
 force_rport=yes
 rewrite_contact=yes
 ;...
-
 ```
  |

@@ -12,7 +12,6 @@ Below is an example 'bad magic number' log message:
 
 ```
 astobj2.c: bad magic number for object 0xfb5230. Object is likely destroyed
-
 ```
 
 In such cases, its often very useful to determine what in Asterisk manipulated the reference count on the object. The `astobj2` API supports creating a reference count log for all objects managed by the API.
@@ -73,7 +72,6 @@ Options:
  -s, --suppress-skewed
  If specified, don't output objects with a skewed
  lifetime
-
 ```
 
 Interpreting a Raw Reference Count Log
@@ -98,7 +96,6 @@ Each change in the reference count value of an `ao2` object will generate one li
 0x7f9dbc002048,-1,19256,chan_sip.c,3335,dialog_unlink_all,2,when you delete the autokillid sched, you should dec the refcount for the stored dialog ptr
 0x7f9dbc002048,-1,19256,chan_sip.c,3352,dialog_unlink_all,**destructor**,Let's unbump the count in the unlink so the poor pvt can disappear if it is time
 ...
-
 ```
 
 * The first column is the object address.

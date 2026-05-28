@@ -23,7 +23,6 @@ bind=[fe80::5e26:aff:fe4b:4399]
 type=transport
 protocol=tcp
 bind=[fe80::5e26:aff:fe4b:4399]
-
 ```
 
 Bind PJSIP to the first available IPv6 interface
@@ -36,7 +35,6 @@ A transport can be configured to automatically bind to the first available IPv6 
 type=transport
 protocol=udp
 bind=::
-
 ```
 
 Configure a PJSIP endpoint to use RTP over IPv6
@@ -51,5 +49,4 @@ transport=transport-udp6
 context=from-external
 disallow=all
 allow=ulaw
-
 ```

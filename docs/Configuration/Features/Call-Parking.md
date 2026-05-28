@@ -68,7 +68,6 @@ parkingtime => 300 ; Specifies the number of seconds a call will wait in the par
 
 findslot => next ; Configures the parking slot selection behavior. For this example,
  ; the next free slot will be selected when a call is parked.
-
 ```
 
 ---
@@ -84,7 +83,6 @@ parkcall => #72 ; Parks the call (one-step parking). For this example, a call wi
  ; values of this option are defined below:
  ; K - Allow the calling party to enable parking of the call.
  ; k - Allow the called party to enable parking of the call.
-
 ```
 ---
 extensions.conf  
@@ -118,7 +116,6 @@ exten => 5555001,1,NoOp(Route to a local extension.)
  ; to park it. Assuming the value of LocalExtension is 5001, the Dial() command will look like: Dial(alice,,k)
  same => n,Dial(PJSIP/alice)
  same => n,Hangup()
-
 ```
 
 ### Basic Handling for Call Parking Timeouts
@@ -188,7 +185,6 @@ comebacktoorigin=yes ; Determines what should be done with a parked call if it i
  ; originally parked the call, or the PARKER channel variable, using
  ; an extension it will automatically create in the 'park-dial'
  ; context.
-
 ```
 
 ---
@@ -204,7 +200,6 @@ parkcall => #72 ; Parks the call (one-step parking). For this example, a call wi
  ; values of this option are defined below:
  ; K - Allow the calling party to enable parking of the call.
  ; k - Allow the called party to enable parking of the call.
-
 ```
 
 ---
@@ -246,7 +241,6 @@ exten => 5555001,1,NoOp(Route to a local extension.)
 exten => t,1,NoOp(End of the line for a timed-out parked call.)
  same => n,Playback(vm-goodbye)
  same => n,Hangup()
-
 ```
 
 ### Custom Handling for Call Parking Timeouts
@@ -313,7 +307,6 @@ comebackcontext=parkedcallstimeout ; The context that a parked call will be rout
  ; 'comebacktoorigin=no' in your configuration but do not define this
  ; value, Asterisk will route the call to the 's' extension in the
  ; default context.
-
 ```
 
 ---
@@ -329,7 +322,6 @@ parkcall => #72 ; Parks the call (one-step parking). For this example, a call wi
  ; values of this option are defined below:
  ; K - Allow the calling party to enable parking of the call.
  ; k - Allow the called party to enable parking of the call.
-
 ```
 
 ---
@@ -369,5 +361,4 @@ exten => 5555001,1,NoOp(Route to a local extension.)
 exten => s,1,NoOp(This is all that happens to parked calls if they time out.)
  same => n,Playback(vm-goodbye)
  same => n,Hangup()
-
 ```

@@ -21,14 +21,12 @@ Within each context, we can define one or more **extensions**. An extension is s
 
 ```conf linenums="1"
 exten => number,priority,application([parameter[,parameter2...]])
-
 ```
 
 Let's look at an example extension.
 
 ```conf linenums="1"
 exten => 6001,1,Dial(PJSIP/demo-alice,20)
-
 ```
 
 In this case, the extension number is **6001**, the priority number is **1**, the [application](/Configuration/Applications) is **Dial()**, and the two parameters to the application are **PJSIP/demo-alice** and **20**.
@@ -55,7 +53,6 @@ Priority numbers can also be simplified by using the letter **n** in place of th
 exten => 6123,1,NoOp()
 exten => 6123,n,Verbose("Do something!")
 exten => 6123,n,Verbose("Do something different!")
-
 ```
 
 ///note 
@@ -85,7 +82,6 @@ You can also assign a label (or alias) to a particular priority number by placin
 exten => 6123,1,NoOp()
 exten => 6123,n(repeat),Verbose("Do something!")
 exten => 6123,n,Verbose("Do something different!")
-
 ```
 
 Here, we've assigned a label named **repeat** to the second priority.
@@ -96,7 +92,6 @@ Included in the Asterisk 1.6.2 branch (and later) there is a way to avoid having
 exten => 6123,1,NoOp()
  same => n(repeat),Verbose("Do something!")
  same => n,Verbose("Do something different!")
-
 ```
 
 ## Dialplan search order

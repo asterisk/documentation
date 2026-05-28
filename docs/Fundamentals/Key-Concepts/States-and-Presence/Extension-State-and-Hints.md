@@ -21,7 +21,6 @@ The full syntax for a hint is
 
 ```
 exten = <extension>,hint,<device state id>[& <more dev state id],<presence state id>
-
 ```
 
 Here is what you might see for a few configured hints.
@@ -34,7 +33,6 @@ exten = 6002,hint,SIP/Bob
 exten = 6003,hint,SIP/Charlie&DAHDI/3
 exten = 6004,hint,SIP/Diane,CustomPresence:Diane
 exten = 6005,hint,,CustomPresence:Ellen
-
 ```
 
 Things of note:
@@ -61,7 +59,6 @@ For a quick CLI example, once you have defined some hints, you can easily check 
  6004@internal : SIP/Diane,CustomPres State:Unavailable Watchers 0
 ----------------
 - 5 hints registered
-
 ```
 
 In this example I was lazy, so they don't have real providers mapped otherwise you would see various states represented.

@@ -97,5 +97,4 @@ asterisk_rest_libraries
  recordings.json
  resources.json
  ... and perhaps more in the future
-
 ```

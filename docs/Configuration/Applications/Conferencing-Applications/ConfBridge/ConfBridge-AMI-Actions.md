@@ -29,7 +29,6 @@ MarkedUser: No
 Event: ConfbridgeListComplete
 EventList: Complete
 ListItems: 1
-
 ```
 
 On This PageConfbridgeListRooms
@@ -55,7 +54,6 @@ Locked: No
 Event: ConfbridgeListRoomsComplete
 EventList: Complete
 ListItems: 1
-
 ```
 
 ConfbridgeMute
@@ -72,7 +70,6 @@ Channel: SIP/mypeer-00000001
 
 Response: Success
 Message: User muted
-
 ```
 
 ConfbridgeUnmute
@@ -89,7 +86,6 @@ Channel: SIP/mypeer-00000001
 
 Response: Success
 Message: User unmuted
-
 ```
 
 ConfbridgeKick
@@ -106,7 +102,6 @@ Channel: SIP/mypeer-00000001
 
 Response: Success
 Message: User kicked
-
 ```
 
 ConfbridgeLock
@@ -122,7 +117,6 @@ Conference: 1111
 
 Response: Success
 Message: Conference locked
-
 ```
 
 ConfbridgeUnlock
@@ -138,7 +132,6 @@ Conference: 1111
 
 Response: Success
 Message: Conference unlocked
-
 ```
 
 ConfbridgeStartRecord
@@ -161,7 +154,6 @@ Channel: ConfBridgeRecorder/conf-1111-uid-1653801660
 Variable: MIXMONITOR_FILENAME
 Value: /var/spool/asterisk/monitor/confbridge-1111-1303309869.wav
 Uniqueid: 1303309869.6
-
 ```
 
 ConfbridgeStopRecord
@@ -186,7 +178,6 @@ CallerIDNum: <unknown>
 CallerIDName: <unknown>
 Cause: 0
 Cause-txt: Unknown
-
 ```
 
 ConfbridgeSetSingleVideoSrc
@@ -203,5 +194,4 @@ Channel: SIP/mypeer-00000001
 
 Response: Success
 Message: Conference single video source set.
-
 ```

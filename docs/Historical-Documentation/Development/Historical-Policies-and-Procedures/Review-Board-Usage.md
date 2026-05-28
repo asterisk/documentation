@@ -46,21 +46,18 @@ The easiest way to post a patch to Review Board is by using the rbt tool. Instal
 
 ```
  $ sudo easy_install -U RBTools
-
 ```
 
 Essentially, rbt is a script that will take the output of `svn diff` and create a review request out of it for you. Once you have a working copy with the changes you expect in the output of `svn diff`, run the following command:
 
 ```
  $ rbt post [-r <review-board-id>]
-
 ```
 
 If it complains about not knowing which Review Board server to use, add the server option:
 
 ```
  $ rbt --server=https://reviewboard.asterisk.org
-
 ```
 
 ### Dealing with New Files
@@ -71,14 +68,12 @@ You would start by getting your changes applied to a trunk working copy:
 
 ```
  $ cd .../trunk
-
 ```
 
 Then, apply the changes from your branch:
 
 ```
  $ svn merge .../trunk .../team/group/my_new_code
-
 ```
 
 Now, the code is merged into your working copy. However, for a new file, subversion treats it as a copy of existing content and not new content, so new files don't show up in `svn diff` at this point. To get it to show up in the diff, use the following commands so svn treats it as new content and publishes it in the diff:
@@ -86,7 +81,6 @@ Now, the code is merged into your working copy. However, for a new file, subvers
 ```
  $ svn revert my_new_file.c
  $ svn add my_new_file.c
-
 ```
 
 Now, it should work, and you can run "rbt" as usual.
@@ -109,5 +103,4 @@ Most of the time, a patch on Review Board will require multiple iterations befor
 
 ```
  $ rbt post -r <review request number>
-
 ```

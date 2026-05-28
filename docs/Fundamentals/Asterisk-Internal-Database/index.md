@@ -37,5 +37,4 @@ database put -- Adds/updates database value
 database query -- Run a user-specified query on the astdb
 database show -- Shows database contents
 database showkey -- Shows database contents
-
 ```

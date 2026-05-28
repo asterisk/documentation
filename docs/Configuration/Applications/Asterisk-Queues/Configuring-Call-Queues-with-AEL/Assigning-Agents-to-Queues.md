@@ -26,7 +26,6 @@ context queues-loginout {
  goto queues-manip,O${AGENT_NUMBER},1;
  }
 }
-
 ```
 
 In the above contexts, the agents dial 6092 to log into their queues, and they dial 6093 to log out of their queues. The agent is prompted for their agent number, and if they are logging in, their passcode, and then they are transferred to the proper extension in the queues-manip context. The queues-manip context does all the actual work:
@@ -59,7 +58,6 @@ context queues-manip {
  &queue-success(${EXTEN}); 
  }
 }
-
 ```
 
 In the above extensions, note that the queue-addremove macro is used to actually add or remove the agent from the applicable queue, with the applicable priority level. Note that agents with a priority level of 10 will be called before agents with levels of 20 or 30. 
@@ -86,7 +84,6 @@ macro queue-success(exten) {
  }
  }
 }
-
 ```
 
 The queue-addremove macro is defined in this manner:
@@ -112,7 +109,6 @@ macro queue-addremove(queuename,penalty,exten) {
  break;
  }
 }
-
 ```
 
 Basically, it uses the first character of the exten variable, to determine the proper actions to take. In the above dial plan code, only the cases I or O are used, which correspond to the Login and Logout actions.

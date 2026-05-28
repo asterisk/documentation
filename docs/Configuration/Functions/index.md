@@ -43,28 +43,24 @@ The general syntax for calling a function follows:
 
 ```
 FUNCTION(argument1,argument2, ...)
-
 ```
 
 A function's value can be set using the Set application. The example below will show how to set the CHANNEL function argument "tonezone" to the value "de" (for Germany).
 
 ```
 same => n,Set(CHANNEL(tonezone)=de)
-
 ```
 
 A function's value can be referenced almost anywhere in dialplan where you can use an expression or reference a variable. The value can be referenced by encapsulating the call with curly braces and a leading dollar sign.
 
 ```bash title=" " linenums="1"
 ${FUNCTION(argument)}
-
 ```
 
 For example, if we wanted to log the destination address for the audio stream of the channel:
 
 ```
 same => n,Log(NOTICE, The destination for the audio stream is: ${CHANNEL(rtp,dest)})
-
 ```
 
 Help for specific functions

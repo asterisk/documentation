@@ -62,7 +62,6 @@ The basic format follows:
 ```
 [module_name] ;The brackets around the module name are literal, just as in most other Asterisk configuration files.
 object_type[/options] = wizard_name[,wizard_configuration_data] ;Bracketed items here are optional
-
 ```
 
 #### Module name
@@ -99,7 +98,6 @@ test=memory
 [test_sorcery_cache]
 test/cache=test
 test=memory
-
 ```
 
 The following object mapping is the default mapping of external MWI mailbox objects to give persistence to the message counts.
@@ -107,7 +105,6 @@ The following object mapping is the default mapping of external MWI mailbox obje
 ```
 [res_mwi_external]
 mailboxes=astdb,mwi_external
-
 ```
 
 The following object mappings set PJSIP objects to use realtime database mappings from extconfig with the table names used when automatically generating configuration from the alembic script.
@@ -122,7 +119,6 @@ contact=realtime,ps_contacts
 
 [res_pjsip_endpoint_identifier_ip]
 identify=realtime,ps_endpoint_id_ips
-
 ```
 
 ## PJSIP Default Wizard Configurations
@@ -148,5 +144,4 @@ outbound-publish=config,pjsip.conf,criteria=type=outbound-publish
 
 [res_pjsip_outbound_registration]
 registration=config,pjsip.conf,criteria=type=registration
-
 ```

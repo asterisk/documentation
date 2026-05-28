@@ -25,5 +25,4 @@ caldav CalDAV calendars
 exchange MS Exchange calendars
 ews MS Exchange Web Service calend
 ical iCalendar .ics calendars
-
 ```

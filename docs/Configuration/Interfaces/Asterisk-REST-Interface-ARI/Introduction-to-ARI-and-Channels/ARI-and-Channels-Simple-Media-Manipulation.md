@@ -44,7 +44,6 @@ For this example, we need to just drop the channel into Stasis, specifying our a
 exten => 1000,1,NoOp()
  same => n,Stasis(channel-tones)
  same => n,Hangup() 
-
 ```
 
 ### Python
@@ -127,7 +126,6 @@ client.on_channel_event('StasisStart', stasis_start_cb)
 client.on_channel_event('StasisEnd', stasis_end_cb)
 
 client.run(apps='channel-tones')
-
 ```
 
 #### channel-tones.py in action
@@ -139,7 +137,6 @@ Channel PJSIP/alice-00000000 has entered the application
 Answering channel PJSIP/alice-00000000
 Hanging up channel PJSIP/alice-00000000
 Channel PJSIP/alice-00000000 just left our application
-
 ```
 
 ### JavaScript (Node.js)
@@ -258,7 +255,6 @@ function clientLoaded (err, client) {
 	client.on('StasisEnd', stasisEnd);
 	client.start('channel-tones');
 } 
-
 ```
 
 #### channel-tones.js in action
@@ -287,7 +283,6 @@ For this example, we need to just drop the channel into Stasis, specifying our a
 exten => 1000,1,NoOp()
  same => n,Stasis(channel-playback-monkeys)
  same => n,Hangup() 
-
 ```
 
 ### Python
@@ -366,7 +361,6 @@ The following shows the output of the `channel-playback-monkeys`.py script when 
 Monkeys! Attack PJSIP/alice-00000000!
 Monkeys successfully vanquished PJSIP/alice-00000000; hanging them up
 Channel PJSIP/alice-00000000 just left our application
-
 ```
 
 ### JavaScript (Node.js)

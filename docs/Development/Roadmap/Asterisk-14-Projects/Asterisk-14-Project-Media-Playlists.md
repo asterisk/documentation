@@ -12,7 +12,6 @@ Media playback in ARI today queues multiple play operations to a resource, such 
 POST /channels/12345/play?media=sound:tt-monkeys
 POST /channels/12345/play?media=sound:tt-weasels
 POST /channels/12345/play?media=number:555
-
 ```
 
 This works well enough when you know that a user needs to listen to all of the prompts, and you don't need to cancel them. If, however, you need to let the prompts be interruptible or allow a user to manipulate the playback, you have to keep a reference to the current `Playback` object for the resource, as well as any 'future' `Playback` objects (so you can `delete` them). Alternatively, of course, you don't have to initiate all of the media operations at once - you can ostensibly play each when the previous has finished. However, that negates the benefit of the media queueing, and entails writing a state machine.
@@ -33,7 +32,6 @@ ARI will allow a user to specify multiple media resources to play on a supported
 
 ```
 POST /channels/12345/play?media=sound:tt-monkeys&media=sound:tt-weasels&media=number:555
-
 ```
 
 ### Other Media Parameters
@@ -60,7 +58,6 @@ On this Page
 
 ```
 POST /playbacks/1283791327846/control?operation=next
-
 ```
 
 ### Existing Operations
@@ -102,7 +99,6 @@ The `channels` and `bridges` resources will have their respective `play` operati
  "allowMultiple": true,
  "dataType": "string"
  },
-
 ```
 
 The `playbacks` resource will have its `control` operation updated with new options for the `operation` query parameter.
@@ -132,7 +128,6 @@ js  {
  ]
  }
  }
-
 ```
 
 Core updates
@@ -152,7 +147,6 @@ frame.h
  AST_CONTROL_STREAM_FORWARD = 1004, /*!< Indicate to a channel in playback to fast forwar */
  AST_CONTROL_STREAM_PREV = 1005, /*!< Indicate to a channel in playback to play the previous strea */
  AST_CONTROL_STREAM_NEXT = 1006, /*!< Indicate to a channel in playback to play the next strea */
-
 ```
 
 * Update `channel.c` to consume and ignore the two new frame types

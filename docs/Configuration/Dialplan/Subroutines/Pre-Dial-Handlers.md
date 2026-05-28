@@ -33,7 +33,6 @@ For [Dial](/Latest_API/API_Documentation/Dialplan_Applications/Dial) or [FollowM
 ```
 b([[context^]exten^]priority[(arg1[^...][^argN])])
 B([[context^]exten^]priority[(arg1[^...][^argN])])
-
 ```
 
 !!! info ""
@@ -63,7 +62,6 @@ same => n,Hangup()
 exten => caller_handler,1,NoOp()
 same => n,Verbose(0, In caller pre-dial handler!)
 same => n,Return()
-
 ```
 
 ---
@@ -75,7 +73,6 @@ Example 1 CLI Output
 <SIP/foo-123> Executing default,caller_handler,1
 <SIP/foo-123> In caller pre-dial handler!
 <SIP/foo-123> calling SIP/bar-124
-
 ```
 
 #### Example 2 - Executing a pre-dial handler on a callee channel
@@ -90,7 +87,6 @@ same => n,Hangup()
 exten => callee_handler,1,NoOp()
 same => n,Verbose(0, In callee pre-dial handler!)
 same => n,Return()
-
 ```
 
 ---
@@ -102,7 +98,6 @@ Example 2 CLI Output
 <SIP/bar-124> Executing default,callee_handler,1
 <SIP/bar-124> In callee pre-dial handler!
 <SIP/foo-123> calling SIP/bar-124
-
 ```
 
 #### Example 3 - Executing a pre-dial handler on multiple callee channels
@@ -117,7 +112,6 @@ same => n,Hangup()
 exten => callee_handler,1,NoOp()
 same => n,Verbose(0, In callee pre-dial handler!)
 same => n,Return()
-
 ```
 
 ---
@@ -132,5 +126,4 @@ Example 3 CLI Output
 <SIP/baz-125> In callee pre-dial handler!
 <SIP/foo-123> calling SIP/bar-124
 <SIP/foo-123> calling SIP/baz-125
-
 ```

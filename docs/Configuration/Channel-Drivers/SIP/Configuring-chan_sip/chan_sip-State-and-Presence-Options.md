@@ -20,7 +20,6 @@ Default: no
 ```
 [general]
 callcounter=yes
-
 ```
 
 busylevel
@@ -34,7 +33,6 @@ Default: 0
 [6001]
 type=friend
 busylevel=2
-
 ```
 
 notifyhold
@@ -49,7 +47,6 @@ Default: yes
 ```
 [general]
 notifyhold=no
-
 ```
 
 Extension State, Hints, Subscriptions
@@ -68,7 +65,6 @@ Default: yes
 [6001]
 type=friend
 allowsubscribe=no
-
 ```
 
 subscribecontext
@@ -85,7 +81,6 @@ Default: null (by default Asterisk will use the context specified with the "cont
 type=friend
 context=internal
 subscribecontext=myhints
-
 ```
 
 notifyringing
@@ -98,7 +93,6 @@ Default: yes
 ```
 [general]
 notifyringing=no
-
 ```
 
 notifycid
@@ -124,5 +118,4 @@ Default: no
  ; notifycid to 'ignore-context' also causes call-pickups attempted
  ; via SNOM's NOTIFY mechanism to set the context for the call pickup
  ; to PICKUPMARK.
-
 ```

@@ -7,7 +7,6 @@ The next application we'll cover is named **Directory()**, because it presents t
 
 ```conf title=" " linenums="1"
 Directory([voicemail_context,[dialplan_context,[options]]])
-
 ```
 
 ## Parameters
@@ -36,7 +35,6 @@ Let's add a dial-by-name directory to our dialplan. Simply add this line to your
 
 ```conf title=" " linenums="1"
 exten => 6501,1,Directory(vm-demo,users,ef)
-
 ```
 
 Now you should be able to dial extension **6501** to test your dial-by-name directory.

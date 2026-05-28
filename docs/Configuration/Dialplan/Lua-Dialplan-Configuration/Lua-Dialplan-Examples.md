@@ -42,7 +42,6 @@ e.sales["5000"] = call_sales_queue("sales1")
 e.sales["6000"] = call_sales_queue("sales2")
 
 extensions = e
-
 ```
 
 Less Clutter v2
@@ -107,5 +106,4 @@ register("sales", "6000", call_sales_queue("sales2"))
 register("sales", "7000", function()
  app.queue("sales3")
 end)
-
 ```

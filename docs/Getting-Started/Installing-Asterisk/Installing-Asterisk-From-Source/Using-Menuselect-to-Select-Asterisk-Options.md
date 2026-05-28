@@ -10,7 +10,6 @@ The next step in the build process is to tell Asterisk which [modules](/Fundamen
 
 ```
 [root@server asterisk-14.X.Y]# make menuselect
-
 ```
 
 !!! note Terminal Window
@@ -76,14 +75,12 @@ Options in  **Menuselect** can be controlled from the command line. **Menuselect
 
 ```
 [root@server asterisk-14.X.Y]# make menuselect.makeopts
-
 ```
 
 Available options can be viewed using the `--help` command line parameter:
 
 ```
 [root@server asterisk-14.X.Y]# menuselect/menuselect --help
-
 ```
 
 Some of the more common options are shown below.
@@ -100,7 +97,6 @@ To list all options in **Menuselect**, use the `--list-options` command line par
 
 ```
 [root@server asterisk-14.X.Y]# menuselect/menuselect --list-options
-
 ```
 
 To list only the categories, use the `--category-list` command line parameter:
@@ -127,7 +123,6 @@ MENUSELECT_EMBED
 MENUSELECT_CORE_SOUNDS
 MENUSELECT_MOH
 MENUSELECT_EXTRA_SOUNDS
-
 ```
 
 To list the options in a category, use the `--list-category` command line parameter:
@@ -137,7 +132,6 @@ To list the options in a category, use the `--list-category` command line parame
 + FILE_STORAGE
 - ODBC_STORAGE
 - IMAP_STORAGE
-
 ```
 
 Enabling an Option
@@ -147,7 +141,6 @@ To enable an option in Menuselect, use the `--enable` command line parameter:
 
 ```
 [root@server asterisk-14.X.Y]# menuselect/menuselect --enable IMAP_STORAGE menuselect.makeopts
-
 ```
 
 !!! tip Chaining Options
@@ -158,7 +151,6 @@ To enable an option in Menuselect, use the `--enable` command line parameter:
 [root@server asterisk-14.X.Y]# menuselect/menuselect --enable app_voicemail --enable IMAP_STORAGE menuselect.makeopts  
 
 ---
-
 ```
 
 Disabling an Option
@@ -168,7 +160,6 @@ To disable an option in **Menuselect**, use the `--disable` command line paramet
 
 ```
 [root@server asterisk-14.X.Y]# menuselect/menuselect --disable app_voicemail menuselect.makeopts
-
 ```
 
 Enabling a Category
@@ -178,5 +169,4 @@ An entire category can be enabled in **Menuselect** using the `--enable-category
 
 ```
 [root@server asterisk-14.X.Y]# menuselect/menuselect --enable-category MENUSELECT_ADDONS menuselect.makeopts
-
 ```

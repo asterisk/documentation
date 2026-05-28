@@ -42,7 +42,6 @@ allow=ulaw
 [0004f2040001](std-device)
 
 [0004f2040002](std-device)
-
 ```
 
 What we're doing here is creating a [std-device] template and applying it to a pair of peers that we'll register as 0004f2040001 and 0004f2040002; our devices.
@@ -55,7 +54,6 @@ Name/username Host Dyn Nat ACL Port Status
 0004f2040001/0004f2040001 192.168.128.145 D 5060 Unmonitored 
 0004f2040002/0004f2040002 192.168.128.126 D 5060 Unmonitored 
 2 sip peers [Monitored: 0 online, 0 offline Unmonitored: 2 online, 0 offline]
-
 ```
 
 ##### Configuring Device State
@@ -65,7 +63,6 @@ Next, we need to configure our system to track the state of the devices. We do t
 ```
 *CLI> core show hints
 There are no registered dialplan hint
-
 ```
 
 We need to add the devices we're going to track to the extensions.conf file under the [default] context which is the default configuration in sip.conf, however we can change this to any context we want with the 'subscribecontext'  
@@ -76,7 +73,6 @@ Add the following lines to extensions.conf:
 [default]
 exten => 0004f2040001,hint,SIP/0004f2040001
 exten => 0004f2040002,hint,SIP/0004f2040002
-
 ```
 
 Then perform a 'dialplan reload' in order to reload the dialplan.
@@ -91,7 +87,6 @@ After reloading our dialplan, you can see the status of the devices with 'core s
  0004f2040001@default : SIP/0004f2040001 State:Idle Watchers 0
 ----------------
 - 2 hints registered
-
 ```
 
 At this point, create an extension that you can dial that will play a prompt that is long enough for you to go back to the Asterisk console to check the state of your device while it is in use.
@@ -104,7 +99,6 @@ extensions.conf
 
 [devices]
 exten => 555,1,Playback(tt-monkeys)
-
 ```
 
 Dial that extension and then check the state of your device on the console.
@@ -121,7 +115,6 @@ Dial that extension and then check the state of your device on the console.
  0004f2040001@default : SIP/0004f2040001 State:Idle Watchers 0
 ----------------
 - 2 hints registered
-
 ```
 
 Aha, we're not getting the device state correctly. There must be something else we need to configure.
@@ -143,7 +136,6 @@ dtmfmode=rfc2833
 disallow=all
 allow=ulaw
 callcounter=yes ; <-- add this
-
 ```
 
 Then reload chan_sip with 'sip reload' and perform our 555 test again. Dial 555 and then check the device state with 'core show hints'.
@@ -160,7 +152,6 @@ Then reload chan_sip with 'sip reload' and perform our 555 test again. Dial 555 
  0004f2040001@default : SIP/0004f2040001 State:InUse Watchers 0
 ----------------
 - 2 hints registered
-
 ```
 
 Note that now we have the correct device state when extension 555 is dialed, showing that our device is InUse after dialing extension 555. This is important when creating queues, otherwise our queue members would get multiple calls from the queues.
@@ -180,7 +171,6 @@ persistentmembers=yes
 autofill=yes
 monitor-type=MixMonitor
 shared_lastcall=no
-
 ```
 
 We can then define a [queue_template] that we'll assign to each of the queues we create. These definitions can be overridden by each queue individually if you reassign them under the [sales] or [support] headers. So under the [general]  
@@ -201,7 +191,6 @@ ringinuse=no ; don't ring members when already InUse
 
 [support](queue_template)
 ; Support queue
-
 ```
 
 After defining our queues, lets reload our app_queue.so module.
@@ -211,7 +200,6 @@ After defining our queues, lets reload our app_queue.so module.
  -- Reloading module 'app_queue.so' (True Call Queueing)
 
  == Parsing '/etc/asterisk/queues.conf': == Found
-
 ```
 
 Then verify our queues loaded with 'queue show'.
@@ -225,7 +213,6 @@ support has 0 calls (max unlimited) in 'rrmemory' strategy (0s holdtime, 0s talk
 sales has 0 calls (max unlimited) in 'rrmemory' strategy (0s holdtime, 0s talktime), W:0, C:0, A:0, SL:0.0% within 0s
  No Members
  No Callers
-
 ```
 
 ##### Adding Queue Members
@@ -237,7 +224,6 @@ This is the format of the 'queue add member' command:
 ```
 Usage: queue add member <channel> to <queue> [[[penalty <penalty>] as <membername>] state_interface <interface>]
  Add a channel to a queue with optionally: a penalty, membername and a state_interface
-
 ```
 
 The penalty, membername, and state_interface are all optional values. Special attention should be brought to the 'state_interface' option for a member though. The reason for state_interface is that if you're using a channel that does not have device state itself (for example, if you were using the Local channel to deliver a call to an end point) then you could assign the device state of a SIP device to the pseudo channel. This allows the state of a SIP device to be applied to the Local channel for correct device state information.
@@ -247,7 +233,6 @@ Lets add our device located at SIP/0004f2040001
 ```
 *CLI> queue add member SIP/0004f2040001 to sales
 Added interface 'SIP/0004f2040001' to queue 'sales'
-
 ```
 
 Then lets verify our member was indeed added.
@@ -258,7 +243,6 @@ sales has 0 calls (max unlimited) in 'rrmemory' strategy (0s holdtime, 0s talkti
  Members: 
  SIP/0004f2040001 (dynamic) (Not in use) has taken no calls yet
  No Callers
-
 ```
 
 Now, if we dial our 555 extension, we should see that our member becomes InUse within the queue.
@@ -273,7 +257,6 @@ sales has 0 calls (max unlimited) in 'rrmemory' strategy (0s holdtime, 0s talkti
  Members: 
  SIP/0004f2040001 (dynamic) (In use) has taken no calls yet
  No Callers
-
 ```
 
 We can also remove our members from the queue using the 'queue remove' CLI command.
@@ -281,7 +264,6 @@ We can also remove our members from the queue using the 'queue remove' CLI comma
 ```
 *CLI> queue remove member SIP/0004f2040001 from sales 
 Removed interface 'SIP/0004f2040001' from queue 'sales'
-
 ```
 
 Because we don't want to have to add queue members manually from the CLI, we should create a method that allows queue members to login and out from their devices. We'll do that in the next section.
@@ -298,14 +280,12 @@ exten => 555,1,Playback(tt-monkeys)
 exten => 100,1,Queue(sales)
 
 exten => 101,1,Queue(support)
-
 ```
 
 Then reload the dialplan, and try calling extension 100 from SIP/0004f2040002, which is the device we have not logged into the queue.
 
 ```
 *CLI> dialplan reload
-
 ```
 
 And now we call the queue at extension 100 which will ring our device at SIP/0004f2040001.
@@ -316,7 +296,6 @@ And now we call the queue at extension 100 which will ring our device at SIP/000
  -- Started music on hold, class 'default', on SIP/0004f2040002-00000005
  == Using SIP RTP CoS mark 5
  -- SIP/0004f2040001-00000006 is ringing
-
 ```
 
 We can see the device state has changed to Ringing while the device is ringing.
@@ -328,7 +307,6 @@ sales has 1 calls (max unlimited) in 'rrmemory' strategy (2s holdtime, 3s talkti
  SIP/0004f2040001 (dynamic) (Ringing) has taken 1 calls (last was 14 secs ago)
  Callers: 
  1. SIP/0004f2040002-00000005 (wait: 0:03, prio: 0)
-
 ```
 
 Our queue member then answers the phone.
@@ -337,7 +315,6 @@ Our queue member then answers the phone.
 *CLI> -- SIP/0004f2040001-00000006 answered SIP/0004f2040002-00000005
  -- Stopped music on hold on SIP/0004f2040002-00000005
  -- Native bridging SIP/0004f2040002-00000005 and SIP/0004f2040001-00000006
-
 ```
 
 And we can see the queue member is now in use.
@@ -348,14 +325,12 @@ sales has 0 calls (max unlimited) in 'rrmemory' strategy (3s holdtime, 3s talkti
  Members: 
  SIP/0004f2040001 (dynamic) (In use) has taken 1 calls (last was 22 secs ago)
  No Callers
-
 ```
 
 Then the call is hung up.
 
 ```
 *CLI> == Spawn extension (devices, 100, 1) exited non-zero on 'SIP/0004f2040002-00000005'
-
 ```
 
 And we see that our queue member is available to take another call.
@@ -366,7 +341,6 @@ sales has 0 calls (max unlimited) in 'rrmemory' strategy (3s holdtime, 4s talkti
  Members: 
  SIP/0004f2040001 (dynamic) (Not in use) has taken 2 calls (last was 6 secs ago)
  No Callers
-
 ```
 
 ##### Logging In and Out of Queues
@@ -391,7 +365,6 @@ exten => _1XX,n,Hangup()
 exten => invalid_queue,1,Verbose(2,Attempted to enter invalid queue)
 exten => invalid_queue,n,Playback(silence/1&invalid)
 exten => invalid_queue,n,Hangup()
-
 ```
 
 The [globals] section contains the following two global variables.
@@ -400,21 +373,18 @@ The [globals] section contains the following two global variables.
 [globals]
 QUEUE_100=sales
 QUEUE_101=support
-
 ```
 
 So when we dial extension 100, it matches our pattern _1XX. The number we dialed (100) is then retrievable via ${EXTEN} and we can get the name of queue 100 (sales) from the global variable QUEUE_100. We then assign it to the channel variable thisQueue so it is easier to work with in our dialplan.
 
 ```
 exten => _1XX,n,Set(thisQueue=${GLOBAL(QUEUE_${EXTEN})})
-
 ```
 
 We then check to see if we've gotten a value back from the global variable which would indicate whether the queue was valid or not.
 
 ```
 exten => _1XX,n,GotoIf($["${thisQueue}" = ""]?invalid_queue,1)
-
 ```
 
 If ${thisQueue} returns nothing, then we Goto the invalid_queue extension and playback the 'invalid' file.
@@ -429,7 +399,6 @@ First, we create a pattern match that takes star  plus the queue number that we 
 ; Extension *100 or *101 will login/logout a queue member from sales or support queues respectively.
 exten => _*10[0-1],1,Set(xtn=${EXTEN:1}) ; save ${EXTEN} with * chopped off to ${xtn}
 exten => _*10[0-1],n,Goto(queueLoginLogout,member_check,1) ; check if already logged into a queue
-
 ```
 
 We save the value of ${EXTEN:1} to the 'xtn' channel variable so we don't need to keep typing the complicated pattern match.
@@ -449,7 +418,6 @@ exten => member_check,n,Set(thisActiveMember=SIP/${CHANNEL(peername)}) ; initial
 
 exten => member_check,n,GotoIf($["${queueMembers}" = ""]?q_login,1) ; short circuit to logging in if we don't have
  ; any members logged into this queue
-
 ```
 
 At this point if there are no members currently logged into our sales queue, we then short-circuit our dialplan to go to the 'q_login' extension since there is no point in wasting cycles searching to see if we're already logged in.
@@ -462,7 +430,6 @@ exten => member_check,n,Set(field=1) ; start our field counter at one
 exten => member_check,n,Set(logged_in=0) ; initialize 'logged_in' to "not logged in"
 exten => member_check,n,Set(thisQueueMember=${CUT(queueMembers,\,,${field})}) ; initialize 'thisQueueMember' with the value in the
  ; first field of the comma-separated list
-
 ```
 
 Now we get to enter our While() loop to determine if we're already logged in.
@@ -470,7 +437,6 @@ Now we get to enter our While() loop to determine if we're already logged in.
 ```
 ; Enter our loop to check if our member is already logged into this queue
 exten => member_check,n,While($[${EXISTS(${thisQueueMember})}]) ; while we have a queue member...
-
 ```
 
 This is where we check to see if the member at this position of the list is the same as the device we're calling from. If it doesn't match, then we go to the 'check_next' priority label (where we increase our ${field} counter variable). If it does match, then we continue on in the dialplan.
@@ -480,7 +446,6 @@ exten => member_check,n,GotoIf($["${thisQueueMember}" != "${thisActiveMember}"]?
  ; same as our active peer, then
  ; check the next in the list of
  ; logged in queue members
-
 ```
 
 If we continued on in the dialplan, then we set the ${logged_in} channel variable to '1' which represents we're already logged into this queue. We then exit the While() loop with the ExitWhile() dialplan application.
@@ -488,7 +453,6 @@ If we continued on in the dialplan, then we set the ${logged_in} channel variabl
 ```
 exten => member_check,n,Set(logged_in=1) ; if we got here, set as logged in
 exten => member_check,n,ExitWhile() ; then exit our loop
-
 ```
 
 If we didn't match this peer name in the list, then we increase our ${field} counter variable by one, update the ${thisQueueMember} channel variable and then move back to the top of the loop for another round of checks.
@@ -497,7 +461,6 @@ If we didn't match this peer name in the list, then we increase our ${field} cou
 exten => member_check,n(check_next),Set(field=$[${field} + 1]) ; if we got here, increase counter
 exten => member_check,n,Set(thisQueueMember=${CUT(queueMembers,\,,${field})}) ; get next member in the list
 exten => member_check,n,EndWhile() ; ...end of our loop
-
 ```
 
 And once we exit our loop, we determine whether we need to log our device in or out of the queue.
@@ -505,7 +468,6 @@ And once we exit our loop, we determine whether we need to log our device in or 
 ```
 ; if not logged in, then login to this queue, otherwise, logout
 exten => member_check,n,GotoIf($[${logged_in} = 0]?q_login,1:q_logout,1) ; if not logged in, then login, otherwise, logout
-
 ```
 
 The following two extensions are used to either log the device in or out of the queue. We use the AddQueueMember() and RemovQueueMember() applications to login or logout the device from the queue.
@@ -529,7 +491,6 @@ exten => q_logout,n,RemoveQueueMember(${thisQueue},${thisActiveMember})
 exten => q_logout,n,Playback(silence/1)
 exten => q_logout,n,ExecIf($["${RQMSTATUS}" = "REMOVED"]?Playback(agent-loggedoff):Playback(an-error-has-occurred))
 exten => q_logout,n,Hangup()
-
 ```
 
 And that's it! Give it a shot and you should see console output similar to the following which will login and logout your queue members to the queues you've configured.
@@ -543,7 +504,6 @@ sales has 0 calls (max unlimited) in 'rrmemory' strategy (3s holdtime, 4s talkti
  SIP/0004f2040001 (dynamic) (Not in use) has taken no calls yet
  SIP/0004f2040002 (dynamic) (Not in use) has taken no calls yet
  No Callers
-
 ```
 
 Then we dial \*100 to logout the active device from the sales queue.
@@ -579,7 +539,6 @@ Then we dial \*100 to logout the active device from the sales queue.
  -- <SIP/0004f2040001-00000012> Playing 'agent-loggedoff.slin' (language 'en')
  -- Executing [q_logout@queueLoginLogout:5] Hangup("SIP/0004f2040001-00000012", "") in new stack
  == Spawn extension (queueLoginLogout, q_logout, 5) exited non-zero on 'SIP/0004f2040001-00000012'
-
 ```
 
 And we can see that the device we loggd out by running 'queue show sales'.
@@ -590,7 +549,6 @@ sales has 0 calls (max unlimited) in 'rrmemory' strategy (3s holdtime, 4s talkti
  Members: 
  SIP/0004f2040002 (dynamic) (Not in use) has taken no calls yet
  No Callers
-
 ```
 
 ##### Pausing and Unpausing Members of Queues
@@ -606,7 +564,6 @@ sales has 0 calls (max unlimited) in 'rrmemory' strategy (0s holdtime, 0s talkti
  SIP/0004f2040002 (dynamic) (Not in use) has taken no calls yet
  SIP/0004f2040001 (dynamic) (Not in use) has taken no calls yet
  No Callers
-
 ```
 
 We can then pause our devices with 'queue pause' which has the following format.
@@ -616,7 +573,6 @@ Usage: queue {pause|unpause} member <member> [queue <queue> [reason <reason>]]
  Pause or unpause a queue member. Not specifying a particular queue
  will pause or unpause a member across all queues to which the member
  belongs.
-
 ```
 
 Lets pause device 0004f2040001 in the sales queue by executing the following.
@@ -624,7 +580,6 @@ Lets pause device 0004f2040001 in the sales queue by executing the following.
 ```
 *CLI> queue pause member SIP/0004f2040001 queue sales
 paused interface 'SIP/0004f2040001' in queue 'sales' for reason 'lunch'
-
 ```
 
 And we can see they are paused with 'queue show sales'.
@@ -636,7 +591,6 @@ sales has 0 calls (max unlimited) in 'rrmemory' strategy (0s holdtime, 0s talkti
  SIP/0004f2040002 (dynamic) (Not in use) has taken no calls yet
  SIP/0004f2040001 (dynamic) (paused) (Not in use) has taken no calls yet
  No Callers
-
 ```
 
 At this point the queue member will no longer receive calls from the system. We can unpause them with the CLI command 'queue unpause member'.
@@ -644,7 +598,6 @@ At this point the queue member will no longer receive calls from the system. We 
 ```
 *CLI> queue unpause member SIP/0004f2040001 queue sales 
 unpaused interface 'SIP/0004f2040001' in queue 'sales'
-
 ```
 
 And if you don't specify a queue, it will pause or unpause from all queues.
@@ -652,7 +605,6 @@ And if you don't specify a queue, it will pause or unpause from all queues.
 ```
 *CLI> queue pause member SIP/0004f2040001
 paused interface 'SIP/0004f2040001'
-
 ```
 
 Of course we want to allow the agents to pause and unpause themselves from their devices, so we need to create an extension and some dialplan logic for that to happen.
@@ -674,7 +626,6 @@ exten => _*0[01]!,n,Set(thisQueue=${GLOBAL(QUEUE_${xtn})}) ; get the queue name 
 exten => _*0[01]!,n,GotoIf($[${ISNULL(${thisQueue})} & ${EXISTS(${xtn})}]?invalid_queue,1) ; if 'thisQueue' is blank and the
  ; the agent dialed a queue exten,
  ; we will tell them it's invalid
-
 ```
 
 The following line will determine if we're trying to pause or unpause. This is done by taking the value dialed (e.g. \*00100) and chopping off the first 2 digits which leaves us with 0100, and then the :1 will return the next digit, which in this case is '0' that we're using to signify that the queue member wants to be paused (in queue 100).
@@ -684,7 +635,6 @@ So we're doing the following with our EXTEN variable.
 ```
  ${EXTEN:2:1}
 offset ^ ^ length
-
 ```
 
 Which causes the following.
@@ -695,12 +645,10 @@ Which causes the following.
 
  *00100
  ^ then return a digit length of one, which is digit 0
-
 ```
 ```
 exten => _*0[01]!,n,GotoIf($[${EXTEN:2:1} = 0]?pause,1:unpause,1) ; determine if they wanted to pause
  ; or to unpause.
-
 ```
 
 The following two extensions, pause & unpause, are used for pausing and unpausing our extension from the queue(s). We use the PauseQueueMember() and UnpauseQueueMember() dialplan applications which accept the queue name (optional) and the queue member name. If the queue name is not provided, then it is assumed we want to pause or unpause from all logged in queues.
@@ -711,7 +659,6 @@ exten => unpause,1,NoOp()
 exten => unpause,n,UnpauseQueueMember(${thisQueue},SIP/${CHANNEL(peername)}) ; if 'thisQueue' is populated we'll pause in
  ; that queue, otherwise, we'll unpause in
  ; in all queues
-
 ```
 
 Once we've unpaused ourselves, we use GoSub() to perform some common dialplan logic that is used for pausing and unpausing. We pass three arguments to the subroutine:
@@ -725,7 +672,6 @@ exten => unpause,n,GoSub(changePauseStatus,start,1(UPQMSTATUS,UNPAUSED,available
  ; pass the values for: variable to check,
  ; value to check for, and file to play
 exten => unpause,n,Hangup()
-
 ```
 
 And the same method is done for pausing.
@@ -736,7 +682,6 @@ exten => pause,1,NoOp()
 exten => pause,n,PauseQueueMember(${thisQueue},SIP/${CHANNEL(peername)})
 exten => pause,n,GoSub(changePauseStatus,start,1(PQMSTATUS,PAUSED,unavailable))
 exten => pause,n,Hangup()
-
 ```
 
 Lets explore what happens in the subroutine we're using for pausing and unpausing.
@@ -750,7 +695,6 @@ Lets explore what happens in the subroutine we're using for pausing and unpausin
 ;
 exten => start,1,NoOp()
 exten => start,n,Playback(silence/1) ; answer line with silence
-
 ```
 
 The following line is probably the most complex. We're using the IF() function inside the Playback() application which determines which file to playback to the user.
@@ -765,7 +709,6 @@ So when expanded, we'd end up with the following inside the IF() function.
 
 ```bash title=" " linenums="1"
 $["${PQMSTATUS}" = "PAUSED"]?unavailable:not-yet-connected
-
 ```
 
 ${PQMSTATUS} would then be expanded further to contain the status of our PauseQueueMember() dialplan application, which could either be PAUSED or NOTFOUND. So if ${PQMSTATUS} returned PAUSED, then it would match what we're looking to match on, and we'd then return 'unavailable' to Playback() that would tell the user they are now unavailable.
@@ -779,7 +722,6 @@ exten => start,n,Playback(${IF($["${${ARG1}}" = "${ARG2}"]?${ARG3}:not-yet-conne
  ; matches the value we're looking
  ; for and playback the file we want
  ; to play if it does
-
 ```
 
 If ${xtn} is null, then we just go to the end of the subroutine, but if it isn't then we will play back "in the queue" followed by the queue extension number indicating which queue they were (un)paused from.
@@ -789,7 +731,6 @@ exten => start,n,GotoIf($[${ISNULL(${xtn})}]?end) ; if ${xtn} is null, then just
 exten => start,n,Playback(in-the-queue) ; if not null, then playback "in the queue"
 exten => start,n,SayNumber(${xtn}) ; and the queue number that we (un)paused from
 exten => start,n(end),Return() ; return from were we came
-
 ```
 
 ##### Queue Variables
@@ -802,7 +743,6 @@ exten => show_variables,1,NoOp()
  same => n,Verbose(0,strategy = ${QUEUESTRATEGY})
  same => n,Verbose(0,calls = ${QUEUECALLS})
  same => n,Hangup()
-
 ```
 
 Note, QUEUE_VARIABLES needs to be called with a valid queue name, and prior to calling the other queue variable functions in order to ensure retrieval of the correctly associated values for a given queue.

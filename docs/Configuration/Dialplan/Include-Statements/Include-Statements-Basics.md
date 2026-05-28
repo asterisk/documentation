@@ -24,7 +24,6 @@ exten => 6000,1,Answer(500)
 
 exten => 6500,1,Answer(500)
  same => n,VoiceMailMain(@vm-demo)
-
 ```
 
 !!! tip Location of Include Statements** Please note that in the example above, we placed the include statement before extensions **6001** and **6002
@@ -62,5 +61,4 @@ exten => _.,2,NoOp();
 exten => _.,3,NoOp(); ; <- Priority 3 ends up being here, which is NOT what you want  
 
 ---
-
 ```

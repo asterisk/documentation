@@ -42,7 +42,6 @@ Once on the console, the 'help' alias (for 'core show help') may be used to see 
 acl show -- Show a named ACL or list all named ACLs
 ael reload -- Reload AEL configuration
 ...
-
 ```
 
 The 'help' alias may also be used to obtain more detailed information on how to use a particular command and listing sub-commands. For example, if you type 'help core show', Asterisk will respond with a list of all commands that start with that string. If you type 'help core show version', specifying a complete command, Asterisk will respond with a usage message which describes how to use that command. As with other commands on the Asterisk console, the help command also responds to tab command line completion.
@@ -52,13 +51,11 @@ The 'help' alias may also be used to obtain more detailed information on how to 
 core show applications [like|describing] -- Shows registered dialplan applications
 core show application -- Describe a specific dialplan application
 ...
-
 ```
 ```
 *CLI> help core show version
 Usage: core show version
  Shows Asterisk version information.
-
 ```
 
 Help for functions, applications and more
@@ -84,7 +81,6 @@ Wait(seconds)
 seconds
  Can be passed with fractions of a second. For example, '1.5' will
  ask the application to wait for 1.5 seconds.
-
 ```
 
 Module Configuration Help
@@ -110,7 +106,6 @@ Usage: config show help [<module> [<type> [<option>]]]
  NOTE: the help documentation is partially generated at run
  time when a module is loaded. If a module is not loaded,
  configuration help for that module may be incomplete.
-
 ```
 
 For example maybe we see the 'callerid' option in a pjsip.conf file sent to us from a friend. We want to know what that option configures. If we know that pjsip.conf is provided by the res_pjsip module then we can find help on that configuration option.
@@ -123,5 +118,4 @@ callerid = [(null)] (Default: n/a) (Regex: False)
 CallerID information for the endpoint
 
  Must be in the format 'Name <Number>', or only '<Number>'. 
-
 ```

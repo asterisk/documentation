@@ -51,7 +51,6 @@ busylevel=1
 [Bob-desk]
 type=friend
 busylevel=1
-
 ```
 
 We are setting one option in the general section, and then a few options across the three SIP peers involved.
@@ -72,7 +71,6 @@ For our example we need to define a hint mapping 6001 to Bob's two devices.
 ```
 [default]
 exten = 6001,hint,SIP/Bob-mobile&SIP/Bob-desk
-
 ```
 
 Defining the hint is pretty straightforward and follows the syntax discussed in the [Extension State and Hints](/Fundamentals/Key-Concepts/States-and-Presence/Extension-State-and-Hints) section.
@@ -85,7 +83,6 @@ If you have restarted Asterisk to load the hints, then you can check to make sur
 *CLI> core show hints
  -= Registered Asterisk Dial Plan Hints =-
  6001@default : SIP/Bob-mobile&SIP/B State:Unavailable Watchers 0
-
 ```
 
 You'll see the state changes to Idle or something else if you have your sip.conf configured properly and the two SIP devices are at least available.
@@ -117,7 +114,6 @@ SUBSCRIBE(w/ Auth) --->
  <--- 200 OK
  <--- NOTIFY
 200 OK --->
-
 ```
 
 In the expanding frame below is a SIP trace of a successful subscription for reference. You could see this on your own system by running "sip set debug on" and then watching for the subscription. You might have to restart your phone again or re-add a contact to see it.
@@ -257,7 +253,6 @@ Content-Length: 0
 
 <------------->
 --- (9 headers 0 lines) ---
-
 ```
 
 Once the subscription has taken place, there is a command to list them. "sip show subscriptions"
@@ -267,7 +262,6 @@ Once the subscription has taken place, there is a command to list them. "sip sho
 Peer User Call ID Extension Last state Type Mailbox Expiry
 10.24.17.254 Alice ZjE2ZDAwYThiOTA 6001@default Unavailable pidf+xml <none> 001800
 1 active SIP subscription
-
 ```
 
 From this point onward, Asterisk should send out a SIP NOTIFY to the Alice peer whenever state changes for any of the devices mapped to the hint 6001. Alice's phone should then reflect that state on its display.

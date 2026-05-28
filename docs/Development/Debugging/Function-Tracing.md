@@ -142,7 +142,6 @@ $ sudo perf report -i perf.out --call-graph=none -c asterisk --percentage relati
      0.70%     0.76%  [kernel.kallsyms]                      [k] psi_group_change
      0.68%     0.59%  asterisk                               [.] utf8_check_first
      0.60%     0.72%  libasteriskpj.so.2                     [.] pj_pool_alloc_from_block
-
 ```
 
 Now the report shows only the instructions directly executed by the function.

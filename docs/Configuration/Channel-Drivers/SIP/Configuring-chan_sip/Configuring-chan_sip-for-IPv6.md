@@ -16,7 +16,6 @@ Binding to a specific IPv6 interface
 ```
 [general]
 bindaddr=2001:db8::1
-
 ```
 
 Binding to all available IPv6 interfaces (wildcard)
@@ -24,7 +23,6 @@ Binding to all available IPv6 interfaces (wildcard)
 ```
 [general]
 bindaddr=::
-
 ```
 
 You can specify a port number by wrapping the address in square brackets and using a colon delimiter.
@@ -32,7 +30,6 @@ You can specify a port number by wrapping the address in square brackets and usi
 ```
 [general]
 bindaddr=[::]:5062
-
 ```
 
 !!! tip 
@@ -49,5 +46,4 @@ Other options such as "outboundproxy" or "permit" can use IPv6 addresses the sam
 
 ```
 permit=2001:db8::/32
-
 ```

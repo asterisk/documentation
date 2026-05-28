@@ -75,7 +75,6 @@ codec_prefs_incoming_offer = prefer: pending, operation: union, keep: all, trans
 codec_prefs_outgoing_offer = prefer: pending, operation: intersect, keep: all, transcode: allow
 codec_prefs_outgoing_offer = prefer: pending, operation: union, keep: all, transcode: allow
 codec_prefs_outgoing_offer = prefer: pending, operation: union, keep: all, transcode: allow
-
 ```
 
 You'll notice that the defaults always prefer the "pending" topology so in our example, what Alice sends in her SDP offer sets the stage.
