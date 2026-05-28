@@ -80,7 +80,6 @@ This is a context to use with a manager script.
 exten => _X.,1,SMS(${CALLERIDNUM},,${EXTEN},${CALLERIDNAME})
 exten => _X.,n,SMS(${CALLERIDNUM})
 exten => _X.,n,Hangup
-
 ```
 
 The script sends
@@ -92,7 +91,6 @@ The script sends
  channel: Local/17094009
  context: smsdial
  priority: 1
-
 ```
 
 You put the message as the name of the caller ID (messy, I know), the originating number and hence queue name as the number of the caller ID and the exten as the number to which the sms is to be sent. The context uses SMS to create the message in the queue and then SMS to communicate with 17094009 to actually send the message.
@@ -108,7 +106,6 @@ exten => _XXXXXX_8005875290,n,System(/usr/lib/asterisk/smsin ${EXTEN:3})
 exten => _XXXXXX_80058752[0-8]0,1,SMS(${EXTEN:3}${CALLERIDNUM:8:1},a)
 exten => _XXXXXX_80058752[0-8]0,n,System(/usr/lib/asterisk/smsin ${EXTEN>:3}${CALLERIDNUM:8:1})
 exten => _XXXXXX_80058752[0-8]0,n,Hangup
-
 ```
 
 In this case the called number we get from BT is 6 digits (XXXXXX) and we are using the last 3 digits as the queue name.

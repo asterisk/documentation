@@ -108,7 +108,6 @@ void *ast_data_buffer_get(const struct ast_data_buffer *buffer, int pos);
  * \param buffer The data buffer
  */
 void ast_data_buffer_free(struct ast_data_buffer *buffer);
-
 ```
 
 ### chan_pjsip
@@ -150,7 +149,6 @@ unsigned int ast_rtp_instance_get_rtx_ssrc(struct ast_rtp_instance *rtp);
  * \param ssrc The remote RTX SSRC
  */
 void ast_rtp_instance_set_remote_rtx_ssrc(struct ast_rtp_instance *rtp, unsigned int ssrc);
-
 ```
 
 Finally the "rtx" codec will need to be added as a valid option and enabled if RTP packet retransmission is enabled on the RTP instance.

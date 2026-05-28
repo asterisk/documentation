@@ -33,7 +33,6 @@ Instead of having a channel process the received text messages, ideally we would
  body: 'blah blah blah'
  variables: [ key: 'value', someotherkey: 'someothervalue' ]
 }
-
 ```
 
 An ARI application - if they subscribed to some endpoint that matches the From: or To: header - can choose to act on the message in any way they see fit. Message processing in the dialplan can still take place as well, if the dialplan needs to handle the message.
@@ -67,7 +66,6 @@ POST /endpoints/PJSIP/alice/message
  { "X-Foo-Yack": "I am not" },
  ],
 }
-
 ```
 
 Note that the content of the **from** key is dependent on the channel technology being chosen. SIP message technologies allow for arbitrary URIs to be specified as the initiator of the message; XMPP does not.
@@ -81,7 +79,6 @@ POST /endpoints/PJSIP/message
  "to": "pjsip:generic/sip:alice@mysipserver.org"
  "body": "No, *I* am the very model of a major general"
 }
-
 ```
 
 !!! tip **  Note that in this case, the SIP URI specified in the **to
@@ -113,7 +110,6 @@ A new event will be defined, *MessageReceived.*This event will occur when Asteri
  {"SIP_RECVADDR", "127.0.0.1"},
  ],
 }
-
 ```
 
 Note that the **to** key in the JSON *MessageReceived* event specifies the URI the message was sent to. It is up to the ARI application to handle or route that appropriately.
@@ -129,7 +125,6 @@ First, *message.h* will need to expose a registration function that allows for a
 static int ast_msg_register_observer(const char *id, void (*msg_cb)(struct ast_msg *msg));
 
 static int ast_msg_unregister_observer(const char *id);
-
 ```
 
 When performing the routing (after pulling the message off the taskprocessor), message should deliver the message to the observers:
@@ -156,7 +151,6 @@ static void msg_route(struct ast_channel *chan, struct ast_msg *msg)
  pbx_args.no_hangup_chan = 1,
  ast_pbx_run_args(chan, &pbx_args);
 }
-
 ```
 
 Note that we aren't going to do any filtering of the messages at this level; instead, we'll rely on the filtering to be done in Stasis. The Stasis application can decide whether or not the message is something it wants to forward along.
@@ -185,7 +179,6 @@ No modifications should have to be done for `res_xmpp` or `res_pjsip_messaging`.
  case SIP_GET_DEST_EXTEN_FOUND:
  break;
  }
-
 ```
 
 Stasis (as in the application for ARI, not the message bus) can filter out the messages accordingly. Normally, a subscription entails a particular stasis subscription for a channel, bridge, endpoint, etc. While some subscriptions for messages are endpoint based, some are based on technology (such as, give me all of the messages associated with PJSIP endpoints/technology). This is because messages don't have to be associated with an endpoint - they can be sent to an arbitrary URI, and they can be sent to "asterisk" - not to some endpoint managed by Asterisk. As such, we can't just use a Stasis topic for this (or at least, we can't use the endpoint topic - more on that later).

@@ -13,14 +13,12 @@ For example below we are adding the "n" modifier to the dial-string.
 
 ```
 Local/101@mycontext/n
-
 ```
 
 You can add more than one modifier by adding them directly adjacent to the previous modifier.
 
 ```
 Local/101@mycontext/nj
-
 ```
 
 ## List of Modifiers

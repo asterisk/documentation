@@ -66,7 +66,6 @@ When Bob joins the ConfBridge he receives the ConfbridgeWelcome event:
  }
  ]
 }
-
 ```
 
 In the ConfbridgeWelcome event, the "channels" arrays contains all of the channels currently in the bridge, including Bob himself.  In this case, Alice was already in the conference when Bob joined.
@@ -98,7 +97,6 @@ The ConfbridgeJoin event is sent to all other participants when someone joins th
  }
  ]
 }
-
 ```
 
 Since this is an event related to a specific participant, the "channels" array just has Bob's channel in it.
@@ -136,7 +134,6 @@ enable_events=yes ; If enabled, recipients who joined the bridge via a channel d
  ; event. The Content-Type header will be
  ; "application/x-asterisk-confbridge-event+json".
  ; This feature must also be enabled in user profiles.
-
 ```
 
 Of course, your configuration will be different but those are the parameters that need to be set.

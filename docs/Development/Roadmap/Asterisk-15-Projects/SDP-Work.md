@@ -243,7 +243,6 @@ int ast_sdp_state_update_remote_topology(struct ast_sdp_state *state, struct ast
  * This is useful for NAT operations and for direct media.
  */
 int ast_sdp_state_set_connection_address(struct ast_sdp_state *state, struct ast_sockaddr *addr);
-
 ```
 
 Let's talk about the API a bit. The API introduces two new structures: `ast_sdp_state`, and `ast_sdp_options`.
@@ -294,7 +293,6 @@ typedef int (*new_candidate_fn)(struct ast_rtp_instance *rtp, struct ast_rtp_eng
  * Indicate interest in being told of new ICE candidates.
  * 
 int ast_rtp_instance_register_ice_new_candidate_cb(struct ast_rtp_instance *rtp, new_candidate_fn cb, void *data);
-
 ```
 
 This way, an RTP instance can be told by interested parties to be alerted whenever a new ICE candidate is learned. The data parameter is a way to quickly associate the RTP instance with another piece of data the callback cares about (like an SDP state or a PJSIP session).
@@ -347,7 +345,6 @@ fail:
  ast_sdp_options_free(sdp_options);
  return -1;
 }
-
 ```
 
 In this example, we enable several SDP options and then use those to allocate the SDP state. The SDP state is saved onto the session for future use.
@@ -365,7 +362,6 @@ int make_a_call(struct my_channel_driver_session *session, char *dest)
 
  return send_message(message);
 }
-
 ```
 
 When it comes time to make a call, all we have to do is request our local SDP, translate it into the appropriate representation, and then send our message out. The SDP that we retrieve in this case is based on the formats and options that we passed into SDP state creation.
@@ -400,7 +396,6 @@ int incoming_call(struct my_channel_driver_session *session, struct my_channel_d
 
  return send_message(response);
 }
-
 ```
 
 This is very similar to what we did when creating an outgoing call. The interesting difference here is that we now potentially call `ast_sdp_state_set_remote()` if the incoming message has an SDP. This causes the subsequent call to `ast_sdp_state_get_local()` to behave differently. If the incoming message had an SDP, then `ast_sdp_state_get_local()` will return the negotiated SDP that we should use as an answer. If the incoming message had no SDP, then `ast_sdp_state_get_local()` will return the exact same SDP offer we use when making an outgoing call.
@@ -425,7 +420,6 @@ int direct_media_enabled(struct my_channel_driver_session *session, struct ast_s
 
  return send_message(message);
 }
-
 ```
 
 It may be a bit confusing what's going on with the format_cap structures here. If we assume that Alice and Bob are going to be doing direct media, then let's pretend that this is the session with Alice. The peer_topology is Bob's topology. By making Bob's topology our local topology, it results in the joint topology being that of Bob and Alice. We update the SDP state to use this joint topology. We then also update the connection address so we place the correct address in it place. The subsequent call to get the local SDP now will properly reflect the updated capabilities and peer address.

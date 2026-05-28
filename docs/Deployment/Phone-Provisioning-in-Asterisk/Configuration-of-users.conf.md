@@ -19,7 +19,6 @@ To enable auto-provisioning of a phone, the user in users.conf needs to have:
 autoprov=yes
 macaddress=deadbeef4dad
 profile=polycom
-
 ```
 
 The profile is optional if a default_profile is set in phoneprov.conf. The following is a sample users.conf entry, with the template variables commented next to the settings:
@@ -49,7 +48,6 @@ username = 6001 ; ${USERNAME}
 macaddress = deadbeef4dad ; ${MAC} 
 label = 6001 ; ${LABEL} 
 cid_number = 6001 ; ${CALLERID}
-
 ```
 
 The variables above, are the user-specfic variables that can be substituted into dynamic filenames and config templates.

@@ -23,5 +23,4 @@ exten=>s,46,Set(MACRO_RESULT=CONTINUE)
 exten=>s,50,Playback(after-the-tone) 
 exten=>s,51,Playback(connected) 
 exten=>s,52,Playback(beep)
-
 ```

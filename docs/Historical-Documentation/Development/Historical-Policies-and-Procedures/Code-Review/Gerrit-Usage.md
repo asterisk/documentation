@@ -69,14 +69,12 @@ Host asterisk
  Hostname gerrit.asterisk.org
  Port 29418
  User {user}
-
 ```
 
 This will allow you to access the repository as shown below:
 
 ```bash title=" " linenums="1"
 $ git clone asterisk:{repo}
-
 ```
 
 ### Install git-review
@@ -87,7 +85,6 @@ Most Gerrit users will be submitting patches for review and will need the `git r
 
 ```bash title="Install git-review from git  " linenums="1"
 $ pip install git-review
-
 ```
 /// note 
 It is recommended that you have git-review version 1.27.0 installed. You can check the installed version using "git review --version". If it is an old version you can install it using pip to receive the latest one.  
@@ -105,14 +102,12 @@ Set per repository
 $ cd <repository>
 $ git config --local --add user.email <your email>
 $ git config --local --add user.name <your full name>
-
 ```
 Set globally  
 
 ```bash
 $ git config --global --add user.email <your email>
 $ git config --global --add user.name <your full name>
-
 ```
 
 ### Cloning from Gerrit
@@ -176,7 +171,6 @@ You'll want to keep the local branches that track remote branches, like 13, 14 a
 ```bash title=" " linenums="1"
 $ git checkout 13
 $ git checkout -b ASTERISK-12345
-
 ```
 
 ### Do Some Work!
@@ -204,7 +198,6 @@ ASTERISK-12345 #close
 Reported-by: Someone other than you
 
 Change-Id: I6dca12979f482ffb0450aaf58db0fe0f6d2e389
-
 ```
 
 ### Submit
@@ -303,7 +296,6 @@ If you have to make multiple changes over the lifetime of the review, you should
 $ git checkout 13
 $ git branch -D reviews/joe_developer/ASTERISK-12345
 $ git review -d 10000
-
 ```
 
 ## Advanced Topics
@@ -320,7 +312,6 @@ Solution: You may need to add an explicit git remote named "gerrit".
 
 ```bash
 $ git remote add gerrit <ssh-url-to-the-gerrit-repo>
-
 ```
 
 #### Problem:  Unable to login to [gerrit.asterisk.org](http://gerrit.asterisk.org)
@@ -350,7 +341,6 @@ Solution: Run
 
 ```bash title=" " linenums="1"
 $ sudo pip install --upgrade setuptools
-
 ```
 
 on your command line
@@ -361,7 +351,6 @@ Description:  There is an incompatibility between certain version of git and ger
 
 ```bash title=" " linenums="1"
 $ git push --no-thin asterisk:{repo} HEAD:refs/for/master
-
 ```
 
 #### Problem:  Unable to unsubscribe from Gerrit notifications

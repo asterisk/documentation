@@ -31,7 +31,6 @@ The following, for the most part, assumes that the channels use RTP for media an
 ---
 
 Changing `chan_sip` is fraught with peril. As such, we're going to try and give the power/flexibility of how things are offered/answered to where we can better maintain/control the behaviour, which means `chan_pjsip`.
-
 ```
 
 General Rules
@@ -333,7 +332,6 @@ struct ast_codec {
 int ast_codec_register(struct ast_codec *codec);
 
 struct ast_codec *ast_codec_get(const char *name, enum ast_format_type type, unsigned int samples);
-
 ```
 
 Codec structures will be immutable once registered and created only once. If a user of the API wants to retrieve a codec they will use ast_codec_get with the provided information.
@@ -348,7 +346,6 @@ struct ast_format {
  void *attribute_data;
  struct ast_format_attr_interface *interface;
 };
-
 ```
 
 Because it is astobj2 allocated additional information can be stored within it, such as a pointer to attribute information and a pointer to the attribute interface to use with it. This reduces the size of the structure by quite a lot and removes the need for container lookups on comparison.
@@ -369,7 +366,6 @@ struct ast_format_cap {
  AST_VECTOR(, int) framing;
  AST_VECTOR(, int) preference;
 };
-
 ```
 
 This presents an easy mechanism to see if a format is present in the structure.
@@ -413,7 +409,6 @@ For cases where a format has to be created a new API call, ast_format_create, wh
 
 ```
 struct ast_format *ast_format_create(struct ast_codec *codec);
-
 ```
 
 Example:
@@ -433,7 +428,6 @@ static void example(void)
 
  ao2_cleanup(format);
 }
-
 ```
 
 #### Setting attributes
@@ -442,7 +436,6 @@ Attribute information can be set on a format by using the ast_format_attribute_s
 
 ```
 int ast_format_attribute_set(struct ast_format *format, const char *attribute, const char *value); 
-
 ```
 
 Example:
@@ -470,7 +463,6 @@ static void test_example(void)
  ast_format_attribute_set(format, "rate", "8000");
  ao2_ref(format, -1);
 }
-
 ```
 
 !!! note 
@@ -486,7 +478,6 @@ The function to allocate a capabilities structure is unchanged but the format ca
 
 ```
 struct ast_format_cap *ast_format_cap_alloc(enum ast_format_cap_flags flags);
-
 ```
 
 Example:
@@ -498,7 +489,6 @@ static void example(void)
 
  ao2_ref(caps, -1);
 }
-
 ```
 
 #### Adding a format to the capabilities structure
@@ -507,7 +497,6 @@ This is slightly changed from the existing API in that the format passed in is n
 
 ```
 void ast_format_cap_add(struct ast_format_cap *cap, struct ast_format *format);
-
 ```
 
 Example:
@@ -541,7 +530,6 @@ static void example(void)
  ao2_ref(format, -1);
  ao2_ref(caps, -1);
 }
-
 ```
 
 !!! note 
@@ -563,7 +551,6 @@ int ast_format_cap_is_empty(const struct ast_format_cap *cap);
 int ast_format_cap_remove(struct ast_format_cap *cap, struct ast_format *format);
 void ast_format_cap_remove_bytype(struct ast_format_cap *cap, enum ast_format_type type);
 void ast_format_cap_remove_all(struct ast_format_cap *cap);
-
 ```
 
 #### Capabilities structure iteration
@@ -573,7 +560,6 @@ As the capabilities structure is now stored using an array iteration will involv
 ```
 size_t ast_format_cap_count(const struct ast_format_cap *cap);
 struct ast_format *ast_format_cap_get(const struct ast_format_cap *cap, int index);
-
 ```
 
 Example:
@@ -597,7 +583,6 @@ static void example(void)
 
  ao2_ref(caps, -1);
 }
-
 ```
 
 #### Framing size
@@ -607,7 +592,6 @@ The framing size controls the length of media frames (in milliseconds). Previous
 ```
 void ast_format_cap_framing_set(struct ast_format_cap *cap, const struct ast_format *format, unsigned int framing);
 unsigned int ast_format_cap_framing_get(const struct ast_format_cap *cap, const struct ast_format *format);
-
 ```
 
 Example:
@@ -644,7 +628,6 @@ static void example(void)
  ao2_ref(format, -1);
  ao2_ref(caps, -1);
 }
-
 ```
 
 #### Getting joint capabilities
@@ -655,7 +638,6 @@ Joint capabilities are the common compatible formats between two capabilities st
 struct ast_format_cap *ast_format_cap_joint(const struct ast_format_cap *cap_preferred, const struct ast_format_cap *cap_secondary);
 int ast_format_cap_joint_copy(const struct ast_format_cap *cap1, const struct ast_format_cap *cap2, struct ast_format_cap *result);
 int ast_format_cap_joint_append(const struct ast_format_cap *cap1, const struct ast_format_cap *cap2, struct ast_format_cap *result);
-
 ```
 
 Example:

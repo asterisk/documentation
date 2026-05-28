@@ -42,7 +42,6 @@ type=menu
 DTMF=function
 otherDTMF=otherFunction
 ;
-
 ```
 
 ## Bridge Profile Configuration Options
@@ -90,7 +89,6 @@ max_members=20
 mixing_interval=10
 internal_sample_rate=auto
 record_conference=yes
-
 ```
 
 ## User Profile Configuration Options
@@ -134,7 +132,6 @@ announce_join_leave=yes
 dsp_drop_silence=yes
 denoise=yes
 pin=456
-
 ```
 
 ## Conference Menu Configuration Options
@@ -189,7 +186,6 @@ type=menu
 9=increase_talking_volume
 *0=no_op
 0=no_op
-
 ```
 
 Of particular note in this example, we're calling the dialplan_exec option. Here, we're specifying "addcaller,1,1." This means that when someone dials 3, Asterisk will escape them out of the bridge momentarily to go execute priority 1 of extension 1 in the addcaller context of the dialplan (extensions.conf). Our dialplan, including the addcaller context, in this case, might look like:
@@ -200,7 +196,6 @@ exten => 1,1,Originate(SIP/otherpeer,exten,conferences,100,1)
 
 [conferences]
 exten => 100,1,ConfBridge(1234)
-
 ```
 
 Thus, when someone dials "3" while in the bridge, they'll Originate a call from the dialplan that puts SIP/otherpeer into the conference. Once the dial has completed, the person that dialed "3" will find themselves back in the bridge, with the other participants.

@@ -65,5 +65,4 @@ Modules that have a dependency must have a special comment block in them that is
 /*** MODULEINFO
  <depend>libname</depend>
     * */
-
 ```

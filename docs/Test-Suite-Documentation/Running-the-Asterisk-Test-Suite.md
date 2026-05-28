@@ -27,7 +27,6 @@ Running tests for Asterisk SVN-trunk-r366462M
 
 Making sure Asterisk isn't running ...
 Running ['tests/example/run-test'] ...
-
 ```
 
 !!! note 
@@ -44,7 +43,6 @@ A single test can be executed using the *-t* command line option.
 
 ```bash title=" " linenums="1"
 # ./runtests.py -t tests/dialplan
-
 ```
 
 !!! note 
@@ -72,21 +70,18 @@ Available test tags:
  pickup queues redirecting 
  SIP subroutine transfer
  voicemail 
-
 ```
 
 All tests that have a tag can be executed using the *-g* command line option:
 
 ```bash title=" " linenums="1"
 # ./runtests.py -g SIP
-
 ```
 
 Multiple tags can be specified as well, using multiple invocations of the *-g* command line option. A test must satisfy each tag specified in order to be executed.
 
 ```bash title=" " linenums="1"
 # ./runtests.py -g SIP -g CDR
-
 ```
 
 Executing pre-defined sets of tests
@@ -103,7 +98,6 @@ global-settings:
  test-configuration: config-quick
 
 config-quick:
-
 ```
 
 A test configuration can exclude tests from a run by using the *exclude-tests* key. Each value under that key is a test that will **not** be run when the *runtests.py* script executes.
@@ -136,5 +130,4 @@ config-quick:
  - 'gateway_timeout3'
  - 'gateway_timeout4'
  - 'gateway_timeout5'
-
 ```

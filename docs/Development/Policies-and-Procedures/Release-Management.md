@@ -137,7 +137,6 @@ Detail:
  UserNote: The new AST_CEL_LOCAL_OPTIMIZE_BEGIN can be used
  by itself or in conert with the existing
  AST_CEL_LOCAL_OPTIMIZE to book-end local channel optimizaion.
-
 ```
 
 To keep the Release Announcements posted to the mailing lists and community forums brief, they won't contain the detail commit section.

@@ -83,7 +83,6 @@ total 32
 -rw------- 1 root root 1736 Mar 4 2019 ca.crt
 -rw------- 1 root root 3311 Mar 4 2019 ca.key
 -rw------- 1 root root 123 Mar 4 2019 tmp.cfg
-
 ```
 
 We'll use the `asterisk.crt` and `asterisk.key` files later to configure the HTTP server.
@@ -138,7 +137,6 @@ Enabled URI's:
 /ari/... => Asterisk RESTful API
 /ws => Asterisk HTTP WebSocket
 <there may be more>
-
 ```
 
 Note that the HTTPS Server is enabled and bound to `[::]:8089` and that the `/ws` URI is enabled.

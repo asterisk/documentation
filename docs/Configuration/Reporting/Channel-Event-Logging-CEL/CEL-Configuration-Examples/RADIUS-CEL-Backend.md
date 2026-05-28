@@ -20,7 +20,6 @@ From <http://developer.berlios.de/projects/radiusclient-ng/>
 ```
 
 root@localhost:/usr/local/src# tar xvfz radiusclient-ng-0.5.2.tar.gz 
-
 ```
 
 ##### Compile and install the library:
@@ -31,7 +30,6 @@ root@localhost:/usr/local/src# cd radiusclient-ng-0.5.2
 root@localhost:/usr/local/src/radiusclient-ng-0.5.2#./configure 
 root@localhost:/usr/local/src/radiusclient-ng-0.5.2# make 
 root@localhost:/usr/local/src/radiusclient-ng-0.5.2# make install
-
 ```
 
 ##### Configuration of the Radiusclient library
@@ -43,7 +41,6 @@ File "radiusclient.conf" Open the file and find lines containing the following:
 ```
 
 authserver localhost 
-
 ```
 
 This is the hostname or IP address of the RADIUS server used for authentication. You will have to change this unless the server is running on the same host as your Asterisk PBX. 
@@ -51,7 +48,6 @@ This is the hostname or IP address of the RADIUS server used for authentication.
 ```
 
 acctserver localhost 
-
 ```
 
 This is the hostname or IP address of the RADIUS server used for accounting. You will have to change this unless the server is running on the same host as your Asterisk PBX. 
@@ -69,7 +65,6 @@ Each line contains hostname of a RADIUS server and shared secret used in communi
 ```
 
 File "dictionary" 
-
 ```
 
 Asterisk uses some attributes that are not included in the dictionary of radiusclient library, therefore it is necessary to add them. A file called dictionary.digium (kept in the contrib dir) was created to list all new attributes used by Asterisk. Add to the end of the main dictionary 
@@ -78,7 +73,6 @@ file /usr/local/etc/radiusclient-ng/dictionary the line:
 
 ```bash title=" " linenums="1"
 $INCLUDE /path/to/dictionary.digium
-
 ```
 
 ### Install FreeRADIUS Server (Version 1.1.1)
@@ -96,7 +90,6 @@ root@localhost:/usr/local/src# cd freeradius-1.1.1
 root@localhost"/usr/local/src/freeradius-1.1.1# ./configure 
 root@localhost"/usr/local/src/freeradius-1.1.1# make 
 root@localhost"/usr/local/src/freeradius-1.1.1# make install 
-
 ```
 
 All the configuration files of FreeRADIUS server will be in /usr/local/etc/raddb directory.
@@ -114,7 +107,6 @@ Example:
 ```
 
 client myhost { secret = mysecret shortname = foo } 
-
 ```
 
 This fragment allows access from RADIUS clients on "myhost" if they use "mysecret" as the shared secret. The file already contains an entry for localhost (127.0.0.1), so if you are running the RADIUS server on the same host as your Asterisk server, then modify the existing entry instead, replacing the default password. 
@@ -132,7 +124,6 @@ File /usr/local/etc/raddb/dictionary contains the dictionary of FreeRADIUS serve
 
 ```bash title=" " linenums="1"
 $INCLUDE /path/to/dictionary.digium 
-
 ```
 
 That will include the same new attribute definitions that are used in radiusclient-ng library so the client and server will understand each other.

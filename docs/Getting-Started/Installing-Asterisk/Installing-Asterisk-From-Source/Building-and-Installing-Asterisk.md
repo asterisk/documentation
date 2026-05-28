@@ -10,7 +10,6 @@ Now we can compile and install Asterisk. To compile Asterisk, simply type make a
 
 ```
 [root@server asterisk-14.X.Y]# make
-
 ```
 
 The compiling step will take several minutes, and you'll see the various file names scroll by as they are being compiled. Once Asterisk has finished compiling, you'll see a message that looks like:
@@ -23,14 +22,12 @@ The compiling step will take several minutes, and you'll see the various file na
 + make install +
 +-------------------------------------------+
 +--------- Asterisk Build Complete ---------+
-
 ```
 
 On this PageAs the message above suggests, our next step is to install the compiled Asterisk program and modules. To do this, use the **make** **install** command.
 
 ```
 [root@server asterisk-14.X.Y]# make install
-
 ```
 
 When finished, Asterisk will display the following warning:
@@ -49,7 +46,6 @@ When finished, Asterisk will display the following warning:
 + +
 +-------------------------------------------+
 +---- Asterisk Installation Complete -------+
-
 ```
 
 !!! warning Security Precautions
@@ -71,7 +67,6 @@ Specific flags can be passed to `gcc` when Asterisk is configured, using the `CF
 
 ```
 [root@server asterisk-14.X.Y]# ./configure CFLAGS=-pg LDFLAGS=-pg
-
 ```
 
 ### Debugging compilation
@@ -80,7 +75,6 @@ To see all of the flags passed to gcc, build using the `NOISY_BUILD` setting set
 
 ```
 [root@server asterisk-14.X.Y]# make NOISY_BUILD=yes
-
 ```
 
 ### Building for non-native architectures
@@ -91,7 +85,6 @@ Generally, Asterisk attempts to optimize itself for the machine on which it is b
 [root@server asterisk-14.X.Y]# menuselect/menuselect --disable BUILD_NATIVE menuselect.makeopts
 
 [root@server asterisk-14.X.Y]# make
-
 ```
 
 ### Installing to a custom directory
@@ -100,7 +93,6 @@ While there are multiple ways to sandbox an instance of Asterisk, the preferred 
 
 ```
 [root@server asterisk-14.X.Y]# ./configure --prefix=/usr/local/my_special_folder
-
 ```
 
 Note that the default value for `prefix` is `/usr/local`.

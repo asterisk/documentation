@@ -140,7 +140,6 @@ telePhone A --- Kamailio --- Asterisk 1 --- Kamailio -
                                                     >--- telePhone B
                                                   /
 telePhone C --- Kamailio --- Asterisk 2 --- Kamailio -
-
 ```
 Each Asterisk (1 and 2)  is involved but cannot know the other Call ID or Channel.
 The ARI application must be the central point in this case.
@@ -150,7 +149,6 @@ telePhone A --- Kamailio --- Asterisk 1 --- Kamailio ----
                               >-- ARI application       >--- telePhone B
                             /                          /
 telePhone C --- Kamailio --- Asterisk 2 --- Kamailio -----
-
 ```
 Both channels to telephone B are placed by the same ARI application (or they share the same knowledge about ongoing calls).
 
@@ -162,5 +160,4 @@ telePhone A --- Kamailio --- Asterisk 1  --------------
                               >-- ARI Application    | SIP Channel
                             /                       /
 telePhone C --- Kamailio --- Asterisk 2  --------------
-
 ```

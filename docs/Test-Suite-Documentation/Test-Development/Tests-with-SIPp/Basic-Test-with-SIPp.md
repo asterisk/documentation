@@ -41,7 +41,6 @@ SIPp Scenario
 
  <recv response="200" rtd="true" />
 </scenario>
-
 ```
 
 Asterisk Configuration
@@ -57,7 +56,6 @@ bindaddr=[::]:5060
 [v4-in]
 type=friend
 host=dynamic
-
 ```
 
 Asterisk Test Suite run-test
@@ -95,7 +93,6 @@ def main():
 
 if __name__ == "__main__":
  sys.exit(main())
-
 ```
 
 !!! note 

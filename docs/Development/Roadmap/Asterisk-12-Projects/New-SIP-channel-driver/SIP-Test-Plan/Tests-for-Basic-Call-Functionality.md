@@ -50,7 +50,6 @@ username=bob
 ; this page, there will never be any bob-specific
 ; auth options because we do not respond properly
 ; to auth challenges.
-
 ```
 
 ---
@@ -76,7 +75,6 @@ same => n,Hangup()
 
 exten => bobv6,1,Dial(PJSIP/sip:bob@[::1]:5062,10)
 same => n,Hangup()
-
 ```
 
 Incoming Call tests

@@ -26,21 +26,18 @@ Push a [hangup handler](/Configuration/Dialplan/Subroutines/Hangup-Handlers) sub
 
 ```
 same = n,Set(CHANNEL(hangup_handler_push)=default,s,1)
-
 ```
 
 Using the CHANNEL function along with the Log application, we can log the current state of the channel.
 
 ```
 same = n,Log(NOTICE, This channel is: ${CHANNEL(state)})
-
 ```
 
 Set the channel variable myvar to a space-delimited list of all channels.
 
 ```
 same = n,Set(myvar=${CHANNELS})
-
 ```
 
 DB and other DB functions
@@ -56,26 +53,22 @@ Set the key "testkey" in family "testfamily" to the value "Alice".
 
 ```
 same = n,Set(DB(testfamily/testkey)=Alice)
-
 ```
 
 Dialing a PJSIP endpoint using the value of the previously set key as the endpoint name.
 
 ```
 same = n,Dial(PJSIP/${DB(testfamily/testkey)})
-
 ```
 
 Go to a specific dialplan location (via [label](/Configuration/Dialplan/Contexts-Extensions-and-Priorities)) depending on if the key exists or does not.
 
 ```
 same = n,Gotoif($[${DB_EXISTS(testfamily/testkey)}]?keyexists:keydoesnotexist)
-
 ```
 
 Delete the entry while logging the value of the key!
 
 ```
 same = n,Log(NOTICE, Deleting the key testfamily/testkey which had the value: ${DB_DELETE(testfamily/testkey)})
-
 ```

@@ -9,7 +9,6 @@ Asterisk creates channel variables named **CONTEXT**, **EXTEN**, and **PRIORITY*
 
 ```
 exten=>6123,1,SayNumber(${EXTEN})
-
 ```
 
 If you were to add this extension to the **[users]** context of your dialplan and reload the dialplan, you could call extension **6123** and hear Asterisk read back the extension number to you.

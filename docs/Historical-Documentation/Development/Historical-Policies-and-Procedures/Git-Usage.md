@@ -72,7 +72,6 @@ Topics
 
 ```bash title=" " linenums="1"
 $ git review -t ASTERISK-12345
-
 ```
 
 This helps to tie Gerrit reviews to the JIRA issue that necessitated the change.

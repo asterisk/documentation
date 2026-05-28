@@ -47,7 +47,6 @@ Most test directories will have the following structure:
  astN/ 
  sipp/ (only if sipp is being used)
  test-config.yaml (required)
-
 ```
 
 Files placed in any of the "ast\*dir" directories can be referenced by configuration files in the "configs" tree using their symbolic directory location. For example, let's say that you're testing TLS transports between two asterisk instances.  Your test directory structure might look like this:
@@ -77,7 +76,6 @@ Files placed in any of the "ast\*dir" directories can be referenced by configura
  ast2-cert.pem
  ast2-key.pem
  test-config.yaml (required)
-
 ```
 
 The ca-cert.pem file would be copied to both instance's /var/lib/asterisk/keys directories while ast1-cert.pem and ast1-key.pem would only be copied to the first Asterisk instance's and ast2-cert.pem and ast2-key.pem would only be copied to the second Asterisk instance's.
@@ -92,7 +90,6 @@ protocol = tls
 ca_list_file = <astvarlibdir>>/keys/ca.pem
 cert_file = <astvarlibdir>>/keys/ast1-cert.pem
 priv_key_file = <astvarlibdir>>/keys/ast1-key.pem
-
 ```
 
 The second Asterisk instance's pjsip.conf file would look similar except that "ast1" would be changed to "ast2".

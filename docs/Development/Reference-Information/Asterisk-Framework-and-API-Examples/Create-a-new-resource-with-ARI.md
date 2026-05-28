@@ -56,7 +56,6 @@ true{
  }
  }
 }
-
 ```
 
 Add it to `resources.json`
@@ -84,7 +83,6 @@ diffIndex: rest-api/resources.json
  }
  ]
  }
-
 ```
 
 Generate the code
@@ -106,7 +104,6 @@ Writing ./res/res_ari_fizzbuzz.c
 Writing ./res/ari/resource_fizzbuzz.h
 Writing ./res/ari/resource_fizzbuzz.c
 Writing ./res/ari.make
-
 ```
 
 Implement the API
@@ -153,7 +150,6 @@ void ast_ari_fizzbuzz(struct ast_variable *headers,
  }
  ast_ari_response_ok(response, json);
 }
-
 ```
 
 Recommended practices

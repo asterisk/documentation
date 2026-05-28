@@ -50,7 +50,6 @@ int ao2_hash_fn(const void *obj, int flags)
  }
  return ast_str_hash(key);
 }
-
 ```
 
 ### Sort Function
@@ -85,7 +84,6 @@ int ao2_sort_fn(const void *obj_left, const void *obj_right, int flags)
  }
  return cmp;
 }
-
 ```
 
 ### Sorted vs. Unsorted Container Searching
@@ -107,7 +105,6 @@ int ao2_callback_fn_sorted_cmp(void *obj, void *arg, int flags)
 {
  return CMP_MATCH;
 }
-
 ```
 
 Unsorted containers must do more work selecting objects since traversals will either traverse the whole container or one hash bucket.
@@ -153,5 +150,4 @@ int ao2_callback_fn_unsorted_cmp(void *obj, void *arg, int flags)
  */
  return ao2_callback_fn_sorted_cmp(obj, arg, flags);
 }
-
 ```

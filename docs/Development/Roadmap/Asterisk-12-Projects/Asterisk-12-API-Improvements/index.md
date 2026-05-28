@@ -260,7 +260,6 @@ The `app\_stasis.so` module simply exports the `res\_stasis.so` functionality as
 
 ; Send channel to the 'Queue' application, with the args 'enqueue,sales' 
 exten => 7001,1,Stasis(Queue,enqueue,sales) 
-
 ```
 
 ## {{stasis_\{channels,bridges,endpoints\}.c}} 

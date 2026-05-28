@@ -12,21 +12,18 @@ As in the other build and install sections, we'll assume that you'll replace the
 
 ```
 [root@server src]# cd libpri-1.X.Y
-
 ```
 
 This command changes directories to the **libpri** source directory.
 
 ```
 [root@server libpri-1.X.Y]# make
-
 ```
 
 This command compiles the **libpri** source code into a system library.
 
 ```
 [root@server libpri-1.X.Y]# make install
-
 ```
 
 This command installs the **libpri** library into the proper system library directory

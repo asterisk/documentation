@@ -37,7 +37,6 @@ Click to show usage...
 Usage: memory show summary [<file>]
  Summarizes heap memory allocations by file, or optionally
  by line, if a file is specified.
-
 ```
 * memory show allocations
 
@@ -49,7 +48,6 @@ Usage: memory show allocations [<file>|anomalies]
  Defaults to listing all memory allocations.
  <file> - Restricts output to memory allocated by the file.
  anomalies - Only check for fence violations.
-
 ```
 * memory atexit list
 
@@ -58,7 +56,6 @@ Click to show usage...
 ```
 Usage: memory atexit list {on|off}
  Enable dumping a list of still allocated memory segments at exit.
-
 ```
 * memory atexit summary
 
@@ -72,7 +69,6 @@ Usage: memory atexit summary {off|byline|byfunc|byfile}
  byfunc - Enable at exit summary by function name.
  byfile - Enable at exit summary by file.
  Note: byline, byfunc, and byfile are cumulative enables.
-
 ```
 * memory backtrace
 
@@ -83,5 +79,4 @@ Usage: memory backtrace {on|off}
  Enable dumping an allocation backtrace with memory diagnostics.
  Note that saving the backtrace data for each allocation
  can be CPU intensive.
-
 ```

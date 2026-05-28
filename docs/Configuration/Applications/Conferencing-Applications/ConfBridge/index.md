@@ -36,7 +36,6 @@ The ConfBridge application syntax and usage can be found at [Application ConfBri
 ```
 exten => 1,1,Answer()
 exten => 1,n,ConfBridge(1234)
-
 ```
 
 ### Example 2
@@ -44,7 +43,6 @@ exten => 1,n,ConfBridge(1234)
 ```
 exten => 1,1,Answer()
 exten => 1,n,ConfBridge(1234,,1234_participants,1234_menu)
-
 ```
 
 ## Usage Notes, FAQ and Other

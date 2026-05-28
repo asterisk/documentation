@@ -21,7 +21,6 @@ extensions.conf
 exten => _1XX,1,Dial(SIP/${EXTEN})
 
 exten => _2XX,1,Voicemail(${EXTEN:1})
-
 ```
 
 50%
@@ -41,7 +40,6 @@ end
 extensions.users["_2XX"] = function(c, e)
  app.voicemail("1" .. e:sub(2))
 end
-
 ```
 
 Context Includes
@@ -65,7 +63,6 @@ exten => s,n,Playback(demo-congrats)
 [default]
 include => demo
 include => users
-
 ```
 
 50%
@@ -92,7 +89,6 @@ extensions = {
  include = {"demo", "users"};
  };
 }
-
 ```
 
 Loops
@@ -110,7 +106,6 @@ exten => 100,n,Set(i=0)
 exten => 100,n,While($[i < 10])
 exten => 100,n,Verbose(i = ${i})
 exten => 100,n,EndWhile
-
 ```
 
 50%
@@ -124,7 +119,6 @@ i = 0
 while i < 10 do
  app.verbose("i = " .. i)
 end
-
 ```
 
 Variables
@@ -139,7 +133,6 @@ extensions.conf
 
 exten => 100,1,Set(my_variable=my_value)
 exten => 100,n,Verbose(my_variable = ${my_variable})
-
 ```
 
 50%
@@ -151,7 +144,6 @@ extensions.lua
 
 channel.my_variable = "my_value"
 app.verbose("my_variable = " .. channel.my_variable:get())
-
 ```
 
 Applications
@@ -165,7 +157,6 @@ extensions.conf
 ```
 
 exten => 100,1,Dial("SIP/100",,m)
-
 ```
 
 50%
@@ -176,7 +167,6 @@ extensions.lua
 ```
 
 app.dial("SIP/100", nil, "m")
-
 ```
 
 Macros/GoSub
@@ -197,7 +187,6 @@ exten => s,n,Dial(${ARG1})
 
 [default]
 exten => 100,1,Macro(dial,SIP/100)
-
 ```
 
 50%
@@ -217,7 +206,6 @@ end
 extensions.default[100] = function()
  dial("SIP/100")
 end
-
 ```
 
 Goto
@@ -237,7 +225,6 @@ exten => 100,1,Goto(102,1)
 
 exten => 102,1,Playback("demo-thanks")
 exten => 102,n,Hangup
-
 ```
 
 50%
@@ -258,7 +245,6 @@ end
 extensions.default[100] = function()
  do_hangup()
 end
-
 ```
 
 !!! info ""
@@ -277,5 +263,4 @@ function extension_function(c, e)
 end
 
 ---
-
 ```

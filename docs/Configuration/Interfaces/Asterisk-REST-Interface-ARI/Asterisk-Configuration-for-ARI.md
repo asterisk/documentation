@@ -46,7 +46,6 @@ http.conf
 enabled = yes
 bindaddr = 0.0.0.0
 bindport = 8088
-
 ```
 
 !!! note Use TLS!** It is **highly
@@ -97,7 +96,6 @@ type = user
 read_only = no
 password = $6$nqvAB8Bvs1dJ4V$8zCUygFXuXXp8EU3t2M8i.N8iCsY4WRchxe2AYgGOzHAQrmjIPif3DYrvdj5U2CilLLMChtmFyvFa3XHSxBlB/
 password_format = crypt
-
 ```
 
 Configuring the Dialplan for ARI
@@ -128,7 +126,6 @@ exten => ivr,1,NoOp()
 exten => conference,1,NoOp()
  same => n,Stasis(Super-Conference,100)
  same => n,Hangup()
-
 ```
 
 When a channel enters into a Stasis application, Asterisk will check to see if a WebSocket connection has been established for that application. If so, the channel is handed over to ARI for control, a subscription for the channel is made for the WebSocket, and a [StasisStart](/Latest_API/API_Documentation/Asterisk_REST_Interface/Asterisk_REST_Data_Models/#stasisstart) event is sent to the WebSocket notifying it that a channel has entered into its application.

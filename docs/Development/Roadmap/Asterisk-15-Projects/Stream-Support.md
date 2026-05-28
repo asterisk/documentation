@@ -332,7 +332,6 @@ struct ast_stream_topology *ast_stream_topology_make(struct ast_format_cap *caps
  * \note All streams contained within the topology will be destroyed
  */
 void ast_stream_topology_destroy(struct ast_stream_topology *topology);
-
 ```
 
 These functions can be used by anything to examine a stream after retrieving a stream (from a channel for example) and to manipulate a stream by a stream user.
@@ -380,7 +379,6 @@ struct ast_stream_topology {
  */
  AST_VECTOR(, struct ast_stream *) streams;
 };
-
 ```
 
 The contents of a stream very much mirror that of the public and internal APIs. There is not anything truly hidden away yet.
@@ -476,7 +474,6 @@ int ast_channel_stream_topology_request_change(struct ast_channel *chan, struct 
  * It is not for use by the channel driver itself.
  */
 int ast_channel_stream_topology_changed(struct ast_channel *chan, struct ast_stream_topology *topology);
-
 ```
 
 To indicate support for multiple streams a property has been added for channel technologies to enable. An inspection function exists for the purpose of getting the topology of streams on the channel. Once retrieved the normal topology functions can be used to inspect each stream individually. In the case of channel drivers they can also manipulate the stream topology provided the channel lock is held.
@@ -517,7 +514,6 @@ enum ast_control_frame_type {
  AST_CONTROL_STREAM_TOPOLOGY_REQUEST_CHANGE = 35, /*!< Channel indication that a stream topology change has been requested by the channel driver (only visible if ast_read_streams is used */
  AST_CONTROL_STREAM_TOPOLOGY_CHANGED = 36, /*!< Channel indication that a stream topology change has occurred on the channel drive */
 };
-
 ```
 
 The control frame type is used to communicate a request to change the stream topology or an indication that the stream topology has changed. When written it is a request, when read it is informational.
@@ -538,7 +534,6 @@ Creating streams on a channel
  ast_stream_topology_add(ast_channel_get_stream_topology(chan), audio_stream);
  ast_stream_topology_add(ast_channel_get_stream_topology(chan), video_stream);
  ast_channel_unlock(chan);
-
 ```
 
 This  creates an audio and video stream and places them on the channel.
@@ -560,7 +555,6 @@ Iterating
  }
 
  ast_channel_unlock(chan);
-
 ```
 
 This just loops through all the streams on a channel.
@@ -580,7 +574,6 @@ Requesting a change to the stream topology
  ast_channel_stream_topology_request_change(chan, modified);
 
  ast_channel_unlock(chan);
-
 ```
 
 This code requests that the first stream on the channel be set to inactive.
@@ -597,7 +590,6 @@ Handling a request to change the stream topology
  ast_channel_stream_topology_changed(chan, frame->data.ptr); 
  }
  ast_frfree(frame);
-
 ```
 
 This code reads in a request to change the topology and accepts the topology as requested. Note that we only receive request changes if we are capable of supporting multiple streams. If this were to use ast_read() the topology request change would be internally handled.

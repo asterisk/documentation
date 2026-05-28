@@ -61,7 +61,6 @@ As STIR/SHAKEN requires retrieving and using a public key it is advantageous to 
 ca_file=/etc/stir/theca.crt
 ca_path=/etc/stir/ca
 cache_max_size=1000
-
 ```
 
 Individual certificates can be configured using the "certificate" type.
@@ -71,7 +70,6 @@ Individual certificates can be configured using the "certificate" type.
 type=certificate
 path=/etc/stir/jcolp.crt
 public_key_url=http://joshua-colp.com/jcolp.crt
-
 ```
 
 A group of certificates can be configured using the "store" type.
@@ -81,7 +79,6 @@ A group of certificates can be configured using the "store" type.
 type=store
 path=/etc/stir
 public_key_url=http://joshua-colp.com/${CERTIFICATE}.crt
-
 ```
 
 If the "store" type is used then all certificates in the directory will be examined and loaded. The public key URL is generated based on the filename and variable substitution.
@@ -114,7 +111,6 @@ struct ast_stir_shaken_payload {
  * \brief Free a STIR/SHAKEN payload
  */
 void ast_stir_shaken_payload_free(struct ast_stir_shaken_payload *payload);
-
 ```
 
 The structure could be made opaque with accessors if we desired.
@@ -130,7 +126,6 @@ The module will expose a single API call that can be used to sign a payload.
  * \note This function will automatically add the "attest", "iat", and "origid" fields.
  */
 struct ast_stir_shaken_payload *ast_stir_shaken_sign(struct ast_json *json);
-
 ```
 
 The API call will:
@@ -151,7 +146,6 @@ The module will expose a single API call that can be used to verify a payload.
  * \brief Verify a JSON STIR/SHAKEN payload
  */
 struct ast_stir_shaken_payload *ast_stir_shaken_verify(const char *header, const char *payload, const char *signature, const char *algorithm, const char *public_key_url);
-
 ```
 
 The API call will:
@@ -182,7 +176,6 @@ enum ast_stir_shaken_verification_result {
  * \brief Add a STIR/SHAKEN verification result to a channel
  */
 int ast_stir_shaken_add_verification(struct ast_channel *chan, const char *identity, const char *attestation, enum ast_stir_shaken_verification_result result);
-
 ```
 
 The API call will use a datastore to place STIR/SHAKEN verify results on the channel for usage in the dialplan.
@@ -192,7 +185,6 @@ exten => s,1,NoOp(Number of STIR/SHAKEN identities: ${STIR_SHAKEN(count)})
 exten => s,n,NoOp(First STIR/SHAKEN identity: ${STIR_SHAKEN(0,identity)})
 exten => s,n,NoOp(First STIR/SHAKEN attestation: ${STIR_SHAKEN(0,attestation)})
 exten => s,n,NoOp(First STIR/SHAKEN verify result: ${STIR_SHAKEN(0,verify_result)})
-
 ```
 
 In the dialplan the STIR/SHAKEN identities can then be iterated or examine and based on that the user can choose what to do.

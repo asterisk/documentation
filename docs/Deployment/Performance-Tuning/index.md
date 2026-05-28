@@ -44,7 +44,6 @@ taskpool_idle_timeout=60    ; Number of seconds before an idle taskprocessor
                             ; should be disposed of (default: "60")
 taskpool_max_size=50        ; Maximum number of taskprocessors in the res_pjsip taskpool
                             ; A value of 0 indicates no maximum (default: "50")
-
 ```
 
 ### Stasis Taskpool
@@ -62,7 +61,6 @@ idle_timeout_sec = 20   ; Number of seconds a taskprocessor should be idle befor
 max_size = 50           ; Maximum number of taskprocessors in the Stasis taskpool.
                         ; 0 means no limit to the number of taskprocessors in the
                         ; taskpool.
-
 ```
 
 Just like threadpool, things that you don't need should be disabled to improve performance. For example, the AMI, CDR, and CEL modules can be quite taxing. It's best to disable them if they aren't being used.
@@ -92,7 +90,6 @@ timer_t1=100
 ; memory so on a busy PBX, a setting of 32 seconds will probably result in higher than
 ; necessary memory utilization. For most installations, 6400ms is fine.
 timer_b=6400
-
 ```
 
 ### Identification Priority
@@ -107,7 +104,6 @@ type=global
 ; The order should be from the most likely to be used, to the least likely to be used
 ; which in this case would put username first for the phones, and ip second for providers.
 endpoint_identifier_order=username,ip,anonymous
-
 ```
 
 ## Sorcery/Database
@@ -166,7 +162,6 @@ identify=realtime,ps_endpoint_id_ips
 ; the provider requires them.
 registration/cache=memory_cache,maximum_objects=150,expire_on_reload=yes,object_lifetime_maximum=900
 registration=realtime,ps_registrations
-
 ```
 
 ### Flushing the caches:

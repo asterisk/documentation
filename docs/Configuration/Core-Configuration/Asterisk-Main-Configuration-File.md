@@ -33,7 +33,6 @@ astspooldir => /var/spool/asterisk
 astrundir => /var/run/asterisk
 astlogdir => /var/log/asterisk
 astsbindir => /usr/sbin
-
 ```
 
 The directories listed above are explained in detail in the [Directory and File Structure](/Fundamentals/Directory-and-File-Structure) page.
@@ -154,5 +153,4 @@ lockmode = lockfile | flock
 ;astctlowner = root 
 ;astctlgroup = asterisk 
 ;astctl = asterisk.ctl
-
 ```

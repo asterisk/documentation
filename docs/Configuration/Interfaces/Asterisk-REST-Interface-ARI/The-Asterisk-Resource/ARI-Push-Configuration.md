@@ -49,7 +49,6 @@ identify=astdb,ps_endpoint_id_ips
 
 [res_pjsip_outbound_registration]
 registration=astdb,ps_registrations 
-
 ```
 
 /// warning 
@@ -103,7 +102,6 @@ rtp_symmetric=yes
 context=default
 auth=alice
 aors=alice
-
 ```
 
 If we then ask Asterisk what endpoints we have, it will show us something like the following:
@@ -182,7 +180,6 @@ $ curl -X PUT -H "Content-Type: application/json" -u asterisk:secret \
     {"attribute":"auth_type","value":"userpass"},{"attribute":"password","value":"secret"},
     {"attribute":"nonce_lifetime","value":"32"},{"attribute":"username","value":"alice"}
 ]
-
 ```
 
 We can note a few things from this:
@@ -208,7 +205,6 @@ $ curl -X PUT -H "Content-Type: application/json" -u asterisk:secret \
     {"attribute":"authenticate_qualify","value":"false"},{"attribute":"contact","value":""},
     {"attribute":"max_contacts","value":"1"},{"attribute":"remove_existing","value":"true"}
 ]
-
 ```
 
 Finally, we can push in Alice's endpoint:
@@ -312,7 +308,6 @@ $ curl -X PUT -H "Content-Type: application/json" -u asterisk:secret \
     {"attribute":"callerid_privacy","value":"allowed_not_screened"},
     {"attribute":"cos_audio","value":"0"}
 ]
-
 ```
 
 We can now verify that Alice's endpoint exists:
@@ -332,7 +327,6 @@ We can now verify that Alice's endpoint exists:
  Endpoint: alice/unknown Invalid 0 of inf
  InAuth: alice/alice
  Aor: alice 1
-
 ```
 
 /// warning | Order Matters!
@@ -358,7 +352,6 @@ If we no longer want Alice to have an endpoint, we can remove it and its related
 $ curl -X DELETE -u asterisk:secret https://localhost:8088/ari/asterisk/config/dynamic/res_pjsip/endpoint/alice
 $ curl -X DELETE -u asterisk:secret https://localhost:8088/ari/asterisk/config/dynamic/res_pjsip/aor/alice
 $ curl -X DELETE -u asterisk:secret https://localhost:8088/ari/asterisk/config/dynamic/res_pjsip/auth/alice
-
 ```
 
 And we can confirm that Alice no longer exists:

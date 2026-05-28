@@ -23,7 +23,6 @@ cd contrib/scripts
 sudo cp asterisk.ldap-schema /etc/ldap/schema/
 sudo service slapd restart
 sudo ldapadd -Y EXTERNAL -H ldapi:/// -f ./asterisk.ldif
-
 ```
 
 Let's edit the extconfig.conf file to specify LDAP as our realtime storage engine and where Asterisk will look for data.
@@ -32,7 +31,6 @@ Let's edit the extconfig.conf file to specify LDAP as our realtime storage engin
 sippeers = ldap,"ou=sip,dc=example,dc=domain",sip
 sipusers = ldap,"ou=sip,dc=example,dc=domain",sip
 extensions = ldap,"ou=extensions,dc=example,dc=domain",extensions
-
 ```
 
 !!! note 
@@ -61,14 +59,12 @@ AstAccountRegistrationServer: 0
 AstAccountType: 0
 AstAccountUserAgent: 0
 AstExtension: 1000
-
 ```
 
 Let's add the record to the LDAP server:
 
 ```
 sudo ldapadd -D "cn=admin,dc=example,dc=domain" -x -W -f createduser.ldif
-
 ```
 
 When creating your own record schema, you'll obviously want to incorporate authentication. Asterisk + LDAP requires that the user secrets be stored as an MD5 hash. MD5 hashes can be created using 'md5sum'.
@@ -77,12 +73,10 @@ For AstAccountRealmedPassword authentication use this.
 
 ```
 printf "<secret composed of username, realm, and password goes here>" | md5sum
-
 ```
 
 For AstMD5secret authentication use this.
 
 ```
 printf "password" | md5sum
-
 ```

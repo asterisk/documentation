@@ -44,7 +44,6 @@ exten => h,n,set(HANGUPCAUSE_STRING=${HANGUPCAUSE_STRING:1})
 ; go back to the beginning of the loop
 exten => h,n,goto(hu_begin)
 exten => h,n(hu_exit),noop(All HANGUPCAUSE entries processed)
-
 ```
 
 Additional Usage

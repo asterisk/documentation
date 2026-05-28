@@ -55,7 +55,6 @@ my_module.conf
 foobar = True
 foo = 1
 bar = Some string value
-
 ```
 
 So that's fairly straight forward. How would we consume it in a module in Asterisk?
@@ -137,7 +136,6 @@ AST_MODULE_INFO(ASTERISK_GPL_KEY, AST_MODFLAG_LOAD_ORDER, "my_module",
  .reload = reload_module,
  .load_pri = AST_MODPRI_DEFAULT,
 );
-
 ```
 
 That's fairly simple. So, what do we have?
@@ -222,7 +220,6 @@ cleanup:
  ast_config_destroy(cfg);
  return res;
 }
-
 ```
 
 The function `load_configuration` boils down to two operations:
@@ -247,7 +244,6 @@ A Bad my_module.conf
 foobar = False
 foo = Oh snap I'm not an integer
 bar = I'm a new string value
-
 ```
 
 Since `foo` is a string and not an integer, the `load_configuration` function will fail and cause the module reload operation to be declined. Ideally, if that happens, none of the values in the module should change - we don't want operations currently using the module to start having weird behavior just because an administrator entered some invalid data. What would the actual state of the module be?
@@ -263,7 +259,6 @@ Resulting Values in the Module after the Failed Load
 foobar = False
 foo = 1
 bar = Some string value
-
 ```
 
 Yikes.
@@ -394,7 +389,6 @@ cleanup:
 }
 
 /* ... module callback handlers .. */
-
 ```
 
 So, that's a little bit better, and now we can guarantee that a reload won't mess with `log_module_values`. That's nice, but now we have to put a lock around every access to `foo`, `bar`, and `foobar`. That can get tricky - and expensive - very quickly. And it doesn't solve the previous problem of inconsistent module state when an off nominal reload occurs.
@@ -457,7 +451,6 @@ static struct aco_type general_option {
  .category = "^general$",
  .category_match = ACO_WHITELIST,
 };
-
 ```
 
 So, that looks different! Let's run down what we have.
@@ -502,7 +495,6 @@ static void module_config_destructor(void *obj)
  struct module_config *cfg = obj;
  ao2_cleanup(cfg->general);
 }
-
 ```
 
 Note that as part of creating the `module_config` object, we also create the general settings object. Because we want the lifetime of the general settings to be tied to the lifetime of the `module_config` object, we explicitly handle its destruction in `module_config_destructor`, rather than pass a destructor function to `ao2_alloc` when we create it.
@@ -522,7 +514,6 @@ CONFIG_INFO_STANDARD(cfg_info, module_configs, module_config_alloc,
 );
 
 static struct aco_type *general_options[] = ACO_TYPES(&general_option);
-
 ```
 
 That isn't a lot of code, but what is there does a lot of powerful stuff. Let's go down the list:
@@ -586,7 +577,6 @@ load_error:
  aco_info_destroy(&cfg_info);
  return AST_MODULE_LOAD_DECLINE;
 }
-
 ```
 
 Recall that `foo` has to be an integer between `-32` and `32`, and that `foobar` should be a boolean value with a default value of `1`. Using the Configuration Framework, we've specified how we want those parameters to be extracted in `aco_option_register`. Once we've registered the configuration items to be extracted, all of the configuration parsing and loading into the in-memory objects is handled by `aco_process_config`. Once `aco_process_config` is finished, the `module_configs` `ao2` container will have an instance of `module_config` inside of it populated with the configuration information from the configuration file `my_module.conf`.
@@ -624,7 +614,6 @@ static int reload_module(void)
 
  return 0;
 }
-
 ```
 
 Let's take those in reverse order.
@@ -815,7 +804,6 @@ AST_MODULE_INFO(ASTERISK_GPL_KEY, AST_MODFLAG_LOAD_ORDER, "my_module",
  .reload = reload_module,
  .load_pri = AST_MODPRI_DEFAULT,
 );
-
 ```
 
 Conclusions

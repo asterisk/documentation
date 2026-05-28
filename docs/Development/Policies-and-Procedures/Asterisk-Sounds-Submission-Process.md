@@ -42,7 +42,6 @@ Example:
 
  Financial Contributions by: Digium, Inc. (http://www.digium.com)
  bash-3.2#
-
 ```
 5. Create a file called "LICENSE" and include the license text (listed below these instructions) which are the Creative Commons Attribution-ShareAlike v3 license terms.
 6. Ensure you have a .txt file that describes all of the sound files by name and by textual description. **UTF-8 is mandatory**. See "core-sounds-en.txt" as a template. Another option (possibly easier and preferred) is to submit an OpenOffice ODS formatted spreadsheet with three columns (Col 1: module name most associated with file, col 2: filename in ASCII, col 3: text of sound file in your localized language - see doc/lang/*.ods for examples) and it will be converted during import to UTF-8 format.
@@ -418,5 +417,4 @@ Creative Commons Notice
  Creative Commons may be contacted at http://creativecommons.org/
 
  -- end printout --
-
 ```

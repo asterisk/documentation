@@ -38,7 +38,6 @@ As part of this work, pjproject has been pulled out of the Asterisk source tree 
 rm -f /usr/lib/libpj*.a /usr/lib/libmilenage*.a /usr/lib/pkgconfig/libpjproject.pc  
 
 ---
-
 ```
 
 !!! note 
@@ -52,14 +51,12 @@ rm -f /usr/lib/libpj*.a /usr/lib/libmilenage*.a /usr/lib/pkgconfig/libpjproject.
 
 ```bash title=" " linenums="1"
 # git clone http://github.com/asterisk/pjproject pjproject
-
 ```
 2. Configure pjproject to produce shared objects in the /usr directory (or in an appropriate folder in which your system expects shared objects to reside)
 
 ```bash title=" " linenums="1"
 # cd pjproject
 # ./configure --prefix=/usr --enable-shared
-
 ```
 
 !!! note 
@@ -74,7 +71,6 @@ rm -f /usr/lib/libpj*.a /usr/lib/libmilenage*.a /usr/lib/pkgconfig/libpjproject.
 ```bash title=" " linenums="1"
 # make
 # make install
-
 ```
 
 Configuration

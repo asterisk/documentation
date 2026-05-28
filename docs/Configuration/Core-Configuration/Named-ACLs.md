@@ -30,7 +30,6 @@ On This Page
 [name_of_acl1]
 deny=0.0.0.0/0.0.0.0
 permit=127.0.0.1
-
 ```
 
 Multiple rules can be specified in an ACL as well by chaining deny/permit specifiers.
@@ -41,7 +40,6 @@ deny=10.24.0.0/255.255.0.0
 deny=10.25.0.0/255.255.0.0
 permit=10.24.11.0/255.255.255.0
 permit=10.24.12.0/255.255.255.0
-
 ```
 
 Named ACLs support common modifiers like templates and additions within configuration as well.
@@ -54,7 +52,6 @@ deny=0.0.0.0/0.0.0.0
 permit=10.24.20.1
 permit=10.24.20.2
 permit=10.24.20.3
-
 ```
 
 ### Configuring for IPv6
@@ -68,7 +65,6 @@ permit = ::1/128
 
 [ipv6_example_2]
 permit = fe80::21d:bad:fad:2323
-
 ```
 
 ### ARA Configuration
@@ -82,7 +78,6 @@ Example Configuration
 ```
 ;in extconfig.conf
 acls => odbc,asterisk,acltable
-
 ```
 
 #### Schema
@@ -113,7 +108,6 @@ WITH (
 ALTER TABLE acltable OWNER TO asterisk;
 GRANT ALL ON TABLE acltable TO asterisk;
 )
-
 ```
 
 ##### Table Creation Script (SQLite3)
@@ -122,7 +116,6 @@ GRANT ALL ON TABLE acltable TO asterisk;
 BEGIN TRANSACTION;
 CREATE TABLE acltable (rule TEXT, sense TEXT, rule_order NUMERIC, name TEXT);
 COMMIT;
-
 ```
 
 !!! note 
@@ -161,7 +154,6 @@ Example 1: referencing a Named ACL
 ;deny=0.0.0.0/0.0.0.0
 ;permit=127.0.0.1
 acl=name_of_acl_1 ; an ACL included from acl.conf that matches peer1's commented out permits/denies
-
 ```
 
 Multiple named ACLs can be referenced as well by specifying a comma delineated list of Named ACLs to apply.
@@ -176,7 +168,6 @@ Example 2: multiple Named ACL references
 [peer1]
 ;stuff
 acl=named_acl_1,named_acl_2
-
 ```
 
 Similarly, a SIP or IAX2 peer defined in ARA can include an '*acl*' column and list the Named ACLs to apply in that column.
@@ -190,7 +181,6 @@ acl=named_acl_1
 acl=named_acl_2
 
 ---
-
 ```
 
 ### ACL Rule Application

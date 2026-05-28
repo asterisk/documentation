@@ -59,7 +59,6 @@ same => n,Hangup
 exten => 2001,1,GotoIf($[${PRESENCE_STATE(CustomPresence:Bob,value)}!=available]?voicemail)
 same => n,Dial(SIP/Bob)
 same => n(voicemail)VoiceMail(Bob@default)
-
 ```
 
 With this dialplan, a user can dial `2000@default` to toggle Bob's presence between `available` and `unavailable`. When a user attempts to call Bob using `2001@default`, if Bob's presence is currently not `available` then the call will go directly to voicemail.
@@ -81,14 +80,12 @@ Like with device state, presence state is associated to a dialplan extension wit
 exten => 2000,hint,SIP/2000,CustomPresence:2000
 exten => 2000,1,Dial(SIP/2000)
 same => n,Hangup()
-
 ```
 
 Or alternatively, you could define the presence state provider without a device.
 
 ```
 exten => 2000,hint,,CustomPresence:2000
-
 ```
 
 The **first** example would allow for someone subscribing to the extension state of `2000@default` to be notified of device state changes for device `SIP/2000` as well as presence state changes for the presence provider `CustomPresence:2000`.
@@ -161,7 +158,6 @@ Supported: replaces, 100rel, timer, norefersub
 Content-Length: 0
 
 <------------->
-
 ```
 
 Phone Support for Presence State via SIP presence notifications

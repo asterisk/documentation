@@ -39,7 +39,6 @@ username=6001
 [6001]
 type=aor
 max_contacts=1
-
 ```
 
 * auth= is used for the endpoint as opposed to outbound_auth= since we want to allow inbound registration for this endpoint
@@ -91,7 +90,6 @@ aors=mytrunk
 type=identify
 endpoint=mytrunk
 match=sip.example.com
-
 ```
 
 * "contact=sip:203.0.113.1:5060", we don't define the user portion statically since we'll set that dynamically in dialplan when we call the Dial application.
@@ -112,7 +110,6 @@ client_uri=sip:1234567890@sip.example.com\;transport=tcp
 retry_interval=60  
 
 ---
-
 ```
 
 Multiple endpoints with phones registering to Asterisk, using templates
@@ -179,7 +176,6 @@ password=6003
 username=6003
 
 [6003](aor-single-reg)
-
 ```
 
 Obviously the larger your configuration is, the more templates will benefit you. Here we just break apart the endpoints with templates, but you could do that with any config section that needs instances with variation, but where each may share common settings with their peers.

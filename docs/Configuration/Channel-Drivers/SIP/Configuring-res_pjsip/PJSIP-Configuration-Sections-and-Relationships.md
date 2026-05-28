@@ -63,7 +63,6 @@ allow=ulaw
 transport=simpletrans
 auth=auth6001
 aors=6001
-
 ```
 
 If you want to define the Caller Id this endpoint should use, then add something like the following:
@@ -71,7 +70,6 @@ If you want to define the Caller Id this endpoint should use, then add something
 ```
 trust_id_outbound=yes
 callerid=Spaceman Spiff <6001>
-
 ```
 
 ### TRANSPORT
@@ -98,7 +96,6 @@ A basic UDP transport bound to all interfaces
 type=transport
 protocol=udp
 bind=0.0.0.0
-
 ```
 
 Or a TLS transport, with many possible options and parameters:
@@ -114,7 +111,6 @@ priv_key_file=
 ca_list_file=
 cipher=
 method=
-
 ```
 
 ### AUTH
@@ -133,7 +129,6 @@ type=auth
 auth_type=userpass
 password=6001
 username=6001
-
 ```
 
 And then an example with MD5 authentication
@@ -144,7 +139,6 @@ type=auth
 auth_type=md5
 md5_cred=51e63a3da6425a39aecc045ec45f1ae8
 username=6001 
-
 ```
 
 ### AOR
@@ -170,7 +164,6 @@ First, we have a configuration where you are expecting the SIP User Agent (likel
 [6001]
 type=aor
 max_contacts=1
-
 ```
 
 Second, we have a configuration where you are **not** expecting the SIP User Agent to register against the AOR. In this case, you can assign contacts manually as follows. We don't have to worry about max_contacts since that option only affects the maximum allowed contacts to be created through external interaction, like registration.
@@ -179,7 +172,6 @@ Second, we have a configuration where you are **not** expecting the SIP User Age
 [6001]
 type=aor
 contact=sip:6001@192.0.2.1:5060
-
 ```
 
 Third, it's useful to note that you could define only the domain and omit the user portion of the SIP URI if you wanted. Then you could define the **user** portion dynamically in your dialplan when calling the Dial application. You'll likely do this when building an AOR/Endpoint combo to use for dialing out to an ITSP.  For example: "Dial(PJSIP/${EXTEN}@mytrunk)"
@@ -188,7 +180,6 @@ Third, it's useful to note that you could define only the domain and omit the us
 [mytrunk]
 type=aor
 contact=sip:203.0.113.1:5060
-
 ```
 
 ### REGISTRATION
@@ -223,7 +214,6 @@ outbound_auth=mytrunk
 server_uri=sip:sip.example.com
 client_uri=sip:1234567890@sip.example.com
 retry_interval=60
-
 ```
 
 What if you don't need to authenticate? You can simply omit the **outbound_auth** option.
@@ -240,7 +230,6 @@ EXAMPLE BASIC CONFIGURATION
 [example2.com]
 type=domain_alias
 domain=example.com
-
 ```
 
 ### ACL
@@ -257,7 +246,6 @@ A configuration pulling from the acl.conf file:
 [acl]
 type=acl
 acl=example_named_acl1
-
 ```
 
 A configuration defined in the object itself:
@@ -268,7 +256,6 @@ type=acl
 deny=0.0.0.0/0.0.0.0
 permit=209.16.236.0
 permit=209.16.236.1
-
 ```
 
 A configuration where we are restricting based on contact headers instead of IP addresses.
@@ -279,7 +266,6 @@ type=acl
 contactdeny=0.0.0.0/0.0.0.0
 contactpermit=209.16.236.0
 contactpermit=209.16.236.1
-
 ```
 
 All of these configurations can be combined.
@@ -299,7 +285,6 @@ Its use is quite straightforward. With this configuration if Asterisk sees inbou
 type=identify
 endpoint=6001
 match=203.0.113.1
-
 ```
 
 ### CONTACT

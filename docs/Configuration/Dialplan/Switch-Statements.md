@@ -21,7 +21,6 @@ As an example, with remote IAX switching you get transparent access to the remot
 ```
 [iaxprovider]
 switch => IAX2/user:password@myserver/mycontext
-
 ```
 
 The lswitch statement
@@ -31,7 +30,6 @@ An "lswitch" is like a switch but is literal, in that variable substitution is n
 
 ```
 lswitch => Loopback/12${EXTEN}@othercontext
-
 ```
 
 The eswitch statement
@@ -41,5 +39,4 @@ An "eswitch" is like a switch but the evaluation of variable substitution is per
 
 ```
 eswitch => IAX2/context@${CURSERVER}
-
 ```

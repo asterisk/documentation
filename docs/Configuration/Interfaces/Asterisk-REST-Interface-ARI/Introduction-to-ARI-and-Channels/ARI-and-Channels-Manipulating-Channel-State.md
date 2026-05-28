@@ -51,7 +51,6 @@ extensions.conf
 exten => 1000,1,NoOp()
  same => n,Stasis(channel-state)
  same => n,Hangup() 
-
 ```
 
 ### Python
@@ -68,7 +67,6 @@ We can store the timers that we've set up for a channel using a dictionary of ch
 
 ```python linenums="1"
 channel_timers = {}
-
 ```
 
 And we can register for our three events:
@@ -77,7 +75,6 @@ And we can register for our three events:
 client.on_channel_event('StasisStart', stasis_start_cb)
 client.on_channel_event('ChannelStateChange', channel_state_change_cb)
 client.on_channel_event('StasisEnd', stasis_end_cb)
-
 ```
 
 The `StasisStart` event is the most interesting part.
@@ -202,7 +199,6 @@ def channel_state_change_cb(channel, ev):
     client.on_channel_event('StasisEnd', stasis_end_cb)
 
     client.run(apps='channel-state')
-
 ```
 
 #### channel-state.py in action
@@ -215,7 +211,6 @@ Answering channel PJSIP/alice-00000001
 Channel PJSIP/alice-00000001 is now: Up
 Hanging up channel PJSIP/alice-00000001
 Channel PJSIP/alice-00000001 just left our application
-
 ```
 
 ### JavaScript (Node.js)
@@ -278,7 +273,6 @@ function answer() {
 	var timer = setTimeout(hangup, 4000);
 	timers[channel.id] = timer;
 }
-
 ```
 3. After we've answered the channel, we kick off another timer to hang up the channel in 4 seconds. When that timer fires, it will call `the hangup callback`. This does the final action on the channel by hanging it up:
 
@@ -306,7 +300,6 @@ function stasisEnd(event, channel) {
 		delete timers[channel.id];
 	}
 }
-
 ```
 
 Finally, we want to print out the state of the channel in the `ChannelStateChanged` callback. This will tell us exactly when our channel has been answered:
@@ -317,7 +310,6 @@ function channelStateChange(event, channel) {
 	console.log(util.format(
 		'Channel %s is now: %s', channel.name, channel.state));
 }
-
 ```
 
 #### channel-state.js
@@ -406,7 +398,6 @@ function clientLoaded (err, client) {
 
 	client.start('channel-state');
 }
-
 ```
 
 #### channel-state.js in action
@@ -419,5 +410,4 @@ Answering channel PJSIP/alice-00000001
 Channel PJSIP/alice-00000001 is now: Up
 Hanging up channel PJSIP/alice-00000001
 Channel PJSIP/alice-00000001 just left our application
-
 ```

@@ -18,7 +18,6 @@ On the command line, the **devstate** command will allow you to list or modify C
 ```
 devstate change -- Change a custom device state
 devstate list -- List currently known custom device states
-
 ```
 
 On this Page
@@ -37,7 +36,6 @@ myserver*CLI> core show hints
  7777@from-internal : SIP/6003,CustomPrese State:Unavailable Watchers 0
 ----------------
 - 2 hints registered
-
 ```
 
 Presence State
@@ -51,7 +49,6 @@ The **presencestate** CLI command will list or modify any currently defined Pres
 myserver*CLI> core show help presencestate 
 presencestate change -- Change a custom presence state
 presencestate list -- List currently know custom presence states
-
 ```
 
 Asterisk Manager Interface actions

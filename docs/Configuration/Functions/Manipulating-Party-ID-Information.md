@@ -92,7 +92,6 @@ exten => 1000,n,Set(CONNECTEDLINE(num-pres)=allowed)
 exten => 1000,n,Answer
 exten => 1000,n,Playback(tt-weasels)
 exten => 1000,n,Hangup
-
 ```
 
 ### Straightforward dial through
@@ -108,7 +107,6 @@ exten => 1000,n,Set(CONNECTEDLINE(num-pres)=allowed)
 ; set above when the call is answered.
 exten => 1000,n,Dial(SIP/1000,20,I)
 exten => 1000,n,Hangup
-
 ```
 
 ### Use of interception macro
@@ -129,7 +127,6 @@ exten => 1000,n,Set(__CONNECTED_LINE_CALLER_SEND_MACRO=add_pfx)
 exten => 1000,n,Set(__CONNECTED_LINE_CALLER_SEND_MACRO_ARGS=45,4)
 exten => 1000,n,Dial(SIP/1000,20)
 exten => 1000,n,Hangup
-
 ```
 
 ### Simple redirection
@@ -156,7 +153,6 @@ exten => 1000,n,Set(REDIRECTING(reason,i)=cfu)
 ; becomes available with a redirecting update.
 exten => 1000,n,Dial(DAHDI/g1/2000,20)
 exten => 1000,n,Hangup
-
 ```
 
 Party ID propagation
@@ -169,7 +165,6 @@ For normal operations where Party A calls Party B this is what the relationship 
  Incoming channel --- bridge --- Outgoing channel
 Party A ___ CALLERID() -------------------> CONNECTEDLINE() ___ Party B
  CONNECTEDLINE() <-------------- CALLERID()
-
 ```
 
 The CALLERID() information is the party identification of the remote party. For Channel A that is Party A. For Channel B that is Party B.
@@ -183,7 +178,6 @@ Local;1 Local;2
 Outgoing channel --- Incoming channel
 CONNECTEDLINE() ---> CALLERID()
 CALLERID() <-------- CONNECTEDLINE()
-
 ```
 
 A normal call where Party A calls Party B with a local channel in the chain.
@@ -193,7 +187,6 @@ A normal call where Party A calls Party B with a local channel in the chain.
  Incoming channel --- bridge --- Outgoing channel --- Incoming channel --- bridge --- Outgoing channel
 Party A ___ CALLERID() -------------------> CONNECTEDLINE() ---> CALLERID() -------------------> CONNECTEDLINE() ___ Party B
  CONNECTEDLINE() <-------------- CALLERID() <-------- CONNECTEDLINE() <-------------- CALLERID()
-
 ```
 
 Originated calls make the incoming and outgoing labels a bit confusing because both channels start off as outgoing. Once the originated channel answers it becomes an "incoming" channel to run dialplan. A better way is to just distinguish which channel is running dialplan. For consistency, I'll continue using the incoming and outgoing labels.
@@ -205,7 +198,6 @@ An example of originating a normal channel (Channel A) to a dialplan exten.
  Incoming channel --- bridge --- Outgoing channel
 Party A ___ CALLERID() -------------------> CONNECTEDLINE() ___ Party B
  CONNECTEDLINE() <-------------- CALLERID()
-
 ```
 
 An example of originating a local channel (which will always be a Local;1) to a dialplan exten.  
@@ -215,7 +207,6 @@ An example of originating a local channel (which will always be a Local;1) to a 
  Outgoing channel --- bridge --- Incoming channel --- Incoming channel --- bridge --- Outgoing channel
 Party A ___ CALLERID() -------------------> CONNECTEDLINE() ---> CALLERID() -------------------> CONNECTEDLINE() ___ Party B
  CONNECTEDLINE() <-------------- CALLERID() <-------- CONNECTEDLINE() <-------------- CALLERID()
-
 ```
 
 Ideas for usage

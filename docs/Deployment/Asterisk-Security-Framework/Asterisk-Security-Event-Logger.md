@@ -7,5 +7,4 @@ In addition to the infrastructure for generating the security events, an event l
 
 ```
 security_log => security
-
 ```

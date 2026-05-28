@@ -28,7 +28,6 @@ Because AMI event documentation is handled in a slightly different fashion, a ne
 # ./configure
 # make full
 # make install
-
 ```
 
 !!! note 
@@ -61,7 +60,6 @@ Events:
  MessageWaiting QueueCallerAbandon QueueMemberAdded 
  QueueMemberPaused QueueMemberPenalty QueueMemberRemoved 
  QueueMemberRinginuse QueueMemberStatus UserEvent 
-
 ```
 ```
 
@@ -110,7 +108,6 @@ SubEvent
  or ended.
 
 *CLI> 
-
 ```
 
 !!! note 
@@ -143,7 +140,6 @@ AMI Event documentation behaves a bit differently then other Asterisk documentat
  "UniqueID: %s\r\n"
  "DialStatus: %s\r\n",
  ast_channel_name(src), ast_channel_uniqueid(src), dialstatus);
-
 ```
 2. Each instance of an AMI event can be documented. This is particularly useful when the same event can have different fields, e.g., Dial, PeerStatus, etc. Even if the event has the same fields across all instances, it is also useful to document why the event is raised in the <synopsis/> tag. Because each instance of an AMI event should be documented, a post-processing script aggregates the various <managerEventInstance/> XML fragments that match the same event name under a single <managerEvent/> tag. Fields that are shared across instances of the same event are combined and only need to be documented a single time. In the example below, the SubEvent field is only documented once, but the full documentation for the field will be displayed for both instances of the Dial event, as both instances of the event contain that field. In contrast to that, only the second instance of the event contains the DialStatus field; hence, only that instance will contain that field.
 
@@ -174,7 +170,6 @@ AMI Event documentation behaves a bit differently then other Asterisk documentat
  </syntax>
  </managerEventInstance>
     * */
-
 ```
 3. In the same fashion as multiple instances of an AMI event in a single file, multiple instances of AMI events across implementation files are also combined.
 4. Because pre- and post-processing scripts are involved, some burden on having a well-formed XML fragment is lifted from the documenter. Often, the fields in an event are self-explanatory, or are documented significantly in other AMI events. When that is the case, documentation for the event may only consist of a <synopsis/> field and one or two parameters - in which case, the <syntax/> element is inferred for the parameters.
@@ -202,7 +197,6 @@ Is equivalent to:
  </parameter>
  </managerEventInstance>
     * */
-
 ```
 
 XML Schema
@@ -218,7 +212,6 @@ The following are the changes to the XML DTD schema used to validate the generat
 
  <!ELEMENT managerEventInstance (synopsis?,syntax?,description?,see-also?)*>
  <!ATTLIST managerEventInstance class CDATA #REQUIRED>
-
 ```
 ```
 
@@ -261,7 +254,6 @@ The following are the changes to the XML DTD schema used to validate the generat
  </syntax>
  </managerEventInstance>
 </managerEvent>
-
 ```
 
 Source Comments
@@ -274,7 +266,6 @@ Source Comments
 /*** DOCUMENTATION
 ....
     * */
-
 ```
 * If documentation is placed at the top of the header file, the documentation **MUST** be enclosed with the <managerEvent/> tag, as well as the <managerEventInstance/> tags that describe the event instances. The documentation is not modified by the pre-processing script, but will be modified by the post-processing script in that it will be combined with other <managerEventInstance/> tags for the same event.
 * If documentation is placed within a source file co-located with AMI event call, the event documentation **MUST** be on the lines immediately preceding the AMI event call.

@@ -32,7 +32,6 @@ extensions.conf
 exten => 1000,1,NoOp()
  same => n,Stasis(bridge-move,inbound,PJSIP/bob)
  same => n,Hangup()
-
 ```
 
 Python
@@ -67,7 +66,6 @@ def find_or_create_holding_bridge():
 
  holding_bridge = bridge
  return holding_bridge
-
 ```
 
 When the inbound channel enters the application, we'll place it into our waiting bridge:
@@ -75,7 +73,6 @@ When the inbound channel enters the application, we'll place it into our waiting
 ```python
 wait_bridge = find_or_create_holding_bridge()
  wait_bridge.addChannel(channel=channel.id)
-
 ```
 
 When the dialed channel answers, we can remove the inbound channel from the waiting bridge - since there is only one waiting bridge being used, we can use `find_or_create_holding_bridge` to obtain it. We then place it into a newly created mixing bridge along with the dialed channel, in the same fashion as the `bridge-dial.py` example.
@@ -89,7 +86,6 @@ print "{} answered; bridging with {}".format(outgoing.json.get('name'),
 
  bridge = client.bridges.create(type='mixing')
  bridge.addChannel(channel=[channel.id, outgoing.id])
-
 ```
 
 ### bridge-move.py
@@ -209,7 +205,6 @@ def stasis_start_cb(channel_obj, ev):
 client.on_channel_event('StasisStart', stasis_start_cb)
 
 client.run(apps='bridge-move')
-
 ```
 
 ### bridge-move.py in action
@@ -221,7 +216,6 @@ PJSIP/Alice-00000001 entered our application
 Dialing PJSIP/Bob
 PJSIP/Bob-00000002 answered; bridging with PJSIP/Alice-00000001
 Hung up PJSIP/Bob-00000002
-
 ```
 
 JavaScript (Node.js)
@@ -253,7 +247,6 @@ function findOrCreateHoldingBridge(channel) {
  }
  });
 }
-
 ```
 
 We then add the channel to the holding bridge and start music on hold before continuing with dialing we we did in the bridge-dial.js example:
@@ -267,7 +260,6 @@ holdingBridge.addChannel({channel: channel.id}, function(err) {
  // ignore error
  });
 });
-
 ```
 
 Once the endpoint has answered and a mixing bridge has been created, we proceed by first removing the original channel from the holding bridge and then adding both channels to the mixing bridge as before:
@@ -290,7 +282,6 @@ function moveToMixingBridge(channel, dialed, mixingBridge, holdingBridge) {
  });
  });
 }
-
 ```
 
 Note that we need to keep track of one more variable as we go down the application flow to ensure we have a reference to both the holding and mixing bridge. Again we use anonymous functions to pass extra arguments to callback handlers to keep the nested callbacks to a minimum.
@@ -466,7 +457,6 @@ function clientLoaded (err, client) {
 
  client.start('bridge-move');
 }
-
 ```
 
 ### bridge-move.js in action
@@ -481,5 +471,4 @@ Adding channel PJSIP/alice-00000001 and dialed channel PJSIP/bob-00000002 to bri
 Dialed channel PJSIP/bob-00000002 has left our application, destroying mixing bridge 5ae49fee-e353-4ad9-bfa7-f8306d9dfd1e
 Hanging up channel PJSIP/alice-00000001
 Hanging up channel undefined
-
 ```

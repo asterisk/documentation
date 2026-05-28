@@ -86,5 +86,4 @@ UserNote: The Foo dialplan application now takes an additional argument
 
 UpgradeNote: The X argument to the OldFoo application has been removed
 and will cause an error if supplied.
-
 ```

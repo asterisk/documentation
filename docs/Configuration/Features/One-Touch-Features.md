@@ -37,7 +37,6 @@ automon = *1
 automixmon = *3
 disconnect = *0
 parkcall = #72
-
 ```
 
 Assign each option the DTMF character string that you want users to enter for invoking the feature.
@@ -82,7 +81,6 @@ extensions.conf
 
 ```
 exten = 101,1,Dial(PJSIP/ALICE,30,X)
-
 ```
 
 This would allow the calling party, the party dialing PJSIP/ALICE, to invoke recording on the channel.

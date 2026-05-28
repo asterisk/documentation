@@ -31,7 +31,6 @@ extensions.lua
 ```
 app.playback("please-hold")
 app.dial("SIP/100", nil, "m")
-
 ```
 
 Any dialplan application can be executed using the `app` table. Application names are case insensitive. Arguments are passed to dialplan applications just as arguments are passed to functions in lua. String arguments must be quoted as they are lua strings. Empty arguments may be passed as `nil` or as empty strings.
@@ -42,7 +41,6 @@ Any dialplan application can be executed using the `app` table. Application name
 
 ```
 channel.my_variable = "my_value"
-
 ```
 
 After this the channel variable `${my_variable`} contains the value "my_value".
@@ -51,7 +49,6 @@ After this the channel variable `${my_variable`} contains the value "my_value".
 
 ```
 value = channel.my_variable:get()
-
 ```
 
 Any channel variable can be read and set using the `channel` table. Local and global lua variables can be used as they normally would and are completely unrelated to channel variables.
@@ -71,7 +68,6 @@ value = channel.my_variable -- does not work as expected (value:get() could be u
 ```
 channel["my_variable"] = "my_value"
 value = channel["my_variable"]:get()
-
 ```
 
 ## Dialplan Functions
@@ -80,14 +76,12 @@ value = channel["my_variable"]:get()
 
 ```
 channel.FAXOPT("modems"):set("v17,v27,v29")
-
 ```
 
 ### Read a Dialplan Function  
 
 ```
 value = channel.FAXOPT("modems"):get()
-
 ```
 
 Note the use of the `:` operator with the `get()` and `set()` methods.
@@ -108,7 +102,6 @@ value = channel["FAXOPT(modems)"]:get()
 ```
 channel.FAXOPT("modems") = "v17,v27,v29" -- syntax error
 value = channel.FAXOPT("modems") -- does not work as expected (value:get() could be used to get the value after this line)
-
 ```
 
 !!! info ""

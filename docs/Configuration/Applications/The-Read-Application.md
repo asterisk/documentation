@@ -9,7 +9,6 @@ The **Read()** application allows you to play a sound prompt to the caller and r
 exten=>6123,1,Read(Digits,enter-ext-of-person)
 exten=>6123,n,Playback(you-entered)
 exten=>6123,n,SayNumber(${Digits})
-
 ```
 
 In this example, the **Read()** application plays a sound prompt which says "Please enter the extension of the person you are looking for", and saves the captured digits in a variable called **Digits**. It then plays a sound prompt which says "You entered" and then reads back the value of the **Digits** variable.

@@ -48,7 +48,6 @@ In features.conf you must configure the blindxfer or atxfer options in the featu
 [featuremap]
 blindxfer = #1
 atxfer = *2
-
 ```
 
 Now that you have the feature enabled you need to configure the dialplan such that a particular channel will be allowed to use the feature.
@@ -62,7 +61,6 @@ Setting these options for Dial in extensions.conf would look similar to the foll
 
 ```
 exten = 102,1,Dial(PJSIP/BOB,30,T)
-
 ```
 
 Asterisk should be restarted or relevant modules should be reloaded for changes to take effect.
@@ -101,7 +99,6 @@ atxferabort = *3
 atxfercomplete = *4
 atxferthreeway = *5
 atxferswap = *6
-
 ```
 
 Configuring attended transfer callbacks
@@ -133,7 +130,6 @@ atxfernoanswertimeout = 15
 atxferdropcall = no 
 atxferloopdelay = 10 
 atxfercallbackretries = 2
-
 ```
 
 Behavior Options
@@ -146,7 +142,6 @@ These options are configured in the "[general]" section of features.conf
 ```
 ;transferdigittimeout = 3 ; Number of seconds to wait between digits when transferring a call
 ; (default is 3 seconds)
-
 ```
 
 ### Attended transfer options
@@ -158,7 +153,6 @@ These options are configured in the "[general]" section of features.conf
 ; being kicked back to the original call.
 ;transferretrysound = "beep" ; Sound to play when a transferer fails to dial a valid extension.
 ;transferinvalidsound = "beeperr" ; Sound to play when a transferer fails to dial a valid extension and is out of retries.
-
 ```
 
 Basic Transfer Examples

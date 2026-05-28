@@ -30,7 +30,6 @@ Procedure:
 ;; Priority Weight Port Target
 IN SRV 0 1 5060 main.test.internal.
 IN SRV 1 1 5060 backup.test.internal.
-
 ```
 * Disable NAPTR lookups for this test. Only allow UDP transport to be used.
 * Place an outbound SIP request to `sip:test.internal`.
@@ -60,7 +59,6 @@ slow.test.internal IN A 127.0.0.1
 _sip._udp.test.internal IN SRV 0 3 5061 fast.test.internal.
  IN SRV 0 1 5062 slow.test.internal.
  IN SRV 1 100 5063 backup.test.internal.
-
 ```
 * Set up two SIPp scenarios
 	+ `fast.xml` runs at 127.0.0.1, port 5060. It expects an incoming INVITE and responds to the INVITE with a 503 response
@@ -94,7 +92,6 @@ Procedure:
 
 ```
 test.internal IN A 127.0.0.1
-
 ```
 * Disable NAPTR lookups for this test. Only enable UDP as the transport.
 * Place an outbound call to `sip:test.internal`
@@ -135,7 +132,6 @@ Procedure:
 ; order pref flags service regexp replacement
 IN NAPTR 50 50 "s" "SIP+D2T" "" _sip._tcp.test.internal.
 IN NAPTR 90 40 "s" "SIP+D2U" "" _sip._udp.test.internal.
-
 ```
 * Enable NAPTR lookups for outbound SIP calls. Allow both UDP and TCP transports to be used for the outgoing call.
 * Place an outbound SIP call to `sip:test.internal`.
@@ -154,7 +150,6 @@ Procedure:
 ; order pref flags service regexp replacement
 IN NAPTR 50 50 "s" "SIP+D2T" "" _sip._tcp.test.internal.
 IN NAPTR 50 90 "s" "SIP+D2U" "" _sip._udp.test.internal.
-
 ```
 * Enable NAPTR lookups for outbound SIP calls. Allow both UDP and TCP transports to be used for the outgoing call.
 * Place an outbound SIP call to `sip:test.internal`
@@ -180,7 +175,6 @@ Procedure:
 ; order pref flags service regexp replacement
 IN NAPTR 50 50 "s" "SIP+D2T" "" _sip._tcp.test.internal.
 IN NAPTR 60 50 "s" "SIP+D2U" "" _sip._udp.test.internal.
-
 ```
 * Enable NAPTR lookups for outbound SIP calls. Only allow UDP to be used for the outgoing call.
 * Place an outbound call to `sip:test.internal`
@@ -200,7 +194,6 @@ test.internal IN NAPTR 50 50 "s" "SIP+D2T" "" _sip._tcp.test.internal.
  IN NAPTR 50 60 "s" "SIP+D2U" "" _sip._udp.test.internal.
 
 _sip._udp.test.internal IN SRV 1 1 5060 sip.test.internal
-
 ```
 * Enable NAPTR lookups for outbound SIP calls. Allow both UDP and TCP to be used for the outgoing call.
 * Place an outbound call to `sip:test.internal`
@@ -246,7 +239,6 @@ Procedure:
 IN NAPTR 100 50 "a" "z3950+N2L+N2C" "" cidserver.test.internal.
 IN NAPTR 100 50 "a" "rcds+N2C" "" cidserver.test.internal.
 IN NAPTR 100 50 "s" "http+N2L+N2C+N2R" "" www.test.internal.
-
 ```
 * Enable NAPTR lookups for outbound SIP calls. Enable TCP, UDP, and TLS transports to be used.
 * Place an outbound call to `sip:test.internal`
@@ -265,7 +257,6 @@ Procedure:
 ; order pref flags service regexp replacement
 IN NAPTR 50 50 "s" "SIPS+D2T" "" _sips._tcp.test.internal.
 IN NAPTR 60 50 "s" "SIP+D2T" "" _sip._tcp.test.internal.
-
 ```
 * Enable NAPTR lookups for outbound SIP calls. Enable only UDP transport to be used.
 * Place an outbound call to `sip:test.internal`
@@ -293,7 +284,6 @@ Procedure:
 ; order pref flags service regexp replacement
 IN NAPTR 50 50 "a" "SIP+D2T" "" sip.tcp.test.internal.
 IN NAPTR 60 50 "s" "SIP+D2T" "" _sip._tcp.test.internal.
-
 ```
 * Enable NAPTR lookups for outbound SIP calls. Enable UDP, TCP, and TLS transports to be used.
 * Place an outbound call to `sip:test.internal`
@@ -320,7 +310,6 @@ Procedure:
 ; order pref flags service regexp replacement
 IN NAPTR 50 50 "s" "SIP+D2T" "!.*!_sip._tcp.test.internal!" .
 IN NAPTR 60 50 "s" "SIP+D2U" "" _sip._udp.test.internal.
-
 ```
 * Enable NAPTR lookups for outbound SIP calls. Enable UDP, TCP, and TLS transports to be used.
 * Place an outbound call to `sip:test.internal`
@@ -339,7 +328,6 @@ test.internal IN NAPTR 50 50 "s" "SIP+D2T" "" _sip._tcp.test.internal.
  IN NAPTR 60 50 "s" "SIP+D2U" "" _sip._udp.test.internal.
 
 _sip._udp.test.internal IN SRV 1 1 5060 sip.test.internal
-
 ```
 
 Note that there is no SRV record for `_sip._tcp.test.internal`
@@ -377,7 +365,6 @@ tcp.test.internal IN A 127.0.0.1
 
 udp.test.internal IN A 127.0.0.1
  IN AAAA ::1
-
 ```
 
 The parts of a SIP URI can be used to determine what transport should be used and/or what type of lookup should be used. Consult the following table
@@ -435,7 +422,6 @@ _sip._udp.test.internal IN SRV 0 100 5060 main.test.internal.
  IN SRV 1 100 5060 backup.test.internal.
 
 test.internal IN NAPTR 0 0 "s" "SIP+D2U" "" _sip._udp.test.internal
-
 ```
 * Place a call to `sip:test.internal`
 * Ensure that a NAPTR lookup is performed for `test.internal`

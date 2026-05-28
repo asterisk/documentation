@@ -40,7 +40,6 @@ $ git clone https://github.com/SIPp/sipp.git
 $ cd sipp
 $ git checkout v3.6.0 ## This is the latest version we KNOW works.
 $ ./build.sh --prefix=/usr --with-openssl --with-pcap --with-rtpstream --with-sctp --with-gsl CFLAGS=-w
-
 ```
 
 When the build completes, check the version:
@@ -50,14 +49,12 @@ When the build completes, check the version:
 
  SIPp v3.6.0-TLS-SCTP-PCAP-RTPSTREAM.
 ...
-
 ```
 
 If everything's OK, install it:
 
 ```bash title="make install  " linenums="1"
 $ sudo make install
-
 ```
 
 Install Asterisk
@@ -75,14 +72,12 @@ Install Asterisk
 $ make
 $ sudo make install
 $ sudo make install-headers
-
 ```
 
 The testsuite needs the sample configuration files installed but before you do that, **make sure you've saved the contents of /etc/asterisk if you've customized any files**.  Once you're sure you don't need anything in /etc/asterisk...
 
 ```bash title=" " linenums="1"
 $ sudo make samples
-
 ```
 
 Do NOT start Asterisk at this time.  The Testsuite will start and stop it for each test.
@@ -96,7 +91,6 @@ Currently we need to get the current Review, but the dev branch should be availa
 $ git clone "https://gerrit.asterisk.org/testsuite"
 $ cd /usr/src/asterisk/testsuite
 $ git fetch https://gerrit.asterisk.org/testsuite
-
 ```
 
 ASTTest Installation
@@ -108,7 +102,6 @@ ASTTest Installation
 $ cd asttest
 $ make
 $ sudo make install
-
 ```
 
 Creating a Python 3 Testsuite Virtual Environment
@@ -120,7 +113,6 @@ At a minimum Python3 and matching pip need to be installed.  The minimum python 
 
 ```bash title=" " linenums="1"
 $ ./setupVenv.sh
-
 ```
 
 * The *.venv* directory will be created locally.  *.gitignore* is set to ignore the *.venv* folder.  You can use another directory, but you will need to watch out for git if you choose a different name.
@@ -133,7 +125,6 @@ Running the Testsuite Within the Virtual Environment
 
 ```bash title=" " linenums="1"
 $ ./runInVenv.sh python runtests.py -l
-
 ```
 
 * The *runInVenv.sh* script 'leaves' the virtual environment on termination.
@@ -159,7 +150,6 @@ $ docker run \
 --name myNewContainer -it -d \
 --mount type=bind,source=/usr/src/asterisk-docker,target=/usr/src/asterisk \
 testsuite/centos7
-
 ```
 
 A note about using this method.  This is useful if you want to run git and your ide on your local OS while building and testing on the container.  However, you want to use a separate directory for this bind mount from your normal local-builds because if you build on both the container and host from the same directory, the temporary files that are created can and will collide unless care is taken to clean between building on each OS.
@@ -171,7 +161,6 @@ $ docker run \
 --name myNewContainer -it -d \
 --mount source=ast-build,target=/usr/src/asterisk \
 testsuite/centos7 bash
-
 ```
 
 This will create or re-use an existing ast-build Docker volume
@@ -180,7 +169,6 @@ This will create or re-use an existing ast-build Docker volume
 $ docker volume ls
 DRIVER VOLUME NAME
 local ast-build
-
 ```
 
 A sample <Dockerfile> can be found [here](../Dockerfile).  The git pull for the testsuite should be updated to the latest branch / review.
@@ -192,11 +180,9 @@ xml{
  "ipv6": true,
  "fixed-cidr-v6": "fd00::/80"
 }
-
 ```
 ```bash title="reload docker  " linenums="1"
 $ sudo systemctl reload docker
-
 ```
 
 Even though we are running inside a container, we can still use the *setupVenv.sh and *runInVenv.sh** scripts because they activate and run within the same shell.

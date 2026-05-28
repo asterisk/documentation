@@ -16,7 +16,6 @@ do_expensive_db_query()
 autoservice_stop()
 
 app.stopmusiconhold()
-
 ```
 
 !!! info ""
@@ -45,7 +44,6 @@ end
 
 extensions.default[100] = sip_exten(100)
 extensions.default[101] = sip_exten(101)
-
 ```
 
 Creating Custom Aliases for Built-in Constructs
@@ -65,7 +63,6 @@ function my_exten(context, extensions)
  c.my_variable = "my new channel variable"
  a.dial("SIP/100")
 end
-
 ```
 
 Re-purposing The `print` Function
@@ -86,7 +83,6 @@ function print(...)
 
  app.verbose(msg)
 end
-
 ```
 
 Splitting Configuration into Multiple Files
@@ -110,7 +106,6 @@ Assume you name your extensions.lua file extensions.lua.lua
 
 ```
 luac -o extensions.lua extensions.lua.lua
-
 ```
 
 The pbx_lua module automatically knows the difference between a lua text file and a lua bytecode file.

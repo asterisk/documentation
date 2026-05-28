@@ -30,7 +30,6 @@ exten => NXX,1,Dial(SIP/provider/${EXTEN})
 
 ; if you don't find a match in this context, look in [users]
 include => users
-
 ```
 
 Remember that the variable **${EXTEN}** will get replaced with the dialed extension. For example, if Bob dials **5551212** in the **local** context, Asterisk will execute the Dial application with **SIP/provider/5551212** as the first parameter. (This syntax means "Dial out to the account named provider using the SIP channel driver, and dial the number **5551212**.)
@@ -44,7 +43,6 @@ exten => _1NXXNXXXXXX,1,Dial(SIP/provider/${EXTEN})
 
 ; if you don't find a match in this context, look in [local]
 include => local
-
 ```
 
 Last but not least, let's add an **international** context. In North America, you dial 011 to signify that you're going to dial an international number.
@@ -56,7 +54,6 @@ exten => _011.,1,Dial(SIP/provider/${EXTEN})
 
 ; if you don't find a match in this context, look in [longdistance]
 include => longdistance
-
 ```
 
 And there we have it -- a simple chain of contexts going from most privileged (international calls) down to lease privileged (local calling).

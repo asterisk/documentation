@@ -32,7 +32,6 @@ event = presence
 list_item = alice
 list_item = bob
 list_item = carol
-
 ```
 
 It should be simple to glean the intent of this list. We have created a list called "sales" that provides the presence of the sales team of alice, bob, and carol. Let's go over each of the options in more detail.
@@ -66,7 +65,6 @@ list_item = alice
 list_item = bob
 list_item = carol
 notification_batch_interval = 2000
-
 ```
 
 The units for the `notification_batch_interval` are milliseconds. With this configuration, Asterisk will collect resource state changes for 2000 milliseconds before sending notifications on this resource list.
@@ -92,7 +90,6 @@ event = presence
 list_item = alice
 list_item = bob
 list_item = carol
-
 ```
 
 And you have the following in `extensions.conf`
@@ -103,7 +100,6 @@ extensions.conf
 [default]
 exten => alice,hint,PJSIP/alice
 exten => bob,hint,PJSIP/bob
-
 ```
 
 Notice that there is no "carol" extension in `extensions.conf`. What happens when a user attempts to subscribe to the sales list?
@@ -129,7 +125,6 @@ list_item = tech_support
 type = resource_list
 event = presence
 list_item = sales
-
 ```
 
 Notice that the sales list contains the tech_support list, and the tech_support list contains the sales list. We have a loop here. How is that handled?
@@ -158,7 +153,6 @@ type = resource_list
 event = presence
 list_item = sales
 list_item = alice
-
 ```
 
 Notice that the tech_support list now also has alice as a list_item. How does the process change on a subscription attempt to sales?
@@ -196,7 +190,6 @@ event = presence
 list_item = alice
 list_item = bob
 list_item = carol
-
 ```
 
 And let's say you have the following `extensions.conf`:
@@ -206,7 +199,6 @@ extensions.conf
 ```
 [default]
 exten => sales,hint,Custom:sales
-
 ```
 
 What happens if someone attempts to subscribe to the "sales" presence resource?
@@ -236,7 +228,6 @@ event = presence
 list_item = alice
 list_item = bob
 notification_batch_interval = 10000
-
 ```
 
 What is the batch interval when a user subscribes to the sales list?

@@ -22,7 +22,6 @@ Within the general section, only the **country** option can be set. This option 
 ```
 [general]
 country=us
-
 ```
 
 As an example, the above set the default country to the tone set for the USA.
@@ -56,7 +55,6 @@ Explanation of the 'tonelist' usage:
 ; concisely:
 ; element = [!]freq[+|*freq2][/duration]
 ; tonelist = element[,element]*
-
 ```
 
 Example of a location specific tone configuration:
@@ -78,5 +76,4 @@ record = 425/250,0/250
 ; Info not used in Brazil standard (using UK standard)
 info = 950/330,1400/330,1800/330
 stutter = 350+440
-
 ```

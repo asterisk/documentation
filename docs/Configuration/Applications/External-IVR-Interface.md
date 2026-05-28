@@ -13,7 +13,6 @@ To execute a local application use the form:
 
 ```conf title="extensions.conf"
 ExternalIVR(/full/path/to/application[(arguments)],options)
-
 ```
 
 The arguments are optional, however if they exist they must be enclosed in parentheses. The external application will be executed in a child process, with its standard file handles connected to the Asterisk process as follows:
@@ -118,14 +117,12 @@ If `ExternalIVR` is executed as:
 
 ```conf title="extensions.conf"
 ExternalIVR(/usr/bin/foo(arg1,arg2),n)
-
 ```
 
 The response to the `P` command would be:
 
 ```text
 P,TIMESTAMP,/usr/bin/foo,arg1,arg2
-
 ```
 
 /// note 

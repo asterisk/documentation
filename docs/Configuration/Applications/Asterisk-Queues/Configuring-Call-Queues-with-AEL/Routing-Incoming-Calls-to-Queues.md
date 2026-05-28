@@ -52,7 +52,6 @@ context mainmenu {
  Hangup(); 
  } 
 }
-
 ```
 
 The Contexts referenced from the queues.conf file
@@ -77,7 +76,6 @@ context sales {
  Hangup(); 
  } 
 }
-
 ```
 
 Please note that there is only one attempt to queue a call in the sales queue. All sales agents that are logged in will be rung.
@@ -111,7 +109,6 @@ context customerservice {
  Hangup(); 
  } 
 }
-
 ```
 
 Note that calls coming into customerservice will first be try to queue calls to those agents with a QUEUE_MAX_PENALTY of 10, and if none are available, then all agents are rung.
@@ -138,7 +135,6 @@ context dispatch {
  Hangup(); 
  }
 }
-
 ```
 
 And in the dispatch context, first agents of priority 10 are tried, then 20, and if none are available, all agents are tried.

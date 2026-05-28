@@ -436,7 +436,6 @@ Content-Length: 415
 </presence>
 
 --eqjjy--
-
 ```
 
 On subsequent NOTIFYs that are caused by a single resource's state change, a partial state notification can be sent that is much smaller.

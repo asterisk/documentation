@@ -14,7 +14,6 @@ This event is sent when the first user requests a conference and it is instantia
 Event: ConfbridgeStart
 Privilege: call,all
 Conference: 1111
-
 ```
 
 On This PageConfbridgeJoin
@@ -32,7 +31,6 @@ Uniqueid: 1303309562.3
 Conference: 1111
 CallerIDnum: 1234
 CallerIDname: mypeer
-
 ```
 
 ConfbridgeLeave
@@ -50,7 +48,6 @@ Uniqueid: 1303308745.0
 Conference: 1111
 CallerIDnum: 1234
 CallerIDname: mypeer
-
 ```
 
 ConfbridgeEnd
@@ -64,7 +61,6 @@ This event is sent when the last user leaves a conference and it is torn down.
 Event: ConfbridgeEnd
 Privilege: call,all
 Conference: 1111
-
 ```
 
 ConfbridgeTalking
@@ -81,7 +77,6 @@ Channel: SIP/mypeer-00000001
 Uniqueid: 1303308745.0
 Conference: 1111
 TalkingStatus: on
-
 ```
 
 **Stop talking Example**
@@ -93,5 +88,4 @@ Channel: SIP/mypeer-00000001
 Uniqueid: 1303308745.0
 Conference: 1111
 TalkingStatus: off
-
 ```

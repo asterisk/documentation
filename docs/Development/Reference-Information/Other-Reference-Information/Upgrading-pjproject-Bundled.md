@@ -28,7 +28,6 @@ The build process for bundled software currently expects tarballs compressed usi
 ---
 
 If you don't see fileformat=unix, you will need to convert formats.
-
 ```
 
  Lastly add the \*.tar.bz2 tarball and checksum file to your repository, push the changes, and then create a pull request on github.
@@ -44,7 +43,6 @@ pjproject example
 
 ```
 $ cp MD5SUM.TXT ~/src/asterisk/third-party/pjproject/pjproject-2.10.tar.bz2.md5
-
 ```
 
 Be sure to also remove the previous version of that file from the source tree:
@@ -55,7 +53,6 @@ pjproject example
 
 ```
 $ git rm ~/src/asterisk/third-party/pjproject/pjproject-2.9.tar.bz2.md5
-
 ```
 
 Next modify the *versions.mak* file, which can be found in the third-party directory of your Asterisk directory, to the version number being upgraded to:
@@ -66,7 +63,6 @@ pjproject example
 
 ```
 PJPROJECT_VERSION = 2.10
-
 ```
 
 Now remove any patches found beneath the ./third-party/{project}/patches directory that have been added since the last version, **and** are now included in this new version. Again, only remove those patches that are currently included in the new version of the released software being upgraded to.

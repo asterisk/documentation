@@ -89,7 +89,6 @@ Note that the actual CEL events below are in CSV format and do not include the ;
 "EV_CHAN_END","2007-05-09 12:50:13","","152","151","","","","extension","Zap/52-1","Bridged Call","Zap/50-1","DOCUMENTATION","","1178736475.7","","" ;;; 152 channel ends 
 "EV_HANGUP","2007-05-09 12:50:13","fxs.50","150","150","","","h","extension","Zap/50-1","","","DOCUMENTATION","","1178736471.6","","" ;;; 150 hangs up 
 "EV_CHAN_END","2007-05-09 12:50:13","fxs.50","150","150","","","h","extension","Zap/50-1","","","DOCUMENTATION","","1178736471.6","","" ;;; 150 ends 
-
 ```
 
 In terms of Manager events, the above Events correspond to the following 80 Manager events shown in the expansion link.
@@ -708,7 +707,6 @@ Channel: Zap/50-1
 Uniqueid: 1178801218.8 
 Cause: 16 
 Cause-txt: Normal Clearing
-
 ```
 
 And, humorously enough, the above 80 manager events, or 42 CEL events, correspond to the following two CDR records (at the moment!):
@@ -716,5 +714,4 @@ And, humorously enough, the above 80 manager events, or 42 CEL events, correspon
 ```
 ""fxs.52" 152","152","h","extension","Zap/52-1","Zap/51-1","NoOp","More Hangup message after hopping around"","2007-05-09 17:35:56","2007-05-09 17:36:20","2007-05-09 17:36:36","40","16","ANSWERED","DOCUMENTATION","","1178753756.0",""
 ""fxs.50" 150","150","152","extension","Zap/50-1","Zap/51-1","NoOp","More Hangup message after hopping around"","2007-05-09 17:37:59","2007-05-09 17:38:06","2007-05-09 17:39:11","72","65","ANSWERED","DOCUMENTATION","","1178753871.3",""
-
 ```

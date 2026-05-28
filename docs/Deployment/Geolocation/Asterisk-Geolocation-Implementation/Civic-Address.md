@@ -85,7 +85,6 @@ location_refinement = FLR=4, ROOM=4B20
 type = profile
 location_reference = building1
 location_refinement = FLR=32, ROOM=32A6
-
 ```
 
 ### PIDF-LO XML Examples
@@ -126,7 +125,6 @@ Here's what Alice's PIDF-LO would look like:
  <dm:timestamp>2022-04-22T20:57:29Z</dm:timestamp>
  </dm:device>
 </presence>
-
 ```
 
 Here's what Bob's PIDF-LO would look like:
@@ -165,7 +163,6 @@ Here's what Bob's PIDF-LO would look like:
  <dm:timestamp>2022-04-22T20:57:29Z</dm:timestamp>
  </dm:device>
 </presence>
-
 ```
 
 Note that the only civicAddress difference between the two are the `FLR` and `ROOM`.

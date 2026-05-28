@@ -12,7 +12,6 @@ Asterisk running on Linux can also set 802.1p CoS marks in VLAN packets for the 
 
 ```
 vconfig set_egress_map [vlan-device] [skb-priority] [vlan-qos] 
-
 ```
 
 The table below shows all VoIP channel drivers and other Asterisk modules that support QoS settings for network traffic. It also shows the type(s) of traffic for which each module can support setting QoS settings:

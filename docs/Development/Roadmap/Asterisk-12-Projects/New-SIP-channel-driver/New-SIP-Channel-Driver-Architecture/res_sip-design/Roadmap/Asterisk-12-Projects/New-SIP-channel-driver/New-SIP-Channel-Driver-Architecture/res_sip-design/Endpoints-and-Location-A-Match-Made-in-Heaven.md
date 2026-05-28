@@ -77,7 +77,6 @@ disallow=all
 allow=g722
 allow=ulaw
 aors=5000
-
 ```
 
  If explicitly dialed without specifying a URI or AOR the configured AOR of "5000" will be used.
@@ -88,7 +87,6 @@ An example AOR configuration, with support for external manipulation, is as foll
 [5000]
 type=aor
 max_contacts=10
-
 ```
 
  This will allow a maximum of 10 contacts to be externally added to it. If exceeded the registrar will reject the registration attempt.
@@ -100,7 +98,6 @@ An example AOR configuration, with support for external manipulation but with th
 type=aor
 max_contacts=1
 remove_existing=yes
-
 ```
 
 This will cause only a single contact to be registered. Any subsequent registration attempts will cause the existing contact to be removed.
@@ -111,7 +108,6 @@ An example AOR configuration, with no support for external manipulation, is as f
 [5000]
 type=aor
 static=sip:5000@internal.mypbx
-
 ```
 
  Since a static contact has been specified it will be used if this AOR is queried.
@@ -125,19 +121,16 @@ Dialing an endpoint can be accomplished using the following:
 
 ```
 Dial(PJSIP/5000)
-
 ```
 
 Dialing an explicit AOR using an endpoint can be accomplished using the following:
 
 ```
 Dial(PJSIP/5000/5000)
-
 ```
 
 Dialing an explicit SIP URI using an endpoint can be accomplished using the following:
 
 ```
 Dial(PJSIP/5000/sip:1234@test.com)
-
 ```

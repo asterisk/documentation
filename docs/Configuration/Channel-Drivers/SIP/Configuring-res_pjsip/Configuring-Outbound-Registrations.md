@@ -28,7 +28,6 @@ type = registration
 server_uri = sip:registrar@example.com
 client_uri = sip:client@example.com
 contact_user = inbound-calls
-
 ```
 
 This results in the following outbound REGISTER request being sent by Asterisk:
@@ -46,7 +45,6 @@ Expires: 3600
 Allow: OPTIONS, SUBSCRIBE, NOTIFY, PUBLISH, INVITE, ACK, BYE, CANCEL, UPDATE, PRACK, MESSAGE, REFER, REGISTER
 Max-Forwards: 70
 Content-Length: 0
-
 ```
 
 Let's go over how the options were applied to this REGISTER:
@@ -69,7 +67,6 @@ client_uri = sip:client@example.com\;transport=tcp
 contact_user = inbound-calls  
 
 ---
-
 ```
 
 Outbound registrations and endpoints
@@ -87,7 +84,6 @@ type = endpoint
 type = identify
 match = <ip address of provider>
 endpoint = my_provider 
-
 ```
 
 This represents the bare minimum necessary in order to accept incoming calls from the provider. The `identify` section makes it so that incoming SIP traffic from the IP address in the `match` option will be associated with the endpoint called `my_provider_endpoint`.
@@ -109,7 +105,6 @@ endpoint = my_provider
 [my_provider_aor]
 type = aor
 contact = sip:my_provider@example.com
-
 ```
 
 !!! warning 
@@ -136,7 +131,6 @@ outbound_auth = provider_auth
 type = auth
 username = my_username
 password = my_password
-
 ```
 
 With this configuration, now if the registrar responds to a REGISTER by challenging for authentication, Asterisk will use the authentication credentials in the provider_auth section in order to authenticate. Details about what options are available in auth sections can be found [here](/Latest_API/API_Documentation/Module_Configuration/res_pjsip) in the "auth" section.
@@ -181,7 +175,6 @@ auth_rejection_permanent = no
 retry_interval = 30
 forbidden_retry_interval = 300
 max_retries = 20
-
 ```
 
 In general, this configuration is more lenient than the default. We will retry registration more times, we will retry after authentication requests and forbidden responses, and we will retry more often.
@@ -199,7 +192,6 @@ You can monitor the status of your configured outbound registrations via the CLI
  =========================================================================================
  my_provider/sip:registrar@example.com provider_auth Unregistered 
  outreg/sip:registrar@example.com n/a Unregistered 
-
 ```
 
 On this particular Asterisk instance, there are two outbound registrations configured. The headers at the top explain what is in each column. The "Status" can be one of the following values:
@@ -231,7 +223,6 @@ In addition, you can see the details of a particular registration by issuing the
  server_uri : sip:registrar@example.com
  support_path : false
  transport : 
-
 ```
 
 This provides the same status line as before and also provides the configured values for the outbound registration.
@@ -285,7 +276,6 @@ Event: OutboundRegistrationDetailComplete
 EventList: Complete
 Registered: 0
 NotRegistered: 2
-
 ```
 
 The command sends `OutboundRegistrationDetail` events for each configured outbound registration. Most information is the same as the CLI displays, but there is one additional piece of data displayed: NextReg. This is the number of seconds until Asterisk will send a new REGISTER request to the registrar. In this particular scenario, that number is 0 because the two outbound registrations have reached their maximum number of retries.

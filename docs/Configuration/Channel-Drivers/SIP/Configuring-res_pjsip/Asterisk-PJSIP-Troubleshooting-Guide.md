@@ -33,14 +33,12 @@ On this Page
 
 ```
 [2014-10-13 16:12:17.349] DEBUG[27284]: res_pjsip_endpoint_identifier_user.c:106 username_identify: Could not identify endpoint by username 'eggowaffles'
-
 ```
 
 or
 
 ```
 [2014-10-13 16:13:07.201] DEBUG[27507]: res_pjsip_endpoint_identifier_ip.c:113 ip_identify_match_check: Source address 127.0.0.1:5061 does not match identify 'david-ident'
-
 ```
 
 then this is a good indication that the request is being rejected because Asterisk cannot determine which endpoint the incoming request is coming from.
@@ -73,7 +71,6 @@ m=audio 6000 RTP/AVP 0
 a=rtpmap:8 PCMA/8000
 a=rtpmap:0 PCMU/8000
 a=ptime:20
-
 ```
 
 In this example, the URI in the From header is "sip:eggowaffles@127.0.0.1:5061". The user portion is "eggowaffles", so Asterisk attempts to look up an endpoint called "eggowaffles" in its configuration. If such an endpoint is not configured, then the INVITE is rejected by Asterisk. The most common cause of the problem is that the user name referenced in the From header is not the name of a configured endpoint in Asterisk.
@@ -86,7 +83,6 @@ But what if you have configured an endpoint called "eggowaffles"? It is possible
 ```
 [2014-10-13 16:25:01.674] ERROR[27771]: config_options.c:710 aco_process_var: Could not find option suitable for category 'eggowaffles' named 'setvar' at line 390 of 
 [2014-10-13 16:25:01.674] ERROR[27771]: res_sorcery_config.c:275 sorcery_config_internal_load: Could not create an object of type 'endpoint' with id 'eggowaffles' from configuration file 'pjsip.conf'
-
 ```
 
 In this case, I set an endpoint option called "setvar" instead of the appropriate "set_var". The result was that the endpoint was not loaded.
@@ -101,7 +97,6 @@ Asterisk can also recognize endpoints based on the source IP address of the SIP 
 ```
 Module Description Use Count Status Support Level
 res_pjsip_endpoint_identifier_ip.so PJSIP IP endpoint identifier 0 Running core
-
 ```
 * Run the troubleshooting steps from the Identify by User section to ensure that the endpoint you have configured has actually been properly loaded.
 * From the Asterisk CLI, run the command `pjsip show endpoint <endpoint name>`. Below the headers at the top of the output, you should see something like the following:
@@ -112,7 +107,6 @@ res_pjsip_endpoint_identifier_ip.so PJSIP IP endpoint identifier 0 Running core
  Aor: david 10
  Transport: main-transport udp 0 0 0.0.0.0:5060
  Identify: 10.24.16.36/32
-
 ```
 
 Notice the bottom line. This states that the endpoint is matched based on the IP address 10.24.16.36. If you do not see such a line for the endpoint that you expect to be matched, then there is likely a configuration error. If the line does appear, then ensure that the IP address listed matches what you expect for the endpoint.
@@ -130,7 +124,6 @@ Notice the bottom line. This states that the endpoint is matched based on the IP
  Aor: david 10
  Transport: main-transport udp 0 0 0.0.0.0:5060
  Identify: 10.24.16.36/32
-
 ```
 
 Notice that if a SIP request arrives from 10.24.16.36, it is ambiguous if the request should be matched to carol or david.
@@ -150,7 +143,6 @@ sorcery.conf
 ```
 [res_pjsip_endpoint_identifier_ip]
 identify = realtime,ps_endpoint_id_ips
-
 ```
 
 And then you would need the corresponding config in `extconfig.conf`:
@@ -160,7 +152,6 @@ extconfig.conf
 ```
 [settings]
 ps_endpoint_id_ips => odbc
-
 ```
 ### Anonymous Identification
 
@@ -171,7 +162,6 @@ Anonymous endpoint identification allows for a specially-named endpoint called "
 ```
 Module Description Use Count Status Support Level
 res_pjsip_endpoint_identifier_anonymous.so PJSIP Anonymous endpoint identifier 0 Running core
-
 ```
 * Ensure that the "anonymous" endpoint has been properly loaded. See the troubleshooting steps in the Identify by User section for more details about how to determine if an endpoint has been loaded.
 
@@ -295,7 +285,6 @@ To: <sip:201@10.24.20.249>;tag=z9hG4bKPjCrZnx79augJPtGcTbYlXEs2slZNtwYeC
 Call-ID: q.TF2SAaX3jn8dtaLTOCuIO8FRyDCsSR
 CSeq: 9776 ACK
 Content-Length: 0
-
 ```
 
 At first glance, it would appear that the incoming call was challenged for authentication, and that 200 then failed to authenticate on the second INVITE sent. The actual problem here is that the endpoint 200 does not exist within Asterisk. Whenever a SIP request arrives and Asterisk cannot match the request to a configured endpoint, Asterisk will respond to the request with a 401 Unauthorized response. The response will contain a WWW-Authenticate header to make it look as though Asterisk is requesting authentication. Since no endpoint was actually matched, the authentication challenge created by Asterisk is just dummy information and is actually impossible to authenticate against.
@@ -325,7 +314,6 @@ The opposite problem of authentication failures is that incoming calls are not b
  Aor: david 10
  Transport: main-transport udp 0 0 0.0.0.0:5060
  Identify: 10.24.16.36/32
-
 ```
 
 Notice the "InAuth" on the second line of output. This shows that the endpoint's auth is pointing to a configuration section called "david-auth" and that the auth section has a username of "david". If you do not see an "InAuth" specified for the endpoint, then this means that Asterisk does not see that the endpoint is configured for authentication. Check the following:
@@ -341,7 +329,6 @@ If you are seeing a message like the following on your CLI when you place an inc
 
 ```
 [2014-10-14 13:22:45.886] NOTICE[1583]: res_pjsip_session.c:1538 new_invite: Call from '201' (UDP:10.24.18.87:5060) to extension '456789' rejected because extension not found in context 'default'.
-
 ```
 
 then it means that Asterisk was not able to direct the incoming call to an appropriate extension in the dialplan. In the case above, I dialled "456789" on the phone that corresponds with endpoint 201. Endpoint 201 is configured with `context = default` and the "default" context in my dialplan does not have an extension "456789".
@@ -379,7 +366,6 @@ If you see a message like the following:
 
 ```
 [2014-10-14 15:50:50.407] ERROR[2004]: chan_pjsip.c:1767 request: Unable to create PJSIP channel - endpoint 'hammerhead' was not found
-
 ```
 
 then this means that Asterisk thinks the endpoint you are trying to dial does not exist. For troubleshooting tips about how to ensure that endpoints are loaded as expected, check the Identify by User subsection in the Incoming Calls section.
@@ -390,7 +376,6 @@ Alternatively, if you see a message like the following:
 [2014-10-14 15:55:06.292] ERROR[2578][C-00000000]: netsock2.c:303 ast_sockaddr_resolve: getaddrinfo("hammerhead", "(null)", ...): Name or service not known
 [2014-10-14 15:55:06.292] WARNING[2578][C-00000000]: chan_sip.c:6116 create_addr: No such host: hammerhead
 [2014-10-14 15:55:06.292] DEBUG[2578][C-00000000]: chan_sip.c:29587 sip_request_call: Cant create SIP call - target device not registered
-
 ```
 
 or
@@ -398,7 +383,6 @@ or
 ```
 [2014-10-14 15:55:58.440] WARNING[2700][C-00000000]: channel.c:5946 ast_request: No channel type registered for 'SIP'
 [2014-10-14 15:55:58.440] WARNING[2700][C-00000000]: app_dial.c:2431 dial_exec_full: Unable to create channel of type 'SIP' (cause 66 - Channel not implemented)
-
 ```
 
 then it means that your dialplan is referencing "SIP/hammerhead" instead of "PJSIP/hammerhead". Change your dialplan to refer to the correct channel driver, and don't forget to `dialplan reload` when you are finished.
@@ -411,7 +395,6 @@ If Asterisk is finding your endpoint successfully, it may be that Asterisk has n
 ```
 [2014-10-14 15:58:06.690] WARNING[2743]: res_pjsip/location.c:155 ast_sip_location_retrieve_contact_from_aor_list: Unable to determine contacts from empty aor list
 [2014-10-14 15:58:06.690] WARNING[2834][C-00000000]: app_dial.c:2431 dial_exec_full: Unable to create channel of type 'PJSIP' (cause 3 - No route to destination)
-
 ```
 
 If you see this, then the endpoint you are dialling either has no associated address of record (AoR) or the associated AoR does not have any contact URIs bound to it. AoRs are necessary in order to determine the appropriate destination of the call. To see if your endpoint has an associated AoR, run `pjsip show endpoint <endpoint name>` from the Asterisk CLI. The following is sample output of an endpoint that **does** have an AoR configured on it:
@@ -422,7 +405,6 @@ If you see this, then the endpoint you are dialling either has no associated add
  Aor: david 10
  Transport: main-transport udp 0 0 0.0.0.0:5060
  Identify: 10.24.16.36/32
-
 ```
 
 Notice the third line. The endpoint points to the AoR section called "david". If your endpoint does not have an AoR associated with it, this third line will be absent.
@@ -436,7 +418,6 @@ If those appear to be okay, it may be that there was an error when attempting to
 
 ```
 Unable to find object heman.
-
 ```
 
 Then it means the AoR did not get loaded properly. Here are some troubleshooting steps to ensure your AoR is configured correctly:
@@ -447,7 +428,6 @@ Then it means the AoR did not get loaded properly. Here are some troubleshooting
 ```
 [2014-10-14 16:16:20.658] ERROR[2939]: config_options.c:710 aco_process_var: Could not find option suitable for category '1000' named 'awesomeness' at line 219 of 
 [2014-10-14 16:16:20.659] ERROR[2939]: res_sorcery_config.c:275 sorcery_config_internal_load: Could not create an object of type 'aor' with id '1000' from configuration file 'pjsip.conf'
-
 ```
 
 In this case, I tried to set an option called "awesomeness" on the AoR 1000. Since Asterisk did not recognize this option, AoR 1000 was unable to be loaded.
@@ -458,7 +438,6 @@ Another issue you may encounter is that you have properly configured an AoR on t
 ```
  Aor: 201 1
  Contact: 201/sip:201@10.24.18.87:5060;ob Unknown nan
-
 ```
 
 The "Contact:" line shows the URI "sip:201@10.24.18.87:5060;ob" is bound to the AoR 201. If the AoR does not have any contacts bound to it, then no Contact lines would appear. The absence of Contact lines can be explained by any of the following:
@@ -523,7 +502,6 @@ Contact: "200" <sip:200@10.24.16.37:5060;ob>
 Expires: 300
 Allow: PRACK, INVITE, ACK, BYE, CANCEL, UPDATE, SUBSCRIBE, NOTIFY, REFER, MESSAGE, OPTIONS
 Content-Length: 0
-
 ```
 
 This REGISTER was sent by the endpoint 200. The URI in the To header is "sip:200@10.24.20.249". Asterisk extracts the username portion of this URI to determine the address of record (AoR) that the REGISTER pertains to. In this case, the AoR has the same name as the endpoint, 200. The URI in the Contact header is "sip:200@10.24.16.37:5060;ob". The REGISTER request is attempting to bind this contact URI to the AoR. Ultimately, what this means is that when someone requests to reach endpoint 200, Asterisk will check the AoRs associated with the endpoint, and send requests to all contact URIs that have been bound to the AoR. In other words, the REGISTER gives Asterisk the means to locate the endpoint.
@@ -535,7 +513,6 @@ You can ensure that your configuration is sane by running the the `pjsip show en
  Aor: 200 1
  Contact: 200/sip:200@10.24.16.37:5060;ob Unknown nan
  Transport: main-transport udp 0 0 0.0.0.0:5060
-
 ```
 
 This shows that endpoint 200 has AoR 200 associated with it. And you can also see that the contact "sip:200@10.24.16.37:5060;ob" has been bound to the AoR.
@@ -552,13 +529,11 @@ More likely, the issue will be that an AoR will be listed, but there will be no 
 ```
 Module Description Use Count Status Support Level
 res_pjsip_registrar.so PJSIP Registrar Support 0 Running core
-
 ```
 * Ensure that the AoR has a `max_contacts` value configured on it. If this option is not set, then registration cannot succeed. You will see this message on the CLI:
 
 ```
 [2014-10-16 11:34:07.887] WARNING[2940]: res_pjsip_registrar.c:685 registrar_on_rx_request: AOR '200' has no configured max_contacts. Endpoint '200' unable to register
-
 ```
 
 Asterisk will transmit a 403 Forbidden in response to the registration attempt.
@@ -570,7 +545,6 @@ If you initially have successful registrations but they later start failing, the
 
 ```
 [2014-10-16 11:34:07.887] WARNING[2940]: res_pjsip_registrar.c:411 rx_task: Registration attempt from endpoint '200' to AOR '200' will exceed max contacts of 1
-
 ```
 
 Asterisk will respond to the registration attempt with a 403 Forbidden.
@@ -589,7 +563,6 @@ If you are still having trouble, here are some troubleshooting steps:
 
 ```
 [2014-10-16 12:05:16.064] ERROR[3187]: res_pjsip_outbound_registration.c:724 sip_outbound_registration_regc_alloc: Invalid server URI 'registrar@example.com' specified on outbound registration 'outreg'
-
 ```
 
 In this case, I left off the initial "sip:" from the URI.
@@ -617,7 +590,6 @@ If you are attempting to subscribe to the presence or dialog event packages, the
 
 ```
 [2014-10-16 12:56:58.605] WARNING[3780]: res_pjsip_exten_state.c:337 new_subscribe: Extension blah does not exist or has no associated hint
-
 ```
 
 The warning message is self-explanatory. If you think you have placed extension "blah" in your `extensions.conf` file and it contains a hint, then be sure that it exists in the same context as the `context` option on the endpoint that is attempting to subscribe. Also be sure that if you have recently changed your `extensions.conf` file that you have saved the changes and run the `dialplan reload` CLI command.
@@ -633,7 +605,6 @@ If you are attempting to subscribe to the message-summary package, then here are
 
 ```
 [2014-10-16 13:06:51.323] NOTICE[3963]: res_pjsip_mwi.c:566 mwi_validate_for_aor: Endpoint '200' already configured for unsolicited MWI for mailbox '200'. Denying MWI subscription to 200
-
 ```
 
 The most likely cause of something like this is that you have an endpoint and an AoR that both have `mailboxes = 200` in your configuration. The endpoint with `mailboxes = 200` attempts to subscribe to the AoR that has `mailboxes = 200`. In this case, since Asterisk is already sending MWI notifications about mailbox 200 to the endpoint, the subscription to the AoR is denied. To fix this, remove the `mailboxes` option from your endpoint, or configure your device not to attempt to subscribe to MWI.
@@ -652,7 +623,6 @@ If you look into your logs you might messages similar to the following:
 ```
 [Dec 12 00:58:31] ERROR[10157] config_options.c: Error parsing bind=:: at line 8 of 
 [Dec 12 00:58:31] ERROR[10157] res_sorcery_config.c: Could not create an object of type 'transport' with id 'my-ipv6-transport' from configuration file 'pjsip.conf'
-
 ```
 
 The most likely issue is that you have not compiled **pjproject** with support for IPv6. You can find instructions at [PJSIP-pjproject](/Getting-Started/Installing-Asterisk/Installing-Asterisk-From-Source/Prerequisites/PJSIP-pjproject).

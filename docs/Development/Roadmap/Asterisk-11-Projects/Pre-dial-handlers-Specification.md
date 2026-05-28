@@ -39,7 +39,6 @@ SIP/baz is another callee,
 <SIP/foo-123> calling SIP/baz-125
 ```
 # Syntax
-
 ```
 b([[context^]exten^]priority[(arg1[^...][^argN])])
 B([[context^]exten^]priority[(arg1[^...][^argN])])

@@ -23,7 +23,6 @@ Here is an example of dialplan we could call with `Gosub` when we don't wish to 
 [my-gosub]
 exten => s,1,Verbose("Here we are in a subroutine! Let's listen to some weasels")
  same => n,Playback(tt-weasels)
-
 ```
 
 Here is an example where we do wish to return.
@@ -33,7 +32,6 @@ Here is an example where we do wish to return.
 exten => s,1,Verbose("Here we are in a subroutine! Let's listen to some weasels")
  same => n,Playback(tt-weasels)
  same => n,Return()
-
 ```
 
 Calling Gosub
@@ -43,7 +41,6 @@ Calling Gosub
 
 ```
 Gosub([[context,]exten,]priority[(arg1[,...][,argN])])
-
 ```
 
 Here is an example within Asterisk dialplan.
@@ -53,7 +50,6 @@ Here is an example within Asterisk dialplan.
 exten => 7000,1,Verbose("We are going to run a Gosub before Dialing!")
  same => n,Gosub(my-gosub,s,1)
  same => n,Dial(PJSIP/ALICE)
-
 ```
 
 Here we are calling the `my-gosub` context at extension `s` , priority `1`.
@@ -70,7 +66,6 @@ Here is how we call `Gosub` with an argument. We are substituting the `EXTEN` ch
 exten => 7000,1,Verbose("We are going to run a Gosub before Dialing!")
  same => n,Gosub(my-gosub,s,1(${EXTEN}))
  same => n,Dial(PJSIP/ALICE)
-
 ```
 
 Below we make use of `ARG1` in the `Verbose` message we print during the subroutine execution.
@@ -80,7 +75,6 @@ Below we make use of `ARG1` in the `Verbose` message we print during the subrout
 exten => s,1,Verbose("Here we are in a subroutine! This subroutine was called from extension ${ARG1}")
  same => n,Playback(tt-weasels)
  same => n,Return()
-
 ```
 
 To use multiple arguments, simply separate them via commas when defining them in the `Gosub` call. Then within the `Gosub` reference them as `ARG1`, `ARG2`, `ARG3`, etc.

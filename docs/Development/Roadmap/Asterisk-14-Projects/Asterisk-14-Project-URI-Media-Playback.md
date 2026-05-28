@@ -56,7 +56,6 @@ Video is particularly difficult, as it typically requires multiple files (one vi
 
 ```
 same => n,Playback(http://myserver.com/monkeys.h264|http://myserver.com/monkeys.wav)
-
 ```
 
 The behaviour of the files retrieved in such a fashion are as follows:
@@ -77,14 +76,12 @@ Playback of a URI can be done via any of the supported playback operations, thro
 
 ```
 same => n,Playback(http://myserver.com/monkeys.wav)
-
 ```
 
 Note that this can be combined with multiple URIs or sounds to form a playlist:
 
 ```
 same => n,Playback(http://myserver.com/monkeys.wav&http://myserver.com/weasels.wav)
-
 ```
 
 Since an `&` is valid for a URI but is also used as a separator in dialplan, ampersands in a resource cannot be supported. If an ampersand is used in a URI (say, as part of a query), then the entire URI must be URI encoded.
@@ -102,7 +99,6 @@ Since an `&` is valid for a URI but is also used as a separator in dialplan, amp
 
 ```
 CONTROL STREAM FILE http://myserver.com/monkeys.wav "" 3000
-
 ```
 
 ##### ARI
@@ -114,7 +110,6 @@ http://localhost:8088/ari/channels/12345/play/p1?media=uri:list
 
 Content-Type: text/uri-list
 http://myserver.com/monkeys.wav
-
 ```
 
 This format works nicely with simple playlists, as it can specify multiple files to retrieve. Note that these files should be played back sequentially as a playlist (which is not yet supported, but will need to be by the time we get here!)
@@ -127,7 +122,6 @@ Content-Type: text/uri-list
 http://myserver.com/monkeys.wav
 # Comment comment comment
 http://myserver.com/awesome-sound.wave
-
 ```
 
 Note that when the `Content-Type` is `text/uri-list`, the resource specified by the `uri` media scheme is simply tossed away, as we can only have a single list of URIs. Note that this approach is somewhat limiting in that supporting multiples
@@ -159,7 +153,6 @@ http://localhost:8088/ari/channels/12345/play/p3
  }
  ]
 }
-
 ```
 
 There's some obvious differences here:
@@ -235,7 +228,6 @@ int ast_media_cache_create_or_update(const char *uri, const char *file_path, str
  * \retval -1 error
  */
 int ast_media_cache_delete(const char *uri);
-
 ```
 
 ### CLI Commands
@@ -253,7 +245,6 @@ http://myserver.com/monkeys.wav 2014-09-14 10:10:00 UTC /var/spool/asterisk/medi
 http://myserver.com/monkeys.h264 2014-09-14 10:10:00 UTC /var/spool/asterisk/media_cache/77asdf7a.h264 
 
 3 items found.
-
 ```
 
 Note that the last two files would have been created using a preferred file prefix. This allow the `file` and `app` core to "find" both the audio and the video file when opening up the stream returned by the `file_path` by the `media_cache`.
@@ -271,7 +262,6 @@ This is really a handy way for a system administrator to force files to be pulle
 
 URI Last update Local file
 0 items found.
-
 ```
 
 res_http_media_cache
@@ -324,7 +314,6 @@ Support for a new Content-Type, `text/uri-list`, needs to be added to the HTTP s
  * \retval A list of URIs. This an ao2 object that must be disposed of by the caller of the function.
  */
 struct ast_uri_list *ast_http_get_uri_list(struct ast_tcptls_session_instance *ser, struct ast_variable *headers);
-
 ```
 
 ### uri.h
@@ -383,7 +372,6 @@ void ast_uri_list_iterator_destroy(struct ast_uri_list_iterator *iterator);
  * \retval The next \c ast_uri otherwise
  */
 struct ast_uri *ast_uri_list_iterator_next(struct ast_uri_list_iterator *iterator);
-
 ```
 
 ARI
@@ -487,7 +475,6 @@ js "models": {
  }
  }
  }
-
 ```
 
 Note that the following for `channels.json` would be repeated for `bridges.json`:
@@ -527,7 +514,6 @@ js {
  }
  ]
  },
-
 ```
 
 ### Mustache Templates

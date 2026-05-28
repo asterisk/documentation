@@ -162,7 +162,6 @@ struct ast_datastore *ast_sip_subscription_get_datastore(struct ast_sip_subscrip
  * \param name The name of the datastore to remove
  */
 void ast_sip_subscription_remove_datastore(struct ast_sip_subscription *subscription, const char *name);
-
 ```
 
 Subscription handlers
@@ -329,7 +328,6 @@ int ast_sip_register_subscription_handler(const struct ast_sip_subscription_hand
  * \brief Unregister a subscription handler
  */
 void ast_sip_unregister_subscription_handler(const struct ast_sip_subscription_handler *handler);
-
 ```
 
 Event publication
@@ -479,5 +477,4 @@ struct ast_datastore *ast_sip_subscription_get_datastore(struct ast_sip_subscrip
  * \param name The name of the datastore to remove
  */
 void ast_sip_subscription_remove_datastore(struct ast_sip_subscription *subscription, const char *name);
-
 ```

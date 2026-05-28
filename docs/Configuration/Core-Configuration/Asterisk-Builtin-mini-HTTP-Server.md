@@ -22,7 +22,6 @@ A very basic configuration of http.conf could be as follows:
 enabled=yes
 bindaddr=0.0.0.0
 bindport=8088
-
 ```
 
 That configuration would enable the HTTP server and have it bind to all available network interfaces on port 8088.

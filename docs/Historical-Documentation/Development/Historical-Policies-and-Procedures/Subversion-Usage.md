@@ -32,7 +32,6 @@ ssl-client-cert-file = /home/<username>/.subversion/<name>-cert.p12
 
 [global]
 ssl-authority-files = /home/<username>/.subversion/Digium_SVN-cacert-sha1.pem
-
 ```
 
 ## SVN Checkouts
@@ -42,7 +41,6 @@ Checkouts that come from `http://svn.asterisk.org/` are read-only copies of the 
 ```
 $ svn co https://origsvn.digium.com/svn/asterisk/trunk
 $ svn co https://origsvn.digium.com/svn/asterisk/branches/1.8
-
 ```
 
 # Using `svnmerge` for Cross-Branch Merging
@@ -56,7 +54,6 @@ $ svn co http://svn.asterisk.org/svn/repotools
 $ cd repotools
 $ ./configure
 $ sudo make install
-
 ```
 
 ## `svnmerge` Properties
@@ -134,7 +131,6 @@ All of these scripts create a commit message for you in the file `../merge.msg`.
 
 ```
 $ svn commit -F ../merge.msg
-
 ```
 {tip}
 
@@ -153,7 +149,6 @@ Sometimes a change is made in a branch and later it is decided that it should be
 $ cd 11
 $ record811 <revision>
 $ svn commit -F ../merge.msg
-
 ```
 
 # Developer Branches
@@ -174,7 +169,6 @@ $ svn checkout https://origsvn.digium.com/svn/asterisk/team/jdoe/my-fun-branch
 $ cd my-fun-branch
 $ svnmerge init
 $ svn commit -F svnmerge-commit-message.txt
-
 ```
 
 ## Deleting a Developer Branch
@@ -183,7 +177,6 @@ To delete a developer branch after you are done with it use the SVN command show
 
 ```
 $ svn delete https://origsvn.digium.com/svn/asterisk/team/jdoe/my-fun-branch
-
 ```
 
 ## Group Branches
@@ -205,7 +198,6 @@ $ cd my-fun-branch
 $ svn ps automerge '*' .
 $ svn ps automerge-email 'me@example.com' .
 $ svn commit -m "initialize automerge"
-
 ```
 
 ### Setting `automerge-email` on a Group Branch
@@ -214,7 +206,6 @@ For a branch with multiple developers working on it, it may be useful to have au
 
 ```
 $ svn ps automerge-email 'me@example.com,you@example.com,him@example.com' .
-
 ```
 
 ### Resolving `automerge` Conflicts
@@ -225,7 +216,6 @@ If your developer branch goes into conflict with `automerge` on, and the `autome
 $ cd my-branch
 $ svn update
 $ svnmerge merge
-
 ```
 
 Running the `svnmerge` tool will merge in the changes that cause your branch to go into conflict into your local copy. Edit the files that are in conflict to resolve the problems as appropriate. Finally, tell SVN that you have resolved the problem, re-enable automerge, and commit.
@@ -234,7 +224,6 @@ Running the `svnmerge` tool will merge in the changes that cause your branch to 
 $ svn resolved path/to/conflicted/file
 $ svn ps automerge '*' .
 $ svn commit -m "resolve conflict, enable automerge"
-
 ```
 
 ## Private Branches
@@ -255,7 +244,6 @@ $ cd trunk
 $ svn merge --ignore-ancestry https://origsvn.digium.com/svn/asterisk/trunk https://origsvn.digium.com/svn/asterisk/team/jdoe/bug12345 .
 # Check the diff to see if it merged properly
 $ svn diff | less
-
 ```
 
 Be sure to check the resulting diff to make sure that the merge doesn't overwrite any changes in trunk. If it does, you will have to specify the specific revisions merge needs to base its diff off of.
@@ -264,7 +252,6 @@ Be sure to check the resulting diff to make sure that the merge doesn't overwrit
 # The last change to bug12345 was at r2500.
 # trunk r2400 was merged into bug12345@2500.
 $ svn merge --ignore-ancestry https://origsvn.digium.com/svn/asterisk/trunk@2400 https://origsvn.digium.com/svn/asterisk/team/jdoe/bug12345@2500 .
-
 ```
 
 {note}
@@ -275,7 +262,6 @@ Once this is done, the working copy will contain the trunk plus the changes from
 
 ```
 $ svn revert .
-
 ```
 
 If you are purposely introducing new properties, or purposely introducing new values for existing properties, then you might do the following instead, so as not to destroy your properties:
@@ -284,14 +270,12 @@ If you are purposely introducing new properties, or purposely introducing new va
 $ svn pd svnmerge-integrated .
 $ svn pd automerge .
 $ svn pd automerge-email .
-
 ```
 
 If everything merged cleanly, you can test compile and then:
 
 ```
 $ svn commit -m "Merge branch for issue 12345"
-
 ```
 
 Once the contents of your branch has been merged, please use `svn remove` to remove it from the repository. It will still be accessible if needed by looking back in the repository history if needed.

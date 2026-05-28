@@ -36,13 +36,11 @@ ARI needs a WebSocket connection to receive events. For the sake of this example
 
 ```bash title=" " linenums="1"
 $ apt-get install npm
-
 ```
 2. **Install** the `ws` node package:
 
 ```bash title=" " linenums="1"
 $ npm install -g wscat
-
 ```
 
 /// tip 
@@ -60,7 +58,6 @@ In order to control a channel in the Stasis dialplan application through ARI, we
 
 ```bash title=" " linenums="1"
 $ apt-get install curl
-
 ```
 ### Configuring Asterisk
 

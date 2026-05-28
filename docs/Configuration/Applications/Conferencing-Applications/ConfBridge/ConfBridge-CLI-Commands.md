@@ -16,7 +16,6 @@ Removes the specified channel from the conference, e.g.:
 ```
 *CLI> confbridge kick 1111 SIP/mypeer-00000000
 Kicking SIP/mypeer-00000000 from confbridge 1111
-
 ```
 
 `confbridge list`
@@ -29,7 +28,6 @@ Shows a summary listing of all bridges, e.g.:
 Conference Bridge Name Users Marked Locked?
 ================================ ====== ====== ========
 1111 1 0 unlocked
-
 ```
 
 `confbridge list <conference>`
@@ -42,7 +40,6 @@ Shows a detailed listing of participants in a specified conference, e.g.:
 Channel User Profile Bridge Profile Menu
 ============================= ================ ================ ================
 SIP/mypeer-00000001 default_user 1111 sample_user_menu 
-
 ```
 
 `confbridge lock <conference>`
@@ -53,7 +50,6 @@ Locks a specified conference so that only Admin users can join, e.g.:
 ```
 *CLI> confbridge lock 1111
 Conference 1111 is locked.
-
 ```
 
 `confbridge unlock <conference>`
@@ -64,7 +60,6 @@ Unlocks a specified conference so that only Admin users can join, e.g.:
 ```
 *CLI> confbridge unlock 1111
 Conference 1111 is unlocked.
-
 ```
 
 `confbridge mute <conference> <channel>`
@@ -75,7 +70,6 @@ Mutes a specified user in a specified conference, e.g.:
 ```
 *CLI> confbridge mute 1111 SIP/mypeer-00000001
 Muting SIP/mypeer-00000001 from confbridge 1111
-
 ```
 
 `confbridge unmute <conference> <channel>`
@@ -86,7 +80,6 @@ Unmutes a specified user in a specified conference, e.g.:
 ```
 *CLI> confbridge unmute 1111 SIP/mypeer-00000001
 Unmuting SIP/mypeer-00000001 from confbridge 1111
-
 ```
 
 `confbridge record start <conference> <file>`
@@ -98,7 +91,6 @@ Begins recording a conference. If "file" is specified, it will be used, otherwis
 *CLI> confbridge record start 1111
 Recording started
 *CLI> == Begin MixMonitor Recording ConfBridgeRecorder/conf-1111-uid-618880445
-
 ```
 
 `confbridge record stop <confererence>`
@@ -111,7 +103,6 @@ Stops recording the specified conference, e.g.:
 Recording stopped.
 *CLI> == MixMonitor close filestream (mixed)
  == End MixMonitor Recording ConfBridgeRecorder/conf-1111-uid-618880445
-
 ```
 
 `confbridge show menus`
@@ -124,7 +115,6 @@ Shows a listing of Conference Menus as defined in confbridge.conf, e.g.:
 --------- Menus -----------
 sample_admin_menu
 sample_user_menu
-
 ```
 
 `confbridge show menu <menu name>`
@@ -144,7 +134,6 @@ Name: sample_admin_menu
 *2=admin_toggle_conference_lock
 *1=toggle_mute
 *=playback_and_continue(conf-adminmenu)
-
 ```
 
 `confbridge show profile bridges`
@@ -157,7 +146,6 @@ Shows a listing of Bridge Profiles as defined in confbridge.conf, e.g.:
 --------- Bridge Profiles -----------
 1111
 default_bridge
-
 ```
 
 `confbridge show profile bridge <bridge>`
@@ -190,7 +178,6 @@ sound_locked: conf-locked
 sound_unlocked_now: conf-unlockednow
 sound_lockednow: conf-lockednow
 sound_error_menu: conf-errormenu
-
 ```
 
 `confbridge show profile users`
@@ -203,7 +190,6 @@ Shows a listing of User Profiles as defined in confbridge.conf, e.g.:
 --------- User Profiles -----------
 awesomeusers
 default_user
-
 ```
 
 `confbirdge show profile user <user>`
@@ -233,5 +219,4 @@ PIN: None
 Announce User Count: enabled
 Announce join/leave: enabled
 Announce User Count all: enabled
-
 ```

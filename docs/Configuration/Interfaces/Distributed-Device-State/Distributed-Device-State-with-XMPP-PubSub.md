@@ -171,7 +171,6 @@ status=available
 usetls=no
 usesasl=yes
 buddy=server2@asterisk.mydomain.tld/astvoip2
-
 ```
 
 \*Asterisk Server 2\*
@@ -201,7 +200,6 @@ status=available
 usetls=no
 usesasl=yes
 buddy=server1@asterisk.mydomain.tld/astvoip1
-
 ```
 
 # Basic Testing of Asterisk with XMPP PubSub

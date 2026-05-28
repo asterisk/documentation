@@ -502,5 +502,4 @@ member of the Peering System and be able to make Routes available in
 accordance with this GPA.
 
 DUNDi, IAX, Asterisk and GPA are trademarks of Digium, Inc.
-
 ```

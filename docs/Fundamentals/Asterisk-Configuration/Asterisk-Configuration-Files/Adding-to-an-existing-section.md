@@ -13,7 +13,6 @@ setting1=value1
 
 [section-name](+)
 setting2=value2
-
 ```
 
 This example shows that the **setting2** setting was added to the existing section of the configuration file.
@@ -37,7 +36,6 @@ default_expiration=3600
 
 [101](+)
 default_expiration=1200
-
 ```
 
 ### With qualifiers:
@@ -58,7 +56,6 @@ default_expiration=1200
 
 [101](+type=endpoint)
 allow=g722
-
 ```
 
 ### Regular Expression Qualifiers
@@ -81,7 +78,6 @@ default_expiration=1200
 
 [101](+type=endpoint)
 allow=g722
-
 ```
 
 ### Multiple Qualifiers
@@ -104,7 +100,6 @@ default_expiration=1200
 
 [101](+type=endpoint)
 allow=g722
-
 ```
 
 ## Include/Restrict
@@ -129,5 +124,4 @@ default_expiration=1200
 
 [101](+type=endpoint)
 allow=g722
-
 ```

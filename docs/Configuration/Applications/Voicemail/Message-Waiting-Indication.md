@@ -56,7 +56,6 @@ Asterisk can subscribe to receive MWI from another SIP server and store it local
 ;mwi => 1234:password@myportprovider.example.com:6969/1234
 ;mwi => 1234:password:authuser@myauthprovider.example.com/1234
 ;mwi => 1234:password:authuser@myauthportprovider.example.com:6969/1234
-
 ```
 
 MWI received will be stored in the 1234 mailbox of the SIP_Remote context. It can be used by other phones by setting their SIP peers "mailbox" option to the `<mailbox_number>@SIP_Remote`. e.g. `mailbox=1234@SIP_Remote`
@@ -69,7 +68,6 @@ A chan_sip peer can be configured to receive unsolicited MWI NOTIFY messages and
 ```
 ;[somesippeer]
 ;unsolicited_mailbox=123456789
-
 ```
 
 If the remote SIP server sends an unsolicited MWI NOTIFY message the new/old message count will be stored in the configured virtual mailbox. It can be used by any device supporting MWI by specifying `mailbox=<configured value>@SIP_Remote` as the mailbox for the desired SIP peer.

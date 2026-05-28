@@ -31,7 +31,6 @@ css[Mar 7 00:00:00] VERBOSE[6165] netsock2.c: == Using SIP RTP CoS mark 5
 [Mar 7 00:00:00] VERBOSE[6167][C00000001] pbx.c: -- Executing [023@sipphones:2] NoOp("SIP/123-00000000", "Oh wait, that isn't a thing.") in new stack
 [Mar 7 00:00:00] VERBOSE[6167][C00000001] pbx.c: -- Auto fallthrough, channel 'SIP/123-00000000' status is 'CHANUNAVAIL'
 [Mar 7 00:00:00] DEBUG[6167][C00000001] call_identifier.c: <function stuff>: Call ID [000001] dereffed and destroyed by thread [6167]
-
 ```
 
 This case represents a simple scenario where a a SIP packet is received which starts a new call. Before a channel can be created, The SIP channel driver anticipates a new call will be started and creates a <call-id> related to that call. The call id is referenced by the pbx thread created for that channel. [000001].
@@ -40,21 +39,18 @@ Many users use Asterisk from the perspective of the CLI. By default, verbose mes
 
 ```
 nonecore set verbose_callids on = yes
-
 ```
 
 This would effectively change the display of a verbose message on CLI from:
 
 ```
 css-- Executing [023@sipphones:2] NoOp("SIP/123-00000000", "Oh wait, that isn't a thing.") in new stack
-
 ```
 
 to:
 
 ```
 css-- [C00000001] Executing [023@sipphones:2] NoOp("SIP/123-00000000", "Oh wait, that isn't a thing.") in new stack
-
 ```
 
 Having call identifiers in log messages like this could greatly help users to visually parse what is happening with their calls and could also be helpful in identifying problems from the perspective of support or development.
@@ -80,7 +76,6 @@ Eclipsecpp
 struct ast_callid {
  int call_identifier; /* Numerical value of the call displayed in the log */
 };
-
 ```
 
 Call-ID API
@@ -124,7 +119,6 @@ struct ast_callid *ast_create_callid();
  * \retval 1 - failure due to thread already being bound to a callid
  */
 int ast_callid_threadassoc_add(struct ast_callid *callid);
-
 ```
 
 Logging - Thread storage and ast_log_callid
@@ -162,7 +156,6 @@ Running through a simple example call with an audiohook
 exten => s,1,NoOp(example no op message)
 exten => s,2,MixMonitor(mixfile.wav)
 exten => s,3,Dial(SIP/examplepeer)
-
 ```
 6. The NoOp gets verbose logged to CLI. In the CLI, nothing special is visible, but since ast_log is called with a thread containing an ast_callid in thread storage, so ast_log checks the thread
 7. MixMonitor is reached. Verbose logging occurs as with NoOp It creates a monitor_thread which will be part of the call. When the new thread is created, the pbx thread sends the call-id to it for
@@ -182,7 +175,6 @@ Running through a simple example call with transfers
 
 ```
 exten => s,1,Dial(SIP/examplepeer)
-
 ```
 3. Dial is reached and is verbose logged. The thread enters the channel .call function (sip_call)
 4. Nothing too special occurs until SIP/examplecaller transfers SIP/examplepeer to SIP/examplepeer2. This means the channel that started the call thread is going to become a zombie. The call will go on though, the thread will just receive a new channel. The <call-id> can probably just stay in as is. However, the zombie will no longer be a part of the thread, so it will need to reference

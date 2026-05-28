@@ -68,7 +68,6 @@ sorcery.conf
 [res_pjsip]
 endpoint/cache=memory_cache
 endpoint=realtime,ps_endpoints
-
 ```
 
 Let's break this down line-by-line. The first line starts with "endpoint/cache". "endpoint" is the name of the object type. "/cache" is a cue to sorcery that the wizard being specified on this line is a cache. And "memory_cache" is the name of the caching wizard that has been added in Asterisk 14.0.0. The second line is the familiar line that specifies that endpoints can be retrieved from realtime by following the "ps_endpoints" configuration line in `extconfig.conf`.
@@ -85,7 +84,6 @@ sorcery.conf
 [res_pjsip]
 endpoint/cache = memory_cache,maximum_objects=150,expire_on_reload=yes,object_lifetime_maximum=3600
 endpoint = realtime,ps_endpoints
-
 ```
 
 The following configuration options are recognized by the memory cache:
@@ -145,7 +143,6 @@ This command has the following syntax:
 Action: SorceryMemoryCacheExpireObject
 Cache: <cache name>
 Object: <object name>
-
 ```
 
 Issuing this command will cause the specified object in the specified cache to be removed. Like all AMI commands, an optional ActionID may be specified.
@@ -157,7 +154,6 @@ This command has the following syntax:
 ```
 Action: SorceryMemoryCacheExpire
 Cache: <cache name>
-
 ```
 
 Issuing this command will cause all objects in the specified cache to be removed. Like all AMI commands, an optional ActionID may be specified.
@@ -170,7 +166,6 @@ This command has the following syntax:
 Action: SorceryMemoryCacheStaleObject
 Cache: <cache name>
 Object: <object name>
-
 ```
 
 Issuing this command will cause the specified object in the specified cache to be marked as stale. For more information on what it means for an object to be stale, see [here](#expire-or-stale).  Like all AMI commands, an optional ActionID may be specified.
@@ -182,7 +177,6 @@ This command has the following syntax:
 ```
 Action: SorceryMemoryCacheStale
 Cache: <cache name>
-
 ```
 
 Issuing this command will cause all objects in the specified cache to be marked as stale. For more information on what it means for an object to be stale, see [here](#expire-or-stale).  Like all AMI commands, an optional ActionID may be specified.
@@ -223,7 +217,6 @@ auth/cache=memory_cache,expire_on_reload=yes
 auth = realtime,ps_auths
 aor/cache = memory_cache,object_lifetime_stale=1500,object_lifetime_maximum=1800,expire_on_reload=yes
 aor = realtime,ps_aors
-
 ```
 
 In this particular setup, the administrator has set different options for different object caches.
@@ -249,7 +242,6 @@ sorcery.conf
 [res_pjsip]
 identify/cache = memory_cache,object_lifetime_stale=600,object_lifetime_maximum=1800,expire_on_reload=yes,full_backend_cache=yes
 identify = realtime,ps_endpoint_id_ips
-
 ```
 
 Just like with the previous section's configuration, we have configured an object to be retrieved from realtime and cached in memory. Notice, though, that we have added `full_backend_cache=yes` to the end of the line. This is what causes Asterisk to pre-cache the objects. Normally, PJSIP "identify" objects would be a bad fit for caching since we tend to retrieve them all at once rather than one-at-a-time. By pre-caching all objects though, Asterisk can now retrieve all of them directly from the cache. Also notice that the other caching options are still relevant here. Rather than having the options apply to individual objects, they now apply to all of the retrieved objects. So if Asterisk retrieved 10 identifys during pre-cache, when the stale lifetime rolls around, all 10 will be marked stale and Asterisk will once again retrieve all of the objects from the backend.
@@ -269,7 +261,6 @@ This command has the following syntax:
 ```
 Action: SorceryMemoryCachePopulate
 Cache: <cache name>
-
 ```
 
 Issuing this command has the same effect as the CLI "sorcery memory cache populate" command. It will invalidate all cached entries from the particular cache and then repopulate it with all objects from the backend.

@@ -57,7 +57,6 @@ exten => 1000,1,NoOp()
  same => n,Answer()
  same => n,Stasis(bridge-hold)
  same => n,Hangup()
-
 ```
 
 Python
@@ -85,7 +84,6 @@ import logging
 logging.basicConfig(level=logging.ERROR)
 
 client = ari.connect('http://localhost:8088', 'asterisk', 'asterisk')
-
 ```
 
 Once we've made our connection, our first task is to look for an existing holding bridge - if there is no existing holding bridge - we need to create it. The bridges resource has an operation for listing existing bridges - `GET /bridges`. Using ari-py we need to use the operation nickname - `list`. We can then use another bridges resource operation to create a holding bridge if none was found - `POST /bridges`. Using ari-py, we need to use the operation nickname - `create`.
@@ -100,7 +98,6 @@ if bridges:
 else:
  bridge = client.bridges.create(type='holding')
  print "Created bridge %s" % bridge.id
-
 ```
 
 The `GET /channels` operation returns back a list of `Bridge` resources. Those resources, however, are returned as JSON from the operation, and while the `ari-py` library converts the `uniqueid` of those into an attribute on the object, it leaves the rest of them in the JSON dictionary.
@@ -110,7 +107,6 @@ Our next step involves adding channels that enter our Stasis application to the 
 ```python
 client.on_channel_event('StasisStart', stasis_start_cb)
 client.on_channel_event('StasisEnd', stasis_end_cb)
-
 ```
 
 We need two handler functions - `stasis_start_cb` for the `StasisStart` event and `stasis_end_cb` for the `StasisEnd` event:
@@ -130,14 +126,12 @@ def stasis_end_cb(channel, ev):
  """Handler for StasisEnd event"""
 
  print "Channel %s just left our application" % channel.json.get('name')
-
 ```
 
 Finally, we need to tell the `client` to run our application. Once we call `client.run`, the websocket connection will be made and our application will wait on events infinitely. We can use `Ctrl+C` to kill it and break the connection.
 
 ```python
 client.run(apps='bridge-hold')
-
 ```
 
 ### bridge-hold.py
@@ -184,7 +178,6 @@ client.on_channel_event('StasisStart', stasis_start_cb)
 client.on_channel_event('StasisEnd', stasis_end_cb)
 
 client.run(apps='bridge-hold')
-
 ```
 
 ### bridge-hold.py in action
@@ -196,7 +189,6 @@ asterisk:~$ python bridge-hold.py
 Created bridge 79f3ad78-b124-4d7b-a629-a53b7e7f50cd
 Channel PJSIP/alice-00000001 just entered our application, adding it to bridge 79f3ad78-b124-4d7b-a629-a53b7e7f50cd
 Channel PJSIP/alice-00000001 just left our application
-
 ```
 
 JavaScript (Node.js)
@@ -231,7 +223,6 @@ function clientLoaded (err, client) {
  throw err;
  }
 }
-
 ```
 
 Once we've made our connection, our first task is to look for an existing holding bridge - if there is no existing holding bridge - we need to create it. The bridges resource has an operation for listing existing bridges - `GET /bridges`. Using ari-client we need to use the operation nickname - `list`. We can then use another bridges resource operation to create a holding bridge if none was found - `POST /bridges`. Using ari-client, we need to use the operation nickname - `create`.
@@ -258,7 +249,6 @@ client.bridges.list(function(err, bridges) {
  });
  }
 });
-
 ```
 
 The `GET /channels` operation returns back a an error if it occurred and a list of `Bridge` resources. `ari-client` will return a JavaScript object for each `Bridge` resource. Properties such as `bridge_type` can be accessed on the object directly.
@@ -268,7 +258,6 @@ Our next step involves adding channels that enter our Stasis application to the 
 ```javascript
 client.on('StasisStart', stasisStart);
 client.on('StasisEnd', stasisEnd);
-
 ```
 
 We need two callback functions - `stasisStart` for the `StasisStart` event and `stasisEnd` for the `StasisEnd` event:
@@ -305,14 +294,12 @@ function stasisEnd(event, channel) {
  console.log(util.format(
  'Channel %s just left our application', channel.name));
 }
-
 ```
 
 Finally, we need to tell the `client` to start our application. Once we call `client.start`, a websocket connection will be established and the client will emit Node.js events as events come in through the websocket. We can use `Ctrl+C` to kill it and break the connection.
 
 ```javascript
 client.start('bridge-hold');
-
 ```
 
 ### bridge-hold.js
@@ -396,7 +383,6 @@ function clientLoaded (err, client) {
 
  client.start('bridge-hold');
 }
-
 ```
 
 ### bridge-hold.js in action
@@ -408,5 +394,4 @@ asterisk:~$ node bridge-hold.js
 Created bridge 41208316-174c-4e40-90bb-c45cca6579d4
 Channel PJSIP/alice-00000001 just entered our application, adding it to bridge 41208316-174c-4e40-90bb-c45cca6579d4
 Channel PJSIP/alice-00000001 just left our application
-
 ```

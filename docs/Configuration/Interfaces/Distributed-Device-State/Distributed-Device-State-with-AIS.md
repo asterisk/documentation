@@ -76,7 +76,6 @@ totem {
  mcastport: 5405
  }
 }
-
 ```
 
 The default mcastaddr and mcastport is probably fine. You need to change the bindnetaddr to match the address of the network interface that this node will use to communicate with other nodes in the cluster.
@@ -137,7 +136,6 @@ $ sudo ${EDITOR:-vim} /etc/asterisk/asterisk.conf
 [options]
 
 entity_id=01:23:45:67:89:ab
-
 ```
 
 Edit the Asterisk ais.conf to enable distributed events. For example, if you would like to enable distributed device state, you should add the following section to the file:
@@ -150,7 +148,6 @@ $ sudo ${EDITOR:-vim} /etc/asterisk/ais.conf
 type=event_channel
 publish_event=device_state
 subscribe_event=device_state
-
 ```
 
 For more information on the contents and available options in this configuration file, please see the sample configuration file:
@@ -219,7 +216,6 @@ The easiest way to test distributed device state is to use the DEVICE_STATE() di
 [devstate_test]
 
 exten => 1234,hint,Custom:mystate
-
 ```
 
 Now, you can test that the cluster-wide state of "Custom:mystate" is what you would expect after going to the CLI of each server and adjusting the state.

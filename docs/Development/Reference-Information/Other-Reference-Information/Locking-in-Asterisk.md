@@ -15,7 +15,6 @@ When more that one lock is involved in a given code path, there is the potential
  ------------ ------------
  Holds Lock A Holds Lock B
  Waiting for Lock B Waiting for Lock A
-
 ```
 
 In this case, there is a deadlock between threads 1 and 2. This deadlock would have been avoided if both threads had agreed that one must acquire Lock A before Lock B.
@@ -64,7 +63,6 @@ c
 unlock(pvt);
 lock(ast_channel);
 lock(pvt);
-
 ```
 
 is *not* correct for two reasons:
@@ -83,7 +81,6 @@ while (trylock(ast_channel) == FAILURE) {
  usleep(1); /* yield to other thread */
  lock(pvt);
 }
-
 ```
 
 Here the trylock() is non blocking, so we do not deadlock if the ast_channel is already locked by someone else: in this case, we try to unlock the PVT (which happens only if the PVT lock counter is 1), yield the CPU to give other threads a chance to run, and then acquire the lock again.
@@ -102,7 +99,6 @@ if (trylock(ast_channel) == FAILURE) {
  lock(ast_channel);
  lock(pvt);
 }
-
 ```
 
 which has the same issues as the while(trylock...) code, but just deadlocks instead of looping forever in case of lock counts > 1.
@@ -118,7 +114,6 @@ if (trylock(ast_channel) == FAILURE) {
  lock(pvt);
  }
 }
-
 ```
 
 The issue with unexpected unlocks remains, though.
@@ -133,7 +128,6 @@ If we are sure that we do not hold any of these locks, then the following constr
 c
 lock(MIN(chan1, chan2));
 lock(MAX(chan1, chan2));
-
 ```
 
 That type of code would follow an established locking order of always locking the channel that has a lower address first. Also keep in mind  
@@ -181,7 +175,6 @@ foo(/* .. */) {
  unlock(xyz);
  return ret;
 }
-
 ```
 
 and call them according to the needs.

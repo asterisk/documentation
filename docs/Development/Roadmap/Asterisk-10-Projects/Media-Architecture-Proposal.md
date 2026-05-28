@@ -137,7 +137,6 @@ uint64_t ast_format_to_iax2(struct ast_format *format);
  * \retval on failure, NULL
  */
 struct ast_format *ast_format_from_iax2(uint64_t src, struct ast_format *dst);
-
 ```
 
 ## Introducing the Format Attribute Structure
@@ -192,7 +191,6 @@ int ast_format_attr_reg_interface(struct ast_format_attr_interface *interface);
  * \retval -1 failure
  */
 int ast_format_attr_unreg_interface(struct ast_format_attr_interface *interface);
-
 ```
 
 ## The New Format Unique Identifier
@@ -220,7 +218,6 @@ Since the number of formats that can be represented will likely never be exhaust
 #define AST_FORMAT_VIDEO_MASK ((((1ULL << 25)-1) & ~(AST_FORMAT_AUDIO_MASK)) | 0x7FFF000000000000ULL)
 #define AST_FORMAT_H263_PLUS (1ULL << 20)
 #define AST_FORMAT_MP4_VIDEO (1ULL << 22)
-
 ```
 ```
 /*NEW */
@@ -247,7 +244,6 @@ enum ast_format_id {
 
 /* Determine what category a format type is i */
 #define AST_FORMAT_GET_TYPE(format) (((unsigned int) (format->uid / AST_FORMAT_INC)) * AST_FORMAT_INC)
-
 ```
 ## New Format Representation Code Examples and Use cases.
 
@@ -259,13 +255,11 @@ Example 1: One to one mapping of old format_t usage with ast_format structure an
  /* OLD: Media formats are represented by a bit in the format_t bit field */
  format_t read_format;
  read_format = AST_FORMAT_ULAW;
-
 ```
 ```
  /* NEW: Media formats are represented using the ast_format struct and are stored in an ast_cap object */
  struct ast_format read_format;
  ast_format_set(&read, AST_FORMAT_ULAW);
-
 ```
 
 Example 2: Set an optional format attribute structure for a SILK ast_format structure capable of a dynamic sample rate.
@@ -278,7 +272,6 @@ ast_format_set(&read, AST_FORMAT_SILK,
  AST_FORMAT_SILK_RATE, 12000,
  AST_FORMAT_SILK_RATE, 8000,
  AST_FORMAT_END);
-
 ```
 
 Example 3: Set the sample rate of SILK ast_frame representing the sample rate of the frame's payload. Then compare the format of the ast_frame with a read format determine if translation is required.
@@ -305,7 +298,6 @@ if ((ast_format_cmp(&read_format, frame->subclass.format) < 0)) {
  /* Frame's format is either identical or a subset of the read_format
  * requiring no translation path */
 }
-
 ```
 
 Example 4. Determine if a format is of type audio.
@@ -316,7 +308,6 @@ format_t format = AST_FORMAT_ULAW;
 if (format & AST_FORMAT_AUDO_MASK) {
  /* this is of type audi */
 }
-
 ```
 ```
 /*NEW */
@@ -325,7 +316,6 @@ ast_format_set(&format, AST_FORMAT_ULAW);
 if (AST_FORMAT_GET_TYPE(&format) == AST_FORMAT_TYPE_AUDIO) {
  /* this is of type audi */
 }
-
 ```
 
 Example 5: Media format seamlessly changes parameters midstream.
@@ -361,7 +351,6 @@ capabilities |= AST_FORMAT_GSM;
  * attribute to be associated with it.
  * capabilities |= AST_FORMAT_SILK;
  */
-
 ```
 ```
 /* ---NEW: Media formats are represented using the ast_format struct and are stored in an ast_cap object. */
@@ -378,7 +367,6 @@ ast_format_set(&tmp, AST_FORMAT_SILK,
  AST_FORMAT_SILK_CAP_RATE, 8000,
  AST_FORMAT_ATTR_END);
 ast_cap_add(capabilties, &tmp);
-
 ```
 
 Example 2: Find joint capabilities between a peer and remote endpoint.
@@ -398,7 +386,6 @@ peer->capability |= (AST_FORMAT_ULAW | AST_FORMAT_GSM);
  * jointcapabilities will be ULAW
  */
 jointcapabilties = peer->capability & remote_capability
-
 ```
 ```
 /*---NEW: Peer and remote capabilities are ast_cap objects. */
@@ -441,7 +428,6 @@ ast_cap_add(peer->capabilties, &tmp);
  * attributes must implement and register with the core.
  */
 jointcapabilities = ast_cap_joint(peer->capability, remote_capability);
-
 ```
 
 Example 3: Separate audio, video, and text capabilities.
@@ -451,14 +437,12 @@ Example 3: Separate audio, video, and text capabilities.
 format_t video_capabilities = capabilities & AST_FORMAT_VIDEO_MASK;
 format_t audio_capabilities = capabilities & AST_FORMAT_AUDIO_MASK;
 format_t text_capabilities = capabilities & AST_FORMAT_TEXT_MASK;
-
 ```
 ```
 /*---NEW: Separate media types are returned on a new capabilities structure using ast_cap_get_type() */
 struct ast_cap *video = ast_cap_get_type(capabilities, AST_FORMAT_TYPE_AUDIO);
 struct ast_cap *voice = ast_cap_get_type(capabilities, AST_FORMAT_TYPE_VIDEO);
 struct ast_cap *text = ast_cap_get_type(capabilities, AST_FORMAT_TYPE_TEXT);
-
 ```
 ## Ast Format Capability API Defined
 
@@ -574,7 +558,6 @@ uint64_t ast_cap_to_iax2(struct ast_cap *cap);
  * \note This is only to be used for IAX2 compatibility 
  */
 void ast_cap_from_iax2(uint64_t src, struct ast_cap *dst);
-
 ```
 
 # IAX2 Ast Format API Compatibility
@@ -627,7 +610,6 @@ Table Terms
 960 [lossy -> lossless] down sample
 975 [lossy -> lossy] down sample
 985 [lossy -> Unknown] Unknown sample
-
 ```
 
 ### Translation Path Examples
@@ -636,7 +618,6 @@ Table Terms
 ```
 [g722->slin16->slin->ulaw] 900+850+600 = 2350
 [g722->slin->ulaw] 960+600 = 1560 wins
-
 ```
 
 \*Example 2:\* Direct lossy to loss translation using ulaw to alaw. Notice how the direct path between uLaw and aLaw beats using the intermediary slin step.
@@ -644,7 +625,6 @@ Table Terms
 ```
 [ulaw->slin->alaw] 900+600 = 1500
 [ulaw->alaw] 945 = 945 wins
-
 ```
 
 \*Example 3:\* Complex resampling of siren14 to siren7 using g722 as an intermediary step. Notice how downsamping all the way to 8khz signed linear loses to the path that only requires downsampling to 16khz signed linear.
@@ -652,7 +632,6 @@ Table Terms
 ```
 [siren14->slin->g722->slin16->siren7] 960+825+900+600 = 3285
 [siren14->slin16->g722->slin16->siren7] 960+600+900+600 = 3060 wins
-
 ```
 
 \*Example 4:\* Complex resampling using siren14 to a fake 32khz lossy codec. Notice how siren14->slin16 has a 830 cost while siren14-slin8 has 831. This allows translations within the same category to be weighted against each other to produce the best quality.
@@ -660,7 +639,6 @@ Table Terms
 ```
 [siren14->slin->Fake 32khz lossy Codec] 961+825 = 1786
 [siren14->slin16->Fake 32khz lossy Codec] 960+825 = 1785 wins
-
 ```
 
 ### Translator Costs Defined. 
@@ -735,7 +713,6 @@ enum ast_trans_cost_table {
  AST_TRANS_COST_LY_UNKNOWN = 985000,
 
 };
-
 ```
 
 ### Creation of Translation Path Matrix
@@ -752,7 +729,6 @@ FloydWarshall ()
  for i := 1 to n
  for j := 1 to n
  path[i][j] = min (path[i][j], path[i][k]+path[k][j]);
-
 ```
 
 ## Translator Redundancy and Failover
@@ -801,7 +777,6 @@ static int load_module(void)
 
  return AST_MODULE_LOAD_SUCCESS;
 }
-
 ```
 
 # Handling Multiple Media Streams
@@ -872,7 +847,6 @@ enum ast_channel_stream_id {
 }
 
 As chan_sip receives individual stream payloads and creates ast_frames to pass into the core, each frame's stream id is marked with the ast_channel_stream_id it belongs to. Any channel driver or applications that gets passed an audio or video frame belonging to one of these newly defined auxiliary streams that does not support it will ignore it.
-
 ```
 
 ### Dynamic Streams
@@ -897,7 +871,6 @@ struct ast_channel_stream {
  struct ast_format rawreadformat;
  struct ast_format rawwriteformat;
 };
-
 ```
 ```
 
@@ -932,7 +905,6 @@ int ast_channel_get_native_cap(struct ast_channel *chan, enum ast_channel_stream
 int ast_channel_get_write_format(struct ast_channel *chan, enum ast_channel_stream_id id, struct ast_format *result)
 
 int ast_channel_get_read_format(struct ast_channel *chan, enum ast_channel_stream_id id, struct ast_format *result)
-
 ```
 
 ## Code Change Examples
@@ -947,24 +919,20 @@ chan->readformat = best_format;
 chan->rawreadformat = best_format;
 chan->writeformat = best_format;
 chan->rawwriteformat = best_format;
-
 ```
 ```
 ast_channel_set_native_cap(chan, AST_STREAM_DEFAULT_AUDIO, capability);
 ast_channel_init_write_format(chan, AST_STREAM_DEFAULT_AUDIO, best_format);
 ast_channel_init_read_format(chan, AST_STREAM_DEFAULT_AUDIO, best_format);
-
 ```
 
 Example 2: Setting the read format on a channel.
 
 ```
 ast_set_read_format(chan, format);
-
 ```
 ```
 ast_set_read_format(chan, AST_STREAM_DEFAULT_AUDIO, format);
-
 ```
 
 # Media Format with Attributes User Configuration
@@ -988,7 +956,6 @@ samplerates=16000,24000
 [silk_all]
 type=silk
 samplerates=8000,12000,16000,24000
-
 ```
 ```
 
@@ -998,7 +965,6 @@ type=friend
 host=dynamic
 disallow=all
 allow=silk_nb
-
 ```
 
 \*Example 2\*. H.264 is capable of negotiating a wide range of attributes. If specific attributes are to be negotiated, a custom format must be created to represent this.
@@ -1009,7 +975,6 @@ allow=silk_nb
 type=h264
 res=vga,svga
 framerate=30
-
 ```
 ```
 
@@ -1020,7 +985,6 @@ host=dynamic
 disallow=all
 allow_ulaw
 allow=h264_custom1
-
 ```
 
 Notice from these examples that both the SILK and H264 custom formats are defined using fields specific to their format. Each format will define what fields are applicable to them. If there are common fields used for several different media formats, those fields should be named in a consistent way across all the media formats that use them. Every format allowing custom media formats to be defined must be documented in codecs.conf along with all the available fields.

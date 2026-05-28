@@ -105,5 +105,4 @@ CREATE TABLE IF NOT EXISTS `sipfriends` (
  KEY `ipaddr` (`ipaddr`,`port`),
  KEY `host` (`host`,`port`)
 ) ENGINE=MyISAM;
-
 ```

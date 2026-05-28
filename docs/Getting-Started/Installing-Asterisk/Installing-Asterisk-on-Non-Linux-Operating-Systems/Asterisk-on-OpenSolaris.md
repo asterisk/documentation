@@ -49,7 +49,6 @@ Despite the above two possibilities, there is a workaround to make Asterisk comp
 ```
 
 "make LDAP_INCLUDE=-I/usr/include/openldap"
-
 ```
 
 #### Makefile layouts
@@ -77,7 +76,6 @@ ifeq ($(OSARCH),SunOS)
  ASTVARRUNDIR=/var/run/asterisk
  ASTMANDIR=/opt/asterisk/man
 else
-
 ```
 
 Note that, despite the comment, these definitions have build-time and run-time implications. Make sure you make these changes BEFORE you build!

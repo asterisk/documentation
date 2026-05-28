@@ -55,7 +55,6 @@ class Event(object):
  PLAYBACK_COMPLETE = "playback_complete"
  # Mailbox has been emptied
  MAILBOX_EMPTY = "empty"
-
 ```
 ```javascript title="event.js" linenums="1"
 var Event = {
@@ -82,7 +81,6 @@ var Event = {
  MAILBOX_EMPTY: "empty"
 }
 module.exports = Event;
-
 ```
 
 There is no hard requirement for our application that we define events as named constants, but doing so makes it easier for tools like pylint and jslint to find potential mistakes.
@@ -110,7 +108,6 @@ class StateMachine(object):
  def start(self, initial_state):
  self.current_state = initial_state
  self.current_state.enter()
-
 ```
 ```javascript title="state_machine.js" linenums="1"
 function StateMachine() {
@@ -136,7 +133,6 @@ function StateMachine() {
 }
 
 module.exports = StateMachine;
-
 ```
 
 The state machine code is pretty straightforward. The state machine has transitions added to it with the `add_transition()` method and can be started with the `start()` method. Our use of the state machine will always be to define all transitions, and then to start the state machine.

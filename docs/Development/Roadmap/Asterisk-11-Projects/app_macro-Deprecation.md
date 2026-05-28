@@ -49,7 +49,6 @@ cc_agent_policy=generic
 cc_monitor_policy=generic
 cc_callback_sub=cc_test,s,1
 callcounter=yes
-
 ```
 
 And dialplan:
@@ -66,7 +65,6 @@ exten => 1235,n,CallCompletionRequest()
 [cc_test]
 exten => s,1,NoOp(CCSS callback run for CCBS)
 exten => s,n,Return
-
 ```
 
 #### Events
@@ -114,7 +112,6 @@ exten => s,n,NoOp(Running connected line subroutine with arg1: ${ARG1} and arg2:
 exten => s,n,Set(NOPREFIX=${CONNECTEDLINE(number):-${ARG2}})
 exten => s,n,Set(CONNECTEDLINE(num,i)=${ARG1}${NOPREFIX})
 exten => s,(end),Return
-
 ```
 
 Redirecting Information
@@ -160,5 +157,4 @@ exten => s,n,NoOp(Running caller redirecting subroutine with arg1: ${ARG1} and a
 exten => s,n,Set(NOPREFIX=${REDIRECTING(to-num):-${ARG2}})
 exten => s,n,Set(REDIRECTING(to-num,i)=${ARG1}${NOPREFIX})
 exten => s,(end),Return
-
 ```

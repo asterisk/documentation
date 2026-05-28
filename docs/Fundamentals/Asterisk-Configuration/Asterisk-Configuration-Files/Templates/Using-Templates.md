@@ -19,7 +19,6 @@ setting4=value4
 
 [section-name](template-name,template-2,not-a-template)
 setting3=value3
-
 ```
 
 This works even when the section name referenced in parentheses is **not defined as a template** as in the case of the "not-a-template" section.
@@ -40,7 +39,6 @@ deny=192.168.1.1
 [test-three](test-one,test-two)
 permit=192.168.3.1
 host=charlie.example.com
-
 ```
 
 The [test-three] section will be processed as though it had been written in the following way:
@@ -55,7 +53,6 @@ host=bravo.example.com
 deny=192.168.1.1
 permit=192.168.3.1
 host=charlie.example.com
-
 ```
 
 ## chan_sip Template Example
@@ -97,5 +94,4 @@ Here is a more extensive and realistic example from the chan_sip channel driver'
 ; secret = not_very_secret
 ; [2136](public-phone,ulaw-phone)
 ; secret = not_very_secret_either
-
 ```
