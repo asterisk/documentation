@@ -15,7 +15,6 @@ If the data store is not freed by said application though, a callback to a destr
 ##### A datastore info structure
 
 ```
-
 static const struct example_datastore {
  .type = "example",
  .destroy = callback_destroy
@@ -41,7 +40,6 @@ This is a needed structure that contains information about a datastore, it's use
 Full Example:
 
 ```
-
 void callback_destroy(void *data)
 {
  ast_free(data);

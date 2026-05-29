@@ -6,7 +6,6 @@ pageid: 5243040
 If you would like to have a pre acknowledge message with option to reject the message you can use the following dialplan Macro as a base with the 'M' dial argument.
 
 ```
-
 [macro-screen]
 exten=>s,1,Wait(.25)
 exten=>s,2,Read(ACCEPT,screen-callee-options,1) 

@@ -8,7 +8,6 @@ pageid: 19008617
 Asterisk uses a standard config file format that is essentially:
 
 ```
-
 [context]
 variable=value
 ```
@@ -28,7 +27,6 @@ aco_type - A mapping between categories in a config file and user-defined object
 category - A section of a config field denoted by a bracketed name. A category named "general" might look like:
 
 ```
-
 [general]
 variable1 = value
 variable2 = value2

@@ -10,7 +10,6 @@ Asterisk is a heavily multithreaded application. It makes extensive use of locki
 When more that one lock is involved in a given code path, there is the potential for deadlocks. A deadlock occurs when a thread is stuck waiting for a resource that it will never acquire. Here is a classic example of a deadlock:
 
 ```
-
  Thread 1 Thread 2
  ------------ ------------
  Holds Lock A Holds Lock B
@@ -75,7 +74,6 @@ For this reason, just calling unlock() once does not guarantee that the lock is 
 An alternative, but still incorrect, construct is widely used in the asterisk code to try and improve the situation:
 
 ```
-
 while (trylock(ast_channel) == FAILURE) {
  unlock(pvt);
  usleep(1); /* yield to other thread */

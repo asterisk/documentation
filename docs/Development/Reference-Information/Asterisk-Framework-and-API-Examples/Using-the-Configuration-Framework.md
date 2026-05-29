@@ -50,7 +50,6 @@ Our configuration file `my_module.conf` may look something like this:
 my_module.conf  
 
 ```
-
 [general]
 foobar = True
 foo = 1
@@ -239,7 +238,6 @@ First, let's assume that our module is loaded and running with the configuration
 A Bad my_module.conf  
 
 ```
-
 [general]
 foobar = False
 foo = Oh snap I'm not an integer
@@ -255,7 +253,6 @@ Well, since the variables will most likely be parsed in the order that they appe
 Resulting Values in the Module after the Failed Load  
 
 ```
-
 foobar = False
 foo = 1
 bar = Some string value

@@ -47,7 +47,6 @@ Despite the above two possibilities, there is a workaround to make Asterisk comp
 * When running make, specify the use of the OpenLDAP headers like this:
 
 ```
-
 "make LDAP_INCLUDE=-I/usr/include/openldap"
 ```
 

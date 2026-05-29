@@ -10,7 +10,6 @@ In Asterisk 10 dialplan hints can be specified in `extensions.lua` in a manner s
 extensions.lua  
 
 ```
-
 hints = {
  default = {
  ["100"] = "SIP/100";

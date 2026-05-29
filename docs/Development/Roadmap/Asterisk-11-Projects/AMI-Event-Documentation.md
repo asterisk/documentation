@@ -46,7 +46,6 @@ Two new CLI commands have been added:
 Example output of both commands is shown below.
 
 ```
-
 *CLI> manager show events
 Events:
  -------------------- -------------------- -------------------- 
@@ -62,7 +61,6 @@ Events:
  QueueMemberRinginuse QueueMemberStatus UserEvent 
 ```
 ```
-
 *CLI> manager show event Dial
 Event: Dial
 [Synopsis]
@@ -123,7 +121,6 @@ AMI Event documentation behaves a bit differently then other Asterisk documentat
 1. Event documentation can be built directly from the macros that raise the AMI events. This includes manager_event, ast_manager_event, and ast_manager_event_multichan. Because of this, AMI event documentation is typically co-located with the macro call that raises the event. Note that in the example below, only the DialStatus field is explicitly defined; however, the generated AMI event documentation will include all fields found in the ast_manager_event call.
 
 ```
-
  /*** DOCUMENTATION
  <managerEventInstance>
  <synopsis>Raised when a dial action has ended.</synopsis>
@@ -144,7 +141,6 @@ AMI Event documentation behaves a bit differently then other Asterisk documentat
 2. Each instance of an AMI event can be documented. This is particularly useful when the same event can have different fields, e.g., Dial, PeerStatus, etc. Even if the event has the same fields across all instances, it is also useful to document why the event is raised in the <synopsis/> tag. Because each instance of an AMI event should be documented, a post-processing script aggregates the various <managerEventInstance/> XML fragments that match the same event name under a single <managerEvent/> tag. Fields that are shared across instances of the same event are combined and only need to be documented a single time. In the example below, the SubEvent field is only documented once, but the full documentation for the field will be displayed for both instances of the Dial event, as both instances of the event contain that field. In contrast to that, only the second instance of the event contains the DialStatus field; hence, only that instance will contain that field.
 
 ```
-
  /*** DOCUMENTATION
  <managerEventInstance>
  <synopsis>Raised when a dial action has started.</synopsis>
@@ -175,7 +171,6 @@ AMI Event documentation behaves a bit differently then other Asterisk documentat
 4. Because pre- and post-processing scripts are involved, some burden on having a well-formed XML fragment is lifted from the documenter. Often, the fields in an event are self-explanatory, or are documented significantly in other AMI events. When that is the case, documentation for the event may only consist of a <synopsis/> field and one or two parameters - in which case, the <syntax/> element is inferred for the parameters.
 
 ```
-
  /*** DOCUMENTATION
  <managerEventInstance>
  <synopsis>Raised when a dial action has ended.</synopsis>
@@ -205,7 +200,6 @@ XML Schema
 The following are the changes to the XML DTD schema used to validate the generated XML documentation. An example of a generated XML fragment for the Dial event is also shown below.
 
 ```
-
  <!ELEMENT managerEvent (managerEventInstance+)>
  <!ATTLIST managerEvent name CDATA #REQUIRED>
  <!ATTLIST managerEvent language CDATA #REQUIRED>
@@ -214,7 +208,6 @@ The following are the changes to the XML DTD schema used to validate the generat
  <!ATTLIST managerEventInstance class CDATA #REQUIRED>
 ```
 ```
-
 <managerEvent language="en_US" name="Dial"><managerEventInstance class="EVENT_FLAG_CALL">
  <synopsis>Raised when a dial action has started.</synopsis>
  <syntax>
@@ -262,7 +255,6 @@ Source Comments
 * Event documentation **MUST** be within a documentation comment block (shown below), regardless of its location within an implementation file.
 
 ```
-
 /*** DOCUMENTATION
 ....
     * */

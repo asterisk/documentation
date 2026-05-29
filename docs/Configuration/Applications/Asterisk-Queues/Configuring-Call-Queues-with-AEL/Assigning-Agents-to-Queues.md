@@ -10,7 +10,6 @@ Because a single agent can make themselves available to more than one queue, the
 ##### Agents Log In and Out
 
 ```
-
 context queues-loginout {
  6092 => {
  Answer(); 
@@ -31,7 +30,6 @@ context queues-loginout {
 In the above contexts, the agents dial 6092 to log into their queues, and they dial 6093 to log out of their queues. The agent is prompted for their agent number, and if they are logging in, their passcode, and then they are transferred to the proper extension in the queues-manip context. The queues-manip context does all the actual work:
 
 ```
-
 context queues-manip {
  // Raquel Squelch 
  _[IO]6121 => {
@@ -69,7 +67,6 @@ Also note that Rock will be among the first to be called in the sales-general qu
 The call to queue-success() gives some feedback to the agent as they log in and out, that the process has completed.
 
 ```
-
 macro queue-success(exten) {
  if( ${queue-announce-success} > 0 ) {
  switch(${exten:0:1}) {
@@ -89,7 +86,6 @@ macro queue-success(exten) {
 The queue-addremove macro is defined in this manner:
 
 ```
-
 macro queue-addremove(queuename,penalty,exten) {
  switch(${exten:0:1}) {
  case I: // Login 

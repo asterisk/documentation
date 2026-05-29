@@ -30,14 +30,12 @@ Using Corosync together with res_corosync allows events to be shared amongst a l
 Debian / Ubuntu
 
 ```
-
 apt-get install corosync corosync-dev
 ```
 
 Red Hat / Fedora
 
 ```
-
 yum install corosync corosynclib corosynclib-devel
 ```
 
@@ -46,21 +44,18 @@ yum install corosync corosynclib corosynclib-devel
 To create an authentication key for secure communications between your nodes you need to do this on, what will be, the active node.
 
 ```
-
 corosync-keygen
 ```
 
 This creates a key in /etc/corosync/authkey.
 
 ```
-
 asterisk_active:~# scp /etc/corosync/authkey asterisk_standby:
 ```
 
 Now, on the standby node, you'll need to stick the authkey in it's new home and fix it's permissions / ownership.
 
 ```
-
 asterisk_standby:~# mv ~/authkey /etc/corosync/authkey
 asterisk_standby:~# chown root:root /etc/corosync/authkey
 asterisk_standby:~# chmod 400 /etc/corosync/authkey
@@ -131,7 +126,6 @@ The interface section under the totem block defines the communication path(s) to
 * ###### Start Corosync
 
 ```
-
 service corosync start
 ```
 
@@ -142,7 +136,6 @@ service corosync start
 In your Asterisk source directory:
 
 ```
-
 ./configure
 make
 make install
@@ -151,7 +144,6 @@ make install
 * ###### /etc/asterisk/res_corosync.conf
 
 ```
-
 ;
 ; Sample configuration file for res_corosync.
 ;
@@ -192,7 +184,6 @@ In the general section of the res_corosync.conf file we are specifying which eve
 If everything is set up correctly, you should see this output after executing a 'corosync show members' on the Asterisk CLI.
 
 ```
-
 *CLI> corosync show members
 
 =============================================================
@@ -209,7 +200,6 @@ If everything is set up correctly, you should see this output after executing a 
 After starting Corosync and Asterisk on your second node, the 'corosync show members' output should look something like this:
 
 ```
-
 *CLI> corosync show members 
 
 =============================================================

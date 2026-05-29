@@ -18,7 +18,6 @@ Run ./configure in the root of the asterisk source directory, passing the **--wi
 For example:
 
 ```
-
 ./configure --with-hoard=/usr/src/hoard-371/src/
 ```
 

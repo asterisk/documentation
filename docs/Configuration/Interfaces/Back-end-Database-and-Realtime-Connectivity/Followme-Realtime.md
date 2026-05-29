@@ -8,7 +8,6 @@ Followme is now realtime-enabled.
 To use, you must define two backend data structures, with the following fields:
 
 ```
-
 followme:
  name Name of this followme entry. Specified when invoking the FollowMe
  application in the dialplan. This field is the only one which is
@@ -30,7 +29,6 @@ followme:
  sorry_prompt Normally, "Unable to locate party".
 ```
 ```
-
 followme_numbers:
  name Name of this followme entry. Must match the name above.
  ordinal An integer, specifying the order in which these numbers will be

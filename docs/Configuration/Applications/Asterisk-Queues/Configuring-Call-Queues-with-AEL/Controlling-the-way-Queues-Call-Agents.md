@@ -6,7 +6,6 @@ pageid: 5243037
 Notice in the above, that the commands to manipulate agents in queues have "@agents" in their arguments. This is a reference to the agents context:
 
 ```
-
 context agents { 
  // General sales queue 
  8010 => {
@@ -51,7 +50,6 @@ The 8010, 8011, and 8013 extensions are purely for transferring incoming callers
 Here is the callagent macro, note that if a person in the queue is called, but does not answer, then they are automatically removed from the queue.
 
 ```
-
 macro callagent(device,exten) {
  if( ${GROUP_COUNT(${exten}@agents)}=0 ) { 
  Set(OUTBOUND_GROUP_ONCE=${exten}@agents);

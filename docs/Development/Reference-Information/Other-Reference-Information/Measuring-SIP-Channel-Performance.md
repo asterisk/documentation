@@ -21,7 +21,6 @@ The version of sipp that I used was sipp-2.0.1; however, I have reason to believ
 On the asterisk machine, I included the following in my extensions.ael file:
 
 ```
-
 context test11
 {
  s => {
@@ -46,7 +45,6 @@ Basically, incoming SIP calls are answered, and the demo-instruct sound file is 
 The sip.conf file has this entry:
 
 ```
-
 [asterisk02]
 type=friend
 context=test11
@@ -66,7 +64,6 @@ I learned to split the testing into two modes: one for just call call processing
 Call processing power is measured with extremely short duration calls:
 
 ```
-
  ./sipp -sn uac 192.168.134.252 -s 12 -d 100 -l 256
 ```
 
@@ -77,7 +74,6 @@ Sipp starts at 10 calls/sec, and you can slowly increase the speed by hitting '\
 Simultaneous calls can be measured with very long duration calls:
 
 ```
-
 ./sipp -sn uac 192.168.134.252 -s 12 -d 100000 -l 270
 ```
 

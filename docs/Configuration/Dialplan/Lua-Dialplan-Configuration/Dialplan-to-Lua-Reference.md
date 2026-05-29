@@ -16,7 +16,6 @@ extensions.conf
 ---------------
 
 ```
-
 [users]
 exten => _1XX,1,Dial(SIP/${EXTEN})
 
@@ -29,7 +28,6 @@ extensions.lua
 --------------
 
 ```
-
 extensions = {}
 extensions.users = {}
 
@@ -51,7 +49,6 @@ extensions.conf
 ---------------
 
 ```
-
 [users]
 exten => 100,1,Noop
 exten => 100,n,Dial("SIP/100")
@@ -71,7 +68,6 @@ extensions.lua
 --------------
 
 ```
-
 extensions = {
  users = {
  [100] = function()
@@ -100,7 +96,6 @@ extensions.conf
 ---------------
 
 ```
-
 exten => 100,1,Noop
 exten => 100,n,Set(i=0)
 exten => 100,n,While($[i < 10])
@@ -114,7 +109,6 @@ extensions.lua
 --------------
 
 ```
-
 i = 0
 while i < 10 do
  app.verbose("i = " .. i)
@@ -130,7 +124,6 @@ extensions.conf
 ---------------
 
 ```
-
 exten => 100,1,Set(my_variable=my_value)
 exten => 100,n,Verbose(my_variable = ${my_variable})
 ```
@@ -141,7 +134,6 @@ extensions.lua
 --------------
 
 ```
-
 channel.my_variable = "my_value"
 app.verbose("my_variable = " .. channel.my_variable:get())
 ```
@@ -155,7 +147,6 @@ extensions.conf
 ---------------
 
 ```
-
 exten => 100,1,Dial("SIP/100",,m)
 ```
 
@@ -165,7 +156,6 @@ extensions.lua
 --------------
 
 ```
-
 app.dial("SIP/100", nil, "m")
 ```
 
@@ -180,7 +170,6 @@ extensions.conf
 ---------------
 
 ```
-
 [macro-dial]
 exten => s,1,Noop
 exten => s,n,Dial(${ARG1})
@@ -195,7 +184,6 @@ extensions.lua
 --------------
 
 ```
-
 extensions = {}
 extensions.default = {}
 
@@ -219,7 +207,6 @@ extensions.conf
 ---------------
 
 ```
-
 [default]
 exten => 100,1,Goto(102,1)
 
@@ -233,7 +220,6 @@ extensions.lua
 --------------
 
 ```
-
 extensions = {}
 extensions.default = {}
 
@@ -254,7 +240,6 @@ end
 In Asterisk 1.8, use return  
 
 ```
-
 function extension_function(c, e)
  return app.goto("default", "100", 1)
 

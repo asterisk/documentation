@@ -64,7 +64,6 @@ Now check that the configuration was applied.  From the Asterisk CLI...
 Asterisk CLI  
 
 ```
-
 *CLI> http show status
 HTTP Server Status:
 Prefix: 

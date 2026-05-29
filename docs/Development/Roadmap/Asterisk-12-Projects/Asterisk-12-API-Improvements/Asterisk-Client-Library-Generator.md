@@ -67,7 +67,6 @@ Project location and directory structure
 This project is located [on GitHub](https://github.com/asterisk/asterisk_rest_libraries). Inside asterisk_rest_libraries
 
 ```
-
 asterisk_rest_libraries
  generate_library.py
  api.py
