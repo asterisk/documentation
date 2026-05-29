@@ -38,7 +38,6 @@ The ast_format structure on an ast_frame has a slightly different behavior than 
 ## The Ast Format API
 
 ```
-
 /*! \brief This structure contains the buffer used for format attribute */
 struct ast_format_attr {
  uint8_t format_attr[AST_FORMATNEW_ATTR_SIZE];
@@ -829,7 +828,6 @@ If a channel driver is capable of negotiating more streams than can be represent
 Since Asterisk supports multiple protocols with various capabilities, all the auxiliary streams that can be used anywhere in Asterisk must be defined at compile time. This means when a channel driver is extended to make use of a new type of auxiliary stream, that stream must be defined with a stream id that uniquely represents it across the entire code base. This is the only way to keep the different types of auxiliary streams and what they are used for consistent across all modules.
 
 ```
-
 Example 1: Chan_sip is extended to make use of up to four video and audio streams per call. This sort of functionality has never been done before so six new auxiliary streams must be defined for the three new video and three new audio streams.
 
 enum ast_channel_stream_id {
@@ -873,7 +871,6 @@ struct ast_channel_stream {
 };
 ```
 ```
-
 /*! \brief stream identifier structure. Present on both ast_frame
  * and ast_channel_stream structure.
  */
@@ -958,7 +955,6 @@ type=silk
 samplerates=8000,12000,16000,24000
 ```
 ```
-
 /* Define a peer using only the narrow band custom SILK format definitio */
 [sip_peer]
 type=friend
@@ -977,7 +973,6 @@ res=vga,svga
 framerate=30
 ```
 ```
-
 /* Define a peer using the new h264_custom1 custom format type */
 [sip_peer]
 type=friend

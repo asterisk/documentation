@@ -8,7 +8,6 @@ This is an example of the most basic SLA setup. It uses the automatic dialplan g
 sla.conf:
 
 ```
-
 [line1]
 type=trunk 
 device=DAHDI/1 
@@ -38,7 +37,6 @@ device=SIP/station3
 With this configuration, the dialplan is generated automatically. The first DAHDI channel should have its context set to "line1" and the second should be set to "line2" in dahdi.conf. In sip.conf, station1, station2, and station3 should all have their context set to "sla_stations".   
 
 ```
-
 [line1] 
 exten => s,1,SLATrunk(line1) 
 

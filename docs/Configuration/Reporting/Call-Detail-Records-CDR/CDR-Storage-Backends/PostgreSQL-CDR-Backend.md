@@ -12,7 +12,6 @@ Here is a sample:
 /etc/asterisk/cdr_pgsql.conf
 
 ```
-
 ; Sample Asterisk config file for CDR logging to PostgresSQL
 [global]
 hostname=localhost 
@@ -26,7 +25,6 @@ table=cdr
 Now create a table in postgresql for your cdrs
 
 ```
-
 CREATE TABLE cdr ( 
  calldate timestamp NOT NULL , 
  clid varchar (80) NOT NULL , 
@@ -52,7 +50,6 @@ CREATE TABLE cdr (
 The following columns can also be defined:
 
 ```
-
  peeraccount varchar(20) NOT NULL
  linkedid varchar(150) NOT NULL
  sequence int NOT NULL

@@ -17,7 +17,6 @@ SIPp Scenario
 -------------
 
 ```
-
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <scenario name="UAC Register">
 
@@ -49,7 +48,6 @@ Asterisk Configuration
 Since the SIPp scenario is attempting a REGISTER request for v4-in, we must have a corresponding sip.conf configuration file defining the peer.
 
 ```
-
 [general]
 bindaddr=[::]:5060
 

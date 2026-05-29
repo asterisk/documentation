@@ -4,7 +4,6 @@ pageid: 4259957
 ---
 
 ```
-
  DIGIUM GENERAL PEERING AGREEMENT (TM)
  Version 1.0.0, September 2004
  Copyright (C) 2004 Digium, Inc.

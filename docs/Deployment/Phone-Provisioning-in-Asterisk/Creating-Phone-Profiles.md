@@ -6,7 +6,6 @@ pageid: 5243051
 A phone profile is basically a list of files that a particular group of phones needs to function. For most phone types there are files that are identical for all phones (firmware, for instance) as well as a configuration file that is specific to individual phones. res_phoneprov breaks these two groups of files into static files and dynamic files, respectively. A sample profile:
 
 ```
-
 [polycom] 
 staticdir => configs/ 
 mime_type => text/xml 

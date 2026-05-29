@@ -9,7 +9,6 @@ Load Module
 -----------
 
 ```
-
 static int load_module():
 ```
 
@@ -18,7 +17,6 @@ Module loading including tests for configuration or dependencies. This function 
 Example:
 
 ```
-
 /*!
  * \brief Load the module
  *
@@ -48,7 +46,6 @@ Unload Module
 -------------
 
 ```
-
 static int unload_module():
 ```
 
@@ -57,7 +54,6 @@ The module will soon be unloaded. If any channels are using your features, you s
 Example:
 
 ```
-
 /*!
  * \brief Unload Module
  */
@@ -76,7 +72,6 @@ Module Information
 ------------------
 
 ```
-
 AST_MODULE_INFO_STANDARD(keystr, desc);
 ... or ...
 AST_MODULE_INFO(keystr, flags_to_set, desc, load_func, unload_func, reload_func, load_pri);

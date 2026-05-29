@@ -22,7 +22,6 @@ In channel configurations, 'cc_callback_sub' should be used instead of 'cc_callb
 Assuming a SIP configuration of the following:
 
 ```
-
 [general]
 limitonpeers=yes
 udpbindaddr = 127.0.0.2
@@ -54,7 +53,6 @@ callcounter=yes
 And dialplan:
 
 ```
-
 [to-bob]
 exten => 1234,1,NoOp
 exten => 1234,n,Dial(SIP/bob)
@@ -85,7 +83,6 @@ The primary difference between the app_macro-based callbacks and the new app_sta
 Starting dialplan execution at 'test,100,1', the following is a working example of the app_stack-based CLI callback using local channels.
 
 ```
-
 [test]
 exten => 100,1,NoOp
 exten => 100,n,Set(CONNECTED_LINE_SEND_SUB=callback,s,1)
@@ -128,7 +125,6 @@ The primary difference between the app_macro-based callbacks and the new app_sta
 Starting dialplan execution at 'test,100,1', the following is a working example of the app_stack-based RI callback using local channels.
 
 ```
-
 [test]
 exten => 100,1,NoOp
 exten => 100,n,Set(REDIRECTING_SEND_SUB=callback,s,1)

@@ -17,7 +17,6 @@ Example
 =======
 
 ```
-
 [foo]
 exten => s,1,Dial(SIP/bar)
 

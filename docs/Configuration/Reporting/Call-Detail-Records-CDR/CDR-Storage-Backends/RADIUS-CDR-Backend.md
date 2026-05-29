@@ -18,14 +18,12 @@ From <http://developer.berlios.de/projects/radiusclient-ng/>
 ##### Untar the source tarball:
 
 ```
-
 root@localhost:/usr/local/src# tar xvfz radiusclient-ng-0.5.2.tar.gz 
 ```
 
 ##### Compile and install the library:
 
 ```
-
 root@localhost:/usr/local/src# cd radiusclient-ng-0.5.2
 root@localhost:/usr/local/src/radiusclient-ng-0.5.2#./configure 
 root@localhost:/usr/local/src/radiusclient-ng-0.5.2# make 
@@ -39,14 +37,12 @@ By default all the configuration files of the radiusclient library will be in /u
 File "radiusclient.conf" Open the file and find lines containing the following: 
 
 ```
-
 authserver localhost 
 ```
 
 This is the hostname or IP address of the RADIUS server used for authentication. You will have to change this unless the server is running on the same host as your Asterisk PBX. 
 
 ```
-
 acctserver localhost 
 ```
 
@@ -63,7 +59,6 @@ You need to configure a shared secret for each server you have configured in rad
 Each line contains hostname of a RADIUS server and shared secret used in communication with that server. The two values are separated by white spaces. Configure shared secrets for every RADIUS server you are going to use. 
 
 ```
-
 File "dictionary" 
 ```
 
@@ -84,7 +79,6 @@ $INCLUDE /path/to/dictionary.digium
 ##### Untar, configure, build, and install the server:
 
 ```
-
 root@localhost:/usr/local/src# tar xvfz freeradius-1.1.1.tar.gz 
 root@localhost:/usr/local/src# cd freeradius-1.1.1 
 root@localhost"/usr/local/src/freeradius-1.1.1# ./configure 
@@ -105,7 +99,6 @@ File /usr/local/etc/raddb/clients.conf contains description of RADIUS clients th
 Example: 
 
 ```
-
 client myhost { secret = mysecret shortname = foo } 
 ```
 

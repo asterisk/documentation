@@ -28,7 +28,6 @@ A channel masquerade is a fundamental yet incredibly confusing concept in Asteri
 A comment from ast_do_masquerade  
 
 ```
-
 /* XXX This operation is a bit odd. We're essentially putting the guts of
  * the clone channel into the original channel. Start by killing off the
  * original channel's backend. While the features are nice, which is the
@@ -361,7 +360,6 @@ Bridge channel hooks can move the bridge channel between bridges. This would be 
 A way to implement the toggle between A and C parties is to have an atxfer bridge subclass. Set up the links this way:
 
 ```
-
  A -- B1 --Local@special/b -- Batxfer1 -- B -- Batxfer2 -- Local@special/b -- B2 -- C
 ```
 
@@ -489,7 +487,6 @@ Bridge technologies are an embedded object of the abstract bridge class.
 Park, Queue, ConfBridge could be derivative classes of the abstract bridge class.
 
 ```
-
 class ast_bridge {
  join(struct ast_channel *chan);
  depart(struct ast_channel *chan);
@@ -528,7 +525,6 @@ class ast_bridge_channel {
 #### Locking precedence order:
 
 ```
-
  bridges ao2_container
  |
  ast_bridge
@@ -687,7 +683,6 @@ channel private
 #### CLI commands:
 
 ```
-
 bridge show all
  List all current bridges by bridge-id and number of channels in the bridge.
 

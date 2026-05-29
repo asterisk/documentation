@@ -12,7 +12,6 @@ Here is a sample:
 /etc/asterisk/cel_pgsql.conf
 
 ```
-
 ; Sample Asterisk config file for CEL logging to PostgresSQL 
 [global] 
 hostname=localhost 
@@ -26,7 +25,6 @@ table=cel
 Now create a table in postgresql for your cels 
 
 ```
-
 CREATE TABLE cel (
  id serial , 
  eventtype varchar (30) NOT NULL ,

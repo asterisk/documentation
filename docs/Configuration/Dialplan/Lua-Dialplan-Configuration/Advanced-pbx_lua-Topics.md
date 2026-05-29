@@ -15,7 +15,6 @@ The `extensions.lua` file is loaded into memory once when the pbx_lua module is 
 This is probably a bad idea.  
 
 ```
-
 -- my fancy extensions.lua
 
 extensions = {}
@@ -37,7 +36,6 @@ The `extensions` Table
 The `extensions` table is a standard lua table and can be defined however you like. The pbx_lua module loads and sorts the table when it is needed. The keys in the table are context names and each value is another lua table containing extensions. Each key in the context table is an extension name and each value is an extension function.
 
 ```
-
 extensions = {
  context_table = {
  extension1 = function()
@@ -74,7 +72,6 @@ Apps, Functions, and Variables
 channel variable: var is the placeholder object  
 
 ```
-
 var = channel.my_variable
 var:set("my value")
 value = var:get("my value")
@@ -85,7 +82,6 @@ value = var:get("my value")
 dialplan function: fax_modems is the placeholder object  
 
 ```
-
 fax_modems = channel.FAXOPT("module")
 
 -- the function arguments are stored in the placeholder
@@ -99,7 +95,6 @@ value = fax_modems:get()
 dialplan application: dial is the placeholder object  
 
 ```
-
 dial = app.dial
 
 -- the only thing we can do with it is execute it

@@ -30,7 +30,6 @@ Using multiple line on Unistim phones was on of the most desired functions users
 Phone with two lines defined  
 
 ```
-
 [violet]
 device=006038abcdef
 callerid = "Violet" <660100> ; Individual callerid used for each line 

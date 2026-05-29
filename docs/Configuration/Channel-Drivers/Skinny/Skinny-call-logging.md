@@ -12,7 +12,6 @@ If a call is not placed to a channel they will not be recorded in the log. eg a 
 Example (This will produce a logged call):
 
 ```
-
 exten => 100,1,NoOp
 exten => 100,n,Progress
 exten => 100,n,Ringing
@@ -22,7 +21,6 @@ exten => 100,n,VoicemailMain(${CALLERID(num)@mycontext,s)
 Example (This will not):
 
 ```
-
 exten => 100,1,NoOp
 exten => 100,n,VoicemailMain(${CALLERID(num)@mycontext,s)
 ```

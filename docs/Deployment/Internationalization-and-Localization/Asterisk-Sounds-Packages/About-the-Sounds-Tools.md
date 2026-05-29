@@ -14,7 +14,6 @@ The audiofilter application is used to "tune" the sound files in such a way that
 The audiofilter application is used by the 'converter' script located in the scripts subdirectory of repotools/sound_tools. The values being passed to the audiofilter application is as follows:
 
 ```
-
 audiofilter -n 0.86916 -1.73829 0.86916 -d 1.00000 -1.74152 0.77536
 ```
 
