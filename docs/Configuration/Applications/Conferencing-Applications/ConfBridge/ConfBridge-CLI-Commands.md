@@ -192,7 +192,7 @@ awesomeusers
 default_user
 ```
 
-`confbirdge show profile user <user>`
+`confbridge show profile user <user>`
 -----------------------------------
 
 Shows a detailed listing of a named Bridge Profile, e.g.:
