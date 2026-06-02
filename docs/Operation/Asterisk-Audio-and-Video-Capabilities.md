@@ -35,11 +35,7 @@ We'll provide two examples, but you should look at the documentation for the cha
 
 ### Configuring allowed media for a PJSIP endpoint
 
----
-
-pjsip.conf  
-
-```
+```title="pjsip.conf"
 [CATHY]
 type=endpoint
 context=from-internal
@@ -57,12 +53,8 @@ See the section [Configuring res_pjsip](/Configuration/Channel-Drivers/SIP/Confi
 
 ### Configuring app_voicemail file formats for recordings
 
----
-
-voicemail.conf  
-
-```
- [general]
+```title="voicemail.conf"
+[general]
 format=wav49,wav,gsm
 ```
 
@@ -89,29 +81,29 @@ Audio Support
 
 A variety of audio capabilities are supported by Asterisk.
 
-| Name | Config Value | Capability:(P)assthrough | CODEC Module | Format Module | Distributed w/ Asterisk? | Commercial License |
-| --- | --- | --- | --- | --- | --- | --- |
-| ADPCM | adpcm | T | codec_adpcm | format_vox | YES | NO |
-| G.711 A-law | alaw | T | codec_alaw | format_pcm | YES | NO |
-| G.711 µ-law | ulaw | T | codec_ulaw | format_pcm | YES | NO |
-| G.719 | g719 | P | n/a | format_g719 | YES | NO |
-| G.722 | g722 | T | codec_g722 | format_pcm | YES | NO |
-| G.722.1 Siren7 | siren7 | T | codec_siren7 | format_siren7 | Codec(NO) Format(YES) | NO |
-| G.722.1C Siren14 | siren14 | T | codec_siren14 | format_siren14 | Codec(NO) Format(YES) | NO |
-| G.723.1 | g723 | T | codec_g723 | format_g723 | Codec(NO) Format(YES) | YES(hardware required) |
-| G.726 | g726 | T | codec_g726 | format_g726 | YES | NO |
-| G.726 AAL2 | g726aal2 | T | codec_g726 | format_g726 | YES | NO |
-| G.729A | g729 | T | codec_g729a | format_g729 | Codec(NO) Format(YES) | YES |
-| GSM | gsm | T | codec_gsm | format_gsm | YES | NO |
-| ILBC | ilbc | T | codec_ilbc | format_ilbc | YES | NO |
-| LPC-10 | lpc10 | T | codec_lpc10 | n/a | YES | NO |
-| SILK | silk | T | codec_silk | n/a | Codec(NO) Format(YES) | NO |
-| Speex | speex | T | codec_speex | n/a | YES | NO |
-| Signed Linear PCM | slin | T | codec_resample | format_sln | YES | NO |
-| Ogg Vorbis | n/a | n/a | n/a | format_ogg_vorbis | Codec(NO) Format(YES) | NO |
-| Opus | opus | T | codec_opus | n/a | Codec(NO) Format(YES) | NO |
-| wav (SLIN) | wav | T | n/a | format_wav | YES | NO |
-| WAV (GSM) | wav49 | T | n/a | format_wav_gsm | YES | NO |
+| Name              | Config Value | Capability:(P)assthrough | CODEC Module   | Format Module     | Distributed w/ Asterisk? | Commercial License     |
+|-------------------|--------------|--------------------------|----------------|-------------------|--------------------------|------------------------|
+| ADPCM             | adpcm        | T                        | codec_adpcm    | format_vox        | YES                      | NO                     |
+| G.711 A-law       | alaw         | T                        | codec_alaw     | format_pcm        | YES                      | NO                     |
+| G.711 µ-law       | ulaw         | T                        | codec_ulaw     | format_pcm        | YES                      | NO                     |
+| G.719             | g719         | P                        | n/a            | format_g719       | YES                      | NO                     |
+| G.722             | g722         | T                        | codec_g722     | format_pcm        | YES                      | NO                     |
+| G.722.1 Siren7    | siren7       | T                        | codec_siren7   | format_siren7     | Codec(NO) Format(YES)    | NO                     |
+| G.722.1C Siren14  | siren14      | T                        | codec_siren14  | format_siren14    | Codec(NO) Format(YES)    | NO                     |
+| G.723.1           | g723         | T                        | codec_g723     | format_g723       | Codec(NO) Format(YES)    | YES(hardware required) |
+| G.726             | g726         | T                        | codec_g726     | format_g726       | YES                      | NO                     |
+| G.726 AAL2        | g726aal2     | T                        | codec_g726     | format_g726       | YES                      | NO                     |
+| G.729A            | g729         | T                        | codec_g729a    | format_g729       | Codec(NO) Format(YES)    | YES                    |
+| GSM               | gsm          | T                        | codec_gsm      | format_gsm        | YES                      | NO                     |
+| ILBC              | ilbc         | T                        | codec_ilbc     | format_ilbc       | YES                      | NO                     |
+| LPC-10            | lpc10        | T                        | codec_lpc10    | n/a               | YES                      | NO                     |
+| SILK              | silk         | T                        | codec_silk     | n/a               | Codec(NO) Format(YES)    | NO                     |
+| Speex             | speex        | T                        | codec_speex    | n/a               | YES                      | NO                     |
+| Signed Linear PCM | slin         | T                        | codec_resample | format_sln        | YES                      | NO                     |
+| Ogg Vorbis        | n/a          | n/a                      | n/a            | format_ogg_vorbis | Codec(NO) Format(YES)    | NO                     |
+| Opus              | opus         | T                        | codec_opus     | n/a               | Codec(NO) Format(YES)    | NO                     |
+| wav (SLIN)        | wav          | T                        | n/a            | format_wav        | YES                      | NO                     |
+| WAV (GSM)         | wav49        | T                        | n/a            | format_wav_gsm    | YES                      | NO                     |
 
 Speex Support
 -------------
@@ -124,41 +116,43 @@ Signed Linear PCM
 Asterisk can resample between several different sampling rates and can read/write raw 16-bit signed linear audio files from/to disk. The complete list of supported sampling rates and file format is found in the expansion link below:
 
 | Sampling Rate | Asterisk File format |
-| --- | --- |
-| 8kHz | .sln |
-| 12kHz | .sln12 |
-| 16kHz | .sln16 |
-| 24kHz | .sln24 |
-| 32kHz | .sln32 |
-| 44.1kHz | .sln44 |
-| 48kHz | .sln48 |
-| 96kHz | .sln96 |
-| 192kHz | .sln192 |
+|---------------|----------------------|
+| 8kHz          | .sln                 |
+| 12kHz         | .sln12               |
+| 16kHz         | .sln16               |
+| 24kHz         | .sln24               |
+| 32kHz         | .sln32               |
+| 44.1kHz       | .sln44               |
+| 48kHz         | .sln48               |
+| 96kHz         | .sln96               |
+| 192kHz        | .sln192              |
 
-!!! tip 
-    Users can create 16-bit Signed Linear files of varying sampling rates from WAV files using the sox command-line audio utility.
-[//]: # (end-tip)
+/// tip
+Users can create 16-bit Signed Linear files of varying sampling rates
+from WAV files using the `sox` command-line audio utility.
 
 ```
 sox input.wav -t raw -b 16 -r 32000 output.sln
-mv output.sln output.sln32  
-
----
-
-In this example, an input WAV file has been converted to Signed Linear at a depth of 16-bits and at a rate of 32kHz. The resulting output.sln file is then renamed output.sln32 so that it can be processed correctly by Asterisk.
+mv output.sln output.sln32
 ```
+
+In this example, an input WAV file has been converted to Signed Linear
+at a depth of 16-bits and at a rate of 32kHz. The resulting output.sln
+file is then renamed output.sln32 so that it can be processed
+correctly by Asterisk.
+///
 
 Video and Image Support
 =======================
 
 You'll notice the CODEC module column is missing. Video transcoding or image transcoding is not currently supported.
 
-| Name | Config Value | Capability:(P)assthrough | Format Module | Distributed w/ Asterisk |
-| --- | --- | --- | --- | --- |
-| JPEG | jpeg | P | format_jpeg | YES |
-| H.261 | h261 | P | n/a | YES |
-| H.263 | h263 | P | format_h263 | YES |
-| H.263+ | h263p | P | format_h263 | YES |
-| H.264 | h264 | P | format_h264 | YES |
-| VP8 | vp8 | P | n/a | YES |
-| VP9 | vp9 | P | n/a | YES |
+| Name   | Config Value | Capability:(P)assthrough | Format Module | Distributed w/ Asterisk |
+|--------|--------------|--------------------------|---------------|-------------------------|
+| JPEG   | jpeg         | P                        | format_jpeg   | YES                     |
+| H.261  | h261         | P                        | n/a           | YES                     |
+| H.263  | h263         | P                        | format_h263   | YES                     |
+| H.263+ | h263p        | P                        | format_h263   | YES                     |
+| H.264  | h264         | P                        | format_h264   | YES                     |
+| VP8    | vp8          | P                        | n/a           | YES                     |
+| VP9    | vp9          | P                        | n/a           | YES                     |

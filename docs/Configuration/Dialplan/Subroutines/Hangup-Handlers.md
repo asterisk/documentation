@@ -3,29 +3,34 @@ title: Hangup Handlers
 pageid: 20189328
 ---
 
-!!! info "**  Hangup Handlers were added in **Asterisk 11"
-    ---
+/// note | Hangup Handlers were added in **Asterisk 11**
+///
 
-    Overview
-    --------
+Hangup handlers are subroutines attached to a channel that will execute when that channel hangs up. Unlike the traditional [h extension](/Deployment/Basic-PBX-Functionality/Auto-attendant-and-IVR-Menus/Handling-Special-Extensions), hangup handlers follow the channel. Thus hangup handlers are always run when a channel is hung up, regardless of where in the dialplan a channel is executing.
 
-    Hangup handlers are subroutines attached to a channel that will execute when that channel hangs up. Unlike the traditional [h extension](/Deployment/Basic-PBX-Functionality/Auto-attendant-and-IVR-Menus/Handling-Special-Extensions), hangup handlers follow the channel. Thus hangup handlers are always run when a channel is hung up, regardless of where in the dialplan a channel is executing.
+Multiple hangup handlers can be attached to a single channel. If multiple hangup handlers are attached to a channel, the hangup handlers will be executed in the order of most recently added first.
 
-    Multiple hangup handlers can be attached to a single channel. If multiple hangup handlers are attached to a channel, the hangup handlers will be executed in the order of most recently added first.
-[//]: # (end-info)
+/// note | Notes
+* Please note that when the hangup handlers execute in relation to the
+  `h` extension is not defined. They could execute before or after the
+  `h` extension.
+* Call transfers, call pickup, and call parking can result in channels
+  on both sides of a bridge containing hangup handlers.
+* Hangup handlers can be attached to any call leg using [pre-dial
+  handlers](/Configuration/Dialplan/Subroutines/Pre-Dial-Handlers).
+///
 
-**Information: NOTES** * Please note that when the hangup handlers execute in relation to the h extension is not defined. They could execute before or after the h extension.
-* Call transfers, call pickup, and call parking can result in channels on both sides of a bridge containing hangup handlers.
-* Hangup handlers can be attached to any call leg using [pre-dial handlers](/Configuration/Dialplan/Subroutines/Pre-Dial-Handlers).
-
----
-
-!!! warning WARNINGS
-    * As hangup handlers are subroutines, they must be terminated with a call to [Return](/Latest_API/API_Documentation/Dialplan_Applications/Return).
-    * Adding a hangup handler in the h extension or during a hangup handler execution is undefined behaviour.
-    * As always, hangup handlers, like the h extension, need to execute quickly because they are in the hangup sequence path of the call leg. Specific channel driver protocols like ISDN and SIP may not be able to handle excessive delays completing the hangup sequence.
-
-[//]: # (end-warning)
+/// warning | Warnings
+* As hangup handlers are subroutines, they must be terminated with a
+  call to
+  [`Return`](/Latest_API/API_Documentation/Dialplan_Applications/Return).
+* Adding a hangup handler in the `h` extension or during a hangup
+  handler execution is undefined behaviour.
+* As always, hangup handlers, like the `h` extension, need to execute
+  quickly because they are in the hangup sequence path of the call
+  leg. Specific channel driver protocols like ISDN and SIP may not be
+  able to handle excessive delays completing the hangup sequence.
+///
 
 Dialplan Applications and Functions
 -----------------------------------
@@ -127,7 +132,7 @@ CLI Commands
 
 ---
 
-Single channel  
+Single channel
 
 ```
 core show hanguphandlers <chan>
@@ -135,18 +140,18 @@ core show hanguphandlers <chan>
 
 ---
 
-Output  
+Output
 
 ```
-Channel Handler
-<chan-name> <first handler to execute>
- <second handler to execute>
- <third handler to execute>
+Channel       Handler
+<chan-name>   <first handler to execute>
+              <second handler to execute>
+              <third handler to execute>
 ```
 
 ---
 
-All channels  
+All channels
 
 ```
 core show hanguphandlers all
@@ -154,14 +159,14 @@ core show hanguphandlers all
 
 ---
 
-Output  
+Output
 
 ```
-Channel Handler
-<chan1-name> <first handler to execute>
- <second handler to execute>
- <third handler to execute>
-<chan2-name> <first handler to execute>
-<chan3-name> <first handler to execute>
- <second handler to execute>
+Channel       Handler
+<chan1-name>  <first handler to execute>
+              <second handler to execute>
+              <third handler to execute>
+<chan2-name>  <first handler to execute>
+<chan3-name>  <first handler to execute>
+              <second handler to execute>
 ```

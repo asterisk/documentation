@@ -28,22 +28,23 @@ The new chan_sip will use a third-party SIP stack. Research was done into variou
 
 As part of this work, pjproject has been pulled out of the Asterisk source tree and placed into its own Git repository. The repository is available at <git://github.com/asterisk/pjproject.git>.
 
-!!! note **  You **must
-    use the version of pjproject in the github repository. Asterisk requires the shared objects built by this version of pjproject and will not build against another version of pjproject.
+/// note
+You **must** use the version of pjproject in the github
+repository. Asterisk requires the shared objects built by this version
+of pjproject and will not build against another version of pjproject.
 
-    If you already have an old installation of pjproject, you can remove it with:
-[//]: # (end-note)
+If you already have an old installation of pjproject, you can remove
+it with:
 
 ```
-rm -f /usr/lib/libpj*.a /usr/lib/libmilenage*.a /usr/lib/pkgconfig/libpjproject.pc  
-
----
+rm -f /usr/lib/libpj*.a /usr/lib/libmilenage*.a /usr/lib/pkgconfig/libpjproject.pc
 ```
+///
 
-!!! note 
-    Alternatively, packages for CentOS 6 are available at <http://packages.asterisk.org/centos/6/current/>.
-
-[//]: # (end-note)
+/// note
+Alternatively,
+[packages for CentOS 6 are available](http://packages.asterisk.org/centos/6/current/).
+///
 
 ### Installing pjproject
 
@@ -59,12 +60,13 @@ rm -f /usr/lib/libpj*.a /usr/lib/libmilenage*.a /usr/lib/pkgconfig/libpjproject.
 # ./configure --prefix=/usr --enable-shared
 ```
 
-!!! note 
-    You may need additional configure options depending on your local system and what is already installed.
+/// note
+You may need additional configure options depending on your local
+system and what is already installed.
 
-    Commonly used options are: --with-external-speex --with-external-gsm --with-external-srtp --disable-sound --disable-resample
-
-[//]: # (end-note)
+Commonly used options are: `--with-external-speex --with-external-gsm
+--with-external-srtp --disable-sound --disable-resample`
+///
 
 3. Compile pjproject and install
 

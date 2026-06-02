@@ -8,10 +8,11 @@ Dialplan Switch Statements
 
 The **switch** statement permits a server to share the dialplan with another server. To understand when a switch would be searched for dialplan extensions you should read the [Contexts, Extensions, and Priorities](/Configuration/Dialplan/Contexts-Extensions-and-Priorities) section as it covers Dialplan search order.
 
-!!! warning 
-    Use with care: Reciprocal switch statements are not allowed (e.g. both A -> B and B -> A), and the switched server need to be on-line or else dialing can be severely delayed.
-
-[//]: # (end-warning)
+/// warning
+Use with care: Reciprocal switch statements are not allowed (e.g. both
+`A → B` and `B → A`), and the switched server needs to be online or else
+dialing can be delayed.
+///
 
 Basic switch statement
 ----------------------

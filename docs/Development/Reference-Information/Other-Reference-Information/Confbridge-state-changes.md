@@ -3,10 +3,11 @@ title: Confbridge state changes
 pageid: 21463456
 ---
 
-!!! note 
-    This page discusses confbridge state information for internal development use. This is unrelated to the device, extension or presence state concepts at the user level.
-
-[//]: # (end-note)
+/// note
+This page discusses confbridge state information for internal
+development use. This is unrelated to the device, extension or
+presence state concepts at the user level.
+///
 
 Intro
 =====

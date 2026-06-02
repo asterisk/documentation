@@ -45,10 +45,14 @@ A good example of an SDP handler in Asterisk code is in the file `res/res_sip_sd
 
 For an in-depth tutorial on writing an SDP handler, see the page at TBD.
 
-!!! note 
-    While SDP extensibility is built into the SIP code, you likely will not find much use for it in Asterisk 12. The reason for this is that the core of Asterisk is not built in such a way as to handle arbitrary media types or multiple streams of the same type. So while we have the support ready in SIP, the core of Asterisk will first need an overhaul before any really cool SDP handlers can be written.
-
-[//]: # (end-note)
+/// note
+While SDP extensibility is built into the SIP code, you likely will
+not find much use for it in Asterisk 12. The reason for this is that
+the core of Asterisk is not built in such a way as to handle arbitrary
+media types or multiple streams of the same type. So while we have the
+support ready in SIP, the core of Asterisk will first need an overhaul
+before any really cool SDP handlers can be written.
+///
 
 SIP subscription handler
 ========================
@@ -61,10 +65,10 @@ A good example of a SIP subscription handler in Asterisk code is the file `res/r
 
 For an in-depth tutorial on writing a subscription handler, see the page at TBD.
 
-!!! note 
-    Subscription handlers are still in development. If you cannot find the `res/res_sip_mwi.c` file, it may be that it has not been merged yet.
-
-[//]: # (end-note)
+/// note
+Subscription handlers are still in development. If you cannot find the
+`res/res_sip_mwi.c` file, it may be that it has not been merged yet.
+///
 
 SIP Publication handler
 =======================
@@ -77,7 +81,8 @@ There are no current examples of publication handlers to look at.
 
 For an in-depth tutorial on writing a publication handler, see the page at TBD.
 
-!!! note 
-    Publication handlers are in development. If you have difficulty locating information in the source about these, then support may not have been merged yet.
-
-[//]: # (end-note)
+/// note
+Publication handlers are in development. If you have difficulty
+locating information in the source about these, then support may not
+have been merged yet.
+///

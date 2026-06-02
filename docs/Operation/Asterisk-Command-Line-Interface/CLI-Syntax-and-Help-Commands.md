@@ -14,10 +14,11 @@ For example:
 * **voicemail show users** - returns a list of app_voicemail loaded users
 * **core set debug 5** - sets the core debug to level 5 verbosity.
 
-!!! note 
-    Commands are provided by the core, or by Asterisk modules. If the component that provides the commands is not loaded, then the commands it provides won't be available.
-
-[//]: # (end-note)
+/// tip
+Commands are provided by the core, or by Asterisk modules. If the
+component that provides the commands is not loaded, then the commands
+it provides won't be available.
+///
 
 Asterisk does support command aliases. You can find information in the [Asterisk CLI Configuration](/Configuration/Core-Configuration/Asterisk-CLI-Configuration) section.
 

@@ -8,15 +8,16 @@ Overview
 
 Asterisk 15 introduced a new feature that allows you to utilize multiple streams (both audio and video) to create cool applications for things like video conferencing. Some tests were created to ensure that everything is working as intended, and this wiki page aims to document those tests as well as older ones that are still relevant to SFU (selective forwarding unit) test coverage. This will help us understand the depth of coverage we have for SFU testing and what needs to be done in the future to provide a solid foundation.
 
-!!! tip 
-    To get started with SFU testing and WebRTC, look at [WebRTC tutorial using SIPML5](/Configuration/WebRTC/WebRTC-tutorial-using-SIPML5).
+/// tip
+To get started with SFU testing and WebRTC, look at
+[WebRTC tutorial using SIPML5](/Configuration/WebRTC/WebRTC-tutorial-using-SIPML5).
+///
 
-[//]: # (end-tip)
-
-!!! note 
-    This page covers areas that are catered towards SFU coverage with streams. Other things, such as fax, will need to be investigated as well but have been left out for the purpose of this page.
-
-[//]: # (end-note)
+/// note
+This page covers areas that are catered towards SFU coverage with
+streams. Other things, such as fax, will need to be investigated as
+well but have been left out for the purpose of this page.
+///
 
 Testsuite: Pre Asterisk 15
 --------------------------

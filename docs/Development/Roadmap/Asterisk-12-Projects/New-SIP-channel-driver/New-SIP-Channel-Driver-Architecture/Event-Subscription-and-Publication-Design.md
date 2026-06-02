@@ -3,10 +3,8 @@ title: Event Subscription and Publication Design
 pageid: 22773838
 ---
 
-!!! warning 
-    This page is a work in progress. Please do not make comments on this until this warning is removed
-
-[//]: # (end-warning)
+/// warning | This page is a work in progress.
+///
 
 Asterisk's SIP implementation has a need for supporting RFC 3265's event subscription system since the original `chan_sip` had support for it.
 

@@ -3,11 +3,6 @@ title: Asterisk Dialplan Function Examples
 pageid: 36215464
 ---
 
-!!! warning 
-    UNDER CONSTRUCTION
-
-[//]: # (end-warning)
-
 Function Examples
 =================
 

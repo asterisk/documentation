@@ -22,10 +22,9 @@ Each major project being performed for a targeted release of Asterisk should hav
 
 Please use this page as a template for your projects under the [Roadmap](/Development/Roadmap./Development/Roadmap/Asterisk-12-Projects/New-SIP-channel-driver/New-SIP-Channel-Driver-Architecture/res_sip-design/Roadmap) Section.
 
-!!! note 
-    Remove this section ("Description") for your project.
-
-[//]: # (end-note)
+/// note
+Remove this section ("Description") for your project.
+///
 
 Project Overview
 ================
@@ -42,10 +41,11 @@ The purpose of this section is to provide the minimum requirements the project m
 
 If needed, break this section up into multiple subsections. Several subsection examples are provided below; feel free to use/remove these as your project dictates.
 
-!!! info ""
-    If sufficiently complex, subpages should be used to provide reference information. In particular, sufficiently large configuration schemas and detailed API descriptions may benefit from their own subpage.
-
-[//]: # (end-info)
+/// note
+If sufficiently complex, subpages should be used to provide reference
+information. In particular, sufficiently large configuration schemas
+and detailed API descriptions may benefit from their own subpage.
+///
 
 Use Cases
 ---------
@@ -80,10 +80,10 @@ Configuration
 
 #### [general]
 
-|  Parameter  |  Description  |  Type  |  Default Value  |
-| --- | --- | --- | --- |
-|  foo  |  Turns feature foo on or off  |  Boolean  |  True  |
-|  bar  |  A comma delineated list of bar items (pun intended?)  |  String  |   |
+| Parameter | Description                                          | Type    | Default Value |
+|-----------|------------------------------------------------------|---------|---------------|
+| foo       | Turns feature foo on or off                          | Boolean | True          |
+| bar       | A comma delineated list of bar items (pun intended?) | String  |               |
 
 ### RealTime schemas
 
@@ -109,12 +109,12 @@ Each test description should provide, at a minimum, the name of the test, the te
 Tests for Use Case: Bob calls Alice
 -----------------------------------
 
-|  Test  |  Level  |  Description  |
-| --- | --- | --- |
-|  sip_basic_call  |  Integration  |  Test a basic call scenario between two SIP UAs and Asterisk  |
-|  sip_uri_parse_nominal  |  Unit  |  Nominal parsing of SIP URIs  |
-|  sip_uri_parse_off_nominal  |  Unit  |  Tests that ensure that off nominal SIP URIs are handled properly  |
-|  sip_invite_request_test_nominal  |  Unit  |  Test INVITE request handling  |
+| Test                            | Level       | Description                                                      |
+|---------------------------------|-------------|------------------------------------------------------------------|
+| sip_basic_call                  | Integration | Test a basic call scenario between two SIP UAs and Asterisk      |
+| sip_uri_parse_nominal           | Unit        | Nominal parsing of SIP URIs                                      |
+| sip_uri_parse_off_nominal       | Unit        | Tests that ensure that off nominal SIP URIs are handled properly |
+| sip_invite_request_test_nominal | Unit        | Test INVITE request handling                                     |
 
 Project Planning
 ================
@@ -124,18 +124,18 @@ Provide links to the appropriate JIRA issues tracking work related to the projec
 JIRA Issues
 -----------
 
-!!! info ""
-    The configuration of Jira/Confluence still needs a few tweaks to show the issues in the macro below. --Matt
-
-[//]: # (end-info)
+/// note
+The configuration of Jira/Confluence still needs a few tweaks to show
+the issues in the macro below. --Matt
+///
 
 true
 Contributors
 ------------
 
-|  Name  |  E-mail Address  |
-| --- | --- |
-|  Matt Jordan  |  mjordan@digium.com  |
+| Name        | E-mail Address     |
+|-------------|--------------------|
+| Matt Jordan | mjordan@digium.com |
 
 Reference Information
 =====================

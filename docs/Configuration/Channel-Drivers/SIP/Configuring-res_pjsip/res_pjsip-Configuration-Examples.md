@@ -96,9 +96,10 @@ match=sip.example.com
 * We use an identify object to map all traffic from the provider's IP as traffic to that endpoint since the user portion of their From: header may vary with each call.
 * This example assumes that [sip.example.com](http://sip.example.com) resolves to 203.0.113.1
 
-!!! tip 
-    You can specify the transport type by appending it to the server_uri and client_uri parameters. e.g.:
-[//]: # (end-tip)
+/// tip
+The transport type, e.g. `tcp`, for the registration can be specified
+by appending the details to the `client_uri` and/or `server_uri`
+parameters, e.g.:
 
 ```
 [mytrunk]
@@ -106,10 +107,9 @@ type=registration
 outbound_auth=mytrunk
 server_uri=sip:sip.example.com\;transport=tcp
 client_uri=sip:1234567890@sip.example.com\;transport=tcp
-retry_interval=60  
-
----
+retry_interval=60
 ```
+///
 
 Multiple endpoints with phones registering to Asterisk, using templates
 -----------------------------------------------------------------------

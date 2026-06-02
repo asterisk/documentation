@@ -6,10 +6,9 @@ pageid: 30279239
 Project Overview
 ================
 
-!!! info ""
-    This is a draft. Please keep that in mind when commenting. Thanks!
-
-[//]: # (end-info)
+/// warning
+This is a draft. Please keep that in mind. Thanks!
+///
 
 Text to Speech is nice. If nothing else, it let's you get a demo off the ground much faster. Doing something like this in ARI:
 

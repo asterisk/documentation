@@ -3,11 +3,6 @@ title: Overview
 pageid: 27200281
 ---
 
-!!! warning 
-    Under Construction
-
-[//]: # (end-warning)
-
 Asterisk Dialplan Functions
 ===========================
 
@@ -53,7 +48,7 @@ same => n,Set(CHANNEL(tonezone)=de)
 
 A function's value can be referenced almost anywhere in dialplan where you can use an expression or reference a variable. The value can be referenced by encapsulating the call with curly braces and a leading dollar sign.
 
-```bash title=" " linenums="1"
+```
 ${FUNCTION(argument)}
 ```
 

@@ -9,11 +9,12 @@ Development in the Asterisk project follows the **Mainline** branching model of 
 
 See [Asterisk Versions](/About-the-Project/Asterisk-Versions) for the approximate dates when a given version's development is started; when beta releases are created and announced; and when a major version branch is made and the first feature release made from that branch.
 
-!!! info "**  For an excellent article on Software Configuration Management branching schemes and a description of the **Mainline"
-    branching model, see [Branching Strategies by Stephen Vance](http://www.vance.com/steve/perforce/Branching_Strategies.html)
-
-[//]: # (end-info)
-
+/// note
+For an excellent article on Software Configuration Management
+branching schemes and a description of the "Mainline" branching
+model, see
+[Branching Strategies by Stephen Vance](https://www.vance.com/steve/perforce/Branching_Strategies.html)
+///
 
 ## Major Version Branch Types
 
@@ -57,10 +58,9 @@ When a security vulnerability is reported against the Asterisk project (typicall
 
 ### Bug Fixes
 
-!!! info
-    See [Code Contribution](/Development/Policies-and-Procedures/Code-Contribution) 
-
-[//]: # (end-tip)
+/// note
+See [Code Contribution](/Development/Policies-and-Procedures/Code-Contribution)
+///
 
 ### New Features
 
@@ -73,10 +73,11 @@ New features should follow the same procedure as bug fixes however they are, sub
 
 * Any new feature proposed for an existing release branch must have suitable test coverage using either the Asterisk Test Suite, the Asterisk Unit Test Framework, or both.
 
-!!! tip 
-    Tests are always good and encouraged, especially for new features. Having tests is a mandatory requirement for new features in release branches to minimize the risk of regression.
-
-[//]: # (end-tip)
+/// tip
+Tests are always good and encouraged, especially for new
+features. Having tests is a mandatory requirement for new features in
+release branches to minimize the risk of regression.
+///
 
 * The new feature or improvement must be backwards compatible with the previous releases in those major versions. That is, users upgrading from one point release to the next should **not** be aware of any new feature or improvement unless they want to use said feature. Some things that should **not** be changed naturally follow from this:
 	+ APIs that follow semantic versioning should not receive a major version increase.
@@ -104,10 +105,13 @@ A breaking change is any that invalidates a previous configuration or changes th
 * CLI Commands and Responses
 * CDR/CEL behavior
 
-!!! warning 
-    Within a major version branch, there are times when a breaking change must be introduced - usually to fix a serious, critical bug within that branch. Or because we switched source control systems. When this occurs, the UPGRADE text file delivered with Asterisk will be updated noting the change.
-
-[//]: # (end-warning)
+/// warning
+Within a major version branch, there are times when a breaking change
+must be introduced - usually to fix a serious, critical bug within
+that branch. Or because we switched source control systems. When this
+occurs, the UPGRADE text file delivered with Asterisk will be updated
+noting the change.
+///
 
 The following items **can be changed** between minor versions in a major version branch:
 
@@ -124,7 +128,8 @@ Asterisk uses three digits in its version number sequence:
 * **Minor** - denotes a release version. These increase sequentially for each release.
 * **Patch** - denotes that the release was either a security release made from the previous release, or a release made to fix regressions or serious bugs detected in the release.
 
-!!! note 
-    Over the years, the Asterisk version numbers have changed. A lot. For anyone who has ever had to write a script that parses Asterisk version numbers, we apologize. We'll try hard not to change it again.
-
-[//]: # (end-note)
+/// note
+Over the years, the Asterisk version numbers have changed. A lot. For
+anyone who has ever had to write a script that parses Asterisk version
+numbers, we apologize. We'll try hard not to change it again.
+///

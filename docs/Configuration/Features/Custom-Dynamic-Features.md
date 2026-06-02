@@ -51,7 +51,7 @@ Here we have defined a few custom features to give you an idea of how the config
 features.conf  
 
 ```
- [applicationmap]
+[applicationmap]
 playmonkeys => #9,peer,Playback,tt-monkeys
 retrieveinfo => #8,peer,Set(ARRAY(CDR(mark),CDR(name))=${ODBC_FOO(${CALLERID(num)})})
 pauseMonitor => #1,self/callee,Pausemonitor
@@ -79,10 +79,12 @@ Example Usage:
 extensions.conf  
 
 ```
- Set(__DYNAMIC_FEATURES=playmonkeys#pauseMonitor#unpauseMonitor)
+Set(__DYNAMIC_FEATURES=playmonkeys#pauseMonitor#unpauseMonitor)
 ```
 
-!!! tip Tip: Variable Inheritance
-    The [two leading underscores](/Configuration/Dialplan/Variables/Channel-Variables/Variable-Inheritance) allow these feature settings to be set on the outbound channels, as well.  Otherwise, only the original channel will have access to these features.
-
-[//]: # (end-tip)
+/// tip | Variable Inheritance
+The [two leading underscores](/Configuration/Dialplan/Variables/Channel-Variables/Variable-Inheritance)
+allow these feature settings to be set on the outbound channels, as
+well. Otherwise, only the original channel will have access to these
+features.
+///

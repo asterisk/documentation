@@ -55,10 +55,11 @@ After each of the CREATE and GRANT commands you should see output indicating tha
 
 ## Install ODBC and the MariaDB ODBC connector
 
-!!! warning 
-    It is not recommended to use the MySQL ODBC connector due to crash issues experienced by users. These have not been experienced when using the MariaDB ODBC connector.
-
-[//]: # (end-warning)
+/// warning
+It is not recommended to use the MySQL ODBC connector due to crash
+issues experienced by users. These have not been experienced when
+using the MariaDB ODBC connector.
+///
 
 Be sure you have followed the previous sections as we presume you already have MySQL installed on your CentOS server along with a database and user for Asterisk configured. The database name should be 'asterisk' and the username should be 'asterisk'.
 
@@ -118,10 +119,11 @@ Port = 3306
 Socket = /var/lib/mysql/mysql.sock
 ```
 
-!!! note 
-    You may want to verify that mysql.sock is actually in the location specific here. It will differ on some systems depending on your configuration.
-
-[//]: # (end-note)
+/// tip
+You may want to verify that mysql.sock is actually in the location
+specific here. It will differ on some systems depending on your
+configuration.
+///
 
 ## Test the ODBC Data Source Name connection
 
@@ -135,10 +137,10 @@ So, for our purposes you would enter:
 # isql -v asterisk-connector asterisk replace_with_strong_password
 ```
 
-!!! tip 
-    It is important to use the -v flag so that if isql runs into a problem you will be alerted of any diagnostics or errors available.
-
-[//]: # (end-tip)
+/// note
+It is important to use the `-v` flag so that if isql runs into a
+problem you will be alerted of any diagnostics or errors available.
+///
 
 At this point you should get an SQL prompt. Run the following command:
 

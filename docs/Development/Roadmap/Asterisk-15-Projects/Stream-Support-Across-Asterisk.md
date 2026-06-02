@@ -8,15 +8,20 @@ Streams! We've got streams!
 
 Stream support has been merged into Asterisk as of 15. This has been done in a backwards compatible manner, allowing existing applications/APIs/components to remain untouched. Core APIs which interact with media have become a facade over the multistream support, presenting only the first media stream of each type which mirrors pre-15 behavior. Now that we have support it is time to discuss how existing functionality should be updated to take advantage of multiple streams and provide a better experience. This can thankfully be done over time. Items below are listed in order of difficulty (from least difficult to most) and also based on dependencies.
 
-!!! note 
-    The following recommendations assume that changes to APIs will prefer adding to them, and not removing or changing existing elements. Ideally anything written against them should build and behave as they do today. The same goes for dialplan functions or applications. Existing arguments should work as they do today.
+/// note
+The following recommendations assume that changes to APIs will prefer
+adding to them, and not removing or changing existing
+elements. Ideally anything written against them should build and
+behave as they do today. The same goes for dialplan functions or
+applications. Existing arguments should work as they do today.
+///
 
-[//]: # (end-note)
-
-!!! info ""
-    If you are reading this and have any questions consulting the [asterisk-dev mailing list](https://groups.io/g/asterisk-dev) or the [#asterisk-dev](/Asterisk-Community/IRC) IRC channel are the best venues for discussion.
-
-[//]: # (end-info)
+/// note
+If you are reading this and have any questions consulting the
+[asterisk-dev mailing list](https://groups.io/g/asterisk-dev) or the
+[#asterisk-dev](/Asterisk-Community/IRC) IRC channel are the best
+venues for discussion.
+///
 
 AMI Events
 ==========

@@ -149,38 +149,45 @@ exten => s,1,NoOp()
  same => n,Dial(SIP/malcolm,20)
 ```
 
-!!! note 
-    Did you know that the Google Chat client does this same thing; it waits, and then sends a DTMF 1. Really.
-
-[//]: # (end-note)
+/// note | Did you know?
+Did you know that the Google Chat client does this same thing; it
+waits, and then sends a DTMF 1. Really.
+///
 
 This example uses the "s" unmatched extension, because we're only configuring one client connection in this example.
 
-In this example, we're Waiting 1 second, answering the call, sending the DTMF "1" back to Google, and **then** dialing the call.  
+In this example, we're waiting 1 second, answering the call, sending the DTMF "1" back to Google, and **then** dialing the call.  
 
-!!! tip Using Google's voicemail** Another method for accomplishing the sending of the DTMF event is to use Dial option "D." The D option tells Asterisk to send a specified DTMF string after the called party has answered. DTMF events specified before a colon are sent to the **called** party. DTMF events specified after a colon are sent to the **calling
-    party.
+/// tip | Using Google's voicemail
+Another method for accomplishing the sending of the DTMF event is to
+use Dial option "D." The D option tells Asterisk to send a specified
+DTMF string after the called party has answered. DTMF events specified
+before a colon are sent to the **called** party. DTMF events specified
+after a colon are sent to the **calling** party.
 
-    In this example then, one does not need to actually answer the call first, though one should still wait at least a second for things, like STUN setup, to finish. This means that if the called party doesn't answer, Google will resort to sending the call to one's Google Voice voicemail box, instead of leaving it at Asterisk.
-[//]: # (end-tip)
+In this example then, one does not need to actually answer the call
+first, though one should still wait at least a second for things, like
+STUN setup, to finish. This means that if the called party doesn't
+answer, Google will resort to sending the call to one's Google Voice
+voicemail box, instead of leaving it at Asterisk.
 
 ```
 exten => s,1,Dial(SIP/malcolm,20,D(:1))
-
----
 ```
+///
 
-!!! tip Filtering Caller ID
-    The inbound CallerID from Google is going to look a bit nasty, e.g.:
-[//]: # (end-tip)
+/// tip | Filtering Caller ID
+The inbound CallerID from Google is going to look a bit nasty, e.g.:
 
 ```
 +15555551212@voice.google.com/srvres-MTAuMjE4LjIuMTk3Ojk4MzM=
+```
 
----
+Your VoIP client (SIPDroid) might not like this, so let's simplify
+that Caller ID a bit, and make it more presentable for your phone's
+display. Here's the example that we'll step through:
 
-Your VoIP client (SIPDroid) might not like this, so let's simplify that Caller ID a bit, and make it more presentable for your phone's display. Here's the example that we'll step through:
-
+```
 exten => s,1,NoOp()
  same => n,Set(crazygooglecid=${CALLERID(name)})
  same => n,Set(stripcrazysuffix=${CUT(crazygooglecid,@,1)})
@@ -188,7 +195,13 @@ exten => s,1,NoOp()
  same => n,Dial(SIP/malcolm,20,D(:1))
 ```
 
-First, we set a variable called **crazygooglecid** to be equal to the name field of the CALLERID function. Next, we use the CUT function to grab everything that's before the @ symbol, and save it in a new variable called **stripcrazysuffix.** We'll set this new variable to the CALLERID that we're going to use for our Dial. Finally, we'll actually Dial our internal destination.
+First, we set a variable called `crazygooglecid` to be equal to the
+name field of the CALLERID function. Next, we use the CUT function to
+grab everything that's before the @ symbol, and save it in a new
+variable called `stripcrazysuffix`. We'll set this new variable to
+the CALLERID that we're going to use for our Dial. Finally, we'll
+actually Dial our internal destination.
+///
 
 ### Outgoing calls
 

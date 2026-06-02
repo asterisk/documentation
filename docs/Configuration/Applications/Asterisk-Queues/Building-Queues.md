@@ -9,10 +9,10 @@ Building Queues
 Written by: Leif Madsen  
  Initial version: 2010-01-14
 
-!!! note 
-    Note that this documentation is based on Asterisk 1.6.2, and this is just one approach to creating queues and the dialplan logic. You may create a better way, and in that case, I would encourage you to submit it to the Asterisk issue tracker at <https://github.com/asterisk/asterisk/issues> for inclusion in Asterisk.
-
-[//]: # (end-note)
+/// note
+Note that this documentation is based on Asterisk 1.6.2, and this is
+just *one* approach to creating queues and the dialplan logic.
+///
 
 In this article, we'll look at setting up a pair of queues in Asterisk called 'sales' and 'support'. These queues can be logged into by queue members, and those members will also have the ability to pause and unpause themselves.
 

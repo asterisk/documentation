@@ -72,12 +72,12 @@ For our Python examples, we will rely primarily on the [ari-py](https://github.c
 2. The username of the ARI user account to connect as. In this case, we're specifying it as `asterisk`.
 3. The password for the ARI user account. In this case, that's asterisk.
 
-!!! tip 
-    Modify the connection credentials as appropriate for your server, although many examples will use these credentials.
+/// warning
+Modify the connection credentials as appropriate for your server,
+although many examples will use these credentials.
 
-    **Please don't use these credentials in production systems!**
-
-[//]: # (end-tip)
+**Please don't use these credentials in production systems!**
+///
 
 ```python
 #!/usr/bin/env python
@@ -209,12 +209,12 @@ For our JavaScript examples, we will rely primarily on the Node.js [ari-client](
 3. The password for the ARI user account. In this case, that's asterisk.
 4. A callback that will be called with an error if one occurred, followed by an instance of an ARI client.
 
-!!! tip 
-    Modify the connection credentials as appropriate for your server, although many examples will use these credentials.
+/// warning
+Modify the connection credentials as appropriate for your server,
+although many examples will use these credentials.
 
-    **Please don't use these credentials in production systems!**
-
-[//]: # (end-tip)
+**Please don't use these credentials in production systems!**
+///
 
 ```javascript
 /*jshint node:true */

@@ -3,10 +3,12 @@ title: Asterisk PJSIP Troubleshooting Guide
 pageid: 30278355
 ---
 
-!!! warning 
-    This page is currently under construction. Please refrain from commenting until this warning is removed.
+/// warning | Under Construction
+This page is currently under construction.
 
-[//]: # (end-warning)
+If you would like to help write this content, please consider
+[contributing to the documentation](/Contributing-to-the-Documentation/).
+///
 
 Overview
 ========

@@ -20,26 +20,24 @@ Configure Asterisk logging
 
 Modify the file name "debug_log_123456" to reflect your [github.com/asterisk/asterisk/issues](https://github.com/asterisk/asterisk/issues) issue number.
 
----
-
-logger.conf  
-
-```
+```text title="logger.conf"
 [logfiles]
 debug_log_123456 => notice,warning,error,debug,verbose,dtmf
 ```
 
-!!! tip Asterisk 13+
-    In Asterisk 13 and later, you can dynamically create log channels from the CLI using the `logger add channel` command. For example, to create the log file above, you would enter:
-[//]: # (end-tip)
+/// tip | Asterisk 13+
+In Asterisk 13 and later, you can dynamically create log channels from
+the CLI using the `logger add channel` command. For example, to create
+the log file above, you would enter:
 
+```text
+*CLI> logger add channel debug_log_123456 notice,warning,error,debug,verbose,dtmf
 ```
-logger add channel debug_log_123456 notice,warning,error,debug,verbose,dtmf
-```
 
-The new log channel persists until Asterisk is restarted, the logger module is reloaded, or the log files are rotated. If using this CLI command, do **not** reload/restart/rotate the log files in Step 2.
-
----
+The new log channel persists until Asterisk is restarted, the logger
+module is reloaded, or the log files are rotated. If using this CLI
+command, do **not** reload/restart/rotate the log files in Step 2.
+///
 
 Configure verbosity levels and rotate logs
 ------------------------------------------
@@ -63,14 +61,14 @@ Enable channel tech or feature specific debug
 
 **2.1.** Depending on your issue and if a protocol level trace is requested, be sure to enable logging for the channel driver or other module.
 
-| Module (version) | CLI Command |
-| --- | --- |
+| Module (version)                | CLI Command           |
+|---------------------------------|-----------------------|
 | New PJSIP driver (12 or higher) | `pjsip set logger on` |
-| SIP (1.6.0 or higher) | `sip set debug on` |
-| SIP (1.4) | `sip set debug` |
-| IAX2 (1.6.0 or higher) | `iax2 set debug on` |
-| IAX2 (1.4) | `iax2 set debug` |
-| CDR engine | `cdr set debug on` |
+| SIP (1.6.0 or higher)           | `sip set debug on`    |
+| SIP (1.4)                       | `sip set debug`       |
+| IAX2 (1.6.0 or higher)          | `iax2 set debug on`   |
+| IAX2 (1.4)                      | `iax2 set debug`      |
+| CDR engine                      | `cdr set debug on`    |
 
 Issue reproduction and clean up
 -------------------------------
@@ -100,11 +98,7 @@ IAX2 (1.4 or higher)
 
 **5.** Disable logging to the filesystem. Edit the logger.conf file and comment out or delete the line you added in step 1. Using a semi-colon as the first character on the line will comment out the line.
 
----
-
-logger.conf  
-
-```
+```text title="logger.conf"
 [logfiles]
 ;debug_log_123456 => notice,warning,error,debug,verbose,dtmf
 ```
@@ -120,12 +114,8 @@ Provide debug to the developers
 
 **6.** Upload the file located in /var/log/asterisk/debug_log_123456 to the issue tracker.
 
----
-
-**WARNING!**
+**WARNINGS!**
 ------------
 
-- Do **NOT** post the output of your file as a comment. This clutters the issue and will only result in your comment being deleted.
+- **Do not** post the output of your file as a comment. This clutters the issue and will only result in your comment being deleted.
 - Attach the file with a .txt extension to make it easy for the developers to quickly open the file without downloading.
-
----

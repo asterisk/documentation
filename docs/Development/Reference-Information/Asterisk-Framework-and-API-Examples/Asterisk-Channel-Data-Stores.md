@@ -14,7 +14,7 @@ If the data store is not freed by said application though, a callback to a destr
 
 ##### A datastore info structure
 
-```
+```c
 static const struct example_datastore {
  .type = "example",
  .destroy = callback_destroy
@@ -39,7 +39,7 @@ This is a needed structure that contains information about a datastore, it's use
 
 Full Example:
 
-```
+```c
 void callback_destroy(void *data)
 {
  ast_free(data);
@@ -51,11 +51,11 @@ datastore->data = mysillydata;
 ast_channel_datastore_add(chan, datastore);
 ```
 
-!!! note 
-    NOTE
-    Because you're passing a pointer to a function in your module, you'll want to include this in your use count. When allocated increment, when destroyed decrement.
-
-[//]: # (end-note)
+/// note
+Because you're passing a pointer to a function in your module, you'll
+want to include this in your use count. When allocated increment, when
+destroyed decrement.
+///
 
 ##### How do you remove a data store?
 

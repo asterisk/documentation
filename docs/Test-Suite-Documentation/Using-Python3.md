@@ -28,9 +28,12 @@ Install Support Packages
 
 *yappcap and starpy are now installed as part of the virtual environment via the extras.txt*
 
-!!! note 
-    The testsuite also provides an install_prereq script in the contrib/scripts directory which can be used to install the base dependencies on various distributions. If this is used then there is no need to manually install SIPp or asttest.  
-[//]: # (end-note)
+/// note
+The testsuite also provides an install_prereq script in the
+contrib/scripts directory which can be used to install the base
+dependencies on various distributions. If this is used then there is
+no need to manually install SIPp or asttest.
+///
 
 **[sipp](https://github.com/SIPp/sipp)** is a SIP simulation tool that is relied on heavily by the Testsuite.  Most distributions have up to date versions of the tool available.  If it's version 3.6.0 or greater, simple use your distro's package manager to install it and skip the rest of the sipp instructions.  Otherwise download, build and install it yourself.  You'll need to install openssl, libsrtp (or libsrtp2), libpcap, gsl (or libgsl), lksctp-tools (or libsctp1), and their associated development packages (-devel or -dev).
 
@@ -133,10 +136,12 @@ $ ./runInVenv.sh python runtests.py -l
 
 If you use the included scripts, you should not have to interact with the virtual environment directly.  This should help maintaining a separate, clean test environment.
 
-!!! tip 
-    If you want to install the Python dependencies globally on the system and not in a Python Virtual Environment you can examine the setupVenv.sh shell script to see how it executes pip to install them, and execute globally instead.
-
-[//]: # (end-tip)
+/// tip
+If you want to install the Python dependencies globally on the system
+and not in a Python Virtual Environment you can examine the
+setupVenv.sh shell script to see how it executes pip to install them,
+and execute globally instead.
+///
 
 Using a Docker Container
 ========================
@@ -187,7 +192,11 @@ $ sudo systemctl reload docker
 
 Even though we are running inside a container, we can still use the *setupVenv.sh and *runInVenv.sh** scripts because they activate and run within the same shell.
 
-!!! info "\*A note about pjsua"
-    pjsua and the test suite's phone app were used to help with more complicated SIP scenarios, mostly transfer scenarios that require registration. These can be covered via the 3pcc and ooscf features of sipp, but the complexity of the scripts in some cases is quite high. We should look at creating a separate test user agent and a standardization of scenarios long-term.
-
-[//]: # (end-info)
+/// note | A note about pjsua
+pjsua and the test suite's phone app were used to help with more
+complicated SIP scenarios, mostly transfer scenarios that require
+registration. These can be covered via the 3pcc and ooscf features of
+sipp, but the complexity of the scripts in some cases is quite
+high. We should look at creating a separate test user agent and a
+standardization of scenarios long-term.
+///

@@ -52,10 +52,10 @@ Build Time Requirements
 
 C++ requires the inclusion and initialization of the C++ run-time library. On many systems this means that the compilable unit containing the entry point for the process must be compiled with a C++ compiler and linked to the C++ run-time library. Alternatively, and only if supported, the run-time must be loaded and initialized through some other means.
 
-!!! info ""
-    Manually managing the loading and loading of a run-time library may raise issues such as race conditions during startup and shutdown.
-
-[//]: # (end-info)
+/// note
+Manually managing the loading and loading of a run-time library may
+raise issues such as race conditions during startup and shutdown.
+///
 
 Asterisk Specific Considerations
 ================================
@@ -90,10 +90,15 @@ It is worthwhile noting that C++ code libraries developed to aide in the impleme
 
 Implementing and maintaining a facade or "wrapper" around any third party library is a development, maintenance and support burden of some significance. The stability is directly dependent on the third-party library's stability and requires a special, and perhaps uncommon, amalgam (e.g problem domain, product, library, C and C++) of knowledge to implement correctly. In the case of a feature rich third party API, the effort required to wrap a useful expanse of the API may prove to be roughly equivalent to the implementation of the library itself.
 
-!!! note 
-    One consequence of this approach is that the more of a library you use, the more of a facade you need to build. If the third-party library API changes in some significant way in a major release, Asterisk must either remain on the old version, possibly maintaining it past it's EOL horizon or alter the facade to match the third-party library's changes. Either situation is against one of the principle reasons for using a third party library in the first place.
-
-[//]: # (end-note)
+/// note
+One consequence of this approach is that the more of a library you
+use, the more of a facade you need to build. If the third-party
+library API changes in some significant way in a major release,
+Asterisk must either remain on the old version, possibly maintaining
+it past it's EOL horizon or alter the facade to match the third-party
+library's changes. Either situation is against one of the principle
+reasons for using a third party library in the first place.
+///
 
 reSIProcate_C_Cpp_FacadeL
 Integration with Asterisk Specific Utility Libraries

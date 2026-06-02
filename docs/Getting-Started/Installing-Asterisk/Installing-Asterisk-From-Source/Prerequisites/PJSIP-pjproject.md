@@ -57,19 +57,27 @@ Now perform either of the following 2 steps:
 
 ## Building and Installing pjproject from Source
 
-!!! warning 
-    **Installing pjproject from source or from packages is no longer a supported configuration for Asterisk versions that contain the [bundled version of pjproject](#using-the-bundled-version-of-pjproject).** Reports of pjproject-related Asterisk issues may only be made against the bundled version. The bundled version inherits flags like DONT_OPTIMIZE and MALLOC_DEBUG from Asterisk which allows us to accurately diagnose issues across both Asterisk and pjproject.
-
-[//]: # (end-warning)
+/// warning
+Installing pjproject from source or from packages is no longer a
+supported configuration for Asterisk versions that contain the
+[bundled version of pjproject](#using-the-bundled-version-of-pjproject).
+Reports of pjproject-related Asterisk issues may only be made against
+the bundled version. The bundled version inherits flags like
+DONT_OPTIMIZE and MALLOC_DEBUG from Asterisk which allows us to
+accurately diagnose issues across both Asterisk and pjproject.
+///
 
 Despite efforts to maintain backwards compatibility, some changes to Asterisk require a particular version of pjproject (or above) to be installed. For instance, earlier releases of pjproject cannot build shared object libraries, so some changes were required in order to use it with Asterisk 12. As such, Asterisk requires a pjproject version that is the same version of pjproject that is bundled with Asterisk, or **no more than 4 versions behind**. Alternatively, you may be able to find an Asterisk compatible version of pjproject available on [github](https://github.com/asterisk/pjproject) , or - depending on your Linux distribution - available as a package.
 
 Earlier versions of pjproject downloaded from [www.pjsip.org](http://www.pjsip.org/) will **not** work with Asterisk 12 or greater.
 
-!!! warning 
-    If you have previously installed a version of pjproject, you **must** remove that version of pjproject prior to building and installing the Asterisk 12+ compatible version of pjproject. See [Uninstalling pjproject](#uninstalling-a-previous-version-of-pjproject) for more information.
-
-[//]: # (end-warning)
+/// warning
+If you have previously installed a version of pjproject, you **must**
+remove that version of pjproject prior to building and installing the
+Asterisk 12+ compatible version of pjproject. See
+[Uninstalling pjproject](#uninstalling-a-previous-version-of-pjproject)
+for more information.
+///
 
 ### Downloading pjproject
 
@@ -89,10 +97,12 @@ Additionally, Asterisk **REQUIRES** two or three options to be passed to **confi
 	+ `--prefix` - Specify root install directory for pjproject. This will be dependent on your distribution of Linux; typically this is `/usr`for most systems. The default is `/usr/local`
 	+ `--libdir` - Specify the installation location for object code libraries. This may need to be set to `/usr/lib64` for some 64-bit systems such as CentOS.
 
-!!! warning 
-    Failure to build Asterisk with shared pjproject object libraries **WILL** result in seemingly random crashes. For Asterisk to work properly with pjproject, pjproject **MUST** be built with shared object libraries.
-
-[//]: # (end-warning)
+/// warning
+Failure to build Asterisk with shared pjproject object libraries
+**will** result in seemingly random crashes. For Asterisk to work
+properly with pjproject, pjproject **must** be built with shared
+object libraries.
+///
 
 #### Compiler DEFINEs
 
@@ -196,15 +206,15 @@ pjlib/include/pj/config_site.h
 
 Other common **configure** options needed for pjproject are listed below:
 
-| Library | Configure option | Notes |
-| --- | --- | --- |
-| [libspeex](http://www.speex.org/) shared objects | `--with-external-speex` | Make sure that the library development headers are accessible from pjproject. The CFLAGS and LDFLAGS environment variables may be used to set the include/lib paths. |
-| [libsrtp](https://github.com/cisco/libsrtp) shared objects | `--with-external-srtp` | Make sure that the library development headers are accessible from pjproject. The CFLAGS and LDFLAGS environment variables may be used to set the include/lib paths. |
-| GSM codec | `--with-external-gsm` | Make sure that the library development headers are accessible from pjproject. The CFLAGS and LDFLAGS environment variables may be used to set the include/lib paths. |
-| Disable sound | `--disable-sound` | Let Asterisk perform sound manipulations. |
-| Disable resampling | `--disable-resample` | Let Asterisk perform resample operations. |
-| Disable video | `--disable-video` | Disable video support in pjproject's media libraries. This is not used by Asterisk. |
-| Disable AMR | --disable-opencore-amr | Disable AMR codec support. This is not used by Asterisk |
+| Library                                                    | Configure option         | Notes                                                                                                                                                                |
+|------------------------------------------------------------|--------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| [libspeex](http://www.speex.org/) shared objects           | `--with-external-speex`  | Make sure that the library development headers are accessible from pjproject. The CFLAGS and LDFLAGS environment variables may be used to set the include/lib paths. |
+| [libsrtp](https://github.com/cisco/libsrtp) shared objects | `--with-external-srtp`   | Make sure that the library development headers are accessible from pjproject. The CFLAGS and LDFLAGS environment variables may be used to set the include/lib paths. |
+| GSM codec                                                  | `--with-external-gsm`    | Make sure that the library development headers are accessible from pjproject. The CFLAGS and LDFLAGS environment variables may be used to set the include/lib paths. |
+| Disable sound                                              | `--disable-sound`        | Let Asterisk perform sound manipulations.                                                                                                                            |
+| Disable resampling                                         | `--disable-resample`     | Let Asterisk perform resample operations.                                                                                                                            |
+| Disable video                                              | `--disable-video`        | Disable video support in pjproject's media libraries. This is not used by Asterisk.                                                                                  |
+| Disable AMR                                                | `--disable-opencore-amr` | Disable AMR codec support. This is not used by Asterisk                                                                                                              |
 
 These are some of the more common options used to disable third party libraries in pjproject. However, other options may be needed depending on your system - see  **``configure --help``**  for a full list of configure options you can pass to pjproject.
 
@@ -266,10 +276,12 @@ Browse to the **Resource Modules** category and verify that the `res_pjsip` modu
 
 Now, build and install Asterisk as your normally would.
 
-!!! note 
-    If you need pjsua (for the testsuite, for example), then you may also need to take a look at [Installing the Asterisk Test Suite](/Test-Suite-Documentation/Installing-the-Asterisk-Test-Suite) to set that up externally as well.
-
-[//]: # (end-note)
+/// note
+If you need pjsua (for the testsuite, for example), then you may also
+need to take a look at
+[Installing the Asterisk Test Suite](/Test-Suite-Documentation/Installing-the-Asterisk-Test-Suite)
+to set that up externally as well.
+///
 
 First, if you're using Asterisk 13.8.0 or greater, consider switching to the [Bundled Version of pjproject](#using-the-bundled-version-of-pjproject)
 

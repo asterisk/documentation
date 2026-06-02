@@ -10,21 +10,17 @@ Less Clutter
 
 Instead of defining every extension inline, you can use this method to create a neater `extensions.lua` file. Since the extensions table and each context are both normal lua tables, you can treat them as such and build them piece by piece.
 
----
-
-extensions.lua  
-
-```
+```lua title="extensions.lua"
 -- this function serves as an extension function directly
 function call_user(c, user)
- app.dial("SIP/" .. user, 60)
+    app.dial("SIP/" .. user, 60)
 end
 
 -- this function returns an extension function
 function call_sales_queue(queue)
- return function(c, e)
- app.queue(queue)
- end
+    return function(c, e)
+        app.queue(queue)
+    end
 end
 
 e = {}
@@ -48,49 +44,45 @@ Less Clutter v2
 
 In this example, we use a fancy function to register extensions.
 
----
-
-extensions.lua  
-
-```
+```lua title="extensions.lua"
 function register(context, extension, func)
- if not extensions then
- extensions = {}
- end
+    if not extensions then
+        extensions = {}
+    end
 
- if not extensions[context] then
- extensions[context] = {}
- end
+    if not extensions[context] then
+        extensions[context] = {}
+    end
 
- extensions[context][extension] = func
+    extensions[context][extension] = func
 end
 
 function include(context, included_context)
- if not extensions then
- extensions = {}
- end
+    if not extensions then
+        extensions = {}
+    end
 
- if not extensions[context] then
- extensions[context] = {}
- end
+    if not extensions[context] then
+        extensions[context] = {}
+    end
 
- if not extensions[context].include then
- extensions[context].include = {}
- end
+    if not extensions[context].include then
+        extensions[context].include = {}
+    end
 
- table.insert(extensions[context].include, included_context)
+    table.insert(extensions[context].include, included_context)
 end
 
 -- this function serves as an extension function directly
 function call_user(c, user)
- app.dial("SIP/" .. user, 60)
+    app.dial("SIP/" .. user, 60)
 end
 
 -- this function returns an extension function
 function call_sales_queue(queue)
- return function(c, e)
- app.queue(queue)
- end
+    return function(c, e)
+        app.queue(queue)
+    end
 end
 
 include("default", "users")
@@ -101,7 +93,11 @@ register("users", "101", call_user)
 
 register("sales", "5000", call_sales_queue("sales1"))
 register("sales", "6000", call_sales_queue("sales2"))
-register("sales", "7000", function()
- app.queue("sales3")
-end)
+register(
+    "sales",
+    "7000",
+    function()
+        app.queue("sales3")
+    end
+)
 ```

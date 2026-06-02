@@ -5,12 +5,12 @@ that are pertinent to Asterisk. Just because you're already familiar
 with securing your Linux machine, doesn't mean you can skip this
 section.
 
-!!! danger
-
-    Please read the following important security related
-    information. Improper configuration of Asterisk could allow
-    unauthorized use of your facilities, potentially incurring
-    substantial charges.
+/// danger
+Please read the following important security related
+information. Improper configuration of Asterisk could allow
+unauthorized use of your facilities, potentially incurring substantial
+charges.
+///
 
 Asterisk security involves both network security (encryption,
 authentication) as well as dialplan security (authorization - who can

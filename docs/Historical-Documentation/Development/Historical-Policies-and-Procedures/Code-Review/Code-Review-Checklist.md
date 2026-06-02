@@ -109,10 +109,12 @@ Framework and API Usage
 
 Asterisk contains many frameworks. When possible, you should always strive to use the tools available and not re-invent your own. The following are some of the common frameworks in Asterisk, their purpose, and what they should be used for. Code should be reviewed for proper use of the appropriate frameworks.
 
-!!! tip 
-    This is not an exhaustive list, nor is it meant to be. These are merely some of the more commonly used APIs and frameworks in Asterisk. Reproducing their functionality is highly likely to be noticed and discouraged.
-
-[//]: # (end-tip)
+/// tip
+This is not an exhaustive list, nor is it meant to be. These are
+merely some of the more commonly used APIs and frameworks in
+Asterisk. Reproducing their functionality is highly likely to be
+noticed and discouraged.
+///
 
 | Framework | Principle Location | Usage |
 | --- | --- | --- |
@@ -137,14 +139,14 @@ Locking
 
 * Is the [locking order](/Development/Reference-Information/Other-Reference-Information/Locking-in-Asterisk) well understood and respected?
 
-!!! tip 
-    Common locking orders:
+/// tip
+Common locking orders:
 
-    * Channels are locked before the channel private structure
-    * Bridges are locked before bridge_channels, and bridge_channels before channels
-    * Channel locks must not be held before going into autoservice
-
-[//]: # (end-tip)
+* Channels are locked before the channel private structure
+* Bridges are locked before bridge_channels, and bridge_channels
+  before channels
+* Channel locks must not be held before going into autoservice
+///
 
 * Are locks held when accessing data that may change, and are they held when mutating an object?
 * When accessing data, are module reloads taken into account?
@@ -178,10 +180,12 @@ Immutable Objects
 * Are the semantics of the object well understood?
 * Are there properties that should not be changed on an object by convention?
 
-!!! note 
-    All objects passed as the payload in a Stasis message are immutable by convention. Some objects in the `res_pjsip` stack are immutable by convention as well. When this is the case, the doxygen documentation will note it as such.
-
-[//]: # (end-note)
+/// note
+All objects passed as the payload in a Stasis message are immutable by
+convention. Some objects in the `res_pjsip` stack are immutable by
+convention as well. When this is the case, the doxygen documentation
+will note it as such.
+///
 
 Reference Counted Objects
 -------------------------
@@ -193,10 +197,11 @@ Reference Counted Objects
 * Are the hash and comparison callbacks for an `ao2_container` [implemented correctly?](/Development/Reference-Information/Asterisk-Framework-and-API-Examples/Templates-for-ao2-hash-sort-and-callback-functions.)
 * Are all `ao2_callback` uses well understood and necessary?
 
-!!! note 
-    `ao2_callback` can be an expensive operation, as it is `O(n)` - and iterating in the `astobj2` library is not as inexpensive as a more simple linked list implementation.
-
-[//]: # (end-note)
+/// note
+`ao2_callback` can be an expensive operation, as it is `O(n)` - and
+iterating in the `astobj2` library is not as inexpensive as a more
+simple linked list implementation.
+///
 
 * Are all object locks used correctly, and are there instances when lookups can be performed with the `OBJ_NOLOCK` flag?
 * Is the reference of an object bumped when it is unlocked, and some other thread could cause it to be destroyed?

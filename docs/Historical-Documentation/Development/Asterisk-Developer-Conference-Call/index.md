@@ -5,14 +5,16 @@ title: Overview
 pageid: 11337917
 ---
 
-!!! info ""
-    Discussions about Asterisk development occur on the [asterisk-dev mailing list](http://lists.digium.com/mailman/listinfo/asterisk-dev) and the #asterisk-dev channel on irc.freenode.net.
+/// note
+Discussions about Asterisk development occur on the [asterisk-dev
+mailing list](http://lists.digium.com/mailman/listinfo/asterisk-dev)
+and the #asterisk-dev channel on Libera Chat.
 
-    At present (May, 2014), the Developer Conference Call is not held. We welcome your participation in the aforementioned list and IRC channel.
+At present (May 2014), the Developer Conference Call is not held. We
+welcome your participation in the aforementioned list and IRC channel.
 
-    This page is maintained for historical purposes only.
-
-[//]: # (end-info)
+This page is maintained for historical purposes only.
+///
 
 The Asterisk Developer Conference call is held every other Thursday.
 

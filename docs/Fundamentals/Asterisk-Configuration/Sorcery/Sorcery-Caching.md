@@ -129,10 +129,10 @@ This CLI command is used to mark an item in the cache as stale. If no object nam
 
 ### AMI
 
-!!! info ""
-    Since AMI commands are XML-documented in the source, there should be a dedicated wiki page with this information.
-
-[//]: # (end-info)
+/// note
+Since AMI commands are XML-documented in the source, there should be a
+dedicated documentation page with this information.
+///
 
 #### SorceryMemoryCacheExpireObject
 

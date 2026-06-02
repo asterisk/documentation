@@ -79,17 +79,22 @@ Now that the theory has been presented, you'll need to write your `external_repl
 
 If you do want to write an `external_replaces` extension, the first thing you want to do is determine if you want to perform the remote attended transfer.  `SIPREFERTOHDR`, and values provided by the `CHANNEL()` dialplan function can help you to decide if you want to allow the transfer. For instance, you might use `CHANNEL(endpoint)` to see which PJSIP endpoint is performing the transfer, and you can inspect `SIPREFERTOHDR` to determine if the transfer is destined for a trusted domain.
 
-!!! note 
-    Asterisk dialplan contains functions for manipulating strings. A function [Asterisk 13 Function_PJSIP_PARSE_URI](/Latest_API/API_Documentation/Dialplan_Functions/PJSIP_PARSE_URI) exists for parsing a URI within the dialplan.
-
-[//]: # (end-note)
+/// note
+Asterisk dialplan contains functions for manipulating strings. A
+function
+[PJSIP_PARSE_URI](/Latest_API/API_Documentation/Dialplan_Functions/PJSIP_PARSE_URI)
+exists for parsing a URI within the dialplan.
+///
 
 If you decide not to perform the transfer, the simplest thing to do is to call the `Hangup()` application.
 
-!!! note 
-    Calling `Hangup()` in this situation can have different effects depending on what type of phone Bob is using. Asterisk updates the phone with a notification that the attended transfer failed. It is up to the phone to decide if it wants to try to reinvite itself back into the original conversation with Alice or simply hang up.
-
-[//]: # (end-note)
+/// note
+Calling `Hangup()` in this situation can have different effects
+depending on what type of phone Bob is using. Asterisk updates the
+phone with a notification that the attended transfer failed. It is up
+to the phone to decide if it wants to try to reinvite itself back into
+the original conversation with Alice or simply hang up.
+///
 
 If you decide to perform the transfer, the most straightforward way to do this is with the `Dial()` application. Here is an example of how one might complete the transfer
 

@@ -3,10 +3,13 @@ title: cURL
 pageid: 28314908
 ---
 
-!!! note 
-    This page is under construction and may be incomplete or missing information in some areas. If you have questions, please wait until this notice is removed before asking, since it is possible your question will be answered by the time this page is completed.
+/// warning | Under Construction
+This page is under construction and may be incomplete or missing
+information in some areas.
 
-[//]: # (end-note)
+If you would like to help write this section, please consider
+[contributing to the documentation](/Contributing-to-the-Documentation/).
+///
 
 Asterisk's ability to retrieve and store data to realtime backends is most commonly associated with relational databases. One of the lesser-known realtime backends available in Asterisk is [cURL](http://curl.haxx.se/). Using this realtime backend makes Asterisk use HTTP GET and POST requests in order to retrieve data from and store data to an HTTP server.
 

@@ -3,12 +3,10 @@ title: Trade Study: Github vs. Gitlab
 pageid: 50463027
 ---
 
-!!! note 
-    The Asterisk project moved to GitHub on April 29th 2023.
-
-    https://github.com/asterisk
-
-[//]: # (end-note)
+/// note
+The Asterisk Project
+[moved to GitHub](https://github.com/asterisk) on April 29th, 2023.
+///
 
 The current Asterisk code base, and community services have been mostly self hosted and managed using various tool sets (Gerrit, Jenkins, Atlassian, etc...). While this has been fine we're always looking for ways to improve the project, and its workflows. As such the Asterisk project, and a number of its services will be moving to an internet hosted software development platform (e.g. [Github](https://github.com/) or [Gitlab](https://gitlab.com/)). Doing so offers several advantages:
 

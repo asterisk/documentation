@@ -3,10 +3,10 @@ title: Building and Installing LibPRI
 pageid: 4817517
 ---
 
-!!! note Have you installed DAHDI?**  Before you can build **libpri
-    , you'll need to [Build and Install DAHDI](/Getting-Started/Installing-Asterisk/Installing-Asterisk-From-Source/Building-and-Installing-DAHDI).
-
-[//]: # (end-note)
+/// note | Have you installed DAHDI?
+Before you can build `libpri`, you'll need to
+[Build and Install DAHDI](/Getting-Started/Installing-Asterisk/Installing-Asterisk-From-Source/Building-and-Installing-DAHDI).
+///
 
 As in the other build and install sections, we'll assume that you'll replace the letters X, Y, and Z with the actual version numbers from the tarballs you downloaded.
 

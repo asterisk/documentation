@@ -26,17 +26,17 @@ In the example above, you can see that Alice's phone has not registered, but Bob
 
 For chan_pjsip you can use **pjsip show endpoints**.
 
-!!! tip 
-    Debugging SIP Registrations
-
-    If you're having trouble getting a phone to register to Asterisk, make sure you watch the Asterisk CLI with the verbosity level set to at least three while you reboot the phone. You'll likely see error messages indicating what the problem is, like in this example:
-[//]: # (end-tip)
+/// tip | Debugging SIP Registrations
+If you're having trouble getting a phone to register to Asterisk, make
+sure you watch the Asterisk CLI with the verbosity level set to at
+least three while you reboot the phone. You'll likely see error
+messages indicating what the problem is, like in this example:
 
 ```
-NOTICE[22214]: chan_sip.c:20824 handle_request_register: Registration from '"Alice"&nbsp;
-<sip:demo-alice@192.168.5.50>' failed for '192.168.5.103' - Wrong password
-
----
-
-As you can see, Asterisk has detected that the password entered into the phone doesn't match the secret setting in the [demo-alice] section of sip.conf.
+NOTICE[22214]: chan_sip.c:20824 handle_request_register: Registration from '"Alice" <sip:demo-alice@192.168.5.50>' failed for '192.168.5.103' - Wrong password
 ```
+
+As you can see, Asterisk has detected that the password entered into
+the phone doesn't match the `secret` setting in the `[demo-alice]`
+section of `sip.conf`.
+///

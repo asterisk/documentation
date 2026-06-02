@@ -3,10 +3,17 @@ title: STIR and SHAKEN
 pageid: 44370563
 ---
 
-!!! warning 
-    STIR/Shaken from a technical perspective has improved quite a lot, so much so that some companies have been able to do interop and it does work. The problematic area is really the foundational aspects and policy side of things. It's one thing to say "oh you use private key to sign some stuff" but who issues such things? Who actually does the work of signing and verifying? Are the certificates short lived ephemeral ones? Do you have to use a proprietary API to some upstream to manage things? There's still lots to flesh out there by the industry and governments.
-
-[//]: # (end-warning)
+/// warning
+STIR/SHAKEN from a technical perspective has improved quite a lot, so
+much so that some companies have been able to do interop and it does
+work. The problematic area is really the foundational aspects and
+policy side of things. It's one thing to say "oh you use private key
+to sign some stuff" but who issues such things? Who actually does the
+work of signing and verifying? Are the certificates short lived
+ephemeral ones? Do you have to use a proprietary API to some upstream
+to manage things? There's still lots to flesh out there by the
+industry and governments.
+///
 
 Welcome to the party!
 ---------------------
@@ -26,24 +33,17 @@ Before we dive into things how about a bit of a TLDR on STIR/SHAKEN? From a pure
 Implementation
 ==============
 
-!!! note 
-    If you're actually planning to work on this here's some handy links!
+/// note
+If you're actually planning to work on this here's some handy links!
 
-    <https://tools.ietf.org/html/rfc8224>
-
-    <https://tools.ietf.org/html/rfc8225>
-
-    <https://tools.ietf.org/html/rfc8226>
-
-    <https://datatracker.ietf.org/doc/draft-ietf-stir-cert-delegation/>
-
-    <http://nanc-chair.org/docs/mtg_docs/May_18_Call_Authentication_Trust_Anchor_NANC_Final_Report.pdf>
-
-    <https://transnexus.com/whitepapers/understanding-stir-shaken/>
-
-    <https://www.telecompaper.com/news/atis-picks-iconectiv-as-policy-administrator-of-shakenstir-framework--1295009>
-
-[//]: # (end-note)
+- <https://tools.ietf.org/html/rfc8224>
+- <https://tools.ietf.org/html/rfc8225>
+- <https://tools.ietf.org/html/rfc8226>
+- <https://datatracker.ietf.org/doc/draft-ietf-stir-cert-delegation/>
+- <http://nanc-chair.org/docs/mtg_docs/May_18_Call_Authentication_Trust_Anchor_NANC_Final_Report.pdf>
+- <https://transnexus.com/whitepapers/understanding-stir-shaken/>
+- <https://www.telecompaper.com/news/atis-picks-iconectiv-as-policy-administrator-of-shakenstir-framework--1295009>
+///
 
 res_stir_shaken
 -----------------

@@ -68,10 +68,10 @@ Participants
 | Russ Meyerriecks | Digium | US |
 | Shaun Ruffell | Digium | US |
 
-!!! note 
-    If your name is not on this list, please let someone know in #asterisk-dev so we can add you to this list!
-
-[//]: # (end-note)
+/// note
+If your name is not on this list, please let someone know in
+#asterisk-dev so we can add you to this list!
+///
 
 Day One: Asterisk 12 Development Discussion
 ===========================================
@@ -80,10 +80,13 @@ Day one consisted of an in depth discussion of the features in Asterisk 12, as w
 
 * [Asterisk 12 - In Depth.odp](Asterisk-12-In-Depth.odp)
 
-!!! note 
-    It's probably worth noting that the slides were used only to help discussion and don't contain a lot of explanation. For more information on the features discussed on those slides, please see the relevant sections under [Asterisk 12 Projects](../Asterisk-12-Projects).
-
-[//]: # (end-note)
+/// note
+It's probably worth noting that the slides were used only to help
+discussion and don't contain a lot of explanation. For more
+information on the features discussed on those slides, please see the
+relevant sections under
+[Asterisk 12 Projects](../Asterisk-12-Projects).
+///
 
 Some questions and comments that came up during the discussion:
 
@@ -144,10 +147,13 @@ Some questions and comments that came up during the discussion:
 	+ Stasis is an internal message bus, but you could write wrapper over stasis to expose what you want to AMI or other API.
 * Anyone using chan_agent? silence (except JSmith).  
 
-!!! info ""
-    chan_agent is dead in Asterisk 12, replaced by [Asterisk 12 Application_AgentRequest](/Latest_API/API_Documentation/Dialplan_Applications/AgentRequest) and [Asterisk 12 Application_AgentLogin](/Latest_API/API_Documentation/Dialplan_Applications/AgentLogin). No one seemed to mind.
-
-[//]: # (end-info)
+/// note
+chan_agent is dead in Asterisk 12, replaced by
+[AgentRequest](/Latest_API/API_Documentation/Dialplan_Applications/AgentRequest)
+and
+[AgentLogin](/Latest_API/API_Documentation/Dialplan_Applications/AgentLogin).
+No one seemed to mind.
+///
 
 * Anyone still using MeetMe?
 	+ 3 or 4 in attendance admitted to using MeetMe.

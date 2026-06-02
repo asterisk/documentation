@@ -3,27 +3,30 @@ title: Pre-Dial Handlers
 pageid: 20189344
 ---
 
-!!! info "**  Pre-Dial Handlers were added in **Asterisk 11"
-    ---
+/// note | Pre-Dial Handlers were added in **Asterisk 11**
+///
 
-    Overview
-    --------
+Pre-dial handlers allow you to execute a dialplan subroutine on a channel before a call is placed but after the application performing a dial action is invoked. This means that the handlers are executed after the creation of the caller/callee channels, but before any actions have been taken to actually dial the callee channels. You can execute a dialplan subroutine on the caller channel and on each callee channel dialed.
 
-    Pre-dial handlers allow you to execute a dialplan subroutine on a channel before a call is placed but after the application performing a dial action is invoked. This means that the handlers are executed after the creation of the caller/callee channels, but before any actions have been taken to actually dial the callee channels. You can execute a dialplan subroutine on the caller channel and on each callee channel dialed.
+There are two ways in which a pre-dial handler can be invoked:
 
-    There are two ways in which a pre-dial handler can be invoked:
+* The '**B**' option in an application executes a dialplan subroutine on the caller channel before any callee channels are created.
+* The '**b**' option in an application executes a dialplan subroutine on each callee channel after it is created but before the call is placed to the end-device.
 
-    * The '**B**' option in an application executes a dialplan subroutine on the caller channel before any callee channels are created.
-    * The '**b**' option in an application executes a dialplan subroutine on each callee channel after it is created but before the call is placed to the end-device.
+Pre-dial handlers are supported in the [Dial](/Latest_API/API_Documentation/Dialplan_Applications/Dial) application and the [FollowMe](/Latest_API/API_Documentation/Dialplan_Applications/FollowMe) application.
 
-    Pre-dial handlers are supported in the [Dial](/Latest_API/API_Documentation/Dialplan_Applications/Dial) application and the [FollowMe](/Latest_API/API_Documentation/Dialplan_Applications/FollowMe) application.
-[//]: # (end-info)
+/// warning
+* As pre-dial handlers are implemented using
+  [Gosub](/Latest_API/API_Documentation/Dialplan_Applications/Gosub)
+  subroutines, they must be terminated with a call to
+  [Return](/Latest_API/API_Documentation/Dialplan_Applications/Return).
 
-**WARNING!: WARNINGS**  
-* As pre-dial handlers are implemented using [Gosub](/Latest_API/API_Documentation/Dialplan_Applications/Gosub) subroutines, they must be terminated with a call to [Return](/Latest_API/API_Documentation/Dialplan_Applications/Return).
-* Taking actions in pre-dial handlers that would put the caller/callee channels into other applications will result in undefined behaviour. Pre-dial handlers should be short routines that do not impact the state that the dialing application assumes the channel will be in.
-
----
+* Taking actions in pre-dial handlers that would put the caller/callee
+  channels into other applications will result in undefined
+  behaviour. Pre-dial handlers should be short routines that do not
+  impact the state that the dialing application assumes the channel
+  will be in.
+///
 
 Syntax
 ------
@@ -35,10 +38,8 @@ b([[context^]exten^]priority[(arg1[^...][^argN])])
 B([[context^]exten^]priority[(arg1[^...][^argN])])
 ```
 
-!!! info ""
-    If context or exten are not supplied then the current values from the caller channel are used.
-
-[//]: # (end-info)
+/// note | If context or exten are not supplied then the current values from the caller channel are used.
+///
 
 Examples
 --------

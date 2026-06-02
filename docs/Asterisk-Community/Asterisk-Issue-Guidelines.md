@@ -24,10 +24,14 @@ See the [How to request a feature section](#how-to-request-a-feature-or-improvem
 Please head to the Commercial category at <https://community.asterisk.org/>. If what you want is a specific feature or bug fixed, you may want to consider [requesting a bug bounty](/Development/Asterisk-Bug-Bounties).
 * and...
 
-!!! warning 
-    Security vulnerability issues must NEVER be reported as regular bugs in the issue tracker. Instead they must be reported at [Security Vulnerabilities](https://github.com/asterisk/asterisk/security/advisories/new). You can reach this page by navigating to <https://github.com/asterisk/asterisk> and clicking the "Security" tab at the top of the page.
-
-[//]: # (end-warning)
+/// danger
+Security vulnerability issues must **never** be reported as regular bugs
+in the issue tracker. Instead they must be reported as
+[Security Vulnerabilities](https://github.com/asterisk/asterisk/security/advisories/new).
+You can reach this page by navigating to
+[the main Asterisk repository on GitHub](https://github.com/asterisk/asterisk)
+and clicking the "Security and quality" tab at the top of the page.
+///
 
 #### Why should you read this?
 
@@ -36,11 +40,7 @@ The steps here will help you provide all the information the Asterisk team needs
 Bug Reporting Check List
 ------------------------
 
-!!! warning
-    Before filing a bug report...
-    Your issue may not be a bug or could have been fixed already. Run through the check list below to verify you have done your due diligence.
-
-[//]: # (end-warning)
+Your issue may not be a bug or could have been fixed already. Run through the check list below to verify you have done your due diligence.
 
 * **Are** **you reporting a suspected security vulnerability?**
 * **Are you are on a supported version of Asterisk?**
@@ -49,7 +49,7 @@ Bug Reporting Check List
 * **Have you asked for help in the community? (mailing lists, IRC, forums)**  
 You can locate all these services here: <http://www.asterisk.org/community>
 * **Have you searched the Asterisk documentation in case this behavior is expected?**  
-Search the [Asterisk wiki](//) for the problem or messages you are experiencing.
+Search [the documentation](/) for the problem or messages you are experiencing.
 * **Have you searched the Asterisk bug tracker to see if an issue is already filed for this potential bug?**  
 Search the [Asterisk Issue Tracker on GitHub](https://github.com/asterisk/asterisk/issues) for the issue you are seeing. You can search for issues by selecting **Issues -> Search for Issues** in the top menu bar.
 * **Can you reproduce the problem?**  

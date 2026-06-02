@@ -7,11 +7,9 @@ pageid: 21463337
 
 This wiki page describes using parts of the new Configuration Framework introduced in Asterisk 11, and the motivation behind its creation.
 
-!!! info ""
-    NOTE
-    All source code in this article is for demonstration purposes only.
-
-[//]: # (end-info)
+/// note
+All source code in this article is for demonstration purposes only.
+///
 
 ## Configuration Loading Overview
 
@@ -25,11 +23,12 @@ The act of loading and parsing configuration information from either source typi
 
 As we'll see, while performing these operations there are some common pitfalls that many modules in Asterisk fall into.
 
-!!! info ""
-    NOTE
-    We'll disregard configuration information retrieved from an Asterisk Realtime Architecture (ARA) backend, and instead assume that the configuration information is read from static Asterisk configuration files. ARA is complex enough to deserve its own set of pages.
-
-[//]: # (end-info)
+/// note
+We'll disregard configuration information retrieved from an Asterisk
+Realtime Architecture (ARA) backend, and instead assume that the
+configuration information is read from static Asterisk configuration
+files. ARA is complex enough to deserve its own set of pages.
+///
 
 Traditional Configuration Loading in Asterisk
 =============================================
@@ -63,8 +62,7 @@ my_module Resource Management
 
 A `my_module` that uses these values may look something like the following. We'll start with the basic structure, and then explore the actual loading and parsing of the configuration.
 
-```
-Cmy_module
+```c title="my_module"
 #include "asterisk.h"
 
 ASTERISK_FILE_VERSION(__FILE__, "$Revision: XXXXXX $")
@@ -147,8 +145,7 @@ That's fairly simple. So, what do we have?
 
 So, let's see what `load_configuration` might look like.
 
-```
-Cmy_module - load_configuration
+```c title="my_module - load_configuration"
 /*!
  * \internal \brief Load the configuration information
  * \param reload If non-zero, this is a reload operation; otherwise, it is an initial module load
@@ -278,8 +275,7 @@ In more complex modules where the configuration information is stored on the hea
 
 We could, of course, put some locking in to help. What would that look like?
 
-```
-Cmy_module with Locking
+```c title="my_module with Locking"
 /*! \brief An integer value, ranging from -32 to 3 */
 static int global_foo;
 
@@ -411,8 +407,7 @@ my_module using the Configuration Framework
 
 All configuration information is stored in a reference counted object using Asterisk's `astobj2` API. That object can be replaced in a thread-safe manner with a new configuration information object, as we'll see later. Since the object is reference counted, as long as a consumer of the configuration information holds a reference to that object, it will continue to use the configuration information it started with, even if the configuration information is reloaded.
 
-```
-Cmy_module's In-Memory Configuration Object
+```c title="my_module's In-Memory Configuration Object"
 #define DEFAULT_FOOBAR "True"
 
 #define MIN_FOO -32
@@ -465,8 +460,7 @@ So now we have a mapping of our module configuration, and the in-memory represen
 
 Well, as we mentioned previously, the configuration objects are going to be `ao2` objects, using the `astobj2` API. Let's define the constructor and destructor functions for the `module_config` `ao2` object.
 
-```
-Cmodule_config Constructor/Destructor
+```c title="module_config Constructor/Destructor"
 static void *module_config_alloc(void);
 static void module_config_destructor(void *obj);
 
@@ -498,8 +492,7 @@ Note that as part of creating the `module_config` object, we also create the gen
 
 Now, we can associate our general configuration mapping object `general_option` with a configuration file that will provide the data.
 
-```
-CTying the Mapping Object to a Config File
+```c title="Tying the Mapping Object to a Config File"
 /*! \brief A configuration file that will be processed for the modul */
 static struct aco_file module_conf = {
  .filename = "my_module.conf", /*!< The name of the config fil */
@@ -526,8 +519,7 @@ We're finally ready to start doing some loading! But wait... where's the applica
 
 Rather than have a separate function that provides the application logic with the parsing, we instead tell the Configuration Framework how to extract each configuration value out of the configuration file, and what logic we want applied to it. We do all of this when we first load the module, as shown below.
 
-```
-CLoading my_module Using the Configuration Framework
+```c title="Loading my_module Using the Configuration Framework"
 /*! \internal \brief load handler
  * \retval AST_MODULE_LOAD_SUCCESS on success
  * \retval AST_MODULE_LOAD_DECLINE on failure
@@ -580,8 +572,7 @@ Recall that `foo` has to be an integer between `-32` and `32`, and that `foobar`
 
 Now how would we use our in-memory object? And what about reloads?
 
-```
-CReloads and Using the Configuration Information
+```c title="Reloads and Using the Configuration Information"
 /*! \internal \brief Log the current module value */
 static void log_module_values(void)
 {
@@ -625,9 +616,7 @@ The `unload` handler is shown below with the complete `my_module` source code.
 Complete my_module
 -------------------
 
-```
-Cmy_module.c
-
+```c title="my_module.c"
 #include "asterisk.h"
 
 ASTERISK_FILE_VERSION(__FILE__, "$Revision: XXXXXX $")

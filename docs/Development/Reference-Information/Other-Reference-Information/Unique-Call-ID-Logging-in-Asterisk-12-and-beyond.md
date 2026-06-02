@@ -3,10 +3,10 @@ title: Unique Call-ID Logging in Asterisk 12 and beyond
 pageid: 29396023
 ---
 
-!!! note 
-    This is an Asterisk-specific concept. Not to be confused with Caller-ID or a SIP 'Call-ID' field.
-
-[//]: # (end-note)
+/// note
+This is an Asterisk-specific concept. Not to be confused with
+Caller-ID or a SIP 'Call-ID' field.
+///
 
 What is a call?
 ===============

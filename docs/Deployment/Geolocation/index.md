@@ -5,12 +5,17 @@ pageid: 49153258
 
 # Geolocation
 
-!!! warning
-    Before you go off on a geolocation configuration spree, you'll need to understand a few things about Geolocation itself.  First, i's not a single specification and second, it's been around a while.  The first references I could find date back to 2002. Since then there have been innumerable changes including IETF drafts that expired 15 years ago that are still being returned by Google searches.
+/// warning
+Before you go off on a geolocation configuration spree, you'll need to
+understand a few things about Geolocation itself.  First, it's not a
+single specification and, second, it's been around a while.  The first
+references I could find date back to 2002. Since then there have been
+innumerable changes including IETF drafts that expired 15 years ago
+that are still being returned by Google searches.
 
-    With that in mind, please do your own research and coordinate closely with your partners to validate your configuration.
-
-[//]: # (end-warning)
+With that in mind, please do your own research and coordinate closely
+with your partners to validate your configuration.
+///
 
 As it applies to Asterisk, Geolocation is the process of...
 

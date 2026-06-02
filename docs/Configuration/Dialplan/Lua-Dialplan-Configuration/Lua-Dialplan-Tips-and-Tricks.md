@@ -8,7 +8,7 @@ Long Running Operations (Autoservcie)
 
 Before starting long running operations, an autoservice should be started using the `autoservice_start()` function. An autoservice will ensure that the user hears a continuous stream of audio while your lua code works in the background. This autoservice will automatically be stopped before executing applications and dialplan functions and will be restarted afterwards. The autoservice can be stopped using autoservice_stop() and the autoservice_status() function will return `true` if an autoservice is currently running.
 
-```
+```lua title="extensions.lua"
 app.startmusiconhold()
 
 autoservice_start()
@@ -18,28 +18,23 @@ autoservice_stop()
 app.stopmusiconhold()
 ```
 
-!!! info ""
-    In Asterisk 10 an autoservice is automatically started for you by default.
-
-[//]: # (end-info)
+/// note
+In Asterisk 10 an autoservice is automatically started for you by default.
+///
 
 Defining Extensions Dynamically
 -------------------------------
 
 Since extensions are functions in pbx_lua, any function can be used, including closures. A function can be defined that returns extension functions and used to populate the extensions table.
 
----
-
-extensions.lua  
-
-```
+```lua title="extensions.lua"
 extensions = {}
 extensions.default = {}
 
 function sip_exten(e)
- return function()
- app.dial("SIP/" .. e)
- end
+    return function()
+        app.dial("SIP/" .. e)
+    end
 end
 
 extensions.default[100] = sip_exten(100)
@@ -51,11 +46,9 @@ Creating Custom Aliases for Built-in Constructs
 
 If you don't like the `app` table being named 'app' or if you think typing 'channel' to access the `channel` table is too much work, you can rename them.
 
----
+```lua title="extensions.lua"
+-- I prefer less typing
 
-I prefer less typing  
-
-```
 function my_exten(context, extensions)
  c = channel
  a = app
@@ -70,18 +63,18 @@ Re-purposing The `print` Function
 
 Lua has a built in "print" function that outputs things to stdout, but for Asterisk, we would rather have the output go in the verbose log. To do so, we could rewrite the `print` function as follows.
 
-```
+```lua title="extensions.lua"
 function print(...)
- local msg = ""
- for i=1,select('#', ...) do
- if i == 1 then
- msg = msg .. tostring(select(i, ...))
- else
- msg = msg .. "\t" .. tostring(select(i, ...))
- end
- end
+    local msg = ""
+    for i = 1, select("#", ...) do
+        if i == 1 then
+            msg = msg .. tostring(select(i, ...))
+        else
+            msg = msg .. "\t" .. tostring(select(i, ...))
+        end
+    end
 
- app.verbose(msg)
+    app.verbose(msg)
 end
 ```
 
@@ -102,7 +95,7 @@ The `luac` program can be used to compile your `extensions.lua` file into lua by
 
 ---
 
-Assume you name your extensions.lua file extensions.lua.lua  
+Assume you name your extensions.lua file extensions.lua.lua
 
 ```
 luac -o extensions.lua extensions.lua.lua

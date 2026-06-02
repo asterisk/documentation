@@ -3,10 +3,9 @@ title: Call Pickup
 pageid: 21463197
 ---
 
-!!! info ""
-    Call pickup support added in Asterisk 11
-
-[//]: # (end-info)
+/// note | Call Pickup Support
+Call pickup support was added in Asterisk 11
+///
 
 Overview
 ========
@@ -52,13 +51,14 @@ The CHANNEL(namedcallgroup) option specifies which named pickup groups that this
 same => n,Set(CHANNEL(namedcallgroup)=engineering,sales)
 ```
 
-!!! note 
-    For this option to be effective, you must set it on the outgoing channel. There are a couple of ways:
+/// note
+For this option to be effective, you must set it on the outgoing
+channel. There are a couple of ways:
 
-    * You can use the setvar option available with several channel driver configuration files to set the pickup groups.
-    * You can use a pre-dial handler.
-
-[//]: # (end-note)
+* You can use the `setvar` (or `set_var`) option available with
+  several channel driver configuration files to set the pickup groups.
+* You can use a pre-dial handler.
+///
 
 ### pickupgroup/namedpickupgroup
 
@@ -74,12 +74,13 @@ The CHANNEL(namedpickupgroup) option specifies which named pickup groups this ch
 same => n,Set(CHANNEL(namedpickupgroup)=engineering,sales)
 ```
 
-!!! note 
-    For this option to be effective, you must set it on the channel before executing the Pickup application or calling the pickupexten.
+/// note
+For this option to be effective, you must set it on the channel before
+executing the Pickup application or calling the pickupexten.
 
-    * You can use the setvar option available with several channel driver configuration files to set the pickup groups.
-
-[//]: # (end-note)
+You can use the `setvar` (or `set_var`) option available with several
+channel driver configuration files to set the pickup groups.
+///
 
 Configuration Options
 ---------------------
@@ -88,10 +89,9 @@ The pickupexten request method selects calls using the numeric and named call gr
 
 Calls picked up using pickupexten can hear an optional sound file for success and failure.
 
-!!! note 
-    The current channel drivers that support calling the pickupexten to pickup a call are: chan_dahdi/analog, chan_mgcp, chan_misdn, chan_sip, chan_unistim and chan_pjsip.
-
-[//]: # (end-note)
+/// note
+The current channel drivers that support calling the pickupexten to pickup a call are: chan_dahdi/analog, chan_mgcp, chan_misdn, chan_sip, chan_unistim and chan_pjsip.
+///
 
 ---
 
@@ -187,9 +187,10 @@ named_call_group=engineering,sales,netgroup,protgroup
 named_pickup_group=sales
 ```
 
-!!! note 
-    You can use named pickup groups in parallel with numeric pickup groups. For example, the named pickup group '4' is not the same as the numeric pickup group '4'.
+/// note
+You can use named pickup groups in parallel with numeric pickup
+groups. For example, the named pickup group '4' is not the same as the
+numeric pickup group '4'.
 
-    Named pickup groups are new with Asterisk 11.
-
-[//]: # (end-note)
+Named pickup groups are new with Asterisk 11.
+///

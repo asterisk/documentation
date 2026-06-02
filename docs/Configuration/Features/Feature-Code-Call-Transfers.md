@@ -64,10 +64,12 @@ exten = 102,1,Dial(PJSIP/BOB,30,T)
 
 Asterisk should be restarted or relevant modules should be reloaded for changes to take effect.
 
-!!! tip 
-    The same arguments ("t" and "T") work for the [Queue](/Latest_API/API_Documentation/Dialplan_Applications/Queue) and [Dial](/Latest_API/API_Documentation/Dialplan_Applications/Dial) applications!
-
-[//]: # (end-tip)
+/// tip
+The same arguments (`t` and `T`) work for the
+[Queue](/Latest_API/API_Documentation/Dialplan_Applications/Queue) and
+[Dial](/Latest_API/API_Documentation/Dialplan_Applications/Dial)
+applications.
+///
 
 Feature codes for attended transfer control
 -------------------------------------------

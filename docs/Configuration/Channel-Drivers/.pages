@@ -2,7 +2,7 @@ nav:
   - index.md
   - SIP
   - DAHDI.md
-  - Inter-Asterisk-eXchange-protocol-version-2-IAX2
+  - IAX2: Inter-Asterisk-eXchange-protocol-version-2-IAX2
   - Local-Channel
   - AudioSocket.md
   - WebSocket.md

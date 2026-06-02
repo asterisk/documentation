@@ -3,12 +3,13 @@ title: SQLite3 astdb back-end
 pageid: 19005573
 ---
 
-!!! note **  Starting with **Asterisk 10** , Asterisk uses **SQLite3
-    for its internal database instead of the Berkeley DB database used by Asterisk 1.8 and previous versions.
+/// note | SQLite3
+Starting with **Asterisk 10**, Asterisk uses **SQLite3** for its
+internal database instead of the Berkeley DB database used by Asterisk
+1.8 and previous versions.
+///
 
-[//]: # (end-note)
-
- Every effort has been made to make this transition as automatic and painless for users as possible. This page will describe the upgrade process, any potential problems, and the appropriate solutions to those problems.
+Every effort has been made to make this transition as automatic and painless for users as possible. This page will describe the upgrade process, any potential problems, and the appropriate solutions to those problems.
 
 The upgrade process
 -------------------
@@ -17,10 +18,13 @@ Asterisk 10 will attempt to upgrade any existing old-style Berkeley DB internal 
 
 When Asterisk 10 is run, as part of the initialization process it checks for the existence of the SQLite3 database. If it doesn't exist and an old-style Berkeley DB does exist, it will attempt to convert the Berkeley DB to the SQLite3 format. If no existing database exists, a new SQLite 3 database will be created. If the conversion fails, a warning will be displayed with instructions describing possible fixes and Asterisk will exit.
 
-!!! info ""
-    It is important that you perform the upgrade process at the same permission level that you expect Asterisk to run at. For example, if you upgrade as root, but run Asterisk as a user with lower permissions, the SQLite3 database created as part of the upgrade will not be able to be accessed by Asterisk.
-
-[//]: # (end-info)
+/// note
+It is important that you perform the upgrade process at the same
+permission level that you expect Asterisk to run at. For example, if
+you upgrade as root, but run Asterisk as a user with lower
+permissions, the SQLite3 database created as part of the upgrade will
+not be able to be accessed by Asterisk.
+///
 
 Troubleshooting an upgrade
 --------------------------

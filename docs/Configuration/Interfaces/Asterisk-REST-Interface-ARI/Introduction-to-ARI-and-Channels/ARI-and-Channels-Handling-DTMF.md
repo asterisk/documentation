@@ -13,14 +13,14 @@ This example mimics the [automated attendant/IVR dialplan example](/Deployment/B
 * If the user presses an invalid digit, a prompt informing the user that the digit was invalid is played to the user and the menu restarted.
 * If the user fails to press anything within some period of time, a prompt asking the user if they are still present is played to the user and the menu restarted.
 
-!!! tip 
-    For this example, you will need the following:
+/// tip
+For this example, you will need the following:
 
-    1. The **extra** sound package from Asterisk. You can install this using the `menuselect` tool.
-    2. If using the Python example, `ari-py` version 0.1.3 or later.
-    3. If using the JavaScript example, ari-client version 0.1.4 or later.
-
-[//]: # (end-tip)
+1. The **extra** sound package from Asterisk. You can install this
+   using the `menuselect` tool.
+2. If using the Python example, `ari-py` version 0.1.3 or later.
+3. If using the JavaScript example, ari-client version 0.1.4 or later.
+///
 
 ### Dialplan
 

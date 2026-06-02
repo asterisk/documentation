@@ -3,12 +3,13 @@ title: Writing a Python Test
 pageid: 19008058
 ---
 
-!!! warning 
-    ### This method of creating tests is deprecated.
-
-    #### We strongly recommend that you write your tests using test-config.yaml and pluggable modules rather than in Python. If you find yourself limited by the pluggable modules, we'd all be better off if you updated an existing module or created a new one to handle your scenario.
-
-[//]: # (end-warning)
+/// warning | This method of creating tests is deprecated
+We strongly recommend that you write your tests using test-config.yaml
+and pluggable modules rather than in Python. If you find yourself
+limited by the pluggable modules, we'd all be better off if you
+updated an existing module or created a new one to handle your
+scenario.
+///
 
 ## Overview
 
@@ -36,8 +37,14 @@ This walkthrough will create a test (*sample*) that makes Asterisk playback tt-m
 * A *configs* directory. The *configs* directory should contain subfolder(s) for each instance of Asterisk that will be instantiated by the test, named *ast#*, where # is the 1-based index of the Asterisk instance. For now, create a single folder named *ast1*.
 * In each *ast#* subfolder, the Asterisk config files needed for the test. At a minimum, this will be *extensions.conf*.
 
-!!! info
-    NoteThe asterisk class automatically creates an *asterisk.conf* file, and installs it along with other basic Asterisk configuration files (see the *configs* directory). You can override their behavior by providing your own *.conf.inc* files. Any configuration files not provided in the *configs* directory are installed from the subfolders for each test.
+/// note
+The asterisk class automatically creates an *asterisk.conf* file, and
+installs it along with other basic Asterisk configuration files (see
+the *configs* directory). You can override their behavior by providing
+your own *.conf.inc* files. Any configuration files not provided in
+the *configs* directory are installed from the subfolders for each
+test.
+///
 
 3. Edit your *extensions.conf* to perform some test in Asterisk. For our test, we'll simply check that we can dial into Asterisk and play back a sound file.
 
@@ -70,36 +77,36 @@ Each test has a corresponding [yaml](http://yaml.org/) file that defines informa
 		- custom: Custom dependencies, e.g., 'soundcard', 'fax', etc.
 		- app: External applications that are needed, i.e., 'pjsua'
 
-!!! info ""
-    NoteSee the Test Suite's README.txt for all of the possible fields in a test configuration file
-
-[//]: # (end-info)
+/// note
+See the Test Suite's README.txt for all of the possible fields in a
+test configuration file
+///
 
 The *test-config.yaml* file for our *sample* test is below.
 
 ```yaml
 testinfo:
- summary: 'A sample test'
- description: |
- This test verifies that monkeys have taken over the phone system.
+  summary: 'A sample test'
+  description: |
+    This test verifies that monkeys have taken over the phone system.
 
-properties:
- minversion: '1.8'
- dependencies:
- - python : 'twisted'
- - python : 'starpy'
+  properties:
+    minversion: '1.8'
+    dependencies:
+      - python : 'twisted'
+      - python : 'starpy'
 ```
 
 While we've created our test description, we haven't yet told the Test Suite of its existence. Upon startup, *runtests.py* checks *tests/tests.yaml* for the tests that exist. That file defines the folders that contain tests, where each folder contains another *tests.yaml* file that further defines tests and folders. In order for the Test Suite to find our sample test, open the *tests/tests.yaml* file and insert our test:
 
 ```yaml
 tests:
- - test: 'example'
-# We're inserting our sample test here:
- - test: 'sample'
- - test: 'dynamic-modules'
- - dir: 'manager'
-# And so on...
+  - test: 'example'
+  # We're inserting our sample test here:
+  - test: 'sample'
+  - test: 'dynamic-modules'
+  - dir: 'manager'
+  # And so on...
 ```
 
 ## Writing run-test

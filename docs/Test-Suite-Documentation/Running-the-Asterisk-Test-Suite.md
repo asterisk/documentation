@@ -29,10 +29,10 @@ Making sure Asterisk isn't running ...
 Running ['tests/example/run-test'] ...
 ```
 
-!!! note 
-    Depending on permissions and the modules installed, you may need to run the runtests.py script with elevated permissions.
-
-[//]: # (end-note)
+/// note
+Depending on permissions and the modules installed, you may need to
+run the runtests.py script with elevated permissions.
+///
 
 Since this can take a long time to execute to completion - and may cover functionality you do not want to test - there are a variety of other ways to run tests as well.
 
@@ -45,10 +45,10 @@ A single test can be executed using the *-t* command line option.
 # ./runtests.py -t tests/dialplan
 ```
 
-!!! note 
-    You can determine what tests are available for execution by using the *-l* command line option.
-
-[//]: # (end-note)
+/// note
+You can determine what tests are available for execution by using the
+`-l` command line option.
+///
 
 Executing a set of tests by tag
 -------------------------------

@@ -10,15 +10,21 @@ Some Asterisk configuration files also create objects. The syntax for objects is
 some_object = settings
 ```
 
-!!! tip 
-    Confused by Object Syntax?  
-    In order to make life easier for newcomers to the Asterisk configuration files, the developers have made it so that you can also create objects with an equal sign. Thus, the two lines below are functionally equivalent.  
-    `some_object => settings`  
-    `some_object=settings`
+/// tip | Confused by Object Syntax?
+In order to make life easier for newcomers to the Asterisk
+configuration files, the developers have made it so that you can also
+create objects with an equal sign. Thus, the two lines below are
+functionally equivalent.
 
-[//]: # (end-tip)
+```
+some_object => settings
+some_object=settings
+```
 
-It is common to see both versions of the syntax, especially in online Asterisk documentation and examples. This book, however, will denote objects by using the arrow instead of the equals sign.
+It is common to see both versions of the syntax, especially in online
+Asterisk documentation and examples. This book, however, will denote
+objects by using the arrow instead of the equals sign.
+///
 
 ```
 [section-name]

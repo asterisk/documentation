@@ -3,10 +3,13 @@ title: Asterisk 12 Bridging API
 pageid: 22088074
 ---
 
-!!! warning READ THIS
-    The API described below is a work in progress. Certain aspects, such as the semantics of what happens to a channel when it is ejected from a bridge and needs to execute a new location in the dialplan, are still being worked out. Treat the documentation here as a working reference, rather than a contractual guarantee.
-
-[//]: # (end-warning)
+/// warning | READ THIS
+The API described below is a work in progress. Certain aspects, such
+as the semantics of what happens to a channel when it is ejected from
+a bridge and needs to execute a new location in the dialplan, are
+still being worked out. Treat the documentation here as a working
+reference, rather than a contractual guarantee.
+///
 
 [Bridging Framework](http://svn.asterisk.org/svn/asterisk/team/group/bridge_construction/include/asterisk/bridging.h)
 =====================================================================================================================
@@ -658,10 +661,10 @@ int ast_bridge_unsuspend(struct ast_bridge *bridge, struct ast_channel *chan);
 
 Change the state of a bridged channel.
 
-!!! warning WARNING
-    You shouldn't use this unless you are implementing a bridging feature hook.
-
-[//]: # (end-warning)
+/// warning
+You shouldn't use this unless you are implementing a bridging feature
+hook.
+///
 
 ```
 /*!

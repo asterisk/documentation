@@ -15,12 +15,17 @@ Method of solution
 
 In order to solve this problem, we will write a simple session supplement that is capable of adding information to outgoing INVITE requests to add appropriate headers to request that the recipient of the INVITE automatically answers the call. The headers will be added if there exists a channel variable called `SIP_AUTO_ANSWER` on the outbound channel.
 
-!!! warning 
-    What follows is a very naive implementation of of the auto-answer feature in SIP. In actuality, there is more to this, such as determining the capability of a SIP UA to understand the "answermode" option. In addition, there are headers beyond what we add here in order to indicate a "privileged" answer mode, as well as headers that direct proxies what sort of UAs to send and not to send an INVITE to.
+/// warning
+What follows is a very naive implementation of of the auto-answer
+feature in SIP. In actuality, there is more to this, such as
+determining the capability of a SIP UA to understand the "answermode"
+option. In addition, there are headers beyond what we add here in
+order to indicate a "privileged" answer mode, as well as headers that
+direct proxies what sort of UAs to send and not to send an INVITE to.
 
-    For demonstration purposes of a SIP session supplement, however, this should get the appropriate point across.
-
-[//]: # (end-warning)
+For demonstration purposes of a SIP session supplement, however, this
+should get the appropriate point across.
+///
 
 Creating the supplement
 =======================
@@ -83,8 +88,8 @@ AST_MODULE_INFO(ASTERISK_GPL_KEY, AST_MODFLAG_LOAD_ORDER, "SIP Auto Answer Suppo
 
 Let's go into deeper detail about what we have just written. Let's start at the top:
 
-```
-c#include "asterisk.h"
+```c
+#include "asterisk.h"
 
 #include <pjsip.h>
 #include <pjsip_ua.h>
@@ -109,8 +114,8 @@ The `MODULEINFO` block is used by the menuselect system in Asterisk in order to 
 
 Next let's jump down to the bottom of the file:
 
-```
-cstatic int load_module(void)
+```c
+static int load_module(void)
 {
  if (ast_sip_session_register_supplement(&auto_answer_supplement)) {
  return AST_MODULE_LOAD_DECLINE;
@@ -137,8 +142,8 @@ We will not go into a lot of detail about the module-specific code here since it
 
 Now let's have a look at the important part of the code:
 
-```
-cstatic void auto_answer_outgoing_request(struct ast_sip_session *session, pjsip_tx_data *tdata)
+```c
+static void auto_answer_outgoing_request(struct ast_sip_session *session, pjsip_tx_data *tdata)
 {
  /* STU */
 }
@@ -163,8 +168,8 @@ Filling in the supplement callback
 
 Let's take a look at where we are currently with our callback:
 
-```
-cstatic void auto_answer_outgoing_request(struct ast_sip_session *session, pjsip_tx_data *tdata)
+```c
+static void auto_answer_outgoing_request(struct ast_sip_session *session, pjsip_tx_data *tdata)
 {
  /* STU */
 }
@@ -181,8 +186,8 @@ The top one requires that the UAS supports the "answermode" option. A UAS that d
 
 So let's add these headers:
 
-```
-cstatic void auto_answer_outgoing_request(struct ast_sip_session *session, pjsip_tx_data *tdata)
+```c
+static void auto_answer_outgoing_request(struct ast_sip_session *session, pjsip_tx_data *tdata)
 {
  static const pj_str_t answer_mode_name = { "Answer-Mode", 11 };
  static const pj_str_t answer_mode_value = { "auto", 4 };
@@ -213,8 +218,8 @@ cstatic void auto_answer_outgoing_request(struct ast_sip_session *session, pjsip
 
 Now we have some content! Let's go into it in more detail, starting from the top:
 
-```
-c static const pj_str_t answer_mode_name = { "Answer-Mode", 11 };
+```c
+ static const pj_str_t answer_mode_name = { "Answer-Mode", 11 };
  static const pj_str_t answer_mode_value = { "auto", 4 };
  static const pj_str_t require_value = { "answermode", 10 };
  pjsip_generic_string_hdr *answer_mode;
@@ -227,8 +232,8 @@ First is to declare the parameters we will need. The names should be self-eviden
 
 Next, let's have a look at what we are doing with the Require header:
 
-```
-c require = pjsip_msg_find_hdr(tdata->msg, PJSIP_H_REQUIRE, NULL);
+```c
+ require = pjsip_msg_find_hdr(tdata->msg, PJSIP_H_REQUIRE, NULL);
  if (!require) {
  require = pjsip_require_hdr_create(tdata->pool);
  pjsip_msg_add_hdr(tdata->msg, (pjsip_hdr *) require);
@@ -242,8 +247,8 @@ First we try to see if a Require header already exists in the INVITE request. If
 
 Next, let's have a look at what we are doing with the Auto-Answer header:
 
-```
-c answer_mode = pjsip_generic_string_hdr_create(tdata->pool, &answer_mode_name, &answer_mode_value);
+```c
+ answer_mode = pjsip_generic_string_hdr_create(tdata->pool, &answer_mode_name, &answer_mode_value);
  pjsip_msg_add_hdr(tdata->msg, (pjsip_hdr *) answer_mode);
 ```
 
@@ -256,8 +261,8 @@ Adjustments
 
 At this point, we have a simple session supplement written, but we don't actually want to add the auto-answer information to every single outgoing INVITE. Instead, we want to do so based on the presence of the SIP_AUTO_ANSWER channel variable on the outbound channel. Let's modify the code to do this. We will insert the code just before our Require header handling:
 
-```
-c ...
+```c
+ ...
  pjsip_require_hdr *require;
  int add_auto_answer;
 
@@ -279,8 +284,8 @@ With this new code, we'll check the `SIP_AUTO_ANSWER` channel variable to see if
 
 So now we have code that will conditionally add the auto-answer headers. We only have one final change to make. Think about when this callback is called. It's called on outbound INVITE requests. The thing is, that means it will be called both for the initial outbound INVITE for a session and it will be called on reinvites as well. Auto-answer does not pertain to reinvites, so we should add code to ensure that we only attempt to add the headers for initial outbound INVITEs.
 
-```
-c ...
+```c
+ ...
  int add_auto_answer;
 
  if (session->inv_session->state >= PJSIP_INV_STATE_CONFIRMED) {

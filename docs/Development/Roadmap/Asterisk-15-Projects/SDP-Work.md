@@ -252,10 +252,11 @@ Let's talk about the API a bit. The API introduces two new structures: `ast_sdp_
 
 The first to talk about is `ast_sdp_options`. This is vaguely defined in the API above because there will likely be a lot of options, and trying to make sure all are covered at this point is futile. The options here will be used to influence behavior of the SDP layer. Have a look at the sample code sections to see some hypothetical uses of SDP options.
 
-!!! note 
-    It may be a good idea to have some shortcut methods for options. For instance, have an `ast_sdp_options_set_webrtc()`, which will set up bundle, ICE, RTCP-mux, DTLS, and anything else that WebRTC requires.
-
-[//]: # (end-note)
+/// note
+It may be a good idea to have some shortcut methods for options. For
+instance, have an `ast_sdp_options_set_webrtc()`, which will set up
+bundle, ICE, RTCP-mux, DTLS, and anything else that WebRTC requires.
+///
 
 `ast_sdp_state`
 ---------------

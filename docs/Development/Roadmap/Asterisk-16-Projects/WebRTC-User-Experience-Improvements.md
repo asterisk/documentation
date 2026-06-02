@@ -31,10 +31,10 @@ RTP packet retransmission allows a client to request retransmission of an RTP pa
 
 A data buffer acts as a ring buffer of data. It is given a fixed number of data packets to store (which may be dynamically changed). Given a number it will store a data packet at that position relative to the others. Given a number it will retrieve the given data packet if it is present. This is purposely a storage of arbitrary things so it can be used not just for RTP packets but also Asterisk frames in the future if needed. The given number when putting a data packet in must be within the data buffer size range.
 
-!!! note 
-    The API does not internally use a lock. It is up to the user of the API to properly protect the data buffer.
-
-[//]: # (end-note)
+/// note
+The API does not internally use a lock. It is up to the user of the
+API to properly protect the data buffer.
+///
 
 ```
 /*!

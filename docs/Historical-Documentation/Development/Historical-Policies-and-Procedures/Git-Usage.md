@@ -42,10 +42,14 @@ Anyone may clone repositories from Gerrit anonymously.
 
 Users may participate in code reviews or contribute patches if they have signed a [Contributor License Agreement](https://github.com/asterisk/asterisk/issues/jira/secure/DigiumLicense.jspa). Access to Gerrit is performed using your JIRA (Atlassian) username/password. You may create an account at <https://signup.asterisk.org>, and sign a CLA in [JIRA](https://github.com/asterisk/asterisk/issues/jira). Note that you will not be able to log into Gerrit if a CLA is not associated with your JIRA account.
 
-!!! note 
-    When submitting a patch to Gerrit, you are explicitly doing so under the terms and conditions of the [Contributor License Agreement](https://github.com/asterisk/asterisk/issues/jira/secure/DigiumLicense.jspa). If you do not wish to contribute a patch back to the Asterisk project, please do not push a patch up to Gerrit.
+/// note
+When submitting a patch to Gerrit, you are explicitly doing so under
+the terms and conditions of the
+[Contributor License Agreement](https://github.com/asterisk/asterisk/issues/jira/secure/DigiumLicense.jspa).
 
-[//]: # (end-note)
+If you do not wish to contribute a patch back to the Asterisk project,
+please do not push a patch up to Gerrit.
+///
 
 Gerrit Policies
 ===============
@@ -55,10 +59,9 @@ Code Reviews
 
 * A `-2` should only be used if the current implementation requires a complete rewrite to be acceptable, or if the change should not be made under any implementation.
 
-!!! note 
-    If you use a `-2`, please be prepared to justify its usage.
-
-[//]: # (end-note)
+/// note
+If you use a `-2`, please be prepared to justify its usage.
+///
 
 * A `+2` should generally not be given unless someone has already given the review a `+1`.
 * Related to the previous, users who provide a `+2` should generally not provide it to a change that they provided the `+1` on.

@@ -3,20 +3,21 @@ title: MALLOC_DEBUG Compiler Flag
 pageid: 28315432
 ---
 
-MALLOC_DEBUG enhancements can be used as a poor-man's Valgrind if Valgrind performance makes the PC unusable due to resource consumption.
+`MALLOC_DEBUG` enhancements can be used as a poor man's Valgrind if Valgrind performance makes the PC unusable due to resource consumption.
 
-!!! warning 
-    Don't attempt to use Asterisk compiled with MALLOC_DEBUG and run Valgrind at the same time, as they will compete and render the findings invalid for either tool.
+/// warning
+Don't attempt to use Asterisk compiled with `MALLOC_DEBUG` and run
+Valgrind at the same time, as they will compete and render the
+findings invalid for either tool.
+///
 
-[//]: # (end-warning)
+## Gathering output
 
-Gathering output
-----------------
-
-!!! info ""
-    For this output to be useful make sure to upgrade Asterisk versions 1.8.20, 11.2.0 or above as they include important enhancements to MALLOC_DEBUG
-
-[//]: # (end-info)
+/// note
+For this output to be useful make sure to upgrade Asterisk versions
+1.8.20, 11.2.0 or above as they include important enhancements to
+`MALLOC_DEBUG`.
+///
 
 1. Run [menuselect](/Getting-Started/Installing-Asterisk/Installing-Asterisk-From-Source/Using-Menuselect-to-Select-Asterisk-Options) and in the Compiler Options, enable MALLOC_DEBUG. A bug marshal may also ask you to enable additional compiler flags depending upon the nature of the issue.
 2. Rebuild and install Asterisk
@@ -24,59 +25,52 @@ Gathering output
 4. Collect the /var/log/asterisk/mmlog (which will be generated only if you successfully compiled with the MALLOC_DEBUG flag)
 5. Attach the mmlog file as mmlog.txt to the issue in our [issue tracker](/Asterisk-Community/Asterisk-Issue-Guidelines).
 
-Commands provided
------------------
+## Commands provided
 
 Compiling with this flag results in several commands being made available for memory debugging. Below are the usage and summaries from "core show help" for each command in Asterisk 12.
 
-* memory show summary
-
-Click to show usage...
+### `memory show summary`
 
 ```
 Usage: memory show summary [<file>]
- Summarizes heap memory allocations by file, or optionally
- by line, if a file is specified.
+       Summarizes heap memory allocations by file, or optionally
+       by line, if a file is specified.
 ```
-* memory show allocations
 
-Click to show usage...
+### `memory show allocations`
 
 ```
 Usage: memory show allocations [<file>|anomalies]
- Dumps a list of segments of allocated memory.
- Defaults to listing all memory allocations.
- <file> - Restricts output to memory allocated by the file.
- anomalies - Only check for fence violations.
+       Dumps a list of segments of allocated memory.
+       Defaults to listing all memory allocations.
+       <file> - Restricts output to memory allocated by the file.
+       anomalies - Only check for fence violations.
 ```
-* memory atexit list
 
-Click to show usage...
+### `memory atexit list`
 
 ```
 Usage: memory atexit list {on|off}
- Enable dumping a list of still allocated memory segments at exit.
+       Enable dumping a list of still allocated memory segments at exit.
 ```
-* memory atexit summary
 
-Click to show usage...
+### `memory atexit summary`
 
 ```
 Usage: memory atexit summary {off|byline|byfunc|byfile}
- Summary of still allocated memory segments at exit options.
- off - Disable at exit summary.
- byline - Enable at exit summary by file line number.
- byfunc - Enable at exit summary by function name.
- byfile - Enable at exit summary by file.
- Note: byline, byfunc, and byfile are cumulative enables.
+       Summary of still allocated memory segments at exit options.
+       off - Disable at exit summary.
+       byline - Enable at exit summary by file line number.
+       byfunc - Enable at exit summary by function name.
+       byfile - Enable at exit summary by file.
+       Note: byline, byfunc, and byfile are cumulative enables.
 ```
-* memory backtrace
 
-Click to show usage...
+### `memory backtrace`
 
 ```
 Usage: memory backtrace {on|off}
- Enable dumping an allocation backtrace with memory diagnostics.
- Note that saving the backtrace data for each allocation
- can be CPU intensive.
+       Enable dumping an allocation backtrace with memory diagnostics.
+       Note that saving the backtrace data for each allocation
+       can be CPU intensive.
 ```

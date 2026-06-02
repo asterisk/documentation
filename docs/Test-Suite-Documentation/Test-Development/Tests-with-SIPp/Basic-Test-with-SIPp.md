@@ -93,7 +93,8 @@ if __name__ == "__main__":
  sys.exit(main())
 ```
 
-!!! note 
-    Any number of scenarios can be passed to the SIPpTest. The class takes in as its third parameter a list of dictionaries, where each dictionary specifies a scenario to execute.
-
-[//]: # (end-note)
+/// note
+Any number of scenarios can be passed to the SIPpTest. The class takes
+in as its third parameter a list of dictionaries, where each
+dictionary specifies a scenario to execute.
+///
