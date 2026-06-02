@@ -94,7 +94,11 @@ priv_key_file = <astvarlibdir>>/keys/ast1-key.pem
 
 The second Asterisk instance's pjsip.conf file would look similar except that "ast1" would be changed to "ast2".
 
-!!! warning 
-    Files like keys (and the directories that contain them) usually have permissions restrictions, such as being only readable by the owner. Make sure your files have the correct permission before you commit them so those permissions are preserved when they are copied to their final locations. The user and group don't matter. Most people, including Jenkins, run the Testsuite as root.
-
-[//]: # (end-warning)
+/// warning
+Files like keys (and the directories that contain them) usually have
+permissions restrictions, such as being only readable by the
+owner. Make sure your files have the correct permission before you
+commit them so those permissions are preserved when they are copied to
+their final locations. The user and group don't matter. Most people,
+including Jenkins, run the Testsuite as root.
+///

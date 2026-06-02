@@ -11,10 +11,10 @@ With this driver Asterisk, using the [Realtime Database Configuration](/Fundamen
 See [configs/res_ldap.conf.sample](https://raw.githubusercontent.com/asterisk/asterisk/master/configs/samples/res_ldap.conf.sample) for a configuration file sample.  
  See contrib/scripts for the LDAP [schema](https://raw.githubusercontent.com/asterisk/asterisk/master/contrib/scripts/asterisk.ldap-schema) and [ldif](https://raw.githubusercontent.com/asterisk/asterisk/master/contrib/scripts/asterisk.ldif) files needed for the LDAP server.
 
-!!! note 
-    To use static realtime with certain core configuration files the realtime backend you wish to use must be preloaded in `modules.conf`.
-
-[//]: # (end-note)
+/// note
+To use static realtime with certain core configuration files the
+realtime backend you wish to use must be preloaded in `modules.conf`.
+///
 
 From within your Asterisk source directory:
 
@@ -33,10 +33,10 @@ sipusers = ldap,"ou=sip,dc=example,dc=domain",sip
 extensions = ldap,"ou=extensions,dc=example,dc=domain",extensions
 ```
 
-!!! note 
-    You'll want to reference the Asterisk res_ldap.conf file which holds the LDAP mapping configuration when building your own record schema.
-
-[//]: # (end-note)
+/// note
+You'll want to reference the Asterisk res_ldap.conf file which holds
+the LDAP mapping configuration when building your own record schema.
+///
 
 **Basic** sip users record layout which will need to be saved to a file (we'll use 'createduser.ldif' here as an example). This example record is for sip user '1000'. This example record is for sip user '1000'.
 

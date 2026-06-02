@@ -3,10 +3,12 @@ title: Configuring res_pjsip for Presence Subscriptions
 pageid: 29392974
 ---
 
-!!! warning 
-    Under Construction - This page is a stub!
+/// warning | Under Construction
+This page is just a stub.
 
-[//]: # (end-warning)
+If you would like to help write this content, please consider
+[contributing to the documentation](/Contributing-to-the-Documentation/).
+///
 
 Capabilities
 ============

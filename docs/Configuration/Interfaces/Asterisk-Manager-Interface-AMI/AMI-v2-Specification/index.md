@@ -53,8 +53,12 @@ Clients wishing to use AMI act as clients and connect to Asterisk's AMI server o
 
 More information on the various ways a client can be configured can be seen in AMI Configuration.
 
-/// note|Nomenclature
-Sometimes, the term **command** may be used instead of the term **action**. With respect to AMI actions, command is synonymous with action, and the two can be treated the same. For the sake of consistency, we've attempted to use the term **action** where possible.
+/// note | Nomenclature
+Sometimes, the term **command** may be used instead of the term
+**action**. With respect to AMI actions, command is synonymous with
+action, and the two can be treated the same. For the sake of
+consistency, we've attempted to use the term **action** where
+possible.
 ///
 
 Historically, AMI has existed in Asterisk as its own core component `manager`. AMI events were raised throughout Asterisk encoded in an AMI specific format, and AMI actions were processed and passed to the functions that implemented the logic. In Asterisk 12, AMI has been refactored to sit on top of Stasis, a generic, protocol independent message bus internal to Asterisk. From the perspective of clients wishing to communicate with Asterisk over AMI very little has changed; internally, the Stasis representation affords a much higher degree of flexibility with how messages move through Asterisk. It also provides a degree of uniformity for information that is propagated to interested parties.
@@ -430,8 +434,9 @@ For each channel variable that is changed, a **VarSet** event is sent to the cli
 
 DTMF is indicated via a **DTMFBegin**/**DTMFEnd** events. A **DTMFEnd** event MUST convey the duration of the DTMF tone in milliseconds.
 
-/// warning|Behavior Change
-The combination of **DTMFBegin**/**DTMFEnd** events replaces the removed **DTMF** event.
+/// warning | Behavior Change
+The combination of **DTMFBegin**/**DTMFEnd** events replaces the
+removed **DTMF** event.
 ///
 
 #### Dialplan Execution

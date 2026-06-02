@@ -10,42 +10,30 @@ Extension Patterns
 
 Extension pattern matching syntax on logic works the same for `extensions.conf` and `extensions.lua`.
 
-
-extensions.conf
----------------
-
-```
+```title="extensions.conf"
 [users]
 exten => _1XX,1,Dial(SIP/${EXTEN})
 
 exten => _2XX,1,Voicemail(${EXTEN:1})
 ```
 
-
-extensions.lua
---------------
-
-```
+```lua title="extensions.lua"
 extensions = {}
 extensions.users = {}
 
 extensions.users["_1XX"] = function(c, e)
- app.dial("SIP/" .. e)
+    app.dial("SIP/" .. e)
 end
 
 extensions.users["_2XX"] = function(c, e)
- app.voicemail("1" .. e:sub(2))
+    app.voicemail("1" .. e:sub(2))
 end
 ```
 
 Context Includes
 ----------------
 
-
-extensions.conf
----------------
-
-```
+```title="extensions.conf"
 [users]
 exten => 100,1,Noop
 exten => 100,n,Dial("SIP/100")
@@ -59,38 +47,28 @@ include => demo
 include => users
 ```
 
-
-extensions.lua
---------------
-
-```
+```lua title="extensions.lua"
 extensions = {
- users = {
- [100] = function()
- app.dial("SIP/100")
- end;
- };
-
- demo = {
- ["s"] = function()
- app.playback(demo-congrats)
- end;
- };
-
- default = {
- include = {"demo", "users"};
- };
+    users = {
+        [100] = function()
+            app.dial("SIP/100")
+        end
+    },
+    demo = {
+        ["s"] = function()
+            app.playback(demo - congrats)
+        end
+    },
+    default = {
+        include = {"demo", "users"}
+    }
 }
 ```
 
 Loops
 -----
 
-
-extensions.conf
----------------
-
-```
+```title="extensions.conf"
 exten => 100,1,Noop
 exten => 100,n,Set(i=0)
 exten => 100,n,While($[i < 10])
@@ -98,34 +76,22 @@ exten => 100,n,Verbose(i = ${i})
 exten => 100,n,EndWhile
 ```
 
-
-extensions.lua
---------------
-
-```
+```lua title="extensions.lua"
 i = 0
 while i < 10 do
- app.verbose("i = " .. i)
+    app.verbose("i = " .. i)
 end
 ```
 
 Variables
 ---------
 
-
-extensions.conf
----------------
-
-```
+```title="extensions.conf"
 exten => 100,1,Set(my_variable=my_value)
 exten => 100,n,Verbose(my_variable = ${my_variable})
 ```
 
-
-extensions.lua
---------------
-
-```
+```lua title="extensions.lua"
 channel.my_variable = "my_value"
 app.verbose("my_variable = " .. channel.my_variable:get())
 ```
@@ -133,19 +99,11 @@ app.verbose("my_variable = " .. channel.my_variable:get())
 Applications
 ------------
 
-
-extensions.conf
----------------
-
-```
+```title="extensions.conf"
 exten => 100,1,Dial("SIP/100",,m)
 ```
 
-
-extensions.lua
---------------
-
-```
+```lua title="extensions.lua"
 app.dial("SIP/100", nil, "m")
 ```
 
@@ -154,11 +112,7 @@ Macros/GoSub
 
 *Macros can be defined in pbx_lua by naming a context 'macro-\*' just as in `extensions.conf`, but generally where you would use macros or gosub in `extensions.conf` you would simply use a function in lua.*
 
-
-extensions.conf
----------------
-
-```
+```title="extensions.conf"
 [macro-dial]
 exten => s,1,Noop
 exten => s,n,Dial(${ARG1})
@@ -167,20 +121,16 @@ exten => s,n,Dial(${ARG1})
 exten => 100,1,Macro(dial,SIP/100)
 ```
 
-
-extensions.lua
---------------
-
-```
+```lua title="extensions.lua"
 extensions = {}
 extensions.default = {}
 
 function dial(resource)
- app.dial(resource)
+    app.dial(resource)
 end
 
 extensions.default[100] = function()
- dial("SIP/100")
+    dial("SIP/100")
 end
 ```
 
@@ -189,11 +139,7 @@ Goto
 
 *While `Goto` is an extenstions.conf staple, it should generally be avoided in pbx_lua in favor of functions.*
 
-
-extensions.conf
----------------
-
-```
+```title="extensions.conf"
 [default]
 exten => 100,1,Goto(102,1)
 
@@ -201,37 +147,36 @@ exten => 102,1,Playback("demo-thanks")
 exten => 102,n,Hangup
 ```
 
-
-extensions.lua
---------------
-
-```
+```lua title="extensions.lua"
 extensions = {}
 extensions.default = {}
 
 function do_hangup()
- app.playback("demo-thanks")
- app.hangup()
+    app.playback("demo-thanks")
+    app.hangup()
 end
 
 extensions.default[100] = function()
- do_hangup()
+    do_hangup()
 end
 ```
 
-!!! info ""
-    The `app.goto()` function will not work as expected in pbx_lua in Asterisk 1.8. If you must use `app.goto()` you must manually return control back to asterisk using `return` from the dialplan extension function, otherwise execution will continue after the call to `app.goto()`. Calls to `app.goto()` should work as expected in Asterisk 10 but still should not be necessary in most cases.
-[//]: # (end-info)
+/// note | `app.goto()` under Asterisk 1.8
+The `app.goto()` function will not work as expected in pbx_lua in
+Asterisk 1.8. If you must use `app.goto()` you must manually return
+control back to asterisk using `return` from the dialplan extension
+function, otherwise execution will continue after the call to
+`app.goto()`. Calls to `app.goto()` should work as expected in
+Asterisk 10 but still should not be necessary in most cases.
+///
 
-In Asterisk 1.8, use return  
+In Asterisk 1.8, use return:
 
-```
+```lua title="extensions.lua"
 function extension_function(c, e)
- return app.goto("default", "100", 1)
+    return app.goto("default", "100", 1)
 
- -- without that 'return' the rest of the function would execute normally
- app.verbose("Did you forget to use 'return'?")
+    -- without that 'return' the rest of the function would execute normally
+    app.verbose("Did you forget to use 'return'?")
 end
-
----
 ```

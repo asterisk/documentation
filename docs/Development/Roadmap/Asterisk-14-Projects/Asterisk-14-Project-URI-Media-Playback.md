@@ -8,10 +8,12 @@ Project Overview
 
 One of the features that was discussed for the [Asterisk 13 Projects](/Development/Roadmap/Asterisk-13-Projects) was the ability to playback media from a URI to a channel or bridge. See <http://lists.digium.com/pipermail/asterisk-app-dev/2014-April/000425.html> for more information.
 
-!!! note 
-    The conversation on the mailing list included both playback of a URI, as well as allowing for a unicast stream of media to be injected into a channel/bridge. At this time, that would be considered a separate project from this one.
-
-[//]: # (end-note)
+/// note
+The conversation on the mailing list included both playback of a URI,
+as well as allowing for a unicast stream of media to be injected into
+a channel/bridge. At this time, that would be considered a separate
+project from this one.
+///
 
 The primary reason to add this feature is scalability. Allowing sounds to be placed on a remote HTTP server allows a cluster of Asterisk servers to access and pull down the sounds as needed. This is much easier for system administration, as the sounds don't have to all be pushed to individual Asterisk machines.
 
@@ -86,14 +88,19 @@ same => n,Playback(http://myserver.com/monkeys.wav&http://myserver.com/weasels.w
 
 Since an `&` is valid for a URI but is also used as a separator in dialplan, ampersands in a resource cannot be supported. If an ampersand is used in a URI (say, as part of a query), then the entire URI must be URI encoded.
 
-!!! note 
-    URIs in a resource can't be supported, as performing a URI decode on the URI cannot tell the difference between an `&` in a resource and an `&` in a query. That is:
+/// note
+URIs in a resource can't be supported, as performing a URI decode on
+the URI cannot tell the difference between an `&` in a resource and an
+`&` in a query. That is:
 
-    `http://myserver.com/media?sound=monkeys%26weasels&format=wav => http%3A%2F%2Fmyserver.com%2Fmedia%3Fsound%3dmonkeys%26weasels%26format%3Dwav`
+```
+http://myserver.com/media?sound=monkeys%26weasels&format=wav => http%3A%2F%2Fmyserver.com%2Fmedia%3Fsound%3dmonkeys%26weasels%26format%3Dwav
+```
 
-    The latter cannot be decoded correctly as the `&` that forms the query parameter cannot now be distinguished from the already URI encoded `&` in the resource.
-
-[//]: # (end-note)
+The latter cannot be decoded correctly as the `&` that forms the query
+parameter cannot now be distinguished from the already URI encoded `&`
+in the resource.
+///
 
 ##### AGI
 
@@ -283,10 +290,10 @@ Prior to call `ast_openstream`, users who want to support URI playback should fi
 * If so, ask the cache for the actual file. Use that for subsequent calls to `ast_openstream` and `ast_openvstream`.
 * If not, move on as normal.
 
-!!! note 
-    There are other callers of `ast_openstream`, but it's probably not worth updating `ExternalIVR` (sorry )
-
-[//]: # (end-note)
+/// note
+There are other callers of `ast_openstream`, but it's probably not
+worth updating `ExternalIVR` (sorry)
+///
 
 ### Core - file.c::ast_streamfile
 
@@ -525,10 +532,11 @@ The Mustache templates generated will need to be modified to check for `text/uri
 	+ The body parsers should be updated for a playback operation to return the structured Playback object.
 * A new `text_uri_body_parser` should be added that parses a body into a `struct ast_uri_list`. This should be hard-typed to convert the URI list into a structured Playback object.
 
-!!! note 
-    This is limiting, but for now, we don't have any use for a URI list in ARI outside of specifying a list of media resources. If that assumption proves false later, that code should be re-visited.
-
-[//]: # (end-note)
+/// note
+This is limiting, but for now, we don't have any use for a URI list in
+ARI outside of specifying a list of media resources. If that
+assumption proves false later, that code should be re-visited.
+///
 
 Test Plan
 =========
@@ -623,12 +631,14 @@ Phase Three - Core/dialplan/AGI implementations
 Phase Four - ARI Playlists
 --------------------------
 
-!!! note 
-    This is actually a completely separate and super useful feature. URI playbacks really need it to function so... here it is.
+/// note
+This is actually a completely separate and super useful feature. URI
+playbacks really need it to function so... here it is.
 
-    Note that this does not envision complete playlist control (such as 'skip to next sound in the playlist'). That could be added either as part of this work or at a future date.
-
-[//]: # (end-note)
+Note that this does not envision complete playlist control (such as
+'skip to next sound in the playlist'). That could be added either as
+part of this work or at a future date.
+///
 
 | Task | Description | Status |
 | --- | --- | --- |
@@ -640,14 +650,19 @@ Phase Four - ARI Playlists
 | Update `res_stasis_playback` | The various function calls boil down to `play_on_channel` in `res_stasis_playback`. This is passed the actual `Playback` resource object, which now can contain a `Playlist`. The function should be updated to parse out the various items in the playlist and pass them to `ast_control_streamfile_lang`. | Not Done (see Note below) |
 | Add `rest_api` tests for playlists. |  | Not Done (see Note below) |
 
-!!! note 
-    Arguably, we don't really need a 'playlist' media resource type. Lists of media are now played back in sequence by simply specifying multiple media URIs in a sequence, e.g., `media=``sound:foo.wav,sound:bar.wav`, or as a list, e.g., `media=sound:foo.wav,media=sound:bar.wav`.
+/// note
+Arguably, we don't really need a 'playlist' media resource type. Lists
+of media are now played back in sequence by simply specifying multiple
+media URIs in a sequence, e.g., `media=sound:foo.wav,sound:bar.wav`,
+or as a list, e.g., `media=sound:foo.wav,media=sound:bar.wav`.
 
-    This works as well for remote URIs, although admittedly the syntax is a bit clunky right now:
+This works as well for remote URIs, although admittedly the syntax is
+a bit clunky right now:
 
-    `media=sound:http://localhost/foo.wav,media=sound:http://localhost/bar.wav`
-
-[//]: # (end-note)
+```
+media=sound:http://localhost/foo.wav,media=sound:http://localhost/bar.wav
+```
+///
 
 Phase Five - HTTP Server Updates
 --------------------------------

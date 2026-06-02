@@ -374,22 +374,6 @@ Pay attention
 ///
 ///
 
-/// danger | Danger! (this is a *real* admonition, not an example)
-Most of the pages that were converted from the old Confluence wiki use the `!!!` admonition style.  For example:
-
-```
-!!! tip
-    The `-R` option will also attach a remote console - however, it will attempt to automatically
-    reconnect to Asterisk if for some reason the connection is broken. This is particularly useful
-    if your remote console restarts Asterisk.
-
-[//]: # (end-tip)
-```
-
-That style is only supported for backwards compatibility and must not be used in new content.  If you are editing a page with old style admonitions, you MUST convert them ALL to the new style.  Mixing old and new styles will most probably cause the page not to be rendered correctly.
-
-///
-
 #### Details
 
 "details" is a special type of admonition whose content is initially collapsed.

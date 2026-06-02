@@ -3,10 +3,12 @@ title: Configuring Outbound Registrations
 pageid: 30278351
 ---
 
-!!! warning 
-    This page is under construction. Please refrain from commenting here until this warning is removed.
+/// warning | Under Construction
+This page is currently under construction.
 
-[//]: # (end-warning)
+If you would like to help write this content, please consider
+[contributing to the documentation](/Contributing-to-the-Documentation/).
+///
 
 Overview
 ========
@@ -54,19 +56,19 @@ Let's go over how the options were applied to this REGISTER:
 
 An English translation of the above REGISTER is "Tell the server at sip:registrar@example.com that when SIP traffic arrives addressed to sip:client@example.com, the traffic should be sent to sip:inbound-calls@10.24.20.249." Note in this example that 10.24.20.249 is the IP address of the Asterisk server that sent the outbound REGISTER request.
 
-!!! tip 
-    The transport type, e.g. tcp, for the registration can be specified by appending the details to the client_uri and/or server_uri parameters, e.g.:
-[//]: # (end-tip)
+/// tip
+The transport type, e.g. `tcp`, for the registration can be specified
+by appending the details to the `client_uri` and/or `server_uri`
+parameters, e.g.:
 
 ```
 [my_provider]
 type = registration
 server_uri = sip:registrar@example.com\;transport=tcp
 client_uri = sip:client@example.com\;transport=tcp
-contact_user = inbound-calls  
-
----
+contact_user = inbound-calls
 ```
+///
 
 Outbound registrations and endpoints
 ====================================
@@ -106,10 +108,11 @@ type = aor
 contact = sip:my_provider@example.com
 ```
 
-!!! warning 
-    Let me reiterate that this is the **bare minimum**. If you want calls to and from the provider to actually work correctly, you will want to set a context, codecs, authentication, etc. on the endpoint.
-
-[//]: # (end-warning)
+/// warning
+Let me reiterate that this is the **bare minimum**. If you want calls
+to and from the provider to actually work correctly, you will want to
+set a context, codecs, authentication, etc. on the endpoint.
+///
 
 Authentication
 ==============
@@ -284,10 +287,10 @@ Manually Unregistering
 
 The AMI and CLI provide ways for you to manually unregister if you want. The CLI provides the `pjsip send unregister <registration name>` command. AMI provides the `PJSIPUnregister` command to do the same thing.
 
-!!! note 
-    After manually unregistering, the specified outbound registration will continue to reregister based on its last registration expiration.
-
-[//]: # (end-note)
+/// note
+After manually unregistering, the specified outbound registration will
+continue to reregister based on its last registration expiration.
+///
 
 Realtime
 ========

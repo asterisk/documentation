@@ -1,31 +1,30 @@
 ---
-title: Allow Manager Access via HTTP
 pageid: 4817260
 ---
 
-!!! warning 
-    AJAM is not supported and may have issues and may be removed in the future. Do not use it if at all possible. Use standard TCP based AMI instead.
+# Allow Manager Access via HTTP
 
-[//]: # (end-warning)
+/// warning | Unsupported
+AJAM is not supported and may have issues and may be removed in the
+future. Do not use it if at all possible. Use standard TCP based AMI
+instead.
+///
 
-Configuring manager.conf
-------------------------
+## Configuring manager.conf
 
 1. Make sure you have both "enabled = yes" and "webenabled = yes" set in /etc/asterisk/manager.conf
 2. You may also use "httptimeout" to set a default timeout for HTTP connections.
 3. Make sure you have a manager username/secret
 
-Usage of AMI over HTTP
-----------------------
+## Usage of AMI over HTTP
 
 Once those configurations are complete you can reload or restart Asterisk and you should be able to point your web browser to specific URI's which will allow you to access various web functions. A complete list can be found by typing "http show status" at the Asterisk CLI.
 
 ### Examples:
 
-!!! info ""
-    Be sure the syntax for the URLs below is followed precisely
-
-[//]: # (end-info)
+/// note
+Be sure the syntax for the URLs below is followed precisely
+///
 
 * http://localhost:8088/manager?action=login&username=foo&secret=bar
 
@@ -45,6 +44,5 @@ If you have enabled static content support and have done a make install, Asteris
 
 A sample library (astman.js) is included to help ease the creation of manager HTML interfaces.
 
-!!! note **  For the demo, there is no need for **any external web server.
-
-[//]: # (end-note)
+/// tip | For the demo, there is no need for **any external web server.**
+///

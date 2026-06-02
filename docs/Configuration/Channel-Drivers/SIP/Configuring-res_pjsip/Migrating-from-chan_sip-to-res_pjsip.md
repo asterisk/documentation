@@ -44,10 +44,13 @@ Side by Side Examples of sip.conf and pjsip.conf Configuration
 
 These examples contain only the configuration required for sip.conf/pjsip.conf as the configuration for other files should be the same, excepting the Dial statements in your extensions.conf. Dialing with PJSIP is discussed in [Dialing PJSIP Channels](/Configuration/Channel-Drivers/SIP/Configuring-res_pjsip/Dialing-PJSIP-Channels).
 
-!!! note 
-    It is important to know that PJSIP syntax and configuration format is stricter than the older chan_sip driver. When in doubt, try to follow the documentation exactly, avoid extra spaces or strange capitalization. Always check your logs for warnings or errors if you suspect something is wrong.
-
-[//]: # (end-note)
+/// note
+It is important to know that PJSIP syntax and configuration format is
+stricter than the older chan_sip driver. When in doubt, try to follow
+the documentation exactly, avoid extra spaces or strange
+capitalization. Always check your logs for warnings or errors if you
+suspect something is wrong.
+///
 
 Example Endpoint Configuration
 ------------------------------

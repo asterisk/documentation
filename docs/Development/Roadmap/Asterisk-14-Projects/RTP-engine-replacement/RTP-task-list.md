@@ -3,10 +3,10 @@ title: RTP task list
 pageid: 31752472
 ---
 
-!!! warning 
-    This page has not received peer review and may still be undergoing edits.
-
-[//]: # (end-warning)
+/// warning
+This page has not received peer review and may still be undergoing
+edits.
+///
 
 This page contains a list of necessary tasks in order to write a new RTP engine. The tasks start out with incredibly specific detail and eventually move into much more general terms. The reason for this is to help remain agile in the process. Undoubtedly, requirements will change, or mistakes in the design early will change the nature of later tasks.
 
@@ -218,20 +218,27 @@ The channel driver maintains information about whether RFC 4733 DTMF should be u
 	+ The method will create an RFC 4733 payload with updated duration based on the timestamp.
 	+ The method will then pass this RFC 4733 payload to the RTP encoder to be transmitted.
 
-!!! warning 
-    This section currently is saying to pass the RFC 4733 payload to the encoder. Previous language on this page said to pass `ast_frame` payloads to the encoder, which are different. This probably means that the `encode()` method should have its input parameters broken up a bit more. For instance, instead of `encode(voice_frame)`, it should be `encode(timestamp, marker_bit, raw_voice_data)`. This way, when it comes time to encode RFC 4733 DTMF, this works just as well.
-
-[//]: # (end-warning)
+/// warning
+This section currently is saying to pass the RFC 4733 payload to the
+encoder. Previous language on this page said to pass `ast_frame`
+payloads to the encoder, which are different. This probably means that
+the `encode()` method should have its input parameters broken up a bit
+more. For instance, instead of `encode(voice_frame)`, it should be
+`encode(timestamp, marker_bit, raw_voice_data)`. This way, when it
+comes time to encode RFC 4733 DTMF, this works just as well.
+///
 
 Add support for multiple remote media sources
 ---------------------------------------------
 
 When communicating with a remote endpoint, even though we may be receiving media from only a single remote IP address and port, the media could originate from multiple sources, represented by different SSRC identifiers. This section mostly deals with what should be done when receiving audio from multiple SSRCs.
 
-!!! warning 
-    Honestly, I'm not really sure what should be done here. Should this mostly be a statistical thing? Should we actually even expect to be communicating with an endpoint that sends us audio from multiple sources on a single stream?
-
-[//]: # (end-warning)
+/// warning
+Honestly, I'm not really sure what should be done here. Should this
+mostly be a statistical thing? Should we actually even expect to be
+communicating with an endpoint that sends us audio from multiple
+sources on a single stream?
+///
 
 Basic RTCP support
 ==================

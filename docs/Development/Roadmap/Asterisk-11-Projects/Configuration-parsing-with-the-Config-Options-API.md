@@ -44,14 +44,12 @@ custom option handler - A module-specific option handler for custom options.
 
 1. Define an ao2_global_obj hold global the active config snapshot object.
 
-```
-C
+```c
 static AO2_GLOBAL_OBJ_STATIC(globals);
 ```
 2. Define a structure to contain any global settings or containers used for configurable items as well as an ao2 allocator and destructor function for it.
 
-```
-C
+```c
 struct my_config {
  struct my_global_cfg *global;
  struct ao2_container *items;
@@ -84,8 +82,7 @@ error:
 ```
 3. Define config types to map config categories to the appropriate internal types
 
-```
-C
+```c
 static struct aco_type general_options = {
  .type = ACO_GLOBAL,
  .category_allow = ACO_WHITELIST,
@@ -104,8 +101,7 @@ static struct aco_type private_options = {
 ```
 4. Create an aco_file for any config files that will be processed. Set the filename and aco_types that are valid for the file.
 
-```
-C
+```c
 struct aco_file my_conf = {
  .filename = "my.conf",
  .types = ACO_TYPES(&general_option, &private_options),
@@ -113,16 +109,14 @@ struct aco_file my_conf = {
 ```
 5. Define module-level configuration parsing options in a config info struct
 
-```
-C
+```c
 CONFIG_INFO_STANDARD(cfg_info, globals, my_config_alloc,
  .files = ACO_FILES(&my_conf),
 );
 ```
 6. Initialize the aco_info and register default and custom options with the config info struct
 
-```
-C
+```c
 static int load_module(void)
 {
 ...
@@ -136,8 +130,7 @@ static int load_module(void)
 ```
 7. Process the config via aco_process_config(), passing in whether or not this is a reload or not.
 
-```
-C
+```c
 aco_process_config(&cfg_info, 0);
 ```
 
@@ -145,8 +138,7 @@ aco_process_config(&cfg_info, 0);
 
 A completely consistent snapshot of config data can be accessed via
 
-```
-C
+```c
 void some_func_that_accesses_config_data(void)
 {
  RAII_VAR(struct my_config *, cfg, ao2_global_obj_ref(globals), ao2_cleanup);
@@ -161,7 +153,15 @@ void some_func_that_accesses_config_data(void)
 }
 ```
 
-!!! info ""
-    It is important to note that upon reload, items are completely rebuilt. If a configured item (like a SIP peer) needs to maintain state information between reloads, it is important that it be stored in an object separate from the item in an ao2 object. The item can store a pointer to this state information. When allocating a new item that requires this state information, do a search for the item in the active config and store a reference to to its state in the newly allocated item. If no item is found, allocate a new state object and store that reference in the item. See skel_level_alloc and skel_find_or_create_state in apps/app_skel.c for an example.
-
-[//]: # (end-info)
+/// note
+It is important to note that upon reload, items are completely
+rebuilt. If a configured item (like a SIP peer) needs to maintain
+state information between reloads, it is important that it be stored
+in an object separate from the item in an ao2 object. The item can
+store a pointer to this state information. When allocating a new item
+that requires this state information, do a search for the item in the
+active config and store a reference to to its state in the newly
+allocated item. If no item is found, allocate a new state object and
+store that reference in the item. See skel_level_alloc and
+skel_find_or_create_state in apps/app_skel.c for an example.
+///

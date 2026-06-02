@@ -17,10 +17,13 @@ In a nutshell, Asterisk 12 relocated its support for call parking from the Aster
 
 Before we move any further, there is one more rather important detail to address regarding configuration for `res_parking`:
 
-!!! note 
-    `res_parking` uses the configuration framework. If an invalid configuration is  supplied, `res_parking` will fail to load or fail to reload. Previously,  invalid configurations would generally be accepted, with certain errors  resulting in individually disabled parking lots.
-
-[//]: # (end-note)
+/// note
+`res_parking` uses the configuration framework. If an invalid
+configuration is supplied, `res_parking` will fail to load or fail to
+reload. Previously, invalid configurations would generally be
+accepted, with certain errors resulting in individually disabled
+parking lots.
+///
 
 Now that we've covered all of that, let's look at some examples of how all this works.
 
@@ -84,7 +87,9 @@ parkcall => #72 ; Parks the call (one-step parking). For this example, a call wi
  ; K - Allow the calling party to enable parking of the call.
  ; k - Allow the called party to enable parking of the call.
 ```
+
 ---
+
 extensions.conf  
 
 ```

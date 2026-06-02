@@ -3,10 +3,11 @@ title: Overview
 pageid: 22088024
 ---
 
-!!! note 
-    This page is a living document; expect missing and incomplete information. Still, feel free to discuss on [asterisk-dev](http://lists.digium.com/mailman/listinfo/asterisk-dev).
-
-[//]: # (end-note)
+/// note
+This page is a living document; expect missing and incomplete
+information. Still, feel free to discuss on
+[asterisk-dev](http://lists.digium.com/mailman/listinfo/asterisk-dev).
+///
 
 Project Overview
 ================
@@ -48,10 +49,9 @@ So, Masquerades are bad. But why are they used everywhere?
 Why Bridging Uses Masquerades and what We can do about it
 ---------------------------------------------------------
 
-!!! tip Channel Farm
-    "All channels are created equal, but some channels are created more equal than others."
-
-[//]: # (end-tip)
+/// tip | Channel Farm
+"All channels are created equal, but some channels are created more equal than others."
+///
 
 Not all channels get an execution thread (`pbx_thread`) in Asterisk. In general, an inbound channel get's a thread; outbound channels do not. As a result, a two-party bridge that is created between the two channels uses the inbound channel's `pbx_thread` to service frames between the two channels. Regardless of the two-party bridge type in play, this is how it works in Asterisk.
 
@@ -63,10 +63,9 @@ You can see what happened next: everything started to use Masquerades to get aro
 
 Then, along came [ConfBridge](/Configuration/Applications/Conferencing-Applications/ConfBridge).
 
-!!! note We All Do
-    Ignore MeetMe.
-
-[//]: # (end-note)
+/// note | We All Do
+Ignore MeetMe.
+///
 
 ConfBridge used a brand spiffy "new" (as in Asterisk 1.6 timeframe) Bridging API developed by Joshua Colp. A bridge becomes a first class object, and no longer a state that two channels happen to find themselves in. Channels owned by a bridge object are each given a thread. Even more interesting, the Bridging API provided an abstraction above how the media of the channels in the bridge was mixed. ConfBridge, for example, used the softmix bridging technology, suitable for multiple channels in a bridge. However, there are other bridging technologies - some optimized for managing two channels (or sets of two channels). Others - such as bridging technologies developed for special purpose applications - are possible. The Bridging API itself provides safe mechanisms to move channels between bridges, merge bridges, and generally do things without the need for masquerades.
 
@@ -84,12 +83,15 @@ But, a wholesale migration to the Bridging API let's us:
 * Switch between two and multi-party bridging seamlessly
 * Present a sane model of the bridging world to the APIs
 
-!!! tip A word of advice
-    If you're familiar with the bridging code in `features.c`, you probably have a good idea of how big a task this work is. When you do away with the bridging loop, lots of things break, and they aren't all obvious. CDRs break. CEL breaks. Queue Logs probably break. AMI is wonky. DTMF handling has to be tweaked significantly. Lots change.
+/// tip | A word of advice
+If you're familiar with the bridging code in `features.c`, you
+probably have a good idea of how big a task this work is. When you do
+away with the bridging loop, lots of things break, and they aren't all
+obvious. CDRs break. CEL breaks. Queue Logs probably break. AMI is
+wonky. DTMF handling has to be tweaked significantly. Lots change.
 
-    This is scary, but it's time.
-
-[//]: # (end-tip)
+This is scary, but it's time.
+///
 
 Requirements and Specification
 ==============================
@@ -290,10 +292,9 @@ Problem is worse for ConfBridge. You cannot swap a channel into that bridge beca
 
 To eliminate the masquerade here it is likely that every application needs to become a mini channel driver attaching to a mini bridge associated with every channel. A radical rethink would be necessary for PBX and bridges.
 
-!!! note 
-    We'd really like to do that, but won't have time. 
-
-[//]: # (end-note)
+/// note
+We'd really like to do that, but won't have time.
+///
 
 #### int ast_bridge_park(struct ast_bridge \*parking_bridge, struct ast_bridge_channel \*chan, struct ast_bridge_channel \*swap);
 
@@ -548,10 +549,11 @@ channel private
 * The bridge tech needs to change to a normal bridge type.
 * The bridge can have a timeout to connect.
 
-!!! note 
-    We are, unfortunately, punting on the Early Media Bridge Technology. Not because it isn't awesome or the right way to do it, but because app_dial and app_queue are a bitch to refactor.
-
-[//]: # (end-note)
+/// note
+We are, unfortunately, punting on the Early Media Bridge
+Technology. Not because it isn't awesome or the right way to do it,
+but because app_dial and app_queue are a bitch to refactor.
+///
 
 ##### Parking bridge tech:
 
@@ -654,10 +656,9 @@ channel private
 * while the pickup channel is coming into the bridge. Otherwise we would
 * wind up with a three or more party bridge.
 
-!!! note 
-    This won't be how this works. It's still going to be a masquerade.
-
-[//]: # (end-note)
+/// note
+This won't be how this works. It's still going to be a masquerade.
+///
 
 ##### Local channel optimization:
 
@@ -737,17 +738,20 @@ These only represent different ways of erecting bridges between parties. They do
 
 Call pickup occurs entirely before a bridge is formed, therefore it does not belong in a suite of bridge tests.
 
-!!! note Note
-    This may actually change, if channels are placed into a new bridge technology that performs early media playback ("Early Bridge"). This would be advantageous as the channel picking up the call would simply join the bridge with the channel in early media, and the bridge technology would swap from the Early Bridge technology to a compatible Two-Party bridge technology.
+/// note
+This may actually change, if channels are placed into a new bridge
+technology that performs early media playback ("Early Bridge"). This
+would be advantageous as the channel picking up the call would simply
+join the bridge with the channel in early media, and the bridge
+technology would swap from the Early Bridge technology to a compatible
+Two-Party bridge technology.
 
-    If that occurs, this test plan will be updated.
+If that occurs, this test plan will be updated.
+///
 
-[//]: # (end-note)
-
-!!! note Note #2
-    Most likely, call pickup will not have an early bridge 
-
-[//]: # (end-note)
+/// note | Note #2
+Most likely, call pickup will not have an early bridge 
+///
 
 ### Invoking bridges from multiple applications
 
@@ -799,17 +803,13 @@ High Level Bridging construction tasks:
 
 * Implement early bridging. I'm now thinking that the early media bridge will turn into just enhancing the dialing API because of the way Page works. Dial/Queue/FollowMe would need to be converted to use the dialing API.
 
-!!! note 
-    Punt.
-
-[//]: # (end-note)
+/// note | Punt
+///
 
 * Dial/Queue/FollowMe/Pickup updated to use early bridging.
 
-!!! note 
-    Punt.
-
-[//]: # (end-note)
+/// note | Punt
+///
 
 * Get DTMF transfer features on par with current functionality. DTMF attended transfer will need a manager thread to handle operations after Party B hangs up and before Party C answers. Bonus is that the new bridging API allows threeway conferences. Since features.conf is being gutted should we eliminate it in favor of new config files?
 

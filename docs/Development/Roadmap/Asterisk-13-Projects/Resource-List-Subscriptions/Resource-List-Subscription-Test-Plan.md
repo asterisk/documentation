@@ -136,10 +136,12 @@ Have the SIPp scenario attempt to subscribe to pres_list, but include no "Suppor
 
 Have the SIPp scenario attempt to subscribe to `mail_list` but set the Event header of the SUBSCRIBE to "presence". Ensure that Asterisk responds to the SUBSCRIBE with a 404 response.
 
-!!! note 
-    If the circumstances are reversed (i.e. SIPp attempts to subscribe to `pres_list` with "Event: message-summary" in the SUBSCRIBE), the SUBSCRIBE will succeed, subscribing to a single mailbox called "mail_list".
-
-[//]: # (end-note)
+/// note
+If the circumstances are reversed (i.e. SIPp attempts to subscribe to
+`pres_list` with "Event: message-summary" in the SUBSCRIBE), the
+SUBSCRIBE will succeed, subscribing to a single mailbox called
+"mail_list".
+///
 
 #### Test 3: List does not exist
 
@@ -238,10 +240,11 @@ The application/rlmi+xml part should have the following properties:
 
 The multipart/related part should satisfy the same properties as the nominal tests from the basic resource list tests
 
-!!! note 
-    It was about at this point while writing this test plan that I decided that if I was going to finish it before I grew old and died, I should pare down the amount of detail
-
-[//]: # (end-note)
+/// note
+It was about at this point while writing this test plan that I decided
+that if I was going to finish it before I grew old and died, I should
+pare down the amount of detail
+///
 
 #### Test 2: State change
 
@@ -331,10 +334,10 @@ Configuration has a list and an individual resource with identical names. The su
 
 Configuration has a list that contains resource "alice" and a sublist that contains resource "alice". Ensure that only one of the duplicated resources appears in the notifications from Asterisk.
 
-!!! note 
-    Once code is written, come back and specify whether we expect the sole resource or the sublist resource to be the one that is listed.
-
-[//]: # (end-note)
+/// note
+Once code is written, come back and specify whether we expect the sole
+resource or the sublist resource to be the one that is listed.
+///
 
 Batched Notifications
 =====================

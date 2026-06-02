@@ -81,10 +81,12 @@ POST /endpoints/PJSIP/message
 }
 ```
 
-!!! tip **  Note that in this case, the SIP URI specified in the **to
-    key uses the PJSIP nomenclature of a generic endpoint to associate with the outbound SIP URI. This is due to PJSIP's usage of endpoints to provide default codecs/behaviour with outbound requests to SIP URIs.
-
-[//]: # (end-tip)
+/// tip
+Note that in this case, the SIP URI specified in the `to` key uses the
+PJSIP nomenclature of a generic endpoint to associate with the
+outbound SIP URI. This is due to PJSIP's usage of endpoints to provide
+default codecs/behaviour with outbound requests to SIP URIs.
+///
 
 Responses to the request can include:
 
@@ -185,14 +187,28 @@ Stasis (as in the application for ARI, not the message bus) can filter out the m
 
 The observer that the Stasis application registers with the core should filter out the messages that don't have a subscription. This can be done by inspecting the to/from URIs and matching on either the technology (if we have a subscription to the technology) and/or the endpoint that sent/received the message. These should then be turned into JSON events and sent out the websocket to the subscribing applications.
 
-!!! tip Why not use the Stasis message bus?
-    The Stasis message bus, as a general publish/subscribe message bus, is great at delivering information throughout Asterisk. At the same time, that doesn't mean that everything needs to get pushed over it. There's some problems with pushing all text messages over Stasis:
+/// tip | Why not use the Stasis message bus?
+The Stasis message bus, as a general publish/subscribe message bus, is
+great at delivering information throughout Asterisk. At the same time,
+that doesn't mean that everything needs to get pushed over it. There's
+some problems with pushing all text messages over Stasis:
 
-    1. Some systems can be rather chatty. XMPP servers could blast us with notifications. Pushing all that information over Stasis requires a lot of processing in the Asterisk core, which is potentially wasteful and would hurt performance.
-    2. Subscriptions to endpoints in Stasis probably shouldn't include messages, as the association with an endpoint is somewhat only loosely enforced in the channel drivers. The subscription, in this case, is really more of an application level construct.
-    3. The only thing that cares about these messages is ARI - AMI doesn't, CDRs don't, CEL doesn't. Pushing information over the bus for only one consumer is sometimes okay; other times - particularly when there will be lots of these messages - it doesn't seem worthwhile.
+1. Some systems can be rather chatty. XMPP servers could blast us with
+   notifications. Pushing all that information over Stasis requires a
+   lot of processing in the Asterisk core, which is potentially
+   wasteful and would hurt performance.
 
-[//]: # (end-tip)
+2. Subscriptions to endpoints in Stasis probably shouldn't include
+   messages, as the association with an endpoint is somewhat only
+   loosely enforced in the channel drivers. The subscription, in this
+   case, is really more of an application level construct.
+
+3. The only thing that cares about these messages is ARI - AMI
+   doesn't, CDRs don't, CEL doesn't. Pushing information over the bus
+   for only one consumer is sometimes okay; other times - particularly
+   when there will be lots of these messages - it doesn't seem
+   worthwhile.
+///
 
 Test Plan
 ---------

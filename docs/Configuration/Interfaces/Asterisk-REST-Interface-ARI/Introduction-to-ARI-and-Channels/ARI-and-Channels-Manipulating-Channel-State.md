@@ -8,10 +8,13 @@ While there are many states a channel can be in, the following are the most comm
 * **Ringing** - the device is ringing. Media may or may not be able to flow from Asterisk to the device.
 * **Up** - the device has been answered. When in the up state, media can flow bidirectionally between Asterisk and the device.
 
-!!! note More Channel States
-    Certain channel technologies, such as DAHDI analog channels, may have additional channel states (such as "Pre-ring" or "Dialing Offhook"). When handling channel state, consult the [Channel data model](/Latest_API/API_Documentation/Asterisk_REST_Interface/Asterisk_REST_Data_Models/#channel) for all possible values.
-
-[//]: # (end-note)
+/// note | More Channel States
+Certain channel technologies, such as DAHDI analog channels, may have
+additional channel states (such as "Pre-ring" or "Dialing
+Offhook"). When handling channel state, consult the
+[Channel data model](/Latest_API/API_Documentation/Asterisk_REST_Interface/Asterisk_REST_Data_Models/#channel)
+for all possible values.
+///
 
 ## Indicating Ringing
 

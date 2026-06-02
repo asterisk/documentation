@@ -36,10 +36,14 @@ Some questions you should ask yourself when thinking about whether or not your f
 
 If the answer is **No** to all of the above questions, then the feature may be appropriate for Asterisk. A **Yes** to any of the above questions does not invalidate the new feature, but it may mean that discussion on the [asterisk-dev mailing list](http://lists.digium.com/mailman/listinfo/asterisk-dev) is appropriate before submitting the patch to the issue tracker. If in peer review, you may be asked to change the feature to make it more suitable.
 
-!!! tip 
-    At any time, it is always appropriate to discuss new features on the [Asterisk Developer's Mailing List](http://lists.digium.com/mailman/listinfo/asterisk-dev). Whether or not a patch is appropriate for Asterisk can often be subjective, and getting the consensus of the Asterisk developer community on the design of a feature before starting implementation is often a wise decision.
-
-[//]: # (end-tip)
+/// tip
+At any time, it is always appropriate to discuss new features on the
+[Asterisk Developer's Mailing List](http://lists.digium.com/mailman/listinfo/asterisk-dev).
+Whether or not a patch is appropriate for Asterisk can often be
+subjective, and getting the consensus of the Asterisk developer
+community on the design of a feature before starting implementation is
+often a wise decision.
+///
 
 Some case studies illustrating features that could be considered for inclusion in Asterisk and why or why not they are appropriate are below.
 
@@ -83,10 +87,14 @@ There are many ways of testing a new feature. The simplest, and most common, is 
 
 Testing your new feature is **extremely** beneficial to those who have to review, approve, and maintain your feature. See [Testing](#testing) for more information.
 
-!!! tip **  It is **highly
-    recommended that all new features have tests, either using the Asterisk Unit Test framework or the Asterisk Test Suite. If you need help writing tests for your new feature, be sure to ask on the asterisk-dev mailing list! Many developers are experienced in writing unit tests and functional tests, and would be happy to help point you in the correct direction.
-
-[//]: # (end-tip)
+/// tip
+It is **highly recommended** that all new features have tests, either
+using the Asterisk Unit Test framework or the Asterisk Test Suite. If
+you need help writing tests for your new feature, be sure to ask on
+the asterisk-dev mailing list! Many developers are experienced in
+writing unit tests and functional tests, and would be happy to help
+point you in the correct direction.
+///
 
 Is the Feature Maintainable?
 ----------------------------
@@ -111,10 +119,16 @@ New Feature Development
 
 New features are developed against Asterisk [trunk](http://svn.asterisk.org/svn/asterisk/trunk/). You may propose that a feature be included in a release branch as well, if the feature is appropriate for the type of release branch. New features included in a release branch **must** have accompanying automated tests. See [Software Configuration Management Policies](/Development/Policies-and-Procedures/Software-Configuration-Management-Policies) for more information about the various branches in Asterisk.
 
-!!! tip **  In general, there are very few "requirements" when developing a new feature. Where something is required, it is specifically noted that developers **must
-    perform some action. However, the following guidelines exist to help you get your feature into Asterisk. The fewer of these guidelines that are followed, the more burden is placed on the Asterisk developer community to review and verify the correctness of your feature for you. This may limit the speed at which your feature can be incorporated into Asterisk.
-
-[//]: # (end-tip)
+/// tip
+In general, there are very few "requirements" when developing a new
+feature. Where something is required, it is specifically noted that
+developers **must** perform some action. However, the following
+guidelines exist to help you get your feature into Asterisk. The fewer
+of these guidelines that are followed, the more burden is placed on
+the Asterisk developer community to review and verify the correctness
+of your feature for you. This may limit the speed at which your
+feature can be incorporated into Asterisk.
+///
 
 Planning
 --------
@@ -129,18 +143,22 @@ Note that you must sign a [Digium License Agreement](/Development/Policies-and-P
 
 It is generally recommended that developers for major new features create a page on the wiki using the [Project Planning Template](/Development/Policies-and-Procedures/Project-Planning-Template) under the [Roadmap](/Development/Roadmap./Development/Roadmap/Asterisk-12-Projects/New-SIP-channel-driver/New-SIP-Channel-Driver-Architecture/res_sip-design/Roadmap) section's page for the next major Asterisk version. Even before implementation of a new feature begins, basic requirements and design can be documented and discussed.
 
-!!! tip How to Know if Your Project Warrants a Planning Page
-    While there is no hard and fast rule that determines whether or not you should write a wiki page for your project, here are some things to keep in mind:
+/// tip | How to Know if Your Project Warrants a Planning Page
+While there is no hard and fast rule that determines whether or not
+you should write a wiki page for your project, here are some things to
+keep in mind:
 
-    * Do you have a team branch for the new feature?
-    * Do you want assistance in the development or testing of the feature?
-    * Does the feature span multiple files or modules in Asterisk?
-    * Does the feature change some portion of the Asterisk architecture?
-    * Does the feature require unit or integration tests to verify its requirements?
+* Do you have a team branch for the new feature?
+* Do you want assistance in the development or testing of the feature?
+* Does the feature span multiple files or modules in Asterisk?
+* Does the feature change some portion of the Asterisk architecture?
+* Does the feature require unit or integration tests to verify its
+  requirements?
 
-    In general, **any** project benefits from a project page - but if your project is deemed to be sufficiently complex, you may be asked to create one.
-
-[//]: # (end-tip)
+In general, **any** project benefits from a project page - but if your
+project is deemed to be sufficiently complex, you may be asked to
+create one.
+///
 
 When starting a major new feature, an e-mail **should** be sent to the [Asterisk Developer's Mailing List](http://lists.digium.com/mailman/listinfo/asterisk-dev) announcing the development of the feature. This announcement can also be used to discuss whether or not the feature is appropriate for inclusion in Asterisk. If you feature impacts an Asterisk interface, you may also consider announcing the development of the feature on the [Asterisk Application Development mailing list](http://lists.digium.com/pipermail/asterisk-app-dev/).
 
@@ -151,10 +169,13 @@ Testing
 
 All new features should have automated tests. New features that are proposed for an existing release branch **must** have accompanying tests.
 
-!!! tip Help is Available!
-    The Asterisk project has spent a significant amount of time investing in both the Asterisk Unit Test framework and the Asterisk Test Suite. Developers are more than happy to help you with these frameworks in #asterisk-dev or on the asterisk-dev mailing list - don't be afraid to ask for help!
-
-[//]: # (end-tip)
+/// tip | Help is Available!
+The Asterisk project has spent a significant amount of time investing
+in both the Asterisk Unit Test framework and the Asterisk Test
+Suite. Developers are more than happy to help you with these
+frameworks in #asterisk-dev or on the asterisk-dev mailing list -
+don't be afraid to ask for help!
+///
 
 ### Test Plans
 

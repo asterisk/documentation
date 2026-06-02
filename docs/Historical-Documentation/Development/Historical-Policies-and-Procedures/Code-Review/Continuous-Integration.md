@@ -31,10 +31,11 @@ Zuul consists of two pieces: the Zuul server, which monitors events from Gerrit 
 
 The Zuul server monitors events from Gerrit and, if an event matches a configured pipeline's criteria, notifies parties via Gearman of a job that they should execute. In return, parties that execute a job notify the Zuul server via Gearman of that job's success or failure. Zuul continues to hand out CI jobs to various parties, which in turn may spawn many CI tasks themselves. If a job passes or fails, the Zuul server comments on the appropriate review in Gerrit as the 'zuul' user. If the job was 'voting', the 'zuul' user may provide a +1 or -1 vote to the verification of the review.
 
-!!! note 
-    The Zuul server actually lives on [gerrit.asterisk.org](https://gerrit.asterisk.org), due to some quirks with its underlying SSH library and to ensure that it has the best connection possible back to the Gerrit instance.
-
-[//]: # (end-note)
+/// note
+The Zuul server actually lives on <https://gerrit.asterisk.org>, due
+to some quirks with its underlying SSH library and to ensure that it
+has the best connection possible back to the Gerrit instance.
+///
 
 ### Zuul Merger
 

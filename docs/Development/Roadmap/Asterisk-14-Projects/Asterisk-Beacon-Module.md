@@ -409,10 +409,11 @@ Client: res_beacon
 
 Asterisk shall have a new resource module, `res_beacon`. As a user of `cURL`, `res_beacon` will depend on the `cURL` library and the `res_curl` module.
 
-!!! info ""
-    Yes. This means that if a system doesn't have `cURL` on it, we won't get its stats. That beats doing something silly like rolling our own transport.
-
-[//]: # (end-info)
+/// note
+Yes. This means that if a system doesn't have `cURL` on it, we won't
+get its stats. That beats doing something silly like rolling our own
+transport.
+///
 
 The module will be able to send data to both the Asterisk Beacon server (hard coded, can't change or remove without re-compiling) as well as any configurable number of other servers. Those other servers allow a user to set up their own instance of the publicly defined API and collect their own statistics themselves.
 

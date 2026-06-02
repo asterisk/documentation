@@ -1,12 +1,12 @@
 ---
-title: WebRTC tutorial using SIPML5
+title: WebRTC tutorial using sipML5
 pageid: 27200129
 ---
 
 Tutorial Overview
 =================
 
-This tutorial demonstrates basic WebRTC support and functionality within Asterisk.  Asterisk will be configured to support a remote WebRTC client, the [sipml5](https://www.doubango.org/sipml5/) client, for the purposes of making calls to/from Asterisk within a web browser.  You must be running a recent (as of September 2018) version of a Mozilla or Chromium based web browser.
+This tutorial demonstrates basic WebRTC support and functionality within Asterisk.  Asterisk will be configured to support a remote WebRTC client, the [sipML5](https://www.doubango.org/sipml5/) client, for the purposes of making calls to/from Asterisk within a web browser.  You must be running a recent (as of September 2018) version of a Mozilla or Chromium based web browser.
 
 Set up Asterisk
 ==============
@@ -15,7 +15,7 @@ Follow the instructions at [Configuring Asterisk for WebRTC Clients](/Configurat
 
 Configure Asterisk Dialplan
 
-We'll make a simple dialplan for receiving a test call from the sipml5 client.
+We'll make a simple dialplan for receiving a test call from the sipML5 client.
 
 ---
 
@@ -37,17 +37,17 @@ When using WSS as a transport, Chrome and Firefox will not allow you, by default
 
 Or, for Firefox and Chrome, you can open a separate browser tab and point it to Asterisk's HTTPs server's TLS port and WS path, e.g. `https://pbx.example.com:8089/ws`, and you can manually confirm the security exception.
 
-Configure SIPML5
+Configure sipML5
 ================
 
-!!! info ""
-    SIPML5 is a useful client for testing Asterisk. Many real-world users explore other options that may include rolling your own client.
+/// note
+sipML5 is a useful client for testing Asterisk. Many real-world users
+explore other options that may include rolling your own client.
+///
 
-[//]: # (end-info)
-
-Next, visit <https://sipml5.org> - you'll be redirected to <https://www.doubango.org/sipml5/>
-
-Once there, click the "Enjoy our live demo" link to be directed to the sipml5 client.
+Next, visit [the sipML5 homepage](https://www.doubango.org/sipml5/)
+and click the "Enjoy our live demo" link to be directed to the sipML5
+client.
 
 In the Registration box, use configuration similar to the following:
 
@@ -95,7 +95,7 @@ Then, you can LogOut and Login and see something like:
 Make a test call
 ----------------
 
-In the sipml5 Call control box input **200**.  Then press the Call button.  You'll see a drop-down:
+In the sipML5 Call control box input **200**.  Then press the Call button.  You'll see a drop-down:
 
 ![](Screen-Shot-2017-06-28-at-2.25.55-PM.png)
 

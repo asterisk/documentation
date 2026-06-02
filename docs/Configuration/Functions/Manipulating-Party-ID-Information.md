@@ -34,10 +34,13 @@ The CALLERID information is passed during the initial call setup. However, depen
 
 The CONNECTEDLINE function does the opposite of the CALLERID function. CONNECTEDLINE can be used to set up connected line information to be sent when the call is answered. You can use it to send new connected line information to the remote party on the channel when a call is transferred. The CONNECTEDLINE information is passed when the call is answered and when the call is transferred.
 
-!!! note 
-    It is up to the channel technology to determine when to act upon connected line updates before the call is answered. ISDN will just store the updated information until the call is answered. SIP could immediately update the caller with a provisional response or wait for some other event to notify the caller.
-
-[//]: # (end-note)
+/// note
+It is up to the channel technology to determine when to act upon
+connected line updates before the call is answered. ISDN will just
+store the updated information until the call is answered. SIP could
+immediately update the caller with a provisional response or wait for
+some other event to notify the caller.
+///
 
 Since the connected line information can be sent while a call is connected, you may need to prevent the channel driver from acting on a **partial** update. The 'i' option is used to inhibit the channel driver from sending the changed information immediately.
 
@@ -161,10 +164,10 @@ Party ID propagation
 For normal operations where Party A calls Party B this is what the relationship between CALLERID/CONNECTEDLINE information looks like:
 
 ```
- Channel A Channel B
- Incoming channel --- bridge --- Outgoing channel
+            Channel A                       Channel B
+            Incoming channel --- bridge --- Outgoing channel
 Party A ___ CALLERID() -------------------> CONNECTEDLINE() ___ Party B
- CONNECTEDLINE() <-------------- CALLERID()
+            CONNECTEDLINE() <-------------- CALLERID()
 ```
 
 The CALLERID() information is the party identification of the remote party. For Channel A that is Party A. For Channel B that is Party B.
@@ -174,7 +177,7 @@ The CONNECTEDLINE() information is the party identification of the party connect
 Local channels behave in a similar way because there is an implicit two party bridge between the channels. For normal call setups, Local;1 is an outgoing channel and Local;2 is an incoming channel.
 
 ```
-Local;1 Local;2
+Local;1              Local;2
 Outgoing channel --- Incoming channel
 CONNECTEDLINE() ---> CALLERID()
 CALLERID() <-------- CONNECTEDLINE()
@@ -183,10 +186,10 @@ CALLERID() <-------- CONNECTEDLINE()
 A normal call where Party A calls Party B with a local channel in the chain.
 
 ```
- Channel A Local;1 Local;2 Channel B
- Incoming channel --- bridge --- Outgoing channel --- Incoming channel --- bridge --- Outgoing channel
+            Channel A                       Local;1              Local;2                         Channel B
+            Incoming channel --- bridge --- Outgoing channel --- Incoming channel --- bridge --- Outgoing channel
 Party A ___ CALLERID() -------------------> CONNECTEDLINE() ---> CALLERID() -------------------> CONNECTEDLINE() ___ Party B
- CONNECTEDLINE() <-------------- CALLERID() <-------- CONNECTEDLINE() <-------------- CALLERID()
+            CONNECTEDLINE() <-------------- CALLERID() <-------- CONNECTEDLINE() <-------------- CALLERID()
 ```
 
 Originated calls make the incoming and outgoing labels a bit confusing because both channels start off as outgoing. Once the originated channel answers it becomes an "incoming" channel to run dialplan. A better way is to just distinguish which channel is running dialplan. For consistency, I'll continue using the incoming and outgoing labels.
@@ -194,19 +197,19 @@ Originated calls make the incoming and outgoing labels a bit confusing because b
 An example of originating a normal channel (Channel A) to a dialplan exten.  
 
 ```
- Channel A Channel B
- Incoming channel --- bridge --- Outgoing channel
+            Channel A                       Channel B
+            Incoming channel --- bridge --- Outgoing channel
 Party A ___ CALLERID() -------------------> CONNECTEDLINE() ___ Party B
- CONNECTEDLINE() <-------------- CALLERID()
+            CONNECTEDLINE() <-------------- CALLERID()
 ```
 
 An example of originating a local channel (which will always be a Local;1) to a dialplan exten.  
 
 ```
- Channel A Local;2 Local;1 Channel B
- Outgoing channel --- bridge --- Incoming channel --- Incoming channel --- bridge --- Outgoing channel
+            Channel A                       Local;2              Local;1                         Channel B
+            Outgoing channel --- bridge --- Incoming channel --- Incoming channel --- bridge --- Outgoing channel
 Party A ___ CALLERID() -------------------> CONNECTEDLINE() ---> CALLERID() -------------------> CONNECTEDLINE() ___ Party B
- CONNECTEDLINE() <-------------- CALLERID() <-------- CONNECTEDLINE() <-------------- CALLERID()
+            CONNECTEDLINE() <-------------- CALLERID() <-------- CONNECTEDLINE() <-------------- CALLERID()
 ```
 
 Ideas for usage

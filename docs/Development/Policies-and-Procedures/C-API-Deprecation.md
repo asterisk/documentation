@@ -17,10 +17,12 @@ Asterisk follows a 2 year C API deprecation process. A C API is initially marked
 Marking A C API As Deprecated For Standard Release
 ==================================================
 
-!!! note 
-    Reminder: C API deprecation practices within the tree are only eligible to be done in master when the next release is a standard release. No C API deprecation can be done during the development of a long term supported release.
-
-[//]: # (end-note)
+/// note | Reminder
+C API deprecation practices within the tree are only eligible to be
+done in master when the next release is a standard release. No C API
+deprecation can be done during the development of a long term
+supported release.
+///
 
 #### The following instructions are for the master branch in which the C API is to be deprecated.
 
@@ -36,10 +38,11 @@ Marking A C API As Deprecated For Standard Release
 Removing A C API
 ================
 
-!!! note 
-    Reminder: C API removal is only eligible to be done in master when the next release is a standard release. No C API removal can be done during the development of a long term supported release.
-
-[//]: # (end-note)
+/// note | Reminder
+C API removal is only eligible to be done in master when the next
+release is a standard release. No C API removal can be done during the
+development of a long term supported release.
+///
 
 1. Only remove a C API if it has not been reverted from being deprecated.
 2. Create a new issue in the [Asterisk project issue tracker](https://github.com/asterisk/asterisk/issues/) using the "Deprecation" issue type. Ensure the issue summary is descriptive as it will go into release notes.

@@ -16,13 +16,21 @@ With call files you submit this information simply by creating a file with the r
 
 The `pbx_spool.so` module watches the spooling directly, either using an event notification system supplied by the operating system such as `[inotify](http://en.wikipedia.org/wiki/Inotify)` or `[kqueue](http://en.wikipedia.org/wiki/Kqueue)`, or by polling the directory each second when one of those notification systems is unavailable. When a new file appears, Asterisk initiates a new call based on the file's contents.
 
-!!! warning "Creating Files in the Spool Directory"
-    Do **not** write or create the call file directly in the `outgoing` directory, but always create the file in another directory of the same filesystem and then move the file to the `outgoing` directory, or Asterisk may read a partial file.
-[//]: # (end-warning)
+/// warning | Creating Files in the Spool Directory
+Do **not** write or create the call file directly in the `outgoing`
+directory, but always create the file in another directory of the same
+filesystem and then move the file to the `outgoing` directory, or
+Asterisk may read a partial file.
+///
 
-!!! note "NFS Considerations"
-    By default, Asterisk will prefer to use `inotify` or `kqueue` where available. When the spooling directory is on a remote server and is mounted via NFS, the `inotify` method will fail to work. You can force Asterisk to use the older polling method by passing the `--without-inotify` flag to `configure` during compilation (e.g. `./configure --without-inotify`).
-[//]: # (end-note)
+/// note | NFS Considerations
+By default, Asterisk will prefer to use `inotify` or `kqueue` where
+available. When the spooling directory is on a remote server and is
+mounted via NFS, the `inotify` method will fail to work. You can force
+Asterisk to use the older polling method by passing the
+`--without-inotify` flag to `configure` during compilation
+(e.g. `./configure --without-inotify`).
+///
 
 ## Call File Syntax
 

@@ -3,10 +3,9 @@ title: res_sip_session design
 pageid: 22085841
 ---
 
-!!! warning 
-    This page is currently under construction. Please refrain from adding comments until this warning is removed
-
-[//]: # (end-warning)
+/// warning
+This page is currently under construction.
+///
 
 Overview
 ========

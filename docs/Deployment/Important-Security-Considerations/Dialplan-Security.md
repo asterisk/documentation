@@ -2,9 +2,8 @@
 
 First and foremost remember this:
 
-!!! danger "Extension Isolation"
-
-    Use the extension contexts to isolate outgoing or toll services from any incoming connections.
+/// tip | Use the extension contexts to isolate outgoing or toll services from any incoming connections.
+///
 
 You should consider that if any channel, incoming line, etc. can enter
 an extension context that it has the capability of accessing any
@@ -37,8 +36,8 @@ include => default
 exten => 6123,1,Dial(DAHDI/1)
 ```
 
-!!! tip "Remove Demo Contexts"
-
-    Do not forget to take the `demo` context out of your default
-    context. There isn't really a security reason, it just will keep
-    people from wanting to play with your Asterisk setup remotely.
+/// danger | Remove Demo Contexts
+Do not forget to take the `demo` context out of your default
+context. There isn't really a security reason, it just will keep
+people from wanting to play with your Asterisk setup remotely.
+///

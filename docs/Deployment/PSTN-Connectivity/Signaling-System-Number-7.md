@@ -3,10 +3,9 @@ title: Signaling System Number 7
 pageid: 4260059
 ---
 
-!!! warning 
-    The LibSS7 project is not actively developed or maintained.
-
-[//]: # (end-warning)
+/// warning
+The LibSS7 project is not actively developed or maintained.
+///
 
 ### Where to get LibSS7?
 
@@ -38,33 +37,37 @@ In order to use libss7, you must get at least the following versions of DAHDI an
 
 You must then do a `make; make install` in each of the directories that you installed in the given order (DAHDI first, libss7 second, and Asterisk last).
 
-!!! note 
-    In order to check out the code, you must have the subversion client installed. This is how to check them out from the public subversion server.
+/// note
+In order to check out the code, you must have the subversion client
+installed. This is how to check them out from the public subversion
+server.
 
-    These are the commands you would type to install them:
-[//]: # (end-note)
+These are the commands you would type to install them:
 
 ```
-`svn co http://svn.digium.com/svn/dahdi/linux/trunk dahdi-trunk`
-`cd dahdi-trunk`
-`make; make install`
+user@host:~$ svn co http://svn.digium.com/svn/dahdi/linux/trunk dahdi-trunk
+user@host:~$ cd dahdi-trunk
+user@host:~/dahdi-trunk$ make; sudo make install
+user@host:~/dahdi-trunk$ cd ..
 
-`svn co http://svn.digium.com/svn/dahdi/tools/trunk dahdi-tools`
-`cd dahdi-tools`
-`./configure; make; make install`
+user@host:~$ svn co http://svn.digium.com/svn/dahdi/tools/trunk dahdi-tools
+user@host:~$ cd dahdi-tools
+user@host:~/dahdi-tools$ ./configure; make; sudo make install
+user@host:~/dahdi-tools$ cd ..
 
-`svn co http://svn.digium.com/svn/libss7/trunk libss7-trunk`
-`cd libss7-trunk`
-`make; make install`
+user@host:~$ svn co http://svn.digium.com/svn/libss7/trunk libss7-trunk
+user@host:~$ cd libss7-trunk
+user@host:~/libss7-trunk$ make; make sudo install
+user@host:~/libss7-trunk$ cd ..
 
-`svn co http://svn.digium.com/svn/asterisk/trunk asterisk-trunk`
-`cd asterisk-trunk`
-`./configure; make; make install;`
-
----
+user@host:~$ svn co http://svn.digium.com/svn/asterisk/trunk asterisk-trunk
+user@host:~$ cd asterisk-trunk
+user@host:~/asterisk-trunk$ ./configure; make; sudo make install
+user@host:~/asterisk-trunk$ cd ..
+```
 
 This should build DAHDI, libss7, and Asterisk with SS7 support.
-```
+///
 
 In the past, there was a special asterisk-ss7 branch to use which contained the SS7 code. That code has been merged back into the trunk version of Asterisk, and the old asterisk-ss7 branch has been deprecated and removed. If you are still using the asterisk-ss7 branch, it will not work against the current version of libss7, and you should switch to asterisk-trunk instead.
 

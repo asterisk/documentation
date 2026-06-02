@@ -138,10 +138,15 @@ enable_events=yes ; If enabled, recipients who joined the bridge via a channel d
 
 Of course, your configuration will be different but those are the parameters that need to be set.
 
-!!! warning 
-    If a user connects to the bridge via a DAHDI channel or some other non-SIP based channel, they may receive messages in another format, like SMS, which is probably not a good idea.  To prevent this, you may want to use two different user profiles, one with events enabled and one without.  You could then do some simple dialplan logic to look at the incoming channel technology and call ConfBridge() with the appropriate user profile.
-
-[//]: # (end-warning)
+/// warning
+If a user connects to the bridge via a DAHDI channel or some other
+non-SIP based channel, they may receive messages in another format,
+like SMS, which is probably not a good idea.  To prevent this, you may
+want to use two different user profiles, one with events enabled and
+one without.  You could then do some simple dialplan logic to look at
+the incoming channel technology and call ConfBridge() with the
+appropriate user profile.
+///
 
 In the browser
 --------------

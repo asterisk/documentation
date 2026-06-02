@@ -15,19 +15,22 @@ If the command returns nothing, then DAHDI has not been started. Start DAHDI by 
 [root@server asterisk-14.X.Y]# /etc/init.d/dadhi start
 ```
 
-!!! tip Different Methods for Starting Initscripts
-    Many Linux distributions have different methods for starting initscripts. On most Red Hat based distributions (such as Red Hat Enterprise Linux, Fedora, and CentOS) you can run:
-[//]: # (end-tip)
+/// tip | Different Methods for Starting Initscripts
+Many Linux distributions have different methods for starting
+initscripts. On most Red Hat based distributions (such as Red Hat
+Enterprise Linux, Fedora, and CentOS) you can run:
 
 ```
 [root@server asterisk-14.X.Y]# service dahdi start
+```
 
----
+Distributions based on Debian (such as Ubuntu) have a similar command,
+though it's not commonly used:
 
-Distributions based on Debian (such as Ubuntu) have a similar command, though it's not commonly used:
-
+```
 [root@server asterisk-14.X.Y]# invoke-rc.d dahdi start
 ```
+///
 
 If you have DAHDI running, the output of **lsmod | grep dahdi** should look something like the output below. (The exact details may be different, depending on which DAHDI modules have been built, and so forth.)
 

@@ -17,10 +17,10 @@ Not all AMI events are documented in Asterisk 11, and the list of events availab
 Building AMI Event Documentation
 ================================
 
-!!! note 
-    Building AMI Event documentation for Asterisk requires both libxml and python.
-
-[//]: # (end-note)
+/// note
+Building AMI Event documentation for Asterisk requires both libxml and
+python.
+///
 
 Because AMI event documentation is handled in a slightly different fashion, a new build option 'make full' is required to generate the documentation from the Asterisk source.
 
@@ -30,10 +30,12 @@ Because AMI event documentation is handled in a slightly different fashion, a ne
 # make install
 ```
 
-!!! note 
-    Because AMI event documentation must be pulled from a variety of locations in the Asterisk source, the time to generate AMI event documentation is noticeably longer then the time to generate other Asterisk documentation.
-
-[//]: # (end-note)
+/// note
+Because AMI event documentation must be pulled from a variety of
+locations in the Asterisk source, the time to generate AMI event
+documentation is noticeably longer then the time to generate other
+Asterisk documentation.
+///
 
 CLI Commands
 ============
@@ -108,10 +110,9 @@ SubEvent
 *CLI> 
 ```
 
-!!! note 
-    The output shown above is subject to change
-
-[//]: # (end-note)
+/// note
+The output shown above is subject to change
+///
 
 Writing AMI Event Documentation
 ===============================

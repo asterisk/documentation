@@ -52,10 +52,8 @@ Participants
 Agenda
 ======
 
-!!! note 
-    All times are in PDT
-
-[//]: # (end-note)
+/// note | All times are in PDT
+///
 
 Project Policies (10-11:15am)
 -----------------------------

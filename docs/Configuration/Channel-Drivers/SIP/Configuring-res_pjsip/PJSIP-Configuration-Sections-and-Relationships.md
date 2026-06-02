@@ -30,8 +30,12 @@ Reference documentation for all configuration parameters:
 
 The same documentation is available at the Asterisk CLI as well. You can use `config show help <res_pjsip module name> <configobject> <configoption>` to get help on a particular option. That help will typically describe the default value for an option as well.
 
-/// tip|Defaults
-For many config options, it's very helpful to understand their default behavior. For example, for the endpoint section "transport=" option, if no value is assigned then Asterisk will \*DEFAULT\* to the first configured transport in pjsip.conf which is valid for the URI we are trying to contact.
+/// tip | Defaults
+For many config options, it's very helpful to understand their default
+behavior. For example, for the endpoint section "transport=" option,
+if no value is assigned then Asterisk will \*DEFAULT\* to the first
+configured transport in pjsip.conf which is valid for the URI we are
+trying to contact.
 ///
 
 ## Object Names
@@ -83,8 +87,9 @@ You can set up multiple transport sections and other sections (such as endpoints
 * They cannot share the same IP+port or IP+protocol combination. That is, each transport that binds to the same IP as another must use a different port or protocol.
 * PJSIP does not allow multiple TCP or TLS transports of the same IP version (IPv4 or IPv6).
 
-/// info|Reloading Config
-Configuration for transport type sections can't be reloaded during run-time unless their `allow_reload` option is set to `yes` 
+/// note | Reloading Config
+Configuration for transport type sections can't be reloaded during
+run-time unless their `allow_reload` option is set to `yes`
 ///
 
 EXAMPLE BASIC CONFIGURATION

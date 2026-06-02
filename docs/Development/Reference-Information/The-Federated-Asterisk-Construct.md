@@ -3,10 +3,12 @@ title: The Federated Asterisk Construct
 pageid: 30279846
 ---
 
-!!! info "Disclaimer"
-    This page contains many of the ideas that I've been discussing with unknown user. Bear in mind that currently, much is missing here, so don't expect any actions items to spring from this page in the near future.
-
-[//]: # (end-info)
+/// note | Disclaimer
+This page contains many of the ideas that I've been discussing with
+Matt Jordan. Bear in mind that currently, much is missing here, so
+don't expect any actions items to spring from this page in the near
+future.
+///
 
 Overview
 ========
@@ -16,7 +18,7 @@ The following set of wiki pages are meant to serve as an idea discussion pad, to
 * Rely on existing Asterisk Standard/LTS distribution for the construct.
 * Avoid paradigm changes as much as possible. Introduction of new ones is ok, as long as they don't clash with the old.
 * Asterisk should be regarded as a building block, not the actual core federation tool.
-* Federation should utilize existing componets (realtime, sqlite, ARI, Stasis, etc) as much as possible
+* Federation should utilize existing components (realtime, sqlite, ARI, Stasis, etc) as much as possible
 
 What a Federated Asterisk really is?
 ====================================
@@ -27,6 +29,7 @@ Building a large Asterisk system had been known to be somewhat of a shifting tar
 * Provide a means to seamlessly migrate users across the platform, without any need for prior knowledge of the users location
 * Provide a means to seamlessly federate multiple Asterisk versions - or in the future, other technologies as well
 * Provide a highly robust provisioning mechanism, to allow users be provisioned without geographical or client restrictions
+
 Different approaches to federating Asterisk
 ===========================================
 
@@ -41,20 +44,14 @@ This approach dictates the following paradigm:
 * The data store provides a means of replicating information from one Asterisk server in the federation to the other, without requiring the service logic to interfere
 * Routing decision are based upon local decisions, with full federation visibility
 
-| Pros | Cons |
-| --- | --- |
-| * Fairly simple to implement using legacy Asterisk versions
-* Does not require any changes to the Asterisk core
-* Can be implemented using Asterisk + AGI/FastAGI + AMI
-* Scales at reasonable ease
-* Well known maintenance and operational paradigms
-* Based on bullet proof, battle tested technologies
- | * Complex to maintain and support when the system scales beyond a certain
-* Contains too many moving parts (Data Store, AGI Server, AMI Server, etc)
-* Relies mostly on hacking the solution, rather than an architectural approachto doing things
-* Requires in-depth understanding of the surrounding tools (Redis, Memcache,MySQL, Python, etc)
-* **Cool factor: low and boring!**
- |
+| Pros                                                      | Cons                                                                                          |
+|-----------------------------------------------------------|-----------------------------------------------------------------------------------------------|
+| Fairly simple to implement using legacy Asterisk versions | Complex to maintain and support when the system scales beyond a certain                       |
+| Does not require any changes to the Asterisk core         | Contains too many moving parts (Data Store, AGI Server, AMI Server, etc)                      |
+| Can be implemented using Asterisk + AGI/FastAGI + AMI     | Relies mostly on hacking the solution, rather than an architectural approachto doing things   |
+| Scales at reasonable ease                                 | Requires in-depth understanding of the surrounding tools (Redis, Memcache,MySQL, Python, etc) |
+| Well known maintenance and operational paradigms          | **Cool factor: low and boring!**                                                              |
+| Based on bullet proof, battle tested technologies         |                                                                                               |
 
 Partial Data Distribution with Full Service Distribution
 --------------------------------------------------------
@@ -68,20 +65,14 @@ This approach dictates the following paradigm:
 * Data is no longer replicated from one server to the other, information that is required at the federation level is stored in the centralized data store
 * Routing decision are based upon local and centralized querying
 
-| Pros | Cons |
-| --- | --- |
-| * Fairly simple to implement using legacy Asterisk versions
-* Does not require any changes to the Asterisk core
-* Can be implemented using Asterisk + AGI/FastAGI + AMI
-* Scales at reasonable ease
-* Well known maintenance and operational paradigms
-* Based on bullet proof, battle tested technologies
- | * Provides simpler means for managing the system, however, when scaling beyondthe 20 server mark will require significant management skills
-* Contains too many moving parts (Data Store, AGI Server, AMI Server, etc)
-* We still rely on IT hacking, rather than an architecture. While the centralized datastore provides some architectural support, we're still miles away from it.
-* Requires in-depth understanding of the surrounding tools (Redis, Memcache,MySQL, Python, etc)
-* **Cool factor: medium and gets boring after a few days**
- |
+| Pros                                                      | Cons                                                                                                                                                           |
+|-----------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Fairly simple to implement using legacy Asterisk versions | Provides simpler means for managing the system, however, when scaling beyondthe 20 server mark will require significant management skills                      |
+| Does not require any changes to the Asterisk core         | Contains too many moving parts (Data Store, AGI Server, AMI Server, etc)                                                                                       |
+| Can be implemented using Asterisk + AGI/FastAGI + AMI     | We still rely on IT hacking, rather than an architecture. While the centralized datastore provides some architectural support, we're still miles away from it. |
+| Scales at reasonable ease                                 | Requires in-depth understanding of the surrounding tools (Redis, Memcache,MySQL, Python, etc)                                                                  |
+| Well known maintenance and operational paradigms          | **Cool factor: medium and gets boring after a few days**                                                                                                       |
+| Based on bullet proof, battle tested technologies         |                                                                                                                                                                |
 
 Partial Data Distribution with Centralized Service Distribution
 ---------------------------------------------------------------
@@ -95,25 +86,19 @@ Partial Data Distribution with Centralized Service Distribution
 * ~~Data is no longer replicated from one server to the other, information that is required at the federation level is stored in the centralized data store~~
 * ~~Routing decision are based upon local and centralized querying~~
 
-| ~~Pros~~ | ~~Cons~~ |
-| --- | --- |
-| * ~~Fairly simple to implement using legacy Asterisk versions~~
-* ~~Does not require any changes to the Asterisk core~~
-* ~~Can be implemented using Asterisk + AGI/FastAGI + AMI~~
-* ~~Scales at reasonable ease~~
-* ~~Well known maintenance and operational paradigms~~
-* ~~Based on bullet proof, battle tested technologies~~
- | * ~~Provides simpler means for managing the system, however, when scaling beyond~~~~the 20 server mark will require significant management skills~~
-* ~~Contains too many moving parts (Data Store, AGI Server, AMI Server, etc)~~
-* ~~We still rely on IT hacking, rather than an architecture. While the centralized datastore provides some architectural support, we're still miles away from it.~~
-* ~~Requires in-depth understanding of the surrounding tools (Redis, Memcache,~~~~MySQL, Python, etc)~~
-* ~~**Cool factor: medium and gets boring after a few days**~~
- |
+| ~~Pros~~                                                      | ~~Cons~~                                                                                                                                                           |
+|---------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| ~~Fairly simple to implement using legacy Asterisk versions~~ | ~~Provides simpler means for managing the system, however, when scaling beyond~~~~the 20 server mark will require significant management skills~~                  |
+| ~~Does not require any changes to the Asterisk core~~         | ~~Contains too many moving parts (Data Store, AGI Server, AMI Server, etc)~~                                                                                       |
+| ~~Can be implemented using Asterisk + AGI/FastAGI + AMI~~     | ~~We still rely on IT hacking, rather than an architecture. While the centralized datastore provides some architectural support, we're still miles away from it.~~ |
+| ~~Scales at reasonable ease~~                                 | ~~Requires in-depth understanding of the surrounding tools (Redis, Memcache,~~~~MySQL, Python, etc)~~                                                              |
+| ~~Well known maintenance and operational paradigms~~          | ~~**Cool factor: medium and gets boring after a few days**~~                                                                                                       |
+| ~~Based on bullet proof, battle tested technologies~~         |                                                                                                                                                                    |
 
 Contributors
 ============
 
-| Name | E-mail Address |
-| --- | --- |
-| unknown user | [mjordan@digium.com](mailto:mjordan@digium.com) |
+| Name            | E-mail Address                                            |
+|-----------------|-----------------------------------------------------------|
+| Matt Jordan     | [mjordan@digium.com](mailto:mjordan@digium.com)           |
 | Nir Simionovich | [nirs@greenfieldtech.net](mailto:nirs@greenfieldtech.net) |

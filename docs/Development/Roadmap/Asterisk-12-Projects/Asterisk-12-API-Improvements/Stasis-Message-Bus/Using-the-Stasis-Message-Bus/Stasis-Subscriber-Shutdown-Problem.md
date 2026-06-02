@@ -21,7 +21,7 @@ The first time we wrote subscription code, it looked like this:
 
 Bad code we all wrote at first
 
-```
+```c
 struct ast_foo {
   /* foo's stuff */
   /*! Very important subscription */
@@ -65,7 +65,7 @@ Okay, you notice the problem, and it's an easy fix. The subscription should have
 
 Bad code we all wrote second
 
-```
+```c
 struct ast_foo {
   /* foo's stuff */
   /*! Very important subscription */
@@ -115,7 +115,7 @@ Now we've seen it all. We've learned our lessons. Now we can properly code up ho
 
 Good code we finally wrote there at the end
 
-```
+```c
 struct ast_foo {
   /* foo's stuff */
   /*! Very important subscription */

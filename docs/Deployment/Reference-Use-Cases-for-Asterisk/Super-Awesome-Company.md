@@ -67,10 +67,10 @@ SAC, located in the ghost town of Waldo, Alabama, is fortunate to have access to
 
 WaldoCom, as a traditional communications provider will allow SAC to purchase telephone service.  But, because the calling plans across the WaldoCom telephone network must be paid in Confederate dollars, SAC has instead decided to contract with Digium, Inc. for voice services.  Digium provides inbound and outbound calling over the Internet as a "SIP Trunk" using SAC's existing Internet connectivity.
 
-!!! note 
-    WaldoCom has ceased trading in Bitcoin after having been accused by the FBI of running the Silk Road as the Dread Pirate Roberts.
-
-[//]: # (end-note)
+/// note
+WaldoCom has ceased trading in Bitcoin after having been accused by
+the FBI of running the Silk Road as the Dread Pirate Roberts.
+///
 
 SAC has purchased a well-loved Linksys WRT54G, aka "Old Unreliable," from the now defunct Waldo Happy Hands Club.  They intend to use it to terminate the Ethernet connectivity from WaldoCom.  WaldoCom provides a single IPv4 address across the link - 203.0.113.1.  The Linksys will provide NAT translation from the Internet to the internal SAC campus network.  Within the SAC network, the 10.0.0.0/8 address space will be used.
 

@@ -27,10 +27,12 @@ During the time at which the module is deprecated in both a standard and long te
 Marking A Module As Deprecated For Standard Release
 ===================================================
 
-!!! note 
-    Reminder: Module deprecation practices within the tree are only eligible to be done in master when the next release is a standard release. No module deprecation can be done during the development of a long term supported release.
-
-[//]: # (end-note)
+/// note | Reminder
+Module deprecation practices within the tree are only eligible to be
+done in master when the next release is a standard release. No module
+deprecation can be done during the development of a long term
+supported release.
+///
 
 #### The following instructions are for the master branch in which the module is to be deprecated.
 
@@ -50,10 +52,12 @@ Marking A Module As Deprecated For Standard Release
 
 #### The following instructions are for the previous still supported branches to notify users that a module will be deprecated in an upcoming version.
 
-!!! info ""
-    Setting these values in the MODULEINFO XML will cause Asterisk to output a warning at startup with the information to inform the user that in a future new version of Asterisk deprecation and then removal will occur.
-
-[//]: # (end-info)
+/// note
+Setting these values in the `MODULEINFO` XML will cause Asterisk to
+output a warning at startup with the information to inform the user
+that in a future new version of Asterisk deprecation and then removal
+will occur.
+///
 
 1. Obtain the Asterisk source code from [GitHub](https://github.com/asterisk/asterisk). Since you'll need to put your patch up for review, make an account in GitHub as well, following the instructions on [Code Contribution](/Development/Policies-and-Procedures/Code-Contribution).
 2. Create a new Git branch for your deprecation notice change.
@@ -64,10 +68,10 @@ Marking A Module As Deprecated For Standard Release
 7. Submit the patch to Gerrit.
 8. Cherry pick the change to other appropriate branches.
 
-!!! note 
-    A single commit can be used to update multiple modules, but each module will need its own JIRA issue.
-
-[//]: # (end-note)
+/// note
+A single commit can be used to update multiple modules, but each
+module will need its own JIRA issue.
+///
 
 Recording A Module For Future Deprecation
 =========================================
@@ -80,10 +84,11 @@ During development of a long term supported release modules are not eligible to 
 Removing A Module
 =================
 
-!!! note 
-    Reminder: Module removal is only eligible to be done in master when the next release is a standard release. No module removal can be done during the development of a long term supported release.
-
-[//]: # (end-note)
+/// note | Reminder
+Module removal is only eligible to be done in master when the next
+release is a standard release. No module removal can be done during
+the development of a long term supported release.
+///
 
 1. Only remove a module if it has not been reverted from being deprecated.
 2. Create a new issue in the [Asterisk project issue tracker](https://github.com/asterisk/asterisk/issues/) using the "Deprecation" issue type. Ensure the issue summary is descriptive as it will go into release notes.

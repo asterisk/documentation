@@ -37,10 +37,12 @@ Depending on your Asterisk version and configuration, there are a few different 
 2. **res_external_mwi**: A module providing an API for other systems to communicate MWI state to Asterisk
 3. **chan_pjsip**: Setting `incoming_mwi_mailbox` on an endpoint
 
-!!! note **  **res_pjsip
-    : The functionality for outbound SIP subscription is not available in res_pjsip yet. Internal infrastructure is built that would allow it, so if this is something you want to work on, please contact the [Asterisk development community](http://www.asterisk.org/community/discuss).
-
-[//]: # (end-note)
+/// note | Outbound SIP subscriptions in res_pjsip
+The functionality for outbound SIP subscription is not available in
+res_pjsip yet. Internal infrastructure is built that would allow it,
+so if this is something you want to work on, please contact the
+[Asterisk development community](http://www.asterisk.org/community/discuss).
+///
 
 Outbound MWI subscription with chan_sip
 ----------------------------------------
@@ -81,10 +83,10 @@ External sources can use the API provided by res_external_mwi to communicate MWI
 
 [Asterisk 12 Configuration_res_mwi_external](/Latest_API/API_Documentation/Module_Configuration/res_mwi_external)
 
-!!! warning 
-    res_external_mwi.so is mutually exclusive with app_voicemail.so. You'll have to load only the one you want to use.
-
-[//]: # (end-warning)
+/// warning
+`res_external_mwi.so` is mutually exclusive with
+`app_voicemail.so`. You'll have to load only the one you want to use.
+///
 
 chan_pjsip
 -----------

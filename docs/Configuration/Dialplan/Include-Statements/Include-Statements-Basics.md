@@ -26,16 +26,20 @@ exten => 6500,1,Answer(500)
  same => n,VoiceMailMain(@vm-demo)
 ```
 
-!!! tip Location of Include Statements** Please note that in the example above, we placed the include statement before extensions **6001** and **6002
-    . It could have just as well come after.  
+/// tip | Location of Include Statements
+Please note that in the example above, we placed the include statement
+before extensions **6001** and **6002**. It could have just as well
+come after.
+///
 
-[//]: # (end-tip)
+/// warning | Be careful with overlapping patterns/extensions
+Because Asterisk doesn't stop processing the dialplan after the first
+matching extension is found, always ensure that you don't have
+overlapping patterns or duplicate extensions among included contexts,
+or else you'll get an unexpected behavior.
+///
 
-!!! warning Be careful with overlapping patterns/extensions
-    Because Asterisk doesn't stop processing the dialplan after the first matching extension is found, always ensure that you don't have overlapping patterns or duplicate extensions among included contexts, or else you'll get an unexpected behavior.  
-[//]: # (end-warning)
-
-How calling 6001 may go wrong  
+How calling 6001 may go wrong
 
 ```
 [users]
@@ -58,7 +62,5 @@ exten => 6500,1,Answer(500)
 [catchall]
 exten => _.,1,NoOp();
 exten => _.,2,NoOp();
-exten => _.,3,NoOp(); ; <- Priority 3 ends up being here, which is NOT what you want  
-
----
+exten => _.,3,NoOp(); ; <- Priority 3 ends up being here, which is NOT what you want
 ```

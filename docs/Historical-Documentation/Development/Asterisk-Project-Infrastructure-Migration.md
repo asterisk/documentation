@@ -3,26 +3,21 @@ title: Asterisk Project Infrastructure Migration
 pageid: 52069711
 ---
 
-!!! note 
-    The Asterisk Project Issue Tracking and Code Management functions were successfully moved to GitHub on April 29th 2023!
+/// note
+The Asterisk Project Issue Tracking and Code Management functions were
+successfully [moved to GitHub](https://github.com/asterisk) on April
+29th, 2023.
 
-    <https://github.com/asterisk/asterisk>
+<https://github.com/asterisk/asterisk>
 
-    The following pages have been updated with new information:
+The following pages have been updated with new information:
 
-[Code Contribution](/Development/Policies-and-Procedures/Code-Contribution)
-
-[Commit Messages](/Development/Policies-and-Procedures/Commit-Messages)
-
-[Asterisk Issue Guidelines](/Asterisk-Community/Asterisk-Issue-Guidelines)
-
-[Release Management](/Development/Policies-and-Procedures/Release-Management)
-
-[Asterisk Community Services](/Asterisk-Community/Asterisk-Community-Services)
-
-    Migration of this Wiki is still pending.
-
-[//]: # (end-note)
+* [Code Contribution](/Development/Policies-and-Procedures/Code-Contribution)
+* [Commit Messages](/Development/Policies-and-Procedures/Commit-Messages)
+* [Asterisk Issue Guidelines](/Asterisk-Community/Asterisk-Issue-Guidelines)
+* [Release Management](/Development/Policies-and-Procedures/Release-Management)
+* [Asterisk Community Services](/Asterisk-Community/Asterisk-Community-Services)
+///
 
 Overview
 ========

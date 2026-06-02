@@ -18,10 +18,10 @@ In such cases, its often very useful to determine what in Asterisk manipulated t
 
 In all cases, when providing the **refs** file to Asterisk developers for debugging purposes you should also be providing them with instructional steps, including configuration, that allows them to reproduce the issue consistently. See the [Asterisk Issue Guidelines](/Asterisk-Community/Asterisk-Issue-Guidelines) for more details on submitting an issue.
 
-!!! note 
-    These instructions apply to Asterisk versions 11.10.0, 13.0.0 or greater.
-
-[//]: # (end-note)
+/// note
+These instructions apply to Asterisk versions 11.10.0, 13.0.0 or
+greater.
+///
 
 Enabling Reference Count Logs in Asterisk 14+
 =============================================

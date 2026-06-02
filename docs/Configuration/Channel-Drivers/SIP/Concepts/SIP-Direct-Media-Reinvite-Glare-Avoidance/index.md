@@ -1,9 +1,9 @@
 # SIP Direct Media Reinvite Glare Avoidance
 
-!!! note
-    While this page has not yet been updated for chan_pjsip, the
-    concepts are the same.
-[//]: # (end-note)
+/// note | What about chan_pjsip?
+While this page has not yet been updated for chan_pjsip, the concepts
+are the same.
+///
 
 ## Overview
 

@@ -39,10 +39,11 @@ The provided transport is used.
 
 The provided transport is instructed to establish a new connection to the resolved IP address and port.
 
-!!! info ""
-    If an existing connection exists to the IP address and port using the specific transport type then it is reused and a new one is not established.
-
-[//]: # (end-info)
+/// note
+If an existing connection exists to the IP address and port using the
+specific transport type then it is reused and a new one is not
+established.
+///
 
 ### 4. Multihomed Transport Selection (Connection-less protocols)
 
@@ -213,10 +214,12 @@ protocol=tcp
 bind=[2001:470:e20f:42::42]
 ```
 
-!!! warning
-    It might be tempting to use a wildcard IPv6 address to bind a single transport to allow both IPv6 and IPv4. In this configuration IPv6 mapped IPv4 addresses will be used which is unsupported by PJSIP. This will cause a SIP message parsing failure.
-
-[//]: # (end-warning)
+/// warning
+It might be tempting to use a wildcard IPv6 address to bind a single
+transport to allow both IPv6 and IPv4. In this configuration IPv6
+mapped IPv4 addresses will be used which is unsupported by PJSIP. This
+will cause a SIP message parsing failure.
+///
 
 Common Issues
 =============

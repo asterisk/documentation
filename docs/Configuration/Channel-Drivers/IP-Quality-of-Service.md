@@ -16,17 +16,17 @@ vconfig set_egress_map [vlan-device] [skb-priority] [vlan-qos]
 
 The table below shows all VoIP channel drivers and other Asterisk modules that support QoS settings for network traffic. It also shows the type(s) of traffic for which each module can support setting QoS settings:
 
-|   | Signaling | Audio | Video | Text |
-| --- | --- | --- | --- | --- |
-| chan_sip | + | + | + | + |
-| chan_skinny | + | + | + |   |
-| chan_mgcp | + | + |   |   |
-| chan_unistm | + | + |   |   |
-| chan_h323 |   | + |   |   |
-| chan_iax2 | + |   |   |   |
-| chan_pjsip | + | + | + |  |
-| DUNDI | + (tos setting) |  |  |  |
-| IAXProv | + (tos setting) |  |  |  |
+|             | Signaling       | Audio | Video | Text |
+|-------------|:---------------:|:-----:|:-----:|:----:|
+| chan_sip    | ✔️               | ✔️     | ✔️     | ✔️    |
+| chan_skinny | ✔️               | ✔️     | ✔️     |      |
+| chan_mgcp   | ✔️               | ✔️     |       |      |
+| chan_unistm | ✔️               | ✔️     |       |      |
+| chan_h323   |                 | ✔️     |       |      |
+| chan_iax2   | ✔️               |       |       |      |
+| chan_pjsip  | ✔️               | ✔️     | ✔️     |      |
+| DUNDI       | ✔️ (tos setting) |       |       |      |
+| IAXProv     | ✔️ (tos setting) |       |       |      |
 
 ### IP TOS values
 
@@ -96,10 +96,10 @@ In chan_pjsip, there are three parameters that control the TOS settings: a **tos
 
 Similarly, there are there parameters that control the 802.1p CoS settings: a **cos** option for a **type=transport** that controls the 802.1p value for SIP signaling packets, a**cos_audio** option for a **type=endpoint** that controls the 802.1p value of RTP audio packets, and a **cos_video** option for a **type=endpoint** that controls the 802.1p value for video packets.
 
-!!! tip **  Changes to a chan_pjsip **type=transport
-    require an Asterisk restart to be affected. They are not affected by simply reloading Asterisk.
-
-[//]: # (end-tip)
+/// tip
+Changes to a chan_pjsip `type=transport` require an Asterisk restart
+to take effect. They are not affected by simply reloading Asterisk.
+///
 
 ### Other RTP channels
 

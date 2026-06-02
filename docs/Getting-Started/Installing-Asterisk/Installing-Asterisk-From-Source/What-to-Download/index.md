@@ -9,13 +9,18 @@ Downloads of Asterisk are available at <https://downloads.asterisk.org/pub/telep
 
 The currently supported versions of Asterisk are documented on the [Asterisk Versions](/About-the-Project/Asterisk-Versions) page. It is highly recommended that you install one of the currently supported versions, as these versions continue to receive bug and security fixes.
 
-!!! tip Which version should I install?
-    If you want a rock solid communications framework, choose the latest **Long Term Support (LTS)
-    release.
-    * If you want the latest cool features and capabilities, choose the latest release of Asterisk. If that is a **Standard** release, note that these releases may have larger changes made in them than LTS releases.
-    Unless otherwise noted, for the purposes of this section we will assume that Asterisk 14 is being installed.
+/// tip | Which version should I install?
+If you want a rock solid communications framework, choose the latest
+**Long Term Support (LTS) release**.
 
-[//]: # (end-tip)
+If you want the latest cool features and capabilities, choose the
+latest release of Asterisk. If that is a **Standard** release, note
+that these releases may have larger changes made in them than LTS
+releases.
+
+Unless otherwise noted, for the purposes of this section we will
+assume that Asterisk 14 is being installed.
+///
 
 Review Asterisk's [System Requirements](/Operation/System-Requirements) in order to determine what needs to be installed for the version of Asterisk you are installing. While Asterisk will look for any missing system requirements during compilation, it's often best to install these prior to configuring and compiling Asterisk.
 
@@ -38,7 +43,7 @@ HTTP request sent, awaiting response... 200 OK
 Length: 40692588 (39M) [application/x-gzip]
 Saving to: ‘asterisk-14-current.tar.gz’
 
-asterisk-14-current.tar.gz 100%[======================================================================>] 38.81M 3.32MB/s in 12s 
+asterisk-14-current.tar.gz 100%[======================================================================>] 38.81M 3.32MB/s in 12s
 
 2017-04-28 15:45:47 (3.37 MB/s) - ‘asterisk-14-current.tar.gz’ saved [40692588/40692588]
 ```
@@ -59,17 +64,19 @@ The DAHDI code can be downloaded as individual pieces (**dahdi-linux** for the D
 
 You will only need to install DAHDI if you are going to utilize DAHDI compatible analog or digital telephony interface boards.
 
-!!! tip Why is DAHDI split into different pieces?
-    DAHDI has been split into two pieces (the Linux drivers and the tools) as third parties have begun porting the DAHDI drivers to other operating systems, such as FreeBSD. Eventually, we may have dahdi-linux, dahdi-freebsd, and so on.
-
-[//]: # (end-tip)
+/// tip | Why is DAHDI split into different pieces?
+DAHDI has been split into two pieces (the Linux drivers and the tools)
+as third parties have begun porting the DAHDI drivers to other
+operating systems, such as FreeBSD. Eventually, we may have
+dahdi-linux, dahdi-freebsd, and so on.
+///
 
 ## Download Locations
 
-| Project | Location |
-| --- | --- |
-| Asterisk | <https://downloads.asterisk.org/pub/telephony/asterisk/asterisk-14-current.tar.gz> |
-| libpri | <https://downloads.asterisk.org/pub/telephony/libpri/libpri-current.tar.gz> |
-| dahdi-linux | <https://downloads.asterisk.org/pub/telephony/dahdi-linux/dahdi-linux-current.tar.gz> |
-| dahdi-tools | <https://downloads.asterisk.org/pub/telephony/dahdi-tools/dahdi-tools-current.tar.gz> |
+| Project        | Location                                                                                                |
+|----------------|---------------------------------------------------------------------------------------------------------|
+| Asterisk       | <https://downloads.asterisk.org/pub/telephony/asterisk/asterisk-14-current.tar.gz>                      |
+| libpri         | <https://downloads.asterisk.org/pub/telephony/libpri/libpri-current.tar.gz>                             |
+| dahdi-linux    | <https://downloads.asterisk.org/pub/telephony/dahdi-linux/dahdi-linux-current.tar.gz>                   |
+| dahdi-tools    | <https://downloads.asterisk.org/pub/telephony/dahdi-tools/dahdi-tools-current.tar.gz>                   |
 | dahdi-complete | <https://downloads.asterisk.org/pub/telephony/dahdi-linux-complete/dahdi-linux-complete-current.tar.gz> |

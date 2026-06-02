@@ -3,10 +3,8 @@ title: Overview
 pageid: 27200342
 ---
 
-!!! warning 
-    Under Construction
-
-[//]: # (end-warning)
+/// warning | Under Construction
+///
 
 # Sorcery Overview
 

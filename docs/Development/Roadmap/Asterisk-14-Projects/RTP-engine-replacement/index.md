@@ -3,10 +3,9 @@ title: Overview
 pageid: 31752285
 ---
 
-!!! warning 
-    This page has not received peer review and is still undergoing edits.
-
-[//]: # (end-warning)
+/// warning
+This page has not received peer review and is still undergoing edits.
+///
 
 Purpose of this project
 =======================

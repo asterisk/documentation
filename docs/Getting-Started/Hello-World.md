@@ -70,11 +70,10 @@ Configure a SIP channel driver
 
 Depending on the version of Asterisk in use, you may have the option of more than one SIP channel driver. You'll have to pick one to use for the example.
 
-!!! info ""
-    * Asterisk 11 and previous: chan_sip is the primary option.
-    * Asterisk 12 and beyond: You'll probably want to use chan_pjsip (the newest driver), but you still have the option of using chan_sip as well
-
-[//]: # (end-info)
+/// note
+* Asterisk 11 and previous: chan_sip is the primary option.
+* Asterisk 12 and beyond: You'll probably want to use chan_pjsip (the newest driver), but you still have the option of using chan_sip as well
+///
 
 Follow the instructions below for the channel driver you chose.
 

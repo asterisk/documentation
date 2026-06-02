@@ -32,7 +32,7 @@ The options are configured in features.conf in the featuremap section. They use 
 features.conf  
 
 ```
- [featuremap]
+[featuremap]
 automon = *1
 automixmon = *3
 disconnect = *0
@@ -46,24 +46,24 @@ Dialplan application options
 
 For each feature there are a pair of options that can be set in the [Dial](/Latest_API/API_Documentation/Dialplan_Applications/Dial) or [Queue](/Latest_API/API_Documentation/Dialplan_Applications/Queue) applications. The two options enable the feature on either the calling party channel or the called party channel.
 
-!!! note 
-    If neither option of a pair are set then you will not be able to use the related feature on the channel.
-
-[//]: # (end-note)
+/// note
+If neither option of the pair are set then you will not be able to use
+the related feature on the channel.
+///
 
 **automon**
 
-* W - Allow the calling party to enable recording of the call.
-* w - Allow the called party to enable recording of the call.
+* `W` - Allow the calling party to enable recording of the call.
+* `w` - Allow the called party to enable recording of the call.
 
 **automixmon**
 
-* X - Allow the calling party to enable recording of the call.
-* x - Allow the called party to enable recording of the call.
+* `X` - Allow the calling party to enable recording of the call.
+* `x` - Allow the called party to enable recording of the call.
 
 **disconnect**
 
-* H - Allow the calling party to hang up the channel.
+* `H` - Allow the calling party to hang up the channel.
 * `h` - Allow the called party to hang up the channel.
 
 **parkcall**

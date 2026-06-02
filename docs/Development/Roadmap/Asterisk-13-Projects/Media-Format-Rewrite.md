@@ -15,9 +15,11 @@ Use Cases
 
 The following, for the most part, assumes that the channels use RTP for media and SIP for signalling. Most use cases, however, will translate to any VoIP channel driver. DAHDI, as always, is its own thing.
 
-!!! note 
-    The Offer/Answer use cases below only apply to `chan_pjsip`. `chan_sip`, for better or worse, has its own fun rules about what codecs are offered and when.
-[//]: # (end-note)
+/// note
+The Offer/Answer use cases below only apply to
+`chan_pjsip`. `chan_sip`, for better or worse, has its own fun rules
+about what codecs are offered and when.
+///
 
 ```
 /* add_sdp */
@@ -51,25 +53,29 @@ Single Channel
 
 ### Nominal Offer/Answer (Single Media Stream)
 
-!!! info ""
-    Each of the tests with a Single Media Stream should be repeated for each media stream that a channel driver supports, i.e., audio, video, RTT, etc.
-
-[//]: # (end-info)
+/// note
+Each of the tests with a Single Media Stream should be repeated for
+each media stream that a channel driver supports, i.e., audio, video,
+RTT, etc.
+///
 
 #### Offer Negotiation - Nominal
 
 * Alice's phone offers some set of codecs in an INVITE request (example: ulaw,g729,ilbc), where all codecs are supported by Alice's endpoint
 * Asterisk responds with an answer containing the codecs in the order specified by the offer
 
-!!! tip 
-    This should also verify various SDP offers:
+/// tip
+This should also verify various SDP offers:
 
-    1. Lack of rtpmap attributes for specific codecs, e.g., 0 implies ulaw (See Table 2, RFC 1890)
-    2. Non-standard rtpmap designations for codecs
+1. Lack of rtpmap attributes for specific codecs, e.g., 0 implies ulaw
+   (See Table 2, RFC 1890)
+2. Non-standard rtpmap designations for codecs
 
-    While these could be considered "off-nominal", they are allowed by the various RFCs and should be covered under a 'nominal negotiation', where the set of codecs offered match completely with what is configured in Asterisk
-
-[//]: # (end-tip)
+While these could be considered "off-nominal", they are allowed by the
+various RFCs and should be covered under a 'nominal negotiation',
+where the set of codecs offered match completely with what is
+configured in Asterisk
+///
 
 #### Offer Negotiation - Subset (Alice)
 
@@ -105,15 +111,15 @@ Single Channel
 
 All use cases covered in Nominal Offer/Answer (Single Media Stream) apply here as well, save that there should be multiple streams of different types. Asterisk should treat the preferred codec offer in the same fashion for each stream independently; that is, if the preferred codec list is ulaw,g722,h261,h264, then the preferred audio codec is ulaw and the preferred video codec is h261.
 
-!!! info ""
-    Each of the following tests be repeated to include multiple media streams in various combinations:
+/// note
+Each of the following tests be repeated to include multiple media
+streams in various combinations:
 
-    * Audio + Video
-    * Video + Text
-    * Audio + Text
-    * Audio + Video + Text
-
-[//]: # (end-info)
+* Audio + Video
+* Video + Text
+* Audio + Text
+* Audio + Video + Text
+///
 
 ### Restricted Offer/Answer (Single Stream)
 
@@ -212,10 +218,10 @@ Multiple Channels
 * Alice sends an INVITE request with a different ordered set of codecs than Bob.
 * Alice's channel is set to re-INVITE back to native bridging if possible.
 
-!!! tip 
-    Variants to test: Bob's channel being set to re-INVITE back to a native bridge, as well as both channels being set to re-INVITE.
-
-[//]: # (end-tip)
+/// tip
+Variants to test: Bob's channel being set to re-INVITE back to a
+native bridge, as well as both channels being set to re-INVITE.
+///
 
 * Asterisk dials Bob with his set of codecs in his endpoint's priority order.
 * Bob responds back with a set of codecs. The set of codecs should have at least one format in common.
@@ -234,10 +240,10 @@ Multiple Channels
 * Alice and Bob enter a bridge together. Asterisk sends a re-INVITE to Alice and to Bob with the formats that are in common.
 * Alice responds to the re-INVITE with a failure response (488)
 
-!!! tip 
-    Variants to test: Bob rejects the re-INVITE; both Alice and Bob reject the re-INVITE
-
-[//]: # (end-tip)
+/// tip
+Variants to test: Bob rejects the re-INVITE; both Alice and Bob reject
+the re-INVITE
+///
 
 * Asterisk sends an UPDATE request (if Alice/Bob support it) with the previous SDP (see RFC 6337, section 3.4)
 * Asterisk transcodes media between Alice and Bob
@@ -248,10 +254,10 @@ Multiple Channels
 * Prior to dialling Bob, PJSIP_MEDIA_OFFER modifies which codecs will be offered. (Alternatively, the CHANNEL function in a pre-dial handler)
 * Asterisk sends an INVITE request with the codecs specified, regardless of whether or not Bob's endpoint supports them.
 
-!!! tip 
-    This scenario should test sending Bob both acceptable codecs for his endpoint, as well as codecs that are unsupported.
-
-[//]: # (end-tip)
+/// tip
+This scenario should test sending Bob both acceptable codecs for his
+endpoint, as well as codecs that are unsupported.
+///
 
 ### Modified inbound response
 
@@ -261,10 +267,9 @@ Multiple Channels
 
 ### Modified codecs (chan_sip)
 
-!!! note 
-    This needs to be populated with tests that exercise SIP_CODEC
-
-[//]: # (end-note)
+/// note
+This needs to be populated with tests that exercise SIP_CODEC
+///
 
 Design
 ======
@@ -380,10 +385,10 @@ The ast_format_pref structure currently uses a fixed sized array of formats (not
 
 The ast_format_copy operation will simply be incrementing the reference count of the format and returning it.
 
-!!! note 
-    I don't foresee needing a function which does a deep copy. In practice you don't copy a media format and then modify it.
-
-[//]: # (end-note)
+/// note
+I don't foresee needing a function which does a deep copy. In practice
+you don't copy a media format and then modify it.
+///
 
 ### ast_format_cmp
 
@@ -465,10 +470,10 @@ static void test_example(void)
 }
 ```
 
-!!! note 
-    Since format attributes are stored in an implementation specific manner there is no API for getting/retrieving/clearing/etc attributes.
-
-[//]: # (end-note)
+/// note
+Since format attributes are stored in an implementation specific
+manner there is no API for getting/retrieving/clearing/etc attributes.
+///
 
 ### Format Capabilities Usage
 
@@ -532,10 +537,10 @@ static void example(void)
 }
 ```
 
-!!! note 
-    Ordering of format additions to a capabilities structure is preserved and forms the format preference order.
-
-[//]: # (end-note)
+/// note
+Ordering of format additions to a capabilities structure is preserved
+and forms the format preference order.
+///
 
 #### Capabilities structure manipulation
 

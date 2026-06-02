@@ -30,12 +30,21 @@ To add a channel as an announcer to a holding bridge, you must specify a role of
 POST /bridges/{bridge_id}/addChannel?channel=56789&role=announcer
 ```
 
-!!! tip When is an Announcer channel useful?
-    If you want to simply play back a media file to all participants in a holding bridge, e.g., "your call is important to us, please keep waiting", you can simply initiate a `/play` operation on the holding bridge itself. That will perform a playback to all participants in the same fashion as an announcer channel.
+/// tip | When is an Announcer channel useful?
+If you want to simply play back a media file to all participants in a
+holding bridge, e.g., "your call is important to us, please keep
+waiting", you can simply initiate a `/play` operation on the holding
+bridge itself. That will perform a playback to all participants in the
+same fashion as an announcer channel.
 
-    An announcer channel is particularly useful when there is someone actually on the other end of the channel, as opposed to a pre-recorded message. For example, you may have a call queue supervisor who wants to let everyone who is waiting for an agent that response times are especially long, but to hold on for a bit longer. Jumping into the holding bridge as an announcer adds a small bit of humanity to the dreaded call queue experience!
-
-[//]: # (end-tip)
+An announcer channel is particularly useful when there is someone
+actually on the other end of the channel, as opposed to a pre-recorded
+message. For example, you may have a call queue supervisor who wants
+to let everyone who is waiting for an agent that response times are
+especially long, but to hold on for a bit longer. Jumping into the
+holding bridge as an announcer adds a small bit of humanity to the
+dreaded call queue experience!
+///
 
 ### Music on hold, media playback, recording, and other such things
 

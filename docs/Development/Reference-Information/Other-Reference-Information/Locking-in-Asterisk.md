@@ -146,10 +146,16 @@ With everything else, there is a locking order established. In this case the cha
 
 So, never use deadlock avoidance unless you have to grab two channel locks at the same time, otherwise it is not necessary. I know the code has misuses of deadlock avoidance all over the place, ignore them. They will go away in time.
 
-!!! note 
-    As a side note, if you ever find yourself in the position where you are designing a program and think using deadlock avoidance is a quick solution for a concurrency problem you run into, it is not. Running into a deadlock almost certainly means your design is flawed. I'd go as far as to say if you ever find yourself designing a system with multiple locks held at the same time, your design is flawed. Seriously, anyone who reads this remember this, and say it to yourself every time you create a new mutex.  
-
-[//]: # (end-note)
+/// note
+As a side note, if you ever find yourself in the position where you
+are designing a program and think using deadlock avoidance is a quick
+solution for a concurrency problem you run into, it is not. Running
+into a deadlock almost certainly means your design is flawed. I'd go
+as far as to say if you ever find yourself designing a system with
+multiple locks held at the same time, your design is
+flawed. Seriously, anyone who reads this remember this, and say it to
+yourself every time you create a new mutex.
+///
 
 ##### Do not sleep while holding a lock
 

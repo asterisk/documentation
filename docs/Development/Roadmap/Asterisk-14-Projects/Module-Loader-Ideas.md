@@ -3,10 +3,10 @@ title: Module Loader Ideas
 pageid: 32375383
 ---
 
-!!! warning "The contents of this page have not been reviewed."
-    It's possible none of it will ever be merged, or may change drastically after review.
-
-[//]: # (end-warning)
+/// warning | The contents of this page have not been reviewed
+It's possible none of it will ever be merged, or may change
+drastically after review.
+///
 
 ## Intro
 
