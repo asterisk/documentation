@@ -8,7 +8,7 @@ The asterisk.conf file
 
 asterisk.conf is used to configure the locations of directories and files used by Asterisk, as well as options relevant to the core of Asterisk.
 
-[Link to the asterisk.conf.sample](http://svnview.digium.com/svn/asterisk/trunk/configs/asterisk.conf.sample?view=markup) file in the Asterisk trunk subversion repo. The information below could become out of date, so always check the relevant sample file in our version control system.
+[Link to the asterisk.conf.sample](https://github.com/asterisk/asterisk/blob/master/configs/samples/asterisk.conf.sample) file in the Asterisk GitHub repo. The information below could become out of date, so always check the relevant sample file in our repo.
 
 asterisk.conf has two primary contexts, shown below with some descriptions about their content.
 

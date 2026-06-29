@@ -13,18 +13,18 @@ Note that the tones configured here are only used when Asterisk is directly gene
 Configuration
 =============
 
-The configuration file for location specific tone indications is **indications.conf**. It is read from the typical [Asterisk configuration directory](/Fundamentals/Directory-and-File-Structure). You can also view the sample of indications.conf file in your source directory at configs/modules.conf.sample or on [SVN at this link](http://svnview.digium.com/svn/asterisk/trunk/configs/samples/indications.conf.sample?view=markup).
+The configuration file which defines location specific tone indications is **indications.conf**. It is read from the typical [Asterisk configuration directory](/Fundamentals/Directory-and-File-Structure). You can view a sample configuration file [in the project source at configs/modules.conf.sample](https://github.com/asterisk/asterisk/blob/master/configs/samples/indications.conf.sample).
 
-The configuration itself consists of a 'general' section and then one or more country specific sections. (e.g. '[au]' for Australia)
+The configuration itself consists of a 'general' section and then one or more country specific sections (e.g. `[au]` for Australia).
 
-Within the general section, only the **country** option can be set. This option sets the default location tone set to be used.
+Within the general section, only the **country** option can be set. This option sets the default location tone set to be used. Ensure the country you specify has a corresponding tone configuration defined; the easiest way to ensure this is by copying the sample file (which defines tones for over 40 countries) to your Asterisk configuration directory, checking your country is defined and then changing the **country** option as shown below.
 
 ```
 [general]
-country=us
+country=de
 ```
 
-As an example, the above set the default country to the tone set for the USA.
+As an example, the above sets the default tone set country to Germany (DE).
 
 Within any location specific configuration, several tone types may be configured.
 
