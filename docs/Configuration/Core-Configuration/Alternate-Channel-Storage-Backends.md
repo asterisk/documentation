@@ -65,12 +65,12 @@ The current channel access API allows the following queries:
 - Find by context/extension.
 - All searches are case-insensitive.
 
-The channels container is a classic hash container whose key is the channel name. The container is protected by a mutex lock which means only 1 thread can access the table, for both read or write, at a time. Every channel also has a mutex lock that is supposed to prevent concurrent modifications. This means that queries other than by name casn't use the hash index and have to go through the following process:
+The channels container is a classic hash container whose key is the channel name. The container is protected by a mutex lock, which means only 1 thread can access the table, for both read or write, at a time. Every channel also has a mutex lock that is supposed to prevent concurrent modifications. This means that queries other than by name can't use the hash index and have to go through the following process:
 
 - Lock the channels container.
 - Test each channel in the container:
   - Lock the channel.
-  - Do a case-insentive compare on the search criteria.
+  - Do a case-insensitive compare on the search criteria.
   - Unlock the channel.
   - Exit the loop if there's a match.
 - Unlock the channels container.
@@ -97,11 +97,11 @@ all the locking can cause deadlocks and can also be a performance issue.
 
 ### **Alternate Backends Proof-of-Concept**
 
-The channels container isn't exposed outside of main/channels.c so we looked at alternate storage implementations that could help aleviate some of the issues.
+The channels container isn't exposed outside of main/channels.c so we looked at alternate storage implementations that could help alleviate some of the issues.
 
 #### **Multiple AO2 Hash Containers**
 
-Since an AO2 hash container can have only a single key we can only do quick lookups by channel name. Given that the same function also searches for uniqueid and that requires a scan of the container, we could benefit by simply creating a second container whose key is uniqueid. A hash container uses 48 bytes per entry so even with thousands of channels, it's not that mcuh extra storage in the grand scheme of things.
+Since an AO2 hash container can have only a single key we can only do quick lookups by channel name. Given that the same function also searches for uniqueid and that requires a scan of the container, we could benefit by simply creating a second container whose key is uniqueid. A hash container uses 48 bytes per entry so even with thousands of channels, it's not that much extra storage in the grand scheme of things.
 
 #### **AO2 Optimized Containers**
 
@@ -139,7 +139,7 @@ While the Boost Multi-Index implementation performed great for all retrievals an
 
 #### **6th Place: AO2 Legacy**
 
-Every other backend, with the exception of Boost Multi-Index, performed *better* that the AO2 Legacy backend.  Not surprising really.
+Every other backend, with the exception of Boost Multi-Index, performed *better* than the AO2 Legacy backend.  Not surprising really.
 
 #### **5th Place: AO2 Optimized**
 
