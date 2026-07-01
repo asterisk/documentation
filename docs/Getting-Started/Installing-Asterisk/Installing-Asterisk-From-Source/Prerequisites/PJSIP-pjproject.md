@@ -5,7 +5,7 @@ pageid: 25919783
 
 # Overview
 
-Asterisk currently contains two SIP stacks: the original **chan_sip** SIP channel driver which is a complete standalone implementation, has been present in all previous releases of Asterisk *and no longer receives core support*, and the newer **chan_pjsip** SIP stack that is based on Teluu's "[pjproject](http://www.pjsip.org/)" SIP stack. While the pjproject stack allows us to move a significant amount of code out of Asterisk, it *is* a separate, actively maintained, library that we integrate very tightly to.  This presents challenges in making sure that the versions of Asterisk and pjproject currently installed on a system are compatible.  For this reason, we've elected to "bundle" a stable, tested version of pjproject with the Asterisk distribution and integrate it into the Asterisk build process. This does not prevent you from using an external pjproject installation but it will not be supported by the Asterisk team.  See below for more info.
+Since Asterisk 21, Teluu's "[pjproject](http://www.pjsip.org/)" is used exclusively to provide the Asterisk SIP stack (**chan_pjsip**). pjproject is a separate, actively maintained, library that we integrate very tightly to.  This presents challenges in making sure that the versions of Asterisk and pjproject currently installed on a system are compatible.  For this reason, we've elected to "bundle" a stable, tested version of pjproject with the Asterisk distribution and integrate it into the Asterisk build process. This does not prevent you from using an external pjproject installation, but this will not be supported by the Asterisk team.  See below for more info.
 
 ## Using the Bundled Version of pjproject
 
@@ -26,19 +26,11 @@ The actual pjproject source code is NOT distributed with Asterisk.  Instead the 
 * **Reliability**:  You can be sure that Asterisk was tested against the bundled version.
 
 ### Usage
+/// tip
+Building the bundled pjproject requires python development libraries, if these are missing you can install them using [`./contrib/scripts/install_prereq`](./Checking-Asterisk-Requirements.md#using-install_prereq).
+///
 
-First, run `./contrib/scripts/install_prereq`.  Building the bundled pjproject requires the python development libraries which install_prereq installs.  All you have to do now is add the `--with-pjproject-bundled` option to your Asterisk `./configure` command line and remove any other `--with-pjproject` option you may have specified.
-
-```bash title=" " linenums="1"
-$ cd /path/asterisk-source-dir
-# For Asterisk 13 and 14...
-$ ./configure --with-pjproject-bundled
-# For Asterisk 15+...
-$ ./configure
-$ make && make install
-```
-
-The configure and make processes will download the correct version of pjproject, patch it, configure it, build it, and finally link Asterisk to it statically.  No changes in runtime configuration are required.  You can leave your system-installed version of pjproject in place if needed.  Once compiled with the `--with-pjproject-bundled` option, Asterisk will ignore any other installed versions of pjproject.
+The `./configure` and `make` processes will download the correct version of pjproject, patch it, configure it, build it, and finally link Asterisk to it statically.  No changes in runtime configuration are required.  You can leave any system-installed version of pjproject in place if needed. Unless compiled with the `--without-pjproject-bundled` option, Asterisk will ignore any other installed versions of pjproject.
 
 Using the bundled version of pjproject doesn't necessarily mean you need internet access to download the pjproject tarball every time you build. There are 2 ways to specify an alternate location from which to retrieve it.  First, assuming version 2.6 of pjproject is needed and `/tmp/downloads` is the directory you're going to save to, download the following files to the local directory:
 
@@ -52,8 +44,8 @@ It's important that both files be named `pjproject-<version>.tar.bz2` and `pjpro
 
 Now perform either of the following 2 steps:
 
-1. 1. Run ./configure with the `--with-externals-cache=/tmp/downloads` option.  ./configure will check there first and only download if the files aren't already there or the tarball checksum doesn't match what's in the md5 file.  This is similar to the `--with-sounds-cache` option.  BTW, the `--with-externals-cache` mechanism works for the precompiled codecs and the Digium Phone Module for Asterisk as well.  As of Asterisk 13.18, 14.7 and 15.0, the `--with-download-cache`  option can be used to specify both the externals and sounds cache directory.
-	2. Set the `PJPROJECT_URL` environment variable to any valid URL (including file:// URLs) where `./configure` can find the tarball and checksum files.  The variable can be set in your environment and exported or specified directly on the `./configure` command line.  As of Asterisk 13.18, 14.7 and 15.0, the `AST_DOWNLOAD_CACHE` environment variable can be used to specify both the externals and sounds cache directory.
+1. Run `./configure` with the `--with-externals-cache=/tmp/downloads` option, `./configure` will check there first and only download if the files aren't already there or the tarball checksum doesn't match what's in the md5 file. This is similar to the `--with-sounds-cache` option. This `--with-externals-cache` mechanism works for the precompiled codecs and the Digium Phone Module for Asterisk as well. As of Asterisk 13.18, 14.7 and 15.0, the `--with-download-cache` option can be used to specify both the externals and sounds cache directory.
+2. Set the `PJPROJECT_URL` environment variable to any valid URL (including file:// URLs) where `./configure` can find the tarball and checksum files. The variable can be set in your environment and exported or specified directly on the `./configure` command line.  As of Asterisk 13.18, 14.7 and 15.0, the `AST_DOWNLOAD_CACHE` environment variable can be used to specify both the externals and sounds cache directory.
 
 ## Building and Installing pjproject from Source
 
@@ -93,9 +85,9 @@ The first step in building and installing pjproject is configuring it using **co
 
 Additionally, Asterisk **REQUIRES** two or three options to be passed to **configure**:
 
-* + `--enable-shared` - Instruct pjproject to build shared object libraries. Asterisk will only use shared objects from pjproject.
-	+ `--prefix` - Specify root install directory for pjproject. This will be dependent on your distribution of Linux; typically this is `/usr`for most systems. The default is `/usr/local`
-	+ `--libdir` - Specify the installation location for object code libraries. This may need to be set to `/usr/lib64` for some 64-bit systems such as CentOS.
+ + `--enable-shared` - Instruct pjproject to build shared object libraries. Asterisk will only use shared objects from pjproject.
+ + `--prefix` - Specify root install directory for pjproject. This will be dependent on your distribution of Linux; typically this is `/usr`for most systems. The default is `/usr/local`
+ + `--libdir` - Specify the installation location for object code libraries. This may need to be set to `/usr/lib64` for some 64-bit systems such as CentOS.
 
 /// warning
 Failure to build Asterisk with shared pjproject object libraries

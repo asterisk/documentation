@@ -19,7 +19,7 @@ that these releases may have larger changes made in them than LTS
 releases.
 
 Unless otherwise noted, for the purposes of this section we will
-assume that Asterisk 14 is being installed.
+assume that Asterisk 22 is being installed.
 ///
 
 Review Asterisk's [System Requirements](/Operation/System-Requirements) in order to determine what needs to be installed for the version of Asterisk you are installing. While Asterisk will look for any missing system requirements during compilation, it's often best to install these prior to configuring and compiling Asterisk.
@@ -28,31 +28,35 @@ Asterisk does come with a script, **install_prereq**, to aid in this process. If
 
 ### Downloading Asterisk
 
-Browse to <https://downloads.asterisk.org/pub/telephony/asterisk>, select [asterisk-14-current.tar.gz](https://downloads.asterisk.org/pub/telephony/asterisk/asterisk-14-current.tar.gz), and save the file on your file system.
+Browse to <https://downloads.asterisk.org/pub/telephony/asterisk>, select [asterisk-22-current.tar.gz](https://downloads.asterisk.org/pub/telephony/asterisk/asterisk-22-current.tar.gz), and save the file on your file system.
 
-You can also get the latest releases from the downloads page on [asterisk.org](http://asterisk.org/downloads).
+You can also get the latest releases from the downloads page on [asterisk.org](https://www.asterisk.org/downloads/).
 
 Alternatively, you can use [`wget`](https://www.gnu.org/software/wget/) to retrieve the latest release:
 
 ```
-[root@server:/usr/local/src]# wget https://downloads.asterisk.org/pub/telephony/asterisk/asterisk-14-current.tar.gz
---2017-04-28 15:45:36-- https://downloads.asterisk.org/pub/telephony/asterisk/asterisk-14-current.tar.gz
-Resolving downloads.asterisk.org (downloads.asterisk.org)... 76.164.171.238
-Connecting to downloads.asterisk.org (downloads.asterisk.org)|76.164.171.238|:443... connected.
+[root@server:/usr/local/src]# wget https://downloads.asterisk.org/pub/telephony/asterisk/asterisk-22-current.tar.gz
+--2026-07-01 11:07:12--  https://downloads.asterisk.org/pub/telephony/asterisk/asterisk-22-current.tar.gz
+Resolving downloads.asterisk.org (downloads.asterisk.org)... 165.22.184.19, 2604:a880:400:d0::14:9001
+Connecting to downloads.asterisk.org (downloads.asterisk.org)|165.22.184.19|:443... connected.
 HTTP request sent, awaiting response... 200 OK
-Length: 40692588 (39M) [application/x-gzip]
-Saving to: ‘asterisk-14-current.tar.gz’
+Length: 26672088 (25M) [application/octet-stream]
+Saving to: ‘asterisk-22-current.tar.gz’
 
-asterisk-14-current.tar.gz 100%[======================================================================>] 38.81M 3.32MB/s in 12s
+asterisk-22-current.tar.gz         100%[================================================================>]  25.44M  2.81MB/s    in 9.2s    
 
-2017-04-28 15:45:47 (3.37 MB/s) - ‘asterisk-14-current.tar.gz’ saved [40692588/40692588]
+2026-07-01 11:07:22 (2.75 MB/s) - ‘asterisk-22-current.tar.gz’ saved [26672088/26672088]
+
+FINISHED --2026-07-01 11:07:22--
+Total wall clock time: 9.7s
+Downloaded: 1 files, 25M in 9.2s (2.75 MB/s)
 ```
 
 ## Other Projects
 
 ### libpri
 
-The **libpri** library allows Asterisk to communicate with ISDN connections.You'll only need this if you are going to use DAHDI with ISDN interface hardware (such as T1/E1/J1/BRI cards).
+The **libpri** library allows Asterisk to communicate with ISDN connections. You'll only need this if you are going to use DAHDI with ISDN interface hardware (such as T1/E1/J1/BRI cards).
 
 ### DAHDI
 
@@ -60,7 +64,7 @@ The **DAHDI** library allows Asterisk to communicate with analog and digital tel
 
 DAHDI stands for Digium Asterisk Hardware Device Interface, and is a set of drivers and utilities for a number of analog and digital telephony cards, such as those manufactured by Digium. The DAHDI drivers are independent of Asterisk, and can be used by other applications. DAHDI was previously called Zaptel, as it evolved from the Zapata Telephony Project.
 
-The DAHDI code can be downloaded as individual pieces (**dahdi-linux** for the DAHDI drivers, and **dahdi-tools** for the DAHDI utilities. They can also be downloaded as a complete package called **dahdi-linux-complete**, which contains both the Linux drivers and the utilities.
+The DAHDI code can be downloaded as individual pieces: **dahdi-linux** for the DAHDI drivers, and **dahdi-tools** for the DAHDI utilities. They can also be downloaded as a complete package called **dahdi-linux-complete**, which contains both the Linux drivers and the utilities.
 
 You will only need to install DAHDI if you are going to utilize DAHDI compatible analog or digital telephony interface boards.
 
@@ -75,7 +79,7 @@ dahdi-linux, dahdi-freebsd, and so on.
 
 | Project        | Location                                                                                                |
 |----------------|---------------------------------------------------------------------------------------------------------|
-| Asterisk       | <https://downloads.asterisk.org/pub/telephony/asterisk/asterisk-14-current.tar.gz>                      |
+| Asterisk       | <https://downloads.asterisk.org/pub/telephony/asterisk/asterisk-22-current.tar.gz>                      |
 | libpri         | <https://downloads.asterisk.org/pub/telephony/libpri/libpri-current.tar.gz>                             |
 | dahdi-linux    | <https://downloads.asterisk.org/pub/telephony/dahdi-linux/dahdi-linux-current.tar.gz>                   |
 | dahdi-tools    | <https://downloads.asterisk.org/pub/telephony/dahdi-tools/dahdi-tools-current.tar.gz>                   |

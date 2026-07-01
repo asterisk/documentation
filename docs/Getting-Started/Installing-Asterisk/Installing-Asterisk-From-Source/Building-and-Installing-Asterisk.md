@@ -8,11 +8,18 @@ Build and Install Instructions
 
 Now we can compile and install Asterisk. To compile Asterisk, simply type make at the Linux command line.
 
+/// tip | Multithreaded Compilation
+You can add the `-jX` argument to `make` to use compile using multiple CPU threads,
+e.g. `make -j8` would use 8 threads instead of the single thread default.
+This can significantly reduce compile time on machines with multiple threads available.
+However, supplying a greater number of threads than available will instead reduce performance.
+///
+
 ```
-[root@server asterisk-14.X.Y]# make
+[root@server asterisk-22.X.Y]# make
 ```
 
-The compiling step will take several minutes, and you'll see the various file names scroll by as they are being compiled. Once Asterisk has finished compiling, you'll see a message that looks like:
+The compiling step can take several minutes, and you'll see the various file names scroll by as they are being compiled. Once Asterisk has finished compiling, you'll see a message that looks like:
 
 ```
 +--------- Asterisk Build Complete ---------+
@@ -24,10 +31,10 @@ The compiling step will take several minutes, and you'll see the various file na
 +--------- Asterisk Build Complete ---------+
 ```
 
-On this PageAs the message above suggests, our next step is to install the compiled Asterisk program and modules. To do this, use the **make** **install** command.
+As the message above suggests, our next step is to install the compiled Asterisk program and modules. To do this, use the **make install** command.
 
 ```
-[root@server asterisk-14.X.Y]# make install
+[root@server asterisk-22.X.Y]# make install
 ```
 
 When finished, Asterisk will display the following warning:
@@ -69,7 +76,7 @@ In some environments, it may be necessary or useful to modify parts of the build
 Specific flags can be passed to `gcc` when Asterisk is configured, using the `CFLAGS` and `LDFLAGS` environment variables:
 
 ```
-[root@server asterisk-14.X.Y]# ./configure CFLAGS=-pg LDFLAGS=-pg
+[root@server asterisk-22.X.Y]# ./configure CFLAGS=-pg LDFLAGS=-pg
 ```
 
 ### Debugging compilation
@@ -77,7 +84,7 @@ Specific flags can be passed to `gcc` when Asterisk is configured, using the `CF
 To see all of the flags passed to gcc, build using the `NOISY_BUILD` setting set to `YES`:
 
 ```
-[root@server asterisk-14.X.Y]# make NOISY_BUILD=yes
+[root@server asterisk-22.X.Y]# make NOISY_BUILD=yes
 ```
 
 ### Building for non-native architectures
@@ -85,9 +92,9 @@ To see all of the flags passed to gcc, build using the `NOISY_BUILD` setting set
 Generally, Asterisk attempts to optimize itself for the machine on which it is built on. On some virtual machines with virtual CPU architectures, the defaults chosen by Asterisk's compilation options will cause Asterisk to build but fail to run. To disable native architecture support, disable the `BUILD_NATIVE` option in menuselect:
 
 ```
-[root@server asterisk-14.X.Y]# menuselect/menuselect --disable BUILD_NATIVE menuselect.makeopts
+[root@server asterisk-22.X.Y]# menuselect/menuselect --disable BUILD_NATIVE menuselect.makeopts
 
-[root@server asterisk-14.X.Y]# make
+[root@server asterisk-22.X.Y]# make
 ```
 
 ### Installing to a custom directory
@@ -95,7 +102,7 @@ Generally, Asterisk attempts to optimize itself for the machine on which it is b
 While there are multiple ways to sandbox an instance of Asterisk, the preferred mechanism is to use the `--prefix` option with the `configure` script:
 
 ```
-[root@server asterisk-14.X.Y]# ./configure --prefix=/usr/local/my_special_folder
+[root@server asterisk-22.X.Y]# ./configure --prefix=/usr/local/my_special_folder
 ```
 
 Note that the default value for `prefix` is `/usr/local`.
@@ -103,19 +110,20 @@ Note that the default value for `prefix` is `/usr/local`.
 Other Make Targets
 ------------------
 
-| Target            | Description                                                                                                                                                                                                                                                                                                                                         |
-|-------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-|                   | Executing `make` with no target is equivalent to the `all` target.                                                                                                                                                                                                                                                                                  |
-| **all**           | Compiles everything everything selected through the `configure` and `menuselect` scripts.                                                                                                                                                                                                                                                           |
+| Target            | Description |
+|-------------------|-------------|
+|                   | Executing `make` with no target is equivalent to the `all` target. |
+| **menuselect**    | Access the Menuselect system.  |
+| **all**           | Compiles everything everything selected through the `configure` and `menuselect` scripts.  |
 | **full**          | This is equivalent to `make` or `make all`, save that it will perform a more thorough investigation of the source code for documentation. This is needed to generate [AMI event documentation](/Development/Roadmap/Asterisk-11-Projects/AMI-Event-Documentation). Note that your system must have Python in order for this make target to succeed. |
-| **install**       | Installs Asterisk, building Asterisk if it has not already been built. In general, this should be executed after Asterisk has successfully compiled.                                                                                                                                                                                                |
-| **uninstall**     | Removes Asterisk binaries, sounds, man pages, headers, modules and firmware builds from the system.                                                                                                                                                                                                                                                 |
-| **uninstall-all** | Same as the `uninstall` target, but additionally removes configuration, spool directories and logs. All traces of Asterisk.                                                                                                                                                                                                                         |
-| **clean**         | Remove all files generated by make.                                                                                                                                                                                                                                                                                                                 |
-| **dist-clean**    | Remove pretty much all files generated by make and configure.                                                                                                                                                                                                                                                                                       |
-| **samples**       | Install all sample configuration files (.conf files) to `/etc/asterisk/`. Overwrites existing config files.                                                                                                                                                                                                                                         |
-| **config**        | Install init scripts (startup scripts) on your system.                                                                                                                                                                                                                                                                                              |
-| **progdocs**      | Uses doxygen to locally generate HTML development documentation from the source code.  Generated in the `doc/` subdirectory of the source; see `doc/index.html`.                                                                                                                                                                                    |
+| **install**       | Installs Asterisk, building Asterisk if it has not already been built. In general, this should be executed after Asterisk has successfully compiled.  |
+| **uninstall**     | Removes Asterisk binaries, sounds, man pages, headers, modules and firmware builds from the system.  |
+| **uninstall-all** | Same as the `uninstall` target, but additionally removes configuration, spool directories and logs. All traces of Asterisk.  |
+| **clean**         | Remove all files generated by make.  |
+| **dist-clean**    | Remove pretty much all files generated by make and configure.  |
+| **samples**       | Install all sample configuration files (.conf files) to `/etc/asterisk/`. Overwrites existing config files.  |
+| **config**        | Install init scripts (startup scripts) on your system.  |
+| **progdocs**      | Uses doxygen to locally generate HTML development documentation from the source code.  Generated in the `doc/` subdirectory of the source; see `doc/index.html`.  |
 
 /// note | Version Notice
 The `full` build target is only available in Asterisk 11 and later
