@@ -9,7 +9,7 @@ Using Menuselect
 The next step in the build process is to tell Asterisk which [modules](/Fundamentals/Asterisk-Architecture/Types-of-Asterisk-Modules) to compile and install, as well as set various compiler options. These settings are all controlled via a menu-driven system called **Menuselect**. To access the Menuselect system, type:
 
 ```
-[root@server asterisk-14.X.Y]# make menuselect
+[root@server asterisk-22.X.Y]# make menuselect
 ```
 
 /// note | Terminal Window
@@ -22,7 +22,7 @@ Terminal must be at least 80 x 27.
 ```
 ///
 
-The **Menuselect** menu should look like the screen-shot below. On the left-hand side, you have a list of categories, such as **Applications**, **Channel** **Drivers**, and **PBX** **Modules**. On the right-hand side, you'll see a list of modules that correspond with the select category. At the bottom of the screen you'll see two buttons. You can use the **<kbd>Tab</kbd>** key to cycle between the various sections, and press the **<kbd>Enter</kbd>** key to select or unselect a particular module. If you see **[\*]** next to a module name, it signifies that the module has been selected. If you see **\*XXX** next to a module name, it signifies that the select module cannot be built, as one of its dependencies is missing. In that case, you can look at the bottom of the screen for the line labeled **Depends** **upon**: for a description of the missing dependency.
+The **Menuselect** menu should look similar to the screen-shot below. On the left-hand side, you have a list of categories, such as **Applications**, **Channel** **Drivers**, and **PBX** **Modules**. On the right-hand side, you'll see a list of modules that correspond with the select category. At the bottom of the screen you'll see two buttons. You can use the **<kbd>Tab</kbd>** key to cycle between the various sections, and press the **<kbd>Enter</kbd>** key to select or unselect a particular module. If you see **[\*]** next to a module name, it signifies that the module has been selected. If you see **\*XXX** next to a module name, it signifies that the select module cannot be built, as one of its dependencies is missing. In that case, you can look at the bottom of the screen for the line labeled **Depends** **upon**: for a description of the missing dependency.
 
 ![](menuselect.png)
 
@@ -78,13 +78,13 @@ Controlling Menuselect
 Options in  **Menuselect** can be controlled from the command line. **Menuselect** can be built without invoking the user interface via the `menuselect.makeopts` target:
 
 ```
-[root@server asterisk-14.X.Y]# make menuselect.makeopts
+[root@server asterisk-22.X.Y]# make menuselect.makeopts
 ```
 
 Available options can be viewed using the `--help` command line parameter:
 
 ```
-[root@server asterisk-14.X.Y]# menuselect/menuselect --help
+[root@server asterisk-22.X.Y]# menuselect/menuselect --help
 ```
 
 Some of the more common options are shown below.
@@ -102,13 +102,13 @@ Listing Options
 To list all options in **Menuselect**, use the `--list-options` command line parameter:
 
 ```
-[root@server asterisk-14.X.Y]# menuselect/menuselect --list-options
+[root@server asterisk-22.X.Y]# menuselect/menuselect --list-options
 ```
 
 To list only the categories, use the `--category-list` command line parameter:
 
 ```
-[root@server asterisk-14.X.Y]# menuselect/menuselect --category-list
+[root@server asterisk-22.X.Y]# menuselect/menuselect --category-list
 MENUSELECT_ADDONS
 MENUSELECT_APPS
 MENUSELECT_BRIDGES
@@ -121,11 +121,10 @@ MENUSELECT_FUNCS
 MENUSELECT_PBX
 MENUSELECT_RES
 MENUSELECT_TESTS
+MENUSELECT_CHANNELSTORAGE
 MENUSELECT_CFLAGS
-MENUSELECT_OPTS_app_voicemail
 MENUSELECT_UTILS
 MENUSELECT_AGIS
-MENUSELECT_EMBED
 MENUSELECT_CORE_SOUNDS
 MENUSELECT_MOH
 MENUSELECT_EXTRA_SOUNDS
@@ -134,10 +133,17 @@ MENUSELECT_EXTRA_SOUNDS
 To list the options in a category, use the `--list-category` command line parameter:
 
 ```
-[root@server asterisk-14.X.Y]# menuselect/menuselect --list-category MENUSELECT_OPTS_app_voicemail
-+ FILE_STORAGE
-- ODBC_STORAGE
-- IMAP_STORAGE
+[root@server asterisk-22.X.Y]# menuselect/menuselect --list-category MENUSELECT_CHANNELS
++ chan_bridge_media
++ chan_dahdi
++ chan_iax2
++ chan_motif
++ chan_pjsip
++ chan_rtp
++ chan_websocket
++ chan_audiosocket
++ chan_console
++ chan_unistim
 ```
 
 Enabling an Option
@@ -146,14 +152,14 @@ Enabling an Option
 To enable an option in Menuselect, use the `--enable` command line parameter:
 
 ```
-[root@server asterisk-14.X.Y]# menuselect/menuselect --enable IMAP_STORAGE menuselect.makeopts
+[root@server asterisk-22.X.Y]# menuselect/menuselect --enable chan_audiosocket menuselect.makeopts
 ```
 
 /// tip | Chaining Options
 Multiple options can be chained together:
 
 ```
-[root@server asterisk-14.X.Y]# menuselect/menuselect --enable app_voicemail --enable IMAP_STORAGE menuselect.makeopts
+[root@server asterisk-22.X.Y]# menuselect/menuselect --enable app_voicemail --enable chan_audiosocket menuselect.makeopts
 ```
 ///
 
@@ -163,7 +169,7 @@ Disabling an Option
 To disable an option in **Menuselect**, use the `--disable` command line parameter:
 
 ```
-[root@server asterisk-14.X.Y]# menuselect/menuselect --disable app_voicemail menuselect.makeopts
+[root@server asterisk-22.X.Y]# menuselect/menuselect --disable app_voicemail menuselect.makeopts
 ```
 
 Enabling a Category
@@ -172,5 +178,5 @@ Enabling a Category
 An entire category can be enabled in **Menuselect** using the `--enable-category` command line parameter:
 
 ```
-[root@server asterisk-14.X.Y]# menuselect/menuselect --enable-category MENUSELECT_ADDONS menuselect.makeopts
+[root@server asterisk-22.X.Y]# menuselect/menuselect --enable-category MENUSELECT_ADDONS menuselect.makeopts
 ```

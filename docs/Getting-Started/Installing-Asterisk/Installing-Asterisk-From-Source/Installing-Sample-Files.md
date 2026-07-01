@@ -14,12 +14,14 @@ for standard deployments.
 While installing the sample configuration files may be a good starting
 point for some people, they should not be viewed as recommended
 configuration for an Asterisk system.
+See [Hello World](../../Hello-World.md) for further information on
+the minimum set of required Asterisk Configs.
 ///
 
 To install a set of sample configuration files for Asterisk, type:
 
 ```
-[root@server asterisk-14.X.Y]# make samples
+[root@server asterisk-22.X.Y]# make samples
 ```
 
 Any existing sample files which have been modified will be given a **.old** file extension. For example, if you had an existing file named **extensions.conf**, it would be renamed to **extensions.conf.old** and the sample dialplan would be installed as **extensions.conf**.
