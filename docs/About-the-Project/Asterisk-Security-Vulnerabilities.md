@@ -34,6 +34,17 @@ This method restricts the report to the reporter and Asterisk staff.
 The [Asterisk Issue Tracker](https://github.com/asterisk/asterisk/issues) is a public site, and all bug reports against Asterisk can be viewed openly by the public. While this results in a transparent, open process - which is good - reporting a security vulnerability on the issue tracker without properly selecting "[Report a vulnerability](https://github.com/asterisk/asterisk/security/advisories/new)" makes the report immediately public and makes the entire Asterisk user community vulnerable.
 ///
 
+#### Please report only one vulnerability per security advisory!
+
+Reporting multiple vulnerability in one advisory creates the following issues:
+
+* They'll probably need different CVEs.
+* They may have different Common Weakness Enumerator (CWE) values.  While you can list multiple CWEs in a single advisory, you can't indicate which vulnerability has which weakness.
+* They may have different severities.
+* They may affect different Asterisk versions.
+* It makes it harder to associate fix pull requests to a vulnerability.
+* It makes it harder for our automation tasks to to validate fixes and create releases.
+
 #### Do NOT use the "Start a temporary private fork" security advisory feature! 
 
 Private forks created from security advisories are severly limited by GitHub
