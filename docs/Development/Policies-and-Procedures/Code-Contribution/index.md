@@ -2,6 +2,22 @@
 
 All code management/contribution/review processes will be handled with [GitHub Asterisk Pull Requests](https://github.com/asterisk/asterisk/pulls) and [GitHub Testsuite Pull Requests](https://github.com/asterisk/testsuite/pulls).   Note that Asterisk and Testsuite pull requests must be created in their own repositories.
 
+/// warning | Changes to the bundled pjproject, jansson or libjwt libraries 
+
+To prevent divergence from the upstream repositories, we do not fork them.  Instead, we download their official release tarballs and apply patches which fall into one of two categories:
+
+* Patches to set specific compile configuration or build options.  These are rare.
+* Patches to temporarily fix issues or add functionality that will be addressed in a future upstream release.
+
+Therefore:
+  
+* Unless your proposed change falls into the first category, the change MUST be submitted to the upstream project and you must state in the PR comments that you have done so with a link to the upstream pull request.
+* The patch file included in your Asterisk change must be created with `git format-patch` so it contains the upstream commit's full message. This allows us to trace back to the source commit in the future.
+* When your upstream PR is merged, you must run `git format-patch` again on the merged commit and update the Asterisk PR with the new patch file.
+* Your Asterisk PR will NOT be merged until the upstream PR is and you've stated that it is in the Asterisk PR comments.
+
+///
+
 ## Code Contribution Process
 
 ### AI Policy
@@ -75,6 +91,7 @@ You MUST not create entries in the doc/CHANGES-staging or doc/UPGRADE-staging di
 ///
 
 ### Commit
+
 
 Commit messages should follow the guidelines established in [Commit Messages](/Development/Policies-and-Procedures/Commit-Messages). 
 
