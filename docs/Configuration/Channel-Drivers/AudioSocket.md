@@ -8,7 +8,7 @@ AudioSocket
 
 AudioSocket is a simple TCP-based protocol for sending and receiving real-time audio streams, and sending DTMF digits.
 
-There exists a protocol definition (below), a Go [library](https://github.com/CyCoreSystems/audiosocket), and Asterisk application and channel interfaces.
+There exists a protocol definition (below), a Go [library](https://github.com/CyCoreSystems/audiosocket), a TypeScript/Node.js [library](https://github.com/ictinnovations/asterisk-audiosocket), and Asterisk application and channel interfaces.
 
 Protocol definition
 -------------------
