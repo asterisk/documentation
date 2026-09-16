@@ -37,13 +37,13 @@ New releases of Asterisk will be made roughly once a year, alternating between s
 
 If you're not sure which one to use, choose either the latest release for the most up to date features, or the latest LTS release for a platform that may have less features, but will usually be around longer.
 
-For developers, it is useful to be aware of when the next release branch will be created. Upon creation of the branch it becomes bound by the same policies as any release branch: no introduction of incompatible changes, no breaking of binary compatibility, and no substantial core changes. The creation of the release branch occurs the 2nd Wednesday of August. A reminder is sent a week before to the asterisk-dev mailing list on the 1st Wednesday of August. Once the release branch is created it will receive all bug fixes and feature changes which also go into the existing release branches. On the 2nd Wednesday of September an initial release candidate for the new version is created alongside release candidates for all other current supported release series. Additional release candidates will be created as needed based on fixes for issues reported. On the 3rd Wednesday of October full releases for all supported release series are created.
+For developers, it is useful to be aware of when the next release branch will be created. Upon creation of the branch it becomes bound by the same policies as any release branch: no introduction of incompatible changes, no breaking of binary compatibility, and no substantial core changes. The creation of the release branch occurs the 2nd Thursday of August. A reminder is sent a week before to the asterisk-dev mailing list on the 1st Thursday of August. Once the release branch is created it will receive all bug fixes and feature changes which also go into the existing release branches. On the 2nd Thursday of September an initial release candidate for the new version is created alongside release candidates for all other current supported release series. Additional release candidates will be created as needed based on fixes for issues reported. On the 3rd Thursday of October full releases for all supported release series are created. These targets are subject to change if potential blocking issues are uncovered.
 
 For additional information on policies please see the [Software Configuration Management Policies](/Development/Policies-and-Procedures/Software-Configuration-Management-Policies) wiki page.
 
 |  |  |
 | --- | --- |
-| **Asterisk Release Branch Creation Reminder** | 1st Wednesday of August |
-| **Asterisk Release Branch Creation** | 2nd Wednesday of August |
-| **First Release Candidate of Asterisk Branch** | 2nd Wednesday of September |
-| **First Release of Asterisk from Branch** | 3rd Wednesday of October |
+| **Asterisk Release Branch Creation Reminder** | 1st Thursday of August |
+| **Asterisk Release Branch Creation** | 2nd Thursday of August |
+| **First Release Candidate of Asterisk Branch** | 2nd Thursday of September |
+| **First Release of Asterisk from Branch** | 3rd Thursday of October |
