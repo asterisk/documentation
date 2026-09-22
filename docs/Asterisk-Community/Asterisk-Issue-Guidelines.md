@@ -62,6 +62,10 @@ If using AI to assist in the creation of your bug report you must do the followi
 
 1. Verify the results of the AI to ensure it has not injected inaccurate information
 2. Disclose your AI usage including model and version
+3. Provide a concise issue report and **DO NOT** provide an unreasonable verbose LLM generated issue report
+4. Provide additional supporting information in comments when needed and asked
+
+**DO NOT** assume that results from the AI are valid.
 
 Submitting the bug report
 -------------------------

@@ -20,7 +20,9 @@ We are not opposed to the use of AI tools in security vulnerability reporting, b
 * Be upfront about AI usage and summarise what was AI-generated
 * Disclose the model and version in use
 * If there are parts you don't fully understand, leave comments on the report explaining what steps you took to verify it
-* Watch for AI's tendency to generate overly verbose output
+* Watch for AI's tendency to generate overly verbose output - be reasonably concise, more words **DO NOT** result in a more useful description from an LLM
+* If you are uncertain about the verbosity ask your AI to summarize it and provide the result instead
+* Provide additional supporting information in comments when needed and asked
 
 **DO NOT** assume that results from the AI are valid.
 
