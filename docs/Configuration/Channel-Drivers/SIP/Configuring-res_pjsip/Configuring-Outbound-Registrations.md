@@ -84,7 +84,7 @@ type = endpoint
 [my_provider_identify]
 type = identify
 match = <ip address of provider>
-endpoint = my_provider 
+endpoint = my_provider_endpoint 
 ```
 
 This represents the bare minimum necessary in order to accept incoming calls from the provider. The `identify` section makes it so that incoming SIP traffic from the IP address in the `match` option will be associated with the endpoint called `my_provider_endpoint`.
@@ -101,7 +101,7 @@ aors = my_provider_aor
 [my_provider_identify]
 type = identify
 match = <ip address of provider>
-endpoint = my_provider
+endpoint = my_provider_endpoint
 
 [my_provider_aor]
 type = aor
