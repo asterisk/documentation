@@ -1022,7 +1022,7 @@ Events and actions are automatically classified with particular class authorizat
 | call | The item is associated with calls, i.e., state changes in a call, etc. |
 | log | The item is associated with the logging subsystem |
 | verbose | The item is associated with verbose messages |
-| command | The item is associated with execution of CLI commands through AMI |
+| command | The item is associated with execution of CLI commands through AMI. CLI commands can provide functionality associated with other classes; see [Overlapping Authorizations](#overlapping-authorizations) |
 | agent | The item is associated with Queue Agent manipulation |
 | user | The item is associated with user defined events |
 | config | The item is associated with manipulating the configuration of Asterisk |
@@ -1039,6 +1039,20 @@ Events and actions are automatically classified with particular class authorizat
 | security | The item is associated with a security event in Asterisk |
 | all | The item has all class authorizations associated with it |
 | none | The item has no class authorization associated with it |
+
+#### Overlapping Authorizations
+
+Granting `command` write authorization (including through `write = all`) permits the **Command** action to execute Asterisk CLI commands. These commands can provide functionality similar or equivalent to AMI actions in other classes without requiring those class authorizations. For example:
+
+| CLI command executed through **Command** | Similar AMI action | AMI write authorization for that action |
+| --- | --- | --- |
+| channel originate | Originate | originate |
+| channel request hangup | Hangup | system or call |
+| module reload | Reload | config or system |
+
+Withholding `originate`, `call`, `system`, or `config` does not prevent equivalent operations through **Command**. Grant `command` only to clients trusted to perform the operations exposed by the available CLI commands.
+
+Other classes can overlap as well. For example, **GetConfig** accepts either `system` or `config` write authorization, so withholding `config` alone does not prevent that action.
 
 ### Access Control Lists
 
