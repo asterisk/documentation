@@ -11,6 +11,8 @@ AMI receive commands, called "actions". These generate a "response" from Asteris
 
 Management users are configured in the configuration file manager.conf and are given permissions for read and write, where write represents their ability to perform this class of "action", and read represents their ability to receive this class of "event".   
 
+Class permissions can overlap. In particular, the `command` write permission lets a client run CLI commands that can perform similar operations to actions in other classes. See [Class Authorizations](/Configuration/Interfaces/Asterisk-Manager-Interface-AMI/AMI-v2-Specification/#class-authorizations) for details and examples.
+
 If you develop AMI applications, treat the headers in Actions, Events and Responses as local to that particular message. There is no cross-message standardization of headers. 
 
 If you develop applications, please try to reuse existing manager headers and their interpretation. If you are unsure, discuss on the asterisk-dev mailing list. 
