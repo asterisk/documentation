@@ -85,8 +85,8 @@ extra:
       link: https://www.asterisk.org/
     - icon: fontawesome/brands/wordpress
       link: https://www.asterisk.org/blog/
-    - icon: fontawesome/brands/twitter
-      link: https://twitter.com/asteriskdev
+    - icon: fontawesome/brands/mastodon
+      link: https://fosstodon.org/@asterisk
     - icon: fontawesome/brands/github
       link: https://github.com/asterisk
     - icon: fontawesome/brands/discourse
