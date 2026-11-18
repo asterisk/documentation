@@ -67,6 +67,8 @@ If using AI to assist in the creation of your bug report you must do the followi
 
 **DO NOT** assume that results from the AI are valid.
 
+Repeated failures to adhere to the AI usage policy may result in being banned from the GitHub organization.
+
 Submitting the bug report
 -------------------------
 
