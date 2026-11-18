@@ -20,4 +20,12 @@ We are not opposed to the use of AI tools in generating PRs, but require the fol
 * Break down large PRs into smaller ones to make review easier
 * Ensure that your PR has not already been solved
 
-If these conditions are not met the project may close the PR without further review.
+If these conditions are not met the project may close the PR without further review. Repeated violations may also result in the account being banned from the Asterisk GitHub organization.
+
+## Review Priority
+
+AI generated PRs may be prioritized for review and inclusion at a lower level than other reviews or closed depending on the size, content, quality, and participation.
+
+## AI Agents
+
+Using an unattended AI agent on our organization for content which is not your own (issues, PRs, comments, reviews) without consent, discussion, and disclosure will result in removal (if possible) of all posted content from the agent and a warning. If the warning is ignored the account will be banned from the GitHub organization.

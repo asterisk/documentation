@@ -26,6 +26,8 @@ We are not opposed to the use of AI tools in security vulnerability reporting, b
 
 **DO NOT** assume that results from the AI are valid.
 
+AI has made it extremely easy for anyone to find and report security vulnerabilities placing an increased load upon the Asterisk project. To help with managing reports if an account files multiple (2 or more) security vulnerabilities that are duplicates they will be closed out instead of being credited to the existing security vulnerability report and any future duplicates will also be closed out.
+
 ## Reporting a Security Vulnerability
 
 All security vulnerabilities must be reported via the Asterisk GitHub project repository using the
