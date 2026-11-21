@@ -1,0 +1,508 @@
+<!doctype html><html lang=en class=no-js> <head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><link href=https://docs.asterisk.org/Asterisk-Community/Asterisk-Module-Support-States/ rel=canonical><link href=../Asterisk-Issue-Guidelines/ rel=prev><link href=../Asterisk-Project-Working-Group-Guidelines/ rel=next><link rel=icon href=../../favicon.ico><meta name=generator content="mkdocs-1.6.1, mkdocs-material-9.6.19"><title>Asterisk Module Support States - Asterisk Documentation</title><link rel=stylesheet href=../../assets/stylesheets/main.7e37652d.min.css><link rel=stylesheet href=../../assets/stylesheets/palette.06af60db.min.css><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback"><style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style><link rel=stylesheet href=../../material-override.css><script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script><script id=__analytics>function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config","G-2ZKMCW9DZ9"),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","G-2ZKMCW9DZ9",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=G-2ZKMCW9DZ9",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script><script>"undefined"!=typeof __md_analytics&&__md_analytics()</script></head> <body dir=ltr data-md-color-scheme=default data-md-color-primary=indigo data-md-color-accent=indigo> <input class=md-toggle data-md-toggle=drawer type=checkbox id=__drawer autocomplete=off> <input class=md-toggle data-md-toggle=search type=checkbox id=__search autocomplete=off> <label class=md-overlay for=__drawer></label> <div data-md-component=skip> <a href=#introduction class=md-skip> Skip to content </a> </div> <div data-md-component=announce> </div> <header class="md-header md-header--shadow" data-md-component=header> <nav class="md-header__inner md-grid" aria-label=Header> <a href=../.. title="Asterisk Documentation" class="md-header__button md-logo" aria-label="Asterisk Documentation" data-md-component=logo> <img src=../../favicon.ico alt=logo> </a> <label class="md-header__button md-icon" for=__drawer> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg> </label> <div class=md-header__title data-md-component=header-title> <div class=md-header__ellipsis> <div class=md-header__topic> <span class=md-ellipsis> Asterisk Documentation </span> </div> <div class=md-header__topic data-md-component=header-topic> <span class=md-ellipsis> Asterisk Module Support States </span> </div> </div> </div> <form class=md-header__option data-md-component=palette> <input class=md-option data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme=default data-md-color-primary=indigo data-md-color-accent=indigo aria-label="Switch to dark mode" type=radio name=__palette id=__palette_0> <label class="md-header__button md-icon" title="Switch to dark mode" for=__palette_1 hidden> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg> </label> <input class=md-option data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme=slate data-md-color-primary=indigo data-md-color-accent=indigo aria-label="Switch to light mode" type=radio name=__palette id=__palette_1> <label class="md-header__button md-icon" title="Switch to light mode" for=__palette_0 hidden> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg> </label> </form> <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script> <label class="md-header__button md-icon" for=__search> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg> </label> <div class=md-search data-md-component=search role=dialog> <label class=md-search__overlay for=__search></label> <div class=md-search__inner role=search> <form class=md-search__form name=search> <input type=text class=md-search__input name=query aria-label=Search placeholder=Search autocapitalize=off autocorrect=off autocomplete=off spellcheck=false data-md-component=search-query required> <label class="md-search__icon md-icon" for=__search> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg> </label> <nav class=md-search__options aria-label=Search> <a href=javascript:void(0) class="md-search__icon md-icon" title=Share aria-label=Share data-clipboard data-clipboard-text data-md-component=search-share tabindex=-1> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg> </a> <button type=reset class="md-search__icon md-icon" title=Clear aria-label=Clear tabindex=-1> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg> </button> </nav> <div class=md-search__suggest data-md-component=search-suggest></div> </form> <div class=md-search__output> <div class=md-search__scrollwrap tabindex=0 data-md-scrollfix> <div class=md-search-result data-md-component=search-result> <div class=md-search-result__meta> Initializing search </div> <ol class=md-search-result__list role=presentation></ol> </div> </div> </div> </div> </div> <div class=md-header__source> <table border=0 style="width: max-content;padding:0px;margin:0px"><tr><td> <a href=https://github.com/asterisk/asterisk title="Go to repository" class=md-source data-md-component=source> <div class="md-source__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 512 512"><!-- Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path fill=currentColor d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg> </div> <div class=md-source__repository> Asterisk </div> </a> </td> <td style=font-size:.65rem;line-height:1.2;vertical-align:middle;> <a href=/About-the-Project/Asterisk-Versions>Asterisk Versions</a><br> <a target=_blank href=https://github.com/asterisk/documentation/issues>Report Documentation Issues</a><br> <a target=_blank href=https://github.com/asterisk/documentation>Contribute to the Documentation</a> </td></tr> </table> </div> </nav> </header> <div class=md-container data-md-component=container> <main class=md-main data-md-component=main> <div class="md-main__inner md-grid"> <div class="md-sidebar md-sidebar--primary" data-md-component=sidebar data-md-type=navigation> <div class=md-sidebar__scrollwrap> <div class=md-sidebar__inner> <nav class="md-nav md-nav--primary" aria-label=Navigation data-md-level=0> <label class=md-nav__title for=__drawer> <a href=../.. title="Asterisk Documentation" class="md-nav__button md-logo" aria-label="Asterisk Documentation" data-md-component=logo> <img src=../../favicon.ico alt=logo> </a> Asterisk Documentation </label> <div class=md-nav__source> <table border=0 style="width: max-content;padding:0px;margin:0px"><tr><td> <a href=https://github.com/asterisk/asterisk title="Go to repository" class=md-source data-md-component=source> <div class="md-source__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 512 512"><!-- Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path fill=currentColor d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg> </div> <div class=md-source__repository> Asterisk </div> </a> </td> <td style=font-size:.65rem;line-height:1.2;vertical-align:middle;> <a href=/About-the-Project/Asterisk-Versions>Asterisk Versions</a><br> <a target=_blank href=https://github.com/asterisk/documentation/issues>Report Documentation Issues</a><br> <a target=_blank href=https://github.com/asterisk/documentation>Contribute to the Documentation</a> </td></tr> </table> </div> <ul class=md-nav__list data-md-scrollfix> <li class="md-nav__item md-nav__item--pruned md-nav__item--nested"> <a href=../../About-the-Project/ class=md-nav__link> <span class=md-ellipsis> About the Project </span> <span class="md-nav__icon md-icon"></span> </a> </li> <li class="md-nav__item md-nav__item--active md-nav__item--nested"> <input class="md-nav__toggle md-toggle " type=checkbox id=__nav_2 checked> <div class="md-nav__link md-nav__container"> <a href=../ class="md-nav__link "> <span class=md-ellipsis> Asterisk Community </span> </a> <label class="md-nav__link " for=__nav_2 id=__nav_2_label tabindex=0> <span class="md-nav__icon md-icon"></span> </label> </div> <nav class=md-nav data-md-level=1 aria-labelledby=__nav_2_label aria-expanded=true> <label class=md-nav__title for=__nav_2> <span class="md-nav__icon md-icon"></span> Asterisk Community </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../Asterisk-Community-Code-of-Conduct/ class=md-nav__link> <span class=md-ellipsis> Asterisk Community Code of Conduct </span> </a> </li> <li class=md-nav__item> <a href=../Asterisk-Community-Services/ class=md-nav__link> <span class=md-ellipsis> Asterisk Community Services </span> </a> </li> <li class=md-nav__item> <a href=../Asterisk-Issue-Guidelines/ class=md-nav__link> <span class=md-ellipsis> Asterisk Issue Guidelines </span> </a> </li> <li class="md-nav__item md-nav__item--active"> <input class="md-nav__toggle md-toggle" type=checkbox id=__toc> <label class="md-nav__link md-nav__link--active" for=__toc> <span class=md-ellipsis> Asterisk Module Support States </span> <span class="md-nav__icon md-icon"></span> </label> <a href=./ class="md-nav__link md-nav__link--active"> <span class=md-ellipsis> Asterisk Module Support States </span> </a> <nav class="md-nav md-nav--secondary" aria-label="Table of contents"> <label class=md-nav__title for=__toc> <span class="md-nav__icon md-icon"></span> Table of contents </label> <ul class=md-nav__list data-md-component=toc data-md-scrollfix> <li class=md-nav__item> <a href=#core class=md-nav__link> <span class=md-ellipsis> Core </span> </a> </li> <li class=md-nav__item> <a href=#extended class=md-nav__link> <span class=md-ellipsis> Extended </span> </a> </li> <li class=md-nav__item> <a href=#deprecated class=md-nav__link> <span class=md-ellipsis> Deprecated </span> </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=../Asterisk-Project-Working-Group-Guidelines/ class=md-nav__link> <span class=md-ellipsis> Asterisk Project Working Group Guidelines </span> </a> </li> <li class=md-nav__item> <a href=../AstriCon-Presentations/ class=md-nav__link> <span class=md-ellipsis> AstriCon Presentations </span> </a> </li> <li class=md-nav__item> <a href=../Digium-and-Asterisk-Community-Export-Compliance-Notice/ class=md-nav__link> <span class=md-ellipsis> Digium and Asterisk Community Export Compliance Notice </span> </a> </li> <li class=md-nav__item> <a href=../IRC/ class=md-nav__link> <span class=md-ellipsis> IRC </span> </a> </li> <li class=md-nav__item> <a href=../Mailing-Lists/ class=md-nav__link> <span class=md-ellipsis> Mailing Lists </span> </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--pruned md-nav__item--nested"> <a href=../../Fundamentals/ class=md-nav__link> <span class=md-ellipsis> Fundamentals </span> <span class="md-nav__icon md-icon"></span> </a> </li> <li class="md-nav__item md-nav__item--pruned md-nav__item--nested"> <a href=../../Getting-Started/Beginning-Asterisk/ class=md-nav__link> <span class=md-ellipsis> Getting Started </span> <span class="md-nav__icon md-icon"></span> </a> </li> <li class="md-nav__item md-nav__item--pruned md-nav__item--nested"> <a href=../../Configuration/ class=md-nav__link> <span class=md-ellipsis> Configuration </span> <span class="md-nav__icon md-icon"></span> </a> </li> <li class="md-nav__item md-nav__item--pruned md-nav__item--nested"> <a href=../../Deployment/ class=md-nav__link> <span class=md-ellipsis> Deployment </span> <span class="md-nav__icon md-icon"></span> </a> </li> <li class="md-nav__item md-nav__item--pruned md-nav__item--nested"> <a href=../../Operation/ class=md-nav__link> <span class=md-ellipsis> Operation </span> <span class="md-nav__icon md-icon"></span> </a> </li> <li class="md-nav__item md-nav__item--pruned md-nav__item--nested"> <a href=../../Development/ class=md-nav__link> <span class=md-ellipsis> Development </span> <span class="md-nav__icon md-icon"></span> </a> </li> <li class="md-nav__item md-nav__item--pruned md-nav__item--nested"> <a href=../../Latest_API/ class=md-nav__link> <span class=md-ellipsis> Latest API </span> <span class="md-nav__icon md-icon"></span> </a> </li> <li class="md-nav__item md-nav__item--pruned md-nav__item--nested"> <a href=../../Asterisk_18_Documentation/ class=md-nav__link> <span class=md-ellipsis> Asterisk 18 Documentation </span> <span class="md-nav__icon md-icon"></span> </a> </li> <li class="md-nav__item md-nav__item--pruned md-nav__item--nested"> <a href=../../Asterisk_19_Documentation/ class=md-nav__link> <span class=md-ellipsis> Asterisk 19 Documentation </span> <span class="md-nav__icon md-icon"></span> </a> </li> <li class="md-nav__item md-nav__item--pruned md-nav__item--nested"> <a href=../../Asterisk_20_Documentation/ class=md-nav__link> <span class=md-ellipsis> Asterisk 20 Documentation </span> <span class="md-nav__icon md-icon"></span> </a> </li> <li class="md-nav__item md-nav__item--pruned md-nav__item--nested"> <a href=../../Asterisk_21_Documentation/ class=md-nav__link> <span class=md-ellipsis> Asterisk 21 Documentation </span> <span class="md-nav__icon md-icon"></span> </a> </li> <li class="md-nav__item md-nav__item--pruned md-nav__item--nested"> <a href=../../Asterisk_22_Documentation/ class=md-nav__link> <span class=md-ellipsis> Asterisk 22 Documentation </span> <span class="md-nav__icon md-icon"></span> </a> </li> <li class="md-nav__item md-nav__item--pruned md-nav__item--nested"> <a href=../../Asterisk_23_Documentation/ class=md-nav__link> <span class=md-ellipsis> Asterisk 23 Documentation </span> <span class="md-nav__icon md-icon"></span> </a> </li> <li class="md-nav__item md-nav__item--pruned md-nav__item--nested"> <a href=../../Asterisk_24_Documentation/ class=md-nav__link> <span class=md-ellipsis> Asterisk 24 Documentation </span> <span class="md-nav__icon md-icon"></span> </a> </li> <li class="md-nav__item md-nav__item--pruned md-nav__item--nested"> <a href=../../Certified-Asterisk_18.9_Documentation/ class=md-nav__link> <span class=md-ellipsis> Certified Asterisk 18.9 Documentation </span> <span class="md-nav__icon md-icon"></span> </a> </li> <li class="md-nav__item md-nav__item--pruned md-nav__item--nested"> <a href=../../Certified-Asterisk_20.7_Documentation/ class=md-nav__link> <span class=md-ellipsis> Certified Asterisk 20.7 Documentation </span> <span class="md-nav__icon md-icon"></span> </a> </li> <li class="md-nav__item md-nav__item--pruned md-nav__item--nested"> <a href=../../Certified-Asterisk_22.8_Documentation/ class=md-nav__link> <span class=md-ellipsis> Certified Asterisk 22.8 Documentation </span> <span class="md-nav__icon md-icon"></span> </a> </li> <li class="md-nav__item md-nav__item--pruned md-nav__item--nested"> <a href=../../Test-Suite-Documentation/ class=md-nav__link> <span class=md-ellipsis> Test Suite Documentation </span> <span class="md-nav__icon md-icon"></span> </a> </li> <li class="md-nav__item md-nav__item--pruned md-nav__item--nested"> <a href=../../Historical-Documentation/ class=md-nav__link> <span class=md-ellipsis> Historical Documentation </span> <span class="md-nav__icon md-icon"></span> </a> </li> <li class=md-nav__item> <a href=../../Contributing-to-the-Documentation/ class=md-nav__link> <span class=md-ellipsis> Contributing to the Documentation </span> </a> </li> </ul> </nav> </div> </div> </div> <div class="md-sidebar md-sidebar--secondary" data-md-component=sidebar data-md-type=toc> <div class=md-sidebar__scrollwrap> <div class=md-sidebar__inner> <nav class="md-nav md-nav--secondary" aria-label="Table of contents"> <label class=md-nav__title for=__toc> <span class="md-nav__icon md-icon"></span> Table of contents </label> <ul class=md-nav__list data-md-component=toc data-md-scrollfix> <li class=md-nav__item> <a href=#core class=md-nav__link> <span class=md-ellipsis> Core </span> </a> </li> <li class=md-nav__item> <a href=#extended class=md-nav__link> <span class=md-ellipsis> Extended </span> </a> </li> <li class=md-nav__item> <a href=#deprecated class=md-nav__link> <span class=md-ellipsis> Deprecated </span> </a> </li> </ul> </nav> </div> </div> </div> <div class=md-content data-md-component=content> <article class="md-content__inner md-typeset"> <h1 id=introduction>Introduction<a class=headerlink href=#introduction title="Permanent link">&para;</a></h1> <p>In Asterisk, modules can take one of three supported states. These states include:</p> <ul> <li>Core</li> <li>Extended</li> <li>Deprecated</li> </ul> <p>The definition of the various states is described in the following sections.</p> <h2 id=core>Core<a class=headerlink href=#core title="Permanent link">&para;</a></h2> <p>Most modules in Asterisk are in the Core state, which means issues found with these modules can freely be reported to the Asterisk issue tracker, where the issue will be triaged and placed into a queue for resolution. Core modules are supported by both Sangoma and the community.</p> <h2 id=extended>Extended<a class=headerlink href=#extended title="Permanent link">&para;</a></h2> <p>This module is supported by the Asterisk community, and may or may not have an active developer. Some extended modules have active community developers; others do not. Issues reported against these modules may have a low level of support. For more information about which extended support modules have an active developer supporting them, see <a href=/Development/Asterisk-Open-Source-Maintainers>Asterisk Open Source Maintainers.</a> Extended modules receive no bug fix support from Sangoma. Sangoma will try to ensure they continue to build and investigate security issues, but that is the extent of support.</p> <h2 id=deprecated>Deprecated<a class=headerlink href=#deprecated title="Permanent link">&para;</a></h2> <p>The module will remain in the tree, but there is a better way to do it. For module deprecation policy and process please see <a href=/Development/Policies-and-Procedures/Module-Deprecation>Module Deprecation</a>. Deprecated modules receive no bug fix support from Sangoma. Sangoma will try to ensure they continue to build and investigate security issues, but that is the extent of support.</p> <h1 id=moduleinfo-configurations>MODULEINFO Configurations<a class=headerlink href=#moduleinfo-configurations title="Permanent link">&para;</a></h1> <p>At the top of modules there is the ability to set meta information about that module. Currently we have the following tags:</p> <p><div class="language-text highlight"><pre><span></span><code><span id=__span-0-1><a id=__codelineno-0-1 name=__codelineno-0-1 href=#__codelineno-0-1></a>&lt;defaultenabled&gt;
+</span><span id=__span-0-2><a id=__codelineno-0-2 name=__codelineno-0-2 href=#__codelineno-0-2></a>&lt;use&gt;
+</span><span id=__span-0-3><a id=__codelineno-0-3 name=__codelineno-0-3 href=#__codelineno-0-3></a>&lt;depend&gt;
+</span></code></pre></div> The meta data added to <strong>MODULEINFO</strong> in the module causes data to be generated in <em>menuselect</em>. For example, when you use <code>&lt;defaultenabled&gt;no&lt;/defaultenabled&gt;</code> the module will not be selected by default. We would use the <code>&lt;defaultenabled&gt;</code> tag for <em>deprecated</em> modules so that they are not built unless explicitly selected by an Asterisk administrator.</p> <h2 id=adding-new-metadata>Adding New Metadata<a class=headerlink href=#adding-new-metadata title="Permanent link">&para;</a></h2> <p>On top of the existing tags, we would add two additional tags to communicate via menuselect that a module was extended or deprecated (and what module supersedes the deprecated module). These tags include:</p> <ul> <li><code>&lt;support_level&gt;</code><ul> <li><em>Example: <code>&lt;support_level&gt;deprecated&lt;/support_level&gt;</code></em> -- This module would be deprecated. Maintenance of this module may not exist. It is possible this module could eventually be tagged as deprecated, or removed from the tree entirely.</li> </ul> </li> <li><code>&lt;replacement&gt;</code><ul> <li><em>Example: <code>&lt;replacement&gt;func_odbc&lt;/replacement&gt;</code> -- The replacement for this module is the func_odbc module. This is used when the <code>&lt;support_level&gt;</code> is set to *</em>deprecated**.</li> </ul> </li> </ul> <h3 id=menuselect-display>Menuselect Display<a class=headerlink href=#menuselect-display title="Permanent link">&para;</a></h3> <p>The following two images show the suggested menuselect output based on the addition of the <code>&lt;support_level&gt;</code> and <code>&lt;replacement&gt;</code> tags. This would be a new line that has not been used before, and therefore would be added to menuselect as that new line.</p> <p>If the <strong>deprecated</strong> value is used, then the value between the <code>&lt;replacement&gt;</code> tags will replace the value of <em>app_superQ</em> as shown in the image below. The text surrounding <em>app_superQ</em> would be static (same for all modules that used <strong>deprecated</strong>).</p> <p><img alt src=../menuselect-deprecated.png></p> <p>If the <code>&lt;support_level&gt;</code> tag is used, then the value of <em>extended</em> would cause the additional text of <strong>EXTENDED</strong> to be displayed.</p> <p><img alt src=../menuselect-unmaintained.png></p> <p>Display in menuselect-newt for supported modules. If no <code>&lt;support_level&gt;</code> is specified, then it is assumed the module is supported:</p> <p><img alt src=../menuselect-newt-supported.png></p> <p>Display in menuselect-newt for extended modules:</p> <p><img alt src=../menuselect-newt-unmaintained.png></p> <p>Display in menuselect-newt for deprecated modules:</p> <p><img alt src=../menuselect-newt-deprecated.png></p> <h1 id=listing-modules-at-selected-support-states>Listing Modules at Selected Support States<a class=headerlink href=#listing-modules-at-selected-support-states title="Permanent link">&para;</a></h1> <p>You can list the modules at selected support states directly within a checked out branch of the version of the Asterisk source code that you are interested in querying.</p> <h2 id=core_1>Core<a class=headerlink href=#core_1 title="Permanent link">&para;</a></h2> <p><code>make module-list-core</code></p> <h2 id=extended_1>Extended<a class=headerlink href=#extended_1 title="Permanent link">&para;</a></h2> <p><code>make module-list-extended</code></p> <h2 id=deprecated_1>Deprecated<a class=headerlink href=#deprecated_1 title="Permanent link">&para;</a></h2> <p><code>make module-list-deprecated</code></p> <h3 id=example>Example<a class=headerlink href=#example title="Permanent link">&para;</a></h3> <div class="language-shell highlight"><pre><span></span><code><span id=__span-1-1><a id=__codelineno-1-1 name=__codelineno-1-1 href=#__codelineno-1-1></a>$<span class=w> </span>git<span class=w> </span>clone<span class=w> </span>git@github.com:asterisk/asterisk.git
+</span><span id=__span-1-2><a id=__codelineno-1-2 name=__codelineno-1-2 href=#__codelineno-1-2></a>
+</span><span id=__span-1-3><a id=__codelineno-1-3 name=__codelineno-1-3 href=#__codelineno-1-3></a>$<span class=w> </span>git<span class=w> </span>checkout<span class=w> </span>releases/certified-22.8
+</span><span id=__span-1-4><a id=__codelineno-1-4 name=__codelineno-1-4 href=#__codelineno-1-4></a>
+</span><span id=__span-1-5><a id=__codelineno-1-5 name=__codelineno-1-5 href=#__codelineno-1-5></a>$<span class=w> </span>make<span class=w> </span>module-list-deprecated
+</span><span id=__span-1-6><a id=__codelineno-1-6 name=__codelineno-1-6 href=#__codelineno-1-6></a>Showing<span class=w> </span>all<span class=w> </span>modules<span class=w> </span>at<span class=w> </span>support<span class=w> </span>level<span class=w> </span><span class=s1>'deprecated'</span>:
+</span><span id=__span-1-7><a id=__codelineno-1-7 name=__codelineno-1-7 href=#__codelineno-1-7></a>apps/app_adsiprog.c
+</span><span id=__span-1-8><a id=__codelineno-1-8 name=__codelineno-1-8 href=#__codelineno-1-8></a>apps/app_getcpeid.c
+</span><span id=__span-1-9><a id=__codelineno-1-9 name=__codelineno-1-9 href=#__codelineno-1-9></a>apps/app_meetme.c
+</span><span id=__span-1-10><a id=__codelineno-1-10 name=__codelineno-1-10 href=#__codelineno-1-10></a>res/res_adsi.c
+</span><span id=__span-1-11><a id=__codelineno-1-11 name=__codelineno-1-11 href=#__codelineno-1-11></a>
+</span><span id=__span-1-12><a id=__codelineno-1-12 name=__codelineno-1-12 href=#__codelineno-1-12></a>$<span class=w> </span>make<span class=w> </span>module-list-core
+</span><span id=__span-1-13><a id=__codelineno-1-13 name=__codelineno-1-13 href=#__codelineno-1-13></a>Showing<span class=w> </span>all<span class=w> </span>modules<span class=w> </span>at<span class=w> </span>support<span class=w> </span>level<span class=w> </span><span class=s1>'core'</span>:
+</span><span id=__span-1-14><a id=__codelineno-1-14 name=__codelineno-1-14 href=#__codelineno-1-14></a>apps/app_agent_pool.c
+</span><span id=__span-1-15><a id=__codelineno-1-15 name=__codelineno-1-15 href=#__codelineno-1-15></a>apps/app_authenticate.c
+</span><span id=__span-1-16><a id=__codelineno-1-16 name=__codelineno-1-16 href=#__codelineno-1-16></a>apps/app_bridgeaddchan.c
+</span><span id=__span-1-17><a id=__codelineno-1-17 name=__codelineno-1-17 href=#__codelineno-1-17></a>apps/app_bridgewait.c
+</span><span id=__span-1-18><a id=__codelineno-1-18 name=__codelineno-1-18 href=#__codelineno-1-18></a>apps/app_cdr.c
+</span><span id=__span-1-19><a id=__codelineno-1-19 name=__codelineno-1-19 href=#__codelineno-1-19></a>apps/app_celgenuserevent.c
+</span><span id=__span-1-20><a id=__codelineno-1-20 name=__codelineno-1-20 href=#__codelineno-1-20></a>apps/app_channelredirect.c
+</span><span id=__span-1-21><a id=__codelineno-1-21 name=__codelineno-1-21 href=#__codelineno-1-21></a>apps/app_chanspy.c
+</span><span id=__span-1-22><a id=__codelineno-1-22 name=__codelineno-1-22 href=#__codelineno-1-22></a>apps/app_confbridge.c
+</span><span id=__span-1-23><a id=__codelineno-1-23 name=__codelineno-1-23 href=#__codelineno-1-23></a>apps/app_controlplayback.c
+</span><span id=__span-1-24><a id=__codelineno-1-24 name=__codelineno-1-24 href=#__codelineno-1-24></a>apps/app_db.c
+</span><span id=__span-1-25><a id=__codelineno-1-25 name=__codelineno-1-25 href=#__codelineno-1-25></a>apps/app_dial.c
+</span><span id=__span-1-26><a id=__codelineno-1-26 name=__codelineno-1-26 href=#__codelineno-1-26></a>apps/app_directed_pickup.c
+</span><span id=__span-1-27><a id=__codelineno-1-27 name=__codelineno-1-27 href=#__codelineno-1-27></a>apps/app_directory.c
+</span><span id=__span-1-28><a id=__codelineno-1-28 name=__codelineno-1-28 href=#__codelineno-1-28></a>apps/app_disa.c
+</span><span id=__span-1-29><a id=__codelineno-1-29 name=__codelineno-1-29 href=#__codelineno-1-29></a>apps/app_dumpchan.c
+</span><span id=__span-1-30><a id=__codelineno-1-30 name=__codelineno-1-30 href=#__codelineno-1-30></a>apps/app_echo.c
+</span><span id=__span-1-31><a id=__codelineno-1-31 name=__codelineno-1-31 href=#__codelineno-1-31></a>apps/app_exec.c
+</span><span id=__span-1-32><a id=__codelineno-1-32 name=__codelineno-1-32 href=#__codelineno-1-32></a>apps/app_flash.c
+</span><span id=__span-1-33><a id=__codelineno-1-33 name=__codelineno-1-33 href=#__codelineno-1-33></a>apps/app_followme.c
+</span><span id=__span-1-34><a id=__codelineno-1-34 name=__codelineno-1-34 href=#__codelineno-1-34></a>apps/app_forkcdr.c
+</span><span id=__span-1-35><a id=__codelineno-1-35 name=__codelineno-1-35 href=#__codelineno-1-35></a>apps/app_milliwatt.c
+</span><span id=__span-1-36><a id=__codelineno-1-36 name=__codelineno-1-36 href=#__codelineno-1-36></a>apps/app_mixmonitor.c
+</span><span id=__span-1-37><a id=__codelineno-1-37 name=__codelineno-1-37 href=#__codelineno-1-37></a>apps/app_originate.c
+</span><span id=__span-1-38><a id=__codelineno-1-38 name=__codelineno-1-38 href=#__codelineno-1-38></a>apps/app_page.c
+</span><span id=__span-1-39><a id=__codelineno-1-39 name=__codelineno-1-39 href=#__codelineno-1-39></a>apps/app_playback.c
+</span><span id=__span-1-40><a id=__codelineno-1-40 name=__codelineno-1-40 href=#__codelineno-1-40></a>apps/app_playtones.c
+</span><span id=__span-1-41><a id=__codelineno-1-41 name=__codelineno-1-41 href=#__codelineno-1-41></a>apps/app_privacy.c
+</span><span id=__span-1-42><a id=__codelineno-1-42 name=__codelineno-1-42 href=#__codelineno-1-42></a>apps/app_queue.c
+</span><span id=__span-1-43><a id=__codelineno-1-43 name=__codelineno-1-43 href=#__codelineno-1-43></a>apps/app_read.c
+</span><span id=__span-1-44><a id=__codelineno-1-44 name=__codelineno-1-44 href=#__codelineno-1-44></a>apps/app_readexten.c
+</span><span id=__span-1-45><a id=__codelineno-1-45 name=__codelineno-1-45 href=#__codelineno-1-45></a>apps/app_record.c
+</span><span id=__span-1-46><a id=__codelineno-1-46 name=__codelineno-1-46 href=#__codelineno-1-46></a>apps/app_sayunixtime.c
+</span><span id=__span-1-47><a id=__codelineno-1-47 name=__codelineno-1-47 href=#__codelineno-1-47></a>apps/app_senddtmf.c
+</span><span id=__span-1-48><a id=__codelineno-1-48 name=__codelineno-1-48 href=#__codelineno-1-48></a>apps/app_sendtext.c
+</span><span id=__span-1-49><a id=__codelineno-1-49 name=__codelineno-1-49 href=#__codelineno-1-49></a>apps/app_skel.c
+</span><span id=__span-1-50><a id=__codelineno-1-50 name=__codelineno-1-50 href=#__codelineno-1-50></a>apps/app_softhangup.c
+</span><span id=__span-1-51><a id=__codelineno-1-51 name=__codelineno-1-51 href=#__codelineno-1-51></a>apps/app_speech_utils.c
+</span><span id=__span-1-52><a id=__codelineno-1-52 name=__codelineno-1-52 href=#__codelineno-1-52></a>apps/app_stack.c
+</span><span id=__span-1-53><a id=__codelineno-1-53 name=__codelineno-1-53 href=#__codelineno-1-53></a>apps/app_stasis.c
+</span><span id=__span-1-54><a id=__codelineno-1-54 name=__codelineno-1-54 href=#__codelineno-1-54></a>apps/app_stream_echo.c
+</span><span id=__span-1-55><a id=__codelineno-1-55 name=__codelineno-1-55 href=#__codelineno-1-55></a>apps/app_system.c
+</span><span id=__span-1-56><a id=__codelineno-1-56 name=__codelineno-1-56 href=#__codelineno-1-56></a>apps/app_talkdetect.c
+</span><span id=__span-1-57><a id=__codelineno-1-57 name=__codelineno-1-57 href=#__codelineno-1-57></a>apps/app_transfer.c
+</span><span id=__span-1-58><a id=__codelineno-1-58 name=__codelineno-1-58 href=#__codelineno-1-58></a>apps/app_userevent.c
+</span><span id=__span-1-59><a id=__codelineno-1-59 name=__codelineno-1-59 href=#__codelineno-1-59></a>apps/app_verbose.c
+</span><span id=__span-1-60><a id=__codelineno-1-60 name=__codelineno-1-60 href=#__codelineno-1-60></a>apps/app_waituntil.c
+</span><span id=__span-1-61><a id=__codelineno-1-61 name=__codelineno-1-61 href=#__codelineno-1-61></a>apps/app_while.c
+</span><span id=__span-1-62><a id=__codelineno-1-62 name=__codelineno-1-62 href=#__codelineno-1-62></a>apps/confbridge/conf_config_parser.c
+</span><span id=__span-1-63><a id=__codelineno-1-63 name=__codelineno-1-63 href=#__codelineno-1-63></a>apps/confbridge/conf_state.c
+</span><span id=__span-1-64><a id=__codelineno-1-64 name=__codelineno-1-64 href=#__codelineno-1-64></a>apps/confbridge/conf_state_empty.c
+</span><span id=__span-1-65><a id=__codelineno-1-65 name=__codelineno-1-65 href=#__codelineno-1-65></a>apps/confbridge/conf_state_inactive.c
+</span><span id=__span-1-66><a id=__codelineno-1-66 name=__codelineno-1-66 href=#__codelineno-1-66></a>apps/confbridge/conf_state_multi.c
+</span><span id=__span-1-67><a id=__codelineno-1-67 name=__codelineno-1-67 href=#__codelineno-1-67></a>apps/confbridge/conf_state_multi_marked.c
+</span><span id=__span-1-68><a id=__codelineno-1-68 name=__codelineno-1-68 href=#__codelineno-1-68></a>apps/confbridge/conf_state_single.c
+</span><span id=__span-1-69><a id=__codelineno-1-69 name=__codelineno-1-69 href=#__codelineno-1-69></a>apps/confbridge/conf_state_single_marked.c
+</span><span id=__span-1-70><a id=__codelineno-1-70 name=__codelineno-1-70 href=#__codelineno-1-70></a>bridges/bridge_builtin_features.c
+</span><span id=__span-1-71><a id=__codelineno-1-71 name=__codelineno-1-71 href=#__codelineno-1-71></a>bridges/bridge_builtin_interval_features.c
+</span><span id=__span-1-72><a id=__codelineno-1-72 name=__codelineno-1-72 href=#__codelineno-1-72></a>bridges/bridge_holding.c
+</span><span id=__span-1-73><a id=__codelineno-1-73 name=__codelineno-1-73 href=#__codelineno-1-73></a>bridges/bridge_native_rtp.c
+</span><span id=__span-1-74><a id=__codelineno-1-74 name=__codelineno-1-74 href=#__codelineno-1-74></a>bridges/bridge_simple.c
+</span><span id=__span-1-75><a id=__codelineno-1-75 name=__codelineno-1-75 href=#__codelineno-1-75></a>bridges/bridge_softmix.c
+</span><span id=__span-1-76><a id=__codelineno-1-76 name=__codelineno-1-76 href=#__codelineno-1-76></a>cdr/cdr_adaptive_odbc.c
+</span><span id=__span-1-77><a id=__codelineno-1-77 name=__codelineno-1-77 href=#__codelineno-1-77></a>cdr/cdr_custom.c
+</span><span id=__span-1-78><a id=__codelineno-1-78 name=__codelineno-1-78 href=#__codelineno-1-78></a>cdr/cdr_manager.c
+</span><span id=__span-1-79><a id=__codelineno-1-79 name=__codelineno-1-79 href=#__codelineno-1-79></a>cel/cel_custom.c
+</span><span id=__span-1-80><a id=__codelineno-1-80 name=__codelineno-1-80 href=#__codelineno-1-80></a>cel/cel_manager.c
+</span><span id=__span-1-81><a id=__codelineno-1-81 name=__codelineno-1-81 href=#__codelineno-1-81></a>cel/cel_odbc.c
+</span><span id=__span-1-82><a id=__codelineno-1-82 name=__codelineno-1-82 href=#__codelineno-1-82></a>channels/chan_bridge_media.c
+</span><span id=__span-1-83><a id=__codelineno-1-83 name=__codelineno-1-83 href=#__codelineno-1-83></a>channels/chan_dahdi.c
+</span><span id=__span-1-84><a id=__codelineno-1-84 name=__codelineno-1-84 href=#__codelineno-1-84></a>channels/chan_iax2.c
+</span><span id=__span-1-85><a id=__codelineno-1-85 name=__codelineno-1-85 href=#__codelineno-1-85></a>channels/chan_motif.c
+</span><span id=__span-1-86><a id=__codelineno-1-86 name=__codelineno-1-86 href=#__codelineno-1-86></a>channels/chan_pjsip.c
+</span><span id=__span-1-87><a id=__codelineno-1-87 name=__codelineno-1-87 href=#__codelineno-1-87></a>channels/chan_rtp.c
+</span><span id=__span-1-88><a id=__codelineno-1-88 name=__codelineno-1-88 href=#__codelineno-1-88></a>channels/chan_websocket.c
+</span><span id=__span-1-89><a id=__codelineno-1-89 name=__codelineno-1-89 href=#__codelineno-1-89></a>channels/dahdi/bridge_native_dahdi.c
+</span><span id=__span-1-90><a id=__codelineno-1-90 name=__codelineno-1-90 href=#__codelineno-1-90></a>channels/iax2/codec_pref.c
+</span><span id=__span-1-91><a id=__codelineno-1-91 name=__codelineno-1-91 href=#__codelineno-1-91></a>channels/iax2/firmware.c
+</span><span id=__span-1-92><a id=__codelineno-1-92 name=__codelineno-1-92 href=#__codelineno-1-92></a>channels/iax2/format_compatibility.c
+</span><span id=__span-1-93><a id=__codelineno-1-93 name=__codelineno-1-93 href=#__codelineno-1-93></a>channels/iax2/netsock.c
+</span><span id=__span-1-94><a id=__codelineno-1-94 name=__codelineno-1-94 href=#__codelineno-1-94></a>channels/iax2/parser.c
+</span><span id=__span-1-95><a id=__codelineno-1-95 name=__codelineno-1-95 href=#__codelineno-1-95></a>channels/iax2/provision.c
+</span><span id=__span-1-96><a id=__codelineno-1-96 name=__codelineno-1-96 href=#__codelineno-1-96></a>channels/pjsip/dialplan_functions.c
+</span><span id=__span-1-97><a id=__codelineno-1-97 name=__codelineno-1-97 href=#__codelineno-1-97></a>channels/sig_analog.c
+</span><span id=__span-1-98><a id=__codelineno-1-98 name=__codelineno-1-98 href=#__codelineno-1-98></a>channels/sig_pri.c
+</span><span id=__span-1-99><a id=__codelineno-1-99 name=__codelineno-1-99 href=#__codelineno-1-99></a>channels/sig_ss7.c
+</span><span id=__span-1-100><a id=__codelineno-1-100 name=__codelineno-1-100 href=#__codelineno-1-100></a>codecs/codec_a_mu.c
+</span><span id=__span-1-101><a id=__codelineno-1-101 name=__codelineno-1-101 href=#__codelineno-1-101></a>codecs/codec_adpcm.c
+</span><span id=__span-1-102><a id=__codelineno-1-102 name=__codelineno-1-102 href=#__codelineno-1-102></a>codecs/codec_alaw.c
+</span><span id=__span-1-103><a id=__codelineno-1-103 name=__codelineno-1-103 href=#__codelineno-1-103></a>codecs/codec_codec2.c
+</span><span id=__span-1-104><a id=__codelineno-1-104 name=__codelineno-1-104 href=#__codelineno-1-104></a>codecs/codec_dahdi.c
+</span><span id=__span-1-105><a id=__codelineno-1-105 name=__codelineno-1-105 href=#__codelineno-1-105></a>codecs/codec_g722.c
+</span><span id=__span-1-106><a id=__codelineno-1-106 name=__codelineno-1-106 href=#__codelineno-1-106></a>codecs/codec_g726.c
+</span><span id=__span-1-107><a id=__codelineno-1-107 name=__codelineno-1-107 href=#__codelineno-1-107></a>codecs/codec_gsm.c
+</span><span id=__span-1-108><a id=__codelineno-1-108 name=__codelineno-1-108 href=#__codelineno-1-108></a>codecs/codec_ilbc.c
+</span><span id=__span-1-109><a id=__codelineno-1-109 name=__codelineno-1-109 href=#__codelineno-1-109></a>codecs/codec_lpc10.c
+</span><span id=__span-1-110><a id=__codelineno-1-110 name=__codelineno-1-110 href=#__codelineno-1-110></a>codecs/codec_resample.c
+</span><span id=__span-1-111><a id=__codelineno-1-111 name=__codelineno-1-111 href=#__codelineno-1-111></a>codecs/codec_speex.c
+</span><span id=__span-1-112><a id=__codelineno-1-112 name=__codelineno-1-112 href=#__codelineno-1-112></a>codecs/codec_ulaw.c
+</span><span id=__span-1-113><a id=__codelineno-1-113 name=__codelineno-1-113 href=#__codelineno-1-113></a>formats/format_g719.c
+</span><span id=__span-1-114><a id=__codelineno-1-114 name=__codelineno-1-114 href=#__codelineno-1-114></a>formats/format_g723.c
+</span><span id=__span-1-115><a id=__codelineno-1-115 name=__codelineno-1-115 href=#__codelineno-1-115></a>formats/format_g726.c
+</span><span id=__span-1-116><a id=__codelineno-1-116 name=__codelineno-1-116 href=#__codelineno-1-116></a>formats/format_g729.c
+</span><span id=__span-1-117><a id=__codelineno-1-117 name=__codelineno-1-117 href=#__codelineno-1-117></a>formats/format_gsm.c
+</span><span id=__span-1-118><a id=__codelineno-1-118 name=__codelineno-1-118 href=#__codelineno-1-118></a>formats/format_h263.c
+</span><span id=__span-1-119><a id=__codelineno-1-119 name=__codelineno-1-119 href=#__codelineno-1-119></a>formats/format_h264.c
+</span><span id=__span-1-120><a id=__codelineno-1-120 name=__codelineno-1-120 href=#__codelineno-1-120></a>formats/format_ilbc.c
+</span><span id=__span-1-121><a id=__codelineno-1-121 name=__codelineno-1-121 href=#__codelineno-1-121></a>formats/format_ogg_vorbis.c
+</span><span id=__span-1-122><a id=__codelineno-1-122 name=__codelineno-1-122 href=#__codelineno-1-122></a>formats/format_pcm.c
+</span><span id=__span-1-123><a id=__codelineno-1-123 name=__codelineno-1-123 href=#__codelineno-1-123></a>formats/format_siren14.c
+</span><span id=__span-1-124><a id=__codelineno-1-124 name=__codelineno-1-124 href=#__codelineno-1-124></a>formats/format_siren7.c
+</span><span id=__span-1-125><a id=__codelineno-1-125 name=__codelineno-1-125 href=#__codelineno-1-125></a>formats/format_sln.c
+</span><span id=__span-1-126><a id=__codelineno-1-126 name=__codelineno-1-126 href=#__codelineno-1-126></a>formats/format_wav.c
+</span><span id=__span-1-127><a id=__codelineno-1-127 name=__codelineno-1-127 href=#__codelineno-1-127></a>formats/format_wav_gsm.c
+</span><span id=__span-1-128><a id=__codelineno-1-128 name=__codelineno-1-128 href=#__codelineno-1-128></a>funcs/func_aes.c
+</span><span id=__span-1-129><a id=__codelineno-1-129 name=__codelineno-1-129 href=#__codelineno-1-129></a>funcs/func_base64.c
+</span><span id=__span-1-130><a id=__codelineno-1-130 name=__codelineno-1-130 href=#__codelineno-1-130></a>funcs/func_blacklist.c
+</span><span id=__span-1-131><a id=__codelineno-1-131 name=__codelineno-1-131 href=#__codelineno-1-131></a>funcs/func_callcompletion.c
+</span><span id=__span-1-132><a id=__codelineno-1-132 name=__codelineno-1-132 href=#__codelineno-1-132></a>funcs/func_callerid.c
+</span><span id=__span-1-133><a id=__codelineno-1-133 name=__codelineno-1-133 href=#__codelineno-1-133></a>funcs/func_cdr.c
+</span><span id=__span-1-134><a id=__codelineno-1-134 name=__codelineno-1-134 href=#__codelineno-1-134></a>funcs/func_channel.c
+</span><span id=__span-1-135><a id=__codelineno-1-135 name=__codelineno-1-135 href=#__codelineno-1-135></a>funcs/func_config.c
+</span><span id=__span-1-136><a id=__codelineno-1-136 name=__codelineno-1-136 href=#__codelineno-1-136></a>funcs/func_curl.c
+</span><span id=__span-1-137><a id=__codelineno-1-137 name=__codelineno-1-137 href=#__codelineno-1-137></a>funcs/func_cut.c
+</span><span id=__span-1-138><a id=__codelineno-1-138 name=__codelineno-1-138 href=#__codelineno-1-138></a>funcs/func_db.c
+</span><span id=__span-1-139><a id=__codelineno-1-139 name=__codelineno-1-139 href=#__codelineno-1-139></a>funcs/func_devstate.c
+</span><span id=__span-1-140><a id=__codelineno-1-140 name=__codelineno-1-140 href=#__codelineno-1-140></a>funcs/func_dialgroup.c
+</span><span id=__span-1-141><a id=__codelineno-1-141 name=__codelineno-1-141 href=#__codelineno-1-141></a>funcs/func_dialplan.c
+</span><span id=__span-1-142><a id=__codelineno-1-142 name=__codelineno-1-142 href=#__codelineno-1-142></a>funcs/func_enum.c
+</span><span id=__span-1-143><a id=__codelineno-1-143 name=__codelineno-1-143 href=#__codelineno-1-143></a>funcs/func_env.c
+</span><span id=__span-1-144><a id=__codelineno-1-144 name=__codelineno-1-144 href=#__codelineno-1-144></a>funcs/func_extstate.c
+</span><span id=__span-1-145><a id=__codelineno-1-145 name=__codelineno-1-145 href=#__codelineno-1-145></a>funcs/func_global.c
+</span><span id=__span-1-146><a id=__codelineno-1-146 name=__codelineno-1-146 href=#__codelineno-1-146></a>funcs/func_groupcount.c
+</span><span id=__span-1-147><a id=__codelineno-1-147 name=__codelineno-1-147 href=#__codelineno-1-147></a>funcs/func_hangupcause.c
+</span><span id=__span-1-148><a id=__codelineno-1-148 name=__codelineno-1-148 href=#__codelineno-1-148></a>funcs/func_holdintercept.c
+</span><span id=__span-1-149><a id=__codelineno-1-149 name=__codelineno-1-149 href=#__codelineno-1-149></a>funcs/func_iconv.c
+</span><span id=__span-1-150><a id=__codelineno-1-150 name=__codelineno-1-150 href=#__codelineno-1-150></a>funcs/func_jitterbuffer.c
+</span><span id=__span-1-151><a id=__codelineno-1-151 name=__codelineno-1-151 href=#__codelineno-1-151></a>funcs/func_lock.c
+</span><span id=__span-1-152><a id=__codelineno-1-152 name=__codelineno-1-152 href=#__codelineno-1-152></a>funcs/func_logic.c
+</span><span id=__span-1-153><a id=__codelineno-1-153 name=__codelineno-1-153 href=#__codelineno-1-153></a>funcs/func_math.c
+</span><span id=__span-1-154><a id=__codelineno-1-154 name=__codelineno-1-154 href=#__codelineno-1-154></a>funcs/func_md5.c
+</span><span id=__span-1-155><a id=__codelineno-1-155 name=__codelineno-1-155 href=#__codelineno-1-155></a>funcs/func_module.c
+</span><span id=__span-1-156><a id=__codelineno-1-156 name=__codelineno-1-156 href=#__codelineno-1-156></a>funcs/func_odbc.c
+</span><span id=__span-1-157><a id=__codelineno-1-157 name=__codelineno-1-157 href=#__codelineno-1-157></a>funcs/func_periodic_hook.c
+</span><span id=__span-1-158><a id=__codelineno-1-158 name=__codelineno-1-158 href=#__codelineno-1-158></a>funcs/func_pjsip_aor.c
+</span><span id=__span-1-159><a id=__codelineno-1-159 name=__codelineno-1-159 href=#__codelineno-1-159></a>funcs/func_pjsip_contact.c
+</span><span id=__span-1-160><a id=__codelineno-1-160 name=__codelineno-1-160 href=#__codelineno-1-160></a>funcs/func_pjsip_endpoint.c
+</span><span id=__span-1-161><a id=__codelineno-1-161 name=__codelineno-1-161 href=#__codelineno-1-161></a>funcs/func_presencestate.c
+</span><span id=__span-1-162><a id=__codelineno-1-162 name=__codelineno-1-162 href=#__codelineno-1-162></a>funcs/func_rand.c
+</span><span id=__span-1-163><a id=__codelineno-1-163 name=__codelineno-1-163 href=#__codelineno-1-163></a>funcs/func_realtime.c
+</span><span id=__span-1-164><a id=__codelineno-1-164 name=__codelineno-1-164 href=#__codelineno-1-164></a>funcs/func_sha1.c
+</span><span id=__span-1-165><a id=__codelineno-1-165 name=__codelineno-1-165 href=#__codelineno-1-165></a>funcs/func_shell.c
+</span><span id=__span-1-166><a id=__codelineno-1-166 name=__codelineno-1-166 href=#__codelineno-1-166></a>funcs/func_sorcery.c
+</span><span id=__span-1-167><a id=__codelineno-1-167 name=__codelineno-1-167 href=#__codelineno-1-167></a>funcs/func_speex.c
+</span><span id=__span-1-168><a id=__codelineno-1-168 name=__codelineno-1-168 href=#__codelineno-1-168></a>funcs/func_sprintf.c
+</span><span id=__span-1-169><a id=__codelineno-1-169 name=__codelineno-1-169 href=#__codelineno-1-169></a>funcs/func_srv.c
+</span><span id=__span-1-170><a id=__codelineno-1-170 name=__codelineno-1-170 href=#__codelineno-1-170></a>funcs/func_strings.c
+</span><span id=__span-1-171><a id=__codelineno-1-171 name=__codelineno-1-171 href=#__codelineno-1-171></a>funcs/func_sysinfo.c
+</span><span id=__span-1-172><a id=__codelineno-1-172 name=__codelineno-1-172 href=#__codelineno-1-172></a>funcs/func_talkdetect.c
+</span><span id=__span-1-173><a id=__codelineno-1-173 name=__codelineno-1-173 href=#__codelineno-1-173></a>funcs/func_timeout.c
+</span><span id=__span-1-174><a id=__codelineno-1-174 name=__codelineno-1-174 href=#__codelineno-1-174></a>funcs/func_uri.c
+</span><span id=__span-1-175><a id=__codelineno-1-175 name=__codelineno-1-175 href=#__codelineno-1-175></a>funcs/func_version.c
+</span><span id=__span-1-176><a id=__codelineno-1-176 name=__codelineno-1-176 href=#__codelineno-1-176></a>funcs/func_vmcount.c
+</span><span id=__span-1-177><a id=__codelineno-1-177 name=__codelineno-1-177 href=#__codelineno-1-177></a>funcs/func_volume.c
+</span><span id=__span-1-178><a id=__codelineno-1-178 name=__codelineno-1-178 href=#__codelineno-1-178></a>main/abstract_jb.c
+</span><span id=__span-1-179><a id=__codelineno-1-179 name=__codelineno-1-179 href=#__codelineno-1-179></a>main/acl.c
+</span><span id=__span-1-180><a id=__codelineno-1-180 name=__codelineno-1-180 href=#__codelineno-1-180></a>main/alaw.c
+</span><span id=__span-1-181><a id=__codelineno-1-181 name=__codelineno-1-181 href=#__codelineno-1-181></a>main/aoc.c
+</span><span id=__span-1-182><a id=__codelineno-1-182 name=__codelineno-1-182 href=#__codelineno-1-182></a>main/app.c
+</span><span id=__span-1-183><a id=__codelineno-1-183 name=__codelineno-1-183 href=#__codelineno-1-183></a>main/asterisk.c
+</span><span id=__span-1-184><a id=__codelineno-1-184 name=__codelineno-1-184 href=#__codelineno-1-184></a>main/astfd.c
+</span><span id=__span-1-185><a id=__codelineno-1-185 name=__codelineno-1-185 href=#__codelineno-1-185></a>main/astmm.c
+</span><span id=__span-1-186><a id=__codelineno-1-186 name=__codelineno-1-186 href=#__codelineno-1-186></a>main/astobj2.c
+</span><span id=__span-1-187><a id=__codelineno-1-187 name=__codelineno-1-187 href=#__codelineno-1-187></a>main/astobj2_global.c
+</span><span id=__span-1-188><a id=__codelineno-1-188 name=__codelineno-1-188 href=#__codelineno-1-188></a>main/audiohook.c
+</span><span id=__span-1-189><a id=__codelineno-1-189 name=__codelineno-1-189 href=#__codelineno-1-189></a>main/autochan.c
+</span><span id=__span-1-190><a id=__codelineno-1-190 name=__codelineno-1-190 href=#__codelineno-1-190></a>main/autoservice.c
+</span><span id=__span-1-191><a id=__codelineno-1-191 name=__codelineno-1-191 href=#__codelineno-1-191></a>main/backtrace.c
+</span><span id=__span-1-192><a id=__codelineno-1-192 name=__codelineno-1-192 href=#__codelineno-1-192></a>main/bridge.c
+</span><span id=__span-1-193><a id=__codelineno-1-193 name=__codelineno-1-193 href=#__codelineno-1-193></a>main/bridge_after.c
+</span><span id=__span-1-194><a id=__codelineno-1-194 name=__codelineno-1-194 href=#__codelineno-1-194></a>main/bridge_channel.c
+</span><span id=__span-1-195><a id=__codelineno-1-195 name=__codelineno-1-195 href=#__codelineno-1-195></a>main/bridge_roles.c
+</span><span id=__span-1-196><a id=__codelineno-1-196 name=__codelineno-1-196 href=#__codelineno-1-196></a>main/bucket.c
+</span><span id=__span-1-197><a id=__codelineno-1-197 name=__codelineno-1-197 href=#__codelineno-1-197></a>main/callerid.c
+</span><span id=__span-1-198><a id=__codelineno-1-198 name=__codelineno-1-198 href=#__codelineno-1-198></a>main/ccss.c
+</span><span id=__span-1-199><a id=__codelineno-1-199 name=__codelineno-1-199 href=#__codelineno-1-199></a>main/cdr.c
+</span><span id=__span-1-200><a id=__codelineno-1-200 name=__codelineno-1-200 href=#__codelineno-1-200></a>main/cel.c
+</span><span id=__span-1-201><a id=__codelineno-1-201 name=__codelineno-1-201 href=#__codelineno-1-201></a>main/channel.c
+</span><span id=__span-1-202><a id=__codelineno-1-202 name=__codelineno-1-202 href=#__codelineno-1-202></a>main/channel_internal_api.c
+</span><span id=__span-1-203><a id=__codelineno-1-203 name=__codelineno-1-203 href=#__codelineno-1-203></a>main/chanvars.c
+</span><span id=__span-1-204><a id=__codelineno-1-204 name=__codelineno-1-204 href=#__codelineno-1-204></a>main/cli.c
+</span><span id=__span-1-205><a id=__codelineno-1-205 name=__codelineno-1-205 href=#__codelineno-1-205></a>main/codec.c
+</span><span id=__span-1-206><a id=__codelineno-1-206 name=__codelineno-1-206 href=#__codelineno-1-206></a>main/codec_builtin.c
+</span><span id=__span-1-207><a id=__codelineno-1-207 name=__codelineno-1-207 href=#__codelineno-1-207></a>main/config.c
+</span><span id=__span-1-208><a id=__codelineno-1-208 name=__codelineno-1-208 href=#__codelineno-1-208></a>main/config_options.c
+</span><span id=__span-1-209><a id=__codelineno-1-209 name=__codelineno-1-209 href=#__codelineno-1-209></a>main/conversions.c
+</span><span id=__span-1-210><a id=__codelineno-1-210 name=__codelineno-1-210 href=#__codelineno-1-210></a>main/core_local.c
+</span><span id=__span-1-211><a id=__codelineno-1-211 name=__codelineno-1-211 href=#__codelineno-1-211></a>main/core_unreal.c
+</span><span id=__span-1-212><a id=__codelineno-1-212 name=__codelineno-1-212 href=#__codelineno-1-212></a>main/crypt.c
+</span><span id=__span-1-213><a id=__codelineno-1-213 name=__codelineno-1-213 href=#__codelineno-1-213></a>main/data_buffer.c
+</span><span id=__span-1-214><a id=__codelineno-1-214 name=__codelineno-1-214 href=#__codelineno-1-214></a>main/datastore.c
+</span><span id=__span-1-215><a id=__codelineno-1-215 name=__codelineno-1-215 href=#__codelineno-1-215></a>main/db.c
+</span><span id=__span-1-216><a id=__codelineno-1-216 name=__codelineno-1-216 href=#__codelineno-1-216></a>main/devicestate.c
+</span><span id=__span-1-217><a id=__codelineno-1-217 name=__codelineno-1-217 href=#__codelineno-1-217></a>main/dial.c
+</span><span id=__span-1-218><a id=__codelineno-1-218 name=__codelineno-1-218 href=#__codelineno-1-218></a>main/dns.c
+</span><span id=__span-1-219><a id=__codelineno-1-219 name=__codelineno-1-219 href=#__codelineno-1-219></a>main/dns_core.c
+</span><span id=__span-1-220><a id=__codelineno-1-220 name=__codelineno-1-220 href=#__codelineno-1-220></a>main/dns_naptr.c
+</span><span id=__span-1-221><a id=__codelineno-1-221 name=__codelineno-1-221 href=#__codelineno-1-221></a>main/dns_query_set.c
+</span><span id=__span-1-222><a id=__codelineno-1-222 name=__codelineno-1-222 href=#__codelineno-1-222></a>main/dns_recurring.c
+</span><span id=__span-1-223><a id=__codelineno-1-223 name=__codelineno-1-223 href=#__codelineno-1-223></a>main/dns_srv.c
+</span><span id=__span-1-224><a id=__codelineno-1-224 name=__codelineno-1-224 href=#__codelineno-1-224></a>main/dns_test.c
+</span><span id=__span-1-225><a id=__codelineno-1-225 name=__codelineno-1-225 href=#__codelineno-1-225></a>main/dns_tlsa.c
+</span><span id=__span-1-226><a id=__codelineno-1-226 name=__codelineno-1-226 href=#__codelineno-1-226></a>main/dns_txt.c
+</span><span id=__span-1-227><a id=__codelineno-1-227 name=__codelineno-1-227 href=#__codelineno-1-227></a>main/dnsmgr.c
+</span><span id=__span-1-228><a id=__codelineno-1-228 name=__codelineno-1-228 href=#__codelineno-1-228></a>main/dsp.c
+</span><span id=__span-1-229><a id=__codelineno-1-229 name=__codelineno-1-229 href=#__codelineno-1-229></a>main/endpoints.c
+</span><span id=__span-1-230><a id=__codelineno-1-230 name=__codelineno-1-230 href=#__codelineno-1-230></a>main/enum.c
+</span><span id=__span-1-231><a id=__codelineno-1-231 name=__codelineno-1-231 href=#__codelineno-1-231></a>main/event.c
+</span><span id=__span-1-232><a id=__codelineno-1-232 name=__codelineno-1-232 href=#__codelineno-1-232></a>main/features.c
+</span><span id=__span-1-233><a id=__codelineno-1-233 name=__codelineno-1-233 href=#__codelineno-1-233></a>main/file.c
+</span><span id=__span-1-234><a id=__codelineno-1-234 name=__codelineno-1-234 href=#__codelineno-1-234></a>main/fixedjitterbuf.c
+</span><span id=__span-1-235><a id=__codelineno-1-235 name=__codelineno-1-235 href=#__codelineno-1-235></a>main/format.c
+</span><span id=__span-1-236><a id=__codelineno-1-236 name=__codelineno-1-236 href=#__codelineno-1-236></a>main/format_cache.c
+</span><span id=__span-1-237><a id=__codelineno-1-237 name=__codelineno-1-237 href=#__codelineno-1-237></a>main/format_cap.c
+</span><span id=__span-1-238><a id=__codelineno-1-238 name=__codelineno-1-238 href=#__codelineno-1-238></a>main/format_compatibility.c
+</span><span id=__span-1-239><a id=__codelineno-1-239 name=__codelineno-1-239 href=#__codelineno-1-239></a>main/frame.c
+</span><span id=__span-1-240><a id=__codelineno-1-240 name=__codelineno-1-240 href=#__codelineno-1-240></a>main/framehook.c
+</span><span id=__span-1-241><a id=__codelineno-1-241 name=__codelineno-1-241 href=#__codelineno-1-241></a>main/fskmodem.c
+</span><span id=__span-1-242><a id=__codelineno-1-242 name=__codelineno-1-242 href=#__codelineno-1-242></a>main/fskmodem_float.c
+</span><span id=__span-1-243><a id=__codelineno-1-243 name=__codelineno-1-243 href=#__codelineno-1-243></a>main/fskmodem_int.c
+</span><span id=__span-1-244><a id=__codelineno-1-244 name=__codelineno-1-244 href=#__codelineno-1-244></a>main/global_datastores.c
+</span><span id=__span-1-245><a id=__codelineno-1-245 name=__codelineno-1-245 href=#__codelineno-1-245></a>main/hashtab.c
+</span><span id=__span-1-246><a id=__codelineno-1-246 name=__codelineno-1-246 href=#__codelineno-1-246></a>main/heap.c
+</span><span id=__span-1-247><a id=__codelineno-1-247 name=__codelineno-1-247 href=#__codelineno-1-247></a>main/http.c
+</span><span id=__span-1-248><a id=__codelineno-1-248 name=__codelineno-1-248 href=#__codelineno-1-248></a>main/image.c
+</span><span id=__span-1-249><a id=__codelineno-1-249 name=__codelineno-1-249 href=#__codelineno-1-249></a>main/indications.c
+</span><span id=__span-1-250><a id=__codelineno-1-250 name=__codelineno-1-250 href=#__codelineno-1-250></a>main/io.c
+</span><span id=__span-1-251><a id=__codelineno-1-251 name=__codelineno-1-251 href=#__codelineno-1-251></a>main/jitterbuf.c
+</span><span id=__span-1-252><a id=__codelineno-1-252 name=__codelineno-1-252 href=#__codelineno-1-252></a>main/json.c
+</span><span id=__span-1-253><a id=__codelineno-1-253 name=__codelineno-1-253 href=#__codelineno-1-253></a>main/libasteriskpj.c
+</span><span id=__span-1-254><a id=__codelineno-1-254 name=__codelineno-1-254 href=#__codelineno-1-254></a>main/loader.c
+</span><span id=__span-1-255><a id=__codelineno-1-255 name=__codelineno-1-255 href=#__codelineno-1-255></a>main/lock.c
+</span><span id=__span-1-256><a id=__codelineno-1-256 name=__codelineno-1-256 href=#__codelineno-1-256></a>main/logger.c
+</span><span id=__span-1-257><a id=__codelineno-1-257 name=__codelineno-1-257 href=#__codelineno-1-257></a>main/manager.c
+</span><span id=__span-1-258><a id=__codelineno-1-258 name=__codelineno-1-258 href=#__codelineno-1-258></a>main/media_cache.c
+</span><span id=__span-1-259><a id=__codelineno-1-259 name=__codelineno-1-259 href=#__codelineno-1-259></a>main/media_index.c
+</span><span id=__span-1-260><a id=__codelineno-1-260 name=__codelineno-1-260 href=#__codelineno-1-260></a>main/message.c
+</span><span id=__span-1-261><a id=__codelineno-1-261 name=__codelineno-1-261 href=#__codelineno-1-261></a>main/mixmonitor.c
+</span><span id=__span-1-262><a id=__codelineno-1-262 name=__codelineno-1-262 href=#__codelineno-1-262></a>main/mwi.c
+</span><span id=__span-1-263><a id=__codelineno-1-263 name=__codelineno-1-263 href=#__codelineno-1-263></a>main/netsock2.c
+</span><span id=__span-1-264><a id=__codelineno-1-264 name=__codelineno-1-264 href=#__codelineno-1-264></a>main/options.c
+</span><span id=__span-1-265><a id=__codelineno-1-265 name=__codelineno-1-265 href=#__codelineno-1-265></a>main/pbx.c
+</span><span id=__span-1-266><a id=__codelineno-1-266 name=__codelineno-1-266 href=#__codelineno-1-266></a>main/pbx_app.c
+</span><span id=__span-1-267><a id=__codelineno-1-267 name=__codelineno-1-267 href=#__codelineno-1-267></a>main/pbx_builtins.c
+</span><span id=__span-1-268><a id=__codelineno-1-268 name=__codelineno-1-268 href=#__codelineno-1-268></a>main/pbx_functions.c
+</span><span id=__span-1-269><a id=__codelineno-1-269 name=__codelineno-1-269 href=#__codelineno-1-269></a>main/pbx_hangup_handler.c
+</span><span id=__span-1-270><a id=__codelineno-1-270 name=__codelineno-1-270 href=#__codelineno-1-270></a>main/pbx_ignorepat.c
+</span><span id=__span-1-271><a id=__codelineno-1-271 name=__codelineno-1-271 href=#__codelineno-1-271></a>main/pbx_include.c
+</span><span id=__span-1-272><a id=__codelineno-1-272 name=__codelineno-1-272 href=#__codelineno-1-272></a>main/pbx_sw.c
+</span><span id=__span-1-273><a id=__codelineno-1-273 name=__codelineno-1-273 href=#__codelineno-1-273></a>main/pbx_switch.c
+</span><span id=__span-1-274><a id=__codelineno-1-274 name=__codelineno-1-274 href=#__codelineno-1-274></a>main/pbx_timing.c
+</span><span id=__span-1-275><a id=__codelineno-1-275 name=__codelineno-1-275 href=#__codelineno-1-275></a>main/pbx_variables.c
+</span><span id=__span-1-276><a id=__codelineno-1-276 name=__codelineno-1-276 href=#__codelineno-1-276></a>main/pickup.c
+</span><span id=__span-1-277><a id=__codelineno-1-277 name=__codelineno-1-277 href=#__codelineno-1-277></a>main/plc.c
+</span><span id=__span-1-278><a id=__codelineno-1-278 name=__codelineno-1-278 href=#__codelineno-1-278></a>main/presencestate.c
+</span><span id=__span-1-279><a id=__codelineno-1-279 name=__codelineno-1-279 href=#__codelineno-1-279></a>main/privacy.c
+</span><span id=__span-1-280><a id=__codelineno-1-280 name=__codelineno-1-280 href=#__codelineno-1-280></a>main/refer.c
+</span><span id=__span-1-281><a id=__codelineno-1-281 name=__codelineno-1-281 href=#__codelineno-1-281></a>main/rtp_engine.c
+</span><span id=__span-1-282><a id=__codelineno-1-282 name=__codelineno-1-282 href=#__codelineno-1-282></a>main/say.c
+</span><span id=__span-1-283><a id=__codelineno-1-283 name=__codelineno-1-283 href=#__codelineno-1-283></a>main/sched.c
+</span><span id=__span-1-284><a id=__codelineno-1-284 name=__codelineno-1-284 href=#__codelineno-1-284></a>main/sdp_srtp.c
+</span><span id=__span-1-285><a id=__codelineno-1-285 name=__codelineno-1-285 href=#__codelineno-1-285></a>main/security_events.c
+</span><span id=__span-1-286><a id=__codelineno-1-286 name=__codelineno-1-286 href=#__codelineno-1-286></a>main/slinfactory.c
+</span><span id=__span-1-287><a id=__codelineno-1-287 name=__codelineno-1-287 href=#__codelineno-1-287></a>main/smoother.c
+</span><span id=__span-1-288><a id=__codelineno-1-288 name=__codelineno-1-288 href=#__codelineno-1-288></a>main/sorcery.c
+</span><span id=__span-1-289><a id=__codelineno-1-289 name=__codelineno-1-289 href=#__codelineno-1-289></a>main/sounds.c
+</span><span id=__span-1-290><a id=__codelineno-1-290 name=__codelineno-1-290 href=#__codelineno-1-290></a>main/srv.c
+</span><span id=__span-1-291><a id=__codelineno-1-291 name=__codelineno-1-291 href=#__codelineno-1-291></a>main/stasis.c
+</span><span id=__span-1-292><a id=__codelineno-1-292 name=__codelineno-1-292 href=#__codelineno-1-292></a>main/stasis_bridges.c
+</span><span id=__span-1-293><a id=__codelineno-1-293 name=__codelineno-1-293 href=#__codelineno-1-293></a>main/stasis_cache.c
+</span><span id=__span-1-294><a id=__codelineno-1-294 name=__codelineno-1-294 href=#__codelineno-1-294></a>main/stasis_cache_pattern.c
+</span><span id=__span-1-295><a id=__codelineno-1-295 name=__codelineno-1-295 href=#__codelineno-1-295></a>main/stasis_channels.c
+</span><span id=__span-1-296><a id=__codelineno-1-296 name=__codelineno-1-296 href=#__codelineno-1-296></a>main/stasis_endpoints.c
+</span><span id=__span-1-297><a id=__codelineno-1-297 name=__codelineno-1-297 href=#__codelineno-1-297></a>main/stasis_message.c
+</span><span id=__span-1-298><a id=__codelineno-1-298 name=__codelineno-1-298 href=#__codelineno-1-298></a>main/stasis_message_router.c
+</span><span id=__span-1-299><a id=__codelineno-1-299 name=__codelineno-1-299 href=#__codelineno-1-299></a>main/stasis_state.c
+</span><span id=__span-1-300><a id=__codelineno-1-300 name=__codelineno-1-300 href=#__codelineno-1-300></a>main/stasis_system.c
+</span><span id=__span-1-301><a id=__codelineno-1-301 name=__codelineno-1-301 href=#__codelineno-1-301></a>main/stdtime/localtime.c
+</span><span id=__span-1-302><a id=__codelineno-1-302 name=__codelineno-1-302 href=#__codelineno-1-302></a>main/strcompat.c
+</span><span id=__span-1-303><a id=__codelineno-1-303 name=__codelineno-1-303 href=#__codelineno-1-303></a>main/stream.c
+</span><span id=__span-1-304><a id=__codelineno-1-304 name=__codelineno-1-304 href=#__codelineno-1-304></a>main/strings.c
+</span><span id=__span-1-305><a id=__codelineno-1-305 name=__codelineno-1-305 href=#__codelineno-1-305></a>main/stun.c
+</span><span id=__span-1-306><a id=__codelineno-1-306 name=__codelineno-1-306 href=#__codelineno-1-306></a>main/syslog.c
+</span><span id=__span-1-307><a id=__codelineno-1-307 name=__codelineno-1-307 href=#__codelineno-1-307></a>main/taskprocessor.c
+</span><span id=__span-1-308><a id=__codelineno-1-308 name=__codelineno-1-308 href=#__codelineno-1-308></a>main/tdd.c
+</span><span id=__span-1-309><a id=__codelineno-1-309 name=__codelineno-1-309 href=#__codelineno-1-309></a>main/term.c
+</span><span id=__span-1-310><a id=__codelineno-1-310 name=__codelineno-1-310 href=#__codelineno-1-310></a>main/test.c
+</span><span id=__span-1-311><a id=__codelineno-1-311 name=__codelineno-1-311 href=#__codelineno-1-311></a>main/threadstorage.c
+</span><span id=__span-1-312><a id=__codelineno-1-312 name=__codelineno-1-312 href=#__codelineno-1-312></a>main/time.c
+</span><span id=__span-1-313><a id=__codelineno-1-313 name=__codelineno-1-313 href=#__codelineno-1-313></a>main/timing.c
+</span><span id=__span-1-314><a id=__codelineno-1-314 name=__codelineno-1-314 href=#__codelineno-1-314></a>main/translate.c
+</span><span id=__span-1-315><a id=__codelineno-1-315 name=__codelineno-1-315 href=#__codelineno-1-315></a>main/udptl.c
+</span><span id=__span-1-316><a id=__codelineno-1-316 name=__codelineno-1-316 href=#__codelineno-1-316></a>main/ulaw.c
+</span><span id=__span-1-317><a id=__codelineno-1-317 name=__codelineno-1-317 href=#__codelineno-1-317></a>main/utf8.c
+</span><span id=__span-1-318><a id=__codelineno-1-318 name=__codelineno-1-318 href=#__codelineno-1-318></a>main/utils.c
+</span><span id=__span-1-319><a id=__codelineno-1-319 name=__codelineno-1-319 href=#__codelineno-1-319></a>main/xml.c
+</span><span id=__span-1-320><a id=__codelineno-1-320 name=__codelineno-1-320 href=#__codelineno-1-320></a>main/xmldoc.c
+</span><span id=__span-1-321><a id=__codelineno-1-321 name=__codelineno-1-321 href=#__codelineno-1-321></a>pbx/pbx_config.c
+</span><span id=__span-1-322><a id=__codelineno-1-322 name=__codelineno-1-322 href=#__codelineno-1-322></a>pbx/pbx_loopback.c
+</span><span id=__span-1-323><a id=__codelineno-1-323 name=__codelineno-1-323 href=#__codelineno-1-323></a>pbx/pbx_spool.c
+</span><span id=__span-1-324><a id=__codelineno-1-324 name=__codelineno-1-324 href=#__codelineno-1-324></a>res/ari/resource_asterisk.c
+</span><span id=__span-1-325><a id=__codelineno-1-325 name=__codelineno-1-325 href=#__codelineno-1-325></a>res/ari/resource_bridges.c
+</span><span id=__span-1-326><a id=__codelineno-1-326 name=__codelineno-1-326 href=#__codelineno-1-326></a>res/ari/resource_channels.c
+</span><span id=__span-1-327><a id=__codelineno-1-327 name=__codelineno-1-327 href=#__codelineno-1-327></a>res/ari/resource_device_states.c
+</span><span id=__span-1-328><a id=__codelineno-1-328 name=__codelineno-1-328 href=#__codelineno-1-328></a>res/ari/resource_events.c
+</span><span id=__span-1-329><a id=__codelineno-1-329 name=__codelineno-1-329 href=#__codelineno-1-329></a>res/ari/resource_mailboxes.c
+</span><span id=__span-1-330><a id=__codelineno-1-330 name=__codelineno-1-330 href=#__codelineno-1-330></a>res/ari/resource_playbacks.c
+</span><span id=__span-1-331><a id=__codelineno-1-331 name=__codelineno-1-331 href=#__codelineno-1-331></a>res/ari/resource_recordings.c
+</span><span id=__span-1-332><a id=__codelineno-1-332 name=__codelineno-1-332 href=#__codelineno-1-332></a>res/res_aeap.c
+</span><span id=__span-1-333><a id=__codelineno-1-333 name=__codelineno-1-333 href=#__codelineno-1-333></a>res/res_agi.c
+</span><span id=__span-1-334><a id=__codelineno-1-334 name=__codelineno-1-334 href=#__codelineno-1-334></a>res/res_ari.c
+</span><span id=__span-1-335><a id=__codelineno-1-335 name=__codelineno-1-335 href=#__codelineno-1-335></a>res/res_ari_applications.c
+</span><span id=__span-1-336><a id=__codelineno-1-336 name=__codelineno-1-336 href=#__codelineno-1-336></a>res/res_ari_asterisk.c
+</span><span id=__span-1-337><a id=__codelineno-1-337 name=__codelineno-1-337 href=#__codelineno-1-337></a>res/res_ari_bridges.c
+</span><span id=__span-1-338><a id=__codelineno-1-338 name=__codelineno-1-338 href=#__codelineno-1-338></a>res/res_ari_channels.c
+</span><span id=__span-1-339><a id=__codelineno-1-339 name=__codelineno-1-339 href=#__codelineno-1-339></a>res/res_ari_device_states.c
+</span><span id=__span-1-340><a id=__codelineno-1-340 name=__codelineno-1-340 href=#__codelineno-1-340></a>res/res_ari_endpoints.c
+</span><span id=__span-1-341><a id=__codelineno-1-341 name=__codelineno-1-341 href=#__codelineno-1-341></a>res/res_ari_events.c
+</span><span id=__span-1-342><a id=__codelineno-1-342 name=__codelineno-1-342 href=#__codelineno-1-342></a>res/res_ari_mailboxes.c
+</span><span id=__span-1-343><a id=__codelineno-1-343 name=__codelineno-1-343 href=#__codelineno-1-343></a>res/res_ari_model.c
+</span><span id=__span-1-344><a id=__codelineno-1-344 name=__codelineno-1-344 href=#__codelineno-1-344></a>res/res_ari_playbacks.c
+</span><span id=__span-1-345><a id=__codelineno-1-345 name=__codelineno-1-345 href=#__codelineno-1-345></a>res/res_ari_recordings.c
+</span><span id=__span-1-346><a id=__codelineno-1-346 name=__codelineno-1-346 href=#__codelineno-1-346></a>res/res_ari_sounds.c
+</span><span id=__span-1-347><a id=__codelineno-1-347 name=__codelineno-1-347 href=#__codelineno-1-347></a>res/res_clialiases.c
+</span><span id=__span-1-348><a id=__codelineno-1-348 name=__codelineno-1-348 href=#__codelineno-1-348></a>res/res_clioriginate.c
+</span><span id=__span-1-349><a id=__codelineno-1-349 name=__codelineno-1-349 href=#__codelineno-1-349></a>res/res_config_curl.c
+</span><span id=__span-1-350><a id=__codelineno-1-350 name=__codelineno-1-350 href=#__codelineno-1-350></a>res/res_config_odbc.c
+</span><span id=__span-1-351><a id=__codelineno-1-351 name=__codelineno-1-351 href=#__codelineno-1-351></a>res/res_config_sqlite3.c
+</span><span id=__span-1-352><a id=__codelineno-1-352 name=__codelineno-1-352 href=#__codelineno-1-352></a>res/res_convert.c
+</span><span id=__span-1-353><a id=__codelineno-1-353 name=__codelineno-1-353 href=#__codelineno-1-353></a>res/res_crypto.c
+</span><span id=__span-1-354><a id=__codelineno-1-354 name=__codelineno-1-354 href=#__codelineno-1-354></a>res/res_curl.c
+</span><span id=__span-1-355><a id=__codelineno-1-355 name=__codelineno-1-355 href=#__codelineno-1-355></a>res/res_fax.c
+</span><span id=__span-1-356><a id=__codelineno-1-356 name=__codelineno-1-356 href=#__codelineno-1-356></a>res/res_format_attr_celt.c
+</span><span id=__span-1-357><a id=__codelineno-1-357 name=__codelineno-1-357 href=#__codelineno-1-357></a>res/res_format_attr_g729.c
+</span><span id=__span-1-358><a id=__codelineno-1-358 name=__codelineno-1-358 href=#__codelineno-1-358></a>res/res_format_attr_h263.c
+</span><span id=__span-1-359><a id=__codelineno-1-359 name=__codelineno-1-359 href=#__codelineno-1-359></a>res/res_format_attr_h264.c
+</span><span id=__span-1-360><a id=__codelineno-1-360 name=__codelineno-1-360 href=#__codelineno-1-360></a>res/res_format_attr_ilbc.c
+</span><span id=__span-1-361><a id=__codelineno-1-361 name=__codelineno-1-361 href=#__codelineno-1-361></a>res/res_format_attr_opus.c
+</span><span id=__span-1-362><a id=__codelineno-1-362 name=__codelineno-1-362 href=#__codelineno-1-362></a>res/res_format_attr_silk.c
+</span><span id=__span-1-363><a id=__codelineno-1-363 name=__codelineno-1-363 href=#__codelineno-1-363></a>res/res_format_attr_siren14.c
+</span><span id=__span-1-364><a id=__codelineno-1-364 name=__codelineno-1-364 href=#__codelineno-1-364></a>res/res_format_attr_siren7.c
+</span><span id=__span-1-365><a id=__codelineno-1-365 name=__codelineno-1-365 href=#__codelineno-1-365></a>res/res_format_attr_vp8.c
+</span><span id=__span-1-366><a id=__codelineno-1-366 name=__codelineno-1-366 href=#__codelineno-1-366></a>res/res_geolocation.c
+</span><span id=__span-1-367><a id=__codelineno-1-367 name=__codelineno-1-367 href=#__codelineno-1-367></a>res/res_http_media_cache.c
+</span><span id=__span-1-368><a id=__codelineno-1-368 name=__codelineno-1-368 href=#__codelineno-1-368></a>res/res_http_post.c
+</span><span id=__span-1-369><a id=__codelineno-1-369 name=__codelineno-1-369 href=#__codelineno-1-369></a>res/res_http_websocket.c
+</span><span id=__span-1-370><a id=__codelineno-1-370 name=__codelineno-1-370 href=#__codelineno-1-370></a>res/res_limit.c
+</span><span id=__span-1-371><a id=__codelineno-1-371 name=__codelineno-1-371 href=#__codelineno-1-371></a>res/res_manager_devicestate.c
+</span><span id=__span-1-372><a id=__codelineno-1-372 name=__codelineno-1-372 href=#__codelineno-1-372></a>res/res_manager_presencestate.c
+</span><span id=__span-1-373><a id=__codelineno-1-373 name=__codelineno-1-373 href=#__codelineno-1-373></a>res/res_musiconhold.c
+</span><span id=__span-1-374><a id=__codelineno-1-374 name=__codelineno-1-374 href=#__codelineno-1-374></a>res/res_mutestream.c
+</span><span id=__span-1-375><a id=__codelineno-1-375 name=__codelineno-1-375 href=#__codelineno-1-375></a>res/res_mwi_devstate.c
+</span><span id=__span-1-376><a id=__codelineno-1-376 name=__codelineno-1-376 href=#__codelineno-1-376></a>res/res_mwi_external.c
+</span><span id=__span-1-377><a id=__codelineno-1-377 name=__codelineno-1-377 href=#__codelineno-1-377></a>res/res_mwi_external_ami.c
+</span><span id=__span-1-378><a id=__codelineno-1-378 name=__codelineno-1-378 href=#__codelineno-1-378></a>res/res_odbc.c
+</span><span id=__span-1-379><a id=__codelineno-1-379 name=__codelineno-1-379 href=#__codelineno-1-379></a>res/res_odbc_transaction.c
+</span><span id=__span-1-380><a id=__codelineno-1-380 name=__codelineno-1-380 href=#__codelineno-1-380></a>res/res_parking.c
+</span><span id=__span-1-381><a id=__codelineno-1-381 name=__codelineno-1-381 href=#__codelineno-1-381></a>res/res_pjproject.c
+</span><span id=__span-1-382><a id=__codelineno-1-382 name=__codelineno-1-382 href=#__codelineno-1-382></a>res/res_pjsip.c
+</span><span id=__span-1-383><a id=__codelineno-1-383 name=__codelineno-1-383 href=#__codelineno-1-383></a>res/res_pjsip_acl.c
+</span><span id=__span-1-384><a id=__codelineno-1-384 name=__codelineno-1-384 href=#__codelineno-1-384></a>res/res_pjsip_authenticator_digest.c
+</span><span id=__span-1-385><a id=__codelineno-1-385 name=__codelineno-1-385 href=#__codelineno-1-385></a>res/res_pjsip_caller_id.c
+</span><span id=__span-1-386><a id=__codelineno-1-386 name=__codelineno-1-386 href=#__codelineno-1-386></a>res/res_pjsip_config_wizard.c
+</span><span id=__span-1-387><a id=__codelineno-1-387 name=__codelineno-1-387 href=#__codelineno-1-387></a>res/res_pjsip_dialog_info_body_generator.c
+</span><span id=__span-1-388><a id=__codelineno-1-388 name=__codelineno-1-388 href=#__codelineno-1-388></a>res/res_pjsip_diversion.c
+</span><span id=__span-1-389><a id=__codelineno-1-389 name=__codelineno-1-389 href=#__codelineno-1-389></a>res/res_pjsip_dlg_options.c
+</span><span id=__span-1-390><a id=__codelineno-1-390 name=__codelineno-1-390 href=#__codelineno-1-390></a>res/res_pjsip_dtmf_info.c
+</span><span id=__span-1-391><a id=__codelineno-1-391 name=__codelineno-1-391 href=#__codelineno-1-391></a>res/res_pjsip_empty_info.c
+</span><span id=__span-1-392><a id=__codelineno-1-392 name=__codelineno-1-392 href=#__codelineno-1-392></a>res/res_pjsip_endpoint_identifier_anonymous.c
+</span><span id=__span-1-393><a id=__codelineno-1-393 name=__codelineno-1-393 href=#__codelineno-1-393></a>res/res_pjsip_endpoint_identifier_ip.c
+</span><span id=__span-1-394><a id=__codelineno-1-394 name=__codelineno-1-394 href=#__codelineno-1-394></a>res/res_pjsip_endpoint_identifier_user.c
+</span><span id=__span-1-395><a id=__codelineno-1-395 name=__codelineno-1-395 href=#__codelineno-1-395></a>res/res_pjsip_exten_state.c
+</span><span id=__span-1-396><a id=__codelineno-1-396 name=__codelineno-1-396 href=#__codelineno-1-396></a>res/res_pjsip_geolocation.c
+</span><span id=__span-1-397><a id=__codelineno-1-397 name=__codelineno-1-397 href=#__codelineno-1-397></a>res/res_pjsip_header_funcs.c
+</span><span id=__span-1-398><a id=__codelineno-1-398 name=__codelineno-1-398 href=#__codelineno-1-398></a>res/res_pjsip_logger.c
+</span><span id=__span-1-399><a id=__codelineno-1-399 name=__codelineno-1-399 href=#__codelineno-1-399></a>res/res_pjsip_messaging.c
+</span><span id=__span-1-400><a id=__codelineno-1-400 name=__codelineno-1-400 href=#__codelineno-1-400></a>res/res_pjsip_mwi.c
+</span><span id=__span-1-401><a id=__codelineno-1-401 name=__codelineno-1-401 href=#__codelineno-1-401></a>res/res_pjsip_mwi_body_generator.c
+</span><span id=__span-1-402><a id=__codelineno-1-402 name=__codelineno-1-402 href=#__codelineno-1-402></a>res/res_pjsip_nat.c
+</span><span id=__span-1-403><a id=__codelineno-1-403 name=__codelineno-1-403 href=#__codelineno-1-403></a>res/res_pjsip_notify.c
+</span><span id=__span-1-404><a id=__codelineno-1-404 name=__codelineno-1-404 href=#__codelineno-1-404></a>res/res_pjsip_one_touch_record_info.c
+</span><span id=__span-1-405><a id=__codelineno-1-405 name=__codelineno-1-405 href=#__codelineno-1-405></a>res/res_pjsip_outbound_authenticator_digest.c
+</span><span id=__span-1-406><a id=__codelineno-1-406 name=__codelineno-1-406 href=#__codelineno-1-406></a>res/res_pjsip_outbound_publish.c
+</span><span id=__span-1-407><a id=__codelineno-1-407 name=__codelineno-1-407 href=#__codelineno-1-407></a>res/res_pjsip_outbound_registration.c
+</span><span id=__span-1-408><a id=__codelineno-1-408 name=__codelineno-1-408 href=#__codelineno-1-408></a>res/res_pjsip_path.c
+</span><span id=__span-1-409><a id=__codelineno-1-409 name=__codelineno-1-409 href=#__codelineno-1-409></a>res/res_pjsip_pidf_body_generator.c
+</span><span id=__span-1-410><a id=__codelineno-1-410 name=__codelineno-1-410 href=#__codelineno-1-410></a>res/res_pjsip_pidf_digium_body_supplement.c
+</span><span id=__span-1-411><a id=__codelineno-1-411 name=__codelineno-1-411 href=#__codelineno-1-411></a>res/res_pjsip_pidf_eyebeam_body_supplement.c
+</span><span id=__span-1-412><a id=__codelineno-1-412 name=__codelineno-1-412 href=#__codelineno-1-412></a>res/res_pjsip_publish_asterisk.c
+</span><span id=__span-1-413><a id=__codelineno-1-413 name=__codelineno-1-413 href=#__codelineno-1-413></a>res/res_pjsip_pubsub.c
+</span><span id=__span-1-414><a id=__codelineno-1-414 name=__codelineno-1-414 href=#__codelineno-1-414></a>res/res_pjsip_refer.c
+</span><span id=__span-1-415><a id=__codelineno-1-415 name=__codelineno-1-415 href=#__codelineno-1-415></a>res/res_pjsip_registrar.c
+</span><span id=__span-1-416><a id=__codelineno-1-416 name=__codelineno-1-416 href=#__codelineno-1-416></a>res/res_pjsip_rfc3326.c
+</span><span id=__span-1-417><a id=__codelineno-1-417 name=__codelineno-1-417 href=#__codelineno-1-417></a>res/res_pjsip_rfc3329.c
+</span><span id=__span-1-418><a id=__codelineno-1-418 name=__codelineno-1-418 href=#__codelineno-1-418></a>res/res_pjsip_sdp_rtp.c
+</span><span id=__span-1-419><a id=__codelineno-1-419 name=__codelineno-1-419 href=#__codelineno-1-419></a>res/res_pjsip_send_to_voicemail.c
+</span><span id=__span-1-420><a id=__codelineno-1-420 name=__codelineno-1-420 href=#__codelineno-1-420></a>res/res_pjsip_session.c
+</span><span id=__span-1-421><a id=__codelineno-1-421 name=__codelineno-1-421 href=#__codelineno-1-421></a>res/res_pjsip_sips_contact.c
+</span><span id=__span-1-422><a id=__codelineno-1-422 name=__codelineno-1-422 href=#__codelineno-1-422></a>res/res_pjsip_stir_shaken.c
+</span><span id=__span-1-423><a id=__codelineno-1-423 name=__codelineno-1-423 href=#__codelineno-1-423></a>res/res_pjsip_t38.c
+</span><span id=__span-1-424><a id=__codelineno-1-424 name=__codelineno-1-424 href=#__codelineno-1-424></a>res/res_pjsip_transport_websocket.c
+</span><span id=__span-1-425><a id=__codelineno-1-425 name=__codelineno-1-425 href=#__codelineno-1-425></a>res/res_pjsip_xpidf_body_generator.c
+</span><span id=__span-1-426><a id=__codelineno-1-426 name=__codelineno-1-426 href=#__codelineno-1-426></a>res/res_realtime.c
+</span><span id=__span-1-427><a id=__codelineno-1-427 name=__codelineno-1-427 href=#__codelineno-1-427></a>res/res_resolver_unbound.c
+</span><span id=__span-1-428><a id=__codelineno-1-428 name=__codelineno-1-428 href=#__codelineno-1-428></a>res/res_rtp_asterisk.c
+</span><span id=__span-1-429><a id=__codelineno-1-429 name=__codelineno-1-429 href=#__codelineno-1-429></a>res/res_rtp_multicast.c
+</span><span id=__span-1-430><a id=__codelineno-1-430 name=__codelineno-1-430 href=#__codelineno-1-430></a>res/res_security_log.c
+</span><span id=__span-1-431><a id=__codelineno-1-431 name=__codelineno-1-431 href=#__codelineno-1-431></a>res/res_sorcery_astdb.c
+</span><span id=__span-1-432><a id=__codelineno-1-432 name=__codelineno-1-432 href=#__codelineno-1-432></a>res/res_sorcery_config.c
+</span><span id=__span-1-433><a id=__codelineno-1-433 name=__codelineno-1-433 href=#__codelineno-1-433></a>res/res_sorcery_memory.c
+</span><span id=__span-1-434><a id=__codelineno-1-434 name=__codelineno-1-434 href=#__codelineno-1-434></a>res/res_sorcery_memory_cache.c
+</span><span id=__span-1-435><a id=__codelineno-1-435 name=__codelineno-1-435 href=#__codelineno-1-435></a>res/res_sorcery_realtime.c
+</span><span id=__span-1-436><a id=__codelineno-1-436 name=__codelineno-1-436 href=#__codelineno-1-436></a>res/res_speech.c
+</span><span id=__span-1-437><a id=__codelineno-1-437 name=__codelineno-1-437 href=#__codelineno-1-437></a>res/res_speech_aeap.c
+</span><span id=__span-1-438><a id=__codelineno-1-438 name=__codelineno-1-438 href=#__codelineno-1-438></a>res/res_srtp.c
+</span><span id=__span-1-439><a id=__codelineno-1-439 name=__codelineno-1-439 href=#__codelineno-1-439></a>res/res_stasis.c
+</span><span id=__span-1-440><a id=__codelineno-1-440 name=__codelineno-1-440 href=#__codelineno-1-440></a>res/res_stasis_answer.c
+</span><span id=__span-1-441><a id=__codelineno-1-441 name=__codelineno-1-441 href=#__codelineno-1-441></a>res/res_stasis_device_state.c
+</span><span id=__span-1-442><a id=__codelineno-1-442 name=__codelineno-1-442 href=#__codelineno-1-442></a>res/res_stasis_mailbox.c
+</span><span id=__span-1-443><a id=__codelineno-1-443 name=__codelineno-1-443 href=#__codelineno-1-443></a>res/res_stasis_playback.c
+</span><span id=__span-1-444><a id=__codelineno-1-444 name=__codelineno-1-444 href=#__codelineno-1-444></a>res/res_stasis_recording.c
+</span><span id=__span-1-445><a id=__codelineno-1-445 name=__codelineno-1-445 href=#__codelineno-1-445></a>res/res_stasis_snoop.c
+</span><span id=__span-1-446><a id=__codelineno-1-446 name=__codelineno-1-446 href=#__codelineno-1-446></a>res/res_stasis_test.c
+</span><span id=__span-1-447><a id=__codelineno-1-447 name=__codelineno-1-447 href=#__codelineno-1-447></a>res/res_stir_shaken.c
+</span><span id=__span-1-448><a id=__codelineno-1-448 name=__codelineno-1-448 href=#__codelineno-1-448></a>res/res_stun_monitor.c
+</span><span id=__span-1-449><a id=__codelineno-1-449 name=__codelineno-1-449 href=#__codelineno-1-449></a>res/res_timing_dahdi.c
+</span><span id=__span-1-450><a id=__codelineno-1-450 name=__codelineno-1-450 href=#__codelineno-1-450></a>res/res_timing_timerfd.c
+</span><span id=__span-1-451><a id=__codelineno-1-451 name=__codelineno-1-451 href=#__codelineno-1-451></a>res/res_websocket_client.c
+</span><span id=__span-1-452><a id=__codelineno-1-452 name=__codelineno-1-452 href=#__codelineno-1-452></a>res/res_xmpp.c
+</span></code></pre></div> </article> </div> <script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script> </div> <button type=button class="md-top md-icon" data-md-component=top hidden> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg> Back to top </button> </main> <footer class=md-footer> <div class="md-footer-meta md-typeset"> <div class="md-footer-meta__inner md-grid"> <div class=md-copyright> <div class=md-copyright__highlight> Content is licensed under a Creative Commons Attribution-ShareAlike 3.0 United States License. </div> Made with <a href=https://squidfunk.github.io/mkdocs-material/ target=_blank rel=noopener> Material for MkDocs </a> </div> <div class=md-social> <a href=https://www.asterisk.org/ target=_blank rel=noopener title=www.asterisk.org class=md-social__link> <?xml version="1.0" encoding="UTF-8" standalone="no"?> <svg version=1.1 id=svg2 width=48 height=48 viewbox="0 0 48 48" sodipodi:docname=favicon.svg inkscape:version="1.2.2 (b0a8486541, 2022-12-01)" xmlns:inkscape=http://www.inkscape.org/namespaces/inkscape xmlns:sodipodi=http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd xmlns:xlink=http://www.w3.org/1999/xlink xmlns=http://www.w3.org/2000/svg xmlns:svg=http://www.w3.org/2000/svg> <defs id=defs6 /> <sodipodi:namedview id=namedview4 pagecolor=#ffffff bordercolor=#666666 borderopacity=1.0 inkscape:showpageshadow=2 inkscape:pageopacity=0.0 inkscape:pagecheckerboard=0 inkscape:deskcolor=#d1d1d1 showgrid=false inkscape:zoom=17.291667 inkscape:cx=24 inkscape:cy=24.028916 inkscape:current-layer=g8 /> <g inkscape:groupmode=layer inkscape:label=Image id=g8> <image width=48 height=48 preserveaspectratio=none id=image10 xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABHNCSVQICAgIfAhkiAAACzxJREFU
+aIHtmXuQXNVxxn997jz3qRdasay0s5IMiQCDIx4JqaSwjQFDoGIXAhUVMAajgF0kAWShB48xDy2W
+eLmoOLbsFBHGBahcgYTEBAJBhYNLxsjEWKEko6BdJCEJSWi1O7O7M3Pv+fLHvmZ3Z1YrYZJ/+Kqm
+am6fPt393XNud5974RN8go8E+ziNK4s70HtSbTpWrCl5pdMxFy9FYdx8EBdRKBcrxeWLUUR/nyXz
+M2q25S2LPxofHwuB/LLZzVEQnGXyp2HuJEythh0PTAXSoADMA33AIcFeEzvMsRVpc6RwU3377g/3
+LW2qmfXAvvz/CQEJy9/ZcorC2DeccZ5gOtAAuEGVItIHODuIKCDiGNMMZgmSgzoeowuxXfgHEwrf
+Kvj4tM3pztc/myX8WAgom0kVC35uyexWwxYLUkAXsB/pVx694nz0evchvdO87v3esfN33tySnl4T
+P7XkdbEzLjXIAI2ASTwdmH8NXCxU6fGG9t0Hf6cE+pZnMnLc4I2vmDRDst/g+HeTXhXujdrVOz4w
+0GTtHbxpfkO6rnSezK4GLhTEgP/00i9jxqySi+5uvHfXO78TAodXzr4gwD2CbJ4ZuyTucS58Mb2/
+6QNbt7l0rHYF1n1zy9QgHVwH3A+GxFbQf5jZjND7r0+5/71Dx0xAS5tq8/H09Rh3I/I4Hi+GbvW0
+b797+FiDrobcisxXZTxi0IB4E6MGaV3t6s6HzQZW9qgIdK84Ybpz8TsRfwG8JvRwXaLzZzbmAeu5
+Y87JLuScclkEexra3/uXo/Gnm1vS+bS7A9wtCDD2AnUu4OKaezp+MWkCyuLyxZnHQc0PQJ8DvisV
+1ta3791fmWjb9YHpO6OEppdr7+u85GgIAOz/m9bj0zX2b8CngSIQk/RKV390yeyHd/W5iSYruyBx
+YNnxv0+xtQnSDwj+1MTq2kTnymrBAzgUCtKjfxO6qorjHunc46RvAR5IAM7MTm9IB+cO+Jog+Fx/
+9zn1ybjrxe5CnOvEbTXJzvuHtowWEVRh0D/OnihUUt1QzUYZ0gc7n0O8WSaaGsjO3ZJdkKhKoKfQ
+c7ZzwfxS6JYIFoM9uCNZ89hQqd9xTSaVn5/5cX757DM1ZivKa1ywJj+OVO+yE1ouOrH1sdzKzOkT
+EbB1lDB+VCZyzrTwZLoaKhLov735pJhzWYNGjKtMPFV7sONvT8m+XQTQBoKZzdyGcYVc7Kd9y1u/
+0Z1tnjFExAXjV8DKVkVLm2pzt2cu9LH4C8iuQjykZSfVT0SCyDZStorCTuwP4/XjCPSuap4d+sT3
+Q29veLgS089rvLvN1jGc2/t+3bJQ6GuDpmZ4Z9+xYuKJ3hWtX9ySXZCotAJeFJTF5VZmTu9NpB/C
+6yfAAgCZzuwN+i+vuiWBwHTYjD3DBMQs52O1owgouyAhxa8HjnfYCcIapdhyK8vxe5c21Uqx68Ca
+y6Y6g/Nl9nim0LsWXGxsACYr9hdbrzH0E+A6sNrhMaxOZkt6P9U6sxoBn4qKEsMFDCNeME0ZRaC3
+P3+ysK9JvI9pkTP9Q11i9tZynVQqNVPGn1TwYcB0jL8Cnq4wem2E/b2weWLcnRZwYmT8YTUCFJ1g
+dL2Jex8ME3glS8w7uws4HlgIdIRR9JRlN46a1PjpzveiEtcKfiDK7shoNFaQNVTRLZnpX510XX3c
+nq8Wv1nkGEijQ/De1DNMYGGh7SJDFw8oU2/GUw3tu/5nnKHLiRrXdGyqSxRvCUIuQnoJiKo5PgK2
+Ofkrw3j0lXR75zOW7Rj38I8QCBJmTB26FnQHLuiJwUBLnCvqVrChvduH9L2hfqOiwez7vcCmHdnM
+JTNLXANaKm9zMOJHCNpjfCDPBjNbXdP+3r7JMI28NRo0DV07o9Or2OsAevr8GQYnlbF7sXZ1555K
+hsaiLdvRvzbesU5m92F0HUnfoCTPU3XJ4oq61TsmFfzgvLPKDj54z7a+eKrHCcwFdjYwbZiA16Sb
+rt5VLSd8s9T6PcT9DJzCJoQgiXFtvph4Nr9q7hnSZBtKXVr2PxS8OY3tuRjZ5jRFOwUGlt5QGMHm
+CU0J61naPD0ej1/gPXfLbO7kghiADTzQX5D8Wb23tz7auyq2Lh2fvWdswhhCftnsZmFfGAnAPowT
+vWZZvMvl0nUSbcNj0JUm6qnmfOfNLenciszlLpl4IjJbf7TBj0GjZLd7hT/NF3f8dW5lW1NFrcDd
+SFkGEnorlYw2A7ggSRIbeTgM6+2PBVWzyvRE4jhzuhM4H6tcOSul1wlSLmCnAN/Cc9rYkUPLMxlv
+dnm5zBsPDSYRnFkYM1RX5iiZwldt8tLp1F7QP4HGkvSIvZJWx/CLKrBaH1q0GPQ2aOxWEfCqt+Ko
+ratFBHHTZQatw1ThhcbVncP1whVCGWXdpMGU0AdVGyvLvl30LlgPtr3MfUHS0/LRFXXJtrsqz1Sy
+8d6dG3xY+rLDHgTKM1CXl62rb9/9YfmM7nktbWBXM5R9xN5I/p5yHZcMgsiwkU5xQHnC9rb+nh2/
+9Wjt4OU2c1xRl4zfUP/tna9admPosdTYOc5ImqGGNe9vS/fE7jKL/gzTSwwcVJ6vz8WeH/sGIwiC
+OzFOHryMMJ48mHSjVikWxVWgyAFg3ojYLpNYX62QmSGp87H8qkyTC0s/qlmze1f5uPekbMwmlEZy
+uD26vQC8sXdp05/XJVJft9D/2B7tGGmVlyyM52YcWILsqhGn2hqz4O/asu+OqtaxArHeBGGnwdll
+7j7ftSpzGnT8VyUCQySgo73imBsJdkTfjVuVwdeGa8tl2kCQ+/WBSw27c+j2CQ47cVvqvnffGWvD
+TWN7zqEtjO5nUgnpDi05YltQEX7g7dwoqIKsEnrebDvHZA8ijhsUlfAsr0l0Vmz0nGXxQpswjUpz
+Mvtcbkbbl5Q9htO4B0wHyn+Sr3gmLkf/8nnzndOzDGQdA4USP+zrzj9R7a11DKCQSPwiWQx/A3y2
+bGyKodvyxbatsOOto4k/puAlr/DKclnkNEEdGEAy1fd+WEi8jnEhgGHPOVdsn/nd/blqc4bTZ//y
+OeeF5l7EynoTIWBLLIi+lLp357jW+uPAoW9mTo/H+WdgtozF9fd1jD8clWFUI5Vflfm+xHWMPzF1
+4LmxNsXGiXr2o8GW7ILE3FJXEz7eYiX2Hqb/g6YH9vWSJegptC5zZnchfl6bLF48VHWPSKB31bzZ
+XuF6ZOeOWokB7BPaIPFkfabzDftLjukFbtfyOVNjuLMxfR5nFyAWALsMvSzcKy4sbqQGfCH+jzI+
+5cRXa9s7np0UAQk7vGLOHwSBPW2yeRX0/QARXpfX+vpU6YWJ7s6w3ZvmJ/saws8gfdnLzsdoYeBr
+TXmCEJAD9gDPO2mXx9ZgPFnoid04/dHt3UckMITuFZnfc/CUGQtE9VRqKCfZLzH9Ssa7RHbQmfWZ
+kYq8n2FmrZhOxWzhYFoc60+CHkPdhk0V1IzoyIM54LCz8Pya+3a9PmkCAIdubWuNJ3QLxtXAlGp6
+HwH7kV6U7Dlc9N/ywRku4DOIUxk4Hc5icIUEz9QlOi6rlEonPA0p21zTU4ifFhirJLuwWvs8aQjh
++G0g1pfEM4UouXvGmm25oR7onZvmJ2fV0RAPCg3ybo6Hc4A/lnEm0uK61e+9fFQEhv0uIuib23q2
+d9xg5v5IqNGgdrC6Vip03qCgga+QedA+sJ95Rc/UH9y5qfwt36T8Z8+N7c93zJi5tmPvMREoR25l
+W5PwCyTmBsasSEwzsxpnCpArCfokuhzRPrDdMezdRH/YaQ/v6jtaX5PBR/rIJ7DNSxbGpjcfDDKH
+Q6Mt5fmwJSK7MTqaj3uf4BP8P+J/ASVw7ffFYZkMAAAAAElFTkSuQmCC
+"/> </g> </svg> </a> <a href=https://www.asterisk.org/blog/ target=_blank rel=noopener title=www.asterisk.org class=md-social__link> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 512 512"><!-- Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path fill=currentColor d="m61.7 169.4 101.5 278C92.2 413 43.3 340.2 43.3 256c0-30.9 6.6-60.1 18.4-86.6m337.9 75.9c0-26.3-9.4-44.5-17.5-58.7-10.8-17.5-20.9-32.4-20.9-49.9 0-19.6 14.8-37.8 35.7-37.8.9 0 1.8.1 2.8.2-37.9-34.7-88.3-55.9-143.7-55.9-74.3 0-139.7 38.1-177.8 95.9 5 .2 9.7.3 13.7.3 22.2 0 56.7-2.7 56.7-2.7 11.5-.7 12.8 16.2 1.4 17.5 0 0-11.5 1.3-24.3 2l77.5 230.4L249.8 247l-33.1-90.8c-11.5-.7-22.3-2-22.3-2-11.5-.7-10.1-18.2 1.3-17.5 0 0 35.1 2.7 56 2.7 22.2 0 56.7-2.7 56.7-2.7 11.5-.7 12.8 16.2 1.4 17.5 0 0-11.5 1.3-24.3 2l76.9 228.7 21.2-70.9c9-29.4 16-50.5 16-68.7m-139.9 29.3-63.8 185.5c19.1 5.6 39.2 8.7 60.1 8.7 24.8 0 48.5-4.3 70.6-12.1-.6-.9-1.1-1.9-1.5-2.9zm183-120.7c.9 6.8 1.4 14 1.4 21.9 0 21.6-4 45.8-16.2 76.2l-65 187.9C426.2 403 468.7 334.5 468.7 256c0-37-9.4-71.8-26-102.1M8 256a248 248 0 1 1 496 0 248 248 0 1 1-496 0m484.6 0a236.6 236.6 0 1 0-473.2 0 236.6 236.6 0 1 0 473.2 0"/></svg> </a> <a href=https://fosstodon.org/@asterisk target=_blank rel="noopener me" title=fosstodon.org class=md-social__link> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 448 512"><!-- Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path fill=currentColor d="M433 179.1c0-97.2-63.7-125.7-63.7-125.7-62.5-28.7-228.6-28.4-290.5 0 0 0-63.7 28.5-63.7 125.7 0 115.7-6.6 259.4 105.6 289.1 40.5 10.7 75.3 13 103.3 11.4 50.8-2.8 79.3-18.1 79.3-18.1l-1.7-36.9s-36.3 11.4-77.1 10.1c-40.4-1.4-83-4.4-89.6-54-.6-4.6-.9-9.3-.9-13.9 85.6 20.9 158.7 9.1 178.7 6.7 56.1-6.7 105-41.3 111.2-72.9 9.8-49.8 9-121.5 9-121.5zm-75.1 125.2h-46.6V190.1c0-49.7-64-51.6-64 6.9v62.5H201V197c0-58.5-64-56.6-64-6.9v114.2H90.3c0-122.1-5.2-147.9 18.4-175 25.9-28.9 79.8-30.8 103.8 6.1l11.6 19.5 11.6-19.5c24.1-37.1 78.1-34.8 103.8-6.1 23.7 27.3 18.4 53 18.4 175"/></svg> </a> <a href=https://github.com/asterisk target=_blank rel=noopener title=github.com class=md-social__link> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 512 512"><!-- Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path fill=currentColor d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg> </a> <a href=https://community.asterisk.org target=_blank rel=noopener title=community.asterisk.org class=md-social__link> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 448 512"><!-- Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path fill=currentColor d="M225.9 32C103.3 32 0 130.5 0 252.1 0 256 .1 480 .1 480l225.8-.2c122.7 0 222.1-102.3 222.1-223.9S348.6 32 225.9 32M224 384c-19.4 0-37.9-4.3-54.4-12.1L88.5 392l22.9-75c-9.8-18.1-15.4-38.9-15.4-61 0-70.7 57.3-128 128-128s128 57.3 128 128-57.3 128-128 128"/></svg> </a> </div> </div> </div> </footer> </div> <div class=md-dialog data-md-component=dialog> <div class="md-dialog__inner md-typeset"></div> </div> <script id=__config type=application/json>{"base": "../..", "features": ["navigation.instant", "navigation.tracking", "navigation.prune", "navigation.indexes", "navigation.top", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.code.annotate", "toc.follow"], "search": "../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script> <script src=../../assets/javascripts/bundle.92b07e13.min.js></script> </body> </html>
